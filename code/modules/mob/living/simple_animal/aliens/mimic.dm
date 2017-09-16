@@ -10,6 +10,7 @@
 	icon_living = "crate"
 
 	faction = "mimic"
+	intelligence_level = SA_ANIMAL
 
 	maxHealth = 250
 	health = 250

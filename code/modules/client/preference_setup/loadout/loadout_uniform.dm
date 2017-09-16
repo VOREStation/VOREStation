@@ -240,26 +240,18 @@
 	path = /obj/item/clothing/under/rank/bartender/skirt
 	allowed_roles = list("Bartender")
 
-/datum/gear/uniform/scrubs
-	display_name = "scrubs, black"
-	path = /obj/item/clothing/under/rank/medical/black
+/datum/gear/uniform/scrub
+	display_name = "scrubs selection"
+	path = /obj/item/clothing/under/rank/medical/scrubs
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Roboticist")
 
-/datum/gear/uniform/scrubs/blue
-	display_name = "scrubs, blue"
-	path = /obj/item/clothing/under/rank/medical/blue
-
-/datum/gear/uniform/scrubs/purple
-	display_name = "scrubs, purple"
-	path = /obj/item/clothing/under/rank/medical/purple
-
-/datum/gear/uniform/scrubs/green
-	display_name = "scrubs, green"
-	path = /obj/item/clothing/under/rank/medical/green
-
-/datum/gear/uniform/scrubs/navyblue
-	display_name = "scrubs, navy blue"
-	path = /obj/item/clothing/under/rank/medical/navyblue
+/datum/gear/uniform/scrub/New()
+	..()
+	var/list/scrubs = list()
+	for(var/scrub in typesof(/obj/item/clothing/under/rank/medical/scrubs))
+		var/obj/item/clothing/under/rank/medical/scrubs/scrub_type = scrub
+		scrubs[initial(scrub_type.name)] = scrub_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(scrubs))
 
 /datum/gear/uniform/oldwoman
 	display_name = "old woman attire"
@@ -375,7 +367,7 @@
 /datum/gear/uniform/dresses/janimaid
 	display_name = "maid uniform"
 	path = /obj/item/clothing/under/dress/janimaid
-	
+
 /datum/gear/uniform/dresses/sexymaid
 	display_name = "sexy maid uniform"
 	path = /obj/item/clothing/under/dress/sexymaid

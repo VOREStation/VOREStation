@@ -17,11 +17,12 @@
 	var/show_stat_health = 1		// Does the percentage health show in the stat panel for the mob
 	var/ai_inactive = 0 			// Set to 1 to turn off most AI actions
 
-	//Mob icon settings
+	//Mob icon/appearance settings
 	var/icon_living = ""			// The iconstate if we're alive, required
 	var/icon_dead = ""				// The iconstate if we're dead, required
 	var/icon_gib = null				// The iconstate for being gibbed, optional
 	var/icon_rest = null			// The iconstate for resting, optional
+	var/image/modifier_overlay = null // Holds overlays from modifiers.
 
 	//Mob talking settings
 	universal_speak = 0				// Can all mobs in the entire universe understand this one?
@@ -59,6 +60,7 @@
 	var/list/loot_list = list()		// The list of lootable objects to drop, with "/path = prob%" structure
 	var/recruitable = 0				// Mob can be bossed around
 	var/recruit_cmd_str = "Hey,"	// The thing you prefix commands with when bossing them around
+	var/intelligence_level = SA_ANIMAL// How 'smart' the mob is ICly, used to deliniate between animal, robot, and humanoid SAs.
 
 	//Mob environment settings
 	var/minbodytemp = 250			// Minimum "okay" temperature in kelvin
@@ -116,6 +118,7 @@
 	var/run_at_them = 1				// Don't use A* pathfinding, use walk_to
 	var/move_to_delay = 4			// Delay for the automated movement (deciseconds)
 	var/destroy_surroundings = 1	// Should I smash things to get to my target?
+	var/astar_adjacent_proc = /turf/proc/CardinalTurfsWithAccess // Proc to use when A* pathfinding.  Default makes them bound to cardinals.
 
 	//Damage resistances
 	var/resistance = 0				// Damage reduction for all types
@@ -206,6 +209,7 @@
 		src.client.screen += src.client.void
 		ai_inactive = 1
 		handle_stance(STANCE_IDLE)
+		LoseTarget()
 		src.client << "<span class='notice'>Mob AI disabled while you are controlling the mob.</span>"
 	..()
 
@@ -242,7 +246,7 @@
 /mob/living/simple_animal/update_icon()
 	..()
 	//Awake and normal
-	if((stat == CONSCIOUS) && (!icon_rest || !resting))
+	if((stat == CONSCIOUS) && (!icon_rest || !resting || !incapacitated(INCAPACITATION_DISABLED) ))
 		icon_state = icon_living
 
 	//Dead
@@ -250,12 +254,32 @@
 		icon_state = icon_dead
 
 	//Resting or KO'd
-	else if(((stat == UNCONSCIOUS) || resting) && icon_rest)
+	else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest)
 		icon_state = icon_rest
 
 	//Backup
 	else
 		icon_state = initial(icon_state)
+
+// If your simple mob's update_icon() call calls overlays.Cut(), this needs to be called after this, or manually apply modifier_overly to overlays.
+/mob/living/simple_animal/update_modifier_visuals()
+	var/image/effects = null
+	if(modifier_overlay)
+		overlays -= modifier_overlay
+		modifier_overlay.overlays.Cut()
+		effects = modifier_overlay
+	else
+		effects = new()
+
+	for(var/datum/modifier/M in modifiers)
+		if(M.mob_overlay_state)
+			var/image/I = image("icon" = 'icons/mob/modifier_effects.dmi', "icon_state" = M.mob_overlay_state)
+			I.appearance_flags = RESET_COLOR // So colored mobs don't affect the overlay.
+			effects.overlays += I
+
+	modifier_overlay = effects
+	overlays += modifier_overlay
+
 
 /mob/living/simple_animal/Life()
 
@@ -295,7 +319,7 @@
 
 		//Resisting out buckles
 		if(stance != STANCE_IDLE && incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
-			resist()
+			handle_resist()
 
 		//Resisting out of closets
 		if(istype(loc,/obj/structure/closet))
@@ -306,6 +330,11 @@
 				C.open()
 
 	return 1
+
+// Resists out of things.
+// Sometimes there are times you want SAs to be buckled to something, so override this for when that is needed.
+/mob/living/simple_animal/proc/handle_resist()
+	resist()
 
 // Peforms the random walk wandering
 /mob/living/simple_animal/proc/handle_wander_movement()
@@ -489,6 +518,8 @@
 	if(Proj.firer)
 		react_to_attack(Proj.firer)
 
+	Proj.on_hit(src)
+
 	return 0
 
 // When someone clicks us with an empty hand
@@ -557,11 +588,9 @@
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		if(!O.force)
-			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
-		else
-			O.attack(src, user, user.zone_sel.selecting)
-			ai_log("attackby() I was weapon'd by: [user]",2)
+		O.attack(src, user, user.zone_sel.selecting)
+		ai_log("attackby() I was weapon'd by: [user]",2)
+		if(O.force)
 			react_to_attack(user)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
@@ -652,18 +681,58 @@
 		if(3.0)
 			adjustBruteLoss(30)
 
+// Don't understand why simple animals don't use the regular /mob/living health system.
 /mob/living/simple_animal/adjustBruteLoss(damage)
+	if(damage > 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_damage_percent))
+				damage *= M.incoming_damage_percent
+			if(!isnull(M.incoming_brute_damage_percent))
+				damage *= M.incoming_brute_damage_percent
+	else if(damage < 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_healing_percent))
+				damage *= M.incoming_healing_percent
+
 	health = Clamp(health - damage, 0, getMaxHealth())
+	updatehealth()
 
 /mob/living/simple_animal/adjustFireLoss(damage)
+	if(damage > 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_damage_percent))
+				damage *= M.incoming_damage_percent
+			if(!isnull(M.incoming_fire_damage_percent))
+				damage *= M.incoming_brute_damage_percent
+	else if(damage < 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_healing_percent))
+				damage *= M.incoming_healing_percent
+
 	health = Clamp(health - damage, 0, getMaxHealth())
+	updatehealth()
+
+/mob/living/simple_animal/adjustToxLoss(damage)
+	if(damage > 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_damage_percent))
+				damage *= M.incoming_damage_percent
+			if(!isnull(M.incoming_tox_damage_percent))
+				damage *= M.incoming_brute_damage_percent
+	else if(damage < 0)
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.incoming_healing_percent))
+				damage *= M.incoming_healing_percent
+
+	health = Clamp(health - damage, 0, getMaxHealth())
+	updatehealth()
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	ai_log("SA_attackable([target_mob])",3)
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
-		if(!L.stat)
+		if(L.stat != DEAD)
 			return 1
 	if (istype(target_mob,/obj/mecha))
 		var/obj/mecha/M = target_mob
@@ -784,6 +853,8 @@
 				continue
 			else if(!SA_attackable(L))
 				continue
+			else if(!special_target_check(L))
+				continue
 			else
 				T = L
 				break
@@ -791,6 +862,8 @@
 		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
 			var/obj/mecha/M = A
 			if(!SA_attackable(M))
+				continue
+			else if(!special_target_check(M))
 				continue
 			if((M.occupant.faction != src.faction) || attack_same)
 				T = M
@@ -807,6 +880,10 @@
 //Used for special targeting or reactions
 /mob/living/simple_animal/proc/Found(var/atom/A)
 	return
+
+// Used for somewhat special targeting, but not to the extent of using Found()
+/mob/living/simple_animal/proc/special_target_check(var/atom/A)
+	return TRUE
 
 //Requesting help from like-minded individuals
 /mob/living/simple_animal/proc/RequestHelp()
@@ -840,6 +917,12 @@
 	if(set_follow(F, 10 SECONDS))
 		handle_stance(STANCE_FOLLOW)
 
+// Can be used to conditionally do a ranged or melee attack.
+// Note that the SA must be able to do an attack at the specified range or else it may get trapped in a loop of switching
+// between STANCE_ATTACK and STANCE_ATTACKING, due to being told by MoveToTarget() that they're in range but being told by AttackTarget() that they're not.
+/mob/living/simple_animal/proc/ClosestDistance()
+	return ranged ? shoot_range - 1 : 1 // Shoot range -1 just because we don't want to constantly get kited
+
 //Move to a target (or near if we're ranged)
 /mob/living/simple_animal/proc/MoveToTarget()
 	if(incapacitated(INCAPACITATION_DISABLED))
@@ -864,9 +947,9 @@
 			ForgetPath()
 
 		//Find out where we're getting to
-		var/get_to = ranged ? shoot_range-1 : 1 //Shoot range -1 just because we don't want to constantly get kited
+		var/get_to = ClosestDistance()
 		var/distance = get_dist(src,target_mob)
-		ai_log("MoveToTarget() [src] [get_to] [distance]",2)
+		ai_log("MoveToTarget() [src] get_to: [get_to] distance: [distance]",2)
 
 		//We're here!
 		if(distance <= get_to)
@@ -926,6 +1009,7 @@
 
 	if(incapacitated(INCAPACITATION_DISABLED))
 		ai_log("FollowTarget() Bailing because we're disabled",2)
+		LoseFollow()
 		return
 
 	if((get_dist(src,follow_mob) <= follow_dist))
@@ -979,7 +1063,7 @@
 /mob/living/simple_animal/proc/GetPath(var/turf/target,var/get_to = 1,var/max_distance = world.view*6)
 	ai_log("GetPath([target],[get_to],[max_distance])",2)
 	ForgetPath()
-	var/list/new_path = AStar(get_turf(loc), target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, min_target_dist = get_to, max_node_depth = max_distance, id = myid, exclude = obstacles)
+	var/list/new_path = AStar(get_turf(loc), target, astar_adjacent_proc, /turf/proc/Distance, min_target_dist = get_to, max_node_depth = max_distance, id = myid, exclude = obstacles)
 
 	if(new_path && new_path.len)
 		walk_list = new_path
@@ -1089,6 +1173,10 @@
 //Get into attack mode on a target
 /mob/living/simple_animal/proc/AttackTarget()
 	stop_automated_movement = 1
+	if(incapacitated(INCAPACITATION_DISABLED))
+		ai_log("AttackTarget() Bailing because we're disabled",2)
+		LoseTarget()
+		return 0
 	if(!target_mob || !SA_attackable(target_mob))
 		LoseTarget()
 		return 0
@@ -1118,6 +1206,7 @@
 	//They ran away!
 	else
 		ai_log("AttackTarget() out of range!",3)
+		sleep(1) // Unfortunately this is needed to protect from ClosestDistance() sometimes not updating fast enough to prevent an infinite loop.
 		handle_stance(STANCE_ATTACK)
 		return 0
 
@@ -1125,7 +1214,8 @@
 /mob/living/simple_animal/proc/PunchTarget()
 	if(!Adjacent(target_mob))
 		return
-	sleep(rand(8) + 8)
+	if(!client)
+		sleep(rand(8) + 8)
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 
@@ -1136,39 +1226,51 @@
 			src.do_attack_animation(src)
 			return L
 		else
-			L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+			DoPunch(L)
 		return L
 	if(istype(target_mob,/obj/mecha))
 		var/obj/mecha/M = target_mob
-		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		DoPunch(M)
 		return M
+
+// This is the actual act of 'punching'.  Override for special behaviour.
+/mob/living/simple_animal/proc/DoPunch(var/atom/A)
+	if(!Adjacent(target_mob)) // They could've moved in the meantime.
+		return
+	var/damage_to_do = rand(melee_damage_lower, melee_damage_upper)
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.outgoing_melee_damage_percent))
+			damage_to_do *= M.outgoing_melee_damage_percent
+
+	A.attack_generic(src, damage_to_do, attacktext)
 
 //The actual top-level ranged attack proc
 /mob/living/simple_animal/proc/ShootTarget()
 	var/target = target_mob
 	var/tturf = get_turf(target)
 
-	if(firing_lines && !CheckFiringLine(tturf))
+	if((firing_lines && !client) && !CheckFiringLine(tturf))
 		step_rand(src)
 		face_atom(tturf)
 		return 0
 
-	visible_message("<span class='danger'><b>[src]</b> fires at [target]!</span>", 1)
+	visible_message("<span class='danger'><b>[src]</b> fires at [target]!</span>")
 	if(rapid)
 		spawn(1)
-			Shoot(tturf, src.loc, src)
+			Shoot(target, src.loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 		spawn(4)
-			Shoot(tturf, src.loc, src)
+			Shoot(target, src.loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 		spawn(6)
-			Shoot(tturf, src.loc, src)
+			Shoot(target, src.loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 	else
-		Shoot(tturf, src.loc, src)
+		Shoot(target, src.loc, src)
 		if(casingtype)
 			new casingtype
 
@@ -1208,9 +1310,9 @@
 	playsound(user, projectilesound, 100, 1)
 	if(!A)	return
 
-	if (!istype(target, /turf))
-		qdel(A)
-		return
+//	if (!istype(target, /turf))
+//		qdel(A)
+//		return
 	A.launch(target)
 	return
 
@@ -1233,6 +1335,43 @@
 	handle_stance(STANCE_IDLE)
 	GiveUpMoving()
 
+// Makes the simple mob stop everything.  Useful for when it get stunned.
+/mob/living/simple_animal/proc/Disable()
+	ai_log("Disable() [target_mob]",2)
+	spawn(0)
+		LoseTarget()
+		LoseFollow()
+
+/mob/living/simple_animal/Stun(amount)
+	if(amount > 0)
+		Disable()
+	..(amount)
+
+/mob/living/simple_animal/AdjustStunned(amount)
+	if(amount > 0)
+		Disable()
+	..(amount)
+
+/mob/living/simple_animal/Weaken(amount)
+	if(amount > 0)
+		Disable()
+	..(amount)
+
+/mob/living/simple_animal/AdjustWeakened(amount)
+	if(amount > 0)
+		Disable()
+	..(amount)
+
+/mob/living/simple_animal/Paralyse(amount)
+	if(amount > 0)
+		Disable()
+	..(amount)
+
+/mob/living/simple_animal/AdjustParalysis(amount)
+	if(amount > 0)
+		Disable()
+	..(amount)
+
 //Find me some targets
 /mob/living/simple_animal/proc/ListTargets(var/dist = view_range)
 	var/list/L = hearers(src, dist)
@@ -1251,22 +1390,32 @@
 	var/turf/problem_turf = get_step(src, direction)
 
 	ai_log("DestroySurroundings([direction])",3)
+	var/damage_to_do = rand(melee_damage_lower, melee_damage_upper)
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.outgoing_melee_damage_percent))
+			damage_to_do *= M.outgoing_melee_damage_percent
+
 	for(var/obj/structure/window/obstacle in problem_turf)
 		if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
 			ai_log("DestroySurroundings() directional window hit",3)
-			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+			obstacle.attack_generic(src, damage_to_do, attacktext)
+			return
+		else if(obstacle.is_fulltile())
+			ai_log("DestroySurroundings() full tile window hit",3)
+			obstacle.attack_generic(src, damage_to_do, attacktext)
 			return
 
 	var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
 	if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 		ai_log("DestroySurroundings() generic structure hit [obstacle]",3)
-		obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		obstacle.attack_generic(src, damage_to_do ,attacktext)
 		return
 
 	for(var/obj/machinery/door/baddoor in problem_turf) //Required since firelocks take up the same turf
 		if(baddoor.density)
 			ai_log("DestroySurroundings() door hit [baddoor]",3)
-			baddoor.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+			baddoor.attack_generic(src, damage_to_do ,attacktext)
 			return
 
 //Check for shuttle bumrush

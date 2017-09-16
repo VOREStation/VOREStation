@@ -6,6 +6,7 @@
 	icon_living = "pine_1"
 	icon_dead = "pine_1"
 	icon_gib = "pine_1"
+	intelligence_level = SA_PLANT
 
 	faction = "carp" //Trees can be carp friends?
 	maxHealth = 250
@@ -53,5 +54,6 @@
 
 /mob/living/simple_animal/hostile/tree/death()
 	..(null,"is hacked into pieces!")
+	playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
 	new /obj/item/stack/material/wood(loc)
 	qdel(src)

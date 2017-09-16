@@ -8,6 +8,7 @@
 	icon_dead = "drone_dead"
 
 	faction = "malf_drone"
+	intelligence_level = SA_ROBOTIC
 	maxHealth = 300
 	health = 300
 	speed = 8

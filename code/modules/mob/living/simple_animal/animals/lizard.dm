@@ -5,6 +5,7 @@
 	icon_state = "lizard"
 	icon_living = "lizard"
 	icon_dead = "lizard-dead"
+	intelligence_level = SA_ANIMAL
 
 	health = 5
 	maxHealth = 5

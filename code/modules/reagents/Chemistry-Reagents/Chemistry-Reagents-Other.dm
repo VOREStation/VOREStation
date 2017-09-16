@@ -169,6 +169,14 @@
 	reagent_state = SOLID
 	color = "#B8B8C0"
 
+/datum/reagent/platinum
+	name = "Platinum"
+	id = "platinum"
+	description = "Platinum is a dense, malleable, ductile, highly unreactive, precious, gray-white transition metal.  It is very resistant to corrosion."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#777777"
+
 /datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	affect_ingest(M, alien, removed)
 
@@ -298,7 +306,7 @@
 			S.dirt = 0
 		T.clean_blood()
 
-		for(var/mob/living/carbon/slime/M in T)
+		for(var/mob/living/simple_animal/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)

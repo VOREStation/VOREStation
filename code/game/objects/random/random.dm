@@ -842,7 +842,6 @@ something, make sure it's not in one of the other lists.*/
 /obj/random/maintenance/research/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(3);/obj/item/device/analyzer/plant_analyzer,
-				prob(2);/obj/item/device/analyzer/xeno_analyzer,
 				prob(1);/obj/item/device/flash/synthetic,
 				prob(2);/obj/item/weapon/bucket_sensor,
 				prob(1);/obj/item/weapon/cell/device/weapon,

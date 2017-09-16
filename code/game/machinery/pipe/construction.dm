@@ -55,6 +55,7 @@ Buildable meters
 #define PIPE_DTVALVE				45
 #define PIPE_DTVALVEM				46
 
+#define PIPE_PASSIVE_VENT			47
 
 /obj/item/pipe
 	name = "pipe"
@@ -198,6 +199,8 @@ Buildable meters
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/down))
 			src.pipe_type = PIPE_DOWN
 ///// Z-Level stuff
+		else if(istype(make_from, /obj/machinery/atmospherics/pipe/vent))
+			src.pipe_type = PIPE_PASSIVE_VENT
 	else
 		src.pipe_type = pipe_type
 		src.set_dir(dir)
@@ -272,6 +275,7 @@ Buildable meters
 		"dvalve", \
 		"dt-valve", \
 		"dt-valve m", \
+		"passive vent", \
 	)
 	name = nlist[pipe_type+1] + " fitting"
 	var/list/islist = list( \
@@ -325,6 +329,7 @@ Buildable meters
 		"dvalve", \
 		"dtvalve", \
 		"dtvalvem", \
+		"passive vent", \
 	)
 	icon_state = islist[pipe_type + 1]
 
@@ -414,6 +419,8 @@ Buildable meters
 		if(PIPE_UP,PIPE_DOWN,PIPE_SUPPLY_UP,PIPE_SUPPLY_DOWN,PIPE_SCRUBBERS_UP,PIPE_SCRUBBERS_DOWN)
 			return dir
 ///// Z-Level stuff
+		if(PIPE_PASSIVE_VENT)
+			return dir
 	return 0
 
 /obj/item/pipe/proc/get_pdir() //endpoints for regular pipes
@@ -1230,6 +1237,17 @@ Buildable meters
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
 			P.build_network()
+		if(PIPE_PASSIVE_VENT)
+			var/obj/machinery/atmospherics/pipe/vent/P = new(loc)
+			P.set_dir(dir)
+			P.initialize_directions = pipe_dir
+			var/turf/T = P.loc
+			P.level = !T.is_plating() ? 2 : 1
+			P.initialize()
+			P.build_network()
+			if (P.node1)
+				P.node1.initialize()
+				P.node1.build_network()
 
 	playsound(src, W.usesound, 50, 1)
 	user.visible_message( \

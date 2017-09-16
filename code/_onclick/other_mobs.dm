@@ -59,77 +59,6 @@
 	A.attack_generic(src,rand(5,6),"bitten")
 
 /*
-	Slimes
-	Nothing happening here
-*/
-
-/mob/living/carbon/slime/RestrainedClickOn(var/atom/A)
-	return
-
-/mob/living/carbon/slime/UnarmedAttack(var/atom/A, var/proximity)
-
-	if(!..())
-		return
-
-	// Eating
-	if(Victim)
-		if (Victim == A)
-			Feedstop()
-		return
-
-	//should have already been set if we are attacking a mob, but it doesn't hurt and will cover attacking non-mobs too
-	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
-	var/mob/living/M = A
-	if (istype(M))
-
-		switch(src.a_intent)
-			if (I_HELP) // We just poke the other
-				M.visible_message("<span class='notice'>[src] gently pokes [M]!</span>", "<span class='notice'>[src] gently pokes you!</span>")
-			if (I_DISARM) // We stun the target, with the intention to feed
-				var/stunprob = 1
-				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
-				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
-					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
-						stunprob *= max(H.species.siemens_coefficient,0)
-
-
-					switch(power * 10)
-						if(0) stunprob *= 10
-						if(1 to 2) stunprob *= 20
-						if(3 to 4) stunprob *= 30
-						if(5 to 6) stunprob *= 40
-						if(7 to 8) stunprob *= 60
-						if(9) 	   stunprob *= 70
-						if(10) 	   stunprob *= 95
-
-				if(prob(stunprob))
-					powerlevel = max(0, powerlevel-3)
-					M.visible_message("<span class='danger'>[src] has shocked [M]!</span>", "<span class='danger'>[src] has shocked you!</span>")
-					M.Weaken(power)
-					M.Stun(power)
-					M.stuttering = max(M.stuttering, power)
-
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(5, 1, M)
-					s.start()
-
-					if(prob(stunprob) && powerlevel >= 8)
-						M.adjustFireLoss(powerlevel * rand(6,10))
-				else if(prob(40))
-					M.visible_message("<span class='danger'>[src] has pounced at [M]!</span>", "<span class='danger'>[src] has pounced at you!</span>")
-					M.Weaken(power)
-				else
-					M.visible_message("<span class='danger'>[src] has tried to pounce at [M]!</span>", "<span class='danger'>[src] has tried to pounce at you!</span>")
-				M.updatehealth()
-			if (I_GRAB) // We feed
-				Wrap(M)
-			if (I_HURT) // Attacking
-				A.attack_generic(src, (is_adult ? rand(20,40) : rand(5,25)), "glomped")
-	else
-		A.attack_generic(src, (is_adult ? rand(20,40) : rand(5,25)), "glomped") // Basic attack.
-/*
 	New Players:
 	Have no reason to click on anything at all.
 */
@@ -140,15 +69,40 @@
 	Animals
 */
 /mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
-
 	if(!..())
 		return
+
+	if(prob(spattack_prob))
+		if(spattack_min_range <= 1)
+			target_mob = A
+			SpecialAtkTarget()
+			target_mob = null
+			return
 
 	if(melee_damage_upper == 0 && istype(A,/mob/living))
 		custom_emote(1,"[friendly] [A]!")
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/damage = rand(melee_damage_lower, melee_damage_upper)
-	if(A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
-		playsound(loc, attack_sound, 50, 1, 1)
+	if(isliving(A))
+		target_mob = A
+		PunchTarget()
+		target_mob = null
+	else
+		A.attack_generic(src, rand(melee_damage_lower, melee_damage_upper), attacktext)
+
+/mob/living/simple_animal/RangedAttack(var/atom/A)
+	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	var/distance = get_dist(src, A)
+
+	if(prob(spattack_prob) && (distance >= spattack_min_range) && (distance <= spattack_max_range))
+		target_mob = A
+		SpecialAtkTarget()
+		target_mob = null
+		return
+
+	if(ranged && distance <= shoot_range)
+		target_mob = A
+		ShootTarget(A)
+		target_mob = null
+

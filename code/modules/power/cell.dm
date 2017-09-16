@@ -6,6 +6,19 @@
 	..()
 	charge = maxcharge
 	update_icon()
+	if(self_recharge)
+		processing_objects |= src
+
+/obj/item/weapon/cell/Destroy()
+	if(self_recharge)
+		processing_objects -= src
+	return ..()
+
+/obj/item/weapon/cell/process()
+	if(self_recharge)
+		give(charge_amount / CELLRATE)
+	else
+		return PROCESS_KILL
 
 /obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 

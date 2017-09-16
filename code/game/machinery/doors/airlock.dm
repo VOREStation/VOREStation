@@ -69,6 +69,37 @@
 		return
 	..()
 
+/obj/machinery/door/airlock/attack_alien(var/mob/user) //Familiar, right? Doors. -Mechoid
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			if(src.locked || src.welded)
+				visible_message("<span class='alium'>\The [user] begins digging into \the [src] internals!</span>")
+				src.do_animate("deny")
+				if(do_after(user,5 SECONDS,src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] open, sparks flying from its electronics!</span>")
+					src.do_animate("spark")
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					src.locked = 0
+					src.welded = 0
+					update_icon()
+					open(1)
+					src.emag_act()
+			else if(src.density)
+				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
+				if(do_after(user, 5 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					open(1)
+			else
+				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+				close(1)
+		else
+			src.do_animate("deny")
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			return
+	..()
+
 /obj/machinery/door/airlock/get_material()
 	if(mineral)
 		return get_material_by_name(mineral)
@@ -740,6 +771,12 @@ About the new airlock wires panel:
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return
+
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			src.attack_alien(user)
+			return
 
 	if(src.p_open)
 		user.set_machine(src)

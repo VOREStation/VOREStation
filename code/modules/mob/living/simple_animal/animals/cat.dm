@@ -2,6 +2,7 @@
 /mob/living/simple_animal/cat
 	name = "cat"
 	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
+	intelligence_level = SA_ANIMAL
 	icon_state = "cat2"
 	item_state = "cat2"
 	icon_living = "cat2"

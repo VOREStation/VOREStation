@@ -82,12 +82,8 @@
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 
-	var/int_pressure = 0
-	for(var/datum/omni_port/P in ports)
-		int_pressure += P.air.return_pressure()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>"
+	if(!can_unwrench())
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
 		return 1
 	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
@@ -99,6 +95,15 @@
 			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
+
+/obj/machinery/atmospherics/omni/can_unwrench()
+	var/int_pressure = 0
+	for(var/datum/omni_port/P in ports)
+		int_pressure += P.air.return_pressure()
+	var/datum/gas_mixture/env_air = loc.return_air()
+	if((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+		return 0
+	return 1
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())
@@ -247,6 +252,7 @@
 		if(P.node || P.mode == 0)
 			continue
 		for(var/obj/machinery/atmospherics/target in get_step(src, P.dir))
+			target.init_dir()
 			if(target.initialize_directions & get_dir(target,src))
 				if (check_connect_types(target,src))
 					P.node = target

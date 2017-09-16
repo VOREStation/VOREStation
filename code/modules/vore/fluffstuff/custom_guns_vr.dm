@@ -471,7 +471,7 @@
 	fire_delay = 0.6
 	accuracy = 1
 	w_class = ITEMSIZE_SMALL
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
@@ -493,7 +493,7 @@
 	fire_delay = 1.2
 	load_method = MAGAZINE
 	accuracy = 2
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
