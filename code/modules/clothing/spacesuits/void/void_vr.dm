@@ -134,7 +134,37 @@
 			else
 				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
 				return 0
-
+				
+/obj/item/clothing/suit/space/void/medical/alt/taur
+	name = "taur specific streamlined medical voidsuit"
+	desc = "A more recent model of Vey-Med voidsuit, featuring the latest in radiation shielding technology. It has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "medicalalt-horse"
+				item_state = "medicalalt-horse"
+				pixel_x = -16
+				return 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "medicalalt-wolf"
+				item_state = "medicalalt-wolf"
+				pixel_x = -16
+				return 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "medicalalt-naga"
+				item_state = "medicalalt-naga"
+				pixel_x = -16
+				return 1
+			else
+				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+				return 0
 
 /obj/item/clothing/suit/space/void/engineering/taur
 	name = "taur specific engineering voidsuit"
@@ -195,6 +225,75 @@
 				icon_override = 'icons/mob/taursuits_vr.dmi'
 				icon_state = "security-naga"
 				item_state = "security-naga"
+				pixel_x = -16
+				update_icon()
+				return 1
+			else
+				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+				return 0
+				
+/obj/item/clothing/suit/space/void/security/alt/taur
+	name = "taur specific riot security voidsuit"
+	desc = "A heavily armored voidsuit. It has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	armor = list(melee = 70, bullet = 20, laser = 30, energy = 5, bomb = 35, bio = 100, rad = 10)
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "securityalt-horse"
+				item_state = "securityalt-horse"
+				pixel_x = -16
+				update_icon()
+				return 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "securityalt-wolf"
+				item_state = "securityalt-wolf"
+				pixel_x = -16
+				update_icon()
+				return 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "securityalt-naga"
+				item_state = "securityalt-naga"
+				pixel_x = -16
+				update_icon()
+				return 1
+			else
+				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
+				return 0
+
+/obj/item/clothing/suit/space/void/security/riot/taur
+	name = "taur specific crowd control voidsuit"
+	desc = "A high-tech space suit. It has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
+	species_restricted = null
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "securityriot-horse"
+				item_state = "securityriot-horse"
+				pixel_x = -16
+				update_icon()
+				return 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "securityriot-wolf"
+				item_state = "securityriot-wolf"
+				pixel_x = -16
+				update_icon()
+				return 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				icon = 'icons/mob/taursuits_vr.dmi'
+				icon_override = 'icons/mob/taursuits_vr.dmi'
+				icon_state = "securityriot-naga"
+				item_state = "securityriot-naga"
 				pixel_x = -16
 				update_icon()
 				return 1
