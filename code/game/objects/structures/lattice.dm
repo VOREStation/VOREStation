@@ -67,7 +67,18 @@
 				user << "<span class='notice'>Slicing lattice joints ...</span>"
 			new /obj/item/stack/rods(src.loc)
 			qdel(src)
-
+		return
+	// VOREStation Edit - Added Catwalks
+	if (istype(C, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = C
+		if(R.use(2))
+			user << "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>"
+			if(do_after(user, 5 SECONDS))
+				src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
+				new /obj/structure/catwalk(src.loc)
+				qdel(src)
+		return
+	// VOREStation Edit End
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
