@@ -14,6 +14,9 @@
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(strength && alien != IS_DIONA)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
+		if(alien == IS_SLIME)
+			removed *= 0.25 // Results in half the standard tox as normal. Prometheans are 'Small' for flaps.
+			M.nutrition += strength * removed
 		M.adjustToxLoss(strength * removed)
 
 /datum/reagent/toxin/plasticide
@@ -258,6 +261,10 @@
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
+	else if(istype(O, /obj/effect/alien/weeds/))
+		var/obj/effect/alien/weeds/alien_weeds = O
+		alien_weeds.health -= rand(15, 35)
+		alien_weeds.healthcheck()
 
 /datum/reagent/toxin/plantbgone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -354,11 +361,18 @@
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	if(prob(10))
-		M << "<span class='danger'>Your insides are burning!</span>"
-		M.adjustToxLoss(rand(100, 300) * removed)
-	else if(prob(40))
-		M.heal_organ_damage(25 * removed, 0)
+	if(alien == IS_SLIME) //Partially made of the stuff. Why would it hurt them?
+		if(prob(75))
+			M.heal_overall_damage(25 * removed, 25 * removed)
+			M.adjustToxLoss(rand(-30, -10) * removed)
+			M.druggy = max(M.druggy, 10)
+			M.add_chemical_effect(CE_PAINKILLER, 60)
+	else
+		if(prob(10))
+			M << "<span class='danger'>Your insides are burning!</span>"
+			M.adjustToxLoss(rand(100, 300) * removed)
+		else if(prob(40))
+			M.heal_organ_damage(25 * removed, 0)
 
 /datum/reagent/soporific
 	name = "Soporific"
@@ -378,6 +392,9 @@
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
+	if(alien == IS_SLIME)
+		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -392,7 +409,15 @@
 			M.Weaken(2)
 		M.drowsyness = max(M.drowsyness, 20)
 	else
-		M.sleeping = max(M.sleeping, 20)
+		if(alien == IS_SLIME) //They don't have eyes, and they don't really 'sleep'. Fumble their general senses.
+			M.eye_blurry = max(M.eye_blurry, 30)
+			if(prob(20))
+				M.ear_deaf = max(M.ear_deaf, 4)
+				M.Confuse(2)
+			else
+				M.Weaken(2)
+		else
+			M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/chloralhydrate
@@ -414,6 +439,9 @@
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
+	if(alien == IS_SLIME)
+		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -425,7 +453,14 @@
 		M.Weaken(30)
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else
-		M.sleeping = max(M.sleeping, 30)
+		if(alien == IS_SLIME)
+			if(prob(30))
+				M.ear_deaf = max(M.ear_deaf, 4)
+			M.eye_blurry = max(M.eye_blurry, 60)
+			M.Weaken(30)
+			M.Confuse(40)
+		else
+			M.sleeping = max(M.sleeping, 30)
 
 	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)
@@ -467,6 +502,9 @@
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 
+	if(alien == IS_SLIME)
+		drug_strength = drug_strength * 1.2
+
 	M.druggy = max(M.druggy, drug_strength)
 	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
@@ -504,8 +542,13 @@
 	if(alien == IS_DIONA)
 		return
 	var/drug_strength = 4
+
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
+
+	if(alien == IS_SLIME)
+		drug_strength = drug_strength * 1.2
+
 	M.make_dizzy(drug_strength)
 	M.Confuse(drug_strength * 5)
 
@@ -544,8 +587,13 @@
 		return
 
 	var/drug_strength = 100
+
 	if(alien == IS_SKRELL)
 		drug_strength *= 0.8
+
+	if(alien == IS_SLIME)
+		drug_strength *= 1.2
+
 	M.hallucination = max(M.hallucination, drug_strength)
 
 /datum/reagent/psilocybin
@@ -564,6 +612,9 @@
 	var/threshold = 1
 	if(alien == IS_SKRELL)
 		threshold = 1.2
+
+	if(alien == IS_SLIME)
+		threshold = 0.8
 
 	M.druggy = max(M.druggy, 30)
 

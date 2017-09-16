@@ -221,10 +221,8 @@ Thus, the two variables affect pump operation are set in New():
 	if (!(stat & NOPOWER) && use_power)
 		user << "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>"
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench this [src], it too exerted due to internal pressure.</span>"
+	if(!can_unwrench())
+		to_chat(user, "<span class='warning'>You cannot unwrench this [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
 		return 1
 	playsound(src, W.usesound, 50, 1)

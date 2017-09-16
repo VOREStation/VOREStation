@@ -33,7 +33,7 @@
 		/mob/living/simple_animal/mouse,
 		/mob/living/simple_animal/parrot,
 		/mob/living/simple_animal/slime,
-		/mob/living/simple_animal/adultslime,
+//		/mob/living/simple_animal/adultslime,
 		/mob/living/simple_animal/tindalos,
 		/mob/living/simple_animal/yithian,
 		/mob/living/simple_animal/hostile/scarybat,

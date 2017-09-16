@@ -12,6 +12,8 @@
 
 	handle_modifiers() // Do this early since it might affect other things later.
 
+	handle_light()
+
 	if(stat != DEAD)
 		//Breathing, if applicable
 		handle_breathing()
@@ -193,3 +195,19 @@
 
 /mob/living/proc/handle_hud_icons_health()
 	return
+
+/mob/living/proc/handle_light()
+	if(instability >= TECHNOMANCER_INSTABILITY_MIN_GLOW)
+		var/distance = round(sqrt(instability / 2))
+		if(distance)
+			set_light(distance, distance * 4, l_color = "#660066")
+			return TRUE
+
+	else if(on_fire)
+		set_light(light_range + 3, round(fire_stacks), l_color = "#FF9933")
+		return TRUE
+
+	else
+		set_light(0)
+		return FALSE
+

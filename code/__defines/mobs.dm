@@ -213,3 +213,9 @@
 #define FBP_CYBORG	"Cyborg"
 #define FBP_POSI	"Positronic"
 #define FBP_DRONE	"Drone"
+
+// Used to seperate simple animals by ""intelligence"".
+#define SA_PLANT	1
+#define SA_ANIMAL	2
+#define SA_ROBOTIC	3
+#define SA_HUMANOID	4

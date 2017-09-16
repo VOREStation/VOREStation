@@ -179,6 +179,8 @@
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
 
+//Sweaters.
+
 /obj/item/clothing/accessory/sweater
 	name = "sweater"
 	desc = "A warm knit sweater."
@@ -197,7 +199,7 @@
 /obj/item/clothing/accessory/sweater/mint
 	name = "mint sweater"
 	desc = "A warm knit sweater. This one has a minty tint to it."
-	icon_state = "mint_sweater"
+	icon_state = "sweater_mint"
 
 /obj/item/clothing/accessory/sweater/blue
 	name = "blue sweater"

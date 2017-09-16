@@ -11,8 +11,10 @@ mob/var/obj/effect/decal/typing_indicator
 
 	if(!typing_indicator)
 		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - Looks better on the right with job icons.
-		typing_indicator.icon_state = "typing"
+		//typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - Looks better on the right with job icons.
+		//typing_indicator.icon_state = "typing"
+		typing_indicator.icon = 'icons/mob/talk.dmi'
+		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
 
 	if(client && !stat)
 		typing_indicator.invisibility = invisibility

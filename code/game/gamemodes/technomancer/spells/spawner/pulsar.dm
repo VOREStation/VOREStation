@@ -39,7 +39,8 @@
 
 /obj/effect/temporary_effect/pulsar/New()
 	..()
-	pulse_loop()
+	spawn(0)
+		pulse_loop()
 
 /obj/effect/temporary_effect/pulsar/proc/pulse_loop()
 	while(pulses_remaining)

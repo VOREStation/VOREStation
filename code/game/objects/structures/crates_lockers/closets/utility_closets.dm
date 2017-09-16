@@ -88,6 +88,15 @@
 	new /obj/item/weapon/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
+/obj/structure/closet/firecloset/full/double/New()
+	..()
+	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/weapon/tank/oxygen/red(src)
+	new /obj/item/weapon/extinguisher(src)
+	new /obj/item/clothing/head/hardhat/red(src)
+
 /obj/structure/closet/firecloset/update_icon()
 	if(!opened)
 		icon_state = icon_closed
@@ -176,6 +185,12 @@
 	new /obj/item/clothing/shoes/black( src )
 	new /obj/item/clothing/head/bomb_hood( src )
 
+/obj/structure/closet/bombcloset/double/New() // Makes two suits.
+	..()
+	new /obj/item/clothing/suit/bomb_suit( src )
+	new /obj/item/clothing/under/color/black( src )
+	new /obj/item/clothing/shoes/black( src )
+	new /obj/item/clothing/head/bomb_hood( src )
 
 /obj/structure/closet/bombclosetsecurity
 	name = "\improper EOD closet"

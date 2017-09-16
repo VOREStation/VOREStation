@@ -22,6 +22,7 @@
 	#include "southern_cross-5.dmm"
 	#include "southern_cross-6.dmm"
 	#include "southern_cross-7.dmm"
+	#include "southern_cross-8.dmm"
 
 	#define USING_MAP_DATUM /datum/map/southern_cross
 

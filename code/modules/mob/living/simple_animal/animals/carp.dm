@@ -7,6 +7,7 @@
 	icon_gib = "carp_gib"
 
 	faction = "carp"
+	intelligence_level = SA_ANIMAL
 	maxHealth = 25
 	health = 25
 	speed = 4

@@ -388,6 +388,10 @@
 
 	var/obj/machinery/machine
 
+/obj/item/weapon/pai_cable/Destroy()
+		machine = null
+		return ..()
+
 ///////////////////////////////////////Stock Parts /////////////////////////////////
 
 /obj/item/weapon/storage/part_replacer

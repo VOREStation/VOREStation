@@ -72,12 +72,12 @@
 /obj/item/weapon/storage/toolbox/syndicate/New()
 	..()
 	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/screwdriver/power(src)
+	new /obj/item/stack/cable_coil/random(src,30)
 	new /obj/item/weapon/weldingtool/experimental(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/weapon/crowbar/power(src)
 	new /obj/item/device/multitool(src)
+	new /obj/item/device/analyzer(src)
 
 /obj/item/weapon/storage/toolbox/lunchbox
 	max_storage_space = ITEMSIZE_COST_SMALL * 4 //slightly smaller than a toolbox
