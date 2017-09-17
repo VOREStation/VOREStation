@@ -1,11 +1,16 @@
 /mob/living/simple_animal/slime/FindTarget()
 	if(victim) // Don't worry about finding another target if we're eatting someone.
 		return
-//	if(!will_hunt())
-//		return
+	if(follow_mob && can_command(follow_mob)) // If following someone, don't attack until the leader says so, something hits you, or the leader is no longer worthy.
+		return
 	..()
 
 /mob/living/simple_animal/slime/special_target_check(mob/living/L)
+	if(L.faction == faction && !attack_same)
+		return FALSE
+	if(L in friends)
+		return FALSE
+
 	if(istype(L, /mob/living/simple_animal/slime))
 		var/mob/living/simple_animal/slime/buddy = L
 		if(buddy.slime_color == src.slime_color || discipline || unity || buddy.unity)
@@ -47,12 +52,3 @@
 		return
 	else
 		..()
-
-/*
-/mob/living/simple_animal/slime/proc/will_hunt() // Check for being stopped from feeding and chasing
-	if(nutrition <= get_starve_nutrition() || rabid)
-		return TRUE
-	if(nutrition <= get_hunger_nutrition() || prob(25))
-		return TRUE
-	return FALSE
-*/
