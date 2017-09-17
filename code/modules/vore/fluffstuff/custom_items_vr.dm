@@ -606,7 +606,24 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		desc = "An elaborately made custom walking stick with a dark wooding core, a crimson red gemstone on its head and a steel cover around the bottom. you'd probably hear someone using this down the hall."
 		icon = 'icons/vore/custom_items_vr.dmi'
 
+//Stobarico - Alexis Bloise
+/obj/item/weapon/cane/wand
+    name = "cane"
+    desc = "A cane used by a true gentlemen. Or a clown."
+    icon = 'icons/vore/custom_items_vr.dmi'
+    icon_state = "alexiswand"
+    item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
+    item_state_slots = list(slot_r_hand_str = "alexiswandmob_r", slot_l_hand_str = "alexiswandmob_l")
+    flags = CONDUCT
+    force = 1.0
+    throwforce = 2.0
+    w_class = ITEMSIZE_SMALL
+    matter = list(DEFAULT_WALL_MATERIAL = 50)
+    attack_verb = list("sparkled", "whacked", "twinkled", "radiated", "dazzled", "zapped")
+    hitsound = 'sound/weapons/sparkle.ogg'
 
+/obj/item/weapon/cane/wand/attack_self(mob/user)
+    playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
 
 /obj/item/device/fluff/id_kit_ivy
 	name = "Holo-ID reprinter"
