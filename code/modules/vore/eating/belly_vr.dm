@@ -557,6 +557,8 @@
 	dupe.escapechance = escapechance
 	dupe.transferchance = transferchance
 	dupe.transferlocation = transferlocation
+	dupe.bulge_size = bulge_size
+	dupe.shrink_grow_size = shrink_grow_size
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
