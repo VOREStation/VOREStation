@@ -166,3 +166,10 @@
 	req_tech = list(TECH_ENGINEERING = 3, TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/algae_farm
 	sort_string = "HABAE"
+
+/datum/design/circuit/thermoregulator
+	name = "thermal regulator"
+	id = "thermoregulator"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 3)
+	build_path = /obj/item/weapon/circuitboard/thermoregulator
+	sort_string = "HABAF"

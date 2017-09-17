@@ -575,6 +575,7 @@
 #include "code\game\machinery\adv_med.dm"
 #include "code\game\machinery\adv_med_vr.dm"
 #include "code\game\machinery\ai_slipper.dm"
+#include "code\game\machinery\airconditioner_vr.dm"
 #include "code\game\machinery\alarm.dm"
 #include "code\game\machinery\atmo_control.dm"
 #include "code\game\machinery\autolathe.dm"
