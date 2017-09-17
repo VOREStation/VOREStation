@@ -26,3 +26,13 @@
 							/obj/item/weapon/stock_parts/manipulator = 1,
 							/obj/item/weapon/stock_parts/capacitor = 1,
 							/obj/item/weapon/stock_parts/console_screen = 1)
+
+// Board for the thermal regulator in airconditioner_vr.dm
+/obj/item/weapon/circuitboard/thermoregulator
+	name = T_BOARD("thermal regulator")
+	build_path = /obj/machinery/power/thermoregulator
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 3)
+	req_components = list(
+							/obj/item/stack/cable_coil = 20,
+							/obj/item/weapon/stock_parts/capacitor/super = 3)
