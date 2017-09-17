@@ -102,6 +102,7 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_EAL, 1)
 
 	wires = new(src)
@@ -219,6 +220,12 @@
 		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
 		if(T)	mmi.loc = T
 		if(mmi.brainmob)
+			var/obj/item/weapon/robot_module/M = locate() in contents
+			if(M)
+				mmi.brainmob.languages = M.original_languages
+			else
+				mmi.brainmob.languages = languages
+			mmi.brainmob.remove_language("Robot Talk")
 			mind.transfer_to(mmi.brainmob)
 		else
 			src << "<span class='danger'>Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug.</span>"
@@ -347,10 +354,7 @@
 
 	lights_on = !lights_on
 	usr << "You [lights_on ? "enable" : "disable"] your integrated light."
-	if(lights_on)
-		set_light(integrated_light_power) // 1.5x luminosity of flashlight
-	else
-		set_light(0)
+	handle_light()
 
 /mob/living/silicon/robot/verb/self_diagnosis_verb()
 	set category = "Robot Commands"

@@ -703,7 +703,7 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
-		threeOclock
+	threeOclock
 		name = "3 O'clock Shadow"
 		icon_state = "facial_3oclock"
 

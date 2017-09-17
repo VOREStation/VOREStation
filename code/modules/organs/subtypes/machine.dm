@@ -62,6 +62,8 @@
 	stored_mmi.icon_state = "mmi_full"
 	icon_state = stored_mmi.icon_state
 
+	stored_mmi.brainmob.languages = owner.languages
+
 	if(owner && owner.stat == DEAD)
 		owner.stat = 0
 		dead_mob_list -= owner
@@ -91,6 +93,8 @@
 	stored_mmi.icon_state = "posibrain-occupied"
 	icon_state = stored_mmi.icon_state
 
+	stored_mmi.brainmob.languages = owner.languages
+
 /obj/item/organ/internal/mmi_holder/robot
 	name = "digital brain interface"
 	brain_type = /obj/item/device/mmi/digital/robot
@@ -100,3 +104,5 @@
 	..()
 	stored_mmi.icon_state = "mainboard"
 	icon_state = stored_mmi.icon_state
+
+	stored_mmi.brainmob.languages = owner.languages
