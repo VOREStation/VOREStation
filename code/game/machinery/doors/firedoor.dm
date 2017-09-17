@@ -400,7 +400,9 @@
 	switch(animation)
 		if("opening")
 			flick("door_opening", src)
+			playsound(src, 'sound/machines/airlock_ext_open.ogg', 37, 1)
 		if("closing")
+			playsound(src, 'sound/machines/airlock_ext_close.ogg', 37, 1)
 			flick("door_closing", src)
 	return
 
