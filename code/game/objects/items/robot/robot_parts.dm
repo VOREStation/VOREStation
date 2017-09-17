@@ -208,6 +208,9 @@
 
 			O.job = "Cyborg"
 
+			for(var/datum/language/L in M.brainmob.languages)
+				O.add_language(L.name)
+
 			O.cell = chest.cell
 			O.cell.loc = O
 			W.loc = O//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.

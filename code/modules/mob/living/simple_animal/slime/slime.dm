@@ -34,6 +34,7 @@
 	max_n2 = 0
 	unsuitable_atoms_damage = 0
 
+	response_help = "pets"
 
 	speak = list(
 		"Blorp...",
