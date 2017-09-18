@@ -635,9 +635,6 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
     last_use = world.time
     qdel ()
 
-/obj/item/weapon/cane/wand/attack_self(mob/user)
-    playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
-
 /obj/item/device/fluff/id_kit_ivy
 	name = "Holo-ID reprinter"
 	desc = "Stick your ID in one end and it'll print a new ID out the other!"
