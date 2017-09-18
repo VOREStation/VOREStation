@@ -354,6 +354,9 @@
 //Share fire evenly between the two mobs
 //Called in MobCollide() and Crossed()
 /mob/living/proc/spread_fire(mob/living/L)
+	return
+// This is commented out pending discussion on Polaris.  If you're a downsteam and you want people to spread fire by touching each other, feel free to uncomment this.
+/*
 	if(!istype(L))
 		return
 	var/L_old_on_fire = L.on_fire
@@ -368,6 +371,7 @@
 		L.fire_stacks /= 2
 		fire_stacks += L.fire_stacks
 		IgniteMob()
+*/
 
 /mob/living/proc/get_cold_protection()
 	return 0
