@@ -80,6 +80,12 @@
 		amount += O.brute_dam
 	return amount
 
+/mob/living/carbon/human/getActualBruteLoss()
+	var/amount = 0
+	for(var/obj/item/organ/external/O in organs) // Unlike the above, robolimbs DO count.
+		amount += O.brute_dam
+	return amount
+
 /mob/living/carbon/human/getFireLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
@@ -93,6 +99,12 @@
 	for(var/obj/item/organ/external/O in organs)
 		if(O.robotic >= ORGAN_ROBOT)
 			continue //robot limbs don't count towards shock and crit
+		amount += O.burn_dam
+	return amount
+
+/mob/living/carbon/human/getActualFireLoss()
+	var/amount = 0
+	for(var/obj/item/organ/external/O in organs) // Unlike the above, robolimbs DO count.
 		amount += O.burn_dam
 	return amount
 

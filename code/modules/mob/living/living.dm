@@ -221,6 +221,9 @@ default behaviour is:
 /mob/living/proc/getShockBruteLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return bruteloss
 
+/mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
+	return getBruteLoss()
+
 /mob/living/proc/adjustBruteLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 
@@ -288,6 +291,9 @@ default behaviour is:
 
 /mob/living/proc/getShockFireLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return fireloss
+
+/mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
+	return getBruteLoss()
 
 /mob/living/proc/adjustFireLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
