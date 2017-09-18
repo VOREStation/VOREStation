@@ -10,7 +10,7 @@
 # character_name: Jane Doe
 # item_path: /obj/item/toy/plushie
 # item_name: ugly plush toy
-# item_icon: flagmask     
+# item_icon: flagmask
 # item_desc: It's truly hideous.
 # req_titles: Assistant, Security Officer
 # req_access: 1
@@ -204,6 +204,13 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 
 # ######## F CKEYS
 # ######## G CKEYS
+
+{
+ckey:Gowst
+character_name: Eldi Moljir
+item_path: /obj/item/weapon/implanter/reagent_generator/eldi
+}
+
 # ######## H CKEYS
 
 {
@@ -348,7 +355,7 @@ ckey: ketrai
 character_name: Ketrai
 item_path: /obj/item/clothing/head/fluff/ketrai
 }
- 
+
 {
 ckey: kiraalitruss
 character_name: Amaya Rahl
@@ -359,7 +366,7 @@ item_path: /obj/item/weapon/card/id/fluff/amaya
 ckey: kisukegema
 character_name: Kisuke 'The Nerd' Gema
 item_path: /obj/item/clothing/glasses/omnihud/kamina
-}  
+}
 
 {
 ckey: Killjaden
@@ -411,7 +418,7 @@ item_path: /obj/item/clothing/head/fluff/molenar2
 }
 
 # Permit Expired
-#{ 
+#{
 #ckey: molenar
 #character_name: Kari Akiren
 #item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren

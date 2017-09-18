@@ -685,6 +685,25 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/implanter/reagent_generator/belle
 	implant_type = /obj/item/weapon/implant/reagent_generator/belle
 
+//Gowst: Eldi Moljir
+//Eldi iz coolest elf-dorf.
+/obj/item/weapon/implant/reagent_generator/eldi
+	name = "lactation implant"
+	desc = "This is an implant that allows the user to lactate."
+	generated_reagent = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your breasts feel unusually empty.", "Your chest feels lighter - your milk supply is empty!", "Your milk reserves have run dry.", "Your grateful nipples ache as the last of your milk leaves them.")
+	full_message = list("Your breasts ache badly - they are swollen and feel fit to burst!", "You need to be milked! Your breasts feel bloated, eager for release.", "Your milky breasts are starting to leak...")
+	emote_descriptor = list("squeezes Eldi's nipples, milking them", "milks Eldi's breasts", "extracts milk")
+	self_emote_descriptor = list("squeeze out", "extract")
+	random_emote = list("surpresses a moan", "gasps sharply", "bites her lower lip")
+	verb_name = "Milk"
+	verb_desc = "Grab Eldi's breasts and milk her, storing her fresh, warm milk in a container. This will undoubtedly turn her on."
+
+/obj/item/weapon/implanter/reagent_generator/eldi
+	implant_type = /obj/item/weapon/implant/reagent_generator/eldi
+
 //Vorrarkul: Theodora Lindt
 /obj/item/weapon/implant/reagent_generator/vorrarkul
 	generated_reagent = "chocolate_milk"
