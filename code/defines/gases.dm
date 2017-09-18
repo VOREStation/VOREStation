@@ -51,3 +51,4 @@
 
 	tile_overlay = "sleeping_agent"
 	overlay_limit = 1
+	flags = XGM_GAS_OXIDIZER

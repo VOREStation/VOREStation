@@ -31,14 +31,14 @@
 
 /obj/item/clothing/accessory/armband/med/cross
 	name = "medic armband"
-	desc = "A white armband with a red cross on it. Typically used by people in the Medical department."
+	desc = "A white armband with a blue cross on it. Typically used by people in the Medical department."
 	icon_state = "medicband"
 
 /obj/item/clothing/accessory/armband/med/color
 	name = "armband"
 	desc = "A fancy armband."
 
-/obj/item/clothing/accessory/armband/medgreen
+/obj/item/clothing/accessory/armband/medblue
 	name = "EMT armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
-	icon_state = "medgreen"
+	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and blue."
+	icon_state = "medblue"

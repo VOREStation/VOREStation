@@ -274,8 +274,6 @@
 
 			L.receive_radiated_instability(outgoing_instability)
 
-	set_light(distance, distance * 4, l_color = "#660066") // #C26DDE
-
 // This should only be used for EXTERNAL sources of instability, such as from someone or something glowing.
 /mob/living/proc/receive_radiated_instability(amount)
 	// Energy armor like from the AMI RIG can protect from this.
