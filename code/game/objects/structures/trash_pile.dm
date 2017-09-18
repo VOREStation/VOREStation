@@ -23,7 +23,7 @@
 		/obj/item/weapon/gun/energy/netgun,
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/weapon/permit,
-		/obj/item/clothing/mask/gas/voice
+		/obj/item/weapon/gun/projectile/dartgun
 		)
 
 	var/global/list/allocated_gamma = list()
