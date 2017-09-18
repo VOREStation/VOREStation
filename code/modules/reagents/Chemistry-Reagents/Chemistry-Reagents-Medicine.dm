@@ -672,3 +672,25 @@
 	if(dose > 10)
 		M.make_dizzy(5)
 		M.make_jittery(5)
+
+/datum/reagent/qerr_quem
+	name = "Qerr-quem"
+	id = "querr_quem"
+	description = "A potent stimulant and anti-anxiety medication, made for the Qerr-Katish."
+	taste_description = "mint"
+	reagent_state = LIQUID
+	color = "#e6efe3"
+	metabolism = 0.01
+	mrate_static = TRUE
+	data = 0
+
+/datum/reagent/qerr_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	if(volume <= 0.1 && data != -1)
+		data = -1
+		to_chat(M, "<span class='warning'>You feel antsy, your concentration wavers...</span>")
+	else
+		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
+			data = world.time
+			to_chat(M, "<span class='notice'>You feel invigorated and calm.</span>")

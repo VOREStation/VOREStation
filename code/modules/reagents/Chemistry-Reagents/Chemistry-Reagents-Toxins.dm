@@ -648,6 +648,33 @@
 	reagent_state = LIQUID
 	color = "#181818"
 
+/datum/reagent/talum_quem
+	name = "Talum-quem"
+	id = "talum_quem"
+	description = " A very carefully tailored hallucinogen, for use of the Talum-Katish."
+	taste_description = "bubblegum"
+	taste_mult = 1.6
+	reagent_state = LIQUID
+	color = "#db2ed8"
+	metabolism = REM * 0.5
+	overdose = REAGENTS_OVERDOSE
+
+datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+
+	var/drug_strength = 29
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+	else
+		M.adjustToxLoss(10 * removed) //Given incorporations of other toxins with similiar damage, this seems right.
+
+	M.druggy = max(M.druggy, drug_strength)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, pick(cardinal))
+	if(prob(7))
+		M.emote(pick("twitch", "drool", "moan", "giggle"))
+
 /* Transformations */
 
 /datum/reagent/slimetoxin
