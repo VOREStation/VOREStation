@@ -633,6 +633,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
     s.set_up(3, 1, src)
     s.start()
     last_use = world.time
+    qdel ()
 
 /obj/item/weapon/cane/wand/attack_self(mob/user)
     playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
