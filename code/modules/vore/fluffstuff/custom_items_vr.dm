@@ -608,8 +608,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //Stobarico - Alexis Bloise
 /obj/item/weapon/cane/wand
-    name = "cane"
-    desc = "A cane used by a true gentlemen. Or a clown."
+    name = "Ancient wand"
+    desc = "A really old looking wand with floating parts and cyan crystals, wich seem to radiate a cyan glow. The wand has a golden plaque on the side that would say Corncobble, but it is covered by a sticker saying Bloise."
     icon = 'icons/vore/custom_items_vr.dmi'
     icon_state = "alexiswand"
     item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
@@ -621,6 +621,18 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
     matter = list(DEFAULT_WALL_MATERIAL = 50)
     attack_verb = list("sparkled", "whacked", "twinkled", "radiated", "dazzled", "zapped")
     hitsound = 'sound/weapons/sparkle.ogg'
+    var/last_use = 0
+    var/cooldown = 30
+
+/obj/item/weapon/cane/wand/attack_self(mob/user)
+    if(last_use + cooldown >= world.time)
+        return
+    playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
+    user.visible_message("<span class='warning'> [user] swings their wand.</span>")
+    var/datum/effect/effect/system/spark_spread/s = new
+    s.set_up(3, 1, src)
+    s.start()
+    last_use = world.time
 
 /obj/item/weapon/cane/wand/attack_self(mob/user)
     playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
