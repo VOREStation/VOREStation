@@ -15,6 +15,7 @@
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEMSIZE_SMALL
+	force = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/New()
 	..()
@@ -79,6 +80,10 @@
 			if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
 				M << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
 				return 0
+
+		else if(user.a_intent == I_HURT)
+			return ..()
+
 		else
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
