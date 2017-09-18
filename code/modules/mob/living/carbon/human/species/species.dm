@@ -14,6 +14,7 @@
 	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
 
 	var/speech_bubble_appearance = "normal"              // Part of icon_state to use for speech bubbles when talking.  See talk.dmi for available icons.
+	var/fire_icon_state = "humanoid"                     // The icon_state used inside OnFire.dmi for when on fire.
 
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'

@@ -52,6 +52,9 @@ default behaviour is:
 		if (istype(AM, /mob/living))
 			var/mob/living/tmob = AM
 
+			//Even if we don't push/swap places, we "touched" them, so spread fire
+			spread_fire(tmob)
+
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
@@ -968,6 +971,10 @@ default behaviour is:
 	if(isSynthetic())
 		return FALSE
 	return TRUE
+
+// Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
+/mob/living/proc/get_fire_icon_state()
+	return "generic"
 
 // Called by job_controller.
 /mob/living/proc/equip_post_job()
