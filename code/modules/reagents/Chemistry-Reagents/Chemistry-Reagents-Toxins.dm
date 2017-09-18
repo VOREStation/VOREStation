@@ -131,6 +131,20 @@
 	M.adjustOxyLoss(20 * removed)
 	M.sleeping += 1
 
+/datum/reagent/toxin/mold
+	name = "Mold"
+	id = "mold"
+	description = "A mold is a fungus that causes biodegradation of natural materials. This varient contains mycotoxins, and is dangerous to humans."
+	taste_description = "mold"
+	reagent_state = SOLID
+	strength = 5
+
+/datum/reagent/toxin/mold/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustToxLoss(strength * removed)
+	if(prob(5))
+		M.vomit()
+
 /datum/reagent/toxin/stimm	//Homemade Hyperzine
 	name = "Stimm"
 	id = "stimm"
