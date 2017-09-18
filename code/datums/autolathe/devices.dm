@@ -26,6 +26,10 @@
 	name = "mechanical trap"
 	path =/obj/item/weapon/beartrap
 
+/datum/category_item/autolathe/devices/gamekit
+	name = "game kit"
+	path =/obj/item/weapon/game_kit
+
 /datum/category_item/autolathe/devices/electropack
 	name = "electropack"
 	path =/obj/item/device/radio/electropack

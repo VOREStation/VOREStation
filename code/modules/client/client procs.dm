@@ -350,7 +350,22 @@
 		'icons/spideros_icons/sos_11.png',
 		'icons/spideros_icons/sos_12.png',
 		'icons/spideros_icons/sos_13.png',
-		'icons/spideros_icons/sos_14.png'
+		'icons/spideros_icons/sos_14.png',
+		'icons/obj/chess/board_BR.png',
+		'icons/obj/chess/board_BN.png',
+		'icons/obj/chess/board_BI.png',
+		'icons/obj/chess/board_BQ.png',
+		'icons/obj/chess/board_BK.png',
+		'icons/obj/chess/board_BP.png',
+		'icons/obj/chess/board_WR.png',
+		'icons/obj/chess/board_WN.png',
+		'icons/obj/chess/board_WI.png',
+		'icons/obj/chess/board_WQ.png',
+		'icons/obj/chess/board_WK.png',
+		'icons/obj/chess/board_WP.png',
+		'icons/obj/chess/board_CB.png',
+		'icons/obj/chess/board_CR.png',
+		'icons/obj/chess/board_none.png'
 		)
 
 

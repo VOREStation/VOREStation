@@ -150,19 +150,6 @@
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
 
-/*
-/obj/item/weapon/game_kit
-	name = "Gaming Kit"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "game_kit"
-	var/selected = null
-	var/board_stat = null
-	var/data = ""
-	var/base_url = "http://svn.slurm.us/public/spacestation13/misc/game_kit"
-	item_state = "sheet-metal"
-	w_class = ITEMSIZE_HUGE
-*/
-
 /obj/item/weapon/gift
 	name = "gift"
 	desc = "A wrapped item."
