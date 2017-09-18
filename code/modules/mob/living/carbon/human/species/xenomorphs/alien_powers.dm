@@ -124,6 +124,29 @@
 		new /obj/effect/alien/weeds/node(loc)
 	return
 
+/mob/living/carbon/human/proc/Spit(var/atom/A)
+	if((last_spit + 1 SECONDS) > world.time) //To prevent YATATATATATAT spitting.
+		to_chat(src, "<span class='warning'>You have not yet prepared your chemical glands. You must wait before spitting again.</span>")
+		return
+	else
+		last_spit = world.time
+
+	if(spitting && incapacitated(INCAPACITATION_DISABLED))
+		to_chat(src, "You cannot spit in your current state.")
+		spitting = 0
+		return
+	else if(spitting)
+		if(!check_alien_ability(20,0,O_ACID))
+			spitting = 0
+			return
+		visible_message("<span class='warning'>[src] spits [spit_name] at \the [A]!</span>", "<span class='alium'>You spit [spit_name] at \the [A].</span>")
+		var/obj/item/projectile/P = new spit_projectile(get_turf(src))
+		P.firer = src
+		P.launch(A)
+		playsound(loc, 'sound/weapons/pierce.ogg', 25, 0)
+	else
+		..()
+
 /mob/living/carbon/human/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (200)"
 	set desc = "Drench an object in acid, destroying it over time."
@@ -160,43 +183,47 @@
 
 	return
 
-/mob/living/carbon/human/proc/neurotoxin(mob/target as mob in oview())
-	set name = "Spit Neurotoxin (40)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
+/mob/living/carbon/human/proc/neurotoxin()
+	set name = "Toggle Neurotoxic Spit (40)"
+	set desc = "Readies a neurotoxic spit, which paralyzes the target for a short time if they are not wearing protective gear."
 	set category = "Abilities"
+
+	if(spitting)
+		to_chat(src, "<span class='alium'>You stop preparing to spit.</span>")
+		spitting = 0
+		return
 
 	if(!check_alien_ability(40,0,O_ACID))
+		spitting = 0
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot spit neurotoxin in your current state."
-		return
+	else
+		last_spit = world.time
+		spitting = 1
+		spit_projectile = /obj/item/projectile/energy/neurotoxin
+		spit_name = "neurotoxin"
+		to_chat(src, "<span class='alium'>You prepare to spit neurotoxin.</span>")
 
-	visible_message("<span class='warning'>[src] spits neurotoxin at [target]!</span>", "<span class='alium'>You spit neurotoxin at [target].</span>")
-
-	var/obj/item/projectile/energy/neurotoxin/A = new(get_turf(src))
-	A.firer = src
-	A.launch(target)
-	return
-
-/mob/living/carbon/human/proc/acidspit(mob/target as mob in oview())
-	set name = "Spit Acid (50)"
-	set desc = "Spits a blob of acid at someone, burning them if they are not wearing protective gear."
+/mob/living/carbon/human/proc/acidspit()
+	set name = "Toggle Acid Spit (50)"
+	set desc = "Readies an acidic spit, which burns the target if they are not wearing protective gear."
 	set category = "Abilities"
 
+	if(spitting)
+		to_chat(src, "<span class='alium'>You stop preparing to spit.</span>")
+		spitting = 0
+		return
+
 	if(!check_alien_ability(50,0,O_ACID))
+		spitting = 0
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot spit acid in your current state."
-		return
-
-	visible_message("<span class='warning'>[src] spits acid at [target]!</span>", "<span class='alium'>You spit acid at [target].</span>")
-
-	var/obj/item/projectile/energy/acid/A = new(get_turf(src))
-	A.firer = src
-	A.launch(target)
-	return
+	else
+		last_spit = world.time
+		spitting = 1
+		spit_projectile = /obj/item/projectile/energy/acid
+		spit_name = "acid"
+		to_chat(src, "<span class='alium'>You prepare to spit acid.</span>")
 
 /mob/living/carbon/human/proc/resin() // -- TLE
 	set name = "Secrete Resin (75)"

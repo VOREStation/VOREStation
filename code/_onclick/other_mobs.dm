@@ -29,7 +29,8 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
-	if(!gloves && !mutations.len) return
+	if(!gloves && !mutations.len && !spitting)
+		return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
@@ -39,6 +40,9 @@
 
 	else if(TK in mutations)
 		A.attack_tk(src)
+
+	else if(spitting) //Only used by xenos right now, can be expanded.
+		Spit(A)
 
 /mob/living/RestrainedClickOn(var/atom/A)
 	return
