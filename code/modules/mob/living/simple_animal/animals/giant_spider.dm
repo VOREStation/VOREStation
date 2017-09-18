@@ -78,6 +78,22 @@
 
 	poison_per_bite = 5
 
+/mob/living/simple_animal/hostile/giant_spider/frost
+	desc = "Icy and blue, it makes you shudder to look at it. This one has brilliant blue eyes."
+	icon_state = "frost"
+	icon_living = "frost"
+	icon_dead = "frost_dead"
+
+	maxHealth = 175
+	health = 175
+
+	melee_damage_lower = 15
+	melee_damage_upper = 20
+
+	poison_per_bite = 5
+	poison_type = "cryotoxin"
+
+
 /mob/living/simple_animal/hostile/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
 	..()
@@ -233,6 +249,7 @@
 	else
 		busy = 0
 		stop_automated_movement = 0
+
 
 #undef SPINNING_WEB
 #undef LAYING_EGGS
