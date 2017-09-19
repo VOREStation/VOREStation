@@ -1398,3 +1398,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			qdel(src) //One time use.
 	else //If not, do nothing.
 		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")
+
+/obj/item/weapon/fluff/sord
+	name = "\improper SORD"
+	desc = "This thing is so unspeakably shitty you are having a hard time even holding it."
+	icon = 'icons/obj/weapons_vr.dmi'
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi')
+	icon_state = "sord"
+	item_state = "sord"
+	slot_flags = SLOT_BELT
+	force = 0.413
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	w_class = ITEMSIZE_NORMAL
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
