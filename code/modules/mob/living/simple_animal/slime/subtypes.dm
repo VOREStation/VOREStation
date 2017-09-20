@@ -694,6 +694,7 @@
 	slime_color = "rainbow"
 	coretype = /obj/item/slime_extract/rainbow
 	icon_state_override = "rainbow"
+	unity = TRUE
 
 	description_info = "This slime is considered to be the same color as all other slime colors at the same time for the purposes of \
 	other slimes being friendly to them, and therefore will never be harmed by another slime.  \
