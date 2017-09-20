@@ -579,7 +579,7 @@ item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 }
 
 {
-ckey: Stobarico
+ckey: stobarico
 character_name: Alexis Bloise
 item_path: /obj/item/weapon/cane/wand
 }
