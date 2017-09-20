@@ -159,6 +159,18 @@
 
 	return ..()
 
+/obj/structure/table/attack_hand(mob/user as mob)
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			src.attack_alien(user)
+			return
+	..()
+
+/obj/structure/table/attack_alien(mob/user as mob)
+	visible_message("<span class='danger'>\The [user] tears apart \the [src]!</span>")
+	src.break_to_parts()
+
 /obj/structure/table/MouseDrop_T(obj/item/stack/material/what)
 	if(can_reinforce && isliving(usr) && (!usr.stat) && istype(what) && usr.get_active_hand() == what && Adjacent(usr))
 		reinforce_table(what, usr)

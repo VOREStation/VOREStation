@@ -27,7 +27,7 @@
 /obj/item/clothing/gloves/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
 	name = "\improper SWAT Gloves"
-	icon_state = "black"
+	icon_state = "swat"
 	item_state = "swat"
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
@@ -39,7 +39,7 @@
 /obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
 	desc = "These tactical gloves are somewhat fire and impact resistant."
 	name = "combat gloves"
-	icon_state = "black"
+	icon_state = "swat"
 	item_state = "swat"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05

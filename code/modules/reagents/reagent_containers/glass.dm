@@ -42,8 +42,7 @@
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
 		/obj/structure/frame,
-		/obj/machinery/radiocarbon_spectrometer,
-		/obj/machinery/xenobio2/manualinjector
+		/obj/machinery/radiocarbon_spectrometer
 		)
 
 /obj/item/weapon/reagent_containers/glass/New()

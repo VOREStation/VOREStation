@@ -121,3 +121,7 @@
 	colour = "say_quote"
 	key = "s"
 	flags = SIGNLANG|NO_STUTTER|NONVERBAL
+
+/datum/language/sign/can_speak_special(var/mob/speaker)
+	var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
+	return (hands || !iscarbon(speaker))

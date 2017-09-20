@@ -7,6 +7,7 @@
 	response_help  = "thinks better of touching"
 	response_disarm = "flailed at"
 	response_harm   = "punched"
+	intelligence_level = SA_HUMANOID // Player controlled.
 	icon_dead = "shade_dead"
 	speed = -1
 	a_intent = I_HURT

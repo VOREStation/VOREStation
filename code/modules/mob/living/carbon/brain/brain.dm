@@ -45,7 +45,7 @@
 				return 1
 		if (istype(other, /mob/living/carbon/human))
 			return 1
-		if (istype(other, /mob/living/carbon/slime))
+		if (istype(other, /mob/living/simple_animal/slime))
 			return 1
 		return ..()
 
@@ -58,7 +58,7 @@
 	return canmove
 
 /mob/living/carbon/brain/isSynthetic()
-	return istype(loc, /obj/item/device/mmi/digital)
+	return istype(loc, /obj/item/device/mmi)
 
 /mob/living/carbon/brain/binarycheck()
 	return isSynthetic()

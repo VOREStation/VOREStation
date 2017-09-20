@@ -22,7 +22,7 @@ mob/proc/airflow_stun()
 mob/living/silicon/airflow_stun()
 	return
 
-mob/living/carbon/slime/airflow_stun()
+mob/living/simple_animal/slime/airflow_stun()
 	return
 
 mob/living/carbon/human/airflow_stun()

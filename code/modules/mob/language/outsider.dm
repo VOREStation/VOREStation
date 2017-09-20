@@ -84,3 +84,34 @@
 	key = "y"
 	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
+
+/datum/language/xenocommon
+	name = "Xenomorph"
+	colour = "alien"
+	desc = "The common tongue of the xenomorphs."
+	speech_verb = "hisses"
+	ask_verb = "hisses"
+	exclaim_verb = "hisses"
+	key = "4"
+	flags = RESTRICTED
+	syllables = list("sss","sSs","SSS")
+
+/datum/language/xenos
+	name = "Hivemind"
+	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
+	speech_verb = "hisses"
+	ask_verb = "hisses"
+	exclaim_verb = "hisses"
+	colour = "alien"
+	key = "a"
+	flags = RESTRICTED | HIVEMIND
+
+/datum/language/xenos/check_special_condition(var/mob/other)
+
+	var/mob/living/carbon/M = other
+	if(!istype(M))
+		return 1
+	if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
+		return 1
+
+	return 0

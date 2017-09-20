@@ -52,6 +52,9 @@ default behaviour is:
 		if (istype(AM, /mob/living))
 			var/mob/living/tmob = AM
 
+			//Even if we don't push/swap places, we "touched" them, so spread fire
+			spread_fire(tmob)
+
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
@@ -90,9 +93,6 @@ default behaviour is:
 				forceMove(tmob.loc)
 				tmob.forceMove(oldloc)
 				now_pushing = 0
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
-					if(slime.Victim == tmob)
-						slime.UpdateFeed()
 				return
 
 			if(!can_move_mob(tmob, 0, 0))
@@ -221,6 +221,9 @@ default behaviour is:
 /mob/living/proc/getShockBruteLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return bruteloss
 
+/mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
+	return getBruteLoss()
+
 /mob/living/proc/adjustBruteLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 
@@ -288,6 +291,9 @@ default behaviour is:
 
 /mob/living/proc/getShockFireLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return fireloss
+
+/mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
+	return getBruteLoss()
 
 /mob/living/proc/adjustFireLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -571,7 +577,8 @@ default behaviour is:
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
-	reagents.clear_reagents()
+	if(reagents)
+		reagents.clear_reagents()
 
 	// shut down various types of badness
 	setToxLoss(0)
@@ -642,8 +649,12 @@ default behaviour is:
 	return
 
 /mob/living/Move(a, b, flag)
-	if (buckled)
-		return
+
+	if (buckled && buckled.loc != a) //not updating position
+		if (!buckled.anchored)
+			return buckled.Move(a, b)
+		else
+			return 0
 
 	if (restrained())
 		stop_pulling()
@@ -723,10 +734,6 @@ default behaviour is:
 
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
-
-	if(update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1,src))
-			M.UpdateFeed(src)
 
 /mob/living/proc/handle_footstep(turf/T)
 	return FALSE
@@ -970,6 +977,10 @@ default behaviour is:
 	if(isSynthetic())
 		return FALSE
 	return TRUE
+
+// Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
+/mob/living/proc/get_fire_icon_state()
+	return "generic"
 
 // Called by job_controller.
 /mob/living/proc/equip_post_job()

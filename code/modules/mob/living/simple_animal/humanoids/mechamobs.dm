@@ -5,6 +5,7 @@
 	icon_state = "darkgygax"
 	icon_living = "darkgygax"
 	icon_dead = "darkgygax-broken"
+	intelligence_level = SA_HUMANOID // Piloted by a human.
 
 	faction = "syndicate"
 	maxHealth = 300

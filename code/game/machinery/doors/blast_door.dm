@@ -96,6 +96,17 @@
 	else
 		src.force_close()
 
+//Proc: attack_hand
+//Description: Attacked with empty hand. Only to allow special attack_bys.
+/obj/machinery/door/blast/attack_hand(mob/user as mob)
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			src.attack_alien(user)
+			return
+	..()
+
+
 // Proc: attackby()
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)
 // Description: If we are clicked with crowbar, wielded fire axe, or armblade, try to manually open the door.
@@ -161,6 +172,30 @@
 				playsound(src.loc, hitsound, 100, 1)
 				take_damage(W.force*0.15) //If the item isn't a weapon, let's make this take longer than usual to break it down.
 			return
+
+// Proc: attack_alien()
+// Parameters: Attacking Xeno mob.
+// Description: Forces open the door after a delay.
+/obj/machinery/door/blast/attack_alien(var/mob/user) //Familiar, right? Doors.
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			if(src.density)
+				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
+				if(do_after(user, 15 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					force_open(1)
+			else
+				visible_message("<span class='alium'>\The [user] begins forcing \the [src] closed!</span>")
+				if(do_after(user, 5 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+					force_close(1)
+		else
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			return
+	..()
 
 // Proc: open()
 // Parameters: None

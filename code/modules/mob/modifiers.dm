@@ -92,7 +92,7 @@
 /mob/living/proc/add_modifier(var/modifier_type, var/expire_at = null, var/mob/living/origin = null)
 	// First, check if the mob already has this modifier.
 	for(var/datum/modifier/M in modifiers)
-		if(istype(modifier_type, M))
+		if(ispath(modifier_type, M))
 			switch(M.stacks)
 				if(MODIFIER_STACK_FORBID)
 					return // Stop here.

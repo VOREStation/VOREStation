@@ -46,6 +46,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
 	var/health_hud_intensity = 1						 // Intensity modifier for the health GUI indicator.
 	var/suggested_species = "Human"						 //If it should make the torso a species
+	var/speech_bubble_appearance = "synthetic"			 // What icon_state to use for speech bubbles when talking.  Check talk.dmi for all the icons.
 
 /datum/robolimb/unbranded_monitor
 	company = "Unbranded Monitor"
@@ -166,6 +167,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 	lifelike = 1
 	blood_color = "#CCCCCC"
+	speech_bubble_appearance = "normal"
 
 /datum/robolimb/wardtakahashi
 	company = "Ward-Takahashi"

@@ -39,7 +39,8 @@
 
 /obj/effect/temporary_effect/destablize/New()
 	..()
-	radiate_loop()
+	spawn(0)
+		radiate_loop()
 
 /obj/effect/temporary_effect/destablize/proc/radiate_loop()
 	while(pulses_remaining)

@@ -5,6 +5,7 @@
 	icon_living = "syndicate"
 	icon_dead = "syndicate_dead"
 	icon_gib = "syndicate_gib"
+	intelligence_level = SA_HUMANOID
 
 	faction = "syndicate"
 	maxHealth = 100
@@ -165,6 +166,7 @@
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
+	intelligence_level = SA_ROBOTIC
 
 	faction = "syndicate"
 	maxHealth = 15

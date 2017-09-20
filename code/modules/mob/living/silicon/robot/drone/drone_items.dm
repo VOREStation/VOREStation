@@ -76,11 +76,14 @@
 		/obj/item/weapon/disk,
 		/obj/item/weapon/circuitboard,
 		/obj/item/weapon/reagent_containers/glass,
-		/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
-		/obj/item/xenoproduct/slime/core,
 		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/healthanalyzer //to build medibots
-//		/obj/item/slime_extract,		### Outdated
+		/obj/item/device/healthanalyzer, //to build medibots,
+		/obj/item/slime_cube,
+		/obj/item/slime_crystal,
+		/obj/item/weapon/disposable_teleporter/slime,
+		/obj/item/slimepotion,
+		/obj/item/slime_extract,
+		/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
 
 		)
 

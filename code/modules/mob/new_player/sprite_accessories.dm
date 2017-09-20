@@ -29,7 +29,7 @@
 	var/gender = NEUTER
 
 	// Restrict some styles to specific species
-	var/list/species_allowed = list("Human")
+	var/list/species_allowed = list("Human","Promethean")
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
@@ -51,7 +51,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Unathi","Promethean")
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
@@ -632,7 +632,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox","Promethean")
 
 	watson
 		name = "Watson Mustache"
@@ -703,7 +703,7 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
-		threeOclock
+	threeOclock
 		name = "3 O'clock Shadow"
 		icon_state = "facial_3oclock"
 

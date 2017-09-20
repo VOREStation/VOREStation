@@ -287,7 +287,7 @@
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
-	if(istype(M, /mob/living/carbon/slime))
+	if(istype(M, /mob/living/simple_animal/slime))
 		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 	holder.remove_reagent("capsaicin", 5)
 
@@ -319,7 +319,7 @@
 		M.apply_effect(2, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/carbon/slime))
+	if(istype(M, /mob/living/simple_animal/slime))
 		M.bodytemperature += rand(10, 25)
 	holder.remove_reagent("frostoil", 5)
 
@@ -404,7 +404,7 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/carbon/slime))
+	if(istype(M, /mob/living/simple_animal/slime))
 		M.bodytemperature += rand(15, 30)
 	holder.remove_reagent("frostoil", 5)
 
@@ -1958,7 +1958,7 @@
 	druggy = 30
 
 	glass_name = "Manhattan Project"
-	glass_desc = "A scienitst drink of choice, for thinking how to blow up the station."
+	glass_desc = "A scientist's drink of choice, for thinking how to blow up the station."
 
 /datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
@@ -2277,7 +2277,7 @@
 	description = "Alcohol in more alcohol."
 	taste_description = "thick, dry alcohol"
 	color = "#FFFF7F"
-	strength = 15
+	strength = 12
 	nutriment_factor = 1
 
 	glass_name = "Sake Bomb"
@@ -2401,7 +2401,7 @@
 	description = "From Shelf. Not for human consumption."
 	taste_description = "oily bitterness"
 	color = "#d3d3d3"
-	strength = 36
+	strength = 32
 
 	glass_name = "Debugger"
 	glass_desc = "From Shelf. Not for human consumption."
