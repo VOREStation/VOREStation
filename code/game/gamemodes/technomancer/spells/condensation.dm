@@ -2,6 +2,7 @@
 	name = "Condensation"
 	desc = "This causes rapid formation of liquid at the target, causing floors to become wet, entities to be soaked, and fires \
 	to be extinguished.  You can also fill contains with water if they are targeted directly."
+	enhancement_desc = "Floors affected by condensation will also freeze."
 	ability_icon_state = "tech_condensation"
 	cost = 50
 	obj_path = /obj/item/weapon/spell/condensation
