@@ -188,6 +188,10 @@
 		name = "Bedhead 3"
 		icon_state = "hair_bedheadv3"
 
+	bedheadlong
+		name = "Bedhead Long"
+		icon_state = "hair_long_bedhead"
+
 	beehive
 		name = "Beehive"
 		icon_state = "hair_beehive"
@@ -616,6 +620,30 @@
 	manbun
 		name = "Manbun"
 		icon_state = "hair_manbun"
+
+	shy
+		name = "Shy"
+		icon_state = "hair_shy"
+
+	jade
+		name = "Jade"
+		icon_state = "hair_jade"
+
+	country
+		name = "Country"
+		icon_state = "hair_country"
+
+	rosa
+		name = "Rosa"
+		icon_state = "hair_rosa"
+
+	dave
+		name = "Dave"
+		icon_state = "hair_dave"
+
+	mohawkunshaven
+		name = "Unshaven Mohawk"
+		icon_state = "hair_unshaven_mohawk"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -746,6 +774,18 @@
 	chinless
 		name = "Chinless Beard"
 		icon_state = "facial_chinlessbeard"
+
+	tribeard
+		name = "Tribeard"
+		icon_state = "facial_tribeard"
+
+	moonshiner
+		name = "Moonshiner"
+		icon_state = "facial_moonshiner"
+
+	martial
+		name = "Martial Artist"
+		icon_state = "facial_martialartist"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
