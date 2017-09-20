@@ -125,6 +125,7 @@
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
+	var/list/grow_as = list(/mob/living/simple_animal/hostile/giant_spider, /mob/living/simple_animal/hostile/giant_spider/nurse, /mob/living/simple_animal/hostile/giant_spider/hunter)
 
 /obj/effect/spider/spiderling/New(var/location, var/atom/parent)
 	pixel_x = rand(6,-6)
@@ -218,7 +219,7 @@
 					break
 
 		if(amount_grown >= 100)
-			var/spawn_type = pick(typesof(/mob/living/simple_animal/hostile/giant_spider))
+			var/spawn_type = pick(grow_as)
 			new spawn_type(src.loc, src)
 			qdel(src)
 	else if(isorgan(loc))
