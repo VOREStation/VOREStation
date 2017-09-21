@@ -1425,3 +1425,17 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			qdel(src) //One time use.
 	else //If not, do nothing.
 		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")
+
+/obj/item/weapon/fluff/injector/numb_bite
+	name = "Numbing Venom Injector"
+	desc = "Injects the user with a high dose of some type of chemical, causing any chemical glands they have to kick into overdrive and create the production of a numbing enzyme that is injected via bites.."
+
+/obj/item/weapon/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user)
+
+	if(usr == M) //Is the person using it on theirself?
+		if(ishuman(M)) //Give them numbing bites.
+			var/mob/living/carbon/human/H = user
+			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
+			qdel(src) //One time use.
+	else //If not, do nothing.
+		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")

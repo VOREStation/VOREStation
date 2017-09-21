@@ -1833,6 +1833,7 @@
 #include "code\modules\mob\living\carbon\human\update_icons_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\species.dm"
 #include "code\modules\mob\living\carbon\human\species\species_attack.dm"
+#include "code\modules\mob\living\carbon\human\species\species_attack_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\species_getters.dm"
 #include "code\modules\mob\living\carbon\human\species\species_getters_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\species_helpers.dm"

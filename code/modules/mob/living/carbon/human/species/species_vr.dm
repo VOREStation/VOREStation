@@ -21,3 +21,9 @@
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)
 		unarmed_attacks += new u_type()
+
+/datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.
+	unarmed_attacks = list()
+	unarmed_types += /datum/unarmed_attack/bite/sharp/numbing
+	for(var/u_type in unarmed_types)
+		unarmed_attacks += new u_type()

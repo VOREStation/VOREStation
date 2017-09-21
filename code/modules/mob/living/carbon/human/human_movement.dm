@@ -34,6 +34,8 @@
 	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
 		tally = max(species.slowdown, species.slowdown+((tally-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
 		if(shock_stage >= 10) tally -= 1.5 //this gets a +3 later, feral critters take reduced penalty
+	if(reagents.has_reagent("numbenzyme"))
+		tally += 1.5 //A tad bit of slowdown.
 	//VOREstation end
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
