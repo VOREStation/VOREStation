@@ -163,6 +163,14 @@ character_name: Elliot Richards
 item_path: /obj/item/weapon/storage/belt/champion
 }
 
+{
+ckey: draycu
+character_name: Theseus
+item_path:/obj/item/weapon/coin/diamond
+item_name: theseus' diamond coin
+item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
+}
+
 # ######## E CKEYS
 
 # Permit Expired
