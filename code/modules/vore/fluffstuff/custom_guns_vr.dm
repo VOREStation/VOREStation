@@ -37,8 +37,8 @@
 ////////////////////////////////////////////////////////////
 // For general use
 /obj/item/weapon/gun/projectile/automatic/battlerifle
-	name = "\improper UNSC service rifle"
-	desc = "You had your chance to be afraid before you joined my beloved Corps! But, to guide you back to the true path, I brought this motivational device! Uses unique 9.5x40mm rounds."
+	name = "\improper USDF service rifle"
+	desc = "You had your chance to be afraid before you joined my beloved Corps! But, to guide you back to the true path, I have brought this motivational device! Uses 9.5x40mm rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "battlerifle"
 	icon_override = 'icons/obj/gun_vr.dmi'
@@ -49,8 +49,8 @@
 	max_shells = 36
 	caliber = "9.5x40mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-	magazine_type = /obj/item/ammo_magazine/battlerifle
-	allowed_magazines = list(/obj/item/ammo_magazine/battlerifle)
+	magazine_type = /obj/item/ammo_magazine/m95
+	allowed_magazines = list(/obj/item/ammo_magazine/m95)
 	fire_sound = 'sound/weapons/battlerifle.ogg'
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
@@ -58,8 +58,8 @@
 	one_handed_penalty = 4 // The weapon itself is heavy
 
 // For general use
-/obj/item/weapon/gun/projectile/shotgun/pump/unsc
-	name = "\improper UNSC tactical shotgun"
+/obj/item/weapon/gun/projectile/shotgun/pump/USDF
+	name = "\improper USDF tactical shotgun"
 	desc = "All you greenhorns who wanted to see Xenomorphs up close... this is your lucky day. Uses 12g rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "haloshotgun"
@@ -72,7 +72,7 @@
 // For general use
 /obj/item/weapon/gun/projectile/automatic/pdw
 	name = "personal defense weapon"
-	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but hasn't yet caught on with NanoTrasen. Uses 9mm rounds."
+	desc = "The X-9MM is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, but never caught on with NanoTrasen. Uses 9mm rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "pdw"
 	item_state = "c20r" // Placeholder
@@ -115,15 +115,15 @@
 	projectile_type = /obj/item/projectile/beam/imperial
 
 // jertheace : Jeremiah 'Ace' Acacius
-/obj/item/weapon/gun/projectile/shotgun/pump/unsc/fluff/ace
-	name = "Ace's tactical shotgun" // D-model holds half as many shells as the normal version so as not to be OP as shit. Better than normal shotgun, worse than combat shotgun.
-	desc = "Owned by the respected (or feared?) veteran Captain of VORE Station. Inscribed on the barrel are the words \"Speak softly, and carry a big stick.\""
+/obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
+	name = "Ace's tactical shotgun" // D-model holds half as many shells as the normal version so as not OP as shit. Better than normal shotgun, worse than combat shotgun.
+	desc = "Owned by the respected (or feared?) veteran Captain of the original NSS Adephagia. Inscribed on the barrel are the words \"Speak softly, and carry a big stick.\""
 	ammo_type = /obj/item/ammo_casing/a12g/stunshell
 	max_shells = 6
 
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian //Now that it is actually Single-Action and not hacky broken SA, I see no reason to nerf this down to .38. --Joan Risu
-	name = "Big Iron revolver"
+	name = "\improper \"Big Iron\" revolver"
 	desc = "A .357 revolver for veteran rangers on the planet Orta. The right side of the handle has a logo for Quarion industries, and the left is the Rangers. The primary ammo for this gun is .357 rubber. According to the CentCom Chief of Security, this revolver was more controversial than it needed to be."
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "tasaldrevolver"
@@ -158,17 +158,17 @@
 	else
 		..()
 
-// wankersonofjerkin : Ryan Winz
-/obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver
-	name = "Ryan's 'Devilgun'"
-	desc = "You notice the serial number on the revolver is 666. The word 'Sin' is engraved on the blood-red rosewood grip. Uses .357 rounds."
+// wankersonofjerkin : Glenn Pink
+/obj/item/weapon/gun/projectile/revolver/fluff/admiral_pink_revolver
+	name = "Admiral Pink's 'Devilgun'"
+	desc = "You notice the serial number on the revolver is 666. The word 'Sin' is engraved on the blood-red rosewood grip. Uses .357 rounds." //Edgy, but based on real guns the player owns.
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "ryan_winz"
 	item_state = "revolver"
 
-/obj/item/weapon/gun/projectile/revolver/fluff/ryan_winz_revolver/redemption
-	name = "Ryan's 'Redeemer'"
-	desc = "You notice the serial number on the revolver is 667. The word 'Redemption' is engraved on dark rosewood grip. Uses .357 rounds."
+/obj/item/weapon/gun/projectile/revolver/fluff/admiral_pink_revolver/redemption
+	name = "Admiral Pink's 'Redeemer'"
+	desc = "You notice the serial number on the revolver is 667. The word 'Redemption' is engraved on dark rosewood grip. Uses .357 rounds." //Edgy, but based on real guns the player owns.
 
 // sasoperative : Joseph Skinner
 /obj/item/weapon/gun/projectile/revolver/judge/fluff/sasoperative
@@ -177,12 +177,11 @@
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "jury"
 	item_state = "gun"
-	accuracy = 0 // Because I know you're not an idiot who needs to be nerfed. -Ace
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 
 // Dhaeleena : Dhaeleena M'iar
 /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
-	name = "engraved mateba"
+	name = "Dhaeleena's engraved mateba"
 	desc = "This unique looking handgun is engraved with roses along the barrel and the cylinder as well as the initials DM under the grip. Along the middle of the barrel an engraving shows the words 'Mateba Unica 6'. Uses .357 rounds."
 	icon_state = "mateba"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -226,7 +225,7 @@
 	item_state = "arifle"
 	w_class = ITEMSIZE_LARGE
 	max_shells = 30
-	caliber = "kurz"
+	caliber = "7.92x33mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 6)
 	magazine_type = /obj/item/ammo_magazine/mtg
 	allowed_magazines = list(/obj/item/ammo_magazine/mtg)
@@ -239,6 +238,7 @@
 	if(!ignore_inhands) update_held_icon()
 
 //Currently, the only problem I have now is that this weapon's item_state isn't working.
+/* // This has never worked and probably never will work. Why do we even have this?
 /obj/item/weapon/gun/projectile/automatic/fluff/crestrose
 	name = "Crescent Rose"
 	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 7.62mm rounds."
@@ -299,11 +299,11 @@
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
-	return 0
+	return 0*/
 
 //-----------------------Tranq Gun----------------------------------
 /obj/item/weapon/gun/projectile/dartgun/tranq
-	name = "Tranquilizer Gun"
+	name = "tranquilizer gun"
 	desc = "A gas-powered dart gun designed by the National Armory of Gaia. This gun is used primarily by United Federation special forces for Tactical Espionage missions. Don't forget your bandana."
 	icon_state = "tranqgun"
 	item_state = null
@@ -419,7 +419,7 @@
 // ------------ Energy Luger ------------
 /obj/item/weapon/gun/energy/gun/eluger
 	name = "energy Luger"
-	desc = "The finest sidearm produced by RauMauser, this pistol can punch a hole through inch thick steel plating. This ain't your great-grand-daddy's Luger! Can switch between stun and kill."
+	desc = "The finest sidearm produced by RauMauser; this pistol can punch a hole through inch thick steel plating. This ain't your great-grand-daddy's Luger! Can switch between stun and kill."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "elugerstun100"
 	item_state = "gun"
@@ -434,7 +434,7 @@
 
 //////////////////// Eris Ported Guns ////////////////////
 //HoS Gun
-/obj/item/weapon/gun/projectile/lamia
+/*/obj/item/weapon/gun/projectile/lamia
 	name = "FS HG .44 \"Lamia\""
 	desc = "Uses .44 rounds."
 	icon = 'icons/obj/gun_vr.dmi'
@@ -455,21 +455,19 @@
 		return
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
-	overlays += "deagle_[ratio]"
+	overlays += "deagle_[ratio]"*/ // Fugly.
 
 
 //Civilian gun
 /obj/item/weapon/gun/projectile/giskard
-	name = "FS HG .32 \"Giskard\""
-	desc = "Can even fit into the pocket! Uses .32 rounds."
+	name = "\improper \"Giskard\" holdout pistol"
+	desc = "The FS HG .380 \"Giskard\" can even fit into the pocket! Uses .380 rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "giskardcivil"
-	caliber = ".32"
-	magazine_type = /obj/item/ammo_magazine/m32
-	allowed_magazines = list(/obj/item/ammo_magazine/m32)
+	caliber = ".380"
+	magazine_type = /obj/item/ammo_magazine/m380
+	allowed_magazines = list(/obj/item/ammo_magazine/m380)
 	load_method = MAGAZINE
-	fire_delay = 0.6
-	accuracy = 1
 	w_class = ITEMSIZE_SMALL
 	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
@@ -481,26 +479,17 @@
 	else
 		icon_state = "giskardcivil_empty"
 
-//Better civilian gun
-/obj/item/weapon/gun/projectile/olivaw
-	name = "FS HG .32 \"Olivaw\""
-	desc = "A more advanced version of the \"Giskard\". This one seems to have a two-round burst-fire mode. Uses .32 rounds."
-	icon = 'icons/obj/gun_vr.dmi'
+//Not so civilian gun
+/obj/item/weapon/gun/projectile/giskard/olivaw
+	name = "\improper \"Olivaw\" holdout burst-pistol"
+	desc = "The FS HG .380 \"Olivaw\" is a more advanced version of the \"Giskard\". This one seems to have a two-round burst-fire mode. Uses .380 rounds."
 	icon_state = "olivawcivil"
-	caliber = ".32"
-	magazine_type = /obj/item/ammo_magazine/m32
-	allowed_magazines = list(/obj/item/ammo_magazine/m32)
-	fire_delay = 1.2
-	load_method = MAGAZINE
-	accuracy = 2
-	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-1),       dispersion=list(1.2, 1.8)),
 		)
 
-/obj/item/weapon/gun/projectile/olivaw/update_icon()
+/obj/item/weapon/gun/projectile/giskard/olivaw/update_icon()
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		icon_state = "olivawcivil"
@@ -509,7 +498,7 @@
 
 //Detective gun
 /obj/item/weapon/gun/projectile/revolver/consul
-	name = "FS REV .44 \"Consul\""
+	name = "\improper \"Consul\" Revolver"
 	desc = "Are you feeling lucky, punk? Uses .44 rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "inspector"
@@ -529,10 +518,10 @@
 	overlays.Cut()
 	update_charge()
 
-//Warden gun
-/obj/item/weapon/gun/projectile/automatic/SMG_sol
-	name = "FS SMG 9x19 \"Sol\""
-	desc = "A standard-issued weapon used by Ironhammer operatives. Compact and reliable. Uses 9mm rounds."
+// No idea what this is for.
+/obj/item/weapon/gun/projectile/automatic/sol
+	name = "\improper \"Sol\" SMG"
+	desc = "The FS 9x19mm \"Sol\" is a compact and reliable submachine gun. Uses 9mm rounds."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "SMG-IS"
 	item_state = "wt550"
@@ -544,14 +533,13 @@
 	load_method = MAGAZINE
 	multi_aim = 1
 	burst_delay = 2
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		)
 
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-
-/obj/item/weapon/gun/projectile/automatic/SMG_sol/proc/update_charge()
+/obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
@@ -560,15 +548,15 @@
 	ratio = round(ratio, 0.25) * 100
 	overlays += "smg_[ratio]"
 
-/obj/item/weapon/gun/projectile/automatic/SMG_sol/update_icon()
+/obj/item/weapon/gun/projectile/automatic/sol/update_icon()
 	icon_state = (ammo_magazine)? "SMG-IS" : "SMG-IS-empty"
 	overlays.Cut()
 	update_charge()
 
 //HoP gun
 /obj/item/weapon/gun/energy/gun/martin
-	name = "FS PDW E \"Martin\""
-	desc = "A small holdout e-gun. Don't miss!"
+	name = "holdout energy gun"
+	desc = "The FS PDW E \"Martin\" is small holdout e-gun. Don't miss!"
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "PDW"
 	item_state = "gun"
@@ -624,46 +612,45 @@
 	impact_type = /obj/effect/projectile/laser_omni/impact
 
 //--------------- StG-60 ----------------
-/obj/item/ammo_magazine/mtg
+/obj/item/ammo_magazine/m792
 	name = "box mag (7.92x33mm Kurz)"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "stg_30rnd"
-	caliber = "kurz"
-	ammo_type = /obj/item/ammo_casing/stg
+	caliber = "7.92x33mm"
+	ammo_type = /obj/item/ammo_casing/a792
 	max_ammo = 30
 	mag_type = MAGAZINE
 
-/obj/item/ammo_casing/stg
-	desc = "A 7.92 33mm Kurz casing."
+/obj/item/ammo_casing/a792
+	desc = "A 7.92x33mm Kurz casing."
 	icon_state = "rifle-casing"
-	caliber = "kurz"
+	caliber = "7.92x33mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
 /obj/item/ammo_magazine/mtg/empty
 	initial_ammo = 0
 
 //------------- Battlerifle -------------
-/obj/item/ammo_magazine/battlerifle
+/obj/item/ammo_magazine/m95
 	name = "box mag (9.5x40mm)"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "battlerifle"
 	caliber = "9.5x40mm"
-	ammo_type = /obj/item/ammo_casing/a95mm
+	ammo_type = /obj/item/ammo_casing/a95
 	max_ammo = 36
 	mag_type = MAGAZINE
 	multiple_sprites = 1
 
-/obj/item/ammo_casing/a95mm
+/obj/item/ammo_casing/a95
 	desc = "A 9.5x40mm bullet casing."
 	icon_state = "rifle-casing"
 	caliber = "9.5x40mm"
-	projectile_type = /obj/item/projectile/bullet/rifle/a95mm
+	projectile_type = /obj/item/projectile/bullet/rifle/a95
 
-/obj/item/projectile/bullet/rifle/a95mm
+/obj/item/projectile/bullet/rifle/a95
 	damage = 40
-	penetrating = 2 // Better penetration than the 7.62mm
 
-/obj/item/ammo_magazine/battlerifle/empty
+/obj/item/ammo_magazine/m95/empty
 	initial_ammo = 0
 
 //---------------- PDW ------------------
@@ -746,20 +733,20 @@
 	icon_state = "flash357"
 	projectile_type = /obj/item/projectile/energy/flash/strong
 
-//.32
-/obj/item/ammo_casing/a32
-	desc = "A .32 bullet casing."
-	caliber = ".32"
+//.380
+/obj/item/ammo_casing/a380
+	desc = "A .380 bullet casing."
+	caliber = ".380"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-/obj/item/ammo_magazine/m32
-	name = "magazine (.32)"
+/obj/item/ammo_magazine/m380
+	name = "magazine (.380)"
 	icon_state = "9x19p"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(DEFAULT_WALL_MATERIAL = 480)
-	caliber = ".32"
-	ammo_type = /obj/item/ammo_casing/a32
+	caliber = ".380"
+	ammo_type = /obj/item/ammo_casing/a380
 	max_ammo = 8
 	multiple_sprites = 1
 

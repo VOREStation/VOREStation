@@ -52,7 +52,7 @@
 
 /obj/item/clothing/suit/storage/vest/solgov/heavy
 	name = "\improper Solar Central Government heavy armored vest"
-	desc = "A synthetic armor vest with SECURITY printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates." // UNSC does peacekeeping, not these guys.
+	desc = "A synthetic armor vest with SECURITY printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates." // USDF does peacekeeping, not these guys.
 
 /obj/item/clothing/suit/storage/vest/solgov/security
 	name = "master at arms heavy armored vest"
@@ -62,10 +62,10 @@
 	name = "command heavy armored vest"
 	desc = "A synthetic armor vest with Solar Central Government printed in detailed gold lettering on the chest. This one has added webbing and ballistic plates."
 
-/obj/item/clothing/suit/armor/combat/unsc
+/obj/item/clothing/suit/armor/combat/USDF
 	name = "marine body armor"
 	desc = "When I joined the Corps, we didn't have any fancy-schmanzy armor. We had sticks! Two sticks, and a rock for the whole platoon–and we had to <i>share</i> the rock!"
-	icon_state = "unsc_armor"
+	icon_state = "UNSC_armor"
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO // ToDo: Break up the armor into smaller bits.

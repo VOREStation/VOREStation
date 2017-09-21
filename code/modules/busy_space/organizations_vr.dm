@@ -13,11 +13,11 @@
 			With numerous Earth governments fighting independent battles against factions of both Facist and Communist forces, the UN became \
 			involved, eventually using the war to absorb most, if not all Earth governments into itself, forming a global government to combat \
 			the terrorists and stabilize the planet and its other world colonies. The UN won the war and the Unified Earth Government was formed, \
-			with its' primary defense, scientific and exploratory force being the newly formed UNSC. Although the UEG seemed to have complete \
+			with its' primary defense, scientific and exploratory force being the newly formed USDF. Although the UEG seemed to have complete \
 			control over Earth and Sol's colonies, the UN still existed as an organization and a political entity to continue mediating between \
 			countries and colonies. In 2291, Tobias Shaw and Wallace Fujikawa invented a device that could transition normal matter into slipspace \
 			(bluespace), and FTL travel became possible. As humanity expanded beyond the Solar System, the UEG reorganized its self to become the \
-			centralized government of humanity known today; Sol Central. Organizations like the UNSC would continue to exist as a peacekeeping \
+			centralized government of humanity known today; Sol Central. Organizations like the USDF would continue to exist as a peacekeeping \
 			force to protect most of humanity's interests across the galaxy."
 	work = "governing body of humanity's colonies"
 	headquarters = "Paris, Earth"
@@ -129,33 +129,32 @@
 						"Runni Crystal Mines of Keid V")
 */ // ToDo: ReDo.
 
-/datum/lore/organization/mil/unsc // change to sif_guard in future to overwrite Polaris stuff
-	name = "United Nations Space Command"
-	short_name = "" // This is blank on purpose. Otherwise they call the ships "UNSC" "UNSC Name"
-	desc = "The dedicated military force of SolGov, originally formed by the United Nations, the UNSC is the might of SolGov. It is the \
+/datum/lore/organization/mil/USDF // change to sif_guard in future to overwrite Polaris stuff
+	name = "United Sol Defense Force"
+	short_name = "" // This is blank on purpose. Otherwise they call the ships "USDF" "USDF Name"
+	desc = "The USDF is the dedicated military force of SolGov, originally formed by the United Nations. It is the \
 			dominant superpower of the Orion Spur, and is able to project its influence well into parts of the Perseus and \
-			Sagittarius arms of the galaxy. However, regions beyond that are too far for the UNSC to be a major player."
-	history = "UN clashes with dissident political movements, the most important of which were the \"Koslovics\" and the \"Frieden,\" \
-			began the crisis that led to the formation of the UNSC. The Frieden movement was a fascist organization based on the Jovian \
+			Sagittarius arms of the galaxy. However, regions beyond that are too far for the USDF to be a major player."
+	history = "Earth's clashes with dissident political movements, the most important of which were the \"Red Faction\" and \"Storm Front,\" \
+			began the crisis that led to the formation of the USDF. The Storm Front movement was a fascist organization based on the Jovian \
 			Moons, a group that received backing from some corporations operating in the Federal Republic of Germany on Earth. Their \
-			ideological opponents, the Koslovics, formed a Marxist-Leninist group centered around the leadership of Vladimir Koslov \
-			around the same time. The UNSC was commissioned in 2163 as a military force primarily composed of Naval and Marine \
-			forces. In July 2164, the UNSC partook in its first battle. From this point, the UNSC was used by the UN in conflicts, \
+			ideological opponents, the Red Faction, formed a Marxist-Leninist group on Mars centered around the leadership of Vladimir Koslov \
+			around the same time. The USDF was commissioned in 2163 as a military force primarily composed of Naval and Marine \
+			forces. In July 2164, the USDF partook in its first battle. From this point, the USDF was used by the UN in conflicts, \
 			including the Interplanetary War. When the conflicts of Sol ended, a newly powerful Unified Earth Government (later SolGov) \
-			and UNSC began to expand into the stars. The apex of human expansion would come in 2490, when more than 800 worlds were \
+			and USDF began to expand into the stars. The apex of human expansion would come in 2490, when more than 600 worlds were \
 			considered part of SolGov's territory, many developing into full-fledged colonies. By this time, a ring of Outer colonies \
 			was providing SolGov with the raw materials that made the macro-economy function; with the political power remaining with \
 			the Inner colonies. The massive difference in wealth distribution and political power, which became a hallmark of humanity \
 			by this period, led to new threats of secession from the outer ring. In 2492, the colony of Far Isle was razed by nuclear \
 			weapons after a massive uprising, creating a new found reason to rebel. SolGov began to wage a bloody struggle against \
-			groups of terrorists (or freedom fighters) called the Insurrectionists, who wanted independence. The UNSCDF, the military \
-			branch of the UNSC, continues to battle Insurrectionists to this day. The UNSC's operations meanwhile focus on curbing \
-			piracy operations, as well as providing a deterrent against the Confederacy of Independent Systems and the "
+			groups of terrorists (or freedom fighters) called the Insurrectionists, who wanted independence. The USDF continues to battle \
+			sepratists to this day. The USDF's operations meanwhile focus on curbing piracy operations, as well as providing a deterrent \
+			against other major military powers such as the Moghes Hegemony."
 	work = "peacekeeping and piracy suppression"
-	headquarters = "Earth"
-	motto = ""
-	//Halo ship names!
-	ship_prefixes = list("UNSC" = "military", "UNSC" = "anti-piracy", "UNSC" = "humanitarian", "UNSC" = "peacekeeping", "UNSC" = "search-and-rescue") // It's all UNSC but let's mix up what they do.
+	headquarters = "Paris, Earth"
+	motto = "Per Mare, Per Terras, Per Constellatum." // Stolen from Halo because fuck you that's why.
+	ship_prefixes = list("USDF" = "military", "USDF" = "anti-piracy", "USDF" = "escort", "USDF" = "humanitarian", "USDF" = "peacekeeping", "USDF" = "search-and-rescue") // It's all USDF but let's mix up what they do.
 	ship_names = list("Aegis Fate",
 					"Ain't No Sunshine",
 					"All Under Heaven",
@@ -181,12 +180,13 @@
 					"Gettysburg",
 					"Glamorgan",
 					"Grafton",
+					"Great Wall",
 					"Hammerhead",
 					"Herakles",
 					"Hoenir",
 					"In Amber Clad",
 					"Iwo Jima",
-					"Jörmungandr",
+					"Jormungandr",
 					"Leonidas",
 					"Meriwether Lewis",
 					"Midsummer Night",
@@ -289,43 +289,44 @@
 	desc = "A rebel faction in the Cygnus Arm that renounced the government of both SolGov and their corporate overlords. \
 			The Confederation has two fleets; a regular United Fleet Host comprised of professional crewmen and officers, and the Free Host \
 			of the Confederation which uses privateers, volunteers and former pirates. The Ares Confederation only holds a few dozen star \
-			systems, but they will fiercely defend against any incursion upon their territory, especially by the UNSC."
+			systems, but they will fiercely defend against any incursion upon their territory, especially by the USDF."
 	history = "Originally only a strike of miners on the dusty, arid planet of Ares in the year 2540, the Ares Confederation was quickly \
-    		established under the leadership of retired UNSC Colonel Rodrick Gellaume, who is now Prime Minister."
+    		established under the leadership of retired USDF Colonel Rodrick Gellaume, who is now Prime Minister."
 	work = "rebel fringe government"
 	headquarters = "Paraiso a Àstrea"
 	motto = "Liberty to the Stars!"
 
 	ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
-	ship_names = list("Liberty",
+	ship_names = list("Bulwark of the Free",
 					"Charged Negotiation",
-					"People's Fist",
 					"Corporation Breaker",
-					"Laughing Maniac",
-					"Not Insured",
-					"Prehensile Ethics",
-					"Fist of Ares",
-					"Gellaume",
-					"Memory of Fallen",
-					"Star of Tiamat",
-					"Mostly Harmless",
-					"Hero of the Revolution",
+					"Cheeki Breeki",
 					"Dawnstar",
-					"Freedom",
 					"Fiery Justice",
-					"Bulwark of the Free",
-					"Pride of Liberty",
-					"Gauntlet",
-					"Petrov",
-					"Miko",
-					"Mahama",
-					"Jerome",
-					"Rodrick",
-					"Torch",
-					"Torch of Freedom",
-					"She Is One Of Ours Sir",
+					"Fist of Ares",
+					"Freedom",
 					"Fuck The Captain",
-					"None Of Your Business")
+					"Gauntlet",
+					"Gellaume",
+					"Hero of the Revolution",
+					"Jerome",
+					"Laughing Maniac",
+					"Liberty",
+					"Mahama",
+					"Memory of Fallen",
+					"Miko",
+					"Mostly Harmless",
+					"None Of Your Business",
+					"Not Insured",
+					"People's Fist",
+					"Petrov",
+					"Prehensile Ethics",
+					"Pride of Liberty",
+					"Rodrick",
+					"She Is One Of Ours Sir",
+					"Star of Tiamat",
+					"Torch of Freedom",
+					"Torch")
 	destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
 						"a Homestead on Paraiso a Àstrea",
@@ -345,7 +346,7 @@
 	desc = "Also known as the \"Golden Empire\", Imperium Auream is a superpower of elf-like humanoid beings who thrive in the southern \
     		galaxy, presumably somewhere in the mid Centaurus Arm. Having existed in the observation shadow of the galactic core, this \
     		galactic superpower had remained undiscovered by humanity despite its size until only recently. First contact was made on \
-    		June 15th 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the UNSC. \
+    		June 15th 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the USDF. \
     		Though little is currently known about the Golden Empire, their scholars have been willing to share some information. They \
     		are currently ruled by a woman referred to as Empress Gutamir who is allegedly hundreds of years old. Images and portraits \
     		of the empress depict a tall woman with an idealized figure of beauty as might have been seen in ancient Roman or Greek \

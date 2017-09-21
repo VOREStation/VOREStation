@@ -59,44 +59,44 @@
 
 /obj/item/clothing/under/utility/fleet
 	name = "fleet coveralls"
-	desc = "The utility uniform of the UNSC Fleet, made from an insulated material."
+	desc = "The utility uniform of the USDF Fleet, made from an insulated material."
 
 /obj/item/clothing/under/utility/fleet/medical
 	name = "fleet medical coveralls"
-	desc = "The utility uniform of the UNSC Fleet, made from an insulated material. This one has blue cuffs."
+	desc = "The utility uniform of the USDF Fleet, made from an insulated material. This one has blue cuffs."
 
 /obj/item/clothing/under/utility/fleet/engineering
 	name = "fleet engineering coveralls"
-	desc = "The utility uniform of the UNSC Fleet, made from an insulated material. This one has orange cuffs."
+	desc = "The utility uniform of the USDF Fleet, made from an insulated material. This one has orange cuffs."
 
 /obj/item/clothing/under/utility/fleet/supply
 	name = "fleet supply coveralls"
-	desc = "The utility uniform of the UNSC Fleet, made from an insulated material. This one has brown cuffs."
+	desc = "The utility uniform of the USDF Fleet, made from an insulated material. This one has brown cuffs."
 
 /obj/item/clothing/under/utility/fleet/security
 	name = "fleet security coveralls"
-	desc = "The utility uniform of the UNSC Fleet, made from an insulated material. This one has red cuffs."
+	desc = "The utility uniform of the USDF Fleet, made from an insulated material. This one has red cuffs."
 
 /obj/item/clothing/under/utility/fleet/command
 	name = "fleet command coveralls"
-	desc = "The utility uniform of the UNSC Fleet, made from an insulated material. This one has gold cuffs."
+	desc = "The utility uniform of the USDF Fleet, made from an insulated material. This one has gold cuffs."
 
 
 /obj/item/clothing/under/utility/marine
 	name = "marine fatigues"
-	desc = "The utility uniform of the UNSC Marine Corps, made from durable material."
+	desc = "The utility uniform of the USDF Marine Corps, made from durable material."
 
 /obj/item/clothing/under/utility/marine/green
 	name = "green fatigues"
-	desc = "A green version of the UNSC marine utility uniform, made from durable material."
+	desc = "A green version of the USDF marine utility uniform, made from durable material."
 
 /obj/item/clothing/under/utility/marine/tan
 	name = "tan fatigues"
-	desc = "A tan version of the UNSC marine utility uniform, made from durable material."
+	desc = "A tan version of the USDF marine utility uniform, made from durable material."
 
 /obj/item/clothing/under/utility/marine/olive
 	name = "olive fatigues"
-	desc = "An olive version of the UNSC marine utility uniform, made from durable material."
+	desc = "An olive version of the USDF marine utility uniform, made from durable material."
 	icon = 'icons/obj/clothing/uniforms_vr.dmi'
 	icon_override = 'icons/mob/uniform_vr.dmi'
 	icon_state = "bdu_olive"
@@ -104,7 +104,7 @@
 
 /obj/item/clothing/under/utility/marine/desert
 	name = "desert fatigues"
-	desc = "A desert version of the UNSC marine utility uniform, made from durable material."
+	desc = "A desert version of the USDF marine utility uniform, made from durable material."
 	icon = 'icons/obj/clothing/uniforms_vr.dmi'
 	icon_override = 'icons/mob/uniform_vr.dmi'
 	icon_state = "bdu_olive"
@@ -112,38 +112,38 @@
 
 /obj/item/clothing/under/utility/marine/medical
 	name = "marine medical fatigues"
-	desc = "The utility uniform of the UNSC Marine Corps, made from durable material. This one has blue markings."
+	desc = "The utility uniform of the USDF Marine Corps, made from durable material. This one has blue markings."
 
 /obj/item/clothing/under/utility/marine/engineering
 	name = "marine engineering fatigues"
-	desc = "The utility uniform of the UNSC Marine Corps, made from durable material. This one has orange markings."
+	desc = "The utility uniform of the USDF Marine Corps, made from durable material. This one has orange markings."
 
 /obj/item/clothing/under/utility/marine/supply
 	name = "marine supply fatigues"
-	desc = "The utility uniform of the UNSC Marine Corps, made from durable material. This one has brown markings."
+	desc = "The utility uniform of the USDF Marine Corps, made from durable material. This one has brown markings."
 
 /obj/item/clothing/under/utility/marine/security
 	name = "marine security fatigues"
-	desc = "The utility uniform of the UNSC Marine Corps, made from durable material. This one has red markings."
+	desc = "The utility uniform of the USDF Marine Corps, made from durable material. This one has red markings."
 
 /obj/item/clothing/under/utility/marine/command
 	name = "marine command coveralls"
-	desc = "The utility uniform of the UNSC Marine Corps, made from durable material. This one has gold markings."
+	desc = "The utility uniform of the USDF Marine Corps, made from durable material. This one has gold markings."
 
 //Service
 
 /obj/item/clothing/under/service/fleet
 	name = "fleet service uniform"
-	desc = "The service uniform of the UNSC Fleet, made from immaculate white fabric."
+	desc = "The service uniform of the USDF Fleet, made from immaculate white fabric."
 
 /obj/item/clothing/under/service/marine
 	name = "marine service uniform"
-	desc = "The service uniform of the UNSC Marine Corps. Slimming."
+	desc = "The service uniform of the USDF Marine Corps. Slimming."
 	worn_state = "greenservice"
 
 /obj/item/clothing/under/service/marine/command
 	name = "marine command service uniform"
-	desc = "The service uniform of the UNSC Marine Corps. Slimming and stylish."
+	desc = "The service uniform of the USDF Marine Corps. Slimming and stylish."
 
 /obj/item/clothing/under/mildress/expeditionary
 	name = "explorer's dress uniform"
@@ -155,8 +155,8 @@
 
 /obj/item/clothing/under/mildress/marine
 	name = "marine dress uniform"
-	desc = "The dress uniform of the UNSC Marine Corps, class given form."
+	desc = "The dress uniform of the USDF Marine Corps, class given form."
 
 /obj/item/clothing/under/mildress/marine/command
 	name = "marine command dress uniform"
-	desc = "The dress uniform of the UNSC Marine Corps, even classier in gold."
+	desc = "The dress uniform of the USDF Marine Corps, even classier in gold."
