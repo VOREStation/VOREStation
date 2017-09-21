@@ -31,6 +31,9 @@
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.
 
+	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location. see eating/simple_animal_vr for how to set this up.
+	var/autotransferwait = 10 				// Time between trying to transfer. You should probably change this from 1 second
+
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
 	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_DIGEST_NUMB)	// Possible digest modes
 	var/tmp/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
@@ -181,8 +184,41 @@
 	for(var/mob/living/M in internal_contents)
 		M.updateVRPanel()
 
+	// Handle prey messages
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"
+	if(isliving(prey)) //Taste check moved here because transfer_contents can just re-use this proc instead of a complicated series of checks
+		var/mob/living/M = prey
+		if(can_taste && M.get_taste_message(0))
+			to_chat(owner, "<span class='notice'>[M] tastes of [M.get_taste_message(0)].</span>")
+
+	// Setup the autotransfer checks if needed
+	if(transferlocation && autotransferchance > 0)
+		addtimer(CALLBACK(src, /datum/belly/.proc/check_autotransfer, prey), autotransferwait)
+
+/datum/belly/proc/check_autotransfer(var/mob/prey)
+	// Some sanity checks
+	if(transferlocation && (autotransferchance > 0) && (prey in internal_contents))
+		if(prob(autotransferchance))
+			// Double check transferlocation isn't insane
+			if(verify_transferlocation())
+				transfer_contents(prey, transferlocation)
+		else
+			// Didn't transfer, so wait before retrying
+			addtimer(CALLBACK(src, /datum/belly/.proc/check_autotransfer, prey), autotransferwait)
+
+/datum/belly/proc/verify_transferlocation()
+	for(var/I in owner.vore_organs)
+		var/datum/belly/B = owner.vore_organs[I]
+		if(B == transferlocation)
+			return TRUE		//This is the belly we're transferring too.
+
+	for(var/I in owner.vore_organs)
+		var/datum/belly/B = owner.vore_organs[I]
+		if(B.name == transferlocation.name)
+			transferlocation = B
+			return TRUE		//This confirms that the name is the same post-spawning of a new mob with automatics.
+	return FALSE			// Our belly failed to be verified, so it's not the target location to transfer to.
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
@@ -468,23 +504,9 @@
 				return
 
 		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
-			var/location_found = 0
-			var/name_found = 0
-			for(var/I in owner.vore_organs)
-				var/datum/belly/B = owner.vore_organs[I]
-				if(B == transferlocation)
-					location_found = 1
-					break
+			var/location_ok = verify_transferlocation()
 
-			if(!location_found)
-				for(var/I in owner.vore_organs)
-					var/datum/belly/B = owner.vore_organs[I]
-					if(B.name == transferlocation.name)
-						name_found = 1
-						transferlocation = B
-						break
-
-			if(!location_found && !name_found)
+			if(!location_ok)
 				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings.</span>")
 				transferlocation = null
 				return
@@ -515,16 +537,8 @@
 	if(!(content in internal_contents))
 		return
 	internal_contents -= content
-	target.internal_contents += content
-	if(content in items_preserved)
-		items_preserved -= content
-		target.items_preserved += content
-	if(isliving(content))
-		var/mob/living/M = content
-		if(target.inside_flavor)
-			to_chat(M, "<span class='notice'><B>[target.inside_flavor]</B></span>")
-		if(target.can_taste && M.get_taste_message(0))
-			to_chat(owner, "<span class='notice'>[M] tastes of [M.get_taste_message(0)].</span>")
+	// Re-use nom_mob
+	target.nom_mob(content, target.owner)
 	if(!silent)
 		for(var/mob/hearer in range(1,owner))
 			hearer << sound(target.vore_sound,volume=80)
@@ -559,6 +573,8 @@
 	dupe.transferlocation = transferlocation
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
+	dupe.autotransferchance = autotransferchance
+	dupe.autotransferwait = autotransferwait
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

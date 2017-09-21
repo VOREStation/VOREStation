@@ -75,3 +75,65 @@ mob/living/simple_animal/custom_emote()
 mob/living/simple_animal/say()
 	if (away_from_players()) return
 	. = ..()
+
+/* Auto transfer in mobs example for use in other applications
+		Hello from Citadel!
+
+Citadel's initialize code meant we had to be creative in how we gave bellies to a mob, in this case an Ash Drake from Lavaland.
+
+We needed to connect the bellies, enable auto transfer to work, make sure they were there.
+This also applies to player controlled, vore capable mobs as well. They will automatically cycle through the line.
+
+This example of course is just how one could go about it. 
+
+-Pooj
+
+### Only vore attempt once, unless sanity checks to revoke a do_mob/do_after if completed is implimented into the animal nomming. ###
+### With duplicates spawned in the menu, autotransfer will have you in multiple places at once. It's weird. ###
+
+/mob/living/simple_animal/hostile/dragon/Initialize()
+	// Create and register 'stomachs'
+	var/datum/belly/dragon/maw/maw = new(src)
+	var/datum/belly/dragon/gullet/gullet = new(src)
+	var/datum/belly/dragon/gut/gut = new(src)
+	for(var/datum/belly/X in list(maw, gullet, gut))
+		vore_organs[X.name] = X
+	// Connect 'stomachs' together
+	maw.transferlocation = gullet
+	gullet.transferlocation = gut
+	vore_selected = maw.name  // NPC eats into maw
+	return ..()
+
+set up your bellies as so:
+/datum/belly/dragon/maw
+	name = "maw"
+	inside_flavor = "The maw of the dreaded Ash drake closes around you, engulfing you into a swelteringly hot, disgusting enviroment. The acidic saliva tingles over your form while that tongue pushes you further back...towards the dark gullet beyond."
+	vore_verb = "scoop"
+	vore_sound = <insert custom sound here>
+	swallow_time = 20 // Two seconds to eat the person, was a special do_mob flag
+	escapechance = 25
+	// From above, will transfer into gullet
+	transferchance = 25
+	autotransferchance = 66 
+	autotransferwait = 200
+
+/datum/belly/dragon/gullet
+	name = "gullet"
+	inside_flavor = "A ripple of muscle and arching of the tongue pushes you down like any other food. No choice in the matter, you're simply consumed. The dark ambiance of the outside world is replaced with working, wet flesh. Your only light being what you brought with you."
+	swallow_time = 60  // costs extra time to eat directly to here
+	escapechance = 5
+	// From above, will transfer into gut
+	transferchance = 25
+	autotransferchance = 50
+	autotransferwait = 200
+
+/datum/belly/dragon/gut
+	name = "stomach"
+	vore_capacity = 5 //I doubt this many people will actually last in the gut, but...
+	inside_flavor = "With a rush of burning ichor greeting you, you're introduced to the Drake's stomach. Wrinkled walls greedily grind against you, acidic slimes working into your body as you become fuel and nutriton for a superior predator. All that's left is your body's willingness to resist your destiny."
+	digest_mode = DM_DRAGON // special mode that had additional clauses. 
+	digest_burn = 5
+	swallow_time = 100  // costs extra time to eat directly to here
+	escapechance = 0
+	
+*/
