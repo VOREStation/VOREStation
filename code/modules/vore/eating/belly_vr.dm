@@ -537,6 +537,10 @@
 	if(!(content in internal_contents))
 		return
 	internal_contents -= content
+	target.internal_contents += content
+	if(content in items_preserved)
+		items_preserved -= content
+		target.items_preserved += content
 	// Re-use nom_mob
 	target.nom_mob(content, target.owner)
 	if(!silent)
