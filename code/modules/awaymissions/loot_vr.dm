@@ -160,7 +160,7 @@
 					prob(7);/obj/item/weapon/gun/projectile/automatic/sts35,\
 					prob(7);/obj/item/weapon/gun/projectile/automatic/z8,\
 					prob(7);/obj/item/weapon/gun/energy/gun/burst,\
-					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/unsc,\
+					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/USDF,\
 					prob(7);/obj/item/weapon/gun/projectile/deagle,\
 					prob(7);/obj/item/weapon/gun/launcher/grenade,\
 				/*	prob(6);/obj/item/weapon/gun/projectile/SVD,\*/
@@ -215,7 +215,7 @@
 					prob(2);/obj/item/ammo_magazine/m44,\
 					prob(2);/obj/item/ammo_magazine/m545,\
 					prob(1);/obj/item/weapon/storage/box/frags,\
-				/*	prob(1);/obj/item/ammo_magazine/battlerifle,\ */
+				/*	prob(1);/obj/item/ammo_magazine/m95,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
 					prob(1);/obj/item/weapon/storage/box/sniperammo,\
 					prob(1);/obj/item/weapon/storage/box/flashshells,\
