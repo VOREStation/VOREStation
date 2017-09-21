@@ -20,7 +20,9 @@
 #define DM_EGG 									"Encase In Egg"
 #define DM_DRAIN									"Drain"
 #define DM_UNABSORB								"Unabsorb"
-
+#define DM_SHRINK									"Shrink"
+#define DM_GROW									"Grow"
+#define DM_SIZE_STEAL								"Size Steal"
 // Stance for hostile mobs to be in while devouring someone.
 #define HOSTILE_STANCE_EATING	99
 

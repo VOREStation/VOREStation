@@ -579,6 +579,12 @@ item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 }
 
 {
+ckey: stobarico
+character_name: Alexis Bloise
+item_path: /obj/item/weapon/cane/wand
+}
+
+{
 ckey: SpoopyLizz
 character_name: Roiz Lizden
 item_path: /obj/item/weapon/implanter/reagent_generator/roiz

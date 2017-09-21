@@ -123,6 +123,12 @@
 				spanstyle = "color:purple;"
 			if(DM_DRAIN)
 				spanstyle = "color:purple;"
+			if(DM_SHRINK)
+				spanstyle = "color:purple;"
+			if(DM_GROW)
+				spanstyle = "color:purple;"
+			if(DM_SIZE_STEAL)
+				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_HAIR_AND_EYES)
@@ -210,6 +216,14 @@
 		//Can belly taste?
 		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
+
+		//Minimum size prey must be to show up.
+		dat += "<br><a href='?src=\ref[src];b_bulge_size=\ref[selected]'>Required examine size:</a>"
+		dat += " [selected.bulge_size*100]%"
+
+		//Size that prey will be grown/shrunk to.
+		dat += "<br><a href='?src=\ref[src];b_grow_shrink=\ref[selected]'>Shrink/Grow size:</a>"
+		dat += "[selected.shrink_grow_size*100]%"
 
 		//Belly escapability
 		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Belly Interactions ([selected.escapable ? "On" : "Off"])</a>"
@@ -574,6 +588,28 @@
 
 	if(href_list["b_tastes"])
 		selected.can_taste = !selected.can_taste
+
+	if(href_list["b_bulge_size"])
+		var/new_bulge = input(user, "Choose the required size prey must be to show up on examine, ranging from 25% to 200% Set this to 0 for no text on examine.", "Set Belly Examine Size.") as num|null
+		if(new_bulge == null)
+			return
+		if(new_bulge == 0) //Disable.
+			selected.bulge_size = 0
+			user << "<span class='notice'>Your stomach will not be seen on examine.</span>"
+		else if (!IsInRange(new_bulge,25,200))
+			selected.bulge_size = 0.25 //Set it to the default.
+			user << "<span class='notice'>Invalid size.</span>"
+		else if(new_bulge)
+			selected.bulge_size = (new_bulge/100)
+	if(href_list["b_grow_shrink"])
+		var/new_grow = input(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.") as num|null
+		if (new_grow == null)
+			return
+		if (!IsInRange(new_grow,25,200))
+			selected.shrink_grow_size = 1 //Set it to the default
+			user << "<span class='notice'>Invalid size.</span>"
+		else if(new_grow)
+			selected.shrink_grow_size = (new_grow/100)
 
 	if(href_list["b_escapable"])
 		if(selected.escapable == 0) //Possibly escapable and special interactions.

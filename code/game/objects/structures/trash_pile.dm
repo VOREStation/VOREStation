@@ -21,7 +21,7 @@
 		/obj/item/device/perfect_tele,
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/weapon/gun/energy/netgun,
-		/obj/item/weapon/moneybag/vault,
+		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/weapon/permit,
 		/obj/item/weapon/gun/projectile/dartgun
 		)
@@ -198,9 +198,9 @@
 					prob(1);/obj/item/clothing/shoes/syndigaloshes,
 					prob(1);/obj/item/clothing/suit/bio_suit/general,
 					prob(1);/obj/item/clothing/suit/space/emergency,
-					prob(1);/obj/item/clothing/suit/storage/vest/press,
 					prob(1);/obj/item/clothing/under/harness,
 					prob(1);/obj/item/clothing/under/tactical,
+					prob(1);/obj/item/clothing/suit/armor/material/makeshift,
 					prob(1);/obj/item/device/flashlight/glowstick/orange,
 					prob(1);/obj/item/device/flashlight/glowstick/red,
 					prob(1);/obj/item/device/flashlight/glowstick/yellow,
