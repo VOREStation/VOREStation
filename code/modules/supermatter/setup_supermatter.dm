@@ -187,9 +187,15 @@
 
 
 
-// Tries to enable the SMES on max input/output settings. With load balancing it should be fine as long as engine outputs at least ~500kW
+// Tries to enable the SMES on max input/output settings, unless the vars are changed. THIS SHOULD NOT BE PLACED ON THE MAIN SMES OR THE ENGINE WILL OVERHEAT
 /obj/effect/engine_setup/smes/
 	name = "SMES Marker"
+	var/target_input_level		//These are in watts, the display is in kilowatts. Add three zeros to the value you want.
+	var/target_output_level		//These are in watts, the display is in kilowatts. Add three zeros to the value you want.
+
+/obj/effect/engine_setup/smes/main
+	target_input_level = 750000
+	target_output_level = 750000
 
 /obj/effect/engine_setup/smes/activate()
 	..()
@@ -199,8 +205,22 @@
 		return SETUP_WARNING
 	S.input_attempt = 1
 	S.output_attempt = 1
-	S.input_level = S.input_level_max
-	S.output_level = S.output_level_max
+	if(target_input_level)
+		if(target_input_level > S.input_level_max)
+			S.input_level = S.input_level_max
+		else
+			S.input_level = target_input_level
+	else
+		S.input_level = S.input_level_max
+
+	if(target_output_level)
+		if(target_output_level > S.input_level_max)
+			S.output_level = S.output_level_max
+		else
+			S.output_level = target_output_level
+	else
+		S.output_level = S.output_level_max
+
 	S.update_icon()
 	return SETUP_OK
 
