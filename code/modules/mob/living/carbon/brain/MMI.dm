@@ -173,6 +173,7 @@
 	req_access = list(access_robotics)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	var/ghost_query_type = null
 
 /obj/item/device/mmi/digital/New()
 	src.brainmob = new(src)
@@ -234,59 +235,48 @@
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		user << "<font color='blue'>You carefully locate the manual activation switch and start the [src]'s boot process.</font>"
-		src.searching = 1
-		src.request_player()
-		spawn(600) reset_search()
+		request_player()
 
 /obj/item/device/mmi/digital/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
-		if(!O.MayRespawn())
-			continue
-		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
-			continue
-		if(O.client)
-			if(O.client.prefs.be_special & BE_AI)
-				question(O.client)
+	if(!ghost_query_type)
+		return
+	searching = 1
+
+	var/datum/ghost_query/Q = new ghost_query_type()
+	var/list/winner = Q.query()
+	if(winner.len)
+		var/mob/observer/dead/D = winner[1]
+		transfer_personality(D)
+	else
+		reset_search()
 
 /obj/item/device/mmi/digital/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
-
-	if(src.brainmob && src.brainmob.key) return
-	world.log << "Resetting [src.name]: [brainmob][brainmob ? ", [brainmob.key]" : ""]"
+	if(src.brainmob && src.brainmob.key)
+		return
 
 	src.searching = 0
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
-
-/obj/item/device/mmi/digital/proc/question(var/client/C)
-	spawn(0)
-		if(!C)	return
-		var/response = alert(C, "Someone is requesting a personality for a [src]. Would you like to play as one?", "[src] request", "Yes", "No", "Never for this round")
-		if(response == "Yes")
-			response = alert(C, "Are you sure you want to play as a [src]?", "[src] request", "Yes", "No")
-		if(!C || brainmob.key || 0 == searching)	return		//handle logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
-		if(response == "Yes")
-			transfer_personality(C.mob)
-		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_AI
+		M.show_message("<font color='blue'>\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
 
 /obj/item/device/mmi/digital/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a synthetic brain now.")
 	src.searching = 0
-	src.brainmob.mind = candidate.mind
+	if(candidate.mind)
+		src.brainmob.mind = candidate.mind
+		src.brainmob.mind.reset()
 	src.brainmob.ckey = candidate.ckey
-	src.brainmob.mind.reset()
-	src.name = "positronic brain ([src.brainmob.name])"
+	src.name = "[name] ([src.brainmob.name])"
 	src.brainmob << "<b>You are a [src], brought into existence on [station_name()].</b>"
 	src.brainmob << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
 	src.brainmob << "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
 	src.brainmob << "<b>Use say #b to speak to other artificial intelligences.</b>"
-	src.brainmob.mind.assigned_role = "Positronic Brain"
+	src.brainmob.mind.assigned_role = "Synthetic Brain"
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The [src] chimes quietly.</font>")
+		M.show_message("<font color='blue'>\The [src] chimes quietly.</font>")
 
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"
@@ -295,6 +285,7 @@
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
+	ghost_query_type = /datum/ghost_query/drone_brain
 
 /obj/item/device/mmi/digital/robot/New()
 	..()
@@ -316,10 +307,11 @@
 	icon_state = "posibrain"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
+	ghost_query_type = /datum/ghost_query/posi_brain
 
-/obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
-	..()
+/obj/item/device/mmi/digital/posibrain/request_player()
 	icon_state = "posibrain-searching"
+	..()
 
 
 /obj/item/device/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)

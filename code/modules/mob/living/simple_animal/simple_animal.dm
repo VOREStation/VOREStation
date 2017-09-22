@@ -1478,6 +1478,12 @@
 		agonyDam += agony_amount * 0.5
 		adjustFireLoss(agonyDam)
 
+// Force it to target something
+/mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)
+	if(intelligence_level == SA_HUMANOID && !forced)
+		return
+	set_target(new_target)
+
 //Commands, reactions, etc
 /mob/living/simple_animal/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	..()

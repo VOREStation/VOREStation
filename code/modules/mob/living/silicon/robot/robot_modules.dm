@@ -782,6 +782,46 @@ var/global/list/robot_modules = list(
 	id = null
 	return ..()
 
+// The module that borgs on the surface have.  Generally has a lot of useful tools in exchange for questionable loyalty to the crew.
+/obj/item/weapon/robot_module/robot/lost
+	name = "lost robot module"
+	hide_on_manifest = 1
+	sprites = list(
+					"Drone" = "drone-lost"
+				)
+
+/obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
+	..()
+	// Sec
+	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
+	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
+	src.modules += new /obj/item/borg/combat/shield(src)
+
+	// Med
+	src.modules += new /obj/item/borg/sight/hud/med(src)
+	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/reagent_containers/borghypo/lost(src)
+
+	// Engi
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
+	src.modules += new /obj/item/device/multitool(src)
+
+	// Sci
+	src.modules += new /obj/item/device/robotanalyzer(src)
+
+	// Potato
+	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
+
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
+	synths += wire
+
+	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
+	C.synths = list(wire)
+	src.modules += C
+
 /obj/item/weapon/robot_module/robot/security/combat
 	name = "combat robot module"
 	hide_on_manifest = 1

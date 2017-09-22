@@ -23,6 +23,9 @@
 /obj/item/weapon/reagent_containers/borghypo/crisis
 	reagent_ids = list("tricordrazine", "inaprovaline", "anti_toxin", "tramadol", "dexalin" ,"spaceacillin")
 
+/obj/item/weapon/reagent_containers/borghypo/lost
+	reagent_ids = list("tricordrazine", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
 

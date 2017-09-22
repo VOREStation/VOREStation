@@ -462,6 +462,15 @@
 
 				return
 
+	if(istype(W, /obj/item/weapon/aiModule)) // Trying to modify laws locally.
+		if(!opened)
+			to_chat(user, "<span class='warning'>You need to open \the [src]'s panel before you can modify them.</span>")
+			return
+
+		var/obj/item/weapon/aiModule/M = W
+		M.install(src, user)
+		return
+
 	if (istype(W, /obj/item/weapon/weldingtool))
 		if (src == user)
 			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
@@ -705,7 +714,7 @@
 		else
 			overlays += "[panelprefix]-openpanel -c"
 
-	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
+	if(has_active_type(/obj/item/borg/combat/shield))
 		overlays += "[module_sprites[icontype]]-shield"
 
 	if(modtype == "Combat")

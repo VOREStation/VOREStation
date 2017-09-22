@@ -706,11 +706,11 @@
 /obj/item/weapon/weldingtool/electric/get_max_fuel()
 	if(use_external_power)
 		var/obj/item/weapon/cell/external = get_external_power_supply()
-		return external.maxcharge
+		if(external)
+			return external.maxcharge
 	else if(power_supply)
 		return power_supply.maxcharge
-	else
-		return 0
+	return 0
 
 /obj/item/weapon/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding)
