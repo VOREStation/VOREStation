@@ -83,7 +83,7 @@ AI MODULES
 			to_chat(user, "<span class='warning'>Law Upload Error: Unit is slaved to an AI.</span>")
 			return
 
-		R.visible_message("<span class='danger'>\The [user] slides a law module into \the [R].<span>")
+		R.visible_message("<span class='danger'>\The [user] slides a law module into \the [R].</span>")
 		to_chat(R, "<span class='danger'>Local law upload in progress.</span>")
 		to_chat(user, "<span class='notice'>Uploading laws from board.  This will take a moment...</span>")
 		if(do_after(user, 10 SECONDS))
