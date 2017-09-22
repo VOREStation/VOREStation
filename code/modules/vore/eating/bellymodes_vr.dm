@@ -360,6 +360,60 @@
 				return
 		return
 
+//////////////////////////// DM_SHRINK ////////////////////////////
+	if(digest_mode == DM_SHRINK)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10)) //Infinite gurgles!
+				var/shrinksound = pick(digestion_sounds)
+				M << sound(shrinksound,volume=80)
+				owner << sound(shrinksound,volume=80)
+
+			if(M.size_multiplier > shrink_grow_size) //Shrink until smol.
+				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick.
+				if(M.nutrition >= 100) //Absorbing bodymass results in nutrition if possible.
+					var/oldnutrition = (M.nutrition * 0.05)
+					M.nutrition = (M.nutrition * 0.95)
+					owner.nutrition += oldnutrition
+				return
+		return
+
+//////////////////////////// DM_GROW ////////////////////////////
+	if(digest_mode == DM_GROW)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10))
+				var/growsound = pick(digestion_sounds)
+				M << sound(growsound,volume=80)
+				owner << sound(growsound,volume=80)
+
+			if(M.size_multiplier < shrink_grow_size) //Grow until large.
+				M.resize(M.size_multiplier+0.01) //Grow by 1% per tick.
+				if(M.nutrition >= 100)
+					owner.nutrition = (owner.nutrition * 0.95)
+		return
+
+//////////////////////////// DM_SIZE_STEAL ////////////////////////////
+	if(digest_mode == DM_SIZE_STEAL)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10))
+				var/growsound = pick(digestion_sounds)
+				M << sound(growsound,volume=80)
+				owner << sound(growsound,volume=80)
+
+			if(M.size_multiplier > shrink_grow_size && owner.size_multiplier < 2) //Grow until either pred is large or prey is small.
+				owner.resize(M.size_multiplier+0.01) //Grow by 1% per tick.
+				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick
+				if(M.nutrition >= 100)
+					var/oldnutrition = (M.nutrition * 0.05)
+					M.nutrition = (M.nutrition * 0.95)
+					owner.nutrition += oldnutrition
+		return
+
 ///////////////////////////// DM_HEAL /////////////////////////////
 	if(digest_mode == DM_HEAL)
 		if(prob(50)) //Wet heals!
@@ -375,6 +429,9 @@
 					owner.nutrition -= 2
 					if(M.nutrition <= 400)
 						M.nutrition += 1
+				else if(owner.nutrition > 90 && (M.nutrition <= 400))
+					owner.nutrition -= 1
+					M.nutrition += 1
 		return
 
 ///////////////////////////// DM_TRANSFORM_HAIR_AND_EYES /////////////////////////////

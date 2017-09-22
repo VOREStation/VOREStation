@@ -140,7 +140,7 @@
 
 /obj/item/weapon/paper/listneningpost/year2559/july
 	name = "\improper July 2559 Report"
-	info = {"UNSC ships have been spotted in the area. Admiral Glenn Pink is on board. This guy went MIA almost
+	info = {"USDF ships have been spotted in the area. Admiral Glenn Pink is on board. This guy went MIA almost
 			ten years ago, and now he's back? Why? Apparently he's got some kind of connection with V.O.R.E.'s
 			captain Ace. Sounds like they're gearing up to go kick some Nazi ass. It's like a bad action movie
 			plot. I don't know who this Admiral Pink is, but I guess Ace has at least a couple friends in high
@@ -149,7 +149,7 @@
 /obj/item/weapon/paper/listneningpost/year2559/august
 	name = "\improper August 2559 Report"
 	info = {"So, the reason Admiral Pink showed up in the last report was because these Space Nazis hijacked
-			one of his vessels; the UNSC Jormungandr or something. Well, the crazy bastards took it back.
+			one of his vessels; the USDF Jormungandr or something. Well, the crazy bastards took it back.
 			We overheard radio transmissions about some kind of huge mech, bigger than anything we've ever seen
 			in regard to exosuits. Tore up the crew bad. Killed a few, wounded all of them, but after-action
 			report says someone got close and slapped C4 on its leg while its anti-tank cannon was firing.

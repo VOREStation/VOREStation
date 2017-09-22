@@ -163,6 +163,14 @@ character_name: Elliot Richards
 item_path: /obj/item/weapon/storage/belt/champion
 }
 
+{
+ckey: draycu
+character_name: Theseus
+item_path:/obj/item/weapon/coin/diamond
+item_name: theseus' diamond coin
+item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
+}
+
 # ######## E CKEYS
 
 # Permit Expired
@@ -579,6 +587,12 @@ item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 }
 
 {
+ckey: stobarico
+character_name: Alexis Bloise
+item_path: /obj/item/weapon/cane/wand
+}
+
+{
 ckey: SpoopyLizz
 character_name: Roiz Lizden
 item_path: /obj/item/weapon/implanter/reagent_generator/roiz
@@ -614,7 +628,7 @@ item_path: /obj/item/clothing/head/fluff/runac
 {
 ckey: verkister
 character_name: Cameron Eggbert
-item_path: /obj/item/clothing/glasses/science_proper
+item_path: /obj/item/clothing/glasses/fluff/science_proper
 }
 {
 ckey: verkister
@@ -624,7 +638,7 @@ item_path: /obj/item/weapon/disk/limb/eggnerdltd
 {
 ckey: verkister
 character_name: Opie Eggbert
-item_path: /obj/item/clothing/glasses/spiffygogs
+item_path: /obj/item/clothing/glasses/fluff/spiffygogs
 }
 {
 ckey: virgo113

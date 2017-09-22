@@ -95,6 +95,13 @@
 	desc = ""
 	icon_state = "demon-horns1"
 
+/datum/sprite_accessory/ears/demon_horns2
+	name = "demon horns, colorable(outward)"
+	desc = ""
+	icon_state = "demon-horns2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/foxears
 	name = "highlander zorren ears"
 	desc = ""
@@ -220,7 +227,7 @@
 	icon_state = "sleek"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune

@@ -1,19 +1,31 @@
+#define TECHNOMANCER_INSTABILITY_DECAY				0.97	// Multipler for how much instability is lost per Life() tick.
+// Numbers closer to 1.0 make instability decay slower.  Instability will never decay if it's at 1.0.
+// When set to 0.98, it has a half life of roughly 35 Life() ticks, or 1.1 minutes.
+// For 0.97, it has a half life of about 23 ticks, or 46 seconds.
+// For 0.96, it is 17 ticks, or 34 seconds.
+// 0.95 is 14 ticks.
+#define TECHNOMANCER_INSTABILITY_MIN_DECAY			0.1 	// Minimum removed every Life() tick, always.
+#define TECHNOMANCER_INSTABILITY_PRECISION			0.1 	// Instability is rounded to this.
+#define TECHNOMANCER_INSTABILITY_MIN_GLOW			10		// When above this number, the entity starts glowing, affecting others.
+
+
 /mob/living
 	var/instability = 0
+	var/last_instability = 0 // Used to calculate instability delta.
 	var/last_instability_event = null // most recent world.time that something bad happened due to instability.
 
 // Proc: adjust_instability()
 // Parameters: 0
 // Description: Does nothing, because inheritence.
 /mob/living/proc/adjust_instability(var/amount)
-	instability = min(max(instability + amount, 0), 200)
+	instability = between(0, round(instability + amount, TECHNOMANCER_INSTABILITY_PRECISION), 200)
 
 // Proc: adjust_instability()
 // Parameters: 1 (amount - how much instability to give)
 // Description: Adds or subtracks instability to the mob, then updates the hud.
 /mob/living/carbon/human/adjust_instability(var/amount)
-	instability_update_hud()
 	..()
+	instability_update_hud()
 
 // Proc: instability_update_hud()
 // Parameters: 0
@@ -23,13 +35,13 @@
 		switch(instability)
 			if(0 to 10)
 				wiz_instability_display.icon_state = "instability-1"
-			if(11 to 30)
+			if(10 to 30)
 				wiz_instability_display.icon_state = "instability0"
-			if(31 to 50)
+			if(30 to 50)
 				wiz_instability_display.icon_state = "instability1"
-			if(51 to 100)
+			if(50 to 100)
 				wiz_instability_display.icon_state = "instability2"
-			if(101 to 200)
+			if(100 to 200)
 				wiz_instability_display.icon_state = "instability3"
 
 // Proc: Life()
@@ -44,25 +56,18 @@
 // Description: Makes instability decay.  instability_effects() handles the bad effects for having instability.  It will also hold back
 // from causing bad effects more than one every ten seconds, to prevent sudden death from angry RNG.
 /mob/living/proc/handle_instability()
-	instability = Ceiling(Clamp(instability, 0, 200))
+	instability = between(0, round(instability, TECHNOMANCER_INSTABILITY_PRECISION), 200)
+	last_instability = instability
+
 	//This should cushon against really bad luck.
-	if(instability && last_instability_event < (world.time - 10 SECONDS) && prob(20))
+	if(instability && last_instability_event < (world.time - 5 SECONDS) && prob(50))
 		instability_effects()
-		switch(instability)
-			if(1 to 10)
-				adjust_instability(-1)
-			if(11 to 20)
-				adjust_instability(-2)
-			if(21 to 30)
-				adjust_instability(-3)
-			if(31 to 40)
-				adjust_instability(-4)
-			if(41 to 50)
-				adjust_instability(-5)
-			if(51 to 100)
-				adjust_instability(-10)
-			if(101 to 200)
-				adjust_instability(-20)
+
+	var/instability_decayed = abs( round(instability * TECHNOMANCER_INSTABILITY_DECAY, TECHNOMANCER_INSTABILITY_PRECISION) - instability )
+	instability_decayed = max(instability_decayed, TECHNOMANCER_INSTABILITY_MIN_DECAY)
+
+	adjust_instability(-instability_decayed)
+	radiate_instability(instability_decayed)
 
 /mob/living/carbon/human/handle_instability()
 	..()
@@ -89,7 +94,6 @@
 		sleep(4)
 		overlays.Remove(instability_flash)
 		qdel(instability_flash)
-	radiate_instability()
 
 /mob/living/silicon/instability_effects()
 	if(instability)
@@ -163,32 +167,26 @@
 		switch(instability)
 			if(1 to 10) //Harmless
 				return
-			if(11 to 30) //Minor
+			if(10 to 30) //Minor
 				rng = rand(0,1)
 				switch(rng)
 					if(0)
 						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 						sparks.set_up(5, 0, src)
 						sparks.attach(loc)
-//						var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-//						spark_system.set_up(5, 0, get_turf(src))
-//						spark_system.attach(src)
 						sparks.start()
 						visible_message("<span class='warning'>Electrical sparks manifest from nowhere around \the [src]!</span>")
 						qdel(sparks)
 					if(1)
 						return
 
-			if(31 to 50) //Moderate
+			if(30 to 50) //Moderate
 				rng = rand(0,8)
 				switch(rng)
 					if(0)
 						apply_effect(instability * 0.3, IRRADIATE)
 					if(1)
 						return
-//						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
-//						"<span class='danger'>You suddenly feel very weak, and you fall down!</span>")
-//						Weaken(instability * 0.1)
 					if(2)
 						if(can_feel_pain())
 							apply_effect(instability * 0.3, AGONY)
@@ -210,15 +208,12 @@
 						safe_blink(src, range = 6)
 						src << "<span class='warning'>You're teleported against your will!</span>"
 
-			if(51 to 100) //Severe
+			if(50 to 100) //Severe
 				rng = rand(0,8)
 				switch(rng)
 					if(0)
 						apply_effect(instability * 0.7, IRRADIATE)
 					if(1)
-//						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
-//						"<span class='danger'>You suddenly feel very light-headed, and faint!</span>")
-//						Paralyse(instability * 0.1)
 						return
 					if(2)
 						if(can_feel_pain())
@@ -238,7 +233,7 @@
 					if(7)
 						adjustToxLoss(instability * 0.25) //25 tox @ 100 instability
 
-			if(101 to 200) //Lethal
+			if(100 to 200) //Lethal
 				rng = rand(0,8)
 				switch(rng)
 					if(0)
@@ -263,24 +258,21 @@
 						adjustCloneLoss(instability * 0.10) //5 cloneloss @ 100 instability
 						src << "<span class='danger'>You feel your body slowly degenerate.</span>"
 					if(7)
-						adjustToxLoss(instability * 0.40) //25 tox @ 100 instability
+						adjustToxLoss(instability * 0.40) //40 tox @ 100 instability
 
-/mob/living/proc/radiate_instability()
+/mob/living/proc/radiate_instability(amount)
 	var/distance = round(sqrt(instability / 2))
-	if(instability <= 30)
+	if(instability < TECHNOMANCER_INSTABILITY_MIN_GLOW)
 		distance = 0
 	if(distance)
-		for(var/mob/living/carbon/human/H in range(src, distance) )
-			if(H == src) // This instability is radiating away from them, so don't include them.
+		for(var/mob/living/L in range(src, distance) )
+			if(L == src) // This instability is radiating away from them, so don't include them.
 				continue
-			var/radius = max(get_dist(H, src), 1)
-			// People next to the source take a third of the instability.  Further distance decreases the amount absorbed.
-			var/outgoing_instability = (instability / 3) * ( 1 / (radius**2) )
+			var/radius = max(get_dist(L, src), 1)
+			// People next to the source take all of the radiated amount.  Further distance decreases the amount absorbed.
+			var/outgoing_instability = (amount) * ( 1 / (radius**2) )
 
-
-			H.receive_radiated_instability(outgoing_instability)
-
-	set_light(distance, distance * 4, l_color = "#C26DDE")
+			L.receive_radiated_instability(outgoing_instability)
 
 // This should only be used for EXTERNAL sources of instability, such as from someone or something glowing.
 /mob/living/proc/receive_radiated_instability(amount)
@@ -289,5 +281,9 @@
 	var/armor_factor = abs( (armor - 100) / 100)
 	amount = amount * armor_factor
 	if(amount && prob(10))
-		to_chat(src, "<span class='warning'>The purple glow makes you feel strange...</span>")
+		if(isSynthetic())
+			to_chat(src, "<span class='cult'><font size='4'>Warning: Anomalous field detected.</font></span>")
+		else
+			to_chat(src, "<span class='cult'><font size='4'>The purple glow makes you feel strange...</font></span>")
 	adjust_instability(amount)
+

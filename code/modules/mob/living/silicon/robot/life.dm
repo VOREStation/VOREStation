@@ -12,6 +12,8 @@
 	handle_regular_status_updates()
 	handle_actions()
 	handle_instability()
+	// For some reason borg Life() doesn't call ..()
+	handle_light()
 
 	if(client)
 		handle_regular_hud_updates()
@@ -348,3 +350,10 @@
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
 		IgniteMob()
+
+/mob/living/silicon/robot/handle_light()
+	. = ..()
+	if(. == FALSE) // If no other light sources are on.
+		if(lights_on)
+			set_light(integrated_light_power, integrated_light_power, "#FFFFFF")
+			return TRUE

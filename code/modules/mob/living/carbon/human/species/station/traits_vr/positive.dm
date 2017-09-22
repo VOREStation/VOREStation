@@ -62,6 +62,12 @@
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp))
 
+/datum/trait/melee_attack_fangs
+	name = "Sharp Melee & Numbing Fangs"
+	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
+	cost = 2
+	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
+
 /datum/trait/brute_resist
 	name = "Brute Resist"
 	desc = "Adds some resistance to brute damage sources."

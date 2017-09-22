@@ -449,10 +449,11 @@
 /obj/item/device/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"
-	desc = "A glowing ball of what appears to be amber."
+	desc = "A slimy ball that appears to be glowing from bioluminesence."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
+	light_color = "#FFF423"
 	w_class = ITEMSIZE_TINY
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.

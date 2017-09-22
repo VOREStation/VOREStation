@@ -578,6 +578,7 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 500, "silver" = 3000)
 	build_path = /obj/item/weapon/gun/energy/temperature
 	sort_string = "TABAC"
+
 /datum/design/item/weapon/large_grenade
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
@@ -585,12 +586,62 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/grenade/chem_grenade/large
 	sort_string = "TACAA"
 
+/datum/design/item/weapon/dartgun
+	desc = "A gun that fires small hollow chemical-payload darts."
+	id = "dartgun_r"
+	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_BIO = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "gold" = 5000, "silver" = 2500, "glass" = 750)
+	build_path = /obj/item/weapon/gun/projectile/dartgun/research
+	sort_string = "TACAB"
+
+/datum/design/item/weapon/dartgunmag_small
+	id = "dartgun_mag_s"
+	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 300, "gold" = 100, "silver" = 100, "glass" = 300)
+	build_path = /obj/item/ammo_magazine/chemdart/small
+	sort_string = "TACAC"
+
+/datum/design/item/weapon/dartgun_ammo_small
+	id = "dartgun_ammo_s"
+	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "gold" = 30, "silver" = 30, "glass" = 50)
+	build_path = /obj/item/ammo_casing/chemdart/small
+	sort_string = "TACAD"
+
+/datum/design/item/weapon/dartgunmag_med
+	id = "dartgun_mag_m"
+	req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "gold" = 150, "silver" = 150, "diamond" = 200, "glass" = 400)
+	build_path = /obj/item/ammo_magazine/chemdart
+	sort_string = "TACAE"
+
+/datum/design/item/weapon/dartgun_ammo_med
+	id = "dartgun_ammo_m"
+	req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 80, "gold" = 40, "silver" = 40, "glass" = 60)
+	build_path = /obj/item/ammo_casing/chemdart
+	sort_string = "TACAF"
+
 /datum/design/item/weapon/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 500, "uranium" = 500)
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
+
+/datum/design/item/weapon/slimebation
+	id = "slimebation"
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3, TECH_COMBAT = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000)
+	build_path = /obj/item/weapon/melee/baton/slime
+	sort_string = "TBAAB"
+
+/datum/design/item/weapon/slimetaser
+	id = "slimetaser"
+	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000)
+	build_path = /obj/item/weapon/gun/energy/taser/xeno
+	sort_string = "TBAAC"
 
 /datum/design/item/stock_part/subspace_ansible
 	id = "s-ansible"
@@ -733,13 +784,31 @@ other types of metals and chemistry for reagents).
 	sort_string = "VASBA"
 
 /datum/design/item/experimental_welder
-	name = "Expiermental Welding Tool"
+	name = "Experimental welding tool"
 	desc = "A welding tool that generate fuel for itself."
 	id = "expwelder"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120, "phoron" = 100)
 	build_path = /obj/item/weapon/weldingtool/experimental
 	sort_string = "VASCA"
+
+/datum/design/item/hand_drill
+	name = "Hand drill"
+	desc = "A simple powered hand drill."
+	id = "handdrill"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
+	build_path = /obj/item/weapon/screwdriver/power
+	sort_string = "VASDA"
+
+/datum/design/item/jaws_life
+	name = "Jaws of life"
+	desc = "A set of jaws of life, compressed through the magic of science."
+	id = "jawslife"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
+	build_path = /obj/item/weapon/crowbar/power
+	sort_string = "VASEA"
 /*
 CIRCUITS BELOW
 */

@@ -33,3 +33,8 @@
 	path = /obj/item/clothing/mask/gas/swat/vox
 	sort_category = "Xenowear"
 	whitelisted = "Vox"
+
+/datum/gear/uniform/loincloth
+	display_name = "loincloth"
+	path = /obj/item/clothing/suit/storage/fluff/loincloth
+	sort_category = "Xenowear"

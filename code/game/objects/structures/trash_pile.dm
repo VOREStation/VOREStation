@@ -21,7 +21,7 @@
 		/obj/item/device/perfect_tele,
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/weapon/gun/energy/netgun,
-		/obj/item/weapon/moneybag/vault,
+		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/weapon/permit,
 		/obj/item/weapon/gun/projectile/dartgun
 		)
@@ -130,7 +130,7 @@
 					prob(5);/obj/item/weapon/storage/backpack,
 					prob(5);/obj/item/weapon/storage/backpack/satchel/norm,
 					prob(5);/obj/item/weapon/storage/box,
-					prob(5);/obj/random/cigarettes,
+				//	prob(5);/obj/random/cigarettes,
 					prob(4);/obj/item/broken_device,
 					prob(4);/obj/item/clothing/head/hardhat,
 					prob(4);/obj/item/clothing/mask/breath,
@@ -198,9 +198,9 @@
 					prob(1);/obj/item/clothing/shoes/syndigaloshes,
 					prob(1);/obj/item/clothing/suit/bio_suit/general,
 					prob(1);/obj/item/clothing/suit/space/emergency,
-					prob(1);/obj/item/clothing/suit/storage/vest/press,
 					prob(1);/obj/item/clothing/under/harness,
 					prob(1);/obj/item/clothing/under/tactical,
+					prob(1);/obj/item/clothing/suit/armor/material/makeshift,
 					prob(1);/obj/item/device/flashlight/glowstick/orange,
 					prob(1);/obj/item/device/flashlight/glowstick/red,
 					prob(1);/obj/item/device/flashlight/glowstick/yellow,
@@ -226,14 +226,14 @@
 					prob(3);/obj/item/weapon/material/knuckledusters,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
-					prob(2);/obj/item/weapon/legcuffs,
+				//	prob(2);/obj/item/weapon/legcuffs,
 					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/weapon/grenade/anti_photon,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(1);/obj/item/device/nif/bad,
 					prob(1);/obj/item/device/radio_jammer,
 					prob(1);/obj/item/device/sleevemate,
-          				prob(1);/obj/item/device/bodysnatcher,
+					prob(1);/obj/item/device/bodysnatcher,
 					prob(1);/obj/item/weapon/beartrap,
 					prob(1);/obj/item/weapon/cell/hyper/empty,
 					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
@@ -268,9 +268,11 @@
 	spawn_types = list(/mob/living/simple_animal/mouse)
 	simultaneous_spawns = 1
 	destructible = 1
+	spawn_delay = 1 HOUR
 
-/obj/structure/mob_spawner/mouse_nest/initialize()
+/obj/structure/mob_spawner/mouse_nest/New()
 	..()
+	last_spawn = rand(world.time - spawn_delay, world.time)
 	icon_state = pick(
 		"pile1",
 		"pile2",
@@ -288,3 +290,7 @@
 	. = ..()
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[.] crawls out of \the [src].")
+
+/obj/structure/mob_spawner/mouse_nest/get_death_report(var/mob/living/L)
+	..()
+	last_spawn = rand(world.time - spawn_delay, world.time)

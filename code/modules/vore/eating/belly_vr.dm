@@ -27,10 +27,12 @@
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being
 	var/can_taste = 0						// If this belly prints the flavor of prey when it eats someone.
+	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
+	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.
 
 	var/tmp/digest_mode = DM_HOLD				// Whether or not to digest. Default to not digest.
-	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_DIGEST_NUMB)	// Possible digest modes
+	var/tmp/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_DIGEST_NUMB)	// Possible digest modes
 	var/tmp/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/list/internal_contents = list()		// People/Things you've eaten into this belly!
@@ -194,8 +196,11 @@
 		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
 		formatted_message = replacetext(formatted_message,"%pred",owner)
 		formatted_message = replacetext(formatted_message,"%prey",english_list(internal_contents))
-
-		return("<span class='warning'>[formatted_message]</span><BR>")
+		for(var/mob/living/P in internal_contents)
+			if(!P.absorbed && P.size_multiplier >= bulge_size && bulge_size != 0) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
+				return("<span class='warning'>[formatted_message]</span><BR>")
+			else if(P.absorbed || P.size_multiplier < bulge_size || bulge_size == 0) //Are they absorbed, too small to show up, or examining this stomach is disabled?
+				return ""
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
@@ -552,6 +557,8 @@
 	dupe.escapechance = escapechance
 	dupe.transferchance = transferchance
 	dupe.transferlocation = transferlocation
+	dupe.bulge_size = bulge_size
+	dupe.shrink_grow_size = shrink_grow_size
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

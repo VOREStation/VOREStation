@@ -97,9 +97,6 @@ default behaviour is:
 
 				tmob.forceMove(oldloc)
 				now_pushing = 0
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
-					if(slime.Victim == tmob)
-						slime.UpdateFeed()
 				return
 
 			if(!can_move_mob(tmob, 0, 0))
@@ -590,7 +587,8 @@ default behaviour is:
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
-	reagents.clear_reagents()
+	if(reagents)
+		reagents.clear_reagents()
 
 	// shut down various types of badness
 	setToxLoss(0)
@@ -663,8 +661,12 @@ default behaviour is:
 	return
 
 /mob/living/Move(a, b, flag)
-	if (buckled)
-		return
+
+	if (buckled && buckled.loc != a) //not updating position
+		if (!buckled.anchored)
+			return buckled.Move(a, b)
+		else
+			return 0
 
 	if (restrained())
 		stop_pulling()
@@ -745,10 +747,6 @@ default behaviour is:
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 
-	if(update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1,src))
-			M.UpdateFeed(src)
-
 /mob/living/proc/handle_footstep(turf/T)
 	return FALSE
 
@@ -778,6 +776,9 @@ default behaviour is:
 		var/obj/structure/closet/C = loc
 		spawn() C.mob_breakout(src)
 		return TRUE
+
+	if(istype(loc,/obj/item/clothing))
+		spawn() escape_clothes(loc)
 
 	if(attempt_vr(src,"vore_process_resist",args)) return TRUE //VOREStation Code
 

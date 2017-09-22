@@ -50,7 +50,7 @@ var/list/mechtoys = list(
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
 		/mob/living/bot,
-		/mob/living/carbon/slime,
+		/mob/living/simple_animal/slime,
 		/mob/living/simple_animal/mouse,
 		/mob/living/silicon/robot/drone
 		)

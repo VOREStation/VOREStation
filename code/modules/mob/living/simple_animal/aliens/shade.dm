@@ -8,6 +8,7 @@
 	icon_dead = "shade_dead"
 
 	faction = "cult"
+	intelligence_level = SA_HUMANOID
 
 	maxHealth = 50
 	health = 50

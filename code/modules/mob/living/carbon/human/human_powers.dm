@@ -38,7 +38,6 @@
 	if(prob(75))
 		T.Weaken(rand(0.5,3))
 	else
-		src.Weaken(rand(2,4))
 		failed = 1
 
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
@@ -161,6 +160,10 @@
 	src << "<span class='notice'>Performing self-diagnostic, please wait...</span>"
 	sleep(50)
 	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
+
+	output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
+
+	output += "Current Battery Charge: [nutrition]\n"
 
 	for(var/obj/item/organ/external/EO in organs)
 		if(EO.brute_dam || EO.burn_dam)

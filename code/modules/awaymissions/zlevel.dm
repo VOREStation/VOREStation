@@ -41,7 +41,8 @@ proc/createRandomZlevel()
 		world.log << "Away mission picked: [map]" //VOREStation Add for debugging
 		var/file = file(map)
 		if(isfile(file))
-			maploader.load_map(file)
+			var/datum/map_template/template = new(file, "away mission")
+			template.load_new_z()
 			world.log << "away mission loaded: [map]"
 
 		for(var/obj/effect/landmark/L in landmarks_list)

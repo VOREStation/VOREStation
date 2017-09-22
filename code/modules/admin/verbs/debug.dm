@@ -100,20 +100,20 @@
 			paiController.pai_candidates.Remove(candidate)
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_slimeize(var/mob/M in mob_list)
+/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
 	set category = "Fun"
-	set name = "Make slime"
+	set name = "Make Alien"
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
-		log_admin("[key_name(src)] has slimeized [M.key].")
+		log_admin("[key_name(src)] has alienized [M.key].")
 		spawn(10)
-			M:slimeize()
-			feedback_add_details("admin_verb","MKMET") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] made [key_name(M)] into a slime.")
-		message_admins("<font color='blue'>[key_name_admin(usr)] made [key_name(M)] into a slime.</font>", 1)
+			M:Alienize()
+			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
+		message_admins("<span class='notice'>[key_name_admin(usr)] made [key_name(M)] into an alien.</span>", 1)
 	else
 		alert("Invalid mob")
 
@@ -418,8 +418,8 @@
 		"nanotrasen representative",
 		"nanotrasen officer",
 		"nanotrasen captain",
-		"UNSC marine",
-		"UNSC officer",
+		"USDF marine",
+		"USDF officer",
 		"SolGov Representative",
 		"Imperial soldier",
 		"Imperial officer"
@@ -788,28 +788,28 @@
 			W.assignment = "Admiral"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
-		if("UNSC marine")
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/combat/unsc(M), slot_head)
+		if("USDF marine")
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/combat/USDF(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/jackboots(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/centcom(M), slot_l_ear)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/utility/marine/green(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/combat/unsc(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/combat/USDF(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/battlerifle(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/security/tactical(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/battlerifle(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/battlerifle(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/battlerifle(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/battlerifle(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m95(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m95(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m95(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m95(M), slot_l_hand)
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s military ID Card"
 			W.icon_state = "lifetime"
 			W.access = get_all_station_access()
 			W.access += get_all_centcom_access()
-			W.assignment = "UNSC"
+			W.assignment = "USDF"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
-		if("UNSC officer")
+		if("USDF officer")
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/dress/marine/command/admiral(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/jackboots(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/centcom(M), slot_l_ear)
@@ -825,7 +825,7 @@
 			W.icon_state = "lifetime"
 			W.access = get_all_station_access()
 			W.access += get_all_centcom_access()
-			W.assignment = "UNSC"
+			W.assignment = "USDF"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
 		if("SolGov Representative")
