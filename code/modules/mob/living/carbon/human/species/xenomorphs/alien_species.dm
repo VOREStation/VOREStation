@@ -11,7 +11,7 @@
 
 	has_fine_manipulation = 0
 	siemens_coefficient = 0
-	gluttonous = 3
+	gluttonous = 2
 
 	brute_mod = 0.5 // Hardened carapace.
 	burn_mod = 2    // Weak to fire.
@@ -200,7 +200,6 @@
 	..()
 
 /datum/species/xenos/hunter
-
 	name = "Xenomorph Hunter"
 	weeds_plasma_rate = 5
 	caste_name = "hunter"

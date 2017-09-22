@@ -2003,3 +2003,18 @@
 	var/turf/T = get_turf(holder.my_atom)
 	if(istype(T)) new /obj/item/stack/material/deuterium(T, created_volume)
 	return
+
+//Skrellian crap.
+/datum/chemical_reaction/talum_quem
+	name = "Talum-quem"
+	id = "talum_quem"
+	result = "talum_quem"
+	required_reagents = list("space_drugs" = 2, "sugar" = 1, "amatoxin" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/qerr_quem
+	name = "Qerr-quem"
+	id = "qerr_quem"
+	result = "qerr_quem"
+	required_reagents = list("nicotine" = 1, "carbon" = 1, "sugar" = 2)
+	result_amount = 4

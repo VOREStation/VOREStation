@@ -32,6 +32,8 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_seromi.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_seromi.dmi'
 
+	fire_icon_state = "generic" // Humanoid is too big for them and spriting a new one is really annoying.
+
 	slowdown = -1
 	total_health = 50
 	brute_mod = 1.35

@@ -15,6 +15,7 @@
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEMSIZE_SMALL
+	force = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/New()
 	..()
@@ -93,6 +94,7 @@
 			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
 				M << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
 				return 0*/
+
 		else
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
@@ -2995,6 +2997,32 @@
 /obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza/filled
 	filled = TRUE
 
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza
+	name = "moldy pizza"
+	desc = "This pizza might actually be alive.  There's mold all over."
+	icon_state = "oldpizza"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/oldpizza
+	slices_num = 6
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("stale pizza crust" = 10, "moldy tomato" = 10, "moldy cheese" = 5)
+	nutriment_amt = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza/New()
+	..()
+	reagents.add_reagent("protein", 5)
+	reagents.add_reagent("tomatojuice", 6)
+	reagents.add_reagent("mold", 8)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/oldpizza
+	name = "moldy pizza slice"
+	desc = "This used to be pizza..."
+	icon_state = "old_pizza"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=13)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza
+
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
@@ -3170,6 +3198,10 @@
 /obj/item/pizzabox/meat/New()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
+
+/obj/item/pizzabox/old/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza(src)
+	boxtag = "Deluxe Gourmet"
 
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	name = "roast diona"
@@ -3367,6 +3399,14 @@
 /obj/item/weapon/reagent_containers/food/snacks/hotdog/New()
 	..()
 	reagents.add_reagent("protein", 6)
+
+/obj/item/weapon/reagent_containers/food/snacks/hotdog/old
+	name = "old hotdog"
+	desc = "Covered in mold.  You're not gonna eat that, are you?"
+
+/obj/item/weapon/reagent_containers/food/snacks/hotdog/old/New()
+	..()
+	reagents.add_reagent("mold", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/flatbread
 	name = "flatbread"

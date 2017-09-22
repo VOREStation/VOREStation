@@ -644,7 +644,7 @@ var/list/name_to_material
 
 /material/resin
 	name = "resin"
-	icon_colour = "#E85DD8"
+	icon_colour = "#35343a"
 	dooropen_noise = 'sound/effects/attackblob.ogg'
 	door_icon_base = "resin"
 	melting_point = T0C+300

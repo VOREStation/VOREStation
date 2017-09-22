@@ -16,10 +16,12 @@ proc/create_new_xenomorph(var/alien_caste,var/target)
 	h_style = "Bald"
 	faction = "xeno"
 	..(new_loc, "Xenomorph Sentinel")
+
 /mob/living/carbon/human/xhunter/New(var/new_loc)
 	h_style = "Bald"
 	faction = "xeno"
 	..(new_loc, "Xenomorph Hunter")
+
 /mob/living/carbon/human/xqueen/New(var/new_loc)
 	h_style = "Bald"
 	faction = "xeno"

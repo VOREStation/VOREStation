@@ -1001,6 +1001,7 @@
 //Follow a target (and don't attempt to murder it horribly)
 /mob/living/simple_animal/proc/FollowTarget()
 	ai_log("FollowTarget() [follow_mob]",1)
+	stop_automated_movement = 1
 	//If we were chasing someone and we can't anymore, give up.
 	if(!follow_mob || follow_mob.stat)
 		ai_log("FollowTarget() Losing follow at top",2)
@@ -1331,6 +1332,7 @@
 //Forget a follow mode
 /mob/living/simple_animal/proc/LoseFollow()
 	ai_log("LoseFollow() [target_mob]",2)
+	stop_automated_movement = 0
 	follow_mob = null
 	handle_stance(STANCE_IDLE)
 	GiveUpMoving()

@@ -279,11 +279,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 15
 	max_smoketime = 300
 	smoketime = 300
+	var/nicotine_amt = 2
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to light their NAME with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
+
+/obj/item/clothing/mask/smokable/cigarette/New()
+	..()
+	if(nicotine_amt)
+		reagents.add_reagent("nicotine", nicotine_amt)
 
 /obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -332,6 +338,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	max_smoketime = 1500
 	smoketime = 1500
 	chem_volume = 20
+	nicotine_amt = 4
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to offend their NAME by lighting it with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
@@ -342,6 +349,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "\improper Cohiba Robusto cigar"
 	desc = "There's little more you could want from a cigar."
 	icon_state = "cigar2"
+	nicotine_amt = 7
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	name = "premium Havanian cigar"
@@ -350,6 +358,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	max_smoketime = 7200
 	smoketime = 7200
 	chem_volume = 30
+	nicotine_amt = 10
 
 /obj/item/weapon/cigbutt
 	name = "cigarette butt"

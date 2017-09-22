@@ -2603,6 +2603,10 @@
 #include "maps\RandomZLevels\listeningpost.dm"
 #include "maps\RandomZLevels\snowfield.dm"
 #include "maps\RandomZLevels\zoo.dm"
+#include "maps\submaps\_readme.dm"
+#include "maps\submaps\cave_submaps\cave.dm"
+#include "maps\submaps\space_submaps\space.dm"
+#include "maps\submaps\surface_submaps\forest.dm"
 #include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

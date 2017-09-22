@@ -158,10 +158,13 @@
 
 		if(!body_coverage)
 			return
-		target << "<span class='danger'>You are stung by \the [fruit]!</span>"
-		for(var/rid in chems)
+		if (fruit)
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/5))
-			target.reagents.add_reagent(rid,injecting)
+			to_chat(target, "<span class='danger'>You are stung by \the [fruit]!</span>")
+			for(var/chem in chems)
+				target.reagents.add_reagent(chem,injecting)
+				if (fruit.reagents)
+					fruit.reagents.remove_reagent(chem, injecting)
 
 //Splatter a turf.
 /datum/seed/proc/splatter(var/turf/T,var/obj/item/thrown)

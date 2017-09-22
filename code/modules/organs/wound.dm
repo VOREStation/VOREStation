@@ -85,10 +85,12 @@
 		return src.damage / src.amount
 
 	proc/can_autoheal()
+		if(is_treated())
+			return TRUE
 		if(src.wound_damage() <= autoheal_cutoff)
-			return 1
-
-		return is_treated()
+			if(created + 10 MINUTES > world.time) // Wounds don't autoheal for ten minutes if not bandaged.
+				return FALSE
+			return TRUE
 
 	// checks whether the wound has been appropriately treated
 	proc/is_treated()

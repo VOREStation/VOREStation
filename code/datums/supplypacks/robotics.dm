@@ -60,6 +60,14 @@
 	containername = "Robolimb blueprints (Morpheus)"
 	access = access_robotics
 
+/datum/supply_packs/robotics/robolimbs/cybersolutions
+	name = "Cyber Solutions robolimb blueprints"
+	contains = list(/obj/item/weapon/disk/limb/cybersolutions)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/science
+	containername = "Robolimb blueprints (Cyber Solutions)"
+	access = access_robotics
+
 /datum/supply_packs/robotics/robolimbs/xion
 	name = "Xion robolimb blueprints"
 	contains = list(/obj/item/weapon/disk/limb/xion)

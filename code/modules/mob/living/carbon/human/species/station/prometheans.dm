@@ -21,10 +21,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	swap_flags =       MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags =       MONKEY|SLIME|SIMPLE_ANIMAL
 	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT
-	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS
-
-	spawn_flags =      SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
-
+	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
+	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 
@@ -139,7 +137,12 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
 		if(C)
+			if(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)))
+				return
 			qdel(C)
+			if (istype(T, /turf/simulated))
+				var/turf/simulated/S = T
+				S.dirt = 0
 			H.nutrition += rand(15, 45)
 VOREStation Removal End */
 	// Heal remaining damage.
