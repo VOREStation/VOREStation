@@ -29,7 +29,7 @@
 	var/gender = NEUTER
 
 	// Restrict some styles to specific species
-	var/list/species_allowed = list("Human")
+	var/list/species_allowed = list("Human","Promethean")
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
@@ -51,7 +51,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Unathi","Promethean")
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
@@ -187,6 +187,10 @@
 	bedhead3
 		name = "Bedhead 3"
 		icon_state = "hair_bedheadv3"
+
+	bedheadlong
+		name = "Bedhead Long"
+		icon_state = "hair_long_bedhead"
 
 	beehive
 		name = "Beehive"
@@ -616,6 +620,30 @@
 	manbun
 		name = "Manbun"
 		icon_state = "hair_manbun"
+
+	shy
+		name = "Shy"
+		icon_state = "hair_shy"
+
+	jade
+		name = "Jade"
+		icon_state = "hair_jade"
+
+	country
+		name = "Country"
+		icon_state = "hair_country"
+
+	rosa
+		name = "Rosa"
+		icon_state = "hair_rosa"
+
+	dave
+		name = "Dave"
+		icon_state = "hair_dave"
+
+	mohawkunshaven
+		name = "Unshaven Mohawk"
+		icon_state = "hair_unshaven_mohawk"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -632,7 +660,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox","Promethean")
 
 	watson
 		name = "Watson Mustache"
@@ -703,7 +731,7 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
-		threeOclock
+	threeOclock
 		name = "3 O'clock Shadow"
 		icon_state = "facial_3oclock"
 
@@ -746,6 +774,18 @@
 	chinless
 		name = "Chinless Beard"
 		icon_state = "facial_chinlessbeard"
+
+	tribeard
+		name = "Tribeard"
+		icon_state = "facial_tribeard"
+
+	moonshiner
+		name = "Moonshiner"
+		icon_state = "facial_moonshiner"
+
+	martial
+		name = "Martial Artist"
+		icon_state = "facial_martialartist"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /

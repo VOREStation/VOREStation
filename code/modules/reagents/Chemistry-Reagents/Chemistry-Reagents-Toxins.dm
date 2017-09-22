@@ -69,7 +69,7 @@
 		return
 	T.assume_gas("phoron", ceil(volume/2), T20C)
 	for(var/turf/simulated/floor/target_tile in range(0,T))
-		target_tile.assume_gas("volatile_fuel", volume/2, 400+T0C)
+		target_tile.assume_gas("phoron", volume/2, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	remove_self(volume)
 
@@ -130,6 +130,20 @@
 	..()
 	M.adjustOxyLoss(20 * removed)
 	M.sleeping += 1
+
+/datum/reagent/toxin/mold
+	name = "Mold"
+	id = "mold"
+	description = "A mold is a fungus that causes biodegradation of natural materials. This varient contains mycotoxins, and is dangerous to humans."
+	taste_description = "mold"
+	reagent_state = SOLID
+	strength = 5
+
+/datum/reagent/toxin/mold/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustToxLoss(strength * removed)
+	if(prob(5))
+		M.vomit()
 
 /datum/reagent/toxin/stimm	//Homemade Hyperzine
 	name = "Stimm"
@@ -647,6 +661,33 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#181818"
+
+/datum/reagent/talum_quem
+	name = "Talum-quem"
+	id = "talum_quem"
+	description = " A very carefully tailored hallucinogen, for use of the Talum-Katish."
+	taste_description = "bubblegum"
+	taste_mult = 1.6
+	reagent_state = LIQUID
+	color = "#db2ed8"
+	metabolism = REM * 0.5
+	overdose = REAGENTS_OVERDOSE
+
+datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+
+	var/drug_strength = 29
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+	else
+		M.adjustToxLoss(10 * removed) //Given incorporations of other toxins with similiar damage, this seems right.
+
+	M.druggy = max(M.druggy, drug_strength)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, pick(cardinal))
+	if(prob(7))
+		M.emote(pick("twitch", "drool", "moan", "giggle"))
 
 /* Transformations */
 

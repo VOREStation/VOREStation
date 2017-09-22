@@ -38,7 +38,6 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn(var/atom/A, var/params)
-
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 

@@ -26,7 +26,9 @@
 	whisper_verb = "whispers"
 	key = "0"
 	flags = RESTRICTED
-	syllables = list("vol", "zum", "coo","zoo","bi","do","ooz","ite","og","re","si","ite","ish","ar","at","on","ee","east","ma","da", "rim")
+	syllables = list(
+"vol", "zum", "coo","zoo","bi","do","ooz","ite","og","re","si","ite","ish",
+"ar","at","on","ee","east","ma","da", "rim")
 
 //TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
 /datum/language/common/get_spoken_verb(var/msg_end)
@@ -44,15 +46,12 @@
 	speech_verb = "enunciates"
 	colour = "say_quote"
 	key = "2"
-	space_chance = 100
-	syllables = list("lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
-					 "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore",
-					 "magna", "aliqua", "ut", "enim", "ad", "minim", "veniam", "quis", "nostrud",
-					 "exercitation", "ullamco", "laboris", "nisi", "ut", "aliquip", "ex", "ea", "commodo",
-					 "consequat", "duis", "aute", "irure", "dolor", "in", "reprehenderit", "in",
-					 "voluptate", "velit", "esse", "cillum", "dolore", "eu", "fugiat", "nulla",
-					 "pariatur", "excepteur", "sint", "occaecat", "cupidatat", "non", "proident", "sunt",
-					 "in", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id", "est", "laborum")
+	syllables = list(
+"fea","vea","vei","veh","vee","feh","fa","soa","su","sua","sou","se","seh","twa","twe","twi",
+"ahm","lea","lee","nae","nah","pa","pau","fae","fai","soh","mou","ahe","ll","ea","ai","thi",
+"hie","zei","zie","ize","ehy","uy","oya","dor","di","ja","ej","er","um","in","qu","is","re",
+"nt","ti","us","it","en","at","tu","te","ri","es","et","ra","ta","an","ni","li","on","or","se",
+"am","ae","ia","di","ue","em","ar","ui","st","si","de","ci","iu","ne","pe","co","os","ur","ru")
 
 // Criminal language.
 /datum/language/gutter
@@ -121,3 +120,7 @@
 	colour = "say_quote"
 	key = "s"
 	flags = SIGNLANG|NO_STUTTER|NONVERBAL
+
+/datum/language/sign/can_speak_special(var/mob/speaker)
+	var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
+	return (hands || !iscarbon(speaker))

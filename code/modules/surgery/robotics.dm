@@ -421,6 +421,7 @@
 
 		if(M.brainmob && M.brainmob.mind)
 			M.brainmob.mind.transfer_to(target)
+			target.languages = M.brainmob.languages
 
 		spawn(0) //Name yourself on your own damn time
 			var/new_name = ""

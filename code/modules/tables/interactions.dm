@@ -85,6 +85,8 @@
 			if(occupied)
 				user << "<span class='danger'>There's \a [occupied] in the way.</span>"
 				return
+			if(!user.Adjacent(M))
+				return
 			if (G.state < 2)
 				if(user.a_intent == I_HURT)
 					if (prob(15))	M.Weaken(5)
@@ -106,9 +108,9 @@
 				else
 					user << "<span class='danger'>You need a better grip to do that!</span>"
 					return
-			else
-				G.affecting.loc = src.loc
-				G.affecting.Weaken(5)
+			else if(G.state > GRAB_AGGRESSIVE || world.time >= (G.last_action + UPGRADE_COOLDOWN))
+				M.forceMove(get_turf(src))
+				M.Weaken(5)
 				visible_message("<span class='danger'>[G.assailant] puts [G.affecting] on \the [src].</span>")
 			qdel(W)
 			return

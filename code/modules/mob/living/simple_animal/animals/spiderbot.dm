@@ -150,6 +150,7 @@
 		src.mind.key = M.brainmob.key
 		src.ckey = M.brainmob.ckey
 		src.name = "spider-bot ([M.brainmob.name])"
+		src.languages = M.brainmob.languages
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	src.visible_message("<span class='danger'>\The [src] makes an odd warbling noise, fizzles, and explodes!</span>")

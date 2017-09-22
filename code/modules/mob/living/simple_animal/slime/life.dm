@@ -97,15 +97,20 @@
 
 // This is to make slime responses feel a bit more natural and not instant.
 /mob/living/simple_animal/slime/proc/delayed_say(var/message, var/mob/target)
-	sleep(rand(1 SECOND, 2 SECONDS))
-	if(target)
-		face_atom(target)
-	say(message)
+	spawn(rand(1 SECOND, 2 SECONDS))
+		if(target)
+			face_atom(target)
+		say(message)
 
 //Commands, reactions, etc
 /mob/living/simple_animal/slime/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	..()
 	if((findtext(message, num2text(number)) || findtext(message, name) || findtext(message, "slimes"))) // Talking to us
+
+		// First make sure it's not just another slime repeating things.
+		if(istype(speaker, /mob/living/simple_animal/slime))
+			if(!speaker.client)
+				return
 
 		// Say hello back.
 		if(findtext(message, "hello") || findtext(message, "hi") || findtext(message, "greetings"))
@@ -142,33 +147,31 @@
 					adjust_discipline(1, TRUE)
 
 			if(follow_mob) // We're being asked to stop following someone.
-				if(follow_mob == speaker)
+				if(can_command(speaker) == SLIME_COMMAND_FRIEND || follow_mob == speaker)
 					delayed_say("Yes... I'll stop...", speaker)
 					LoseFollow()
 				else
 					delayed_say("No... I'll keep following \the [follow_mob]...", speaker)
 
-		// Help request
-		if(findtext(message, "help"))
-			if(!can_command(speaker))
-				delayed_say("No...", speaker)
-				return
-			else
-				delayed_say("I will protect \the [speaker].", speaker)
-
 		// Murder request
 		if(findtext(message, "harm") || findtext(message, "kill") || findtext(message, "murder") || findtext(message, "eat") || findtext(message, "consume"))
-			if(!can_command(speaker))
+			if(can_command(speaker) < SLIME_COMMAND_FACTION)
 				delayed_say("No...", speaker)
 				return
 
-		//LoseFollow()
-
-	/*
-	if(reacts && speaker && (message in reactions) && (!hostile || isliving(speaker)) && say_understands(speaker,language))
-		var/mob/living/L = speaker
-		if(L.faction == faction)
-			spawn(10)
-				face_atom(speaker)
-				say(reactions[message])
-	*/
+			for(var/mob/living/L in view(7, src) - list(src, speaker))
+				if(L == src)
+					continue // Don't target ourselves.
+				var/list/valid_names = splittext(L.name, " ") // Should output list("John", "Doe") as an example.
+				for(var/line in valid_names) // Check each part of someone's name.
+					if(findtext(message, lowertext(line))) // If part of someone's name is in the command, the slime targets them if allowed to.
+						if(special_target_check(L))
+							delayed_say("Okay... I attack \the [L]...", speaker)
+							LoseFollow()
+							set_target(L)
+							return
+						else
+							delayed_say("No... I won't attack \the [L].", speaker)
+						return
+				// If we're here, it couldn't find anyone with that name.
+				delayed_say("No... I don't know who to attack...", speaker)

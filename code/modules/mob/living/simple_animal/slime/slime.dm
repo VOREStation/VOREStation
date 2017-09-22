@@ -34,6 +34,7 @@
 	max_n2 = 0
 	unsuitable_atoms_damage = 0
 
+	response_help = "pets"
 
 	speak = list(
 		"Blorp...",
@@ -297,6 +298,24 @@
 
 	if(is_adult)
 		if(amount_grown >= 10)
+			// Check if there's enough 'room' to split.
+			var/list/nearby_things = orange(1, src)
+			var/free_tiles = 0
+			for(var/turf/T in nearby_things)
+				var/free = TRUE
+				if(T.density) // No walls.
+					continue
+				for(var/atom/movable/AM in T)
+					if(AM.density)
+						free = FALSE
+						break
+
+				if(free)
+					free_tiles++
+
+			if(free_tiles < 3) // Three free tiles are needed, as four slimes are made and the 4th tile is from the center tile that the current slime occupies.
+				to_chat(src, "<span class='warning'>It is too cramped here to reproduce...</span>")
+				return
 
 			var/list/babies = list()
 			for(var/i = 1 to 4)
@@ -352,13 +371,13 @@
 	if(rabid)
 		return FALSE
 	if(docile)
-		return TRUE
+		return SLIME_COMMAND_OBEY
 	if(commander in friends)
-		return TRUE
+		return SLIME_COMMAND_FRIEND
 	if(faction == commander.faction)
-		return TRUE
+		return SLIME_COMMAND_FACTION
 	if(discipline > resentment && obedience >= 5)
-		return TRUE
+		return SLIME_COMMAND_OBEY
 	return FALSE
 
 /mob/living/simple_animal/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
