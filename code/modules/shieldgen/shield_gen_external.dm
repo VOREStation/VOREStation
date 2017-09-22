@@ -3,7 +3,11 @@
 
 /obj/machinery/shield_gen/external
 	name = "hull shield generator"
-
+	var/global/list/blockedturfs =  list(
+		/turf/space,
+		/turf/simulated/open,
+		/turf/simulated/floor/outdoors,
+	)
 /obj/machinery/shield_gen/external/New()
 	..()
 
@@ -18,7 +22,7 @@
 	for (var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
 		for (var/y_offset = -field_radius; y_offset <= field_radius; y_offset++)
 			T = locate(gen_turf.x + x_offset, gen_turf.y + y_offset, gen_turf.z)
-			if (istype(T, /turf/space))
+			if (is_type_in_list(T,blockedturfs))
 				//check neighbors of T
 				if (locate(/turf/simulated/) in orange(1, T))
 					out += T
