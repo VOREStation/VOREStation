@@ -1,0 +1,60 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/floor,/area/awaymission)
+"c" = (/turf/simulated/wall/r_wall,/area/awaymission)
+"d" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"e" = (/obj/structure/grille,/obj/structure/window/reinforced,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"f" = (/turf/simulated/floor/plating,/area/awaymission)
+"g" = (/turf/simulated/floor/airless{icon_state = "asteroidplating2"},/area/awaymission)
+"h" = (/obj/structure/grille/broken,/turf/simulated/floor/plating,/area/awaymission)
+"i" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"j" = (/obj/structure/table/steel,/obj/structure/loot_pile/surface,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"k" = (/obj/item/weapon/material/shard,/turf/simulated/floor/plating,/area/awaymission)
+"l" = (/obj/structure/table/steel,/obj/item/weapon/circuitboard/comm_server,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"m" = (/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"n" = (/obj/item/weapon/paper/crumpled{info = "Sampatti Relay Sif-833 Decryption Key for 12-04-2488: <BR> 849B0022FBA920C244 <BR> Eyes Only.  <BR> The insider who knows all the secrets can bring down Lanka."; name = "Forgotten Note"},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"o" = (/obj/structure/door_assembly/door_assembly_ext,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"p" = (/obj/item/stack/rods,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"q" = (/obj/machinery/telecomms/relay,/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"r" = (/obj/machinery/telecomms/broadcaster,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"s" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"t" = (/obj/machinery/telecomms/receiver,/obj/structure/cable,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"u" = (/obj/item/weapon/circuitboard/broken,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"v" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"w" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"x" = (/obj/effect/decal/remains/robot,/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"y" = (/obj/item/stack/cable_coil{amount = 1},/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"z" = (/obj/item/weapon/circuitboard/broken,/turf/simulated/mineral/floor,/area/awaymission)
+"A" = (/obj/structure/grille/broken,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/awaymission)
+"B" = (/obj/item/weapon/cigbutt,/obj/item/weapon/wrench,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"C" = (/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"D" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"E" = (/obj/machinery/power/apc{aidisabled = 1; beenhit = 1; coverlocked = 0; icon_state = "apc1"},/turf/simulated/wall/r_wall,/area/awaymission)
+"F" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled/asteroid_steel,/area/awaymission)
+"G" = (/obj/machinery/access_button/airlock_interior,/turf/simulated/wall/r_wall,/area/awaymission)
+"H" = (/obj/structure/grille/broken,/obj/item/stack/rods,/turf/simulated/floor/plating,/area/awaymission)
+"I" = (/obj/structure/girder,/turf/simulated/floor/plating,/area/awaymission)
+"J" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/r_wall,/area/awaymission)
+"K" = (/obj/structure/sign/warning/high_voltage,/turf/simulated/wall/r_wall,/area/awaymission)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaabbaaaaaaaa
+aaaaaabbabbbbaaaaaaa
+aaaaaacdeffghcaaaaaa
+aaaaaagijffkghbaaaaa
+aaaaagclmnffffbaaaaa
+aaaabmopmqrfpsbaaaaa
+aaaabmfmmtuvmwaaaaaa
+aaaabgcfxmmymwbaaaaa
+aaaazbAfBmmCmDbaaaaa
+aaaaaachEFFGHcbaaaaa
+aaaaaaabcfmIbbaaaaaa
+aaaaaaaaJFFKaaaaaaaa
+aaaaaaaabbbzaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+"}
