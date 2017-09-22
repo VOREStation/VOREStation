@@ -8,10 +8,6 @@
  *		Circular Saw
  */
 
-/*
- * Retractor
- */
-
 /obj/item/weapon/surgical
 	name = "Surgical tool"
 	desc = "This shouldn't be here, ahelp it."
@@ -25,10 +21,13 @@
 		return 0
 	..()
 
+/*
+ * Retractor
+ */
+
 /obj/item/weapon/surgical/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
-	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
@@ -173,3 +172,33 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
+
+
+// Cyborg Tools
+
+/obj/item/weapon/surgical/retractor/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/hemostat/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/cautery/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/surgicaldrill/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/scalpel/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/circular_saw/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/bonegel/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/FixOVein/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/bonesetter/cyborg
+	toolspeed = 0.5
