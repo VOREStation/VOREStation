@@ -636,7 +636,9 @@ var/list/sacrificed = list()
 			log_and_message_admins("used a communicate rune to say '[input]'")
 			for(var/datum/mind/H in cult.current_antagonists)
 				if (H.current)
-					H.current << "<span class='cult'>[input]</span>"
+					to_chat(H.current, "<span class='cult'>[input]</span>")
+			for(var/mob/observer/dead/O in player_list)
+				to_chat(O, "<span class='cult'>[input]</span>")
 			qdel(src)
 			return 1
 

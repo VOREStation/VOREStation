@@ -1960,7 +1960,7 @@
 	druggy = 30
 
 	glass_name = "Manhattan Project"
-	glass_desc = "A scienitst drink of choice, for thinking how to blow up the station."
+	glass_desc = "A scientist's drink of choice, for thinking how to blow up the station."
 
 /datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
@@ -2279,7 +2279,7 @@
 	description = "Alcohol in more alcohol."
 	taste_description = "thick, dry alcohol"
 	color = "#FFFF7F"
-	strength = 15
+	strength = 12
 	nutriment_factor = 1
 
 	glass_name = "Sake Bomb"
@@ -2403,7 +2403,7 @@
 	description = "From Shelf. Not for human consumption."
 	taste_description = "oily bitterness"
 	color = "#d3d3d3"
-	strength = 36
+	strength = 32
 
 	glass_name = "Debugger"
 	glass_desc = "From Shelf. Not for human consumption."

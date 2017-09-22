@@ -200,11 +200,14 @@
 			var/cold_factor = abs(protection - 1)
 			var/delta = -20
 			delta *= cold_factor
-			L.bodytemperature = max(50, delta)
+			L.bodytemperature = max(50, L.bodytemperature + delta)
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/env = T.return_air()
 	if(env)
 		env.add_thermal_energy(-10 * 1000)
+
+/mob/living/simple_animal/slime/dark_blue/get_cold_protection()
+	return 1 // This slime is immune to cold.
 
 
 /mob/living/simple_animal/slime/silver
@@ -513,8 +516,16 @@
 /datum/modifier/slime_heal/tick()
 	if(holder.stat == DEAD) // Required or else simple animals become immortal.
 		expire()
-	holder.adjustBruteLoss(-2)
-	holder.adjustFireLoss(-2)
+
+	if(ishuman(holder)) // Robolimbs need this code sadly.
+		var/mob/living/carbon/human/H = holder
+		for(var/obj/item/organ/external/E in H.organs)
+			var/obj/item/organ/external/O = E
+			O.heal_damage(2, 2, 0, 1)
+	else
+		holder.adjustBruteLoss(-2)
+		holder.adjustFireLoss(-2)
+
 	holder.adjustToxLoss(-2)
 	holder.adjustOxyLoss(-2)
 	holder.adjustCloneLoss(-1)
@@ -683,6 +694,7 @@
 	slime_color = "rainbow"
 	coretype = /obj/item/slime_extract/rainbow
 	icon_state_override = "rainbow"
+	unity = TRUE
 
 	description_info = "This slime is considered to be the same color as all other slime colors at the same time for the purposes of \
 	other slimes being friendly to them, and therefore will never be harmed by another slime.  \

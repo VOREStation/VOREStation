@@ -107,6 +107,7 @@
 			else
 				var/B_held = B.wrapped
 				user << "You use \the [B] to use \the [B_held] with \the [src]."
+				playsound(src, "keyboard", 100, 1, 0)
 			return
 		attack_hand(user)
 		return

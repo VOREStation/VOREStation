@@ -96,7 +96,7 @@
 		if(!stat)
 			var/mob/M = AM
 			M << "<font color='blue'>\icon[src] Squeek!</font>"
-			M << 'sound/effects/mouse_squeak_loud.ogg'
+			M << 'sound/effects/mouse_squeak.ogg'
 	..()
 
 /mob/living/simple_animal/mouse/death()
