@@ -177,7 +177,7 @@
 
 /obj/item/device/mmi/digital/New()
 	src.brainmob = new(src)
-	src.brainmob.add_language("Robot Talk")
+//	src.brainmob.add_language("Robot Talk")//No binary without a binary communication device
 	src.brainmob.add_language(LANGUAGE_GALCOM)
 	src.brainmob.add_language(LANGUAGE_EAL)
 	src.brainmob.loc = src
@@ -271,7 +271,7 @@
 	src.brainmob << "<b>You are a [src], brought into existence on [station_name()].</b>"
 	src.brainmob << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
 	src.brainmob << "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
-	src.brainmob << "<b>Use say #b to speak to other artificial intelligences.</b>"
+//	src.brainmob << "<b>Use say #b to speak to other artificial intelligences.</b>"
 	src.brainmob.mind.assigned_role = "Synthetic Brain"
 
 	var/turf/T = get_turf_or_move(src.loc)
