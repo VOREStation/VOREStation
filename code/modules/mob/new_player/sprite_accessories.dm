@@ -1020,18 +1020,22 @@
 		icon_state = "teshari_mushroom"
 		species_allowed = list("Teshari")
 
+// Vox things
+	vox_braid_long
+		name = "Long Vox braid"
+		icon_state = "vox_longbraid"
+		species_allowed = list("Vox")
 
-	vox_quills_long
-	name = "Long Vox Quills"
-	icon_state = "vox_longquills"
-	species_allowed = list("Vox")
+	vox_braid_short
+		name = "Short Vox Braid"
+		icon_state = "vox_shortbraid"
+		species_allowed = list("Vox")
 
 	vox_quills_short
 		name = "Short Vox Quills"
 		icon_state = "vox_shortquills"
 		species_allowed = list("Vox")
 
-/*
 	vox_quills_kingly
 		name = "Kingly Vox Quills"
 		icon_state = "vox_kingly"
@@ -1041,7 +1045,7 @@
 		name = "Quill Mohawk"
 		icon_state = "vox_mohawk"
 		species_allowed = list("Vox")
-*/
+
 /datum/sprite_accessory/facial_hair
 
 	taj_sideburns
