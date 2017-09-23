@@ -473,6 +473,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/surgical/scalpel/manager
 	sort_string = "MBBAD"
 
+/datum/design/item/bone_clamp
+	name = "Bone Clamp"
+	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
+	id = "bone_clamp"
+	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
+	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2500)
+	build_path = /obj/item/weapon/surgical/bone_clamp
+	sort_string = "MBBAE"
+
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
