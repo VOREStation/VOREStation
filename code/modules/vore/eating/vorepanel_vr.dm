@@ -217,6 +217,14 @@
 		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
 
+		//Can belly taste?
+		dat += "<br><a href='?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
+		dat += " [selected.digest_brute]
+
+		//Can belly taste?
+		dat += "<br><a href='?src=\ref[src];b_burn_dmg=\ref[selected]'>Digest Burn Damage:</a>"
+		dat += " [selected.digest_burn]
+
 		//Minimum size prey must be to show up.
 		dat += "<br><a href='?src=\ref[src];b_bulge_size=\ref[selected]'>Required examine size:</a>"
 		dat += " [selected.bulge_size*100]%"
@@ -610,6 +618,32 @@
 			user << "<span class='notice'>Invalid size.</span>"
 		else if(new_grow)
 			selected.shrink_grow_size = (new_grow/100)
+
+	if(href_list["b_burn_dmg"])
+		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 1 to 5. Numbers below 3 may result in digestion being extremely slow.", "Set Belly Examine Size.") as num|null
+		if(new_damage == null)
+			return
+		if(new_damage < 5)
+			selected.digest_burn = 3
+			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
+		else if(new_damage > 1)
+			selected.digest_burn = 3
+			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
+		else if(new_damage)
+			selected.bulge_size = new_damage
+
+	if(href_list["b_brute_damage"])
+		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 1 to 5. Numbers below 3 may result in digestion being extremely slow.", "Set Belly Examine Size.") as num|null
+		if(new_damage == null)
+			return
+		if(new_damage < 5)
+			selected.digest_burn = 3
+			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
+		else if(new_damage > 1)
+			selected.digest_burn = 3
+			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
+		else if(new_damage)
+			selected.bulge_size = new_damage
 
 	if(href_list["b_escapable"])
 		if(selected.escapable == 0) //Possibly escapable and special interactions.
