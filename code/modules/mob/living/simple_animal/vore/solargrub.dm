@@ -58,7 +58,7 @@ List of things solar grubs should be able to do:
 
 	var/poison_per_bite = 5 //grubs cause a shock when they bite someone
 	var/poison_type = "shockchem"
-	var/poison_chance = 100
+	var/poison_chance = 50
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
 
@@ -104,7 +104,6 @@ List of things solar grubs should be able to do:
 	if(isliving(.))
 		var/mob/living/L = .
 		if(L.reagents)
-			L.reagents.add_reagent(poison_type, poison_per_bite)
 			if(prob(poison_chance))
 				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
 				L.reagents.add_reagent(poison_type, poison_per_bite)
