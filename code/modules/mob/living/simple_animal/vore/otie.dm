@@ -251,37 +251,57 @@
 //Pet 4 friendly
 
 /mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
-	..()
-	if(M.a_intent == I_GRAB)
-		if (M == src)
-			return
-		if (!(status_flags & CANPUSH))
-			return
-		if(!incapacitated(INCAPACITATION_ALL) && (stance != STANCE_IDLE) && prob(grab_resist))
-			M.visible_message("<span class='warning'>[M] tries to grab [src] but fails!</span>")
-			return
-		var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-		M.put_in_active_hand(G)
-		G.synch()
-		G.affecting = src
-		LAssailant = M
-		M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
-		M.do_attack_animation(src)
-		ai_log("attack_hand() I was grabbed by: [M]",2)
-		pixel_x = old_x
-		react_to_attack(M)
-	if(M.a_intent == I_HELP)
-		if (health > 0)
-			LoseTarget()
-			handle_stance(STANCE_IDLE)
-			if(prob(tame_chance))
-				friend = M
-				if(tamed != 1)
-					tamed = 1
-					faction = M.faction
-			sleep(1 SECOND)
-			return
-			..()
+
+	switch(M.a_intent)
+
+		if(I_HELP)
+			if (health > 0)
+				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
+				LoseTarget()
+				handle_stance(STANCE_IDLE)
+				if(prob(tame_chance))
+					friend = M
+					if(tamed != 1)
+						tamed = 1
+						faction = M.faction
+				sleep(1 SECOND)
+
+		if(I_DISARM)
+			M.visible_message("<span class='notice'>[M] [response_disarm] \the [src].</span>")
+			M.do_attack_animation(src)
+			//TODO: Push the mob away or something
+
+		if(I_GRAB)
+			if (M == src)
+				return
+			if (!(status_flags & CANPUSH))
+				return
+			if(!incapacitated(INCAPACITATION_ALL) && (stance != STANCE_IDLE) && prob(grab_resist))
+				M.visible_message("<span class='warning'>[M] tries to grab [src] but fails!</span>")
+				return
+
+			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+
+			M.put_in_active_hand(G)
+
+			G.synch()
+			G.affecting = src
+			LAssailant = M
+
+			M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+			M.do_attack_animation(src)
+			ai_log("attack_hand() I was grabbed by: [M]",2)
+			pixel_x = old_x
+			react_to_attack(M)
+
+		if(I_HURT)
+			adjustBruteLoss(harm_intent_damage)
+			M.visible_message("<span class='warning'>[M] [response_harm] \the [src]!</span>")
+			M.do_attack_animation(src)
+			ai_log("attack_hand() I was hit by: [M]",2)
+			react_to_attack(M)
+
+	return
 
 /mob/living/simple_animal/otie/death()
 	resting = 0
