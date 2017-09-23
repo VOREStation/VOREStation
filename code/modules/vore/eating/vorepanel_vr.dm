@@ -219,11 +219,11 @@
 
 		//Can belly taste?
 		dat += "<br><a href='?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
-		dat += " [selected.digest_brute]
+		dat += " [selected.digest_brute]"
 
 		//Can belly taste?
 		dat += "<br><a href='?src=\ref[src];b_burn_dmg=\ref[selected]'>Digest Burn Damage:</a>"
-		dat += " [selected.digest_burn]
+		dat += " [selected.digest_burn]"
 
 		//Minimum size prey must be to show up.
 		dat += "<br><a href='?src=\ref[src];b_bulge_size=\ref[selected]'>Required examine size:</a>"
