@@ -6,7 +6,7 @@
 	slot_flags = SLOT_BELT
 	force = 9
 	lightcolor = "#33CCFF"
-	origin_tech = list(TECH_COMBAT = 2, TECH_BIO = 4)
+	origin_tech = list(TECH_COMBAT = 2, TECH_BIO = 2)
 	agonyforce = 10	//It's not supposed to be great at stunning human beings.
 	hitcost = 48	//Less zap for less cost
 	description_info = "This baton will stun a slime or other lesser lifeform for about five seconds, if hit with it while on."
