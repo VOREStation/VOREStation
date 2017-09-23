@@ -755,16 +755,6 @@ other types of metals and chemistry for reagents).
 	category = "Misc"
 	sort_string = "VACBA"
 
-/datum/design/item/mmi_radio
-	name = "Radio-enabled man-machine interface"
-	id = "mmi_radio"
-	req_tech = list(TECH_DATA = 2, TECH_BIO = 4)
-	build_type = PROTOLATHE | PROSFAB
-	materials = list(DEFAULT_WALL_MATERIAL = 1200, "glass" = 500)
-	build_path = /obj/item/device/mmi/radio_enabled
-	category = "Misc"
-	sort_string = "VACBB"
-
 /datum/design/item/beacon
 	name = "Bluespace tracking beacon design"
 	id = "beacon"
