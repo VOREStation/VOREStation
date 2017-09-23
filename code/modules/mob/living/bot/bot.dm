@@ -128,6 +128,9 @@
 
 	..(message, null, verb)
 
+/mob/living/bot/speech_bubble_appearance()
+	return "machine"
+
 /mob/living/bot/Bump(var/atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
@@ -306,6 +309,18 @@
 	//	for(var/turf/simulated/t in oview(src,1))
 
 	for(var/d in cardinal)
+		var/turf/T = get_step(src, d)
+		if(istype(T) && !T.density)
+			if(!LinkBlockedWithAccess(src, T, ID))
+				L.Add(T)
+	return L
+
+
+// Similar to above but not restricted to just cardinal directions.
+/turf/proc/TurfsWithAccess(var/obj/item/weapon/card/id/ID)
+	var/L[] = new()
+
+	for(var/d in alldirs)
 		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))

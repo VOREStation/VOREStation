@@ -117,8 +117,8 @@
 		)
 
 /datum/lore/organization/tsc/vey_med
-	name = "Vey Medical"
-	short_name = "Vey Med"
+	name = "Vey-Medical" //The Wiki displays them as Vey-Medical.
+	short_name = "Vey-Med"
 	acronym = "VM"
 	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell. \
 	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \
@@ -283,8 +283,8 @@
 	name = "Sif Governmental Authority"
 	short_name = "SifGov"
 	desc = "SifGov is the sole governing administration for the Vir system, based in New Reykjavik, Sif.  It is a representative \
-	democratic government, and a fully recognized member of the Solar Confederate Government.  Anyone operating inside of Vir must \
-	comply with SifGov's legislation and regulations."
+	democratic government, and a fully recognized member of the Solar Central Government.  Anyone operating inside of Vir must \
+	comply with SifGov's legislation and regulations." // Vorestation Edit. Confederate -> Central
 	history = "" // Todo like the rest of them
 	work = "governing body of Sif"
 	headquarters = "New Reykjavik, Sif"

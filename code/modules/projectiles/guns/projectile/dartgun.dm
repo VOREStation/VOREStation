@@ -19,13 +19,14 @@
 
 /obj/item/ammo_casing/chemdart
 	name = "chemical dart"
-	desc = "A small hardened, hollow dart."
-	icon_state = "dart"
+	desc = "A casing containing a small hardened, hollow dart."
+	icon_state = "dartcasing"
 	caliber = "dart"
 	projectile_type = /obj/item/projectile/bullet/chemdart
 
 /obj/item/ammo_casing/chemdart/expend()
-	qdel(src)
+	..()
+	//qdel(src)		//Wasn't able to find the exact issue with the qdel-ing. Possibly because it was still being processed by the gun when this is called.
 
 /obj/item/ammo_magazine/chemdart
 	name = "dart cartridge"
@@ -42,8 +43,12 @@
 /obj/item/weapon/gun/projectile/dartgun
 	name = "dart gun"
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
+	description_info = "The dart gun is capable of storing three beakers. In order to use the dart gun, you must first use it in-hand to open its mixing UI. The dart-gun will only draw from beakers with mixing enabled. If multiple are enabled, the gun will draw from them in equal amounts."
+	description_antag = "The dart gun is silenced, but cannot pierce thick clothing such as armor or space-suits, and thus is better for use against soft targets, or commonly exposed areas of the body."
 	icon_state = "dartgun-empty"
 	item_state = null
+	var/base_state = "dartgun"
+	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 6, TECH_BIO = 5, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 
 	caliber = "dart"
 	fire_sound = 'sound/weapons/empty.ogg'
@@ -53,6 +58,8 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	allowed_magazines = list(/obj/item/ammo_magazine/chemdart)
+	var/default_magazine_casing_count = 5
+	var/track_magazine = 1
 	auto_eject = 0
 
 	var/list/beakers = list() //All containers inside the gun.
@@ -62,7 +69,7 @@
 	var/container_type = /obj/item/weapon/reagent_containers/glass/beaker
 	var/list/starting_chems = null
 
-/obj/item/weapon/gun/projectile/dartgun/New() //VOREStation Edit - Think this was a typo
+/obj/item/weapon/gun/projectile/dartgun/New()
 	..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
@@ -73,16 +80,18 @@
 
 /obj/item/weapon/gun/projectile/dartgun/update_icon()
 	if(!ammo_magazine)
-		icon_state = "dartgun-empty"
+		icon_state = "[base_state]-empty"
 		return 1
-
-	if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len)
-		icon_state = "dartgun-0"
-	else if(ammo_magazine.stored_ammo.len > 5)
-		icon_state = "dartgun-5"
+	if(track_magazine)
+		if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len == 0)
+			icon_state = "[base_state]-0"
+		else if(ammo_magazine.stored_ammo.len > default_magazine_casing_count)
+			icon_state = "[base_state]-[default_magazine_casing_count]"
+		else
+			icon_state = "[base_state]-[ammo_magazine.stored_ammo.len]"
+		return 1
 	else
-		icon_state = "dartgun-[ammo_magazine.stored_ammo.len]"
-	return 1
+		icon_state = "[base_state]"
 
 /obj/item/weapon/gun/projectile/dartgun/consume_next_projectile()
 	. = ..()
@@ -193,3 +202,39 @@
 		unload_ammo(usr)
 	src.updateUsrDialog()
 	return
+
+///Variants of the Dartgun and Chemdarts.///
+
+/obj/item/weapon/gun/projectile/dartgun/research
+	name = "prototype dart gun"
+	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances. This one seems to be an early model with an NT stamp."
+	description_info = "The dart gun is capable of storing two beakers. In order to use the dart gun, you must first use it in-hand to open its mixing UI. The dart-gun will only draw from beakers with mixing enabled. If multiple are enabled, the gun will draw from them in equal amounts."
+	icon_state = "dartgun_sci-empty"
+	base_state = "dartgun_sci"
+	magazine_type = /obj/item/ammo_magazine/chemdart/small
+	allowed_magazines = list(/obj/item/ammo_magazine/chemdart)
+	default_magazine_casing_count = 3
+	max_beakers = 2
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_BIO = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 1)
+
+/obj/item/ammo_casing/chemdart/small
+	name = "short chemical dart"
+	desc = "A casing containing a small hardened, hollow dart."
+	icon_state = "dartcasing"
+	caliber = "dart"
+	projectile_type = /obj/item/projectile/bullet/chemdart/small
+
+/obj/item/ammo_magazine/chemdart/small
+	name = "small dart cartridge"
+	desc = "A rack of hollow darts."
+	icon_state = "darts_small"
+	item_state = "rcdammo"
+	origin_tech = list(TECH_MATERIAL = 2)
+	mag_type = MAGAZINE
+	caliber = "dart"
+	ammo_type = /obj/item/ammo_casing/chemdart/small
+	max_ammo = 3
+	multiple_sprites = 1
+
+/obj/item/projectile/bullet/chemdart/small
+	reagent_amount = 10

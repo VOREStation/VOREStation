@@ -7,6 +7,7 @@
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
 #define FLAVOR_MAX 40
+#define NIF_EXAMINE_MAX 60
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
@@ -21,6 +22,19 @@
 	picker_holder.popup = new(src, "insidePanel","Inside!", 400, 600, picker_holder)
 	picker_holder.popup.set_content(dat)
 	picker_holder.popup.open()
+	src.openpanel = 1
+
+/mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
+	if(src.openpanel == 1)
+		var/datum/vore_look/picker_holder = new()
+		picker_holder.loop = picker_holder
+		picker_holder.selected = vore_organs[vore_selected]
+
+		var/dat = picker_holder.gen_ui(src)
+
+		picker_holder.popup = new(src, "insidePanel","Inside!", 400, 600, picker_holder)
+		picker_holder.popup.set_content(dat)
+		picker_holder.popup.open()
 
 //
 // Callback Handler for the Inside form
@@ -108,6 +122,12 @@
 			if(DM_ABSORB)
 				spanstyle = "color:purple;"
 			if(DM_DRAIN)
+				spanstyle = "color:purple;"
+			if(DM_SHRINK)
+				spanstyle = "color:purple;"
+			if(DM_GROW)
+				spanstyle = "color:purple;"
+			if(DM_SIZE_STEAL)
 				spanstyle = "color:purple;"
 			if(DM_TRANSFORM_MALE)
 				spanstyle = "color:purple;"
@@ -197,6 +217,14 @@
 		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
 
+		//Minimum size prey must be to show up.
+		dat += "<br><a href='?src=\ref[src];b_bulge_size=\ref[selected]'>Required examine size:</a>"
+		dat += " [selected.bulge_size*100]%"
+
+		//Size that prey will be grown/shrunk to.
+		dat += "<br><a href='?src=\ref[src];b_grow_shrink=\ref[selected]'>Shrink/Grow size:</a>"
+		dat += "[selected.shrink_grow_size*100]%"
+
 		//Belly escapability
 		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Belly Interactions ([selected.escapable ? "On" : "Off"])</a>"
 		if(selected.escapable)
@@ -244,6 +272,9 @@
 		if(0)
 			dat += "<a href='?src=\ref[src];toggledg=1'><span style='color:green;'>Toggle Digestable</span></a>"
 
+	dat += "<br><a href='?src=\ref[src];toggle_nif=1'>Set NIF concealment</a>" //These two get their own, custom row.
+	dat += "<a href='?src=\ref[src];set_nif_flavor=1'>Set NIF Examine Message.</a>"
+
 	//Returns the dat html to the vore_look
 	return dat
 
@@ -253,6 +284,7 @@
 
 	if(href_list["close"])
 		qdel(src)  // Cleanup
+		user.openpanel = 0
 		return
 
 	if(href_list["show_int"])
@@ -557,6 +589,28 @@
 	if(href_list["b_tastes"])
 		selected.can_taste = !selected.can_taste
 
+	if(href_list["b_bulge_size"])
+		var/new_bulge = input(user, "Choose the required size prey must be to show up on examine, ranging from 25% to 200% Set this to 0 for no text on examine.", "Set Belly Examine Size.") as num|null
+		if(new_bulge == null)
+			return
+		if(new_bulge == 0) //Disable.
+			selected.bulge_size = 0
+			user << "<span class='notice'>Your stomach will not be seen on examine.</span>"
+		else if (!IsInRange(new_bulge,25,200))
+			selected.bulge_size = 0.25 //Set it to the default.
+			user << "<span class='notice'>Invalid size.</span>"
+		else if(new_bulge)
+			selected.bulge_size = (new_bulge/100)
+	if(href_list["b_grow_shrink"])
+		var/new_grow = input(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.") as num|null
+		if (new_grow == null)
+			return
+		if (!IsInRange(new_grow,25,200))
+			selected.shrink_grow_size = 1 //Set it to the default
+			user << "<span class='notice'>Invalid size.</span>"
+		else if(new_grow)
+			selected.shrink_grow_size = (new_grow/100)
+
 	if(href_list["b_escapable"])
 		if(selected.escapable == 0) //Possibly escapable and special interactions.
 			selected.escapable = 1
@@ -649,6 +703,28 @@
 				alert("Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error")
 				return 0
 			user.vore_taste = new_flavor
+		else //Returned null
+			return 0
+
+	if(href_list["toggle_nif"])
+		var/choice = alert(user, "Your nif is currently: [user.conceal_nif ? "Not able to be seen" : "Able to be seen"]", "", "Conceal NIF", "Cancel", "Show NIF")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Conceal NIF")
+				user.conceal_nif = 1
+			if("Show NIF")
+				user.conceal_nif = 0
+
+	if(href_list["set_nif_flavor"])
+		var/new_nif_examine = html_encode(input(usr,"How people will see your NIF on examine (100ch limit):","Character Flavor",user.nif_examine) as text|null)
+
+		if(new_nif_examine)
+			new_nif_examine = readd_quotes(new_nif_examine)
+			if(length(new_nif_examine) > NIF_EXAMINE_MAX)
+				alert("Entered NIF examine text too long. [NIF_EXAMINE_MAX] character limit.","Error")
+				return 0
+			user.nif_examine = new_nif_examine
 		else //Returned null
 			return 0
 

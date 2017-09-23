@@ -103,6 +103,12 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
+	// Vorestation Edit: Meta Info for pAI's
+	if (client)
+		var/meta_info = client.prefs.metadata
+		if (meta_info)
+			ooc_notes = meta_info
+
 	//PDA
 	pda = new(src)
 	spawn(5)
@@ -289,6 +295,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
+	verbs += /mob/living/proc/set_size //VOREStation edit
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
@@ -313,29 +320,26 @@
 	var/finalized = "No"
 	while(finalized == "No" && src.client)
 
-		choice = input(usr,"What would you like to use for your mobile chassis icon? This decision can only be made once.") as null|anything in possible_chassis
+		choice = input(usr,"What would you like to use for your mobile chassis icon?") as null|anything in possible_chassis
 		if(!choice) return
 
 		icon_state = possible_chassis[choice]
 		finalized = alert("Look at your sprite. Is this what you wish to use?",,"No","Yes")
 
 	chassis = possible_chassis[choice]
-	verbs -= /mob/living/silicon/pai/proc/choose_chassis
-	verbs += /mob/living/proc/hide
+	verbs |= /mob/living/proc/hide
 
 /mob/living/silicon/pai/proc/choose_verbs()
 	set category = "pAI Commands"
 	set name = "Choose Speech Verbs"
 
-	var/choice = input(usr,"What theme would you like to use for your speech verbs? This decision can only be made once.") as null|anything in possible_say_verbs
+	var/choice = input(usr,"What theme would you like to use for your speech verbs?") as null|anything in possible_say_verbs
 	if(!choice) return
 
 	var/list/sayverbs = possible_say_verbs[choice]
 	speak_statement = sayverbs[1]
 	speak_exclamation = sayverbs[(sayverbs.len>1 ? 2 : sayverbs.len)]
 	speak_query = sayverbs[(sayverbs.len>2 ? 3 : sayverbs.len)]
-
-	verbs -= /mob/living/silicon/pai/proc/choose_verbs
 
 /mob/living/silicon/pai/lay_down()
 	set name = "Rest"
@@ -386,9 +390,10 @@
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
 
-	src.stop_pulling()
-	src.client.perspective = EYE_PERSPECTIVE
-	src.client.eye = card
+	if(client)
+		src.stop_pulling()
+		src.client.perspective = EYE_PERSPECTIVE
+		src.client.eye = card
 
 	//stop resting
 	resting = 0

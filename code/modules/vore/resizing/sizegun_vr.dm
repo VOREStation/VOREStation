@@ -11,7 +11,7 @@
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 100
 	projectile_type = /obj/item/projectile/beam/sizelaser
-	origin_tech = "redspace=1;bluespace=4"
+	origin_tech = "bluespace=4"
 	modifystate = "sizegun-shrink"
 	self_recharge = 1
 	var/size_set_to = 1
@@ -72,5 +72,5 @@
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	..()
-	var/size_examine = size_set_to
+	var/size_examine = (size_set_to*100)
 	user << "<span class='info'>It is currently set at [size_examine]%</span>"

@@ -213,3 +213,14 @@
 #define FBP_CYBORG	"Cyborg"
 #define FBP_POSI	"Positronic"
 #define FBP_DRONE	"Drone"
+
+// Used to seperate simple animals by ""intelligence"".
+#define SA_PLANT	1
+#define SA_ANIMAL	2
+#define SA_ROBOTIC	3
+#define SA_HUMANOID	4
+
+// For slime commanding.  Higher numbers allow for more actions.
+#define SLIME_COMMAND_OBEY		1 // When disciplined.
+#define SLIME_COMMAND_FACTION	2 // When in the same 'faction'.
+#define SLIME_COMMAND_FRIEND	3 // When befriended with a slime friendship agent.

@@ -2,7 +2,7 @@
 #define LIQUID 2
 #define GAS 3
 
-#define REAGENTS_PER_SHEET 20
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -294,6 +294,7 @@
 		/obj/item/stack/material/phoron = "phoron",
 		/obj/item/stack/material/gold = "gold",
 		/obj/item/stack/material/silver = "silver",
+		/obj/item/stack/material/platinum = "platinum",
 		/obj/item/stack/material/mhydrogen = "hydrogen"
 		)
 
@@ -360,6 +361,17 @@
 			user << "You fill \the [src] from \the [O]."
 
 		src.updateUsrDialog()
+		return 0
+
+	if(istype(O,/obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/B = O	//B, for Borg.
+		if(!B.wrapped)
+			user << "\The [B] is not holding anything."
+			return 0
+		else
+			var/B_held = B.wrapped
+			user << "You use \the [B] to load \the [src] with \the [B_held]."
+
 		return 0
 
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
@@ -500,5 +512,3 @@
 				qdel(O)
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
-
-#undef REAGENTS_PER_SHEET

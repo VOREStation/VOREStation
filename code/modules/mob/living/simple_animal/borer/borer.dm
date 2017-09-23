@@ -4,6 +4,7 @@
 	desc = "A small, quivering sluglike creature."
 	speak_emote = list("chirrups")
 	emote_hear = list("chirrups")
+	intelligence_level = SA_HUMANOID // Player controlled.
 	response_help  = "pokes"
 	response_disarm = "prods"
 	response_harm   = "stomps on"

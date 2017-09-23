@@ -1,14 +1,16 @@
-
 #define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
+var/global/list/wing_icon_cache = list()
 
 /mob/living/carbon/human/proc/get_ears_overlay()
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
-			ears_s.Blend(rgb(src.red_ear, src.g_ear, src.b_ear), ear_style.color_blend_mode)
+			ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), ear_style.color_blend_mode)
 		if(ear_style.extra_overlay)
 			var/icon/overlay = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.extra_overlay)
+			overlay.Blend(rgb(src.r_ears2, src.g_ears2, src.b_ears2), ear_style.color_blend_mode)
 			ears_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
 		return ears_s
 	return null
 

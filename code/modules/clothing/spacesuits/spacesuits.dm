@@ -62,10 +62,6 @@
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
-/obj/item/clothing/suit/space/New()
-	..()
-	desc += " \"[using_map.station_short]\" is written in large block letters on the back."
-
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support(M)
 	..()

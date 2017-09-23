@@ -155,6 +155,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
+	vr_new() // Vorestation Edit: For modules in robot_modules_vr.dm
 
 /obj/item/weapon/robot_module/robot/standard
 	name = "standard robot module"
@@ -671,7 +672,6 @@ var/global/list/robot_modules = list(
 					"Treadhead" = "Miner",
 					"Drone" = "drone-miner"
 				)
-	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 
 /obj/item/weapon/robot_module/robot/miner/New()
 	..()
@@ -720,6 +720,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot/jumper(src)
+	src.modules += new /obj/item/weapon/melee/baton/slime/robot(src)
+	src.modules += new /obj/item/weapon/gun/energy/taser/xeno/robot(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)

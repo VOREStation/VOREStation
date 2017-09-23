@@ -8,6 +8,8 @@ var/global/list/description_icons = list(
 	"radiation_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="radiation_protection"),
 	"biohazard_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="biohazard_protection"),
 
+	"offhand" = image(icon='icons/mob/screen1_stats.dmi',icon_state="offhand"),
+
 	"welder" = image(icon='icons/obj/tools.dmi',icon_state="welder"),
 	"wirecutters" = image(icon='icons/obj/tools.dmi',icon_state="cutters"),
 	"screwdriver" = image(icon='icons/obj/tools.dmi',icon_state="screwdriver"),
@@ -19,6 +21,12 @@ var/global/list/description_icons = list(
 	"plasteel sheet" = image(icon='icons/obj/items.dmi',icon_state="sheet-plasteel"),
 
 	"air tank" = image(icon='icons/obj/tank.dmi',icon_state="oxygen"),
+	"connector" = image(icon='icons/obj/pipes.dmi',icon_state="connector"),
 
-	"connector" = image(icon='icons/obj/pipes.dmi',icon_state="connector")
+	"stunbaton" = image(icon='icons/obj/weapons.dmi',icon_state="stunbaton_active"),
+	"slimebaton" = image(icon='icons/obj/weapons.dmi',icon_state="slimebaton_active"),
+
+	"power cell" = image(icon='icons/obj/power.dmi',icon_state="hcell"),
+	"device cell" = image(icon='icons/obj/power.dmi',icon_state="dcell"),
+	"weapon cell" = image(icon='icons/obj/power.dmi',icon_state="wcell"),
 	)

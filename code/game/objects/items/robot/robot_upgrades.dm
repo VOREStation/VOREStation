@@ -12,7 +12,7 @@
 
 /obj/item/borg/upgrade/proc/action(var/mob/living/silicon/robot/R)
 	if(R.stat == DEAD)
-		usr << "<span class='warning'>The [src] will not function on a deceased robot.</span>"
+		to_chat(usr, "<span class='warning'>The [src] will not function on a deceased robot.</span>")
 		return 1
 	return 0
 
@@ -68,7 +68,7 @@
 
 /obj/item/borg/upgrade/restart/action(var/mob/living/silicon/robot/R)
 	if(R.health < 0)
-		usr << "You have to repair the robot before using this module!"
+		to_chat(usr, "You have to repair the robot before using this module!")
 		return 0
 
 	if(!R.key)
@@ -112,8 +112,8 @@
 	if(..()) return 0
 
 	if(!R.module || !(type in R.module.supported_upgrades))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 
 	var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = locate() in R.module
@@ -122,12 +122,12 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		usr << "This robot has had its taser removed!"
+		to_chat(usr, "<span class='warning'>This robot has had its taser removed!</span>")
 		return 0
 
 	if(T.recharge_time <= 2)
-		R << "Maximum cooling achieved for this hardpoint!"
-		usr << "There's no room for another cooling unit!"
+		to_chat(R, "Maximum cooling achieved for this hardpoint!")
+		to_chat(usr, "There's no room for another cooling unit!")
 		return 0
 
 	else
@@ -137,7 +137,7 @@
 
 /obj/item/borg/upgrade/jetpack
 	name = "mining robot jetpack"
-	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
+	desc = "A carbon dioxide jetpack suitable for low-gravity operations."
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
 	require_module = 1
@@ -145,17 +145,20 @@
 /obj/item/borg/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	if(!R.module || !(type in R.module.supported_upgrades))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
-		return 0
-	else
+	var/obj/item/weapon/tank/jetpack/carbondioxide/T = locate() in R.module
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
 		R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide
 		for(var/obj/item/weapon/tank/jetpack/carbondioxide in R.module.modules)
 			R.internals = src
-		//R.icon_state="Miner+j"
 		return 1
-
+	if(T)
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
 
 /obj/item/borg/upgrade/syndicate/
 	name = "scrambled equipment module"

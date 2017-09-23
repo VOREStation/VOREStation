@@ -13,6 +13,9 @@
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
 
+	var/speech_bubble_appearance = "normal"              // Part of icon_state to use for speech bubbles when talking.  See talk.dmi for available icons.
+	var/fire_icon_state = "humanoid"                     // The icon_state used inside OnFire.dmi for when on fire.
+
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'
 	var/damage_mask = 'icons/mob/human_races/masks/dam_mask_human.dmi'
@@ -259,9 +262,16 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
-
-	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+	if(H.zone_sel.selecting == "head") //VOREStation Edit - Headpats and Handshakes.
+		H.visible_message( \
+			"<span class='notice'>[H] pats [target] on the head.</span>", \
+			"<span class='notice'>You pat [target] on the head.</span>", )
+	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
+		H.visible_message( \
+			"<span class='notice'>[H] shakes [target]'s hand.</span>", \
+			"<span class='notice'>You shake [target]'s hand.</span>", )
+	else H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
+					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>") //End VOREStation Edit
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)

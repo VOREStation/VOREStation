@@ -207,6 +207,12 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 	src << radio_text
 
+	// Vorestation Edit: Meta Info for AI's. Mostly used for Holograms
+	if (client)
+		var/meta_info = client.prefs.metadata
+		if (meta_info)
+			ooc_notes = meta_info
+
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
 		src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
@@ -418,10 +424,12 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	..()
 
 /mob/living/silicon/ai/Topic(href, href_list)
+	if(..()) //VOREstation edit: So the AI can actually can actually get its OOC prefs read
+		return
 	if(usr != src)
 		return
-	if(..())
-		return
+	/*if(..()) // <------ MOVED FROM HERE 
+		return*/
 	if (href_list["mach_close"])
 		if (href_list["mach_close"] == "aialerts")
 			viewalerts = 0

@@ -20,6 +20,7 @@
 	dusted_anim = "dust-m"
 	death_message = "lets out a faint chimper as it collapses and stops moving..."
 	tail = "chimptail"
+	fire_icon_state = "monkey"
 
 	unarmed_types = list(/datum/unarmed_attack/bite, /datum/unarmed_attack/claws)
 	inherent_verbs = list(/mob/living/proc/ventcrawl)

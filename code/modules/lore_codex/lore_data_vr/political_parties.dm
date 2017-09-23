@@ -5,18 +5,15 @@
 	the Sol Economic Organization, and several smaller ones which tend to align themselves among one of the major parties.  In the Virgo-Erigone system, the \
 	Icarus Front's influence is much less than somewhere closer to Sol, and the other two parties being more popular."
 	children = list(
-		/datum/lore/codex/page/icarus_front,
-		/datum/lore/codex/page/shadow_coalition,
-		/datum/lore/codex/page/sol_economic_organization,
-		/datum/lore/codex/page/mercurials,
-		/datum/lore/codex/page/positronic_rights_group,
-		/datum/lore/codex/page/church_of_unitarian_god,
-		/datum/lore/codex/page/friends_of_ned,
-		/datum/lore/codex/page/multinational_movement,
-		/datum/lore/codex/page/free_trade_union,
+		/datum/lore/codex/page/blank
 		)
 
+/datum/lore/codex/page/blank/add_content()
+	name = "Blank Page"
+	keywords += list("Blank")
+	data = "<i>For some weird reason, this page is blank. This looks like a publishing error.</i>"
 
+/*
 /datum/lore/codex/page/icarus_front/add_content()
 	name = "Icarus Front"
 	keywords += list("Icarus", "IF")
@@ -32,6 +29,7 @@
 	party to the Icarus majority. The Shadow Coalition calls for the lifting of certain Icarus-restricted technologies, especially medical \
 	technologies with the ability to drastically improve quality of life. While fractious and prone to infighting, the Shadow Coalition and affiliated \
 	parties remain the most popular political groups in the large towns and small cities of humanity, including [quick_link("Virgo-Erigone")]."
+
 
 /datum/lore/codex/page/sol_economic_organization/add_content()
 	name = "Sol Economic Organization"
@@ -97,3 +95,4 @@
 	the place of technological development as the primary issue of debate, the FTU has found itself adopting technological positions similar to the SEO as a matter \
 	of pragmatism, although the views of individual members vary. The FTU is known for their intense lobbying of SolGov to add tax rebates to the purchases of \
 	personal lathes and the creation of open-source firmware for experimental autolathes, but have thus far found little success."
+*/ // No

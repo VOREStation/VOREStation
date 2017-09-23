@@ -5,6 +5,17 @@
 	robot_modules["Janihound"] = /obj/item/weapon/robot_module/scrubpup
 	return 1
 
+//Just add a new proc with the robot_module type if you wish to run some other vore code
+/obj/item/weapon/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
+	return
+
+/obj/item/weapon/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
+	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
+	. = ..() //Any Global vore modules will come from here
+
+/obj/item/weapon/robot_module/robot/medical/crisis/vr_new() //Crisis Bot
+	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
+	. = ..() //Any Global vore modules will come from here
 
 /obj/item/weapon/robot_module/knine
 	name = "k9 robot module"
@@ -58,6 +69,7 @@
 	name = "MediHound module"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
+	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	can_be_pushed = 0
 	sprites = list(
 					"Medical Hound" = "medihound",
@@ -75,6 +87,7 @@
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)//So medi-hounds aren't nearly useless
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
+	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "medihound"

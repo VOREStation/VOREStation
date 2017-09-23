@@ -84,23 +84,20 @@
 	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bluecarpet"
 
-// VOREStation Edit
-// TODO - Add descriptions to these
 /obj/item/stack/tile/carpet/bcarpet
-	icon_state = "tile-bcarpet"
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/blucarpet
-	icon_state = "tile-blucarpet"
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/turcarpet
-	icon_state = "tile-turcarpet"
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/sblucarpet
-	icon_state = "tile-sblucarpet"
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/gaycarpet
-	icon_state = "tile-gaycarpet"
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/purcarpet
-	icon_state = "tile-purcarpet"
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/oracarpet
-	icon_state = "tile-oracarpet"
-// VOREStation Edit End
+	icon_state = "tile-carpet"
 
 /obj/item/stack/tile/floor
 	name = "floor tile"

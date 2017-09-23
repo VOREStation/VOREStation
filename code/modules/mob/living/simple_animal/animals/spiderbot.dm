@@ -5,6 +5,7 @@
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
+	intelligence_level = SA_HUMANOID // Because its piloted by players.
 
 	health = 10
 	maxHealth = 10
@@ -149,6 +150,7 @@
 		src.mind.key = M.brainmob.key
 		src.ckey = M.brainmob.ckey
 		src.name = "spider-bot ([M.brainmob.name])"
+		src.languages = M.brainmob.languages
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	src.visible_message("<span class='danger'>\The [src] makes an odd warbling noise, fizzles, and explodes!</span>")

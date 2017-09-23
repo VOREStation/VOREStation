@@ -1,5 +1,6 @@
 /datum/robolimb
 	var/includes_tail			//Cyberlimbs dmi includes a tail sprite to wear.
+	var/includes_wing			//Cyberlimbs dmi includes a wing sprite to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
 
 //////////////// For-specific-character fluff ones /////////////////
@@ -54,12 +55,26 @@
 /obj/item/weapon/disk/limb/talon
 	company = "Talon LLC"
 
-/datum/robolimb/zenghu_taj
-    company = "Zeng-Hu - Tajaran"
-    desc = "This limb has a rubbery fleshtone covering with visible seams."
-    icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
-    unavailable_to_build = 1
-    parts = list(BP_HEAD)
+/datum/robolimb/zenghu_taj //This wasn't indented. At all. It's a miracle this didn't break literally everything.
+	company = "Zeng-Hu - Tajaran"
+	desc = "This limb has a rubbery fleshtone covering with visible seams."
+	icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+
+/datum/robolimb/eggnerdltdred
+	company = "Eggnerd Prototyping Ltd. (Red)"
+	desc = "A slightly more refined limb variant from Eggnerd Prototyping. Its got red plating instead of orange."
+	icon = 'icons/mob/human_races/cyberlimbs/rahboopred/rahboopred.dmi'
+	blood_color = "#5e280d"
+	includes_tail = 1
+	unavailable_to_build = 1
+
+/obj/item/weapon/disk/limb/eggnerdltdred
+	company = "Eggnerd Prototyping Ltd. (Red)"
+	icon = 'icons/obj/items_vr.dmi'
+	icon_state = "verkdisk"
+
 
 //Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
 
@@ -140,3 +155,16 @@
 
 /obj/item/weapon/disk/limb/dsi_akula
 	company = "DSI - Akula"
+
+/datum/robolimb/dsi_spider
+	company = "DSI - Vasilissan"
+	desc = "This limb feels hard and chitinous, realistic design. Seems a little mischievous. By Darkside Incorperated."
+	icon = 'icons/mob/human_races/cyberlimbs/DSISpider/dsi_spider.dmi'
+	blood_color = "#ffe2ff"
+	lifelike = 1
+	unavailable_to_build = 1
+	includes_tail = 1
+	suggested_species = "Vasilissan"
+
+/obj/item/weapon/disk/limb/dsi_spider
+	company = "DSI - Vasilissan"

@@ -65,19 +65,11 @@
 	req_access = list(access_research)
 
 /obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/xenoproduct/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/extract/New()
-	..()
-	var/datum/stored_item/I = new(src, /obj/item/xenoproduct/slime/core)
-	item_records.Add(I)
-	for(var/i=1 to 5)
-		var/obj/item/xenoproduct/slime/core/C = new(src)
-		C.traits = new()
-		C.nameVar = "grey"
-		I.add_product(C)
+	if(istype(O, /obj/item/slime_extract))
+		return TRUE
+	if(istype(O, /obj/item/slimepotion))
+		return TRUE
+	return FALSE
 
 
 /obj/machinery/smartfridge/secure/medbay
@@ -251,6 +243,16 @@
 			user.visible_message("<span class='notice'>[user] loads \the [src] with \the [P].</span>", "<span class='notice'>You load \the [src] with \the [P].</span>")
 			if(P.contents.len > 0)
 				user << "<span class='notice'>Some items are refused.</span>"
+
+	else if(istype(O, /obj/item/weapon/gripper)) // Grippers. ~Mechoid.
+		var/obj/item/weapon/gripper/B = O	//B, for Borg.
+		if(!B.wrapped)
+			user << "\The [B] is not holding anything."
+			return
+		else
+			var/B_held = B.wrapped
+			user << "You use \the [B] to put \the [B_held] into \the [src]."
+		return
 
 	else
 		user << "<span class='notice'>\The [src] smartly refuses [O].</span>"

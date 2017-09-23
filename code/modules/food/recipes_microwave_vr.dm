@@ -114,3 +114,25 @@
 		/obj/item/weapon/reagent_containers/food/snacks/egg/roiz
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
+
+/datum/recipe/pillbugball
+	reagents = list("carbon" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bugball
+
+/datum/recipe/mammi
+	fruit = list("orange" = 1)
+	reagents = list("water" = 10, "flour" = 10, "milk" = 5, "sodiumchloride" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/mammi
+
+/datum/recipe/makaroni
+	reagents = list("flour" = 15, "milk" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat,
+		/obj/item/weapon/reagent_containers/food/snacks/egg,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni

@@ -10,7 +10,7 @@
 
 /datum/gear/accessory/emt
 	display_name = "armband, EMT"
-	path = /obj/item/clothing/accessory/armband/medgreen
+	path = /obj/item/clothing/accessory/armband/medblue
 
 /datum/gear/accessory/engineering
 	display_name = "armband, engineering"

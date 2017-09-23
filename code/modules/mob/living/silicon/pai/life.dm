@@ -9,6 +9,7 @@
 			for (var/mob/M in viewers(T))
 				M.show_message("<font color='red'>The data cable rapidly retracts back into its spool.</font>", 3, "<font color='red'>You hear a click and the sound of wire spooling rapidly.</font>", 2)
 			qdel(src.cable)
+			src.cable = null
 
 	handle_regular_hud_updates()
 

@@ -45,7 +45,7 @@
 	icon_state = "detective"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
@@ -68,12 +68,12 @@
 
 // Blade Runner pistol.
 /obj/item/weapon/gun/projectile/revolver/deckard
-	name = "Deckard .38"
-	desc = "A custom-built revolver, based off the semi-popular Detective Special model."
+	name = "\improper Deckard .38"
+	desc = "A custom-built revolver, based off the semi-popular Detective Special model. Uses .38-Special rounds."
 	icon_state = "deckard-empty"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/deckard/emp
@@ -105,7 +105,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/judge
 	name = "\"The Judge\""
-	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12 shotgun rounds."
+	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
 	icon_state = "judge"
 	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
@@ -118,13 +118,13 @@
 
 /obj/item/weapon/gun/projectile/revolver/lemat
 	name = "LeMat Revolver"
-	desc = "The LeMat Revolver is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead."
+	desc = "The LeMat Revolver is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. Uses .38-Special and 12g rounds depending on the barrel."
 	icon_state = "lemat"
 	item_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	var/secondary_max_shells = 1

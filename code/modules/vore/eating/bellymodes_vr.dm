@@ -24,6 +24,7 @@
 //////////////////////////// DM_DIGEST ////////////////////////////
 	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
 		var/list/touchable_items = internal_contents - items_preserved
+		var/mob/living/silicon/robot/s_owner = null
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			var/churnsound = pick(digestion_sounds)
@@ -54,6 +55,9 @@
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
 				owner.nutrition += 20 // so eating dead mobs gives you *something*.
+				if(isrobot(owner))
+					s_owner = owner
+					s_owner.cell.charge += 750
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -73,10 +77,14 @@
 
 				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier
+				if(isrobot(owner))
+					s_owner = owner
+					s_owner.cell.charge += 100
 				if(offset) // If any different than default weight, multiply the % of offset.
 					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
 					owner.nutrition += (10/difference)
+			M.updateVRPanel()
 
 		if(digest_mode == DM_ITEMWEAK)
 			var/obj/item/T = pick(touchable_items)
@@ -114,6 +122,9 @@
 						if(istype(owner,/mob/living/carbon/human))
 							var/mob/living/carbon/human/howner = owner
 							F.reagents.trans_to_holder(howner.reagents, (F.reagents.total_volume * 0.3), 1, 0)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
 					else
@@ -135,7 +146,10 @@
 							PDA.id.forceMove(owner)
 							internal_contents += PDA.id
 							PDA.id = null
-						owner.nutrition += (1 * PDA.w_class)
+						owner.nutrition += (2)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 100
 						internal_contents -= PDA
 						qdel(PDA)
 					for(var/obj/item/SubItem in T)
@@ -161,20 +175,28 @@
 						if(istype(owner,/mob/living/carbon/human))
 							var/mob/living/carbon/human/howner = owner
 							F.reagents.trans_to_holder(howner.ingested, (F.reagents.total_volume * 0.3), 1, 0)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
 					else
 						owner.nutrition += (1 * T.w_class)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += (50 * T.w_class)
 						internal_contents -= T
 						qdel(T)
 				else
 					return
 
+		owner.updateVRPanel()
 		return
 
 //////////////////////////// DM_STRIPDIGEST ////////////////////////////
 	if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
 		var/list/touchable_items = internal_contents - items_preserved
+		var/mob/living/silicon/robot/s_owner = null
 
 		if(prob(50))
 			var/churnsound = pick(digestion_sounds)
@@ -193,7 +215,10 @@
 						PDA.id.forceMove(owner)
 						internal_contents += PDA.id
 						PDA.id = null
-					owner.nutrition += (1 * PDA.w_class)
+					owner.nutrition += (2)
+					if(isrobot(owner))
+						s_owner = owner
+						s_owner.cell.charge += (100)
 					internal_contents -= PDA
 					qdel(PDA)
 
@@ -220,12 +245,20 @@
 					if(istype(owner,/mob/living/carbon/human))
 						var/mob/living/carbon/human/howner = owner
 						F.reagents.trans_to_holder(howner.ingested, (F.reagents.total_volume * 0.3), 1, 0)
+					if(isrobot(owner))
+						s_owner = owner
+						s_owner.cell.charge += (150)
 					internal_contents -= F
 					qdel(F)
 				else
 					owner.nutrition += (1 * T.w_class)
+					if(isrobot(owner))
+						s_owner = owner
+						s_owner.cell.charge += (50 * T.w_class)
 					internal_contents -= T
 					qdel(T)
+				for(var/mob/living/carbon/human/M in internal_contents)
+					M.updateVRPanel()
 
 		for(var/mob/living/carbon/human/M in internal_contents)
 			if(!M)
@@ -260,7 +293,7 @@
 				for(var/stashslot in stash)
 					var/obj/item/SL = M.get_equipped_item(stashslot)
 					if(SL)
-						SL.forceMove(owner)
+						M.remove_from_mob(SL,owner)
 						internal_contents += SL
 				M.remove_from_mob(I,owner)
 				internal_contents += I
@@ -269,7 +302,9 @@
 				if(!(istype(I,/obj/item/organ) || istype(I,/obj/item/weapon/storage/internal) || istype(I,/obj/screen)))
 					M.remove_from_mob(I,owner)
 					internal_contents += I
+			M.updateVRPanel()
 
+		owner.updateVRPanel()
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////
@@ -325,6 +360,60 @@
 				return
 		return
 
+//////////////////////////// DM_SHRINK ////////////////////////////
+	if(digest_mode == DM_SHRINK)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10)) //Infinite gurgles!
+				var/shrinksound = pick(digestion_sounds)
+				M << sound(shrinksound,volume=80)
+				owner << sound(shrinksound,volume=80)
+
+			if(M.size_multiplier > shrink_grow_size) //Shrink until smol.
+				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick.
+				if(M.nutrition >= 100) //Absorbing bodymass results in nutrition if possible.
+					var/oldnutrition = (M.nutrition * 0.05)
+					M.nutrition = (M.nutrition * 0.95)
+					owner.nutrition += oldnutrition
+				return
+		return
+
+//////////////////////////// DM_GROW ////////////////////////////
+	if(digest_mode == DM_GROW)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10))
+				var/growsound = pick(digestion_sounds)
+				M << sound(growsound,volume=80)
+				owner << sound(growsound,volume=80)
+
+			if(M.size_multiplier < shrink_grow_size) //Grow until large.
+				M.resize(M.size_multiplier+0.01) //Grow by 1% per tick.
+				if(M.nutrition >= 100)
+					owner.nutrition = (owner.nutrition * 0.95)
+		return
+
+//////////////////////////// DM_SIZE_STEAL ////////////////////////////
+	if(digest_mode == DM_SIZE_STEAL)
+
+		for (var/mob/living/M in internal_contents)
+
+			if(prob(10))
+				var/growsound = pick(digestion_sounds)
+				M << sound(growsound,volume=80)
+				owner << sound(growsound,volume=80)
+
+			if(M.size_multiplier > shrink_grow_size && owner.size_multiplier < 2) //Grow until either pred is large or prey is small.
+				owner.resize(M.size_multiplier+0.01) //Grow by 1% per tick.
+				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick
+				if(M.nutrition >= 100)
+					var/oldnutrition = (M.nutrition * 0.05)
+					M.nutrition = (M.nutrition * 0.95)
+					owner.nutrition += oldnutrition
+		return
+
 ///////////////////////////// DM_HEAL /////////////////////////////
 	if(digest_mode == DM_HEAL)
 		if(prob(50)) //Wet heals!
@@ -340,535 +429,270 @@
 					owner.nutrition -= 2
 					if(M.nutrition <= 400)
 						M.nutrition += 1
+				else if(owner.nutrition > 90 && (M.nutrition <= 400))
+					owner.nutrition -= 1
+					M.nutrition += 1
 		return
 
 ///////////////////////////// DM_TRANSFORM_HAIR_AND_EYES /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_HAIR_AND_EYES && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = 1 //This used to be RNG, resulting people waiting ages. This way does it instantly.
-			if(TFchance == 1)
-				if(P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_facial
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_facial
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_facial
-					P.r_skin = O.r_skin
-					P.g_skin = O.g_skin
-					P.b_skin = O.b_skin
-					P.h_style = O.h_style
-					P << "<span class='notice'>Your body tingles all over...</span>"
-					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
-					P.update_hair()
-					P.update_body()
-					P.updateicon()
-
 			if(O.nutrition > 400 && P.nutrition < 400)
 				O.nutrition -= 2
 				P.nutrition += 1.5
+
+			if(check_eyes(P) || check_hair(P))
+				change_eyes(P)
+				change_hair(P,1)
+
 		return
 ///////////////////////////// DM_TRANSFORM_MALE /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_MALE && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = 1
-			if(TFchance == 1)
-
-				var/TFmodify = rand(1,3)
-				if(TFmodify == 1 && P.r_eyes != O.r_eyes || P.g_eyes != O.g_eyes || P.b_eyes != O.b_eyes)
-					P.r_eyes = O.r_eyes
-					P.g_eyes = O.g_eyes
-					P.b_eyes = O.b_eyes
-					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
-					owner << "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>"
-					P.update_eyes()
-
-				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_facial
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_facial
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_facial
-					P.r_skin = O.r_skin
-					P.g_skin = O.g_skin
-					P.b_skin = O.b_skin
-					P.h_style = O.h_style
-					P << "<span class='notice'>Your body tingles all over...</span>"
-					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
-					P.update_hair()
-					P.update_body()
-					P.updateicon()
-
-				if(TFmodify == 3 && P.gender != MALE && P.identifying_gender != MALE)
-					P.gender = MALE
-					P.identifying_gender = MALE
-					P << "<span class='notice'>Your body feels very strange...</span>"
-					owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
-					P.update_body()
-					P.updateicon()
-
 			if(O.nutrition > 400 && P.nutrition < 400)
 				O.nutrition -= 2
 				P.nutrition += 1.5
+
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
+
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
+
+			if(check_gender(P,MALE))
+				change_gender(P,MALE,1)
+
 		return
 
 
 ///////////////////////////// DM_TRANSFORM_FEMALE /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_FEMALE && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = 1
-			if(TFchance == 1)
-				var/TFmodify = rand(1,3)
-				if(TFmodify == 1 && P.r_eyes != O.r_eyes || P.g_eyes != O.g_eyes || P.b_eyes != O.b_eyes)
-					P.r_eyes = O.r_eyes
-					P.g_eyes = O.g_eyes
-					P.b_eyes = O.b_eyes
-					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
-					owner << "<span class='notice'>You feel warm as your make subtle changes to your captive's body.</span>"
-					P.update_eyes()
-
-				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin)
-					P.r_hair = O.r_hair
-					P.g_hair = O.g_hair
-					P.b_hair = O.b_hair
-					P.r_skin = O.r_skin
-					P.g_skin = O.g_skin
-					P.b_skin = O.b_skin
-					P.h_style = O.h_style
-					P << "<span class='notice'>Your body tingles all over...</span>"
-					owner << "<span class='notice'>You tingle as your make noticeable changes to your captive's body.</span>"
-					P.update_hair()
-					P.update_body()
-					P.updateicon()
-
-				if(TFmodify == 3 && P.gender != FEMALE && P.identifying_gender != FEMALE)
-					P.f_style = "Shaved"
-					P.gender = FEMALE
-					P.identifying_gender = FEMALE
-					P << "<span class='notice'>Your body feels very strange...</span>"
-					owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
-					P.update_body()
-					P.updateicon()
-
 			if(O.nutrition > 400 && P.nutrition < 400)
 				O.nutrition -= 2
 				P.nutrition += 1.5
+
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
+
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
+
+			if(check_gender(P,FEMALE))
+				change_gender(P,FEMALE,1)
+
 		return
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER  /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_KEEP_GENDER && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = 1
-			if(TFchance == 1)
-
-				var/TFmodify = rand(1,2)
-				if(TFmodify == 1 && P.r_eyes != O.r_eyes || P.g_eyes != O.g_eyes || P.b_eyes != O.b_eyes)
-					P.r_eyes = O.r_eyes
-					P.g_eyes = O.g_eyes
-					P.b_eyes = O.b_eyes
-					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
-					owner << "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>"
-					P.update_eyes()
-
-				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_facial
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_facial
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_facial
-					P.r_skin = O.r_skin
-					P.g_skin = O.g_skin
-					P.b_skin = O.b_skin
-					P.h_style = O.h_style
-					P << "<span class='notice'>Your body tingles all over...</span>"
-					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
-					P.update_hair()
-					P.update_body()
-					P.updateicon()
-
 			if(O.nutrition > 400 && P.nutrition < 400)
 				O.nutrition -= 2
 				P.nutrition += 1.5
+
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
+
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+
 		return
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR  /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = 1 //This used to be RNG, resulting people waiting ages. This way does it instantly.
-			if(TFchance == 1)
-				if(P.species != O.species || P.tail_style != O.tail_style || P.custom_species != O.custom_species || P.ear_style != O.ear_style)
-					P.tail_style = O.tail_style
-					P.ear_style = O.ear_style
-					P.species = O.species
-					P.custom_species = O.custom_species
-					P.species.create_organs(P) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
-					for(var/obj/item/organ/I in P.organs) //This prevents organ rejection
-						I.species = O.species
-					for(var/obj/item/organ/I in P.internal_organs) //This prevents organ rejection
-						I.species = O.species
-					for(var/obj/item/organ/external/Z in P.organs)//Just in case.
-						Z.sync_colour_to_human(P)
-					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
-					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
-					P.fixblood()
-					P.update_body()
-					P.update_tail_showing()
-					P.updateicon()
-
 			if(O.nutrition > 400 && P.nutrition < 400)
 				O.nutrition -= 2
 				P.nutrition += 1.5
+
+			if(check_ears(P) || check_tail_nocolor(P) || check_wing_nocolor(P) || check_species(P))
+				change_ears(P)
+				change_tail_nocolor(P)
+				change_wing_nocolor(P)
+				change_species(P,1)
+
 		return
 
 ///////////////////////////// DM_TRANSFORM_REPLICA /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_REPLICA && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
 
 			var/mob/living/carbon/human/O = owner
 
-			var/TFchance = 1 //This used to be RNG, resulting people waiting ages. This way does it instantly.
-			if(TFchance == 1)
-				var/TFmodify = rand(1,3)
-				if(TFmodify == 1 && P.r_eyes != O.r_eyes || P.g_eyes != O.g_eyes || P.b_eyes != O.b_eyes)
-					P.r_eyes = O.r_eyes
-					P.g_eyes = O.g_eyes
-					P.b_eyes = O.b_eyes
-					P << "<span class='notice'>You feel lightheaded and drowsy...</span>"
-					owner << "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>"
-					P.update_eyes()
-
-				if(TFmodify == 2 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial)
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_facial
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_facial
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_facial
-					P.r_skin = O.r_skin
-					P.g_skin = O.g_skin
-					P.b_skin = O.b_skin
-					P.h_style = O.h_style
-					P << "<span class='notice'>Your body tingles all over...</span>"
-					owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
-					P.update_hair()
-					P.update_body()
-					P.updateicon()
-
-				if(TFmodify == 3 && P.r_hair != O.r_hair || P.g_hair != O.g_hair || P.species != O.species || P.b_hair != O.b_hair || P.r_skin != O.r_skin || P.g_skin != O.g_skin || P.b_skin != O.b_skin || P.tail_style != O.tail_style || P.r_tail != O.r_tail || P.g_tail != O.g_tail || P.b_tail != O.b_tail || P.ear_style != O.ear_style || P.r_facial != O.r_facial || P.g_facial != O.g_facial || P.b_facial != O.b_facial || P.custom_species != O.custom_species)
-					P.r_hair = O.r_hair
-					P.r_facial = O.r_facial
-					P.g_hair = O.g_hair
-					P.g_facial = O.g_facial
-					P.b_hair = O.b_hair
-					P.b_facial = O.b_facial
-					P.r_skin = O.r_skin
-					P.g_skin = O.g_skin
-					P.b_skin = O.b_skin
-					P.tail_style = O.tail_style
-					P.r_tail = O.r_tail
-					P.g_tail = O.g_tail
-					P.b_tail = O.b_tail
-					P.ear_style = O.ear_style
-					P.species = O.species
-					P.custom_species = O.custom_species
-					P.species.create_organs(P)
-					for(var/obj/item/organ/I in P.organs)
-						I.species = O.species
-					for(var/obj/item/organ/I in P.internal_organs)
-						I.species = O.species
-					for(var/obj/item/organ/external/Z in P.organs)
-						Z.sync_colour_to_human(P)
- 					P << "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>"
-					owner << "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>"
-					P.fixblood()
-					P.update_hair()
-					P.update_body()
-					P.update_tail_showing()
-					P.updateicon()
-
 			if(O.nutrition > 400 && P.nutrition < 400)
 				O.nutrition -= 2
 				P.nutrition += 1.5
+
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
+
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
+
+			if(check_ears(P) || check_tail(P) || check_wing(P) || check_species(P))
+				change_ears(P)
+				change_tail(P)
+				change_wing(P)
+				change_species(P,1)
+
 		return
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
-			if(P.absorbed) //If they're absorbed, don't egg them
-				return
 
-			var/mob/living/carbon/human/O = owner
+			if(check_ears(P) || check_tail_nocolor(P) || check_wing_nocolor(P)|| check_species(P))
+				change_ears(P)
+				change_tail_nocolor(P)
+				change_wing_nocolor(P)
+				change_species(P,1)
+				continue
 
-			P.tail_style = O.tail_style
-			P.ear_style = O.ear_style
-			P.species = O.species
-			P.custom_species = O.custom_species
-			P.species.create_organs(P)
-			for(var/obj/item/organ/I in P.organs)
-				I.species = O.species
-			for(var/obj/item/organ/I in P.internal_organs)
-				I.species = O.species
-			for(var/obj/item/organ/external/Z in P.organs)
-				Z.sync_colour_to_human(P)
-			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as are you as you're encased in an egg. </span>"
-			owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
-			P.fixblood()
-			P.update_hair()
-			P.update_body()
-			P.update_tail_showing()
-			P.update_eyes()
-			P.updateicon()
-			var/egg_path = /obj/structure/closet/secure_closet/egg //Full credit to Aronai for this version of the egg code.
-			var/egg_name = "Odd egg"
+			if(!P.absorbed)
+				put_in_egg(P,1)
 
-			if(O.egg_type in tf_egg_types)
-				egg_path = tf_egg_types[O.egg_type]
-				egg_name = "[O.egg_type] egg"
-
-			var/obj/structure/closet/secure_closet/egg/egg = new egg_path(get_turf(O))
-			P.forceMove(egg)
-			egg.name = egg_name
-			internal_contents -= P
 		return
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER_EGG  /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_KEEP_GENDER_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
-			if(P.absorbed) //If they're absorbed, don't egg them
-				return
 
-			var/mob/living/carbon/human/O = owner
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
 
-			P.r_hair 			= O.r_hair
-			P.r_facial 			= O.r_facial
-			P.g_hair 			= O.g_hair
-			P.g_facial 			= O.g_facial
-			P.b_hair 			= O.b_hair
-			P.b_facial 			= O.b_facial
-			P.r_skin 			= O.r_skin
-			P.g_skin 			= O.g_skin
-			P.b_skin 			= O.b_skin
-			P.h_style 			= O.h_style
-			P.r_eyes 			= O.r_eyes
-			P.g_eyes 			= O.g_eyes
-			P.b_eyes 			= O.b_eyes
-			P << "<span class='notice'>Your body tingles all over...</span>"
-			owner << "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>"
-			P.update_hair()
-			P.update_body()
-			P.update_eyes()
-			P.updateicon()
-			var/egg_path = /obj/structure/closet/secure_closet/egg
-			var/egg_name = "Odd egg"
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
 
-			if(O.egg_type in tf_egg_types)
-				egg_path = tf_egg_types[O.egg_type]
-				egg_name = "[O.egg_type] egg"
+			if(!P.absorbed)
+				put_in_egg(P,1)
 
-			var/obj/structure/closet/secure_closet/egg/egg = new egg_path(get_turf(O))
-			P.forceMove(egg)
-			egg.name = egg_name
-			internal_contents -= P
 		return
 
 ///////////////////////////// DM_TRANSFORM_REPLICA_EGG /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_REPLICA_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
-			if(P.absorbed) //If they're absorbed, don't egg them
-				return
 
-			var/mob/living/carbon/human/O = owner
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
 
-			P.r_hair 			= O.r_hair
-			P.r_facial 			= O.r_facial
-			P.g_hair 			= O.g_hair
-			P.g_facial 			= O.g_facial
-			P.b_hair 			= O.b_hair
-			P.b_facial 			= O.b_facial
-			P.r_skin 			= O.r_skin
-			P.g_skin 			= O.g_skin
-			P.b_skin 			= O.b_skin
-			P.tail_style 		= O.tail_style
-			P.r_tail 			= O.r_tail
-			P.g_tail 			= O.g_tail
-			P.b_tail 			= O.b_tail
-			P.ear_style 		= O.ear_style
-			P.h_style 			= O.h_style
-			P.species 			= O.species
-			P.custom_species 	= O.custom_species
-			P.r_eyes 			= O.r_eyes
-			P.g_eyes 			= O.g_eyes
-			P.b_eyes 			= O.b_eyes
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
 
-			P.species.create_organs(P)
-			for(var/obj/item/organ/I in P.organs)
-				I.species = O.species
-			for(var/obj/item/organ/I in P.internal_organs)
-				I.species = O.species
-			for(var/obj/item/organ/external/Z in P.organs)
-				Z.sync_colour_to_human(P)
-			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as are you as you're encased in an egg. </span>"
-			owner << "<span class='notice'>You shift as you make dramatic changes to your captive's body as you encase them in an egg.</span>"
-			P.fixblood()
-			P.update_hair()
-			P.update_body()
-			P.update_tail_showing()
-			P.update_eyes()
-			P.updateicon()
-			var/egg_path = /obj/structure/closet/secure_closet/egg
-			var/egg_name = "Odd egg"
+			if(check_ears(P) || check_tail(P) || check_wing(P) || check_species(P))
+				change_ears(P)
+				change_tail(P)
+				change_wing(P)
+				change_species(P,1)
+				continue
 
-			if(O.egg_type in tf_egg_types)
-				egg_path = tf_egg_types[O.egg_type]
-				egg_name = "[O.egg_type] egg"
+			if(!P.absorbed)
+				put_in_egg(P,1)
 
-			var/obj/structure/closet/secure_closet/egg/egg = new egg_path(get_turf(O))
-			P.forceMove(egg)
-			egg.name = egg_name
-			internal_contents -= P
 		return
 
 ///////////////////////////// DM_TRANSFORM_MALE_EGG /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_MALE_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
-			if(P.absorbed) //If they're absorbed, don't egg them
-				return
 
-			var/mob/living/carbon/human/O = owner
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
 
-			P.r_hair 			= O.r_hair
-			P.r_facial 			= O.r_facial
-			P.g_hair 			= O.g_hair
-			P.g_facial 			= O.g_facial
-			P.b_hair 			= O.b_hair
-			P.b_facial			= O.b_facial
-			P.r_skin 			= O.r_skin
-			P.g_skin 			= O.g_skin
-			P.b_skin 			= O.b_skin
-			P.h_style			= O.h_style
-			P.gender 			= MALE
-			P.identifying_gender= MALE
-			P.r_eyes 			= O.r_eyes
-			P.g_eyes 			= O.g_eyes
-			P.b_eyes 			= O.b_eyes
-			P << "<span class='notice'>Your body feels very strange...</span>"
-			owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
-			P.update_hair()
-			P.update_body()
-			P.updateicon()
-			var/egg_path = /obj/structure/closet/secure_closet/egg
-			var/egg_name = "Odd egg"
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
 
-			if(O.egg_type in tf_egg_types)
-				egg_path = tf_egg_types[O.egg_type]
-				egg_name = "[O.egg_type] egg"
+			if(check_gender(P,MALE))
+				change_gender(P,MALE,1)
+				continue
 
-			var/obj/structure/closet/secure_closet/egg/egg = new egg_path(get_turf(O))
-			P.forceMove(egg)
-			egg.name = egg_name
-			internal_contents -= P
+			if(!P.absorbed)
+				put_in_egg(P,1)
+
 		return
 
 ///////////////////////////// DM_TRANSFORM_FEMALE_EGG /////////////////////////////
 	if(digest_mode == DM_TRANSFORM_FEMALE_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.stat == DEAD)
 				continue
-			if(P.absorbed) //If they're absorbed, don't egg them
-				return
 
-			var/mob/living/carbon/human/O = owner
+			if(check_eyes(P))
+				change_eyes(P,1)
+				continue
 
-			P.r_hair 			= O.r_hair
-			P.r_facial 			= O.r_facial
-			P.g_hair 			= O.g_hair
-			P.g_facial 			= O.g_facial
-			P.b_hair 			= O.b_hair
-			P.b_facial 			= O.b_facial
-			P.r_skin 			= O.r_skin
-			P.g_skin 			= O.g_skin
-			P.b_skin 			= O.b_skin
-			P.h_style 			= O.h_style
-			P.gender 			= FEMALE
-			P.identifying_gender= FEMALE
-			P.r_eyes 			= O.r_eyes
-			P.g_eyes 			= O.g_eyes
-			P.b_eyes 			= O.b_eyes
-			owner << "<span class='notice'>You feel strange as you alter your captive's gender.</span>"
-			P << "<span class='notice'>Your body feels very strange...</span>"
-			P.update_hair()
-			P.update_body()
-			P.updateicon()
-			var/egg_path = /obj/structure/closet/secure_closet/egg
-			var/egg_name = "Odd egg"
+			if(check_hair(P) || check_skin(P))
+				change_hair(P)
+				change_skin(P,1)
+				continue
 
-			if(O.egg_type in tf_egg_types)
-				egg_path = tf_egg_types[O.egg_type]
-				egg_name = "[O.egg_type] egg"
+			if(check_gender(P,MALE))
+				change_gender(P,MALE,1)
+				continue
 
-			var/obj/structure/closet/secure_closet/egg/egg = new egg_path(get_turf(O))
-			P.forceMove(egg)
-			egg.name = egg_name
-			internal_contents -= P
+			if(!P.absorbed)
+				put_in_egg(P,1)
+
 		return
 
 
 ///////////////////////////// DM_EGG /////////////////////////////
 	if(digest_mode == DM_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
-			if(P.stat)
+			if(P.absorbed || P.stat == DEAD)
 				continue
-			if(P.absorbed) //If they're absorbed, don't egg them
-				return
 
-			var/mob/living/carbon/human/O = owner
-			P << "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as you're encased in an egg. </span>"
-			owner << "<span class='notice'>Your body shifts as you encase [P] in an egg.</span>"
-			var/egg_path = /obj/structure/closet/secure_closet/egg
-			var/egg_name = "Odd egg"
-
-			if(O.egg_type in tf_egg_types)
-				egg_path = tf_egg_types[O.egg_type]
-				egg_name = "[O.egg_type] egg"
-
-			var/obj/structure/closet/secure_closet/egg/egg = new egg_path(get_turf(O))
-			P.forceMove(egg)
-			egg.name = egg_name
-			internal_contents -= P
+			put_in_egg(P,1)

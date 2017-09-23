@@ -24,8 +24,8 @@
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 		sleep(800)
-		if(wet >= 2)
-			return
+		if(wet == 2)
+			sleep(3200)
 		wet = 0
 		if(wet_overlay)
 			overlays -= wet_overlay

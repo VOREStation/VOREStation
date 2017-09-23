@@ -32,8 +32,8 @@
 	auto_keywords = list("Gov","Government","Governments")
 	desired_type = /datum/lore/organization/gov
 
-/*
+
 /datum/lore/codex/category/auto_org/mil
 	name = "Militaries"
+	auto_keywords = list("Mil","Military", "Militaries")
 	desired_type = /datum/lore/organization/mil
-*/
