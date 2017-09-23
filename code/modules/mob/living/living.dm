@@ -138,7 +138,7 @@ default behaviour is:
 			..()
 			if (!istype(AM, /atom/movable) || AM.anchored)
 				//VOREStation Edit - object-specific proc for running into things
-				if((confused || is_blind()) && prob(50) && m_intent=="run")
+				if(((confused || is_blind()) && stat == CONSCIOUS)) && prob(50) && m_intent=="run")
 					AM.stumble_into(src)
 				//VOREStation Edit End
 				/* VOREStation Removal - See above
