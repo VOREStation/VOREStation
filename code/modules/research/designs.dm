@@ -639,14 +639,14 @@ other types of metals and chemistry for reagents).
 
 /datum/design/item/weapon/slimebation
 	id = "slimebation"
-	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3, TECH_COMBAT = 3)
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_POWER = 3, TECH_COMBAT = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000)
 	build_path = /obj/item/weapon/melee/baton/slime
 	sort_string = "TBAAB"
 
 /datum/design/item/weapon/slimetaser
 	id = "slimetaser"
-	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4)
+	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 3, TECH_POWER = 4, TECH_COMBAT = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000)
 	build_path = /obj/item/weapon/gun/energy/taser/xeno
 	sort_string = "TBAAC"
