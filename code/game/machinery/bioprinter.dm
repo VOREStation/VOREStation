@@ -131,8 +131,16 @@
 	var/new_organ = products[choice][1]
 	var/obj/item/organ/O = new new_organ(get_turf(src))
 	O.status |= ORGAN_CUT_AWAY
-	var/mob/living/carbon/C = loaded_dna["donor"]
+	var/mob/living/carbon/human/C = loaded_dna["donor"]
 	O.set_dna(C.dna)
+	O.species = C.species
+
+	if(istype(O, /obj/item/organ/external))
+		var/obj/item/organ/external/E = O
+		E.sync_colour_to_human(C)
+
+	O.pixel_x = rand(-6.0, 6)
+	O.pixel_y = rand(-6.0, 6)
 
 	if(O.species)
 		// This is a very hacky way of doing of what organ/New() does if it has an owner
