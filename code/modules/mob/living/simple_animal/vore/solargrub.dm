@@ -61,11 +61,12 @@ List of things solar grubs should be able to do:
 	var/poison_chance = 50
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
+	var/emp_chance = 20 // Beware synths
 
-/mob/living/simple_animal/relatiate/solargrub/PunchTarget()
-	var/mob/living/carbon/human/grubfood = target_mob
-	for(var/obj/O in grubfood)
-		O.emp_act(3)
+/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+	if(target_mob&& prob(emp_chance))
+		target_mob.emp_act(4) //The weakest strength of EMP
+		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
 	..()
 
 /mob/living/simple_animal/retaliate/solargrub/Life()
