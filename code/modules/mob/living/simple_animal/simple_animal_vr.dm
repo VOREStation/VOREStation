@@ -176,7 +176,7 @@
 /mob/living/simple_animal/Bumped(var/atom/movable/AM, yes)
 	if(ismob(AM))
 		var/mob/tmob = AM
-		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance)) //check if they decide to eat. Includes sanity check to prevent cannibalism.
+		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
 			if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
 				tmob.Weaken(5)
 			tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")

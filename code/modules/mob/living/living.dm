@@ -92,12 +92,6 @@ default behaviour is:
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
 
-				// VOREStation Edit - Begin
-				// In case of micros, we don't swap positions; instead occupying the same square!
-				if (handle_micro_bump_helping(tmob)) return
-				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
-				// VOREStation Edit - End
-
 				//VOREstation Edit - Begin
 				if (istype(tmob, /mob/living/simple_animal)) //check bumpnom chance, if it's a simplemob that's bumped
 					tmob.Bumped(src)
@@ -107,10 +101,12 @@ default behaviour is:
 					now_pushing = 0
 					return
 
-				//VOREstation Edit - End
+				// In case of micros, we don't swap positions; instead occupying the same square!
+				if (handle_micro_bump_helping(tmob)) return
+				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
+				// VOREStation Edit - End
 
 				tmob.forceMove(oldloc)
-
 				now_pushing = 0
 				return
 
