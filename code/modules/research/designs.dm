@@ -735,6 +735,16 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/aicard
 	sort_string = "VACAA"
 
+/datum/design/item/dronebrain
+	name = "Robotic intelligence circuit"
+	id = "dronebrain"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_DATA = 4)
+	build_type = PROTOLATHE | PROSFAB
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500)
+	build_path = /obj/item/device/mmi/digital/robot
+	category = "Misc"
+	sort_string = "VACAC"
+
 /datum/design/item/posibrain
 	name = "Positronic brain"
 	id = "posibrain"
