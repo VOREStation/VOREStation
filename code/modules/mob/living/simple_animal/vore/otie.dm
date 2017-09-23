@@ -1,4 +1,7 @@
 // ToDo: Make this code not a fucking snowflaky horrible broken mess. Do not use until it's actually fixed. It's miserably bad right now.
+// Also ToDo: Dev-to-dev communication to ensure responsible parties (if available. In this case, yes.) are aware of what's going on and what's broken.
+// Probably easier to troubleshoot when we ain't breaking the server by spawning a buttload of heavily extra feature coded snowflake mobs to the wilderness as mass cannonfodder.
+// Also ToDo: An actual "simple" mob for that purpose if necessary :v
 
 /mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
@@ -15,7 +18,6 @@
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
-	//cooperative = 1 // Neutral mobs should not be set like this.
 	investigates = 1
 	reacts = 1
 	retaliate = 1
@@ -28,8 +30,7 @@
 	emote_hear = list("rurrs", "rumbles", "rowls", "groans softly", "murrs", "sounds hungry", "yawns")
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
-	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RAHH!", "Slurp.. RAH!")
-	say_got_target = list("Rurrr!", "ROAR!", "RERR!", "NOM!", "MINE!", "RAHH!", "RAH!", "WARF!")
+	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RERR!", "NOM!", "RAHH!", "RAH!", "WARF!")
 	melee_damage_lower = 5
 	melee_damage_upper = 15 //Don't break my bones bro
 	response_help = "pets the"
@@ -56,7 +57,7 @@
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
-	name = "feral otie"
+	name = "mutated feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
 	icon_state = "siftusian"
 	icon_living = "siftusian"
@@ -91,7 +92,7 @@
 
 /mob/living/simple_animal/otie/friendly/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
-	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon_state = "sotie"
 	icon_living = "sotie"
 	icon_rest = "sotie_rest"
