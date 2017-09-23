@@ -81,6 +81,7 @@
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
 	faction = "neutral"
+	tamed = 1
 
 /mob/living/simple_animal/otie/friendly/cotie //same as above but has a little collar :v
 	name = "tamed otie"
@@ -98,7 +99,6 @@
 	icon_rest = "sotie_rest"
 	icon_dead = "sotie-dead"
 	faction = "neutral"
-	tamed = 1
 	maxHealth = 200 //armored or something
 	health = 200
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
@@ -115,6 +115,8 @@
 	if(!SA_attackable(found_atom))
 		return null
 	if(istype(found_atom,/mob/living/simple_animal/mouse))
+		if(resting)
+			lay_down()
 		return found_atom
 	if(found_atom in friends)
 		return null
@@ -129,6 +131,8 @@
 		else if(tamed == 1 && isrobot(found_atom))
 			return null
 		else
+			if(resting)
+				lay_down()
 			return found_atom
 	else
 		return null
@@ -137,8 +141,12 @@
 	if(!SA_attackable(found_atom))
 		return null
 	if(istype(found_atom,/mob/living/simple_animal/mouse))
+		if(resting)
+			lay_down()
 		return found_atom
 	if(check_threat(found_atom) >= 4)
+		if(resting)
+			lay_down()
 		return found_atom
 	if(found_atom in friends)
 		return null
@@ -153,6 +161,8 @@
 		else if(tamed == 1 && isrobot(found_atom))
 			return null
 		else
+			if(resting)
+				lay_down()
 			return found_atom
 	else
 		return null
@@ -235,7 +245,7 @@
 	. = ..()
 	if(!. || ai_inactive) return
 
-	if(prob(5))
+	if(prob(5) && (stance == STANCE_IDLE))
 		lay_down()
 
 //Pet 4 friendly
