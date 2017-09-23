@@ -32,4 +32,4 @@
 			new spawn_type(T)
 
 /datum/event/grub_infestation/announce()
-	command_announcement.Announce("Bioscans indicate that solar grubs have somehow entered through the gateway. Clear
+	command_announcement.Announce("Bioscans indicate that solar grubs have somehow entered through the gateway. Clear them out, before this starts to affect the powergrid.", "Vermin infestation")
