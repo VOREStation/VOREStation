@@ -259,7 +259,7 @@
 			else
 				var/mob/living/carbon/human/hugger = M
 				if(M.resting == 1) //Are they resting on the ground?
-					M.visible_message("<span class='notice'>[M] grabs onto [src] and pulls \himself </span>", \
+					M.visible_message("<span class='notice'>[M] grabs onto [src] and pulls \himself up</span>", \
 							"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>") //AHHH gender checks are hard, but this should work
 					if(M.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
 						src.adjust_fire_stacks(1)
