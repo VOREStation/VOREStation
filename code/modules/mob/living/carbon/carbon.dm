@@ -258,7 +258,16 @@
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!</span>")
 			else
 				var/mob/living/carbon/human/hugger = M
-				if(istype(hugger))
+				if(M.resting == 1) //Are they resting on the ground?
+					M.visible_message("<span class='notice'>[M] grabs onto [src] and pulls theirself up off the ground!", \
+							"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>")
+					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+					if(M.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
+						src.fire_stacks += 1
+						M.fire_stacks -= 1
+					if(M.on_fire)
+						src.IgniteMob()
+				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
