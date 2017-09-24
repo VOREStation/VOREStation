@@ -260,13 +260,13 @@
 				var/mob/living/carbon/human/hugger = M
 				if(M.resting == 1) //Are they resting on the ground?
 					M.visible_message("<span class='notice'>[M] grabs onto [src] and pulls \himself </span>", \
-							"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>") //AHHH gender checks are hard, but this should work	
+							"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>") //AHHH gender checks are hard, but this should work
 					if(M.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
 						src.adjust_fire_stacks(1)
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
 						src.IgniteMob()
-					if(do_after(user, 0.5 SECONDS)) //.5 second delay. Makes it a bit stronger than just typing rest.
+					if(do_after(M, 0.5 SECONDS)) //.5 second delay. Makes it a bit stronger than just typing rest.
 						M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
