@@ -1,6 +1,0 @@
-author: PrismaticGynoid
-
-delete-after: True
-
-changes: 
-  - tweak: "Makes all MMIs, posibrains, and drone brains radio-enabled. Anyone holding the brain can also disable the radio for antag purposes."
