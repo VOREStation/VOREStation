@@ -1,6 +1,0 @@
-author: PrismaticGynoid
-
-delete-after: True
-
-changes: 
-  - rscadd: "Adds the ability for research to print drone brains."
