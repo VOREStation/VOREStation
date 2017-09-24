@@ -16,6 +16,30 @@
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	var/obj/item/device/radio/headset/mmi_radio/radio = null//Let's give it a radio.
+
+/obj/item/device/mmi/New()
+	radio = new(src)//Spawns a radio inside the MMI.
+
+/obj/item/device/mmi/verb/toggle_radio()
+	set name = "Toggle Brain Radio"
+	set desc = "Enables or disables the integrated brain radio, which is only usable outside of a body."
+	set category = "Object"
+	set src in usr
+	set popup_menu = 1
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	if (radio.radio_enabled == 1)
+		radio.radio_enabled = 0
+		to_chat (usr, "You have disabled the [src]'s radio.")
+		to_chat (brainmob, "Your radio has been disabled.")
+	else if (radio.radio_enabled == 0)
+		radio.radio_enabled = 1
+		to_chat (usr, "You have enabled the [src]'s radio.")
+		to_chat (brainmob, "Your radio has been enabled.")
+	else
+		to_chat (usr, "You were unable to toggle the [src]'s radio.")
 
 /obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
@@ -110,47 +134,14 @@
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
+	qdel_null(radio)
 	qdel_null(brainmob)
 	return ..()
 
 /obj/item/device/mmi/radio_enabled
 	name = "radio-enabled man-machine interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
+	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio. Wait, don't they all?"
 	origin_tech = list(TECH_BIO = 4)
-
-	var/obj/item/device/radio/radio = null//Let's give it a radio.
-
-	New()
-		..()
-		radio = new(src)//Spawns a radio inside the MMI.
-		radio.broadcasting = 1//So it's broadcasting from the start.
-
-	verb//Allows the brain to toggle the radio functions.
-		Toggle_Broadcasting()
-			set name = "Toggle Broadcasting"
-			set desc = "Toggle broadcasting channel on or off."
-			set category = "MMI"
-			set src = usr.loc//In user location, or in MMI in this case.
-			set popup_menu = 0//Will not appear when right clicking.
-
-			if(brainmob.stat)//Only the brainmob will trigger these so no further check is necessary.
-				brainmob << "Can't do that while incapacitated or dead."
-
-			radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-			brainmob << "<span class='notice'>Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting.</span>"
-
-		Toggle_Listening()
-			set name = "Toggle Listening"
-			set desc = "Toggle listening channel on or off."
-			set category = "MMI"
-			set src = usr.loc
-			set popup_menu = 0
-
-			if(brainmob.stat)
-				brainmob << "Can't do that while incapacitated or dead."
-
-			radio.listening = radio.listening==1 ? 0 : 1
-			brainmob << "<span class='notice'>Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.</span>"
 
 /obj/item/device/mmi/emp_act(severity)
 	if(!brainmob)
@@ -184,6 +175,7 @@
 	src.brainmob.container = src
 	src.brainmob.stat = 0
 	src.brainmob.silent = 0
+	radio = new(src)
 	dead_mob_list -= src.brainmob
 
 /obj/item/device/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
