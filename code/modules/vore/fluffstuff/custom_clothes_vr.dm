@@ -1484,7 +1484,7 @@ Departamental Swimsuits, for general use
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
 	name = "Loincloth"
-	desc = "A primitive piece of oak-borwn clothing wrapped firmly around the waist. A few bones line the edges."
+	desc = "A primitive piece of oak-brown clothing wrapped firmly around the waist. A few bones line the edges. Comes with a primitive outfit to boot."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "loincloth"
