@@ -267,7 +267,7 @@
 					if(M.on_fire)
 						src.IgniteMob()
 					sleep(5) //.5 second delay. Makes it a bit stronger than just typing rest.
-						M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
