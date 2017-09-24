@@ -60,5 +60,5 @@
 /mob/living/carbon/brain/isSynthetic()
 	return istype(loc, /obj/item/device/mmi)
 
-/mob/living/carbon/brain/binarycheck()
-	return isSynthetic()
+///mob/living/carbon/brain/binarycheck()//No binary without a binary communication device
+//	return isSynthetic()
