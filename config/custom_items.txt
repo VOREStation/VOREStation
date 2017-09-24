@@ -545,12 +545,6 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 {
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
-item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
-}
-
-{
-ckey: silencedmp5a5
-character_name: Serdykov Antoz
 item_path: /obj/item/clothing/head/helmet/serdy
 req_access = 1
 }
