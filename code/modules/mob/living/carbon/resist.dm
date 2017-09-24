@@ -2,7 +2,7 @@
 
 	//drop && roll
 	if(on_fire && !buckled)
-		fire_stacks -= 1.2
+		adjust_fire_stacks(-1.2)
 		Weaken(3)
 		spin(32,2)
 		visible_message(
