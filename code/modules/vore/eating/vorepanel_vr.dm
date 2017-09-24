@@ -217,11 +217,11 @@
 		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
 
-		//Can belly taste?
+		//How much brute damage
 		dat += "<br><a href='?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
 		dat += " [selected.digest_brute]"
 
-		//Can belly taste?
+		//How much burn damage
 		dat += "<br><a href='?src=\ref[src];b_burn_dmg=\ref[selected]'>Digest Burn Damage:</a>"
 		dat += " [selected.digest_burn]"
 
@@ -620,30 +620,18 @@
 			selected.shrink_grow_size = (new_grow/100)
 
 	if(href_list["b_burn_dmg"])
-		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 1 to 5. Numbers below 3 may result in digestion being extremely slow.", "Set Belly Examine Size.") as num|null
+		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 3 to 6.", "Set Belly Burn Damage.") as num|null
 		if(new_damage == null)
 			return
-		if(new_damage < 5)
-			selected.digest_burn = 3
-			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
-		else if(new_damage > 1)
-			selected.digest_burn = 3
-			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
-		else if(new_damage)
-			selected.bulge_size = new_damage
+		Clamp(new_damage, 3, 6)
+		selected.digest_burn = new_damage
 
 	if(href_list["b_brute_damage"])
-		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 1 to 5. Numbers below 3 may result in digestion being extremely slow.", "Set Belly Examine Size.") as num|null
+		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 3 to 6 Numbers below 3 may result in digestion being extremely slow.", "Set Belly Brute Damage.") as num|null
 		if(new_damage == null)
 			return
-		if(new_damage < 5)
-			selected.digest_burn = 3
-			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
-		else if(new_damage > 1)
-			selected.digest_burn = 3
-			user << "<span class='notice'>Your must set digestion between 1 and 5.</span>"
-		else if(new_damage)
-			selected.bulge_size = new_damage
+		Clamp(new_damage, 3, 6)
+		selected.digest_brute = new_damage
 
 	if(href_list["b_escapable"])
 		if(selected.escapable == 0) //Possibly escapable and special interactions.
