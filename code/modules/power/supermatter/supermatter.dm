@@ -264,15 +264,7 @@
 		if(eye_shield < 1)
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
-/*
-	//adjusted range so that a power of 170 (pretty high) results in 9 tiles, roughly the distance from the core to the engine monitoring room.
-	//note that the rads given at the maximum range is a constant 0.2 - as power increases the maximum range merely increases.
-	for(var/mob/living/l in range(src, round(sqrt(power / 2))))
-		var/radius = max(get_dist(l, src), 1)
-		var/rads = (power / 10) * ( 1 / (radius**2) )
-		l.apply_effect(rads, IRRADIATE)
-*/
-	radiation_repository.radiate(src, power * 1.5) //Better close those shutters!
+	radiation_repository.radiate(src, max(power * 1.5, 50) ) //Better close those shutters!
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
@@ -334,16 +326,6 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-
-/*
-/obj/machinery/power/supermatter/proc/transfer_energy()
-	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
-		var/distance = get_dist(R, src)
-		if(distance <= 15)
-			//for collectors using standard phoron tanks at 1013 kPa, the actual power generated will be this power*POWER_FACTOR*20*29 = power*POWER_FACTOR*580
-			R.receive_pulse(power * POWER_FACTOR * (min(3/distance, 1))**2)
-	return
-*/
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
