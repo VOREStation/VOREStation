@@ -233,7 +233,7 @@
 			set_light(0)
 	else
 		if(species.appearance_flags & RADIATION_GLOWS)
-			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
+			set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
 
 		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
@@ -246,6 +246,10 @@
 			adjustOxyLoss(-(rads))
 			adjustToxLoss(-(rads))
 			updatehealth()
+			return
+
+		var/obj/item/organ/internal/brain/slime/core = locate() in internal_organs
+		if(core)
 			return
 
 		var/damage = 0
@@ -903,7 +907,7 @@
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT)) )
+			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
 				if(prob(3))
 					fake_attack(src)
 				if(!handling_hal)
