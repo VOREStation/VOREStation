@@ -67,6 +67,8 @@
 		)
 	cold_discomfort_level = 180
 
+	minimum_breath_pressure = 12	//Smaller, so needs less air
+
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
