@@ -26,12 +26,12 @@
 
 /obj/item/clothing/suit/armor/shield/New()
 	..()
-	spark_system = PoolOrNew(/datum/effect/effect/system/spark_spread)
+	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
 /obj/item/clothing/suit/armor/shield/Destroy()
 	qdel(spark_system)
-	..()
+	return ..()
 
 /obj/item/clothing/suit/armor/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	//Since this is a pierce of armor that is passive, we do not need to check if the user is incapacitated.

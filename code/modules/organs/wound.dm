@@ -44,7 +44,7 @@
 	var/damage_type = CUT
 	// whether this wound needs a bandage/salve to heal at all
 	// the maximum amount of damage that this wound can have and still autoheal
-	var/autoheal_cutoff = 15
+	var/autoheal_cutoff = 10
 
 
 
@@ -85,10 +85,12 @@
 		return src.damage / src.amount
 
 	proc/can_autoheal()
+		if(is_treated())
+			return TRUE
 		if(src.wound_damage() <= autoheal_cutoff)
-			return 1
-
-		return is_treated()
+			if(created + 10 MINUTES > world.time) // Wounds don't autoheal for ten minutes if not bandaged.
+				return FALSE
+			return TRUE
 
 	// checks whether the wound has been appropriately treated
 	proc/is_treated()
@@ -336,7 +338,6 @@ datum/wound/puncture/massive
 				  "moderate bruise" = 20, "small bruise" = 10, "tiny bruise" = 5)
 	bleed_threshold = 20
 	max_bleeding_stage = 2 //only huge bruise and above can bleed.
-	autoheal_cutoff = 30
 	damage_type = BRUISE
 
 /** BURNS **/

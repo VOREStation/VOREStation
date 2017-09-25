@@ -100,6 +100,7 @@
 		if(!locked)
 			open = !open
 			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+			playsound(src, O.usesound, 50, 1)
 		else
 			user << "<span class='notice'>You need to unlock the controls first.</span>"
 		return
@@ -108,6 +109,7 @@
 			if(open)
 				health = min(getMaxHealth(), health + 10)
 				user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
+				playsound(src, O.usesound, 50, 1)
 			else
 				user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
 		else
@@ -125,6 +127,9 @@
 	message = sanitize(message)
 
 	..(message, null, verb)
+
+/mob/living/bot/speech_bubble_appearance()
+	return "machine"
 
 /mob/living/bot/Bump(var/atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
@@ -304,6 +309,18 @@
 	//	for(var/turf/simulated/t in oview(src,1))
 
 	for(var/d in cardinal)
+		var/turf/T = get_step(src, d)
+		if(istype(T) && !T.density)
+			if(!LinkBlockedWithAccess(src, T, ID))
+				L.Add(T)
+	return L
+
+
+// Similar to above but not restricted to just cardinal directions.
+/turf/proc/TurfsWithAccess(var/obj/item/weapon/card/id/ID)
+	var/L[] = new()
+
+	for(var/d in alldirs)
 		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))

@@ -69,6 +69,11 @@
 #define COLOR_PALE_RED_GRAY		"#CC9090"
 #define COLOR_PALE_PURPLE_GRAY	"#BDA2BA"
 #define COLOR_PURPLE_GRAY 		"#A2819E"
+#define COLOR_RED_LIGHT         "#FF3333"
+#define COLOR_DEEP_SKY_BLUE     "#00e1ff"
+
+
+
 
 //	Shuttles.
 
@@ -82,6 +87,11 @@
 #define SHUTTLE_IDLE      0
 #define SHUTTLE_WARMUP    1
 #define SHUTTLE_INTRANSIT 2
+
+// Sound defines for shuttles.
+#define HYPERSPACE_WARMUP    0
+#define HYPERSPACE_PROGRESS  1
+#define HYPERSPACE_END       2
 
 // Ferry shuttle processing status.
 #define IDLE_STATE   0
@@ -137,6 +147,14 @@
 #define DEFAULT_TABLE_MATERIAL "plastic"
 #define DEFAULT_WALL_MATERIAL "steel"
 
+#define MAT_STEEL			"steel"
+#define MAT_GLASS			"glass"
+#define MAT_SILVER			"silver"
+#define MAT_GOLD			"gold"
+#define MAT_TITANIUM		"titanium"
+#define MAT_PHORON			"phoron"
+#define MAT_DIAMOND			"diamond"
+
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
 #define SHARD_STONE_PIECE "piece"
@@ -191,3 +209,16 @@
 #define TSC_MORPH	"Morpheus"
 #define TSC_XION	"Xion" // Not really needed but consistancy I guess.
 #define TSC_GIL 	"Gilthari"
+
+#define MIDNIGHT_ROLLOVER		864000	//number of deciseconds in a day
+
+#define WORLD_ICON_SIZE 32 //Needed for the R-UST port
+#define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
+
+// Maploader bounds indices
+#define MAP_MINX 1
+#define MAP_MINY 2
+#define MAP_MINZ 3
+#define MAP_MAXX 4
+#define MAP_MAXY 5
+#define MAP_MAXZ 6

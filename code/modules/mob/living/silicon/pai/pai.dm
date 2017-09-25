@@ -28,7 +28,11 @@
 		"Drone" = "repairbot",
 		"Cat" = "cat",
 		"Mouse" = "mouse",
-		"Monkey" = "monkey"
+		"Monkey" = "monkey",
+		"Corgi" = "borgi",
+		"Fox" = "fox",
+		"Parrot" = "parrot",
+		"Rabbit" = "rabbit"
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -36,7 +40,8 @@
 		"Natural" = list("says","yells","asks"),
 		"Beep" = list("beeps","beeps loudly","boops"),
 		"Chirp" = list("chirps","chirrups","cheeps"),
-		"Feline" = list("purrs","yowls","meows")
+		"Feline" = list("purrs","yowls","meows"),
+		"Canine" = list("yaps","barks","woofs")
 		)
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
@@ -146,7 +151,7 @@
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		for (var/mob/M in viewers(T))
-			M.show_message("\red A shower of sparks spray from [src]'s inner workings.", 3, "\red You hear and smell the ozone hiss of electrical sparks being expelled violently.", 2)
+			M.show_message("<font color='red'>A shower of sparks spray from [src]'s inner workings.</font>", 3, "<font color='red'>You hear and smell the ozone hiss of electrical sparks being expelled violently.</font>", 2)
 		return src.death(0)
 
 	switch(pick(1,2,3))
@@ -221,7 +226,7 @@
 				cameralist[C.network] = C.network
 
 	src.network = input(usr, "Which network would you like to view?") as null|anything in cameralist
-	src << "\blue Switched to [src.network] camera network."
+	src << "<font color='blue'>Switched to [src.network] camera network.</font>"
 //End of code by Mord_Sith
 */
 
@@ -307,29 +312,26 @@
 	var/finalized = "No"
 	while(finalized == "No" && src.client)
 
-		choice = input(usr,"What would you like to use for your mobile chassis icon? This decision can only be made once.") as null|anything in possible_chassis
+		choice = input(usr,"What would you like to use for your mobile chassis icon?") as null|anything in possible_chassis
 		if(!choice) return
 
 		icon_state = possible_chassis[choice]
 		finalized = alert("Look at your sprite. Is this what you wish to use?",,"No","Yes")
 
 	chassis = possible_chassis[choice]
-	verbs -= /mob/living/silicon/pai/proc/choose_chassis
-	verbs += /mob/living/proc/hide
+	verbs |= /mob/living/proc/hide
 
 /mob/living/silicon/pai/proc/choose_verbs()
 	set category = "pAI Commands"
 	set name = "Choose Speech Verbs"
 
-	var/choice = input(usr,"What theme would you like to use for your speech verbs? This decision can only be made once.") as null|anything in possible_say_verbs
+	var/choice = input(usr,"What theme would you like to use for your speech verbs?") as null|anything in possible_say_verbs
 	if(!choice) return
 
 	var/list/sayverbs = possible_say_verbs[choice]
 	speak_statement = sayverbs[1]
 	speak_exclamation = sayverbs[(sayverbs.len>1 ? 2 : sayverbs.len)]
 	speak_query = sayverbs[(sayverbs.len>2 ? 3 : sayverbs.len)]
-
-	verbs -= /mob/living/silicon/pai/proc/choose_verbs
 
 /mob/living/silicon/pai/lay_down()
 	set name = "Rest"
@@ -361,8 +363,11 @@
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
-	visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
-	close_up()
+	if(user.a_intent == I_HELP)
+		visible_message("<span class='notice'>[user.name] pats [src].</span>")
+	else
+		visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
+		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
 /mob/living/silicon/pai/proc/close_up()
@@ -375,9 +380,10 @@
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
 
-	src.stop_pulling()
-	src.client.perspective = EYE_PERSPECTIVE
-	src.client.eye = card
+	if(client)
+		src.stop_pulling()
+		src.client.perspective = EYE_PERSPECTIVE
+		src.client.eye = card
 
 	//stop resting
 	resting = 0

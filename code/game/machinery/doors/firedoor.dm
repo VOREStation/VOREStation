@@ -60,18 +60,18 @@
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
-	A.all_doors.Add(src)
+	LAZYADD(A.all_doors, src)
 	areas_added = list(A)
 
 	for(var/direction in cardinal)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
-			A.all_doors.Add(src)
+			LAZYADD(A.all_doors, src)
 			areas_added += A
 
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
-		A.all_doors.Remove(src)
+		LAZYREMOVE(A.all_doors, src)
 	. = ..()
 
 /obj/machinery/door/firedoor/get_material()
@@ -135,13 +135,19 @@
 	if(operating)
 		return//Already doing something.
 
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			src.attack_alien(user)
+			return
+
 	if(blocked)
 		user << "<span class='warning'>\The [src] is welded solid!</span>"
 		return
 
 	var/alarmed = lockdown
 	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
-		if(A.fire || A.air_doors_activated)
+		if(A.firedoors_closed)
 			alarmed = 1
 
 	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
@@ -179,11 +185,36 @@
 		spawn(50)
 			alarmed = 0
 			for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
-				if(A.fire || A.air_doors_activated)
+				if(A.firedoors_closed)
 					alarmed = 1
 			if(alarmed)
 				nextstate = FIREDOOR_CLOSED
 				close()
+
+/obj/machinery/door/firedoor/attack_alien(var/mob/user) //Familiar, right? Doors.
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			if(src.blocked)
+				visible_message("<span class='alium'>\The [user] begins digging into \the [src] internals!</span>")
+				if(do_after(user,5 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					src.blocked = 0
+					update_icon()
+					open(1)
+			else if(src.density)
+				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
+				if(do_after(user, 2 SECONDS,src))
+					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					open(1)
+			else
+				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+				close(1)
+		else
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			return
+	..()
 
 /obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	add_fingerprint(user)
@@ -198,12 +229,13 @@
 			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
 			"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
 			"You hear something being welded.")
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, W.usesound, 100, 1)
 			update_icon()
 			return
 
 	if(density && istype(C, /obj/item/weapon/screwdriver))
 		hatch_open = !hatch_open
+		playsound(src, C.usesound, 50, 1)
 		user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
 									"You have [hatch_open ? "opened" : "closed"] the [src] maintenance hatch.")
 		update_icon()
@@ -217,7 +249,7 @@
 									"You start to remove the electronics from [src].")
 			if(do_after(user,30))
 				if(blocked && density && hatch_open)
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+					playsound(src, C.usesound, 50, 1)
 					user.visible_message("<span class='danger'>[user] has removed the electronics from \the [src].</span>",
 										"You have removed the electronics from [src].")
 
@@ -262,8 +294,8 @@
 				"You hear metal strain.")
 		prying = 1
 		update_icon()
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-		if(do_after(user,30))
+		playsound(src, C.usesound, 100, 1)
+		if(do_after(user,30 * C.toolspeed))
 			if(istype(C, /obj/item/weapon/crowbar))
 				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
@@ -368,7 +400,9 @@
 	switch(animation)
 		if("opening")
 			flick("door_opening", src)
+			playsound(src, 'sound/machines/firelockopen.ogg', 37, 1)
 		if("closing")
+			playsound(src, 'sound/machines/firelockclose.ogg', 37, 1)
 			flick("door_closing", src)
 	return
 

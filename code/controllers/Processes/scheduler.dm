@@ -30,8 +30,8 @@
 // Note: We won't be informed about tasks being destroyed, but this is the best we can do.
 /datum/controller/process/scheduler/copyStateFrom(var/datum/controller/process/scheduler/target)
 	scheduled_tasks = list()
-	for(var/st in target.scheduled_tasks)
-		if(!deleted(st) && istype(st, /datum/scheduled_task))
+	for(var/datum/scheduled_task/st in target.scheduled_tasks)
+		if(!QDELETED(st) && istype(st))
 			schedule(st)
 	scheduler = src
 
@@ -46,12 +46,9 @@
 
 /datum/controller/process/scheduler/proc/schedule(var/datum/scheduled_task/st)
 	scheduled_tasks += st
-	destroyed_event.register(st, src, /datum/controller/process/scheduler/proc/unschedule)
 
 /datum/controller/process/scheduler/proc/unschedule(var/datum/scheduled_task/st)
-	if(st in scheduled_tasks)
-		scheduled_tasks -= st
-		destroyed_event.unregister(st, src)
+	scheduled_tasks -= st
 
 /**********
 * Helpers *
@@ -102,6 +99,7 @@
 	task_after_process_args += src
 
 /datum/scheduled_task/Destroy()
+	scheduler.unschedule(src)
 	procedure = null
 	arguments.Cut()
 	task_after_process = null

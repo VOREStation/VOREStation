@@ -1,6 +1,6 @@
 
 /**********************Ore box**************************/
-
+//Why the hell is this file called satchel_ore_boxdm.dm? -CK
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
@@ -19,7 +19,7 @@
 		S.hide_from(usr)
 		for(var/obj/item/weapon/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
-		user << "\blue You empty the satchel into the box."
+		user << "<font color='blue'>You empty the satchel into the box.</font>"
 
 	update_ore_count()
 
@@ -69,7 +69,7 @@
 	set src in view(1)
 
 	if(!istype(usr, /mob/living/carbon/human)) //Only living, intelligent creatures with hands can empty ore boxes.
-		usr << "\red You are physically incapable of emptying the ore box."
+		usr << "<font color='red'>You are physically incapable of emptying the ore box.</font>"
 		return
 
 	if( usr.stat || usr.restrained() )
@@ -82,13 +82,13 @@
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-		usr << "\red The ore box is empty"
+		usr << "<font color='red'>The ore box is empty.</font>"
 		return
 
 	for (var/obj/item/weapon/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
-	usr << "\blue You empty the ore box"
+	usr << "<font color='blue'>You empty the ore box.</font>"
 
 	return
 

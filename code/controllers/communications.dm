@@ -159,7 +159,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC
 	// Antags!
 	if (frequency in ANTAG_FREQS)
 		return "syndradio"
-	// centcomm channels (deathsquid and ert)
+	// CentCom channels (deathsquid and ert)
 	if(frequency in CENT_FREQS)
 		return "centradio"
 	// command channel
@@ -314,7 +314,6 @@ var/global/datum/controller/radio/radio_controller
 			devices_line -= null
 		if (devices_line.len==0)
 			devices -= devices_filter
-			del(devices_line)
 
 /datum/signal
 	var/obj/source

@@ -20,7 +20,7 @@
 			if(stat!=DEAD)	//If not dead.
 				death(1)	//Brains can die again. AND THEY SHOULD AHA HA HA HA HA HA
 			ghostize()		//Ghostize checks for key so nothing else is necessary.
-		..()
+		return ..()
 
 	say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
 		if (istype(other, /mob/living/silicon/ai))
@@ -45,7 +45,7 @@
 				return 1
 		if (istype(other, /mob/living/carbon/human))
 			return 1
-		if (istype(other, /mob/living/carbon/slime))
+		if (istype(other, /mob/living/simple_animal/slime))
 			return 1
 		return ..()
 
@@ -58,7 +58,7 @@
 	return canmove
 
 /mob/living/carbon/brain/isSynthetic()
-	return istype(loc, /obj/item/device/mmi/digital)
+	return istype(loc, /obj/item/device/mmi)
 
-/mob/living/carbon/brain/binarycheck()
-	return isSynthetic()
+///mob/living/carbon/brain/binarycheck()//No binary without a binary communication device
+//	return isSynthetic()

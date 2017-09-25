@@ -10,6 +10,7 @@
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
+	var/usesound = null // Like hitsound, but for when used properly and not to kill someone.
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
@@ -50,7 +51,7 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
-	var/embed_chance = -1	//-1 makes it calculate embed chance, 0 won't embed, and 100 will always embed
+	var/embed_chance = -1	//0 won't embed, and 100 will always embed
 
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
@@ -78,13 +79,15 @@
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
 
+	var/toolspeed = 1.0 // This is a multipler on how 'fast' a tool works.  e.g. setting this to 0.5 will make the tool work twice as fast.
+
 /obj/item/New()
-	if(embed_chance == -1)
-		if(sharp)
-			embed_chance = force/w_class
-		else
-			embed_chance = force/(w_class*3)
 	..()
+	if(embed_chance < 0)
+		if(sharp)
+			embed_chance = max(5, round(force/w_class))
+		else
+			embed_chance = max(5, round(force/(w_class*3)))
 
 /obj/item/equipped()
 	..()
@@ -340,12 +343,12 @@ var/list/global/slot_flags_enumeration = list(
 				return 0
 			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
+		if(slot_legcuffed) //Going to put this check above the handcuff check because the survival of the universe depends on it.
+			if(!istype(src, /obj/item/weapon/handcuffs/legcuffs)) //Putting it here might actually do nothing.
+				return 0
 		if(slot_handcuffed)
-			if(!istype(src, /obj/item/weapon/handcuffs))
-				return 0
-		if(slot_legcuffed)
-			if(!istype(src, /obj/item/weapon/legcuffs))
-				return 0
+			if(!istype(src, /obj/item/weapon/handcuffs) || istype(src, /obj/item/weapon/handcuffs/legcuffs)) //Legcuffs are a child of handcuffs, but we don't want to use legcuffs as handcuffs...
+				return 0 //In theory, this would never happen, but let's just do the legcuff check anyways.
 		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
 			var/allow = 0
 			if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
@@ -446,7 +449,7 @@ var/list/global/slot_flags_enumeration = list(
 		if(!hit_zone)
 			U.do_attack_animation(M)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[U] attempts to stab [M] in the eyes, but misses!</B>")
+			visible_message("<font color='red'><B>[U] attempts to stab [M] in the eyes, but misses!</B></font>")
 			return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"

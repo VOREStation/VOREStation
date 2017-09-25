@@ -90,6 +90,8 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	var/custom_sprite 	= 0 					// Whether the selected icon is custom
 	var/carded
 
+	can_be_antagged = TRUE
+
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	src.verbs |= ai_verbs_default
 	src.verbs |= silicon_subsystems
@@ -215,20 +217,15 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
 
-	qdel(eyeobj)
-	eyeobj = null
-
-	qdel(psupply)
-	psupply = null
-
-	qdel(aiMulti)
-	aiMulti = null
-
-	qdel(aiRadio)
-	aiRadio = null
-
-	qdel(aiCamera)
-	aiCamera = null
+	qdel_null(announcement)
+	qdel_null(eyeobj)
+	qdel_null(psupply)
+	qdel_null(aiPDA)
+	qdel_null(aiCommunicator)
+	qdel_null(aiMulti)
+	qdel_null(aiRadio)
+	qdel_null(aiCamera)
+	hack = null
 
 	return ..()
 
@@ -450,7 +447,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			src << "\red System error. Cannot locate [html_decode(href_list["trackname"])]."
+			src << "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>"
 		return
 
 	return
@@ -522,7 +519,7 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 		if(network in C.network)
 			eyeobj.setLoc(get_turf(C))
 			break
-	src << "\blue Switched to [network] camera network."
+	src << "<font color='blue'>Switched to [network] camera network.</font>"
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -700,19 +697,21 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to unbolt \the [src] from the plating...")
-			if(!do_after(user,40))
-				user.visible_message("\blue \The [user] decides not to unbolt \the [src].")
+			playsound(src, W.usesound, 50, 1)
+			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")
+			if(!do_after(user,40 * W.toolspeed))
+				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
 				return
-			user.visible_message("\blue \The [user] finishes unfastening \the [src]!")
+			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
 			anchored = 0
 			return
 		else
-			user.visible_message("\blue \The [user] starts to bolt \the [src] to the plating...")
-			if(!do_after(user,40))
-				user.visible_message("\blue \The [user] decides not to bolt \the [src].")
+			playsound(src, W.usesound, 50, 1)
+			user.visible_message("<font color='blue'>\The [user] starts to bolt \the [src] to the plating...</font>")
+			if(!do_after(user,40 * W.toolspeed))
+				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
 				return
-			user.visible_message("\blue \The [user] finishes fastening down \the [src]!")
+			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")
 			anchored = 1
 			return
 	else

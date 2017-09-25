@@ -9,6 +9,8 @@ var/datum/antagonist/traitor/traitors
 /datum/antagonist/traitor/auto
 	id = MODE_AUTOTRAITOR
 	allow_latejoin = 1
+	hard_cap = 4
+	initial_spawn_target = 4
 
 /datum/antagonist/traitor/New()
 	..()

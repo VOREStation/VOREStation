@@ -10,7 +10,7 @@
 			var/mob/living/silicon/robot/R = user
 			for (var/obj/item/weapon/cell/D in R.contents)
 				D.charge = max(D.charge - rand() * 100, 0)
-				R << "\blue SYSTEM ALERT: Energy drain detected!"
+				R << "<font color='blue'>SYSTEM ALERT: Energy drain detected!</font>"
 			return 1
 
 		return 1
@@ -27,7 +27,7 @@
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge = max(D.charge - 50,0)
 				if(world.time - last_message > 200)
-					M << "\red SYSTEM ALERT: Energy drain detected!"
+					M << "<font color='red'>SYSTEM ALERT: Energy drain detected!</font>"
 					last_message = world.time
 	return 1
 
@@ -43,6 +43,6 @@
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge = max(D.charge - rand() * 150,0)
 				if(world.time - last_message > 200)
-					M << "\red SYSTEM ALERT: Energy drain detected!"
+					M << "<font color='red'>SYSTEM ALERT: Energy drain detected!</font>"
 					last_message = world.time
 	return 1

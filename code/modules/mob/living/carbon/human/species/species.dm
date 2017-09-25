@@ -13,6 +13,9 @@
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
 
+	var/speech_bubble_appearance = "normal"              // Part of icon_state to use for speech bubbles when talking.  See talk.dmi for available icons.
+	var/fire_icon_state = "humanoid"                     // The icon_state used inside OnFire.dmi for when on fire.
+
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'
 	var/damage_mask = 'icons/mob/human_races/masks/dam_mask_human.dmi'
@@ -133,7 +136,7 @@
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
-	var/item_slowdown_halved = 0  // If this is on, they're not as affected by item weights for slowdown
+	var/item_slowdown_mod = 1	  // How affected by item slowdown the species is.
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
 	var/holder_type

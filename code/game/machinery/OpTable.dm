@@ -8,14 +8,15 @@
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
+	surgery_odds = 100
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
 	var/obj/machinery/computer/operating/computer = null
 
 /obj/machinery/optable/New()
 	..()
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
-		computer = locate(/obj/machinery/computer/operating, get_step(src, dir))
+	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
+		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
 			computer.table = src
 			break

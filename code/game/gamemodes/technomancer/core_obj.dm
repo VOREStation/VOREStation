@@ -43,7 +43,7 @@
 /obj/item/weapon/technomancer_core/Destroy()
 	dismiss_all_summons()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 // Add the spell buttons to the HUD.
 /obj/item/weapon/technomancer_core/equipped(mob/user)
@@ -170,7 +170,8 @@
 	if(core && statpanel("Spell Core"))
 		var/charge_status = "[core.energy]/[core.max_energy] ([round( (core.energy / core.max_energy) * 100)]%) \
 		([round(core.energy_delta)]/s)"
-		var/instability_status = "[src.instability]"
+		var/instability_delta = instability - last_instability
+		var/instability_status = "[src.instability] ([round(instability_delta, 0.1)]/s)"
 		stat("Core charge", charge_status)
 		stat("User instability", instability_status)
 		for(var/obj/spellbutton/button in core.spells)
@@ -329,6 +330,18 @@
 	instability_modifier = 1.1
 	spell_power_modifier = 1.75
 	energy_cost_modifier = 2.0
+
+// For use only for the GOLEM.
+/obj/item/weapon/technomancer_core/golem
+	name = "integrated core"
+	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type is not meant \
+	to be worn on the back like other cores.  Instead it is meant to be installed inside a synthetic shell.  As a result, it's \
+	a lot more robust."
+	energy = 25000
+	max_energy = 25000
+	regen_rate = 100 //250 seconds to full
+	instability_modifier = 0.75
+
 
 /obj/item/weapon/technomancer_core/verb/toggle_lock()
 	set name = "Toggle Core Lock"

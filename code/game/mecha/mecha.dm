@@ -140,18 +140,14 @@
 	cell = null
 	internal_tank = null
 
-	qdel(pr_int_temp_processor)
-	qdel(pr_inertial_movement)
-	qdel(pr_give_air)
-	qdel(pr_internal_damage)
-	qdel(spark_system)
-	pr_int_temp_processor = null
-	pr_give_air = null
-	pr_internal_damage = null
-	spark_system = null
+	qdel_null(pr_int_temp_processor)
+	qdel_null(pr_inertial_movement)
+	qdel_null(pr_give_air)
+	qdel_null(pr_internal_damage)
+	qdel_null(spark_system)
 
 	mechas_list -= src //global mech list
-	..()
+	. = ..()
 
 ////////////////////////
 ////// Helpers /////////
@@ -398,14 +394,14 @@
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
-		playsound(src,'sound/mecha/mechstep.ogg',40,1)
+		playsound(src,"mechstep",40,1)
 	return result
 
 
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/mecha/mechstep.ogg',40,1)
+		playsound(src,"mechstep",40,1)
 	return result
 
 /obj/mecha/Bump(var/atom/obstacle)
@@ -1019,8 +1015,8 @@
 		usr << "<span class='warning'>Access denied</span>"
 		src.log_append_to_last("Permission denied.")
 		return
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
+	for(var/mob/living/simple_animal/slime/M in range(1,usr))
+		if(M.victim == usr)
 			usr << "You're too busy getting your life sucked out of you."
 			return
 //	usr << "You start climbing into [src.name]"

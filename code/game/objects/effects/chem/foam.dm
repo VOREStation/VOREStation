@@ -108,7 +108,7 @@
 			F.amount += amount
 			return
 
-		F = PoolOrNew(/obj/effect/effect/foam, list(location, metal))
+		F = new /obj/effect/effect/foam(location, metal)
 		F.amount = amount
 
 		if(!metal) // don't carry other chemicals if a metal foam
@@ -139,7 +139,7 @@
 /obj/structure/foamedmetal/Destroy()
 	density = 0
 	update_nearby_tiles(1)
-	..()
+	return ..()
 
 /obj/structure/foamedmetal/proc/updateicon()
 	if(metal == 1)

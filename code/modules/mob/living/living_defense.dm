@@ -99,7 +99,7 @@
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
 		if(signaler.deadman && prob(80))
 			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message("\red [src] triggers their deadman's switch!")
+			src.visible_message("<font color='red'>[src] triggers their deadman's switch!</font>")
 			signaler.signal()
 
 	//Armor
@@ -119,7 +119,7 @@
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src <<"\red You have been hit by [P]!"
+		src <<"<font color='red'>You have been hit by [P]!</font>"
 		if(!P.nodamage)
 			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, P, sharp=proj_sharp, edge=proj_edge)
 		qdel(P)
@@ -218,10 +218,10 @@
 			miss_chance = max(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!")
+			visible_message("<font color='blue'>\The [O] misses [src] narrowly!</font>")
 			return
 
-		src.visible_message("\red [src] has been hit by [O].")
+		src.visible_message("<font color='red'>[src] has been hit by [O].</font>")
 		var/armor = run_armor_check(null, "melee")
 		var/soaked = get_armor_soak(null, "melee")
 
@@ -249,7 +249,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
@@ -310,14 +310,14 @@
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
-		set_light(light_range + 3)
+		handle_light()
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
-		set_light(max(0, light_range - 3))
+		handle_light()
 		update_fire()
 
 /mob/living/proc/update_fire()
@@ -350,6 +350,28 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(2)
 	IgniteMob()
+
+//Share fire evenly between the two mobs
+//Called in MobCollide() and Crossed()
+/mob/living/proc/spread_fire(mob/living/L)
+	return
+// This is commented out pending discussion on Polaris.  If you're a downsteam and you want people to spread fire by touching each other, feel free to uncomment this.
+/*
+	if(!istype(L))
+		return
+	var/L_old_on_fire = L.on_fire
+
+	if(on_fire) //Only spread fire stacks if we're on fire
+		fire_stacks /= 2
+		L.fire_stacks += fire_stacks
+		if(L.IgniteMob())
+			message_admins("[key_name(src)] bumped into [key_name(L)] and set them on fire.")
+
+	if(L_old_on_fire) //Only ignite us and gain their stacks if they were onfire before we bumped them
+		L.fire_stacks /= 2
+		fire_stacks += L.fire_stacks
+		IgniteMob()
+*/
 
 /mob/living/proc/get_cold_protection()
 	return 0
@@ -439,3 +461,11 @@
 			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
 			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,button_number+1)
 		client.screen += hud_used.hide_actions_toggle
+
+// Returns a number to determine if something is harder or easier to hit than normal.
+/mob/living/proc/get_evasion()
+	var/result = evasion // First we get the 'base' evasion.  Generally this is zero.
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.evasion))
+			result += M.evasion
+	return result

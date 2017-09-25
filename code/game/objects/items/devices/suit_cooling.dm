@@ -138,6 +138,7 @@
 		else
 			cover_open = 1
 			user << "You unscrew the panel."
+		playsound(src, W.usesound, 50, 1)
 		updateicon()
 		return
 

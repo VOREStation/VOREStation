@@ -181,9 +181,14 @@
 		return
 
 	//Override for somatoray projectiles.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut) && prob(20))
-		mutate(1)
-		return
+	if(istype(Proj ,/obj/item/projectile/energy/floramut)&& prob(20))
+		if(istype(Proj, /obj/item/projectile/energy/floramut/gene))
+			var/obj/item/projectile/energy/floramut/gene/G = Proj
+			if(seed)
+				seed = seed.diverge_mutate_gene(G.gene, get_turf(loc))	//get_turf just in case it's not in a turf.
+		else
+			mutate(1)
+			return
 	else if(istype(Proj ,/obj/item/projectile/energy/florayield) && prob(20))
 		yield_mod = min(10,yield_mod+rand(1,2))
 		return
@@ -317,7 +322,7 @@
 
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
-	seed = plant_controller.seeds[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
+	seed = plant_controller.seeds[pick(list("reishi","nettle","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
 	if(!seed) return //Weed does not exist, someone fucked up.
 
 	dead = 0
@@ -538,7 +543,7 @@
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
 			return ..()
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, O.usesound, 50, 1)
 		anchored = !anchored
 		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 

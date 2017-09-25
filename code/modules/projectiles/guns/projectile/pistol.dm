@@ -2,19 +2,15 @@
 	var/unique_reskin
 	name = ".45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
-	magazine_type = /obj/item/ammo_magazine/c45m
-	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	magazine_type = /obj/item/ammo_magazine/m45
+	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	icon_state = "colt"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/colt/detective
-	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
-	magazine_type = /obj/item/ammo_magazine/c45m/rubber
-
-/obj/item/weapon/gun/projectile/colt/detective/update_icon()
+/obj/item/weapon/gun/projectile/colt/update_icon()
 	if(ammo_magazine)
 		if(unique_reskin)
 			icon_state = unique_reskin
@@ -25,6 +21,10 @@
 			icon_state = "[unique_reskin]-e"
 		else
 			icon_state = "[initial(icon_state)]-e"
+
+/obj/item/weapon/gun/projectile/colt/detective
+	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
+	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
@@ -71,10 +71,10 @@
 	name = ".45 pistol"
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Found pretty much everywhere humans are. Uses .45 rounds."
 	icon_state = "secguncomp"
-	magazine_type = /obj/item/ammo_magazine/c45m/rubber
+	magazine_type = /obj/item/ammo_magazine/m45/rubber
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/sec/update_icon()
@@ -86,7 +86,7 @@
 
 /obj/item/weapon/gun/projectile/sec/flash
 	name = ".45 signal pistol"
-	magazine_type = /obj/item/ammo_magazine/c45m/flash
+	magazine_type = /obj/item/ammo_magazine/m45/flash
 
 /obj/item/weapon/gun/projectile/sec/wood
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip. Uses .45 rounds."
@@ -111,20 +111,20 @@
 	recoil = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c45m
-	allowed_magazines = list(/obj/item/ammo_magazine/c45m)
+	magazine_type = /obj/item/ammo_magazine/m45
+	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
-	desc = "A robust handgun that uses .50 AE rounds."
+	desc = "The perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."
 	icon_state = "deagle"
 	item_state = "deagle"
 	force = 14.0
-	caliber = ".50"
+	caliber = ".44"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/deagle.ogg'
-	magazine_type = /obj/item/ammo_magazine/a50
-	allowed_magazines = list(/obj/item/ammo_magazine/a50)
+	magazine_type = /obj/item/ammo_magazine/m44
+	allowed_magazines = list(/obj/item/ammo_magazine/m44)
 
 /obj/item/weapon/gun/projectile/deagle/update_icon()
 	..()
@@ -134,12 +134,12 @@
 		icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/deagle/gold
-	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE rounds."
+	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .44 rounds."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
 /obj/item/weapon/gun/projectile/deagle/camo
-	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE rounds."
+	desc = "A Deagle brand Deagle for operators operating operationally. Uses .44 rounds."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
@@ -168,13 +168,13 @@
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
 	icon_state = "gyropistol"
 	max_shells = 8
-	caliber = "75"
+	caliber = ".75"
 	fire_sound = 'sound/weapons/rpg.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/a75
-	allowed_magazines = list(/obj/item/ammo_magazine/a75)
+	magazine_type = /obj/item/ammo_magazine/m75
+	allowed_magazines = list(/obj/item/ammo_magazine/m75)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
@@ -194,14 +194,14 @@
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
-	fire_sound = 'sound/weapons/semiauto.ogg'
+	fire_sound = 'sound/weapons/gunshot3.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/mc9mm
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm)
+	magazine_type = /obj/item/ammo_magazine/m9mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 
 /obj/item/weapon/gun/projectile/pistol/flash
 	name = "holdout signal pistol"
-	magazine_type = /obj/item/ammo_magazine/mc9mm/flash
+	magazine_type = /obj/item/ammo_magazine/m9mm/flash
 
 /obj/item/weapon/gun/projectile/pistol/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
@@ -256,19 +256,19 @@
 
 	var/global/list/ammo_types = list(
 		/obj/item/ammo_casing/a357              = ".357",
-		/obj/item/ammo_casing/c9mmf             = "9mm",
-		/obj/item/ammo_casing/c45f              = ".45",
+		/obj/item/ammo_casing/a9mmf             = "9mm",
+		/obj/item/ammo_casing/a45f              = ".45",
 		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/beanbag   = "12 gauge",
-		/obj/item/ammo_casing/shotgun/stunshell = "12 gauge",
-		/obj/item/ammo_casing/shotgun/flash     = "12 gauge",
+		/obj/item/ammo_casing/a12g              = "12g",
+		/obj/item/ammo_casing/a12g              = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/pellet       = "12g",
+		/obj/item/ammo_casing/a12g/beanbag      = "12g",
+		/obj/item/ammo_casing/a12g/stunshell    = "12g",
+		/obj/item/ammo_casing/a12g/flash        = "12g",
 		/obj/item/ammo_casing/a762              = "7.62mm",
-		/obj/item/ammo_casing/a556              = "5.56mm"
+		/obj/item/ammo_casing/a545              = "5.45mm"
 		)
 
 /obj/item/weapon/gun/projectile/pirate/New()
@@ -298,9 +298,9 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "9mm"
 	load_method = MAGAZINE
-	fire_sound = 'sound/weapons/semiauto.ogg'
-	magazine_type = /obj/item/ammo_magazine/mc9mm
-	allowed_magazines = list(/obj/item/ammo_magazine/mc9mm)
+	fire_sound = 'sound/weapons/gunshot3.ogg'
+	magazine_type = /obj/item/ammo_magazine/m9mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 
 /obj/item/weapon/gun/projectile/luger/update_icon()
 	..()

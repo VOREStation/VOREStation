@@ -48,8 +48,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
-	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
-	var/air_doors_activated = 0
+	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/firedoors_closed = 0
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
@@ -352,6 +352,10 @@ area/space/atmosalert()
 /area/shuttle/administration/station
 	name = "\improper Administration Shuttle"
 	icon_state = "shuttlered2"
+
+/area/shuttle/trade
+	name = "\improper Trade Station"
+	icon_state = "red"
 
 /area/shuttle/trade/centcom
 	name = "\improper Trade Shuttle CentCom"
@@ -1431,8 +1435,8 @@ area/space/atmosalert()
  	name = "\improper Visitor Lodging"
  	icon_state = "visitor_lodging"
 
-/area/crew_quarters/visitor_dinning
- 	name = "\improper Visitor Dinning"
+/area/crew_quarters/visitor_dining
+ 	name = "\improper Visitor Dining"
  	icon_state = "visitor_dinning"
 
 /area/crew_quarters/visitor_laundry
@@ -2805,7 +2809,7 @@ var/list/the_station_areas = list (
 
 /area/beach
 	name = "Keelin's private beach"
-	icon_state = "null"
+	icon_state = "yellow"
 	luminosity = 1
 	dynamic_lighting = 0
 	requires_power = 0

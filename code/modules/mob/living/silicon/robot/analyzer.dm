@@ -16,26 +16,18 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
 	var/mode = 1;
 
-
-/obj/item/device/robotanalyzer/do_surgery(mob/living/M, mob/living/user)
-	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
-		return ..()
-	do_scan(M, user) //default surgery behaviour is just to scan as usual
-	return 1
-
-
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	do_scan(M, user)
 
 /obj/item/device/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
-		user << text("\red You try to analyze the floor's vitals!")
+		user << text("<font color='red'>You try to analyze the floor's vitals!</font>")
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
-		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
-		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
-		user.show_message("\blue Body Temperature: ???", 1)
+			O.show_message(text("<font color='red'>[user] has analyzed the floor's vitals!</font>"), 1)
+		user.show_message(text("<font color='blue'>Analyzing Results for The floor:\n\t Overall Status: Healthy</font>"), 1)
+		user.show_message(text("<font color='blue'>\t Damage Specifics: [0]-[0]-[0]-[0]</font>"), 1)
+		user.show_message("<font color='blue'>Key: Suffocation/Toxin/Burns/Brute</font>", 1)
+		user.show_message("<font color='blue'>Body Temperature: ???</font>", 1)
 		return
 
 	var/scan_type
@@ -44,7 +36,7 @@
 	else if(istype(M, /mob/living/carbon/human))
 		scan_type = "prosthetics"
 	else
-		user << "\red You can't analyze non-robotic things!"
+		user << "<font color='red'>You can't analyze non-robotic things!</font>"
 		return
 
 	user.visible_message("<span class='notice'>\The [user] has analyzed [M]'s components.</span>","<span class='notice'>You have analyzed [M]'s components.</span>")
@@ -52,17 +44,17 @@
 		if("robot")
 			var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
 			var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
-			user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]")
+			user.show_message("<font color='blue'>Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]</font>")
 			user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
 			user.show_message("\t Damage Specifics: <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
 			if(M.tod && M.stat == DEAD)
-				user.show_message("\blue Time of Disable: [M.tod]")
+				user.show_message("<font color='blue'>Time of Disable: [M.tod]</font>")
 			var/mob/living/silicon/robot/H = M
 			var/list/damaged = H.get_damaged_components(1,1,1)
-			user.show_message("\blue Localized Damage:",1)
+			user.show_message("<font color='blue'>Localized Damage:</font>",1)
 			if(length(damaged)>0)
 				for(var/datum/robot_component/org in damaged)
-					user.show_message(text("\blue \t []: [][] - [] - [] - []",	\
+					user.show_message(text("<font color='blue'>\t []: [][] - [] - [] - []</font>",	\
 					capitalize(org.name),					\
 					(org.installed == -1)	?	"<font color='red'><b>DESTROYED</b></font> "							:"",\
 					(org.electronics_damage > 0)	?	"<font color='#FFA500'>[org.electronics_damage]</font>"	:0,	\
@@ -70,10 +62,10 @@
 					(org.toggled)	?	"Toggled ON"	:	"<font color='red'>Toggled OFF</font>",\
 					(org.powered)	?	"Power ON"		:	"<font color='red'>Power OFF</font>"),1)
 			else
-				user.show_message("\blue \t Components are OK.",1)
+				user.show_message("<font color='blue'>\t Components are OK.</font>",1)
 			if(H.emagged && prob(5))
-				user.show_message("\red \t ERROR: INTERNAL SYSTEMS COMPROMISED",1)
-			user.show_message("\blue Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
+				user.show_message("<font color='red'>\t ERROR: INTERNAL SYSTEMS COMPROMISED</font>",1)
+			user.show_message("<font color='blue'>Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</font>", 1)
 
 		if("prosthetics")
 

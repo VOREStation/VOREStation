@@ -12,7 +12,7 @@
 	set category = "Changeling"
 	set name = "Regenerative Stasis (20)"
 
-	var/datum/changeling/changeling = changeling_power(20,1,100,DEAD)
+	var/datum/changeling/changeling = changeling_power(CHANGELING_STASIS_COST,1,100,DEAD)
 	if(!changeling)
 		return
 
@@ -28,14 +28,20 @@
 
 	C.update_canmove()
 	C.remove_changeling_powers()
+	changeling.chem_charges -= CHANGELING_STASIS_COST
 
 	if(C.suiciding)
 		C.suiciding = 0
 
+	if(C.does_not_breathe)
+		C.does_not_breathe = 0	//This means they don't autoheal the oxy damage from the next step
+
 	if(C.stat != DEAD)
 		C.adjustOxyLoss(C.maxHealth * 2)
 
-	spawn(rand(800,2000))
+	C.forbid_seeing_deadchat = TRUE
+
+	spawn(rand(2 MINUTES, 4 MINUTES))
 		//The ling will now be able to choose when to revive
 		src.verbs += /mob/proc/changeling_revive
 		src << "<span class='notice'><font size='5'>We are ready to rise.  Use the <b>Revive</b> verb when you are ready.</font></span>"

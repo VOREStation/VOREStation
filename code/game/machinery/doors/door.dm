@@ -73,8 +73,7 @@
 /obj/machinery/door/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
-	return
+	. = ..()
 
 /obj/machinery/door/process()
 	if(close_door_at && world.time >= close_door_at)
@@ -164,7 +163,7 @@
 			switch (Proj.damage_type)
 				if(BRUTE)
 					new /obj/item/stack/material/steel(src.loc, 2)
-					PoolOrNew(/obj/item/stack/rods, list(src.loc, 3))
+					new /obj/item/stack/rods(src.loc, 3)
 				if(BURN)
 					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 			qdel(src)
@@ -242,8 +241,8 @@
 		var/obj/item/weapon/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 5 * repairing.amount) && welder && welder.isOn())
+			playsound(src, welder.usesound, 50, 1)
+			if(do_after(user, (5 * repairing.amount) * welder.toolspeed) && welder && welder.isOn())
 				user << "<span class='notice'>You finish repairing the damage to \the [src].</span>"
 				health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
 				update_icon()
@@ -253,7 +252,7 @@
 
 	if(repairing && istype(I, /obj/item/weapon/crowbar))
 		user << "<span class='notice'>You remove \the [repairing].</span>"
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+		playsound(src, I.usesound, 100, 1)
 		repairing.loc = user.loc
 		repairing = null
 		return
@@ -362,6 +361,7 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
+	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
 
 

@@ -53,19 +53,19 @@
 
 /obj/item/organ/external/arm/unbreakable/slime
 	nonsolid = 1
-	max_damage = 15
+	max_damage = 5
 
 /obj/item/organ/external/arm/right/unbreakable/slime
 	nonsolid = 1
-	max_damage = 15
+	max_damage = 5
 
 /obj/item/organ/external/leg/unbreakable/slime
 	nonsolid = 1
-	max_damage = 15
+	max_damage = 5
 
 /obj/item/organ/external/leg/right/unbreakable/slime
 	nonsolid = 1
-	max_damage = 15
+	max_damage = 5
 
 /obj/item/organ/external/foot/unbreakable/slime
 	nonsolid = 1
@@ -85,4 +85,4 @@
 
 /obj/item/organ/external/head/unbreakable/slime
 	nonsolid = 1
-	max_damage = 15
+	max_damage = 5

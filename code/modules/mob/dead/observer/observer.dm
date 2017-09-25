@@ -32,7 +32,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/anonsay = 0
 	var/image/ghostimage = null //this mobs ghost image, for deleting and stuff
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
-	var/seedarkness = 1
+//	var/seedarkness = 1
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
@@ -57,6 +57,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Black Cat" = "blackcat",
 		"Lizard" = "lizard",
 		"Goat" = "goat",
+		"Space Bear" = "bear",
 		"Bats" = "bat",
 		"Chicken" = "chicken_white",
 		"Parrot"= "parrot_fly",
@@ -67,7 +68,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Trout" = "trout-swim",
 		"Salmon" = "salmon-swim",
 		"Pike" = "pike-swim",
-		"Koi" = "koi-swim"
+		"Koi" = "koi-swim",
+		"Carp" = "carp",
 		"Red Robes" = "robe_red",
 		"Faithless" = "faithless",
 		"Shadowform" = "forgotten",
@@ -82,11 +84,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		"Guard Spider" = "guard",
 		"Hunter Spider" = "hunter",
 		"Nurse Spider" = "nurse",
-		"Carp" = "carp",
-		"Space Bear" = "bear",
 		"Rogue Drone" = "drone",
 		"ED-209" = "ed209",
-		"Beepsky" = "secbot",
+		"Beepsky" = "secbot"
 		)
 
 /mob/observer/dead/New(mob/body)
@@ -145,7 +145,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		qdel(ghostimage)
 		ghostimage = null
 		updateallghostimages()
-	..()
+	return ..()
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
@@ -225,7 +225,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
-	if(stat == DEAD)
+	if(stat == DEAD && !forbid_seeing_deadchat)
 		announce_ghost_joinleave(ghostize(1))
 	else
 		var/response
@@ -236,7 +236,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					return
 				src.client.admin_ghost()
 		else
-			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
+			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive, or otherwise have the potential to become alive. If you ghost, you won't be able to play this round until you respawn as a new character! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
 		if(response != "Ghost")
 			return
 		resting = 1
@@ -298,10 +298,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	if(medHUD)
 		medHUD = 0
-		src << "\blue <B>Medical HUD Disabled</B>"
+		src << "<font color='blue'><B>Medical HUD Disabled</B></font>"
 	else
 		medHUD = 1
-		src << "\blue <B>Medical HUD Enabled</B>"
+		src << "<font color='blue'><B>Medical HUD Enabled</B></font>"
 
 /mob/observer/dead/verb/toggle_antagHUD()
 	set category = "Ghost"
@@ -312,11 +312,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	var/mentor = is_mentor(usr.client)
 	if(!config.antag_hud_allowed && (!client.holder || mentor))
-		src << "\red Admins have disabled this for this round."
+		src << "<font color='red'>Admins have disabled this for this round.</font>"
 		return
 	var/mob/observer/dead/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
-		src << "\red <B>You have been banned from using this feature</B>"
+		src << "<font color='red'><B>You have been banned from using this feature</B></font>"
 		return
 	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
@@ -326,10 +326,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.has_enabled_antagHUD = 1
 	if(M.antagHUD)
 		M.antagHUD = 0
-		src << "\blue <B>AntagHUD Disabled</B>"
+		src << "<font color='blue'><B>AntagHUD Disabled</B></font>"
 	else
 		M.antagHUD = 1
-		src << "\blue <B>AntagHUD Enabled</B>"
+		src << "<font color='blue'><B>AntagHUD Enabled</B></font>"
 
 /mob/observer/dead/proc/dead_tele(var/area/A in return_sorted_areas())
 	set category = "Ghost"
@@ -461,11 +461,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/dead/memory()
 	set hidden = 1
-	src << "\red You are dead! You have no mind to store memory!"
+	src << "<font color='red'>You are dead! You have no mind to store memory!</font>"
 
 /mob/observer/dead/add_memory()
 	set hidden = 1
-	src << "\red You are dead! You have no mind to store memory!"
+	src << "<font color='red'>You are dead! You have no mind to store memory!</font>"
 
 /mob/observer/dead/Post_Incorpmove()
 	following = null
@@ -485,16 +485,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles
 
-	src << "\blue <B>Results:</B>"
+	src << "<font color='blue'><B>Results:</B></font>"
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		src << "\blue Pressure: [round(pressure,0.1)] kPa"
+		src << "<font color='blue'>Pressure: [round(pressure,0.1)] kPa</font>"
 	else
-		src << "\red Pressure: [round(pressure,0.1)] kPa"
+		src << "<font color='red'>Pressure: [round(pressure,0.1)] kPa</font>"
 	if(total_moles)
 		for(var/g in environment.gas)
-			src << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"
-		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
-		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
+			src << "<font color='blue'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)</font>"
+		src << "<font color='blue'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</font>"
+		src << "<font color='blue'>Heat Capacity: [round(environment.heat_capacity(),0.1)]</font>"
 
 /mob/observer/dead/verb/become_mouse()
 	set name = "Become mouse"
@@ -528,11 +528,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
-		if(!v.welded && v.z == T.z)
+		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > 20)
 			found_vents.Add(v)
 	if(found_vents.len)
 		vent_found = pick(found_vents)
-		host = new /mob/living/simple_animal/mouse(vent_found.loc)
+		host = new /mob/living/simple_animal/mouse(vent_found)
 	else
 		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
 
@@ -541,6 +541,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			host.universal_understand = 0
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
+		host.add_ventcrawl(vent_found)
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 
 /mob/observer/dead/verb/view_manfiest()
@@ -570,7 +571,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
 
 	if(!(config.cult_ghostwriter))
-		src << "\red That verb is not currently permitted."
+		src << "<font color='red'>That verb is not currently permitted.</font>"
 		return
 
 	if (!src.stat)
@@ -584,8 +585,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(cult.current_antagonists.len > config.cult_ghostwriter_req_cultists)
 			ghosts_can_write = 1
 
-	if(!ghosts_can_write)
-		src << "\red The veil is not thin enough for you to do that."
+	if(!ghosts_can_write && !check_rights(R_ADMIN, 0)) //Let's allow for admins to write in blood for events and the such.
+		src << "<font color='red'>The veil is not thin enough for you to do that.</font>"
 		return
 
 	var/list/choices = list()
@@ -635,7 +636,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.update_icon()
 		W.message = message
 		W.add_hiddenprint(src)
-		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
+		W.visible_message("<font color='red'>Invisible fingers crudely paint something in blood on [T]...</font>")
 
 /mob/observer/dead/pointed(atom/A as mob|obj|turf in view())
 	if(!..())

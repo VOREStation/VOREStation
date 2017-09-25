@@ -22,12 +22,12 @@
 /datum/uplink_item/item/medical/clotting
 	name = "Clotting Medicine injector"
 	item_cost = 10
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/clotting
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting
 
 /datum/uplink_item/item/medical/bonemeds
 	name = "Bone Repair injector"
 	item_cost = 10
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
 
 /datum/uplink_item/item/medical/ambrosiadeusseeds
 	name = "Box of 7x ambrosia deus seed packets"
@@ -38,6 +38,26 @@
 	name = "Portable Freezer"
 	item_cost = 10
 	path = /obj/item/weapon/storage/box/freezer
+
+/datum/uplink_item/item/medical/monkeycubes
+	name = "Box, Monkey Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes
+
+/datum/uplink_item/item/medical/farwacubes
+	name = "Box, Farwa Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes
+
+/datum/uplink_item/item/medical/neaeracubes
+	name = "Box, Neaera Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes/neaeracubes
+
+/datum/uplink_item/item/medical/stokcubes
+	name = "Box, Stok Cubes"
+	item_cost = 10
+	path = /obj/item/weapon/storage/box/monkeycubes/stokcubes
 
 /datum/uplink_item/item/medical/surgery
 	name = "Surgery kit"

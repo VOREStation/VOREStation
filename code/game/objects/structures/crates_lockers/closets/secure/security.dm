@@ -65,7 +65,9 @@
 		new /obj/item/clothing/under/dress/dress_hr(src)
 		new /obj/item/clothing/under/lawyer/female(src)
 		new /obj/item/clothing/under/lawyer/black(src)
+		new /obj/item/clothing/under/lawyer/black/skirt(src)
 		new /obj/item/clothing/under/lawyer/red(src)
+		new /obj/item/clothing/under/lawyer/red/skirt(src)
 		new /obj/item/clothing/under/lawyer/oldman(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/clothing/shoes/black(src)
@@ -74,6 +76,7 @@
 		new /obj/item/clothing/under/rank/head_of_personnel_whimsy(src)
 		new /obj/item/clothing/head/caphat/hop(src)
 		new /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit(src)
+		new /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		return
 
@@ -126,6 +129,7 @@
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/shoes/boots/winter/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/clothing/mask/gas/half(src)
 		return
@@ -172,6 +176,7 @@
 		new /obj/item/weapon/storage/box/holobadge(src)
 		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/shoes/boots/winter/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		new /obj/item/device/megaphone(src)
 		new /obj/item/clothing/mask/gas/half(src)
@@ -214,10 +219,11 @@
 		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/clothing/head/soft/sec/corp(src)
 		new /obj/item/clothing/under/rank/security/corp(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
+		new /obj/item/ammo_magazine/m45/rubber(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/cell/device/weapon(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
+		new /obj/item/clothing/shoes/boots/winter/security(src)
 		new /obj/item/device/flashlight/maglight(src)
 		return
 
@@ -250,7 +256,7 @@
 
 	New()
 		..()
-		new /obj/item/clothing/accessory/armband/medgreen(src)
+		new /obj/item/clothing/accessory/armband/medblue(src)
 		new /obj/item/device/encryptionkey/headset_med(src)
 		return
 
@@ -274,8 +280,8 @@
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/radio/headset/headset_sec/alt(src)
 		new /obj/item/clothing/suit/storage/vest/detective(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
-		new /obj/item/ammo_magazine/c45m/rubber(src)
+		new /obj/item/ammo_magazine/m45/rubber(src)
+		new /obj/item/ammo_magazine/m45/rubber(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/gun/projectile/colt/detective(src)
 		new /obj/item/clothing/accessory/holster/armpit(src)

@@ -243,7 +243,7 @@ var/obj/screen/robot_inventory
 		//Unfortunately adding the emag module to the list of modules has to be here. This is because a borg can
 		//be emagged before they actually select a module. - or some situation can cause them to get a new module
 		// - or some situation might cause them to get de-emagged or something.
-		if(r.emagged)
+		if(r.emagged || r.emag_items)
 			if(!(r.module.emag in r.module.modules))
 				r.module.modules.Add(r.module.emag)
 		else
@@ -274,3 +274,8 @@ var/obj/screen/robot_inventory
 				r.client.screen -= A
 		r.shown_robot_modules = 0
 		r.client.screen -= r.robot_modules_background
+
+/mob/living/silicon/robot/update_hud()
+	..()
+	if(modtype)
+		hands.icon_state = lowertext(modtype)

@@ -31,8 +31,8 @@ var/list/floor_light_cache = list()
 		if(!WT.remove_fuel(0, user))
 			user << "<span class='warning'>\The [src] must be on to complete this task.</span>"
 			return
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-		if(!do_after(user, 20))
+		playsound(src.loc, WT.usesound, 50, 1)
+		if(!do_after(user, 20 * WT.toolspeed))
 			return
 		if(!src || !WT.isOn())
 			return
@@ -150,7 +150,7 @@ var/list/floor_light_cache = list()
 	var/area/A = get_area(src)
 	if(A)
 		on = 0
-	..()
+	. = ..()
 
 /obj/machinery/floor_light/cultify()
 	default_light_colour = "#FF0000"

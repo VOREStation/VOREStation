@@ -29,7 +29,7 @@
 	var/gender = NEUTER
 
 	// Restrict some styles to specific species
-	var/list/species_allowed = list("Human")
+	var/list/species_allowed = list("Human","Promethean")
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
@@ -51,7 +51,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Unathi","Promethean")
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
@@ -188,6 +188,10 @@
 		name = "Bedhead 3"
 		icon_state = "hair_bedheadv3"
 
+	bedheadlong
+		name = "Bedhead Long"
+		icon_state = "hair_long_bedhead"
+
 	beehive
 		name = "Beehive"
 		icon_state = "hair_beehive"
@@ -205,6 +209,10 @@
 		name = "Bob"
 		icon_state = "hair_bobcut"
 		species_allowed = list("Human","Unathi")
+
+	bobcutalt
+		name = "Chin Length Bob"
+		icon_state = "hair_bobcutalt"
 
 	bun
 		name = "Bun"
@@ -361,6 +369,14 @@
 		name = "Hime Cut"
 		icon_state = "hair_himecut"
 
+	shorthime
+		name = "Short Hime Cut"
+		icon_state = "hair_shorthime"
+
+	grandebraid
+		name = "Grande Braid"
+		icon_state = "hair_grande"
+
 	mbraid
 		name = "Medium Braid"
 		icon_state = "hair_shortbraid"
@@ -368,6 +384,10 @@
 	braid2
 		name = "Long Braid"
 		icon_state = "hair_hbraid"
+
+	braid
+		name = "Floorlength Braid"
+		icon_state = "hair_braid"
 
 	odango
 		name = "Odango"
@@ -397,6 +417,10 @@
 	mahdrills
 		name = "Drillruru"
 		icon_state = "hair_drillruru"
+
+	fringetail
+		name = "Fringetail"
+		icon_state = "hair_fringetail"
 
 	dandypomp
 		name = "Dandy Pompadour"
@@ -549,7 +573,77 @@
 		icon_state = "hair_shavedpart"
 		gender = MALE
 
+	hightight
+		name = "High and Tight"
+		icon_state = "hair_hightight"
 
+	rowbun
+		name = "Row Bun"
+		icon_state = "hair_rowbun"
+
+	rowdualbraid
+		name = "Row Dual Braid"
+		icon_state = "hair_rowdualtail"
+
+	rowbraid
+		name = "Row Braid"
+		icon_state = "hair_rowbraid"
+
+	regulationmohawk
+		name = "Regulation Mohawk"
+		icon_state = "hair_shavedmohawk"
+
+	topknot
+		name = "Topknot"
+		icon_state = "hair_topknot"
+
+	ronin
+		name = "Ronin"
+		icon_state = "hair_ronin"
+
+	bowlcut2
+		name = "Bowl2"
+		icon_state = "hair_bowlcut2"
+
+	thinning
+		name = "Thinning"
+		icon_state = "hair_thinning"
+
+	thinningfront
+		name = "Thinning Front"
+		icon_state = "hair_thinningfront"
+
+	thinningback
+		name = "Thinning Back"
+		icon_state = "hair_thinningrear"
+
+	manbun
+		name = "Manbun"
+		icon_state = "hair_manbun"
+
+	shy
+		name = "Shy"
+		icon_state = "hair_shy"
+
+	jade
+		name = "Jade"
+		icon_state = "hair_jade"
+
+	country
+		name = "Country"
+		icon_state = "hair_country"
+
+	rosa
+		name = "Rosa"
+		icon_state = "hair_rosa"
+
+	dave
+		name = "Dave"
+		icon_state = "hair_dave"
+
+	mohawkunshaven
+		name = "Unshaven Mohawk"
+		icon_state = "hair_unshaven_mohawk"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -561,13 +655,12 @@
 /datum/sprite_accessory/facial_hair
 
 	icon = 'icons/mob/Human_face.dmi'
-	gender = MALE
 
 	shaved
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox")
+		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox","Promethean")
 
 	watson
 		name = "Watson Mustache"
@@ -638,7 +731,7 @@
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
 
-		threeOclock
+	threeOclock
 		name = "3 O'clock Shadow"
 		icon_state = "facial_3oclock"
 
@@ -674,6 +767,25 @@
 		name = "Walrus Moustache"
 		icon_state = "facial_walrus"
 
+	croppedbeard
+		name = "Full Cropped Beard"
+		icon_state = "facial_croppedfullbeard"
+
+	chinless
+		name = "Chinless Beard"
+		icon_state = "facial_chinlessbeard"
+
+	tribeard
+		name = "Tribeard"
+		icon_state = "facial_tribeard"
+
+	moonshiner
+		name = "Moonshiner"
+		icon_state = "facial_moonshiner"
+
+	martial
+		name = "Martial Artist"
+		icon_state = "facial_martialartist"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -907,6 +1019,17 @@
 		name = "Teshari Mushroom"
 		icon_state = "teshari_mushroom"
 		species_allowed = list("Teshari")
+
+// Vox things
+	vox_braid_long
+		name = "Long Vox braid"
+		icon_state = "vox_longbraid"
+		species_allowed = list("Vox")
+
+	vox_braid_short
+		name = "Short Vox Braid"
+		icon_state = "vox_shortbraid"
+		species_allowed = list("Vox")
 
 	vox_quills_short
 		name = "Short Vox Quills"

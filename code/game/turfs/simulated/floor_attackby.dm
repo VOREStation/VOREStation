@@ -16,19 +16,19 @@
 				make_plating(1)
 			else
 				return
-			playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
+			playsound(src, C.usesound, 80, 1)
 			return
 		else if(istype(C, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 			if(broken || burnt)
 				return
 			user << "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>"
 			make_plating(1)
-			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
+			playsound(src, C.usesound, 80, 1)
 			return
 		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
 			user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
 			make_plating(1)
-			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
+			playsound(src, C.usesound, 80, 1)
 			return
 		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
 			user << "<span class='notice'>You shovel off the [flooring.descriptor].</span>"
@@ -82,7 +82,7 @@
 				if(broken || burnt)
 					if(welder.remove_fuel(0,user))
 						user << "<span class='notice'>You fix some dents on the broken plating.</span>"
-						playsound(src, 'sound/items/Welder.ogg', 80, 1)
+						playsound(src, welder.usesound, 80, 1)
 						icon_state = "plating"
 						burnt = null
 						broken = null

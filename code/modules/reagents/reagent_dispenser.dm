@@ -111,6 +111,7 @@
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = modded ? 0 : 1
+		playsound(src, W.usesound, 75, 1)
 		if (modded)
 			message_admins("[key_name_admin(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 			log_game("[key_name(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
@@ -226,8 +227,8 @@
 	if(istype(I, /obj/item/weapon/wrench))
 		src.add_fingerprint(user)
 		if(bottle)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			if(do_after(user, 20))
+			playsound(loc, I.usesound, 50, 1)
+			if(do_after(user, 20) && bottle)
 				user << "<span class='notice'>You unfasten the jug.</span>"
 				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
 				for(var/datum/reagent/R in reagents.reagent_list)
@@ -241,15 +242,16 @@
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 			else
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 20, src))
+			if(do_after(user, 20 * I.toolspeed, src))
 				if(!src) return
 				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
 				anchored = !anchored
+				playsound(loc, I.usesound, 50, 1)
 		return
 
 	if(istype(I, /obj/item/weapon/screwdriver))
 		if(cupholder)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(loc, I.usesound, 50, 1)
 			user << "<span class='notice'>You take the cup dispenser off.</span>"
 			new /obj/item/stack/material/plastic( src.loc )
 			if(cups)
@@ -260,9 +262,9 @@
 			update_icon()
 			return
 		if(!bottle && !cupholder)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(loc, I.usesound, 50, 1)
 			user << "<span class='notice'>You start taking the water-cooler apart.</span>"
-			if(do_after(user, 20))
+			if(do_after(user, 20 * I.toolspeed) && !bottle && !cupholder)
 				user << "<span class='notice'>You take the water-cooler apart.</span>"
 				new /obj/item/stack/material/plastic( src.loc, 4 )
 				qdel(src)
@@ -274,7 +276,7 @@
 			if(anchored)
 				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
 				user << "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>"
-				if(do_after(user, 20))
+				if(do_after(user, 20) && !bottle && anchored)
 					bottle = 1
 					update_icon()
 					user << "<span class='notice'>You screw the bottle onto the water-cooler!</span>"
@@ -286,7 +288,7 @@
 				user << "<span class='warning'>You need to wrench down the cooler first.</span>"
 		else
 			user << "<span class='warning'>There is already a bottle there!</span>"
-		return
+		return 1
 
 	if(istype(I, /obj/item/stack/material/plastic))
 		if(!cupholder)
@@ -295,7 +297,7 @@
 				src.add_fingerprint(user)
 				user << "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>"
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 20))
+				if(do_after(user, 20) && !cupholder && anchored)
 					if (P.use(1))
 						user << "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>"
 						cupholder = 1

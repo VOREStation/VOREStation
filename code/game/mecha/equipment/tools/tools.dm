@@ -208,7 +208,7 @@
 
 			for(var/a = 1 to 5)
 				spawn(0)
-					var/obj/effect/effect/water/W = PoolOrNew(/obj/effect/effect/water, get_turf(chassis))
+					var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(chassis))
 					var/turf/my_target
 					if(a == 1)
 						my_target = T
@@ -973,11 +973,7 @@
 
 	process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
 		if(..())
-			for(var/mob/living/carbon/M in view(EG.chassis))
-				if(istype(M,/mob/living/carbon/human))
-					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE,0)
-				else
-					M.apply_effect(EG.rad_per_cycle, IRRADIATE)
+			radiation_repository.radiate(EG, (EG.rad_per_cycle * 3))
 		return 1
 
 
@@ -1158,8 +1154,8 @@
 			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
 			return
 
-	for(var/mob/living/carbon/slime/M in range(1,usr))
-		if(M.Victim == usr)
+	for(var/mob/living/simple_animal/slime/M in range(1,usr))
+		if(M.victim == usr)
 			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
 			return
 

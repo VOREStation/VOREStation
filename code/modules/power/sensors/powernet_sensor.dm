@@ -163,6 +163,10 @@
 			// Cell Status
 			APC_entry["cell_charge"] = A.cell ? round(A.cell.percent()) : "NO CELL"
 			APC_entry["cell_status"] = A.cell ? chg[A.charging+1] : "N"
+			// Location
+			APC_entry["x"] = A.x
+			APC_entry["y"] = A.y
+			APC_entry["z"] = A.z
 			// Other info
 			APC_entry["total_load"] = reading_to_text(A.lastused_total)
 			// Hopefully removes those goddamn \improper s which are screwing up the UI

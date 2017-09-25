@@ -21,9 +21,9 @@
 			newplayer_start += loc
 			delete_me = 1
 			return
-		if("JoinLate")
-			latejoin += loc
-			delete_me = 1
+		if("JoinLate") // Bit difference, since we need the spawn point to move.
+			latejoin += src
+		//	delete_me = 1
 			return
 		if("JoinLateGateway")
 			latejoin_gateway += loc
@@ -87,9 +87,11 @@
 	if(delete_me)
 		qdel(src)
 
-/obj/effect/landmark/Destroy()
-	landmarks_list -= src
-	return ..()
+/obj/effect/landmark/Destroy(var/force = FALSE)
+	if(delete_me || force)
+		landmarks_list -= src
+		return ..()
+	return QDEL_HINT_LETMELIVE
 
 /obj/effect/landmark/start
 	name = "start"

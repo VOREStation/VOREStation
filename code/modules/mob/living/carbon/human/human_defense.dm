@@ -94,7 +94,7 @@ emp_act
 			var/obj/item/organ/external/organ = organs_by_name[organ_name]
 			if(organ)
 				var/weight = organ_rel_size[organ_name]
-				armorval += getarmor_organ(organ, type) * weight
+				armorval += (getarmor_organ(organ, type) * weight)
 				total += weight
 	return (armorval/max(total, 1))
 
@@ -355,6 +355,9 @@ emp_act
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+//	if(buckled && buckled == AM)
+//		return // Don't get hit by the thing we're buckled to.
+
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 
@@ -399,7 +402,7 @@ emp_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
+		src.visible_message("<font color='red'>[src] has been hit in the [hit_area] by [O].</font>")
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -451,7 +454,7 @@ emp_act
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return

@@ -24,6 +24,7 @@ em						{font-style: normal;font-weight: bold;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
 .ooc .admin				{color: #b82e00;}
+.ooc .aooc				{color: #960018;}
 
 /* Admin: Private Messages */
 .pm  .howto				{color: #ff0000;	font-weight: bold;		font-size: 200%;}
@@ -35,6 +36,7 @@ em						{font-style: normal;font-weight: bold;}
 .mod_channel			{color: #735638;	font-weight: bold;}
 .mod_channel .admin		{color: #b82e00;	font-weight: bold;}
 .admin_channel			{color: #9611D4;	font-weight: bold;}
+.event_channel			{color: #009933;	font-weight: bold;}
 
 /* Radio: Misc */
 .deadsay				{color: #530FAD;}
@@ -86,7 +88,7 @@ h1.alert, h2.alert		{color: #000000;}
 .alien					{color: #543354;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
-.skrell					{color: #00CED1;}
+.skrell					{color: #00B0B3;}
 .soghun					{color: #228B22;}
 .solcom					{color: #22228B;}
 .changeling				{color: #800080;}

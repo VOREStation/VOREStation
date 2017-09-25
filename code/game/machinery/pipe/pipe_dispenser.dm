@@ -46,6 +46,7 @@
 <A href='?src=\ref[src];make=28;dir=1'>Universal pipe adapter</A><BR>
 <A href='?src=\ref[src];make=4;dir=1'>Connector</A><BR>
 <A href='?src=\ref[src];make=7;dir=1'>Unary Vent</A><BR>
+<A href='?src=\ref[src];make=47;dir=1'>Passive Vent</A><BR>
 <A href='?src=\ref[src];make=9;dir=1'>Gas Pump</A><BR>
 <A href='?src=\ref[src];make=15;dir=1'>Pressure Regulator</A><BR>
 <A href='?src=\ref[src];make=16;dir=1'>High Power Gas Pump</A><BR>
@@ -110,9 +111,9 @@
 		return
 	else if (istype(W, /obj/item/weapon/wrench))
 		if (unwrenched==0)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src, W.usesound, 50, 1)
 			user << "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>"
-			if (do_after(user, 40))
+			if (do_after(user, 40 * W.toolspeed))
 				user.visible_message( \
 					"<span class='notice'>[user] unfastens \the [src].</span>", \
 					"<span class='notice'>You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
@@ -123,9 +124,9 @@
 				if (usr.machine==src)
 					usr << browse(null, "window=pipedispenser")
 		else /*if (unwrenched==1)*/
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src, W.usesound, 50, 1)
 			user << "<span class='notice'>You begin to fasten \the [src] to the floor...</span>"
-			if (do_after(user, 20))
+			if (do_after(user, 20 * W.toolspeed))
 				user.visible_message( \
 					"<span class='notice'>[user] fastens \the [src].</span>", \
 					"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>", \

@@ -1,4 +1,10 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
+/proc/isxenomorph(A)
+	if(istype(A, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = A
+		return istype(H.species, /datum/species/xenos)
+	return 0
+
 /proc/issmall(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
@@ -390,10 +396,16 @@ proc/is_blind(A)
 			else
 				name = realname
 
+	if(subject && subject.forbid_seeing_deadchat && !subject.client.holder)
+		return // Can't talk in deadchat if you can't see it.
+
 	for(var/mob/M in player_list)
 		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
 			var/lname
+			if(M.forbid_seeing_deadchat && !M.client.holder)
+				continue
+
 			if(subject)
 				if(M.is_key_ignored(subject.client.key)) // If we're ignored, do nothing.
 					continue
@@ -530,13 +542,40 @@ proc/is_blind(A)
 
 	return threatcount
 
-/mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_animal/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
 
 	if(!istype(src, /mob/living/simple_animal/retaliate/goat))
+		if(hostile)
+			if(faction != "neutral") // Otherwise Runtime gets killed.
+				threatcount += 4
+	return threatcount
+
+// Beepsky will (try to) only beat 'bad' slimes.
+/mob/living/simple_animal/slime/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+	var/threatcount = 0
+
+	if(stat == DEAD)
+		return SAFE_PERP
+
+	if(is_justified_to_discipline())
 		threatcount += 4
+/*
+	if(discipline && !rabid)
+		if(!target_mob || istype(target_mob, /mob/living/carbon/human/monkey))
+			return SAFE_PERP
+
+	if(target_mob)
+		threatcount += 4
+
+	if(victim)
+		threatcount += 4
+*/
+	if(rabid)
+		threatcount = 10
+
 	return threatcount
 
 #undef SAFE_PERP

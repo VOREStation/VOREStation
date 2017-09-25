@@ -35,19 +35,42 @@
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	nodamage = 1
-	check_armour = "energy"
-	var/temperature = 300
+	check_armour = "energy" // It actually checks heat/cold protection.
+	var/target_temperature = 50
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
 
+/obj/item/projectile/temp/on_hit(atom/target, blocked = FALSE)
+	..()
+	if(isliving(target))
+		var/mob/living/L = target
 
-	on_hit(var/atom/target, var/blocked = 0)//These two could likely check temp protection on the mob
-		if(istype(target, /mob/living))
-			var/mob/M = target
-			M.bodytemperature = temperature
-		return 1
+		var/protection = null
+		var/potential_temperature_delta = null
+		var/new_temperature = L.bodytemperature
+
+		if(target_temperature >= T20C) // Make it cold.
+			protection = L.get_cold_protection(target_temperature)
+			potential_temperature_delta = 75
+			new_temperature = max(new_temperature - potential_temperature_delta, target_temperature)
+		else // Make it hot.
+			protection = L.get_heat_protection(target_temperature)
+			potential_temperature_delta = 200 // Because spacemen temperature needs stupid numbers to actually hurt people.
+			new_temperature = min(new_temperature + potential_temperature_delta, target_temperature)
+
+		var/temp_factor = abs(protection - 1)
+
+		new_temperature = round(new_temperature * temp_factor)
+		L.bodytemperature = new_temperature
+
+	return 1
+
+/obj/item/projectile/temp/hot
+	name = "heat beam"
+	target_temperature = 1000
 
 /obj/item/projectile/meteor
 	name = "meteor"
@@ -99,10 +122,10 @@
 					M.apply_effect((rand(30,80)),IRRADIATE)
 					M.Weaken(5)
 					for (var/mob/V in viewers(src))
-						V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
+						V.show_message("<font color='red'>[M] writhes in pain as \his vacuoles boil.</font>", 3, "<font color='red'>You hear the crunching of leaves.</font>", 2)
 				if(prob(35))
 				//	for (var/mob/V in viewers(src)) //Public messages commented out to prevent possible metaish genetics experimentation and stuff. - Cheridan
-				//		V.show_message("\red [M] is mutated by the radiation beam.", 3, "\red You hear the snapping of twigs.", 2)
+				//		V.show_message("<font color='red'>[M] is mutated by the radiation beam.</font>", 3, "<font color='red'> You hear the snapping of twigs.</font>", 2)
 					if(prob(80))
 						randmutb(M)
 						domutcheck(M,null)
@@ -111,15 +134,24 @@
 						domutcheck(M,null)
 				else
 					M.adjustFireLoss(rand(5,15))
-					M.show_message("\red The radiation beam singes you!")
+					M.show_message("<font color='red'>The radiation beam singes you!</font>")
 				//	for (var/mob/V in viewers(src))
-				//		V.show_message("\red [M] is singed by the radiation beam.", 3, "\red You hear the crackle of burning leaves.", 2)
+				//		V.show_message("<font color='red'>[M] is singed by the radiation beam.</font>", 3, "<font color='red'> You hear the crackle of burning leaves.</font>", 2)
 		else if(istype(target, /mob/living/carbon/))
 		//	for (var/mob/V in viewers(src))
 		//		V.show_message("The radiation beam dissipates harmlessly through [M]", 3)
-			M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
+			M.show_message("<font color='blue'>The radiation beam dissipates harmlessly through your body.</font>")
 		else
 			return 1
+
+/obj/item/projectile/energy/floramut/gene
+	name = "gamma somatoray"
+	icon_state = "energy2"
+	damage = 0
+	damage_type = TOX
+	nodamage = 1
+	check_armour = "energy"
+	var/decl/plantgene/gene = null
 
 /obj/item/projectile/energy/florayield
 	name = "beta somatoray"
@@ -139,7 +171,7 @@
 			if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 				M.nutrition += 30
 		else if (istype(target, /mob/living/carbon/))
-			M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
+			M.show_message("<font color='blue'>The radiation beam dissipates harmlessly through your body.</font>")
 		else
 			return 1
 

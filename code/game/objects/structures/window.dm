@@ -59,10 +59,13 @@
 			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 		if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
+			update_icon()
 		else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
 			visible_message("[src] looks seriously damaged!" )
+			update_icon()
 		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
+			update_icon()
 	return
 
 /obj/structure/window/proc/apply_silicate(var/amount)
@@ -92,11 +95,11 @@
 		index = 0
 		while(index < 2)
 			new shardtype(loc) //todo pooling?
-			if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+			if(reinf) new /obj/item/stack/rods(loc)
 			index++
 	else
 		new shardtype(loc) //todo pooling?
-		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if(reinf) new /obj/item/stack/rods(loc)
 	qdel(src)
 	return
 
@@ -204,6 +207,8 @@
 		return
 	if(damage >= 10)
 		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
+		if(reinf)
+			damage = damage / 2
 		take_damage(damage)
 	else
 		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
@@ -212,6 +217,24 @@
 
 /obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return//I really wish I did not need this
+
+	// Fixing.
+	if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
+		var/obj/item/weapon/weldingtool/WT = W
+		if(health < maxhealth)
+			if(WT.remove_fuel(1 ,user))
+				to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+				playsound(src, WT.usesound, 50, 1)
+				if(do_after(user, 40 * WT.toolspeed, target = src))
+					health = maxhealth
+			//		playsound(src, 'sound/items/Welder.ogg', 50, 1)
+					update_icon()
+					to_chat(user, "<span class='notice'>You repair [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
+		return
+
+	// Slamming.
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
 		if(istype(G.affecting,/mob/living))
@@ -242,29 +265,29 @@
 		if(reinf && state >= 1)
 			state = 3 - state
 			update_nearby_icons()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user << (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
 		else if(reinf && state == 0)
 			anchored = !anchored
 			update_nearby_icons()
 			update_verbs()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
 		else if(!reinf)
 			anchored = !anchored
 			update_nearby_icons()
 			update_verbs()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
 	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
 		state = 1 - state
-		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
+		playsound(src, W.usesound, 75, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
 	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
 		if(!glasstype)
 			user << "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>"
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src, W.usesound, 75, 1)
 			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
 			if(dir == SOUTHWEST)
 				var/obj/item/stack/material/mats = new glasstype(loc)
@@ -291,6 +314,8 @@
 
 /obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
 	if(reinf) damage *= 0.5
+	if(damage < 5)
+		return
 	take_damage(damage)
 	return
 
@@ -355,12 +380,9 @@
 	density = 0
 	update_nearby_tiles()
 	var/turf/location = loc
-	loc = null
+	. = ..()
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
-	loc = location
-	..()
-
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
@@ -411,6 +433,15 @@
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
 		overlays += I
 
+	// Damage overlays.
+	var/ratio = health / maxhealth
+	ratio = Ceiling(ratio * 4) * 25
+
+	if(ratio > 75)
+		return
+	var/image/I = image(icon, "damage[ratio]", layer + 0.1)
+	overlays += I
+
 	return
 
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -440,6 +471,10 @@
 	damage_per_fire_tick = 1.0
 	maxhealth = 40.0
 
+/obj/structure/window/phoronbasic/full
+	dir = SOUTHWEST
+	maxhealth = 80
+
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
@@ -452,6 +487,9 @@
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 	maxhealth = 80.0
 
+/obj/structure/window/phoronreinforced/full
+	dir = SOUTHWEST
+	maxhealth = 160
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -471,6 +509,11 @@
 	//player-constructed windows
 	if (constructed)
 		state = 0
+
+/obj/structure/window/reinforced/full
+	dir = SOUTHWEST
+	icon_state = "fwindow"
+	maxhealth = 80
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"

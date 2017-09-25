@@ -1,7 +1,7 @@
 /datum/gas_mixture
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
-	var/list/gas = list()
+	var/list/gas
 	//Temperature in Kelvin of this gas mix.
 	var/temperature = 0
 
@@ -13,10 +13,11 @@
 	var/group_multiplier = 1
 
 	//List of active tile overlays for this gas_mixture.  Updated by check_tile_graphic()
-	var/list/graphic = list()
+	var/list/graphic
 
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
+	gas = list()
 
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
@@ -329,27 +330,24 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
+	var/list/cur_graphic = graphic // Cache for sanic speed
 	for(var/g in gas_data.overlay_limit)
-		if(graphic.Find(gas_data.tile_overlay[g]))
+		if(cur_graphic && cur_graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
 			if(gas[g] <= gas_data.overlay_limit[g])
-				if(!graphic_remove)
-					graphic_remove = list()
-				graphic_remove += gas_data.tile_overlay[g]
+				LAZYADD(graphic_remove, gas_data.tile_overlay[g])
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > gas_data.overlay_limit[g])
-				if(!graphic_add)
-					graphic_add = list()
-				graphic_add += gas_data.tile_overlay[g]
+				LAZYADD(graphic_add, gas_data.tile_overlay[g])
 
 	. = 0
 	//Apply changes
-	if(graphic_add && graphic_add.len)
-		graphic += graphic_add
+	if(LAZYLEN(graphic_add))
+		LAZYADD(graphic, graphic_add)
 		. = 1
-	if(graphic_remove && graphic_remove.len)
-		graphic -= graphic_remove
+	if(LAZYLEN(graphic_remove))
+		LAZYREMOVE(graphic, graphic_remove)
 		. = 1
 
 

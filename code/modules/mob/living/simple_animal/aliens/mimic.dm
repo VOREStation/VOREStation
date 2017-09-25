@@ -10,6 +10,7 @@
 	icon_living = "crate"
 
 	faction = "mimic"
+	intelligence_level = SA_ANIMAL
 
 	maxHealth = 250
 	health = 250
@@ -43,7 +44,7 @@
 	if(.)
 		audible_emote("growls at [.]")
 
-/mob/living/simple_animal/mimic/death()
+/mob/living/simple_animal/hostile/mimic/death()
 	..()
 	qdel(src)
 

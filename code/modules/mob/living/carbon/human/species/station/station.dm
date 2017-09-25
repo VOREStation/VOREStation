@@ -37,7 +37,7 @@
 	brute_mod = 0.85
 	burn_mod = 0.85
 	metabolic_rate = 0.85
-	item_slowdown_halved = 1
+	item_slowdown_mod = 0.5
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -46,7 +46,7 @@
 	min_age = 32
 	max_age = 260
 
-	blurb = "A heavily reptillian species, Unathi (or 'Sinta as they call themselves) hail from the \
+	blurb = "A heavily reptillian species, Unathi hail from the \
 	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, inhospitable \
 	planet, they mostly hold ideals of honesty, virtue, proficiency and bravery above all \
 	else, frequently even their own lives. They prefer warmer temperatures than most species and \
@@ -256,6 +256,7 @@
 	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
 	name_language = LANGUAGE_ROOTLOCAL
 	health_hud_intensity = 2.5
+	item_slowdown_mod = 0.25
 
 	min_age = 1
 	max_age = 300
@@ -318,6 +319,7 @@
 	reagent_tag = IS_DIONA
 
 	genders = list(PLURAL)
+
 /datum/species/diona/can_understand(var/mob/other)
 	var/mob/living/carbon/alien/diona/D = other
 	if(istype(D))

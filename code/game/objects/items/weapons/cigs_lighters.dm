@@ -279,11 +279,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 15
 	max_smoketime = 300
 	smoketime = 300
+	var/nicotine_amt = 2
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to light their NAME with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
+
+/obj/item/clothing/mask/smokable/cigarette/New()
+	..()
+	if(nicotine_amt)
+		reagents.add_reagent("nicotine", nicotine_amt)
 
 /obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -332,6 +338,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	max_smoketime = 1500
 	smoketime = 1500
 	chem_volume = 20
+	nicotine_amt = 4
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to offend their NAME by lighting it with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
@@ -342,6 +349,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "\improper Cohiba Robusto cigar"
 	desc = "There's little more you could want from a cigar."
 	icon_state = "cigar2"
+	nicotine_amt = 7
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	name = "premium Havanian cigar"
@@ -350,6 +358,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	max_smoketime = 7200
 	smoketime = 7200
 	chem_volume = 30
+	nicotine_amt = 10
 
 /obj/item/weapon/cigbutt
 	name = "cigarette butt"
@@ -472,6 +481,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter/zippo
 	name = "\improper Zippo lighter"
 	desc = "The zippo."
+	icon = 'icons/obj/zippo.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"
 
@@ -542,3 +552,61 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	return
+
+//Here we add Zippo skins.
+
+/obj/item/weapon/flame/lighter/zippo/black
+	name = "\improper holy Zippo lighter"
+	desc = "Only in regards to Christianity, that is."
+	icon_state = "blackzippo"
+
+/obj/item/weapon/flame/lighter/zippo/blue
+	name = "\improper blue Zippo lighter"
+	icon_state = "bluezippo"
+
+/obj/item/weapon/flame/lighter/zippo/engraved
+	name = "\improper engraved Zippo lighter"
+	icon_state = "engravedzippo"
+	item_state = "zippo"
+
+/obj/item/weapon/flame/lighter/zippo/gold
+	name = "\improper golden Zippo lighter"
+	icon_state = "goldzippo"
+
+/obj/item/weapon/flame/lighter/zippo/moff
+	name = "\improper moth Zippo lighter"
+	desc = "Too cute to be a Tymisian."
+	icon_state = "moffzippo"
+
+/obj/item/weapon/flame/lighter/zippo/red
+	name = "\improper red Zippo lighter"
+	icon_state = "redzippo"
+
+/obj/item/weapon/flame/lighter/zippo/ironic
+	name = "\improper ironic Zippo lighter"
+	desc = "What a quiant idea."
+	icon_state = "ironiczippo"
+
+/obj/item/weapon/flame/lighter/zippo/capitalist
+	name = "\improper capitalist Zippo lighter"
+	desc = "Made of gold and obsidian, this is truly not worth however much you spent on it."
+	icon_state = "cappiezippo"
+
+/obj/item/weapon/flame/lighter/zippo/communist
+	name = "\improper communist Zippo lighter"
+	desc = "All you need to spark a revolution."
+	icon_state = "commiezippo"
+
+/obj/item/weapon/flame/lighter/zippo/royal
+	name = "\improper royal Zippo lighter"
+	desc = "An incredibly fancy lighter, gilded and covered in the color of royalty."
+	icon_state = "royalzippo"
+
+/obj/item/weapon/flame/lighter/zippo/gonzo
+	name = "\improper Gonzo Zippo lighter"
+	desc = "A lighter with the iconic Gonzo fist painted on it."
+	icon_state = "gonzozippo"
+
+/obj/item/weapon/flame/lighter/zippo/rainbow
+	name = "\improper rainbow Zippo lighter"
+	icon_state = "rainbowzippo"

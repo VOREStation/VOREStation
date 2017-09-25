@@ -144,7 +144,7 @@
 	if(is_robot_module(O))
 		return 0
 
-	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/a357) || istype(O,/obj/item/ammo_magazine/c38)) // Prevents ammo recycling exploit with speedloaders.
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38)) // Prevents ammo recycling exploit with speedloaders.
 		user << "\The [O] is too hazardous to recycle with the autolathe!"
 		return
 		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
@@ -262,7 +262,7 @@
 				stored_material[material] = max(0, stored_material[material] - round(making.resources[material] * mat_efficiency) * multiplier)
 
 		update_icon() // So lid closes
-		
+
 		sleep(build_time)
 
 		busy = 0

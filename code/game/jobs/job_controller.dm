@@ -375,6 +375,7 @@ var/global/datum/controller/occupations/job_master
 			job.equip_backpack(H)
 			job.equip_survival(H)
 			job.apply_fingerprints(H)
+			H.equip_post_job()
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
@@ -457,13 +458,18 @@ var/global/datum/controller/occupations/job_master
 		if(istype(H)) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-			if(!l_foot || !r_foot)
+			var/obj/item/weapon/storage/S = locate() in H.contents
+			var/obj/item/wheelchair/R = locate() in S.contents
+			if(!l_foot || !r_foot || R)
 				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 				H.buckled = W
 				H.update_canmove()
 				W.set_dir(H.dir)
 				W.buckled_mob = H
 				W.add_fingerprint(H)
+				if(R)
+					W.color = R.color
+					qdel(R)
 
 		H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
 
@@ -612,14 +618,16 @@ var/global/datum/controller/occupations/job_master
 		else
 			spawnpos = spawntypes[H.client.prefs.spawnpoint]
 
-	if(spawnpos && istype(spawnpos))
+	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)  // VOREStation Edit - Fix runtime if no landmarks exist for a spawntype
 		if(spawnpos.check_job_spawning(rank))
-			H.forceMove(pick(spawnpos.turfs))
+			H.forceMove(spawnpos.get_spawn_position())
 			. = spawnpos.msg
 		else
 			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
-			H.forceMove(pick(latejoin))
-			. = "has arrived on the station"
+			var/spawning = pick(latejoin)
+			H.forceMove(get_turf(spawning))
+			. = "will arrive to the station shortly by shuttle"
 	else
-		H.forceMove(pick(latejoin))
+		var/spawning = pick(latejoin)
+		H.forceMove(get_turf(spawning))
 		. = "has arrived on the station"

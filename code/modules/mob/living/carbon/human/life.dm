@@ -4,7 +4,7 @@
 #define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 #define HUMAN_CRIT_MAX_OXYLOSS ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
 
-#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_1 5 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 10 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 20 //Amount of damage applied when your body temperature passes the 1000K point
 
@@ -62,8 +62,12 @@
 
 	voice = GetVoice()
 
+	var/stasis = inStasisNow()
+	if(getStasis() > 2)
+		Sleeping(20)
+
 	//No need to update all of these procs if the guy is dead.
-	if(stat != DEAD && !in_stasis)
+	if(stat != DEAD && !stasis)
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
 
@@ -82,7 +86,6 @@
 		if(!client)
 			species.handle_npc(src)
 
-
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -97,7 +100,7 @@
 	return 1
 
 /mob/living/carbon/human/breathe()
-	if(!in_stasis)
+	if(!inStasisNow())
 		..()
 
 // Calculate how vulnerable the human is to under- and overpressure.
@@ -155,7 +158,7 @@
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
-			src << "\red You have a seizure!"
+			src << "<font color='red'>You have a seizure!</font>"
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
@@ -207,7 +210,7 @@
 
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(getFireLoss())
@@ -620,31 +623,35 @@
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
 		fire_alert = max(fire_alert, 1)
-		if(status_flags & GODMODE)	return 1	//godmode
+		if(status_flags & GODMODE)
+			return 1	//godmode
 		var/burn_dam = 0
-		switch(bodytemperature)
-			if(species.heat_level_1 to species.heat_level_2)
-				burn_dam = HEAT_DAMAGE_LEVEL_1
-			if(species.heat_level_2 to species.heat_level_3)
-				burn_dam = HEAT_DAMAGE_LEVEL_2
-			if(species.heat_level_3 to INFINITY)
-				burn_dam = HEAT_DAMAGE_LEVEL_3
+
+		// switch() can't access numbers inside variables, so we need to use some ugly if() spam ladder.
+		if(bodytemperature >= species.heat_level_3)
+			burn_dam = HEAT_DAMAGE_LEVEL_3
+		else if(bodytemperature >= species.heat_level_2)
+			burn_dam = HEAT_DAMAGE_LEVEL_2
+		else if(bodytemperature >= species.heat_level_1)
+			burn_dam = HEAT_DAMAGE_LEVEL_1
+
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 		fire_alert = max(fire_alert, 2)
 
 	else if(bodytemperature <= species.cold_level_1)
 		fire_alert = max(fire_alert, 1)
-		if(status_flags & GODMODE)	return 1	//godmode
+		if(status_flags & GODMODE)
+			return 1	//godmode
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/burn_dam = 0
-			switch(bodytemperature)
-				if(species.cold_level_1 to species.cold_level_2)
-					burn_dam = COLD_DAMAGE_LEVEL_1
-				if(species.cold_level_2 to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_2
-				if(species.cold_level_3 to -INFINITY)
-					burn_dam = COLD_DAMAGE_LEVEL_3
+			if(bodytemperature <= species.cold_level_3)
+				burn_dam = COLD_DAMAGE_LEVEL_3
+			else if(bodytemperature <= species.cold_level_2)
+				burn_dam = COLD_DAMAGE_LEVEL_2
+			else if(bodytemperature <= species.heat_level_1)
+				burn_dam = COLD_DAMAGE_LEVEL_1
+
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
 			fire_alert = max(fire_alert, 1)
 
@@ -789,7 +796,7 @@
 
 /mob/living/carbon/human/handle_chemicals_in_body()
 
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	if(reagents)
@@ -1125,10 +1132,16 @@
 				see_invisible = SEE_INVISIBLE_LIVING
 				seer = 0
 
+		if(!seedarkness)
+			sight = species.get_vision_flags(src)
+			see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_NOLIGHTING
+
 		else
 			sight = species.get_vision_flags(src)
 			see_in_dark = species.darksight
 			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+
 		var/tmp/glasses_processed = 0
 		var/obj/item/weapon/rig/rig = back
 		if(istype(rig) && rig.visor)
@@ -1147,7 +1160,7 @@
 
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
-		if(!seer && !glasses_processed)
+		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = SEE_INVISIBLE_LIVING
 
 		if(healths)
@@ -1172,7 +1185,7 @@
 
 				// Apply a fire overlay if we're burning.
 				if(on_fire)
-					health_images += image('icons/mob/screen1_health.dmi',"burning")
+					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
 
 				// Show a general pain/crit indicator if needed.
 				if(trauma_val)
@@ -1339,7 +1352,7 @@
 			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/human/handle_random_events()
-	if(in_stasis)
+	if(inStasisNow())
 		return
 
 	// Puke if toxloss is too high
@@ -1664,14 +1677,17 @@
 	if(..())
 		return
 
-	var/burn_temperature = fire_burn_temperature()
-	var/thermal_protection = get_heat_protection(burn_temperature)
+	var/thermal_protection = get_heat_protection(fire_stacks * 1500) // Arbitrary but below firesuit max temp when below 20 stacks.
 
-	if (thermal_protection < 1 && bodytemperature < burn_temperature)
-		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
+	if(thermal_protection == 1) // Immune.
+		return
+	else
+		bodytemperature += (BODYTEMP_HEATING_MAX + (fire_stacks * 15)) * (1-thermal_protection)
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()
+	shock_stage = 0
+	traumatic_shock = 0
 	..()
 
 #undef HUMAN_MAX_OXYLOSS

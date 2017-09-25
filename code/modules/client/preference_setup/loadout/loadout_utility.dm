@@ -87,3 +87,16 @@
 	display_name = "universal translator"
 	path = /obj/item/device/universal_translator
 	cost = 8
+
+/datum/gear/utility/pen
+	display_name = "Fountain Pen"
+	path = /obj/item/weapon/pen/fountain
+
+/datum/gear/utility/wheelchair/color
+	display_name = "wheelchair"
+	path = /obj/item/wheelchair
+	cost = 4
+
+/datum/gear/utility/wheelchair/color/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

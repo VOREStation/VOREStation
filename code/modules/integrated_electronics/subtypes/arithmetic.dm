@@ -1,16 +1,20 @@
 //These circuits do simple math.
 /obj/item/integrated_circuit/arithmetic
 	complexity = 1
-	inputs = list("A","B","C","D","E","F","G","H")
-	outputs = list("result")
-	activators = list("compute")
+	inputs = list(
+		"A" = IC_PINTYPE_NUMBER,
+		"B" = IC_PINTYPE_NUMBER,
+		"C" = IC_PINTYPE_NUMBER,
+		"D" = IC_PINTYPE_NUMBER,
+		"E" = IC_PINTYPE_NUMBER,
+		"F" = IC_PINTYPE_NUMBER,
+		"G" = IC_PINTYPE_NUMBER,
+		"H" = IC_PINTYPE_NUMBER
+		)
+	outputs = list("result" = IC_PINTYPE_NUMBER)
+	activators = list("compute" = IC_PINTYPE_PULSE_IN, "on computed" = IC_PINTYPE_PULSE_OUT)
 	category_text = "Arithmetic"
-	autopulse = 1
 	power_draw_per_use = 5 // Math is pretty cheap.
-
-/obj/item/integrated_circuit/arithmetic/on_data_written()
-	if(autopulse == 1)
-		check_then_do_work()
 
 // +Adding+ //
 
@@ -25,14 +29,14 @@
 
 /obj/item/integrated_circuit/arithmetic/addition/do_work()
 	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		I.pull_data()
 		if(isnum(I.data))
 			result = result + I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // -Subtracting- //
 
@@ -51,16 +55,16 @@
 		return
 	var/result = A.data
 
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		if(I == A)
 			continue
 		I.pull_data()
 		if(isnum(I.data))
 			result = result - I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // *Multiply* //
 
@@ -79,16 +83,16 @@
 	if(!isnum(A.data))
 		return
 	var/result = A.data
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		if(I == A)
 			continue
 		I.pull_data()
 		if(isnum(I.data))
 			result = result * I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // /Division/  //
 
@@ -107,16 +111,16 @@
 		return
 	var/result = A.data
 
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		if(I == A)
 			continue
 		I.pull_data()
 		if(isnum(I.data) && I.data != 0) //No runtimes here.
 			result = result / I.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 //^ Exponent ^//
 
@@ -124,7 +128,7 @@
 	name = "exponent circuit"
 	desc = "Outputs A to the power of B."
 	icon_state = "exponent"
-	inputs = list("A", "B")
+	inputs = list("A" = IC_PINTYPE_NUMBER, "B" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/exponent/do_work()
@@ -134,9 +138,9 @@
 	if(isnum(A.data) && isnum(B.data))
 		result = A.data ** B.data
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // +-Sign-+ //
 
@@ -145,7 +149,7 @@
 	desc = "This will say if a number is positive, negative, or zero."
 	extended_desc = "Will output 1, -1, or 0, depending on if A is a postive number, a negative number, or zero, respectively."
 	icon_state = "sign"
-	inputs = list("A")
+	inputs = list("A" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/sign/do_work()
@@ -159,9 +163,9 @@
 		else
 			result = 0
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Round //
 
@@ -170,7 +174,7 @@
 	desc = "Rounds A to the nearest B multiple of A."
 	extended_desc = "If B is not given a number, it will output the floor of A instead."
 	icon_state = "round"
-	inputs = list("A", "B")
+	inputs = list("A" = IC_PINTYPE_NUMBER, "B" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/round/do_work()
@@ -183,9 +187,9 @@
 		else
 			result = round(A.data)
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 
 // Absolute //
@@ -194,19 +198,19 @@
 	name = "absolute circuit"
 	desc = "This outputs a non-negative version of the number you put in.  This may also be thought of as its distance from zero."
 	icon_state = "absolute"
-	inputs = list("A")
+	inputs = list("A" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/absolute/do_work()
 	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		I.pull_data()
 		if(isnum(I.data))
 			result = abs(I.data)
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Averaging //
 
@@ -220,7 +224,7 @@
 /obj/item/integrated_circuit/arithmetic/average/do_work()
 	var/result = 0
 	var/inputs_used = 0
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		I.pull_data()
 		if(isnum(I.data))
 			inputs_used++
@@ -229,9 +233,9 @@
 	if(inputs_used)
 		result = result / inputs_used
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Pi, because why the hell not? //
 /obj/item/integrated_circuit/arithmetic/pi
@@ -242,9 +246,9 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/pi/do_work()
-	var/datum/integrated_io/output/O = outputs[1]
-	O.data = 3.14159
-	O.push_data()
+	set_pin_data(IC_OUTPUT, 1, 3.14159)
+	push_data()
+	activate_pin(2)
 
 // Random //
 /obj/item/integrated_circuit/arithmetic/random
@@ -253,20 +257,20 @@
 	extended_desc = "'Inclusive' means that the upper bound is included in the range of numbers, e.g. L = 1 and H = 3 will allow \
 	for outputs of 1, 2, or 3.  H being the higher number is not <i>strictly</i> required."
 	icon_state = "random"
-	inputs = list("L","H")
+	inputs = list("L" = IC_PINTYPE_NUMBER,"H" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/random/do_work()
 	var/result = 0
-	var/datum/integrated_io/L = inputs[1]
-	var/datum/integrated_io/H = inputs[2]
+	var/L = get_pin_data(IC_INPUT, 1)
+	var/H = get_pin_data(IC_INPUT, 2)
 
-	if(isnum(L.data) && isnum(H.data))
-		result = rand(L.data, H.data)
+	if(isnum(L) && isnum(H))
+		result = rand(L, H)
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // Square Root //
 
@@ -274,19 +278,19 @@
 	name = "square root circuit"
 	desc = "This outputs the square root of a number you put in."
 	icon_state = "square_root"
-	inputs = list("A")
+	inputs = list("A" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/square_root/do_work()
 	var/result = 0
-	for(var/datum/integrated_io/input/I in inputs)
+	for(var/datum/integrated_io/I in inputs)
 		I.pull_data()
 		if(isnum(I.data))
 			result = sqrt(I.data)
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 
 // % Modulo % //
 
@@ -294,17 +298,17 @@
 	name = "modulo circuit"
 	desc = "Gets the remainder of A / B."
 	icon_state = "modulo"
-	inputs = list("A", "B")
+	inputs = list("A" = IC_PINTYPE_NUMBER, "B" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/arithmetic/modulo/do_work()
 	var/result = 0
-	var/datum/integrated_io/input/A = inputs[1]
-	var/datum/integrated_io/input/B = inputs[2]
-	if(isnum(A.data) && isnum(B.data) && B.data != 0)
-		result = A.data % B.data
+	var/A = get_pin_data(IC_INPUT, 1)
+	var/B = get_pin_data(IC_INPUT, 2)
+	if(isnum(A) && isnum(B) && B != 0)
+		result = A % B
 
-	for(var/datum/integrated_io/output/O in outputs)
-		O.data = result
-		O.push_data()
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
 

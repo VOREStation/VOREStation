@@ -13,15 +13,18 @@
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 
-	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "dexalin" ,"spaceacillin")
+	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "anti_toxin", "tramadol", "dexalin" ,"spaceacillin")
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
 /obj/item/weapon/reagent_containers/borghypo/surgeon
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "dexalin" ,"spaceacillin")
+	reagent_ids = list("tricordrazine", "inaprovaline", "oxycodone", "dexalin" ,"spaceacillin")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "dexalin" ,"spaceacillin")
+	reagent_ids = list("tricordrazine", "inaprovaline", "anti_toxin", "tramadol", "dexalin" ,"spaceacillin")
+
+/obj/item/weapon/reagent_containers/borghypo/lost
+	reagent_ids = list("tricordrazine", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
@@ -35,7 +38,7 @@
 
 /obj/item/weapon/reagent_containers/borghypo/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
 	if(++charge_tick < recharge_time)
@@ -121,7 +124,7 @@
 	recharge_time = 3
 	volume = 60
 	possible_transfer_amounts = list(5, 10, 20, 30)
-	reagent_ids = list("beer", "kahlua", "whiskey", "specialwhiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
+	reagent_ids = list("ale", "beer", "berryjuice", "coffee", "cognac", "cola", "dr_gibb", "egg", "gin", "gingerale", "hot_coco", "ice", "icetea", "kahlua", "lemonjuice", "lemon_lime", "limejuice", "mead", "milk", "mint", "orangejuice", "rum", "sake", "sodawater", "soymilk", "space_up", "spacemountainwind", "specialwhiskey", "sugar", "tea", "tequilla", "tomatojuice", "tonic", "vermouth", "vodka", "water", "watermelonjuice", "whiskey", "wine")
 
 /obj/item/weapon/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
 	return

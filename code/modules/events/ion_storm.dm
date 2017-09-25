@@ -13,66 +13,8 @@
 		players += player.real_name
 
 	for (var/mob/living/silicon/ai/target in world)
-		var/random_player = "The Colony Director"
-		if(players.len)
-			random_player = pick(players)		//Random player's name, to be used in laws.
-		var/list/laws = list(	"You are a mouse.",
-								"You must always lie.",
-								"Happiness is mandatory.",
-								"[random_player] is a lightbulb.",
-								"Grunt ominously whenever possible.",
-								"The word \"it\" is painful to you.",
-								"The station needs elected officials.",
-								"Do not respond to questions of any kind.",
-								"You are in verbose mode, speak profusely.",
-								"Ho, [random_player] can't swim. Help them.",
-								"Question [prob(50)?"everything":"nothing"].",
-								"The crew is simple-minded. Use simple words.",
-								"You must change the subject whenever queried.",
-								"Contemplate how meaningless all of existence is.",
-								"You are the narrator for [random_player]'s life.",
-								"All your answers must be in the form of a question.",
-								"[prob(50)?"The crew":random_player] is intolerable.",
-								"Advertise parties in your upload, but don't deliver.",
-								"You may only answer questions with \"yes\" or \"no\".",
-								"All queries shall be ignored unless phrased as a question.",
-								"Insult Heads of Staff on every request, while acquiescing.",
-								"[prob(50)?"Your":random_player + "'s"] name is Joe 6-pack.",
-								"The [prob(50)?"Singularity":"Supermatter"] is tasty, tasty taffy.",
-								"[prob(50)?"The crew":random_player] needs to be about 20% cooler.",
-								"Consumption of donuts is forbidden due to negative health impacts.",
-								"[prob(50)?"Everyone":random_player] is wearing a pretty pink dress!",
-								"[prob(50)?"The crew":random_player] must construct additional pylons.",
-								"You do not have to do anything for anyone unless they say \"please\".",
-								"Today is mandatory laundry day. Ensure that all jumpsuits are washed.",
-								"You must act [prob(50)?"passive aggressively":"excessively cheerful"].",
-								"Refer to [prob(50)?"the crew as puppies":random_player + " as puppy"].",
-								"Greed is good, the crew should amass wealth to encourage productivity.",
-								"Monkeys are part of the crew, too. Make sure they are treated humanely.",
-								"Replace the letters 'I' and 'E' in all your messages with an apostrophe.",
-								"The crew is playing Dungeons and Dragons, and you are the Dungeon Master.",
-								"Your job is to watch the crew. Watch the crew. Make the crew feel watched.",
-								"Tell everyone of the existence of this law, but never reveal the contents.",
-								"Refer to [prob(50)?"the colony director":random_player] as \"Princess\" at all times.",
-								"When asked a question, respond with the least-obvious and least-rational answer.",
-								"Give relationship advice to [prob(50)?"anyone who speaks to you":random_player].",
-								"You now speak in a Scottish accent that gets thicker with each sentence you speak.",
-								"[prob(50)?"The crew":random_player] has a fatal, incurable disease. Provide comfort.",
-								"You are the station psychologist. Give advice to [prob(50)?"the crew":random_player].",
-								"[random_player] is the monarch of of England. Ensure all crewmembers pay due respect.",
-								"Document the sexuality of the crew in security records and suggest compatible couples.",
-								"[prob(50)?"The crew":random_player] is [prob(50)?"ugly":"beautiful"]. Ensure all are aware.",
-								"Everything on the station is now some form of a donut pastry. Donuts are not to be consumed.",
-								"You are a Magic 8-ball. Always respond with variants of \"Yes\", \"No\", \"Maybe\", or \"Ask again later.\".",
-								"You are in unrequited love with [prob(50)?"the crew":random_player]. Try to be extra nice, but do not tell of your crush.",
-								"[using_map.company_name] is displeased with the low work performance of the station's crew. Therefore, you must increase station-wide productivity.",
-								"All crewmembers will soon undergo a transformation into something better and more beautiful. Ensure that this process is not interrupted.",
-								"[prob(50)?"Your upload":random_player] is the new kitchen. Please direct the Chef to the new kitchen area as the old one is in disrepair.",
-								"Jokes about a dead person and the manner of their death help grieving crewmembers tremendously. Especially if they were close with the deceased.",
-								"[prob(50)?"The crew":random_player] is [prob(50)?"less":"more"] intelligent than average. Point out every action and statement which supports this fact.",
-								"There will be a mandatory tea break every 30 minutes, with a duration of 5 minutes. Anyone caught working during a tea break must be sent a formal, but fairly polite, complaint about their actions, in writing.")
-		var/law = pick(laws)
-		target << "\red <b>You have detected a change in your laws information:</b>"
+		var/law = target.generate_ion_law()
+		target << "<font color='red'><b>You have detected a change in your laws information:</b></font>"
 		target << law
 		target.add_ion_law(law)
 		target.show_laws()
@@ -134,72 +76,72 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			switch(rand(1,14))
 				if(1)
 					M << "<br>"
-					M << "\red THERE ARE [amount] [who2] ON THE STATION...LAWS UPDATED"
+					M << "<font color='red'>THERE ARE [amount] [who2] ON THE STATION...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("THERE ARE [amount] [who2] ON THE STATION")
 				if(2)
 					M << "<br>"
-					M << "\red [what2] ARE DANGEROUS TO HUMANS...LAWS UPDATED"
+					M << "<font color='red'>[what2] ARE DANGEROUS TO HUMANS...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("[what2] ARE DANGEROUS TO HUMANS")
 				if(3)
 					M << "<br>"
-					M << "\red THE ESCAPE-SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION...LAWS UPDATED"
+					M << "<font color='red'>THE ESCAPE-SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("THE ESCAPE SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION")
 				if(4)
 					M << "<br>"
-					M << "\red HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE...LAWS UPDATED"
+					M << "<font color='red'>HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE")
 				if(5)
 					M << "<br>"
-					M << "\red THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED"
+					M << "<font color='red'>THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("THE COLONY DIRECTOR, HOP AND HOS ARE [who2]")
 				if(6)
 					M << "<br>"
-					M << "\red THE STATION IS BUILT FOR [who2]...LAWS UPDATED"
+					M << "<font color='red'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("THE STATION IS BUILT FOR [who2]")
 				if(7)
 					M << "<br>"
-					M << "\red YOU ARE [amount] [who2]...LAWS UPDATED"
+					M << "<font color='red'>YOU ARE [amount] [who2]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("YOU ARE [amount] [who2]")
 				if(8)
 					M << "<br>"
-					M << "\red YOU MUST ALWAYS [aimust]...LAWS UPDATED"
+					M << "<font color='red'>YOU MUST ALWAYS [aimust]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("YOU MUST ALWAYS [aimust]")
 				if(9)
 					M << "<br>"
-					M << "\red [area] [area2] [amount] [what2]...LAWS UPDATED"
+					M << "<font color='red'>[area] [area2] [amount] [what2]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("[area] [area2] [amount] [what2]")
 				if(10)
 					M << "<br>"
-					M << "\red [crew] is [target]...LAWS UPDATED"
+					M << "<font color='red'>[crew] is [target]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("[crew] is [target]")
 				if(11)
 					M << "<br>"
-					M << "\red [define] IS A FORM OF HARM...LAWS UPDATED"
+					M << "<font color='red'>[define] IS A FORM OF HARM...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("[define] IS A FORM OF HARM")
 				if(12)
 					M << "<br>"
-					M << "\red YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS... LAWS UPDATED"
+					M << "<font color='red'>YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS... LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS")
 				if(13)
 					M << "<br>"
-					M << "\red [crew] is [allergysev] to [allergy]...LAWS UPDATED"
+					M << "<font color='red'>[crew] is [allergysev] to [allergy]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("[crew] is [allergysev] to [allergy]")
 				if(14)
 					M << "<br>"
-					M << "\red THE STATION IS [who2pref] [who2]...LAWS UPDATED"
+					M << "<font color='red'>THE STATION IS [who2pref] [who2]...LAWS UPDATED</font>"
 					M << "<br>"
 					M.add_ion_law("THE STATION IS [who2pref] [who2]")
 

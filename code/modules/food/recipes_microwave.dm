@@ -105,7 +105,7 @@ I said no!
 /datum/recipe/xenoburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/reagent_containers/food/snacks/spidermeat	//	/obj/item/weapon/reagent_containers/food/snacks/xenomeat
+		/obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/xenoburger
 
@@ -224,9 +224,9 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
-		/obj/item/weapon/reagent_containers/food/snacks/spidermeat,	//xenomeat,
-		/obj/item/weapon/reagent_containers/food/snacks/spidermeat,	//xenomeat,
-		/obj/item/weapon/reagent_containers/food/snacks/spidermeat,	//xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
+		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
@@ -603,6 +603,11 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/baguette
+
+/datum/recipe/croissant
+	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
+	result = /obj/item/weapon/reagent_containers/food/snacks/croissant
 
 /datum/recipe/fishandchips
 	items = list(

@@ -20,3 +20,13 @@
 
 	description_antag = "Electromagnetic pulses will cause the device to disconnect all linked communicators.  Turning off the Exonet node at the Telecomms \
 	satellite will also accomplish this, but for all communicators on and near the station.  This may be needed to allow for a quiet kill or capture."
+
+/obj/item/device/electronic_assembly/device
+	description_info = "This is the guts of a 'device' type electronic assembly, and can either be used in this form or can be used inside of the assembly to \
+	allow it to interact with other assembly type devices (igniter, signaler, proximity sensor, etc). This device has unique inputs that allow it to either send \
+	or receive pulsed signals from an attached items when inside an electronic assembly device frame (looks not unlike a signaler). Ensure the assembly is closed \
+	before placing it inside the frame."
+
+/obj/item/device/assembly/electronic_assembly
+	description_info = "This is the casing for the 'device' type of electronic assembly. It behaves like any other 'assembly' type device such as an igniter or signaler \
+	and can be attached to others in the same way. Use the 'toggle-open' verb (right click) or a crowbar to pop the electronic device open to add components and close when finished."

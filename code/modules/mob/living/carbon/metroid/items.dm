@@ -9,27 +9,27 @@
 	throw_speed = 3
 	throw_range = 6
 	origin_tech = list(TECH_BIO = 4)
-	var/Uses = 1 // uses before it goes inert
+	var/uses = 1 // uses before it goes inert
 	var/enhanced = 0 //has it been enhanced before?
 	flags = OPENCONTAINER
-
-	attackby(obj/item/O as obj, mob/user as mob)
-		if(istype(O, /obj/item/weapon/slimesteroid2))
-			if(enhanced == 1)
-				user << "<span class='warning'> This extract has already been enhanced!</span>"
-				return ..()
-			if(Uses == 0)
-				user << "<span class='warning'> You can't enhance a used extract!</span>"
-				return ..()
-			user <<"You apply the enhancer. It now has triple the amount of uses."
-			Uses = 3
-			enhanced = 1
-			qdel(O)
-
+/*
+/obj/item/slime_extract/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/slimesteroid2))
+		if(enhanced == 1)
+			user << "<span class='warning'> This extract has already been enhanced!</span>"
+			return ..()
+		if(Uses == 0)
+			user << "<span class='warning'> You can't enhance a used extract!</span>"
+			return ..()
+		user <<"You apply the enhancer. It now has triple the amount of uses."
+		Uses = 3
+		enhanced = 1
+		qdel(O)
+*/
 /obj/item/slime_extract/New()
 	..()
-	create_reagents(100)
-	reagents.add_reagent("slimejelly", 30)
+	create_reagents(5)
+//	reagents.add_reagent("slimejelly", 30)
 
 /obj/item/slime_extract/grey
 	name = "grey slime extract"
@@ -51,7 +51,7 @@
 	name = "purple slime extract"
 	icon_state = "purple slime extract"
 
-/obj/item/slime_extract/darkpurple
+/obj/item/slime_extract/dark_purple
 	name = "dark purple slime extract"
 	icon_state = "dark purple slime extract"
 
@@ -71,7 +71,7 @@
 	name = "blue slime extract"
 	icon_state = "blue slime extract"
 
-/obj/item/slime_extract/darkblue
+/obj/item/slime_extract/dark_blue
 	name = "dark blue slime extract"
 	icon_state = "dark blue slime extract"
 
@@ -119,41 +119,66 @@
 	name = "rainbow slime extract"
 	icon_state = "rainbow slime extract"
 
-////Pet Slime Creation///
+/obj/item/slimepotion
+	icon = 'icons/obj/chemical.dmi'
 
-/obj/item/weapon/slimepotion
+////Pet Slime Creation///
+/*
+/obj/item/slimepotion/docility
 	name = "docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame."
-	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
-		if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
-			user << "<span class='warning'> The potion only works on baby slimes!</span>"
-			return ..()
-		if(M.is_adult) //Can't tame adults
-			user << "<span class='warning'> Only baby slimes can be tamed!</span>"
-			return..()
-		if(M.stat)
-			user << "<span class='warning'> The slime is dead!</span>"
-			return..()
-		if(M.mind)
-			user << "<span class='warning'> The slime resists!</span>"
-			return ..()
-		var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
-		pet.icon_state = "[M.colour] baby slime"
-		pet.icon_living = "[M.colour] baby slime"
-		pet.icon_dead = "[M.colour] baby slime dead"
-		pet.colour = "[M.colour]"
-		user <<"You feed the slime the potion, removing it's powers and calming it."
-		qdel(M)
-		var/newname = sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text, MAX_NAME_LEN)
+/obj/item/slimepotion/docility/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
+		user << "<span class='warning'> The potion only works on slimes!</span>"
+		return ..()
+//	if(M.is_adult) //Can't tame adults
+//		user << "<span class='warning'> Only baby slimes can be tamed!</span>"
+//		return..()
+	if(M.stat)
+		user << "<span class='warning'> The slime is dead!</span>"
+		return..()
+	if(M.mind)
+		user << "<span class='warning'> The slime resists!</span>"
+		return ..()
+	var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
+	pet.icon_state = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
+	pet.icon_living = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
+	pet.icon_dead = "[M.colour] [M.is_adult ? "adult" : "baby"] slime dead"
+	pet.colour = "[M.colour]"
+	to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
 
-		if (!newname)
-			newname = "pet slime"
-		pet.name = newname
-		pet.real_name = newname
-		qdel(src)
+	qdel(M)
+
+	var/newname = sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text, MAX_NAME_LEN)
+
+	if (!newname)
+		newname = "pet slime"
+	pet.name = newname
+	pet.real_name = newname
+	qdel(src)
+
+/obj/item/slimepotion/stabilizer
+	name = "slime stabilizer"
+	desc = "A potent chemical mix that will reduce the chance of a slime mutating."
+	icon_state = "potcyan"
+
+/obj/item/slimepotion/stabilizer/attack(mob/living/carbon/slime/M, mob/user)
+	if(!isslime(M))
+		to_chat(user, "<span class='warning'>The stabilizer only works on slimes!</span>")
+		return ..()
+	if(M.stat)
+		to_chat(user, "<span class='warning'>The slime is dead!</span>")
+		return ..()
+	if(M.mutation_chance == 0)
+		to_chat(user, "<span class='warning'>The slime already has no chance of mutating!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the stabilizer. It is now less likely to mutate.</span>")
+	M.mutation_chance = Clamp(M.mutation_chance-15,0,100)
+	qdel(src)
+
 
 /obj/item/weapon/slimepotion2
 	name = "advanced docility potion"
@@ -187,7 +212,7 @@
 		qdel(src)
 
 
-/obj/item/weapon/slimesteroid
+/obj/item/slimesteroid
 	name = "slime steroid"
 	desc = "A potent chemical mix that will cause a slime to generate more extract."
 	icon = 'icons/obj/chemical.dmi'
@@ -211,7 +236,7 @@
 		M.cores = 3
 		qdel(src)
 
-/obj/item/weapon/slimesteroid2
+/obj/item/slimesteroid2
 	name = "extract enhancer"
 	desc = "A potent chemical mix that will give a slime extract three uses."
 	icon = 'icons/obj/chemical.dmi'
@@ -229,7 +254,7 @@
 			target.Uses = 3
 			target.enahnced = 1
 			qdel(src)*/
-
+*/
 /obj/effect/golemrune
 	anchored = 1
 	desc = "a strange rune used to create golems. It glows when spirits are nearby."

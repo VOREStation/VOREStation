@@ -40,7 +40,7 @@ var/global/list/default_medbay_channels = list(
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
-	var/centComm = 0//Holder to see if it's a CentComm encrypted radio
+	var/centComm = 0//Holder to see if it's a CentCom encrypted radio
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
@@ -362,6 +362,12 @@ var/global/list/default_medbay_channels = list(
   /* ###### Radio headsets can only broadcast through subspace ###### */
 
 	if(subspace_transmission)
+		var/list/jamming = is_jammed(src)
+		if(jamming)
+			var/distance = jamming["distance"]
+			to_chat(M,"<span class='danger'>\icon[src] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
+			return 0
+
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
 		signal.transmission_method = 2 // 2 would be a subspace transmission.
@@ -503,6 +509,8 @@ var/global/list/default_medbay_channels = list(
 		return -1
 	if(!listening)
 		return -1
+	if(is_jammed(src))
+		return -1
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
@@ -621,6 +629,7 @@ var/global/list/default_medbay_channels = list(
 
 			recalculateChannels()
 			user << "You pop out the encryption key in the radio!"
+			playsound(src, W.usesound, 50, 1)
 
 		else
 			user << "This radio doesn't have any encryption keys!"

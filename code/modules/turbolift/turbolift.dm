@@ -108,7 +108,7 @@
 	current_floor = next_floor
 	control_panel_interior.visible_message("The elevator [moving_upwards ? "rises" : "descends"] smoothly.")
 
-	return 1
+	return (next_floor.delay_time || move_delay || 30)
 
 /datum/turbolift/proc/queue_move_to(var/datum/turbolift_floor/floor)
 	if(!floor || !(floor in floors) || (floor in queued_floors))

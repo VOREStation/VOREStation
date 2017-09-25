@@ -10,14 +10,14 @@ datum/pipeline
 	var/alert_pressure = 0
 
 	Destroy()
-		if(network)
-			qdel(network)
+		qdel_null(network)
 
 		if(air && air.volume)
 			temporarily_store_air()
-			qdel(air)
+		for(var/obj/machinery/atmospherics/pipe/P in members)
+			P.parent = null
 
-		..()
+		. = ..()
 
 	proc/process()//This use to be called called from the pipe networks
 
@@ -116,15 +116,17 @@ datum/pipeline
 		if(istype(target) && target.zone)
 			//Have to consider preservation of group statuses
 			var/datum/gas_mixture/turf_copy = new
+			var/datum/gas_mixture/turf_original = new
 
 			turf_copy.copy_from(target.zone.air)
 			turf_copy.volume = target.zone.air.volume //Copy a good representation of the turf from parent group
+			turf_original.copy_from(turf_copy)
 
 			equalize_gases(list(air_sample, turf_copy))
 			air.merge(air_sample)
 
-			turf_copy.subtract(target.zone.air)
 
+			target.zone.air.remove(turf_original.total_moles)
 			target.zone.air.merge(turf_copy)
 
 		else

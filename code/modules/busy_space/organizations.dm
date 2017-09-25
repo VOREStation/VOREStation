@@ -117,8 +117,8 @@
 		)
 
 /datum/lore/organization/tsc/vey_med
-	name = "Vey Medical"
-	short_name = "Vey Med"
+	name = "Vey-Medical" //The Wiki displays them as Vey-Medical.
+	short_name = "Vey-Med"
 	acronym = "VM"
 	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell. \
 	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \
@@ -221,6 +221,7 @@
 		"Never Talk To Strangers",
 		"Sacrificial Victim",
 		"Unwitting Accomplice",
+		"Witting Accomplice",
 		"Bad For Business",
 		"Just Testing",
 		"Size Isn't Everything",
@@ -249,7 +250,42 @@
 		"Anything Legal Considered",
 		"New Toy",
 		"Me, I'm Always Counting",
-		"Just Five More Minutes"
+		"Just Five More Minutes",
+		"Are You Feeling It",
+		"Great White Snark",
+		"No Shirt No Shoes",
+		"Callsign",
+		"Three Ships in a Trenchcoat",
+		"Not Wearing Pants",
+		"Ridiculous Naming Convention",
+		"God Dammit Morpheus",
+		"It Seemed Like a Good Idea",
+		"Legs All the Way Up",
+		"Purchase Necessary",
+		"Some Assembly Required",
+		"Buy One Get None Free",
+		"BRB",
+		"SHIP NAME HERE",
+		"Questionable Ethics",
+		"Accept Most Substitutes",
+		"I Blame the Government",
+		"Garbled Gibberish",
+		"Thinking Emoji",
+		"Is This Thing On?",
+		"Make My Day",
+		"No Vox Here",
+		"Savings and Values",
+		"Secret Name",
+		"Can't Find My Keys",
+		"Look Over There!",
+		"Made You Look!",
+		"Take Nothing Seriously",
+		"It Comes In Lime, Too",
+		"Loot Me",
+		"Nothing To Declare",
+		"Sneaking Suspicion",
+		"Bass Ackwards",
+		"Good Things Come to Those Who Freight"
 
 
 		)
@@ -322,12 +358,12 @@
 // Military
 
 /datum/lore/organization/mil/sif_guard
-	name = "Sif Homeguard Forces" // Todo: Get better name from lorepeople.
+	name = "Sif Defense Force" // Todo: Get better name from lorepeople.
 	short_name = "SifGuard"
 	desc = ""
 	history = ""
 	work = "Sif Governmental Authority's military"
-	headquarters = "Sif" // Make this more specific later.
+	headquarters = "New Reykjavik, Sif"
 	motto = ""
 	autogenerate_destination_names = FALSE // Kinda weird if SifGuard goes to Nyx.
 

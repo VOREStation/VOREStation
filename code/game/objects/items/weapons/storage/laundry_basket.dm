@@ -12,8 +12,8 @@
 
 	w_class = ITEMSIZE_HUGE
 	max_w_class = ITEMSIZE_LARGE
-	max_storage_space = ITEMSIZE_COST_NORMAL * 6 //20 for clothes + a bit of additional space for non-clothing items that were worn on body
-	storage_slots = 14
+	max_storage_space = ITEMSIZE_COST_NORMAL * 8
+	storage_slots = 20
 	use_to_pickup = 1
 	allow_quick_empty = 1
 	allow_quick_gather = 1
@@ -65,7 +65,7 @@
 		return ..()
 
 /obj/item/weapon/storage/laundry_basket/dropped(mob/user as mob)
-	qdel(linked)
+	qdel_null(linked)
 	return ..()
 
 /obj/item/weapon/storage/laundry_basket/show_to(mob/user as mob)

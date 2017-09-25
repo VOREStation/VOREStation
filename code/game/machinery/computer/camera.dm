@@ -35,7 +35,6 @@
 	return viewflag
 
 /obj/machinery/computer/security/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	if(src.z > 6) return
 	if(stat & (NOPOWER|BROKEN)) return
 	if(user.stat) return
 
@@ -48,6 +47,7 @@
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 	if(current_camera)
 		switch_to_camera(user, current_camera)
+	data["map_levels"] = using_map.get_map_levels(src.z)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -91,7 +91,7 @@
 		. = ..()
 
 /obj/machinery/computer/security/attack_hand(var/mob/user as mob)
-	if (src.z > 6)
+	if (using_map && !(src.z in using_map.contact_levels))
 		user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
 		return
 	if(stat & (NOPOWER|BROKEN))	return
@@ -169,6 +169,7 @@
 
 	src.current_camera = C
 	if(current_camera)
+		current_camera.camera_computers_using_this.Add(src)
 		use_power = 2
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
@@ -176,6 +177,7 @@
 
 /obj/machinery/computer/security/proc/reset_current()
 	if(current_camera)
+		current_camera.camera_computers_using_this.Remove(src)
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
 			L.tracking_cancelled()

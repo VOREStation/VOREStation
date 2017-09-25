@@ -5,6 +5,7 @@
 	icon_living = "syndicate"
 	icon_dead = "syndicate_dead"
 	icon_gib = "syndicate_gib"
+	intelligence_level = SA_HUMANOID
 
 	faction = "syndicate"
 	maxHealth = 100
@@ -96,7 +97,7 @@
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
-		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
+		visible_message("<font color='red'><B>[src] blocks [Proj] with its shield!</B></font>")
 		if(Proj.firer)
 			react_to_attack(Proj.firer)
 		return
@@ -165,6 +166,7 @@
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
+	intelligence_level = SA_ROBOTIC
 
 	faction = "syndicate"
 	maxHealth = 15

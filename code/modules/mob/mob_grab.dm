@@ -83,7 +83,9 @@
 
 
 //This makes sure that the grab screen object is displayed in the correct hand.
-/obj/item/weapon/grab/proc/synch()
+/obj/item/weapon/grab/proc/synch() //why is this needed?
+	if(QDELETED(src))
+		return
 	if(affecting)
 		if(assailant.r_hand == src)
 			hud.screen_loc = ui_rhand
@@ -91,7 +93,7 @@
 			hud.screen_loc = ui_lhand
 
 /obj/item/weapon/grab/process()
-	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
+	if(QDELETED(src)) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
 		return PROCESS_KILL
 
 	confirm()
@@ -221,6 +223,8 @@
 			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
 
 /obj/item/weapon/grab/proc/s_click(obj/screen/S)
+	if(QDELETED(src))
+		return
 	if(!affecting)
 		return
 	if(state == GRAB_UPGRADING)
@@ -291,6 +295,8 @@
 	return 1
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
+	if(QDELETED(src))
+		return
 	if(!affecting)
 		return
 	if(world.time < (last_action + 20))
@@ -336,7 +342,7 @@
 
 /obj/item/weapon/grab/dropped()
 	loc = null
-	if(!destroying)
+	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/weapon/grab/proc/reset_kill_state()
@@ -387,9 +393,6 @@
 /obj/item/weapon/grab/proc/size_difference(mob/A, mob/B)
 	return mob_size_difference(A.mob_size, B.mob_size)
 
-/obj/item/weapon/grab
-	var/destroying = 0
-
 /obj/item/weapon/grab/Destroy()
 	animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
 	affecting.layer = 4
@@ -402,5 +405,4 @@
 		assailant = null
 	qdel(hud)
 	hud = null
-	destroying = 1 // stops us calling qdel(src) on dropped()
-	..()
+	return ..()

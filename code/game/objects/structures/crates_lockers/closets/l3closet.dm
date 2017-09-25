@@ -67,6 +67,11 @@
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 
+/obj/structure/closet/l3closet/scientist/double/New()
+	..()
+	new /obj/item/clothing/suit/bio_suit/scientist(src)
+	new /obj/item/clothing/head/bio_hood/scientist(src)
+
 
 /obj/structure/closet/l3closet/medical
 	icon_state = "bio_scientist"

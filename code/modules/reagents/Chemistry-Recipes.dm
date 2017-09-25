@@ -384,7 +384,7 @@
 	name = "Stimm"
 	id = "stimm"
 	result = "stimm"
-	required_reagents = list("sugar" = 1, "fuel" = 1)
+	required_reagents = list("left4zed" = 1, "fuel" = 1)
 	catalysts = list("fuel" = 5)
 	result_amount = 2
 
@@ -604,16 +604,75 @@
 
 /* Solidification */
 
-/datum/chemical_reaction/phoronsolidification
+/datum/chemical_reaction/solidification
+	name = "Solid Iron"
+	id = "solidiron"
+	result = null
+	required_reagents = list("frostoil" = 5, "iron" = REAGENTS_PER_SHEET)
+	result_amount = 1
+	var/sheet_to_give = /obj/item/stack/material/iron
+
+/datum/chemical_reaction/solidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new sheet_to_give(get_turf(holder.my_atom), created_volume)
+	return
+
+
+/datum/chemical_reaction/solidification/phoron
 	name = "Solid Phoron"
 	id = "solidphoron"
-	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "phoron" = 20)
-	result_amount = 1
+	required_reagents = list("frostoil" = 5, "phoron" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/phoron
 
-/datum/chemical_reaction/phoronsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/phoron(get_turf(holder.my_atom), created_volume)
-	return
+
+/datum/chemical_reaction/solidification/silver
+	name = "Solid Silver"
+	id = "solidsilver"
+	required_reagents = list("frostoil" = 5, "silver" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/silver
+
+
+/datum/chemical_reaction/solidification/gold
+	name = "Solid Gold"
+	id = "solidgold"
+	required_reagents = list("frostoil" = 5, "gold" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/gold
+
+
+/datum/chemical_reaction/solidification/platinum
+	name = "Solid Platinum"
+	id = "solidplatinum"
+	required_reagents = list("frostoil" = 5, "platinum" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/platinum
+
+
+/datum/chemical_reaction/solidification/uranium
+	name = "Solid Uranium"
+	id = "soliduranium"
+	required_reagents = list("frostoil" = 5, "uranium" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/uranium
+
+
+/datum/chemical_reaction/solidification/hydrogen
+	name = "Solid Hydrogen"
+	id = "solidhydrogen"
+	required_reagents = list("frostoil" = 100, "hydrogen" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/mhydrogen
+
+
+// These are from Xenobio.
+/datum/chemical_reaction/solidification/steel
+	name = "Solid Steel"
+	id = "solidsteel"
+	required_reagents = list("frostoil" = 5, "steel" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/steel
+
+
+/datum/chemical_reaction/solidification/plasteel
+	name = "Solid Plasteel"
+	id = "solidplasteel"
+	required_reagents = list("frostoil" = 10, "plasteel" = REAGENTS_PER_SHEET)
+	sheet_to_give = /obj/item/stack/material/plasteel
+
 
 /datum/chemical_reaction/plastication
 	name = "Plastic"
@@ -1038,30 +1097,6 @@
 /datum/chemical_reaction/aluminum_paint/send_data()
 	return "#F0F8FF"
 
-/* Slime cores */
-
-/datum/chemical_reaction/slime
-	var/required = null
-
-//Slimed monkeys
-/datum/chemical_reaction/slime/can_happen(var/datum/reagents/holder)
-	if(holder.my_atom && istype(holder.my_atom, required))
-		return ..()
-	return 0
-
-/datum/chemical_reaction/slime/golem
-	name = "Prometheans"
-	id = "m_promethean"
-	result = null
-	required_reagents = list("mutationtoxin" = 1)
-	result_amount = 1
-	required = /obj/item/weapon/reagent_containers/food/snacks/monkeycube
-
-/datum/chemical_reaction/slime/golem/on_reaction(var/datum/reagents/holder)
-	var/location = get_turf(holder.my_atom)
-	new /obj/item/slime_cube(location)
-	qdel(holder.my_atom)
-
 /* Food */
 
 /datum/chemical_reaction/food/tofu
@@ -1230,7 +1265,7 @@
 	result_amount = 3
 
 /datum/chemical_reaction/drinks/nuka_cola
-	name = "Nuka Cola"
+	name = "Nuclear Cola"
 	id = "nuka_cola"
 	result = "nuka_cola"
 	required_reagents = list("uranium" = 1, "cola" = 5)
@@ -1783,15 +1818,15 @@
 	name = "Shirley Temple"
 	id = "shirley_temple"
 	result = "shirley_temple"
-	required_reagents = list("lemon_lime" = 4, "grenadine" = 1)
+	required_reagents = list("gingerale" = 4, "grenadine" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/drinks/royrogers
 	name = "Roy Rogers"
 	id = "roy_rogers"
 	result = "roy_rogers"
-	required_reagents = list("cola" = 4, "grenadine" = 1)
-	result_amount = 5
+	required_reagents = list("gingerale" = 4, "lemon_lime" = 2, "grenadine" = 1)
+	result_amount = 7
 
 /datum/chemical_reaction/drinks/collinsmix
 	name = "Collins Mix"
@@ -1841,3 +1876,145 @@
 	result = "berrytea"
 	required_reagents = list("tea" = 5, "berryjuice" = 1)
 	result_amount = 6
+
+/datum/chemical_reaction/drinks/sakebomb
+	name = "Sake Bomb"
+	id = "sakebomb"
+	result = "sakebomb"
+	required_reagents = list("beer" = 2, "sake" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/tamagozake
+	name = "Tamagozake"
+	id = "tamagozake"
+	result = "tamagozake"
+	required_reagents = list("sake" = 10, "sugar" = 5, "egg" = 3)
+	result_amount = 15
+
+/datum/chemical_reaction/drinks/ginzamary
+	name = "Ginza Mary"
+	id = "ginzamary"
+	result = "ginzamary"
+	required_reagents = list("sake" = 2, "vodka" = 2, "tomatojuice" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/tokyorose
+	name = "Tokyo Rose"
+	id = "tokyorose"
+	result = "tokyorose"
+	required_reagents = list("sake" = 1, "berryjuice" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/saketini
+	name = "Saketini"
+	id = "saketini"
+	result = "saketini"
+	required_reagents = list("sake" = 1, "gin" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/elysiumfacepunch
+	name = "Elysium Facepunch"
+	id = "elysiumfacepunch"
+	result = "elysiumfacepunch"
+	required_reagents = list("kahlua" = 1, "lemonjuice" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/erebusmoonrise
+	name = "Erebus Moonrise"
+	id = "erebusmoonrise"
+	result = "erebusmoonrise"
+	required_reagents = list("whiskey" = 1, "vodka" = 1, "tequilla" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/balloon
+	name = "Balloon"
+	id = "balloon"
+	result = "balloon"
+	required_reagents = list("cream" = 1, "bluecuracao" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/natunabrandy
+	name = "Natuna Brandy"
+	id = "natunabrandy"
+	result = "natunabrandy"
+	required_reagents = list("beer" = 1, "sodawater" = 2)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/euphoria
+	name = "Euphoria"
+	id = "euphoria"
+	result = "euphoria"
+	required_reagents = list("specialwhiskey" = 1, "cognac" = 2)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/xanaducannon
+	name = "Xanadu Cannon"
+	id = "xanaducannon"
+	result = "xanaducannon"
+	required_reagents = list("ale" = 1, "dr_gibb" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/debugger
+	name = "Debugger"
+	id = "debugger"
+	result = "debugger"
+	required_reagents = list("fuel" = 1, "sugar" = 2, "cornoil" = 2)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/spacersbrew
+	name = "Spacer's Brew"
+	id = "spacersbrew"
+	result = "spacersbrew"
+	required_reagents = list("brownstar" = 4, "ethanol" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/binmanbliss
+	name = "Binman Bliss"
+	id = "binmanbliss"
+	result = "binmanbliss"
+	required_reagents = list("sake" = 1, "tequilla" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/chrysanthemum
+	name = "Chrysanthemum"
+	id = "chrysanthemum"
+	result = "chrysanthemum"
+	required_reagents = list("sake" = 1, "melonliquor" = 1)
+	result_amount = 2
+
+//R-UST Port
+/datum/chemical_reaction/hyrdophoron
+	name = "Hydrophoron"
+	id = "hydrophoron"
+	result = "hydrophoron"
+	required_reagents = list("hydrogen" = 1, "phoron" = 1)
+	inhibitors = list("nitrogen" = 1) //So it doesn't mess with lexorin
+	result_amount = 2
+
+/datum/chemical_reaction/deuterium
+	name = "Deuterium"
+	id = "deuterium"
+	result = null
+	required_reagents = list("water" = 10)
+	catalysts = list("hydrophoron" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/deuterium/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/turf/T = get_turf(holder.my_atom)
+	if(istype(T)) new /obj/item/stack/material/deuterium(T, created_volume)
+	return
+
+//Skrellian crap.
+/datum/chemical_reaction/talum_quem
+	name = "Talum-quem"
+	id = "talum_quem"
+	result = "talum_quem"
+	required_reagents = list("space_drugs" = 2, "sugar" = 1, "amatoxin" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/qerr_quem
+	name = "Qerr-quem"
+	id = "qerr_quem"
+	result = "qerr_quem"
+	required_reagents = list("nicotine" = 1, "carbon" = 1, "sugar" = 2)
+	result_amount = 4

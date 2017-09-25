@@ -93,4 +93,5 @@
 /obj/item/weapon/flame/lighter/zippo/c4detonator/attackby(obj/item/weapon/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
 		detonator_mode = !detonator_mode
+		playsound(src, W.usesound, 50, 1)
 		user << "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>"

@@ -32,7 +32,7 @@
 		return 1
 
 	if(M.head || M.wear_suit) //Make sure our slots aren't full
-		src << "<span class='warning'>We require nothing to be on our head, and we cannot wear any external suits.</span>"
+		src << "<span class='warning'>We require nothing to be on our head, and we cannot wear any external suits, or shoes.</span>"
 		return 0
 
 	var/obj/item/clothing/suit/A = new armor_type(src)
@@ -140,7 +140,7 @@
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["w_uniform"]
 		if(!M.w_uniform && t)
@@ -150,7 +150,7 @@
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["gloves"]
 		if(!M.gloves && t)
@@ -160,7 +160,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["shoes"]
 		if(!M.shoes && t)
@@ -170,7 +170,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["belt"]
 		if(!M.belt && t)
@@ -180,7 +180,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["glasses"]
 		if(!M.glasses && t)
@@ -190,7 +190,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["wear_mask"]
 		if(!M.wear_mask && t)
@@ -200,7 +200,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["back"]
 		if(!M.back && t)
@@ -210,7 +210,7 @@
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["wear_suit"]
 		if(!M.wear_suit && t)
@@ -220,7 +220,7 @@
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		t = stuff_to_equip["wear_id"]
 		if(!M.wear_id && t)
@@ -230,7 +230,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			M.update_icons()
 			success = 1
-			sleep(20)
+			sleep(1 SECOND)
 
 		var/feedback = english_list(grown_items_list, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 

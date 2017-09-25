@@ -7,6 +7,7 @@
 	icon_dead = "goat_dead"
 
 	faction = "goat"
+	intelligence_level = SA_ANIMAL
 
 	health = 40
 	turns_per_move = 5
@@ -75,9 +76,9 @@
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			user << "\red The [O] is full."
+			user << "<font color='red'>The [O] is full.</font>"
 		if(!transfered)
-			user << "\red The udder is dry. Wait a bit longer..."
+			user << "<font color='red'>The udder is dry. Wait a bit longer...</font>"
 	else
 		..()
 //cow
@@ -88,6 +89,7 @@
 	icon_living = "cow"
 	icon_dead = "cow_dead"
 	icon_gib = "cow_gib"
+	intelligence_level = SA_ANIMAL
 
 	health = 50
 	turns_per_move = 5
@@ -120,9 +122,9 @@
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			user << "\red The [O] is full."
+			user << "<font color='red'>The [O] is full.</font>"
 		if(!transfered)
-			user << "\red The udder is dry. Wait a bit longer..."
+			user << "<font color='red'>The udder is dry. Wait a bit longer...</font>"
 	else
 		..()
 
@@ -155,6 +157,7 @@
 	icon_living = "chick"
 	icon_dead = "chick_dead"
 	icon_gib = "chick_gib"
+	intelligence_level = SA_ANIMAL
 
 	health = 1
 	turns_per_move = 2
@@ -203,6 +206,7 @@ var/global/chicken_count = 0
 	icon_state = "chicken"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
+	intelligence_level = SA_ANIMAL
 
 	health = 10
 	turns_per_move = 3
@@ -247,12 +251,12 @@ var/global/chicken_count = 0
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = O
 		if(G.seed && G.seed.kitchen_tag == "wheat")
 			if(!stat && eggsleft < 8)
-				user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
+				user.visible_message("<font color='blue'>[user] feeds [O] to [name]! It clucks happily.</font>","<font color='blue'>You feed [O] to [name]! It clucks happily.</font>")
 				user.drop_item()
 				qdel(O)
 				eggsleft += rand(1, 4)
 			else
-				user << "\blue [name] doesn't seem hungry!"
+				user << "<font color='blue'>[name] doesn't seem hungry!</font>"
 		else
 			user << "[name] doesn't seem interested in that."
 	else

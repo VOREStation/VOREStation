@@ -23,7 +23,7 @@
 			chemical_reagents_list[D.id] = D
 
 /datum/reagents/Destroy()
-	..()
+	. = ..()
 	if(chemistryProcess)
 		chemistryProcess.active_holders -= src
 
@@ -78,12 +78,6 @@
 		else
 			total_volume += R.volume
 	return
-
-/datum/reagents/proc/delete()
-	for(var/datum/reagent/R in reagent_list)
-		R.holder = null
-	if(my_atom)
-		my_atom.reagents = null
 
 /datum/reagents/proc/handle_reactions()
 	if(chemistryProcess)
@@ -387,10 +381,6 @@
 		if(type == CHEM_TOUCH)
 			var/datum/reagents/R = C.touching
 			return trans_to_holder(R, amount, multiplier, copy)
-	else if(isxeno(target))
-		var/mob/living/simple_animal/xeno/X = target
-		var/datum/reagents/R = X.reagents
-		return trans_to_holder(R, amount, multiplier, copy)
 	else
 		var/datum/reagents/R = new /datum/reagents(amount)
 		. = trans_to_holder(R, amount, multiplier, copy)

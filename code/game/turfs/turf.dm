@@ -47,6 +47,7 @@
 /turf/Destroy()
 	turfs -= src
 	..()
+	return QDEL_HINT_IWILLGC
 
 /turf/ex_act(severity)
 	return 0

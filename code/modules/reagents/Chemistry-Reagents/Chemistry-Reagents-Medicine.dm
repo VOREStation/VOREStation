@@ -252,12 +252,13 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = 20
+	scannable = 1
 	metabolism = 0.02
 	mrate_static = TRUE
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
-	M.eye_blurry += 10
+	M.eye_blurry = min(M.eye_blurry + 10, 250)
 	M.Confuse(5)
 
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
@@ -289,6 +290,23 @@
 	M.hallucination = max(0, M.hallucination - 10)
 	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 20)
+
+/datum/reagent/hyperzine
+	name = "Hyperzine"
+	id = "hyperzine"
+	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#FF3300"
+	overdose = REAGENTS_OVERDOSE * 0.5
+
+/datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_TAJARA)
+		removed *= 1.25
+	..()
+	if(prob(5))
+		M.emote(pick("twitch", "blink_r", "shiver"))
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 
 /datum/reagent/alkysine
 	name = "Alkysine"
@@ -351,7 +369,7 @@
 				I.damage = max(I.damage - removed, 0)
 				H.Confuse(5)
 			if(I.damage <= 5 && I.organ_tag == O_EYES)
-				H.eye_blurry += 10	//Eyes need to reset, or something
+				H.eye_blurry = min(M.eye_blurry + 10, 250) //Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
 
 /datum/reagent/osteodaxon
@@ -390,7 +408,7 @@
 /datum/reagent/myelamine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.eye_blurry += (repair_strength * removed)
+	M.eye_blurry += min(M.eye_blurry + (repair_strength * removed), 250)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength
@@ -654,3 +672,25 @@
 	if(dose > 10)
 		M.make_dizzy(5)
 		M.make_jittery(5)
+
+/datum/reagent/qerr_quem
+	name = "Qerr-quem"
+	id = "querr_quem"
+	description = "A potent stimulant and anti-anxiety medication, made for the Qerr-Katish."
+	taste_description = "mint"
+	reagent_state = LIQUID
+	color = "#e6efe3"
+	metabolism = 0.01
+	mrate_static = TRUE
+	data = 0
+
+/datum/reagent/qerr_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	if(volume <= 0.1 && data != -1)
+		data = -1
+		to_chat(M, "<span class='warning'>You feel antsy, your concentration wavers...</span>")
+	else
+		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
+			data = world.time
+			to_chat(M, "<span class='notice'>You feel invigorated and calm.</span>")

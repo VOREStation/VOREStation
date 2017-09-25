@@ -125,3 +125,10 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 
 /obj/machinery/atmospherics/update_icon()
 	return null
+
+/obj/machinery/atmospherics/proc/can_unwrench()
+	var/datum/gas_mixture/int_air = return_air()
+	var/datum/gas_mixture/env_air = loc.return_air()
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+		return 0
+	return 1

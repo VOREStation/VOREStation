@@ -60,7 +60,7 @@
 	flags = WHITELISTED
 	syllables = list("mrr","rr","tajr","kir","raj","kii","mir","kra","ahk","nal","vah","khaz","jri","ran","darr",
 	"mi","jri","dynh","manq","rhe","zar","rrhaz","kal","chur","eech","thaa","dra","jurl","mah","sanu","dra","ii'r",
-	"ka","aasi","far","wa","baq","ara","qara","zir","sam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
+	"ka","aasi","far","wa","baq","ara","qara","zir","saam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
 	"hal","ket","jurl","mah","tul","cresh","azu","ragh","mro","mra","mrro","mrra")
 
 /datum/language/tajaran/get_random_name(var/gender)
@@ -126,7 +126,7 @@
 
 /datum/language/machine/can_speak_special(var/mob/speaker)
 	var/obj/item/weapon/implant/language/eal/beep = locate() in speaker
-	return ((beep && beep.implanted) || speaker.isSynthetic())
+	return ((beep && beep.implanted) || speaker.isSynthetic() || isvoice(speaker))
 	//thank you sweet zuhayr
 
 /datum/language/machine/get_random_name()

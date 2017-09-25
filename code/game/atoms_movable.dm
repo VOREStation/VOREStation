@@ -21,17 +21,10 @@
 /atom/movable/New()
 	..()
 	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
-
-/atom/movable/Del()
-	if(isnull(gcDestroyed) && loc)
-		testing("GC: -- [type] was deleted via del() rather than qdel() --")
-		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
-//	else if(isnull(gcDestroyed))
-//		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
-//	else
-//		testing("GC: [type] was deleted via GC with qdel()")
-	..()
+		if(SScreation && SScreation.map_loading) // If a map is being loaded, newly created objects need to wait for it to finish.
+			SScreation.atoms_needing_initialize += src
+		else
+			initialize()
 
 /atom/movable/Destroy()
 	. = ..()
@@ -53,7 +46,7 @@
 		pulledby = null
 
 /atom/movable/proc/initialize()
-	if(!isnull(gcDestroyed))
+	if(QDELETED(src))
 		crash_with("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/movable/Bump(var/atom/A, yes)
@@ -104,6 +97,8 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
 	if(istype(hit_atom,/mob/living))
 		var/mob/living/M = hit_atom
+		if(M.buckled == src)
+			return // Don't hit the thing we're buckled to.
 		M.hitby(src,speed)
 
 	else if(isobj(hit_atom))

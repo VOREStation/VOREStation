@@ -155,7 +155,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 0
+	heal_brute = 5
 	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -213,7 +213,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 0
+	heal_burn = 5
 	origin_tech = list(TECH_BIO = 1)
 
 
@@ -279,16 +279,25 @@
 			if(M == user && prob(75))
 				user.visible_message("<span class='danger'>\The [user] fumbles [src].</span>", "<span class='danger'>You fumble [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 				return
-			var/obj/item/stack/medical/splint/S = split(1)
-			if(S)
-				if(affecting.apply_splint(S))
-					S.forceMove(affecting)
-					if (M != user)
+			if(ishuman(user))
+				var/obj/item/stack/medical/splint/S = split(1)
+				if(S)
+					if(affecting.apply_splint(S))
+						S.forceMove(affecting)
+						if (M != user)
+							user.visible_message("<span class='danger'>\The [user] finishes applying [src] to [M]'s [limb].</span>", "<span class='danger'>You finish applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
+						else
+							user.visible_message("<span class='danger'>\The [user] successfully applies [src] to their [limb].</span>", "<span class='danger'>You successfully apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
+						return
+					S.dropInto(src.loc) //didn't get applied, so just drop it
+			if(isrobot(user))
+				var/obj/item/stack/medical/splint/B = src
+				if(B)
+					if(affecting.apply_splint(B))
+						B.forceMove(affecting)
 						user.visible_message("<span class='danger'>\The [user] finishes applying [src] to [M]'s [limb].</span>", "<span class='danger'>You finish applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-					else
-						user.visible_message("<span class='danger'>\The [user] successfully applies [src] to their [limb].</span>", "<span class='danger'>You successfully apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-					return
-				S.dropInto(src.loc) //didn't get applied, so just drop it
+						B.use(1)
+						return
 			user.visible_message("<span class='danger'>\The [user] fails to apply [src].</span>", "<span class='danger'>You fail to apply [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 		return
 

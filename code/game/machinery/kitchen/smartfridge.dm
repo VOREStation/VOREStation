@@ -65,20 +65,12 @@
 	req_access = list(access_research)
 
 /obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/xenoproduct/))
-		return 1
-	return 0
+	if(istype(O, /obj/item/slime_extract))
+		return TRUE
+	if(istype(O, /obj/item/slimepotion))
+		return TRUE
+	return FALSE
 
-/obj/machinery/smartfridge/secure/extract/New()
-	..()
-	var/datum/stored_item/I = new(src, /obj/item/xenoproduct/slime/core)
-	item_records.Add(I)
-	for(var/i=1 to 5)
-		var/obj/item/xenoproduct/slime/core/C = new(src)
-		C.traits = new()
-		C.nameVar = "grey"
-		I.add_product(C)
-		
 
 /obj/machinery/smartfridge/secure/medbay
 	name = "\improper Refrigerated Medicine Storage"
@@ -139,6 +131,7 @@
 	icon_state = "drying_rack"
 	icon_on = "drying_rack_on"
 	icon_off = "drying_rack"
+	icon_panel = "drying_rack-panel"
 
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/))
@@ -217,6 +210,7 @@
 	if(istype(O, /obj/item/weapon/screwdriver))
 		panel_open = !panel_open
 		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
+		playsound(src, O.usesound, 50, 1)
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, icon_panel)
@@ -250,6 +244,16 @@
 			if(P.contents.len > 0)
 				user << "<span class='notice'>Some items are refused.</span>"
 
+	else if(istype(O, /obj/item/weapon/gripper)) // Grippers. ~Mechoid.
+		var/obj/item/weapon/gripper/B = O	//B, for Borg.
+		if(!B.wrapped)
+			user << "\The [B] is not holding anything."
+			return
+		else
+			var/B_held = B.wrapped
+			user << "You use \the [B] to put \the [B_held] into \the [src]."
+		return
+
 	else
 		user << "<span class='notice'>\The [src] smartly refuses [O].</span>"
 		return 1
@@ -260,7 +264,7 @@
 		locked = -1
 		user << "You short out the product lock on [src]."
 		return 1
-		
+
 /obj/machinery/smartfridge/proc/stock(obj/item/O)
 	var/hasRecord = FALSE	//Check to see if this passes or not.
 	for(var/datum/stored_item/I in item_records)
@@ -273,7 +277,7 @@
 		item.add_product(O)
 		item_records.Add(item)
 	nanomanager.update_uis(src)
-	
+
 /obj/machinery/smartfridge/proc/vend(datum/stored_item/I)
 	I.get_product(get_turf(src))
 	nanomanager.update_uis(src)
@@ -357,7 +361,7 @@
 		if (!throw_item)
 			continue
 		break
-		
+
 	if(!throw_item)
 		return 0
 	spawn(0)

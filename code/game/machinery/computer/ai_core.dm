@@ -15,8 +15,8 @@
 	switch(state)
 		if(0)
 			if(istype(P, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20))
+				playsound(loc, P.usesound, 50, 1)
+				if(do_after(user, 20 * P.toolspeed))
 					user << "<span class='notice'>You wrench the frame into place.</span>"
 					anchored = 1
 					state = 1
@@ -25,16 +25,16 @@
 				if(!WT.isOn())
 					user << "The welder must be on for this task."
 					return
-				playsound(loc, 'sound/items/Welder.ogg', 50, 1)
-				if(do_after(user, 20))
+				playsound(loc, WT.usesound, 50, 1)
+				if(do_after(user, 20 * WT.toolspeed))
 					if(!src || !WT.remove_fuel(0, user)) return
 					user << "<span class='notice'>You deconstruct the frame.</span>"
 					new /obj/item/stack/material/plasteel( loc, 4)
 					qdel(src)
 		if(1)
 			if(istype(P, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20))
+				playsound(loc, P.usesound, 50, 1)
+				if(do_after(user, 20 * P.toolspeed))
 					user << "<span class='notice'>You unfasten the frame.</span>"
 					anchored = 0
 					state = 0
@@ -46,12 +46,12 @@
 				user.drop_item()
 				P.loc = src
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, P.usesound, 50, 1)
 				user << "<span class='notice'>You screw the circuit board into place.</span>"
 				state = 2
 				icon_state = "2"
 			if(istype(P, /obj/item/weapon/crowbar) && circuit)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(loc, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the circuit board.</span>"
 				state = 1
 				icon_state = "0"
@@ -59,7 +59,7 @@
 				circuit = null
 		if(2)
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, P.usesound, 50, 1)
 				user << "<span class='notice'>You unfasten the circuit board.</span>"
 				state = 1
 				icon_state = "1"
@@ -81,7 +81,7 @@
 				if (brain)
 					user << "Get that brain out of there first"
 				else
-					playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+					playsound(loc, P.usesound, 50, 1)
 					user << "<span class='notice'>You remove the cables.</span>"
 					state = 2
 					icon_state = "2"
@@ -146,7 +146,7 @@
 				icon_state = "3b"
 
 			if(istype(P, /obj/item/weapon/crowbar) && brain)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(loc, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the brain.</span>"
 				brain.loc = loc
 				brain = null
@@ -154,7 +154,7 @@
 
 		if(4)
 			if(istype(P, /obj/item/weapon/crowbar))
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+				playsound(loc, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
 				state = 3
 				if (brain)
@@ -165,7 +165,7 @@
 				return
 
 			if(istype(P, /obj/item/weapon/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, P.usesound, 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
 				if(!brain)
 					var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
@@ -176,6 +176,8 @@
 					var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
 					if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
 						A.rename_self("ai", 1)
+						for(var/datum/language/L in brain.brainmob.languages)
+							A.add_language(L.name)
 				feedback_inc("cyborg_ais_created",1)
 				qdel(src)
 
@@ -189,7 +191,7 @@
 /obj/structure/AIcore/deactivated/Destroy()
 	if(src in empty_playable_ai_cores)
 		empty_playable_ai_cores -= src
-	..()
+	return ..()
 
 /obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
 
@@ -202,8 +204,8 @@
 	transfer.loc = get_turf(src)
 	transfer.create_eyeobj()
 	transfer.cancel_camera()
-	user << "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) downloaded to host terminal. Local copy wiped."
-	transfer << "You have been uploaded to a stationary terminal. Remote device connection restored."
+	user << "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary core."
+	transfer << "You have been transferred into a stationary core. Remote device connection restored."
 
 	if(card)
 		card.clear()
@@ -229,7 +231,8 @@
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(anchored)
 			user.visible_message("<span class='notice'>\The [user] starts to unbolt \the [src] from the plating...</span>")
-			if(!do_after(user,40))
+			playsound(src, W.usesound, 50, 1)
+			if(!do_after(user,40 * W.toolspeed))
 				user.visible_message("<span class='notice'>\The [user] decides not to unbolt \the [src].</span>")
 				return
 			user.visible_message("<span class='notice'>\The [user] finishes unfastening \the [src]!</span>")
@@ -237,7 +240,8 @@
 			return
 		else
 			user.visible_message("<span class='notice'>\The [user] starts to bolt \the [src] to the plating...</span>")
-			if(!do_after(user,40))
+			playsound(src, W.usesound, 50, 1)
+			if(!do_after(user,40 * W.toolspeed))
 				user.visible_message("<span class='notice'>\The [user] decides not to bolt \the [src].</span>")
 				return
 			user.visible_message("<span class='notice'>\The [user] finishes fastening down \the [src]!</span>")

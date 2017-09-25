@@ -67,7 +67,7 @@
 		CC.update_icon()
 		overlays = list()
 		string_attached = null
-		user << "\blue You detach the string from the coin."
+		user << "<font color='blue'>You detach the string from the coin.</font>"
 	else ..()
 
 /obj/item/weapon/coin/attack_self(mob/user as mob)

@@ -43,7 +43,7 @@
 /mob/living/silicon/ai/proc/create_eyeobj(var/newloc)
 	if(eyeobj) destroy_eyeobj()
 	if(!newloc) newloc = src.loc
-	eyeobj = PoolOrNew(/mob/observer/eye/aiEye, newloc)
+	eyeobj = new /mob/observer/eye/aiEye(newloc)
 	eyeobj.owner = src
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
 	if(client) client.eye = eyeobj
@@ -59,7 +59,7 @@
 
 /mob/living/silicon/ai/Destroy()
 	destroy_eyeobj()
-	..()
+	return ..()
 
 /atom/proc/move_camera_by_click()
 	if(istype(usr, /mob/living/silicon/ai))

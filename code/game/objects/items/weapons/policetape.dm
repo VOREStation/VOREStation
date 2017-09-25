@@ -2,12 +2,12 @@
 /obj/item/taperoll
 	name = "tape roll"
 	icon = 'icons/policetape.dmi'
-	icon_state = "rollstart"
+	icon_state = "tape"
 	w_class = ITEMSIZE_SMALL
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape
-	var/icon_base
+	var/icon_base = "tape"
 
 	var/apply_tape = FALSE
 
@@ -30,10 +30,11 @@ var/list/tape_roll_applications = list()
 	name = "tape"
 	icon = 'icons/policetape.dmi'
 	anchored = 1
+	layer = 3.2
 	var/lifted = 0
 	var/crumpled = 0
 	var/tape_dir = 0
-	var/icon_base
+	var/icon_base = "tape"
 
 /obj/item/tape/update_icon()
 	//Possible directional bitflags: 0 (AIRLOCK), 1 (NORTH), 2 (SOUTH), 4 (EAST), 8 (WEST), 3 (VERTICAL), 12 (HORIZONTAL)
@@ -56,26 +57,37 @@ var/list/tape_roll_applications = list()
 		hazard_overlays["[EAST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "E")
 		hazard_overlays["[SOUTH]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "S")
 		hazard_overlays["[WEST]"]	= new/image('icons/effects/warning_stripes.dmi', icon_state = "W")
+	update_icon()
+
+/obj/item/taperoll/medical
+	name = "medical tape"
+	desc = "A roll of medical tape used to block off patients from the public."
+	tape_type = /obj/item/tape/medical
+	color = COLOR_WHITE
+
+/obj/item/tape/medical
+	name = "medical tape"
+	desc = "A length of medical tape.  Do not cross."
+	req_access = list(access_medical)
+	color = COLOR_WHITE
 
 /obj/item/taperoll/police
 	name = "police tape"
 	desc = "A roll of police tape used to block off crime scenes from the public."
-	icon_state = "police"
 	tape_type = /obj/item/tape/police
-	icon_base = "police"
+	color = COLOR_RED_LIGHT
 
 /obj/item/tape/police
 	name = "police tape"
 	desc = "A length of police tape.  Do not cross."
 	req_access = list(access_security)
-	icon_base = "police"
+	color = COLOR_RED_LIGHT
 
 /obj/item/taperoll/engineering
 	name = "engineering tape"
 	desc = "A roll of engineering tape used to block off working areas from the public."
-	icon_state = "engineering"
 	tape_type = /obj/item/tape/engineering
-	icon_base = "engineering"
+	color = COLOR_YELLOW
 
 /obj/item/taperoll/engineering/applied
 	apply_tape = TRUE
@@ -84,28 +96,31 @@ var/list/tape_roll_applications = list()
 	name = "engineering tape"
 	desc = "A length of engineering tape. Better not cross it."
 	req_one_access = list(access_engine,access_atmospherics)
-	icon_base = "engineering"
+	color = COLOR_YELLOW
 
 /obj/item/taperoll/atmos
 	name = "atmospherics tape"
 	desc = "A roll of atmospherics tape used to block off working areas from the public."
-	icon_state = "atmos"
 	tape_type = /obj/item/tape/atmos
-	icon_base = "atmos"
+	color = COLOR_DEEP_SKY_BLUE
 
 /obj/item/tape/atmos
 	name = "atmospherics tape"
 	desc = "A length of atmospherics tape. Better not cross it."
 	req_one_access = list(access_engine,access_atmospherics)
-	icon_base = "atmos"
+	color = COLOR_DEEP_SKY_BLUE
 
 /obj/item/taperoll/update_icon()
 	overlays.Cut()
+	var/image/overlay = image(icon = src.icon)
+	overlay.appearance_flags = RESET_COLOR
 	if(ismob(loc))
 		if(!start)
-			overlays += "start"
+			overlay.icon_state = "start"
 		else
-			overlays += "stop"
+			overlay.icon_state = "stop"
+		overlays += overlay
+
 
 /obj/item/taperoll/dropped(mob/user)
 	update_icon()

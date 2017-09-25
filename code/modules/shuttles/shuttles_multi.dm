@@ -1,10 +1,13 @@
 //This is a holder for things like the Skipjack and Nuke shuttle.
 /datum/shuttle/multi_shuttle
 
-	var/cloaked = 1
+	flags = SHUTTLE_FLAGS_NONE
+	var/cloaked = FALSE
+	var/can_cloak = FALSE
 	var/at_origin = 1
 	var/returned_home = 0
-	var/move_time = 240
+//	var/move_time = 240
+	var/move_time = 60
 	var/cooldown = 20
 	var/last_move = 0	//the time at which we last moved
 
@@ -22,8 +25,13 @@
 	var/list/destination_dock_targets = list()
 	var/area/origin
 	var/return_warning = 0
+	category = /datum/shuttle/multi_shuttle
 
 /datum/shuttle/multi_shuttle/New()
+	origin = locate(origin)
+	interim = locate(interim)
+	for(var/destination in destinations)
+		destinations[destination] = locate(destinations[destination])
 	..()
 
 /datum/shuttle/multi_shuttle/init_docking_controllers()
@@ -36,7 +44,7 @@
 			var/datum/computer/file/embedded_program/docking/C = locate(controller_tag)
 
 			if(!istype(C))
-				world << "<span class='danger'>warning: shuttle with docking tag [controller_tag] could not find it's controller!</span>"
+				warning("warning: shuttle with docking tag [controller_tag] could not find it's controller!")
 			else
 				destination_dock_controllers[destination] = C
 
@@ -97,7 +105,8 @@
 	else
 		dat += "<font color='green'>Engines ready.</font><br>"
 
-	dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
+	if(MS.can_cloak)
+		dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
 	dat += "<b><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
 	dat += "<b><A href='?src=\ref[src];start=[1]'>Return to base</A></b></center>"
 
@@ -165,7 +174,7 @@
 		return
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		usr << "\blue [shuttle_tag] vessel is moving."
+		usr << "<font color='blue'>[shuttle_tag] vessel is moving.</font>"
 		return
 
 	if(href_list["dock_command"])
@@ -178,36 +187,38 @@
 
 	if(href_list["start"])
 		if(MS.at_origin)
-			usr << "\red You are already at your home base."
+			usr << "<font color='red'>You are already at your home base.</font>"
 			return
 
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
 			return
 
 		if(!check_docking(MS))
 			updateUsrDialog()
 			return
 
-		if(!MS.return_warning)
-			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
-			//TODO: Actually end the mission.
-			MS.return_warning = 1
-			return
+		// No point giving a warning if it does literally nothing.
+//		if(!MS.return_warning)
+//			usr << "<font color='red'>Returning to your home base will end your mission. If you are sure, press the button again.</font>"
+//			//TODO: Actually end the mission.
+//			MS.return_warning = 1
+//			return
 
-		MS.long_jump(MS.last_departed,MS.origin,MS.interim,MS.move_time)
+		MS.long_jump(MS.last_departed, MS.origin, MS.interim, MS.move_time)
 		MS.last_departed = MS.origin
 		MS.last_location = MS.start_location
 		MS.at_origin = 1
 
 	if(href_list["toggle_cloak"])
-
+		if(!MS.can_cloak)
+			return
 		MS.cloaked = !MS.cloaked
-		usr << "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."
+		usr << "<font color='red'>Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.</font>"
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
 			return
 
 		if(!check_docking(MS))
@@ -217,7 +228,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		usr << "\blue [shuttle_tag] main computer recieved message."
+		usr << "<font color='blue'>[shuttle_tag] main computer recieved message.</font>"
 
 		if(MS.at_origin)
 			MS.announce_arrival()

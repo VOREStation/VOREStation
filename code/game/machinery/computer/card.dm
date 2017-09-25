@@ -59,7 +59,7 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && (access_change_ids in id_card.access) && user.unEquip(id_card))
+	if(!scan && (access_change_ids in id_card.access) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
 		user.drop_item()
 		id_card.forceMove(src)
 		scan = id_card
@@ -103,6 +103,7 @@
 	data["medical_jobs"] = format_jobs(medical_positions)
 	data["science_jobs"] = format_jobs(science_positions)
 	data["security_jobs"] = format_jobs(security_positions)
+	data["cargo_jobs"] = format_jobs(cargo_positions)
 	data["civilian_jobs"] = format_jobs(civilian_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 

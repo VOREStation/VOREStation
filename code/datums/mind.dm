@@ -407,7 +407,7 @@
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
-		current << "\blue Your current objectives:"
+		current << "<font color='blue'>Your current objectives:</font>"
 		for(var/datum/objective/objective in objectives)
 			current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++
@@ -490,6 +490,8 @@
 			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
+	if(player_is_antag(mind))
+		src.client.verbs += /client/proc/aooc
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
@@ -497,7 +499,7 @@
 	if(!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
 
 //slime
-/mob/living/carbon/slime/mind_initialize()
+/mob/living/simple_animal/slime/mind_initialize()
 	..()
 	mind.assigned_role = "slime"
 

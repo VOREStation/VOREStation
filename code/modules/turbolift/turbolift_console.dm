@@ -123,7 +123,7 @@
 	dat += "<a href='?src=\ref[src];emergency_stop=1'>Emergency Stop</a>"
 	dat += "<hr></body></html>"
 
-	var/datum/browser/popup = new(user, "turbolift_panel", "Lift Panel", 230, 260)
+	var/datum/browser/popup = new(user, "turbolift_panel", "Lift Panel", 250, 320)
 	popup.set_content(jointext(dat, null))
 	popup.open()
 	return

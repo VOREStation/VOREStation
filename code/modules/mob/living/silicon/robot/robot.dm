@@ -22,6 +22,8 @@
 	var/integrated_light_power = 6
 	var/datum/wires/robot/wires
 
+	can_be_antagged = TRUE
+
 //Icon stuff
 
 	var/icontype 				//Persistent icontype tracking allows for cleaner icon updates
@@ -63,6 +65,7 @@
 
 	var/opened = 0
 	var/emagged = 0
+	var/emag_items = 0
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
@@ -99,6 +102,7 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_EAL, 1)
 
 	wires = new(src)
@@ -216,6 +220,12 @@
 		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
 		if(T)	mmi.loc = T
 		if(mmi.brainmob)
+			var/obj/item/weapon/robot_module/M = locate() in contents
+			if(M)
+				mmi.brainmob.languages = M.original_languages
+			else
+				mmi.brainmob.languages = languages
+			mmi.brainmob.remove_language("Robot Talk")
 			mind.transfer_to(mmi.brainmob)
 		else
 			src << "<span class='danger'>Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug.</span>"
@@ -247,7 +257,7 @@
 	var/list/modules = list()
 	modules.Add(robot_module_types)
 	if((crisis && security_level == SEC_LEVEL_RED) || crisis_override) //Leaving this in until it's balanced appropriately.
-		src << "\red Crisis mode active. Combat module available."
+		src << "<font color='red'>Crisis mode active. Combat module available.</font>"
 		modules+="Combat"
 	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 
@@ -344,21 +354,18 @@
 
 	lights_on = !lights_on
 	usr << "You [lights_on ? "enable" : "disable"] your integrated light."
-	if(lights_on)
-		set_light(integrated_light_power) // 1.5x luminosity of flashlight
-	else
-		set_light(0)
+	handle_light()
 
 /mob/living/silicon/robot/verb/self_diagnosis_verb()
 	set category = "Robot Commands"
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
-		src << "\red Your self-diagnosis component isn't functioning."
+		src << "<font color='red'>Your self-diagnosis component isn't functioning.</font>"
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
-		src << "\red Low Power."
+		src << "<font color='red'>Low Power.</font>"
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
 
@@ -382,10 +389,10 @@
 	var/datum/robot_component/C = components[toggle]
 	if(C.toggled)
 		C.toggled = 0
-		src << "\red You disable [C.name]."
+		src << "<font color='red'>You disable [C.name].</font>"
 	else
 		C.toggled = 1
-		src << "\red You enable [C.name]."
+		src << "<font color='red'>You enable [C.name].</font>"
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
@@ -451,9 +458,18 @@
 					C.brute_damage = WC.brute
 					C.electronics_damage = WC.burn
 
-				usr << "\blue You install the [W.name]."
+				usr << "<font color='blue'>You install the [W.name].</font>"
 
 				return
+
+	if(istype(W, /obj/item/weapon/aiModule)) // Trying to modify laws locally.
+		if(!opened)
+			to_chat(user, "<span class='warning'>You need to open \the [src]'s panel before you can modify them.</span>")
+			return
+
+		var/obj/item/weapon/aiModule/M = W
+		M.install(src, user)
+		return
 
 	if (istype(W, /obj/item/weapon/weldingtool))
 		if (src == user)
@@ -470,7 +486,7 @@
 			updatehealth()
 			add_fingerprint(user)
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
+				O.show_message(text("<font color='red'>[user] has fixed some of the dents on [src]!</font>"), 1)
 		else
 			user << "Need more welding fuel!"
 			return
@@ -485,7 +501,7 @@
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
+				O.show_message(text("<font color='red'>[user] has fixed some of the burnt wires on [src]!</font>"), 1)
 
 	else if (istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
 		if(opened)
@@ -573,6 +589,7 @@
 	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+		playsound(src, W.usesound, 50, 1)
 		updateicon()
 
 	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio
@@ -599,7 +616,7 @@
 				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
 				updateicon()
 			else
-				user << "\red Access denied."
+				user << "<font color='red'>Access denied.</font>"
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
@@ -697,7 +714,7 @@
 		else
 			overlays += "[panelprefix]-openpanel -c"
 
-	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
+	if(has_active_type(/obj/item/borg/combat/shield))
 		overlays += "[module_sprites[icontype]]-shield"
 
 	if(modtype == "Combat")
@@ -713,7 +730,7 @@
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
-		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
+		src << "<font color='red'>Weapon lock active, unable to use modules! Count:[weaponlock_time]</font>"
 		return
 
 	if(!module)
@@ -737,7 +754,7 @@
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-	if (emagged)
+	if (emagged || emag_items)
 		if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
@@ -860,7 +877,7 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "\red [src] cleans your face!"
+							cleaned_human << "<font color='red'>[src] cleans your face!</font>"
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()
@@ -1054,14 +1071,6 @@
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
 					src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>"
-					if(src.module)
-						var/rebuild = 0
-						for(var/obj/item/weapon/pickaxe/borgdrill/D in src.module.modules)
-							qdel(D)
-							rebuild = 1
-						if(rebuild)
-							src.module.modules += new /obj/item/weapon/pickaxe/diamonddrill(src.module)
-							src.module.rebuild()
 					updateicon()
 			else
 				user << "You fail to hack [src]'s interface."

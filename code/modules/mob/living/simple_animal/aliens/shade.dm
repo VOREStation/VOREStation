@@ -8,6 +8,7 @@
 	icon_dead = "shade_dead"
 
 	faction = "cult"
+	intelligence_level = SA_HUMANOID
 
 	maxHealth = 50
 	health = 50
@@ -52,7 +53,7 @@
 	..()
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))
-			M.show_message("\red [src] lets out a contented sigh as their form unwinds. ")
+			M.show_message("<font color='red'>[src] lets out a contented sigh as their form unwinds.</font>")
 
 	ghostize()
 	qdel(src)

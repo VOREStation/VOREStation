@@ -19,13 +19,6 @@
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
 
-
-/obj/item/weapon/reagent_containers/pill/do_surgery(mob/M, mob/user)
-	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
-		return ..()
-	attack(M, user) //default surgery behaviour is just to scan as usual
-	return 1
-
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
 		if(istype(M, /mob/living/carbon/human))

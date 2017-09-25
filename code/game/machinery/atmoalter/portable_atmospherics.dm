@@ -21,9 +21,9 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
-	qdel(holding)
-	..()
+	qdel_null(air_contents)
+	qdel_null(holding)
+	. = ..()
 
 /obj/machinery/portable_atmospherics/initialize()
 	. = ..()
@@ -39,11 +39,6 @@
 		air_contents.react()
 	else
 		update_icon()
-
-/obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
-
-	..()
 
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()
 	return list(
@@ -119,6 +114,7 @@
 			disconnect()
 			user << "<span class='notice'>You disconnect \the [src] from the port.</span>"
 			update_icon()
+			playsound(src, W.usesound, 50, 1)
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
@@ -126,6 +122,7 @@
 				if(connect(possible_port))
 					user << "<span class='notice'>You connect \the [src] to the port.</span>"
 					update_icon()
+					playsound(src, W.usesound, 50, 1)
 					return
 				else
 					user << "<span class='notice'>\The [src] failed to connect to the port.</span>"
@@ -178,6 +175,7 @@
 			return
 
 		user.visible_message("<span class='notice'>[user] opens the panel on [src] and removes [cell].</span>", "<span class='notice'>You open the panel on [src] and remove [cell].</span>")
+		playsound(src, I.usesound, 50, 1)
 		cell.add_fingerprint(user)
 		cell.loc = src.loc
 		cell = null

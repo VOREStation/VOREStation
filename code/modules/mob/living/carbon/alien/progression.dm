@@ -12,11 +12,11 @@
 		return
 
 	if(handcuffed || legcuffed)
-		src << "\red You cannot evolve when you are cuffed."
+		src << "<font color='red'>You cannot evolve when you are cuffed.</font>"
 		return
 
 	if(amount_grown < max_grown)
-		src << "\red You are not fully grown."
+		src << "<font color='red'>You are not fully grown.</font>"
 		return
 
 	// confirm_evolution() handles choices and other specific requirements.
@@ -29,6 +29,9 @@
 	show_evolution_blurb()
 
 	transfer_languages(src, adult)
+
+	if(src.faction != "neutral")
+		adult.faction = src.faction
 
 	if(mind)
 		mind.transfer_to(adult)

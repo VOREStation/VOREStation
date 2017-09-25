@@ -167,6 +167,11 @@
 
 		O.mmi.transfer_identity(src)
 
+	if(O.client && O.client.prefs)
+		var/datum/preferences/B = O.client.prefs
+		for(var/language in B.alternate_languages)
+			O.add_language(language)
+
 	callHook("borgify", list(O))
 	O.Namepick()
 
@@ -174,7 +179,8 @@
 		qdel(src)
 	return O
 
-/mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
+//human -> alien
+/mob/living/carbon/human/proc/Alienize()
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -187,26 +193,16 @@
 	for(var/t in organs)
 		qdel(t)
 
-	var/mob/living/carbon/slime/new_slime
-	if(reproduce)
-		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
-		var/list/babies = list()
-		for(var/i=1,i<=number,i++)
-			var/mob/living/carbon/slime/M = new/mob/living/carbon/slime(loc)
-			M.nutrition = round(nutrition/number)
-			step_away(M,src)
-			babies += M
-		new_slime = pick(babies)
-	else
-		new_slime = new /mob/living/carbon/slime(loc)
-		if(adult)
-			new_slime.is_adult = 1
-		else
-	new_slime.key = key
+	var/alien_caste = pick("Hunter","Sentinel","Drone")
+	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
 
-	new_slime << "<B>You are now a slime. Skreee!</B>"
+	new_xeno.a_intent = I_HURT
+	new_xeno.key = key
+
+	new_xeno << "<B>You are now an alien.</B>"
 	qdel(src)
 	return
+
 
 /mob/living/carbon/human/proc/corgize()
 	if (transforming)
@@ -235,7 +231,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		usr << "\red Sorry but this mob type is currently unavailable."
+		usr << "<font color='red'>Sorry but this mob type is currently unavailable.</font>"
 		return
 
 	if(transforming)
@@ -269,7 +265,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		usr << "\red Sorry but this mob type is currently unavailable."
+		usr << "<font color='red'>Sorry but this mob type is currently unavailable.</font>"
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)

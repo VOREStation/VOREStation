@@ -154,7 +154,7 @@
 	siemens_coefficient = 0.9 //...what?
 
 /obj/item/clothing/head/flatcap/grey
-	icon_state = "flat_capg"
+	icon_state = "flat_capw"
 	item_state_slots = list(slot_r_hand_str = "greysoft", slot_l_hand_str = "greysoft")
 
 /obj/item/clothing/head/pirate

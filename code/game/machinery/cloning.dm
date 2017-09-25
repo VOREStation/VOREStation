@@ -181,7 +181,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if((occupant.health >= heal_level) && (!eject_wait))
+		else if((occupant.health >= heal_level || occupant.health == occupant.maxHealth) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the cloning process is complete.")
 			connected_message("Cloning Process Complete.")
@@ -234,7 +234,7 @@
 				connected = null
 			else
 				anchored = 1
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src, W.usesound, 100, 1)
 			if(anchored)
 				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")
 			else
@@ -243,6 +243,7 @@
 		var/obj/item/device/multitool/M = W
 		M.connecting = src
 		user << "<span class='notice'>You load connection data from [src] to [M].</span>"
+		M.update_icon()
 		return
 	else
 		..()

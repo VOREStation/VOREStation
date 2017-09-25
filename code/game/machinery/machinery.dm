@@ -155,7 +155,7 @@ Class Procs:
 	if(use_power && stat == 0)
 		use_power(7500/severity)
 
-		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
+		var/obj/effect/overlay/pulse2 = new /obj/effect/overlay(src.loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
@@ -331,7 +331,7 @@ Class Procs:
 /obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
 	if(!istype(S))
 		return 0
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
 	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>"
 	update_icon()
@@ -343,8 +343,8 @@ Class Procs:
 	if(!circuit)
 		return 0
 	user << "<span class='notice'>You start disconnecting the monitor.</span>"
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-	if(do_after(user, 20))
+	playsound(src, S.usesound, 50, 1)
+	if(do_after(user, 20 * S.toolspeed))
 		if(stat & BROKEN)
 			user << "<span class='notice'>The broken glass falls out.</span>"
 			new /obj/item/weapon/material/shard(src.loc)
@@ -355,7 +355,7 @@ Class Procs:
 /obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
 	if(!istype(S))
 		return 0
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
 	user << "The wires have been [panel_open ? "exposed" : "unexposed"]"
 	update_icon()
@@ -367,7 +367,7 @@ Class Procs:
 	if(!panel_open)
 		return 0
 	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-	playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+	playsound(src.loc, W.usesound, 50, 1)
 	new/obj/item/stack/cable_coil(get_turf(src), 5)
 	. = dismantle()
 

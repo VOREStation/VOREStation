@@ -47,6 +47,52 @@
 	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
+/obj/item/clothing/shoes/boots/winter/security
+	name = "security winter boots"
+	desc = "A pair of winter boots. These ones are lined with grey fur, and coloured an angry red."
+	icon_state = "winterboots_sec"
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+
+/obj/item/clothing/shoes/boots/winter/science
+	name = "science winter boots"
+	desc = "A pair of winter boots. These ones are lined with white fur, and are trimmed with scientific advancement!"
+	icon_state = "winterboots_sci"
+
+/obj/item/clothing/shoes/boots/winter/command
+	name = "colony director's winter boots"
+	desc = "A pair of winter boots. They're lined with dark fur, and trimmed in the colours of superiority."
+	icon_state = "winterboots_cap"
+
+/obj/item/clothing/shoes/boots/winter/engineering
+	name = "engineering winter boots"
+	desc = "A pair of winter boots. These ones are lined with orange fur and are trimmed in the colours of disaster."
+	icon_state = "winterboots_eng"
+
+/obj/item/clothing/shoes/boots/winter/atmos
+	name = "atmospherics winter boots"
+	desc = "A pair of winter boots. These ones are lined with beige fur, and are trimmed in breath taking colours."
+	icon_state = "winterboots_atmos"
+
+/obj/item/clothing/shoes/boots/winter/medical
+	name = "medical winter boots"
+	desc = "A pair of winter boots. These ones are lined with white fur, and are trimmed like 30cc of dexalin"
+	icon_state = "winterboots_med"
+
+/obj/item/clothing/shoes/boots/winter/mining
+	name = "mining winter boots"
+	desc = "A pair of winter boots. These ones are lined with greyish fur, and their trim is golden!"
+	icon_state = "winterboots_mining"
+
+/obj/item/clothing/shoes/boots/winter/supply
+	name = "supply winter boots"
+	desc = "A pair of winter boots. These ones are lined with the galactic cargonia colors!"
+	icon_state = "winterboots_sup"
+
+/obj/item/clothing/shoes/boots/winter/hydro
+	name = "hydroponics winter boots"
+	desc = "A pair of winter boots. These ones are lined with brown fur, and their trim is ambrosia green"
+	icon_state = "winterboots_hydro"
+
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"
 	desc = "Tan boots with extra padding and armor."

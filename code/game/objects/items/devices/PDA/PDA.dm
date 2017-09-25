@@ -1083,7 +1083,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (last_text && world.time < last_text + 5)
 		return
 
-	if(!can_use())
+	if (!can_use())
+		return
+
+	if (is_jammed(src))
 		return
 
 	last_text = world.time
@@ -1104,6 +1107,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.client && (M.is_preference_enabled(/datum/client_preference/ghost_ears))) // src.client is so that ghosts don't have to listen to mice
 				if(istype(M, /mob/new_player))
+					continue
+				if(M.forbid_seeing_deadchat)
 					continue
 				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span></span>")
 
@@ -1156,6 +1161,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	// Do nothing
 
 /obj/item/device/pda/proc/new_message_from_pda(var/obj/item/device/pda/sending_device, var/message)
+	if (is_jammed(src))
+		return
 	new_message(sending_device, sending_device.owner, sending_device.ownjob, message)
 
 /obj/item/device/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message, var/reply = 1)
@@ -1463,8 +1470,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/Destroy()
 	PDAs -= src
 	if (src.id && prob(90)) //IDs are kept in 90% of the cases
-		src.id.loc = get_turf(src.loc)
-	..()
+		src.id.forceMove(get_turf(src.loc))
+	else
+		qdel_null(src.id)
+	qdel_null(src.cartridge)
+	qdel_null(src.pai)
+	return ..()
 
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
 	if (istype(AM, /mob/living))

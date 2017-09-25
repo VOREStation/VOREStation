@@ -76,7 +76,7 @@
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked >= 100)		return 0//Full block
 	if(!isliving(target))	return 0
-	if(isanimal(target))	return 0
+//	if(isanimal(target))	return 0
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
 	return 1
@@ -173,7 +173,7 @@
 		return
 
 	//roll to-hit
-	miss_modifier = max(15*(distance-2) - round(15*accuracy) + miss_modifier + round(15*target_mob.evasion), 0)
+	miss_modifier = max(15*(distance-2) - round(15*accuracy) + miss_modifier + round(15*target_mob.get_evasion()), 0)
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS

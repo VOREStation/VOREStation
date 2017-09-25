@@ -3,7 +3,8 @@
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob"
-	light_range = 3
+	light_range = 2
+	light_color = "#b5ff5b"
 	desc = "Some blob creature thingy"
 	density = 1
 	opacity = 0
@@ -73,6 +74,9 @@
 	if(GR)
 		qdel(GR)
 		return
+	for(var/obj/structure/reagent_dispensers/fueltank/Fuel in T)
+		Fuel.ex_act(2)
+		return
 	for(var/obj/machinery/door/D in T) // There can be several - and some of them can be open, locate() is not suitable
 		if(D.density)
 			D.ex_act(2)
@@ -138,7 +142,7 @@
 		if("fire")
 			damage = (W.force / fire_resist)
 			if(istype(W, /obj/item/weapon/weldingtool))
-				playsound(loc, 'sound/items/Welder.ogg', 100, 1)
+				playsound(src, W.usesound, 100, 1)
 		if("brute")
 			damage = (W.force / brute_resist)
 
@@ -149,6 +153,8 @@
 	name = "blob core"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_core"
+	light_range = 3
+	light_color = "#ffc880"
 	maxHealth = 200
 	brute_resist = 2
 	fire_resist = 2
@@ -176,6 +182,7 @@
 	name = "strong blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_idle"
+	light_range = 3
 	desc = "Some blob creature thingy"
 	maxHealth = 60
 	brute_resist = 1

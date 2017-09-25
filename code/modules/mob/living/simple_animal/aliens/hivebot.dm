@@ -7,6 +7,7 @@
 	icon_dead = "basic"
 
 	faction = "hivebot"
+	intelligence_level = SA_ROBOTIC
 	maxHealth = 15
 	health = 15
 	speed = 4
@@ -80,12 +81,12 @@
 		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 		smoke.set_up(5, 0, src.loc)
 		smoke.start()
-		visible_message("\red <B>The [src] warps in!</B>")
+		visible_message("<font color='red'><B>The [src] warps in!</font></B>")
 		playsound(src.loc, 'sound/effects/EMPulse.ogg', 25, 1)
 
 	warpbots()
 		icon_state = "def_radar"
-		visible_message("\red The [src] turns on!")
+		visible_message("<font color='red'>The [src] turns on!</font>")
 		while(bot_amt > 0)
 			bot_amt--
 			switch(bot_type)

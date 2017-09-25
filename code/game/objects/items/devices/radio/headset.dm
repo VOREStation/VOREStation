@@ -13,7 +13,7 @@
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
 	var/obj/item/device/encryptionkey/keyslot2 = null
-	var/ks1type = /obj/item/device/encryptionkey
+	var/ks1type = null
 	var/ks2type = null
 
 /obj/item/device/radio/headset/New()
@@ -317,6 +317,20 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
+/obj/item/device/radio/headset/mmi_radio
+	name = "brain-integrated radio"
+	desc = "MMIs and synthetic brains are often equipped with these."
+	icon = 'icons/obj/robot_component.dmi'
+	icon_state = "radio"
+	item_state = "headset"
+	var/mmiowner = null
+	var/radio_enabled = 1
+
+/obj/item/device/radio/headset/mmi_radio/receive_range(freq, level)
+	if (!radio_enabled || istype(src.loc.loc, /mob/living/silicon) || istype(src.loc.loc, /obj/item/organ/internal))
+		return -1 //Transciever Disabled.
+	return ..(freq, level, 1)
+
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
@@ -348,6 +362,7 @@
 
 			recalculateChannels()
 			user << "You pop out the encryption keys in the headset!"
+			playsound(src, W.usesound, 50, 1)
 
 		else
 			user << "This headset doesn't have any encryption keys!  How useless..."

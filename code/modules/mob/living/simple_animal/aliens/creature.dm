@@ -7,6 +7,7 @@
 	icon_dead = "otherthing-dead"
 
 	faction = "creature"
+	intelligence_level = SA_ANIMAL
 	maxHealth = 40
 	health = 40
 	speed = 8

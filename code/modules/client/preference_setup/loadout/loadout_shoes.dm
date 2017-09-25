@@ -77,6 +77,38 @@
 	display_name = "flats, black"
 	path = /obj/item/clothing/shoes/flats
 
+/datum/gear/shoes/hitops/
+	display_name = "high-top, white"
+	path = /obj/item/clothing/shoes/hitops/
+
+/datum/gear/shoes/hitops/red
+	display_name = "high-top, red"
+	path = /obj/item/clothing/shoes/hitops/red
+
+/datum/gear/shoes/hitops/black
+	display_name = "high-top, black"
+	path = /obj/item/clothing/shoes/hitops/black
+
+/datum/gear/shoes/hitops/orange
+	display_name = "high-top, orange"
+	path = /obj/item/clothing/shoes/hitops/orange
+
+/datum/gear/shoes/hitops/blue
+	display_name = "high-top, blue"
+	path = /obj/item/clothing/shoes/hitops/blue
+
+/datum/gear/shoes/hitops/green
+	display_name = "high-top, green"
+	path = /obj/item/clothing/shoes/hitops/green
+
+/datum/gear/shoes/hitops/purple
+	display_name = "high-top, purple"
+	path = /obj/item/clothing/shoes/hitops/purple
+
+/datum/gear/shoes/hitops/yellow
+	display_name = "high-top, yellow"
+	path = /obj/item/clothing/shoes/hitops/yellow
+
 /datum/gear/shoes/flats/blue
 	display_name = "flats, blue"
 	path = /obj/item/clothing/shoes/flats/blue
@@ -162,3 +194,52 @@
 /datum/gear/shoes/heels/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/boots/winter
+	display_name = "winter boots"
+	path = /obj/item/clothing/shoes/boots/winter
+
+/datum/gear/shoes/boots/winter/security
+	display_name = "security winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/security
+	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+
+/datum/gear/shoes/boots/winter/science
+	display_name = "science winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/shoes/boots/winter/command
+	display_name = "colony director's winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/command
+	allowed_roles = list("Colony Director")
+
+/datum/gear/shoes/boots/winter/engineering
+	display_name = "engineering winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+
+/datum/gear/shoes/boots/winter/atmos
+	display_name = "atmospherics winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/atmos
+	allowed_roles = list("Chief Engineer", "Atmospheric Technician")
+
+/datum/gear/shoes/boots/winter/medical
+	display_name = "medical winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist")
+
+/datum/gear/shoes/boots/winter/mining
+	display_name = "mining winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/mining
+	allowed_roles = list("Shaft Miner")
+
+/datum/gear/shoes/boots/winter/supply
+	display_name = "supply winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/supply
+	allowed_roles = list("Quartermaster","Cargo Technician")
+
+/datum/gear/shoes/boots/winter/hydro
+	display_name = "hydroponics winter boots"
+	path = /obj/item/clothing/shoes/boots/winter/hydro
+	allowed_roles = list("Botanist", "Xenobiologist")

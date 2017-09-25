@@ -1,8 +1,4 @@
 
-// Keep these two together, they *must* be defined on both
-// If /client ever becomes /datum/client or similar, they can be merged
-/client/proc/get_view_variables_header()
-	return "<b>[src]</b>"
 /datum/proc/get_view_variables_header()
 	return "<b>[src]</b>"
 
@@ -31,9 +27,6 @@
 		</font>
 		"}
 
-// Same for these as for get_view_variables_header() above
-/client/proc/get_view_variables_options()
-	return ""
 /datum/proc/get_view_variables_options()
 	return ""
 
@@ -75,7 +68,7 @@
 		<option value='?_src_=vars;makeai=\ref[src]'>Make AI</option>
 		<option value='?_src_=vars;makerobot=\ref[src]'>Make cyborg</option>
 		<option value='?_src_=vars;makemonkey=\ref[src]'>Make monkey</option>
-		<option value='?_src_=vars;makeslime=\ref[src]'>Make slime</option>
+		<option value='?_src_=vars;makealien=\ref[src]'>Make alien</option>
 		"}
 
 /obj/get_view_variables_options()

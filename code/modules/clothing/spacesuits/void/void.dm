@@ -11,7 +11,7 @@
 //	flags_inv = HIDEEARS|BLOCKHAIR
 
 	//Species-specific stuff.
-	species_restricted = list("Human")
+	species_restricted = list("Human", "Promethean")
 	sprite_sheets_refit = list(
 		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
 		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
@@ -38,7 +38,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
-	species_restricted = list("Human", "Skrell")
+	species_restricted = list("Human", "Skrell", "Promethean")
 	sprite_sheets_refit = list(
 		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
 		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',
@@ -225,18 +225,22 @@
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
 				user << "You pop \the [tank] out of \the [src]'s storage compartment."
 				tank.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.tank = null
 			else if(choice == cooler)
 				user << "You pop \the [cooler] out of \the [src]'s storage compartment."
 				cooler.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == helmet)
 				user << "You detatch \the [helmet] from \the [src]'s helmet mount."
 				helmet.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.helmet = null
 			else if(choice == boots)
 				user << "You detatch \the [boots] from \the [src]'s boot mounts."
 				boots.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
 				src.boots = null
 		else
 			user << "\The [src] does not have anything installed."

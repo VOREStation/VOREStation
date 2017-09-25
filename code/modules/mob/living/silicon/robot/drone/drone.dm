@@ -58,6 +58,8 @@ var/list/mob_hat_cache = list()
 
 	holder_type = /obj/item/weapon/holder/drone
 
+	can_be_antagged = FALSE
+
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)

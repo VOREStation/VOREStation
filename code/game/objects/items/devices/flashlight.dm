@@ -37,7 +37,7 @@
 /obj/item/device/flashlight/Destroy()
 	if(power_use)
 		processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/device/flashlight/verb/toggle()
 	set name = "Toggle Flashlight Brightness"
@@ -73,7 +73,7 @@
 		if(brightness_level == "low")
 			set_light(brightness_on/2)
 		else if(brightness_level == "high")
-			set_light(brightness_on*4)
+			set_light(brightness_on*1.5)
 		else
 			set_light(brightness_on)
 
@@ -109,6 +109,7 @@
 			user << "You flick the switch on [src], but nothing happens."
 			return 0
 	on = !on
+	playsound(src.loc, 'sound/weapons/empty.ogg', 15, 1, -3)
 	update_icon()
 	user.update_action_buttons()
 	return 1
@@ -448,10 +449,11 @@
 /obj/item/device/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"
-	desc = "A glowing ball of what appears to be amber."
+	desc = "A slimy ball that appears to be glowing from bioluminesence."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
+	light_color = "#FFF423"
 	w_class = ITEMSIZE_TINY
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.

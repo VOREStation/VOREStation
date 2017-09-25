@@ -55,7 +55,7 @@
 
 	check_failure()
 	set_opacity(1)
-	spawn(20) if(!deleted(src)) set_opacity(0)
+	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
 	..()
 
@@ -64,7 +64,7 @@
 	..()
 	check_failure()
 	set_opacity(1)
-	spawn(20) if(!deleted(src)) set_opacity(0)
+	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)
@@ -114,7 +114,7 @@
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
 	set_opacity(1)
-	spawn(20) if(!deleted(src)) set_opacity(0)
+	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
 	..()
 	return
@@ -139,6 +139,11 @@
 	var/check_delay = 60	//periodically recheck if we need to rebuild a shield
 	use_power = 0
 	idle_power_usage = 0
+	var/global/list/blockedturfs =  list(
+		/turf/space,
+		/turf/simulated/open,
+		/turf/simulated/floor/outdoors,
+	)
 
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()
@@ -169,7 +174,7 @@
 
 /obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
-		if (istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
+		if (is_type_in_list(target_tile,blockedturfs) && !(locate(/obj/machinery/shield) in target_tile))
 			if (malfunction && prob(33) || !malfunction)
 				var/obj/machinery/shield/S = new/obj/machinery/shield(target_tile)
 				deployed_shields += S
@@ -257,14 +262,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
-			"\blue \icon[src] You deactivate the shield generator.", \
+		user.visible_message("<font color='blue'>\icon[src] [user] deactivated the shield generator.</font>", \
+			"<font color='blue'>\icon[src] You deactivate the shield generator.</font>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("\blue \icon[src] [user] activated the shield generator.", \
-				"\blue \icon[src] You activate the shield generator.", \
+			user.visible_message("<font color='blue'>\icon[src] [user] activated the shield generator.</font>", \
+				"<font color='blue'>\icon[src] You activate the shield generator.</font>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else
@@ -279,12 +284,12 @@
 
 /obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+		playsound(src, W.usesound, 100, 1)
 		if(is_open)
-			user << "\blue You close the panel."
+			user << "<font color='blue'>You close the panel.</font>"
 			is_open = 0
 		else
-			user << "\blue You open the panel and expose the wiring."
+			user << "<font color='blue'>You open the panel and expose the wiring.</font>"
 			is_open = 1
 
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
@@ -303,16 +308,16 @@
 			user << "The bolts are covered, unlocking this would retract the covers."
 			return
 		if(anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You unsecure the [src] from the floor!"
+			playsound(src, W.usesound, 100, 1)
+			user << "<font color='blue'>You unsecure the [src] from the floor!</font>"
 			if(active)
-				user << "\blue The [src] shuts off!"
+				user << "<font color='blue'>The [src] shuts off!</font>"
 				src.shields_down()
 			anchored = 0
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You secure the [src] to the floor!"
+			playsound(src, W.usesound, 100, 1)
+			user << "<font color='blue'>You secure the [src] to the floor!</font>"
 			anchored = 1
 
 
@@ -321,7 +326,7 @@
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			user << "\red Access denied."
+			user << "<font color='red'>Access denied.</font>"
 
 	else
 		..()

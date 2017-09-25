@@ -6,6 +6,7 @@
 	item_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
+	intelligence_level = SA_ANIMAL
 
 	maxHealth = 5
 	health = 5
@@ -47,21 +48,18 @@
 
 	if(prob(speak_chance))
 		for(var/mob/M in view())
-			M << 'sound/effects/mousesqueek.ogg'
+			M << 'sound/effects/mouse_squeak.ogg'
 
-	if(!ckey && stat == CONSCIOUS && prob(0.5))
-		stat = UNCONSCIOUS
-		icon_state = "mouse_[body_color]_sleep"
-		wander = 0
+	if(!resting && prob(0.5))
+		lay_down()
 		speak_chance = 0
 		//snuffles
 
-	else if(stat == UNCONSCIOUS)
-		if(ckey || prob(1))
-			stat = CONSCIOUS
-			icon_state = "mouse_[body_color]"
-			wander = 1
-		else if(prob(5))
+	else if(resting)
+		if(prob(1))
+			lay_down()
+			speak_chance = initial(speak_chance)
+		else if(prob(1))
 			audible_emote("snuffles.")
 
 /mob/living/simple_animal/mouse/New()
@@ -97,12 +95,13 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M << "\blue \icon[src] Squeek!"
-			M << 'sound/effects/mousesqueek.ogg'
+			M << "<font color='blue'>\icon[src] Squeek!</font>"
+			M << 'sound/effects/mouse_squeak.ogg'
 	..()
 
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
+	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	if(client)
 		client.time_died_as_mouse = world.time
 	..()

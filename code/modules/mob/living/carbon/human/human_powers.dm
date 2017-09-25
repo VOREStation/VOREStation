@@ -38,7 +38,6 @@
 	if(prob(75))
 		T.Weaken(rand(0.5,3))
 	else
-		src.Weaken(rand(2,4))
 		failed = 1
 
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
@@ -47,7 +46,7 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+			O.show_message(text("<font color='red'><B>[] [failed ? "tried to tackle" : "has tackled"] down []!</font></B>", src, T), 1)
 
 /mob/living/carbon/human/proc/commune()
 	set category = "Abilities"
@@ -77,12 +76,12 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
+	M << "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>"
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		H << "\red Your nose begins to bleed..."
+		H << "<font color='red'>Your nose begins to bleed...</font>"
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()
@@ -95,7 +94,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
+		src.visible_message("<font color='red'><B>[src] hurls out the contents of their stomach!</B></font>")
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -106,8 +105,8 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		M << "\green You hear a strange, alien voice in your head... \italic [msg]"
-		src << "\green You said: \"[msg]\" to [M]"
+		M << "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>"
+		src << "<font color='green'>You said: \"[msg]\" to [M]</font>"
 	return
 
 /mob/living/carbon/human/proc/diona_split_nymph()
@@ -161,6 +160,10 @@
 	src << "<span class='notice'>Performing self-diagnostic, please wait...</span>"
 	sleep(50)
 	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
+
+	output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
+
+	output += "Current Battery Charge: [nutrition]\n"
 
 	for(var/obj/item/organ/external/EO in organs)
 		if(EO.brute_dam || EO.burn_dam)
@@ -243,7 +246,8 @@
 	// Replace completely missing limbs.
 	for(var/limb_type in src.species.has_limbs)
 		var/obj/item/organ/external/E = src.organs_by_name[limb_type]
-		E.disfigured = 0
+		if(E && E.disfigured)
+			E.disfigured = 0
 		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
 			E.removed()
 			qdel(E)

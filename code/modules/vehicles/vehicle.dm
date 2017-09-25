@@ -82,6 +82,7 @@
 			open = !open
 			update_icon()
 			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+			playsound(src, W.usesound, 50, 1)
 	else if(istype(W, /obj/item/weapon/crowbar) && cell && open)
 		remove_cell(user)
 
@@ -94,7 +95,8 @@
 				if(open)
 					health = min(maxhealth, health+10)
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-					user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+					playsound(src, T.usesound, 50, 1)
+					user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
 				else
 					user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
 			else
@@ -139,7 +141,7 @@
 /obj/vehicle/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-	var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
+	var/obj/effect/overlay/pulse2 = new /obj/effect/overlay(src.loc)
 	pulse2.icon = 'icons/effects/effects.dmi'
 	pulse2.icon_state = "empdisable"
 	pulse2.name = "emp sparks"
@@ -189,11 +191,11 @@
 		return 1
 
 /obj/vehicle/proc/explode()
-	src.visible_message("\red <B>[src] blows apart!</B>", 1)
+	src.visible_message("<font color='red'><B>[src] blows apart!</B></font>", 1)
 	var/turf/Tsec = get_turf(src)
 
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	PoolOrNew(/obj/item/stack/rods, Tsec)
+	new /obj/item/stack/rods(Tsec)
+	new /obj/item/stack/rods(Tsec)
 	new /obj/item/stack/cable_coil/cut(Tsec)
 
 	if(cell)

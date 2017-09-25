@@ -8,6 +8,7 @@
 	climbable = 1
 	layer = 2.8
 	throwpass = 1
+	surgery_odds = 66
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
@@ -78,7 +79,7 @@
 	update_connections(1) // Update tables around us to ignore us (material=null forces no connections)
 	for(var/obj/structure/table/T in oview(src, 1))
 		T.update_icon()
-	..()
+	. = ..()
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
@@ -139,8 +140,8 @@
 		var/obj/item/weapon/weldingtool/F = W
 		if(F.welding)
 			user << "<span class='notice'>You begin reparing damage to \the [src].</span>"
-			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-			if(!do_after(user, 20) || !F.remove_fuel(1, user))
+			playsound(src, F.usesound, 50, 1)
+			if(!do_after(user, 20 * F.toolspeed) || !F.remove_fuel(1, user))
 				return
 			user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>",
 			                              "<span class='notice'>You repair some damage to \the [src].</span>")
@@ -157,6 +158,18 @@
 		return 1
 
 	return ..()
+
+/obj/structure/table/attack_hand(mob/user as mob)
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/X = user
+		if(istype(X.species, /datum/species/xenos))
+			src.attack_alien(user)
+			return
+	..()
+
+/obj/structure/table/attack_alien(mob/user as mob)
+	visible_message("<span class='danger'>\The [user] tears apart \the [src]!</span>")
+	src.break_to_parts()
 
 /obj/structure/table/MouseDrop_T(obj/item/stack/material/what)
 	if(can_reinforce && isliving(usr) && (!usr.stat) && istype(what) && usr.get_active_hand() == what && Adjacent(usr))
@@ -228,7 +241,7 @@
 	                              "<span class='notice'>You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>")
 	if(sound)
 		playsound(src.loc, sound, 50, 1)
-	if(!do_after(user, 40))
+	if(!do_after(user, delay))
 		manipulating = 0
 		return M
 	user.visible_message("<span class='notice'>\The [user] removes the [M.display_name] [what] from \the [src].</span>",
@@ -238,18 +251,18 @@
 	return null
 
 /obj/structure/table/proc/remove_reinforced(obj/item/weapon/screwdriver/S, mob/user)
-	reinforced = common_material_remove(user, reinforced, 40, "reinforcements", "screws", 'sound/items/Screwdriver.ogg')
+	reinforced = common_material_remove(user, reinforced, 40 * S.toolspeed, "reinforcements", "screws", S.usesound)
 
 /obj/structure/table/proc/remove_material(obj/item/weapon/wrench/W, mob/user)
-	material = common_material_remove(user, material, 20, "plating", "bolts", 'sound/items/Ratchet.ogg')
+	material = common_material_remove(user, material, 20 * W.toolspeed, "plating", "bolts", W.usesound)
 
 /obj/structure/table/proc/dismantle(obj/item/weapon/wrench/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
 	user.visible_message("<span class='notice'>\The [user] begins dismantling \the [src].</span>",
 	                              "<span class='notice'>You begin dismantling \the [src].</span>")
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	if(!do_after(user, 20))
+	playsound(src, W.usesound, 50, 1)
+	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
 	user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>",

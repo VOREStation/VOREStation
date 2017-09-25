@@ -9,7 +9,7 @@ var/datum/planet/sif/planet_sif = null
 	breathable atmosphere, a magnetic field, weather, and similar gravity to Earth. It is currently the capital planet of Vir. \
 	Its center of government is the equatorial city and site of first settlement, New Reykjavik." // Ripped straight from the wiki.
 	current_time = new /datum/time/sif() // 32 hour clocks are nice.
-	expected_z_levels = list(1) // To be changed when real map is finished.
+//	expected_z_levels = list(1) // To be changed when real map is finished.
 	planetary_wall_type = /turf/unsimulated/wall/planetary/sif
 
 /datum/planet/sif/New()

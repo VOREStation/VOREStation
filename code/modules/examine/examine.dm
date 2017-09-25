@@ -5,6 +5,7 @@
 	This means that this file can be unchecked, along with the other examine files, and can be removed entirely with no effort.
 */
 
+#define EXAMINE_PANEL_PADDING "        "
 
 /atom/
 	var/description_info = null //Helpful blue text.
@@ -27,6 +28,14 @@
 		return description_antag
 	return
 
+// This one is slightly different, in that it must return a list.
+/atom/proc/get_description_interaction()
+	return list()
+
+// Quickly adds the boilerplate code to add an image and padding for the image.
+/proc/desc_panel_image(var/icon_state)
+	return "\icon[description_icons[icon_state]][EXAMINE_PANEL_PADDING]"
+
 /mob/living/get_description_fluff()
 	if(flavor_text) //Get flavor text for the green text.
 		return flavor_text
@@ -44,18 +53,23 @@
 	description_holders["info"] = A.get_description_info()
 	description_holders["fluff"] = A.get_description_fluff()
 	description_holders["antag"] = (update_antag_info)? A.get_description_antag() : ""
+	description_holders["interactions"] = A.get_description_interaction()
 
 	description_holders["name"] = "[A.name]"
 	description_holders["icon"] = "\icon[A]"
 	description_holders["desc"] = A.desc
 
-/client/Stat()
+/mob/Stat()
 	. = ..()
-	if(usr && statpanel("Examine"))
+	if(client && statpanel("Examine"))
+		var/description_holders = client.description_holders
 		stat(null,"[description_holders["icon"]]    <font size='5'>[description_holders["name"]]</font>") //The name, written in big letters.
 		stat(null,"[description_holders["desc"]]") //the default examine text.
 		if(description_holders["info"])
 			stat(null,"<font color='#084B8A'><b>[description_holders["info"]]</b></font>") //Blue, informative text.
+		if(description_holders["interactions"])
+			for(var/line in description_holders["interactions"])
+				stat(null, "<font color='#084B8A'><b>[line]</b></font>")
 		if(description_holders["fluff"])
 			stat(null,"<font color='#298A08'><b>[description_holders["fluff"]]</b></font>") //Yellow, fluff-related text.
 		if(description_holders["antag"])
@@ -66,6 +80,9 @@
 	if(..())
 		return 1
 
-	var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
+	update_examine_panel(A)
+
+/mob/proc/update_examine_panel(var/atom/A)
 	if(client)
+		var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
 		client.update_description_holders(A, is_antag)

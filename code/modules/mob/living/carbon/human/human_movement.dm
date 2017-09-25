@@ -13,9 +13,11 @@
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 	if(force_max_speed)
-		return -3 // Returning -1 will actually result in a slowdown for Teshari.
+		return -3
 
 	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.haste) && M.haste == TRUE)
+			return -3 // Returning -1 will actually result in a slowdown for Teshari.
 		if(!isnull(M.slowdown))
 			tally += M.slowdown
 
@@ -33,7 +35,7 @@
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
 				tally += 4
-			if(E.splinted)
+			else if(E.splinted)
 				tally += 0.5
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
@@ -84,9 +86,7 @@
 	if(T && T.movement_cost)
 		tally += T.movement_cost
 
-	if(species.item_slowdown_halved)
-		if(item_tally > 0)
-			item_tally *= 0.5
+	item_tally *= species.item_slowdown_mod
 
 	tally += item_tally
 

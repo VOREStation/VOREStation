@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
-	desc = "The mass-produced W-T Remmington 29x shotgun is a favourite of police and security forces on many worlds. Useful for sweeping alleys."
+	desc = "The mass-produced W-T Remmington 29x shotgun is a favourite of police and security forces on many worlds. Uses 12g rounds."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
@@ -8,10 +8,10 @@
 	force = 10
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "shotgun"
+	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-	load_method = SINGLE_CASING
-	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	load_method = SINGLE_CASING|SPEEDLOADER
+	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 	handle_casings = HOLD_CASINGS
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	var/recentpump = 0 // to prevent spammage
@@ -43,16 +43,17 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
-	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders."
+	desc = "Built for close quarters combat, the Hephaestus Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. Uses 12g rounds."
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
-	ammo_type = /obj/item/ammo_casing/shotgun
+	ammo_type = /obj/item/ammo_casing/a12g
+	load_method = SINGLE_CASING|SPEEDLOADER
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel
 	name = "double-barreled shotgun"
-	desc = "A true classic."
+	desc = "A truely classic weapon. No need to change what works. Uses 12g rounds."
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	//SPEEDLOADER because rapid unloading.
@@ -64,9 +65,9 @@
 	force = 10
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "shotgun"
+	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
-	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 
 	burst_delay = 0
 	firemodes = list(
@@ -75,12 +76,12 @@
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet
-	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_type = /obj/item/ammo_casing/a12g/pellet
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare
 	name = "signal shotgun"
-	desc = "A double-barreled shotgun meant to fire signal flash shells."
-	ammo_type = /obj/item/ammo_casing/shotgun/flash
+	desc = "A double-barreled shotgun meant to fire signal flash shells. Uses 12g rounds."
+	ammo_type = /obj/item/ammo_casing/a12g/flash
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/unload_ammo(user, allow_dump)
 	..(user, allow_dump=1)
@@ -111,10 +112,10 @@
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
 	name = "sawn-off shotgun"
-	desc = "Omar's coming!"
+	desc = "Omar's coming!" // I'm not gonna add "Uses 12g rounds." to this one. I'll just let this reference go undisturbed.
 	icon_state = "sawnshotgun"
 	item_state = "sawnshotgun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_type = /obj/item/ammo_casing/a12g/pellet
 	w_class = ITEMSIZE_NORMAL
 	force = 5
