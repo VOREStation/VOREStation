@@ -58,14 +58,15 @@ List of things solar grubs should be able to do:
 
 	var/poison_per_bite = 5 //grubs cause a shock when they bite someone
 	var/poison_type = "shockchem"
-	var/poison_chance = 100
+	var/poison_chance = 50
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
+	var/emp_chance = 20 // Beware synths
 
-/mob/living/simple_animal/relatiate/solargrub/PunchTarget()
-	var/mob/living/carbon/human/grubfood = target_mob
-	for(var/obj/O in grubfood)
-		O.emp_act(3)
+/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+	if(target_mob&& prob(emp_chance))
+		target_mob.emp_act(4) //The weakest strength of EMP
+		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
 	..()
 
 /mob/living/simple_animal/retaliate/solargrub/Life()
@@ -98,13 +99,13 @@ List of things solar grubs should be able to do:
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
+	vore_default_mode = DM_ITEMWEAK //item friendly digestions, they just want your chemical energy :3
 
 /mob/living/simple_animal/retaliate/solargrub/PunchTarget()
 	. = ..()
 	if(isliving(.))
 		var/mob/living/L = .
 		if(L.reagents)
-			L.reagents.add_reagent(poison_type, poison_per_bite)
 			if(prob(poison_chance))
 				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
 				L.reagents.add_reagent(poison_type, poison_per_bite)
