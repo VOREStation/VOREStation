@@ -90,6 +90,14 @@
 	add_language(LANGUAGE_SCHECHI, 1)
 	add_language(LANGUAGE_SIGN, 1)
 
+	// Lorefolks say it may be so.
+	if(O.client && O.client.prefs)
+	var/datum/preferences/B = O.client.prefs
+		if(LANGUAGE_ROOTGLOBAL in B.alternate_languages)
+			O.add_language(LANGUAGE_ROOTGLOBAL, 1)
+		if(LANGUAGE_ROOTLOCAL in B.alternate_languages)
+			O.add_language(LANGUAGE_ROOTLOCAL, 1)
+
 	if(move)
 		var/obj/loc_landmark
 		for(var/obj/effect/landmark/start/sloc in landmarks_list)
