@@ -43,6 +43,17 @@
 	var/poison_per_bite = 5
 	var/poison_chance = 10
 	var/poison_type = "spidertoxin"
+	var/image/eye_layer = null
+
+/mob/living/simple_animal/hostile/giant_spider/proc/add_eyes()
+	if(!eye_layer)
+		var/overlay_layer = LIGHTING_LAYER+0.1
+		eye_layer = image(icon, "[icon_state]-eyes", overlay_layer)
+
+	overlays += eye_layer
+
+/mob/living/simple_animal/hostile/giant_spider/proc/remove_eyes()
+	overlays -= eye_layer
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/giant_spider/nurse
@@ -96,6 +107,11 @@
 
 /mob/living/simple_animal/hostile/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
+	add_eyes()
+	..()
+
+/mob/living/simple_animal/hostile/giant_spider/death()
+	remove_eyes()
 	..()
 
 /mob/living/simple_animal/hostile/giant_spider/PunchTarget()
