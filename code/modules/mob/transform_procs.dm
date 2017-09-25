@@ -92,7 +92,7 @@
 
 	// Lorefolks say it may be so.
 	if(O.client && O.client.prefs)
-	var/datum/preferences/B = O.client.prefs
+		var/datum/preferences/B = O.client.prefs
 		if(LANGUAGE_ROOTGLOBAL in B.alternate_languages)
 			O.add_language(LANGUAGE_ROOTGLOBAL, 1)
 		if(LANGUAGE_ROOTLOCAL in B.alternate_languages)
