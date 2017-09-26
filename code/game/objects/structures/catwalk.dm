@@ -6,9 +6,13 @@
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	density = 0
+	var/health = 100
+	var/maxhealth = 100
 	anchored = 1.0
 
 /obj/structure/catwalk/initialize()
+	for(var/obj/structure/catwalk/O in range(1))
+		O.update_icon()
 	for(var/obj/structure/catwalk/C in get_turf(src))
 		if(C != src)
 			warning("Duplicate [type] in [loc] ([x], [y], [z])")
@@ -18,6 +22,7 @@
 /obj/structure/catwalk/Destroy()
 	var/turf/location = loc
 	. = ..()
+	location.alpha = initial(location.alpha)
 	for(var/obj/structure/catwalk/L in orange(location, 1))
 		L.update_icon()
 
@@ -55,6 +60,8 @@
 			qdel(src)
 		if(2.0)
 			qdel(src)
+		if(3.0)
+			qdel(src)
 	return
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
@@ -67,6 +74,14 @@
 				new /obj/item/stack/rods(src.loc)
 				new /obj/structure/lattice(src.loc)
 				qdel(src)
+	if(istype(C, /obj/item/weapon/screwdriver))
+		if(health < maxhealth)
+			to_chat(user, "<span class='notice'>You begin repairing \the [src.name] with \the [C.name].</span>")
+			if(do_after(user, 20, src))
+				health = maxhealth
+	else
+		take_damage(C.force)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	return ..()
 
 /obj/structure/catwalk/Crossed()
@@ -80,3 +95,11 @@
 	if(target && target.z < src.z)
 		return 0
 	return 1
+
+/obj/structure/catwalk/proc/take_damage(amount)
+	health -= amount
+	if(health <= 0)
+		visible_message("<span class='warning'>\The [src] breaks down!</span>")
+		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		new /obj/item/stack/rods(get_turf(src))
+		Destroy()

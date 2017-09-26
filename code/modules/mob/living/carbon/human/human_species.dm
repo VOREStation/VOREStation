@@ -10,7 +10,7 @@
 	delete_inventory()
 
 /mob/living/carbon/human/skrell/New(var/new_loc)
-	h_style = "Skrell Male Tentacles"
+	h_style = "Skrell Short Tentacles"
 	..(new_loc, "Skrell")
 
 /mob/living/carbon/human/tajaran/New(var/new_loc)

@@ -208,7 +208,7 @@
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
 				prob(1);/obj/item/weapon/handcuffs,
-				prob(1);/obj/item/weapon/legcuffs,
+				prob(1);/obj/item/weapon/handcuffs/legcuffs,
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 

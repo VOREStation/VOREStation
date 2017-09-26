@@ -850,7 +850,7 @@
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
 	matter = list(MAT_METAL=150, MAT_SILVER=50)
-	origin_tech = list(TECH_MATERIALS = 2, TECH_ENGINEERING = 2)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.25
