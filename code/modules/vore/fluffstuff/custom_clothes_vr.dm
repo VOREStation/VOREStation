@@ -94,32 +94,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "sh_kimono_mob"
 
-//BeyondMyLife:Kilano Soryu
-/obj/item/clothing/under/dress/fluff/kilano
-	name = "Bleached Dress"
-	desc = "It appears that this was once a captain's dress, it's blueish color has been turned white by bleach, only the gold markings remain to slightly signify what it once was."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "kilanodress"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "kilanodress_mob"
-
-	species_restricted = null
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
-//BeyondMyLife:Kilano Soryu
-/obj/item/clothing/gloves/fluff/kilano
-	name = "Bleached Gloves"
-	desc = "Some old captain's gloves, bleached white, almost unrecognizable from the color change besides the gold trim."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "kilanogloves"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "kilanogloves_mob"
-	species_restricted = null
-
 //JoanRisu:Joan Risu
 /obj/item/clothing/under/suit_jacket/female/fluff/asuna
 	name = "Joan's Historia Uniform"
@@ -1491,3 +1465,137 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "loincloth"
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat
+	name = "black and gold armoured coat."
+	desc = "A black and gold coat, with white fur lining, lined with some kind of heavier material inside, seemingly giving some sort of padding to it."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanocoat"
+	item_state_slots = list(slot_r_hand_str = "kilanocoat", slot_l_hand_str = "kilanocoat")
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanocoat_mob"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click()
+	ToggleHood_kilano()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood_kilano()
+	..()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/RemoveHood_kilano()
+	icon_state = "kilanocoat"
+	item_state = "kilanocoat_mob"
+	suittoggled = 0
+	if(ishuman(hood.loc))
+		var/mob/living/carbon/H = hood.loc
+		H.unEquip(hood, 1)
+		H.update_inv_wear_suit()
+	hood.loc = src
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/ToggleHood_kilano()
+	if(!suittoggled)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = src.loc
+			if(H.wear_suit != src)
+				H << "<span class='warning'>You must be wearing [src] to put up the hood!</span>"
+				return
+			if(H.head)
+				H << "<span class='warning'>You're already wearing something on your head!</span>"
+				return
+			else
+				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+				suittoggled = 1
+				icon_state = "kilanocoat_t"
+				item_state = "kilanocoat_mob_t"
+				H.update_inv_wear_suit()
+	else
+		RemoveHood_kilano()
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/clothing/under/fluff/kilanosuit
+	name = "black and gold armourweave dress"
+	desc = "A black and gold patterned silky dress, with some kind of inlined, heavier material lining the skirt and chest area."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanosuit"
+	item_state = "kilanosuit"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/weapon/storage/backpack/messenger/sec/fluff/kilano
+	name = "Ne'tra's security bag"
+	desc = "A security Satchel containing Ne'tra Ky'rams Security gear."
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/weapon/storage/belt/security/fluff/kilano
+	name = "black and gold security belt"
+	desc = "A Black and Gold security belt, somewhat resembling something you must've seen in a comic years ago."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanobelt"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanobelt_mob"
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/clothing/gloves/fluff/kilano/netra
+	name = "black and gold dress gloves"
+	desc = "Some fancy looking black and gold patterned gloves made of a silky material."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanogloves" //TODO: White sprite.
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanogloves_mob" //TODO: White sprite.
+	species_restricted = null
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/clothing/shoes/boots/fluff/kilano
+	name = "black and gold winter boots"
+	desc = "Some Fur lined black and gold heavy duty winter bots."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanoboots"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanoboots_mob"
+	species_restricted = null
+	cold_protection = FEET|LEGS
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = FEET|LEGS
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+
+//BeyondMyLife: Ne'tra Ky'ram
+/obj/item/clothing/accessory/storage/black_vest/fluff/kilano
+	name = "black and gold webbing vest"
+	desc = "A black and gold webbing vest, it looks like a child spilled a box of crayons all over it."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanovest"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanovest_mob"
+
+//BeyondMyLife:Kilano Soryu //Moved these for orginization purposes.
+/obj/item/clothing/under/dress/fluff/kilano
+	name = "Bleached Dress"
+	desc = "It appears that this was once a captain's dress, it's blueish color has been turned white by bleach, only the gold markings remain to slightly signify what it once was."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanodress"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanodress_mob"
+
+	species_restricted = null
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+//BeyondMyLife:Kilano Soryu
+/obj/item/clothing/gloves/fluff/kilano
+	name = "Bleached Gloves"
+	desc = "Some old captain's gloves, bleached white, almost unrecognizable from the color change besides the gold trim."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "kilanogloves"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "kilanogloves_mob"
+	species_restricted = null
