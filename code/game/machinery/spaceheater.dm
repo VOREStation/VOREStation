@@ -22,6 +22,10 @@
 	icon_state = "sheater[on]"
 	if(panel_open)
 		overlays  += "sheater-open"
+	if(on)
+		set_light(3, 3, "#FFCC00")
+	else
+		set_light(0)
 
 /obj/machinery/space_heater/examine(mob/user)
 	..(user)

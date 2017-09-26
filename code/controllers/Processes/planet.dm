@@ -20,14 +20,14 @@ var/datum/controller/process/planet/planet_controller = null
 	for(var/turf/simulated/OT in outdoor_turfs)
 		for(var/datum/planet/P in planets)
 			if(OT.z in P.expected_z_levels)
-				P.planet_floors += OT
+				P.planet_floors |= OT
 				break
 	outdoor_turfs.Cut() //Why were you in there INCORRECTLY?
 
 	for(var/turf/unsimulated/wall/planetary/PW in planetary_walls)
 		for(var/datum/planet/P in planets)
 			if(PW.type == P.planetary_wall_type)
-				P.planet_walls += PW
+				P.planet_walls |= PW
 				break
 	planetary_walls.Cut()
 
