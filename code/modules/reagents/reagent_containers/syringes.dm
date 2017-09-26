@@ -86,7 +86,7 @@
 						to_chat(user, "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>")
 						return
 					if(NOCLONE in T.mutations) //target done been et, no more blood in him
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>"
+						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 						return
 
 					if(T.isSynthetic())
