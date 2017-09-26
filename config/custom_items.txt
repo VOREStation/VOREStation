@@ -119,6 +119,12 @@ character_name: Octavious Ward
 item_path: /obj/item/weapon/storage/box/fluff/octavious
 }
 
+{
+ckey: burritojustice
+character_name: Jayda Wilson
+item_path: /obj/item/clothing/under/utility/expeditionary/medical
+}
+
 # ######## C CKEYS
 {
 ckey: cockatricexl
