@@ -1467,7 +1467,7 @@ Departamental Swimsuits, for general use
 	item_state = "loincloth"
 
 //BeyondMyLife: Ne'tra Ky'ram
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/kilanocoat
 	name = "black and gold armoured coat."
 	desc = "A black and gold coat, with white fur lining, lined with some kind of heavier material inside, seemingly giving some sort of padding to it."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
@@ -1555,7 +1555,7 @@ Departamental Swimsuits, for general use
 	name = "black and gold winter boots"
 	desc = "Some Fur lined black and gold heavy duty winter bots."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "kilanoboots"
+	icon_state = "kilanoboots_mob" //This is really fucky. For some reason, setting this to kilanoboots causes the on-mob sprite (item_state) to be the in hand sprite.
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "kilanoboots_mob"
 	species_restricted = null
