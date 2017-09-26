@@ -161,7 +161,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/standard_feed_mob(var/mob/user, var/mob/target)
-	if(afterattack()) //Check to see if harm intent & splash.
+	if(afterattack(target, user)) //Check to see if harm intent & splash.
 		return
 	else
 		..() //If they're splashed, no need to do anything else.
