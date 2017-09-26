@@ -533,7 +533,7 @@
 	incoming_damage_percent = 1.1			// 10% more incoming damage.
 	outgoing_melee_damage_percent = 0.7		// 30% less melee damage.
 	disable_duration_percent = 1.25			// Stuns last 25% longer.
-	slowdown = 2							// Slower.
+	slowdown = 1							// Slower.
 	evasion = -1							// 15% easier to hit.
 
 // Does nothing.
