@@ -1,10 +1,12 @@
 /obj/structure/gravemarker
 	name = "grave marker"
 	desc = "An object used in marking graves."
-	icon_state = "gravestone"
+	icon_state = "gravemarker"
 
 	density = 1
 	anchored = 1
+	throwpass = 1
+	climbable = 1
 
 	//Maybe make these calculate based on material?
 	var/health = 100
@@ -34,6 +36,23 @@
 		if(epitaph)
 			to_chat(user, epitaph)
 
+/obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(!mover)
+		return 1
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
+	if(get_dir(loc, target) & dir)
+		return !density
+	else
+		return 1
+
+/obj/structure/gravemarker/CheckExit(atom/movable/O as mob|obj, target as turf)
+	if(istype(O) && O.checkpass(PASSTABLE))
+		return 1
+	if(get_dir(O.loc, target) == dir)
+		return 0
+	return 1
+
 /obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
 		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
@@ -53,7 +72,7 @@
 		return
 	if(istype(W, /obj/item/weapon/wrench))
 		user.visible_message("[user] starts taking down \the [src.name].", "You start taking down \the [src.name].")
-		if(do_after(user, 50 * W.toolspeed))
+		if(do_after(user, material.hardness * W.toolspeed))
 			user.visible_message("[user] takes down \the [src.name].", "You take down \the [src.name].")
 			dismantle()
 	..()
@@ -93,13 +112,13 @@
 	qdel(src)
 	return
 
-/*	//Need Directional Sprites
+
 /obj/structure/gravemarker/verb/rotate()
 	set name = "Rotate Grave Marker"
 	set category = "Object"
 	set src in oview(1)
 
-	if(dir_locked)
+	if(anchored)
 		return
 	if(config.ghost_interaction)
 		src.set_dir(turn(src.dir, 90))
@@ -114,4 +133,8 @@
 
 		src.set_dir(turn(src.dir, 90))
 		return
-*/
+
+/obj/structure/gravemarker/gravestone
+	name = "gravestone"
+	desc = "A large stone used in marking graves."
+	icon_state = "gravestone"

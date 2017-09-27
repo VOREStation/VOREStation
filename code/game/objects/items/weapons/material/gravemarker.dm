@@ -1,7 +1,7 @@
 /obj/item/weapon/material/gravemarker
 	name = "grave marker"
 	desc = "An object used in marking graves."
-	icon_state = "gravestone"
+	icon_state = "gravemarker"
 	w_class = ITEMSIZE_LARGE
 	fragile = 1
 	force_divisor = 0.65
@@ -70,5 +70,6 @@
 		G.grave_name = grave_name
 		G.epitaph = epitaph
 		G.add_fingerprint(usr)
+		G.dir = user.dir
 		qdel_null(src)
 	return

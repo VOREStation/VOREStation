@@ -74,6 +74,18 @@
 		src.give_spell(M)
 		href_list["datumrefresh"] = href_list["give_spell"]
 
+	else if(href_list["give_modifier"])
+		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG))
+			return
+
+		var/mob/living/M = locate(href_list["give_modifier"])
+		if(!istype(M))
+			usr << "This can only be used on instances of type /mob/living"
+			return
+
+		src.admin_give_modifier(M)
+		href_list["datumrefresh"] = href_list["give_modifier"]
+
 	else if(href_list["give_disease2"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
 

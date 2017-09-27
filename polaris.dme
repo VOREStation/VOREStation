@@ -2273,5 +2273,6 @@
 #include "maps\submaps\cave_submaps\cave.dm"
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\surface_submaps\forest.dm"
+#include "maps\submaps\surface_submaps\forest_areas.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
