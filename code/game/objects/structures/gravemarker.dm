@@ -8,6 +8,8 @@
 	throwpass = 1
 	climbable = 1
 
+	layer = 3.1	//Above dirt piles
+
 	//Maybe make these calculate based on material?
 	var/health = 100
 
@@ -133,8 +135,3 @@
 
 		src.set_dir(turn(src.dir, 90))
 		return
-
-/obj/structure/gravemarker/gravestone
-	name = "gravestone"
-	desc = "A large stone used in marking graves."
-	icon_state = "gravestone"
