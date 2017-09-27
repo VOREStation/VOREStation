@@ -127,6 +127,7 @@
 	desc = "A complex, organic knot of jelly and crystalline particles."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
+	parent_organ = BP_TORSO
 
 /obj/item/organ/internal/brain/golem
 	name = "chem"

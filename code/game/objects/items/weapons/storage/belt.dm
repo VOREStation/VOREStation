@@ -239,7 +239,7 @@
 	new /obj/item/weapon/crowbar/alien(src)
 	new /obj/item/weapon/wirecutters/alien(src)
 	new /obj/item/device/multitool/alien(src)
-	new /obj/item/stack/cable_coil(src,30,"white")
+	new /obj/item/stack/cable_coil/alien(src)
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

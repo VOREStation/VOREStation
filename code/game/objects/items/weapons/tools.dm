@@ -312,19 +312,19 @@
 /obj/item/weapon/weldingtool/examine(mob/user)
 	if(..(user, 0))
 		if(max_fuel)
-			user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+			to_chat(user, text("\icon[] The [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
 		if(welding)
-			user << "<span class='danger'>Stop welding first!</span>"
+			to_chat(user, "<span class='danger'>Stop welding first!</span>")
 			return
 		status = !status
 		if(status)
-			user << "<span class='notice'>You secure the welder.</span>"
+			to_chat(user, "<span class='notice'>You secure the welder.</span>")
 		else
-			user << "<span class='notice'>The welder can now be attached and modified.</span>"
+			to_chat(user, "<span class='notice'>The welder can now be attached and modified.</span>")
 		src.add_fingerprint(user)
 		return
 
@@ -380,16 +380,16 @@
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
 		if(!welding && max_fuel)
 			O.reagents.trans_to_obj(src, max_fuel)
-			user << "<span class='notice'>Welder refueled</span>"
+			to_chat(user, "<span class='notice'>Welder refueled</span>")
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if(!welding)
-			user << "<span class='notice'>[src] doesn't use fuel.</span>"
+			to_chat(user, "<span class='notice'>[src] doesn't use fuel.</span>")
 			return
 		else
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-			user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
+			to_chat(user, "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>")
 			var/obj/structure/reagent_dispensers/fueltank/tank = O
 			tank.explode()
 			return
@@ -429,7 +429,7 @@
 		return 1
 	else
 		if(M)
-			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			to_chat(M, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 		update_icon()
 		return 0
 
@@ -509,7 +509,7 @@
 	if(set_welding && !welding)
 		if (get_fuel() > 0)
 			if(M)
-				M << "<span class='notice'>You switch the [src] on.</span>"
+				to_chat(M, "<span class='notice'>You switch the [src] on.</span>")
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
 			playsound(loc, acti_sound, 50, 1)
@@ -524,14 +524,14 @@
 		else
 			if(M)
 				var/msg = max_fuel ? "welding fuel" : "charge"
-				M << "<span class='notice'>You need more [msg] to complete this task.</span>"
+				to_chat(M, "<span class='notice'>You need more [msg] to complete this task.</span>")
 			return
 	//Otherwise
 	else if(!set_welding && welding)
 		if(!always_process)
 			processing_objects -= src
 		if(M)
-			M << "<span class='notice'>You switch \the [src] off.</span>"
+			to_chat(M, "<span class='notice'>You switch \the [src] off.</span>")
 		else if(T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
 		playsound(loc, deac_sound, 50, 1)
@@ -556,29 +556,29 @@
 			return
 		switch(safety)
 			if(1)
-				usr << "<span class='warning'>Your eyes sting a little.</span>"
+				to_chat(usr, "<span class='warning'>Your eyes sting a little.</span>")
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
 					user.eye_blurry += rand(3,6)
 			if(0)
-				usr << "<span class='warning'>Your eyes burn.</span>"
+				to_chat(usr, "<span class='warning'>Your eyes burn.</span>")
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(-1)
-				usr << "<span class='danger'>Your thermals intensify the welder's glow. Your eyes itch and burn severely.</span>"
+				to_chat(usr, "<span class='danger'>Your thermals intensify the welder's glow. Your eyes itch and burn severely.</span>")
 				user.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<2)
 
 			if(E.damage > 10)
-				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
+				to_chat(user, "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>")
 
 			if (E.damage >= E.min_broken_damage)
-				user << "<span class='danger'>You go blind!</span>"
+				to_chat(user, "<span class='danger'>You go blind!</span>")
 				user.sdisabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
-				user << "<span class='danger'>You go blind!</span>"
+				to_chat(user, "<span class='danger'>You go blind!</span>")
 				user.Blind(5)
 				user.eye_blurry = 5
 				user.disabilities |= NEARSIGHTED
@@ -688,16 +688,19 @@
 	cell_type = null
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
-	..()
-	if(power_supply)
-		user << text("\icon[] [] has [] charge left.", src, src.name, get_fuel())
-	else
-		user << text("\icon[] [] has power for no power cell!", src, src.name)
+	if(get_dist(src, user) > 1)
+		to_chat(user, desc)
+	else					// The << need to stay, for some reason
+		if(power_supply)
+			user << text("\icon[] The [] has [] charge left.", src, src.name, get_fuel())
+		else
+			user << text("\icon[] The [] has no power cell!", src, src.name)
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)
 		var/obj/item/weapon/cell/external = get_external_power_supply()
-		return external.charge
+		if(external)
+			return external.charge
 	else if(power_supply)
 		return power_supply.charge
 	else
@@ -706,11 +709,11 @@
 /obj/item/weapon/weldingtool/electric/get_max_fuel()
 	if(use_external_power)
 		var/obj/item/weapon/cell/external = get_external_power_supply()
-		return external.maxcharge
+		if(external)
+			return external.maxcharge
 	else if(power_supply)
 		return power_supply.maxcharge
-	else
-		return 0
+	return 0
 
 /obj/item/weapon/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding)
@@ -727,7 +730,7 @@
 		return 1
 	else
 		if(M)
-			M << "<span class='notice'>You need more energy to complete this task.</span>"
+			to_chat(M, "<span class='notice'>You need more energy to complete this task.</span>")
 		update_icon()
 		return 0
 
@@ -737,7 +740,7 @@
 			power_supply.update_icon()
 			user.put_in_hands(power_supply)
 			power_supply = null
-			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 			setWelding(0)
 			update_icon()
 			return
@@ -752,12 +755,12 @@
 				user.drop_item()
 				W.loc = src
 				power_supply = W
-				user << "<span class='notice'>You install a cell in \the [src].</span>"
+				to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
 				update_icon()
 			else
-				user << "<span class='notice'>\The [src] already has a cell.</span>"
+				to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
 		else
-			user << "<span class='notice'>\The [src] cannot use that type of cell.</span>"
+			to_chat(user, "<span class='notice'>\The [src] cannot use that type of cell.</span>")
 	else
 		..()
 
@@ -778,6 +781,8 @@
 /obj/item/weapon/weldingtool/electric/mounted
 	use_external_power = 1
 
+/obj/item/weapon/weldingtool/electric/mounted/cyborg
+	toolspeed = 0.5
 /*
  * Crowbar
  */
@@ -814,7 +819,7 @@
 			return ..()
 
 		if(!welding)
-			user << "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>"
+			to_chat(user, "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>")
 			return 1
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
@@ -845,7 +850,7 @@
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
 	matter = list(MAT_METAL=150, MAT_SILVER=50)
-	origin_tech = list(TECH_MATERIALS = 2, TECH_ENGINEERING = 2)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.25
@@ -878,9 +883,9 @@
 /obj/item/weapon/combitool/examine()
 	..()
 	if(loc == usr && tools.len)
-		usr << "It has the following fittings:"
+		to_chat(usr, "It has the following fittings:")
 		for(var/obj/item/tool in tools)
-			usr << "\icon[tool] - [tool.name][tools[current_tool]==tool?" (selected)":""]"
+			to_chat(usr, "\icon[tool] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
 
 /obj/item/weapon/combitool/New()
 	..()
@@ -891,9 +896,9 @@
 	if(++current_tool > tools.len) current_tool = 1
 	var/obj/item/tool = tools[current_tool]
 	if(!tool)
-		user << "You can't seem to find any fittings in \the [src]."
+		to_chat(user, "You can't seem to find any fittings in \the [src].")
 	else
-		user << "You switch \the [src] to the [tool.name] fitting."
+		to_chat(user, "You switch \the [src] to the [tool.name] fitting.")
 	return 1
 
 /obj/item/weapon/combitool/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

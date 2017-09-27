@@ -13,6 +13,7 @@
 /obj/item/weapon/antag_spawner
 	w_class = ITEMSIZE_TINY
 	var/used = 0
+	var/ghost_query_type = null
 
 /obj/item/weapon/antag_spawner/proc/spawn_antag(client/C, turf/T)
 	return
@@ -20,11 +21,28 @@
 /obj/item/weapon/antag_spawner/proc/equip_antag(mob/target)
 	return
 
+/obj/item/weapon/antag_spawner/proc/request_player()
+	if(!ghost_query_type)
+		return
+
+	var/datum/ghost_query/Q = new ghost_query_type()
+	var/list/winner = Q.query()
+	if(winner.len)
+		var/mob/observer/dead/D = winner[1]
+		spawn_antag(D.client, get_turf(src))
+	else
+		reset_search()
+	return
+
+/obj/item/weapon/antag_spawner/proc/reset_search()
+	return
+
 /obj/item/weapon/antag_spawner/technomancer_apprentice
 	name = "apprentice teleporter"
 	desc = "A teleportation device, which will bring a less potent manipulator of space to you."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "oldshieldoff"
+	ghost_query_type = /datum/ghost_query/apprentice
 	var/searching = 0
 	var/datum/effect/effect/system/spark_spread/sparks
 
@@ -40,35 +58,18 @@
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/attack_self(mob/user)
 	user << "<span class='notice'>Teleporter attempting to lock on to your apprentice.</span>"
+	request_player()
+
+/obj/item/weapon/antag_spawner/technomancer_apprentice/request_player()
 	searching = 1
 	icon_state = "oldshieldon"
-	for(var/mob/observer/dead/O in player_list)
-		if(!O.MayRespawn())
-			continue
-		if(jobban_isbanned(O, "Syndicate") || jobban_isbanned(O, "wizard"))
-			continue
-		if(O.client)
-			if(O.client.prefs.be_special & BE_WIZARD)
-				question(O.client)
-	spawn(1 MINUTE)
-		searching = 0
-		if(!used)
-			icon_state = "oldshieldoff"
-			user << "<span class='warning'>The teleporter failed to find your apprentice.  Perhaps you could try again later?</span>"
+	..()
 
-
-/obj/item/weapon/antag_spawner/technomancer_apprentice/proc/question(var/client/C)
-	spawn(0)
-		if(!C)
-			return
-		var/response = alert(C, "Someone is requesting a Technomancer apprentice  Would you like to play as one?",
-		"Apprentice request","Yes", "No")
-		if(response == "Yes")
-			response = alert(C, "Are you sure you want to play as an apprentice?", "Apprentice request", "Yes", "No")
-		if(!C || used || !searching)
-			return
-		if(response == "Yes")
-			spawn_antag(C, get_turf(src))
+/obj/item/weapon/antag_spawner/technomancer_apprentice/reset_search()
+	searching = 0
+	if(!used)
+		icon_state = "oldshieldoff"
+		visible_message("<span class='warning'>The teleporter failed to find the apprentice.  Perhaps another attempt could be made later?</span>")
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/spawn_antag(client/C, turf/T)
 	sparks.start()

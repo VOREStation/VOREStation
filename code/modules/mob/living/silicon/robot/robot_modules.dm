@@ -212,19 +212,20 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
-	src.modules += new /obj/item/weapon/surgical/scalpel(src)
-	src.modules += new /obj/item/weapon/surgical/hemostat(src)
-	src.modules += new /obj/item/weapon/surgical/retractor(src)
-	src.modules += new /obj/item/weapon/surgical/cautery(src)
-	src.modules += new /obj/item/weapon/surgical/bonegel(src)
-	src.modules += new /obj/item/weapon/surgical/FixOVein(src)
-	src.modules += new /obj/item/weapon/surgical/bonesetter(src)
-	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
-	src.modules += new /obj/item/weapon/surgical/surgicaldrill(src)
+	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/cautery/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/bonegel/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/FixOVein/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/surgicaldrill/cyborg(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
 	src.modules += new /obj/item/weapon/gripper/medical(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
 	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
+	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
@@ -356,7 +357,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/rcd/borg(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
@@ -394,7 +395,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/robot/engineering/general/New()
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
@@ -708,13 +709,13 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/device/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool(src)
-	src.modules += new /obj/item/weapon/surgical/scalpel(src)
-	src.modules += new /obj/item/weapon/surgical/circular_saw(src)
+	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
@@ -782,6 +783,46 @@ var/global/list/robot_modules = list(
 	id = null
 	return ..()
 
+// The module that borgs on the surface have.  Generally has a lot of useful tools in exchange for questionable loyalty to the crew.
+/obj/item/weapon/robot_module/robot/lost
+	name = "lost robot module"
+	hide_on_manifest = 1
+	sprites = list(
+					"Drone" = "drone-lost"
+				)
+
+/obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
+	..()
+	// Sec
+	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
+	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
+	src.modules += new /obj/item/borg/combat/shield(src)
+
+	// Med
+	src.modules += new /obj/item/borg/sight/hud/med(src)
+	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/reagent_containers/borghypo/lost(src)
+
+	// Engi
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
+	src.modules += new /obj/item/device/multitool(src)
+
+	// Sci
+	src.modules += new /obj/item/device/robotanalyzer(src)
+
+	// Potato
+	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
+
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
+	synths += wire
+
+	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
+	C.synths = list(wire)
+	src.modules += C
+
 /obj/item/weapon/robot_module/robot/security/combat
 	name = "combat robot module"
 	hide_on_manifest = 1
@@ -809,7 +850,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/crowbar/cyborg(src)

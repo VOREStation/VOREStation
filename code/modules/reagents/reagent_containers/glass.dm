@@ -78,24 +78,26 @@
 
 /obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
 
-	if(!is_open_container() || !proximity)
-		return
+	if(!is_open_container() || !proximity) //Is the container open & are they next to whatever they're clicking?
+		return //If not, do nothing.
 
-	for(var/type in can_be_placed_into)
+	for(var/type in can_be_placed_into) //Is it something it can be placed into?
 		if(istype(target, type))
 			return
 
-	if(standard_splash_mob(user, target))
-		return
-	if(standard_dispenser_refill(user, target))
-		return
-	if(standard_pour_into(user, target))
+	if(standard_dispenser_refill(user, target)) //Are they clicking a water tank/some dispenser?
 		return
 
-	if(reagents && reagents.total_volume)
-		user << "<span class='notice'>You splash the solution onto [target].</span>"
-		reagents.splash(target, reagents.total_volume)
+	if(standard_pour_into(user, target)) //Pouring into another beaker?
 		return
+
+	if(user.a_intent == I_HURT) //Harm intent?
+		if(standard_splash_mob(user, target)) //If harm intent and can splash a mob, go ahead.
+			return
+		if(reagents && reagents.total_volume) //Otherwise? Splash the floor.
+			user << "<span class='notice'>You splash the solution onto [target].</span>"
+			reagents.splash(target, reagents.total_volume)
+			return
 
 /obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
@@ -264,6 +266,41 @@
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
+
+obj/item/weapon/reagent_containers/glass/bucket/wood
+	desc = "An old wooden bucket."
+	name = "wooden bucket"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "woodbucket"
+	item_state = "woodbucket"
+	matter = list("wood" = 50)
+	w_class = ITEMSIZE_LARGE
+	amount_per_transfer_from_this = 20
+	possible_transfer_amounts = list(10,20,30,60,120)
+	volume = 120
+	flags = OPENCONTAINER
+	unacidable = 0
+
+/obj/item/weapon/reagent_containers/glass/bucket/wood/attackby(var/obj/D, mob/user as mob)
+	if(isprox(D))
+		user << "This wooden bucket doesn't play well with electronics."
+		return
+	else if(istype(D, /obj/item/weapon/material/hatchet))
+		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")
+		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket/wood)
+		user.drop_from_inventory(src)
+		qdel(src)
+		return
+	else if(istype(D, /obj/item/weapon/mop))
+		if(reagents.total_volume < 1)
+			user << "<span class='warning'>\The [src] is empty!</span>"
+		else
+			reagents.trans_to_obj(D, 5)
+			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		return
+	else
+		return ..()
 
 /obj/item/weapon/reagent_containers/glass/cooler_bottle
 	desc = "A bottle for a water-cooler."

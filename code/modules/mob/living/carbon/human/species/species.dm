@@ -104,8 +104,8 @@
 	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
 	var/light_dam                                     // If set, mob will be damaged in light over this value and heal in light below its negative.
-	var/body_temperature = 310.15	                  // Species will try to stabilize at this temperature.
-	                                                  // (also affects temperature processing)
+	var/body_temperature = 310.15	                  // Species will try to stabilize at this temperature. (also affects temperature processing)
+	var/minimum_breath_pressure = 16				  // Minimum required pressure for breath, in kPa
 
 	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
 	var/cold_discomfort_level = 285                   // Aesthetic messages about feeling chilly.

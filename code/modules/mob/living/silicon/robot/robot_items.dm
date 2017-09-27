@@ -300,6 +300,9 @@
 	icon_state = "shock"
 	var/shield_level = 0.5 //Percentage of damage absorbed by the shield.
 
+/obj/item/borg/combat/shield/attack_self(var/mob/living/user)
+	set_shield_level()
+
 /obj/item/borg/combat/shield/verb/set_shield_level()
 	set name = "Set shield level"
 	set category = "Object"

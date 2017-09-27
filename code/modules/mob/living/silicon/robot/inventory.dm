@@ -96,6 +96,13 @@
 		return 0
 	updateicon()
 
+// This one takes an object's type instead of an instance, as above.
+/mob/living/silicon/robot/proc/has_active_type(var/type_to_compare)
+	var/list/active_modules = list(module_state_1, module_state_2, module_state_3)
+	if(is_path_in_list(type_to_compare, active_modules))
+		return TRUE
+	return FALSE
+
 //Helper procs for cyborg modules on the UI.
 //These are hackish but they help clean up code elsewhere.
 
