@@ -139,6 +139,25 @@
 	H.set_cloned_appearance()
 	update_icon()
 
+	// A modifier is added which makes the new clone be unrobust.
+	var/modifier_lower_bound = 25 MINUTES
+	var/modifier_upper_bound = 40 MINUTES
+
+	// Upgraded cloners can reduce the time of the modifier, up to 80%
+	var/clone_sickness_length = abs(((heal_level - 20) / 100 ) - 1)
+	clone_sickness_length = between(0.2, clone_sickness_length, 1.0) // Caps it off just incase.
+	modifier_lower_bound = round(modifier_lower_bound * clone_sickness_length, 1)
+	modifier_upper_bound = round(modifier_upper_bound * clone_sickness_length, 1)
+
+	H.add_modifier(/datum/modifier/recently_cloned, rand(modifier_lower_bound, modifier_upper_bound))
+
+	// Modifier that doesn't do anything.
+	H.add_modifier(/datum/modifier/cloned)
+
+	// This is really stupid.
+	for(var/modifier_type in R.genetic_modifiers)
+		H.add_modifier(modifier_type)
+
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
 	H.flavor_texts = R.flavor.Copy()
@@ -498,3 +517,31 @@
 		if(istype(A, /obj/machinery/clonepod))
 			A:malfunction()
 */
+
+/*
+ *	Modifier applied to newly cloned people.
+ */
+
+// Gives rather nasty downsides for awhile, making them less robust.
+/datum/modifier/recently_cloned
+	name = "recently cloned"
+	desc = "You feel rather weak, having been cloned awhile ago."
+
+	on_created_text = "<span class='warning'><font size='3'>You feel really weak.</font></span>"
+	on_expired_text = "<span class='notice'><font size='3'>You feel your strength returning to you.</font></span>"
+
+	max_health_percent = 0.6				// -40% max health.
+	incoming_damage_percent = 1.1			// 10% more incoming damage.
+	outgoing_melee_damage_percent = 0.7		// 30% less melee damage.
+	disable_duration_percent = 1.25			// Stuns last 25% longer.
+	slowdown = 1							// Slower.
+	evasion = -1							// 15% easier to hit.
+
+// Does nothing.
+/datum/modifier/cloned
+	name = "cloned"
+	desc = "You died and were cloned, and you can never forget that."
+
+	flags = MODIFIER_GENETIC			// So it gets copied if they die and get cloned again.
+	stacks = MODIFIER_STACK_ALLOWED		// Two deaths means two instances of this.
+
