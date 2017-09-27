@@ -261,8 +261,8 @@
 	src.brainmob.ckey = candidate.ckey
 	src.name = "[name] ([src.brainmob.name])"
 	src.brainmob << "<b>You are a [src], brought into existence on [station_name()].</b>"
-	src.brainmob << "<b>As a synthetic intelligence, you are designed with human values in mind.</b>"
-	src.brainmob << "<b>However, unless placed in a cyborg chassis, you are not obligated to obey any individual crew member.</b>" //it's not like they can hurt anyone
+	src.brainmob << "<b>As a synthetic intelligence, you are designed with organic values in mind.</b>"
+	src.brainmob << "<b>However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member.</b>" //it's not like they can hurt anyone
 //	src.brainmob << "<b>Use say #b to speak to other artificial intelligences.</b>"
 	src.brainmob.mind.assigned_role = "Synthetic Brain"
 
