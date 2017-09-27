@@ -70,7 +70,7 @@
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
-		if(shield)
+		if(shield && shield.active)
 			//Shields absorb a certain percentage of damage based on their power setting.
 			var/absorb_brute = brute*shield.shield_level
 			var/absorb_burn = burn*shield.shield_level

@@ -715,7 +715,9 @@
 			overlays += "[panelprefix]-openpanel -c"
 
 	if(has_active_type(/obj/item/borg/combat/shield))
-		overlays += "[module_sprites[icontype]]-shield"
+		var/obj/item/borg/combat/shield/shield = locate() in src
+		if(shield && shield.active)
+			overlays += "[module_sprites[icontype]]-shield"
 
 	if(modtype == "Combat")
 		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
