@@ -149,7 +149,7 @@
 	modifier_lower_bound = round(modifier_lower_bound * clone_sickness_length, 1)
 	modifier_upper_bound = round(modifier_upper_bound * clone_sickness_length, 1)
 
-	H.add_modifier(/datum/modifier/recently_cloned, rand(modifier_lower_bound, modifier_upper_bound))
+	H.add_modifier(/datum/modifier/cloning_sickness, rand(modifier_lower_bound, modifier_upper_bound))
 
 	// Modifier that doesn't do anything.
 	H.add_modifier(/datum/modifier/cloned)
@@ -523,9 +523,9 @@
  */
 
 // Gives rather nasty downsides for awhile, making them less robust.
-/datum/modifier/recently_cloned
-	name = "recently cloned"
-	desc = "You feel rather weak, having been cloned awhile ago."
+/datum/modifier/cloning_sickness
+	name = "cloning sickness"
+	desc = "You feel rather weak, having been cloned not so long ago."
 
 	on_created_text = "<span class='warning'><font size='3'>You feel really weak.</font></span>"
 	on_expired_text = "<span class='notice'><font size='3'>You feel your strength returning to you.</font></span>"
