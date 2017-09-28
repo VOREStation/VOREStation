@@ -2177,7 +2177,7 @@
 "PS" = (/obj/structure/table/steel,/obj/item/weapon/storage/firstaid/o2{pixel_x = 3; pixel_y = 3},/obj/item/weapon/storage/firstaid/regular,/obj/machinery/atmospherics/pipe/manifold/visible,/turf/simulated/shuttle/floor/voidcraft/light,/area/syndicate_station/start)
 "PT" = (/obj/machinery/atmospherics/unary/freezer{tag = "icon-freezer_0 (WEST)"; icon_state = "freezer_0"; dir = 8},/turf/simulated/shuttle/floor/voidcraft/light,/area/syndicate_station/start)
 "PU" = (/turf/space,/obj/structure/shuttle/engine/propulsion,/turf/simulated/shuttle/plating/airless/carry,/area/skipjack_station/start)
-"PV" = (/obj/structure/table/standard,/obj/item/weapon/legcuffs,/turf/simulated/shuttle/floor/black,/area/skipjack_station/start)
+"PV" = (/obj/structure/table/standard,/obj/item/weapon/handcuffs/legcuffs,/turf/simulated/shuttle/floor/black,/area/skipjack_station/start)
 "PW" = (/obj/structure/table/standard,/obj/item/weapon/deck/cards,/turf/simulated/shuttle/floor/black,/area/skipjack_station/start)
 "PX" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/blast/regular{id = "skipjackshutters"; name = "Skipjack Blast Shielding"},/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "PY" = (/obj/machinery/light/small,/turf/simulated/shuttle/floor/skipjack,/area/skipjack_station/start)
