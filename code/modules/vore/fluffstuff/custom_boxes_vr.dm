@@ -193,6 +193,19 @@
 		/obj/item/weapon/permit/gun/fluff/silencedmp5a5,
 		/obj/item/weapon/gun/projectile/colt/fluff/serdy)
 
+//BeyondMyLife: Ne'tra Ky'ram //Made a box because they have so many items that it'd spam the debug log.
+/obj/item/weapon/storage/box/fluff/kilano
+	name = "Ne'tra Ky'ram's Kit"
+	desc = "A kit containing Ne'tra Ky'ram's clothing."
+	has_items = list(
+		/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat,
+		/obj/item/clothing/under/fluff/kilanosuit,
+		/obj/item/weapon/storage/backpack/messenger/sec/fluff/kilano,
+		/obj/item/weapon/storage/belt/security/fluff/kilano,
+		/obj/item/clothing/gloves/fluff/kilano/netra,
+		/obj/item/clothing/shoes/boots/fluff/kilano,
+		/obj/item/clothing/accessory/storage/black_vest/fluff/kilano
+		)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

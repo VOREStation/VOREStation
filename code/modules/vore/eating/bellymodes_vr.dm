@@ -406,7 +406,7 @@
 				owner << sound(growsound,volume=80)
 
 			if(M.size_multiplier > shrink_grow_size && owner.size_multiplier < 2) //Grow until either pred is large or prey is small.
-				owner.resize(M.size_multiplier+0.01) //Grow by 1% per tick.
+				owner.resize(owner.size_multiplier+0.01) //Grow by 1% per tick.
 				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick
 				if(M.nutrition >= 100)
 					var/oldnutrition = (M.nutrition * 0.05)

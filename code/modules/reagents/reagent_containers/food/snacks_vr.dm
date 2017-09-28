@@ -212,7 +212,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("crunchy shell bits" = 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/grub/bugball/New()
+/obj/item/weapon/reagent_containers/food/snacks/bugball/New()
 	..()
 	reagents.add_reagent("protein", 1)
 	reagents.add_reagent("carbon", 5)

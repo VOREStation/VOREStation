@@ -30,7 +30,10 @@
 // Activate Noms!
 /mob/living/simple_animal/wah
 	vore_active = 1
+	vore_bump_chance = 10
+	vore_bump_emote	= "playfully lunges at"
 	vore_pounce_chance = 40
+	vore_default_mode = DM_HOLD // above will only matter if someone toggles it anyway
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_animal/wah/fae
@@ -42,6 +45,10 @@
 	icon_dead = "wah_fae_dead"
 	icon_rest = "wah_fae_rest"
 
+	vore_ignores_undigestable = 0	// wah don't care you're edible or not, you still go in
+	vore_digest_chance = 0			// instead of digesting if you struggle...
+	vore_absorb_chance = 20			// you get to become adorable purple wahpudge.
+	vore_bump_chance = 75
 	maxHealth = 100
 	health = 100
 	melee_damage_lower = 10
