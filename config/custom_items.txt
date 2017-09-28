@@ -459,6 +459,19 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 }
 
 # ######## P CKEYS
+
+{
+ckey: pawoverlord
+character_name: Sorrel Cavalet
+item_path: /obj/item/weapon/permit/gun/fluff/sorrel_cavalet
+}
+
+{
+ckey: pawoverlord
+character_name: Sorrel Cavalet
+item_path: /obj/item/weapon/gun/projectile/colt
+}
+
 {
 ckey: pontifexminimus
 character_name: Lucius Null
