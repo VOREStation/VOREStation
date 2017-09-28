@@ -209,7 +209,8 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/view_runtimes,
 	/client/proc/show_gm_status,
 	/datum/admins/proc/change_weather,
-	/datum/admins/proc/change_time
+	/datum/admins/proc/change_time,
+	/client/proc/admin_give_modifier
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

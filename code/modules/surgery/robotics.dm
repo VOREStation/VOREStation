@@ -168,10 +168,16 @@
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			if(istype(tool,/obj/item/stack/cable_coil/))
 				var/obj/item/stack/cable_coil/C = tool
-				if(!C.can_use(5))
-					user << "<span class='danger'>You need ten or more cable pieces to repair this damage.</span>" //usage amount made more consistent with regular cable repair
+				if(affected.burn_dam == 0)
+					to_chat(user, "<span class='notice'>There are no burnt wires here!</span>")
 					return SURGERY_FAILURE
-				C.use(5)
+				else
+					if(!C.can_use(5))
+						to_chat(user, "<span class='danger'>You need at least five cable pieces to repair this part.</span>") //usage amount made more consistent with regular cable repair
+						return SURGERY_FAILURE
+					else
+						C.use(5)
+
 			return affected && affected.open == 3 && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

@@ -2,4 +2,3 @@
     name = mapmerge driver
     driver = ./mapmerge.sh %O %A %B
     recursive = text
-
