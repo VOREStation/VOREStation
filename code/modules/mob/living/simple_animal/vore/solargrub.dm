@@ -97,7 +97,7 @@ List of things solar grubs should be able to do:
 
 /mob/living/simple_animal/retaliate/solargrub //active noms
 	var/vore_bump_chance = 50
-	var/vore_bump_emote = "tries to slurp you up with minimal effort."	
+	var/vore_bump_emote = "applies minimal effort to try and slurp up"	
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
