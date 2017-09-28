@@ -19,8 +19,8 @@ List of things solar grubs should be able to do:
 	icon_dead = "solargrub-dead"
 
 	faction = "grubs"
-	maxHealth = 200 //grubs can take a lot of harm
-	health = 200
+	maxHealth = 50 //grubs can take a lot of harm
+	health = 50
 	move_to_delay = 5
 
 	melee_damage_lower = 1
