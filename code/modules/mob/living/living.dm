@@ -92,7 +92,15 @@ default behaviour is:
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
 
-				// VOREStation Edit - Begin
+				//VOREstation Edit - Begin
+				if (istype(tmob, /mob/living/simple_animal)) //check bumpnom chance, if it's a simplemob that's bumped
+					tmob.Bumped(src)
+				else if(istype(src, /mob/living/simple_animal)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
+					Bumped(tmob)
+				if (tmob.loc == src) //check if they got ate, and if so skip the forcemove
+					now_pushing = 0
+					return
+
 				// In case of micros, we don't swap positions; instead occupying the same square!
 				if (handle_micro_bump_helping(tmob)) return
 				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
