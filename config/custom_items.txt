@@ -101,6 +101,13 @@ item_path: /obj/item/clothing/gloves/fluff/kilano
 }
 
 {
+ckey: beyondmylife
+character_name: Ne'tra Ky'ram
+item_path: /obj/item/weapon/storage/box/fluff/kilano
+req_access: 1
+}
+
+{
 ckey: britishrabbit
 character_name: Xin Xiao
 item_path: /obj/item/clothing/under/soviet
