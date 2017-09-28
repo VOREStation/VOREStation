@@ -166,13 +166,22 @@
 /obj/item/weapon/surgical/bonesetter
 	name = "bone setter"
 	desc = "Put them in their place."
-	icon_state = "bone setter"
+	icon_state = "bone_setter"
 	force = 8.0
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
 
+/obj/item/weapon/surgical/bone_clamp
+	name = "bone clamp"
+	desc = "The best way to get a bone fixed fast."
+	icon_state = "bone_clamp"
+	force = 8
+	throwforce = 9
+	throw_speed = 3
+	throw_range = 5
+	attack_verb = list("attacked", "hit", "bludgeoned")
 
 // Cyborg Tools
 
@@ -202,3 +211,37 @@
 
 /obj/item/weapon/surgical/bonesetter/cyborg
 	toolspeed = 0.5
+
+
+// Alien Tools
+/obj/item/weapon/surgical/retractor/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/hemostat/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/cautery/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/surgicaldrill/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/scalpel/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/circular_saw/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/FixOVein/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/bone_clamp/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.75
