@@ -180,6 +180,10 @@
 	var/size_x = 3						// How big the rectangle will be, in tiles from the center.
 	var/size_y = 3						// Ditto.
 
+// A shortcut for admins to spawn in to put into simple animals or other things where it needs to reactivate automatically.
+/obj/item/shield_projector/rectangle/automatic
+	always_on = TRUE
+
 // Horrible implementation below.
 /obj/item/shield_projector/rectangle/create_shields()
 	if(!..())
