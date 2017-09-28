@@ -239,3 +239,14 @@
 	if(air_group)
 		return 0 //Make sure air doesn't drain
 	..()
+
+/obj/structure/grille/broken/cult
+	icon_state = "grillecult-b"
+
+/obj/structure/grille/rustic
+	name = "rustic grille"
+	desc = "A lattice of metal, arranged in an old, rustic fashion."
+	icon_state = "grillerustic"
+
+/obj/structure/grille/broken/rustic
+	icon_state = "grillerustic-b"

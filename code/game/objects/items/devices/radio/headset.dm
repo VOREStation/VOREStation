@@ -310,6 +310,9 @@
 //	freerange = 1
 	ks2type = /obj/item/device/encryptionkey/ert
 
+/obj/item/device/radio/headset/omni		//Only for the admin intercoms
+	ks2type = /obj/item/device/encryptionkey/omni
+
 /obj/item/device/radio/headset/ia
 	name = "internal affair's headset"
 	desc = "The headset of your worst enemy."

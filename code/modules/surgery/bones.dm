@@ -146,3 +146,41 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("<font color='red'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</font>" , \
 		"<font color='red'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</font>")
+
+
+
+/datum/surgery_step/clamp_bone
+	allowed_tools = list(
+	/obj/item/weapon/surgical/bone_clamp = 100
+	)
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 70
+	max_duration = 90
+
+	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		if (!hasorgans(target))
+			return 0
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 0
+
+	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		if (affected.stage == 0)
+			user.visible_message("<font color='blue'>[user] starts repairing the damaged bones in [target]'s [affected.name] with \the [tool].</font>" , \
+			"<font color='blue'>You starts repairing the damaged bones in [target]'s [affected.name] with \the [tool].</font>")
+		target.custom_pain("Something in your [affected.name] is causing you a lot of pain!", 50)
+		..()
+
+	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		user.visible_message("<font color='blue'>[user] sets the bone in [target]'s [affected.name] with \the [tool].</font>", \
+			"<font color='blue'>You sets [target]'s bone in [affected.name] with \the [tool].</font>")
+		affected.status &= ~ORGAN_BROKEN
+
+	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		user.visible_message("<font color='red'>[user]'s hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!</font>" , \
+			"<font color='red'>Your hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!</font>")
+		affected.createwound(BRUISE, 5)
