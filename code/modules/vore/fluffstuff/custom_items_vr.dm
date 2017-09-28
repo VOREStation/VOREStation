@@ -1458,3 +1458,33 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			qdel(src) //One time use.
 	else //If not, do nothing.
 		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")
+
+//For 2 handed fluff weapons.
+/obj/item/weapon/material/twohanded/fluff //Twohanded fluff items.
+	name = "fluff."
+	desc = "This object is so fluffy. Just from the sight of it, you know that either something went wrong or someone spawned the incorrect item."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_icons = list(
+				slot_l_hand_str = 'icons/vore/custom_items_left_hand_vr.dmi',
+				slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi',
+				)
+
+/obj/item/weapon/material/twohanded/fluff/New(var/newloc)
+	..(newloc," ") //See materials_vr_dmi for more information as to why this is a blank space.
+
+//General use.
+/obj/item/weapon/material/twohanded/fluff/riding_crop
+	name = "riding crop"
+	desc = "A steel rod, a little over a foot long with a widened grip and a thick, leather patch at the end. Made to smack naughty submissives."
+	//force_wielded = 0.05 //Stings, but does jack shit for damage, provided you don't hit someone 100 times. 1 damage with hardness of 60.
+	force_divisor = 0.05 //Required in order for the X attacks Y message to pop up.
+	unwielded_force_divisor = 1 // One here, too.
+	applies_material_colour = 0
+	unbreakable = 1
+	base_icon = "riding_crop"
+	icon_state = "riding_crop0"
+	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
+//1R1S: Malady Blanche
+/obj/item/weapon/material/twohanded/fluff/riding_crop/malady
+	name = "Malady's riding crop"
+	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
