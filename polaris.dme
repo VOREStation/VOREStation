@@ -2269,6 +2269,7 @@
 #include "maps\northern_star\northern_star.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\cave_submaps\cave.dm"
+#include "maps\submaps\cave_submaps\cave_areas.dm"
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\surface_submaps\forest.dm"
 #include "maps\submaps\surface_submaps\forest_areas.dm"
