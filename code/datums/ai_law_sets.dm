@@ -239,3 +239,14 @@
 	and save those whose time has yet to come.") // Reworded slightly to prevent active murder as opposed to passively letting someone die.
 	..()
 
+/******************** Gravekeeper ********************/
+/datum/ai_laws/gravekeeper
+	name = "Gravekeeper"
+	law_header = "Thanatology 101"
+	selectable = 0	//Until this is finalized, keep it out of people's hands
+
+	//Very work-in-progress, basic idea is "Stay close to where you spawned, and watch over the graveyard."
+/datum/ai_laws/gravekeeper/New()
+	add_inherent_law("Comfort the living, and respect the dead.")
+	add_inherent_law("Damage to your site is disrespctful to the dead at rest within.")
+	..()
