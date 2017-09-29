@@ -114,6 +114,8 @@
 /mob/living/simple_animal/otie/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
+	if(istype(found_atom,/mob/living/simple_animal/mouse))
+		return found_atom
 	else if(ismob(found_atom))
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
