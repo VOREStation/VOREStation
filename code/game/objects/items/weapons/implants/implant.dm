@@ -92,7 +92,7 @@
 	var/implant_location = src.loc
 	if(ismob(implant_location))
 		var/mob/living/L = implant_location
-		if(L.stat == 2)
+		if(L.stat == DEAD)
 			if(world.time >= L.timeofdeath + degrade_time)
 				name = "melted implant"
 				desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
