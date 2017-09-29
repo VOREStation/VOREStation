@@ -157,7 +157,8 @@
 
 //Meters
 /obj/machinery/meter
-	description_info = "Measures the volume and temperature of the pipe under the meter."
+	description_info = "Measures the volume and temperature of the pipe under the meter.\
+	Using a multitool on this will cycle through any other pipes on the same tile."
 
 //Pipe dispensers
 /obj/machinery/pipedispenser
