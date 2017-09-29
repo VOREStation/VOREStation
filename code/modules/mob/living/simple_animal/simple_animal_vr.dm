@@ -9,6 +9,8 @@
 	var/vore_capacity = 1				// The capacity (in people) this person can hold
 	var/vore_max_size = RESIZE_HUGE		// The max size this mob will consider eating
 	var/vore_min_size = RESIZE_TINY 	// The min size this mob will consider eating
+	var/vore_bump_chance = 0			// Chance of trying to eat anyone that bumps into them, regardless of hostility
+	var/vore_bump_emote	= "grabs hold of"				// Allow messages for bumpnom mobs to have a flavorful bumpnom
 	var/vore_pounce_chance = 5			// Chance of this mob knocking down an opponent
 	var/vore_standing_too = 0			// Can also eat non-stunned mobs
 	var/vore_ignores_undigestable = 1	// Refuse to eat mobs who are undigestable by the prefs toggle.
@@ -171,3 +173,15 @@
 	src.vore_organs[B.name] = B
 	src.vore_selected = B.name
 
+/mob/living/simple_animal/Bumped(var/atom/movable/AM, yes)
+	if(ismob(AM))
+		var/mob/tmob = AM
+		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
+			if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
+				tmob.Weaken(5)
+			tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
+			stop_automated_movement = 1
+			animal_nom(tmob)
+			update_icon()
+			stop_automated_movement = 0
+	..()

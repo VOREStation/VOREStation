@@ -173,3 +173,10 @@
 	req_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 3)
 	build_path = /obj/item/weapon/circuitboard/thermoregulator
 	sort_string = "HABAF"
+
+/datum/design/circuit/bomb_tester
+	name = "Explosive Effect Simulator"
+	id = "bomb_tester"
+	req_tech = list(TECH_PHORON = 3, TECH_DATA = 2, TECH_MAGNET = 2)
+	build_path = /obj/item/weapon/circuitboard/bomb_tester
+	sort_string = "HABAG"

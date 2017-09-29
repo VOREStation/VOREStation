@@ -4,6 +4,7 @@
 	icon = 'icons/obj/meter_vr.dmi'
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
+	var/list/pipes_on_turf = list()
 	anchored = 1.0
 	power_channel = ENVIRON
 	var/frequency = 0
@@ -13,12 +14,29 @@
 
 /obj/machinery/meter/New()
 	..()
-	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
+	spawn(5)
+		target = select_target()
 	return 1
 
 /obj/machinery/meter/initialize()
+	. = ..()
 	if (!target)
-		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
+		spawn(5)
+			target = select_target()
+
+/obj/machinery/meter/Destroy()
+	pipes_on_turf.Cut()
+	target = null
+	return ..()
+
+/obj/machinery/meter/proc/select_target()
+	var/obj/machinery/atmospherics/pipe/P
+	for(P in loc)
+		if(!P.hides_under_flooring())
+			break
+	if(!P)
+		P = locate(/obj/machinery/atmospherics/pipe) in loc
+	return P
 
 /obj/machinery/meter/process()
 	if(!target)
@@ -88,35 +106,43 @@
 /obj/machinery/meter/Click()
 
 	if(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/living/silicon/ai)) // ghosts can call ..() for examine
-		usr.examinate(src)
-		return 1
+		var/mob/living/L = usr
+		if(!L.get_active_hand() || !L.Adjacent(src))
+			usr.examinate(src)
+			return 1
 
 	return ..()
 
-/obj/machinery/meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
-		return ..()
-	playsound(src, W.usesound, 50, 1)
-	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
-	if (do_after(user, 40 * W.toolspeed))
-		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
-			"You hear ratchet.")
-		new /obj/item/pipe_meter(src.loc)
-		qdel(src)
+/obj/machinery/meter/attackby(var/obj/item/W, var/mob/user)
+	if(iswrench(W))
+		playsound(src, W.usesound, 50, 1)
+		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+		if(do_after(user, 40 * W.toolspeed))
+			user.visible_message( \
+				"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+				"<span class='notice'>You have unfastened \the [src].</span>", \
+				"You hear ratchet.")
+			new /obj/item/pipe_meter(get_turf(src))
+			qdel(src)
+			return
+
+	if(ismultitool(W))
+		for(var/obj/machinery/atmospherics/pipe/P in loc)
+			pipes_on_turf |= P
+		if(!pipes_on_turf.len)
+			return
+		target = pipes_on_turf[1]
+		pipes_on_turf.Remove(target)
+		pipes_on_turf.Add(target)
+		to_chat(user, "<span class='notice'>Pipe meter set to moniter \the [target].</span>")
+		return
+
+	return ..()
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 
-/obj/machinery/meter/turf/New()
-	..()
-	src.target = loc
-	return 1
-
-
-/obj/machinery/meter/turf/initialize()
-	if (!target)
-		src.target = loc
+/obj/machinery/meter/turf/select_target()
+	return loc
 
 /obj/machinery/meter/turf/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	return

@@ -189,4 +189,5 @@
 	if(istype(Proj, /obj/item/projectile/bullet/particle))
 		if(prob(Proj.damage))
 			GetDrilled()
+	..()
 
