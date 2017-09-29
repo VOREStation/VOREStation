@@ -47,6 +47,12 @@ character_name: Zippy Shanks
 item_path: /obj/item/weapon/melee/fluff/holochain/Zippy
 }
 
+{
+ckey: 1r1s
+character_name: Malady Blanche
+item_path: /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
+}
+
 # ######## A CKEYS
 {
 ckey: adk09

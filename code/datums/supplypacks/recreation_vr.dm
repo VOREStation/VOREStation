@@ -19,7 +19,8 @@
 			/obj/item/clothing/accessory/collar/shock,
 			/obj/item/clothing/suit/straight_jacket,
 			/obj/item/weapon/legcuffs,
-			/obj/item/weapon/melee/fluff/holochain/mass
+			/obj/item/weapon/melee/fluff/holochain/mass,
+			/obj/item/weapon/material/twohanded/fluff/riding_crop
 			)
 	containertype = /obj/structure/closet/crate
 	containername = "Restraints crate"
