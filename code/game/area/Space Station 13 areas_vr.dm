@@ -231,3 +231,42 @@
 /area/shuttle/tether/transit
 	name = "Tether Shuttle Transit"
 	icon_state = "shuttle2"
+
+/area/rnd/outpost
+	name = "\improper Research Outpost Hallway"
+	icon_state = "research"
+
+/area/rnd/outpost/airlock
+	name = "\improper Research Outpost Airlock"
+	icon_state = "green"
+
+/area/rnd/outpost/eva
+	name = "Research Outpost EVA Storage"
+	icon_state = "eva"
+
+/area/rnd/outpost/chamber
+	name = "\improper Research Outpost Burn Chamber"
+	icon_state = "engine"
+
+/area/rnd/outpost/atmos
+	name = "Research Outpost Atmospherics"
+	icon_state = "atmos"
+
+/area/rnd/outpost/storage
+	name = "\improper Research Outpost Gas Storage"
+	icon_state = "toxstorage"
+
+/area/rnd/outpost/mixing
+	name = "\improper Research Outpost Gas Mixing"
+	icon_state = "toxmix"
+
+/area/rnd/outpost/heating
+	name = "\improper Research Outpost Gas Heating"
+	icon_state = "toxmix"
+
+/area/rnd/outpost/testing
+	name = "\improper Research Outpost Testing"
+	icon_state = "toxtest"
+
+/area/maintenance/substation/outpost
+	name = "Research Outpost Substation"
