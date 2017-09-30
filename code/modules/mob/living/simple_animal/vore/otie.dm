@@ -102,7 +102,7 @@
 	maxHealth = 200 //armored or something
 	health = 200
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
-	vore_pounce_chance = 50 // Good boys don't do too much police brutality.
+	vore_pounce_chance = 60 // Good boys don't do too much police brutality.
 
 	var/check_records = 1 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
