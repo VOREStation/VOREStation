@@ -873,10 +873,10 @@
 /obj/mecha/proc/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(mmi_as_oc && user in range(1))
 		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
-			user << "Consciousness matrix not detected."
+			to_chat(user,"Consciousness matrix not detected.")
 			return 0
 		else if(mmi_as_oc.brainmob.stat)
-			user << "Beta-rhythm below acceptable level."
+			to_chat(user,"Beta-rhythm below acceptable level.")
 			return 0
 		user.drop_from_inventory(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
