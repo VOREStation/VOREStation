@@ -79,6 +79,7 @@
 	var/amount_grown = 0
 	var/spiders_min = 6
 	var/spiders_max = 24
+	var/spider_type = /obj/effect/spider/spiderling
 	New()
 		pixel_x = rand(3,-3)
 		pixel_y = rand(3,-3)
@@ -105,7 +106,7 @@
 			O = loc
 
 		for(var/i=0, i<num, i++)
-			var/spiderling = new /obj/effect/spider/spiderling(src.loc, src)
+			var/spiderling = new spider_type(src.loc, src)
 			if(O)
 				O.implants += spiderling
 		qdel(src)
@@ -113,6 +114,9 @@
 /obj/effect/spider/eggcluster/small
 	spiders_min = 1
 	spiders_max = 3
+
+/obj/effect/spider/eggcluster/small/frost
+	spider_type = /obj/effect/spider/spiderling/frost
 
 /obj/effect/spider/spiderling
 	name = "spiderling"
@@ -126,6 +130,9 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 	var/list/grow_as = list(/mob/living/simple_animal/hostile/giant_spider, /mob/living/simple_animal/hostile/giant_spider/nurse, /mob/living/simple_animal/hostile/giant_spider/hunter)
+
+/obj/effect/spider/spiderling/frost
+	grow_as = list(/mob/living/simple_animal/hostile/giant_spider/frost)
 
 /obj/effect/spider/spiderling/New(var/location, var/atom/parent)
 	pixel_x = rand(6,-6)
