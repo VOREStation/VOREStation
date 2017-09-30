@@ -93,6 +93,13 @@
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
 	..()
 
+/datum/chemical_reaction/slime/grey_slimejelly
+	name = "Slime Jelly"
+	id = "m_jelly"
+	result = "slimejelly"
+	required_reagents = list("peridaxon" = 5)
+	result_amount = 15
+	required = /obj/item/slime_extract/grey
 
 // ****************
 // * Metal slimes *
