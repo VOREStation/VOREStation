@@ -717,6 +717,7 @@
 #include "code\game\machinery\doors\airlock.dm"
 #include "code\game\machinery\doors\airlock_control.dm"
 #include "code\game\machinery\doors\airlock_electronics.dm"
+#include "code\game\machinery\doors\airlock_vr.dm"
 #include "code\game\machinery\doors\alarmlock.dm"
 #include "code\game\machinery\doors\blast_door.dm"
 #include "code\game\machinery\doors\brigdoors.dm"
