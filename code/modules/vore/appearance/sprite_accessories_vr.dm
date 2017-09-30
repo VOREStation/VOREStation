@@ -1058,6 +1058,10 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
 	icon_state = "slug_s"
+	
+/datum/sprite_accessory/tail/taur/frog
+	name = "Frog"
+	icon_state = "frog_s"		
 
 /*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
 	name = "Drake"

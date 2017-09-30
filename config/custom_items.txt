@@ -47,6 +47,12 @@ character_name: Zippy Shanks
 item_path: /obj/item/weapon/melee/fluff/holochain/Zippy
 }
 
+{
+ckey: 1r1s
+character_name: Malady Blanche
+item_path: /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
+}
+
 # ######## A CKEYS
 {
 ckey: adk09
@@ -479,6 +485,20 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 }
 
 # ######## P CKEYS
+
+{
+ckey: pawoverlord
+character_name: Sorrel Cavalet
+item_path: /obj/item/weapon/permit/gun/fluff/sorrel_cavalet
+}
+
+{
+ckey: pawoverlord
+character_name: Sorrel Cavalet
+item_path: /obj/item/weapon/gun/projectile/colt
+item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
+}
+
 {
 ckey: pontifexminimus
 character_name: Lucius Null

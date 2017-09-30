@@ -41,6 +41,11 @@
 	name = "Serdykov Antoz's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm that uses less-than-lethal munitions. It is issued by CentCom, so it is valid until it expires on April 24th, 2562."
 
+// pawoverlord:Sorrel Cavalet
+/obj/item/weapon/permit/gun/fluff/sorrel_cavalet
+	name = "Sorrel Cavalet's Sidearm Permit"
+	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on September 26th, 2562."
+
 /* Legacy Permits
 // BEGIN - PROTOTYPE
 /obj/item/weapon/permit/gun/fluff
