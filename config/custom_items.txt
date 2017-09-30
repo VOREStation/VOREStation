@@ -190,6 +190,12 @@ item_name: theseus' diamond coin
 item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
 }
 
+{
+ckey: Drake_Frostpaw
+character_name: Drake Frostpaw
+item_path: /obj/item/weapon/storage/box/fluff/drake
+}
+
 # ######## E CKEYS
 
 # Permit Expired
