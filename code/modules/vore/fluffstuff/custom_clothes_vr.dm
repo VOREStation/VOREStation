@@ -1467,7 +1467,7 @@ Departamental Swimsuits, for general use
 	item_state = "loincloth"
 
 //BeyondMyLife: Ne'tra Ky'ram
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/kilanocoat
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat
 	name = "black and gold armoured coat."
 	desc = "A black and gold coat, with white fur lining, lined with some kind of heavier material inside, seemingly giving some sort of padding to it."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
