@@ -20,3 +20,4 @@ zekesturm - Xenomorph Hybrid
 aether_elemental - Daemon
 Aruis - Xenochimera
 Singo - Gutter
+Xioen - Xenochimera
