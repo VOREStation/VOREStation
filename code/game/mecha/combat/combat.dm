@@ -25,7 +25,7 @@
 	if(!melee_can_hit || !istype(target, /atom)) return
 	if(istype(target, /mob/living))
 		var/mob/living/M = target
-		if(src.occupant.a_intent == I_HURT)
+		if(src.occupant.a_intent == I_HURT || istype(src.occupant, /mob/living/carbon/brain)) //Brains cannot change intents; Exo-piloting brains lack any form of physical feedback for control, limiting the ability to 'play nice'.
 			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(damtype == "brute")
 				step_away(M,src,15)
@@ -240,6 +240,14 @@
 	if(..())
 		if(H.client)
 			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
+		return 1
+	else
+		return 0
+
+/obj/mecha/combat/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
+	if(..())
+		if(occupant.client)
+			occupant.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
 		return 1
 	else
 		return 0
