@@ -107,7 +107,6 @@
 	can_hold = list(
 		/obj/item/seeds,
 		/obj/item/weapon/grown,
-		/obj/item/stack/material,
 		/obj/item/weapon/material/gravemarker
 		)
 

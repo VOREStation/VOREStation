@@ -44,7 +44,8 @@
 	name = "gravekeeper robot module"
 	hide_on_manifest = 1
 	sprites = list(
-					"Drone" = "drone-lost"
+					"Drone" = "drone-gravekeeper",
+					"Sleek" = "sleek-gravekeeper"
 				)
 
 /obj/item/weapon/robot_module/robot/gravekeeper/New(var/mob/living/silicon/robot/R)
@@ -72,6 +73,6 @@
 	// For really persistent looters
 	src.emag = new /obj/item/weapon/gun/energy/retro/mounted(src)
 
-	var/datum/matter_synth/wood = new /datum/matter_synth/wood(2000)
+	var/datum/matter_synth/wood = new /datum/matter_synth/wood(25000)
 	synths += wood
 
