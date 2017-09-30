@@ -1193,7 +1193,9 @@
 			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
-		species.update_attack_types() //VOREStation edit. Required for any trait that updates unarmed_types in setup.
+		species.update_attack_types() //VOREStation Edit Start Required for any trait that updates unarmed_types in setup.
+		if(species.gets_food_nutrition != 1) //Bloodsucker trait. Tacking this on here.
+			verbs |= /mob/living/carbon/human/proc/bloodsuck //VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)

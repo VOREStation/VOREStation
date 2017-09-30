@@ -335,3 +335,51 @@
 
 	handling_hal = 0
 	return
+
+
+/mob/living/carbon/human/proc/bloodsuck()
+	set name = "Drain prey"
+	set desc = "Bites prey and drains them of blood, feeding you in the process. You may only do this once per minute."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		src << "You cannot bite anyone in your current state!"
+		return
+
+	var/list/choices = list()
+	for(var/mob/living/carbon/human/M in view(1,src))
+		if(!istype(M,/mob/living/silicon) && Adjacent(M))
+			choices += M
+	choices -= src
+
+	var/mob/living/carbon/human/B = input(src,"Who do you wish to bite?") as null|anything in choices
+
+	if(!B || !src || src.stat) return
+
+	if(!Adjacent(B)) return
+
+	if(last_special > world.time) return
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		src << "You cannot bite in your current state."
+		return
+	if(B.vessel.total_volume <= 0 || B.isSynthetic()) //Do they have any blood in the first place, and are they synthetic?
+		src << "<font color='red'>There appears to be no blood in this prey...</font>"
+		return
+
+	last_special = world.time + 600
+	src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>")
+
+	if(do_after(src, 300, B)) //Thrirty seconds.
+		if(!Adjacent(B)) return
+		src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
+		B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
+		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
+		src.nutrition += 400
+		sleep(50)
+		B.drip(1)
+		sleep(50)
+		B.drip(1)

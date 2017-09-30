@@ -64,3 +64,9 @@
 		),
 	autohiss_exempt = list("Siik"))
 	excludes = list(/datum/trait/autohiss_unathi)
+
+/datum/trait/bloodsucker
+	name = "Bloodsucker"
+	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
+	cost = 0
+	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm

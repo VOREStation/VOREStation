@@ -1,7 +1,8 @@
-/*
+
 /datum/species
-	var/vore_numbing = 0
-*/
+	//var/vore_numbing = 0
+	var/gets_food_nutrition = 1 // If this is set to 0, the person can't get nutrrition from food.
+
 /datum/species/custom
 	name = "Custom Species"
 	name_plural = "Custom"
