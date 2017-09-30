@@ -236,6 +236,12 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
+/datum/sprite_accessory/ears/citheronia_antennae
+	name = "citheronia antennae (Kira72)"
+	desc = ""
+	icon_state = "molenar-kitsune"
+	ckeys_allowed = list("kira72")
+
 /datum/sprite_accessory/ears/molenar_deathclaw
 	name = "deathclaw ears (Molenar)"
 	desc = ""
@@ -338,6 +344,12 @@
 	icon_state = "moth"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/citheroniamoth
+	name = "citheronia wings"
+	desc = ""
+	icon_state = "citheronia_wings"
+	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
@@ -1058,10 +1070,10 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
 	icon_state = "slug_s"
-	
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog"
-	icon_state = "frog_s"		
+	icon_state = "frog_s"
 
 /*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
 	name = "Drake"
