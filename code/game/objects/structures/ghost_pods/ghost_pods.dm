@@ -50,7 +50,7 @@
 
 // This type is triggered on a timer, as opposed to needing another player to 'open' the pod.  Good for away missions.
 /obj/structure/ghost_pod/automatic
-	var/delay_to_self_open = 1 MINUTE // How long to wait for first attempt.  Note that the timer by default starts when the pod is created.
+	var/delay_to_self_open = 10 MINUTES // How long to wait for first attempt.  Note that the timer by default starts when the pod is created.
 	var/delay_to_try_again = 20 MINUTES // How long to wait if first attempt fails.  Set to 0 to never try again.
 
 /obj/structure/ghost_pod/automatic/initialize()
