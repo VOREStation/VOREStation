@@ -293,7 +293,7 @@ default behaviour is:
 	return fireloss
 
 /mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
-	return getBruteLoss()
+	return getFireLoss()
 
 /mob/living/proc/adjustFireLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
