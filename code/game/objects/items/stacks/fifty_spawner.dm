@@ -4,16 +4,18 @@
 	desc = "This item spawns stack of 50 of a given material."
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "x4"
-	var/material = ""
+//	var/material = ""
+	var/obj/item/stack/type_to_spawn = null
 
 /obj/fiftyspawner/New()
 	//spawns the 50-stack and qdels self
 	..()
-	var/obj_path = text2path("/obj/item/stack/[material]")
-	var/obj/item/stack/M = new obj_path(src.loc)
+//	var/obj_path = text2path("/obj/item/stack/[material]")
+	var/obj/item/stack/M = new type_to_spawn(src.loc)
 	M.amount = M.max_amount //some stuff spawns with 60, we're still calling it fifty
+	M.update_icon() // Some stacks have different sprites depending on how full they are.
 	qdel(src)
 
 /obj/fiftyspawner/rods
 	name = "stack of rods" //this needs to be defined for cargo
-	material = "rods"
+	type_to_spawn = /obj/item/stack/rods

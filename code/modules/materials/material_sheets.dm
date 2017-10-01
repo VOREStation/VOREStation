@@ -92,16 +92,19 @@
 	icon_state = "sheet-silver"
 	default_type = "iron"
 	apply_colour = 1
+	no_variants = FALSE
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
 	default_type = "sandstone"
+	no_variants = FALSE
 
 /obj/item/stack/material/marble
 	name = "marble brick"
 	icon_state = "sheet-marble"
 	default_type = "marble"
+	no_variants = FALSE
 
 /obj/item/stack/material/diamond
 	name = "diamond"
@@ -112,38 +115,45 @@
 	name = "uranium"
 	icon_state = "sheet-uranium"
 	default_type = "uranium"
+	no_variants = FALSE
 
 /obj/item/stack/material/phoron
 	name = "solid phoron"
 	icon_state = "sheet-phoron"
 	default_type = "phoron"
+	no_variants = FALSE
 
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"
 	default_type = "plastic"
+	no_variants = FALSE
 
 /obj/item/stack/material/gold
 	name = "gold"
 	icon_state = "sheet-gold"
 	default_type = "gold"
+	no_variants = FALSE
 
 /obj/item/stack/material/silver
 	name = "silver"
 	icon_state = "sheet-silver"
 	default_type = "silver"
+	no_variants = FALSE
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
 	name = "platinum"
 	icon_state = "sheet-adamantine"
 	default_type = "platinum"
+	no_variants = FALSE
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
 	default_type = "mhydrogen"
+	no_variants = FALSE
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -151,12 +161,14 @@
 	icon_state = "sheet-silver"
 	default_type = "tritium"
 	apply_colour = 1
+	no_variants = FALSE
 
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
 	default_type = "osmium"
 	apply_colour = 1
+	no_variants = FALSE
 
 //R-UST port
 // Fusion fuel.
@@ -165,22 +177,26 @@
 	icon_state = "sheet-silver"
 	default_type = "deuterium"
 	apply_colour = 1
+	no_variants = FALSE
 
 /obj/item/stack/material/steel
 	name = DEFAULT_WALL_MATERIAL
 	icon_state = "sheet-metal"
 	default_type = DEFAULT_WALL_MATERIAL
+	no_variants = FALSE
 
 /obj/item/stack/material/plasteel
 	name = "plasteel"
 	icon_state = "sheet-plasteel"
 	default_type = "plasteel"
+	no_variants = FALSE
 
 /obj/item/stack/material/durasteel
 	name = "durasteel"
 	icon_state = "sheet-durasteel"
 	item_state = "sheet-metal"
 	default_type = "durasteel"
+	no_variants = FALSE
 
 /obj/item/stack/material/wood
 	name = "wooden plank"
@@ -191,11 +207,13 @@
 	name = "cloth"
 	icon_state = "sheet-cloth"
 	default_type = "cloth"
+	no_variants = FALSE
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = "cardboard"
+	no_variants = FALSE
 
 /obj/item/stack/material/snow
 	name = "snow"
@@ -208,16 +226,19 @@
 	desc = "The by-product of mob grinding."
 	icon_state = "sheet-leather"
 	default_type = "leather"
+	no_variants = FALSE
 
 /obj/item/stack/material/glass
 	name = "glass"
 	icon_state = "sheet-glass"
 	default_type = "glass"
+	no_variants = FALSE
 
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
 	icon_state = "sheet-rglass"
 	default_type = "rglass"
+	no_variants = FALSE
 
 /obj/item/stack/material/glass/phoronglass
 	name = "borosilicate glass"
@@ -225,6 +246,7 @@
 	singular_name = "borosilicate glass sheet"
 	icon_state = "sheet-phoronglass"
 	default_type = "borosilicate glass"
+	no_variants = FALSE
 
 /obj/item/stack/material/glass/phoronrglass
 	name = "reinforced borosilicate glass"
@@ -232,3 +254,4 @@
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-phoronrglass"
 	default_type = "reinforced borosilicate glass"
+	no_variants = FALSE

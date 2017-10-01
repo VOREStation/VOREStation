@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/stacks.dmi'
 	amount = 10
 	max_amount = 10
 	w_class = ITEMSIZE_SMALL
@@ -64,6 +64,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
+	no_variants = FALSE
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -123,6 +124,7 @@
 	icon_state = "ointment"
 	heal_burn = 1
 	origin_tech = list(TECH_BIO = 1)
+	no_variants = FALSE
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
