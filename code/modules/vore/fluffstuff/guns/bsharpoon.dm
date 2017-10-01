@@ -38,7 +38,7 @@
 		return
 	var/turf/ownturf = get_turf(src)
 	if(ownturf.z != T.z || get_dist(T,ownturf) > world.view)
-		to_chat(user, "<spawn class='warning'>The target is out of range!</span>")
+		to_chat(user, "<span class='warning'>The target is out of range!</span>")
 		return
 
 	last_fire = current_fire
