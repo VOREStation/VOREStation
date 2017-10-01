@@ -153,7 +153,7 @@
 	modifier_lower_bound = round(modifier_lower_bound * clone_sickness_length, 1)
 	modifier_upper_bound = round(modifier_upper_bound * clone_sickness_length, 1)
 
-	H.add_modifier(/datum/modifier/recently_cloned, rand(modifier_lower_bound, modifier_upper_bound))
+	H.add_modifier(/datum/modifier/cloning_sickness, rand(modifier_lower_bound, modifier_upper_bound))
 
 	// Modifier that doesn't do anything.
 	H.add_modifier(/datum/modifier/cloned)
