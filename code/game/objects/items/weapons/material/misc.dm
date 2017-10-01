@@ -86,18 +86,3 @@
 	dulled_divisor = 0.75	//Still metal on a long pole
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
-
-/obj/item/weapon/material/scythe
-	icon_state = "scythe0"
-	name = "scythe"
-	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	force_divisor = 0.275 // 16 with hardness 60 (steel)
-	thrown_force_divisor = 0.25 // 5 with weight 20 (steel)
-	sharp = 1
-	edge = 1
-	throw_speed = 1
-	throw_range = 3
-	w_class = ITEMSIZE_LARGE
-	slot_flags = SLOT_BACK
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 2)
-	attack_verb = list("chopped", "sliced", "cut", "reaped")

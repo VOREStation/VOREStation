@@ -533,3 +533,23 @@
 
 /mob/proc/update_gravity()
 	return
+
+// The real Move() proc is above, but touching that massive block just to put this in isn't worth it.
+/mob/Move(var/newloc, var/direct)
+	. = ..(newloc, direct)
+	if(.)
+		post_move(newloc, direct)
+
+// Called when a mob successfully moves.
+// Would've been an /atom/movable proc but it caused issues.
+/mob/proc/post_move(var/newloc, var/direct)
+	for(var/obj/O in contents)
+		O.on_loc_moved(newloc, direct)
+
+// Received from post_move(), useful for items that need to know that their loc just moved.
+/obj/proc/on_loc_moved(var/newloc, var/direct)
+	return
+
+/obj/item/weapon/storage/on_loc_moved(var/newloc, var/direct)
+	for(var/obj/O in contents)
+		O.on_loc_moved(newloc, direct)

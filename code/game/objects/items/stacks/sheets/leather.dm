@@ -3,6 +3,7 @@
 	desc = "The by-product of human farming."
 	singular_name = "human skin piece"
 	icon_state = "sheet-hide"
+	no_variants = FALSE
 
 /obj/item/stack/material/animalhide/human
 	amount = 50
@@ -80,6 +81,7 @@
 	desc = "This hide was stripped of it's hair, but still needs tanning."
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
+	no_variants = FALSE
 
 /obj/item/stack/material/hairlesshide
 	amount = 50
@@ -91,6 +93,7 @@
 	icon_state = "sheet-wetleather"
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
+	no_variants = FALSE
 
 /obj/item/stack/material/wetleather
 	amount = 50
