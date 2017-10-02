@@ -86,7 +86,7 @@
 
 /obj/item/weapon/implant/tracking/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/implant/tracking/process()
 	var/implant_location = src.loc

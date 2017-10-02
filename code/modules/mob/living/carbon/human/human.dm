@@ -175,6 +175,8 @@
 	var/obj/item/organ/external/affected = src.organs_by_name[BP_HEAD]
 	affected.implants += I
 	I.part = affected
+	exploit_addons |= I
+	exploit_record += " Has an implanted [I.name]."
 	I.implanted(src)
 
 /mob/living/carbon/human/proc/implant_loyalty(override = FALSE) // Won't override by default.

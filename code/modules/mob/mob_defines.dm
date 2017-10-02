@@ -72,6 +72,7 @@
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
+	var/exploit_addons = list()
 	var/blinded = null
 	var/bhunger = 0			//Carbon
 	var/ajourn = 0
