@@ -183,7 +183,7 @@ item_path: /obj/item/weapon/storage/belt/champion
 }
 
 {
-ckey: drake_frostpaw
+ckey: drakefrostpaw
 character_name: Drake Frostpaw
 item_path: /obj/item/weapon/storage/box/fluff/drake
 }
