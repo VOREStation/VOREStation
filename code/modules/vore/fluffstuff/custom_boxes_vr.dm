@@ -122,7 +122,7 @@
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
-//drake_frostpaw:Drake Frostpaw
+//drakefrostpaw:Drake Frostpaw
 /obj/item/weapon/storage/box/fluff/drake
 	name = "United Federation Uniform Kit"
 	desc = "A box containing all the parts of a United Federation Uniform"
