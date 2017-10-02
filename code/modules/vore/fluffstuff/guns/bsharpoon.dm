@@ -36,6 +36,10 @@
 	if(!T || T.check_density())
 		to_chat(user,"<span class = 'warning'>That's a little too solid to harpoon into!</span>")
 		return
+	var/turf/ownturf = get_turf(src)
+	if(ownturf.z != T.z || get_dist(T,ownturf) > world.view)
+		to_chat(user, "<span class='warning'>The target is out of range!</span>")
+		return
 
 	last_fire = current_fire
 	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
