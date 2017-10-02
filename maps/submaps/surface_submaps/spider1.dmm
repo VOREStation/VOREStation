@@ -1,0 +1,21 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+"c" = (/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+"d" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+"e" = (/obj/effect/spider/eggcluster/small/frost,/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+"f" = (/mob/living/simple_animal/hostile/giant_spider/frost,/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+"g" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+"h" = (/obj/effect/spider/cocoon,/mob/living/simple_animal/hostile/giant_spider/frost,/turf/simulated/floor/outdoors/snow,/area/submap/spider1)
+
+(1,1,1) = {"
+aaaaaaaaaa
+abbccbbbca
+accbcbccba
+adecccccda
+abcfccccca
+accccccgca
+accccchcca
+acccbbbdca
+acdbcbccca
+aaaaaaaaaa
+"}

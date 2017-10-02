@@ -9,6 +9,7 @@
 
 	var/temp_access = list() //to prevent agent cards stealing access as permanent
 	var/expiration_time = 0
+	var/expired = 0
 	var/reason = "NOT SPECIFIED"
 
 /obj/item/weapon/card/id/guest/GetAccess()
@@ -37,6 +38,38 @@
 		usr << "<span class='notice'>[get_access_desc(A)].</span>"
 	usr << "<span class='notice'>Issuing reason: [reason].</span>"
 	return
+
+/obj/item/weapon/card/id/guest/attack_self(mob/living/user as mob)
+	if(user.a_intent == I_HURT)
+		if(icon_state == "guest_invalid")
+			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
+			return
+
+		var/confirm = alert("Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", "Yes", "No")
+		if(confirm == "Yes")
+			//rip guest pass </3
+			user.visible_message("<span class='notice'>\The [user] deactivates \the [src].</span>")
+			icon_state = "guest_invalid"
+			expiration_time = world.time
+			expired = 1
+	return ..()
+
+/obj/item/weapon/card/id/guest/New()
+	..()
+	processing_objects.Add(src)
+	update_icon()
+
+/obj/item/weapon/card/id/guest/Destroy()
+	processing_objects.Remove(src)
+	return ..()
+
+/obj/item/weapon/card/id/guest/process()
+	if(expired == 0 && world.time >= expiration_time)
+		visible_message("<span class='warning'>\The [src] flashes a few times before turning red.</span>")
+		icon_state = "guest_invalid"
+		expired = 1
+		world.time = expiration_time
+		return
 
 /////////////////////////////////////////////
 //Guest pass terminal////////////////////////
