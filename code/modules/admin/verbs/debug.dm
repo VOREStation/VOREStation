@@ -401,13 +401,14 @@
 		return
 
 	feedback_add_details("admin_verb","SEQ")
-	dressup_human(H, outfit)
+	dressup_human(H, outfit, TRUE)
 
 /proc/dressup_human(var/mob/living/carbon/human/H, var/decl/hierarchy/outfit/outfit, var/undress = TRUE)
+	world << "dressup_human"
 	if(!H || !outfit)
 		return
 	if(undress)
-		H.delete_inventory(TRUE)
+		H.delete_inventory()
 	outfit.equip(H)
 	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].")
 

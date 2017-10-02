@@ -82,21 +82,6 @@ var/list/outfits_decls_by_type_
 		J.toggle()
 		J.toggle_valve()
 
-// A proc for non-human species, specially Unathi and Tajara, since they e.g.
-// can't normally wear gloves as humans. Correct this issue by trying again, but
-// apply some changes to the said item.
-//
-// Currently checks for gloves
-//
-// If you want to add more items that has species restriction, consider follow-
-// ing the same format as the gloves shown in the code below. Thanks.
-/decl/hierarchy/outfit/proc/check_and_try_equip_xeno(mob/living/carbon/human/H)
-	var/datum/species/S = H.species
-	if (!S || istype(S, /datum/species/human)) // null failcheck & get out here you damn humans
-		return
-
-// end of check_and_try_equip_xeno
-
 /decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment)
 	equip_base(H)
 
@@ -160,7 +145,6 @@ var/list/outfits_decls_by_type_
 		H.put_in_r_hand(new r_hand(H))
 	if(H.species)
 		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
-	check_and_try_equip_xeno(H)
 
 /decl/hierarchy/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)
 	if(!id_slot || !id_type)
