@@ -307,7 +307,8 @@ item_path: /obj/item/clothing/head/fedora/fluff/jemli
 {
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
-item_path: /obj/item/weapon/storage/box/fluff/ace
+item_path: /obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
+req_access = 58
 }
 
 {
