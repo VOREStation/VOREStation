@@ -314,6 +314,13 @@ req_access = 58
 {
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
+item_path: /obj/item/weapon/permit/gun/fluff/ace
+req_access = 58
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah 'Ace' Acacius
 item_path: /obj/item/clothing/shoes/boots/combat
 }
 
