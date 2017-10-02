@@ -183,17 +183,17 @@ item_path: /obj/item/weapon/storage/belt/champion
 }
 
 {
+ckey: drakefrostpaw
+character_name: Drake Frostpaw
+item_path: /obj/item/weapon/storage/box/fluff/drake
+}
+
+{
 ckey: draycu
 character_name: Theseus
 item_path:/obj/item/weapon/coin/diamond
 item_name: theseus' diamond coin
 item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
-}
-
-{
-ckey: Drake_Frostpaw
-character_name: Drake Frostpaw
-item_path: /obj/item/weapon/storage/box/fluff/drake
 }
 
 # ######## E CKEYS
@@ -307,7 +307,15 @@ item_path: /obj/item/clothing/head/fedora/fluff/jemli
 {
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
-item_path: /obj/item/weapon/storage/box/fluff/ace
+item_path: /obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
+req_access = 58
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah 'Ace' Acacius
+item_path: /obj/item/weapon/permit/gun/fluff/ace
+req_access = 58
 }
 
 {
