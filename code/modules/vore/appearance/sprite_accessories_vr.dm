@@ -194,6 +194,7 @@
 	icon_state = "otie"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "otie-inner"
 
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
@@ -621,6 +622,14 @@
 	name = "xenomorph tail 2"
 	desc = ""
 	icon_state = "xenotail"
+
+/datum/sprite_accessory/tail/eboop
+	name = "EGN mech tail (dual color)"
+	desc = ""
+	icon_state = "eboop"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "eboop_mark"
 
 /datum/sprite_accessory/tail/molenar_kitsune
 	name = "quintail kitsune tails (Molenar)"
@@ -1058,10 +1067,10 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
 	icon_state = "slug_s"
-	
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog"
-	icon_state = "frog_s"		
+	icon_state = "frog_s"
 
 /*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
 	name = "Drake"
