@@ -6,6 +6,7 @@
 	icon = 'icons/obj/card.dmi'
 	icon_state = "permit"
 	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_BELT | SLOT_EARS	//SLOT_EARS because they're not accessories, and SLOT_EARS is rarely used
 	var/owner = 0	//To prevent people from just renaming the thing if they steal it
 
 /obj/item/weapon/permit/attack_self(mob/user as mob)
@@ -37,4 +38,4 @@
 /obj/item/weapon/permit/drone
 	name = "drone identification card"
 	desc = "A card issued by the EIO, indicating that the owner is a Drone Intelligence. Drones are mandated to carry this card within SolGov space, by law."
-	icon_state = "drone"
+	icon_state = "permit_drone"
