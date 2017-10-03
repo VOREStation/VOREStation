@@ -148,7 +148,7 @@
 		for(var/I in vore_organs)
 			var/datum/belly/B = vore_organs[I]
 			B.release_all_contents()
-	return
+		return
 	..()
 
 /mob/living/simple_animal/otie/friendly/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
@@ -258,63 +258,11 @@
 						faction = M.faction
 				sleep(1 SECOND)
 
-		if(I_DISARM)
-			M.visible_message("<span class='notice'>[M] [response_disarm] \the [src].</span>")
-			M.do_attack_animation(src)
-
-		if(I_GRAB)
-			if (M == src)
-				return
-			if (!(status_flags & CANPUSH))
-				return
-			if(!incapacitated(INCAPACITATION_ALL) && (stance != STANCE_IDLE) && prob(grab_resist))
-				M.visible_message("<span class='warning'>[M] tries to grab [src] but fails!</span>")
-				return
-
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-
-			M.put_in_active_hand(G)
-
-			G.synch()
-			G.affecting = src
-			LAssailant = M
-
-			M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
-			M.do_attack_animation(src)
-			ai_log("attack_hand() I was grabbed by: [M]",2)
-			pixel_x = old_x
-			react_to_attack(M)
-
-		if(I_HURT)
-			adjustBruteLoss(harm_intent_damage)
-			M.visible_message("<span class='warning'>[M] [response_harm] \the [src]!</span>")
-			M.do_attack_animation(src)
-			ai_log("attack_hand() I was hit by: [M]",2)
-			react_to_attack(M)
-
-	return
-
-/mob/living/simple_animal/otie/death()
-	resting = 0
-	icon_state = icon_dead
-	..()
+		else
+			..()
 
 /mob/living/simple_animal/otie/death(gibbed, deathmessage = "dies!")
-	density = 0 //We don't block even if we did before
-	walk(src, 0) //We stop any background-processing walks
 	resting = 0
 	icon_state = icon_dead
-
-	if(faction_friends.len)
-		faction_friends -= src
-
-	if(loot_list.len) //Drop any loot
-		for(var/path in loot_list)
-			if(prob(loot_list[path]))
-				new path(get_turf(src))
-
-	spawn(3) //We'll update our icon in a sec
-		icon_state = icon_dead //Goddamn triple check. If this ain't working Imma be PISSED!
-		update_icon()
-
-	return ..(gibbed,deathmessage)
+	update_icon()
+	..()
