@@ -240,7 +240,7 @@
 /datum/sprite_accessory/ears/citheronia_antennae
 	name = "citheronia antennae (Kira72)"
 	desc = ""
-	icon_state = "molenar-kitsune"
+	icon_state = "lilimoth_antennae"
 	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/ears/molenar_deathclaw
