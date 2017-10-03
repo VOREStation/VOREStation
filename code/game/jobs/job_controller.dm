@@ -459,7 +459,9 @@ var/global/datum/controller/occupations/job_master
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
 			var/obj/item/weapon/storage/S = locate() in H.contents
-			var/obj/item/wheelchair/R = locate() in S.contents
+			var/obj/item/wheelchair/R = null
+			if(S)
+				R = locate() in S.contents
 			if(!l_foot || !r_foot || R)
 				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 				H.buckled = W
