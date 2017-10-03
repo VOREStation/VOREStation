@@ -29,8 +29,10 @@
 		var/points_left = client.prefs.starting_trait_points
 		var/traits_left = client.prefs.max_traits
 		for(var/T in megalist)
-			traits_left--
 			var/cost = traits_costs[T]
+
+			if(cost)
+				traits_left--
 
 			//A trait was removed from the game
 			if(isnull(cost))
