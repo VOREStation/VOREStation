@@ -13,7 +13,6 @@
 	max_age = 45
 	health_hud_intensity = 3
 
-
 	male_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
 	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
 	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
@@ -35,6 +34,7 @@
 	fire_icon_state = "generic" // Humanoid is too big for them and spriting a new one is really annoying.
 
 	slowdown = -1
+	snow_movement = -2	// Ignores light snow
 	total_health = 50
 	brute_mod = 1.35
 	burn_mod =  1.35
