@@ -13,11 +13,13 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "citheronia_hair"
 		ckeys_allowed = list("Kira72")
+		do_colouration = 0
 
 	citheronia_colorable
 		name = "Citheronia Hair"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "citheronia_hair_c"
+		do_colouration = 1
 
 	sergal_plain
 		name = "Sergal Plain"
