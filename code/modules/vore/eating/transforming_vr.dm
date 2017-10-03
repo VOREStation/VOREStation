@@ -215,7 +215,7 @@
 	if(!istype(M) || !istype(O))
 		return
 
-	if (M.species == "Promethean") //If the person was a promethean before TF, remove all their verbs!
+	if (M.species == "Promethean" && O.species != "Promethean") //If the person was a promethean before TF, remove all their verbs!
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_shape
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_colour
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair
