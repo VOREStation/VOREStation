@@ -122,6 +122,17 @@
 		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
+//Drake_Frostpaw:Drake Frostpaw
+/obj/item/weapon/storage/box/fluff/drake
+	name = "United Federation Uniform Kit"
+	desc = "A box containing all the parts of a United Federation Uniform"
+	has_items = list(
+		/obj/item/clothing/under/rank/internalaffairs/fluff/joan,
+		/obj/item/clothing/suit/storage/fluff/modernfedcoat/modernfedsec,
+		/obj/item/clothing/head/caphat/formal/fedcover/fedcoversec,
+		/obj/item/clothing/gloves/white,
+		)
+
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
 	desc = "Personal Effects"

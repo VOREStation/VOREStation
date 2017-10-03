@@ -97,7 +97,7 @@
 
 		var/points_left = pref.starting_trait_points
 		var/traits_left = pref.max_traits
-		for(var/T in pref.pos_traits + pref.neu_traits + pref.neg_traits)
+		for(var/T in pref.pos_traits + pref.neg_traits)
 			points_left -= traits_costs[T]
 			traits_left--
 
@@ -217,7 +217,7 @@
 		for(var/T in pref.pos_traits + pref.neu_traits + pref.neg_traits)
 			points_left -= traits_costs[T]
 
-		var/traits_left = pref.max_traits - (pref.pos_traits.len + pref.neg_traits.len + pref.neu_traits.len)
+		var/traits_left = pref.max_traits - (pref.pos_traits.len + pref.neg_traits.len)
 
 		var/trait_choice
 		var/done = FALSE
