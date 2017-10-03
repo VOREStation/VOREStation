@@ -194,6 +194,7 @@
 	icon_state = "otie"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "otie-inner"
 
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
@@ -633,6 +634,14 @@
 	name = "xenomorph tail 2"
 	desc = ""
 	icon_state = "xenotail"
+
+/datum/sprite_accessory/tail/eboop
+	name = "EGN mech tail (dual color)"
+	desc = ""
+	icon_state = "eboop"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "eboop_mark"
 
 /datum/sprite_accessory/tail/molenar_kitsune
 	name = "quintail kitsune tails (Molenar)"
