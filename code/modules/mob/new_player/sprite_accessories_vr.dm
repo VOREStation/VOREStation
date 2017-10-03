@@ -9,7 +9,7 @@
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the default hairstyles.
 
 	citheronia
-		name = "Citheronia Red"
+		name = "Citheronia Hair (Kira72)"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "citheronia_hair"
 		ckeys_allowed = list("Kira72")
