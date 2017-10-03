@@ -8,6 +8,17 @@
 
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the default hairstyles.
 
+	citheronia
+		name = "Citheronia Hair (Kira72)"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "citheronia_hair"
+		ckeys_allowed = list("Kira72")
+
+	citheronia_colorable
+		name = "Citheronia Hair"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "citheronia_hair_c"
+
 	sergal_plain
 		name = "Sergal Plain"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -295,8 +306,8 @@
 		icon_state = "spike"
 		species_allowed = list("Vulpkanin", "Xenochimera")
 		gender = NEUTER
-		
-//xeno stuffs 
+
+//xeno stuffs
 	xeno_head_drone_color
 		name = "Drone dome"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -331,7 +342,7 @@
 		icon_state = "cxeno_praetorian"
 		species_allowed = list("Xenomorph Hybrid")
 		gender = NEUTER
-		
+
 /datum/sprite_accessory/facial_hair
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the facial hair styles.
 
@@ -697,3 +708,33 @@
 		name = "Body toning (for emergency contrast loss)"
 		icon_state = "btone"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+
+	eboop_panels
+		name = "Eggnerd FBP panels"
+		icon_state = "eboop"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+
+	osocks_rarm
+		name = "Modular Longsock (right arm)"
+		icon_state = "osocks"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_R_ARM,BP_R_HAND)
+
+	osocks_larm
+		name = "Modular Longsock (left arm)"
+		icon_state = "osocks"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_ARM,BP_L_HAND)
+
+	osocks_rleg
+		name = "Modular Longsock (right leg)"
+		icon_state = "osocks"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_R_FOOT,BP_R_LEG)
+
+	osocks_lleg
+		name = "Modular Longsock (left leg)"
+		icon_state = "osocks"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_L_LEG)

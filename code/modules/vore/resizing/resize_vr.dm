@@ -88,7 +88,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 /mob/living/proc/set_size()
 	set name = "Adjust Mass"
-	set category = "IC" //Seeing as prometheans have an IC reason to be changing mass.
+	set category = "Abilities" //Seeing as prometheans have an IC reason to be changing mass.
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
