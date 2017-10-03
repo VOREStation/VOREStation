@@ -194,6 +194,7 @@
 	icon_state = "otie"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "otie-inner"
 
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
@@ -235,6 +236,12 @@
 	desc = ""
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
+
+/datum/sprite_accessory/ears/citheronia_antennae
+	name = "citheronia antennae (Kira72)"
+	desc = ""
+	icon_state = "molenar-kitsune"
+	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/ears/molenar_deathclaw
 	name = "deathclaw ears (Molenar)"
@@ -338,6 +345,12 @@
 	icon_state = "moth"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/citheroniamoth
+	name = "citheronia wings"
+	desc = ""
+	icon_state = "citheronia_wings"
+	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
@@ -621,6 +634,14 @@
 	name = "xenomorph tail 2"
 	desc = ""
 	icon_state = "xenotail"
+
+/datum/sprite_accessory/tail/eboop
+	name = "EGN mech tail (dual color)"
+	desc = ""
+	icon_state = "eboop"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "eboop_mark"
 
 /datum/sprite_accessory/tail/molenar_kitsune
 	name = "quintail kitsune tails (Molenar)"
@@ -1058,10 +1079,10 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug"
 	icon_state = "slug_s"
-	
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog"
-	icon_state = "frog_s"		
+	icon_state = "frog_s"
 
 /*/datum/sprite_accessory/tail/taur/drake //Yeah hold that thought for a bit. These got no suit compatibility yet.
 	name = "Drake"
