@@ -378,7 +378,7 @@ var/global/list/damage_icon_parts = list()
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
-				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_MULTIPLY) //VOREStation edit
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
@@ -387,7 +387,7 @@ var/global/list/damage_icon_parts = list()
 		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
-				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY) //VOREStation edit
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
@@ -1077,7 +1077,7 @@ var/global/list/damage_icon_parts = list()
 		var/use_species_tail = species.get_tail_hair(src)
 		if(use_species_tail)
 			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY) //VOREStation Edit
 			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		tail_icon_cache[icon_key] = tail_icon
 
