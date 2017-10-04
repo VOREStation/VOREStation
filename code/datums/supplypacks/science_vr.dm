@@ -60,11 +60,9 @@
 	access = access_xenobiology
 	contraband = 1
 
-/* Removed until Otie code is unfucked.
 /datum/supply_packs/sci/otie
-	name = "V.A.R.M.A.corp adoptable reject (Dangerous!)"
+	name = "VARMAcorp adoptable reject (Dangerous!)"
 	cost = 100
 	containertype = /obj/structure/largecrate/animal/otie
-	containername = "V.A.R.M.A.corp adoptable reject (Dangerous!)"
+	containername = "VARMAcorp adoptable reject (Dangerous!)"
 	access = access_xenobiology
-*/

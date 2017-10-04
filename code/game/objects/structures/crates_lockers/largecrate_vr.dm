@@ -69,19 +69,19 @@
 						/mob/living/simple_animal/hostile/alien,
 						/mob/living/simple_animal/hostile/alien/drone,
 						/mob/living/simple_animal/hostile/alien/sentinel,
-						/mob/living/simple_animal/hostile/alien/queen)
+						/mob/living/simple_animal/hostile/alien/queen,
+						/mob/living/simple_animal/otie/feral)
 	..()
 
-/* // Removed until Otie code is unfucked.
 /obj/structure/largecrate/animal/guardbeast
-	name = "V.A.R.M.A.corp autoNOMous security solution"
-	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	name = "VARMAcorp autoNOMous security solution"
+	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "sotiecrate"
 	held_type = /mob/living/simple_animal/otie/friendly/security
 
 /obj/structure/largecrate/animal/otie
-	name = "V.A.R.M.A.corp adoptable reject (Dangerous!)"
+	name = "VARMAcorp adoptable reject (Dangerous!)"
 	desc = "A warning on the side says the creature inside was returned to the supplier after injuring or devouring several unlucky members of the previous adoption family. It was given a second chance with the next customer. Godspeed and good luck with your new pet!"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "otiecrate2"
@@ -94,4 +94,3 @@
 		icon_state = "otiecrate"
 		taped = 0
 	..()
-*/
