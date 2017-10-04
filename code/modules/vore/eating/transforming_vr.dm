@@ -215,6 +215,14 @@
 	if(!istype(M) || !istype(O))
 		return
 
+	if (M.species == "Promethean" && O.species != "Promethean") //If the person was a promethean before TF, remove all their verbs!
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_shape
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_colour
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_gender
+		M.verbs -=  /mob/living/carbon/human/proc/regenerate
+		M.verbs -=  /mob/living/proc/set_size
+
 	M.species = O.species
 	M.custom_species = O.custom_species
 	M.species.create_organs(M) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
@@ -230,6 +238,14 @@
 	if(message)
 		to_chat(M, "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>")
 		to_chat(O, "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>")
+	if (M.species == "Promethean") //Did they get TF'd into a promethean?
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_shape
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_colour
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_gender
+		M.verbs +=  /mob/living/carbon/human/proc/regenerate
+		M.verbs +=  /mob/living/proc/set_size
+		M.shapeshifter_select_shape()
 
 /datum/belly/proc/put_in_egg(var/atom/movable/M, message=0)
 	var/mob/living/carbon/human/O = owner
