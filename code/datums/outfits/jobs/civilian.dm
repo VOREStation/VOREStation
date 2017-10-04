@@ -3,10 +3,12 @@
 
 /decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME("Visitor")
+	id_pda_assignment = "Visitor"
 	uniform = /obj/item/clothing/under/assistantformal
 
 /decl/hierarchy/outfit/job/assistant/resident
 	name = OUTFIT_JOB_NAME("Resident")
+	id_pda_assignment = "Resident"
 	uniform = /obj/item/clothing/under/color/white
 
 /decl/hierarchy/outfit/job/service
@@ -26,6 +28,8 @@
 		permit.set_name(H.real_name)
 
 /decl/hierarchy/outfit/job/service/bartender/barista
+	name = OUTFIT_JOB_NAME("Barista")
+	id_pda_assignment = "Barista"
 	backpack_contents = null
 
 /decl/hierarchy/outfit/job/service/chef
@@ -35,6 +39,10 @@
 	head = /obj/item/clothing/head/chefhat
 	id_type = /obj/item/weapon/card/id/civilian/chef
 	pda_type = /obj/item/device/pda/chef
+
+/decl/hierarchy/outfit/job/service/chef/cook
+	name = OUTFIT_JOB_NAME("Cook")
+	id_pda_assignment = "Cook"
 
 /decl/hierarchy/outfit/job/service/gardener
 	name = OUTFIT_JOB_NAME("Gardener")

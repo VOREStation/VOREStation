@@ -11,8 +11,10 @@
 	economic_modifier = 1
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
-	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant","Visitor", "Resident")
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant",
+					"Visitor" = /decl/hierarchy/outfit/job/assistant/visitor,
+					"Resident" = /decl/hierarchy/outfit/job/assistant/resident)
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)

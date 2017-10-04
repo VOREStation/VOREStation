@@ -12,9 +12,10 @@
 	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_bar)
-	alt_titles = list("Barista")
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
+	alt_titles = list("Barista" = /decl/hierarchy/outfit/job/service/bartender/barista)
+
 
 /datum/job/chef
 	title = "Chef"
@@ -29,9 +30,9 @@
 	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_kitchen)
-	alt_titles = list("Cook")
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
+	alt_titles = list("Cook")
 
 /datum/job/hydro
 	title = "Gardener"
@@ -46,9 +47,9 @@
 	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_hydroponics)
-	alt_titles = list("Hydroponicist")
 
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
+	alt_titles = list("Hydroponicist")
 
 //Cargo
 /datum/job/qm
@@ -65,11 +66,11 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
-	alt_titles = list("Supply Chief")
 
 	ideal_character_age = 40
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/qm
+	alt_titles = list("Supply Chief")
 
 /datum/job/cargo_tech
 	title = "Cargo Technician"
@@ -101,9 +102,9 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
-	alt_titles = list("Drill Technician","Prospector")
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
+	alt_titles = list("Drill Technician","Prospector")
 
 //Service
 /datum/job/janitor
@@ -119,9 +120,9 @@
 	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_janitor, access_maint_tunnels)
 	minimal_access = list(access_janitor, access_maint_tunnels)
-	alt_titles = list("Custodian", "Sanitation Technician")
 
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
+	alt_titles = list("Custodian", "Sanitation Technician")
 
 //More or less assistants
 /datum/job/librarian
@@ -137,9 +138,9 @@
 	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_library, access_maint_tunnels)
 	minimal_access = list(access_library)
-	alt_titles = list("Journalist", "Professor", "Historian", "Writer")
 
 	outfit_type = /decl/hierarchy/outfit/job/librarian
+	alt_titles = list("Journalist", "Professor", "Historian", "Writer")
 
 //var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
 /datum/job/lawyer
@@ -159,3 +160,8 @@
 	minimal_player_age = 7
 
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
+
+/datum/job/lawyer/equip(var/mob/living/carbon/human/H)
+	. = ..()
+	if(.)
+		H.implant_loyalty(H)

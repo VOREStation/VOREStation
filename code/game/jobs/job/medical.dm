@@ -39,9 +39,12 @@
 	economic_modifier = 7
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_eva)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology, access_eva)
-	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
-
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
+	alt_titles = list(
+		"Surgeon" = /decl/hierarchy/outfit/job/medical/doctor/surgeon,
+		"Emergency Physician" = /decl/hierarchy/outfit/job/medical/doctor/emergency_physician,
+		"Nurse" = /decl/hierarchy/outfit/job/medical/doctor/nurse,
+		"Virologist" = /decl/hierarchy/outfit/job/medical/doctor/virologist)
 
 //Chemist is a medical job damnit	//YEAH FUCK YOU SCIENCE	-Pete	//Guys, behave -Erro
 /datum/job/chemist
@@ -97,9 +100,8 @@
 	idtype = /obj/item/weapon/card/id/medical/psychiatrist
 	access = list(access_medical, access_medical_equip, access_morgue, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
-	alt_titles = list("Psychologist")
-
 	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
+	alt_titles = list("Psychologist" = /decl/hierarchy/outfit/job/medical/psychiatrist/psychologist)
 
 /datum/job/Paramedic
 	title = "Paramedic"
@@ -115,6 +117,5 @@
 	economic_modifier = 4
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_eva, access_maint_tunnels, access_external_airlocks)
-	alt_titles = list("Emergency Medical Technician")
-
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
+	alt_titles = list("Emergency Medical Technician" = /decl/hierarchy/outfit/job/medical/paramedic/emt)

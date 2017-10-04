@@ -20,11 +20,11 @@
 			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
-	alt_titles = list("Commander", "Chief of Security")
 	minimum_character_age = 25
 	minimal_player_age = 14
 
 	outfit_type = /decl/hierarchy/outfit/job/security/hos
+	alt_titles = list("Commander", "Chief of Security")
 
 /datum/job/warden
 	title = "Warden"
@@ -41,7 +41,6 @@
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 5
-
 	outfit_type = /decl/hierarchy/outfit/job/security/warden
 
 /datum/job/detective
@@ -55,13 +54,12 @@
 	supervisors = "the head of security"
 	selection_color = "#601C1C"
 	idtype = /obj/item/weapon/card/id/security
-	alt_titles = list("Forensic Technician","Investigator")
 	access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	economic_modifier = 5
 	minimal_player_age = 3
-
 	outfit_type = /decl/hierarchy/outfit/job/security/detective
+	alt_titles = list("Forensic Technician" = /decl/hierarchy/outfit/job/security/detective/forensic, "Investigator")
 
 /datum/job/officer
 	title = "Security Officer"
@@ -74,10 +72,9 @@
 	supervisors = "the head of security"
 	selection_color = "#601C1C"
 	idtype = /obj/item/weapon/card/id/security
-	alt_titles = list("Junior Officer")
 	economic_modifier = 4
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 3
-
 	outfit_type = /decl/hierarchy/outfit/job/security/officer
+	alt_titles = list("Junior Officer")
