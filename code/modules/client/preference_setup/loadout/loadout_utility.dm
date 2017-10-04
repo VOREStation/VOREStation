@@ -15,7 +15,12 @@
 
 /datum/gear/utility/codex
 	display_name = "the traveler's guide to vir"
-	path = /obj/item/weapon/book/codex
+	path = /obj/item/weapon/book/codex/lore/vir
+	cost = 0
+
+/datum/gear/utility/corp_regs
+	display_name = "corporate regulations and legal code"
+	path = /obj/item/weapon/book/codex/corp_regs
 	cost = 0
 
 /datum/gear/utility/folder_blue
