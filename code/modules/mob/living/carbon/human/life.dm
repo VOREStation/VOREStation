@@ -1657,12 +1657,13 @@
 
 		for(var/obj/item/weapon/implant/I in src)
 			if(I.implanted)
-				if(istype(I,/obj/item/weapon/implant/tracking))
-					holder1.icon_state = "hud_imp_tracking"
-				if(istype(I,/obj/item/weapon/implant/loyalty))
-					holder2.icon_state = "hud_imp_loyal"
-				if(istype(I,/obj/item/weapon/implant/chem))
-					holder3.icon_state = "hud_imp_chem"
+				if(!I.malfunction)
+					if(istype(I,/obj/item/weapon/implant/tracking))
+						holder1.icon_state = "hud_imp_tracking"
+					if(istype(I,/obj/item/weapon/implant/loyalty))
+						holder2.icon_state = "hud_imp_loyal"
+					if(istype(I,/obj/item/weapon/implant/chem))
+						holder3.icon_state = "hud_imp_chem"
 
 		hud_list[IMPTRACK_HUD] = holder1
 		hud_list[IMPLOYAL_HUD] = holder2
