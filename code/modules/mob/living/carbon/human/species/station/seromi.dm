@@ -54,12 +54,22 @@
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
-	cold_level_1 = 180
-	cold_level_2 = 130
-	cold_level_3 = 70
-	heat_level_1 = 320
-	heat_level_2 = 370
-	heat_level_3 = 600
+	cold_level_1 = 180	//Default 260
+	cold_level_2 = 130	//Default 200
+	cold_level_3 = 70	//Default 120
+
+	breath_cold_level_1 = 180	//Default 240 - Lower is better
+	breath_cold_level_2 = 100	//Default 180
+	breath_cold_level_3 = 60	//Default 100
+
+	heat_level_1 = 320	//Default 360
+	heat_level_2 = 370	//Default 400
+	heat_level_3 = 600	//Default 1000
+
+	breath_heat_level_1 = 350	//Default 380 - Higher is better
+	breath_heat_level_2 = 400	//Default 450
+	breath_heat_level_3 = 800	//Default 1250
+
 	heat_discomfort_level = 295
 	heat_discomfort_strings = list(
 		"Your feathers prickle in the heat.",
