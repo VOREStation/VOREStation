@@ -1225,16 +1225,16 @@ proc/admin_notice(var/message, var/rights)
 
 
 /*
-	helper proc to test if someone is a event manager or not.  Got tired of writing this same check all over the place.
+	helper proc to test if someone is a mentor or not.  Got tired of writing this same check all over the place.
 */
-/proc/is_event_manager(client/C)
+/proc/is_mentor(client/C)
 
 	if(!istype(C))
 		return 0
 	if(!C.holder)
 		return 0
 
-	if(C.holder.rights == R_EVENT)
+	if(C.holder.rights == R_MENTOR)
 		return 1
 	return 0
 
@@ -1266,7 +1266,7 @@ proc/admin_notice(var/message, var/rights)
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;take_question=\ref[M]'>TAKE</A>)</b>"
 
-		if(4)	//Event Managers
+		if(4)	//Mentors
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;take_question=\ref[M]'>TAKE</A>)</b>"
 
