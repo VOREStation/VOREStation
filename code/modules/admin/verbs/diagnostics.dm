@@ -108,13 +108,13 @@
 	load_admins()
 	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/reload_event_managers()
-	set name = "Reload Event Managers"
+/client/proc/reload_mentors()
+	set name = "Reload Mentors"
 	set category = "Debug"
 
 	if(!check_rights(R_SERVER)) return
 
-	message_admins("[usr] manually reloaded Event Managers")
+	message_admins("[usr] manually reloaded Mentors")
 	world.load_mods()
 
 
