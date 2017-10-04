@@ -29,7 +29,7 @@
 
 Admin Observer
 Moderator		+MOD
-Mentor                  +MENTOR
+Event Manager           +ADMIN +EVENT +SPAWN +REJUV +VAREDIT +POSSESS +BUILDMODE +FUN +SOUNDS
 
 Admin Candidate	+ADMIN
 Trial Admin		+@ +SPAWN +REJUV +VAREDIT +BAN
@@ -43,3 +43,4 @@ Host			+EVERYTHING
 
 Developer		+DEBUG +VAREDIT +SERVER +SPAWN +REJUV +POSSESS +BUILDMODE
 Dev Mod			+@ +MOD
+Dev Min			+@ +ADMIN

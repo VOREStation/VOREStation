@@ -316,6 +316,10 @@
 	if (subject.species && subject.species.flags & NO_SCAN)
 		scantemp = "Error: Mental interface failure."
 		return
+	for(var/modifier_type in subject.modifiers)	//Can't be cloned, even if they had a previous scan
+		if(istype(modifier_type, /datum/modifier/no_clone))
+			scantemp = "Error: Mental interface failure."
+			return
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
