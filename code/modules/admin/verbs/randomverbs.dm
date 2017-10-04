@@ -65,7 +65,7 @@
 	message_admins("<font color='blue'><B>SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]</B></font>", 1)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_mentor_check_new_players()	//Allows mentors / admins to determine who the newer players are.
+/client/proc/cmd_event_manager_check_new_players()	//Allows event managers / admins to determine who the newer players are.
 	set category = "Admin"
 	set name = "Check new Players"
 	if(!holder)
@@ -82,7 +82,7 @@
 	var/msg = ""
 
 	var/highlight_special_characters = 1
-	if(is_mentor(usr.client))
+	if(is_event_manager(usr.client))
 		highlight_special_characters = 0
 
 	for(var/client/C in clients)
