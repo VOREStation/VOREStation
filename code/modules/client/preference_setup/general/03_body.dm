@@ -386,8 +386,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 			if(!(pref.species in S.species_allowed) && (!pref.custom_base || !(pref.custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
 				continue
+			if((!S.ckeys_allowed) || (usr.ckey in S.ckeys_allowed)) //VOREStation Edit, allows ckey locked hairstyles.
+				valid_hairstyles[S.name] = hairstyle //VOREStation Edit, allows ckey locked hairstyles.
 
-			valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+			//valid_hairstyles[hairstyle] = hair_styles_list[hairstyle] //VOREStation Edit. Replaced by above.
 
 		var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference", pref.h_style)  as null|anything in valid_hairstyles
 		if(new_h_style && CanUseTopic(user))
