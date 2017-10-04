@@ -1,6 +1,14 @@
 /decl/hierarchy/outfit/job/assistant
 	name = OUTFIT_JOB_NAME("Assistant")
 
+/decl/hierarchy/outfit/job/assistant/visitor
+	name = OUTFIT_JOB_NAME("Visitor")
+	uniform = /obj/item/clothing/under/assistantformal
+
+/decl/hierarchy/outfit/job/assistant/resident
+	name = OUTFIT_JOB_NAME("Resident")
+	uniform = /obj/item/clothing/under/color/white
+
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
 	hierarchy_type = /decl/hierarchy/outfit/job/service
@@ -10,6 +18,15 @@
 	uniform = /obj/item/clothing/under/rank/bartender
 	id_type = /obj/item/weapon/card/id/civilian/bartender
 	pda_type = /obj/item/device/pda/bar
+	backpack_contents = list(/obj/item/weapon/permit/gun/bar = 1)
+
+/decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
+	..()
+	for(var/obj/item/weapon/permit/gun/bar/permit in H.contents)
+		permit.set_name(H.real_name)
+
+/decl/hierarchy/outfit/job/service/bartender/barista
+	backpack_contents = null
 
 /decl/hierarchy/outfit/job/service/chef
 	name = OUTFIT_JOB_NAME("Chef")

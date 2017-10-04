@@ -25,8 +25,20 @@
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+	var/outfit_type
+
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
+	if(!outfit)
+		return FALSE
+	. = outfit.equip(H, title, alt_title)
 	return 1
+
+/datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
+	if(alt_title && alt_titles)
+		. = alt_titles[alt_title]
+	. = . || outfit_type
+	. = outfit_by_type(.)
 
 /datum/job/proc/equip_backpack(var/mob/living/carbon/human/H)
 	switch(H.backbag)
@@ -71,9 +83,12 @@
 
 	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
 
-// overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/del()
+// overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title)
-	. = equip(H, alt_title)
+	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
+	if(!outfit)
+		return FALSE
+	. = outfit.equip_base(H, title, alt_title)
 
 /datum/job/proc/get_access()
 	if(!config || config.jobs_have_minimal_access)

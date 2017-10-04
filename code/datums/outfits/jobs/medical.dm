@@ -28,7 +28,7 @@
 	id_type = /obj/item/weapon/card/id/medical/doctor
 
 /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
-	name = OUTFIT_JOB_NAME("Emergency physician")
+	name = OUTFIT_JOB_NAME("Emergency Physician")
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 
 /decl/hierarchy/outfit/job/medical/doctor/surgeon
@@ -49,7 +49,6 @@
 	suit = null
 
 /decl/hierarchy/outfit/job/medical/doctor/nurse/pre_equip(mob/living/carbon/human/H)
-	..()
 	if(H.gender == FEMALE)
 		if(prob(50))
 			uniform = /obj/item/clothing/under/rank/nursesuit
@@ -58,7 +57,8 @@
 		head = /obj/item/clothing/head/nursehat
 	else
 		uniform = /obj/item/clothing/under/rank/medical/scrubs/purple
-		head = null
+		head = /obj/item/clothing/head/nursehat
+	..()
 
 /decl/hierarchy/outfit/job/medical/chemist
 	name = OUTFIT_JOB_NAME("Chemist")
@@ -101,5 +101,5 @@
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/paramedic/emt
-	name = OUTFIT_JOB_NAME("Emergency medical technician")
+	name = OUTFIT_JOB_NAME("Emergency Medical Technician")
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
