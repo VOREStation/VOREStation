@@ -21,11 +21,11 @@
 	uniform = /obj/item/clothing/under/rank/bartender
 	id_type = /obj/item/weapon/card/id/civilian/bartender
 	pda_type = /obj/item/device/pda/bar
-	backpack_contents = list(/obj/item/weapon/permit/gun/bar = 1)
+	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/bar = 1)
 
 /decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
 	..()
-	for(var/obj/item/weapon/permit/gun/bar/permit in H.back.contents)
+	for(var/obj/item/clothing/accessory/permit/gun/bar/permit in H.back.contents)
 		permit.set_name(H.real_name)
 
 /decl/hierarchy/outfit/job/service/bartender/barista

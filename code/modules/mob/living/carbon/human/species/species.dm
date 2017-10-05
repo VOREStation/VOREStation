@@ -232,13 +232,6 @@
 		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
 		else	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
 
-	var/braintype = H.get_FBP_type()
-	if(braintype == FBP_DRONE)
-		var/turf/T = get_turf(H)
-		var/obj/item/weapon/permit/drone/permit = new(T)
-		permit.set_name(H.real_name)
-		H.equip_to_slot_or_del(permit, slot_in_backpack)
-
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
 	H.mob_size = mob_size

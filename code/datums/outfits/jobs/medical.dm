@@ -57,7 +57,6 @@
 		head = /obj/item/clothing/head/nursehat
 	else
 		uniform = /obj/item/clothing/under/rank/medical/scrubs/purple
-		head = /obj/item/clothing/head/nursehat
 	..()
 
 /decl/hierarchy/outfit/job/medical/chemist

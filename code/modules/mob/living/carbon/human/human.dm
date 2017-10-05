@@ -1518,11 +1518,9 @@
 
 // Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
 /mob/living/carbon/human/equip_post_job()	//Drone Permit moved to equip_survival_gear()
-	return
-/*	var/braintype = get_FBP_type()
+	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
-*/
