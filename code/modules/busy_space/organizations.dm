@@ -112,8 +112,8 @@
 	ship_prefixes = list("HTV" = "freight", "HTV" = "munitions resupply")
 	destination_names = list(
 		"a SolGov dockyard on Luna",
-		"a Navy outpost in the Almach Rim",
-		"a Navy outpost on the Moghes border"
+		"a Fleet outpost in the Almach Rim",
+		"a Fleet outpost on the Moghes border"
 		)
 
 /datum/lore/organization/tsc/vey_med
