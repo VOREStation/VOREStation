@@ -294,7 +294,7 @@
 
 		)
 	destination_names = list(
-		"A trade mission in Shelf"
+		"A trade outpost in Shelf"
 		)
 
 /datum/lore/organization/tsc/xion
