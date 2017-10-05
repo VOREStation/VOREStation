@@ -289,7 +289,7 @@
 	name = "purple slime extract"
 	icon_state = "purple slime extract"
 	description_info = "This extract can create a slime steroid agent when injected with phoron, which increases the amount of slime extracts the processor \
-	can extract from a slime specimen."
+	can extract from a slime specimen. The extract can also create a strange, morphic toxic jelly if injected with sugar."
 
 
 /datum/chemical_reaction/slime/purple_steroid
@@ -302,6 +302,16 @@
 /datum/chemical_reaction/slime/purple_steroid/on_reaction(var/datum/reagents/holder)
 	new /obj/item/slimepotion/steroid(get_turf(holder.my_atom))
 	..()
+
+//This is half of what TG gives players, but considering the things our jelly does, this is fair.
+/datum/chemical_reaction/slime/purple_jelly
+	name = "Slime Jam"
+	id = "m_jelly_harvest"
+	result = "slimejelly"
+	required_reagents = list("sugar" = 5)
+	result_amount = 5
+	required = /obj/item/slime_extract/purple
+
 
 
 // *****************
