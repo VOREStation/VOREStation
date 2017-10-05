@@ -27,3 +27,8 @@ body
 	background-color: RoyalBlue;
 	color: white;
 }
+
+
+table, th, td {
+    border: 0px solid black;
+}

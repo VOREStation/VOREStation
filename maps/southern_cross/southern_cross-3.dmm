@@ -1248,7 +1248,7 @@
 "xZ" = (/obj/effect/floor_decal/spline/plain{dir = 5},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
 "ya" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/hologram/holopad,/obj/item/weapon/stool/padded,/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
 "yb" = (/obj/machinery/computer/security/telescreen/entertainment{icon_state = "frame"; pixel_x = 32; pixel_y = 0},/obj/item/weapon/stool/padded,/obj/machinery/camera/network/main_outpost{c_tag = "MO - Pool East"; dir = 8},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
-"yc" = (/obj/structure/table/glass,/obj/item/weapon/book/codex,/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
+"yc" = (/obj/structure/table/glass,/obj/item/weapon/book/codex/lore/vir,/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
 "yd" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/table/glass,/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
 "ye" = (/obj/effect/floor_decal/spline/plain{dir = 10},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
 "yf" = (/obj/effect/floor_decal/spline/plain,/obj/machinery/hologram/holopad,/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/pool)
