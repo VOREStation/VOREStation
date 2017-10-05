@@ -69,8 +69,37 @@
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
 	desc = "Track with this."
-	var/id = 1.0
+	var/id = 1
+	var/degrade_time = 10 MINUTES	//How long before the implant stops working outside of a living body.
 
+/obj/item/weapon/implant/tracking/weak	//This is for the loadout
+	degrade_time = 2.5 MINUTES
+
+/obj/item/weapon/implant/tracking/New()
+	id = rand(1, 1000)
+	..()
+
+/obj/item/weapon/implant/tracking/implanted(var/mob/source)
+	processing_objects.Add(src)
+	listening_objects |= src
+	return 1
+
+/obj/item/weapon/implant/tracking/Destroy()
+	processing_objects.Remove(src)
+	return ..()
+
+/obj/item/weapon/implant/tracking/process()
+	var/implant_location = src.loc
+	if(ismob(implant_location))
+		var/mob/living/L = implant_location
+		if(L.stat == DEAD)
+			if(world.time >= L.timeofdeath + degrade_time)
+				name = "melted implant"
+				desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
+				icon_state = "implant_melted"
+				malfunction = MALFUNCTION_PERMANENT
+				processing_objects.Remove(src)
+	return 1
 
 /obj/item/weapon/implant/tracking/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
