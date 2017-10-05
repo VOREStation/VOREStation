@@ -392,11 +392,17 @@
 	..()
 	access |= list(access_maint_tunnels, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 
+/obj/item/weapon/card/id/assistant
+	name = "identification card"
+//	assignment = "Assistant"
+//	rank = "Assistant"
+	access = list()
+
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
 	desc = "A card issued to station civilian staff."
 	icon_state = "civ"
-	assignment = "Assistant"
+	assignment = "Civilian"
 	rank = "Assistant"
 	primary_color = rgb(0,94,142)
 	secondary_color = rgb(95,159,191)

@@ -47,11 +47,6 @@
 		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		if(5) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/messenger(H), slot_back)
 
-/datum/job/proc/equip_survival(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-	H.species.equip_survival_gear(H,0)
-	return 1
-
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return

@@ -1,5 +1,6 @@
 /decl/hierarchy/outfit/job/assistant
 	name = OUTFIT_JOB_NAME("Assistant")
+	id_type = /obj/item/weapon/card/id/assistant
 
 /decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME("Visitor")
@@ -24,7 +25,7 @@
 
 /decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
 	..()
-	for(var/obj/item/weapon/permit/gun/bar/permit in H.contents)
+	for(var/obj/item/weapon/permit/gun/bar/permit in H.back.contents)
 		permit.set_name(H.real_name)
 
 /decl/hierarchy/outfit/job/service/bartender/barista

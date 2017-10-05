@@ -97,6 +97,7 @@
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	l_hand = /obj/item/weapon/storage/firstaid/adv
 	belt = /obj/item/weapon/storage/belt/medical/emt
+	pda_slot = slot_l_store
 	id_type = /obj/item/weapon/card/id/medical/paramedic
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 

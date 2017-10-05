@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/tunnel_clown
-	name = "Tunnel clown"
+	name = "Tunnel Clown"
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	gloves = /obj/item/clothing/gloves/black
@@ -16,7 +16,7 @@
 	id_pda_assignment = "Tunnel Clown!"
 
 /decl/hierarchy/outfit/masked_killer
-	name = "Masked killer"
+	name = "Masked Killer"
 	uniform = /obj/item/clothing/under/overalls
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/sterile/latex
