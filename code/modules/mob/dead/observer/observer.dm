@@ -310,19 +310,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!client)
 		return
-	var/event_manager = is_event_manager(usr.client)
-	if(!config.antag_hud_allowed && (!client.holder || event_manager))
+	var/mentor = is_mentor(usr.client)
+	if(!config.antag_hud_allowed && (!client.holder || mentor))
 		src << "<font color='red'>Admins have disabled this for this round.</font>"
 		return
 	var/mob/observer/dead/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
 		src << "<font color='red'><B>You have been banned from using this feature</B></font>"
 		return
-	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || event_manager))
+	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
 		M.can_reenter_corpse = 0
-	if(!M.has_enabled_antagHUD && (!client.holder || event_manager))
+	if(!M.has_enabled_antagHUD && (!client.holder || mentor))
 		M.has_enabled_antagHUD = 1
 	if(M.antagHUD)
 		M.antagHUD = 0

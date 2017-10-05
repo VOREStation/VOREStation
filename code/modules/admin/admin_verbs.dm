@@ -8,7 +8,7 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
-	/client/proc/cmd_event_manager_check_new_players,
+	/client/proc/cmd_mentor_check_new_players,
 //	/client/proc/deadchat				//toggles deadchat on/off,
 //	/client/proc/toggle_ahelp_sound,
 	)
@@ -186,7 +186,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
-	/client/proc/reload_event_managers,
+	/client/proc/reload_mentors,
 	/client/proc/restart_controller,
 	/datum/admins/proc/restart,
 	/client/proc/print_random_map,
@@ -331,65 +331,15 @@ var/list/admin_verbs_mod = list(
 
 )
 
-var/list/admin_verbs_event_manager = list(
+var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/admin_ghost,
-	/client/proc/cmd_event_say,
+	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
-	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message,
-	/datum/admins/proc/change_weather,
-	/datum/admins/proc/change_time,
-	/client/proc/admin_give_modifier,
-	/datum/admins/proc/announce,		//priority announce something to all clients.,
-	/datum/admins/proc/intercom,		//send a fake intercom message, like an arrivals announcement,
-	/client/proc/admin_ghost,
-	/client/proc/check_antagonists,
-	/client/proc/aooc,
-	/client/proc/cmd_admin_subtle_message, 	//send an message to somebody as a 'voice in their head',
-	/datum/admins/proc/paralyze_mob,
-	/client/proc/cmd_admin_direct_narrate,
-	/client/proc/allow_character_respawn,   // Allows a ghost to respawn ,
-	/datum/admins/proc/sendFax,
-	/client/proc/roll_dices,
-	/proc/possess,
-	/proc/release,
-	/datum/admins/proc/set_tcrystals,
-	/datum/admins/proc/access_news_network,
-	/client/proc/admin_call_shuttle,
-	/client/proc/admin_cancel_shuttle,
-	/client/proc/cmd_admin_world_narrate,
-	/client/proc/check_words,
-	/client/proc/play_local_sound,
-	/client/proc/play_sound,
-	/client/proc/play_server_sound,
-	/client/proc/object_talk,
-	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
-	/client/proc/drop_bomb,
-	/client/proc/cinematic,
-	/client/proc/respawn_character,
-	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
-	/client/proc/cmd_debug_del_all,
-	/datum/admins/proc/delay,
-	/datum/admins/proc/spawn_fruit,
-	/datum/admins/proc/spawn_custom_item,
-	/datum/admins/proc/check_custom_items,
-	/datum/admins/proc/spawn_plant,
-	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
-	/client/proc/respawn_character,
-	/client/proc/virus2_editor,
-	/client/proc/spawn_chemdisp_cartridge,
-	/client/proc/map_template_load,
-	/client/proc/map_template_upload,
-	/client/proc/map_template_load_on_new_z,
-	/client/proc/check_words,			//displays cult-words,
-	/client/proc/check_ai_laws,			//shows AI and borg laws,
-	/client/proc/rename_silicon,		//properly renames silicons,
-	/client/proc/manage_silicon_laws,	// Allows viewing and editing silicon laws. ,
-	/client/proc/check_antagonists,
+//	/client/proc/dsay,
+	/client/proc/cmd_admin_subtle_message
 )
 
 /client/proc/add_admin_verbs()
@@ -411,7 +361,7 @@ var/list/admin_verbs_event_manager = list(
 		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
-		if(holder.rights & R_EVENT)		verbs += admin_verbs_event_manager
+		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -474,8 +424,13 @@ var/list/admin_verbs_event_manager = list(
 	if(istype(mob,/mob/observer/dead))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
+		if(!is_mentor(usr.client))
+			ghost.can_reenter_corpse = 1
 		if(ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
+		else
+			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again</font>"
+			return
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
