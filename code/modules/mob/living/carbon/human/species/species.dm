@@ -152,7 +152,12 @@
 	var/flags = 0                 // Various specific features.
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
+
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
+	var/water_movement = 0		  // How much faster or slower the species is in water
+	var/snow_movement = 0		  // How much faster or slower the species is on snow
+
+
 	var/item_slowdown_mod = 1	  // How affected by item slowdown the species is.
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
