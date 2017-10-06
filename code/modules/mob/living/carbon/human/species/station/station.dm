@@ -133,6 +133,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
 	slowdown = -0.5
+	snow_movement = -1		//Ignores half of light snow
 	brute_mod = 1.15
 	burn_mod =  1.15
 	flash_mod = 1.1
@@ -219,6 +220,8 @@
 	name_language = LANGUAGE_SKRELLIAN
 	health_hud_intensity = 2
 
+	water_movement = -3
+
 	min_age = 19
 	max_age = 130
 
@@ -279,6 +282,8 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/diona)
 	//primitive_form = "Nymph"
 	slowdown = 5
+	snow_movement = -2 	//Ignore light snow
+	water_movement = -4	//Ignore shallow water
 	rarity_value = 3
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3

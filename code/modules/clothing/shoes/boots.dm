@@ -46,6 +46,7 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	snow_speed = -1
 
 /obj/item/clothing/shoes/boots/winter/security
 	name = "security winter boots"
