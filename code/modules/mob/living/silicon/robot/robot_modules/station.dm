@@ -858,5 +858,4 @@ var/global/list/robot_modules = list(
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	..()
->>>>>>> PolarisSS13/master:code/modules/mob/living/silicon/robot/robot_modules/station.dm
 	return
