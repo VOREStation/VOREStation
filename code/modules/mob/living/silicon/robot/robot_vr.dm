@@ -49,3 +49,6 @@
 							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"//Again travis what the fuck? You and your random unrelated bugs.
 		return
 	return
+
+/mob/living/silicon/robot/electrocute_act() // See living_defense.dm line 157, silicon.dm line 84, and ..robot/life.dm line 31
+	return // Something was overlooked preetty badly under the assumption of stun stack capping being obsolete for borgs. Example in practice; shock slime + borg = eternal stunlock.
