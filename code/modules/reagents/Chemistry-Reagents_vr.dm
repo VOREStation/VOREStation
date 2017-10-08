@@ -19,10 +19,10 @@
 			H.verbs +=  /mob/living/proc/set_size
 			H.shapeshifter_set_colour("#05FF9B") //They can still change their color.
 
-/datum/chemical_reaction/slime/sapphire_advmutation
+/datum/chemical_reaction/slime/sapphire_mutation
 	name = "Slime Mutation Toxins"
-	id = "adv_mutation"
-	result = "advmutationtoxin"
+	id = "slime_mutation_tox"
+	result = "mutationtoxin"
 	required_reagents = list("blood" = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/sapphire
