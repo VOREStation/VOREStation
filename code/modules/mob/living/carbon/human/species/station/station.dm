@@ -191,12 +191,7 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
-<<<<<<< HEAD
 	//cold_discomfort_level = 275 //VOREStation Removal
-=======
-
-	cold_discomfort_level = 275
->>>>>>> PolarisSS13/master
 
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart,
@@ -245,7 +240,7 @@
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
-
+/* //VOREStation Removal Start
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120
@@ -258,15 +253,13 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-<<<<<<< HEAD
-	//reagent_tag = IS_SKRELL //VOREStation Removal
-=======
+	reagent_tag = IS_SKRELL
+
 	breath_heat_level_1 = 400	//Default 380 - Higher is better
 	breath_heat_level_2 = 500	//Default 450
 	breath_heat_level_3 = 1350	//Default 1250
 
-	reagent_tag = IS_SKRELL
->>>>>>> PolarisSS13/master
+*/ //VOREStation End
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
