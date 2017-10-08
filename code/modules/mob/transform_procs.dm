@@ -77,10 +77,26 @@
 	else
 		O.key = key
 
+	//Languages
+	add_language("Robot Talk", 1)
+	add_language(LANGUAGE_GALCOM, 1)
+	add_language(LANGUAGE_SOL_COMMON, 1)
+	add_language(LANGUAGE_UNATHI, 1)
+	add_language(LANGUAGE_SIIK, 1)
+	add_language(LANGUAGE_SKRELLIAN, 1)
+	add_language(LANGUAGE_TRADEBAND, 1)
+	add_language(LANGUAGE_GUTTER, 1)
+	add_language(LANGUAGE_EAL, 1)
+	add_language(LANGUAGE_SCHECHI, 1)
+	add_language(LANGUAGE_SIGN, 1)
+
+	// Lorefolks say it may be so.
 	if(O.client && O.client.prefs)
 		var/datum/preferences/B = O.client.prefs
-		for(var/language in B.alternate_languages)
-			O.add_language(language)
+		if(LANGUAGE_ROOTGLOBAL in B.alternate_languages)
+			O.add_language(LANGUAGE_ROOTGLOBAL, 1)
+		if(LANGUAGE_ROOTLOCAL in B.alternate_languages)
+			O.add_language(LANGUAGE_ROOTLOCAL, 1)
 
 	if(move)
 		var/obj/loc_landmark

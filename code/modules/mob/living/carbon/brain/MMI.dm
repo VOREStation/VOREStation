@@ -16,6 +16,30 @@
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	var/obj/item/device/radio/headset/mmi_radio/radio = null//Let's give it a radio.
+
+/obj/item/device/mmi/New()
+	radio = new(src)//Spawns a radio inside the MMI.
+
+/obj/item/device/mmi/verb/toggle_radio()
+	set name = "Toggle Brain Radio"
+	set desc = "Enables or disables the integrated brain radio, which is only usable outside of a body."
+	set category = "Object"
+	set src in usr
+	set popup_menu = 1
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	if (radio.radio_enabled == 1)
+		radio.radio_enabled = 0
+		to_chat (usr, "You have disabled the [src]'s radio.")
+		to_chat (brainmob, "Your radio has been disabled.")
+	else if (radio.radio_enabled == 0)
+		radio.radio_enabled = 1
+		to_chat (usr, "You have enabled the [src]'s radio.")
+		to_chat (brainmob, "Your radio has been enabled.")
+	else
+		to_chat (usr, "You were unable to toggle the [src]'s radio.")
 
 /obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
@@ -104,53 +128,21 @@
 		return
 	var/obj/item/weapon/rig/rig = src.get_rig()
 	if(rig)
-		rig.forced_move(direction, user)
+		if(istype(rig,/obj/item/weapon/rig))
+			rig.forced_move(direction, user)
 
 /obj/item/device/mmi/Destroy()
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
+	qdel_null(radio)
 	qdel_null(brainmob)
 	return ..()
 
 /obj/item/device/mmi/radio_enabled
 	name = "radio-enabled man-machine interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
+	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio. Wait, don't they all?"
 	origin_tech = list(TECH_BIO = 4)
-
-	var/obj/item/device/radio/radio = null//Let's give it a radio.
-
-	New()
-		..()
-		radio = new(src)//Spawns a radio inside the MMI.
-		radio.broadcasting = 1//So it's broadcasting from the start.
-
-	verb//Allows the brain to toggle the radio functions.
-		Toggle_Broadcasting()
-			set name = "Toggle Broadcasting"
-			set desc = "Toggle broadcasting channel on or off."
-			set category = "MMI"
-			set src = usr.loc//In user location, or in MMI in this case.
-			set popup_menu = 0//Will not appear when right clicking.
-
-			if(brainmob.stat)//Only the brainmob will trigger these so no further check is necessary.
-				brainmob << "Can't do that while incapacitated or dead."
-
-			radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-			brainmob << "<span class='notice'>Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting.</span>"
-
-		Toggle_Listening()
-			set name = "Toggle Listening"
-			set desc = "Toggle listening channel on or off."
-			set category = "MMI"
-			set src = usr.loc
-			set popup_menu = 0
-
-			if(brainmob.stat)
-				brainmob << "Can't do that while incapacitated or dead."
-
-			radio.listening = radio.listening==1 ? 0 : 1
-			brainmob << "<span class='notice'>Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.</span>"
 
 /obj/item/device/mmi/emp_act(severity)
 	if(!brainmob)
@@ -173,16 +165,18 @@
 	req_access = list(access_robotics)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
+	var/ghost_query_type = null
 
 /obj/item/device/mmi/digital/New()
 	src.brainmob = new(src)
-	src.brainmob.add_language("Robot Talk")
+//	src.brainmob.add_language("Robot Talk")//No binary without a binary communication device
 	src.brainmob.add_language(LANGUAGE_GALCOM)
 	src.brainmob.add_language(LANGUAGE_EAL)
 	src.brainmob.loc = src
 	src.brainmob.container = src
 	src.brainmob.stat = 0
 	src.brainmob.silent = 0
+	radio = new(src)
 	dead_mob_list -= src.brainmob
 
 /obj/item/device/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -234,59 +228,48 @@
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		user << "<font color='blue'>You carefully locate the manual activation switch and start the [src]'s boot process.</font>"
-		src.searching = 1
-		src.request_player()
-		spawn(600) reset_search()
+		request_player()
 
 /obj/item/device/mmi/digital/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
-		if(!O.MayRespawn())
-			continue
-		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
-			continue
-		if(O.client)
-			if(O.client.prefs.be_special & BE_AI)
-				question(O.client)
+	if(!ghost_query_type)
+		return
+	searching = 1
+
+	var/datum/ghost_query/Q = new ghost_query_type()
+	var/list/winner = Q.query()
+	if(winner.len)
+		var/mob/observer/dead/D = winner[1]
+		transfer_personality(D)
+	else
+		reset_search()
 
 /obj/item/device/mmi/digital/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
-
-	if(src.brainmob && src.brainmob.key) return
-	world.log << "Resetting [src.name]: [brainmob][brainmob ? ", [brainmob.key]" : ""]"
+	if(src.brainmob && src.brainmob.key)
+		return
 
 	src.searching = 0
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
-
-/obj/item/device/mmi/digital/proc/question(var/client/C)
-	spawn(0)
-		if(!C)	return
-		var/response = alert(C, "Someone is requesting a personality for a [src]. Would you like to play as one?", "[src] request", "Yes", "No", "Never for this round")
-		if(response == "Yes")
-			response = alert(C, "Are you sure you want to play as a [src]?", "[src] request", "Yes", "No")
-		if(!C || brainmob.key || 0 == searching)	return		//handle logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
-		if(response == "Yes")
-			transfer_personality(C.mob)
-		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_AI
+		M.show_message("<font color='blue'>\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
 
 /obj/item/device/mmi/digital/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a synthetic brain now.")
 	src.searching = 0
-	src.brainmob.mind = candidate.mind
+	if(candidate.mind)
+		src.brainmob.mind = candidate.mind
+		src.brainmob.mind.reset()
 	src.brainmob.ckey = candidate.ckey
-	src.brainmob.mind.reset()
-	src.name = "positronic brain ([src.brainmob.name])"
-	src.brainmob << "<b>You are a [src], brought into existence on [station_name()].</b>"
-	src.brainmob << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
-	src.brainmob << "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
-	src.brainmob << "<b>Use say #b to speak to other artificial intelligences.</b>"
-	src.brainmob.mind.assigned_role = "Positronic Brain"
+	src.name = "[name] ([src.brainmob.name])"
+	src.brainmob << "<b>You are [src.name], brought into existence on [station_name()].</b>"
+	src.brainmob << "<b>As a synthetic intelligence, you are designed with organic values in mind.</b>"
+	src.brainmob << "<b>However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member.</b>" //it's not like they can hurt anyone
+//	src.brainmob << "<b>Use say #b to speak to other artificial intelligences.</b>"
+	src.brainmob.mind.assigned_role = "Synthetic Brain"
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The [src] chimes quietly.</font>")
+		M.show_message("<font color='blue'>\The [src] chimes quietly.</font>")
 
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"
@@ -295,12 +278,12 @@
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
+	ghost_query_type = /datum/ghost_query/drone_brain
 
 /obj/item/device/mmi/digital/robot/New()
 	..()
-	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[rand(1000, 9999)]"
+	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
-	src.name = "robotic intelligence circuit ([src.brainmob.name])"
 
 /obj/item/device/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
 	..()
@@ -316,10 +299,11 @@
 	icon_state = "posibrain"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
+	ghost_query_type = /datum/ghost_query/posi_brain
 
-/obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
-	..()
+/obj/item/device/mmi/digital/posibrain/request_player()
 	icon_state = "posibrain-searching"
+	..()
 
 
 /obj/item/device/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)

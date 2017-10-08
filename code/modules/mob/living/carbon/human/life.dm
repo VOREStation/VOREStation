@@ -233,7 +233,7 @@
 			set_light(0)
 	else
 		if(species.appearance_flags & RADIATION_GLOWS)
-			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
+			set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
 
 		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
@@ -246,6 +246,10 @@
 			adjustOxyLoss(-(rads))
 			adjustToxLoss(-(rads))
 			updatehealth()
+			return
+
+		var/obj/item/organ/internal/brain/slime/core = locate() in internal_organs
+		if(core)
 			return
 
 		var/damage = 0
@@ -359,7 +363,7 @@
 
 		return 0
 
-	var/safe_pressure_min = 16 // Minimum safe partial pressure of breathable gas in kPa
+	var/safe_pressure_min = species.minimum_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 
 
 	// Lung damage increases the minimum safe pressure.
@@ -511,31 +515,31 @@
 
 
 	// Hot air hurts :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+	if((breath.temperature < species.breath_cold_level_1 || breath.temperature > species.breath_heat_level_1) && !(COLD_RESISTANCE in mutations))
 
-		if(breath.temperature <= species.cold_level_1)
+		if(breath.temperature <= species.breath_cold_level_1)
 			if(prob(20))
 				src << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
-		else if(breath.temperature >= species.heat_level_1)
+		else if(breath.temperature >= species.breath_heat_level_1)
 			if(prob(20))
 				src << "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>"
 
-		if(breath.temperature >= species.heat_level_1)
-			if(breath.temperature < species.heat_level_2)
+		if(breath.temperature >= species.breath_heat_level_1)
+			if(breath.temperature < species.breath_heat_level_2)
 				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
-			else if(breath.temperature < species.heat_level_3)
+			else if(breath.temperature < species.breath_heat_level_3)
 				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 			else
 				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				fire_alert = max(fire_alert, 2)
 
-		else if(breath.temperature <= species.cold_level_1)
-			if(breath.temperature > species.cold_level_2)
+		else if(breath.temperature <= species.breath_cold_level_1)
+			if(breath.temperature > species.breath_cold_level_2)
 				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
-			else if(breath.temperature > species.cold_level_3)
+			else if(breath.temperature > species.breath_cold_level_3)
 				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 				fire_alert = max(fire_alert, 1)
 			else
@@ -624,34 +628,42 @@
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)
 			return 1	//godmode
+
 		var/burn_dam = 0
 
 		// switch() can't access numbers inside variables, so we need to use some ugly if() spam ladder.
-		if(bodytemperature >= species.heat_level_3)
-			burn_dam = HEAT_DAMAGE_LEVEL_3
-		else if(bodytemperature >= species.heat_level_2)
-			burn_dam = HEAT_DAMAGE_LEVEL_2
-		else if(bodytemperature >= species.heat_level_1)
-			burn_dam = HEAT_DAMAGE_LEVEL_1
+		if(bodytemperature >= species.heat_level_1)
+			if(bodytemperature >= species.heat_level_2)
+				if(bodytemperature >= species.heat_level_3)
+					burn_dam = HEAT_DAMAGE_LEVEL_3
+				else
+					burn_dam = HEAT_DAMAGE_LEVEL_2
+			else
+				burn_dam = HEAT_DAMAGE_LEVEL_1
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 		fire_alert = max(fire_alert, 2)
 
 	else if(bodytemperature <= species.cold_level_1)
+		//Body temperature is too cold.
 		fire_alert = max(fire_alert, 1)
+
 		if(status_flags & GODMODE)
 			return 1	//godmode
 
+		
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			var/burn_dam = 0
-			if(bodytemperature <= species.cold_level_3)
-				burn_dam = COLD_DAMAGE_LEVEL_3
-			else if(bodytemperature <= species.cold_level_2)
-				burn_dam = COLD_DAMAGE_LEVEL_2
-			else if(bodytemperature <= species.heat_level_1)
-				burn_dam = COLD_DAMAGE_LEVEL_1
+			var/cold_dam = 0
+			if(bodytemperature <= species.cold_level_1)
+				if(bodytemperature <= species.cold_level_2)
+					if(bodytemperature <= species.cold_level_3)
+						cold_dam = COLD_DAMAGE_LEVEL_3
+					else
+						cold_dam = COLD_DAMAGE_LEVEL_2
+				else
+					cold_dam = COLD_DAMAGE_LEVEL_1
 
-			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
+			take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
 			fire_alert = max(fire_alert, 1)
 
 	// Account for massive pressure differences.  Done by Polymorph
@@ -905,7 +917,7 @@
 			Paralyse(3)
 
 		if(hallucination)
-			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT)) )
+			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
 				if(prob(3))
 					fake_attack(src)
 				if(!handling_hal)
@@ -1654,12 +1666,13 @@
 
 		for(var/obj/item/weapon/implant/I in src)
 			if(I.implanted)
-				if(istype(I,/obj/item/weapon/implant/tracking))
-					holder1.icon_state = "hud_imp_tracking"
-				if(istype(I,/obj/item/weapon/implant/loyalty))
-					holder2.icon_state = "hud_imp_loyal"
-				if(istype(I,/obj/item/weapon/implant/chem))
-					holder3.icon_state = "hud_imp_chem"
+				if(!I.malfunction)
+					if(istype(I,/obj/item/weapon/implant/tracking))
+						holder1.icon_state = "hud_imp_tracking"
+					if(istype(I,/obj/item/weapon/implant/loyalty))
+						holder2.icon_state = "hud_imp_loyal"
+					if(istype(I,/obj/item/weapon/implant/chem))
+						holder3.icon_state = "hud_imp_chem"
 
 		hud_list[IMPTRACK_HUD] = holder1
 		hud_list[IMPLOYAL_HUD] = holder2

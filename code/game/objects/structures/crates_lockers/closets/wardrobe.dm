@@ -369,11 +369,15 @@
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
 	new /obj/item/clothing/shoes/boots/winter/science(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
-	new /obj/item/weapon/storage/backpack/toxins(src)
 	new /obj/item/weapon/storage/backpack/satchel/tox(src)
-	new /obj/item/weapon/storage/backpack/satchel/tox(src)
-	return
-
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/dufflebag/sci(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/tox(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/dufflebag/sci(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/tox(src)
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
 	icon_state = "black"
@@ -390,9 +394,15 @@
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/weapon/storage/backpack/toxins(src)
-	new /obj/item/weapon/storage/backpack/toxins(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/dufflebag/sci(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/tox(src)
 	new /obj/item/weapon/storage/backpack/satchel/tox(src)
-	new /obj/item/weapon/storage/backpack/satchel/tox(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/dufflebag/sci(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/tox(src)
 	return
 
 

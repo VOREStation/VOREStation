@@ -21,6 +21,23 @@
 	uses_charge = 1
 	charge_costs = list(500)
 	stacktype = /obj/item/stack/rods
+	no_variants = TRUE
+
+/obj/item/stack/rods/New()
+	..()
+	recipes = rods_recipes
+	update_icon()
+
+/obj/item/stack/rods/update_icon()
+	var/amount = get_amount()
+	if((amount <= 5) && (amount > 0))
+		icon_state = "rods-[amount]"
+	else
+		icon_state = "rods"
+
+var/global/list/datum/stack_recipe/rods_recipes = list( \
+	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/weldingtool))
@@ -55,7 +72,7 @@
 
 	..()
 
-
+/*
 /obj/item/stack/rods/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
 
@@ -87,3 +104,4 @@
 		F.add_fingerprint(usr)
 		use(2)
 	return
+*/

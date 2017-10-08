@@ -92,33 +92,50 @@
 	var/breath_type = "oxygen"                        // Non-oxygen gas breathed, if any.
 	var/poison_type = "phoron"                        // Poisonous air.
 	var/exhale_type = "carbon_dioxide"                // Exhaled gas type.
+
+	var/body_temperature = 310.15	                  // Species will try to stabilize at this temperature. (also affects temperature processing)
+
+	// Cold
 	var/cold_level_1 = 260                            // Cold damage level 1 below this point.
 	var/cold_level_2 = 200                            // Cold damage level 2 below this point.
 	var/cold_level_3 = 120                            // Cold damage level 3 below this point.
+
+	var/breath_cold_level_1 = 240					  // Cold gas damage level 1 below this point.
+	var/breath_cold_level_2 = 180					  // Cold gas damage level 2 below this point.
+	var/breath_cold_level_3 = 100					  // Cold gas damage level 3 below this point.
+
+	var/cold_discomfort_level = 285                   // Aesthetic messages about feeling chilly.
+	var/list/cold_discomfort_strings = list(
+		"You feel chilly.",
+		"You shiver suddenly.",
+		"Your chilly flesh stands out in goosebumps."
+		)
+
+	// Hot
 	var/heat_level_1 = 360                            // Heat damage level 1 above this point.
 	var/heat_level_2 = 400                            // Heat damage level 2 above this point.
 	var/heat_level_3 = 1000                           // Heat damage level 3 above this point.
+
+	var/breath_heat_level_1 = 380					  // Heat gas damage level 1 below this point.
+	var/breath_heat_level_2 = 450					  // Heat gas damage level 2 below this point.
+	var/breath_heat_level_3 = 1250					  // Heat gas damage level 3 below this point.
+
+	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
+	var/list/heat_discomfort_strings = list(
+		"You feel sweat drip down your neck.",
+		"You feel uncomfortably warm.",
+		"Your skin prickles in the heat."
+		)
+
+
 	var/passive_temp_gain = 0		                  // Species will gain this much temperature every second
 	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
 	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
 	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
 	var/light_dam                                     // If set, mob will be damaged in light over this value and heal in light below its negative.
-	var/body_temperature = 310.15	                  // Species will try to stabilize at this temperature.
-	                                                  // (also affects temperature processing)
+	var/minimum_breath_pressure = 16				  // Minimum required pressure for breath, in kPa
 
-	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
-	var/cold_discomfort_level = 285                   // Aesthetic messages about feeling chilly.
-	var/list/heat_discomfort_strings = list(
-		"You feel sweat drip down your neck.",
-		"You feel uncomfortably warm.",
-		"Your skin prickles in the heat."
-		)
-	var/list/cold_discomfort_strings = list(
-		"You feel chilly.",
-		"You shiver suddenly.",
-		"Your chilly flesh stands out in goosebumps."
-		)
 
 	var/metabolic_rate = 1
 
@@ -135,7 +152,12 @@
 	var/flags = 0                 // Various specific features.
 	var/appearance_flags = 0      // Appearance/display related features.
 	var/spawn_flags = 0           // Flags that specify who can spawn as this species
+
 	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
+	var/water_movement = 0		  // How much faster or slower the species is in water
+	var/snow_movement = 0		  // How much faster or slower the species is on snow
+
+
 	var/item_slowdown_mod = 1	  // How affected by item slowdown the species is.
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.

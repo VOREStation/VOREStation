@@ -565,15 +565,19 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		w_class = ITEMSIZE_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
-	if(get_dist(src, user) > 1)
-		return
+	var/msg = ""
 
 	if(get_amount() == 1)
-		to_chat(user, "A short piece of power cable.")
+		msg += "A short piece of power cable."
 	else if(get_amount() == 2)
-		to_chat(user, "A piece of power cable.")
+		msg += "A piece of power cable."
 	else
-		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
+		msg += "A coil of power cable."
+
+		if(get_dist(src, user) <= 1)
+			msg += " There are [get_amount()] lengths of cable in the coil."
+
+	to_chat(user, msg)
 
 
 /obj/item/stack/cable_coil/verb/make_restraint()
@@ -876,3 +880,51 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	stacktype = /obj/item/stack/cable_coil
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN, COLOR_SILVER, COLOR_GRAY, COLOR_BLACK, COLOR_MAROON, COLOR_OLIVE, COLOR_LIME, COLOR_TEAL, COLOR_NAVY, COLOR_PURPLE, COLOR_BEIGE, COLOR_BROWN)
 	..()
+
+//Endless alien cable coil
+
+/obj/item/stack/cable_coil/alien
+	name = "alien spool"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "coil"
+	amount = MAXCOIL
+	max_amount = MAXCOIL
+	color = COLOR_SILVER
+	desc = "A spool of cable. No matter how hard you try, you can never seem to get to the end."
+	throwforce = 10
+	w_class = ITEMSIZE_SMALL
+	throw_speed = 2
+	throw_range = 5
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	stacktype = null
+
+/obj/item/stack/cable_coil/alien/New(loc, length = MAXCOIL, var/param_color = null)		//There has to be a better way to do this.
+	if(embed_chance == -1)		//From /obj/item, don't want to do what the normal cable_coil does
+		if(sharp)
+			embed_chance = force/w_class
+		else
+			embed_chance = force/(w_class*3)
+	update_icon()
+
+/obj/item/stack/cable_coil/alien/update_icon()
+	icon_state = initial(icon_state)
+
+/obj/item/stack/cable_coil/alien/use()	//It's endless
+	return
+
+/obj/item/stack/cable_coil/alien/add()	//Still endless
+	return
+
+/obj/item/stack/cable_coil/alien/update_wclass()
+	return
+
+/obj/item/stack/cable_coil/alien/examine(mob/user)
+	var/msg = "A spool of cable."
+
+	if(get_dist(src, user) <= 1)
+		msg += " It doesn't seem to have a beginning, or an end."
+
+	to_chat(user, msg)

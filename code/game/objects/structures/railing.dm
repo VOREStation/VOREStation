@@ -60,7 +60,7 @@
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-		new /obj/item/stack/rods(get_turf(usr))
+		new /obj/item/stack/rods(get_turf(src))
 		qdel(src)
 
 /obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
@@ -134,6 +134,9 @@
 	if(usr.incapacitated())
 		return 0
 
+	if (!can_touch(usr) || ismouse(usr))
+		return
+
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
@@ -150,6 +153,9 @@
 	if(usr.incapacitated())
 		return 0
 
+	if (!can_touch(usr) || ismouse(usr))
+		return
+
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
@@ -165,6 +171,9 @@
 
 	if(usr.incapacitated())
 		return 0
+
+	if (!can_touch(usr) || ismouse(usr))
+		return
 
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't flip it!")
@@ -249,6 +258,7 @@
 	else
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		take_damage(W.force)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	return ..()
 

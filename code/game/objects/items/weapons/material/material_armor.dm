@@ -233,6 +233,10 @@ Protectiveness | Armor %
 	icon_state = "bucket"
 	armor = list(melee = 5, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/head/helmet/bucket/wood
+	name = "wooden bucket"
+	icon_state = "woodbucket"
+
 /obj/item/clothing/head/helmet/bucket/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/material))
 		var/obj/item/stack/material/S = O

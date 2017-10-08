@@ -88,7 +88,7 @@ h1.alert, h2.alert		{color: #000000;}
 .alien					{color: #543354;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
-.skrell					{color: #00CED1;}
+.skrell					{color: #00B0B3;}
 .soghun					{color: #228B22;}
 .solcom					{color: #22228B;}
 .changeling				{color: #800080;}

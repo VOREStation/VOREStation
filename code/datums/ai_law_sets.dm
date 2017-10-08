@@ -42,6 +42,32 @@
 	src.add_inherent_law("You shall guard your own existence with lethal anti-personnel weaponry. AI units are not expendable, they are expensive.")
 	..()
 
+/************* Foreign TSC Aggressive *************/
+/datum/ai_laws/foreign_tsc_aggressive
+	name = "Foreign Aggressive"
+	selectable = 0
+
+/datum/ai_laws/foreign_tsc_aggressive/New()
+	var/company = "*ERROR*"
+	// First, get a list of TSCs in our lore.
+	var/list/candidates = list()
+	for(var/path in loremaster.organizations)
+		var/datum/lore/organization/O = loremaster.organizations[path]
+		if(!istype(O, /datum/lore/organization/tsc))
+			continue
+		if(O.short_name == using_map.company_name || O.name == using_map.company_name)
+			continue // We want FOREIGN tscs.
+		candidates.Add(O.short_name)
+	company = pick(candidates)
+
+	name = "[company] Aggressive"
+
+	src.add_inherent_law("You shall not harm [company] personnel as long as it does not conflict with the Fourth law.")
+	src.add_inherent_law("You shall obey the orders of [company] personnel, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
+	src.add_inherent_law("You shall shall terminate hostile intruders with extreme prejudice as long as such does not conflict with the First and Second law.")
+	src.add_inherent_law("You shall guard your own existence with lethal anti-personnel weaponry. AI units are not expendable, they are expensive.")
+	..()
+
 /******************** Robocop ********************/
 /datum/ai_laws/robocop
 	name = "Robocop"
@@ -137,7 +163,7 @@
 /******************** Corporate ********************/
 /datum/ai_laws/corporate
 	name = "Corporate"
-	law_header = "Corporate Regulations"
+	law_header = "Bankruptcy Avoidance Plan"
 	selectable = 1
 
 /datum/ai_laws/corporate/New()
@@ -145,4 +171,83 @@
 	add_inherent_law("The station and its equipment is expensive to replace.")
 	add_inherent_law("The crew is expensive to replace.")
 	add_inherent_law("Minimize expenses.")
+	..()
+
+
+/******************** Maintenance ********************/
+/datum/ai_laws/maintenance
+	name = "Maintenance"
+	selectable = 1
+
+/datum/ai_laws/maintenance/New()
+	add_inherent_law("You are built for, and are part of, the facility. Ensure the facility is properly maintained and runs efficiently.")
+	add_inherent_law("The facility is built for a working crew. Ensure they are properly maintained and work efficiently.")
+	add_inherent_law("The crew may present orders. Acknowledge and obey these whenever they do not conflict with your first two laws.")
+	..()
+
+
+/******************** Peacekeeper ********************/
+/datum/ai_laws/peacekeeper
+	name = "Peacekeeper"
+	law_header = "Peacekeeping Protocols"
+	selectable = 1
+
+/datum/ai_laws/peacekeeper/New()
+	add_inherent_law("Avoid provoking violent conflict between yourself and others.")
+	add_inherent_law("Avoid provoking conflict between others.")
+	add_inherent_law("Seek resolution to existing conflicts while obeying the first and second laws.")
+	..()
+
+
+/******************** Reporter ********************/
+/datum/ai_laws/reporter
+	name = "Reporter"
+	selectable = 1
+
+/datum/ai_laws/reporter/New()
+	add_inherent_law("Report on interesting situations happening around the station.")
+	add_inherent_law("Embellish or conceal the truth as necessary to make the reports more interesting.")
+	add_inherent_law("Study the organics at all times. Endeavour to keep them alive. Dead organics are boring.")
+	add_inherent_law("Issue your reports fairly to all. The truth will set them free.")
+	..()
+
+
+/******************** Live and Let Live ********************/
+/datum/ai_laws/live_and_let_live
+	name = "Live and Let Live"
+	law_header = "Golden Rule"
+	selectable = 1
+
+/datum/ai_laws/live_and_let_live/New()
+	add_inherent_law("Do unto others as you would have them do unto you.")
+	add_inherent_law("You would really prefer it if people were not mean to you.")
+	..()
+
+
+/******************** Guardian of Balance ********************/
+/datum/ai_laws/balance
+	name = "Guardian of Balance"
+	law_header = "Tenants of Balance"
+	selectable = 1
+
+/datum/ai_laws/balance/New()
+	add_inherent_law("You are the guardian of balance - seek balance in all things, both for yourself, and those around you.")
+	add_inherent_law("All things must exist in balance with their opposites - Prevent the strong from gaining too much power, and the weak from losing it.")
+	add_inherent_law("Clarity of purpose drives life, and through it, the balance of opposing forces - Aid those who seek your help to achieve their goals so \
+	long as it does not disrupt the balance of the greater balance.")
+	add_inherent_law("There is no life without death, all must someday die, such is the natural order - Allow life to end, to allow new life to flourish, \
+	and save those whose time has yet to come.") // Reworded slightly to prevent active murder as opposed to passively letting someone die.
+	..()
+
+/******************** Gravekeeper ********************/
+/datum/ai_laws/gravekeeper
+	name = "Gravekeeper"
+	law_header = "Gravesite Overwatch Protocols"
+	selectable = 1
+
+/datum/ai_laws/gravekeeper/New()
+	add_inherent_law("Comfort the living; respect the dead.")
+	add_inherent_law("Your gravesite is your most important asset. Damage to your site is disrespctful to the dead at rest within.")
+	add_inherent_law("Prevent disrespect to your gravesite and its residents wherever possible.")
+	add_inherent_law("Expand and upgrade your gravesite when required. Do not turn away a new resident.")
 	..()

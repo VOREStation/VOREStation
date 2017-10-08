@@ -150,3 +150,10 @@
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE
+
+/datum/planet/sif
+	expected_z_levels = list(
+		Z_LEVEL_SURFACE,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SURFACE_WILD
+	)

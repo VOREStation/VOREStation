@@ -2,7 +2,7 @@
 
 	//drop && roll
 	if(on_fire && !buckled)
-		fire_stacks -= 1.2
+		adjust_fire_stacks(-1.2)
 		Weaken(3)
 		spin(32,2)
 		visible_message(
@@ -66,38 +66,43 @@
 		drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
-	if(!canClick())
-		return
+	//if(!(last_special <= world.time)) return
 
+	//This line represent a significant buff to grabs...
+	// We don't have to check the click cooldown because /mob/living/verb/resist() has done it for us, we can simply set the delay
 	setClickCooldown(100)
 
 	if(can_break_cuffs()) //Don't want to do a lot of logic gating here.
 		break_legcuffs()
 		return
 
-	var/obj/item/weapon/legcuffs/HC = legcuffed
+	var/obj/item/weapon/handcuffs/legcuffs/LC = legcuffed
 
-	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
+	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/handcuffs/legcuffs type
 	var/breakouttime = 1200
 	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
-	if(istype(HC))
-		breakouttime = HC.breakouttime
+	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
+	if(istype(LC))
+		breakouttime = LC.breakouttime
 		displaytime = breakouttime / 600 //Minutes
 
+	var/mob/living/carbon/human/H = src
+	if(istype(H) && H.shoes && istype(H.shoes,/obj/item/clothing/shoes/magboots/rig))
+		breakouttime /= 2
+		displaytime /= 2
+
 	visible_message(
-		"<span class='danger'>[usr] attempts to remove \the [HC]!</span>",
-		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
+		"<span class='danger'>\The [src] attempts to remove \the [LC]!</span>",
+		"<span class='warning'>You attempt to remove \the [LC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
 		)
 
-	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
-		if(!legcuffed || buckled)
+	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
+		if(!legcuffed)
 			return
 		visible_message(
-			"<span class='danger'>[src] manages to remove \the [legcuffed]!</span>",
+			"<span class='danger'>\The [src] manages to remove \the [legcuffed]!</span>",
 			"<span class='notice'>You successfully remove \the [legcuffed].</span>"
 			)
-
 		drop_from_inventory(legcuffed)
 		legcuffed = null
 		update_inv_legcuffed()
