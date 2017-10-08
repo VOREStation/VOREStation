@@ -37,7 +37,7 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		/obj/item/weapon/permit/gun/fluff/tasald_corlethian,
+		/obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian,
 		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
@@ -94,7 +94,7 @@
 		new /obj/item/weapon/card/id/centcom/fluff/joanbadge(src)
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
-		new /obj/item/weapon/permit/gun/fluff/joanrisu(src)
+		new /obj/item/clothing/accessory/permit/gun/fluff/joanrisu(src)
 		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
@@ -173,7 +173,7 @@
 		..() //Might look like a lot... but all small items.
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
-		new /obj/item/weapon/permit/gun/fluff/aronai_kadigan(src)
+		new /obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan(src)
 		//Gun and holster
 		new /obj/item/weapon/gun/projectile/nsfw(src)
 		new /obj/item/ammo_magazine/nsfw_mag(src)
@@ -189,19 +189,19 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/ammo_magazine/m9mm/flash,
 		/obj/item/ammo_magazine/m9mm/flash,
-		/obj/item/weapon/permit/gun/fluff/sebastian_aji)
+		/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji)
 
 /obj/item/weapon/storage/box/fluff/briana_moore
 	name = "Briana's Derringer Box"
 	has_items = list(
 		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
-		/obj/item/weapon/permit/gun/fluff/briana_moore)
+		/obj/item/clothing/accessory/permit/gun/fluff/briana_moore)
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/weapon/storage/box/fluff/serdykov_antoz
 	name = "Serdy's Weapon Box"
 	has_items = list(
-		/obj/item/weapon/permit/gun/fluff/silencedmp5a5,
+		/obj/item/clothing/accessory/permit/gun/fluff/silencedmp5a5,
 		/obj/item/weapon/gun/projectile/colt/fluff/serdy)
 
 //BeyondMyLife: Ne'tra Ky'ram //Made a box because they have so many items that it'd spam the debug log.

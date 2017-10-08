@@ -240,7 +240,7 @@
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	base_color = "#006666"
-/* //VOREStation Removal Start
+
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120
@@ -253,13 +253,11 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	reagent_tag = IS_SKRELL
+	//reagent_tag = IS_SKRELL //VOREStation Edit
 
 	breath_heat_level_1 = 400	//Default 380 - Higher is better
 	breath_heat_level_2 = 500	//Default 450
 	breath_heat_level_3 = 1350	//Default 1250
-
-*/ //VOREStation End
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
