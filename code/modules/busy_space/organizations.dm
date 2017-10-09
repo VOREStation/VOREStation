@@ -73,6 +73,24 @@
 	motto = ""
 
 	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response")
+	//Scientist naming scheme
+	ship_names = list(
+		"Bardeen",
+		"Einstein",
+		"Feynman",
+		"Sagan",
+		"Tyson",
+		"Galilei",
+		"Tesla",
+		"Edision",
+		"Cavendish",
+		"Nye",
+		"Hawking",
+		"Aristotle",
+		"Von Braun",
+		"Kaku",
+		"Oppenheimer"
+		)
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
@@ -110,6 +128,24 @@
 	motto = ""
 
 	ship_prefixes = list("HTV" = "freight", "HTV" = "munitions resupply")
+	//War God/Soldier Theme
+	ship_names = list(
+		"Ares",
+		"Athena",
+		"Grant",
+		"Custer",
+		"Puller",
+		"Nike",
+		"Bellona",
+		"Leonides",
+		"Bast",
+		"Jackson",
+		"Lee",
+		"Annan",
+		"Chi Yu",
+		"Shiva",
+		"Tyr"
+		)
 	destination_names = list(
 		"a SolGov dockyard on Luna",
 		"a Fleet outpost in the Almach Rim",
@@ -289,9 +325,16 @@
 		"Nothing To Declare",
 		"Sneaking Suspicion",
 		"Bass Ackwards",
-		"Good Things Come to Those Who Freight"
-
-
+		"Good Things Come to Those Who Freight",
+		"Redundant Morality",
+		"Synthetic Goodwill",
+		"Your Ad Here",
+		"What Are We Plotting?",
+		"Set Phasers To Stun",
+		"Preemptive Defensive Strike",
+		"This Ship Is Spiders",
+		"Legitimate Trade Vessel",
+		"Please Don't Explode II"
 		)
 	destination_names = list(
 		"A trade outpost in Shelf"
