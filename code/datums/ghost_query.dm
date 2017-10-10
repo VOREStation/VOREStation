@@ -100,6 +100,13 @@
 	check_bans = list("AI", "Cyborg")
 	cutoff_number = 1
 
+/datum/ghost_query/gravekeeper_drone
+	role_name = "Gravekeeper Drone"
+	question = "A gravekeeper drone is about to reactivate and tend to its gravesite. Would you like to play as the drone?"
+	be_special_flag = BE_AI
+	check_bans = list("AI", "Cyborg")
+	cutoff_number = 1
+
 /datum/ghost_query/lost_passenger
 	role_name = "Lost Passenger"
 	question = "A person suspended in cryosleep has been discovered by a crewmember \

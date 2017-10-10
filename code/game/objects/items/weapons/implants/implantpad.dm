@@ -82,7 +82,7 @@
 			if (href_list["tracking_id"])
 				var/obj/item/weapon/implant/tracking/T = src.case.imp
 				T.id += text2num(href_list["tracking_id"])
-				T.id = min(100, T.id)
+				T.id = min(1000, T.id)
 				T.id = max(1, T.id)
 
 			if (istype(src.loc, /mob))

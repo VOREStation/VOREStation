@@ -99,6 +99,17 @@
 		/obj/item/weapon/grown
 		)
 
+/obj/item/weapon/gripper/gravekeeper	//Used for handling grave things, flowers, etc.
+	name = ""
+	icon_state = "gripper"
+	desc = "A specialized grasping tool used in the preparation and maintenance of graves."
+
+	can_hold = list(
+		/obj/item/seeds,
+		/obj/item/weapon/grown,
+		/obj/item/weapon/material/gravemarker
+		)
+
 /obj/item/weapon/gripper/no_use/organ
 	name = "organ gripper"
 	icon_state = "gripper-flesh"

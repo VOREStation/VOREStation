@@ -56,11 +56,21 @@
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120
 
+	breath_cold_level_1 = 260	//Default 240 - Lower is better
+	breath_cold_level_2 = 200	//Default 180
+	breath_cold_level_3 = 120	//Default 100
+
 	heat_level_1 = 420 //Default 360 - Higher is better
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
+	breath_heat_level_1 = 450	//Default 380 - Higher is better
+	breath_heat_level_2 = 530	//Default 450
+	breath_heat_level_3 = 1400	//Default 1250
+
 	minimum_breath_pressure = 18	//Bigger, means they need more air
+
+	body_temperature = T20C
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -123,6 +133,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
 	slowdown = -0.5
+	snow_movement = -1		//Ignores half of light snow
 	brute_mod = 1.15
 	burn_mod =  1.15
 	flash_mod = 1.1
@@ -142,13 +153,23 @@
 	governments, something that permeates even to today's times. They prefer colder, tundra-like climates, much like their \
 	home worlds and speak a variety of languages, especially Siik and Akhani."
 
+	body_temperature = 320.15	//Even more cold resistant, even more flammable
+
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
 	cold_level_3 = 80  //Default 120
 
+	breath_cold_level_1 = 180	//Default 240 - Lower is better
+	breath_cold_level_2 = 100	//Default 180
+	breath_cold_level_3 = 60	//Default 100
+
 	heat_level_1 = 330 //Default 360
 	heat_level_2 = 380 //Default 400
 	heat_level_3 = 800 //Default 1000
+
+	breath_heat_level_1 = 360	//Default 380 - Higher is better
+	breath_heat_level_2 = 430	//Default 450
+	breath_heat_level_3 = 1000	//Default 1250
 
 	primitive_form = "Farwa"
 
@@ -166,6 +187,7 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+
 	cold_discomfort_level = 275
 
 	has_organ = list(    //No appendix.
@@ -198,6 +220,8 @@
 	name_language = LANGUAGE_SKRELLIAN
 	health_hud_intensity = 2
 
+	water_movement = -3
+
 	min_age = 19
 	max_age = 130
 
@@ -218,9 +242,17 @@
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120
 
+	breath_cold_level_1 = 250	//Default 240 - Lower is better
+	breath_cold_level_2 = 190	//Default 180
+	breath_cold_level_3 = 120	//Default 100
+
 	heat_level_1 = 420 //Default 360 - Higher is better
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
+
+	breath_heat_level_1 = 400	//Default 380 - Higher is better
+	breath_heat_level_2 = 500	//Default 450
+	breath_heat_level_3 = 1350	//Default 1250
 
 	reagent_tag = IS_SKRELL
 
@@ -250,6 +282,8 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/diona)
 	//primitive_form = "Nymph"
 	slowdown = 5
+	snow_movement = -2 	//Ignore light snow
+	water_movement = -4	//Ignore shallow water
 	rarity_value = 3
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3

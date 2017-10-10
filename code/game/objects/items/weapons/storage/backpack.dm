@@ -180,6 +180,11 @@
 	desc = "A large dufflebag for holding extra tools and supplies."
 	icon_state = "duffle_eng"
 
+/obj/item/weapon/storage/backpack/dufflebag/sci
+	name = "science dufflebag"
+	desc = "A large dufflebag for holding circuits and beakers."
+	icon_state = "duffle_sci"
+
 /*
  * Satchel Types
  */
