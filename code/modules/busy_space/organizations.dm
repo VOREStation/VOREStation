@@ -169,6 +169,22 @@
 	motto = ""
 
 	ship_prefixes = list("VTV" = "transportation", "VMV" = "medical resupply")
+	// Diona names
+	ship_names = list(
+		"Wind That Stirs The Waves",
+		"Sustained Note Of Metal",
+		"Bright Flash Reflecting Off Glass",
+		"Veil Of Mist Concealing The Rock",
+		"Thin Threads Intertwined",
+		"Clouds Drifting Amid Storm",
+		"Loud Note And Breaking",
+		"Endless Vistas Expanding Before The Void",
+		"Fire Blown Out By Wind",
+		"Star That Fades From View",
+		"Eyes Which Turn Inwards",
+		"Joy Without Which The World Would Come Undone",
+		"A Thousand Thousand Planets Dangling From Branches"
+		)
 	destination_names = list(
 		"a research facility in Samsara",
 		"a SDTF near Ue-Orsi",
