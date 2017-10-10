@@ -83,7 +83,7 @@
 	key = "k"
 	space_chance = 30
 	flags = WHITELISTED
-	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!", "'")
+	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
 /datum/language/human
 	name = LANGUAGE_SOL_COMMON

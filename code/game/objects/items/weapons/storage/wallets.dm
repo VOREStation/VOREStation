@@ -24,7 +24,7 @@
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/screwdriver,
 		/obj/item/weapon/stamp,
-		/obj/item/weapon/permit
+		/obj/item/clothing/accessory/permit
 		)
 	slot_flags = SLOT_ID
 

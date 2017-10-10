@@ -204,6 +204,7 @@ var/list/gear_datums = list()
 	var/whitelisted        //Term to check the whitelist for..
 	var/sort_category = "General"
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.
+	var/exploitable = 0		//Does it go on the exploitable information list?
 
 /datum/gear/New()
 	..()
