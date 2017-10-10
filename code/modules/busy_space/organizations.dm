@@ -78,7 +78,7 @@
 	destination_names = list(
 		"NSS Exodus in Nyx",
 		"NCS Northern Star in Vir",
-		"NCS Southern Cross in Vir",
+		"NLS Southern Cross in Vir",
 		"NDV Icarus in Nyx",
 		"NAS Vir Central Command",
 		"a dockyard orbiting Sif",
