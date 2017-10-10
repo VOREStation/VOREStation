@@ -22,6 +22,9 @@
 
 	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
+/mob/living/silicon/robot/lost/speech_bubble_appearance()
+	return "synthetic_evil"
+
 /mob/living/silicon/robot/lost/randomlaws
 
 /mob/living/silicon/robot/lost/randomlaws/init()

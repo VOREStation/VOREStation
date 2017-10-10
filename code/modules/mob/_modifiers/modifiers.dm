@@ -123,7 +123,7 @@
 // Removes all modifiers of a type
 /mob/living/proc/remove_modifiers_of_type(var/modifier_type, var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)
-		if(istype(M, modifier_type))
+		if(ispath(M.type, modifier_type))
 			M.expire(silent)
 
 // Removes all modifiers, useful if the mob's being deleted
