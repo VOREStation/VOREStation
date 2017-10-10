@@ -24,7 +24,7 @@
 	has the words 'Don't Panic' in small, friendly letters on the cover."
 	icon_state = "codex"
 	root_type = /datum/lore/codex/category/main_vir_lore
-
+/* //VORESTATION REMOVAL
 // Combines SOP/Regs/Law
 /obj/item/weapon/book/codex/corp_regs
 	name = "NanoTrasen Regulatory Compendium"
@@ -33,3 +33,4 @@
 	icon_state = "corp_regs"
 	root_type = /datum/lore/codex/category/main_corp_regs
 	throwforce = 5 // Throw the book at 'em.
+*/

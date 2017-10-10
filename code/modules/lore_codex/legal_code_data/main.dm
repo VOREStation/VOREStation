@@ -1,3 +1,5 @@
+
+/* //VORESTATION REMOVAL
 /datum/lore/codex/category/main_corp_regs // The top-level categories for SOP/Regs/Law/etc
 	name = "Index"
 	data = "This book is meant to act as a reference for both NanoTrasen regulations, Standard Operating Procedure, and important laws of both \
@@ -44,7 +46,7 @@
 	<br><br>\
 	<h3>Comments:</h3>\
 	[notes]"
-
+*/
 // Autogenerates a table which will resemble the traditional wiki table.
 /datum/lore/codex/page/overview
 	name = "Overview"
