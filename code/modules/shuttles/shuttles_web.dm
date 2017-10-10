@@ -82,7 +82,7 @@
 
 
 	//Docking
-		dat += "<center><br><br>"
+		dat += "<br><br>"
 		if(WS.skip_docking_checks())
 			dat += "Docking Status: <font color='grey'>Not in use.</font>"
 		else
