@@ -72,6 +72,7 @@
 			spawn_types = list(/mob/living/simple_animal/lizard)
 			max_number = 6
 			vermstring = "lizards"
+/*
 		if(VERM_SPIDERS)
 			spawn_types = list(/obj/effect/spider/spiderling)
 			max_number = 3
@@ -91,6 +92,7 @@
 				var/spawn_type = pick(spawn_types)
 				new spawn_type(T)
 
+*/
 
 /datum/event/infestation/announce()
 	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
