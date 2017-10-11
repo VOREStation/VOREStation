@@ -17,6 +17,9 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(vessel)
 		return
 
+	if(species.flags & NO_BLOOD)
+		return
+
 	vessel = new/datum/reagents(species.blood_volume)
 	vessel.my_atom = src
 
