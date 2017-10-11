@@ -16,6 +16,7 @@
 	var/openpanel = 0					// Is the vore panel open?
 	var/conceal_nif = 0					// Do they wish to conceal their NIF from examine?
 	var/nif_examine = "There's a certain spark to their eyes" //The examine text of their NIF. This is the default placeholder.
+	var/noisy = 0						// Toggle audible hunger.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -177,6 +178,15 @@
 		var/datum/belly/B = vore_organs[I]
 		if(B.internal_contents.len)
 			B.process_Life() //AKA 'do bellymodes_vr.dm'
+
+	if(noisy > 0 && nutrition < 100 && prob(10))
+		var/growlsound = pick(hunger_sounds)
+		if(nutrition < 50)
+			for(var/mob/hearer in range(1,src))
+				hearer << sound(growlsound,volume=18)
+		else
+			for(var/mob/hearer in range(1,src))
+				hearer << sound(growlsound,volume=6)
 
 	if(air_master.current_cycle%90 != 1) return //Occasionally do supercleanups.
 	for (var/I in vore_organs)
