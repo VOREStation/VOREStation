@@ -183,10 +183,10 @@
 		var/growlsound = pick(hunger_sounds)
 		if(nutrition < 50)
 			for(var/mob/hearer in range(1,src))
-				hearer << sound(growlsound,volume=30)
+				hearer << sound(growlsound,volume=80)
 		else
 			for(var/mob/hearer in range(1,src))
-				hearer << sound(growlsound,volume=15)
+				hearer << sound(growlsound,volume=35)
 
 	if(air_master.current_cycle%90 != 1) return //Occasionally do supercleanups.
 	for (var/I in vore_organs)
