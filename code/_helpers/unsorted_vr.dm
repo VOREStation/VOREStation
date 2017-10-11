@@ -29,13 +29,9 @@
 	if(!total || !isnum(total))
 		return
 
-	var/part1
-	var/part2
-	var/part3
-
-	part1 = rand(0,total)
-	part2 = rand(0,total)
-	part3 = total-(part1+part2)
+	var/part1 = rand(0,total)
+	var/part2 = rand(0,total)
+	var/part3 = total-(part1+part2)
 
 	if(part3<0)
 		part1 = total-part1
