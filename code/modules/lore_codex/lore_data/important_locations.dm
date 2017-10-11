@@ -91,7 +91,7 @@
 
 /datum/lore/codex/page/southern_cross/add_content()
 	name = "Southern Cross (Artificial Satellite)"
-	keywords += list("Southern Cross")
+	keywords += list("Southern Cross", "NLS Southern Cross")
 	data = "The Southern Cross is a telecommunications and supply hub for [quick_link("NanoTrasen")], named after it's companion satellite, the \
 	[quick_link("Northern Star")].  It acts as a logistics hub for the smaller installations NanoTrasen has in Sif orbit and on the surface."
 

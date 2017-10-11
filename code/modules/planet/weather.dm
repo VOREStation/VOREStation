@@ -59,6 +59,7 @@
 	var/temp_low = T0C
 	var/light_modifier = 1.0 // Lower numbers means more darkness.
 	var/light_color = null // If set, changes how the day/night light looks.
+	var/flight_falure_modifier = 0 // Some types of weather make flying harder, and therefore make crashes more likely.
 	var/transition_chances = list() // Assoc list
 	var/datum/weather_holder/holder = null
 

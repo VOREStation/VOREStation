@@ -174,6 +174,7 @@ datum/weather/sif
 	temp_high = T0C		// 0c
 	temp_low = 243.15	// -30c
 	light_modifier = 0.5
+	flight_falure_modifier = 5
 	transition_chances = list(
 		WEATHER_LIGHT_SNOW = 20,
 		WEATHER_SNOW = 50,
@@ -197,6 +198,7 @@ datum/weather/sif
 	temp_high = 233.15 // -40c
 	temp_low = 213.15  // -60c
 	light_modifier = 0.3
+	flight_falure_modifier = 10
 	transition_chances = list(
 		WEATHER_SNOW = 45,
 		WEATHER_BLIZZARD = 40,
@@ -232,7 +234,7 @@ datum/weather/sif
 			if(!T.outdoors)
 				return // They're indoors, so no need to rain on them.
 
-			L.adjust_fire_stacks(-5)
+			L.water_act(1)
 			to_chat(L, "<span class='warning'>Rain falls on you.</span>")
 
 /datum/weather/sif/storm
@@ -241,6 +243,7 @@ datum/weather/sif
 	temp_high = 243.15 // -30c
 	temp_low = 233.15  // -50c
 	light_modifier = 0.3
+	flight_falure_modifier = 10
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 40,
@@ -255,7 +258,7 @@ datum/weather/sif
 			if(!T.outdoors)
 				return // They're indoors, so no need to rain on them.
 
-			L.adjust_fire_stacks(-10)
+			L.water_act(2)
 			to_chat(L, "<span class='warning'>Rain falls on you, drenching you in water.</span>")
 
 /datum/weather/sif/hail
@@ -264,6 +267,7 @@ datum/weather/sif
 	temp_high = T0C		// 0c
 	temp_low = 243.15	// -30c
 	light_modifier = 0.3
+	flight_falure_modifier = 15
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 10,
@@ -295,6 +299,7 @@ datum/weather/sif
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
+	flight_falure_modifier = 25
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100
 		)
