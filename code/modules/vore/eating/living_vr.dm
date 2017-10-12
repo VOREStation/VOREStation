@@ -231,6 +231,8 @@
 	P.digestable = src.digestable
 	P.belly_prefs = src.vore_organs
 	P.vore_taste = src.vore_taste
+	P.nif_examine = src.nif_examine
+	P.conceal_nif = src.conceal_nif
 
 	return 1
 
@@ -247,6 +249,8 @@
 	src.digestable = P.digestable
 	src.vore_organs = list()
 	src.vore_taste = P.vore_taste
+	src.nif_examine = P.nif_examine
+	src.conceal_nif = P.conceal_nif
 
 	for(var/I in P.belly_prefs)
 		var/datum/belly/Bp = P.belly_prefs[I]
