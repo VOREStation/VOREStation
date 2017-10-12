@@ -80,6 +80,10 @@ List of things solar grubs should be able to do:
 		if(attached)
 			if(prob(2))
 				src.visible_message("<span class='notice'>\The [src] begins to sink power from the net.</span>")
+			if(prob(5))
+				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+				sparks.set_up(5, 0, get_turf(src))
+				sparks.start()
 			anchored = 1
 			PN = attached.powernet
 			PN.draw_power(150000)
@@ -114,4 +118,11 @@ List of things solar grubs should be able to do:
 
 /mob/living/simple_animal/retaliate/solargrub/death()
 	src.anchored = 0
+	set_light(0)
 	..()
+
+/mob/living/simple_animal/retaliate/solargrub/handle_light()
+	. = ..()
+	if(. == 0 && !is_dead())
+		set_light(2.5, 1, COLOR_YELLOW)
+		return 1
