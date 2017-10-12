@@ -481,6 +481,24 @@ item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 
 {
 ckey: natje
+character_name: Awen Henry
+item_path: /obj/item/clothing/head/fluff/awoo
+}
+
+{
+ckey: natje
+character_name: Awen Henry
+item_path: /obj/item/clothing/shoes/fluff/awoo
+}
+
+{
+ckey: natje
+character_name: Awen Henry
+item_path: /obj/item/clothing/under/fluff/awoo
+}
+
+{
+ckey: natje
 character_name: Pumila
 item_path: /obj/item/clothing/under/fluff/aluranevines
 }

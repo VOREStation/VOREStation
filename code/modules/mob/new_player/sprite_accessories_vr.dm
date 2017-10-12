@@ -10,6 +10,11 @@
 	var/color_blend_mode = ICON_MULTIPLY
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the default hairstyles.
 
+	awoohair
+		name = "Shoulder-length Messy"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "momijihair"
+		
 	citheronia
 		name = "Citheronia Hair (Kira72)"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -738,3 +743,13 @@
 		icon_state = "osocks"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_L_LEG)
+
+	animeeyesinner
+		name = "Anime Eyes Inner"
+		icon_state = "animeeyesinner"
+		body_parts = list(BP_HEAD)
+		
+	animeeyesouter
+		name = "Anime Eyes Outer"
+		icon_state = "animeeyesouter"
+		body_parts = list(BP_HEAD)
