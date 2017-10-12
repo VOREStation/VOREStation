@@ -39,10 +39,11 @@
 
 		// Do some reagent processing.
 		if(owner.chem_effects[CE_ALCOHOL_TOXIC])
+			take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
+			if(filter_effect < 2)	//Liver is badly damaged, you're drinking yourself to death
+				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.2 * PROCESS_ACCURACY)
 			if(filter_effect < 3)
 				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY)
-			else
-				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
 
 /obj/item/organ/internal/liver/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer

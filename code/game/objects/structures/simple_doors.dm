@@ -42,7 +42,7 @@
 /obj/structure/simple_door/Destroy()
 	processing_objects -= src
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/structure/simple_door/get_material()
 	return material
@@ -193,6 +193,9 @@
 
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
 	..(newloc, "wood")
+
+/obj/structure/simple_door/sifwood/New(var/newloc,var/material_name)
+	..(newloc, "alien wood")
 
 /obj/structure/simple_door/resin/New(var/newloc,var/material_name)
 	..(newloc, "resin")

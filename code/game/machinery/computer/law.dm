@@ -31,7 +31,7 @@
 			return
 		if(istype(O, /obj/item/weapon/aiModule))
 			var/obj/item/weapon/aiModule/M = O
-			M.install(src)
+			M.install(src, user)
 		else
 			..()
 

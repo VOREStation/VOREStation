@@ -287,12 +287,20 @@
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
+	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215)
 	if(prob(1))
 		M.emote("shiver")
 	if(istype(M, /mob/living/simple_animal/slime))
 		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 	holder.remove_reagent("capsaicin", 5)
+
+/datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
+	name = "Cryotoxin"
+	id = "cryotoxin"
+	description = "Lowers the body's internal temperature."
+	reagent_state = LIQUID
+	color = "#B31008"
+	metabolism = REM * 0.5
 
 /datum/reagent/capsaicin
 	name = "Capsaicin Oil"

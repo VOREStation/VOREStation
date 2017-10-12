@@ -43,6 +43,17 @@
 	var/poison_per_bite = 5
 	var/poison_chance = 10
 	var/poison_type = "spidertoxin"
+	var/image/eye_layer = null
+
+/mob/living/simple_animal/hostile/giant_spider/proc/add_eyes()
+	if(!eye_layer)
+		var/overlay_layer = LIGHTING_LAYER+0.1
+		eye_layer = image(icon, "[icon_state]-eyes", overlay_layer)
+
+	overlays += eye_layer
+
+/mob/living/simple_animal/hostile/giant_spider/proc/remove_eyes()
+	overlays -= eye_layer
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/giant_spider/nurse
@@ -61,6 +72,7 @@
 
 	var/fed = 0
 	var/atom/cocoon_target
+	var/egg_inject_chance = 5
 
 //hunters have the most poison and move the fastest, so they can find prey
 /mob/living/simple_animal/hostile/giant_spider/hunter
@@ -96,33 +108,43 @@
 
 /mob/living/simple_animal/hostile/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
+	add_eyes()
 	..()
 
-/mob/living/simple_animal/hostile/giant_spider/PunchTarget()
-	. = ..()
-	if(isliving(.))
-		var/mob/living/L = .
-		if(L.reagents)
-			L.reagents.add_reagent(poison_type, poison_per_bite)
-			if(prob(poison_chance))
-				L << "<span class='warning'>You feel a tiny prick.</span>"
-				L.reagents.add_reagent(poison_type, poison_per_bite)
+/mob/living/simple_animal/hostile/giant_spider/death()
+	remove_eyes()
+	..()
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/PunchTarget()
+/mob/living/simple_animal/hostile/giant_spider/DoPunch(var/atom/A)
 	. = ..()
-	if(ishuman(.))
-		var/mob/living/carbon/human/H = .
-		if(prob(5))
-			var/obj/item/organ/external/O = pick(H.organs)
-			if(!(O.robotic >= ORGAN_ROBOT))
-				var/eggcount
-				for(var/obj/I in O.implants)
-					if(istype(I, /obj/effect/spider/eggcluster))
-						eggcount ++
-				if(!eggcount)
-					var/eggs = new /obj/effect/spider/eggcluster/small(O, src)
-					O.implants += eggs
-					H << "<span class='warning'>The [src] injects something into your [O.name]!</span>"
+	if(.) // If we succeeded in hitting.
+		if(isliving(A))
+			var/mob/living/L = A
+			if(L.reagents)
+				var/target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
+				if(L.can_inject(src, null, target_zone))
+					L.reagents.add_reagent(poison_type, poison_per_bite)
+					if(prob(poison_chance))
+						to_chat(L, "<span class='warning'>You feel a tiny prick.</span>")
+						L.reagents.add_reagent(poison_type, poison_per_bite)
+
+/mob/living/simple_animal/hostile/giant_spider/nurse/DoPunch(var/atom/A)
+	. = ..()
+	if(.) // If we succeeded in hitting.
+		if(ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(prob(egg_inject_chance))
+				var/target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
+				if(H.can_inject(src, null, target_zone))
+					var/obj/item/organ/external/O = H.get_organ(target_zone)
+					var/eggcount
+					for(var/obj/I in O.implants)
+						if(istype(I, /obj/effect/spider/eggcluster))
+							eggcount ++
+					if(!eggcount)
+						var/eggs = new /obj/effect/spider/eggcluster/small(O, src)
+						O.implants += eggs
+						to_chat(H, "<font size='3'><span class='warning'>\The [src] injects something into your [O.name]!</span></font>")
 
 /mob/living/simple_animal/hostile/giant_spider/handle_stance()
 	. = ..()

@@ -37,7 +37,7 @@
 		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 12),
 		)
 
-obj/item/weapon/gun/energy/retro
+/obj/item/weapon/gun/energy/retro
 	name = "retro laser"
 	icon_state = "retro"
 	item_state = "retro"
@@ -47,6 +47,10 @@ obj/item/weapon/gun/energy/retro
 	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
+
+/obj/item/weapon/gun/energy/retro/mounted
+	self_recharge = 1
+	use_external_power = 1
 
 /obj/item/weapon/gun/energy/captain
 	name = "antique laser gun"

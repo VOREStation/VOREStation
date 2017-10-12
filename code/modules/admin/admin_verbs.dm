@@ -213,7 +213,8 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/view_runtimes,
 	/client/proc/show_gm_status,
 	/datum/admins/proc/change_weather,
-	/datum/admins/proc/change_time
+	/datum/admins/proc/change_time,
+	/client/proc/admin_give_modifier
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -663,6 +664,29 @@ var/list/admin_verbs_mentor = list(
 	feedback_add_details("admin_verb","GD2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
 	message_admins("<font color='blue'>[key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].</font>", 1)
+
+/client/proc/admin_give_modifier(var/mob/living/L)
+	set category = "Debug"
+	set name = "Give Modifier"
+	set desc = "Makes a mob weaker or stronger by adding a specific modifier to them."
+
+	if(!L)
+		to_chat(usr, "<span class='warning'>Looks like you didn't select a mob.</span>")
+		return
+
+	var/list/possible_modifiers = typesof(/datum/modifier) - /datum/modifier
+
+	var/new_modifier_type = input("What modifier should we add to [L]?", "Modifier Type") as null|anything in possible_modifiers
+	if(!new_modifier_type)
+		return
+	var/duration = input("How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration") as num
+	if(duration == 0)
+		duration = null
+	else
+		duration = duration SECONDS
+
+	L.add_modifier(new_modifier_type, duration)
+	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].")
 
 /client/proc/make_sound(var/obj/O in world) // -- TLE
 	set category = "Special Verbs"

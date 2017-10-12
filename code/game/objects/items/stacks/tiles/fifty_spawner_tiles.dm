@@ -2,48 +2,48 @@
 
 /obj/fiftyspawner/grass
 	name = "stack of grass"
-	material = "tile/grass"
+	type_to_spawn = /obj/item/stack/tile/grass
 
 /obj/fiftyspawner/wood
 	name = "stack of wood"
-	material = "tile/wood"
+	type_to_spawn = /obj/item/stack/tile/wood
 
 /obj/fiftyspawner/carpet
 	name = "stack of carpet"
-	material = "tile/carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet
 
 /obj/fiftyspawner/bluecarpet
 	name = "stack of blue carpet"
-	material = "tile/carpet/blue"
+	type_to_spawn = /obj/item/stack/tile/carpet/blue
 
 /obj/fiftyspawner/floor
 	name = "stack of floor tiles"
-	material = "tile/floor"
+	type_to_spawn = /obj/item/stack/tile/floor
 
 /obj/fiftyspawner/floor_red
 	name = "stack of red floor tiles"
-	material = "tile/floor_red"
+	type_to_spawn = /obj/item/stack/tile/floor/red
 
 /obj/fiftyspawner/floor_steel
 	name = "stack of steel floor tiles"
-	material = "tile/floor_steel"
+	type_to_spawn = /obj/item/stack/tile/floor/steel
 
 /obj/fiftyspawner/floor_white
 	name = "stack of white floor tiles"
-	material = "tile/floor_white"
+	type_to_spawn = /obj/item/stack/tile/floor/white
 
 /obj/fiftyspawner/floor_yellow
 	name = "stack of yellow floor tiles"
-	material = "tile/floor_yellow"
+	type_to_spawn = /obj/item/stack/tile/floor/yellow
 
 /obj/fiftyspawner/floor_dark
 	name = "stack of dark floor tiles"
-	material = "tile/floor_dark"
+	type_to_spawn = /obj/item/stack/tile/floor/dark
 
 /obj/fiftyspawner/floor_freezer
 	name = "stack of freezer tiles"
-	material = "tile/floor_freezer"
+	type_to_spawn = /obj/item/stack/tile/floor/freezer
 
 /obj/fiftyspawner/linoleum
 	name = "stack of linoleum tiles"
-	material = "tile/linoleum"
+	type_to_spawn = /obj/item/stack/tile/linoleum

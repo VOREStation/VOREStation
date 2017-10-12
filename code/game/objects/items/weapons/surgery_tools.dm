@@ -8,10 +8,6 @@
  *		Circular Saw
  */
 
-/*
- * Retractor
- */
-
 /obj/item/weapon/surgical
 	name = "Surgical tool"
 	desc = "This shouldn't be here, ahelp it."
@@ -25,10 +21,13 @@
 		return 0
 	..()
 
+/*
+ * Retractor
+ */
+
 /obj/item/weapon/surgical/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
-	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
@@ -167,9 +166,82 @@
 /obj/item/weapon/surgical/bonesetter
 	name = "bone setter"
 	desc = "Put them in their place."
-	icon_state = "bone setter"
+	icon_state = "bone_setter"
 	force = 8.0
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
+
+/obj/item/weapon/surgical/bone_clamp
+	name = "bone clamp"
+	desc = "The best way to get a bone fixed fast."
+	icon_state = "bone_clamp"
+	force = 8
+	throwforce = 9
+	throw_speed = 3
+	throw_range = 5
+	attack_verb = list("attacked", "hit", "bludgeoned")
+
+// Cyborg Tools
+
+/obj/item/weapon/surgical/retractor/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/hemostat/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/cautery/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/surgicaldrill/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/scalpel/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/circular_saw/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/bonegel/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/FixOVein/cyborg
+	toolspeed = 0.5
+
+/obj/item/weapon/surgical/bonesetter/cyborg
+	toolspeed = 0.5
+
+
+// Alien Tools
+/obj/item/weapon/surgical/retractor/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/hemostat/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/cautery/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/surgicaldrill/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/scalpel/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/circular_saw/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/FixOVein/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.25
+
+/obj/item/weapon/surgical/bone_clamp/alien
+	icon = 'icons/obj/abductor.dmi'
+	toolspeed = 0.75

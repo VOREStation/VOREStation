@@ -678,7 +678,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!check_rights(0))	return
 
 	//This is basically how death alarms do it
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/ert(null)
+	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/omni(null)
 
 	var/channel = input("Channel for message:","Channel", null) as null|anything in (list("Common") + a.keyslot2.channels) // + a.keyslot1.channels
 

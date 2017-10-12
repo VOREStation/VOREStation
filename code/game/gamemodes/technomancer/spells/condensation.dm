@@ -2,6 +2,7 @@
 	name = "Condensation"
 	desc = "This causes rapid formation of liquid at the target, causing floors to become wet, entities to be soaked, and fires \
 	to be extinguished.  You can also fill contains with water if they are targeted directly."
+	enhancement_desc = "Floors affected by condensation will also freeze."
 	ability_icon_state = "tech_condensation"
 	cost = 50
 	obj_path = /obj/item/weapon/spell/condensation
@@ -30,7 +31,14 @@
 						W.set_color()
 						W.set_up(desired_turf)
 						flick(initial(icon_state),W) // Otherwise pooling causes the animation to stay stuck at the end.
-			log_and_message_admins("has wetted the floor with [src] at [T.x],[T.y],[T.z].")
-		else if(hit_atom.reagents && !ismob(hit_atom))
+						if(check_for_scepter())
+							if(istype(desired_turf, /turf/simulated))
+								var/turf/simulated/frozen = desired_turf
+								frozen.freeze_floor()
+			if(check_for_scepter())
+				log_and_message_admins("has iced the floor with [src] at [T.x],[T.y],[T.z].")
+			else
+				log_and_message_admins("has wetted the floor with [src] at [T.x],[T.y],[T.z].")
+		else if(hit_atom.reagents && !ismob(hit_atom))		//TODO: Something for the scepter
 			hit_atom.reagents.add_reagent(id = "water", amount = 60, data = null, safety = 0)
 		adjust_instability(5)

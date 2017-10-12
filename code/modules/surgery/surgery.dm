@@ -127,7 +127,8 @@
 
 				// Not staying still fails you too.
 				if(success)
-					if(!do_mob(user, M, rand(S.min_duration, S.max_duration)))
+					var/calc_duration = rand(S.min_duration, S.max_duration)
+					if(!do_mob(user, M, calc_duration * toolspeed))
 						success = FALSE
 						to_chat(user, "<span class='warning'>You must remain close to your patient to conduct surgery.</span>")
 

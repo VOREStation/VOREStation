@@ -146,3 +146,22 @@
 			underlays += I
 		else continue
 		side = "right"
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/afterattack(var/obj/target, var/mob/user, var/proximity)
+	if(user.a_intent == I_HURT) //We only want splashing to be done if they are on harm intent.
+		if(!is_open_container() || !proximity)
+			return 1
+		if(standard_splash_mob(user, target))
+			return 1
+		if(reagents && reagents.total_volume) //They are on harm intent, aka wanting to spill it.
+			user << "<span class='notice'>You splash the solution onto [target].</span>"
+			reagents.splash(target, reagents.total_volume)
+			return 1
+	else
+		return
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/standard_feed_mob(var/mob/user, var/mob/target)
+	if(afterattack(target, user)) //Check to see if harm intent & splash.
+		return
+	else
+		..() //If they're splashed, no need to do anything else.

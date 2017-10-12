@@ -22,7 +22,7 @@
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/weapon/gun/energy/netgun,
 		/obj/item/weapon/gun/projectile/pirate,
-		/obj/item/weapon/permit,
+		/obj/item/clothing/accessory/permit/gun,
 		/obj/item/weapon/gun/projectile/dartgun
 		)
 

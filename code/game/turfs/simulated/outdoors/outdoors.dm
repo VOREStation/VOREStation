@@ -34,6 +34,26 @@ var/list/outdoor_turfs = list()
 		planet_controller.unallocateTurf(src)
 	..()
 
+/turf/simulated/proc/make_outdoors()
+	outdoors = TRUE
+	outdoor_turfs.Add(src)
+
+/turf/simulated/proc/make_indoors()
+	outdoors = FALSE
+	planet_controller.unallocateTurf(src)
+	qdel(weather_overlay)
+	update_icon()
+
+/turf/simulated/post_change()
+	..()
+	// If it was outdoors and still is, it will not get added twice when the planet controller gets around to putting it in.
+	if(outdoors)
+		make_outdoors()
+	//	outdoor_turfs += src
+	else
+		make_indoors()
+	//	planet_controller.unallocateTurf(src)
+
 /turf/simulated/proc/update_icon_edge()
 	if(edge_blending_priority)
 		for(var/checkdir in cardinal)
@@ -55,7 +75,7 @@ var/list/outdoor_turfs = list()
 	..()
 
 /turf/simulated/floor/outdoors/mud
-	name = "grass"
+	name = "mud"
 	icon_state = "mud_dark"
 	edge_blending_priority = 3
 

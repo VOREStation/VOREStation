@@ -36,6 +36,7 @@
 	throw_range = 20
 	flags = 0
 	origin_tech = list(TECH_BIO = 1)
+	no_variants = FALSE
 
 /obj/item/stack/tile/grass/fifty
 	amount = 50
@@ -52,6 +53,7 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
+	no_variants = FALSE
 
 /obj/item/stack/tile/wood/fifty
 	amount = 50
@@ -77,12 +79,14 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
+	no_variants = FALSE
 
 /obj/item/stack/tile/carpet/blue
 	name = "blue carpet"
 	singular_name = "blue carpet"
 	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bluecarpet"
+	no_variants = FALSE
 
 /obj/item/stack/tile/carpet/bcarpet
 	icon_state = "tile-carpet"
@@ -110,29 +114,34 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/red
 	name = "red floor tile"
 	singular_name = "red floor tile"
 	color = COLOR_RED_GRAY
 	icon_state = "tile_white"
+	no_variants = FALSE
 
 // VOREStation Edit
 /obj/item/stack/tile/floor/techgrey
 	name = "grey techfloor tile"
 	singular_name = "grey techfloor tile"
 	icon_state = "techtile_grey"
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/techgrid
 	name = "grid techfloor tile"
 	singular_name = "grid techfloor tile"
 	icon_state = "techtile_grid"
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/steel_dirty
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
 	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
+	no_variants = FALSE
 // VOREStation Edit End
 
 /obj/item/stack/tile/floor/steel
@@ -140,30 +149,35 @@
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
 	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/white
 	name = "white floor tile"
 	singular_name = "white floor tile"
 	icon_state = "tile_white"
 	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/yellow
 	name = "yellow floor tile"
 	singular_name = "yellow floor tile"
 	color = COLOR_BROWN
 	icon_state = "tile_white"
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/dark
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
-	icon_state = "fr_tile"
+	icon_state = "tile_steel"
 	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/freezer
 	name = "freezer floor tile"
 	singular_name = "freezer floor tile"
 	icon_state = "tile_freezer"
 	matter = list("plastic" = SHEET_MATERIAL_AMOUNT / 4)
+	no_variants = FALSE
 
 /obj/item/stack/tile/floor/cyborg
 	name = "floor tile synthesizer"
@@ -185,3 +199,4 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
+	no_variants = FALSE

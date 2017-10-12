@@ -44,7 +44,7 @@
 						/obj/item/mecha_parts/part/phazon_torso,
 						/obj/item/device/bodysnatcher,
 						/obj/item/weapon/bluespace_harpoon,
-						/obj/item/weapon/permit,
+						/obj/item/clothing/accessory/permit/gun,
 						/obj/item/device/perfect_tele,
 						/obj/item/device/sleevemate,
 						/obj/item/weapon/disk/nifsoft/compliance,
