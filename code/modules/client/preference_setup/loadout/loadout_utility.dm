@@ -89,12 +89,14 @@
 	path = /obj/item/weapon/implant/language/eal
 	cost = 2
 	slot = "implant"
+	exploitable = 1
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
 	path = /obj/item/weapon/implant/tracking/weak
 	cost = 10
 	slot = "implant"
+	exploitable = 1
 
 /datum/gear/utility/translator
 	display_name = "universal translator"
