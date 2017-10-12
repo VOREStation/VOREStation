@@ -43,7 +43,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "the Colony Director"
 	selection_color = "#2F2F7F"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/weapon/card/id/silver/hop
 	req_admin_notify = 1
 	minimal_player_age = 10
 	economic_modifier = 10
@@ -78,7 +78,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 2
 	supervisors = "command staff"
 	selection_color = "#2F2F7F"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/weapon/card/id/silver/secretary
 	minimal_player_age = 5
 	economic_modifier = 7
 

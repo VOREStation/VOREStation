@@ -9,7 +9,7 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian
+	idtype = /obj/item/weapon/card/id/civilian/bartender
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_bar)
 
@@ -27,7 +27,7 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian
+	idtype = /obj/item/weapon/card/id/civilian/chef
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_kitchen)
 
@@ -44,7 +44,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian
+	idtype = /obj/item/weapon/card/id/civilian/botanist
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_hydroponics)
 
@@ -82,7 +82,7 @@
 	spawn_positions = 2
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/cargo
+	idtype = /obj/item/weapon/card/id/cargo/cargo_tech
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 
@@ -98,7 +98,7 @@
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/cargo
+	idtype = /obj/item/weapon/card/id/cargo/mining
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
@@ -117,7 +117,7 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian
+	idtype = /obj/item/weapon/card/id/civilian/janitor
 	access = list(access_janitor, access_maint_tunnels)
 	minimal_access = list(access_janitor, access_maint_tunnels)
 
@@ -135,7 +135,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian
+	idtype = /obj/item/weapon/card/id/civilian/librarian
 	access = list(access_library, access_maint_tunnels)
 	minimal_access = list(access_library)
 
@@ -153,7 +153,7 @@
 	spawn_positions = 2
 	supervisors = "company officials and Corporate Regulations"
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian
+	idtype = /obj/item/weapon/card/id/civilian/internal_affairs_agent
 	economic_modifier = 7
 	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
 	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
