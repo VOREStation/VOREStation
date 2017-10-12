@@ -226,6 +226,7 @@
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
 	if(H.isSynthetic())
 		boxtype = /obj/item/weapon/storage/box //Empty box for synths
+
 	else if(extendedtank)
 		boxtype = /obj/item/weapon/storage/box/engineer //Special box for engineers
 
