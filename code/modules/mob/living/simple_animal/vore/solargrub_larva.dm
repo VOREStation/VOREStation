@@ -32,7 +32,6 @@ var/global/list/grub_machine_overlays = list()
 		)
 
 	var/obj/machinery/atmospherics/unary/vent_pump/target_vent
-	var/ticks_for_vent = 0
 
 	var/datum/effect/effect/system/spark_spread/sparks
 	var/image/machine_effect
