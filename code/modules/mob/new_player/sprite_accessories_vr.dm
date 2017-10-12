@@ -13,7 +13,7 @@
 	awoohair
 		name = "Shoulder-length Messy"
 		icon = 'icons/mob/human_face_vr.dmi'
-		icon_state = "awoohair"
+		icon_state = "momijihair"
 		
 	citheronia
 		name = "Citheronia Hair (Kira72)"
