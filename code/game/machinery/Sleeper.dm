@@ -146,6 +146,7 @@
 			if(DEAD)
 				data["stat"] = "<font color='red'>Dead</font>"
 		data["health"] = occupant.health
+		data["maxHealth"] = occupant.getMaxHealth()
 		if(iscarbon(occupant))
 			var/mob/living/carbon/C = occupant
 			data["pulse"] = C.get_pulse(GETPULSE_TOOL)

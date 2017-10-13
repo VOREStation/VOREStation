@@ -18,9 +18,9 @@ Used In File(s): \code\game\machinery\adv_med.dm
 		<div class="itemLabelNarrow">
 			Health:
 		</div>
-		{{:helper.displayBar(data.occupant.health, 0, 100, (data.occupant.health >= 50) ? 'good' : (data.occupant.health >= 25) ? 'average' : 'bad')}}
+		{{:helper.displayBar(data.occupant.health, 0, data.occupant.maxHealth, (data.occupant.health >= 50) ? 'good' : (data.occupant.health >= 25) ? 'average' : 'bad')}}
 			<div class="itemContent" style="width: 60px">
-				{{:helper.round(data.occupant.health*10)/10}}%
+				{{:helper.round(data.occupant.health / data.occupant.maxHealth)*100}}%
 			</div>
 	<div class="item">
 		<div class="itemLabelNarrow">

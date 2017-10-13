@@ -652,7 +652,7 @@
 		if(status_flags & GODMODE)
 			return 1	//godmode
 
-		
+
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/cold_dam = 0
 			if(bodytemperature <= species.cold_level_1)
@@ -862,8 +862,14 @@
 			heal_overall_damage(1,1)
 
 	// nutrition decrease
-	if (nutrition > 0 && stat != 2)
-		nutrition = max (0, nutrition - species.hunger_factor)
+	if (nutrition > 0 && stat != DEAD)
+		var/nutrition_reduction = species.hunger_factor
+
+		for(var/datum/modifier/mod in modifiers)
+			if(!isnull(mod.metabolism_percent))
+				nutrition_reduction *= mod.metabolism_percent
+
+		nutrition = max (0, nutrition - nutrition_reduction)
 
 	if (nutrition > 450)
 		if(overeatduration < 600) //capped so people don't take forever to unfat

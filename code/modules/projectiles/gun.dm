@@ -480,7 +480,7 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, acc_mod, dispersion)
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, acc_mod, dispersion)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -503,6 +503,13 @@
 		//Kinda balanced by fact you need like 2 seconds to aim
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
+
+	// Some modifiers make it harder or easier to hit things.
+	for(var/datum/modifier/M in user.modifiers)
+		if(!isnull(M.accuracy))
+			P.accuracy += M.accuracy
+		if(!isnull(M.accuracy_dispersion))
+			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
