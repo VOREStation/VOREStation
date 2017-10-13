@@ -208,7 +208,7 @@
 
 /obj/item/clothing/suit/iasexy
 	name = "sexy internal affairs suit"
-	desc = "Now where's your pen?~..."
+	desc = "Now where's your pen?~"
 	icon_state = "iacost"
 	body_parts_covered = UPPER_TORSO|FEET|LOWER_TORSO|EYES
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDETIE|HIDEHOLSTER
@@ -377,12 +377,18 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	desc = "A thick jacket with a rubbery, water-resistant shell."
 	icon_state = "pufferjacket"
 	item_state_slots = list(slot_r_hand_str = "chainmail", slot_l_hand_str = "chainmail")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/jacket/puffer/vest
 	name = "puffer vest"
 	desc = "A thick vest with a rubbery, water-resistant shell."
 	icon_state = "puffervest"
 	item_state_slots = list(slot_r_hand_str = "chainmail", slot_l_hand_str = "chainmail")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/suit/storage/miljacket
 	name = "military jacket"
@@ -590,7 +596,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 
 /obj/item/clothing/suit/whitedress
 	name = "white dress"
-	desc = "A fancy white dress."
+	desc = "A fancy dress."
 	icon_state = "white_dress"
 	item_state_slots = list(slot_r_hand_str = "white_dress", slot_l_hand_str = "white_dress")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
@@ -827,7 +833,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
  */
 /obj/item/clothing/suit/storage/toggle/track
 	name = "track jacket"
-	desc = "a track jacket, for the athletic."
+	desc = "A track jacket, for the athletic."
 	icon_state = "trackjacket"
 	item_state_slots = list(slot_r_hand_str = "black_labcoat", slot_l_hand_str = "black_labcoat")
 	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
