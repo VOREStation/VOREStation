@@ -796,7 +796,7 @@
 "app" = (/obj/machinery/telecomms/relay/preset/telecomms,/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
 "apq" = (/obj/machinery/light,/turf/simulated/floor/bluegrid{name = "Mainframe Base"; nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
 "apr" = (/obj/machinery/telecomms/broadcaster/preset_right,/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
-"aps" = (/obj/machinery/telecomms/hub/preset,/obj/structure/sign/warning/nosmoking_2{pixel_y = -32},/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
+"aps" = (/obj/structure/sign/warning/nosmoking_2{pixel_y = -32},/obj/machinery/telecomms/hub/preset/southerncross,/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
 "apt" = (/obj/machinery/telecomms/receiver/preset_right,/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
 "apu" = (/obj/machinery/telecomms/server/presets/command,/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
 "apv" = (/obj/machinery/telecomms/server/presets/security,/turf/simulated/floor/tiled/dark{nitrogen = 100; oxygen = 0; temperature = 80},/area/tcomm/chamber)
