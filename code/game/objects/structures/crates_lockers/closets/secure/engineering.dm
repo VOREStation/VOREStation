@@ -34,6 +34,7 @@
 		new /obj/item/device/multitool(src)
 		new /obj/item/weapon/storage/belt/utility/chief/full(src)
 		new /obj/item/device/flash(src)
+		new /obj/item/device/t_scanner/upgraded
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
 		new /obj/item/clothing/shoes/boots/winter/engineering(src)

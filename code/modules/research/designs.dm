@@ -853,6 +853,25 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
 	build_path = /obj/item/weapon/crowbar/power
 	sort_string = "VASEA"
+
+/datum/design/item/device/t_scanner_upg
+	name = "Upgraded T-ray Scanner"
+	desc = "An upgraded version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	id = "upgradedtscanner"
+	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "phoron" = 150)
+	build_path = /obj/item/device/t_scanner/upgraded
+	sort_string = "VASSA"
+
+
+/datum/design/item/device/t_scanner_adv
+	name = "Advanced T-ray Scanner"
+	desc = "An advanced version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	id = "advancedtscanner"
+	req_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 6, TECH_MATERIAL = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 1250, "phoron" = 500, "silver" = 50)
+	build_path = /obj/item/device/t_scanner/advanced
+	sort_string = "VASSB"
 /*
 CIRCUITS BELOW
 */
