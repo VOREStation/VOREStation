@@ -16,6 +16,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	S["gender"]					>> pref.biological_gender
 	S["id_gender"]				>> pref.identifying_gender
 	S["age"]					>> pref.age
+	S["synth_color"]			>> pref.synth_color
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
 
@@ -25,6 +26,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	S["gender"]					<< pref.biological_gender
 	S["id_gender"]				<< pref.identifying_gender
 	S["age"]					<< pref.age
+	S["synth_color"]			<< pref.synth_color
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
 
@@ -56,6 +58,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	character.gender = pref.biological_gender
 	character.identifying_gender = pref.identifying_gender
 	character.age = pref.age
+	character.synth_color = pref.synth_color
 
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
@@ -68,6 +71,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	. += "<b>Gender Identity:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(config.allow_Metadata)
 		. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
 	. = jointext(.,null)
@@ -126,6 +130,10 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
 			return TOPIC_REFRESH
+
+	else if(href_list["synth_color"])
+		pref.synth_color = !pref.synth_color
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()
 

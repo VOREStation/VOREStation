@@ -50,6 +50,7 @@ datum/preferences
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
 	var/list/gear						//Custom/fluff item loadout.
+	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
@@ -276,10 +277,11 @@ datum/preferences
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
-	
+
+
 	// VOREStation Edit - Sync up all their organs and species one final time
 	character.force_update_organs()
-	
+
 	if(icon_updates)
 		character.force_update_limbs()
 		character.update_mutations(0)
