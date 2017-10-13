@@ -112,7 +112,7 @@
 	desc = ""
 	icon_state = "fenears"
 
-/datum/sprite_accessory/ears/sergal
+/datum/sprite_accessory/ears/sergal //Redundant
 	name = "Sergal ears"
 	icon_state = "serg_plain_s"
 
@@ -121,12 +121,15 @@
 	desc = ""
 	icon_state = "foxearshc"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/fenearshc
 	name = "flatland zorren ears, colorable"
 	desc = ""
 	icon_state = "fenearshc"
+	extra_overlay = "fenears-inner"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/sergalhc
 	name = "Sergal ears, colorable"
@@ -139,6 +142,7 @@
 	desc = ""
 	icon_state = "mouse"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/ears/mousehcno
@@ -146,6 +150,7 @@
 	desc = ""
 	icon_state = "mouse"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/wolfhc
 	name = "wolf, colorable"
@@ -174,6 +179,7 @@
 	desc = ""
 	icon_state = "kitty"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kittyinner"
 
 /datum/sprite_accessory/ears/bunnyhc
@@ -187,6 +193,8 @@
 	name = "antlers"
 	desc = ""
 	icon_state = "antlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/otie
 	name = "otie, colorable"
@@ -228,6 +236,14 @@
 	icon_state = "sleek"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/vulp
+	name = "vulpkanin, dual-color"
+	desc = ""
+	icon_state = "vulp"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp-inner"
 
 // Special snowflake ears go below here.
 
