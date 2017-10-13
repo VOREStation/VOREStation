@@ -30,10 +30,10 @@ var/list/trait_categories = list() // The categories available for the trait men
 	sort_order = 1
 	var/current_tab = "Physical"
 
-/datum/category_item/player_setup_item/loadout/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/traits/load_character(var/savefile/S)
 	S["traits"] >> pref.traits
 
-/datum/category_item/player_setup_item/loadout/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/traits/save_character(var/savefile/S)
 	S["traits"] << pref.traits
 
 
