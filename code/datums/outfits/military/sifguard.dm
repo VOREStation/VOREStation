@@ -1,21 +1,21 @@
 /decl/hierarchy/outfit/military/sifguard/pt
-	name = "SifGuard Uniform - PT"
+	name = OUTFIT_MILITARY("SifGuard PT")
 	uniform = /obj/item/clothing/under/pt/expeditionary
 	shoes = /obj/item/clothing/shoes/black
 
 /decl/hierarchy/outfit/military/sifguard/utility
-	name = "SifGuard Uniform - Utility"
+	name = OUTFIT_MILITARY("SifGuard Utility")
 	uniform = /obj/item/clothing/under/utility/expeditionary
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 
 /decl/hierarchy/outfit/military/sifguard/service
-	name = "SifGuard Uniform - Service"
+	name = OUTFIT_MILITARY("SifGuard Service")
 	uniform = /obj/item/clothing/under/utility/expeditionary
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	suit = /obj/item/clothing/suit/storage/service/expeditionary
 
 /decl/hierarchy/outfit/military/sifguard/dress
-	name = "SifGuard Uniform - Dress"
+	name = OUTFIT_MILITARY("SifGuard Dress")
 	uniform = /obj/item/clothing/under/mildress/expeditionary
 	shoes = /obj/item/clothing/shoes/dress
 	suit = /obj/item/clothing/suit/dress/expedition

@@ -1,21 +1,21 @@
 /decl/hierarchy/outfit/military/marine/pt
-	name = "Marine Uniform - PT"
+	name = OUTFIT_MILITARY("Marine PT")
 	uniform = /obj/item/clothing/under/pt/marine
 	shoes = /obj/item/clothing/shoes/black
 
 /decl/hierarchy/outfit/military/marine/utility
-	name = "Marine Uniform - Utility"
+	name = OUTFIT_MILITARY("Marine Utility")
 	uniform = /obj/item/clothing/under/utility/marine
 	shoes = /obj/item/clothing/shoes/boots/jungle
 
 /decl/hierarchy/outfit/military/marine/service
-	name = "Marine Uniform - Service"
+	name = OUTFIT_MILITARY("Marine Service")
 	uniform = /obj/item/clothing/under/service/marine
 	shoes = /obj/item/clothing/shoes/dress
 	suit = /obj/item/clothing/suit/storage/service/marine
 
 /decl/hierarchy/outfit/military/marine/dress
-	name = "Marine Uniform - Dress"
+	name = OUTFIT_MILITARY("Marine Dress")
 	uniform = /obj/item/clothing/under/mildress/marine
 	shoes = /obj/item/clothing/shoes/dress/white
 	suit = /obj/item/clothing/suit/dress/marine
