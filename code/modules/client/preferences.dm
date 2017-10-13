@@ -50,7 +50,7 @@ datum/preferences
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
 	var/list/gear						//Custom/fluff item loadout.
-	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
+	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable. // Vorestation Edit
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.

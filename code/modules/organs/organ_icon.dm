@@ -18,9 +18,9 @@ var/global/list/limb_icon_cache = list()
 	h_col = null
 	if(robotic >= ORGAN_ROBOT)
 		var/datum/robolimb/franchise = all_robolimbs[model]
-		if(human.synth_color)
+		if(human.synth_color) // Vorestation Edit
 			s_col = list(human.r_skin, human.g_skin, human.b_skin)
-		if(!(franchise && franchise.lifelike)) // && human.synth_color))
+		else if(!(franchise && franchise.lifelike && human.synth_color))
 			return
 	if(species && human.species && species.name != human.species.name)
 		return
