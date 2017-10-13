@@ -24,11 +24,12 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	outfit_type = /decl/hierarchy/outfit/job/captain
 	alt_titles = list("Site Manager", "Overseer")
 
+/*
 /datum/job/captain/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(src)
-
+*/
 /datum/job/captain/get_access()
 	return get_all_station_access()
 
