@@ -182,7 +182,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					src << "You quickly push [tmob] to the ground with your foot!"
 					tmob << "[src] pushes you down to the ground with their foot!"
 				log_and_message_admins("has pushed [tmob] to the ground by stepping on them.") //Both humans and mobs, since stepping on mobs can be abused.
-				admin_attack_log(src, M, "Pinned [tmob.name] under foot.", "Was pinned under foot by [src.name].", "Pinned [tmob.name] under foot.")
+				admin_attack_log(src, tmob, "Pinned [tmob.name] under foot.", "Was pinned under foot by [src.name].", "Pinned [tmob.name] under foot.")
 				return 1
 			if(src.m_intent == "walk") //Most likely intentionally stepping on them.
 				var/size_damage_multiplier = (src.size_multiplier - tmob.size_multiplier)
@@ -191,7 +191,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob.resting = 1
 				var/mob/living/carbon/human/H = src
 				log_and_message_admins("has stomped on, [tmob] pinning them to the ground and dealing [damage] HALLOSS.") //Both humans and mobs, since stepping on mobs can be abused.
-				admin_attack_log(src, M, "Pinned [tmob.name] under foot for [damage] HALLOSS.", "Was pinned under foot by [src.name] for [damage] HALLOSS.", "Pinned [tmob.name] under foot for [damage] HALLOSS.")
+				admin_attack_log(src, tmob, "Pinned [tmob.name] under foot for [damage] HALLOSS.", "Was pinned under foot by [src.name] for [damage] HALLOSS.", "Pinned [tmob.name] under foot for [damage] HALLOSS.")
 				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "You push down on [tmob] with your tail, pinning them down under you!"
 					tmob << "[src] pushes down on you with their tail, pinning you down below them!"
