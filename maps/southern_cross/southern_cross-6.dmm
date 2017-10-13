@@ -959,7 +959,7 @@
 "sw" = (/obj/machinery/door/airlock/external{frequency = 1380; icon_state = "door_locked"; id_tag = "escape_pod_5_recovery_hatch"; locked = 1; name = "Recovery Shuttle Dock 5"; req_access = list(13)},/turf/simulated/shuttle/floor/black,/area/centcom/evac)
 "sx" = (/obj/structure/curtain/open/shower,/obj/machinery/shower{pixel_y = 3},/turf/unsimulated/floor{icon_state = "white"},/area/shuttle/trade)
 "sy" = (/obj/structure/table/standard,/obj/item/weapon/soap/deluxe,/turf/unsimulated/floor{icon_state = "white"},/area/shuttle/trade)
-"sz" = (/obj/structure/table/standard,/obj/item/weapon/permit,/obj/item/weapon/permit,/obj/item/weapon/permit,/turf/unsimulated/floor{icon_state = "steel"},/area/shuttle/trade)
+"sz" = (/obj/structure/table/standard,/obj/item/clothing/accessory/permit,/obj/item/clothing/accessory/permit,/obj/item/clothing/accessory/permit,/turf/unsimulated/floor{icon_state = "steel"},/area/shuttle/trade)
 "sA" = (/obj/structure/closet/wardrobe/white,/turf/unsimulated/floor{icon_state = "steel"},/area/shuttle/trade)
 "sB" = (/obj/structure/closet/wardrobe/green,/turf/unsimulated/floor{icon_state = "steel"},/area/shuttle/trade)
 "sC" = (/obj/structure/closet/wardrobe/grey,/turf/unsimulated/floor{icon_state = "steel"},/area/shuttle/trade)
