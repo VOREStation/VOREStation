@@ -547,8 +547,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 					race = "[H.species.name]"
 					log.parameters["intelligible"] = 1
 				else if(isbrain(M))
-					var/mob/living/carbon/brain/B = M
-					race = "[B.species.name]"
+					race = "Brain"
 					log.parameters["intelligible"] = 1
 				else if(M.isMonkey())
 					race = "Monkey"

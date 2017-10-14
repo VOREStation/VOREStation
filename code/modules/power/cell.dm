@@ -16,7 +16,7 @@
 
 /obj/item/weapon/cell/process()
 	if(self_recharge)
-		give(charge_amount / CELLRATE)
+		give(charge_amount)
 	else
 		return PROCESS_KILL
 
@@ -59,6 +59,7 @@
 		return 0
 	var/used = min(charge, amount)
 	charge -= used
+	update_icon()
 	return used
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
@@ -78,24 +79,29 @@
 	if(maxcharge < amount)	return 0
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
+	update_icon()
 	return amount_used
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	if(get_dist(src, user) > 1)
-		return
+	var/msg = desc
 
-	if(maxcharge <= 2500)
-		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
-	else
-		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
+	if(get_dist(src, user) <= 1)
+		msg += " It has a power rating of [maxcharge].\nThe charge meter reads [round(src.percent() )]%."
 
+	to_chat(user, msg)
+/*
+		if(maxcharge <= 2500)
+			to_chat(user, "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%.")
+		else
+			to_chat(user, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%.")
+*/
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
 
-		user << "You inject the solution into the power cell."
+		to_chat(user, "You inject the solution into the power cell.")
 
 		if(S.reagents.has_reagent("phoron", 5))
 
@@ -149,6 +155,8 @@
 	charge -= charge / severity
 	if (charge < 0)
 		charge = 0
+
+	update_icon()
 	..()
 
 /obj/item/weapon/cell/ex_act(severity)

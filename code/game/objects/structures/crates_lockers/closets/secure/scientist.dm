@@ -20,6 +20,10 @@
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/science(src)
 		new /obj/item/clothing/shoes/boots/winter/science(src)
+		if(prob(50))
+			new /obj/item/weapon/storage/backpack/dufflebag/sci(src)
+		else
+			new /obj/item/weapon/storage/backpack/toxins(src)
 		return
 
 

@@ -12,6 +12,7 @@
 /obj/item/stack
 	gender = PLURAL
 	origin_tech = list(TECH_MATERIAL = 1)
+	icon = 'icons/obj/stacks.dmi'
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1
@@ -21,6 +22,7 @@
 	var/uses_charge = 0
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
+	var/no_variants = TRUE // Determines whether the item should update it's sprites based on amount.
 
 /obj/item/stack/New(var/loc, var/amount=null)
 	..()
@@ -28,6 +30,7 @@
 		stacktype = type
 	if (amount)
 		src.amount = amount
+	update_icon()
 	return
 
 /obj/item/stack/Destroy()
@@ -36,6 +39,18 @@
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 	return ..()
+
+/obj/item/stack/update_icon()
+	if(no_variants)
+		icon_state = initial(icon_state)
+	else
+		if(amount <= (max_amount * (1/3)))
+			icon_state = initial(icon_state)
+		else if (amount <= (max_amount * (2/3)))
+			icon_state = "[initial(icon_state)]_2"
+		else
+			icon_state = "[initial(icon_state)]_3"
+		item_state = initial(icon_state)
 
 /obj/item/stack/examine(mob/user)
 	if(..(user, 1))
@@ -189,6 +204,7 @@
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
+		update_icon()
 		return 1
 	else
 		if(get_amount() < used)
@@ -205,6 +221,7 @@
 			return 0
 		else
 			amount += extra
+		update_icon()
 		return 1
 	else if(!synths || synths.len < uses_charge)
 		return 0
@@ -298,7 +315,7 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = input("How many stacks of [src] would you like to split off?", "Split stacks", 1) as num|null
+		var/N = input("How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1) as num|null
 		if(N)
 			var/obj/item/stack/F = src.split(N)
 			if (F)

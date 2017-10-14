@@ -316,6 +316,10 @@
 	if (subject.species && subject.species.flags & NO_SCAN)
 		scantemp = "Error: Mental interface failure."
 		return
+	for(var/modifier_type in subject.modifiers)	//Can't be cloned, even if they had a previous scan
+		if(istype(modifier_type, /datum/modifier/no_clone))
+			scantemp = "Error: Mental interface failure."
+			return
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
@@ -330,6 +334,9 @@
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = subject.languages
 	R.flavor = subject.flavor_texts.Copy()
+	for(var/datum/modifier/mod in subject.modifiers)
+		if(mod.flags & MODIFIER_GENETIC)
+			R.genetic_modifiers.Add(mod.type)
 
 	//Add an implant if needed
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)

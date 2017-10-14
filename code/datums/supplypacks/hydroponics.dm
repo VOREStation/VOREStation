@@ -113,9 +113,10 @@
 			/obj/item/weapon/material/hatchet = 2,
 			/obj/item/weapon/reagent_containers/spray/plantbgone = 4,
 			/obj/item/clothing/mask/gas = 2,
-			/obj/item/weapon/grenade/chem_grenade/antiweed = 2
+			/obj/item/weapon/grenade/chem_grenade/antiweed = 2,
+			/obj/item/weapon/material/twohanded/fireaxe/scythe
 			)
-	cost = 25
+	cost = 45
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Weed control crate"
 	access = access_hydroponics

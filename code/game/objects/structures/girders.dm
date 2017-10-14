@@ -125,6 +125,12 @@
 	else
 		return ..()
 
+/obj/structure/girder/proc/take_damage(var/damage)
+	health -= damage
+
+	if(health <= 0)
+		dismantle()
+
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
 	var/amount_to_use = reinf_material ? 1 : 2
 	if(S.get_amount() < amount_to_use)

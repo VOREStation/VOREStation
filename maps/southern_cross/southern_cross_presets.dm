@@ -69,26 +69,40 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 // Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
 /obj/machinery/telecomms/relay/preset/southerncross/d1
 	id = "Station Relay 1"
+	listening_level = Z_LEVEL_STATION_ONE
 	autolinkers = list("d1_relay")
 
 /obj/machinery/telecomms/relay/preset/southerncross/d2
 	id = "Station Relay 2"
+	listening_level = Z_LEVEL_STATION_TWO
 	autolinkers = list("d2_relay")
 
 /obj/machinery/telecomms/relay/preset/southerncross/d3
 	id = "Station Relay 3"
+	listening_level = Z_LEVEL_STATION_THREE
 	autolinkers = list("d3_relay")
 
 /obj/machinery/telecomms/relay/preset/southerncross/planet
 	id = "Planet Relay"
+	listening_level = Z_LEVEL_SURFACE
 	autolinkers = list("pnt_relay")
+
+/obj/machinery/telecomms/relay/preset/southerncross/cave
+	id = "Cave Relay"
+	listening_level = Z_LEVEL_SURFACE_MINE
+	autolinkers = list("cve_relay")
+
+/obj/machinery/telecomms/relay/preset/southerncross/wild
+	id = "Wild Relay"
+	listening_level = Z_LEVEL_SURFACE_WILD
+	autolinkers = list("wld_relay")
 
 // #### Hub ####
 /obj/machinery/telecomms/hub/preset/southerncross
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub",
-		"d1_relay", "d2_relay", "d3_relay", "pnt_relay",
+		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay",
 		"c_relay", "m_relay", "r_relay",
 		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "unused",
 		"hb_relay", "receiverA", "broadcasterA"

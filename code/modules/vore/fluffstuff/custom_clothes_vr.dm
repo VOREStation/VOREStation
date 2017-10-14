@@ -24,6 +24,39 @@
 
 */
 
+//Natje: Awen Henry
+/obj/item/clothing/head/fluff/awoo
+    name = "Wolfgirl Hat"
+    desc = "An odd, small hat with two strings attached to it."
+    
+    icon_state = "awoohat"
+    icon = 'icons/vore/custom_clothes_vr.dmi'
+    icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//Natje: Awen Henry
+/obj/item/clothing/shoes/fluff/awoo
+    name = "Red Sandals"
+    desc = "A pair of sandals that make you want to awoo!"
+    
+    icon_state = "awoosandals"
+    icon = 'icons/vore/custom_clothes_vr.dmi'
+    icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//Natje: Awen Henry
+/obj/item/clothing/under/fluff/awoo
+	name = "Wolfgirl Clothes"
+	desc = "A set of clothes almost identical to those Wolf Girls always wear..."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "awoouni"
+	worn_state = "awoouni_mob"
+	rolled_sleeves = 0
+	rolled_down = 0
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "awoouni_mob"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
 //SpoopyLizz: Roiz Lizden
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 	name = "dinosaur winter coat"

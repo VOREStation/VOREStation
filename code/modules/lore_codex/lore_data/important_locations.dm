@@ -15,7 +15,7 @@
 		/datum/lore/codex/page/rota
 		)
 
-/datum/lore/codex/page/vir/add_content()
+/datum/lore/codex/page/virgo_erigone/add_content()
 	name = "Vir (Star)"
 	keywords += list("Vir")
 	data = "Vir is an A-type main sequence star with 81% more mass than Sol (the humans' home star), and almost nine times as bright.  It \

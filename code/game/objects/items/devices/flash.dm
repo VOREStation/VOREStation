@@ -110,7 +110,16 @@
 				flashfail = 1
 
 	else if(issilicon(M))
-		M.Weaken(rand(5,10))
+		flashfail = 0
+		var/mob/living/silicon/S = M
+		if(isrobot(S))
+			var/mob/living/silicon/robot/R = S
+			if(R.has_active_type(/obj/item/borg/combat/shield))
+				var/obj/item/borg/combat/shield/shield = locate() in R
+				if(shield)
+					if(shield.active)
+						shield.adjust_flash_count(R, 1)
+						flashfail = 1
 	else
 		flashfail = 1
 
@@ -133,6 +142,7 @@
 		else
 
 			user.visible_message("<span class='notice'>[user] overloads [M]'s sensors with the flash!</span>")
+			M.Weaken(rand(5,10))
 	else
 
 		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")

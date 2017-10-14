@@ -1546,6 +1546,6 @@
 	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
-		var/obj/item/weapon/permit/drone/permit = new(T)
+		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.

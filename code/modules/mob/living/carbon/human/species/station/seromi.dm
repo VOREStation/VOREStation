@@ -13,7 +13,6 @@
 	max_age = 45
 	health_hud_intensity = 3
 
-
 	male_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
 	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
 	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
@@ -35,6 +34,7 @@
 	fire_icon_state = "generic" // Humanoid is too big for them and spriting a new one is really annoying.
 
 	slowdown = -1
+	snow_movement = -2	// Ignores light snow
 	total_health = 50
 	brute_mod = 1.35
 	burn_mod =  1.35
@@ -54,18 +54,30 @@
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
-	cold_level_1 = 180
-	cold_level_2 = 130
-	cold_level_3 = 70
-	heat_level_1 = 320
-	heat_level_2 = 370
-	heat_level_3 = 600
+	cold_level_1 = 180	//Default 260
+	cold_level_2 = 130	//Default 200
+	cold_level_3 = 70	//Default 120
+
+	breath_cold_level_1 = 180	//Default 240 - Lower is better
+	breath_cold_level_2 = 100	//Default 180
+	breath_cold_level_3 = 60	//Default 100
+
+	heat_level_1 = 320	//Default 360
+	heat_level_2 = 370	//Default 400
+	heat_level_3 = 600	//Default 1000
+
+	breath_heat_level_1 = 350	//Default 380 - Higher is better
+	breath_heat_level_2 = 400	//Default 450
+	breath_heat_level_3 = 800	//Default 1250
+
 	heat_discomfort_level = 295
 	heat_discomfort_strings = list(
 		"Your feathers prickle in the heat.",
 		"You feel uncomfortably warm.",
 		)
 	cold_discomfort_level = 180
+
+	minimum_breath_pressure = 12	//Smaller, so needs less air
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

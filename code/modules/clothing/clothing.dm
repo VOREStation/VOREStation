@@ -385,6 +385,9 @@
 
 	var/shoes_under_pants = 0
 
+	var/water_speed = 0		//Speed boost/decrease in water, lower/negative values mean more speed
+	var/snow_speed = 0		//Speed boost/decrease on snow, lower/negative values mean more speed
+
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2

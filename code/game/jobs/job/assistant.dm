@@ -14,7 +14,9 @@
 	alt_titles = list("Technical Assistant","Test Subject","Medical Intern","Research Assistant","Visitor", "Resident") // Test Subject is a VOREStation edit.
 
 /datum/job/assistant/equip(var/mob/living/carbon/human/H, var/alt_title)
-	if(!H)	return 0
+	if(!H)
+		return 0
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
 	switch(H.backbag)
 		if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
 		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(H), slot_back)

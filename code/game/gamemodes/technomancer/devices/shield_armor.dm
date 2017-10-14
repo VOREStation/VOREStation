@@ -14,11 +14,11 @@
 	desc = "This armor has no inherent ability to absorb shock, as normal armor usually does.  Instead, this emits a strong field \
 	around the wearer, designed to protect from most forms of harm, from lasers to bullets to close quarters combat.  It appears to \
 	require a very potent supply of an energy of some kind in order to function."
-	icon_state = "reactiveoff" //wip
-	item_state = "reactiveoff"
+	icon_state = "shield_armor_0"
 	blood_overlay_type = "armor"
 	slowdown = 0
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	action_button_name = "Toggle Shield Projector"
 	var/active = 0
 	var/damage_to_energy_multiplier = 50.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 750 energy cost
 	var/datum/effect/effect/system/spark_spread/spark_system = null
@@ -49,7 +49,7 @@
 	var/damage_to_energy_cost = (damage_to_energy_multiplier * damage_blocked)
 
 	if(!user.technomancer_pay_energy(damage_to_energy_cost))
-		user << "<span class='danger'>Your shield fades due to lack of energy!</span>"
+		to_chat(user, "<span class='danger'>Your shield fades due to lack of energy!</span>")
 		active = 0
 		update_icon()
 		return 0
@@ -67,7 +67,7 @@
 		P.damage = P.damage - damage_blocked
 
 	user.visible_message("<span class='danger'>\The [user]'s [src] absorbs [attack_text]!</span>")
-	user << "<span class='warning'>Your shield has absorbed most of \the [damage_source].</span>"
+	to_chat(user, "<span class='warning'>Your shield has absorbed most of \the [damage_source].</span>")
 
 	spark_system.start()
 	playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
@@ -75,14 +75,17 @@
 
 /obj/item/clothing/suit/armor/shield/attack_self(mob/user)
 	active = !active
-	user << "<span class='notice'>You [active ? "" : "de"]active \the [src].</span>"
+	to_chat(user, "<span class='notice'>You [active ? "" : "de"]activate \the [src].</span>")
 	update_icon()
+	user.update_inv_wear_suit()
+	user.update_action_buttons()
 
 /obj/item/clothing/suit/armor/shield/update_icon()
+	icon_state = "shield_armor_[active]"
+	item_state = "shield_armor_[active]"
 	if(active)
-		icon_state = "shield_armor"
 		set_light(2, 1, l_color = "#006AFF")
 	else
-		icon_state = "shield_armor_off"
 		set_light(0, 0, l_color = "#000000")
+	..()
 	return

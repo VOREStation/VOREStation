@@ -88,6 +88,10 @@
 	var/reagent_injected = null // Some slimes inject reagents on attack.  This tells the game what reagent to use.
 	var/injection_amount = 5 // This determines how much.
 
+	can_enter_vent_with = list(
+	/obj/item/clothing/head,
+	)
+
 /mob/living/simple_animal/slime/New(var/location, var/start_as_adult = FALSE)
 	verbs += /mob/living/proc/ventcrawl
 	if(start_as_adult)

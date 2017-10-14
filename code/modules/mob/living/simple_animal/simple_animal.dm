@@ -1237,14 +1237,22 @@
 // This is the actual act of 'punching'.  Override for special behaviour.
 /mob/living/simple_animal/proc/DoPunch(var/atom/A)
 	if(!Adjacent(target_mob)) // They could've moved in the meantime.
-		return
+		return FALSE
+
 	var/damage_to_do = rand(melee_damage_lower, melee_damage_upper)
 
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.outgoing_melee_damage_percent))
 			damage_to_do *= M.outgoing_melee_damage_percent
 
+	// SA attacks can be blocked with shields.
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(H.check_shields(damage = damage_to_do, damage_source = src, attacker = src, def_zone = null, attack_text = "the attack"))
+			return FALSE
+
 	A.attack_generic(src, damage_to_do, attacktext)
+	return TRUE
 
 //The actual top-level ranged attack proc
 /mob/living/simple_animal/proc/ShootTarget()
@@ -1484,6 +1492,12 @@
 	if(agony_amount)
 		agonyDam += agony_amount * 0.5
 		adjustFireLoss(agonyDam)
+
+// Force it to target something
+/mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)
+	if(intelligence_level == SA_HUMANOID && !forced)
+		return
+	set_target(new_target)
 
 //Commands, reactions, etc
 /mob/living/simple_animal/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
