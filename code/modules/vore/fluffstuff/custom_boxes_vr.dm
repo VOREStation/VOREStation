@@ -226,7 +226,7 @@
 		/obj/item/clothing/shoes/fluff/morthighs,
 		/obj/item/clothing/gloves/fluff/morsleeves,
 		/obj/item/clothing/under/fluff/morunder)
-*/
+
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
