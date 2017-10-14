@@ -71,7 +71,7 @@ datum/controller/game_controller/proc/setup_objects()
 		if(T.decals) T.apply_decals()
 		CHECK_SLEEP_MASTER
 	floor_decals_initialized = TRUE
-	sleep(1)
+	sleep(50) //VOREStation Edit. Attempt to prevent server crashing by giving the game more time to apply decals. No idea if this works due to the infrequency of the crashing, but might as well.
 
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	for(var/atom/movable/object in world)
