@@ -252,6 +252,31 @@
 		explosion(target, -1, 0, 2)
 	..()
 
+/* Incendiary */
+
+/obj/item/projectile/bullet/incendiary
+	name = "incendiary bullet"
+	icon_state = "bullet_alt"
+	damage = 15
+	damage_type = BURN
+	incendiary = 1
+	flammability = 2
+
+/obj/item/projectile/bullet/incendiary/flamethrower
+	name = "ball of fire"
+	desc = "Don't stand in the fire."
+	icon_state = "fireball"
+	damage = 10
+	embed_chance = 0
+	incendiary = 2
+	flammability = 4
+	agony = 30
+	kill_count = 4
+
+/obj/item/projectile/bullet/incendiary/flamethrower/large
+	damage = 15
+	kill_count = 6
+
 /obj/item/projectile/bullet/blank
 	invisibility = 101
 	damage = 1
