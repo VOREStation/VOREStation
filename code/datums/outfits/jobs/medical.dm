@@ -15,7 +15,7 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/brown
 	l_hand = /obj/item/weapon/storage/firstaid/adv
-	r_pocket = /obj/item/device/flashlight/pen
+	r_pocket = /obj/item/device/healthanalyzer
 	id_type = /obj/item/weapon/card/id/medical/head
 	pda_type = /obj/item/device/pda/heads/cmo
 
@@ -24,7 +24,7 @@
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	l_hand = /obj/item/weapon/storage/firstaid/adv
-	r_pocket = /obj/item/device/flashlight/pen
+	r_pocket = /obj/item/device/healthanalyzer
 	id_type = /obj/item/weapon/card/id/medical/doctor
 
 /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
