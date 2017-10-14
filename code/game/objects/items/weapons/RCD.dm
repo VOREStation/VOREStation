@@ -17,6 +17,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
+	var/max_stored_matter = 30
 	var/working = 0
 	var/mode = 1
 	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
@@ -32,7 +33,7 @@
 /obj/item/weapon/rcd/examine()
 	..()
 	if(src.type == /obj/item/weapon/rcd && loc == usr)
-		usr << "It currently holds [stored_matter]/30 matter-units."
+		usr << "It currently holds [stored_matter]/[max_stored_matter] matter-units."
 
 /obj/item/weapon/rcd/New()
 	..()
@@ -48,14 +49,15 @@
 /obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
 
 	if(istype(W, /obj/item/weapon/rcd_ammo))
-		if((stored_matter + 10) > 30)
-			user << "<span class='notice'>The RCD can't hold any more matter-units.</span>"
+		var/obj/item/weapon/rcd_ammo/cartridge = W
+		if((stored_matter + cartridge.remaining) > max_stored_matter)
+			to_chat(user, "<span class='notice'>The RCD can't hold that many additional matter-units.</span>")
 			return
+		stored_matter += cartridge.remaining
 		user.drop_from_inventory(W)
 		qdel(W)
-		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		user << "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>"
+		to_chat(user, "<span class='notice'>The RCD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
 		return
 	..()
 
@@ -164,6 +166,14 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 30000,"glass" = 15000)
+	var/remaining = 10
+
+/obj/item/weapon/rcd_ammo/large
+	name = "high-capacity matter cartridge"
+	desc = "Do not ingest."
+	matter = list(DEFAULT_WALL_MATERIAL = 45000,"glass" = 22500)
+	remaining = 30
+	origin_tech = list(TECH_MATERIAL = 4)
 
 /obj/item/weapon/rcd/borg
 	canRwall = 1
