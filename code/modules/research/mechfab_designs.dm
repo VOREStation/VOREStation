@@ -354,6 +354,30 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 15000, "gold" = 4500, "uranium" = 4500)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited
 
+/datum/design/item/mecha/weapon/flamer
+	name = "CR-3 Mark 8 Flamethrower"
+	desc = "A weapon that violates the CCWC at two hundred gallons per minute."
+	id = "mech_flamer_full"
+	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 6, TECH_PHORON = 4, TECH_ILLEGAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "gold" = 2000, "uranium" = 3000, "phoron" = 8000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer
+
+/datum/design/item/mecha/weapon/flamer_rigged
+	name = "AA-CR-1 Mark 4 Flamethrower"
+	desc = "A weapon that accidentally violates the CCWC at one hundred gallons per minute."
+	id = "mech_flamer_rigged"
+	req_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_PHORON = 3, TECH_ILLEGAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 1500, "silver" = 1500, "uranium" = 2000, "phoron" = 6000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged
+
+/datum/design/item/mecha/weapon/flame_mg
+	name = "DR-AC 3 Incendiary Rotary MG"
+	desc = "A weapon that violates the CCWC at sixty rounds a minute."
+	id = "mech_lmg_flamer"
+	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_PHORON = 2, TECH_ILLEGAL = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 1750, "uranium" = 1500, "phoron" = 4000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/incendiary
+
 // *** Nonweapon modules
 /datum/design/item/mecha/wormhole_gen
 	name = "Wormhole generator"

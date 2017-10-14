@@ -47,7 +47,7 @@
 	idtype = /obj/item/weapon/card/id/civilian/botanist
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_hydroponics)
-  
+
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
 	alt_titles = list("Hydroponicist", "Gardener")
 
@@ -161,7 +161,9 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
 
+/*
 /datum/job/lawyer/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(H)
+*/

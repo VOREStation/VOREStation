@@ -44,7 +44,7 @@
 		return
 	if(active)
 		if (imp)
-			M.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>")
+			M.visible_message("<span class='warning'>[user] is attempting to implant [M].</span>")
 
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 			user.do_attack_animation(M)

@@ -45,6 +45,8 @@
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
 		//Effects
+	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 maybe later for burst of fire around the impact point. - Mech
+	var/flammability = 0 //Amount of fire stacks to add for the above.
 	var/stun = 0
 	var/weaken = 0
 	var/paralyze = 0
@@ -78,7 +80,7 @@
 	if(!isliving(target))	return 0
 //	if(isanimal(target))	return 0
 	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
+	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked, incendiary, flammability) // add in AGONY!
 	return 1
 
 //called when the projectile stops flying because it collided with something
@@ -321,6 +323,10 @@
 			first_step = 0
 		else if(!bumped)
 			tracer_effect(effect_transform)
+
+		if(incendiary >= 2)
+			var/trail_volume = (flammability * 0.10)
+			new /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(src.loc, trail_volume, src.dir)
 
 		if(!hitscan)
 			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon

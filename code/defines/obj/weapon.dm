@@ -427,6 +427,24 @@
 	origin_tech = list(TECH_POWER = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 50)
 
+	var/charge = 0
+	var/max_charge = 1000
+
+/obj/item/weapon/stock_parts/capacitor/New()
+	. = ..()
+	max_charge *= rating
+
+/obj/item/weapon/stock_parts/capacitor/proc/charge(var/amount)
+	charge += amount
+	if(charge > max_charge)
+		charge = max_charge
+
+/obj/item/weapon/stock_parts/capacitor/proc/use(var/amount)
+	if(charge)
+		charge -= amount
+		if(charge < 0)
+			charge = 0
+
 /obj/item/weapon/stock_parts/scanning_module
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."

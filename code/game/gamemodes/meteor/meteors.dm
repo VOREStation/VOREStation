@@ -9,7 +9,7 @@
 						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3, /obj/effect/meteor/emp=3) //for threatening meteor event
 
 /var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, \
-						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/emp=10, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
+						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/emp=10) //, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
 
 /var/list/meteors_dust = list(/obj/effect/meteor/dust) //for space dust event
 
