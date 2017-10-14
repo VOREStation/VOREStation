@@ -182,7 +182,7 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
 	opacity = 0
 	glass = 1
-	req_one_access = list(access_external_airlocks)
+	//req_one_access = list(access_external_airlocks) //VOREStation Edit
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
