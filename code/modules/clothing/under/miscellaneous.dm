@@ -363,13 +363,13 @@
 
 /obj/item/clothing/under/dress/dress_cap
 	name = "colony director's dress uniform"
-	desc = "Feminine fashion for the style concious Colony Director."
+	desc = "Feminine fashion for the style conscious Colony Director."
 	icon_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/dress/dress_hop
 	name = "head of personnel dress uniform"
-	desc = "Feminine fashion for the style concious HoP."
+	desc = "Feminine fashion for the style conscious HoP."
 	icon_state = "dress_hop"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
