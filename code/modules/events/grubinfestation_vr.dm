@@ -14,13 +14,15 @@
 
 /datum/event/grub_infestation/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in world)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+		if(istype(get_area(temp_vent), /area/crew_quarters/sleep))
+			continue
 		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 
 	while((spawncount >= 1) && vents.len)
 		var/obj/vent = pick(vents)
-		new /obj/effect/spider/spiderling/grub(vent.loc)
+		new /mob/living/simple_animal/solargrub_larva(get_turf(vent))
 		vents -= vent
 		spawncount--

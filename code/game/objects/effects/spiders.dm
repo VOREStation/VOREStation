@@ -171,6 +171,13 @@
 			entry_vent = null
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)
+			//VOREStation Edit Start
+			var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = get_safe_ventcrawl_target(entry_vent)
+			if(!exit_vent)
+				return
+			if(1) //To maintain indentation level
+			//VOREStation Edit End
+			/*	//VOREStation Removal Start - prevent spiders in dorms
 			if(entry_vent.network && entry_vent.network.normal_members.len)
 				var/list/vents = list()
 				for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in entry_vent.network.normal_members)
@@ -179,6 +186,7 @@
 					entry_vent = null
 					return
 				var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
+				*/ //VOREStation Removal End
 				/*if(prob(50))
 					src.visible_message("<B>[src] scrambles into the ventillation ducts!</B>")*/
 
