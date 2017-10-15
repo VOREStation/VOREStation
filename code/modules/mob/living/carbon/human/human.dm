@@ -1206,6 +1206,7 @@
 			verbs |= /mob/living/carbon/human/proc/bloodsuck
 		if(species.can_drain_prey == 1)
 			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
+			verbs |= /mob/living/carbon/human/proc/succubus_drain_finialize
 			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal //VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.

@@ -485,8 +485,10 @@
 				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
 				T.nutrition = T.nutrition*0.9
 				T.eye_blurry += 5 //Some eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done.
-				if(T.nutrition < 100 && stage < 99)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
+				if(T.nutrition < 100 && stage < 99 && C.drain_finalized == 1)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
 					stage = 99
+				if(C.drain_finalized != 1 && stage == 99) //Are they not finalizing and the stage hit 100? If so, go back to stage 3 until they finalize it.
+					stage = 3
 			if(100)
 				C.nutrition = (C.nutrition + T.nutrition)
 				T.nutrition = 0 //Completely drained of everything.
@@ -566,7 +568,7 @@
 					return
 				C << "<span class='notice'>You begin to drain [T]'s lifeforce...</span>"
 				T << "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>"
-			if(51 to 99)
+			if(51 to 98)
 				if(T.stat == DEAD)
 					src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
 					T.apply_damage(500, OXY) //Bit of fluff.
@@ -577,9 +579,13 @@
 					src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
 					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
 					return
-				T.adjustBrainLoss(5) //Will kill them after a short bit!
+				if(C.drain_finalized == 1 || T.getBrainLoss() < 55) //Let's not kill them with this unless the drain is finalized. This will still stack up to 55, since 60 is lethal.
+					T.adjustBrainLoss(5) //Will kill them after a short bit!
 				T.eye_blurry += 20 //A lot of eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done. More than non-lethal due to their lifeforce being sucked out
 				C.nutrition = (C.nutrition + 25) //Assuming brain damage kills at 60, this gives 300 nutrition.
+			if(99)
+				if(C.drain_finalized != 1)
+					stage = 51
 			if(100) //They shouldn't  survive long enough to get here, but just in case.
 				src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
 				T.apply_damage(500, OXY) //Kill them.
@@ -596,3 +602,20 @@
 			C << "<span class='warning'>Our draining of [T] has been interrupted!</span>"
 			C.absorbing_prey = 0
 			return
+
+
+/mob/living/carbon/human/proc/succubus_drain_finialize()
+	set name = "Drain Finalization"
+	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained. Can be toggled at any time."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(C.drain_finalized == 1)
+		C.drain_finalized = 0
+		C << "<span class='notice'>You will now finalize draining.</span>"
+		return
+
+	else if(C.drain_finalized == 0)
+		C.drain_finalized = 1
+		C << "<span class='notice'>You will not finalize draining.</span>"
+		return
