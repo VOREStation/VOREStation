@@ -425,6 +425,8 @@
 	new /obj/item/weapon/storage/backpack/chemistry(src)
 	new /obj/item/weapon/storage/backpack/satchel/chem(src)
 	new /obj/item/weapon/storage/backpack/satchel/chem(src)
+	new /obj/item/weapon/storage/bag/chemistry(src)
+	new /obj/item/weapon/storage/bag/chemistry(src)
 	return
 
 

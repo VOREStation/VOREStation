@@ -248,3 +248,16 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash)
+
+	// -----------------------------
+	//           Chemistry Bag
+	// -----------------------------
+/obj/item/weapon/storage/bag/chemistry
+	name = "chemistry bag"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "chembag"
+	desc = "A bag for storing pills, patches, and bottles."
+	max_storage_space = 200
+	w_class = ITEMSIZE_LARGE
+	slowdown = 1
+	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
