@@ -233,7 +233,7 @@
 
 /obj/effect/engine_setup/filter/activate()
 	..()
-	var/obj/machinery/atmospherics/omni/filter/F = locate() in get_turf(src)
+	var/obj/machinery/atmospherics/omni/atmos_filter/F = locate() in get_turf(src)
 	if(!F)
 		log_and_message_admins("## WARNING: Unable to locate omni filter at [x] [y] [z]!")
 		return SETUP_WARNING
