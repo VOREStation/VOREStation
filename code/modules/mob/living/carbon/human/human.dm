@@ -980,6 +980,14 @@
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
 
+	// Vorestation Addition - reapply markings/appearance from prefs for player mobs
+	if(client) //just to be sure
+		client.prefs.copy_to(src)
+		if(dna)
+			dna.ResetUIFrom(src)
+			sync_organ_dna()
+	// end vorestation addition
+
 	for (var/ID in virus2)
 		var/datum/disease2/disease/V = virus2[ID]
 		V.cure(src)

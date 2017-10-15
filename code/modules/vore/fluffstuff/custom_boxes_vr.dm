@@ -218,6 +218,16 @@
 		/obj/item/clothing/accessory/storage/black_vest/fluff/kilano
 		)
 
+// JackNoir413: Mor Xaina
+/obj/item/weapon/storage/box/fluff/morxaina
+	name = "Fashionable clothes set"
+	desc = "Set of custom-made, expensive attire elements."
+	has_items = list(
+		/obj/item/clothing/shoes/fluff/morthighs,
+		/obj/item/clothing/gloves/fluff/morsleeves,
+		/obj/item/clothing/under/fluff/morunder)
+
+
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */

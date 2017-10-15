@@ -281,6 +281,12 @@ item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
 # ######## J CKEYS
 
 {
+ckey: jacknoir413
+character_name: Mor Xaina
+item_path: /obj/item/clothing/under/fluff/morxaina
+}
+
+{
 ckey: jacobdragon
 character_name: Earthen Breath
 item_path: /obj/item/clothing/under/fluff/earthenbreath
@@ -600,12 +606,6 @@ item_path: /obj/item/device/modkit_conversion/fluff/screekit
 ckey: scree
 character_name: Scree
 item_path: /obj/item/clothing/head/fluff/pompom
-}
-
-{
-ckey: scree
-character_name: Scree
-item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
 }
 
 {
