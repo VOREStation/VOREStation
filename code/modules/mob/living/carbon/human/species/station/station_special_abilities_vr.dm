@@ -528,7 +528,7 @@
 				T.apply_damage(500, OXY) //Kill them.
 				C.absorbing_prey = 0
 				C << "<span class='notice'>You have completely drained [T], killing them in the process.</span>"
-				T << "<span class='danger'><FONT size=7>You... Feel... So... Weak...</font></span>"
+				T << "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>"
 				C.visible_message("<span class='danger'>[C] seems to finish whatever they were doing to [T].</span>")
 				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
 				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
