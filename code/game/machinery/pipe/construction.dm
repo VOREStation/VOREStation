@@ -175,7 +175,7 @@ Buildable meters
 			src.pipe_type = PIPE_CAP
 		else if(istype(make_from, /obj/machinery/atmospherics/omni/mixer))
 			src.pipe_type = PIPE_OMNI_MIXER
-		else if(istype(make_from, /obj/machinery/atmospherics/omni/filter))
+		else if(istype(make_from, /obj/machinery/atmospherics/omni/atmos_filter))
 			src.pipe_type = PIPE_OMNI_FILTER
 ///// Z-Level stuff
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/zpipe/up/supply))
@@ -1232,7 +1232,7 @@ Buildable meters
 			P.initialize()
 			P.build_network()
 		if(PIPE_OMNI_FILTER)
-			var/obj/machinery/atmospherics/omni/filter/P = new(loc)
+			var/obj/machinery/atmospherics/omni/atmos_filter/P = new(loc)
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
