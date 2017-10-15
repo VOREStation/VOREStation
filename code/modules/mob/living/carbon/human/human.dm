@@ -1195,7 +1195,10 @@
 		fixblood()
 		species.update_attack_types() //VOREStation Edit Start Required for any trait that updates unarmed_types in setup.
 		if(species.gets_food_nutrition != 1) //Bloodsucker trait. Tacking this on here.
-			verbs |= /mob/living/carbon/human/proc/bloodsuck //VOREStation Edit End
+			verbs |= /mob/living/carbon/human/proc/bloodsuck
+		if(species.can_drain_prey == 1)
+			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
+			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal //VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)

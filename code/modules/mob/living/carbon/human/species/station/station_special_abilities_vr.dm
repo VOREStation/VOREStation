@@ -338,8 +338,8 @@
 
 
 /mob/living/carbon/human/proc/bloodsuck()
-	set name = "Drain prey"
-	set desc = "Bites prey and drains them of blood, feeding you in the process. You may only do this once per minute."
+	set name = "Partially Drain prey of blood"
+	set desc = "Bites prey and drains them of a significant portion of blood, feeding you in the process. You may only do this once per minute."
 	set category = "Abilities"
 
 	if(last_special > world.time)
@@ -383,3 +383,159 @@
 		B.drip(1)
 		sleep(50)
 		B.drip(1)
+
+
+//Welcome to the adapted changeling absorb code.
+/mob/living/carbon/human/proc/succubus_drain()
+	set name = "Drain prey of nutrition"
+	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. You may only do this to one person at a time."
+	set category = "Abilities"
+	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
+	var/mob/living/carbon/human/C = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		C << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		return
+
+	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	if(!istype(T) || T.isSynthetic())
+		src << "<span class='warning'>\The [T] is not able to be drained.</span>"
+		return
+
+	if(G.state != GRAB_NECK)
+		C << "<span class='warning'>You must have a tighter grip to drain this creature.</span>"
+		return
+
+	if(C.absorbing_prey)
+		C << "<span class='warning'>You are already draining someone!</span>"
+		return
+
+	C.absorbing_prey = 1
+	for(var/stage = 1, stage<=100, stage++) //100 stages.
+		switch(stage)
+			if(1)
+				C << "<span class='notice'>You begin to drain [T]...</span>"
+				T << "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
+				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
+				T.nutrition = T.nutrition*0.95
+				if(T.halloss < 30)
+					T.apply_damage(10, HALLOSS)
+			if(2)
+				C << "<span class='notice'>You feel stronger with every passing moment of draining [T].</span>"
+				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], their body looking weaker with every passing moment!</span>")
+				T << "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>"
+				C.nutrition = (C.nutrition + (T.nutrition*0.1))
+				T.nutrition = T.nutrition*0.9
+				if(T.halloss < 30)
+					T.apply_damage(15, HALLOSS)
+			if(3 to 99)
+				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
+				T.nutrition = T.nutrition*0.9
+				if(T.halloss < 30) //Let's do up to 49 halloss max.
+					T.apply_damage(20, HALLOSS)
+				if(T.nutrition < 100 && stage < 99)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
+					stage = 99
+			if(100)
+				C.nutrition = (C.nutrition + T.nutrition)
+				T.nutrition = 0 //Completely drained of everything.
+				T.apply_damage(100, HALLOSS) //Knock em out.
+				C.absorbing_prey = 0
+				C << "<span class='notice'>You have completely drained [T], causing them to pass out.</span>"
+				T << "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>"
+				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
+				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
+				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+				return
+
+		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
+			src << "<span class='warning'>Our draining of [T] has been interrupted!</span>"
+			C.absorbing_prey = 0
+			return
+
+/mob/living/carbon/human/proc/succubus_drain_lethal()
+	set name = "(LETHAL!!!) Drain prey of nutrition and lifeforce (LETHAL!!!)" //Provide a warning that THIS WILL KILL YOUR PREY.
+	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to  You may only do this to one person at a time."
+	set category = "Abilities"
+	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
+	var/mob/living/carbon/human/C = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		src << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		return
+
+	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	if(!istype(T) || T.isSynthetic())
+		src << "<span class='warning'>\The [T] is not able to be drained.</span>"
+		return
+
+	if(G.state != GRAB_NECK)
+		src << "<span class='warning'>You must have a tighter grip to drain this creature.</span>"
+		return
+
+	if(C.absorbing_prey)
+		src << "<span class='warning'>You are already draining someone!</span>"
+		return
+
+	C.absorbing_prey = 1
+	for(var/stage = 1, stage<=100, stage++) //100 stages.
+		switch(stage)
+			if(1)
+				if(T.stat == DEAD)
+					C << "<span class='warning'>[T] is dead and can not be drained..</span>"
+					return
+				C << "<span class='notice'>You begin to drain [T]...</span>"
+				T << "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
+				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
+				T.nutrition = T.nutrition*0.95
+				if(T.halloss < 30)
+					T.apply_damage(10, HALLOSS)
+			if(2)
+				C << "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>"
+				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], [T]'s body looking weaker with every passing moment!</span>")
+				T << "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>"
+				C.nutrition = (C.nutrition + (T.nutrition*0.1))
+				T.nutrition = T.nutrition*0.9
+				if(T.halloss < 30)
+					T.apply_damage(15, HALLOSS)
+			if(3 to 48) //Should be more than enough to get under 100.
+				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
+				T.nutrition = T.nutrition*0.9
+				if(T.halloss < 30) //Let's do up to 49 halloss max.
+					T.apply_damage(20, HALLOSS)
+				if(T.nutrition < 100)//Did they drop below 100 nutrition? If so, immediately jump to stage 50 (Lethal!)
+					stage = 49
+			if(49)
+				if(T.nutrition < 100)//Did they somehow not get drained below 100 nutrition yet? If not, go back to stage 3 and repeat until they get drained.
+					stage = 3 //Otherwise, advance to stage 50 (Lethal draining.)
+			if(50)
+				C << "<span class='notice'>You begin to drain [T]'s lifeforce...</span>"
+				T << "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>"
+			if(51 to 99)
+				if(T.stat == DEAD)
+					src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
+					T.apply_damage(500, OXY) //Bit of fluff.
+					C.absorbing_prey = 0
+					src << "<span class='notice'>You have completely drained [T], killing them.</span>"
+					T << "<span class='danger'size='5'>You feel... So... Weak...</span>"
+					T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
+					src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
+					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+					return
+				T.adjustBrainLoss(5) //Will kill them after a short bit!
+				C.nutrition = (C.nutrition + 25) //Assuming brain damage kills at 60, this gives 300 nutrition.
+			if(100) //They shouldn't  survive long enough to get here, but just in case.
+				src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
+				T.apply_damage(500, OXY) //Kill them.
+				C.absorbing_prey = 0
+				C << "<span class='notice'>You have completely drained [T], killing them in the process.</span>"
+				T << "<span class='danger'><FONT size=7>You... Feel... So... Weak...</font></span>"
+				C.visible_message("<span class='danger'>[C] seems to finish whatever they were doing to [T].</span>")
+				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
+				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
+				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+				return
+
+		if(!do_mob(C, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
+			C << "<span class='warning'>Our draining of [T] has been interrupted!</span>"
+			C.absorbing_prey = 0
+			return
