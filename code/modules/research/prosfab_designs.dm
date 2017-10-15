@@ -156,6 +156,38 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 5625)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
+/datum/design/item/prosfab/pros/heart
+	name = "Prosthetic heart"
+	id = "pros_heart"
+	build_path = /obj/item/organ/internal/heart
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 1000)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/lungs
+	name = "Prosthetic lungs"
+	id = "pros_lung"
+	build_path = /obj/item/organ/internal/lungs
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 1000)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/liver
+	name = "Prosthetic liver"
+	id = "pros_liver"
+	build_path = /obj/item/organ/internal/liver
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 1000)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/kidneys
+	name = "Prosthetic liver"
+	id = "pros_kidney"
+	build_path = /obj/item/organ/internal/kidneys
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 1000)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg
 	category = "Cyborg Parts"
