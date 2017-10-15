@@ -193,7 +193,7 @@
 "dS" = (/obj/structure/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/smes/buildable,/turf/simulated/floor,/area/outpost/abandoned)
 "dT" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'COMPRESSED GAS'."; name = "COMPRESSED GAS"; pixel_x = -32; pixel_y = 0},/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor,/area/outpost/abandoned)
 "dU" = (/obj/machinery/atmospherics/pipe/simple/visible/blue,/obj/machinery/atmospherics/pipe/simple/visible/red{tag = "icon-intact (EAST)"; icon_state = "intact"; dir = 4},/turf/simulated/floor,/area/outpost/abandoned)
-"dV" = (/obj/machinery/atmospherics/omni/atmos_filter{power_rating = 15000; tag_east = 1; tag_north = 3; tag_south = 4; tag_west = 2},/turf/simulated/floor,/area/outpost/abandoned)
+"dV" = (/obj/machinery/atmospherics/omni/filter{power_rating = 15000; tag_east = 1; tag_north = 3; tag_south = 4; tag_west = 2},/turf/simulated/floor,/area/outpost/abandoned)
 "dW" = (/obj/machinery/atmospherics/pipe/simple/visible/universal{dir = 4},/turf/simulated/floor,/area/outpost/abandoned)
 "dX" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/turf/simulated/floor,/area/outpost/abandoned)
 "dY" = (/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{tag = "icon-intact-scrubbers (EAST)"; icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/door/airlock/glass_engineering{name = "Atmospherics"; req_access = list(10)},/obj/machinery/door/firedoor/border_only,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/plating,/area/outpost/abandoned)

@@ -129,13 +129,13 @@ Buildable meters
 			src.pipe_type = PIPE_VOLUME_PUMP
 		else if(istype(make_from, /obj/machinery/atmospherics/binary/pump))
 			src.pipe_type = PIPE_PUMP
-		else if(istype(make_from, /obj/machinery/atmospherics/trinary/filter/m_filter))
+		else if(istype(make_from, /obj/machinery/atmospherics/trinary/atmos_filter/m_filter))
 			src.pipe_type = PIPE_GAS_FILTER_M
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
 			src.pipe_type = PIPE_GAS_MIXER_T
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/mixer/m_mixer))
 			src.pipe_type = PIPE_GAS_MIXER_M
-		else if(istype(make_from, /obj/machinery/atmospherics/trinary/filter))
+		else if(istype(make_from, /obj/machinery/atmospherics/trinary/atmos_filter))
 			src.pipe_type = PIPE_GAS_FILTER
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/mixer))
 			src.pipe_type = PIPE_GAS_MIXER
@@ -809,7 +809,7 @@ Buildable meters
 				P.node2.build_network()
 
 		if(PIPE_GAS_FILTER)		//gas filter
-			var/obj/machinery/atmospherics/trinary/filter/P = new(src.loc)
+			var/obj/machinery/atmospherics/trinary/atmos_filter/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
@@ -849,7 +849,7 @@ Buildable meters
 				P.node3.build_network()
 
 		if(PIPE_GAS_FILTER_M)		//gas filter mirrored
-			var/obj/machinery/atmospherics/trinary/filter/m_filter/P = new(src.loc)
+			var/obj/machinery/atmospherics/trinary/atmos_filter/m_filter/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
