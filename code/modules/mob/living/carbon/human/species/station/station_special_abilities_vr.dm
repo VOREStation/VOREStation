@@ -504,7 +504,8 @@
 					T << "<span class='danger'>You feel completely drained as [C] finishes draining you and begins to move onto your lifeforce, but you have too strong a grasp on it for them to do so!</span>"
 					C.nutrition = (C.nutrition + T.nutrition)
 					T.nutrition = 0 //Completely drained of everything.
-					T.apply_damage(100, HALLOSS) //Knock em out.
+					var/damage_to_be_applied = T.species.total_health //Get their max health.
+					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 					return
 				C << "<span class='notice'>You begin to drain [T]'s lifeforce...</span>"
 				T << "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>"
