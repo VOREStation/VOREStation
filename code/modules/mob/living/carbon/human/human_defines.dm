@@ -34,6 +34,7 @@
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso)
+	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable. // Vorestation Edit
 
 	var/list/all_underwear = list()
 	var/list/all_underwear_metadata = list()
