@@ -427,12 +427,14 @@
 			if(3 to 99)
 				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
 				T.nutrition = T.nutrition*0.9
+				T.eye_blurry += 5 //Some eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done.
 				if(T.nutrition < 100 && stage < 99)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
 					stage = 99
 			if(100)
 				C.nutrition = (C.nutrition + T.nutrition)
 				T.nutrition = 0 //Completely drained of everything.
-				T.apply_damage(100, HALLOSS) //Knock em out.
+				var/damage_to_be_applied = T.species.total_health //Get their max health.
+				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 				C.absorbing_prey = 0
 				C << "<span class='notice'>You have completely drained [T], causing them to pass out.</span>"
 				T << "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>"
@@ -490,6 +492,7 @@
 			if(3 to 48) //Should be more than enough to get under 100.
 				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
 				T.nutrition = T.nutrition*0.9
+				T.eye_blurry += 5 //Some eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done.
 				if(T.nutrition < 100)//Did they drop below 100 nutrition? If so, do one last check then jump to stage 50 (Lethal!)
 					stage = 49
 			if(49)
@@ -517,6 +520,7 @@
 					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
 					return
 				T.adjustBrainLoss(5) //Will kill them after a short bit!
+				T.eye_blurry += 20 //A lot of eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done. More than non-lethal due to their lifeforce being sucked out
 				C.nutrition = (C.nutrition + 25) //Assuming brain damage kills at 60, this gives 300 nutrition.
 			if(100) //They shouldn't  survive long enough to get here, but just in case.
 				src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
