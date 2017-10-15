@@ -418,21 +418,15 @@
 				T << "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
 				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
-				if(T.halloss < 30)
-					T.apply_damage(10, HALLOSS)
 			if(2)
 				C << "<span class='notice'>You feel stronger with every passing moment of draining [T].</span>"
 				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], their body looking weaker with every passing moment!</span>")
 				T << "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>"
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
-				if(T.halloss < 30)
-					T.apply_damage(15, HALLOSS)
 			if(3 to 99)
 				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
 				T.nutrition = T.nutrition*0.9
-				if(T.halloss < 30) //Let's do up to 49 halloss max.
-					T.apply_damage(20, HALLOSS)
 				if(T.nutrition < 100 && stage < 99)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
 					stage = 99
 			if(100)
@@ -487,27 +481,28 @@
 				T << "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
 				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
-				if(T.halloss < 30)
-					T.apply_damage(10, HALLOSS)
 			if(2)
 				C << "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>"
 				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], [T]'s body looking weaker with every passing moment!</span>")
 				T << "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>"
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
-				if(T.halloss < 30)
-					T.apply_damage(15, HALLOSS)
 			if(3 to 48) //Should be more than enough to get under 100.
 				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
 				T.nutrition = T.nutrition*0.9
-				if(T.halloss < 30) //Let's do up to 49 halloss max.
-					T.apply_damage(20, HALLOSS)
-				if(T.nutrition < 100)//Did they drop below 100 nutrition? If so, immediately jump to stage 50 (Lethal!)
+				if(T.nutrition < 100)//Did they drop below 100 nutrition? If so, do one last check then jump to stage 50 (Lethal!)
 					stage = 49
 			if(49)
 				if(T.nutrition < 100)//Did they somehow not get drained below 100 nutrition yet? If not, go back to stage 3 and repeat until they get drained.
 					stage = 3 //Otherwise, advance to stage 50 (Lethal draining.)
 			if(50)
+				if(!T.digestable)
+					C << "<span class='danger'>You feel invigorated as you completely drain [T] and begin to move onto draining their lifeforce before realizing they have too strong of a grasp on their lifeforce for you to do so!</span>"
+					T << "<span class='danger'>You feel completely drained as [C] finishes draining you and begins to move onto your lifeforce, but you have too strong a grasp on it for them to do so!</span>"
+					C.nutrition = (C.nutrition + T.nutrition)
+					T.nutrition = 0 //Completely drained of everything.
+					T.apply_damage(100, HALLOSS) //Knock em out.
+					return
 				C << "<span class='notice'>You begin to drain [T]'s lifeforce...</span>"
 				T << "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>"
 			if(51 to 99)
