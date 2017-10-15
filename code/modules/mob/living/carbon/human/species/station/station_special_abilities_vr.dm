@@ -25,6 +25,13 @@
 				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
 				C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
+				for(var/obj/item/organ/E in C.bad_external_organs)
+					var/obj/item/organ/external/affected = E
+					for(var/datum/wound/W in affected.wounds) // Fix internal bleeds at the start of the rejuv process.
+						if(istype(W, /datum/wound/internal_bleeding))
+							affected.wounds -= W
+							affected.update_damages()
+
 				spawn(time SECONDS)
 					if(C) //Runtime prevention.
 						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
@@ -62,6 +69,56 @@
 		else
 			return //Something went wrong
 
+/mob/living/carbon/human/proc/purge_impurities() //a lesser regeneration that just purges toxin/infections without healing. Does NOT clear reagents.
+	set name = "Purge Impurities"
+	set category = "Abilities"
+
+	if(world.time < last_special)
+		return
+
+	last_special = world.time + 50 //To prevent button spam.
+
+	var/mob/living/carbon/human/C = src
+
+	if(C.reviving == 1) //If they're already unable to
+		C << "Your body is currently still recovering from the last time you healed."
+		return
+
+	C.reviving = 1 // apply cooldown, this also locks out their main regen.
+	C << "<span class='notice'>You start to purge your body of poisons and intruders...</span>"
+
+	var/grossness = min(20, toxloss)
+
+	for(var/i = 0, i<10,i++) // tick some tox down. This'll clear 20 toxloss in total.
+		if(C)
+			C.adjustToxLoss(-2)
+			sleep(10)
+
+	for(var/obj/item/organ/external/E in C.organs) //half the germ_level of everything. If they're anything short of outright necrotic they'll be fine.
+		var/obj/item/organ/external/G = E
+		if(G.germ_level)
+			grossness += G.germ_level/100
+			G.germ_level = min(0, (G.germ_level/2) - 100)
+
+	for(var/obj/item/organ/internal/I in C.internal_organs)
+		var/obj/item/organ/internal/G = I
+		if(G.germ_level)
+			grossness += G.germ_level/100
+			G.germ_level = min(0, (G.germ_level/2) - 100)
+
+	//and now comes the fun part because they're gross
+	for (var/i = 0, i<10,i++)
+		if (prob(min(100, grossness)))
+			C << "<span class='warning'>You feel nauseous...</span>"
+			spawn(30)
+			C.vomit()
+		sleep(50)
+		grossness = (grossness/2)
+
+	C << "<span class='notice'>You have finished purging your body of impurities.</span>"
+
+	spawn(300 SECONDS) //5 minute wait until you can purge or regenerate again.
+		C.reviving = 0
 
 
 /mob/living/carbon/human/proc/hasnutriment()
