@@ -170,6 +170,7 @@
 		icon_state = O.icon_state
 		set_dir(O.dir)
 
+////////////////////////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
 	name = "gloves"
@@ -183,8 +184,11 @@
 	siemens_coefficient = 0.75
 	var/wired = 0
 	var/obj/item/weapon/cell/cell = 0
-	var/overgloves = 0
 	var/fingerprint_chance = 0	//How likely the glove is to let fingerprints through
+	var/obj/item/clothing/gloves/ring = null		//Covered ring
+	var/mob/living/carbon/human/wearer = null	//Used for covered rings when dropping
+	var/glove_level = 2	//What "layer" the glove is on
+	var/overgloves = 0	//Used by gauntlets and arm_guards
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
@@ -201,6 +205,8 @@
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
 		cell.emp_act(severity)
+	if(ring)
+		ring.emp_act(severity)
 	..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
@@ -225,6 +231,59 @@
 			species_restricted -= "Tajara"
 		return
 */
+
+/obj/item/clothing/gloves/mob_can_equip(mob/user, slot)
+	var/mob/living/carbon/human/H = user
+
+	if(slot && slot == slot_gloves)
+		if(istype(H.gloves, /obj/item/clothing/gloves/ring))
+			ring = H.gloves
+			if(ring.glove_level >= src.glove_level)
+				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
+				ring = null
+				return 0
+			else
+				H.drop_from_inventory(ring)	//Remove the ring (or other under-glove item in the hand slot?) so you can put on the gloves.
+				ring.forceMove(src)
+				to_chat(user, "You slip \the [src] on over \the [src.ring].")
+		else
+			ring = null
+
+	if(!..())
+		if(ring) //Put the ring back on if the check fails.
+			if(H.equip_to_slot_if_possible(ring, slot_gloves))
+				src.ring = null
+		return 0
+
+	wearer = H //TODO clean this when magboots are cleaned
+	return 1
+
+/obj/item/clothing/gloves/dropped()
+	..()
+
+	if(!wearer)
+		return
+
+	var/mob/living/carbon/human/H = wearer
+	if(ring && istype(H))
+		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
+			ring.forceMove(get_turf(src))
+		src.ring = null
+	wearer = null
+
+/////////////////////////////////////////////////////////////////////
+//Rings
+
+/obj/item/clothing/gloves/ring
+	name = "ring"
+	w_class = ITEMSIZE_TINY
+	icon = 'icons/obj/clothing/rings.dmi'
+	gender = NEUTER
+	species_restricted = list("exclude", "Diona")
+	siemens_coefficient = 1
+	glove_level = 1
+	fingerprint_chance = 100
+
 ///////////////////////////////////////////////////////////////////////
 //Head
 /obj/item/clothing/head

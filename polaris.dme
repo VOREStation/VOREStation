@@ -1290,6 +1290,8 @@
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\masks\monitor.dm"
 #include "code\modules\clothing\masks\voice.dm"
+#include "code\modules\clothing\rings\material.dm"
+#include "code\modules\clothing\rings\rings.dm"
 #include "code\modules\clothing\shoes\boots.dm"
 #include "code\modules\clothing\shoes\colour.dm"
 #include "code\modules\clothing\shoes\leg_guards.dm"
