@@ -70,3 +70,9 @@
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
 	cost = 0
 	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm
+
+/datum/trait/succubus_drain //Completely RP only trait.
+	name = "Succubus Drain"
+	desc = "Makes you able to gain nutrition from draining prey in your grasp."
+	cost = 0
+	var_changes = list("can_drain_prey" = 1) //The verb is given in human.dm
