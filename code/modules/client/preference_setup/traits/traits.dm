@@ -79,7 +79,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 		if(invalidity)
 			invalid += "[invalidity]  "
 		if(conflicts)
-			invalid += "This trait is muturally exclusive with [conflicts]."
+			invalid += "This trait is mutually exclusive with [conflicts]."
 
 		. += "<td width = 75%><font size=2><i>[T.desc]</i>\
 		[invalid ? "<font color='#FF0000'><br>Cannot take trait.  Reason: [invalid]</font>":""]</font></td></tr>"
@@ -114,7 +114,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 			var/conflicts = T.test_for_trait_conflict(pref.traits)
 			if(conflicts)
 				pref.traits -= trait_name
-				to_chat(preference_mob, "<span class='warning'>The [trait_name] trait is muturally exclusive with [conflicts].</span>")
+				to_chat(preference_mob, "<span class='warning'>The [trait_name] trait is mutually exclusive with [conflicts].</span>")
 
 /datum/category_item/player_setup_item/traits/OnTopic(href, href_list, user)
 	if(href_list["toggle_trait"])
@@ -129,7 +129,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 			var/conflicts = T.test_for_trait_conflict(pref.traits)
 			if(conflicts)
-				to_chat(user, "<span class='warning'>The [T.name] trait is muturally exclusive with [conflicts].</span>")
+				to_chat(user, "<span class='warning'>The [T.name] trait is mutually exclusive with [conflicts].</span>")
 				return TOPIC_NOACTION
 
 			pref.traits += T.name
@@ -143,7 +143,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 /datum/trait
 	var/name = null							// Name to show on UI
 	var/desc = null							// Description of what it does, also shown on UI.
-	var/list/muturally_exclusive = list()	// List of trait types which cannot be taken alongside this trait.
+	var/list/mutually_exclusive = list()	// List of trait types which cannot be taken alongside this trait.
 	var/category = null						// What section to place this trait inside.
 
 // Applies effects to the newly spawned mob.
@@ -156,16 +156,16 @@ var/list/trait_categories = list() // The categories available for the trait men
 /datum/trait/proc/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)
 	return null
 
-// Checks muturally_exclusive.  current_traits needs to be a list of strings.
+// Checks mutually_exclusive.  current_traits needs to be a list of strings.
 // Returns null if everything is well, similar to the above proc.  Otherwise returns an english_list() of conflicting traits.
 /datum/trait/proc/test_for_trait_conflict(var/list/current_traits)
 	var/list/conflicts = list()
 	var/result
 
-	if(muturally_exclusive.len)
+	if(mutually_exclusive.len)
 		for(var/trait_name in current_traits)
 			var/datum/trait/T = trait_datums[trait_name]
-			if(T.type in muturally_exclusive)
+			if(T.type in mutually_exclusive)
 				conflicts.Add(T.name)
 
 	if(conflicts.len)
