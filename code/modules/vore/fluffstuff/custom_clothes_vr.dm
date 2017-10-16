@@ -1403,6 +1403,7 @@ Departamental Swimsuits, for general use
 	
 //JackNoir413: Mor Xaina
 /obj/item/clothing/under/fluff/morunder
+	name = "grey top with shorts"
 	desc = "Fashionable grey top, combined with black shorts. Fancy!"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "morunder"
@@ -1411,6 +1412,7 @@ Departamental Swimsuits, for general use
 
 //JackNoir413: Mor Xaina
 /obj/item/clothing/gloves/fluff/morsleeves
+	name = "fingerless sleeves"
 	desc = "Cute long armwarmers. Sadly, they don't cover fingers."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "morsleeves"
@@ -1419,6 +1421,7 @@ Departamental Swimsuits, for general use
 
 //JackNoir413: Mor Xaina
 /obj/item/clothing/shoes/fluff/morthighs
+	name = "long grey socks"
 	desc = "Striped, soft thigh-high socks with no fingers. Must be hard to wash them..."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "morthighs"
