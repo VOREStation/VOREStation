@@ -419,6 +419,8 @@
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return
+	if(istype(A, /obj/structure/foamedmetal)) //Turrets can detect through foamed metal, but will have to blast through it. Similar to windows, if someone runs behind it, a person should probably just not shoot.
+		return
 	if(istype(A, /mob/living) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return 1!
 		return
