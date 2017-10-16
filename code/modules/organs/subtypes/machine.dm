@@ -2,7 +2,7 @@
 	name = "microbattery"
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
 	icon_state = "scell"
-	organ_tag = "cell"
+	organ_tag = O_CELL
 	parent_organ = BP_TORSO
 	vital = 1
 
@@ -21,7 +21,7 @@
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/internal/mmi_holder
 	name = "brain interface"
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
 	vital = 1
 	var/brain_type = /obj/item/device/mmi
