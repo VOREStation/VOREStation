@@ -7,6 +7,8 @@
 		/datum/lore/codex/page/unathi,
 		/datum/lore/codex/page/tajaran,
 		/datum/lore/codex/page/diona,
+		/datum/lore/codex/page/promethean,
+		/datum/lore/codex/page/vatborn,
 		/datum/lore/codex/category/teshari,
 		/datum/lore/codex/category/positronic,
 		/datum/lore/codex/category/drone
@@ -124,6 +126,18 @@
 	Their hearing is exceptionally sensitive to the point that they can detect a person moving on the other \
 	side of a wall, but this comes at a cost.  Very loud noises are very painful for Teshari, so be mindful of \
 	your indoor voice when speaking with one. The Teshari are omnivorous but generally prefer to eat meat wherever possible."
+
+// Promethean Lore
+/datum/lore/codex/page/promethean/add_content()
+	name = "Promethean"
+	keywords += list("slime", "promethean")
+	data = "Words"
+
+// Vatborn Lore
+/datum/lore/codex/page/vatborn/add_content()
+	name = "Vatborn"
+	keywords += list("vatborn")
+	data = "More Words"
 
 // Posi lore
 /datum/lore/codex/category/positronic/add_content()
