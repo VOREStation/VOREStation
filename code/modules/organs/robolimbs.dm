@@ -245,6 +245,20 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 		green=xion_green;\
 		rgb=xion_rgb"
 
+/datum/robolimb/xion_alt3
+	company = "Xion - Whiteout"
+	desc = "This limb has a minimalist black and white casing."
+	icon = 'icons/mob/human_races/cyberlimbs/xion/xion_alt3.dmi'
+	unavailable_to_build = 1
+
+/datum/robolimb/xion_alt4
+	company = "Xion - Breach - Whiteout"
+	desc = "This limb has a minimalist black and white casing. Looks a bit menacing."
+	icon = 'icons/mob/human_races/cyberlimbs/xion/xion_alt4.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+
+
 /datum/robolimb/xion_monitor
 	company = "Xion Monitor"
 	desc = "Xion Mfg.'s unique spin on a popular prosthetic head model. It looks and minimalist and utilitarian."
