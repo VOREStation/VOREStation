@@ -158,6 +158,7 @@
 #define O_MOUTH    "mouth"
 #define O_EYES     "eyes"
 #define O_HEART    "heart"
+#define O_CELL     "cell"
 #define O_LUNGS    "lungs"
 #define O_BRAIN    "brain"
 #define O_LIVER    "liver"
