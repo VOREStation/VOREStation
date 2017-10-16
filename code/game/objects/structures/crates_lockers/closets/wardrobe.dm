@@ -149,6 +149,7 @@
 	new /obj/item/clothing/suit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
 	new /obj/item/clothing/suit/storage/hooded/chaplain_hoodie(src)
+	new /obj/item/clothing/suit/storage/hooded/chaplain_hoodie/whiteout(src)
 	new /obj/item/clothing/suit/holidaypriest(src)
 	new /obj/item/clothing/under/wedding/bride_white(src)
 	new /obj/item/weapon/storage/backpack/cultpack (src)
