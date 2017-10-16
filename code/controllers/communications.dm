@@ -5,13 +5,13 @@
   Note that walkie-talkie, intercoms and headsets handle transmission using nonstandard way.
   procs:
 
-    add_object(obj/device as obj, var/new_frequency as num, var/filter as text|null = null)
+    add_object(obj/device as obj, var/new_frequency as num, var/radio_filter as text|null = null)
       Adds listening object.
       parameters:
         device - device receiving signals, must have proc receive_signal (see description below).
           one device may listen several frequencies, but not same frequency twice.
         new_frequency - see possibly frequencies below;
-        filter - thing for optimization. Optional, but recommended.
+        radio_filter - thing for optimization. Optional, but recommended.
                  All filters should be consolidated in this file, see defines later.
                  Device without listening filter will receive all signals (on specified frequency).
                  Device with filter will receive any signals sent without filter.
@@ -30,12 +30,12 @@
   radio_frequency is a global object maintaining list of devices that listening specific frequency.
   procs:
 
-    post_signal(obj/source as obj|null, datum/signal/signal, var/filter as text|null = null, var/range as num|null = null)
+    post_signal(obj/source as obj|null, datum/signal/signal, var/radio_filter as text|null = null, var/range as num|null = null)
       Sends signal to all devices that wants such signal.
       parameters:
         source - object, emitted signal. Usually, devices will not receive their own signals.
         signal - see description below.
-        filter - described above.
+        radio_filter - described above.
         range - radius of regular byond's square circle on that z-level. null means everywhere, on all z-levels.
 
   obj/proc/receive_signal(datum/signal/signal, var/receive_method as num, var/receive_param)
@@ -220,7 +220,7 @@ var/global/datum/controller/radio/radio_controller
 /datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
 
-/datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/filter = null as text|null)
+/datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/radio_filter = null as text|null)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -229,7 +229,7 @@ var/global/datum/controller/radio/radio_controller
 		frequency.frequency = new_frequency
 		frequencies[f_text] = frequency
 
-	frequency.add_listener(device, filter)
+	frequency.add_listener(device, radio_filter)
 	return frequency
 
 /datum/controller/radio/proc/remove_object(obj/device, old_frequency)
@@ -260,15 +260,15 @@ var/global/datum/controller/radio/radio_controller
 	var/frequency as num
 	var/list/list/obj/devices = list()
 
-/datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, var/filter = null as text|null, var/range = null as num|null)
+/datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, var/radio_filter = null as text|null, var/range = null as num|null)
 	var/turf/start_point
 	if(range)
 		start_point = get_turf(source)
 		if(!start_point)
 			qdel(signal)
 			return 0
-	if (filter)
-		send_to_filter(source, signal, filter, start_point, range)
+	if (radio_filter)
+		send_to_filter(source, signal, radio_filter, start_point, range)
 		send_to_filter(source, signal, RADIO_DEFAULT, start_point, range)
 	else
 		//Broadcast the signal to everyone!
@@ -276,11 +276,11 @@ var/global/datum/controller/radio/radio_controller
 			send_to_filter(source, signal, next_filter, start_point, range)
 
 //Sends a signal to all machines belonging to a given filter. Should be called by post_signal()
-/datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/filter, var/turf/start_point = null, var/range = null)
+/datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/radio_filter, var/turf/start_point = null, var/range = null)
 	if (range && !start_point)
 		return
 
-	for(var/obj/device in devices[filter])
+	for(var/obj/device in devices[radio_filter])
 		if(device == source)
 			continue
 		if(range)
@@ -292,14 +292,14 @@ var/global/datum/controller/radio/radio_controller
 
 		device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 
-/datum/radio_frequency/proc/add_listener(obj/device as obj, var/filter as text|null)
-	if (!filter)
-		filter = RADIO_DEFAULT
-	//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")
-	var/list/obj/devices_line = devices[filter]
+/datum/radio_frequency/proc/add_listener(obj/device as obj, var/radio_filter as text|null)
+	if (!radio_filter)
+		radio_filter = RADIO_DEFAULT
+	//log_admin("add_listener(device=[device],radio_filter=[radio_filter]) frequency=[frequency]")
+	var/list/obj/devices_line = devices[radio_filter]
 	if (!devices_line)
 		devices_line = new
-		devices[filter] = devices_line
+		devices[radio_filter] = devices_line
 	devices_line+=device
 //			var/list/obj/devices_line___ = devices[filter_str]
 //			var/l = devices_line___.len

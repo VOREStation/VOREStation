@@ -1,11 +1,11 @@
 //--------------------------------------------
 // Gas filter - omni variant
 //--------------------------------------------
-/obj/machinery/atmospherics/omni/filter
+/obj/machinery/atmospherics/omni/atmos_filter
 	name = "omni gas filter"
 	icon_state = "map_filter"
 
-	var/list/filters = new()
+	var/list/atmos_filters = new()
 	var/datum/omni_port/input
 	var/datum/omni_port/output
 
@@ -18,27 +18,27 @@
 
 	var/list/filtering_outputs = list()	//maps gasids to gas_mixtures
 
-/obj/machinery/atmospherics/omni/filter/New()
+/obj/machinery/atmospherics/omni/atmos_filter/New()
 	..()
 	rebuild_filtering_list()
 	for(var/datum/omni_port/P in ports)
 		P.air.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
-/obj/machinery/atmospherics/omni/filter/Destroy()
+/obj/machinery/atmospherics/omni/atmos_filter/Destroy()
 	input = null
 	output = null
-	filters.Cut()
+	atmos_filters.Cut()
 	return ..()
 
-/obj/machinery/atmospherics/omni/filter/sort_ports()
+/obj/machinery/atmospherics/omni/atmos_filter/sort_ports()
 	for(var/datum/omni_port/P in ports)
 		if(P.update)
 			if(output == P)
 				output = null
 			if(input == P)
 				input = null
-			if(filters.Find(P))
-				filters -= P
+			if(atmos_filters.Find(P))
+				atmos_filters -= P
 
 			P.air.volume = 200
 			switch(P.mode)
@@ -47,17 +47,17 @@
 				if(ATM_OUTPUT)
 					output = P
 				if(ATM_O2 to ATM_N2O)
-					filters += P
+					atmos_filters += P
 
-/obj/machinery/atmospherics/omni/filter/error_check()
-	if(!input || !output || !filters)
+/obj/machinery/atmospherics/omni/atmos_filter/error_check()
+	if(!input || !output || !atmos_filters)
 		return 1
-	if(filters.len < 1) //requires at least 1 filter ~otherwise why are you using a filter?
+	if(atmos_filters.len < 1) //requires at least 1 atmos_filter ~otherwise why are you using a filter?
 		return 1
 
 	return 0
 
-/obj/machinery/atmospherics/omni/filter/process()
+/obj/machinery/atmospherics/omni/atmos_filter/process()
 	if(!..())
 		return 0
 
@@ -79,13 +79,13 @@
 			input.network.update = 1
 		if(output.network)
 			output.network.update = 1
-		for(var/datum/omni_port/P in filters)
+		for(var/datum/omni_port/P in atmos_filters)
 			if(P.network)
 				P.network.update = 1
 
 	return 1
 
-/obj/machinery/atmospherics/omni/filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/omni/atmos_filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	usr.set_machine(src)
 
 	var/list/data = new()
@@ -100,7 +100,7 @@
 
 		ui.open()
 
-/obj/machinery/atmospherics/omni/filter/proc/build_uidata()
+/obj/machinery/atmospherics/omni/atmos_filter/proc/build_uidata()
 	var/list/data = new()
 
 	data["power"] = use_power
@@ -113,22 +113,22 @@
 
 		var/input = 0
 		var/output = 0
-		var/filter = 1
+		var/atmo_filter = 1
 		var/f_type = null
 		switch(P.mode)
 			if(ATM_INPUT)
 				input = 1
-				filter = 0
+				atmo_filter = 0
 			if(ATM_OUTPUT)
 				output = 1
-				filter = 0
+				atmo_filter = 0
 			if(ATM_O2 to ATM_N2O)
 				f_type = mode_send_switch(P.mode)
 
 		portData[++portData.len] = list("dir" = dir_name(P.dir, capitalize = 1), \
 										"input" = input, \
 										"output" = output, \
-										"filter" = filter, \
+										"atmo_filter" = atmo_filter, \
 										"f_type" = f_type)
 
 	if(portData.len)
@@ -139,7 +139,7 @@
 
 	return data
 
-/obj/machinery/atmospherics/omni/filter/proc/mode_send_switch(var/mode = ATM_NONE)
+/obj/machinery/atmospherics/omni/atmos_filter/proc/mode_send_switch(var/mode = ATM_NONE)
 	switch(mode)
 		if(ATM_O2)
 			return "Oxygen"
@@ -154,7 +154,7 @@
 		else
 			return null
 
-/obj/machinery/atmospherics/omni/filter/Topic(href, href_list)
+/obj/machinery/atmospherics/omni/atmos_filter/Topic(href, href_list)
 	if(..()) return 1
 	switch(href_list["command"])
 		if("power")
@@ -183,7 +183,7 @@
 	nanomanager.update_uis(src)
 	return
 
-/obj/machinery/atmospherics/omni/filter/proc/mode_return_switch(var/mode)
+/obj/machinery/atmospherics/omni/atmos_filter/proc/mode_return_switch(var/mode)
 	switch(mode)
 		if("Oxygen")
 			return ATM_O2
@@ -204,7 +204,7 @@
 		else
 			return null
 
-/obj/machinery/atmospherics/omni/filter/proc/switch_filter(var/dir, var/mode)
+/obj/machinery/atmospherics/omni/atmos_filter/proc/switch_filter(var/dir, var/mode)
 	//check they aren't trying to disable the input or output ~this can only happen if they hack the cached tmpl file
 	for(var/datum/omni_port/P in ports)
 		if(P.dir == dir)
@@ -213,7 +213,7 @@
 
 	switch_mode(dir, mode)
 
-/obj/machinery/atmospherics/omni/filter/proc/switch_mode(var/port, var/mode)
+/obj/machinery/atmospherics/omni/atmos_filter/proc/switch_mode(var/port, var/mode)
 	if(mode == null || !port)
 		return
 	var/datum/omni_port/target_port = null
@@ -246,14 +246,14 @@
 
 	update_ports()
 
-/obj/machinery/atmospherics/omni/filter/proc/rebuild_filtering_list()
+/obj/machinery/atmospherics/omni/atmos_filter/proc/rebuild_filtering_list()
 	filtering_outputs.Cut()
 	for(var/datum/omni_port/P in ports)
 		var/gasid = mode_to_gasid(P.mode)
 		if(gasid)
 			filtering_outputs[gasid] = P.air
 
-/obj/machinery/atmospherics/omni/filter/proc/handle_port_change(var/datum/omni_port/P)
+/obj/machinery/atmospherics/omni/atmos_filter/proc/handle_port_change(var/datum/omni_port/P)
 	switch(P.mode)
 		if(ATM_NONE)
 			initialize_directions &= ~P.dir

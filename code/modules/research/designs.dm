@@ -671,7 +671,7 @@ other types of metals and chemistry for reagents).
 	id = "s-filter"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 40, "silver" = 10)
-	build_path = /obj/item/weapon/stock_parts/subspace/filter
+	build_path = /obj/item/weapon/stock_parts/subspace/sub_filter
 	sort_string = "UAAAB"
 
 /datum/design/item/stock_part/subspace_amplifier

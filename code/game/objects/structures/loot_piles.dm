@@ -337,7 +337,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/stock_parts/subspace/analyzer,
 		/obj/item/weapon/stock_parts/subspace/ansible,
 		/obj/item/weapon/stock_parts/subspace/crystal,
-		/obj/item/weapon/stock_parts/subspace/filter,
+		/obj/item/weapon/stock_parts/subspace/sub_filter,
 		/obj/item/weapon/stock_parts/subspace/transmitter,
 		/obj/item/weapon/stock_parts/subspace/treatment,
 		/obj/item/frame,
