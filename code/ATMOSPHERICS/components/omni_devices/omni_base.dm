@@ -120,7 +120,7 @@
 	var/core_icon = null
 	if(istype(src, /obj/machinery/atmospherics/omni/mixer))
 		core_icon = "mixer"
-	else if(istype(src, /obj/machinery/atmospherics/omni/filter))
+	else if(istype(src, /obj/machinery/atmospherics/omni/atmos_filter))
 		core_icon = "filter"
 	else
 		return

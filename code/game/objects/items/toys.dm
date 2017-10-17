@@ -141,6 +141,7 @@
 		icon_l_hand = 'icons/mob/items/lefthand_guns.dmi',
 		icon_r_hand = 'icons/mob/items/righthand_guns.dmi',
 		)
+	slot_flags = SLOT_HOLSTER
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/bullets = 5
@@ -343,7 +344,7 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	var/empty = 0
-	flags
+	slot_flags = SLOT_HOLSTER
 
 /obj/item/toy/waterflower/New()
 	var/datum/reagents/R = new/datum/reagents(10)
@@ -412,7 +413,7 @@
 	icon_state = "bosunwhistle"
 	var/cooldown = 0
 	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_EARS
+	slot_flags = SLOT_EARS | SLOT_HOLSTER
 
 /obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
 	if(cooldown < world.time - 35)
@@ -529,8 +530,8 @@
 	icon_state = "bartender"
 
 /obj/item/toy/figure/borg
-	name = "Cyborg action figure"
-	desc = "A \"Space Life\" brand Cyborg action figure."
+	name = "Drone action figure"
+	desc = "A \"Space Life\" brand Drone action figure."
 	icon_state = "borg"
 
 /obj/item/toy/figure/gardener
@@ -599,8 +600,8 @@
 	icon_state = "geneticist"
 
 /obj/item/toy/figure/hop
-	name = "Head of Personel action figure"
-	desc = "A \"Space Life\" brand Head of Personel action figure."
+	name = "Head of Personnel action figure"
+	desc = "A \"Space Life\" brand Head of Personnel action figure."
 	icon_state = "hop"
 
 /obj/item/toy/figure/hos

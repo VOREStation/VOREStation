@@ -79,6 +79,11 @@
 		brainmob.dna = H.dna.Clone()
 		brainmob.timeofhostdeath = H.timeofdeath
 
+		// Copy modifiers.
+		for(var/datum/modifier/M in H.modifiers)
+			if(M.flags & MODIFIER_GENETIC)
+				brainmob.add_modifier(M.type)
+
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 

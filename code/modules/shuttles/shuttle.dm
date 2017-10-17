@@ -12,6 +12,7 @@
 	var/datum/computer/file/embedded_program/docking/docking_controller	//the controller itself. (micro-controller, not game controller)
 
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
+	var/depart_time = 0 //Similar to above, set when the shuttle leaves when long jumping, to compare against arrive time.
 	var/flags = SHUTTLE_FLAGS_PROCESS
 	var/category = /datum/shuttle
 
@@ -50,6 +51,14 @@
 /datum/shuttle/proc/post_warmup_checks()
 	return TRUE
 
+// If you need an event to occur when the shuttle jumps in short or long jump, override this.
+/datum/shuttle/proc/on_shuttle_departure()
+	return
+
+// Similar to above, but when it finishes moving to the target.  Short jump generally makes this occur immediately after the above proc.
+/datum/shuttle/proc/on_shuttle_arrival()
+	return
+
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
@@ -70,9 +79,14 @@
 			make_sounds(origin, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
+		on_shuttle_departure()
+
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		move(origin, destination)
 		moving_status = SHUTTLE_IDLE
+
+		on_shuttle_arrival()
+
 		make_sounds(destination, HYPERSPACE_END)
 
 /datum/shuttle/proc/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
@@ -98,7 +112,13 @@
 			return	//someone cancelled the launch
 
 		arrive_time = world.time + travel_time*10
+
+		depart_time = world.time
+
+		on_shuttle_departure()
+
 		moving_status = SHUTTLE_INTRANSIT
+
 		move(departing, interim, direction)
 
 		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
@@ -114,7 +134,10 @@
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
-		//make_sounds(destination, HYPERSPACE_END) //VOREStation Edit. See above comment.
+
+		//on_shuttle_arrival()//VOREStation Edit.
+
+		//make_sounds(destination, HYPERSPACE_END)//VOREStation Edit. See above comment.
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)

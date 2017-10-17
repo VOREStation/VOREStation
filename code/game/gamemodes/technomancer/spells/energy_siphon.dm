@@ -27,7 +27,7 @@
 /obj/item/weapon/spell/energy_siphon/Destroy()
 	stop_siphoning()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/weapon/spell/energy_siphon/process()
 	if(!siphoning)

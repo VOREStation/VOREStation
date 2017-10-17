@@ -1,0 +1,121 @@
+<h3>Shuttle Status</h3>
+{{if data.is_moving == 0}}
+	<div class="item">
+		<div class="itemLabel">
+			Current Location:
+		</div>
+		<div class="itemContent">
+			{{:data.shuttle_location}}
+		</div>
+	</div>
+{{/if}}
+
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Engines:
+		</div>
+		<div class="itemContent">
+			{{if data.shuttle_state == "idle"}}
+				<span class="idle">IDLE</span>
+			{{else data.shuttle_state == "warmup"}}
+				<span style="font-weight: bold;color: #336699">SPINNING UP</span>
+			{{else data.shuttle_state == "in_transit"}}
+				<span style="font-weight: bold;color: #336699">ENGAGED</span>
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+	</div>
+</div>
+
+{{if data.is_moving == 0}}
+	
+	{{if data.skip_docking == 0}}
+		<div class="item" style="padding-top: 10px">
+			<div class="item">
+				<div class="itemLabel">
+					Docking Status:
+				</div>
+				<div class="itemContent">
+					{{if data.docking_status == "docked"}}
+						<span class="good">DOCKED</span>
+					{{else data.docking_status == "docking"}}
+						{{if !data.docking_override}}
+							<span class="average">DOCKING</span>
+						{{else}}
+							<span class="average">DOCKING-MANUAL</span>
+						{{/if}}
+					{{else data.docking_status == "undocking"}}
+						{{if !data.docking_override}}
+							<span class="average">UNDOCKING</span>
+						{{else}}
+							<span class="average">UNDOCKING-MANUAL</span>
+						{{/if}}
+					{{else data.docking_status == "undocked"}}
+						<span class="idle">UNDOCKED</span>
+					{{else}}
+						<span class="bad">ERROR</span>
+					{{/if}}
+					
+					<span style="float:right">
+						{{:helper.link('Dock', 'arrowthickstop-1-e', {'dock_command' : 1}, (data.docking_status != "undocked")? 'selected' : null)}}
+						{{:helper.link('Undock', 'arrowthickstop-1-e', {'undock_command' : 1}, (data.docking_status != "docked")? 'selected' : null)}}
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+	{{/if}}
+	
+	{{if data.can_cloak == 1}}
+		<div class="item">
+			<div class="itemLabel">
+				Shuttle Stealth System:
+			</div>
+			<span style="float:right">
+				{{:helper.link('Cloak', 'radio-off', {'cloak_command' : 1}, (data.cloaked == 1)? 'selected' : null)}}
+				{{:helper.link('Uncloak', 'radio-on', {'uncloak_command' : 1}, (data.cloaked == 0)? 'selected' : null)}}
+			</div>
+		</div>
+	{{/if}}
+	
+{{/if}}
+
+{{if data.is_moving == 0}}
+	<h3>Available Destinations</h3>
+
+	<HR>
+	<div class="itemContent" style="width: 100%;"></div><BR>
+		{{for data.routes}}
+			<div class='item'>
+				<div class="itemLabel">
+				{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 100%;">
+						{{:helper.link(value.travel_time, 'clock', {"traverse" : value.index})}}
+					
+					</div> 
+
+				</div>
+			</div>
+		{{/for}}
+	</div>
+{{/if}}
+
+{{if data.is_in_transit == 1}}
+	<h3>Destination ETA</h3>
+	<div class="item">
+		<div class="itemLabel">
+			Distance from target:
+		</div>
+		<div class="itemContent">		
+			{{:helper.displayBar(data.travel_progress, 0, 100, "good")}}
+			<div class="statusValue">
+				<span class="good">{{:data.time_left}}s</span>
+			</div>
+		</div>
+	</div>
+{{/if}}

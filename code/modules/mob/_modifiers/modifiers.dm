@@ -37,6 +37,10 @@
 	var/slowdown						// Negative numbers speed up, positive numbers slow down movement.
 	var/haste							// If set to 1, the mob will be 'hasted', which makes it ignore slowdown and go really fast.
 	var/evasion							// Positive numbers reduce the odds of being hit by 15% each.  Negative numbers increase the odds.
+	var/bleeding_rate_percent			// Adjusts amount of blood lost when bleeding.
+	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder.  Each point makes it 15% easier or harder, just like evasion.
+	var/accuracy_dispersion				// Positive numbers make gun firing cover a wider tile range, and therefore more inaccurate.  Negatives help negate dispersion penalties.
+	var/metabolism_percent				// Adjusts the mob's metabolic rate, which affects reagent processing.  Won't affect mobs without reagent processing.
 
 /datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder
@@ -123,7 +127,7 @@
 // Removes all modifiers of a type
 /mob/living/proc/remove_modifiers_of_type(var/modifier_type, var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)
-		if(istype(M, modifier_type))
+		if(ispath(M.type, modifier_type))
 			M.expire(silent)
 
 // Removes all modifiers, useful if the mob's being deleted
@@ -137,3 +141,70 @@
 		if(istype(M, modifier_type))
 			return TRUE
 	return FALSE
+
+// This displays the actual 'numbers' that a modifier is doing.  Should only be shown in OOC contexts.
+// When adding new effects, be sure to update this as well.
+/datum/modifier/proc/describe_modifier_effects()
+	var/list/effects = list()
+	if(!isnull(max_health_flat))
+		effects += "You [max_health_flat > 0 ? "gain" : "lose"] [abs(max_health_flat)] maximum health."
+	if(!isnull(max_health_percent))
+		effects += "You [max_health_percent > 1.0 ? "gain" : "lose"] [multipler_to_percentage(max_health_percent, TRUE)] maximum health."
+
+	if(!isnull(disable_duration_percent))
+		effects += "Disabling effects on you last [multipler_to_percentage(disable_duration_percent, TRUE)] [disable_duration_percent > 1.0 ? "longer" : "shorter"]"
+
+	if(!isnull(incoming_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_damage_percent, TRUE)] [incoming_damage_percent > 1.0 ? "more" : "less"] damage."
+	if(!isnull(incoming_brute_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_brute_damage_percent, TRUE)] [incoming_brute_damage_percent > 1.0 ? "more" : "less"] brute damage."
+	if(!isnull(incoming_fire_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_fire_damage_percent, TRUE)] [incoming_fire_damage_percent > 1.0 ? "more" : "less"] fire damage."
+	if(!isnull(incoming_tox_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_tox_damage_percent, TRUE)] [incoming_tox_damage_percent > 1.0 ? "more" : "less"] toxin damage."
+	if(!isnull(incoming_oxy_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_oxy_damage_percent, TRUE)] [incoming_oxy_damage_percent > 1.0 ? "more" : "less"] oxy damage."
+	if(!isnull(incoming_clone_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_clone_damage_percent, TRUE)] [incoming_clone_damage_percent > 1.0 ? "more" : "less"] clone damage."
+	if(!isnull(incoming_hal_damage_percent))
+		effects += "You take [multipler_to_percentage(incoming_hal_damage_percent, TRUE)] [incoming_hal_damage_percent > 1.0 ? "more" : "less"] agony damage."
+
+	if(!isnull(incoming_healing_percent))
+		effects += "Healing applied to you is [multipler_to_percentage(incoming_healing_percent, TRUE)] [incoming_healing_percent > 1.0 ? "stronger" : "weaker"]."
+
+	if(!isnull(outgoing_melee_damage_percent))
+		effects += "Damage you do with melee weapons and unarmed combat is [multipler_to_percentage(outgoing_melee_damage_percent, TRUE)] \
+		[outgoing_melee_damage_percent > 1.0 ? "higher" : "lower"]."
+
+	if(!isnull(slowdown))
+		effects += "[slowdown > 0 ? "lose" : "gain"] [slowdown] slowdown."
+
+	if(!isnull(haste))
+		effects += "You move at maximum speed, and cannot be slowed by any means."
+
+	if(!isnull(evasion))
+		effects += "You are [abs(evasion * 15)]% [evasion > 0 ? "harder" : "easier"] to hit with weapons."
+
+	if(!isnull(bleeding_rate_percent))
+		effects += "You bleed [multipler_to_percentage(bleeding_rate_percent, TRUE)] [bleeding_rate_percent > 1.0 ? "faster" : "slower"]."
+
+	if(!isnull(accuracy))
+		effects += "It is [abs(accuracy * 15)]% [accuracy > 0 ? "easier" : "harder"] for you to hit someone with a ranged weapon."
+
+	if(!isnull(accuracy_dispersion))
+		effects += "Projectiles you fire are [accuracy_dispersion > 0 ? "more" : "less"] likely to stray from your intended target."
+
+	if(!isnull(metabolism_percent))
+		effects += "Your metabolism is [metabolism_percent > 1.0 ? "faster" : "slower"], \
+		causing reagents in your body to process, and hunger to occur [multipler_to_percentage(metabolism_percent, TRUE)] [metabolism_percent > 1.0 ? "faster" : "slower"]."
+
+
+	return jointext(effects, "<br>")
+
+
+
+// Helper to format multiplers (e.g. 1.4) to percentages (like '40%')
+/proc/multipler_to_percentage(var/multi, var/abs = FALSE)
+	if(abs)
+		return "[abs( ((multi - 1) * 100) )]%"
+	return "[((multi - 1) * 100)]%"

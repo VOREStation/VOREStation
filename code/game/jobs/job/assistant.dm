@@ -11,7 +11,6 @@
 	economic_modifier = 1
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
-	alt_titles = list("Technical Assistant","Test Subject","Medical Intern","Research Assistant","Visitor", "Resident") // Test Subject is a VOREStation edit.
 
 /datum/job/assistant/equip(var/mob/living/carbon/human/H, var/alt_title)
 	if(!H)
@@ -30,6 +29,10 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	return 1
+	outfit_type = /decl/hierarchy/outfit/job/assistant
+	alt_titles = list("Technical Assistant","Test Subject","Medical Intern","Research Assistant",
+					"Visitor" = /decl/hierarchy/outfit/job/assistant/visitor,
+					"Resident" = /decl/hierarchy/outfit/job/assistant/resident) //Test Subject is a VOREStation edit on line 36.
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)

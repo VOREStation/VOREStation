@@ -150,8 +150,10 @@
 /obj/structure/foamedmetal/ex_act(severity)
 	qdel(src)
 
-/obj/structure/foamedmetal/bullet_act()
-	if(metal == 1 || prob(50))
+/obj/structure/foamedmetal/bullet_act(var/obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/test))
+		return
+	else if(metal == 1 || prob(50))
 		qdel(src)
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)

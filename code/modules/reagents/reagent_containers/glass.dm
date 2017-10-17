@@ -112,6 +112,8 @@
 			user << "<span class='notice'>You set the label to \"[tmp_label]\".</span>"
 			label_text = tmp_label
 			update_name_label()
+	if(istype(W,/obj/item/weapon/storage/bag))
+		..()
 
 /obj/item/weapon/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")

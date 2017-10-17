@@ -45,6 +45,7 @@
 	var/check_access = 1	//if this is active, the turret shoots everything that does not meet the access requirements
 	var/check_anomalies = 1	//checks if it can shoot at unidentified lifeforms (ie xenos)
 	var/check_synth	 = 0 	//if active, will shoot at anything not an AI or cyborg
+	var/check_all = 0		//If active, will fire on anything, including synthetics.
 	var/ailock = 0 			// AI cannot use this
 
 	var/attacked = 0		//if set to 1, the turret gets pissed off and shoots at people nearby (unless they have sec access!)
@@ -71,6 +72,7 @@
 	check_records = 1
 	check_weapons = 1
 	check_anomalies = 1
+	check_all = 0
 
 /obj/machinery/porta_turret/stationary
 	ailock = 1
@@ -229,6 +231,7 @@ var/list/turret_icons
 		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
 		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
 		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
+		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
 		data["settings"] = settings
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -278,6 +281,8 @@ var/list/turret_icons
 			check_access = value
 		else if(href_list["command"] == "check_anomalies")
 			check_anomalies = value
+		else if(href_list["command"] == "check_all")
+			check_all = value
 
 		return 1
 
@@ -465,7 +470,7 @@ var/list/turret_icons
 	var/list/targets = list()			//list of primary targets
 	var/list/secondarytargets = list()	//targets that are least important
 
-	for(var/mob/M in mobs_in_view(world.view, src))
+	for(var/mob/M in mobs_in_xray_view(world.view, src))
 		assess_and_assign(M, targets, secondarytargets)
 
 	if(!tryToShootAt(targets))
@@ -496,7 +501,7 @@ var/list/turret_icons
 	if(!L)
 		return TURRET_NOT_TARGET
 
-	if(!emagged && issilicon(L))	// Don't target silica
+	if(!emagged && issilicon(L) && check_all == 0)	// Don't target silica, unless told to neutralize everything.
 		return TURRET_NOT_TARGET
 
 	if(L.stat && !emagged)		//if the perp is dead/dying, no need to bother really
@@ -514,7 +519,7 @@ var/list/turret_icons
 	if(lethal && locate(/mob/living/silicon/ai) in get_turf(L))		//don't accidentally kill the AI!
 		return TURRET_NOT_TARGET
 
-	if(check_synth)	//If it's set to attack all non-silicons, target them!
+	if(check_synth || check_all)	//If it's set to attack all non-silicons or everything, target them!
 		if(L.lying)
 			return lethal ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
 		return TURRET_PRIORITY_TARGET
@@ -671,6 +676,7 @@ var/list/turret_icons
 	var/check_arrest
 	var/check_weapons
 	var/check_anomalies
+	var/check_all
 	var/ailock
 
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
@@ -686,6 +692,7 @@ var/list/turret_icons
 	check_arrest = TC.check_arrest
 	check_weapons = TC.check_weapons
 	check_anomalies = TC.check_anomalies
+	check_all = TC.check_all
 	ailock = TC.ailock
 
 	power_change()
