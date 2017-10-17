@@ -162,7 +162,7 @@
 		return
 
 	if(alarmed && density && lockdown && !allowed(user))
-		user << "<span class='warning'>Access denied.  Please wait for authorities to arrive, or for the alert to clear.</span>"
+		user << "<span class='warning'>Access denied. Please wait for authorities to arrive, or for the alert to clear.</span>"
 		return
 	else
 		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\

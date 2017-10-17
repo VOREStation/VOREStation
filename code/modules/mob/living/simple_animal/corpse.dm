@@ -78,6 +78,7 @@
 			W.assignment = corpseidjob
 		W.registered_name = M.real_name
 		M.equip_to_slot_or_del(W, slot_wear_id)
+	delete_me = 1
 	qdel(src)
 
 

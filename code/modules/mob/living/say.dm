@@ -303,14 +303,13 @@ proc/get_radio_key_from_channel(var/channel)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"[speech_type][speech_bubble_test]")
 	spawn(30) qdel(speech_bubble)
 
-
 	// VOREStation Edit - Attempt Multi-Z Talking
 	var/mob/above = src.shadow
 	while(!QDELETED(above))
 		var/turf/ST = get_turf(above)
 		if(ST)
 			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
-			var/image/z_speech_bubble = image('icons/mob/talk_vr.dmi', above, "h[speech_bubble_test]")
+			var/image/z_speech_bubble = image('icons/mob/talk.dmi', above, "h[speech_bubble_test]")
 			spawn(30) qdel(z_speech_bubble)
 			for(var/item in results["mobs"])
 				if(item != above && !(item in listening))

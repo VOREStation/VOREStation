@@ -122,6 +122,8 @@
 	sharp = 1
 	edge = 1
 	var/blade_color
+	var/random_color = TRUE
+	var/active_state = "sword"
 
 /obj/item/weapon/melee/energy/sword/dropped(var/mob/user)
 	..()
@@ -129,8 +131,9 @@
 		deactivate(user)
 
 /obj/item/weapon/melee/energy/sword/New()
-	blade_color = pick("red","blue","green","purple")
-	lcolor = blade_color
+	if(random_color)
+		blade_color = pick("red","blue","green","purple")
+		lcolor = blade_color
 
 /obj/item/weapon/melee/energy/sword/green/New()
 	blade_color = "green"
@@ -154,7 +157,7 @@
 
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	icon_state = "sword[blade_color]"
+	icon_state = "[active_state][blade_color]"
 
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
@@ -183,6 +186,55 @@
 /obj/item/weapon/melee/energy/sword/pirate/activate(mob/living/user)
 	..()
 	icon_state = "cutlass1"
+
+/*
+ *Ionic Rapier
+ */
+
+/obj/item/weapon/melee/energy/sword/ionic_rapier
+	name = "ionic rapier"
+	desc = "Designed specifically for disrupting electronics at close range, it is extremely deadly against synthetics, but almost harmless to pure organic targets."
+	description_info = "This is a dangerous melee weapon that will deliver a moderately powerful electromagnetic pulse to whatever it strikes.  \
+	Striking a lesser robotic entity will compel it to attack you, as well.  It also does extra burn damage to robotic entities, but it does \
+	very little damage to purely organic targets."
+	icon_state = "ionic_rapier0"
+	random_color = FALSE
+	active_force = 5
+	active_throwforce = 3
+	active_embed_chance = 0
+	sharp = 1
+	edge = 1
+	armor_penetration = 0
+	flags = NOBLOODY
+	lrange = 2
+	lpower = 2
+	lcolor = "#0000FF"
+	active_state = "ionic_rapier"
+
+/obj/item/weapon/melee/energy/sword/ionic_rapier/afterattack(var/atom/movable/AM, var/mob/living/user, var/proximity)
+	if(istype(AM, /obj) && proximity && active)
+		// EMP stuff.
+		var/obj/O = AM
+		O.emp_act(3) // A weaker severity is used because this has infinite uses.
+		playsound(get_turf(O), 'sound/effects/EMPulse.ogg', 100, 1)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // A lot of objects don't set click delay.
+	return ..()
+
+/obj/item/weapon/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	. = ..()
+	if(target.isSynthetic() && active)
+		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
+		target.emp_act(3) // A weaker severity is used because this has infinite uses.
+		playsound(get_turf(target), 'sound/effects/EMPulse.ogg', 100, 1)
+		target.adjustFireLoss(force * 3) // 15 Burn, for 20 total.
+		playsound(get_turf(target), 'sound/weapons/blade1.ogg', 100, 1)
+
+		// Make lesser robots really mad at us.
+		if(istype(target, /mob/living/simple_animal))
+			var/mob/living/simple_animal/SA = target
+			if(SA.intelligence_level == SA_ROBOTIC)
+				SA.taunt(user)
+			SA.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
 
 /*
  *Energy Blade

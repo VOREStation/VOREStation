@@ -24,6 +24,15 @@
 
 	return mobs
 
+/proc/mobs_in_xray_view(var/range, var/source)
+	var/list/mobs = list()
+	for(var/atom/movable/AM in orange(range, source))
+		var/M = AM.get_mob()
+		if(M)
+			mobs += M
+
+	return mobs
+
 proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Bald"
 

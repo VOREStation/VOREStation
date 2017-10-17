@@ -115,6 +115,58 @@
 	icon_state = "cargoponcho"
 	item_state = "cargoponcho"
 
+/*
+ * Cloak
+ */
+/obj/item/clothing/accessory/poncho/roles/cloak
+	name = "brown cloak"
+	desc = "An elaborate brown cloak."
+	icon_state = "qmcloak"
+	item_state = "qmcloak"
+	body_parts_covered = null
+
+/obj/item/clothing/accessory/poncho/roles/cloak/ce
+	name = "chief engineer's cloak"
+	desc = "An elaborate cloak worn by the chief engineer."
+	icon_state = "cecloak"
+	item_state = "cecloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/cmo
+	name = "chief medical officer's cloak"
+	desc = "An elaborate cloak meant to be worn by the chief medical officer."
+	icon_state = "cmocloak"
+	item_state = "cmocloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hop
+	name = "head of personnel's cloak"
+	desc = "An elaborate cloak meant to be worn by the head of personnel."
+	icon_state = "hopcloak"
+	item_state = "hopcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/rd
+	name = "research director's cloak"
+	desc = "An elaborate cloak meant to be worn by the research director."
+	icon_state = "rdcloak"
+	item_state = "rdcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/qm
+	name = "quartermaster's cloak"
+	desc = "An elaborate cloak meant to be worn by the quartermaster."
+	icon_state = "qmcloak"
+	item_state = "qmcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hos
+	name = "head of security's cloak"
+	desc = "An elaborate cloak meant to be worn by the head of security."
+	icon_state = "hoscloak"
+	item_state = "hoscloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/captain
+	name = "colony director's cloak"
+	desc = "An elaborate cloak meant to be worn by the colony director."
+	icon_state = "capcloak"
+	item_state = "capcloak"
+
 /obj/item/clothing/accessory/hawaii
 	name = "flower-pattern shirt"
 	desc = "You probably need some welder googles to look at this."

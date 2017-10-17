@@ -387,9 +387,9 @@
 	var/dat = ""
 	if(gameStatus == ORION_STATUS_GAMEOVER)
 		dat = "<center><h1>Game Over</h1></center>"
-		dat += "Like many before you, your crew never made it to Orion, lost to space... <br><b>Forever</b>."
+		dat += "Like many before you, your crew never made it to Orion, lost to space... <br><b>forever</b>."
 		if(settlers.len == 0)
-			dat += "<br>Your entire crew died, your ship joins the fleet of ghost-ships littering the galaxy."
+			dat += "<br>Your entire crew died, and your ship joins the fleet of ghost-ships littering the galaxy."
 		else
 			if(food <= 0)
 				dat += "<br>You ran out of food and starved."
@@ -650,17 +650,17 @@
 				if(prob(success))
 					FU = rand(5,15)
 					FO = rand(5,15)
-					last_spaceport_action = "You successfully raided the spaceport! you gained [FU] Fuel and [FO] Food! (+[FU]FU,+[FO]FO)"
+					last_spaceport_action = "You successfully raided the spaceport! You gained [FU] Fuel and [FO] Food! (+[FU]FU,+[FO]FO)"
 				else
 					FU = rand(-5,-15)
 					FO = rand(-5,-15)
-					last_spaceport_action = "You failed to raid the spaceport! you lost [FU*-1] Fuel and [FO*-1] Food in your scramble to escape! ([FU]FU,[FO]FO)"
+					last_spaceport_action = "You failed to raid the spaceport! You lost [FU*-1] Fuel and [FO*-1] Food in your scramble to escape! ([FU]FU,[FO]FO)"
 
 					//your chance of lose a crewmember is 1/2 your chance of success
 					//this makes higher % failures hurt more, don't get cocky space cowboy!
 					if(prob(success*5))
 						var/lost_crew = remove_crewmember()
-						last_spaceport_action = "You failed to raid the spaceport! you lost [FU*-1] Fuel and [FO*-1] Food, AND [lost_crew] in your scramble to escape! ([FU]FI,[FO]FO,-Crew)"
+						last_spaceport_action = "You failed to raid the spaceport! You lost [FU*-1] Fuel and [FO*-1] Food, AND [lost_crew] in your scramble to escape! ([FU]FI,[FO]FO,-Crew)"
 						if(emagged)
 							src.visible_message("The machine states, 'YOU ARE UNDER ARREST, RAIDER!' and shoots handcuffs onto [usr]!", "You hear something say 'YOU ARE UNDER ARREST, RAIDER!' and a clinking sound")
 							var/obj/item/weapon/handcuffs/C = new(src.loc)
@@ -730,9 +730,9 @@
 				eventdat += "<br>They have stolen [sfood] <b>Food</b> and [sfuel] <b>Fuel</b>."
 			else if(prob(10))
 				var/deadname = remove_crewmember()
-				eventdat += "<br>[deadname] tried to fight back but was killed."
+				eventdat += "<br>[deadname] tried to fight back, but was killed."
 			else
-				eventdat += "<br>Fortunately you fended them off without any trouble."
+				eventdat += "<br>Fortunately, you fended them off without any trouble."
 			eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];eventclose=1'>Continue</a></P>"
 			eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];close=1'>Close</a></P>"
 			canContinueEvent = 1
@@ -890,7 +890,7 @@
 						add_crewmember()
 						freecrew++
 
-					eventdat += "<br>The traders of the spaceport take pitty on you, and give you some food and fuel (+[FU]FU,+[FO]FO)"
+					eventdat += "<br>The traders of the spaceport take pity on you, and give you some supplies. (+[FU]FU,+[FO]FO)"
 					if(freecrew)
 						eventdat += "<br>You also gain a new crewmember!"
 
@@ -904,13 +904,13 @@
 				if(food >= 10 && fuel >= 10)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];buycrew=1'>Hire a new Crewmember (-10FU,-10FO)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford a new Crewmember</P>"
+					eventdat += "<P ALIGN=Right>You cannot afford a new Crewmember</P>"
 
 				//Sell crew
 				if(settlers.len > 1)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];sellcrew=1'>Sell crew for Fuel and Food (+7FU,+7FO)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford to sell a Crewmember</P>"
+					eventdat += "<P ALIGN=Right>You cannot afford to sell a Crewmember</P>"
 
 				//BUY/SELL STUFF
 				eventdat += "<P ALIGN=Right>Spare Parts:</P>"
@@ -919,30 +919,30 @@
 				if(fuel > 5)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];buyparts=1'>Buy Engine Parts (-5FU)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford to buy Engine Parts</a>"
+					eventdat += "<P ALIGN=Right>You cannot afford to buy Engine Parts</a>"
 
 				//Hull plates
 				if(fuel > 5)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];buyparts=2'>Buy Hull Plates (-5FU)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford to buy Hull Plates</a>"
+					eventdat += "<P ALIGN=Right>You cannot afford to buy Hull Plates</a>"
 
 				//Electronics
 				if(fuel > 5)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];buyparts=3'>Buy Spare Electronics (-5FU)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford to buy Spare Electronics</a>"
+					eventdat += "<P ALIGN=Right>You cannot afford to buy Spare Electronics</a>"
 
 				//Trade
 				if(fuel > 5)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];trade=1'>Trade Fuel for Food (-5FU,+5FO)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford to Trade Fuel for Food</P"
+					eventdat += "<P ALIGN=Right>You cannot afford to Trade Fuel for Food</P"
 
 				if(food > 5)
 					eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];trade=2'>Trade Food for Fuel (+5FU,-5FO)</a></P>"
 				else
-					eventdat += "<P ALIGN=Right>Cant afford to Trade Food for Fuel</P"
+					eventdat += "<P ALIGN=Right>You cannot afford to Trade Food for Fuel</P"
 
 				//Raid the spaceport
 				eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];raid_spaceport=1'>!! Raid Spaceport !!</a></P>"

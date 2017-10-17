@@ -35,7 +35,7 @@
 	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator/pico = 2,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1,
 							/obj/item/weapon/stock_parts/subspace/treatment = 1,
 							/obj/item/weapon/stock_parts/subspace/analyzer = 1,
 							/obj/item/weapon/stock_parts/console_screen = 1,

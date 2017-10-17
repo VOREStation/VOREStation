@@ -24,7 +24,7 @@
 /obj/item/weapon/spell/flame_tongue/Destroy()
 	qdel(welder)
 	welder = null
-	..()
+	return ..()
 
 /obj/item/weapon/weldingtool/spell
 	name = "flame"

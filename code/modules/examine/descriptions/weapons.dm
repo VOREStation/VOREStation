@@ -50,7 +50,7 @@
 
 /obj/item/weapon/gun/projectile
 	description_info = "This is a ballistic weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
-	then click where you want to fire.  To reload, click the weapon in your hand to unload (if needed), then add the appropiate ammo.  The description \
+	then click where you want to fire.  To reload, click the weapon in your hand to unload (if needed), then add the appropriate ammo.  The description \
 	will tell you what caliber you need."
 
 /obj/item/weapon/gun/energy/chameleon
@@ -89,4 +89,4 @@
 	it can be concealed in your pocket or bag."
 
 /obj/item/weapon/melee/cultblade
-	description_antag = "This sword is a powerful weapon, capable of severing limbs easily, if they are targeted.  Nonbelivers are unable to use this weapon."
+	description_antag = "This sword is a powerful weapon, capable of severing limbs easily, if they are targeted.  Nonbelievers are unable to use this weapon."

@@ -25,8 +25,20 @@
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+	var/outfit_type
+
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
+	if(!outfit)
+		return FALSE
+	. = outfit.equip(H, title, alt_title)
 	return 1
+
+/datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
+	if(alt_title && alt_titles)
+		. = alt_titles[alt_title]
+	. = . || outfit_type
+	. = outfit_by_type(.)
 
 /datum/job/proc/equip_backpack(var/mob/living/carbon/human/H)
 	switch(H.backbag)
@@ -34,11 +46,6 @@
 		if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(H), slot_back)
 		if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		if(5) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/messenger(H), slot_back)
-
-/datum/job/proc/equip_survival(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-	H.species.equip_survival_gear(H,0)
-	return 1
 
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
@@ -71,9 +78,12 @@
 
 	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
 
-// overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/del()
+// overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title)
-	. = equip(H, alt_title)
+	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
+	if(!outfit)
+		return FALSE
+	. = outfit.equip_base(H, title, alt_title)
 
 /datum/job/proc/get_access()
 	if(!config || config.jobs_have_minimal_access)

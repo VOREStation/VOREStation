@@ -32,7 +32,7 @@ obj/machinery/airlock_sensor/phoron/process()
 			signal.data["timestamp"] = world.time
 			signal.data["pressure"] = num2text(pressure)
 			signal.data["phoron"] = num2text(phoron)
-			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
+			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, radio_filter = RADIO_AIRLOCK)
 			previousPressure = pressure
 			previousPhoron = phoron
 			alert = (pressure < ONE_ATMOSPHERE*0.8) || (phoron > 0.5)
@@ -59,7 +59,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, filter = RADIO_ATMOSIA)
+		radio_connection = radio_controller.add_object(src, frequency, radio_filter = RADIO_ATMOSIA)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != scrub_id) || (signal.data["sigtype"] != "command"))
@@ -88,7 +88,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		"power" = on,
 		"sigtype" = "status"
 	)
-	radio_connection.post_signal(src, signal, filter = RADIO_AIRLOCK)
+	radio_connection.post_signal(src, signal, radio_filter = RADIO_AIRLOCK)
 	return 1
 
 //

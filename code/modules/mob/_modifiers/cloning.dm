@@ -35,3 +35,11 @@
 	on_expired_text = "<span class='notice'>Death is cheap again.</span>"
 
 	flags = MODIFIER_GENETIC
+
+
+// Prevents borging (specifically the MMI part), actual effect is on the MMI.
+/datum/modifier/no_borg
+	name = "Cyboernetic Incompatability"
+	desc = "For whatever reason, your brain is incompatable with direct cybernetic interfaces, such as the MMI."
+
+	flags = MODIFIER_GENETIC

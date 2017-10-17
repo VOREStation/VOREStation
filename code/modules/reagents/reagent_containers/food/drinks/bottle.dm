@@ -189,7 +189,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/gin
 	name = "Griffeater Gin"
-	desc = "A bottle of high quality gin, produced in the New London Space Station."
+	desc = "A bottle of high quality gin, produced in Alpha Centauri."
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
 
@@ -199,7 +199,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
-	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
+	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter."
 	icon_state = "whiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)
 
@@ -219,7 +219,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
-	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
+	desc = "Aah, vodka. Prime choice of drink and fuel by Russians worldwide."
 	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
 
@@ -259,7 +259,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
-	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
+	desc = "This isn't just rum, oh no. It's practically Cuba in a bottle."
 	icon_state = "rumbottle"
 	center_of_mass = list("x"=16, "y"=8)
 
@@ -289,7 +289,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
-	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK"
+	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936."
 	icon_state = "kahluabottle"
 	center_of_mass = list("x"=17, "y"=3)
 
@@ -309,7 +309,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
-	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
+	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing."
 	icon_state = "cognacbottle"
 	center_of_mass = list("x"=16, "y"=6)
 
@@ -319,7 +319,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/wine
 	name = "Doublebeard Bearded Special Wine"
-	desc = "A faint aura of unease and asspainery surrounds the bottle."
+	desc = "Cheap cooking wine pretending to be drinkable."
 	icon_state = "winebottle"
 	center_of_mass = list("x"=16, "y"=4)
 

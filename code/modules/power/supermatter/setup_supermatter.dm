@@ -56,7 +56,7 @@
 				C.energy_setting = ENERGY_PHORON
 				continue
 
-	for(var/obj/effect/engine_setup/filter/F in world)
+	for(var/obj/effect/engine_setup/atmo_filter/F in world)
 		F.coolant = response
 
 	var/list/delayed_objects = list()
@@ -227,13 +227,13 @@
 
 
 // Sets up filters. This assumes filters are set to filter out N2 back to the core loop by default!
-/obj/effect/engine_setup/filter/
+/obj/effect/engine_setup/atmo_filter/
 	name = "Omni Filter Marker"
 	var/coolant = null
 
-/obj/effect/engine_setup/filter/activate()
+/obj/effect/engine_setup/atmo_filter/activate()
 	..()
-	var/obj/machinery/atmospherics/omni/filter/F = locate() in get_turf(src)
+	var/obj/machinery/atmospherics/omni/atmos_filter/F = locate() in get_turf(src)
 	if(!F)
 		log_and_message_admins("## WARNING: Unable to locate omni filter at [x] [y] [z]!")
 		return SETUP_WARNING
