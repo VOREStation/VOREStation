@@ -42,41 +42,53 @@
 		..(S,H)
 		H.setMaxHealth(S.total_health)
 
+/datum/trait/minor_brute_weak
+	name = "Minor Brute Weakness"
+	desc = "Increases damage from brute damage sources by 15%"
+	cost = -1
+	var_changes = list("brute_mod" = 1.15)
+
 /datum/trait/brute_weak
 	name = "Brute Weakness"
 	desc = "Increases damage from brute damage sources by 25%"
-	cost = -1
+	cost = -2
 	var_changes = list("brute_mod" = 1.25)
 
 /datum/trait/brute_weak_plus
 	name = "Brute Weakness (Plus)"
 	desc = "Increases damage from brute damage sources by 50%"
-	cost = -2
+	cost = -3
 	var_changes = list("brute_mod" = 1.5)
+
+/datum/trait/minor_burn_weak
+	name = "Minor Burn Weakness"
+	desc = "Increases damage from burn damage sources by 15%"
+	cost = -1
+	var_changes = list("burn_mod" = 1.15)
 
 /datum/trait/burn_weak
 	name = "Burn Weakness"
 	desc = "Increases damage from burn damage sources by 25%"
-	cost = -1
+	cost = -2
 	var_changes = list("burn_mod" = 1.25)
 
 /datum/trait/burn_weak_plus
 	name = "Burn Weakness (Plus)"
 	desc = "Increases damage from burn damage sources by 50%"
-	cost = -2
+	cost = -3
 	var_changes = list("burn_mod" = 1.5)
 
 /datum/trait/conductive
 	name = "Conductive"
 	desc = "Increases your susceptibility to electric shocks by 50%"
 	cost = -1
-	var_changes = list("siemens_coefficient" = 1.5)
+	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
 
 /datum/trait/conductive_plus
 	name = "Conductive (Plus)"
 	desc = "Increases your susceptibility to electric shocks by 100%"
 	cost = -2
-	var_changes = list("siemens_coefficient" = 2.0)
+	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 
 /datum/trait/photosensitive
 	name = "Photosensitive"
