@@ -24,7 +24,7 @@
 
 /datum/trait/endurance_low
 	name = "Low Endurance"
-	desc = "Reduces your maximum total hitpoints."
+	desc = "Reduces your maximum total hitpoints to 75."
 	cost = -2
 	var_changes = list("total_health" = 75)
 
@@ -32,41 +32,51 @@
 		..(S,H)
 		H.setMaxHealth(S.total_health)
 
+/datum/trait/endurance_very_low
+	name = "Extremely Low Endurance"
+	desc = "Reduces your maximum total hitpoints to 50."
+	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc. 
+	var_changes = list("total_health" = 50)
+
+	apply(var/datum/species/S,var/mob/living/carbon/human/H)
+		..(S,H)
+		H.setMaxHealth(S.total_health)
+
 /datum/trait/brute_weak
 	name = "Brute Weakness"
-	desc = "Increases damage from brute damage sources."
+	desc = "Increases damage from brute damage sources by 25%"
 	cost = -1
-	var_changes = list("brute_mod" = 1.15)
+	var_changes = list("brute_mod" = 1.25)
 
 /datum/trait/brute_weak_plus
 	name = "Brute Weakness (Plus)"
-	desc = "Increases damage significantly from brute damage sources."
+	desc = "Increases damage from brute damage sources by 50%"
 	cost = -2
-	var_changes = list("brute_mod" = 1.30)
+	var_changes = list("brute_mod" = 1.5)
 
 /datum/trait/burn_weak
 	name = "Burn Weakness"
-	desc = "Increases damage from burn damage sources."
+	desc = "Increases damage from burn damage sources by 25%"
 	cost = -1
-	var_changes = list("burn_mod" = 1.15)
+	var_changes = list("burn_mod" = 1.25)
 
 /datum/trait/burn_weak_plus
 	name = "Burn Weakness (Plus)"
-	desc = "Increases damage significantly from burn damage sources."
+	desc = "Increases damage from burn damage sources by 50%"
 	cost = -2
-	var_changes = list("burn_mod" = 1.30)
+	var_changes = list("burn_mod" = 1.5)
 
 /datum/trait/conductive
 	name = "Conductive"
-	desc = "Increases your susceptibility to electric shocks by a small amount."
+	desc = "Increases your susceptibility to electric shocks by 50%"
 	cost = -1
-	var_changes = list("siemens_coefficient" = 1.15)
+	var_changes = list("siemens_coefficient" = 1.5)
 
 /datum/trait/conductive_plus
 	name = "Conductive (Plus)"
-	desc = "Increases your susceptibility to electric shocks by a moderate amount."
+	desc = "Increases your susceptibility to electric shocks by 100%"
 	cost = -2
-	var_changes = list("siemens_coefficient" = 1.3)
+	var_changes = list("siemens_coefficient" = 2.0)
 
 /datum/trait/photosensitive
 	name = "Photosensitive"
