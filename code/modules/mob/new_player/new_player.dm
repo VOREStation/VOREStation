@@ -470,7 +470,7 @@
 		mind.loaded_from_ckey = client.ckey
 		mind.loaded_from_slot = client.prefs.default_slot
 		// VOREStation
-		mind.traits = client.prefs.traits.Copy()
+		//mind.traits = client.prefs.traits.Copy() // VOREStation conflict
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name
