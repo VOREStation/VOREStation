@@ -8,7 +8,7 @@
 	name = "large power cable"
 	desc = "This cable is tough. It cannot be cut with simple hand tools."
 	layer = 2.39 //Just below pipes, which are at 2.4
-	color = null //VOREStation Edit
+	color = null
 
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
 

@@ -124,7 +124,6 @@
 	icon_state = "tile_white"
 	no_variants = FALSE
 
-// VOREStation Edit
 /obj/item/stack/tile/floor/techgrey
 	name = "grey techfloor tile"
 	singular_name = "grey techfloor tile"
@@ -143,7 +142,6 @@
 	icon_state = "tile_steel"
 	matter = list("plasteel" = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
-// VOREStation Edit End
 
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"

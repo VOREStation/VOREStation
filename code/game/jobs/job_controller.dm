@@ -623,7 +623,7 @@ var/global/datum/controller/occupations/job_master
 		else
 			spawnpos = spawntypes[H.client.prefs.spawnpoint]
 
-	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)  // VOREStation Edit - Fix runtime if no landmarks exist for a spawntype
+	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
 		if(spawnpos.check_job_spawning(rank))
 			H.forceMove(spawnpos.get_spawn_position())
 			. = spawnpos.msg

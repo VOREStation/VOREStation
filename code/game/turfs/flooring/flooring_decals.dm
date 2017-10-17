@@ -14,7 +14,7 @@ var/list/floor_decals = list()
 	if(newcolour) color = newcolour
 	..(newloc)
 
-// VOREStation Edit - Hack to workaround byond crash bug
+// Hack to workaround byond crash bug
 /obj/effect/floor_decal/initialize()
 	if(!floor_decals_initialized || !loc || QDELETED(src))
 		return
@@ -23,7 +23,6 @@ var/list/floor_decals = list()
 	T.apply_decals()
 	qdel(src)
 	return
-// VOREStation Edit End
 
 /obj/effect/floor_decal/reset
 	name = "reset marker"

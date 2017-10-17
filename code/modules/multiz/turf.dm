@@ -85,13 +85,12 @@
 			bottom_turf.plane = src.plane
 			bottom_turf.color = below.color
 			underlays = list(bottom_turf)
-		// VOREStation Edit - Hack workaround to byond crash bug - Include the magic overlay holder object.
+		// Hack workaround to byond crash bug - Include the magic overlay holder object.
 		overlays += below.overlays
 		// if(below.overlay_holder)
 		// 	overlays += (below.overlays + below.overlay_holder.overlays)
 		// else
 		// 	overlays += below.overlays
-		// VOREStation Edit End
 
 		// get objects (not mobs, they are handled by /obj/zshadow)
 		var/list/o_img = list()
