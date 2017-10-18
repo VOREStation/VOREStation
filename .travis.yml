@@ -3,8 +3,8 @@ language: c
 sudo: false
 
 env:
-  BYOND_MAJOR="511"
-  BYOND_MINOR="1381"
+  BYOND_MAJOR="512"
+  BYOND_MINOR="1392"
   MACRO_COUNT=4
 
 cache:
