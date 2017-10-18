@@ -136,6 +136,9 @@
 	recipes += new/datum/stack_recipe("noticeboard frame", /obj/item/frame/noticeboard, 4, time = 5, one_per_turf = 0, on_floor = 1)
 	recipes += new/datum/stack_recipe("wooden bucket", /obj/item/weapon/reagent_containers/glass/bucket/wood, 2, time = 4, one_per_turf = 0, on_floor = 0)
 
+/material/wood/log/generate_recipes()
+	return // Feel free to add log-only recipes here later if desired.
+
 /material/cardboard/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("box", /obj/item/weapon/storage/box)

@@ -680,6 +680,18 @@ var/list/name_to_material
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
 
+/material/wood/log
+	name = "log"
+	icon_base = "log"
+	stack_type = /obj/item/stack/material/log
+	sheet_singular_name = "log"
+	sheet_plural_name = "logs"
+
+/material/wood/log/sif
+	name = "alien log"
+	icon_colour = "#0099cc" // Cyan-ish
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+
 /material/wood/holographic
 	name = "holowood"
 	display_name = "wood"
