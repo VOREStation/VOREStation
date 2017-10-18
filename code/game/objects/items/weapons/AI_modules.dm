@@ -20,9 +20,9 @@ AI MODULES
 	origin_tech = list(TECH_DATA = 3)
 	var/datum/ai_laws/laws = null
 
-/obj/item/weapon/aiModule/proc/install(var/obj/machinery/computer/C)
-	if (istype(C, /obj/machinery/computer/aiupload))
-		var/obj/machinery/computer/aiupload/comp = C
+/obj/item/weapon/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
+	if (istype(AM, /obj/machinery/computer/aiupload))
+		var/obj/machinery/computer/aiupload/comp = AM
 		if(comp.stat & NOPOWER)
 			usr << "The upload computer has no power!"
 			return
@@ -31,10 +31,6 @@ AI MODULES
 			return
 		if (!comp.current)
 			usr << "You haven't selected an AI to transmit laws to!"
-			return
-
-		if(ticker && ticker.mode && ticker.mode.name == "blob")
-			usr << "Law uploads have been disabled by [using_map.company_name]!"
 			return
 
 		if (comp.current.stat == 2 || comp.current.control_disabled == 1)
@@ -52,8 +48,8 @@ AI MODULES
 			usr << "Upload complete. The AI's laws have been modified."
 
 
-	else if (istype(C, /obj/machinery/computer/borgupload))
-		var/obj/machinery/computer/borgupload/comp = C
+	else if (istype(AM, /obj/machinery/computer/borgupload))
+		var/obj/machinery/computer/borgupload/comp = AM
 		if(comp.stat & NOPOWER)
 			usr << "The upload computer has no power!"
 			return
@@ -73,6 +69,31 @@ AI MODULES
 			comp.current << "These are your laws now:"
 			comp.current.show_laws()
 			usr << "Upload complete. The robot's laws have been modified."
+
+	else if(istype(AM, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = AM
+		if(R.stat == DEAD)
+			to_chat(user, "<span class='warning'>Law Upload Error: Unit is nonfunctional.</span>")
+			return
+		if(R.emagged)
+			to_chat(user, "<span class='warning'>Law Upload Error: Cannot obtain write access to laws.</span>")
+			to_chat(R, "<span class='danger'>Law modification attempt detected.  Blocking.</span>")
+			return
+		if(R.connected_ai)
+			to_chat(user, "<span class='warning'>Law Upload Error: Unit is slaved to an AI.</span>")
+			return
+
+		R.visible_message("<span class='danger'>\The [user] slides a law module into \the [R].</span>")
+		to_chat(R, "<span class='danger'>Local law upload in progress.</span>")
+		to_chat(user, "<span class='notice'>Uploading laws from board.  This will take a moment...</span>")
+		if(do_after(user, 10 SECONDS))
+			transmitInstructions(R, user)
+			to_chat(R, "These are your laws now:")
+			R.show_laws()
+			to_chat(user, "<span class='notice'>Law upload complete.  Unit's laws have been modified.</span>")
+		else
+			to_chat(user, "<span class='warning'>Law Upload Error: Law board was removed before upload was complete.  Aborting.</span>")
+			to_chat(R, "<span class='notice'>Law upload aborted.</span>")
 
 
 /obj/item/weapon/aiModule/proc/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
@@ -109,7 +130,7 @@ AI MODULES
 	targetName = targName
 	desc = text("A 'safeguard' AI module: 'Safeguard []. Anyone threatening or attempting to harm [] is no longer to be considered a crew member, and is a threat which must be neutralized.'", targetName, targetName)
 
-/obj/item/weapon/aiModule/safeguard/install(var/obj/machinery/computer/C)
+/obj/item/weapon/aiModule/safeguard/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!targetName)
 		usr << "No name detected on module, please enter one."
 		return 0
@@ -135,7 +156,7 @@ AI MODULES
 	targetName = targName
 	desc = text("A 'one crew member' AI module: 'Only [] is a crew member.'", targetName)
 
-/obj/item/weapon/aiModule/oneHuman/install(var/obj/machinery/computer/C)
+/obj/item/weapon/aiModule/oneHuman/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!targetName)
 		usr << "No name detected on module, please enter one."
 		return 0
@@ -231,7 +252,7 @@ AI MODULES
 	target.add_supplied_law(lawpos, law)
 	lawchanges.Add("The law was '[newFreeFormLaw]'")
 
-/obj/item/weapon/aiModule/freeform/install(var/obj/machinery/computer/C)
+/obj/item/weapon/aiModule/freeform/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!newFreeFormLaw)
 		usr << "No law detected on module, please create one."
 		return 0
@@ -342,7 +363,7 @@ AI MODULES
 	target.add_inherent_law(law)
 	lawchanges.Add("The law is '[newFreeFormLaw]'")
 
-/obj/item/weapon/aiModule/freeformcore/install(var/obj/machinery/computer/C)
+/obj/item/weapon/aiModule/freeformcore/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!newFreeFormLaw)
 		usr << "No law detected on module, please create one."
 		return 0
@@ -371,7 +392,7 @@ AI MODULES
 	target.add_ion_law(law)
 	target.show_laws()
 
-/obj/item/weapon/aiModule/syndicate/install(var/obj/machinery/computer/C)
+/obj/item/weapon/aiModule/syndicate/install(var/obj/machinery/computer/C, var/mob/living/user)
 	if(!newFreeFormLaw)
 		usr << "No law detected on module, please create one."
 		return 0

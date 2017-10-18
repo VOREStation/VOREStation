@@ -1,6 +1,6 @@
 // Pulls data from organizations data
 /datum/lore/codex/category/auto_org
-	var/desired_type = null // Exclude other types of organizations
+	var/desired_type = null
 	var/auto_keywords = list()
 
 /datum/lore/codex/category/auto_org/New(var/new_holder, var/new_parent)

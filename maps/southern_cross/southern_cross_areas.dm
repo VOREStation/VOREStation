@@ -951,9 +951,24 @@ area/crew_quarters/heads/sc/hop/quarters
 	name = "\improper docked with Southern Cross"
 	icon_state = "shuttle"
 
+/area/shuttle/response_ship/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/shuttle/response_ship/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky/west
+
+/area/shuttle/response_ship/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving/west
+
 /area/shuttle/response_ship/transit
 	name = "transit"
-	icon_state = "shuttle"
+	icon_state = "shuttlered"
 	base_turf = /turf/space
 
 //Shuttle One
@@ -962,7 +977,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	name = "\improper Hangar Deck"
 	icon_state = "yellow"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = 1
 	flags = RAD_SHIELDED
 
 /area/shuttle/shuttle1/start
@@ -989,13 +1004,28 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/shuttle1/transit
 	name = "transit"
-	icon_state = "shuttle"
+	icon_state = "shuttlered"
 	base_turf = /turf/space/transit/north
+
+/area/shuttle/shuttle1/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/shuttle/shuttle1/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky
+
+/area/shuttle/shuttle1/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving
 
 //Shuttle Two
 
 /area/shuttle/shuttle2
-	name = "\improper SEV Torch Hangar Deck"
+	name = "\improper Hangar Deck"
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0
@@ -1025,8 +1055,23 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/shuttle2/transit
 	name = "transit"
-	icon_state = "shuttle"
+	icon_state = "shuttlered"
 	base_turf = /turf/space/transit/north
+
+/area/shuttle/shuttle2/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/shuttle/shuttle2/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky
+
+/area/shuttle/shuttle2/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving
 
 // Centcom Transport Shuttle
 /area/shuttle/transport1/centcom
@@ -1090,8 +1135,23 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/syndicate_station/transit
 	name = " transit"
-	icon_state = "shuttle"
+	icon_state = "shuttlered"
 	base_turf = /turf/space/transit/east
+
+/area/syndicate_station/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/syndicate_station/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky/west
+
+/area/syndicate_station/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving/west
 
 /area/syndicate_station/arrivals_dock
 	name = "\improper docked with Southern Cross"
@@ -1108,7 +1168,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/skipjack_station/transit
 	name = "transit"
-	icon_state = "shuttle"
+	icon_state = "shuttlered"
 	base_turf = /turf/space/transit/north
 
 /area/skipjack_station/firstdeck
@@ -1131,6 +1191,21 @@ area/crew_quarters/heads/sc/hop/quarters
 	name = "planet"
 	icon_state = "shuttlered"
 	base_turf = /turf/simulated/floor/outdoors/grass/sif/planetuse
+
+/area/skipjack_station/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/skipjack_station/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky/north
+
+/area/skipjack_station/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving/north
 
 /area/skipjack_station/arrivals_dock
 	name = "\improper docked with Southern Cross"
@@ -1175,8 +1250,23 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/ninja_dojo/transit
 	name = "transit"
-	icon_state = "shuttle"
+	icon_state = "shuttlered"
 	base_turf = /turf/space/transit/north
+
+/area/ninja_dojo/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/ninja_dojo/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky/south
+
+/area/ninja_dojo/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving/south
 
 /area/ninja_dojo/arrivals_dock
 	name = "\improper docked with Southern Cross"

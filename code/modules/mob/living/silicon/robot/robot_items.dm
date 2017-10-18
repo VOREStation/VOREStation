@@ -298,7 +298,53 @@
 	desc = "A powerful experimental module that turns aside or absorbs incoming attacks at the cost of charge."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
-	var/shield_level = 0.5 //Percentage of damage absorbed by the shield.
+	var/shield_level = 0.5			//Percentage of damage absorbed by the shield.
+	var/active = 1					//If the shield is on
+	var/flash_count = 0				//Counter for how many times the shield has been flashed
+	var/overload_threshold = 3		//Number of flashes it takes to overload the shield
+	var/shield_refresh = 15 SECONDS	//Time it takes for the shield to reboot after destabilizing
+	var/overload_time = 0			//Stores the time of overload
+	var/last_flash = 0				//Stores the time of last flash
+
+/obj/item/borg/combat/shield/New()
+	processing_objects.Add(src)
+	..()
+
+/obj/item/borg/combat/shield/Destroy()
+	processing_objects.Remove(src)
+	..()
+
+/obj/item/borg/combat/shield/attack_self(var/mob/living/user)
+	set_shield_level()
+
+/obj/item/borg/combat/shield/process()
+	if(active)
+		if(flash_count && (last_flash + shield_refresh < world.time))
+			flash_count = 0
+			last_flash = 0
+	else if(overload_time + shield_refresh < world.time)
+		active = 1
+		flash_count = 0
+		overload_time = 0
+
+		var/mob/living/user = src.loc
+		user.visible_message("<span class='danger'>[user]'s shield reactivates!</span>", "<span class='danger'>Your shield reactivates!.</span>")
+		user.update_icon()
+
+/obj/item/borg/combat/shield/proc/adjust_flash_count(var/mob/living/user, amount)
+	if(active)			//Can't destabilize a shield that's not on
+		flash_count += amount
+
+		if(amount > 0)
+			last_flash = world.time
+			if(flash_count >= overload_threshold)
+				overload(user)
+
+/obj/item/borg/combat/shield/proc/overload(var/mob/living/user)
+	active = 0
+	user.visible_message("<span class='danger'>[user]'s shield destabilizes!</span>", "<span class='danger'>Your shield destabilizes!.</span>")
+	user.update_icon()
+	overload_time = world.time
 
 /obj/item/borg/combat/shield/verb/set_shield_level()
 	set name = "Set shield level"

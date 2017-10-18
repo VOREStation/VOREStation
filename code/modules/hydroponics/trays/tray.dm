@@ -174,6 +174,25 @@
 		connect()
 	update_icon()
 
+/obj/machinery/portable_atmospherics/hydroponics/initialize()
+	var/obj/item/seeds/S = locate() in loc
+	if(S)
+		plant_seeds(S)
+
+/obj/machinery/portable_atmospherics/hydroponics/proc/plant_seeds(var/obj/item/seeds/S)
+	lastproduce = 0
+	seed = S.seed //Grab the seed datum.
+	dead = 0
+	age = 1
+	//Snowflakey, maybe move this to the seed datum
+	health = (istype(S, /obj/item/seeds/cutting) ? round(seed.get_trait(TRAIT_ENDURANCE)/rand(2,5)) : seed.get_trait(TRAIT_ENDURANCE))
+	lastcycle = world.time
+
+	qdel(S)
+
+	check_health()
+	update_icon()
+
 /obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
 
 	//Don't act on seeds like dionaea that shouldn't change.
@@ -490,18 +509,7 @@
 				return
 
 			user << "You plant the [S.seed.seed_name] [S.seed.seed_noun]."
-			lastproduce = 0
-			seed = S.seed //Grab the seed datum.
-			dead = 0
-			age = 1
-			//Snowflakey, maybe move this to the seed datum
-			health = (istype(S, /obj/item/seeds/cutting) ? round(seed.get_trait(TRAIT_ENDURANCE)/rand(2,5)) : seed.get_trait(TRAIT_ENDURANCE))
-			lastcycle = world.time
-
-			qdel(O)
-
-			check_health()
-			update_icon()
+			plant_seeds(S)
 
 		else
 			user << "<span class='danger'>\The [src] already has seeds in it!</span>"

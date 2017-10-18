@@ -94,6 +94,10 @@
 				else
 					return 0
 
+	for(var/modifier_type in R.genetic_modifiers)	//Can't be cloned, even if they had a previous scan
+		if(istype(modifier_type, /datum/modifier/no_clone))
+			return 0
+
 	attempting = 1 //One at a time!!
 	locked = 1
 
@@ -139,6 +143,25 @@
 	H.set_cloned_appearance()
 	update_icon()
 
+	// A modifier is added which makes the new clone be unrobust.
+	var/modifier_lower_bound = 25 MINUTES
+	var/modifier_upper_bound = 40 MINUTES
+
+	// Upgraded cloners can reduce the time of the modifier, up to 80%
+	var/clone_sickness_length = abs(((heal_level - 20) / 100 ) - 1)
+	clone_sickness_length = between(0.2, clone_sickness_length, 1.0) // Caps it off just incase.
+	modifier_lower_bound = round(modifier_lower_bound * clone_sickness_length, 1)
+	modifier_upper_bound = round(modifier_upper_bound * clone_sickness_length, 1)
+
+	H.add_modifier(/datum/modifier/cloning_sickness, rand(modifier_lower_bound, modifier_upper_bound))
+
+	// Modifier that doesn't do anything.
+	H.add_modifier(/datum/modifier/cloned)
+
+	// This is really stupid.
+	for(var/modifier_type in R.genetic_modifiers)
+		H.add_modifier(modifier_type)
+
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
 	H.flavor_texts = R.flavor.Copy()
@@ -181,7 +204,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if((occupant.health >= heal_level || occupant.health == occupant.maxHealth) && (!eject_wait))
+		else if((occupant.health >= heal_level || occupant.health == occupant.getMaxHealth()) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the cloning process is complete.")
 			connected_message("Cloning Process Complete.")

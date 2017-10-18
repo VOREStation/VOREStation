@@ -292,17 +292,26 @@
 
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
+	icobase = 'icons/mob/human_races/r_lizard_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_lizard_vr.dmi'
+	tail_animation = 'icons/mob/species/unathi/tail_vr.dmi'
+	color_mult = 1
 	min_age = 18
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
 	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
+	tail_animation = 'icons/mob/species/tajaran/tail_vr.dmi'
+	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
+	icobase = 'icons/mob/human_races/r_skrell_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_skrell_vr.dmi'
+	color_mult = 1
 	min_age = 18
 
 /datum/species/diona
@@ -312,6 +321,9 @@
 /datum/species/teshari
 	mob_size = MOB_MEDIUM
 	spawn_flags = SPECIES_CAN_JOIN
+	icobase = 'icons/mob/human_races/r_seromi_vr.dmi'
+	deform = 'icons/mob/human_races/r_seromi_vr.dmi'
+	color_mult = 1
 	min_age = 18
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY

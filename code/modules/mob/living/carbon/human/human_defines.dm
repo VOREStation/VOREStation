@@ -23,9 +23,13 @@
 	var/g_skin = 0
 	var/b_skin = 0
 
-	// VoreStation (Moved to /mob/living)
-	// var/size_multiplier = 1 //multiplier for the mob's icon size
+	//Synth colors
+	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
+	var/r_synth							//Used with synth_color to color synth parts that normaly can't be colored.
+	var/g_synth							//Same as above
+	var/b_synth							//Same as above
 
+	//var/size_multiplier = 1 //multiplier for the mob's icon size //VOREStation Edit (Moved to /mob/living)
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
 

@@ -24,7 +24,8 @@ var/list/global/map_templates = list()
 	if(path)
 		mappath = path
 	if(mappath)
-		preload_size(mappath)
+		spawn(1)
+			preload_size(mappath)
 	if(rename)
 		name = rename
 

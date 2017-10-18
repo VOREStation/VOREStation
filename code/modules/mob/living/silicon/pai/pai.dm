@@ -372,8 +372,11 @@
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
-	visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
-	close_up()
+	if(user.a_intent == I_HELP)
+		visible_message("<span class='notice'>[user.name] pats [src].</span>")
+	else
+		visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
+		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
 /mob/living/silicon/pai/proc/close_up()

@@ -17,6 +17,9 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(vessel)
 		return
 
+	if(species.flags & NO_BLOOD)
+		return
+
 	vessel = new/datum/reagents(species.blood_volume)
 	vessel.my_atom = src
 
@@ -139,6 +142,16 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		//Bleeding out
 		var/blood_max = 0
 		var/blood_loss_divisor = 30	//lower factor = more blood loss
+
+		// Some modifiers can make bleeding better or worse.  Higher multiplers = more bleeding.
+		var/blood_loss_modifier_multiplier = 1.0
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.bleeding_rate_percent))
+				blood_loss_modifier_multiplier += (M.bleeding_rate_percent - 1.0)
+
+		blood_loss_divisor /= blood_loss_modifier_multiplier
+
+
 		//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
 		for(var/obj/item/organ/external/temp in bad_external_organs)
 			if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))

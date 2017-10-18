@@ -22,7 +22,8 @@
 	icobase_tail = 1
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/begin_reconstitute_form,
-		/mob/living/carbon/human/proc/sonar_ping)
+		/mob/living/carbon/human/proc/sonar_ping,
+		/mob/living/carbon/human/proc/purge_impurities)
 
 	min_age = 18
 	max_age = 80
@@ -53,7 +54,7 @@
 
 //handle feral triggers
 
-	if(H.nutrition <= 200||H.traumatic_shock > 36) // Stress factors are in play
+	if(H.nutrition <= 200||H.traumatic_shock > min(60, H.nutrition/10)) // Stress factors are in play
 		// If they're hungry, give nag messages.
 		if (!istype(H.loc, /mob)) // if they're in a mob, skip the hunger stuff so it doesn't mess with drain/absorption modes.
 			if(H.nutrition < 200 && H.nutrition > 150)
@@ -73,7 +74,7 @@
 				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
-		if (H.stat == CONSCIOUS && H.traumatic_shock >=36) //30 brute/burn, or 18 halloss.
+		if (H.stat == CONSCIOUS && H.traumatic_shock >=min(60, H.nutrition/10)) //at 360 nutrition, this is 30 brute/burn, or 18 halloss. Capped at 50 brute/30 halloss - if they take THAT much, no amount of satiation will help them. Also they're fat.
 			if (2.5*H.halloss >= H.traumatic_shock) //If the majority of their shock is due to halloss, greater chance of snapping.
 				if(prob(min(10,(0.2 * H.traumatic_shock))))
 					if(H.feral == 0)

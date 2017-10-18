@@ -1,0 +1,78 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"c" = (/obj/structure/railing,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"d" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"e" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"f" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"g" = (/turf/simulated/wall/wood,/area/submap/farm1)
+"h" = (/obj/structure/grille/rustic,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/submap/farm1)
+"i" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/wood,/area/submap/farm1)
+"j" = (/turf/simulated/floor/wood,/area/submap/farm1)
+"k" = (/obj/structure/table/marble,/turf/simulated/floor/wood,/area/submap/farm1)
+"l" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/wood,/area/submap/farm1)
+"m" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/cornseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"n" = (/obj/item/weapon/material/minihoe,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"o" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/utensil/knife,/turf/simulated/floor/wood,/area/submap/farm1)
+"p" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/bluetomatoseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"q" = (/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"r" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/icepepperseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"s" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/farm1)
+"t" = (/mob/living/bot/farmbot,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"u" = (/obj/structure/sink/puddle,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"v" = (/obj/item/weapon/material/hatchet,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"w" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/matches,/obj/item/weapon/flame/match,/turf/simulated/floor/wood,/area/submap/farm1)
+"x" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/farm1)
+"y" = (/obj/item/clothing/shoes/boots/winter/hydro,/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,/turf/simulated/floor/wood,/area/submap/farm1)
+"z" = (/obj/structure/bed/chair/wood{tag = "icon-wooden_chair (WEST)"; icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/wood,/area/submap/farm1)
+"A" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"B" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/farm1)
+"C" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"D" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/submap/farm1)
+"E" = (/obj/machinery/space_heater,/turf/simulated/floor/wood,/area/submap/farm1)
+"F" = (/obj/structure/bookcase,/obj/item/weapon/book/manual/hydroponics_pod_people,/turf/simulated/floor/wood,/area/submap/farm1)
+"G" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/simulated/floor/wood,/area/submap/farm1)
+"H" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/turf/simulated/floor/wood,/area/submap/farm1)
+"I" = (/turf/simulated/floor/outdoors/rocks,/area/submap/farm1)
+"J" = (/turf/simulated/floor/plating,/area/submap/farm1)
+"K" = (/turf/simulated/floor/water,/area/submap/farm1)
+"L" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating,/area/submap/farm1)
+"M" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/farm1)
+"N" = (/obj/structure/closet/crate/hydroponics/prespawned,/turf/simulated/floor/plating,/area/submap/farm1)
+"O" = (/obj/structure/table/steel,/obj/machinery/cell_charger,/turf/simulated/floor/plating,/area/submap/farm1)
+"P" = (/obj/structure/table/steel,/turf/simulated/floor/plating,/area/submap/farm1)
+"Q" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abccccccccccccccccccccccccbaaaaa
+adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
+adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
+adeegghhggeeeeeeeeeeeeeeeefaaaaa
+adeegijklgeeeeemmmmmmmmmeefaaaaa
+adeegjjjkheeeeebnbbbbbbbeefaaaaa
+adeegjjjogebbeepppqqqrrreefaaaaa
+adegggsgggebbbbtbbquvbbbeefaaaaa
+adegwxjygeeebbepppqqqrrreefaaaaa
+adehxzjjgggebeebbAbbbbbbeefaaaaa
+adehBjjjsjsbbeeCCCCCCCCCeefaaaaa
+adegDjjEgggebeeeeeeeeeeeeefaaaaa
+adeggsgggeeebeeeeeeeeeeeeefaaaaa
+adegFjjGgeebbbeeeeebbbbbbbbbbbba
+adegEjjHgeebbbbbbbbbbbbbbbbbbbba
+adeggggggeebeeeeeeebbbbbbbbbbbba
+adeebbbbbbbbeeeeeeebbbeeeefaaaaa
+adebbIIIIIIbbeeegggJJJgggefaaaaa
+adebIIKKKKIIbbeegLJJJJJLgefaaaaa
+adebIKKKKKKIIbbehMJJJJJJhefaaaaa
+adebIIKKKKKKIIbehLJJJJJLhefaaaaa
+adebbIIKKKKKKIbehNJJJJJJhefaaaaa
+adeebbIIKKKKIIbegLJOPPJLgefaaaaa
+adeeebbIIIIIIbbegggggggggefaaaaa
+adeeeebbbbbbbbeeeeeeeeeeeefaaaaa
+adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
+abQQQQQQQQQQQQQQQQQQQQQQQQbaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

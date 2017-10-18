@@ -39,6 +39,15 @@
 	hoodtype = /obj/item/clothing/head/chaplain_hood
 	allowed = list (/obj/item/weapon/storage/bible)
 
+//Chaplain but spookier
+/obj/item/clothing/suit/storage/hooded/chaplain_hoodie/whiteout
+	name = "white robe"
+	desc = "A long, flowing white robe. It looks comfortable, but not very warm."
+	icon_state = "whiteout_robe"
+	item_state_slots = list(slot_r_hand_str = "suit_white", slot_l_hand_str = "suit_white")
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	hoodtype = /obj/item/clothing/head/chaplain_hood/whiteout
+
 //Chaplain
 /obj/item/clothing/suit/nun
 	name = "nun robe"

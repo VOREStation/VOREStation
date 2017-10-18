@@ -15,8 +15,12 @@
 	update_icon()
 	..()
 
+/turf/simulated/floor/water/initialize()
+	update_icon()
+
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.  This also gets rid of other overlays so it needs to go first.
+	overlays.Cut()
 	icon_state = water_state
 	var/image/floorbed_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = under_state)
 	underlays.Add(floorbed_sprite)

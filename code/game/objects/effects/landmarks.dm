@@ -5,6 +5,7 @@
 	anchored = 1.0
 	unacidable = 1
 	simulated = 0
+	invisibility = 100
 	var/delete_me = 0
 
 /obj/effect/landmark/New()

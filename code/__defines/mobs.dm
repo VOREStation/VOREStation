@@ -152,12 +152,13 @@
 #define MODIFIER_STACK_EXTEND	2	// Disallows a second instance, but will extend the first instance if possible.
 #define MODIFIER_STACK_ALLOWED	3	// Multiple instances are allowed.
 
-#define MODIFIER_GENETIC	0	// Modifiers with this flag will be copied to mobs who get cloned.
+#define MODIFIER_GENETIC	1	// Modifiers with this flag will be copied to mobs who get cloned.
 
 // Bodyparts and organs.
 #define O_MOUTH    "mouth"
 #define O_EYES     "eyes"
 #define O_HEART    "heart"
+#define O_CELL     "cell"
 #define O_LUNGS    "lungs"
 #define O_BRAIN    "brain"
 #define O_LIVER    "liver"

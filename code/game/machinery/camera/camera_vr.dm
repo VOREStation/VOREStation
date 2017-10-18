@@ -3,5 +3,5 @@
 
 /obj/machinery/camera/New()
 	..()
-	if (dir == 2)
+	if (dir == 1) // idk why the fuck dir is not 2
 		layer = 5

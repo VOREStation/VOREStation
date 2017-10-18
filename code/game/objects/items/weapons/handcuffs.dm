@@ -25,7 +25,7 @@
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>Uh ... how do those things work?!</span>"
+		to_chat(user, "<span class='warning'>Uh ... how do those things work?!</span>")
 		place_handcuffs(user, user)
 		return
 
@@ -38,7 +38,7 @@
 		if(can_place(C, user))
 			place_handcuffs(C, user)
 		else
-			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
+			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
 /obj/item/weapon/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(user == target)
@@ -60,11 +60,11 @@
 		return 0
 
 	if (!H.has_organ_for_slot(slot_handcuffed))
-		user << "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>"
+		to_chat(user, "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>")
 		return 0
 
 	if(istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
+		to_chat(user, "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>")
 		return 0
 
 	user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
@@ -166,7 +166,7 @@ var/last_chew = 0
 		if (R.use(1))
 			var/obj/item/weapon/material/wirerod/W = new(get_turf(user))
 			user.put_in_hands(W)
-			user << "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>"
+			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
 			qdel(src)
 			update_icon(user)
 
@@ -181,3 +181,84 @@ var/last_chew = 0
 	icon = 'icons/obj/bureaucracy.dmi'
 	breakouttime = 200
 	cuff_type = "duct tape"
+
+//Legcuffs. Not /really/ handcuffs, but its close enough.
+/obj/item/weapon/handcuffs/legcuffs
+	name = "legcuffs"
+	desc = "Use this to keep prisoners in line."
+	gender = PLURAL
+	icon = 'icons/obj/items.dmi'
+	icon_state = "legcuff"
+	flags = CONDUCT
+	throwforce = 0
+	w_class = ITEMSIZE_NORMAL
+	origin_tech = list(TECH_MATERIAL = 1)
+	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	cuff_type = "legcuffs"
+	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
+	elastic = 0
+	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
+
+/obj/item/weapon/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+	if(!user.IsAdvancedToolUser())
+		return
+
+	if ((CLUMSY in user.mutations) && prob(50))
+		to_chat(user, "<span class='warning'>Uh ... how do those things work?!</span>")
+		place_legcuffs(user, user)
+		return
+
+	if(!C.handcuffed)
+		if (C == user)
+			place_legcuffs(user, user)
+			return
+
+		//check for an aggressive grab (or robutts)
+		if(can_place(C, user))
+			place_legcuffs(C, user)
+		else
+			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
+
+/obj/item/weapon/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+	playsound(src.loc, cuff_sound, 30, 1, -2)
+
+	var/mob/living/carbon/human/H = target
+	if(!istype(H))
+		return 0
+
+	if (!H.has_organ_for_slot(slot_legcuffed))
+		to_chat(user, "<span class='danger'>\The [H] needs at least two ankles before you can cuff them together!</span>")
+		return 0
+
+	if(istype(H.shoes,/obj/item/clothing/shoes/magboots/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
+		to_chat(user, "<span class='danger'>\The [src] won't fit around \the [H.shoes]!</span>")
+		return 0
+
+	user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
+
+	if(!do_after(user,30))
+		return 0
+
+	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
+		return 0
+
+	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been legcuffed (attempt) by [user.name] ([user.ckey])</font>")
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to legcuff [H.name] ([H.ckey])</font>")
+	msg_admin_attack("[key_name(user)] attempted to legcuff [key_name(H)]")
+	feedback_add_details("legcuffs","H")
+
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(H)
+
+	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
+
+	// Apply cuffs.
+	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
+	if(dispenser)
+		lcuffs = new(get_turf(user))
+	else
+		user.drop_from_inventory(lcuffs)
+	lcuffs.loc = target
+	target.legcuffed = lcuffs
+	target.update_inv_legcuffed()
+	return 1

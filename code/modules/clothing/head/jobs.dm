@@ -31,11 +31,18 @@
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
 	name = "chaplain's hood"
-	desc = "It's hood that covers the head. It keeps you warm during the space winters."
+	desc = "It's a hood that covers the head. It keeps you warm during the space winters."
 	icon_state = "chaplain_hood"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
+
+//Chaplain but spookier
+/obj/item/clothing/head/chaplain_hood/whiteout
+	name = "white hood"
+	desc = "It's a generic white hood. Very spooky."
+	icon_state = "whiteout_hood"
+	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 
 //Chaplain
 /obj/item/clothing/head/nun_hood
@@ -67,8 +74,8 @@
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
 
 /obj/item/clothing/head/beret/sec/navy/hos
-	name = "officer beret"
-	desc = "A navy blue beret with a head of security's rank emblem. For officers that are more inclined towards style than safety."
+	name = "Head of Security beret"
+	desc = "A navy blue beret with a Head of Security's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
 
@@ -85,8 +92,8 @@
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
 /obj/item/clothing/head/beret/sec/corporate/hos
-	name = "officer beret"
-	desc = "A corporate black beret with a head of security's rank emblem. For officers that are more inclined towards style than safety."
+	name = "Head of Security beret"
+	desc = "A corporate black beret with a Head of Security's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_corporate_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 

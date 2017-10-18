@@ -199,6 +199,41 @@
 	path = /obj/item/clothing/accessory/poncho/roles/cargo
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
+/datum/gear/suit/roles/poncho/cloak/hos
+	display_name = "cloak, head of security"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/hos
+	allowed_roles = list("Head of Security")
+
+/datum/gear/suit/roles/poncho/cloak/cmo
+	display_name = "cloak, chief medical officer"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/cmo
+	allowed_roles = list("Chief Medical Officer")
+
+/datum/gear/suit/roles/poncho/cloak/ce
+	display_name = "cloak, chief engineer"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/ce
+	allowed_roles = list("Chief Engineer")
+
+/datum/gear/suit/roles/poncho/cloak/rd
+	display_name = "cloak, research director"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/rd
+	allowed_roles = list("Research Director")
+
+/datum/gear/suit/roles/poncho/cloak/qm
+	display_name = "cloak, quartermaster"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/qm
+	allowed_roles = list("Quartermaster")
+
+/datum/gear/suit/roles/poncho/cloak/captain
+	display_name = "cloak, colony director"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/captain
+	allowed_roles = list("Colony Director")
+
+/datum/gear/suit/roles/poncho/cloak/hop
+	display_name = "cloak, head of personnel"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop
+	allowed_roles = list("Head of Personnel")
+
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe

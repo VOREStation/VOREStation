@@ -29,6 +29,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["organ_data"]			>> pref.organ_data
 	S["rlimb_data"]			>> pref.rlimb_data
 	S["body_markings"]		>> pref.body_markings
+	S["synth_color"]		>> pref.synth_color
+	S["synth_red"]			>> pref.r_synth
+	S["synth_green"]		>> pref.g_synth
+	S["synth_blue"]			>> pref.b_synth
 	pref.preview_icon = null
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
@@ -53,6 +57,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["organ_data"]			<< pref.organ_data
 	S["rlimb_data"]			<< pref.rlimb_data
 	S["body_markings"]		<< pref.body_markings
+	S["synth_color"]		<< pref.synth_color
+	S["synth_red"]			<< pref.r_synth
+	S["synth_green"]		<< pref.g_synth
+	S["synth_blue"]			<< pref.b_synth
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in playable_species))
@@ -101,6 +109,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.h_style	= pref.h_style
 	character.f_style	= pref.f_style
 	character.b_type	= pref.b_type
+	character.synth_color = pref.synth_color
+	character.r_synth	= pref.r_synth
+	character.g_synth	= pref.g_synth
+	character.b_synth	= pref.b_synth
 
 	// Destroy/cyborgize organs and limbs.
 	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
@@ -115,7 +127,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				else
 					O.robotize()
 
-	for(var/name in list(O_HEART,O_EYES,O_LUNGS,O_BRAIN))
+	for(var/name in list(O_HEART,O_EYES,O_LUNGS,O_LIVER,O_KIDNEYS,O_BRAIN))
 		var/status = pref.organ_data[name]
 		if(!status)
 			continue
@@ -198,6 +210,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "brain"
 			if(O_LUNGS)
 				organ_name = "lungs"
+			if(O_LIVER)
+				organ_name = "liver"
+			if(O_KIDNEYS)
+				organ_name = "kidneys"
 
 		if(status == "cyborg")
 			++ind
@@ -279,6 +295,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "[M] <a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Color</a>"
 		. += "<font face='fixedsys' size='3' color='[pref.body_markings[M]]'><table style='display:inline;' bgcolor='[pref.body_markings[M]]'><tr><td>__</td></tr></table></font>"
 		. += "<br>"
+
+	. += "<br>"
+	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
+	if(pref.synth_color)
+		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth)]'><tr><td>__</td></tr></table></font> "
 
 	. = jointext(.,null)
 
@@ -386,8 +407,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 			if(!(pref.species in S.species_allowed) && (!pref.custom_base || !(pref.custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
 				continue
+			if((!S.ckeys_allowed) || (usr.ckey in S.ckeys_allowed)) //VOREStation Edit, allows ckey locked hairstyles.
+				valid_hairstyles[S.name] = hairstyle //VOREStation Edit, allows ckey locked hairstyles.
 
-			valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+			//valid_hairstyles[hairstyle] = hair_styles_list[hairstyle] //VOREStation Edit. Replaced by above.
 
 		var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference", pref.h_style)  as null|anything in valid_hairstyles
 		if(new_h_style && CanUseTopic(user))
@@ -603,7 +626,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["organs"])
 
-		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes", "Lungs", "Brain")
+		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes", "Lungs", "Liver", "Kidneys", "Brain")
 		if(!organ_name) return
 
 		var/organ = null
@@ -614,6 +637,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ = O_EYES
 			if("Lungs")
 				organ = O_LUNGS
+			if("Liver")
+				organ = O_LIVER
+			if("Kidneys")
+				organ = O_KIDNEYS
 			if("Brain")
 				if(pref.organ_data[BP_HEAD] != "cyborg")
 					user << "<span class='warning'>You may only select a cybernetic or synthetic brain if you have a full prosthetic body.</span>"
@@ -661,6 +688,18 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["toggle_preview_value"])
 		pref.equip_preview_mob ^= text2num(href_list["toggle_preview_value"])
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["synth_color"])
+		pref.synth_color = !pref.synth_color
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["synth2_color"])
+		var/new_color = input(user, "Choose your character's synth colour: ", "Character Preference", rgb(pref.r_synth, pref.g_synth, pref.b_synth)) as color|null
+		if(new_color && CanUseTopic(user))
+			pref.r_synth = hex2num(copytext(new_color, 2, 4))
+			pref.g_synth = hex2num(copytext(new_color, 4, 6))
+			pref.b_synth = hex2num(copytext(new_color, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()
 

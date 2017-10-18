@@ -105,8 +105,8 @@
 
 /datum/reagent/toxin/phoron/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustOxyLoss(-removed * 9)
-		return
+		M.adjustOxyLoss(-100 * removed) //5 oxyloss healed per tick.
+		return //You're wasting plasma (a semi-limited chemical) to save someone, so it might as well be somewhat strong.
 	..()
 
 /datum/reagent/toxin/phoron/touch_turf(var/turf/simulated/T, var/amount)

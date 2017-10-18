@@ -45,6 +45,8 @@
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
 		//Effects
+	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 maybe later for burst of fire around the impact point. - Mech
+	var/flammability = 0 //Amount of fire stacks to add for the above.
 	var/stun = 0
 	var/weaken = 0
 	var/paralyze = 0
@@ -78,7 +80,7 @@
 	if(!isliving(target))	return 0
 //	if(isanimal(target))	return 0
 	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
+	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked, incendiary, flammability) // add in AGONY!
 	return 1
 
 //called when the projectile stops flying because it collided with something
@@ -202,8 +204,9 @@
 
 			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
 		else
-			target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
-			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
+			if(target_mob) // Sometimes the target_mob gets gibbed or something.
+				target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
+				msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
 
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)
@@ -232,9 +235,18 @@
 			//if they have a neck grab on someone, that person gets hit instead
 			var/obj/item/weapon/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
-				visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
-				if(Bump(G.affecting, forced=1))
-					return //If Bump() returns 0 (keep going) then we continue on to attack M.
+				if(G.affecting.stat == DEAD)
+					var/shield_chance = min(80, (30 * (M.mob_size / 10)))	//Small mobs have a harder time keeping a dead body as a shield than a human-sized one. Unathi would have an easier job, if they are made to be SIZE_LARGE in the future. -Mech
+					if(prob(shield_chance))
+						visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
+						if(Bump(G.affecting, forced=1))
+							return
+					else
+						visible_message("<span class='danger'>\The [M] tries to use [G.affecting] as a shield, but fails!</span>")
+				else
+					visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
+					if(Bump(G.affecting, forced=1))
+						return //If Bump() returns 0 (keep going) then we continue on to attack M.
 
 			passthrough = !attack_mob(M, distance)
 		else
@@ -321,6 +333,10 @@
 		else if(!bumped)
 			tracer_effect(effect_transform)
 
+		if(incendiary >= 2)
+			var/trail_volume = (flammability * 0.10)
+			new /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(src.loc, trail_volume, src.dir)
+
 		if(!hitscan)
 			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
 
@@ -402,6 +418,8 @@
 		loc = A.loc
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
+		return
+	if(istype(A, /obj/structure/foamedmetal)) //Turrets can detect through foamed metal, but will have to blast through it. Similar to windows, if someone runs behind it, a person should probably just not shoot.
 		return
 	if(istype(A, /mob/living) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return 1!

@@ -270,6 +270,7 @@
 			occupantData["name"] = H.name
 			occupantData["stat"] = H.stat
 			occupantData["health"] = H.health
+			occupantData["maxHealth"] = H.getMaxHealth()
 
 			occupantData["hasVirus"] = H.virus2.len
 
@@ -427,7 +428,7 @@
 					t1 = "Unconscious"
 				else
 					t1 = "*dead*"
-			dat += "<font color=[occupant.health > 50 ? "blue" : "red"]>\tHealth %: [occupant.health], ([t1])</font><br>"
+			dat += "<font color=[occupant.health > (occupant.getMaxHealth() / 2) ? "blue" : "red"]>\tHealth %: [(occupant.health / occupant.getMaxHealth())*100], ([t1])</font><br>"
 
 			if(occupant.virus2.len)
 				dat += "<font color='red'>Viral pathogen detected in blood stream.</font><BR>"

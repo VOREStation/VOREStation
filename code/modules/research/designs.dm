@@ -473,6 +473,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/surgical/scalpel/manager
 	sort_string = "MBBAD"
 
+/datum/design/item/bone_clamp
+	name = "Bone Clamp"
+	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
+	id = "bone_clamp"
+	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
+	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2500)
+	build_path = /obj/item/weapon/surgical/bone_clamp
+	sort_string = "MBBAE"
+
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
@@ -639,14 +648,14 @@ other types of metals and chemistry for reagents).
 
 /datum/design/item/weapon/slimebation
 	id = "slimebation"
-	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3, TECH_COMBAT = 3)
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_POWER = 3, TECH_COMBAT = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000)
 	build_path = /obj/item/weapon/melee/baton/slime
 	sort_string = "TBAAB"
 
 /datum/design/item/weapon/slimetaser
 	id = "slimetaser"
-	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4)
+	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 3, TECH_POWER = 4, TECH_COMBAT = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000)
 	build_path = /obj/item/weapon/gun/energy/taser/xeno
 	sort_string = "TBAAC"
@@ -662,7 +671,7 @@ other types of metals and chemistry for reagents).
 	id = "s-filter"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 40, "silver" = 10)
-	build_path = /obj/item/weapon/stock_parts/subspace/filter
+	build_path = /obj/item/weapon/stock_parts/subspace/sub_filter
 	sort_string = "UAAAB"
 
 /datum/design/item/stock_part/subspace_amplifier
@@ -735,6 +744,16 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/aicard
 	sort_string = "VACAA"
 
+/datum/design/item/dronebrain
+	name = "Robotic intelligence circuit"
+	id = "dronebrain"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_DATA = 4)
+	build_type = PROTOLATHE | PROSFAB
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500)
+	build_path = /obj/item/device/mmi/digital/robot
+	category = "Misc"
+	sort_string = "VACAC"
+
 /datum/design/item/posibrain
 	name = "Positronic brain"
 	id = "posibrain"
@@ -754,16 +773,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/mmi
 	category = "Misc"
 	sort_string = "VACBA"
-
-/datum/design/item/mmi_radio
-	name = "Radio-enabled man-machine interface"
-	id = "mmi_radio"
-	req_tech = list(TECH_DATA = 2, TECH_BIO = 4)
-	build_type = PROTOLATHE | PROSFAB
-	materials = list(DEFAULT_WALL_MATERIAL = 1200, "glass" = 500)
-	build_path = /obj/item/device/mmi/radio_enabled
-	category = "Misc"
-	sort_string = "VACBB"
 
 /datum/design/item/beacon
 	name = "Bluespace tracking beacon design"
@@ -844,6 +853,25 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
 	build_path = /obj/item/weapon/crowbar/power
 	sort_string = "VASEA"
+
+/datum/design/item/device/t_scanner_upg
+	name = "Upgraded T-ray Scanner"
+	desc = "An upgraded version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	id = "upgradedtscanner"
+	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "phoron" = 150)
+	build_path = /obj/item/device/t_scanner/upgraded
+	sort_string = "VASSA"
+
+
+/datum/design/item/device/t_scanner_adv
+	name = "Advanced T-ray Scanner"
+	desc = "An advanced version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	id = "advancedtscanner"
+	req_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 6, TECH_MATERIAL = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 1250, "phoron" = 500, "silver" = 50)
+	build_path = /obj/item/device/t_scanner/advanced
+	sort_string = "VASSB"
 /*
 CIRCUITS BELOW
 */

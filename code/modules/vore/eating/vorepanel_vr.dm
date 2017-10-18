@@ -273,6 +273,7 @@
 	dat += "<a href='?src=\ref[src];saveprefs=1'>Save Prefs</a>"
 	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a>"
 	dat += "<a href='?src=\ref[src];setflavor=1'>Set Flavor</a>"
+	dat += "<br><a href='?src=\ref[src];togglenoisy=1'>Toggle Hunger Noises</a>"
 
 	switch(user.digestable)
 		if(1)
@@ -764,6 +765,16 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
+
+	if(href_list["togglenoisy"])
+		var/choice = alert(user, "Toggle audible hunger noises. Currently: [user.noisy ? "Enabled" : "Disabled"]", "", "Enable audible hunger", "Cancel", "Disable audible hunger")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Enable audible hunger")
+				user.noisy = 1
+			if("Disable audible hunger")
+				user.noisy = 0
 
 	//Refresh when interacted with, returning 1 makes vore_look.Topic update
 	return 1

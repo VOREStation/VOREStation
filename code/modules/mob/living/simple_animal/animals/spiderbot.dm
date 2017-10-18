@@ -40,6 +40,15 @@
 	var/list/req_access = list(access_robotics) //Access needed to pop out the brain.
 	var/positronic
 
+	can_enter_vent_with = list(
+	/obj/item/weapon/implant,
+	/obj/item/device/radio/borg,
+	/obj/item/weapon/holder,
+	/obj/machinery/camera,
+	/mob/living/simple_animal/borer,
+	/obj/item/device/mmi,
+	)
+
 	var/emagged = 0
 	var/obj/item/held_item = null //Storage for single item they can hold.
 

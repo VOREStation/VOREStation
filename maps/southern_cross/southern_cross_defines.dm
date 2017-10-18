@@ -21,7 +21,7 @@
 
 	zlevel_datum_type = /datum/map_z_level/southern_cross
 
-	station_name  = "Southern Cross"
+	station_name  = "NLS Southern Cross"
 	station_short = "Southern Cross"
 	dock_name     = "NCS Northern Star" // Now we're the centcom!
 	boss_name     = "Central Command"
@@ -150,3 +150,11 @@
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE
+
+/datum/planet/sif
+	expected_z_levels = list(
+		Z_LEVEL_SURFACE,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SURFACE_WILD,
+		Z_LEVEL_TRANSIT
+	)

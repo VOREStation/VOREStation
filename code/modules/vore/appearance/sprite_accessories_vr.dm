@@ -112,7 +112,7 @@
 	desc = ""
 	icon_state = "fenears"
 
-/datum/sprite_accessory/ears/sergal
+/datum/sprite_accessory/ears/sergal //Redundant
 	name = "Sergal ears"
 	icon_state = "serg_plain_s"
 
@@ -121,12 +121,15 @@
 	desc = ""
 	icon_state = "foxearshc"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/fenearshc
 	name = "flatland zorren ears, colorable"
 	desc = ""
 	icon_state = "fenearshc"
+	extra_overlay = "fenears-inner"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/sergalhc
 	name = "Sergal ears, colorable"
@@ -139,6 +142,7 @@
 	desc = ""
 	icon_state = "mouse"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "mouseinner"
 
 /datum/sprite_accessory/ears/mousehcno
@@ -146,6 +150,7 @@
 	desc = ""
 	icon_state = "mouse"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/wolfhc
 	name = "wolf, colorable"
@@ -174,6 +179,7 @@
 	desc = ""
 	icon_state = "kitty"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kittyinner"
 
 /datum/sprite_accessory/ears/bunnyhc
@@ -187,6 +193,8 @@
 	name = "antlers"
 	desc = ""
 	icon_state = "antlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/otie
 	name = "otie, colorable"
@@ -229,6 +237,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/vulp
+	name = "vulpkanin, dual-color"
+	desc = ""
+	icon_state = "vulp"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp-inner"
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -237,10 +253,10 @@
 	icon_state = "molenar-kitsune"
 	ckeys_allowed = list("molenar")
 
-/datum/sprite_accessory/ears/citheronia_antennae
+/datum/sprite_accessory/ears/lilimoth_antennae
 	name = "citheronia antennae (Kira72)"
 	desc = ""
-	icon_state = "molenar-kitsune"
+	icon_state = "lilimoth_antennae"
 	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/ears/molenar_deathclaw
@@ -819,26 +835,36 @@
 	name = "unathi tail"
 	desc = ""
 	icon_state = "sogtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/tajaran
 	name = "tajaran tail"
 	desc = ""
 	icon_state = "tajtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/sergal
 	name = "sergal tail"
 	desc = ""
 	icon_state = "sergtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/akula
 	name = "akula tail"
 	desc = ""
 	icon_state = "sharktail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/nevrean
 	name = "nevrean tail"
 	desc = ""
 	icon_state = "nevreantail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/armalis
 	name = "armalis tail"
@@ -874,53 +900,64 @@
 	name = "seromi tail"
 	desc = ""
 	icon_state = "seromitail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/seromitailfeathered
 	name = "seromi tail w/ feathers"
 	desc = ""
 	icon_state = "seromitail_feathers_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/unathihc
 	name = "unathi tail, colorable"
 	desc = ""
 	icon_state = "sogtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/tajaranhc
 	name = "tajaran tail, colorable"
 	desc = ""
 	icon_state = "tajtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/sergalhc
 	name = "sergal tail, colorable"
 	desc = ""
 	icon_state = "sergtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/akulahc
 	name = "akula tail, colorable"
 	desc = ""
 	icon_state = "sharktail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/nevreanhc
 	name = "nevrean tail, colorable"
 	desc = ""
 	icon_state = "nevreantail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/foxhc
 	name = "highlander zorren tail, colorable"
 	desc = ""
 	icon_state = "foxtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/fennechc
 	name = "flatland zorren tail, colorable"
 	desc = ""
 	icon_state = "fentail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/armalishc
 	name = "armalis tail, colorable"
@@ -963,15 +1000,17 @@
 	desc = ""
 	icon_state = "seromitail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/seromitailfeatheredhc
 	name = "seromi tail w/ feathers, colorable"
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/vulpan
-	name = "vulpankin, colorable"
+	name = "vulpkanin, colorable"
 	desc = ""
 	icon_state = "vulptail_s"
 	do_colouration = 1

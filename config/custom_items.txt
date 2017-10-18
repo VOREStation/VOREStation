@@ -167,7 +167,7 @@ item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
 {
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
-item_path: /obj/item/weapon/permit/gun/fluff/dhaeleena_miar
+item_path: /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
 }
 
 {
@@ -202,7 +202,7 @@ item_desc: An engraved coin made of diamond. On the side for heads is printed th
 #{
 #ckey: eekasqueak
 #character_name: Serkii Miishy
-#item_path: /obj/item/weapon/permit/gun/fluff/serkiimiishy
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/serkiimiishy
 #}
 #
 #{
@@ -281,6 +281,12 @@ item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
 # ######## J CKEYS
 
 {
+ckey: jacknoir413
+character_name: Mor Xaina
+item_path: /obj/item/weapon/storage/box/fluff/morxaina
+}
+
+{
 ckey: jacobdragon
 character_name: Earthen Breath
 item_path: /obj/item/clothing/under/fluff/earthenbreath
@@ -314,7 +320,7 @@ req_access = 58
 {
 ckey: jertheace
 character_name: Jeremiah 'Ace' Acacius
-item_path: /obj/item/weapon/permit/gun/fluff/ace
+item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
 req_access = 58
 }
 
@@ -468,7 +474,7 @@ item_path: /obj/item/clothing/head/fluff/molenar2
 #{
 #ckey: molenar
 #character_name: Kari Akiren
-#item_path: /obj/item/weapon/permit/gun/fluff/kari_akiren
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/kari_akiren
 #}
 
 {
@@ -478,6 +484,24 @@ item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 }
 
 # ######## N CKEYS
+
+{
+ckey: natje
+character_name: Awen Henry
+item_path: /obj/item/clothing/head/fluff/awoo
+}
+
+{
+ckey: natje
+character_name: Awen Henry
+item_path: /obj/item/clothing/shoes/fluff/awoo
+}
+
+{
+ckey: natje
+character_name: Awen Henry
+item_path: /obj/item/clothing/under/fluff/awoo
+}
 
 {
 ckey: natje
@@ -503,7 +527,7 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 {
 ckey: pawoverlord
 character_name: Sorrel Cavalet
-item_path: /obj/item/weapon/permit/gun/fluff/sorrel_cavalet
+item_path: /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
 }
 
 {
@@ -532,7 +556,7 @@ item_path: /obj/item/weapon/fluff/dragor_dot
 #{
 #ckey: Razerwing
 #character_name: Archer Maximus
-#item_path: /obj/item/weapon/permit/gun/fluff/archermaximus
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/archermaximus
 #}
 #
 #{
@@ -582,12 +606,6 @@ item_path: /obj/item/device/modkit_conversion/fluff/screekit
 ckey: scree
 character_name: Scree
 item_path: /obj/item/clothing/head/fluff/pompom
-}
-
-{
-ckey: scree
-character_name: Scree
-item_path: /obj/item/clothing/glasses/omnihud/eng/meson/fluff/scree
 }
 
 {

@@ -365,6 +365,9 @@ var/global/datum/controller/occupations/job_master
 							H << "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
+						if(G.exploitable)
+							H.amend_exploitable(G.path)
+
 						if(G.slot == "implant")
 							H.implant_loadout(G)
 							continue
@@ -383,10 +386,10 @@ var/global/datum/controller/occupations/job_master
 						else
 							spawn_in_storage += thing
 			//Equip job items.
-			job.equip(H)
 			job.setup_account(H)
+			job.equip(H, H.mind ? H.mind.role_alt_title : "")
 			job.equip_backpack(H)
-			job.equip_survival(H)
+//			job.equip_survival(H)
 			job.apply_fingerprints(H)
 			H.equip_post_job()
 
@@ -472,7 +475,9 @@ var/global/datum/controller/occupations/job_master
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
 			var/obj/item/weapon/storage/S = locate() in H.contents
-			var/obj/item/wheelchair/R = locate() in S.contents
+			var/obj/item/wheelchair/R = null
+			if(S)
+				R = locate() in S.contents
 			if(!l_foot || !r_foot || R)
 				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 				H.buckled = W
@@ -539,7 +544,7 @@ var/global/datum/controller/occupations/job_master
 
 			H.equip_to_slot_or_del(C, slot_wear_id)
 
-		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
+//		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
 		if(locate(/obj/item/device/pda,H))
 			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
 			pda.owner = H.real_name
@@ -637,8 +642,10 @@ var/global/datum/controller/occupations/job_master
 			. = spawnpos.msg
 		else
 			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
-			H.forceMove(pick(latejoin))
+			var/spawning = pick(latejoin)
+			H.forceMove(get_turf(spawning))
 			. = "will arrive to the station shortly by shuttle"
 	else
-		H.forceMove(pick(latejoin))
+		var/spawning = pick(latejoin)
+		H.forceMove(get_turf(spawning))
 		. = "has arrived on the station"

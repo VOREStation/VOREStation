@@ -24,6 +24,7 @@
 	var/check_access = 1	//if this is active, the turret shoots everything that does not meet the access requirements
 	var/check_anomalies = 1	//checks if it can shoot at unidentified lifeforms (ie xenos)
 	var/check_synth = 0 	//if active, will shoot at anything not an AI or cyborg
+	var/check_all = 0		//If active, will shoot at anything.
 	var/ailock = 0 	//Silicons cannot use this
 
 	req_access = list(access_ai_upload)
@@ -130,6 +131,8 @@
 		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
 		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
 		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
+		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
+
 		data["settings"] = settings
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -161,6 +164,8 @@
 			check_access = value
 		else if(href_list["command"] == "check_anomalies")
 			check_anomalies = value
+		else if(href_list["command"] == "check_all")
+			check_all = value
 
 		updateTurrets()
 		return 1
@@ -175,6 +180,7 @@
 	TC.check_arrest = check_arrest
 	TC.check_weapons = check_weapons
 	TC.check_anomalies = check_anomalies
+	TC.check_all = check_all
 	TC.ailock = ailock
 
 	if(istype(control_area))

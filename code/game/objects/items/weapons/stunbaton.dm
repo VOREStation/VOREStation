@@ -250,3 +250,34 @@
 	results += ..()
 
 	return results
+
+// Rare version of a baton that causes lesser lifeforms to really hate the user and attack them.
+/obj/item/weapon/melee/baton/shocker
+	name = "shocker"
+	desc = "A device that appears to arc electricity into a target to incapacitate or otherwise hurt them, similar to a stun baton.  It looks inefficent."
+	description_info = "Hitting a lesser lifeform with this while it is on will compel them to attack you above other nearby targets.  Otherwise \
+	it works like a regular stun baton, just less effectively."
+	icon_state = "shocker"
+	force = 10
+	throwforce = 5
+	agonyforce = 25 // Less efficent than a regular baton.
+	attack_verb = list("poked")
+
+/obj/item/weapon/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	..(target, user, hit_zone)
+	if(istype(target, /mob/living/simple_animal) && status)
+		var/mob/living/simple_animal/SA = target
+		SA.taunt(user)
+
+// Borg version, for the lost module.
+/obj/item/weapon/melee/baton/shocker/robot
+
+/obj/item/weapon/melee/baton/shocker/robot/attack_self(mob/user)
+	//try to find our power cell
+	var/mob/living/silicon/robot/R = loc
+	if (istype(R))
+		bcell = R.cell
+	return ..()
+
+/obj/item/weapon/melee/baton/shocker/robot/attackby(obj/item/weapon/W, mob/user)
+	return

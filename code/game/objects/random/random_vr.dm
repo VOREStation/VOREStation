@@ -158,7 +158,7 @@
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,\
 				prob(1);/obj/item/weapon/beartrap,\
 				prob(1);/obj/item/weapon/handcuffs,\
-				prob(1);/obj/item/weapon/legcuffs,\
+				prob(1);/obj/item/weapon/handcuffs/legcuffs,\
 				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 //A random thing so that the spawn_nothing_percentage can be used w/o duplicating code.

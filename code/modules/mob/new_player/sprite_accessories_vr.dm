@@ -6,18 +6,27 @@
 
 /datum/sprite_accessory/hair
 
+	icon = 'icons/mob/human_face_or_vr.dmi'
+	var/color_blend_mode = ICON_MULTIPLY
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the default hairstyles.
 
+	awoohair
+		name = "Shoulder-length Messy"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_state = "momijihair"
+		
 	citheronia
 		name = "Citheronia Hair (Kira72)"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "citheronia_hair"
 		ckeys_allowed = list("Kira72")
+		do_colouration = 0
 
 	citheronia_colorable
 		name = "Citheronia Hair"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "citheronia_hair_c"
+		do_colouration = 1
 
 	sergal_plain
 		name = "Sergal Plain"
@@ -213,98 +222,98 @@
 		name = "Kajam"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "kajam"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_keid
 		name = "Keid"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "keid"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_adhara
 		name = "Adhara"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "adhara"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_kleeia
 		name = "Kleeia"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "kleeia"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_mizar
 		name = "Mizar"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "mizar"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_apollo
 		name = "Apollo"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "apollo"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_belle
 		name = "Belle"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "belle"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_bun
 		name = "Bun"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "bun"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_jagged
 		name = "Jagged"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "jagged"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_curl
 		name = "Curl"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "curl"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_hawk
 		name = "Hawk"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "hawk"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_anita
 		name = "Anita"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "anita"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_short
 		name = "Short"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "short"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 	vulp_hair_spike
 		name = "Spike"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "spike"
-		species_allowed = list("Vulpkanin", "Xenochimera")
+		species_allowed = list("Vulpkanin", "Xenochimera", "Tajara", "Sergal", "Flatland Zorren", "Highlander Zorren")
 		gender = NEUTER
 
 //xeno stuffs
@@ -344,6 +353,8 @@
 		gender = NEUTER
 
 /datum/sprite_accessory/facial_hair
+	icon = 'icons/mob/human_face_or_vr.dmi'
+	var/color_blend_mode = ICON_MULTIPLY
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the facial hair styles.
 
 
@@ -409,12 +420,6 @@
 		icon_state = "vulp_facial_swift"
 		species_allowed = list("Vulpkanin")
 		gender = NEUTER
-
-	vulpkanin
-		name = "Default Vulpkanin skin"
-		icon_state = "default"
-		icon = 'icons/mob/human_races/r_vulpkanin.dmi'
-		species_allowed = list("Vulpkanin")
 
 //Special hairstyles
 /datum/sprite_accessory/ears/inkling
@@ -738,3 +743,13 @@
 		icon_state = "osocks"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_L_LEG)
+
+	animeeyesinner
+		name = "Anime Eyes Inner"
+		icon_state = "animeeyesinner"
+		body_parts = list(BP_HEAD)
+		
+	animeeyesouter
+		name = "Anime Eyes Outer"
+		icon_state = "animeeyesouter"
+		body_parts = list(BP_HEAD)

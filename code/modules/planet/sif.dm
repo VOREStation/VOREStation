@@ -9,7 +9,7 @@ var/datum/planet/sif/planet_sif = null
 	breathable atmosphere, a magnetic field, weather, and similar gravity to Earth. It is currently the capital planet of Vir. \
 	Its center of government is the equatorial city and site of first settlement, New Reykjavik." // Ripped straight from the wiki.
 	current_time = new /datum/time/sif() // 32 hour clocks are nice.
-	expected_z_levels = list(1) // To be changed when real map is finished.
+//	expected_z_levels = list(1) // To be changed when real map is finished.
 	planetary_wall_type = /turf/unsimulated/wall/planetary/sif
 
 /datum/planet/sif/New()
@@ -133,8 +133,8 @@ var/datum/planet/sif/planet_sif = null
 
 datum/weather/sif
 	name = "sif base"
-	temp_high = 243.15 // -20c
-	temp_low = 233.15  // -30c
+	temp_high = 283.15	// 10c
+	temp_low = 263.15	// -10c
 
 /datum/weather/sif/clear
 	name = "clear"
@@ -158,8 +158,8 @@ datum/weather/sif
 /datum/weather/sif/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
-	temp_high = 238.15 // -25c
-	temp_low = 228.15  // -35c
+	temp_high = T0C		// 0c
+	temp_low = 	258.15	// -15c
 	light_modifier = 0.7
 	transition_chances = list(
 		WEATHER_OVERCAST = 20,
@@ -171,9 +171,10 @@ datum/weather/sif
 /datum/weather/sif/snow
 	name = "moderate snow"
 	icon_state = "snowfall_med"
-	temp_high = 233.15 // -30c
-	temp_low = 223.15  // -40c
+	temp_high = T0C		// 0c
+	temp_low = 243.15	// -30c
 	light_modifier = 0.5
+	flight_falure_modifier = 5
 	transition_chances = list(
 		WEATHER_LIGHT_SNOW = 20,
 		WEATHER_SNOW = 50,
@@ -194,9 +195,10 @@ datum/weather/sif
 /datum/weather/sif/blizzard
 	name = "blizzard"
 	icon_state = "snowfall_heavy"
-	temp_high = 223.15 // -40c
-	temp_low = 203.15  // -60c
+	temp_high = 233.15 // -40c
+	temp_low = 213.15  // -60c
 	light_modifier = 0.3
+	flight_falure_modifier = 10
 	transition_chances = list(
 		WEATHER_SNOW = 45,
 		WEATHER_BLIZZARD = 40,
@@ -232,15 +234,16 @@ datum/weather/sif
 			if(!T.outdoors)
 				return // They're indoors, so no need to rain on them.
 
-			L.adjust_fire_stacks(-5)
+			L.water_act(1)
 			to_chat(L, "<span class='warning'>Rain falls on you.</span>")
 
 /datum/weather/sif/storm
 	name = "storm"
 	icon_state = "storm"
-	temp_high = 233.15 // -30c
-	temp_low = 213.15  // -50c
+	temp_high = 243.15 // -30c
+	temp_low = 233.15  // -50c
 	light_modifier = 0.3
+	flight_falure_modifier = 10
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 40,
@@ -255,15 +258,16 @@ datum/weather/sif
 			if(!T.outdoors)
 				return // They're indoors, so no need to rain on them.
 
-			L.adjust_fire_stacks(-10)
+			L.water_act(2)
 			to_chat(L, "<span class='warning'>Rain falls on you, drenching you in water.</span>")
 
 /datum/weather/sif/hail
 	name = "hail"
 	icon_state = "hail"
-	temp_high = 233.15 // -30c
-	temp_low = 213.15  // -50c
+	temp_high = T0C		// 0c
+	temp_low = 243.15	// -30c
 	light_modifier = 0.3
+	flight_falure_modifier = 15
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 10,
@@ -295,7 +299,7 @@ datum/weather/sif
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
+	flight_falure_modifier = 25
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100
 		)
-

@@ -18,7 +18,6 @@
 		"Glory",
 		"Axiom",
 		"Eternal",
-		"Icarus",
 		"Harmony",
 		"Light",
 		"Discovery",
@@ -44,7 +43,7 @@
 		var/list/star_names = list(
 			"Sol", "Alpha Centauri", "Sirius", "Vega", "Regulus", "Vir", "Algol", "Aldebaran",
 			"Delta Doradus", "Menkar", "Geminga", "Elnath", "Gienah", "Mu Leporis", "Nyx", "Tau Ceti",
-			"Wazn", "Alphard", "Phact", "Altair")
+			"Wazn", "Alphard", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "the Almach Rim")
 		var/list/destination_types = list("dockyard", "station", "vessel", "waystation", "telecommunications satellite", "spaceport", "distress beacon", "anomaly", "colony", "outpost")
 		while(i)
 			destination_names.Add("a [pick(destination_types)] in [pick(star_names)]")
@@ -74,12 +73,39 @@
 	motto = ""
 
 	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response")
+	//Scientist naming scheme
+	ship_names = list(
+		"Bardeen",
+		"Einstein",
+		"Feynman",
+		"Sagan",
+		"Tyson",
+		"Galilei",
+		"Jans",
+		"Fhriede",
+		"Franklin",
+		"Tesla",
+		"Curie",
+		"Darwin",
+		"Newton",
+		"Pasteur",
+		"Bell",
+		"Mendel",
+		"Kepler",
+		"Edision",
+		"Cavendish",
+		"Nye",
+		"Hawking",
+		"Aristotle",
+		"Von Braun",
+		"Kaku",
+		"Oppenheimer"
+		)
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
 		"NCS Northern Star in Vir",
-		"NCS Southern Cross in Vir",
-		"NDV Icarus in Nyx",
+		"NLS Southern Cross in Vir",
 		"NAS Vir Central Command",
 		"a dockyard orbiting Sif",
 		"an asteroid orbiting Kara",
@@ -104,7 +130,7 @@
 	desc = "Hephaestus Industries is the largest supplier of arms, ammunition, and small millitary vehicles in Sol space. \
 	Hephaestus products have a reputation for reliability, and the corporation itself has a noted tendency to stay removed \
 	from corporate politics. They enforce their neutrality with the help of a fairly large asset-protection contingent which \
-	prevents any contracting polities from using their own materiel against them. SolGov itself is one of Hephastus’ largest \
+	prevents any contracting polities from using their own materiel against them. SolGov itself is one of Hephastusâ€™ largest \
 	bulk contractors owing to the above factors."
 	history = ""
 	work = "arms manufacturer"
@@ -112,8 +138,28 @@
 	motto = ""
 
 	ship_prefixes = list("HTV" = "freight", "HTV" = "munitions resupply")
+	//War God/Soldier Theme
+	ship_names = list(
+		"Ares",
+		"Athena",
+		"Grant",
+		"Custer",
+		"Puller",
+		"Nike",
+		"Bellona",
+		"Leonides",
+		"Bast",
+		"Jackson",
+		"Lee",
+		"Annan",
+		"Chi Yu",
+		"Shiva",
+		"Tyr"
+		)
 	destination_names = list(
-		"a SolGov dockyard on Luna"
+		"a SolGov dockyard on Luna",
+		"a Fleet outpost in the Almach Rim",
+		"a Fleet outpost on the Moghes border"
 		)
 
 /datum/lore/organization/tsc/vey_med
@@ -124,8 +170,8 @@
 	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \
 	the sale of medical equipment-- from surgical tools to large medical devices to the Oddyseus trauma response mecha \
 	and everything in between. Their equipment tends to be top-of-the-line, most obviously shown by their incredibly \
-	human-like FBP designs. Vey’s rise to stardom came from their introduction of ressurective cloning, although in \
-	recent years they’ve been forced to diversify as their patents expired and NanoTrasen-made medications became \
+	human-like FBP designs. Veyâ€™s rise to stardom came from their introduction of ressurective cloning, although in \
+	recent years theyâ€™ve been forced to diversify as their patents expired and NanoTrasen-made medications became \
 	essential to modern cloning."
 	history = ""
 	work = "medical equipment supplier"
@@ -133,7 +179,27 @@
 	motto = ""
 
 	ship_prefixes = list("VTV" = "transportation", "VMV" = "medical resupply")
-	destination_names = list()
+	// Diona names
+	ship_names = list(
+		"Wind That Stirs The Waves",
+		"Sustained Note Of Metal",
+		"Bright Flash Reflecting Off Glass",
+		"Veil Of Mist Concealing The Rock",
+		"Thin Threads Intertwined",
+		"Clouds Drifting Amid Storm",
+		"Loud Note And Breaking",
+		"Endless Vistas Expanding Before The Void",
+		"Fire Blown Out By Wind",
+		"Star That Fades From View",
+		"Eyes Which Turn Inwards",
+		"Joy Without Which The World Would Come Undone",
+		"A Thousand Thousand Planets Dangling From Branches"
+		)
+	destination_names = list(
+		"a research facility in Samsara",
+		"a SDTF near Ue-Orsi",
+		"a sapientarian mission in the Almach Rim"
+		)
 
 /datum/lore/organization/tsc/zeng_hu
 	name = "Zeng-Hu pharmaceuticals"
@@ -141,8 +207,8 @@
 	acronym = "ZH"
 	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
 	on the market for medications, and many household names are patentted by Zeng-Hu-- Bicaridyne, Dylovene, Tricordrizine, \
-	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Hu’s fortunes have been in decline as Nanotrasen’s near monopoly \
-	on phoron research cuts into their R&D and Vey-Med’s superior medical equipment effectively decimated their own equipment \
+	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Huâ€™s fortunes have been in decline as Nanotrasenâ€™s near monopoly \
+	on phoron research cuts into their R&D and Vey-Medâ€™s superior medical equipment effectively decimated their own equipment \
 	interests. The three-way rivalry between these companies for dominance in the medical field is well-known and a matter of \
 	constant economic speculation."
 	history = ""
@@ -160,8 +226,8 @@
 	desc = "Ward-Takahashi focuses on the sale of small consumer electronics, with its computers, communicators, \
 	and even mid-class automobiles a fixture of many households. Less famously, Ward-Takahashi also supplies most \
 	of the AI cores on which vital control systems are mounted, and it is this branch of their industry that has \
-	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashi’s economies \
-	of scale frequently steal market share from Nanotrasen’s high-price products, leading to a bitter rivalry in the \
+	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashiâ€™s economies \
+	of scale frequently steal market share from Nanotrasenâ€™s high-price products, leading to a bitter rivalry in the \
 	consumer electronics market."
 	history = ""
 	work = "electronics manufacturer"
@@ -175,10 +241,10 @@
 	name = "Bishop Cybernetics"
 	short_name = "Bishop"
 	acronym = "BC"
-	desc = "Bishop’s focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bête noire for \
+	desc = "Bishopâ€™s focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bÃªte noire for \
 	bioconservatives), Bishop manufactures not only prostheses but also brain augmentation, synthetic organ replacements, \
 	and odds and ends like implanted wrist-watches. Their business model tends towards smaller, boutique operations, giving \
-	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Med’s for cost. Bishop’s reputation \
+	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Medâ€™s for cost. Bishopâ€™s reputation \
 	for catering towards the interests of human augmentation enthusiasts instead of positronics have earned it ire from the \
 	Positronic Rights Group and puts it in ideological (but not economic) comptetition with Morpheus Cyberkinetics."
 	history = ""
@@ -221,6 +287,7 @@
 		"Never Talk To Strangers",
 		"Sacrificial Victim",
 		"Unwitting Accomplice",
+		"Witting Accomplice",
 		"Bad For Business",
 		"Just Testing",
 		"Size Isn't Everything",
@@ -256,11 +323,48 @@
 		"Callsign",
 		"Three Ships in a Trenchcoat",
 		"Not Wearing Pants",
-		"Ridiculous Naming Convention"
-
-
+		"Ridiculous Naming Convention",
+		"God Dammit Morpheus",
+		"It Seemed Like a Good Idea",
+		"Legs All the Way Up",
+		"Purchase Necessary",
+		"Some Assembly Required",
+		"Buy One Get None Free",
+		"BRB",
+		"SHIP NAME HERE",
+		"Questionable Ethics",
+		"Accept Most Substitutes",
+		"I Blame the Government",
+		"Garbled Gibberish",
+		"Thinking Emoji",
+		"Is This Thing On?",
+		"Make My Day",
+		"No Vox Here",
+		"Savings and Values",
+		"Secret Name",
+		"Can't Find My Keys",
+		"Look Over There!",
+		"Made You Look!",
+		"Take Nothing Seriously",
+		"It Comes In Lime, Too",
+		"Loot Me",
+		"Nothing To Declare",
+		"Sneaking Suspicion",
+		"Bass Ackwards",
+		"Good Things Come to Those Who Freight",
+		"Redundant Morality",
+		"Synthetic Goodwill",
+		"Your Ad Here",
+		"What Are We Plotting?",
+		"Set Phasers To Stun",
+		"Preemptive Defensive Strike",
+		"This Ship Is Spiders",
+		"Legitimate Trade Vessel",
+		"Please Don't Explode II"
 		)
-	destination_names = list()
+	destination_names = list(
+		"A trade outpost in Shelf"
+		)
 
 /datum/lore/organization/tsc/xion
 	name = "Xion Manufacturing Group"

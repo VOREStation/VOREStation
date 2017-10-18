@@ -25,7 +25,7 @@
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/telecomms/exonet_node(src)
 	component_parts += new /obj/item/weapon/stock_parts/subspace/ansible(src)
-	component_parts += new /obj/item/weapon/stock_parts/subspace/filter(src)
+	component_parts += new /obj/item/weapon/stock_parts/subspace/sub_filter(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)

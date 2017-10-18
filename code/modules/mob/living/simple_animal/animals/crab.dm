@@ -5,6 +5,7 @@
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
+	faction = "crabs"
 	intelligence_level = SA_ANIMAL
 
 	wander = 0
@@ -45,3 +46,37 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"
+
+//Sif Crabs
+/mob/living/simple_animal/giant_crab
+	name = "Giant Crab"
+	desc = "A large, hard-shelled crustacean. This one is mostly grey."
+	icon_state = "sif_crab"
+	icon_living = "sif_crab"
+	icon_dead = "sif_crab_dead"
+	faction = "crabs"
+	intelligence_level = SA_ANIMAL
+
+	maxHealth = 200
+	health = 200
+
+	mob_size = MOB_LARGE
+	cooperative = 1
+	retaliate = 1
+	turns_per_move = 3
+
+	minbodytemp = 175
+
+	melee_damage_lower = 15
+	melee_damage_upper = 35
+
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "stomps"
+	friendly = "pinches"
+
+	speak_chance = 1
+	speak_emote = list("clicks")
+	emote_hear = list("clicks")
+	emote_see = list("clacks")

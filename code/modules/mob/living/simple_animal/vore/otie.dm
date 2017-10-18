@@ -1,4 +1,7 @@
 // ToDo: Make this code not a fucking snowflaky horrible broken mess. Do not use until it's actually fixed. It's miserably bad right now.
+// Also ToDo: Dev-to-dev communication to ensure responsible parties (if available. In this case, yes.) are aware of what's going on and what's broken.
+// Probably easier to troubleshoot when we ain't breaking the server by spawning a buttload of heavily extra feature coded snowflake mobs to the wilderness as mass cannonfodder.
+// Also ToDo: An actual "simple" mob for that purpose if necessary :v
 
 /mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
@@ -15,7 +18,6 @@
 	minbodytemp = 200
 	move_to_delay = 4
 	hostile = 1
-	//cooperative = 1 // Neutral mobs should not be set like this.
 	investigates = 1
 	reacts = 1
 	retaliate = 1
@@ -23,13 +25,12 @@
 	run_at_them = 0
 	attack_same = 0
 	speak_chance = 4
-	speak = list("Boof.","Waaf!","Prurrrr.","Growl!","Bork!","Rurrr..","Aruur!","Awoo!")
+	speak = list("Boof.","Waaf!","Prurr.","Bork!","Rurrr..","Arf.")
 	speak_emote = list("growls", "roars", "yaps", "Awoos")
 	emote_hear = list("rurrs", "rumbles", "rowls", "groans softly", "murrs", "sounds hungry", "yawns")
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
-	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RAHH!", "Slurp.. RAH!")
-	say_got_target = list("Rurrr!", "ROAR!", "RERR!", "NOM!", "MINE!", "RAHH!", "RAH!", "WARF!")
+	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RERR!", "RAHH!", "RAH!", "WARF!")
 	melee_damage_lower = 5
 	melee_damage_upper = 15 //Don't break my bones bro
 	response_help = "pets the"
@@ -56,7 +57,7 @@
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
-	name = "feral otie"
+	name = "mutated feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
 	icon_state = "siftusian"
 	icon_living = "siftusian"
@@ -80,6 +81,7 @@
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
 	faction = "neutral"
+	tamed = 1
 
 /mob/living/simple_animal/otie/friendly/cotie //same as above but has a little collar :v
 	name = "tamed otie"
@@ -91,16 +93,16 @@
 
 /mob/living/simple_animal/otie/friendly/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
-	desc = "The V.A.R.M.A.corp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon_state = "sotie"
 	icon_living = "sotie"
 	icon_rest = "sotie_rest"
 	icon_dead = "sotie-dead"
 	faction = "neutral"
-	tamed = 1
 	maxHealth = 200 //armored or something
 	health = 200
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
+	vore_pounce_chance = 60 // Good boys don't do too much police brutality.
 
 	var/check_records = 1 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
@@ -115,8 +117,6 @@
 		return null
 	if(istype(found_atom,/mob/living/simple_animal/mouse))
 		return found_atom
-	if(found_atom in friends)
-		return null
 	else if(ismob(found_atom))
 		var/mob/found_mob = found_atom
 		if(found_mob.faction == faction)
@@ -128,33 +128,37 @@
 		else if(tamed == 1 && isrobot(found_atom))
 			return null
 		else
+			if(resting)
+				lay_down()
 			return found_atom
 	else
 		return null
 
 /mob/living/simple_animal/otie/friendly/security/Found(var/atom/found_atom)
-	if(!SA_attackable(found_atom))
-		return null
-	if(istype(found_atom,/mob/living/simple_animal/mouse))
-		return found_atom
 	if(check_threat(found_atom) >= 4)
+		if(resting)
+			lay_down()
 		return found_atom
-	if(found_atom in friends)
-		return null
-	else if(ismob(found_atom))
-		var/mob/found_mob = found_atom
-		if(found_mob.faction == faction)
-			return null
-		else if(friend == found_atom)
-			return null
-		else if(tamed == 1 && ishuman(found_atom))
-			return null
-		else if(tamed == 1 && isrobot(found_atom))
-			return null
-		else
-			return found_atom
-	else
-		return null
+	..()
+
+/mob/living/simple_animal/otie/friendly/security/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
+	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut))
+		qdel(O)
+		user << "<span class='notice'>The guard pup accepts your offer for their catch.</span>"
+		for(var/I in vore_organs)
+			var/datum/belly/B = vore_organs[I]
+			B.release_all_contents()
+		return
+	..()
+
+/mob/living/simple_animal/otie/friendly/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
+	var/datum/belly/B = user.vore_selected
+	var/datum/belly/belly_target = user.vore_organs[B]
+	if(check_threat(target_mob) >= 4)
+		belly_target.digest_mode = DM_HOLD
+	if(istype(prey,/mob/living/simple_animal/mouse))
+		belly_target.digest_mode = DM_DIGEST
+	..()
 
 /mob/living/simple_animal/otie/friendly/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
@@ -198,8 +202,8 @@
 //Basic friend AI
 
 /mob/living/simple_animal/otie/friendly/Life()
-	. = ..()
-	if(!. || ai_inactive || !friend) return
+	..()
+	if(!friend) return
 
 	var/friend_dist = get_dist(src,friend)
 
@@ -220,9 +224,9 @@
 				visible_emote(pick("nuzzles [friend].",
 								   "brushes against [friend].",
 								   "rubs against [friend].",
-								   "noses softly at [friend].",
+								   "noses at [friend].",
 								   "slobberlicks [friend].",
-								   "murrs.",
+								   "murrs contently.",
 								   "leans on [friend].",
 								   "nibbles affectionately on [friend]."))
 	else if (friend.health <= 50)
@@ -234,65 +238,31 @@
 	. = ..()
 	if(!. || ai_inactive) return
 
-	if(prob(5))
+	if(prob(5) && (stance == STANCE_IDLE))
 		lay_down()
 
 //Pet 4 friendly
 
 /mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
-	..()
-	if(M.a_intent == I_GRAB)
-		if (M == src)
-			return
-		if (!(status_flags & CANPUSH))
-			return
-		if(!incapacitated(INCAPACITATION_ALL) && (stance != STANCE_IDLE) && prob(grab_resist))
-			M.visible_message("<span class='warning'>[M] tries to grab [src] but fails!</span>")
-			return
-		var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
-		M.put_in_active_hand(G)
-		G.synch()
-		G.affecting = src
-		LAssailant = M
-		M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
-		M.do_attack_animation(src)
-		ai_log("attack_hand() I was grabbed by: [M]",2)
-		pixel_x = old_x
-		react_to_attack(M)
-	if(M.a_intent == I_HELP)
-		if (health > 0)
-			LoseTarget()
-			handle_stance(STANCE_IDLE)
-			if(prob(tame_chance))
-				friend = M
-				if(tamed != 1)
-					tamed = 1
-					faction = M.faction
-			sleep(1 SECOND)
-			return
+
+	switch(M.a_intent)
+		if(I_HELP)
+			if (health > 0)
+				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
+				LoseTarget()
+				handle_stance(STANCE_IDLE)
+				if(prob(tame_chance))
+					friend = M
+					if(tamed != 1)
+						tamed = 1
+						faction = M.faction
+				sleep(1 SECOND)
+
+		else
 			..()
 
-/mob/living/simple_animal/otie/death()
-	resting = 0
-	icon_state = icon_dead
-	..()
-
 /mob/living/simple_animal/otie/death(gibbed, deathmessage = "dies!")
-	density = 0 //We don't block even if we did before
-	walk(src, 0) //We stop any background-processing walks
 	resting = 0
 	icon_state = icon_dead
-
-	if(faction_friends.len)
-		faction_friends -= src
-
-	if(loot_list.len) //Drop any loot
-		for(var/path in loot_list)
-			if(prob(loot_list[path]))
-				new path(get_turf(src))
-
-	spawn(3) //We'll update our icon in a sec
-		icon_state = icon_dead //Goddamn triple check. If this ain't working Imma be PISSED!
-		update_icon()
-
-	return ..(gibbed,deathmessage)
+	update_icon()
+	..()

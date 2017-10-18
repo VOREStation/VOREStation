@@ -319,7 +319,7 @@ default behaviour is:
 	return fireloss
 
 /mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
-	return getBruteLoss()
+	return getFireLoss()
 
 /mob/living/proc/adjustFireLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -724,9 +724,21 @@ default behaviour is:
 						if(A.has_gravity)
 							//this is the gay blood on floor shit -- Added back -- Skie
 							if (M.lying && (prob(M.getBruteLoss() / 6)))
-								var/turf/location = M.loc
-								if (istype(location, /turf/simulated))
-									location.add_blood(M)
+								var/bloodtrail = 1	//Checks if it's possible to even spill blood
+								if(ishuman(M))
+									var/mob/living/carbon/human/H = M
+									if(H.species.flags & NO_BLOOD)
+										bloodtrail = 0
+									else
+										var/blood_volume = round((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100)
+										if(blood_volume < BLOOD_VOLUME_SURVIVE)
+											bloodtrail = 0	//Most of it's gone already, just leave it be
+										else
+											H.vessel.remove_reagent("blood", 1)
+								if(bloodtrail)
+									var/turf/location = M.loc
+									if(istype(location, /turf/simulated))
+										location.add_blood(M)
 							//pull damage with injured people
 								if(prob(25))
 									M.adjustBruteLoss(1)
@@ -737,13 +749,20 @@ default behaviour is:
 									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 									var/turf/location = M.loc
 									if (istype(location, /turf/simulated))
-										location.add_blood(M)
+										var/bloodtrail = 1	//Checks if it's possible to even spill blood
 										if(ishuman(M))
 											var/mob/living/carbon/human/H = M
-											var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-											if(blood_volume > 0)
-												H.vessel.remove_reagent("blood", 1)
-
+											if(H.species.flags & NO_BLOOD)
+												bloodtrail = 0
+											else
+												var/blood_volume = round((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100)
+												if(blood_volume < BLOOD_VOLUME_SURVIVE)
+													bloodtrail = 0	//Most of it's gone already, just leave it be
+												else
+													H.vessel.remove_reagent("blood", 1)
+										if(bloodtrail)
+											if(istype(location, /turf/simulated))
+												location.add_blood(M)
 
 					step(pulling, get_dir(pulling.loc, T))
 					if(t)

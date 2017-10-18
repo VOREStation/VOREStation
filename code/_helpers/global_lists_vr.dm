@@ -68,6 +68,13 @@ var/global/list/death_sounds = list(
 		'sound/vore/death9.ogg',
 		'sound/vore/death10.ogg')
 
+var/global/list/hunger_sounds = list(
+		'sound/vore/growl1.ogg',
+		'sound/vore/growl2.ogg',
+		'sound/vore/growl3.ogg',
+		'sound/vore/growl4.ogg',
+		'sound/vore/growl5.ogg')
+
 var/global/list/vore_sounds = list(
 		"Gulp" = 'sound/vore/gulp.ogg',
 		"Insert" = 'sound/vore/insert.ogg',

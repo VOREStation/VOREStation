@@ -68,21 +68,22 @@
 		return
 
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
-	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = module_active
-		//Shields absorb a certain percentage of damage based on their power setting.
-		var/absorb_brute = brute*shield.shield_level
-		var/absorb_burn = burn*shield.shield_level
-		var/cost = (absorb_brute+absorb_burn)*100
+	if(has_active_type(/obj/item/borg/combat/shield))
+		var/obj/item/borg/combat/shield/shield = locate() in src
+		if(shield && shield.active)
+			//Shields absorb a certain percentage of damage based on their power setting.
+			var/absorb_brute = brute*shield.shield_level
+			var/absorb_burn = burn*shield.shield_level
+			var/cost = (absorb_brute+absorb_burn) * 25
 
-		cell.charge -= cost
-		if(cell.charge <= 0)
-			cell.charge = 0
-			src << "<font color='red'>Your shield has overloaded!</font>"
-		else
-			brute -= absorb_brute
-			burn -= absorb_burn
-			src << "<font color='red'>Your shield absorbs some of the impact!</font>"
+			cell.charge -= cost
+			if(cell.charge <= 0)
+				cell.charge = 0
+				src << "<font color='red'>Your shield has overloaded!</font>"
+			else
+				brute -= absorb_brute
+				burn -= absorb_burn
+				src << "<font color='red'>Your shield absorbs some of the impact!</font>"
 
 	if(!emp)
 		var/datum/robot_component/armour/A = get_armour()
@@ -114,21 +115,22 @@
 	var/list/datum/robot_component/parts = get_damageable_components()
 
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
-	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = module_active
-		//Shields absorb a certain percentage of damage based on their power setting.
-		var/absorb_brute = brute*shield.shield_level
-		var/absorb_burn = burn*shield.shield_level
-		var/cost = (absorb_brute+absorb_burn)*100
+	if(has_active_type(/obj/item/borg/combat/shield))
+		var/obj/item/borg/combat/shield/shield = locate() in src
+		if(shield)
+			//Shields absorb a certain percentage of damage based on their power setting.
+			var/absorb_brute = brute*shield.shield_level
+			var/absorb_burn = burn*shield.shield_level
+			var/cost = (absorb_brute+absorb_burn) * 25
 
-		cell.charge -= cost
-		if(cell.charge <= 0)
-			cell.charge = 0
-			src << "<font color='red'>Your shield has overloaded!</font>"
-		else
-			brute -= absorb_brute
-			burn -= absorb_burn
-			src << "<font color='red'>Your shield absorbs some of the impact!</font>"
+			cell.charge -= cost
+			if(cell.charge <= 0)
+				cell.charge = 0
+				src << "<font color='red'>Your shield has overloaded!</font>"
+			else
+				brute -= absorb_brute
+				burn -= absorb_burn
+				src << "<font color='red'>Your shield absorbs some of the impact!</font>"
 
 	var/datum/robot_component/armour/A = get_armour()
 	if(A)

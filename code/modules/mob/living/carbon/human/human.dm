@@ -980,6 +980,14 @@
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
 
+	// Vorestation Addition - reapply markings/appearance from prefs for player mobs
+	if(client) //just to be sure
+		client.prefs.copy_to(src)
+		if(dna)
+			dna.ResetUIFrom(src)
+			sync_organ_dna()
+	// end vorestation addition
+
 	for (var/ID in virus2)
 		var/datum/disease2/disease/V = virus2[ID]
 		V.cure(src)
@@ -1195,7 +1203,11 @@
 		fixblood()
 		species.update_attack_types() //VOREStation Edit Start Required for any trait that updates unarmed_types in setup.
 		if(species.gets_food_nutrition != 1) //Bloodsucker trait. Tacking this on here.
-			verbs |= /mob/living/carbon/human/proc/bloodsuck //VOREStation Edit End
+			verbs |= /mob/living/carbon/human/proc/bloodsuck
+		if(species.can_drain_prey == 1)
+			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
+			verbs |= /mob/living/carbon/human/proc/succubus_drain_finialize
+			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal //VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
@@ -1205,6 +1217,8 @@
 		hud_used = new /datum/hud(src)
 
 	if(species)
+		//if(mind) //VOREStation Removal
+			//apply_traits() //VOREStation Removal
 		return 1
 	else
 		return 0
@@ -1542,10 +1556,10 @@
 	return species.fire_icon_state
 
 // Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
-/mob/living/carbon/human/equip_post_job()
+/mob/living/carbon/human/equip_post_job()	//Drone Permit moved to equip_survival_gear()
 	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
-		var/obj/item/weapon/permit/drone/permit = new(T)
+		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.

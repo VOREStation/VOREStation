@@ -344,8 +344,11 @@
 
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
+		if(istype(user,/mob/living/carbon/brain))
+			to_chat(user,"You try to move, but you are not the pilot! The exosuit doesn't respond.")
+			return 0
 		user.forceMove(get_turf(src))
-		user << "You climb out from [src]"
+		to_chat(user,"You climb out from [src]")
 		return 0
 	if(connected_port)
 		if(world.time - last_message > 20)
@@ -686,6 +689,13 @@
 
 /obj/mecha/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
+	if(istype(W, /obj/item/device/mmi))
+		if(mmi_move_inside(W,user))
+			to_chat(user,"[src]-MMI interface initialized successfuly")
+		else
+			to_chat(user,"[src]-MMI interface initialization failed.")
+		return
+
 	if(istype(W, /obj/item/mecha_parts/mecha_equipment))
 		var/obj/item/mecha_parts/mecha_equipment/E = W
 		spawn()
@@ -828,6 +838,70 @@
 	user << browse(output, "window=mecha_attack_ai")
 	return
 */
+
+///////////////////////////////
+////////  Brain Stuff  ////////
+///////////////////////////////
+
+/obj/mecha/proc/mmi_move_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
+	if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
+		to_chat(user,"Consciousness matrix not detected.")
+		return 0
+	else if(mmi_as_oc.brainmob.stat)
+		to_chat(user,"Brain activity below acceptable level.")
+		return 0
+	else if(occupant)
+		to_chat(user,"Occupant detected.")
+		return 0
+	else if(dna && dna!=mmi_as_oc.brainmob.dna.unique_enzymes)
+		to_chat(user,"Genetic sequence or serial number incompatible with locking mechanism.")
+		return 0
+	//Added a message here since people assume their first click failed or something./N
+//	user << "Installing MMI, please stand by."
+
+	visible_message("<span class='notice'>[usr] starts to insert a brain into [src.name]</span>")
+
+	if(enter_after(40,user))
+		if(!occupant)
+			return mmi_moved_inside(mmi_as_oc,user)
+		else
+			to_chat(user,"Occupant detected.")
+	else
+		to_chat(user,"You stop attempting to install the brain.")
+	return 0
+
+/obj/mecha/proc/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
+	if(mmi_as_oc && user in range(1))
+		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
+			to_chat(user,"Consciousness matrix not detected.")
+			return 0
+		else if(mmi_as_oc.brainmob.stat)
+			to_chat(user,"Beta-rhythm below acceptable level.")
+			return 0
+		user.drop_from_inventory(mmi_as_oc)
+		var/mob/brainmob = mmi_as_oc.brainmob
+		brainmob.reset_view(src)
+	/*
+		brainmob.client.eye = src
+		brainmob.client.perspective = EYE_PERSPECTIVE
+	*/
+		occupant = brainmob
+		brainmob.loc = src //should allow relaymove
+		brainmob.canmove = 1
+		mmi_as_oc.loc = src
+		mmi_as_oc.mecha = src
+		src.verbs += /obj/mecha/verb/eject
+		src.Entered(mmi_as_oc)
+		src.Move(src.loc)
+		src.icon_state = src.reset_icon()
+		set_dir(dir_in)
+		src.log_message("[mmi_as_oc] moved in as pilot.")
+		if(!hasInternalDamage())
+			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+		return 1
+	else
+		return 0
+
 
 /////////////////////////////////////
 ////////  Atmospheric stuff  ////////
@@ -1044,6 +1118,7 @@
 		src.occupant = H
 		src.add_fingerprint(H)
 		src.forceMove(src.loc)
+		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
@@ -1132,10 +1207,10 @@
 				occupant.loc = mmi
 			mmi.mecha = null
 			src.occupant.canmove = 0
-			src.verbs += /obj/mecha/verb/eject
 		src.occupant = null
 		src.icon_state = src.reset_icon()+"-open"
 		src.set_dir(dir_in)
+		src.verbs -= /obj/mecha/verb/eject
 	return
 
 /////////////////////////
@@ -1423,10 +1498,10 @@
 		return
 	if(usr.stat > 0)
 		return
-	var/datum/topic_input/filter = new /datum/topic_input(href,href_list)
+	var/datum/topic_input/top_filter = new /datum/topic_input(href,href_list)
 	if(href_list["select_equip"])
 		if(usr != src.occupant)	return
-		var/obj/item/mecha_parts/mecha_equipment/equip = filter.getObj("select_equip")
+		var/obj/item/mecha_parts/mecha_equipment/equip = top_filter.getObj("select_equip")
 		if(equip)
 			src.selected = equip
 			src.occupant_message("You switch to [equip]")
@@ -1457,7 +1532,7 @@
 		return
 	if(href_list["rfreq"])
 		if(usr != src.occupant)	return
-		var/new_frequency = (radio.frequency + filter.getNum("rfreq"))
+		var/new_frequency = (radio.frequency + top_filter.getNum("rfreq"))
 		if ((radio.frequency < PUBLIC_LOW_FREQ || radio.frequency > PUBLIC_HIGH_FREQ))
 			new_frequency = sanitize_frequency(new_frequency)
 		radio.set_frequency(new_frequency)
@@ -1499,11 +1574,11 @@
 		return
 	if(href_list["req_access"] && add_req_access)
 		if(!in_range(src, usr))	return
-		output_access_dialog(filter.getObj("id_card"),filter.getMob("user"))
+		output_access_dialog(top_filter.getObj("id_card"),top_filter.getMob("user"))
 		return
 	if(href_list["maint_access"] && maint_access)
 		if(!in_range(src, usr))	return
-		var/mob/user = filter.getMob("user")
+		var/mob/user = top_filter.getMob("user")
 		if(user)
 			if(state==0)
 				state = 1
@@ -1511,18 +1586,18 @@
 			else if(state==1)
 				state = 0
 				user << "The securing bolts are now hidden."
-			output_maintenance_dialog(filter.getObj("id_card"),user)
+			output_maintenance_dialog(top_filter.getObj("id_card"),user)
 		return
 	if(href_list["set_internal_tank_valve"] && state >=1)
 		if(!in_range(src, usr))	return
-		var/mob/user = filter.getMob("user")
+		var/mob/user = top_filter.getMob("user")
 		if(user)
 			var/new_pressure = input(user,"Input new output pressure","Pressure setting",internal_tank_valve) as num
 			if(new_pressure)
 				internal_tank_valve = new_pressure
 				user << "The internal pressure valve has been set to [internal_tank_valve]kPa."
 	if(href_list["remove_passenger"] && state >= 1)
-		var/mob/user = filter.getMob("user")
+		var/mob/user = top_filter.getMob("user")
 		var/list/passengers = list()
 		for (var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P in contents)
 			if (P.occupant)
@@ -1548,20 +1623,20 @@
 		P.go_out()
 		P.log_message("[occupant] was removed.")
 		return
-	if(href_list["add_req_access"] && add_req_access && filter.getObj("id_card"))
+	if(href_list["add_req_access"] && add_req_access && top_filter.getObj("id_card"))
 		if(!in_range(src, usr))	return
-		operation_req_access += filter.getNum("add_req_access")
-		output_access_dialog(filter.getObj("id_card"),filter.getMob("user"))
+		operation_req_access += top_filter.getNum("add_req_access")
+		output_access_dialog(top_filter.getObj("id_card"),top_filter.getMob("user"))
 		return
-	if(href_list["del_req_access"] && add_req_access && filter.getObj("id_card"))
+	if(href_list["del_req_access"] && add_req_access && top_filter.getObj("id_card"))
 		if(!in_range(src, usr))	return
-		operation_req_access -= filter.getNum("del_req_access")
-		output_access_dialog(filter.getObj("id_card"),filter.getMob("user"))
+		operation_req_access -= top_filter.getNum("del_req_access")
+		output_access_dialog(top_filter.getObj("id_card"),top_filter.getMob("user"))
 		return
 	if(href_list["finish_req_access"])
 		if(!in_range(src, usr))	return
 		add_req_access = 0
-		var/mob/user = filter.getMob("user")
+		var/mob/user = top_filter.getMob("user")
 		user << browse(null,"window=exosuit_add_access")
 		return
 	if(href_list["dna_lock"])
@@ -1594,9 +1669,9 @@
 	/*
 	if(href_list["debug"])
 		if(href_list["set_i_dam"])
-			setInternalDamage(filter.getNum("set_i_dam"))
+			setInternalDamage(top_filter.getNum("set_i_dam"))
 		if(href_list["clear_i_dam"])
-			clearInternalDamage(filter.getNum("clear_i_dam"))
+			clearInternalDamage(top_filter.getNum("clear_i_dam"))
 		return
 	*/
 
