@@ -96,7 +96,6 @@
 	reagent_state = LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
-	mrate_static = TRUE
 
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
