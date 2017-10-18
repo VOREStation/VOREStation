@@ -1,13 +1,13 @@
 /datum/trait/speed_slow
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
-	cost = -1
+	cost = -3
 	var_changes = list("slowdown" = 0.5)
 
 /datum/trait/speed_slow_plus
-	name = "Slowdown (Plus)"
+	name = "Major Slowdown"
 	desc = "Allows you to move MUCH slower on average than baseline."
-	cost = -2
+	cost = -5
 	var_changes = list("slowdown" = 1.0)
 
 /datum/trait/weakling
@@ -17,7 +17,7 @@
 	var_changes = list("item_slowdown_mod" = 1.5)
 
 /datum/trait/weakling_plus
-	name = "Weakling (Plus)"
+	name = "Major Weakling"
 	desc = "Allows you to carry heavy equipment with much more slowdown."
 	cost = -2
 	var_changes = list("item_slowdown_mod" = 2.0)
@@ -55,7 +55,7 @@
 	var_changes = list("brute_mod" = 1.25)
 
 /datum/trait/brute_weak_plus
-	name = "Brute Weakness (Plus)"
+	name = "Major Brute Weakness"
 	desc = "Increases damage from brute damage sources by 50%"
 	cost = -3
 	var_changes = list("brute_mod" = 1.5)
@@ -73,7 +73,7 @@
 	var_changes = list("burn_mod" = 1.25)
 
 /datum/trait/burn_weak_plus
-	name = "Burn Weakness (Plus)"
+	name = "Major Burn Weakness"
 	desc = "Increases damage from burn damage sources by 50%"
 	cost = -3
 	var_changes = list("burn_mod" = 1.5)
@@ -81,13 +81,13 @@
 /datum/trait/conductive
 	name = "Conductive"
 	desc = "Increases your susceptibility to electric shocks by 50%"
-	cost = -1
+	cost = -2
 	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
 
 /datum/trait/conductive_plus
-	name = "Conductive (Plus)"
+	name = "Major Conductive"
 	desc = "Increases your susceptibility to electric shocks by 100%"
-	cost = -2
+	cost = -3
 	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 
 /datum/trait/photosensitive
