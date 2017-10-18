@@ -5,7 +5,7 @@
 	var_changes = list("slowdown" = -0.5)
 
 /datum/trait/speed_fast_plus
-	name = "Haste (Plus)"
+	name = "Major Haste"
 	desc = "Allows you to move MUCH faster on average than baseline."
 	cost = 5
 	var_changes = list("slowdown" = -1.0)
@@ -17,7 +17,7 @@
 	var_changes = list("item_slowdown_mod" = 0.5)
 
 /datum/trait/hardy_plus
-	name = "Hardy (Plus)"
+	name = "Major Hardy"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
 	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.1)
@@ -49,7 +49,7 @@
 	var_changes = list("siemens_coefficient" = 0.75)
 
 /datum/trait/nonconductive_plus
-	name = "Non-Conductive (Plus)"
+	name = "Major Non-Conductive"
 	desc = "Decreases your susceptibility to electric shocks by a 50% amount."
 	cost = 3 //Let us not forget this effects tasers!
 	var_changes = list("siemens_coefficient" = 0.5)
@@ -61,7 +61,7 @@
 	var_changes = list("darksight" = 3)
 
 /datum/trait/darksight_plus
-	name = "Darksight (Plus)"
+	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
 	var_changes = list("darksight" = 7)
@@ -91,7 +91,7 @@
 	var_changes = list("brute_mod" = 0.75)
 
 /datum/trait/brute_resist_plus
-	name = "Brute Resist (Plus)"
+	name = "Major Brute Resist"
 	desc = "Adds 50% resistance to brute damage sources."
 	cost = 3
 	var_changes = list("brute_mod" = 0.5)
@@ -109,7 +109,7 @@
 	var_changes = list("burn_mod" = 0.75)
 
 /datum/trait/burn_resist_plus
-	name = "Burn Resist (Plus)"
+	name = "Major Burn Resist"
 	desc = "Adds 50% resistance to burn damage sources."
 	cost = 3
 	var_changes = list("burn_mod" = 0.5)
