@@ -12,7 +12,7 @@
 	name = "Soulcatcher"
 	desc = "A mind storage and processing system capable of capturing and supporting human-level minds in a small VR space."
 	list_pos = NIF_SOULCATCHER
-	cost = 950
+	cost = 50 //If I wanna trap people's minds and lood them, then by god I'll do so.
 	wear = 1
 	p_drain = 0.01
 	other_flags = (NIF_O_SCMYSELF|NIF_O_SCOTHERS) // Default on when installed, clear when uninstalled
