@@ -68,9 +68,9 @@
 	path = /obj/item/clothing/glasses/sunglasses/medhud/aviator/prescription
 
 /datum/gear/eyes/meson
-	display_name = "Optical Meson Scanners (Engineering)"
+	display_name = "Optical Meson Scanners (Engineering, Science)"
 	path = /obj/item/clothing/glasses/meson
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician")
+	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director")
 
 /datum/gear/eyes/meson/prescription
 	display_name = "Optical Meson Scanners, prescription (Engineering)"
@@ -115,4 +115,3 @@
 /datum/gear/eyes/sun/prescriptionsun
 	display_name = "sunglasses, presciption (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
-	cost = 2

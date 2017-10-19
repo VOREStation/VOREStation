@@ -14,7 +14,8 @@ var/list/gear_datums = list()
 	//create a list of gear datums to sort
 	for(var/geartype in typesof(/datum/gear)-/datum/gear)
 		var/datum/gear/G = geartype
-
+		if(initial(G.type_category) == geartype)
+			continue
 		var/use_name = initial(G.display_name)
 		var/use_category = initial(G.sort_category)
 
@@ -205,6 +206,7 @@ var/list/gear_datums = list()
 	var/sort_category = "General"
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.
 	var/exploitable = 0		//Does it go on the exploitable information list?
+	var/type_category = null
 
 /datum/gear/New()
 	..()
