@@ -60,11 +60,10 @@ var/list/flooring_cache = list()
 						if(!(istype(T) && T.flooring && T.flooring.name == flooring.name))
 							overlays |= get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST)
 
-	// VOREStation Edit - Hack workaround to byond crash bug
+	// Hack workaround to byond crash bug
 	//if(decals && decals.len)
 		//overlays |= decals
 	apply_decals()
-	// VOREStation Edit End
 
 	if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
 		icon = 'icons/turf/flooring/plating.dmi'

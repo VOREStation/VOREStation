@@ -28,17 +28,21 @@
 		return
 
 	spawn(0)
-		var/religion_name = "Christianity"
-		var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Christianity, in SPACE.", "Name change", religion_name), MAX_NAME_LEN)
+		var/religion_name = "Unitarianism"
+		var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Unitarianism", "Name change", religion_name), MAX_NAME_LEN)
 
 		if (!new_religion)
 			new_religion = religion_name
 		switch(lowertext(new_religion))
+			if("unitarianism")
+				B.name = "The Talmudic Quran"
 			if("christianity")
 				B.name = pick("The Holy Bible","The Dead Sea Scrolls")
+			if("Judaism")
+				B.name = "The Torah"
 			if("satanism")
-				B.name = "The Unholy Bible"
-			if("cthulu")
+				B.name = "The Satanic Bible"
+			if("cthulhu")
 				B.name = "The Necronomicon"
 			if("islam")
 				B.name = "Quran"
@@ -52,20 +56,21 @@
 				B.name = "Toolbox Manifesto"
 			if("homosexuality")
 				B.name = "Guys Gone Wild"
-			//if("lol", "wtf", "gay", "penis", "ass", "poo", "badmin", "shitmin", "deadmin", "cock", "cocks")
-			//	B.name = pick("Woodys Got Wood: The Aftermath", "War of the Cocks", "Sweet Bro and Hella Jef: Expanded Edition")
-			//	H.setBrainLoss(100) // starts off retarded as fuck
 			if("science")
 				B.name = pick("Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", "Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", "How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition")
+			if("capitalism")
+				B.name = "Wealth of Nations"
+			if("communism")
+				B.name = "The Communist Manifesto"
 			else
 				B.name = "The Holy Book of [new_religion]"
 		feedback_set_details("religion_name","[new_religion]")
 
 	spawn(1)
-		var/deity_name = "Space Jesus"
-		var/new_deity = sanitize(input(H, "Would you like to change your deity? Default is Space Jesus.", "Name change", deity_name), MAX_NAME_LEN)
+		var/deity_name = "Hashem"
+		var/new_deity = sanitize(input(H, "Would you like to change your deity? Default is Hashem", "Name change", deity_name), MAX_NAME_LEN)
 
-		if ((length(new_deity) == 0) || (new_deity == "Space Jesus") )
+		if ((length(new_deity) == 0) || (new_deity == "Hashem") )
 			new_deity = deity_name
 		B.deity_name = new_deity
 

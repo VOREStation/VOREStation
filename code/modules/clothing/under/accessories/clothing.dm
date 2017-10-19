@@ -3,27 +3,27 @@
 	desc = "Slick black suit vest."
 	icon_state = "det_vest"
 
-/obj/item/clothing/accessory/tan_jacket
+/obj/item/clothing/accessory/jacket/
 	name = "tan suit jacket"
 	desc = "Cozy suit jacket."
 	icon_state = "tan_jacket"
 
-/obj/item/clothing/accessory/charcoal_jacket
+/obj/item/clothing/accessory/jacket/charcoal
 	name = "charcoal suit jacket"
 	desc = "Strict suit jacket."
 	icon_state = "charcoal_jacket"
 
-/obj/item/clothing/accessory/navy_jacket
+/obj/item/clothing/accessory/jacket/navy
 	name = "navy suit jacket"
 	desc = "Official suit jacket."
 	icon_state = "navy_jacket"
 
-/obj/item/clothing/accessory/burgundy_jacket
+/obj/item/clothing/accessory/jacket/burgundy
 	name = "burgundy suit jacket"
 	desc = "Expensive suit jacket."
 	icon_state = "burgundy_jacket"
 
-/obj/item/clothing/accessory/checkered_jacket
+/obj/item/clothing/accessory/jacket/checkered
 	name = "checkered suit jacket"
 	desc = "Lucky suit jacket."
 	icon_state = "checkered_jacket"
@@ -114,6 +114,58 @@
 	desc = "A simple, comfortable cloak without sleeves. This one is tan and grey, the colors of Cargo."
 	icon_state = "cargoponcho"
 	item_state = "cargoponcho"
+
+/*
+ * Cloak
+ */
+/obj/item/clothing/accessory/poncho/roles/cloak
+	name = "brown cloak"
+	desc = "An elaborate brown cloak."
+	icon_state = "qmcloak"
+	item_state = "qmcloak"
+	body_parts_covered = null
+
+/obj/item/clothing/accessory/poncho/roles/cloak/ce
+	name = "chief engineer's cloak"
+	desc = "An elaborate cloak worn by the chief engineer."
+	icon_state = "cecloak"
+	item_state = "cecloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/cmo
+	name = "chief medical officer's cloak"
+	desc = "An elaborate cloak meant to be worn by the chief medical officer."
+	icon_state = "cmocloak"
+	item_state = "cmocloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hop
+	name = "head of personnel's cloak"
+	desc = "An elaborate cloak meant to be worn by the head of personnel."
+	icon_state = "hopcloak"
+	item_state = "hopcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/rd
+	name = "research director's cloak"
+	desc = "An elaborate cloak meant to be worn by the research director."
+	icon_state = "rdcloak"
+	item_state = "rdcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/qm
+	name = "quartermaster's cloak"
+	desc = "An elaborate cloak meant to be worn by the quartermaster."
+	icon_state = "qmcloak"
+	item_state = "qmcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hos
+	name = "head of security's cloak"
+	desc = "An elaborate cloak meant to be worn by the head of security."
+	icon_state = "hoscloak"
+	item_state = "hoscloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/captain
+	name = "colony director's cloak"
+	desc = "An elaborate cloak meant to be worn by the colony director."
+	icon_state = "capcloak"
+	item_state = "capcloak"
 
 /obj/item/clothing/accessory/hawaii
 	name = "flower-pattern shirt"

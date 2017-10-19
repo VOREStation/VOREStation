@@ -121,7 +121,7 @@
 /mob/zshadow/set_typing_indicator(var/state)
 	if(!typing_indicator)
 		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk.dmi' //VOREStation Edit - Looks better on the right with job icons.
+		typing_indicator.icon = 'icons/mob/talk.dmi' // Looks better on the right with job icons.
 		typing_indicator.icon_state = "typing"
 	if(state && !typing)
 		overlays += typing_indicator

@@ -80,51 +80,51 @@
 		return	//we aren't an object on the ground so don't call parent
 	..()
 
-/obj/item/clothing/accessory/blue
+/obj/item/clothing/accessory/tie
 	name = "blue tie"
 	icon_state = "bluetie"
 
-/obj/item/clothing/accessory/red
+/obj/item/clothing/accessory/tie/red
 	name = "red tie"
 	icon_state = "redtie"
 
-/obj/item/clothing/accessory/blue_clip
+/obj/item/clothing/accessory/tie/blue_clip
 	name = "blue tie with a clip"
 	icon_state = "bluecliptie"
 
-/obj/item/clothing/accessory/blue_long
+/obj/item/clothing/accessory/tie/blue_long
 	name = "blue long tie"
 	icon_state = "bluelongtie"
 
-/obj/item/clothing/accessory/red_clip
+/obj/item/clothing/accessory/tie/red_clip
 	name = "red tie with a clip"
 	icon_state = "redcliptie"
 
-/obj/item/clothing/accessory/red_long
+/obj/item/clothing/accessory/tie/red_long
 	name = "red long tie"
 	icon_state = "redlongtie"
 
-/obj/item/clothing/accessory/black
+/obj/item/clothing/accessory/tie/black
 	name = "black tie"
 	icon_state = "blacktie"
 
-/obj/item/clothing/accessory/darkgreen
+/obj/item/clothing/accessory/tie/darkgreen
 	name = "dark green tie"
 	icon_state = "dgreentie"
 
-/obj/item/clothing/accessory/yellow
+/obj/item/clothing/accessory/tie/yellow
 	name = "yellow tie"
 	icon_state = "yellowtie"
 
-/obj/item/clothing/accessory/navy
+/obj/item/clothing/accessory/tie/navy
 	name = "navy tie"
 	icon_state = "navytie"
 
-/obj/item/clothing/accessory/white
+/obj/item/clothing/accessory/tie/white
 	name = "white tie"
 	icon_state = "whitetie"
 
-/obj/item/clothing/accessory/horrible
+/obj/item/clothing/accessory/tie/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
@@ -237,16 +237,13 @@
 //Scarves
 
 /obj/item/clothing/accessory/scarf
-	name = "scarf"
+	name = "green scarf"
 	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
+	icon_state = "greenscarf"
 
 /obj/item/clothing/accessory/scarf/red
 	name = "red scarf"
 	icon_state = "redscarf"
-
-/obj/item/clothing/accessory/scarf/green
-	name = "green scarf"
-	icon_state = "greenscarf"
 
 /obj/item/clothing/accessory/scarf/darkblue
 	name = "dark blue scarf"
@@ -284,14 +281,14 @@
 	name = "christmas scarf"
 	icon_state = "christmasscarf"
 
-/obj/item/clothing/accessory/stripedredscarf
+/obj/item/clothing/accessory/scarf/stripedred
 	name = "striped red scarf"
 	icon_state = "stripedredscarf"
 
-/obj/item/clothing/accessory/stripedgreenscarf
+/obj/item/clothing/accessory/scarf/stripedgreen
 	name = "striped green scarf"
 	icon_state = "stripedgreenscarf"
 
-/obj/item/clothing/accessory/stripedbluescarf
+/obj/item/clothing/accessory/scarf/stripedblue
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"

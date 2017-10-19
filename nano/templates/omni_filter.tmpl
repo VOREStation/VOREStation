@@ -36,7 +36,7 @@
                 <div class="white" style="height: 26px">Filter</div>
                 {{for data.ports}}
                     <div style="height: 26px">
-                        {{:helper.link(value.f_type ? value.f_type : 'None', null, {'command' : 'switch_filter', 'mode' : value.f_type, 'dir' : value.dir}, value.filter ? null : 'disabled', value.f_type ? 'selected' : null)}}
+                        {{:helper.link(value.f_type ? value.f_type : 'None', null, {'command' : 'switch_filter', 'mode' : value.f_type, 'dir' : value.dir}, value.atmo_filter ? null : 'disabled', value.f_type ? 'selected' : null)}}
                     </div>
                 {{/for}}
             </div>

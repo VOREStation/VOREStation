@@ -11,7 +11,7 @@
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
 	req_components = list(
 							/obj/item/weapon/stock_parts/subspace/ansible = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1,
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/weapon/stock_parts/micro_laser = 1)
 
@@ -22,7 +22,7 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/subspace/filter = 2)
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 2)
 
 /obj/item/weapon/circuitboard/telecomms/relay
 	name = T_BOARD("relay mainframe")
@@ -31,7 +31,7 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/subspace/filter = 2)
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 2)
 
 /obj/item/weapon/circuitboard/telecomms/bus
 	name = T_BOARD("bus mainframe")
@@ -40,7 +40,7 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/stack/cable_coil = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1)
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1)
 
 /obj/item/weapon/circuitboard/telecomms/processor
 	name = T_BOARD("processor unit")
@@ -48,7 +48,7 @@
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 3,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1,
 							/obj/item/weapon/stock_parts/subspace/treatment = 2,
 							/obj/item/weapon/stock_parts/subspace/analyzer = 1,
 							/obj/item/stack/cable_coil = 2,
@@ -61,7 +61,7 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/stack/cable_coil = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1)
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1)
 
 /obj/item/weapon/circuitboard/telecomms/broadcaster
 	name = T_BOARD("subspace broadcaster")
@@ -70,7 +70,7 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/stack/cable_coil = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1,
 							/obj/item/weapon/stock_parts/subspace/crystal = 1,
 							/obj/item/weapon/stock_parts/micro_laser/high = 2)
 
@@ -81,7 +81,7 @@
 	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
 	req_components = list(
 							/obj/item/weapon/stock_parts/subspace/ansible = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1,
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/weapon/stock_parts/micro_laser = 1,
 							/obj/item/weapon/stock_parts/subspace/crystal = 1,
@@ -94,7 +94,7 @@
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
 	req_components = list(
 							/obj/item/weapon/stock_parts/subspace/ansible = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
+							/obj/item/weapon/stock_parts/subspace/sub_filter = 1,
 							/obj/item/weapon/stock_parts/manipulator = 1,
 							/obj/item/weapon/stock_parts/subspace/treatment = 1,
 							/obj/item/stack/cable_coil = 2)

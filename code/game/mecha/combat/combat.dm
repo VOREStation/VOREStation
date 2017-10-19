@@ -265,13 +265,13 @@
 
 /obj/mecha/combat/Topic(href,href_list)
 	..()
-	var/datum/topic_input/filter = new (href,href_list)
-	if(filter.get("close"))
+	var/datum/topic_input/top_filter = new (href,href_list)
+	if(top_filter.get("close"))
 		am = null
 		return
 	/*
-	if(filter.get("saminput"))
-		if(md5(filter.get("saminput")) == am)
+	if(top_filter.get("saminput"))
+		if(md5(top_filter.get("saminput")) == am)
 			occupant_message("From the lies of the Antipath, Circuit preserve us.")
 		am = null
 	return

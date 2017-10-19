@@ -25,7 +25,7 @@
 /turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/weapon/shovel))
 		to_chat(user, "<span class='notice'>You begin to remove \the [src] with your [W].</span>")
-		if(do_after(user, 4 SECONDS))
+		if(do_after(user, 4 SECONDS * W.toolspeed))
 			to_chat(user, "<span class='notice'>\The [src] has been dug up, and now lies in a pile nearby.</span>")
 			new /obj/item/stack/material/snow(src)
 			demote()

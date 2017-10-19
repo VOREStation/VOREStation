@@ -563,7 +563,7 @@
 	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 5 ,TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 10)
 
-/obj/item/weapon/stock_parts/subspace/filter
+/obj/item/weapon/stock_parts/subspace/sub_filter
 	name = "hyperwave filter"
 	icon_state = "hyperwave_filter"
 	desc = "A tiny device capable of filtering and converting super-intense radiowaves."

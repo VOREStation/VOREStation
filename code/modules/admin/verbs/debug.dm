@@ -385,26 +385,30 @@
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
-/datum/admins/proc/cmd_admin_dress()
+/datum/admins/proc/cmd_admin_dress(input in getmobs())
 	set category = "Fun"
 	set name = "Select equipment"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Select equipment.") as null|anything in human_mob_list
-	if(!H)
+	var/target = getmobs()[input]
+	if(!target)
 		return
+
+	if(!ishuman(target))
+		return
+
+	var/mob/living/carbon/human/H = target
 
 	var/decl/hierarchy/outfit/outfit = input("Select outfit.", "Select equipment.") as null|anything in outfits()
 	if(!outfit)
 		return
 
 	feedback_add_details("admin_verb","SEQ")
-	dressup_human(H, outfit, TRUE)
+	dressup_human(H, outfit, 1)
 
-/proc/dressup_human(var/mob/living/carbon/human/H, var/decl/hierarchy/outfit/outfit, var/undress = TRUE)
-	world << "dressup_human"
+/proc/dressup_human(var/mob/living/carbon/human/H, var/decl/hierarchy/outfit/outfit, var/undress = 1)
 	if(!H || !outfit)
 		return
 	if(undress)

@@ -36,13 +36,14 @@
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
 
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user)
+/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot)
 	var/mob/living/carbon/human/H = user
 
 	if(H.shoes)
 		shoes = H.shoes
 		if(shoes.overshoes)
-			user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
+			if(slot && slot == slot_shoes)
+				to_chat(user, "You are unable to wear \the [src] as \the [H.shoes] are in the way.")
 			shoes = null
 			return 0
 		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
@@ -55,7 +56,8 @@
 		return 0
 
 	if (shoes)
-		user << "You slip \the [src] on over \the [shoes]."
+		if(slot && slot == slot_shoes)
+			to_chat(user, "You slip \the [src] on over \the [shoes].")
 	set_slowdown()
 	wearer = H
 	return 1

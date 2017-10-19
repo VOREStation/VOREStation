@@ -24,6 +24,12 @@
 	name = "weak"
 	desc = "A lack of physical strength causes a diminshed capability in close quarters combat"
 
+	outgoing_melee_damage_percent = 0.8
+
+/datum/modifier/trait/wimpy
+	name = "wimpy"
+	desc = "An extreme lack of physical strength causes greatly diminished capability in close quarters combat."
+
 	outgoing_melee_damage_percent = 0.6
 
 /datum/modifier/trait/haemophilia

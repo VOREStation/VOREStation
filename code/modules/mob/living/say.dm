@@ -302,7 +302,7 @@ proc/get_radio_key_from_channel(var/channel)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"[speech_type][speech_bubble_test]")
 	spawn(30) qdel(speech_bubble)
 
-	// VOREStation Edit - Attempt Multi-Z Talking
+	// Attempt Multi-Z Talking
 	var/mob/above = src.shadow
 	while(!QDELETED(above))
 		var/turf/ST = get_turf(above)
@@ -315,7 +315,6 @@ proc/get_radio_key_from_channel(var/channel)
 					listening[item] = z_speech_bubble
 			listening_obj |= results["objs"]
 		above = above.shadow
-	// VOREStation Edit End
 
 	//Main 'say' and 'whisper' message delivery
 	for(var/mob/M in listening)
@@ -325,12 +324,12 @@ proc/get_radio_key_from_channel(var/channel)
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
-					M << (listening[M] || speech_bubble) // VOREStation Edit - Send the image attached to shadow mob if available
+					M << (listening[M] || speech_bubble) // Send the image attached to shadow mob if available
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
 				if(whispering) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
-						M << (listening[M] || speech_bubble) // VOREStation Edit - Send the image attached to shadow mob if available
+						M << (listening[M] || speech_bubble) // Send the image attached to shadow mob if available
 						M.hear_say(stars(message), verb, speaking, alt_name, italics, src, speech_sound, sound_vol*0.2)
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
 						M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)

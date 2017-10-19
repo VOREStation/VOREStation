@@ -29,4 +29,6 @@ var/global/list/description_icons = list(
 	"power cell" = image(icon='icons/obj/power.dmi',icon_state="hcell"),
 	"device cell" = image(icon='icons/obj/power.dmi',icon_state="dcell"),
 	"weapon cell" = image(icon='icons/obj/power.dmi',icon_state="wcell"),
+
+	"hatchet" = image(icon='icons/obj/weapons.dmi',icon_state="hatchet"),
 	)

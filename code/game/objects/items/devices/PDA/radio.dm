@@ -29,7 +29,7 @@
 		if(key3)
 			signal.data[key3] = value3
 
-		frequency.post_signal(src, signal, filter = s_filter)
+		frequency.post_signal(src, signal, radio_filter = s_filter)
 
 		return
 
@@ -47,7 +47,7 @@
 		..()
 		spawn(5)
 			if(radio_controller)
-				radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
+				radio_controller.add_object(src, control_freq, radio_filter = RADIO_SECBOT)
 
 	// receive radio signals
 	// can detect bot status signals

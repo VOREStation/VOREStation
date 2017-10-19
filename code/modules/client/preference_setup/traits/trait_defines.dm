@@ -30,14 +30,14 @@
 	name = "Flimsy"
 	desc = "You're more fragile than most, and have less of an ability to endure harm."
 	modifier_type = /datum/modifier/trait/flimsy
-	muturally_exclusive = list(/datum/trait/modifier/physical/frail)
+	mutually_exclusive = list(/datum/trait/modifier/physical/frail)
 
 
 /datum/trait/modifier/physical/frail
 	name = "Frail"
 	desc = "Your body is very fragile, and has even less of an ability to endure harm."
 	modifier_type = /datum/modifier/trait/frail
-	muturally_exclusive = list(/datum/trait/modifier/physical/flimsy)
+	mutually_exclusive = list(/datum/trait/modifier/physical/flimsy)
 
 
 /datum/trait/modifier/physical/haemophilia
@@ -51,10 +51,19 @@
 	// If a species lacking blood is added, it is suggested to add a check for them here.
 	return ..()
 
+
 /datum/trait/modifier/physical/weak
 	name = "Weak"
 	desc = "A lack of physical strength causes a diminshed capability in close quarters combat."
 	modifier_type = /datum/modifier/trait/weak
+	mutually_exclusive = list(/datum/trait/modifier/physical/wimpy)
+
+
+/datum/trait/modifier/physical/wimpy
+	name = "Wimpy"
+	desc = "An extreme lack of physical strength causes a greatly diminished capability in close quarters combat."
+	modifier_type = /datum/modifier/trait/wimpy
+	mutually_exclusive = list(/datum/trait/modifier/physical/weak)
 
 
 /datum/trait/modifier/physical/inaccurate
@@ -68,6 +77,7 @@
 /datum/trait/modifier/physical/high_metabolism
 	name = "High Metabolism"
 	modifier_type = /datum/modifier/trait/high_metabolism
+	mutually_exclusive = list(/datum/trait/modifier/physical/low_metabolism)
 
 /datum/trait/modifier/physical/high_metabolism/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)
 	if(setup.is_FBP())
@@ -78,6 +88,7 @@
 /datum/trait/modifier/physical/low_metabolism
 	name = "Low Metabolism"
 	modifier_type = /datum/modifier/trait/low_metabolism
+	mutually_exclusive = list(/datum/trait/modifier/physical/high_metabolism)
 
 /datum/trait/modifier/physical/low_metabolism/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)
 	if(setup.is_FBP())
@@ -165,7 +176,7 @@
 	name = "Xenophobic"
 	desc = "The mind of the Alien is unknowable, and as such, their intentions cannot be known.  You always watch the xenos closely, as they most certainly are watching you \
 	closely, waiting to strike."
-	muturally_exclusive = list(
+	mutually_exclusive = list(
 		/datum/trait/modifier/mental/humanphobe,
 		/datum/trait/modifier/mental/skrellphobe,
 		/datum/trait/modifier/mental/tajaraphobe,
@@ -177,36 +188,36 @@
 /datum/trait/modifier/mental/humanphobe
 	name = "Human-phobic"
 	desc = "Boilerplate racism for monkeys goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/skrellphobe
 	name = "Skrell-phobic"
 	desc = "Boilerplate racism for squid goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/tajaraphobe
 	name = "Tajara-phobic"
 	desc = "Boilerplate racism for cats goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/unathiphobe
 	name = "Unathi-phobic"
 	desc = "Boilerplate racism for lizards goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 // Not sure why anyone would hate/fear these guys but for the sake of completeness here we are.
 /datum/trait/modifier/mental/dionaphobe
 	name = "Diona-phobic"
 	desc = "Boilerplate racism for trees goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/teshariphobe
 	name = "Teshari-phobic"
 	desc = "Boilerplate racism for birds goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/prometheanphobe
 	name = "Promethean-phobic"
 	desc = "Boilerplate racism for jellos goes here."
-	muturally_exclusive = list(/datum/trait/modifier/mental/xenophobe)
+	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 */
