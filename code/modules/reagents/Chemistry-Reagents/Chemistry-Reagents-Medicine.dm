@@ -9,7 +9,6 @@
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
 	metabolism = REM * 0.5
-	mrate_static = TRUE
 	scannable = 1
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -141,7 +140,6 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0040FF"
-	mrate_static = TRUE	//Until it's not crazy strong, at least
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
