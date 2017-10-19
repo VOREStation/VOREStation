@@ -112,6 +112,12 @@
 	path = /obj/item/weapon/storage/secure/briefcase/rifle
 	antag_roles = list("traitor", "autotraitor", "infiltrator")
 
+/datum/uplink_item/item/visible_weapons/fuelrodcannon
+	name = "Fuel-Rod Cannon"
+	desc = "An incredibly bulky weapon whose devastating firepower is only matched by its severe need for expensive, and rare, ammunition. This device will likely require extra preparation to use, you are warned."
+	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
+	path = /obj/item/weapon/storage/secure/briefcase/fuelrod
+
 /datum/uplink_item/item/visible_weapons/tommygun
 	name = "Tommygun (.45)" // We're keeping this because it's CLASSY. -Spades
 	item_cost = 60

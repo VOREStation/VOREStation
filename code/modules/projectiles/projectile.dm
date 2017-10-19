@@ -333,8 +333,8 @@
 		else if(!bumped)
 			tracer_effect(effect_transform)
 
-		if(incendiary >= 2)
-			var/trail_volume = (flammability * 0.10)
+		if(incendiary >= 2 && !istype(src.loc, /turf/simulated/wall))
+			var/trail_volume = (flammability * 0.20)
 			new /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(src.loc, trail_volume, src.dir)
 
 		if(!hitscan)
