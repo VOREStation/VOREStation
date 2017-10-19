@@ -1043,6 +1043,8 @@
 #include "code\game\objects\structures\crates_lockers\closets\secure\scientist.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\secure_closets.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\security.dm"
+#include "code\game\objects\structures\flora\grass.dm"
+#include "code\game\objects\structures\flora\trees.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods.dm"
 #include "code\game\objects\structures\ghost_pods\silicon.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\alien_nests.dm"

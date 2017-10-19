@@ -53,6 +53,12 @@
 /turf/simulated/wall/sifwood/New(var/newloc)
 	..(newloc,"alien wood")
 
+/turf/simulated/wall/log/New(var/newloc)
+	..(newloc,"log")
+
+/turf/simulated/wall/log_sif/New(var/newloc)
+	..(newloc,"alien log")
+
 // Shuttle Walls
 /turf/simulated/shuttle/wall
 	name = "autojoin wall"
