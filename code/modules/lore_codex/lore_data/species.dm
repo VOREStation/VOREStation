@@ -137,7 +137,9 @@
 /datum/lore/codex/page/vatborn/add_content()
 	name = "Vatborn"
 	keywords += list("vatborn")
-	data = "More Words"
+	data = "A genetically modified type of human, Vatborn humans are cloned from a template and grown in special tubes. They look like pale \
+	but otherwise normal humans, but their bodies have a few internal changes. For one, they lack an appendix. On top of that, they are frequently \
+	hungry, as their metabolisms are faster than standard."
 
 // Posi lore
 /datum/lore/codex/category/positronic/add_content()

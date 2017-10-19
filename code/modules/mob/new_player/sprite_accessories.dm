@@ -203,12 +203,12 @@
 	bobcurl
 		name = "Bobcurl"
 		icon_state = "hair_bobcurl"
-		species_allowed = list("Human","Promethan","Vatborn","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	bob
 		name = "Bob"
 		icon_state = "hair_bobcut"
-		species_allowed = list("Human","Promethan","Vatborn","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	bobcutalt
 		name = "Chin Length Bob"
@@ -233,7 +233,7 @@
 	buzz
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
-		species_allowed = list("Human","Promethan","Vatborn","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	shavehair
 		name = "Shaved Hair"
@@ -338,7 +338,7 @@
 	mohawk
 		name = "Mohawk"
 		icon_state = "hair_d"
-		species_allowed = list("Human","Promethan","Vatborn","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	jensen
 		name = "Adam Jensen Hair"
@@ -355,7 +355,7 @@
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
-		species_allowed = list("Human","Promethan","Vatborn","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	kusangi
 		name = "Kusanagi Hair"
@@ -701,7 +701,7 @@
 	elvis
 		name = "Elvis Sideburns"
 		icon_state = "facial_elvis"
-		species_allowed = list("Human","Promethan","Vatborn","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	abe
 		name = "Abraham Lincoln Beard"
