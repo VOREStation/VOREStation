@@ -1982,6 +1982,21 @@
 	required_reagents = list("sake" = 1, "melonliquor" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/drinks/ldaiquri
+	name = "Lime Daiquiri"
+	id = "ldaiquiri"
+	result = "ldaiquiri"
+	required_reagents = list("rum" = 2, "limejuice" = 1, "sugar" = 1)
+	result_amount = 3
+	
+/datum/chemical_reaction/drinks/ldaiquri
+	name = "Strawberry Daiquiri"
+	id = "sdaiquiri"
+	result = "sdaiquiri"
+	required_reagents = list("rum" = 2, "berryjuice" = 1, "sugar" = 1)
+	result_amount = 3
+
+
 //R-UST Port
 /datum/chemical_reaction/hyrdophoron
 	name = "Hydrophoron"
