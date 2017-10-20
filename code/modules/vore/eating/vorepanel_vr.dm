@@ -628,10 +628,10 @@
 		selected.digest_burn = new_new_damage
 
 	if(href_list["b_brute_dmg"])
-		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 3 to 6", "Set Belly Brute Damage.") as num|null
+		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 0 to 6", "Set Belly Brute Damage.") as num|null
 		if(new_damage == null)
 			return
-		var/new_new_damage = Clamp(new_damage, 3, 6)
+		var/new_new_damage = Clamp(new_damage, 0, 6)
 		selected.digest_brute = new_new_damage
 
 	if(href_list["b_escapable"])
