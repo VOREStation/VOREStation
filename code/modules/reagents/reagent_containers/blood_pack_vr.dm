@@ -1,7 +1,7 @@
 /obj/item/weapon/reagent_containers/blood/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		if(reagents.total_volume && volume)
-			var/reagent_to_remove = reagents.get_master_reagent_id())
+			var/reagent_to_remove = reagents.get_master_reagent_id()
 			switch(reagents.get_master_reagent_id())
 				if("blood")
 					user.show_message("<span class='warning'>You sink your fangs into \the [src] and suck the blood out of it!</span>")
