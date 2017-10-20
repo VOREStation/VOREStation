@@ -247,7 +247,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if (health > 0)
+			if(health > 0)
 				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
 				LoseTarget()
 				handle_stance(STANCE_IDLE)
@@ -257,6 +257,29 @@
 						tamed = 1
 						faction = M.faction
 				sleep(1 SECOND)
+
+		if(I_GRAB)
+			if(health > 0)
+				audible_emote("growls disapprovingly at [M].")
+				if(friend == M)
+					friend = null
+				return
+			if(M == src)
+				return
+			if(!(status_flags & CANPUSH))
+				return
+
+			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+
+			M.put_in_active_hand(G)
+
+			G.synch()
+			G.affecting = src
+			LAssailant = M
+
+			M.visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+			M.do_attack_animation(src)
+			ai_log("attack_hand() I was grabbed by: [M]",2)
 
 		else
 			..()
