@@ -264,7 +264,8 @@
 				if(friend == M)
 					friend = null
 				return
-			..()
+			else
+				..()
 
 		else
 			..()
