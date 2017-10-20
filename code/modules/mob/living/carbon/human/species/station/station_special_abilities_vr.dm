@@ -508,7 +508,7 @@
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_lethal()
-	set name = "(LETHAL!!!) Drain prey of nutrition and lifeforce (LETHAL!!!)" //Provide a warning that THIS WILL KILL YOUR PREY.
+	set name = "Lethally Drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
 	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to  You may only do this to one person at a time."
 	set category = "Abilities"
 	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
