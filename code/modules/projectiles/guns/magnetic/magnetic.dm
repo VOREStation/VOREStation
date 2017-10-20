@@ -4,7 +4,7 @@
 	icon_state = "coilgun"
 	item_state = "coilgun"
 	icon = 'icons/obj/railgun.dmi'
-//	one_hand_penalty = 1
+//	one_handed_penalty = 1
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 
@@ -193,3 +193,66 @@
 			qdel(src)
 
 	return new projectile_type(src)
+
+/obj/item/weapon/gun/magnetic/fuelrod
+	name = "Fuel-Rod Cannon"
+	desc = "A bulky weapon designed to fire reactor core fuel rods at absurd velocities... who thought this was a good idea?!"
+	description_antag = "This device is capable of firing reactor fuel assemblies, acquired from a R-UST fuel compressor and an appropriate fueltype. Be warned, Supermatter rods may have unforseen consequences."
+	description_fluff = "Morpheus' second entry into the arms manufacturing field, the Morpheus B.F.G, or 'Big Fuel-rod Gun' made some noise when it was initially sent to the market. By noise, they mean it was rapidly declared 'incredibly dangerous to the wielder and civilians within a mile radius alike'."
+	icon_state = "fuelrodgun"
+	item_state = "coilgun"
+	icon = 'icons/obj/railgun.dmi'
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 4)
+	w_class = ITEMSIZE_LARGE
+
+	removable_components = TRUE
+	gun_unreliable = 0
+
+	load_type = /obj/item/weapon/fuel_assembly
+	projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod
+
+	power_cost = 500
+
+/obj/item/weapon/gun/magnetic/fuelrod/consume_next_projectile()
+	if(!check_ammo() || !capacitor || capacitor.charge < power_cost)
+		return
+
+	if(loaded) //Safety.
+		if(istype(loaded, /obj/item/weapon/fuel_assembly))
+			var/obj/item/weapon/fuel_assembly/rod = loaded
+			if(rod.fuel_type == "composite" || rod.fuel_type == "deuterium") //Safety check for rods spawned in without a fueltype.
+				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod
+			else if(rod.fuel_type == "tritium")
+				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod/tritium
+			else if(rod.fuel_type == "phoron")
+				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod/phoron
+			else if(rod.fuel_type == "supermatter")
+				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod/supermatter
+				visible_message("<span class='danger'>The barrel of \the [src] glows a blinding white!</span>")
+				spawn(5)
+					visible_message("<span class='danger'>\The [src] begins to rattle, its acceleration chamber collapsing in on itself!</span>")
+					removable_components = FALSE
+					spawn(15)
+						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>") //Why are you still holding this?
+						playsound(loc, 'sound/effects/grillehit.ogg', 10, 1)
+						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+						var/turf/T = get_turf(src)
+						sparks.set_up(2, 1, T)
+						sparks.start()
+						spawn(15)
+							visible_message("<span class='critical'>\The [src] explodes in a blinding white light!</span>")
+							explosion(src.loc, -1, 1, 2, 3)
+							qdel(src)
+			else
+				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod
+
+	use_ammo()
+	capacitor.use(power_cost)
+	update_icon()
+
+	return new projectile_type(src)
+
+/obj/item/weapon/gun/magnetic/fuelrod/New()
+	cell = new /obj/item/weapon/cell/high
+	capacitor = new /obj/item/weapon/stock_parts/capacitor
+	. = ..()

@@ -101,7 +101,7 @@
 	icon_state = "internalaffairs"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 	rolled_sleeves = 0
-	starting_accessories = list(/obj/item/clothing/accessory/black)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/black)
 
 /obj/item/clothing/under/rank/internalaffairs/skirt
 	desc = "The plain, professional attire of an Internal Affairs Agent. The top button is sewn shut."
@@ -156,7 +156,7 @@
 	desc = "A classy suit."
 	icon_state = "bluesuit"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
-	starting_accessories = list(/obj/item/clothing/accessory/red)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red)
 
 /obj/item/clothing/under/lawyer/bluesuit/skirt
 	name = "blue skirt suit"

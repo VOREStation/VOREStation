@@ -6,10 +6,15 @@
 	name = "Crystal"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crystal"
+	density = TRUE
+	anchored = TRUE
 
 /obj/machinery/crystal/New()
 	if(prob(50))
 		icon_state = "crystal2"
+		set_light(3, 3, "#CC00CC")
+	else
+		set_light(3, 3, "#33CC33")
 
 //large finds
 				/*

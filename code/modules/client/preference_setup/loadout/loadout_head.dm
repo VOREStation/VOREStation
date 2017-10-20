@@ -136,7 +136,6 @@
 /datum/gear/head/cowboy
 	display_name = "cowboy, rodeo"
 	path = /obj/item/clothing/head/cowboy_hat
-	cost = 3
 
 /datum/gear/head/cowboy/black
 	display_name = "cowboy, black"
@@ -267,6 +266,11 @@
 /datum/gear/head/taqiyah/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+
+/datum/gear/head/kitty
+	display_name = "kitty ears"
+	path = /obj/item/clothing/head/kitty
 
 /datum/gear/head/beanie
 	display_name = "beanie"

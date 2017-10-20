@@ -7,7 +7,6 @@
 	taste_mult = 4
 	reagent_state = SOLID
 	metabolism = REM * 4
-	mrate_static = TRUE
 	var/nutriment_factor = 30 // Per unit
 	var/injectable = 0
 	color = "#664330"
