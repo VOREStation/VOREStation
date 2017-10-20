@@ -49,10 +49,10 @@
 			is_vampire = 1 //VOREStation Edit END
 
 	if(effective_dose > 5)
-		if(is_vampire) == 0 //VOREStation Edit.
+		if(is_vampire == 0) //VOREStation Edit.
 			M.adjustToxLoss(removed) //VOREStation Edit.
 	if(effective_dose > 15)
-		if(is_vampire) == 0 //VOREStation Edit.
+		if(is_vampire == 0) //VOREStation Edit.
 			M.adjustToxLoss(removed) //VOREStation Edit.
 	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
