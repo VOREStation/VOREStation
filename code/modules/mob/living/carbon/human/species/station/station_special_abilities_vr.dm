@@ -612,10 +612,10 @@
 	var/mob/living/carbon/human/C = src
 	if(C.drain_finalized == 1)
 		C.drain_finalized = 0
-		C << "<span class='notice'>You will now finalize draining.</span>"
+		C << "<span class='notice'>You will not finalize draining.</span>"
 		return
 
 	else if(C.drain_finalized == 0)
 		C.drain_finalized = 1
-		C << "<span class='notice'>You will not finalize draining.</span>"
+		C << "<span class='notice'>You will now finalize draining.</span>"
 		return
