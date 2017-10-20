@@ -11,6 +11,7 @@
 	slot_flags = SLOT_BACK
 	force = 5
 	throwforce = 6
+	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 	action_button_name = "Remove/Replace Paddles"

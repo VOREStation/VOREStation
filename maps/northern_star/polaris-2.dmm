@@ -1329,7 +1329,7 @@
 "zD" = (/obj/structure/bed/chair{dir = 8},/obj/effect/floor_decal/corner/white/diagonal,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/restaurant)
 "zE" = (/obj/machinery/door/airlock/centcom{name = "Bridge"; opacity = 1; req_access = list(109)},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "zF" = (/obj/structure/table/reinforced,/obj/item/device/pda/captain,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
-"zG" = (/obj/structure/table/reinforced,/obj/item/weapon/card/id/captains_spare,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
+"zG" = (/obj/structure/table/reinforced,/obj/item/weapon/card/id/gold/captain/spare,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "zH" = (/obj/structure/table/reinforced,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "zI" = (/obj/structure/table/reinforced,/obj/machinery/recharger{pixel_y = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "zJ" = (/turf/simulated/shuttle/wall,/area/shuttle/transport1/centcom)

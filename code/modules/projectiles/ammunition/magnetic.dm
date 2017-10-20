@@ -7,6 +7,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	origin_tech = list(TECH_COMBAT = 1)
 	var/remaining = 9
+	preserve_item = 1
 
 /obj/item/weapon/magnetic_ammo/examine(mob/user)
 	. = ..()

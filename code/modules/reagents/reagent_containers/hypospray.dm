@@ -14,6 +14,7 @@
 	possible_transfer_amounts = null
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
+	preserve_item = 1
 	var/reusable = 1
 	var/used = 0
 	var/filled = 0
@@ -70,6 +71,7 @@
 	reusable = 0
 	filled = 1
 	filled_reagents = list("inaprovaline" = 5)
+	preserve_item = 0
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
