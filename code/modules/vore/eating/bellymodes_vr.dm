@@ -81,9 +81,9 @@
 					s_owner = owner
 					s_owner.cell.charge += 100
 				if(offset) // If any different than default weight, multiply the % of offset.
-					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
+					owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
-					owner.nutrition += (10/difference)
+					owner.nutrition += (2*(digest_brute+digest_burn)/difference)
 			M.updateVRPanel()
 
 		if(digest_mode == DM_ITEMWEAK)
