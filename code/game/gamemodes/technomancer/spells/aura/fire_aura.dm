@@ -22,9 +22,9 @@
 		qdel(src)
 	var/list/nearby_things = range(round(calculate_spell_power(4)),owner)
 
-	var/temp_change = calculate_spell_power(150)
+	var/temp_change = calculate_spell_power(25)
 	var/datum/species/baseline = all_species["Human"]
-	var/temp_cap = baseline.heat_level_3 * 2
+	var/temp_cap = baseline.heat_level_3 * 1.5
 	var/fire_power = calculate_spell_power(2)
 
 	if(check_for_scepter())
@@ -36,7 +36,7 @@
 		if(is_ally(H))
 			continue
 
-		var/protection = H.get_heat_protection(1000)
+		var/protection = H.get_heat_protection(500)
 		if(protection < 1)
 			var/heat_factor = abs(protection - 1)
 			temp_change *= heat_factor
@@ -48,7 +48,7 @@
 				for(var/mob/living/carbon/human/H in T)
 					if(is_ally(H))
 						continue turf_check
-				T.hotspot_expose(1000, 50, 1)
+				T.hotspot_expose(500, 50, 1)
 				T.create_fire(fire_power)
 
-	adjust_instability(1)
+	adjust_instability(3)
