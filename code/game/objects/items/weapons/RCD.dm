@@ -178,6 +178,9 @@
 /obj/item/weapon/rcd/borg
 	canRwall = 1
 
+/obj/item/weapon/rcd/borg/lesser
+	canRwall = FALSE
+
 /obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
