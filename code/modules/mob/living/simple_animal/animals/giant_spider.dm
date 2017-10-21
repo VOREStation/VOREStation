@@ -74,6 +74,27 @@
 	var/atom/cocoon_target
 	var/egg_inject_chance = 5
 
+/mob/living/simple_animal/hostile/giant_spider/nurse/queen
+	desc = "Absolutely gigantic, this creature is horror itself."
+	icon = 'icons/mob/64x64.dmi'
+	icon_state = "spider_queen"
+	icon_living = "spider_queen"
+	icon_dead = "spider_queen_dead"
+
+	maxHealth = 320
+	health = 320
+
+	melee_damage_lower = 15
+	melee_damage_upper = 25
+	poison_per_bite = 10
+
+	egg_inject_chance = 10
+
+	pixel_x = -16
+	pixel_y = -16
+	old_x = -16
+	old_y = -16
+
 //hunters have the most poison and move the fastest, so they can find prey
 /mob/living/simple_animal/hostile/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
