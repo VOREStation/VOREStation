@@ -34,12 +34,7 @@
 	..()
 
 // Brain is defined in brain_item.dm.
-/obj/item/organ/internal/heart
-	name = "heart"
-	icon_state = "heart-on"
-	organ_tag = O_HEART
-	parent_organ = BP_TORSO
-	dead_icon = "heart-off"
+// Heart is defined in heart.dm
 
 /obj/item/organ/internal/lungs
 	name = "lungs"
