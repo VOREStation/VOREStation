@@ -96,7 +96,7 @@
 	role_name = "Mercenary Drone"
 	question = "A team of dubious mercenaries have purchased a powerful drone, and they are attempting to activate it.  Would you like to play as the drone?"
 	be_special_flag = BE_AI
-	check_bans = list("AI", "Cyborg")
+	check_bans = list("AI", "Cyborg", "Syndicate")
 	cutoff_number = 1
 
 // Surface stuff.
