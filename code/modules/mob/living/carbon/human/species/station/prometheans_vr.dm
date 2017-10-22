@@ -18,10 +18,8 @@
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/succubus_drain,
 		/mob/living/carbon/human/proc/succubus_drain_finialize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/shred_limb
-		) //Prometheans get all the special verbs since they can't do traits.
+		/mob/living/carbon/human/proc/succubus_drain_lethal
+		)
 
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
