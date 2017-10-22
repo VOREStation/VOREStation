@@ -171,7 +171,7 @@
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
 	desc = "An ID straight from Central Command."
-	icon_state = "centcom"
+	icon_state = "nanotrasen"
 	registered_name = "Central Command"
 	assignment = "General"
 
@@ -186,6 +186,7 @@
 /obj/item/weapon/card/id/centcom/ERT
 	name = "\improper Emergency Response Team ID"
 	assignment = "Emergency Response Team"
+	icon_state = "centcom"
 
 /obj/item/weapon/card/id/centcom/ERT/New()
 	..()
