@@ -509,7 +509,7 @@
 
 /mob/living/carbon/human/proc/succubus_drain_lethal()
 	set name = "Lethally Drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
-	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to  You may only do this to one person at a time."
+	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to drain their lifeforce. You may only do this to one person at a time."
 	set category = "Abilities"
 	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
 	var/mob/living/carbon/human/C = src
@@ -619,3 +619,104 @@
 		C.drain_finalized = 1
 		C << "<span class='notice'>You will now finalize draining.</span>"
 		return
+
+/mob/living/carbon/human/proc/shred_limb() //If you're looking at this, nothing but pain and suffering lies below.
+	set name = "Damage/Remove Prey's Organ"
+	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
+	set category = "Abilities"
+	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
+
+	if(last_special > world.time)
+		return
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		src << "You cannot severely damage anything in your current state!"
+		return
+
+	var/mob/living/carbon/human/C = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		C << "<span class='warning'>We must be grabbing a creature in our active hand to severely damage them.</span>"
+		return
+
+	var/mob/living/carbon/human/T = G.affecting
+	if(!istype(T)) //Are they a mob?
+		C << "<span class='warning'>\The [T] is not able to be severely damaged!</span>"
+		return
+
+	if(G.state != GRAB_NECK)
+		C << "<span class='warning'>You must have a tighter grip to severely damage this creature.</span>"
+		return
+
+	if(!T || !C || C.stat) return
+
+	if(!Adjacent(T)) return
+
+	var/list/choices2 = list()
+	for(var/obj/item/organ/O in T.organs) //External organs
+		choices2 += O
+
+	var/obj/item/organ/external/D = input(C,"What do you wish to severely damage?") as null|anything in choices2 //D for destroy.
+	if(D.vital)
+		if(alert("Are you sure you wish to severely damage their [D]? It most likely will kill the prey...",,"Yes", "No") != "Yes")
+			return //If they reconsider, don't continue.
+
+	var/list/choices3 = list()
+	for(var/obj/item/organ/internal/I in D.internal_organs) //Look for the internal organ in the organ being shreded.
+		choices3 += I
+
+	var/obj/item/organ/internal/P = input(C,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in choices3
+
+	var/eat_limb = input(C,"Do you wish to swallow the organ if you tear if out? If so, select which stomach.") as null|anything in C.vore_organs  //EXTREMELY EFFICIENT
+
+	if(last_special > world.time) return
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		C << "You cannot shred in your current state."
+		return
+
+	last_special = world.time + 100 //10 seconds.
+	C.visible_message("<font color='red'><b>[C] appears to be preparing to do something to [T]!</b></font>") //Let everyone know that bad times are head
+
+	if(do_after(C, 100, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
+		if(!Adjacent(T)) return
+		if(P && P.damage >= 25) //Internal organ and it's been severely damage
+			T.apply_damage(15, BRUTE, D) //Damage the external organ they're going through.
+			P.removed()
+			P.forceMove(T.loc) //Move to where prey is.
+			log_and_message_admins("tore out [T]'s [P].", C)
+			if(eat_limb)
+				var/datum/belly/S = C.vore_organs[eat_limb]
+				P.forceMove(C) //Move to pred's gut
+				S.internal_contents |= P //Add to pred's gut.
+				C.visible_message("<font color='red'><b>[C] severely damages [T]'s [D]!</b></font>")
+				C << "Their [P] moves into your [S]!" //Quietly eat their internal organ!
+				playsound(C, S.vore_sound, 70, 1)
+				log_and_message_admins("tore out and ate [T]'s [P] .", C)
+			else
+				log_and_message_admins("tore out [T]'s [P].", C)
+				C.visible_message("<font color='red'><b>[C] severely damages [T]'s [D], resulting in their [P] falling out!</b></font>")
+		else if(!P && (D.damage >= 25 || D.brute_dam >= 25)) //Not targeting an internal organ & external organ has been severely damaged already.
+			D.droplimb(1,DROPLIMB_EDGE) //Clean cut so it doesn't kill the prey completely.
+			if(D.cannot_amputate) //Is it groin/chest? You can't remove those.
+				T.apply_damage(25, BRUTE, D)
+				C.visible_message("<font color='red'><b>[C] severely damage [T]'s [D]!</b></font>") //Keep it vague. Let the /me's do the talking.
+				log_and_message_admins("shreded [T]'s [D].", C)
+				return
+			if(eat_limb)
+				var/datum/belly/S = C.vore_organs[eat_limb]
+				D.forceMove(C) //Move to pred's gut
+				S.internal_contents |= D //Add to pred's gut.
+				C.visible_message("<span class='warning'>[C] swallows the [D] into their [S]!</span>","You swallow [T]'s [D]!")
+				playsound(C, S.vore_sound, 70, 1)
+				C << "Their [D] moves into your [S]!
+				log_and_message_admins("tore off and ate [T]'s [D].", C)
+			else
+				C.visible_message("<span class='warning'>[C] tears off [T]'s [D]!</span>","You tear out [T]'s [D]!")
+				log_and_message_admins("tore off [T]'s [D].", C)
+		else //Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
+			if(P)
+				P.damage = 25 //Internal organs can only take damage, not brute damage.
+			T.apply_damage(25, BRUTE, D)
+			C.visible_message("<font color='red'><b>[C] severely damages [T]'s [D]!</b></font>") //Keep it vague. Let the /me's do the talking.
+			log_and_message_admins("shreded [T]'s [D].", C)
