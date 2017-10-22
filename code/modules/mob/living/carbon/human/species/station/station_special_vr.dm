@@ -23,7 +23,12 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/begin_reconstitute_form,
 		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/purge_impurities)
+		/mob/living/carbon/human/proc/purge_impurities,
+		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/carbon/human/proc/succubus_drain_finialize,
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/bloodsuck,
+		/mob/living/carbon/human/proc/shred_limb) //Xenochimera get all the special verbs since they can't select traits.
 
 	min_age = 18
 	max_age = 80

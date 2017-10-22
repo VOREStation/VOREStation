@@ -684,18 +684,18 @@
 			T.apply_damage(15, BRUTE, D) //Damage the external organ they're going through.
 			P.removed()
 			P.forceMove(T.loc) //Move to where prey is.
-			log_and_message_admins("tore out [T]'s [P].", C)
+			log_and_message_admins("tore out [P] of [T].", C)
 			if(eat_limb)
 				var/datum/belly/S = C.vore_organs[eat_limb]
 				P.forceMove(C) //Move to pred's gut
 				S.internal_contents |= P //Add to pred's gut.
-				C.visible_message("<font color='red'><b>[C] severely damages [T]'s [D]!</b></font>")
-				C << "Their [P] moves into your [S]!" //Quietly eat their internal organ!
+				C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") // Same as below, but (pred) damages the (right hand) of (person)
+				C << "[P] of [T] moves into your [S]!" //Quietly eat their internal organ! Comes out "The (right hand) of (person) moves into your (stomach)
 				playsound(C, S.vore_sound, 70, 1)
-				log_and_message_admins("tore out and ate [T]'s [P] .", C)
+				log_and_message_admins("tore out and ate [P] of [T].", C)
 			else
-				log_and_message_admins("tore out [T]'s [P].", C)
-				C.visible_message("<font color='red'><b>[C] severely damages [T]'s [D], resulting in their [P] falling out!</b></font>")
+				log_and_message_admins("tore out [P] of [T].", C)
+				C.visible_message("<font color='red'><b>[C] severely damages [D] of [T], resulting in their [P] coming out!</b></font>")
 		else if(!P && (D.damage >= 25 || D.brute_dam >= 25)) //Not targeting an internal organ & external organ has been severely damaged already.
 			D.droplimb(1,DROPLIMB_EDGE) //Clean cut so it doesn't kill the prey completely.
 			if(D.cannot_amputate) //Is it groin/chest? You can't remove those.
@@ -707,16 +707,16 @@
 				var/datum/belly/S = C.vore_organs[eat_limb]
 				D.forceMove(C) //Move to pred's gut
 				S.internal_contents |= D //Add to pred's gut.
-				C.visible_message("<span class='warning'>[C] swallows the [D] into their [S]!</span>","You swallow [T]'s [D]!")
+				C.visible_message("<span class='warning'>[C] swallows [D] of [T] into their [S]!</span>","You swallow [D] of [T]!")
 				playsound(C, S.vore_sound, 70, 1)
-				C << "Their [D] moves into your [S]!
-				log_and_message_admins("tore off and ate [T]'s [D].", C)
+				C << "Their [D] moves into your [S]!"
+				log_and_message_admins("tore off and ate [D] of [T].", C)
 			else
-				C.visible_message("<span class='warning'>[C] tears off [T]'s [D]!</span>","You tear out [T]'s [D]!")
+				C.visible_message("<span class='warning'>[C] tears off [D] of [T]!</span>","You tear out [D] of [T]!") //Will come out "You tear out (the right foot) of (person)
 				log_and_message_admins("tore off [T]'s [D].", C)
 		else //Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
 			if(P)
 				P.damage = 25 //Internal organs can only take damage, not brute damage.
 			T.apply_damage(25, BRUTE, D)
-			C.visible_message("<font color='red'><b>[C] severely damages [T]'s [D]!</b></font>") //Keep it vague. Let the /me's do the talking.
-			log_and_message_admins("shreded [T]'s [D].", C)
+			C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") //Keep it vague. Let the /me's do the talking.
+			log_and_message_admins("shreded [D] of [T].", C)
