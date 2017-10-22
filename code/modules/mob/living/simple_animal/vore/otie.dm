@@ -261,8 +261,6 @@
 		if(I_GRAB)
 			if(health > 0)
 				audible_emote("growls disapprovingly at [M].")
-				if(friend == M)
-					friend = null
 				return
 			else
 				..()
