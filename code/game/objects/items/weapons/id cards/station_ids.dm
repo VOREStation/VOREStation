@@ -120,19 +120,13 @@
 	..()
 	assignment = "Command Secretary"
 	rank = "Command Secretary"
-	access |= list(access_heads)
+	access |= get_access() //VOREStation Edit. All "access" lines have been edited to make them follow the config.
 
 /obj/item/weapon/card/id/silver/hop/New()
 	..()
 	assignment = "Head of Personnel"
 	rank = "Head of Personnel"
-	access |= list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
-					access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
-					access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
-					access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
-					access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
-					access_hop, access_RC_announce, access_keycard_auth, access_gateway)
-
+	access |= get_access()
 /obj/item/weapon/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
@@ -198,37 +192,37 @@
 	icon_state = "med"
 	primary_color = rgb(189,237,237)
 	secondary_color = rgb(223,255,255)
-	access = list(access_medical, access_medical_equip)
+	access = get_access()
 
 /obj/item/weapon/card/id/medical/doctor/New()
 	..()
 	assignment = "Medical Doctor"
 	rank = "Medical Doctor"
-	access |= list(access_morgue, access_surgery, access_virology, access_eva)
+	access |= get_access()
 
 /obj/item/weapon/card/id/medical/chemist/New()
 	..()
 	assignment = "Chemist"
 	rank = "Chemist"
-	access |= list(access_chemistry)
+	access |= get_access()
 
 /obj/item/weapon/card/id/medical/geneticist/New()
 	..()
 	assignment = "Geneticist"
 	rank = "Geneticist"
-	access |= list(access_morgue, access_genetics)
+	access |= get_access()
 
 /obj/item/weapon/card/id/medical/psychiatrist/New()
 	..()
 	assignment = "Psychiatrist"
 	rank = "Psychiatrist"
-	access |= list(access_psychiatrist)
+	access |= get_access()
 
 /obj/item/weapon/card/id/medical/paramedic/New()
 	..()
 	assignment = "Paramedic"
 	rank = "Paramedic"
-	access |= list(access_morgue, access_eva, access_maint_tunnels, access_external_airlocks)
+	access |= get_access()
 
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
@@ -240,8 +234,7 @@
 	secondary_color = rgb(255,223,127)
 
 /obj/item/weapon/card/id/medical/head/New()
-	access |= list(access_morgue, access_genetics, access_heads, access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-			access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks, access_maint_tunnels)
+	access |= get_access()
 
 /obj/item/weapon/card/id/security
 	name = "identification card"
@@ -249,25 +242,25 @@
 	icon_state = "sec"
 	primary_color = rgb(189,47,0)
 	secondary_color = rgb(223,127,95)
-	access = list(access_security, access_sec_doors, access_maint_tunnels, access_external_airlocks, access_eva)
+	access = get_access()
 
 /obj/item/weapon/card/id/security/officer/New()
 	..()
 	assignment = "Assignment"
 	rank = "Security Officer"
-	access |= list(access_brig)
+	access |= get_access()
 
 /obj/item/weapon/card/id/security/detective/New()
 	..()
 	assignment = "Detective"
 	rank = "Detective"
-	access |= list(access_forensics_lockers, access_morgue)
+	access |= get_access()
 
 /obj/item/weapon/card/id/security/warden/New()
 	..()
 	assignment = "Warden"
 	rank = "Warden"
-	access |= list(access_brig, access_armory)
+	access |= get_access()
 
 /obj/item/weapon/card/id/security/head
 	name = "identification card"
@@ -280,9 +273,7 @@
 
 /obj/item/weapon/card/id/security/head/New()
 	..()
-	access |= list(access_brig, access_armory, access_forensics_lockers, access_morgue, access_all_personal_lockers,
-					access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-					access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway)
+	access |= get_access()
 
 /obj/item/weapon/card/id/engineering
 	name = "identification card"
@@ -290,19 +281,19 @@
 	icon_state = "eng"
 	primary_color = rgb(189,94,0)
 	secondary_color = rgb(223,159,95)
-	access = list(access_eva, access_engine, access_maint_tunnels, access_construction, access_external_airlocks)
+	access = get_access()
 
 /obj/item/weapon/card/id/engineering/engineer/New()
 	..()
 	assignment = "Station Engineer"
 	rank = "Station Engineer"
-	access |= list(access_engine_equip, access_tech_storage)
+	access |= get_access()
 
 /obj/item/weapon/card/id/engineering/atmos/New()
 	..()
 	assignment = "Atmospheric Technician"
 	rank = "Atmospheric Technician"
-	access |= list(access_atmospherics, access_emergency_storage)
+	access |= get_access()
 
 /obj/item/weapon/card/id/engineering/head
 	name = "identification card"
@@ -315,8 +306,7 @@
 
 /obj/item/weapon/card/id/engineering/head/New()
 	..()
-	access |= list(access_engine_equip, access_tech_storage, access_teleporter, access_atmospherics, access_emergency_storage,
-					access_heads, access_sec_doors, access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload)
+	access |= get_access()
 
 /obj/item/weapon/card/id/science
 	name = "identification card"
@@ -324,25 +314,25 @@
 	icon_state = "sci"
 	primary_color = rgb(142,47,142)
 	secondary_color = rgb(191,127,191)
-	access = list(access_research)
+	access = get_access()
 
 /obj/item/weapon/card/id/science/scientist/New()
 	..()
 	assignment = "Scientist"
 	rank = "Scientist"
-	access |= list(access_tox, access_tox_storage, access_xenoarch)
+	access |= get_access()
 
 /obj/item/weapon/card/id/science/xenobiologist/New()
 	..()
 	assignment = "Xenobiologist"
 	rank = "Xenobiologist"
-	access |= list(access_xenobiology, access_hydroponics, access_tox_storage)
+	access |= get_access()
 
 /obj/item/weapon/card/id/science/roboticist/New()
 	..()
 	assignment = "Roboticist"
 	rank = "Roboticist"
-	access |= list(access_robotics, access_tech_storage, access_morgue)
+	access |= get_access()
 
 /obj/item/weapon/card/id/science/head
 	name = "identification card"
@@ -355,9 +345,7 @@
 
 /obj/item/weapon/card/id/science/head/New()
 	..()
-	access |= list(access_rd, access_heads, access_tox, access_genetics, access_morgue, access_tox_storage, access_teleporter, access_sec_doors,
-			            access_robotics, access_xenobiology, access_ai_upload, access_tech_storage, access_RC_announce, access_keycard_auth,
-			            access_tcomsat, access_gateway, access_xenoarch)
+	access |= get_access()
 
 /obj/item/weapon/card/id/cargo
 	name = "identification card"
@@ -365,19 +353,19 @@
 	icon_state = "cargo"
 	primary_color = rgb(142,94,0)
 	secondary_color = rgb(191,159,95)
-	access = list(access_mailsorting)
+	access = get_access()
 
 /obj/item/weapon/card/id/cargo/cargo_tech/New()
 	..()
 	assignment = "Cargo Technician"
 	rank = "Cargo Technician"
-	access |= list(access_maint_tunnels, access_cargo, access_cargo_bot)
+	access |= get_access()
 
 /obj/item/weapon/card/id/cargo/mining/New()
 	..()
 	assignment = "Shaft Miner"
 	rank = "Shaft Miner"
-	access |= list(access_mining, access_mining_station)
+	access |= get_access()
 
 /obj/item/weapon/card/id/cargo/head
 	name = "identification card"
@@ -396,7 +384,7 @@
 	name = "identification card"
 //	assignment = "Assistant"
 //	rank = "Assistant"
-	access = list()
+	access = get_access()
 
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
@@ -412,43 +400,43 @@
 	..()
 	assignment = "Bartender"
 	rank = "Bartender"
-	access |= list(access_bar)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/botanist/New()
 	..()
 	assignment = "Gardener"
 	rank = "Gardener"
-	access |= list(access_hydroponics)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/chaplain/New()
 	..()
 	assignment = "Chaplain"
 	rank = "Chaplain"
-	access |= list(access_chapel_office, access_crematorium)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/chef/New()
 	..()
 	assignment = "Chef"
 	rank = "Chef"
-	access |= list(access_kitchen)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/internal_affairs_agent/New()
 	..()
 	assignment = "Internal Affairs Agent"
 	rank = "Internal Affairs Agent"
-	access |= list(access_lawyer, access_sec_doors, access_heads)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/janitor/New()
 	..()
 	assignment = "Janitor"
 	rank = "Janitor"
-	access |= list(access_janitor, access_maint_tunnels)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/librarian/New()
 	..()
 	assignment = "Librarian"
 	rank = "Librarian"
-	access |= list(access_library)
+	access |= get_access()
 
 /obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
