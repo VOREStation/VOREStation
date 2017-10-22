@@ -1207,7 +1207,9 @@
 		if(species.can_drain_prey == 1)
 			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
 			verbs |= /mob/living/carbon/human/proc/succubus_drain_finialize
-			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal //VOREStation Edit End
+			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
+		if(species.hard_vore_enabled == 1) //Hardvore verb.
+			verbs |= /mob/living/carbon/human/proc/shred_limb //VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)

@@ -1208,6 +1208,12 @@
 		icon_state = "bellyhandsfeet_female"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 		species_allowed = list("Tajara")
+	
+	panda_eye_marks
+		name = "Panda Eye Markings"
+		icon_state = "eyes-panda"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Human")
 
 	patches
 		name = "Color Patches"

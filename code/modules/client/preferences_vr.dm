@@ -4,8 +4,9 @@
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
+	var/icon/bgstate = pick("000", "FFF", "steel", "white", "plating", "reinforced")
 
-	preview_icon = icon('icons/effects/effects.dmi', "nothing")
+	preview_icon = icon('icons/effects/128x48_vr.dmi', bgstate)
 	preview_icon.Scale(64+64, 16+32)
 
 	mannequin.dir = NORTH
