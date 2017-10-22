@@ -26,6 +26,9 @@
 	display_name = "Collar, Pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
+/datum/gear/collar/holo
+	display_name = "Collar, Holo"
+	path = /obj/item/clothing/accessory/collar/holo
 /datum/gear/accessory/white_drop_pouches
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
 

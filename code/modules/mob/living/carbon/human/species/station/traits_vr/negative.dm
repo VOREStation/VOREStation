@@ -1,13 +1,13 @@
 /datum/trait/speed_slow
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
-	cost = -1
+	cost = -3
 	var_changes = list("slowdown" = 0.5)
 
 /datum/trait/speed_slow_plus
-	name = "Slowdown (Plus)"
+	name = "Major Slowdown"
 	desc = "Allows you to move MUCH slower on average than baseline."
-	cost = -2
+	cost = -5
 	var_changes = list("slowdown" = 1.0)
 
 /datum/trait/weakling
@@ -17,14 +17,14 @@
 	var_changes = list("item_slowdown_mod" = 1.5)
 
 /datum/trait/weakling_plus
-	name = "Weakling (Plus)"
+	name = "Major Weakling"
 	desc = "Allows you to carry heavy equipment with much more slowdown."
 	cost = -2
 	var_changes = list("item_slowdown_mod" = 2.0)
 
 /datum/trait/endurance_low
 	name = "Low Endurance"
-	desc = "Reduces your maximum total hitpoints."
+	desc = "Reduces your maximum total hitpoints to 75."
 	cost = -2
 	var_changes = list("total_health" = 75)
 
@@ -32,41 +32,63 @@
 		..(S,H)
 		H.setMaxHealth(S.total_health)
 
-/datum/trait/brute_weak
-	name = "Brute Weakness"
-	desc = "Increases damage from brute damage sources."
+/datum/trait/endurance_very_low
+	name = "Extremely Low Endurance"
+	desc = "Reduces your maximum total hitpoints to 50."
+	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc. 
+	var_changes = list("total_health" = 50)
+
+	apply(var/datum/species/S,var/mob/living/carbon/human/H)
+		..(S,H)
+		H.setMaxHealth(S.total_health)
+
+/datum/trait/minor_brute_weak
+	name = "Minor Brute Weakness"
+	desc = "Increases damage from brute damage sources by 15%"
 	cost = -1
 	var_changes = list("brute_mod" = 1.15)
 
-/datum/trait/brute_weak_plus
-	name = "Brute Weakness (Plus)"
-	desc = "Increases damage significantly from brute damage sources."
+/datum/trait/brute_weak
+	name = "Brute Weakness"
+	desc = "Increases damage from brute damage sources by 25%"
 	cost = -2
-	var_changes = list("brute_mod" = 1.30)
+	var_changes = list("brute_mod" = 1.25)
 
-/datum/trait/burn_weak
-	name = "Burn Weakness"
-	desc = "Increases damage from burn damage sources."
+/datum/trait/brute_weak_plus
+	name = "Major Brute Weakness"
+	desc = "Increases damage from brute damage sources by 50%"
+	cost = -3
+	var_changes = list("brute_mod" = 1.5)
+
+/datum/trait/minor_burn_weak
+	name = "Minor Burn Weakness"
+	desc = "Increases damage from burn damage sources by 15%"
 	cost = -1
 	var_changes = list("burn_mod" = 1.15)
 
-/datum/trait/burn_weak_plus
-	name = "Burn Weakness (Plus)"
-	desc = "Increases damage significantly from burn damage sources."
+/datum/trait/burn_weak
+	name = "Burn Weakness"
+	desc = "Increases damage from burn damage sources by 25%"
 	cost = -2
-	var_changes = list("burn_mod" = 1.30)
+	var_changes = list("burn_mod" = 1.25)
+
+/datum/trait/burn_weak_plus
+	name = "Major Burn Weakness"
+	desc = "Increases damage from burn damage sources by 50%"
+	cost = -3
+	var_changes = list("burn_mod" = 1.5)
 
 /datum/trait/conductive
 	name = "Conductive"
-	desc = "Increases your susceptibility to electric shocks by a small amount."
-	cost = -1
-	var_changes = list("siemens_coefficient" = 1.15)
+	desc = "Increases your susceptibility to electric shocks by 50%"
+	cost = -2
+	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
 
 /datum/trait/conductive_plus
-	name = "Conductive (Plus)"
-	desc = "Increases your susceptibility to electric shocks by a moderate amount."
-	cost = -2
-	var_changes = list("siemens_coefficient" = 1.3)
+	name = "Major Conductive"
+	desc = "Increases your susceptibility to electric shocks by 100%"
+	cost = -3
+	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 
 /datum/trait/photosensitive
 	name = "Photosensitive"

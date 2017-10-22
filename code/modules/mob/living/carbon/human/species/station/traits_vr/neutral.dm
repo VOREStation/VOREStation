@@ -76,3 +76,9 @@
 	desc = "Makes you able to gain nutrition from draining prey in your grasp."
 	cost = 0
 	var_changes = list("can_drain_prey" = 1) //The verb is given in human.dm
+
+/datum/trait/hard_vore
+	name = "Brutal Predation"
+	desc = "Allows you to tear off limbs & tear out internal organs."
+	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same functions.
+	var_changes = list("hard_vore_enabled" = 1) //The verb is given in human.dm

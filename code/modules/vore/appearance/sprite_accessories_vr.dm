@@ -53,6 +53,11 @@
 	desc = ""
 	icon_state = "bear-brown"
 
+/datum/sprite_accessory/ears/bear_panda
+	name = "bear, panda"
+	desc = ""
+	icon_state = "panda"
+
 /datum/sprite_accessory/ears/wolf_grey
 	name = "wolf, grey"
 	desc = ""
