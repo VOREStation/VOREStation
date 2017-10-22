@@ -99,8 +99,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		if((R_ADMIN|R_MOD|R_EVENT|R_SERVER) & X.holder.rights)
 			if(X.is_afk())
 				admin_number_afk++
-			else
-				X << msg
+			X << msg
 			if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 				X << 'sound/effects/adminhelp.ogg'
 
