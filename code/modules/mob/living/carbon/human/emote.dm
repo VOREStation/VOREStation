@@ -174,9 +174,11 @@
 		if ("clap")
 			if (!src.restrained())
 				message = "claps."
+				playsound(src.loc, 'sound/misc/clapping.ogg')
 				m_type = 2
 				if(miming)
 					m_type = 1
+
 		if ("flap")
 			if (!src.restrained())
 				message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings."
@@ -699,6 +701,20 @@
 				return
 			vomit()
 			return
+
+		if("whistle" || "whistles")
+			if(!muzzled)
+				message = "whistles a tune."
+				playsound(loc, 'sound/misc/longwhistle.ogg') //praying this doesn't get abused
+			else
+				message = "makes a light spitting noise, a poor attempt at a whistle."
+
+		if("qwhistle")
+			if(!muzzled)
+				message = "whistles quietly."
+				playsound(loc, 'sound/misc/shortwhistle.ogg')
+			else
+				message = "makes a light spitting noise, a poor attempt at a whistle."
 
 		if ("help")
 			src << "blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, deathgasp, drool, eyebrow, fastsway/qwag, \
