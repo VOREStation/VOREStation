@@ -44,7 +44,7 @@
 	var/is_vampire = 0 //VOREStation Edit START
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.gets_food_nutrition == 1)
+		if(H.species.gets_food_nutrition == 0)
 			H.nutrition += removed
 			is_vampire = 1 //VOREStation Edit END
 
