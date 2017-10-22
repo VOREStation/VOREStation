@@ -333,9 +333,11 @@
 		else if(!bumped)
 			tracer_effect(effect_transform)
 
-		if(incendiary >= 2 && !istype(src.loc, /turf/simulated/wall))
-			var/trail_volume = (flammability * 0.20)
-			new /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(src.loc, trail_volume, src.dir)
+		if(incendiary >= 2) //This should cover the bases of 'Why is there fuel here?' in a much cleaner way than previous.
+			if(src && src.loc) //Safety.
+				if(!src.loc.density)
+					var/trail_volume = (flammability * 0.20)
+					new /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(src.loc, trail_volume, src.dir)
 
 		if(!hitscan)
 			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
