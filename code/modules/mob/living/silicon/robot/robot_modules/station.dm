@@ -417,6 +417,8 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
 	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
+	var/datum/matter_synth/wood = new /datum/matter_synth/wood(40000)
+	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(40000)
 
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += metal
@@ -445,9 +447,9 @@ var/global/list/robot_modules = list(
 	C.synths = list(wire)
 	src.modules += C
 
-	var/obj/item/stack/material/cyborg/plasteel/P = new (src)
-	P.synths = list(plasteel)
-	src.modules += P
+	var/obj/item/stack/material/cyborg/plasteel/PS = new (src)
+	PS.synths = list(plasteel)
+	src.modules += PS
 
 	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
 	S.synths = list(metal)
@@ -456,6 +458,18 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
 	RG.synths = list(metal, glass)
 	src.modules += RG
+
+	var/obj/item/stack/tile/wood/cyborg/WT = new /obj/item/stack/tile/wood/cyborg(src)
+	WT.synths = list(wood)
+	src.modules += WT
+
+	var/obj/item/stack/material/cyborg/wood/W = new (src)
+	W.synths = list(wood)
+	src.modules += W
+
+	var/obj/item/stack/material/cyborg/plastic/PL = new (src)
+	PL.synths = list(plastic)
+	src.modules += PL
 
 /obj/item/weapon/robot_module/robot/security
 	name = "security robot module"
