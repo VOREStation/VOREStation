@@ -26,6 +26,7 @@
 
 /obj/item/clothing/shoes/magboots/rig/light
 	name = "shoes"
+	step_volume_mod = 0.8
 
 /obj/item/clothing/head/helmet/space/rig/light
 	name = "hood"
@@ -82,6 +83,7 @@
 
 	chest_type = /obj/item/clothing/suit/space/rig/light/ninja
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/light/ninja
+	boot_type = /obj/item/clothing/shoes/magboots/rig/light/ninja
 	cell_type =  /obj/item/weapon/cell/hyper
 
 	req_access = list(access_syndicate)
@@ -106,6 +108,9 @@
 /obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	name = "insulated gloves"
 	siemens_coefficient = 0
+
+/obj/item/clothing/shoes/magboots/rig/light/ninja
+	step_volume_mod = 0.25	//Not quite silent, but still damn quiet
 
 /obj/item/clothing/suit/space/rig/light/ninja
 	breach_threshold = 38 //comparable to regular hardsuits

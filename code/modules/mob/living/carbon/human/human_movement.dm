@@ -186,6 +186,10 @@
 	// Reduce volume while walking or barefoot
 	if(!shoes || m_intent == "walk")
 		volume *= 0.5
+	else if(shoes)
+		var/obj/item/clothing/shoes/feet = shoes
+		if(feet)
+			volume *= feet.step_volume_mod
 
 	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
 		return // no feet = no footsteps
