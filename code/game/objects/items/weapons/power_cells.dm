@@ -34,6 +34,7 @@
 	throw_range = 7
 	maxcharge = 480
 	matter = list("metal" = 350, "glass" = 50)
+	preserve_item = 1
 
 /obj/item/weapon/cell/device/weapon
 	name = "weapon power cell"

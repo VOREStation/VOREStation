@@ -183,3 +183,16 @@
 /obj/item/projectile/energy/plasmastun/on_hit(var/atom/target)
 	bang(target)
 	. = ..()
+
+/obj/item/projectile/energy/blue_pellet
+	name = "suppressive pellet"
+	icon_state = "blue_pellet"
+	damage = 5
+	armor_penetration = 75
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	damage_type = BURN
+	check_armour = "energy"
+	light_color = "#0000FF"
+
+	embed_chance = 0
+	muzzle_type = /obj/effect/projectile/pulse/muzzle

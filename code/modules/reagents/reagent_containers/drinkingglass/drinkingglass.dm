@@ -157,8 +157,7 @@
 			user << "<span class='notice'>You splash the solution onto [target].</span>"
 			reagents.splash(target, reagents.total_volume)
 			return 1
-	else
-		return
+	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/standard_feed_mob(var/mob/user, var/mob/target)
 	if(afterattack(target, user)) //Check to see if harm intent & splash.

@@ -1,6 +1,7 @@
 //A storage item intended to be used by other items to provide storage functionality.
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/weapon/storage/internal
+	preserve_item = 1
 	var/obj/item/master_item
 
 /obj/item/weapon/storage/internal/New(obj/item/MI)

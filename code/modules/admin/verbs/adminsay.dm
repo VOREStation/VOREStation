@@ -23,7 +23,7 @@
 	set name = "Msay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR|R_SERVER))
+	if(!check_rights(R_ADMIN|R_MOD|R_SERVER))
 		return
 
 	msg = sanitize(msg)
@@ -45,7 +45,7 @@
 	set name = "Esay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR|R_SERVER))
+	if(!check_rights(R_ADMIN|R_MOD|R_EVENT|R_SERVER))
 		return
 
 	msg = sanitize(msg)

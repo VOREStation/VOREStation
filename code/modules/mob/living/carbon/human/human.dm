@@ -1241,7 +1241,7 @@
 		W.message = message
 		W.add_fingerprint(src)
 
-/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
+/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
 	. = 1
 
 	if(!target_zone)
@@ -1261,10 +1261,10 @@
 	else
 		switch(target_zone)
 			if(BP_HEAD)
-				if(head && head.item_flags & THICKMATERIAL)
+				if(head && (head.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 			else
-				if(wear_suit && wear_suit.item_flags & THICKMATERIAL)
+				if(wear_suit && (wear_suit.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 	if(!. && error_msg && user)
 		if(!fail_msg)

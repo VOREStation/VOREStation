@@ -8,7 +8,7 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
-	/client/proc/cmd_mentor_check_new_players,
+	/client/proc/cmd_eventM_check_new_players,
 //	/client/proc/deadchat				//toggles deadchat on/off,
 //	/client/proc/toggle_ahelp_sound,
 	)
@@ -186,7 +186,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
+	/client/proc/reload_eventMs,
 	/client/proc/restart_controller,
 	/datum/admins/proc/restart,
 	/client/proc/print_random_map,
@@ -327,19 +327,53 @@ var/list/admin_verbs_mod = list(
 	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
 	/datum/admins/proc/view_txt_log,	//shows the server log (diary) for today,
 	/datum/admins/proc/view_atk_log		//shows the server combat-log, doesn't do anything presently,
-
-
 )
 
-var/list/admin_verbs_mentor = list(
+var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
-//	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message
+	/client/proc/dsay,
+	/client/proc/cmd_admin_subtle_message,
+	/client/proc/debug_variables,
+	/client/proc/check_antagonists,
+	/client/proc/aooc,
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/cmd_admin_direct_narrate,
+	/client/proc/allow_character_respawn,
+	/datum/admins/proc/sendFax,
+	/client/proc/respawn_character,
+	/proc/possess,
+	/proc/release,
+	/client/proc/callproc,
+	/client/proc/callproc_target,
+	/client/proc/debug_controller,
+	/client/proc/show_gm_status,
+	/datum/admins/proc/change_weather,
+	/datum/admins/proc/change_time,
+	/client/proc/admin_give_modifier,
+	/client/proc/Jump,
+	/client/proc/jumptomob,
+	/client/proc/jumptocoord,
+	/client/proc/cmd_admin_delete,
+	/datum/admins/proc/delay,
+	/client/proc/Set_Holiday,
+	/client/proc/make_sound,
+	/client/proc/toggle_random_events,
+	/datum/admins/proc/cmd_admin_dress,
+	/client/proc/cmd_admin_gib_self,
+	/client/proc/drop_bomb,
+	/client/proc/cmd_admin_add_freeform_ai_law,
+	/client/proc/cmd_admin_add_random_ai_law,
+	/client/proc/make_sound,
+	/client/proc/toggle_random_events,
+	/client/proc/editappear,
+	/client/proc/roll_dices,
+	/datum/admins/proc/call_supply_drop,
+	/datum/admins/proc/call_drop_pod
 )
 
 /client/proc/add_admin_verbs()
@@ -361,7 +395,7 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
-		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
+		if(holder.rights & R_EVENT)			verbs += admin_verbs_event_manager
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -424,12 +458,10 @@ var/list/admin_verbs_mentor = list(
 	if(istype(mob,/mob/observer/dead))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
-		if(!is_mentor(usr.client))
-			ghost.can_reenter_corpse = 1
 		if(ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
 		else
-			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again</font>"
+			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, event managers that use adminHUD while aghosting are not permitted to enter their corpse again</font>"
 			return
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
