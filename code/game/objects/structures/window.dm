@@ -13,6 +13,7 @@
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
+	var/force_threshold = 0
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
@@ -313,9 +314,9 @@
 	return
 
 /obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
-	if(reinf) damage *= 0.5
-	if(damage < 5)
+	if(damage < force_threshold || force_threshold < 0)
 		return
+	if(reinf) damage *= 0.5
 	take_damage(damage)
 	return
 
@@ -452,13 +453,14 @@
 
 
 /obj/structure/window/basic
-	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."
+	desc = "It looks thin and flimsy. A few knocks with... almost anything, really should shatter it."
 	icon_state = "window"
 	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 100
 	damage_per_fire_tick = 2.0
 	maxhealth = 12.0
+	force_threshold = 3
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -470,6 +472,7 @@
 	maximal_heat = T0C + 2000
 	damage_per_fire_tick = 1.0
 	maxhealth = 40.0
+	force_threshold = 5
 
 /obj/structure/window/phoronbasic/full
 	dir = SOUTHWEST
@@ -486,6 +489,7 @@
 	maximal_heat = T0C + 4000
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 	maxhealth = 80.0
+	force_threshold = 10
 
 /obj/structure/window/phoronreinforced/full
 	dir = SOUTHWEST
@@ -501,6 +505,7 @@
 	maximal_heat = T0C + 750
 	damage_per_fire_tick = 2.0
 	glasstype = /obj/item/stack/material/glass/reinforced
+	force_threshold = 6
 
 
 /obj/structure/window/New(Loc, constructed=0)
@@ -528,6 +533,7 @@
 	icon_state = "fwindow"
 	basestate = "fwindow"
 	maxhealth = 30
+	force_threshold = 5
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
@@ -539,6 +545,7 @@
 	reinf = 1
 	basestate = "w"
 	dir = 5
+	force_threshold = 7
 
 /obj/structure/window/reinforced/polarized
 	name = "electrochromic window"
