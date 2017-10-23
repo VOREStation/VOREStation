@@ -726,7 +726,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if("preview" in icon_states(current_species.icobase))
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
-	dat += "<b>Language:</b> [current_species.language]<br/>"
+	dat += "<b>Language:</b> [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		dat += "</br><b>Often present on human stations.</b>"

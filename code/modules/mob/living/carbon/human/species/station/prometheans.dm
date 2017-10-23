@@ -25,6 +25,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
+	species_language = LANGUAGE_SOL_COMMON
 
 	breath_type = null
 	poison_type = null

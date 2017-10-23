@@ -1724,6 +1724,7 @@
 #include "code\modules\mob\living\carbon\human\species\outsider\skeleton.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\vox.dm"
 #include "code\modules\mob\living\carbon\human\species\station\golem.dm"
+#include "code\modules\mob\living\carbon\human\species\station\human_subspecies.dm"
 #include "code\modules\mob\living\carbon\human\species\station\monkey.dm"
 #include "code\modules\mob\living\carbon\human\species\station\prometheans.dm"
 #include "code\modules\mob\living\carbon\human\species\station\seromi.dm"
