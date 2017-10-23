@@ -792,7 +792,7 @@ var/global/list/damage_icon_parts = list()
 		var/t_icon = INV_SUIT_DEF_ICON
 		if(wear_suit.icon_override)
 			t_icon = wear_suit.icon_override
-		else if(wear_suit.sprite_sheets && wear_suit.sprite_sheets[species.get_bodytype(src)])
+		else if(wear_suit.sprite_sheets && src && wear_suit.sprite_sheets[species.get_bodytype(src)]) //Vorestation edit
 			t_icon = wear_suit.sprite_sheets[species.get_bodytype(src)] //Vorestation edit
 		else if(wear_suit.item_icons && wear_suit.item_icons[slot_wear_suit_str])
 			t_icon = wear_suit.item_icons[slot_wear_suit_str]
