@@ -81,21 +81,6 @@ SUBSYSTEM_DEF(transcore)
 	else
 		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time)
 
-		//Pass a 0 to not change NIF status (because the elseif is checking for null)
-		if(nif)
-			MR.nif_path = nif.type
-			MR.nif_durability = nif.durability
-			var/list/nifsofts = list()
-			for(var/N in nif.nifsofts)
-				if(N)
-					var/datum/nifsoft/nifsoft = N
-					nifsofts += nifsoft.type
-			MR.nif_software = nifsofts
-		else if(isnull(nif)) //Didn't pass anything, so no NIF
-			MR.nif_path = null
-			MR.nif_durability = null
-			MR.nif_software = null
-
 	return 1
 
 // Send a past-due notification to the medical radio channel.

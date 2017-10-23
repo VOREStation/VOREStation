@@ -71,3 +71,9 @@
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
+
+/mob/living/carbon/human/handle_light()
+	if(hella_lit == 1)
+		set_light(3)
+		return TRUE
+	else ..()
