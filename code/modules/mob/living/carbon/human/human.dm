@@ -713,8 +713,6 @@
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
 			if(!S.on)
 				number += 1
-		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
-			number += 0
 		else
 			number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))

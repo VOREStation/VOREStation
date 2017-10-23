@@ -61,11 +61,11 @@
 
 /datum/gear/eyes/medical/aviator
 	display_name = "Medical HUD Aviators (Medical)"
-	path = /obj/item/clothing/glasses/sunglasses/medhud/aviator
+	path = /obj/item/clothing/glasses/hud/health/aviator
 
 /datum/gear/eyes/medical/aviator/prescription
 	display_name = "Medical HUD Aviators, prescription (Medical)"
-	path = /obj/item/clothing/glasses/sunglasses/medhud/aviator/prescription
+	path = /obj/item/clothing/glasses/hud/health/aviator/prescription
 
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Engineering, Science)"
@@ -93,8 +93,6 @@
 	display_name = "Optical Meson Aviators, prescription (Engineering)"
 	path = /obj/item/clothing/glasses/meson/aviator/prescription
 
-/datum/gear/eyes/meson/aviator/prescription
-
 /datum/gear/eyes/glasses/fakesun
 	display_name = "Sunglasses, stylish"
 	path = /obj/item/clothing/glasses/fakesunglasses
@@ -111,6 +109,10 @@
 /datum/gear/eyes/sun/shades
 	display_name = "Sunglasses, fat (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/big
+
+/datum/gear/eyes/sun/aviators
+	display_name = "Sunglasses, aviators (Security/Command)"
+	path = /obj/item/clothing/glasses/sunglasses/aviator
 
 /datum/gear/eyes/sun/prescriptionsun
 	display_name = "sunglasses, presciption (Security/Command)"
