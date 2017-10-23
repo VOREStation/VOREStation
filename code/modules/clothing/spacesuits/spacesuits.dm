@@ -15,6 +15,7 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude","Diona")
+	preserve_item = 1
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -59,6 +60,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude","Diona")
+	preserve_item = 1
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 

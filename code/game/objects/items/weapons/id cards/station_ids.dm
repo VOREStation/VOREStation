@@ -138,6 +138,7 @@
 	desc = "A golden card which shows power and might."
 	icon_state = "gold"
 	item_state = "gold_id"
+	preserve_item = 1
 
 /obj/item/weapon/card/id/gold/captain/New()
 	assignment = "Colony Director"
@@ -145,17 +146,11 @@
 	access = get_all_station_access()
 	..()
 
-/obj/item/weapon/card/id/captains_spare
+/obj/item/weapon/card/id/gold/captain/spare
 	name = "colony director's spare ID"
 	desc = "The spare ID of the High Lord himself."
-	icon_state = "gold"
-	item_state = "gold_id"
 	registered_name = "Colony Director"
 	assignment = "Colony Director"
-
-/obj/item/weapon/card/id/captains_spare/New()
-	access = get_all_station_access()
-	..()
 
 /obj/item/weapon/card/id/synthetic
 	name = "\improper Synthetic ID"
