@@ -131,7 +131,14 @@
 /datum/lore/codex/page/promethean/add_content()
 	name = "Promethean"
 	keywords += list("slime", "promethean")
-	data = "Words"
+	data = "Prometheans are an artificial species created by the Humans sometime in the 2540s, aboard the NRS Prometheus, while experimenting with \
+	the Aetolian giant slime, or ‘Macrolimus vulgaris’. They themselves are considered sapient beings and given protection under prior Human legislation, \
+	though often only appear to serve as aides or inferior positions when kept as staff. Aetolus, the official ‘Home world’ of the Prometheans and giant slime, \
+	is an obnoxiously warm, humid planet requiring structures to be built within large, atmospherically-filtered ‘tent-like’ domes. \
+	Prometheans take on vague visual and vocal features of the species they cohabitate with, sharing their predecessors’ tendency to mimic nearby entities, \
+	though in physical form additionally; this is seemingly more important in their own development, as well. Despite their taken appearances, \
+	there is no known existence of a divergence between a biologically ‘male’ or ‘female’ form of the species, leading most to believe they are in fact asexual, \
+	as their predecessors are."
 
 // Vatborn Lore
 /datum/lore/codex/page/vatborn/add_content()
