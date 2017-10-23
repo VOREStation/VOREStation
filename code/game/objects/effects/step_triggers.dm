@@ -110,3 +110,77 @@
 			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
 				var/turf/T = locate(rand(teleport_x, teleport_x_offset), rand(teleport_y, teleport_y_offset), rand(teleport_z, teleport_z_offset))
 				A.forceMove(T)
+
+/* Teleporter that sends objects stepping on it to a specific landmark. */
+
+/obj/effect/step_trigger/teleporter/landmark
+	var/obj/effect/landmark/the_landmark = null
+	var/landmark_id = null
+
+/obj/effect/step_trigger/teleporter/landmark/initialize()
+	for(var/obj/effect/landmark/teleport_mark/mark in tele_landmarks)
+		if(mark.landmark_id == landmark_id)
+			the_landmark = mark
+			return
+
+/obj/effect/step_trigger/teleporter/landmark/Trigger(var/atom/movable/A)
+	if(the_landmark)
+		A.forceMove(get_turf(the_landmark))
+
+
+var/global/list/tele_landmarks = list() // Terrible, but the alternative is looping through world.
+
+/obj/effect/landmark/teleport_mark
+	var/landmark_id = null
+
+/obj/effect/landmark/teleport_mark/New()
+	..()
+	tele_landmarks += src
+
+/obj/effect/landmark/teleport_mark/Destroy()
+	tele_landmarks -= src
+	return ..()
+
+/* Teleporter which simulates falling out of the sky. */
+
+/obj/effect/step_trigger/teleporter/planetary_fall
+	var/datum/planet/planet = null
+/* //VOREStation Removal
+/obj/effect/step_trigger/teleporter/planetary_fall/sif/initialize()
+	planet = planet_sif
+*/ //VOREStation Removal end
+/obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
+	if(planet)
+		if(!planet.planet_floors.len)
+			message_admins("ERROR: planetary_fall step trigger's list of outdoor floors was empty.")
+			return
+		var/turf/simulated/T = null
+		var/safety = 100 // Infinite loop protection.
+		while(!T && safety)
+			var/turf/simulated/candidate = pick(planet.planet_floors)
+			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
+				safety--
+				continue
+			else
+				T = candidate
+				break
+
+		if(!T)
+			message_admins("ERROR: planetary_fall step trigger could not find a suitable landing turf.")
+			return
+
+		if(isobserver(A))
+			A.forceMove(T) // Harmlessly move ghosts.
+			return
+
+		if(isliving(A)) // Someday, implement parachutes.  For now, just turbomurder whoever falls.
+			var/mob/living/L = A
+			for(var/i = 1 to 6)
+				L.adjustBruteLoss(100)
+		message_admins("\The [A] fell out of the sky.")
+		explosion(T, 0, 1, 2)
+		A.forceMove(T)
+		T.visible_message("<span class='danger'><font size='3'>\A [A] falls out of the sky and crashes into \the [T]!</font></span>")
+	else
+		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
+		return

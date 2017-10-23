@@ -365,7 +365,8 @@ var/global/datum/controller/occupations/job_master
 							H << "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
-						H.amend_exploitable(G.path)
+						if(G.exploitable)
+							H.amend_exploitable(G.path)
 
 						if(G.slot == "implant")
 							H.implant_loadout(G)
@@ -385,10 +386,10 @@ var/global/datum/controller/occupations/job_master
 						else
 							spawn_in_storage += thing
 			//Equip job items.
-			job.equip(H)
 			job.setup_account(H)
+			job.equip(H, H.mind ? H.mind.role_alt_title : "")
 			job.equip_backpack(H)
-			job.equip_survival(H)
+//			job.equip_survival(H)
 			job.apply_fingerprints(H)
 			H.equip_post_job()
 
@@ -543,7 +544,7 @@ var/global/datum/controller/occupations/job_master
 
 			H.equip_to_slot_or_del(C, slot_wear_id)
 
-		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
+//		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
 		if(locate(/obj/item/device/pda,H))
 			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
 			pda.owner = H.real_name

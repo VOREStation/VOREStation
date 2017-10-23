@@ -51,6 +51,9 @@
 	say_maybe_target = list("Possible threat detected.  Investigating.", "Motion detected.", "Investigating.")
 	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
 
+/mob/living/simple_animal/hostile/hivebot/isSynthetic()
+	return TRUE
+
 // Subtypes.
 
 // Melee like the base type, but more fragile.

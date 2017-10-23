@@ -7,6 +7,8 @@
 #define NO_POISON         0x20   // Cannot not suffer toxloss.
 #define NO_EMBED		  0x40	 // Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.
 #define NO_HALLUCINATION  0x80	 // Don't hallucinate, ever
+#define NO_BLOOD		  0x100  // Never bleed, never show blood amount
+#define UNDEAD			  0x200	 // Various things that living things don't do, mostly for skeletons
 // unused: 0x8000 - higher than this will overflow
 
 // Species spawn flags

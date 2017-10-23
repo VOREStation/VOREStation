@@ -53,6 +53,11 @@
 	desc = ""
 	icon_state = "bear-brown"
 
+/datum/sprite_accessory/ears/bear_panda
+	name = "bear, panda"
+	desc = ""
+	icon_state = "panda"
+
 /datum/sprite_accessory/ears/wolf_grey
 	name = "wolf, grey"
 	desc = ""
@@ -835,26 +840,36 @@
 	name = "unathi tail"
 	desc = ""
 	icon_state = "sogtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/tajaran
 	name = "tajaran tail"
 	desc = ""
 	icon_state = "tajtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/sergal
 	name = "sergal tail"
 	desc = ""
 	icon_state = "sergtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/akula
 	name = "akula tail"
 	desc = ""
 	icon_state = "sharktail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/nevrean
 	name = "nevrean tail"
 	desc = ""
 	icon_state = "nevreantail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/armalis
 	name = "armalis tail"
@@ -890,53 +905,64 @@
 	name = "seromi tail"
 	desc = ""
 	icon_state = "seromitail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/seromitailfeathered
 	name = "seromi tail w/ feathers"
 	desc = ""
 	icon_state = "seromitail_feathers_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/unathihc
 	name = "unathi tail, colorable"
 	desc = ""
 	icon_state = "sogtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/tajaranhc
 	name = "tajaran tail, colorable"
 	desc = ""
 	icon_state = "tajtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/sergalhc
 	name = "sergal tail, colorable"
 	desc = ""
 	icon_state = "sergtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/akulahc
 	name = "akula tail, colorable"
 	desc = ""
 	icon_state = "sharktail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/nevreanhc
 	name = "nevrean tail, colorable"
 	desc = ""
 	icon_state = "nevreantail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/foxhc
 	name = "highlander zorren tail, colorable"
 	desc = ""
 	icon_state = "foxtail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/fennechc
 	name = "flatland zorren tail, colorable"
 	desc = ""
 	icon_state = "fentail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/armalishc
 	name = "armalis tail, colorable"
@@ -979,15 +1005,17 @@
 	desc = ""
 	icon_state = "seromitail_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/seromitailfeatheredhc
 	name = "seromi tail w/ feathers, colorable"
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/vulpan
-	name = "vulpankin, colorable"
+	name = "vulpkanin, colorable"
 	desc = ""
 	icon_state = "vulptail_s"
 	do_colouration = 1

@@ -29,9 +29,6 @@
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/mend_synthetic/tick()
-//	if(!holder.isSynthetic()) // Don't heal biologicals!
-//		expire()
-//		return
 	if(!holder.getActualBruteLoss() && !holder.getActualFireLoss()) // No point existing if the spell can't heal.
 		expire()
 		return
@@ -42,8 +39,9 @@
 			if(O.robotic >= ORGAN_ROBOT)
 				O.heal_damage(4 * spell_power, 4 * spell_power, 0, 1)
 	else
-		holder.adjustBruteLoss(-4 * spell_power) // Should heal roughly 20 burn/brute over 10 seconds, as tick() is run every 2 seconds.
-		holder.adjustFireLoss(-4 * spell_power) // Ditto.
+		if(holder.isSynthetic())
+			holder.adjustBruteLoss(-4 * spell_power) // Should heal roughly 20 burn/brute over 10 seconds, as tick() is run every 2 seconds.
+			holder.adjustFireLoss(-4 * spell_power) // Ditto.
 
 	holder.adjust_instability(1)
 	if(origin)

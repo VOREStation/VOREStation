@@ -65,20 +65,20 @@
 
 	var/datum/radio_frequency/radio_connection	= null
 	var/frequency = PUB_FREQ
-	var/filter = null
+	var/rad_filter = null
 	var/range = null
 	var/subspace = 0
 
 	init()
 		..()
 		spawn(5)
-			radio_connection = radio_controller.add_object(src, src.frequency, src.filter)
+			radio_connection = radio_controller.add_object(src, src.frequency, src.rad_filter)
 
 	proc/set_frequency(new_frequency)
 		if(radio_controller)
 			radio_controller.remove_object(src, frequency)
 			frequency = new_frequency
-			radio_connection = radio_controller.add_object(src, frequency, filter)
+			radio_connection = radio_controller.add_object(src, frequency, rad_filter)
 		else
 			frequency = new_frequency
 			spawn(rand(5,10))
@@ -94,7 +94,7 @@
 		if(!computer || (computer.stat&~MAINT) || !computer.program) return
 		if(!radio_connection) return
 
-		radio_connection.post_signal(src,signal,filter,range)
+		radio_connection.post_signal(src,signal,rad_filter,range)
 
 	get_machines(var/typekey)
 		if(!radio_connection || !radio_connection.frequency)

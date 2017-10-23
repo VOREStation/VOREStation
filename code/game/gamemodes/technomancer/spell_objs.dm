@@ -149,9 +149,16 @@
 // Parameters: 0
 // Description: Nulls object references so it can qdel() cleanly.
 /obj/item/weapon/spell/Destroy()
+	owner.unref_spell(src)
 	owner = null
 	core = null
 	return ..()
+
+// Proc: unref_spells()
+// Parameters: 0
+// Description: Nulls object references on specific mobs so it can qdel() cleanly.
+/mob/proc/unref_spell(var/obj/item/weapon/spell/the_spell)
+	return
 
 // Proc: update_icon()
 // Parameters: 0

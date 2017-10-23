@@ -367,6 +367,8 @@
 	// Equip our custom items only AFTER deploying to spawn points eh?
 	equip_custom_items(character)
 
+	//character.apply_traits() //VOREStation Removal
+
 	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
@@ -468,6 +470,7 @@
 		mind.loaded_from_ckey = client.ckey
 		mind.loaded_from_slot = client.prefs.default_slot
 		// VOREStation
+		//mind.traits = client.prefs.traits.Copy() // VOREStation conflict
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name

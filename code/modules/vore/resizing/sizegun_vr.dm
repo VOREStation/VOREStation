@@ -11,7 +11,7 @@
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 100
 	projectile_type = /obj/item/projectile/beam/sizelaser
-	origin_tech = "bluespace=4"
+	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
 	self_recharge = 1
 	var/size_set_to = 1

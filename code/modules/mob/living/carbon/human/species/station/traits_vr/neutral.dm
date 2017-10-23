@@ -2,21 +2,21 @@
 	name = "Fast Metabolism"
 	desc = "You process ingested and injected reagents faster, but get hungry faster."
 	cost = 0
-	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2) //Teshari level
+	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.005) //Teshari level
 	excludes = list(/datum/trait/metabolism_down, /datum/trait/metabolism_apex)
 
 /datum/trait/metabolism_down
 	name = "Slow Metabolism"
 	desc = "You process ingested and injected reagents slower, but get hungry slower."
 	cost = 0
-	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04)
+	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.001)
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_apex)
 
 /datum/trait/metabolism_apex
 	name = "Apex Metabolism"
 	desc = "Finally a proper excuse for your predatory actions. Also makes you process reagents faster but that's totally irrelevant. May cause excessive immersions with large/taur characters. Not recommended for efficient law-abiding workers or eco-aware NIF users."
 	cost = 0
-	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 0.5) //Big boy level
+	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 0.5, "metabolism" = 0.010) //Big boy level
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
 /*
 /datum/trait/vore_numbing
@@ -70,3 +70,15 @@
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
 	cost = 0
 	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm
+
+/datum/trait/succubus_drain //Completely RP only trait.
+	name = "Succubus Drain"
+	desc = "Makes you able to gain nutrition from draining prey in your grasp."
+	cost = 0
+	var_changes = list("can_drain_prey" = 1) //The verb is given in human.dm
+
+/datum/trait/hard_vore
+	name = "Brutal Predation"
+	desc = "Allows you to tear off limbs & tear out internal organs."
+	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same functions.
+	var_changes = list("hard_vore_enabled" = 1) //The verb is given in human.dm

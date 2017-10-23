@@ -17,6 +17,8 @@
 	var/conceal_nif = 0					// Do they wish to conceal their NIF from examine?
 	var/nif_examine = "There's a certain spark to their eyes" //The examine text of their NIF. This is the default placeholder.
 	var/noisy = 0						// Toggle audible hunger.
+	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
+	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 
 //
 // Hook for generic creation of stuff on new creatures

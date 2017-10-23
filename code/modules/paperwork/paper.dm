@@ -466,7 +466,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
-	else if(istype(P, /obj/item/weapon/stamp))
+	else if(istype(P, /obj/item/weapon/stamp) || istype(P, /obj/item/clothing/gloves/ring/seal))
 		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
 			return
 
