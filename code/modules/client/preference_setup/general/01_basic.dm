@@ -12,6 +12,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 
 /datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
 	S["real_name"]				>> pref.real_name
+	S["nickname"]				>> pref.nickname
 	S["name_is_always_random"]	>> pref.be_random_name
 	S["gender"]					>> pref.biological_gender
 	S["id_gender"]				>> pref.identifying_gender
@@ -21,6 +22,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 
 /datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
 	S["real_name"]				<< pref.real_name
+	S["nickname"]				<< pref.nickname
 	S["name_is_always_random"]	<< pref.be_random_name
 	S["gender"]					<< pref.biological_gender
 	S["id_gender"]				<< pref.identifying_gender
@@ -35,6 +37,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	pref.real_name		= sanitize_name(pref.real_name, pref.species, is_FBP())
 	if(!pref.real_name)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
+	pref.nickname		= sanitize_name(pref.nickname)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
@@ -53,6 +56,8 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	if(character.dna)
 		character.dna.real_name = character.real_name
 
+	character.nickname = pref.nickname
+
 	character.gender = pref.biological_gender
 	character.identifying_gender = pref.identifying_gender
 	character.age = pref.age
@@ -62,7 +67,9 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	. += "<b>Name:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
-	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>"
+	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
+	. += "<b>Nickname:</b> "
+	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
 	. += "<br>"
 	. += "<b>Biological Gender:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += "<b>Gender Identity:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
@@ -91,6 +98,17 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	else if(href_list["always_random_name"])
 		pref.be_random_name = !pref.be_random_name
 		return TOPIC_REFRESH
+
+	else if(href_list["nickname"])
+		var/raw_nickname = input(user, "Choose your character's nickname:", "Character Nickname")  as text|null
+		if (!isnull(raw_nickname) && CanUseTopic(user))
+			var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
+			if(new_nickname)
+				pref.nickname = new_nickname
+				return TOPIC_REFRESH
+			else
+				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				return TOPIC_NOACTION
 
 	else if(href_list["bio_gender"])
 		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", pref.biological_gender) as null|anything in get_genders()

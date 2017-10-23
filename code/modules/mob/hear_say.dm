@@ -88,6 +88,8 @@
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
 	var/list/valid_names = splittext(real_name, " ") // Should output list("John", "Doe") as an example.
+	var/list/nicknames = splittext(nickname, " ")
+	valid_names += nicknames
 	valid_names += special_mentions()
 	for(var/name in valid_names)
 		if(findtext(message, regex("\\b[name]\\b", "i"))) // This is to stop 'ai' from triggering if someone says 'wait'.
