@@ -349,6 +349,13 @@
 	var/desc = "You should not see this..."
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
+	
+/datum/sprite_accessory/wing/featheredlarge //Made by Natje!
+	name = "large feathered wings (colorable)"
+	desc = ""
+	icon_state = "feathered2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/spider_legs //Not really /WINGS/ but they protrude from the back, kinda. Might as well have them here.
 	name = "spider legs"
