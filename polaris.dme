@@ -361,6 +361,7 @@
 #include "code\game\antagonist\station\renegade.dm"
 #include "code\game\antagonist\station\revolutionary.dm"
 #include "code\game\antagonist\station\rogue_ai.dm"
+#include "code\game\antagonist\station\thug.dm"
 #include "code\game\antagonist\station\traitor.dm"
 #include "code\game\area\ai_monitored.dm"
 #include "code\game\area\areas.dm"
