@@ -247,7 +247,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if (health > 0)
+			if(health > 0)
 				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
 				LoseTarget()
 				handle_stance(STANCE_IDLE)
@@ -257,6 +257,13 @@
 						tamed = 1
 						faction = M.faction
 				sleep(1 SECOND)
+
+		if(I_GRAB)
+			if(health > 0)
+				audible_emote("growls disapprovingly at [M].")
+				return
+			else
+				..()
 
 		else
 			..()
