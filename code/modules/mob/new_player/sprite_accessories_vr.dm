@@ -14,7 +14,7 @@
 		name = "Shoulder-length Messy"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "momijihair"
-		
+
 	citheronia
 		name = "Citheronia Hair (Kira72)"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -748,8 +748,32 @@
 		name = "Anime Eyes Inner"
 		icon_state = "animeeyesinner"
 		body_parts = list(BP_HEAD)
-		
+
 	animeeyesouter
 		name = "Anime Eyes Outer"
 		icon_state = "animeeyesouter"
 		body_parts = list(BP_HEAD)
+
+	catwomantorso
+		name = "Catwoman chest stripes"
+		icon_state = "catwomanchest"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_TORSO)
+
+	catwomangroin
+		name = "Catwoman groin stripes"
+		icon_state = "catwomangroin"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_GROIN)
+
+	catwoman_rleg
+		name = "Catwoman right leg stripes"
+		icon_state = "catwomanright"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_R_LEG)
+
+	catwoman_lleg
+		name = "Catwoman left leg stripes"
+		icon_state = "catwomanleft"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG)
