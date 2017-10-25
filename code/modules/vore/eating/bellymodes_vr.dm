@@ -57,7 +57,7 @@
 				owner.nutrition += 20 // so eating dead mobs gives you *something*.
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 750
+					s_owner.cell.charge += 200
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -79,11 +79,11 @@
 				var/difference = owner.size_multiplier / M.size_multiplier
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 100
+					s_owner.cell.charge += 20*(digest_brute+digest_burn)
 				if(offset) // If any different than default weight, multiply the % of offset.
 					owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
-					owner.nutrition += (2*(digest_brute+digest_burn)/difference)
+					owner.nutrition += 2*(digest_brute+digest_burn)/difference
 			M.updateVRPanel()
 
 		if(digest_mode == DM_ITEMWEAK)
