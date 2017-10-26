@@ -2543,6 +2543,7 @@
 #include "code\modules\vore\appearance\update_icons_vr.dm"
 #include "code\modules\vore\eating\belly_vr.dm"
 #include "code\modules\vore\eating\bellymodes_vr.dm"
+#include "code\modules\vore\eating\contaminate_vr.dm"
 #include "code\modules\vore\eating\living_vr.dm"
 #include "code\modules\vore\eating\silicon_vr.dm"
 #include "code\modules\vore\eating\simple_animal_vr.dm"
