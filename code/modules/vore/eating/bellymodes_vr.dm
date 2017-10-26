@@ -110,7 +110,6 @@
 							qdel(SF)
 						SubItem.gurglecontaminate()
 						if(istype(SubItem,/obj/item/weapon/storage))
-							SubItem.gurglecontaminate()
 							for(var/obj/item/SubSubItem in SubItem)
 								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food/snacks))
 									var/obj/item/weapon/reagent_containers/food/snacks/SSF = SubSubItem
