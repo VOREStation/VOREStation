@@ -380,3 +380,10 @@ datum/species/harpy
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+
+/datum/species/vox // Re-enables the old vox sprites.
+	icobase = 'icons/mob/human_races/r_vox_old.dmi'
+	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
+
+/obj/item/organ/external/head/vox
+	eye_icon = "vox_eyes_s_old"
