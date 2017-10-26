@@ -34,7 +34,7 @@
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	var/wound_heal = 1.5 * removed
-	M.eye_blurry += (wound_heal)
+	M.eye_blurry = min(M.eye_blurry + wound_heal, 250)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
