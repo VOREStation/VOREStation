@@ -301,9 +301,10 @@
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
-	icobase = 'icons/mob/human_races/r_tajaran.dmi'
-	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
+	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
+	tail_animation = 'icons/mob/species/tajaran/tail_vr.dmi'
+	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 
