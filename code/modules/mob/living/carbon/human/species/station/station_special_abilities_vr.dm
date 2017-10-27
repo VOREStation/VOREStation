@@ -542,7 +542,7 @@
 					to_chat(C, "<span class='warning'>[T] is dead and can not be drained..</span>")
 					return
 				to_chat(C, "<span class='notice'>You begin to drain [T]...</span>")
-				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
+				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
 			if(2)
