@@ -1,16 +1,3 @@
-/* STOP USING FUCKING COLOR_MULT IT IS AN AWFUL SYSTEM WITH AWFUL RESULTS. DO THE BASE SPRITES PROPERLY AND THEY WILL LOOK FINE!
-
-Seriously, stop using color_mult. It's a broken legacy system. Here's the difference for anyone who intends to sprite new icons...
-
-* In color_mult, which is the wrong system, you make your base sprite as light as you ever want to see it. Why is it bad? Because
-  color_mult plasters over details like you're dumping paint onto something.
-
-* In color_add, which is THE CORRECT system, you make your base sprite as black as it should ever appear. Why is it better? Because
-  the details you painstakingly added to the sprite are no longer fucked by adding coloration to it.
-
-      -Ace
-*/
-
 /datum/species/sergal
 	name = "Sergal"
 	name_plural = "Sergals"
