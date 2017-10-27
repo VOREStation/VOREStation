@@ -55,31 +55,31 @@
 
 	if(shocked)
 		shock(user, 50)
-
-	var/dat = "<center><h1>Autolathe Control Panel</h1><hr/>"
+	var/list/dat = list()
+	dat += "<center><h1>Autolathe Control Panel</h1><hr/>"
 
 	if(!disabled)
 		dat += "<table width = '100%'>"
-		var/material_top = "<tr>"
-		var/material_bottom = "<tr>"
+		var/list/material_top = list("<tr>")
+		var/list/material_bottom = list("<tr>")
 
 		for(var/material in stored_material)
 			material_top += "<td width = '25%' align = center><b>[material]</b></td>"
 			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
-		dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
+		dat += "[material_top.Join()]</tr>[material_bottom.Join()]</tr></table><hr>"
 		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[current_category]</a>.</h3></center><table width = '100%'>"
 
 		for(var/datum/category_item/autolathe/R in current_category.items)
 			if(R.hidden && !hacked)
 				continue
 			var/can_make = 1
-			var/material_string = ""
-			var/multiplier_string = ""
+			var/list/material_string = list()
+			var/list/multiplier_string = list()
 			var/max_sheets
 			var/comma
 			if(!R.resources || !R.resources.len)
-				material_string = "No resources required.</td>"
+				material_string += "No resources required.</td>"
 			else
 				//Make sure it's buildable and list requires resources.
 				for(var/material in R.resources)
@@ -98,12 +98,12 @@
 				if(R.is_stack)
 					if(max_sheets && max_sheets > 0)
 						max_sheets = min(max_sheets, R.max_stack) // Limit to the max allowed by stack type.
-						multiplier_string  += "<br>"
+						multiplier_string += "<br>"
 						for(var/i = 5;i<max_sheets;i*=2) //5,10,20,40...
 							multiplier_string  += "<a href='?src=\ref[src];make=\ref[R];multiplier=[i]'>\[x[i]\]</a>"
 						multiplier_string += "<a href='?src=\ref[src];make=\ref[R];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
 
-			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string]</td><td align = right>[material_string]</tr>"
+			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string.Join()]</td><td align = right>[material_string.Join()]</tr>"
 
 		dat += "</table><hr>"
 	//Hacking.
@@ -113,7 +113,7 @@
 
 		dat += "<hr>"
 
-	user << browse(dat, "window=autolathe")
+	user << browse(dat.Join(), "window=autolathe")
 	onclose(user, "autolathe")
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
