@@ -363,7 +363,7 @@
 		"Please Don't Explode II"
 		)
 	destination_names = list(
-		"A trade outpost in Shelf"
+		"a trade outpost in Shelf"
 		)
 
 /datum/lore/organization/tsc/xion

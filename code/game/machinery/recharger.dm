@@ -120,6 +120,17 @@ obj/machinery/recharger
 				update_use_power(1)
 			return
 
+		if(istype(charging, /obj/item/weapon/gun/magnetic))
+			var/obj/item/weapon/gun/magnetic/M = charging
+			if(!M.cell.fully_charged())
+				icon_state = icon_state_charging
+				M.cell.give(active_power_usage*CELLRATE)
+				update_use_power(2)
+			else
+				icon_state = icon_state_charged
+				update_use_power(1)
+			return
+
 		if(istype(charging, /obj/item/weapon/melee/baton))
 			var/obj/item/weapon/melee/baton/B = charging
 			if(B.bcell)
@@ -239,7 +250,7 @@ obj/machinery/recharger
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
 	active_power_usage = 25000	//25 kW , It's more specialized than the standalone recharger (guns, batons, and flashlights only) so make it more powerful
-	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/device/flashlight, /obj/item/weapon/cell/device)
+	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/magnetic, /obj/item/weapon/melee/baton, /obj/item/device/flashlight, /obj/item/weapon/cell/device)
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"

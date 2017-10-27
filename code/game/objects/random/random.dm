@@ -992,7 +992,7 @@ var/list/multi_point_spawns
 /obj/random_multi/single_item/captains_spare_id
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
-	item_path = /obj/item/weapon/card/id/captains_spare
+	item_path = /obj/item/weapon/card/id/gold/captain/spare
 
 //Multiple Object Spawn
 

@@ -8,10 +8,12 @@
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
 	species_restricted = null
+	step_volume_mod = 0.5
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
 	icon_state = "white"
+	step_volume_mod = 0	//It's a mime
 
 /obj/item/clothing/shoes/galoshes
 	desc = "Rubber boots"
@@ -21,7 +23,6 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
-
 
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"

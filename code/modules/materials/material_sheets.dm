@@ -203,6 +203,35 @@
 	icon_state = "sheet-wood"
 	default_type = "wood"
 
+/obj/item/stack/material/log
+	name = "log"
+	icon_state = "sheet-log"
+	default_type = "log"
+	no_variants = FALSE
+	color = "#824B28"
+	max_amount = 25
+	w_class = ITEMSIZE_HUGE
+
+/obj/item/stack/material/log/sif
+	name = "alien log"
+	color = "#0099cc"
+
+/obj/item/stack/material/log/attackby(var/obj/item/W, var/mob/user)
+	if(!istype(W))
+		return ..()
+	if(W.sharp && W.edge && use(1))
+		to_chat(user, "<span class='notice'>You cut up a log into planks.</span>")
+		playsound(get_turf(src), 'sound/effects/woodcutting.ogg', 50, 1)
+		var/obj/item/stack/material/wood/existing_wood = locate() in user.loc
+		var/obj/item/stack/material/wood/new_wood = new(user.loc)
+		new_wood.amount = 2
+		if(existing_wood)
+			if(new_wood.transfer_to(existing_wood))
+				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.amount] planks.</span>")
+	else
+		return ..()
+
+
 /obj/item/stack/material/cloth
 	name = "cloth"
 	icon_state = "sheet-cloth"

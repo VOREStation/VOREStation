@@ -141,7 +141,6 @@
 	idle_power_usage = 0
 	var/global/list/blockedturfs =  list(
 		/turf/space,
-		/turf/simulated/open,
 		/turf/simulated/floor/outdoors,
 	)
 

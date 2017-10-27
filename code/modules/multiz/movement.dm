@@ -57,10 +57,8 @@
 		if(!A.CanPass(src, start, 1.5, 0))
 			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return 0
-	//VOREStation Edit
 	if(!Move(destination))
 		return 0
-	//VOREStation Edit End
 	return 1
 
 /mob/observer/zMove(direction)
@@ -201,7 +199,7 @@
 /obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(target.z < z)
 		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
-	if(!isturf(mover.loc)) // VORESTATION EDIT. Feel free to do an upstream suggestion as well.
+	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
 		return TRUE
@@ -215,7 +213,7 @@
 		return TRUE // We don't block sideways or upward movement.
 	else if(istype(mover) && mover.checkpass(PASSGRILLE))
 		return TRUE // Anything small enough to pass a grille will pass a lattice
-	if(!isturf(mover.loc)) // VORESTATION EDIT. Feel free to do an upstream suggestion as well.
+	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
 		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER

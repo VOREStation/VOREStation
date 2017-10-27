@@ -228,24 +228,6 @@
 	var/last_no_computer_message = 0
 	var/applies_stasis = 1
 
-	// These items are preserved when the process() despawn proc occurs.
-	var/list/preserve_items = list(
-		/obj/item/weapon/hand_tele,
-		/obj/item/weapon/card/id/captains_spare,
-		/obj/item/device/aicard,
-		/obj/item/device/paicard,
-		/obj/item/weapon/gun,
-		/obj/item/weapon/cell/device,
-		/obj/item/ammo_magazine,
-		/obj/item/ammo_casing,
-		/obj/item/weapon/pinpointer,
-		/obj/item/clothing/suit,
-		/obj/item/clothing/shoes/magboots,
-		/obj/item/blueprints,
-		/obj/item/clothing/head/helmet/space,
-		/obj/item/weapon/storage/internal
-	)
-
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
 	desc = "A storage unit for robots."
@@ -413,12 +395,10 @@
 
 	for(var/obj/item/W in items)
 
-		var/preserve = null
+		var/preserve = 0
 
-		for(var/T in preserve_items)
-			if(istype(W,T))
-				preserve = 1
-				break
+		if(W.preserve_item)
+			preserve = 1
 
 		if(istype(W,/obj/item/weapon/implant/health))
 			for(var/obj/machinery/computer/cloning/com in world)
