@@ -383,11 +383,14 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style] // VOREStation edit
 		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s") // VOREStation edit
 			if(hair_style.do_colouration)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY) //VOREStation edit
+				hair_s.Blend(hair_s_add, ICON_ADD) // VOREStation edit
+			overlays |= hair_s
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
