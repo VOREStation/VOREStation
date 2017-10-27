@@ -336,3 +336,11 @@
 	req_tech = list(TECH_COMBAT = 4, TECH_ILLEGAL = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "glass" = 11250, "diamond" = 7500)
 	build_path = /obj/item/borg/upgrade/syndicate
+
+/datum/design/item/prosfab/robot_upgrade/language
+	name = "language module"
+	desc = "Used to let cyborgs other than clerical or service speak a variety of languages."
+	id = "borg_language_module"
+	req_tech = list(TECH_DATA = 6, TECH_MATERIAL = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 25000, "glass" = 3000, "gold" = 350)
+	build_path = /obj/item/borg/upgrade/language
