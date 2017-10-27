@@ -6,4 +6,3 @@
 	var/wagging = 0 //UGH.
 	var/flapping = 0
 	var/vantag_pref = VANTAG_NONE //What's my status?
-	var/hella_lit = 0

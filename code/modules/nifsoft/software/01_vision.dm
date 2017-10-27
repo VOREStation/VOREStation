@@ -251,17 +251,3 @@
 			if(H.client)
 				H.client.screen |= global_hud.nvg
 
-/datum/nifsoft/flashlight
-	name = "Flashlight"
-	desc = "Integrated flashlight."
-	list_pos = NIF_FLASHLIGHT
-	cost = 350
-	a_drain = 0.1
-
-	activate()
-		if((. = ..()))
-			nif.human.hella_lit = 1
-
-	deactivate()
-		if((. = ..()))
-			nif.human.hella_lit = 0
