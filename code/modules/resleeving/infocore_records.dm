@@ -46,6 +46,15 @@
 		id_gender = M.identifying_gender
 		languages = M.languages.Copy()
 		mind_oocnotes = M.ooc_notes
+		if(M.nif)
+			nif_path = M.nif.type
+			nif_durability = M.nif.durability
+			var/list/nifsofts = list()
+			for(var/N in M.nif.nifsofts)
+				if(N)
+					var/datum/nifsoft/nifsoft = N
+					nifsofts += nifsoft.type
+			nif_software = nifsofts
 
 	last_update = world.time
 

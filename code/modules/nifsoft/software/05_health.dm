@@ -221,6 +221,7 @@
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			SStranscore.m_backup(H.mind,H.nif,one_time = TRUE)
+			persist_nif_data(H)
 			nif.notify("Mind backed up!")
 			nif.use_charge(0.1)
 			deactivate()
