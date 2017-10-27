@@ -1,6 +1,6 @@
 /obj/machinery/shield_gen
 	name = "bubble shield generator"
-	desc = "Machine that generates an impenetrable field of energy when activated."
+	desc = "A machine that generates a field of energy optimized for blocking meteorites when activated."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "generator0"
 	var/active = 0
@@ -20,9 +20,14 @@
 	var/target_field_strength = 10
 	var/max_field_strength = 10
 	var/time_since_fail = 100
-	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?
+	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?  Higher numbers equals more effiency.
 	var/z_range = 0 // How far 'up and or down' to extend the shield to, in z-levels.  Only works on MultiZ supported z-levels.
 	use_power = 0	//doesn't use APC power
+
+/obj/machinery/shield_gen/advanced
+	name = "advanced bubble shield generator"
+	desc = "A machine that generates a field of energy optimized for blocking meteorites when activated.  This version comes with a more efficent shield matrix."
+	energy_conversion_rate = 0.0004
 
 /obj/machinery/shield_gen/New()
 	spawn(1 SECOND)
@@ -259,11 +264,14 @@
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)
 		icon_state = "broke"
+		set_light(0)
 	else
 		if (src.active)
 			icon_state = "generator1"
+			set_light(4, 2, "#00CCFF")
 		else
 			icon_state = "generator0"
+			set_light(0)
 
 //grab the border tiles in a circle around this machine
 /obj/machinery/shield_gen/proc/get_shielded_turfs()
