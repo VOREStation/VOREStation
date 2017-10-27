@@ -30,7 +30,7 @@ var/global/list/vantag_choices_list = list(
 //On Polaris, different from Cryo list as MMIs need to be removed for FBPs to be logged out.
 var/global/list/important_items = list(
 		/obj/item/weapon/hand_tele,
-		/obj/item/weapon/card/id/captains_spare,
+		/obj/item/weapon/card/id/gold/captain/spare,
 		/obj/item/device/aicard,
 		/obj/item/device/mmi/digital/posibrain,
 		/obj/item/device/paicard,
