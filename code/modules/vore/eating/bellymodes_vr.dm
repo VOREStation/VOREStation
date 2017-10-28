@@ -108,6 +108,7 @@
 								SF.reagents.trans_to_holder(howner.ingested, (SF.reagents.total_volume * 0.3), 1, 0)
 							internal_contents -= SF
 							qdel(SF)
+						SubItem.gurglecontaminate()
 						if(istype(SubItem,/obj/item/weapon/storage))
 							for(var/obj/item/SubSubItem in SubItem)
 								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food/snacks))
@@ -117,6 +118,7 @@
 										SSF.reagents.trans_to_holder(howner.ingested, (SSF.reagents.total_volume * 0.3), 1, 0)
 									internal_contents -= SSF
 									qdel(SSF)
+								SubSubItem.gurglecontaminate()
 					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
 						var/obj/item/weapon/reagent_containers/food/snacks/F = T
 						if(istype(owner,/mob/living/carbon/human))
@@ -127,11 +129,19 @@
 							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
+					if(istype(T,/obj/item/weapon/holder))
+						var/obj/item/weapon/holder/H = T
+						for(var/mob/living/M in H.contents)
+							M.loc = owner
+							internal_contents += M
+						internal_contents -= H
+						qdel(H)
 					else
 						items_preserved += T
-						T.contaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
+						T.gurglecontaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
 				else
 					return
+			owner.updateVRPanel()
 			return
 		else
 		// Handle leftovers.
@@ -180,6 +190,13 @@
 							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
+					if(istype(T,/obj/item/weapon/holder))
+						var/obj/item/weapon/holder/H = T
+						for(var/mob/living/M in H.contents)
+							M.loc = owner
+							internal_contents += M
+						internal_contents -= H
+						qdel(H)
 					else
 						owner.nutrition += (1 * T.w_class)
 						if(isrobot(owner))
@@ -250,6 +267,13 @@
 						s_owner.cell.charge += (150)
 					internal_contents -= F
 					qdel(F)
+				if(istype(T,/obj/item/weapon/holder))
+					var/obj/item/weapon/holder/H = T
+					for(var/mob/living/M in H.contents)
+						M.loc = owner
+						internal_contents += M
+					internal_contents -= H
+					qdel(H)
 				else
 					owner.nutrition += (1 * T.w_class)
 					if(isrobot(owner))
