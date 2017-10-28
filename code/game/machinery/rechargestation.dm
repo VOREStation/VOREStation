@@ -103,13 +103,6 @@
 			R.adjustFireLoss(-wire_rate)
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
-		if(!isnull(H.internal_organs_by_name["cell"]) && H.nutrition < 450)
-			H.nutrition = min(H.nutrition+10, 450)
-			cell.use(7000/450*10)
-
-	else if(istype(occupant, /mob/living/carbon/human))
-
-		var/mob/living/carbon/human/H = occupant
 
 		// In case they somehow end up with positive values for otherwise unobtainable damage...
 		if(H.getToxLoss()>0)   H.adjustToxLoss(-(rand(1,3)))
