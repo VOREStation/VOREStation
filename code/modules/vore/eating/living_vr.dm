@@ -19,6 +19,7 @@
 	var/noisy = 0						// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
+	var/wings_flying = 0 				// Determines if the person with wings is currently flying(floating) or not.
 
 //
 // Hook for generic creation of stuff on new creatures

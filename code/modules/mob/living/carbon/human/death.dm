@@ -40,6 +40,7 @@
 	//Handle species-specific deaths.
 	species.handle_death(src)
 	animate_tail_stop()
+	stop_flying() //VOREStation Edit.
 
 	//Handle snowflake ling stuff.
 	if(mind && mind.changeling)

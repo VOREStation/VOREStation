@@ -23,12 +23,12 @@
 	if(!istype(start))
 		to_chat(src, "<span class='notice'>You are unable to move from here.</span>")
 		return 0
-		
+
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(!destination)
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 		return 0
-	
+
 	if(!start.CanZPass(src, direction))
 		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
@@ -49,6 +49,23 @@
 			else
 				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 				return 0
+		else if(ishuman(src)) //VOREStation Edit Start. Are they human (H above.), have a wing style, and do they have the trait?
+			var/mob/living/carbon/human/H = src //VOREStation Edit. Used for below
+			if(H.wings_flying == 1)
+				if(H.stat || H.paralysis || H.stunned || H.weakened || H.lying || H.restrained() || H.buckled)
+					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
+					return 0
+				var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat.
+				to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
+				destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
+				if(do_after(H, fly_time))
+					to_chat(src, "<span class='notice'>You fly upwards.</span>")
+				else
+					to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+					return 0
+			else
+				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+				return 0 //VOREStation Edit End.
 		else
 			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 			return 0
@@ -140,6 +157,15 @@
 
 	if(throwing)
 		return
+	if(ishuman(src)) //VOREStation Edit Start. Code to see if they have wings.
+		var/mob/living/carbon/human/H = src
+		if(H.wings_flying == 1) //Some other checks are done in the wings_toggle proc
+			if(H.stat || H.paralysis || H.stunned || H.weakened || H.lying || H.restrained() || H.buckled)
+				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_call.
+			else
+				return
+		if(H.grabbed_by.len) //If you're grabbed (presumably by someone flying) let's not have you fall.
+			return //VOREStation Edit End.
 
 	if(can_fall())
 		// We spawn here to let the current move operation complete before we start falling. fall() is normally called from
@@ -147,7 +173,7 @@
 		// or normal movement so other move behavior can continue.
 		var/mob/M = src
 		var/is_client_moving = (ismob(M) && M.client && M.client.moving)
-		spawn(0) 
+		spawn(0)
 			if(is_client_moving) M.client.moving = 1
 			handle_fall(below)
 			if(is_client_moving) M.client.moving = 0

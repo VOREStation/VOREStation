@@ -720,3 +720,21 @@
 			T.apply_damage(25, BRUTE, D)
 			C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") //Keep it vague. Let the /me's do the talking.
 			log_and_message_admins("shreded [D] of [T].", C)
+
+/mob/living/carbon/human/proc/wings_toggle()
+	set name = "Toggle Flight"
+	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained. Can be toggled at any time."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
+		to_chat(src, "You cannot fly without wings!!")
+		return
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		to_chat(src, "You cannot fly in this state!")
+		return
+
+
+	C.wings_flying = !C.wings_flying
+	update_floating()
+	to_chat(C, "<span class='notice'>You have [C.wings_flying?"started":"stopped"] flying.</span>")

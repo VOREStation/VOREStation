@@ -63,3 +63,9 @@
 		if(update_icons)
 			update_icons()
 		return
+
+/mob/living/carbon/human/proc/stop_flying(var/update_icons=1)
+	wings_flying = 0
+
+	if(update_icons)
+		update_icons()
