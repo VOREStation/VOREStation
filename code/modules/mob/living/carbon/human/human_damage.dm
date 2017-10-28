@@ -425,9 +425,9 @@ This function restores all organs.
 		zone = BP_HEAD
 	return organs_by_name[zone]
 
-/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 	if(Debug2)
-		world.log << "## DEBUG: human/apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked]."
+		world.log << "## DEBUG: human/apply_damage() was called on [src], with [damage] damage, an armor value of [blocked], and a soak value of [soaked]."
 
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
@@ -442,7 +442,7 @@ This function restores all organs.
 			if((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				if(organ && organ.organ_can_feel_pain())
 					emote("scream")
-		..(damage, damagetype, def_zone, blocked)
+		..(damage, damagetype, def_zone, blocked, soaked)
 		return 1
 
 	//Handle BRUTE and BURN damage
@@ -451,12 +451,18 @@ This function restores all organs.
 	if(blocked >= 100)
 		return 0
 
+	if(soaked >= damage)
+		return 0
 
 	if(!organ)	return 0
 
 	if(blocked)
 		blocked = (100-blocked)/100
 		damage = (damage * blocked)
+
+	if(soaked)
+		damage -= soaked
+
 	if(Debug2)
 		world.log << "## DEBUG: [src] was hit for [damage]."
 
