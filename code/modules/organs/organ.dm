@@ -146,9 +146,16 @@ var/list/organ_cache = list()
 
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
+	var/infection_damage = 0
+
 	if((status & ORGAN_DEAD) && antibiotics < 30) //Sepsis from 'dead' organs
-		var/sepsis_severity = 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25) //1 Tox plus a little based on germ level
-		owner.adjustToxLoss(sepsis_severity)
+		infection_damage = min(1, 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25)) //1 Tox plus a little based on germ level
+
+	else if(germ_level > INFECTION_LEVEL_TWO && antibiotics < 30)
+		infection_damage = min(0.25, 0.25 + round((germ_level - INFECTION_LEVEL_TWO)/200,0.25))
+
+	if(infection_damage)
+		owner.adjustToxLoss(infection_damage)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--

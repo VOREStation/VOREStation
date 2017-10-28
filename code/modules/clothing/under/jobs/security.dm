@@ -73,7 +73,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	rolled_sleeves = 0
-	starting_accessories = list(/obj/item/clothing/accessory/blue_clip)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/blue_clip)
 
 /*
 /obj/item/clothing/under/det/verb/rollup()
@@ -89,13 +89,13 @@
 /obj/item/clothing/under/det/grey
 	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks."
-	starting_accessories = list(/obj/item/clothing/accessory/red_long)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long)
 
 /obj/item/clothing/under/det/black
 	icon_state = "detective3"
 	item_state_slots = list(slot_r_hand_str = "sl_suit", slot_l_hand_str = "sl_suit")
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
-	starting_accessories = list(/obj/item/clothing/accessory/red_long, /obj/item/clothing/accessory/vest)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/vest)
 
 /obj/item/clothing/under/det/corporate
 	name = "detective's jumpsuit"
@@ -106,12 +106,12 @@
 /obj/item/clothing/under/det/waistcoat
 	icon_state = "detective"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie, faux-gold tie clip, and waistcoat."
-	starting_accessories = list(/obj/item/clothing/accessory/blue_clip, /obj/item/clothing/accessory/wcoat)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/blue_clip, /obj/item/clothing/accessory/wcoat)
 
 /obj/item/clothing/under/det/grey/waistcoat
 	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
-	starting_accessories = list(/obj/item/clothing/accessory/red_long, /obj/item/clothing/accessory/wcoat)
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/wcoat)
 
 /obj/item/clothing/under/det/skirt
 	name = "detective's skirt"

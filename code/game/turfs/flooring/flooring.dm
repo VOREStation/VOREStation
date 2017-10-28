@@ -98,7 +98,6 @@ var/list/flooring_types
 		'sound/effects/footstep/carpet4.ogg',
 		'sound/effects/footstep/carpet5.ogg'))
 
-// VOREStation Edit - Eris Carpets
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
 	icon_base = "bcarpet"
@@ -133,14 +132,13 @@ var/list/flooring_types
 	name = "orange carpet"
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
-// VOREStation Edit End
 
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/tiles_vr.dmi' // VOREStation Edit - Eris floors
-	icon_base = "tiled" // VOREStation Edit - Eris floors
-	has_damage_range = 2 // VOREStation Edit - Eris floors
+	icon = 'icons/turf/flooring/tiles_vr.dmi' // VOREStation Edit - Eris floors. Polaris still hasn't added all of them properly. See: steel_ridged
+	icon_base = "tiled"
+	has_damage_range = 2
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
@@ -152,7 +150,6 @@ var/list/flooring_types
 		'sound/effects/footstep/floor4.ogg',
 		'sound/effects/footstep/floor5.ogg'))
 
-//VOREStation Edit for icons and extra types
 /decl/flooring/tiling/tech
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/techfloor_vr.dmi'

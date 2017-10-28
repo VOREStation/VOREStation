@@ -178,3 +178,23 @@ obj/item/weapon/gun/energy/staff/focus
 			user << "<span class='warning'>The [src.name] will now strike only a single person.</span>"
 			projectile_type = "/obj/item/projectile/forcebolt"
 	*/
+
+/obj/item/weapon/gun/energy/dakkalaser
+	name = "suppression gun"
+	desc = "A massive weapon, designed to pressure the opposition by raining down a torrent of energy pellets."
+	icon_state = "dakkalaser"
+	item_state = "dakkalaser"
+	fire_sound = 'sound/weapons/Laser.ogg'
+	w_class = ITEMSIZE_HUGE
+	charge_cost = 24 // 100 shots, it's a spray and pray (to RNGesus) weapon.
+	projectile_type = /obj/item/projectile/energy/blue_pellet
+	self_recharge = 1
+	accuracy = 5 // Suppressive weapons don't work too well if there's no risk of being hit.
+	burst_delay = 1 // Burst faster than average.
+	origin_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 6, TECH_ILLEGAL = 6)
+
+	firemodes = list(
+		list(mode_name="single shot", burst = 1, burst_accuracy = list(5), dispersion = list(0), charge_cost = 24),
+		list(mode_name="five shot burst", burst = 5, burst_accuracy = list(5,5,5,5,5), dispersion = list(1,1,1,1,1)),
+		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(5,5,5,5,5,5,5,5,5,5), dispersion = list(2,2,2,2,2,2,2,2,2,2)),
+		)

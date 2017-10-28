@@ -243,7 +243,6 @@
 /datum/gear/uniform/scrub
 	display_name = "scrubs selection"
 	path = /obj/item/clothing/under/rank/medical/scrubs
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Roboticist")
 
 /datum/gear/uniform/scrub/New()
 	..()
@@ -455,3 +454,7 @@
 /datum/gear/uniform/red_swept_dress
 	display_name = "red swept dress"
 	path = /obj/item/clothing/under/dress/red_swept_dress
+
+/datum/gear/uniform/bathrobe
+	display_name = "bathrobe"
+	path = /obj/item/clothing/under/bathrobe

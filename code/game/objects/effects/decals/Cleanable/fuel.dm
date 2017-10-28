@@ -52,11 +52,17 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, amt = 1, d = 0)
 	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
+	if(istype(newLoc, /turf/simulated))
+		var/turf/simulated/T = newLoc
+		T.hotspot_expose((T20C*2) + 380,500) //Ignite the fuel.
 	. = ..()
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Spread()
 	//The spread for flamethrower fuel is much more precise, to create a wide fire pattern.
-	if(amount < 0.1) return
+	if(amount <= 0.1)
+		if(amount < 0.025) //Hopefully stops fuel spreading into unburnable puddles.
+			qdel(src)
+		return
 	var/turf/simulated/S = loc
 	if(!istype(S)) return
 
@@ -65,7 +71,12 @@
 		if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 			continue
 		if(O.CanPass(null, S, 0, 0) && S.CanPass(null, O, 0, 0))
-			new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O,amount*0.25,d)
+			var/new_pool_amount = amount * 0.25
+			if(new_pool_amount > 0.1)
+				var/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/F = new(O, new_pool_amount, d)
+				if(F.amount < 0.025) //Safety.
+					qdel(F)
+					return
 			O.hotspot_expose((T20C*2) + 380,500) //Light flamethrower fuel on fire immediately.
 
 	amount *= 0.25

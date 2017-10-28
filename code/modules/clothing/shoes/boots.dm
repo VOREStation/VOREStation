@@ -4,6 +4,7 @@
 	icon_state = "workboots"
 	force = 3
 	can_hold_knife = 1
+	step_volume_mod = 1.2
 
 /obj/item/clothing/shoes/boots/cowboy
 	name = "cowboy boots"
@@ -47,6 +48,7 @@
 	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	snow_speed = -1
+	step_volume_mod = 0.8
 
 /obj/item/clothing/shoes/boots/winter/security
 	name = "security winter boots"

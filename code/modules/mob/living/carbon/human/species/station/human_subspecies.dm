@@ -1,3 +1,4 @@
+/*
 /datum/species/human/gravworlder
 	name = "grav-adapted Human"
 	name_plural = "grav-adapted Humans"
@@ -13,7 +14,9 @@
 	radiation_mod = 0.5
 	brute_mod =     0.85
 	slowdown =      1
+*/
 
+/*
 /datum/species/human/spacer
 	name = "space-adapted Human"
 	name_plural = "space-adapted Humans"
@@ -27,23 +30,25 @@
 	flash_mod = 1.2
 	brute_mod = 1.1
 	burn_mod =  1.1
+*/
 
 /datum/species/human/vatgrown
-	name = "vat-grown Human"
-	name_plural = "vat-grown Humans"
+	name = "Vatborn"
+	name_plural = "Vatborn"
 	blurb = "With cloning on the forefront of human scientific advancement, cheap mass production \
-	of bodies is a very real and rather ethically grey industry. Vat-grown humans tend to be paler than \
-	baseline, with no appendix and fewer inherited genetic disabilities, but a weakened metabolism."
+	of bodies is a very real and rather ethically grey industry. Vat-grown or Vatborn humans tend to be \
+	paler than baseline, with no appendix and fewer inherited genetic disabilities, but a more aggressive metabolism."
 	icobase = 'icons/mob/human_races/subspecies/r_vatgrown.dmi'
 
 	toxins_mod =   1.1
+	metabolic_rate = 1.15
 	has_organ = list(
-		O_HEART =    /obj/item/organ/heart,
-		O_LUNGS =    /obj/item/organ/lungs,
-		O_LIVER =    /obj/item/organ/liver,
-		O_KIDNEYS =  /obj/item/organ/kidneys,
-		O_BRAIN =    /obj/item/organ/brain,
-		O_EYES =     /obj/item/organ/eyes
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
 		)
 
 /*

@@ -86,7 +86,7 @@
 	name = "Electromagnetic weapons crate"
 	contains = list(
 			/obj/item/weapon/gun/energy/ionrifle = 2,
-			/obj/item/weapon/storage/box/emps
+			/obj/item/weapon/storage/box/empslite
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
@@ -97,7 +97,7 @@
 	name = "Electromagnetic pistols crate"
 	contains = list(
 			/obj/item/weapon/gun/energy/ionrifle/pistol = 2,
-			/obj/item/weapon/storage/box/emps
+			/obj/item/weapon/storage/box/empslite
 			)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure

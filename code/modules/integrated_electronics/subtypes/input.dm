@@ -17,6 +17,8 @@
 	activators = list("on pressed" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
+
+
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
 	to_chat(user, "<span class='notice'>You press the button labeled '[src.name]'.</span>")
 	activate_pin(1)
@@ -105,9 +107,11 @@
 	push_data()
 	activate_pin(2)
 
+
+
 /obj/item/integrated_circuit/input/adv_med_scanner
 	name = "integrated advanced medical analyser"
-	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is.  \
+	desc = "A very small version of the medbot's medical analyser.  This allows the machine to know how healthy someone is.  \
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
@@ -130,7 +134,7 @@
 	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
-	if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
+	if(H in view(get_turf(H))) // Like medbot's analyzer it can be used in range..
 		var/total_health = round(H.health/H.getMaxHealth(), 0.01)*100
 		var/missing_health = H.getMaxHealth() - H.health
 
@@ -144,6 +148,53 @@
 
 	push_data()
 	activate_pin(2)
+
+/obj/item/integrated_circuit/input/examiner
+	name = "examiner"
+	desc = "It's a little machine vision system. It can return the name, description, distance,\
+	relative coordinates, total amount of reagents, and maximum amount of reagents of the referenced object."
+	icon_state = "video_camera"
+	complexity = 6
+	inputs = list("\<REF\> target" = IC_PINTYPE_REF)
+	outputs = list(
+		"name"	            	= IC_PINTYPE_STRING,
+		"description"       	= IC_PINTYPE_STRING,
+		"X"         			= IC_PINTYPE_NUMBER,
+		"Y"			            = IC_PINTYPE_NUMBER,
+		"distance"			    = IC_PINTYPE_NUMBER,
+		"max reagents"			= IC_PINTYPE_NUMBER,
+		"amount of reagents"    = IC_PINTYPE_NUMBER,
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT, "not scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
+	power_draw_per_use = 80
+
+/obj/item/integrated_circuit/input/examiner/do_work()
+	var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
+	var/turf/T = get_turf(src)
+	if(!istype(H)) //Invalid input
+		return
+
+	if(H in view(T)) // This is a camera. It can't examine thngs,that it can't see.
+
+
+		set_pin_data(IC_OUTPUT, 1, H.name)
+		set_pin_data(IC_OUTPUT, 2, H.desc)
+		set_pin_data(IC_OUTPUT, 3, H.x-T.x)
+		set_pin_data(IC_OUTPUT, 4, H.y-T.y)
+		set_pin_data(IC_OUTPUT, 5, sqrt((H.x-T.x)*(H.x-T.x)+ (H.y-T.y)*(H.y-T.y)))
+		var/mr = 0
+		var/tr = 0
+		if(H.reagents)
+			mr = H.reagents.maximum_volume
+			tr = H.reagents.total_volume
+		set_pin_data(IC_OUTPUT, 6, mr)
+		set_pin_data(IC_OUTPUT, 7, tr)
+		push_data()
+		activate_pin(2)
+	else
+		activate_pin(3)
 
 /obj/item/integrated_circuit/input/local_locator
 	name = "local locator"
@@ -173,7 +224,8 @@
 	random."
 	inputs = list("desired type ref")
 	outputs = list("located ref")
-	activators = list("locate" = IC_PINTYPE_PULSE_IN)
+	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,
+		"not found" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
 
@@ -197,7 +249,63 @@
 		valid_things.Add(thing)
 	if(valid_things.len)
 		O.data = weakref(pick(valid_things))
+		activate_pin(2)
+	else
+		activate_pin(3)
 	O.push_data()
+
+/obj/item/integrated_circuit/input/advanced_locator
+	complexity = 6
+	name = "advanced locator"
+	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type locates something \
+	that is standing in given radius of up to 8 meters"
+	extended_desc = "The first pin requires a ref to a kind of object that you want the locator to acquire. This means that it will \
+	give refs to nearby objects that are similar to given sample. If this pin is a string, the locator will search for\
+	 item by matching desired text in name + description. If more than one valid object is found nearby, it will choose one of them at \
+	random. The second pin is a radius."
+	inputs = list("desired type" = IC_PINTYPE_ANY, "radius" = IC_PINTYPE_NUMBER)
+	outputs = list("located ref")
+	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,"not found" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	power_draw_per_use = 30
+	var/radius = 1
+
+/obj/item/integrated_circuit/input/advanced_locator/on_data_written()
+	var/rad = get_pin_data(IC_INPUT, 2)
+	if(isnum(rad))
+		rad = Clamp(rad, 0, 8)
+		radius = rad
+
+/obj/item/integrated_circuit/input/advanced_locator/do_work()
+	var/datum/integrated_io/I = inputs[1]
+	var/datum/integrated_io/O = outputs[1]
+	O.data = null
+	var/turf/T = get_turf(src)
+	var/list/nearby_things = range(radius, T) & view(T)
+	var/list/valid_things = list()
+	if(isweakref(I.data))
+		var/atom/A = I.data.resolve()
+		var/desired_type = A.type
+		if(desired_type)
+			for(var/atom/thing in nearby_things)
+				if(thing.type == desired_type)
+					valid_things.Add(thing)
+	else if(istext(I.data))
+		var/DT = I.data
+		for(var/atom/thing in nearby_things)
+			if(findtext(addtext(thing.name," ",thing.desc), DT, 1, 0) )
+				valid_things.Add(thing)
+	if(valid_things.len)
+		O.data = weakref(pick(valid_things))
+		O.push_data()
+		activate_pin(2)
+	else
+		O.push_data()
+		activate_pin(3)
+
+
+
+
 
 /obj/item/integrated_circuit/input/signaler
 	name = "integrated signaler"
@@ -430,4 +538,84 @@
 	push_data()
 	activate_pin(1)
 	return TRUE
+
+/obj/item/integrated_circuit/input/internalbm
+	name = "internal battery monitor"
+	desc = "This monitors the charge level of an internal battery."
+	icon_state = "internalbm"
+	extended_desc = "This circuit will give you values of charge, max charge and percentage of the internal battery on demand."
+	w_class = ITEMSIZE_TINY
+	complexity = 1
+	inputs = list()
+	outputs = list(
+		"cell charge" = IC_PINTYPE_NUMBER,
+		"max charge" = IC_PINTYPE_NUMBER,
+		"percentage" = IC_PINTYPE_NUMBER,
+		"refference to assembly" = IC_PINTYPE_REF
+		)
+	activators = list("read" = IC_PINTYPE_PULSE_IN, "on read" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
+	power_draw_per_use = 1
+
+/obj/item/integrated_circuit/input/internalbm/do_work()
+	set_pin_data(IC_OUTPUT, 1, null)
+	set_pin_data(IC_OUTPUT, 2, null)
+	set_pin_data(IC_OUTPUT, 3, null)
+	set_pin_data(IC_OUTPUT, 4, weakref(assembly))
+	if(assembly)
+		if(assembly.battery)
+
+			set_pin_data(IC_OUTPUT, 1, assembly.battery.charge)
+			set_pin_data(IC_OUTPUT, 2, assembly.battery.maxcharge)
+			set_pin_data(IC_OUTPUT, 3, 100*assembly.battery.charge/assembly.battery.maxcharge)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/externalbm
+	name = "external battery monitor"
+	desc = "This can help watch the battery level of any device in range."
+	icon_state = "externalbm"
+	extended_desc = "This circuit will give you values of charge, max charge and percentage of any device or battery in view"
+	w_class = ITEMSIZE_TINY
+	complexity = 2
+	inputs = list("target" = IC_PINTYPE_REF)
+	outputs = list(
+		"cell charge" = IC_PINTYPE_NUMBER,
+		"max charge" = IC_PINTYPE_NUMBER,
+		"percentage" = IC_PINTYPE_NUMBER
+		)
+	activators = list("read" = IC_PINTYPE_PULSE_IN, "on read" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
+	power_draw_per_use = 1
+
+/obj/item/integrated_circuit/input/externalbm/do_work()
+
+	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
+	set_pin_data(IC_OUTPUT, 1, null)
+	set_pin_data(IC_OUTPUT, 2, null)
+	set_pin_data(IC_OUTPUT, 3, null)
+	if(AM)
+
+
+		var/obj/item/weapon/cell/cell = null
+		if(istype(AM, /obj/item/weapon/cell)) // Is this already a cell?
+			cell = AM
+		else // If not, maybe there's a cell inside it?
+			for(var/obj/item/weapon/cell/C in AM.contents)
+				if(C) // Find one cell to charge.
+					cell = C
+					break
+		if(cell)
+
+			var/turf/A = get_turf(src)
+			if(AM in view(A))
+				push_data()
+				set_pin_data(IC_OUTPUT, 1, cell.charge)
+				set_pin_data(IC_OUTPUT, 2, cell.maxcharge)
+				set_pin_data(IC_OUTPUT, 3, cell.percent())
+	push_data()
+	activate_pin(2)
+
 

@@ -1,7 +1,7 @@
 // Based on railing.dmi from https://github.com/Endless-Horizon/CEV-Eris
 /obj/structure/railing
 	name = "railing"
-	desc = "A standard steel railing.  Play stupid games win stupid prizes."
+	desc = "A standard steel railing.  Play stupid games, win stupid prizes."
 	icon = 'icons/obj/railing.dmi'
 	density = 1
 	throwpass = 1
@@ -103,7 +103,7 @@
 
 /obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
 	NeighborsCheck(UpdateNeighgors)
-	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // Vorestation edit because wtf does this even do
+	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // wtf does this even do
 	overlays.Cut()
 	if (!check || !anchored)//|| !anchored
 		icon_state = "railing0"

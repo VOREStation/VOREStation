@@ -36,7 +36,7 @@
 	l_pocket = /obj/item/ammo_magazine/s44
 	r_pocket = /obj/item/ammo_magazine/s44
 	r_hand = /obj/item/clothing/accessory/holster/hip
-	l_hand = /obj/item/clothing/accessory/black
+	l_hand = /obj/item/clothing/accessory/tie/black
 
 /decl/hierarchy/outfit/USDF/Officer/equip_id(mob/living/carbon/human/H)
 	var/obj/item/weapon/card/id/C = ..()

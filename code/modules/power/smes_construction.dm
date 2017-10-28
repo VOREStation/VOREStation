@@ -85,7 +85,7 @@
 // Proc: process()
 // Parameters: None
 // Description: Uses parent process, but if grounding wire is cut causes sparks to fly around.
-// This also causes the SMES to quickly discharge, and has small chance of damaging output APCs.
+// This also causes the SMES to quickly discharge, and has small chance of breaking lights connected to APCs in the powernet.
 /obj/machinery/power/smes/buildable/process()
 	if(!grounding && (Percentage() > 5))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -93,7 +93,7 @@
 		s.start()
 		charge -= (output_level_max * SMESRATE)
 		if(prob(1)) // Small chance of overload occuring since grounding is disabled.
-			apcs_overload(5,10)
+			apcs_overload(0,10)
 
 	..()
 

@@ -685,4 +685,5 @@
 	new /obj/item/clothing/under/gimmick/rank/captain/suit(src)
 	new /obj/item/clothing/under/gimmick/rank/captain/suit/skirt(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/clothing/head/caphat(src)
 	return

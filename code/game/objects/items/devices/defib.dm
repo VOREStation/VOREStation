@@ -11,6 +11,7 @@
 	slot_flags = SLOT_BACK
 	force = 5
 	throwforce = 6
+	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 	action_button_name = "Remove/Replace Paddles"
@@ -541,6 +542,13 @@
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return (R.cell && R.cell.checked_use(charge_amt))
+
+/obj/item/weapon/shockpaddles/robot/combat
+	name = "combat defibrillator paddles"
+	desc = "A pair of advanced shockpaddles powered by a robot's internal power cell, able to penetrate thick clothing.  This version \
+	appears to be optimized for combat situations, foregoing the safety inhabitors in favor of a faster charging time."
+	safety = 0
+	chargetime = (1 SECONDS)
 
 /*
 	Shockpaddles that are linked to a base unit
