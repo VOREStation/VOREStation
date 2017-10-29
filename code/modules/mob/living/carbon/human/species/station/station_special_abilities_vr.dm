@@ -730,7 +730,7 @@
 	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
 		to_chat(src, "You cannot fly without wings!!")
 		return
-	if(C.incapacitated())
+	if(C.incapacitated() || C.stat || C.lying || C.stunned || C.weakened || C.paralysis)
 		to_chat(src, "You cannot fly in this state!")
 		return
 
