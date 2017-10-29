@@ -52,7 +52,7 @@
 		else if(ishuman(src)) //VOREStation Edit Start. Are they human (H above.), have a wing style, and do they have the trait?
 			var/mob/living/carbon/human/H = src //VOREStation Edit. Used for below
 			if(H.wings_flying == 1)
-				if(H.incapacitated() || H.stat || H.lying || H.stunned || H.weakened || H.paralysis)
+				if(H.incapacitated(INCAPACITATION_ALL))
 					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
 					H.stop_flying() //Should already be done, but just in case.
 					return 0
@@ -162,7 +162,7 @@
 	if(ishuman(src)) //VOREStation Edit Start. Code to see if they have wings.
 		var/mob/living/carbon/human/H = src
 		if(H.wings_flying == 1) //Some other checks are done in the wings_toggle proc
-			if(H.incapacitated() || H.stat || H.lying || H.stunned || H.weakened || H.paralysis) //Incap by itself doesn't work, for some reason.
+			if(H.incapacitated(INCAPACITATION_ALL))
 				H.stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_call.
 			else
