@@ -1,3 +1,6 @@
+/mob/living/silicon/robot
+	mob_swap_flags = ~HEAVY
+
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in oview(1))
 	set name = "Robot Nom"
 	set category = "IC"
