@@ -54,6 +54,7 @@
 			if(H.wings_flying == 1)
 				if(H.incapacitated())
 					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
+					stop_flying() //Should already be done, but just in case.
 					return 0
 				var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat.
 				to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
@@ -161,6 +162,7 @@
 		var/mob/living/carbon/human/H = src
 		if(H.wings_flying == 1) //Some other checks are done in the wings_toggle proc
 			if(H.incapacitated())
+				stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_call.
 			else
 				return
