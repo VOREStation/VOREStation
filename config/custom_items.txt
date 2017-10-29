@@ -647,6 +647,12 @@ item_path: /obj/item/device/pda/clown
 }
 
 {
+ckey: silvertalismen
+character_name: Camilla
+item_path: /obj/item/toy/plushie/farwa
+}
+
+{
 ckey: Swat43
 character_name: Fortune Bloise
 item_path: /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
