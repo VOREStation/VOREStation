@@ -266,7 +266,7 @@
 // Indigestable items are removed, and M is deleted.
 /datum/belly/proc/digestion_death(var/mob/living/M)
 	is_full = 1
-	M.death(1)
+	//M.death(1) // "Stop it he's already dead..." Basically redundant and the reason behind screaming mouse carcasses.
 	internal_contents -= M
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
