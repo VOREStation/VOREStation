@@ -163,7 +163,7 @@
 		var/mob/living/carbon/human/H = src
 		if(H.wings_flying == 1) //Some other checks are done in the wings_toggle proc
 			if(H.nutrition > 10)
-				H.nutrrition -= 10 //You use up 10 nutrition per second of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it.
+				H.nutrition -= 10 //You use up 10 nutrition per second of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it.
 			if(H.incapacitated(INCAPACITATION_ALL))
 				H.stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_fall.
