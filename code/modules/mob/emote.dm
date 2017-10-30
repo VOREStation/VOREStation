@@ -30,7 +30,7 @@
 
 		var/turf/T = get_turf(src)
 		if(!T) return
-		var/list/in_range = get_mobs_and_objs_in_view_fast(T,range,2)
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,range,ckey ? 2 : 0) //VOREstation edit
 		var/list/m_viewers = in_range["mobs"]
 		var/list/o_viewers = in_range["objs"]
 
@@ -38,14 +38,7 @@
 			var/mob/M = mob
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
-					//VOREStation edit
-					if(istype(M, /mob/observer/dead/))
-						var/mob/observer/dead/D = M
-						if(ckey || (src in view(D)))
-							M.show_message(message, m_type)
-					else
-						M.show_message(message, m_type)
-					//End VOREStation edit
+					M.show_message(message, m_type)//VOREStation edit
 
 		for(var/obj in o_viewers)
 			var/obj/O = obj
