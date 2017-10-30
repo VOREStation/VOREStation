@@ -723,7 +723,7 @@
 
 /mob/living/carbon/human/proc/wings_toggle()
 	set name = "Toggle Flight"
-	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained. Can be toggled at any time."
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
@@ -732,6 +732,12 @@
 		return
 	if(C.incapacitated() || C.stat || C.lying || C.stunned || C.weakened || C.paralysis)
 		to_chat(src, "You cannot fly in this state!")
+		return
+	if(C.nutrition < 25 && !C.wings_flying) //Don't have any food in you?" You can't fly.
+		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		return
+	if(C.nutrition > 1000 && !C.wings_flying)
+		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
 		return
 
 

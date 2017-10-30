@@ -162,12 +162,26 @@
 	if(ishuman(src)) //VOREStation Edit Start. Code to see if they have wings.
 		var/mob/living/carbon/human/H = src
 		if(H.wings_flying == 1) //Some other checks are done in the wings_toggle proc
+			if(H.nutrition > 10)
+				H.nutrrition -= 10 //You use up 10 nutrition per second of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it.
 			if(H.incapacitated() || H.stat || H.lying || H.stunned || H.weakened || H.paralysis) //Incap by itself doesn't work, for some reason.
 				H.stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_call.
+			else if (H.nutrition > 1000) //Eat too much while flying? Get fat and fall.
+				to_chat(H, "<span class='danger'>You're too heavy! Your wings give out and you plummit to the ground!</span>")
+				H.stop_flying() //womp womp.
+			else if(H.nutrition < 300 && H.nutrition > 289) //290 would be risky, as metabolism could mess it up. Let's do 289.
+				to_chat(H, "<span class='danger'>You are starting to get fatigued... You probably have a good minute left in the air, if that. You should get to the ground soon!</span>") //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
+				H.nutrition -= 10
+				return
+			else if(H.nutrition < 100 && > 89)
+				to_chat(H, "<span class='danger'>You're seriously fatigued! You need to get to the ground immediately and eat before you fall!</span>")
+			else if(H.nutrition < 20) //Should have listened tto the warnings!
+				to_chat(H, "<span class='danger'>You lack the strength to keep yourself up in the air...</span>")
+				H.stop_flying()
 			else
 				return
-		if(H.grabbed_by.len) //If you're grabbed (presumably by someone flying) let's not have you fall.
+		if(H.grabbed_by.len) //If you're grabbed (presumably by someone flying) let's not have you fall. This also allows people to grab onto you while you jump over a railing to prevent you from falling!
 			return //VOREStation Edit End.
 
 	if(can_fall())
