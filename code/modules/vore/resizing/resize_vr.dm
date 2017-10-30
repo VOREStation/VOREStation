@@ -141,6 +141,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		now_pushing = 0
 		if(src.get_effective_size() > tmob.get_effective_size())
 			var/mob/living/carbon/human/H = src
+			if(H.wings_flying == 1)
+				return 1 //Silently pass without a message.
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You carefully slither around [tmob]."
 				tmob << "[src]'s huge tail slithers past beside you!"
@@ -166,6 +168,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  */
 /mob/living/proc/handle_micro_bump_other(var/mob/living/tmob)
 	ASSERT(istype(tmob)) // Baby don't hurt me
+	if(ishuman(src))
+		var/mob/living/carbon/human/P = src
+		if(P.wings_flying == 1) //If they're flying, don't do any special interactions.
+			return
+	if(ishuman(tmob))
+		var/mob/living/carbon/human/D = tmob
+		if(D.wings_flying == 1) //if the prey is flying, don't smush them.
+			return
 
 	if(src.a_intent == I_DISARM && src.canmove && !src.buckled)
 		// If bigger than them by at least 0.75, move onto them and print message.
@@ -190,7 +200,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob.apply_damage(damage, HALLOSS)
 				tmob.resting = 1
 				var/mob/living/carbon/human/H = src
-				log_and_message_admins("has stomped on, [tmob] pinning them to the ground and dealing [damage] HALLOSS.") //Both humans and mobs, since stepping on mobs can be abused.
+				log_and_message_admins("has stomped on [tmob], pinning them to the ground and dealing [damage] HALLOSS.") //Both humans and mobs, since stepping on mobs can be abused.
 				admin_attack_log(src, tmob, "Pinned [tmob.name] under foot for [damage] HALLOSS.", "Was pinned under foot by [src.name] for [damage] HALLOSS.", "Pinned [tmob.name] under foot for [damage] HALLOSS.")
 				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "You push down on [tmob] with your tail, pinning them down under you!"

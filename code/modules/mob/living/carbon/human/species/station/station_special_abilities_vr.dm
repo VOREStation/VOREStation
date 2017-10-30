@@ -730,7 +730,7 @@
 	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
 		to_chat(src, "You cannot fly without wings!!")
 		return
-	if(C.incapacitated() || C.stat || C.lying || C.stunned || C.weakened || C.paralysis)
+	if(C.incapacitated(INCAPACITATION_ALL))
 		to_chat(src, "You cannot fly in this state!")
 		return
 	if(C.nutrition < 25 && !C.wings_flying) //Don't have any food in you?" You can't fly.

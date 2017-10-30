@@ -52,7 +52,7 @@
 		else if(ishuman(src)) //VOREStation Edit Start. Are they human (H above.), have a wing style, and do they have the trait?
 			var/mob/living/carbon/human/H = src //VOREStation Edit. Used for below
 			if(H.wings_flying == 1)
-				if(H.incapacitated() || H.stat || H.lying || H.stunned || H.weakened || H.paralysis)
+				if(H.incapacitated(INCAPACITATION_ALL))
 					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
 					H.stop_flying() //Should already be done, but just in case.
 					return 0
@@ -164,9 +164,9 @@
 		if(H.wings_flying == 1) //Some other checks are done in the wings_toggle proc
 			if(H.nutrition > 10)
 				H.nutrrition -= 10 //You use up 10 nutrition per second of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it.
-			if(H.incapacitated() || H.stat || H.lying || H.stunned || H.weakened || H.paralysis) //Incap by itself doesn't work, for some reason.
+			if(H.incapacitated(INCAPACITATION_ALL))
 				H.stop_flying()
-				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_call.
+				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_fall.
 			else if (H.nutrition > 1000) //Eat too much while flying? Get fat and fall.
 				to_chat(H, "<span class='danger'>You're too heavy! Your wings give out and you plummit to the ground!</span>")
 				H.stop_flying() //womp womp.
@@ -174,9 +174,10 @@
 				to_chat(H, "<span class='danger'>You are starting to get fatigued... You probably have a good minute left in the air, if that. You should get to the ground soon!</span>") //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
 				H.nutrition -= 10
 				return
-			else if(H.nutrition < 100 && > 89)
+			else if(H.nutrition < 100 && H.nutrition > 89)
 				to_chat(H, "<span class='danger'>You're seriously fatigued! You need to get to the ground immediately and eat before you fall!</span>")
-			else if(H.nutrition < 20) //Should have listened tto the warnings!
+				return
+			else if(H.nutrition < 20) //Should have listened to the warnings!
 				to_chat(H, "<span class='danger'>You lack the strength to keep yourself up in the air...</span>")
 				H.stop_flying()
 			else
