@@ -145,14 +145,9 @@ var/const/enterloopsanity = 100
 			M.lastarea = get_area(M.loc)
 		if(M.lastarea.has_gravity == 0)
 			inertial_drift(M)
-		if(ishuman(M)) //VORESTATION Edit Start. This overwrites the above is_space without touching it all that much.
-			var/mob/living/carbon/human/H = M
-			if(H.wings_flying == 1)
-				inertial_drift(H)
-				M.make_floating(1)
-			else if(!is_space())
-				M.inertia_dir = 0
-				M.make_floating(0) //VOREStation Edit End.
+		if(M.flying == 1) //VORESTATION Edit Start. This overwrites the above is_space without touching it all that much.
+			inertial_drift(M)
+			M.make_floating(1) //VOREStation Edit End.
 		else if(!is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)

@@ -1209,8 +1209,8 @@
 		if(species.hard_vore_enabled == 1) //Hardvore verb.
 			verbs |= /mob/living/carbon/human/proc/shred_limb
 		if(species.can_fly == 1)
-			verbs |= /mob/living/carbon/human/proc/wings_toggle //Flying wings!
-			verbs |= /mob/living/carbon/human/proc/start_wings_hovering
+			verbs |= /mob/living/proc/flying_toggle //Flying wings!
+			verbs |= /mob/living/proc/start_wings_hovering
 		//VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
@@ -1451,7 +1451,7 @@
 /mob/living/carbon/human/Check_Shoegrip()
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
-	if(wings_flying == 1) //VOREStation Edit. Checks to see if they have wings and are flying.
+	if(flying == 1) //VOREStation Edit. Checks to see if they have wings and are flying.
 		return 1 //VOREStation Edit.
 	return 0
 

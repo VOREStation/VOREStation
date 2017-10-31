@@ -88,7 +88,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		return
 	if(ishuman(src)) //VOREStation Edit Start. Floating code.
 		var/mob/living/carbon/human/H = src
-		if(H.wings_flying == 1)
+		if(H.flying == 1)
 			make_floating(1)
 			return //VOREStation Edit End
 	var/turf/turf = get_turf(src)
