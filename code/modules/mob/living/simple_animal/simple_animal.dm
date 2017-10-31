@@ -107,7 +107,7 @@
 	var/friendly = "nuzzles"		// What mobs do to people when they aren't really hostile
 	var/attack_sound = null			// Sound to play when I attack
 	var/environment_smash = 0		// How much environment damage do I do when I hit stuff?
-	var/melee_miss_chance = 25		// percent chance to miss a melee attack.
+	var/melee_miss_chance = 15		// percent chance to miss a melee attack.
 	var/melee_attack_minDelay = 5		// How long between attacks at least
 	var/melee_attack_maxDelay = 10		// How long between attacks at most
 
