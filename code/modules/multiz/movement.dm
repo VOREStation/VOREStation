@@ -59,7 +59,7 @@
 			to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
 			destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
 			H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!.</span>")
-			if(do_after(H, fly_time))
+			if(do_after(H, fly_time) && H.flying)
 				to_chat(src, "<span class='notice'>You fly upwards.</span>")
 			else
 				to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
