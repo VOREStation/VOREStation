@@ -284,7 +284,10 @@
 		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
 
 	H.updatehealth()
-	if(H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations))
+	if(H.isSynthetic() && H.health + H.getOxyLoss() + H.getToxLoss() <= config.health_threshold_dead || (HUSK in H.mutations))
+		return "buzzes, \"Resuscitation failed - Severe damage detected. Begin manual repair before further attempts futile.\""
+
+	if(!H.isSynthetic() && H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations))
 		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
 
 	var/bad_vital_organ = check_vital_organs(H)
@@ -419,6 +422,9 @@
 	var/barely_in_crit = config.health_threshold_crit - 1
 	var/adjust_health = barely_in_crit - H.health //need to increase health by this much
 	H.adjustOxyLoss(-adjust_health)
+
+	if(H.isSynthetic())
+		H.adjustToxLoss(-H.getToxLoss())
 
 	make_announcement("pings, \"Resuscitation successful.\"", "notice")
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
@@ -642,7 +648,8 @@
 	name = "jumper cable kit"
 	desc = "A device that delivers powerful shocks to detachable jumper cables that are capable of reviving full body prosthetics."
 	icon_state = "jumperunit"
-	item_state = "jumperunit"
+	item_state = "defibunit"
+//	item_state = "jumperunit"
 	paddles = /obj/item/weapon/shockpaddles/linked/jumper
 
 /obj/item/device/defib_kit/jumper_kit/loaded
