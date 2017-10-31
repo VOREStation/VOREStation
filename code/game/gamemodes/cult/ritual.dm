@@ -123,7 +123,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		if(word1 == cultwords["hell"] && word2 == cultwords["join"] && word3 == cultwords["self"])
 			return tearreality()
 		if(word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["technology"])
-			return emp(src.loc,3)
+			return emp(src.loc,5)
 		if(word1 == cultwords["travel"] && word2 == cultwords["blood"] && word3 == cultwords["self"])
 			return drain()
 		if(word1 == cultwords["see"] && word2 == cultwords["hell"] && word3 == cultwords["join"])
