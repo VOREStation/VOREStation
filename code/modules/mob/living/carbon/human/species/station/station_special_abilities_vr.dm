@@ -758,7 +758,7 @@
 	if(C.incapacitated(INCAPACITATION_ALL))
 		to_chat(src, "You cannot hover in your current state!")
 		return
-	if(C.nutrition < 110 && !C.wings_flying) //Don't have any food in you?" You can't hover, since it takes up 100 nutrition. And it's not 100 since we don't want them to immediately fall.
+	if(C.nutrition < 50 && !C.wings_flying) //Don't have any food in you?" You can't hover, since it takes up 25 nutrition. And it's not 25 since we don't want them to immediately fall.
 		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
 		return
 	if(C.anchored == 1)
@@ -767,7 +767,7 @@
 
 	if(C.anchored != 1 && !(C.pulledby)) //Not currently anchored, and not pulled by anyone.
 		C.anchored = 1 //This is the only way to stop the inertial_drift.
-		C.nutrition -= 100
+		C.nutrition -= 25
 		update_floating()
 		to_chat(C, "<span class='notice'>You hover in place.</span>")
 		spawn(6) //.6 seconds.
