@@ -6,6 +6,7 @@
 #define OXY       "oxy"
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
+#define ELECTROCUTE "electrocute"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
