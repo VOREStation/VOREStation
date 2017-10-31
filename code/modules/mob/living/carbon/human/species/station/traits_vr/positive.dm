@@ -123,5 +123,5 @@
 /datum/trait/winged_flight
 	name = "Winged Flight"
 	desc = "Allows you to fly by using your wings."
-	cost = 1 //Minor in game value.
+	cost = 2 //Some in game value.
 	var_changes = list("can_fly" = 1)
