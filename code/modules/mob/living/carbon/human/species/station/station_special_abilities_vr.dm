@@ -744,3 +744,33 @@
 	C.wings_flying = !C.wings_flying
 	update_floating()
 	to_chat(C, "<span class='notice'>You have [C.wings_flying?"started":"stopped"] flying.</span>")
+
+//Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
+/mob/living/carbon/human/proc/start_wings_hovering()
+	set name = "Hover"
+	set desc = "Allows you to stop gliding and hover. This will take a fair amount of nutrition to perform."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
+		to_chat(src, "You don't have wings!")
+		return
+	if(C.incapacitated(INCAPACITATION_ALL))
+		to_chat(src, "You cannot hover in your current state!")
+		return
+	if(C.nutrition < 110 && !C.wings_flying) //Don't have any food in you?" You can't hover, since it takes up 100 nutrition. And it's not 100 since we don't want them to immediately fall.
+		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		return
+	if(C.anchored == 1)
+		to_chat(C, "<span class='notice'>You are already hovering and/or anchored in place!</span>")
+		return
+
+	if(C.anchored != 1 && !(C.pulledby)) //Not currently anchored, and not pulled by anyone.
+		C.anchored = 1 //This is the only way to stop the inertial_drift.
+		C.nutrition -= 100
+		update_floating()
+		to_chat(C, "<span class='notice'>You hover in place.</span>")
+		spawn(6) //.6 seconds.
+			C.anchored = 0
+	else
+		return

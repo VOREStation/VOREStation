@@ -1210,6 +1210,7 @@
 			verbs |= /mob/living/carbon/human/proc/shred_limb
 		if(species.can_fly == 1)
 			verbs |= /mob/living/carbon/human/proc/wings_toggle //Flying wings!
+			verbs |= /mob/living/carbon/human/proc/start_wings_hovering
 		//VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
