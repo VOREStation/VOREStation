@@ -1,5 +1,5 @@
 /obj/machinery/vr_sleeper
-	name = "VR Sleeper"
+	name = "VR sleeper"
 	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "syndipod_0"
