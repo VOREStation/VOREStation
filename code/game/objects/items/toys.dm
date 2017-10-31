@@ -755,6 +755,7 @@
 	desc = "A small toy plushie. It's very cute."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
+	w_class = ITEMSIZE_TINY
 	var/last_message = 0
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
@@ -774,7 +775,7 @@ obj/item/toy/plushie/verb/rename_plushie()
 	set name = "Name Plushie"
 	set category = "Object"
 	set desc = "Give your plushie a cute name!"
-
+	w_class = ITEMSIZE_TINY
 	var/mob/M = usr
 	if(!M.mind)	return 0
 
@@ -782,7 +783,7 @@ obj/item/toy/plushie/verb/rename_plushie()
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
-		M << "You name the plushie [input], giving it a hug for good luck."
+		to_chat(M, "You name the plushie [input], giving it a hug for good luck.")
 		return 1
 
 /obj/item/toy/plushie/nymph
@@ -797,7 +798,7 @@ obj/item/toy/plushie/verb/rename_plushie()
 
 /obj/item/toy/plushie/kitten
 	name = "kitten plush"
-	desc = "A plushie of a cute kitten! Watch as it purrs it's way right into your heart."
+	desc = "A plushie of a cute kitten! Watch as it purrs its way right into your heart."
 	icon_state = "kittenplushie"
 
 /obj/item/toy/plushie/lizard
@@ -821,7 +822,6 @@ obj/item/toy/plushie/verb/rename_plushie()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyred"
 	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
 
 /obj/item/toy/plushie/therapy/purple
 	name = "purple therapy doll"
@@ -829,7 +829,6 @@ obj/item/toy/plushie/verb/rename_plushie()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapypurple"
 	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
 
 /obj/item/toy/plushie/therapy/blue
 	name = "blue therapy doll"
@@ -837,7 +836,6 @@ obj/item/toy/plushie/verb/rename_plushie()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyblue"
 	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
 
 /obj/item/toy/plushie/therapy/yellow
 	name = "yellow therapy doll"
@@ -845,7 +843,6 @@ obj/item/toy/plushie/verb/rename_plushie()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyyellow"
 	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
 
 /obj/item/toy/plushie/therapy/orange
 	name = "orange therapy doll"
@@ -853,7 +850,6 @@ obj/item/toy/plushie/verb/rename_plushie()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapyorange"
 	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = ITEMSIZE_TINY
 
 /obj/item/toy/plushie/therapy/green
 	name = "green therapy doll"
@@ -861,7 +857,6 @@ obj/item/toy/plushie/verb/rename_plushie()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
 
 
 //Toy cult sword
