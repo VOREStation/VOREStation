@@ -141,6 +141,8 @@
 		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(0.01, src)))
 			inertia_dir = 0
 			return 1
+	if(wings_flying) //VOREStation Edit. If you're flying, you glide around!
+		return 0  //VOREStation Edit.
 
 	//If no working jetpack then use the other checks
 	if(..())
