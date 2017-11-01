@@ -64,7 +64,10 @@
 					to_chat(src, "<span class='notice'>You fly upwards.</span>")
 				else
 					to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
-					return 0 //VOREStation Edit End.
+					return 0
+			else
+				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+				return 0 //VOREStation Edit End.
 		else
 			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 			return 0
