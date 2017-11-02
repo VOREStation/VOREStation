@@ -11,6 +11,7 @@
 
 	// Icon/appearance vars.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
+	var/icobase_add										 // Icon set for highlight blends when applicable.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
 
 	var/speech_bubble_appearance = "normal"              // Part of icon_state to use for speech bubbles when talking.  See talk.dmi for available icons.
@@ -28,6 +29,7 @@
 
 	var/tail                                             // Name of tail state in species effects icon file.
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
+	var/tail_animation_add								 // Highlight overlay for tail.
 	var/tail_hair
 
 	var/race_key = 0       	                             // Used for mob icon cache string.
