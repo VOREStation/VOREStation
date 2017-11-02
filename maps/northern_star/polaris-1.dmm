@@ -5020,7 +5020,7 @@
 "bSB" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/white,/area/medical/medbay_emt_bay)
 "bSC" = (/obj/structure/cable/green{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/white,/area/medical/medbay_emt_bay)
 "bSD" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/table/rack,/obj/machinery/door/window/westleft{name = "EVA Suit Storage"; req_access = list(5)},/obj/item/clothing/mask/breath,/obj/item/clothing/head/helmet/space/void/medical,/obj/item/clothing/shoes/magboots,/obj/item/clothing/suit/space/void/medical,/obj/item/weapon/tank/oxygen,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/simulated/floor/tiled/dark,/area/medical/medbay_emt_bay)
-"bSE" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/obj/item/toy/therapy_blue,/turf/simulated/floor/carpet/blue,/area/medical/psych)
+"bSE" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/obj/item/toy/plushie/therapy/blue,/turf/simulated/floor/carpet/blue,/area/medical/psych)
 "bSF" = (/obj/machinery/alarm{dir = 1; icon_state = "alarm0"; pixel_y = -22},/turf/simulated/floor/carpet/blue,/area/medical/psych)
 "bSG" = (/obj/machinery/camera/network/medbay{c_tag = "MED - Mental Health"; dir = 1},/obj/machinery/light,/turf/simulated/floor/carpet/blue,/area/medical/psych)
 "bSH" = (/obj/machinery/vending/wallmed1{name = "NanoMed Wall"; pixel_x = 25; pixel_y = 0},/turf/simulated/floor/carpet/blue,/area/medical/psych)
