@@ -289,3 +289,27 @@
 	if(!usr.incapacitated())
 		return
 	go_in(usr)
+
+/obj/machinery/recharge_station/ghost_pod_recharger
+	name = "drone pod"
+	desc = "This is a pod which used to contain a drone... Or maybe it still does?"
+	icon = 'icons/obj/structures.dmi'
+
+/obj/machinery/recharge_station/ghost_pod_recharger/update_icon()
+	..()
+	if(stat & BROKEN)
+		icon_state = "borg_pod_closed"
+		desc = "It appears broken..."
+		return
+
+	if(occupant)
+		if((stat & NOPOWER) && !has_cell_power())
+			icon_state = "borg_pod_closed"
+			desc = "It appears to be unpowered..."
+		else
+			icon_state = "borg_pod_closed"
+	else
+		icon_state = "borg_pod_opened"
+
+	if(icon_update_tick == 0)
+		build_overlays()
