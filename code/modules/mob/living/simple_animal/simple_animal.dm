@@ -1457,7 +1457,7 @@
 		if(1)
 			adjustFireLoss(rand(15, 25))
 		if(2)
-			adjustFireLoss(10, 18)
+			adjustFireLoss(rand(10, 18))
 		if(3)
 			adjustFireLoss(rand(5, 12))
 		if(4)
