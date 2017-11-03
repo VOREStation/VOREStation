@@ -277,6 +277,7 @@ obj/item/clothing/suit/kimono
 	name = "kimono"
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
+	addblends = "kimono_a"
 
 /*
  * coats
@@ -344,6 +345,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "peacoat"
 	desc = "A well-tailored, stylish peacoat."
 	icon_state = "peacoat"
+	addblends = "peacoat_a"
 	item_state_slots = list(slot_r_hand_str = "peacoat", slot_l_hand_str = "peacoat")
 	flags_inv = HIDEHOLSTER
 /*
