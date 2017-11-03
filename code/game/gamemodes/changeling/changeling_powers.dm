@@ -219,7 +219,11 @@ turf/proc/AdjacentTurfsRangedSting()
 		victims += C
 	var/mob/living/carbon/T = input(src, "Who will we sting?") as null|anything in victims
 
-	if(!T) return
+	if(!T)
+		return
+	if(T.isSynthetic())
+		src << "<span class='notice'>We are unable to pierce the outer shell of [T].</span>"
+		return
 	if(!(T in view(changeling.sting_range))) return
 	if(!sting_can_reach(T, changeling.sting_range)) return
 	if(!changeling_power(required_chems)) return

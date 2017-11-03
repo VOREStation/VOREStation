@@ -202,6 +202,15 @@
 							/obj/item/weapon/reagent_containers/syringe = 3,
 							/obj/item/stack/material/glass/reinforced = 2)
 
+/obj/item/weapon/circuitboard/vr_sleeper
+	name = T_BOARD("VR sleeper")
+	build_path = /obj/machinery/vr_sleeper
+	board_type = new /datum/frame/frame_types/medical_pod
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 1,
+							/obj/item/stack/material/glass/reinforced = 2)
+
 /obj/item/weapon/circuitboard/dna_analyzer
 	name = T_BOARD("dna analyzer")
 	build_path = /obj/machinery/dnaforensics

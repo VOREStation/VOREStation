@@ -627,17 +627,20 @@
 	name = "long dress"
 	desc = "A long dress."
 	icon_state = "whitedress2"
+	addblends = "whitedress2_a"
 	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/white3
 	name = "short dress"
 	desc = "A short, plain dress."
 	icon_state = "whitedress3"
+	addblends = "whitedress3_a"
 
 /obj/item/clothing/under/dress/white4
 	name = "long flared dress"
 	desc = "A long white dress that flares out at the bottom."
 	icon_state = "whitedress4"
+	addblends = "whitedress4_a"
 	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/darkred

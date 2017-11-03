@@ -45,6 +45,16 @@
 			mob_overlay = image("icon" = sprite_sheets[wearer.species.get_bodytype(wearer)], "icon_state" = "[tmp_icon_state]")
 		else
 			mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
+		if(addblends)
+			var/icon/base = new/icon("icon" = mob_overlay.icon, "icon_state" = mob_overlay.icon_state)
+			var/addblend_icon = new/icon("icon" = mob_overlay.icon, "icon_state" = src.addblends)
+			if(color)
+				base.Blend(src.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			mob_overlay = image(base)
+		else
+			mob_overlay.color = src.color
+
 	return mob_overlay
 
 //when user attached an accessory to S
