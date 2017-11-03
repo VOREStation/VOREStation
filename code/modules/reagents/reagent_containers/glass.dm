@@ -209,8 +209,8 @@
 	desc = "A small glass vial."
 	icon_state = "vial"
 	matter = list("glass" = 250)
- 	w_class = ITEMSIZE_TINY
 	volume = 30
+	w_class = ITEMSIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
 	flags = OPENCONTAINER
