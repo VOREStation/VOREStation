@@ -141,7 +141,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		now_pushing = 0
 		if(src.get_effective_size() > tmob.get_effective_size())
 			var/mob/living/carbon/human/H = src
-			if(H.flying == 1)
+			if(H.flying)
 				return 1 //Silently pass without a message.
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You carefully slither around [tmob]."
@@ -170,11 +170,11 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	ASSERT(istype(tmob)) // Baby don't hurt me
 	if(ishuman(src))
 		var/mob/living/carbon/human/P = src
-		if(P.flying == 1) //If they're flying, don't do any special interactions.
+		if(P.flying) //If they're flying, don't do any special interactions.
 			return
 	if(ishuman(tmob))
 		var/mob/living/carbon/human/D = tmob
-		if(D.flying == 1) //if the prey is flying, don't smush them.
+		if(D.flying) //if the prey is flying, don't smush them.
 			return
 
 	if(src.a_intent == I_DISARM && src.canmove && !src.buckled)
