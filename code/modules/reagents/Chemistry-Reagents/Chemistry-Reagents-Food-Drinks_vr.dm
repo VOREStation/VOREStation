@@ -12,7 +12,7 @@
 	id = "deathbell"
 	description = "A successful experiment to make the most alcoholic thing possible."
 	taste_description = "your brains smashed out by a smooth brick of hard, ice cold alcohol"
-	color = "#809CD5"
+	color = "#9f6aff"
 	taste_mult = 5
 	strength = 10
 	adj_temp = 10
