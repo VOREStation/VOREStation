@@ -787,7 +787,7 @@
 	icon_state = "fitness"
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
