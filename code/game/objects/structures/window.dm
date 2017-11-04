@@ -91,16 +91,13 @@
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
-	if(dir == SOUTHWEST)
-		var/index = null
-		index = 0
-		while(index < 2)
-			new shardtype(loc) //todo pooling?
-			if(reinf) new /obj/item/stack/rods(loc)
-			index++
-	else
+	new shardtype(loc)
+	if(reinf)
+		new /obj/item/stack/rods(loc)
+	if(is_fulltile())
 		new shardtype(loc) //todo pooling?
-		if(reinf) new /obj/item/stack/rods(loc)
+		if(reinf)
+			new /obj/item/stack/rods(loc)
 	qdel(src)
 	return
 
@@ -290,11 +287,9 @@
 		else
 			playsound(src, W.usesound, 75, 1)
 			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
-			if(dir == SOUTHWEST)
-				var/obj/item/stack/material/mats = new glasstype(loc)
-				mats.amount = is_fulltile() ? 4 : 2
-			else
-				new glasstype(loc)
+			var/obj/item/stack/material/mats = new glasstype(loc)
+			if(is_fulltile())
+				mats.amount = 4
 			qdel(src)
 	else if(istype(W,/obj/item/frame) && anchored)
 		var/obj/item/frame/F = W
@@ -329,6 +324,9 @@
 	if(usr.incapacitated())
 		return 0
 
+	if(is_fulltile())
+		return 0
+
 	if(anchored)
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
@@ -348,6 +346,9 @@
 	if(usr.incapacitated())
 		return 0
 
+	if(is_fulltile())
+		return 0
+
 	if(anchored)
 		usr << "It is fastened to the floor therefore you can't rotate it!"
 		return 0
@@ -361,13 +362,16 @@
 /obj/structure/window/New(Loc, start_dir=null, constructed=0)
 	..()
 
+	if (start_dir)
+		set_dir(start_dir)
+
 	//player-constructed windows
 	if (constructed)
 		anchored = 0
+		state = 0
 		update_verbs()
-
-	if (start_dir)
-		set_dir(start_dir)
+		if(is_fulltile())
+			maxhealth *= 2
 
 	health = maxhealth
 
@@ -406,10 +410,10 @@
 
 //Updates the availabiliy of the rotation verbs
 /obj/structure/window/proc/update_verbs()
-	if(anchored)
+	if(anchored || is_fulltile())
 		verbs -= /obj/structure/window/proc/rotate
 		verbs -= /obj/structure/window/proc/revrotate
-	else
+	else if(!is_fulltile())
 		verbs += /obj/structure/window/proc/rotate
 		verbs += /obj/structure/window/proc/revrotate
 
@@ -506,14 +510,6 @@
 	damage_per_fire_tick = 2.0
 	glasstype = /obj/item/stack/material/glass/reinforced
 	force_threshold = 6
-
-
-/obj/structure/window/New(Loc, constructed=0)
-	..()
-
-	//player-constructed windows
-	if (constructed)
-		state = 0
 
 /obj/structure/window/reinforced/full
 	dir = SOUTHWEST

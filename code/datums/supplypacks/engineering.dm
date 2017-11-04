@@ -21,6 +21,48 @@
 	containertype = /obj/structure/closet/crate/engineering
 	containername = "Superconducting Magnetic Coil crate"
 
+/datum/supply_packs/eng/shield_capacitor
+	name = "Shield Capacitor"
+	contains = list(/obj/machinery/shield_capacitor)
+	cost = 20
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "shield capacitor crate"
+
+/datum/supply_packs/eng/shield_capacitor/advanced
+	name = "Advanced Shield Capacitor"
+	contains = list(/obj/machinery/shield_capacitor/advanced)
+	cost = 30
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "advanced shield capacitor crate"
+
+/datum/supply_packs/eng/bubble_shield
+	name = "Bubble Shield Generator"
+	contains = list(/obj/machinery/shield_gen)
+	cost = 40
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "shield bubble generator crate"
+
+/datum/supply_packs/eng/bubble_shield/advanced
+	name = "Advanced Bubble Shield Generator"
+	contains = list(/obj/machinery/shield_gen/advanced)
+	cost = 60
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "advanced bubble shield generator crate"
+
+/datum/supply_packs/eng/hull_shield
+	name = "Hull Shield Generator"
+	contains = list(/obj/machinery/shield_gen/external)
+	cost = 80
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "shield hull generator crate"
+
+/datum/supply_packs/eng/hull_shield/advanced
+	name = "Advanced Hull Shield Generator"
+	contains = list(/obj/machinery/shield_gen/external/advanced)
+	cost = 120
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "advanced hull shield generator crate"
+
 /datum/supply_packs/eng/electrical
 	name = "Electrical maintenance crate"
 	contains = list(
