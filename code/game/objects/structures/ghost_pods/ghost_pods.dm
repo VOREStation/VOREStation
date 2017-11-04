@@ -22,6 +22,8 @@
 	if(winner.len)
 		var/mob/observer/dead/D = winner[1]
 		create_occupant(D)
+		new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
+		del(src)
 		return TRUE
 	else
 		return FALSE
@@ -29,7 +31,6 @@
 // Override this to create whatever mob you need. Be sure to call ..() if you don't want it to make infinite mobs.
 /obj/structure/ghost_pod/proc/create_occupant(var/mob/M)
 	used = TRUE
-	icon_state = icon_state_opened
 	return TRUE
 
 

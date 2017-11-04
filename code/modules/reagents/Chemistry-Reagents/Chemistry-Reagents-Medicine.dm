@@ -9,7 +9,6 @@
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
 	metabolism = REM * 0.5
-	mrate_static = TRUE
 	scannable = 1
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -35,7 +34,7 @@
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	var/wound_heal = 1.5 * removed
-	M.eye_blurry += (wound_heal)
+	M.eye_blurry = min(M.eye_blurry + wound_heal, 250)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
@@ -141,7 +140,6 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0040FF"
-	mrate_static = TRUE	//Until it's not crazy strong, at least
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
@@ -694,3 +692,20 @@
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			to_chat(M, "<span class='notice'>You feel invigorated and calm.</span>")
+
+// This exists to cut the number of chemicals a merc borg has to juggle on their hypo.
+/datum/reagent/healing_nanites
+	name = "Restorative Nanites"
+	id = "healing_nanites"
+	description = "Miniature medical robots that swiftly restore bodily damage."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#555555"
+	metabolism = REM * 4 // Nanomachines gotta go fast.
+	scannable = 1
+
+/datum/reagent/healing_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.heal_organ_damage(2 * removed, 2 * removed)
+	M.adjustOxyLoss(-4 * removed)
+	M.adjustToxLoss(-2 * removed)
+	M.adjustCloneLoss(-2 * removed)

@@ -699,54 +699,6 @@
 	desc = "A \"Space Life\" brand Emergency Response Team Commander action figure."
 	icon_state = "ert"
 
-/obj/item/toy/therapy_red
-	name = "red therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is red."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "therapyred"
-	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
-
-/obj/item/toy/therapy_purple
-	name = "purple therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is purple."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "therapypurple"
-	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
-
-/obj/item/toy/therapy_blue
-	name = "blue therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is blue."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "therapyblue"
-	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
-
-/obj/item/toy/therapy_yellow
-	name = "yellow therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "therapyyellow"
-	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
-
-/obj/item/toy/therapy_orange
-	name = "orange therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is orange."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "therapyorange"
-	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = ITEMSIZE_TINY
-
-/obj/item/toy/therapy_green
-	name = "green therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is green."
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "therapygreen"
-	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = ITEMSIZE_TINY
-
 /*
  * Plushies
  */
@@ -800,9 +752,10 @@
 //Small plushies.
 /obj/item/toy/plushie
 	name = "generic small plush"
-	desc = "A very generic small plushie. It seems to not want to exist."
+	desc = "A small toy plushie. It's very cute."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
+	w_class = ITEMSIZE_TINY
 	var/last_message = 0
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
@@ -815,8 +768,23 @@
 	else if (user.a_intent == I_GRAB)
 		user.visible_message("<span class='warning'><b>\The [user]</b> attempts to strangle [src]!</span>","<span class='warning'>You attempt to strangle [src]!</span>")
 	else
-		user.visible_message("<span class='notice'><b>\The [user]</b> pokes the [src].</span>","<span class='notice'>You poke the [src].</span>")
+		user.visible_message("<span class='notice'><b>\The [user]</b> pokes [src].</span>","<span class='notice'>You poke [src].</span>")
 	last_message = world.time
+
+obj/item/toy/plushie/verb/rename_plushie()
+	set name = "Name Plushie"
+	set category = "Object"
+	set desc = "Give your plushie a cute name!"
+	w_class = ITEMSIZE_TINY
+	var/mob/M = usr
+	if(!M.mind)	return 0
+
+	var/input = sanitizeSafe(input("What do you want to name the plushie?", ,""), MAX_NAME_LEN)
+
+	if(src && input && !M.stat && in_range(M,src))
+		name = input
+		to_chat(M, "You name the plushie [input], giving it a hug for good luck.")
+		return 1
 
 /obj/item/toy/plushie/nymph
 	name = "diona nymph plush"
@@ -830,7 +798,7 @@
 
 /obj/item/toy/plushie/kitten
 	name = "kitten plush"
-	desc = "A plushie of a cute kitten! Watch as it purrs it's way right into your heart."
+	desc = "A plushie of a cute kitten! Watch as it purrs its way right into your heart."
 	icon_state = "kittenplushie"
 
 /obj/item/toy/plushie/lizard
@@ -847,6 +815,49 @@
 	name = "farwa plush"
 	desc = "A farwa plush doll. It's soft and comforting!"
 	icon_state = "farwaplushie"
+
+/obj/item/toy/plushie/therapy/red
+	name = "red therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is red."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "therapyred"
+	item_state = "egg4" // It's the red egg in items_left/righthand
+
+/obj/item/toy/plushie/therapy/purple
+	name = "purple therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is purple."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "therapypurple"
+	item_state = "egg1" // It's the magenta egg in items_left/righthand
+
+/obj/item/toy/plushie/therapy/blue
+	name = "blue therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is blue."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "therapyblue"
+	item_state = "egg2" // It's the blue egg in items_left/righthand
+
+/obj/item/toy/plushie/therapy/yellow
+	name = "yellow therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "therapyyellow"
+	item_state = "egg5" // It's the yellow egg in items_left/righthand
+
+/obj/item/toy/plushie/therapy/orange
+	name = "orange therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is orange."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "therapyorange"
+	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
+
+/obj/item/toy/plushie/therapy/green
+	name = "green therapy doll"
+	desc = "A toy for therapeutic and recreational purposes. This one is green."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "therapygreen"
+	item_state = "egg3" // It's the green egg in items_left/righthand
+
 
 //Toy cult sword
 /obj/item/toy/cultsword

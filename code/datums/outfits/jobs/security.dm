@@ -15,7 +15,6 @@
 	uniform = /obj/item/clothing/under/rank/head_of_security
 	id_type = /obj/item/weapon/card/id/security/head
 	pda_type = /obj/item/device/pda/heads/hos
-	backpack_contents = list(/obj/item/weapon/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/security/warden
 	name = OUTFIT_JOB_NAME("Warden")
@@ -47,6 +46,5 @@
 	name = OUTFIT_JOB_NAME("Security Officer")
 	uniform = /obj/item/clothing/under/rank/security
 	l_pocket = /obj/item/device/flash
-	r_pocket = /obj/item/weapon/handcuffs
 	id_type = /obj/item/weapon/card/id/security/officer
 	pda_type = /obj/item/device/pda/security

@@ -7,6 +7,8 @@
 		/datum/lore/codex/page/unathi,
 		/datum/lore/codex/page/tajaran,
 		/datum/lore/codex/page/diona,
+		/datum/lore/codex/page/promethean,
+		/datum/lore/codex/page/vatborn,
 		/datum/lore/codex/category/teshari,
 		/datum/lore/codex/category/positronic,
 		/datum/lore/codex/category/drone
@@ -124,6 +126,27 @@
 	Their hearing is exceptionally sensitive to the point that they can detect a person moving on the other \
 	side of a wall, but this comes at a cost.  Very loud noises are very painful for Teshari, so be mindful of \
 	your indoor voice when speaking with one. The Teshari are omnivorous but generally prefer to eat meat wherever possible."
+
+// Promethean Lore
+/datum/lore/codex/page/promethean/add_content()
+	name = "Promethean"
+	keywords += list("slime", "promethean")
+	data = "Prometheans are an artificial species created by the Humans sometime in the 2540s, aboard the NRS Prometheus, while experimenting with \
+	the Aetolian giant slime, or ‘Macrolimus vulgaris’. They themselves are considered sapient beings and given protection under prior Human legislation, \
+	though often only appear to serve as aides or inferior positions when kept as staff. Aetolus, the official ‘Home world’ of the Prometheans and giant slime, \
+	is an obnoxiously warm, humid planet requiring structures to be built within large, atmospherically-filtered ‘tent-like’ domes. \
+	Prometheans take on vague visual and vocal features of the species they cohabitate with, sharing their predecessors’ tendency to mimic nearby entities, \
+	though in physical form additionally; this is seemingly more important in their own development, as well. Despite their taken appearances, \
+	there is no known existence of a divergence between a biologically ‘male’ or ‘female’ form of the species, leading most to believe they are in fact asexual, \
+	as their predecessors are."
+
+// Vatborn Lore
+/datum/lore/codex/page/vatborn/add_content()
+	name = "Vatborn"
+	keywords += list("vatborn")
+	data = "A genetically modified type of human, Vatborn humans are cloned from a template and grown in special tubes. They look like pale \
+	but otherwise normal humans, but their bodies have a few internal changes. For one, they lack an appendix. On top of that, they are frequently \
+	hungry, as their metabolisms are faster than standard."
 
 // Posi lore
 /datum/lore/codex/category/positronic/add_content()

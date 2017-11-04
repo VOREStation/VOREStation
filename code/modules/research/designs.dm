@@ -639,6 +639,13 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/ammo_casing/chemdart
 	sort_string = "TACAF"
 
+/datum/design/item/weapon/fuelrod
+	id = "fuelrod_gun"
+	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 2000, "gold" = 500, "silver" = 500, "uranium" = 1000, "phoron" = 3000, "diamond" = 1000)
+	build_path = /obj/item/weapon/gun/magnetic/fuelrod
+	sort_string = "TACBA"
+
 /datum/design/item/weapon/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)

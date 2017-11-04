@@ -10,6 +10,9 @@
 /datum/species/proc/get_tail_animation(var/mob/living/carbon/human/H)
 	return tail_animation
 
+/datum/species/proc/get_tail_animation_a(var/mob/living/carbon/human/H)
+	return tail_animation_add
+
 /datum/species/proc/get_tail_hair(var/mob/living/carbon/human/H)
 	return tail_hair
 
@@ -27,6 +30,9 @@
 
 /datum/species/proc/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
 	return (get_deform ? deform : icobase)
+
+/datum/species/proc/get_icobase_a(var/mob/living/carbon/human/H)
+	return icobase_add
 
 /datum/species/proc/get_station_variant()
 	return name

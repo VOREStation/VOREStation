@@ -985,7 +985,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(text_message && O.exonet)
 			O.exonet.send_message(chosen_communicator.exonet.address, "text", text_message)
 
-			src << "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>."
+			src << "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>"
 			exonet_messages.Add("<b>To [chosen_communicator]:</b><br>[text_message]")
 			log_pda("[usr] (COMM: [src]) sent \"[text_message]\" to [chosen_communicator]")
 

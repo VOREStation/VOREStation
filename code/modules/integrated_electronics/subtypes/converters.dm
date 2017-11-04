@@ -67,6 +67,40 @@
 	push_data()
 	activate_pin(2)
 
+/obj/item/integrated_circuit/converter/refcode
+	name = "reference encoder"
+	desc = "This circuit can encode a reference into a string, which can then be read by an EPV2 circuit."
+	icon_state = "ref-string"
+	inputs = list("input" = IC_PINTYPE_REF)
+	outputs = list("output" = IC_PINTYPE_STRING)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/converter/refcode/do_work()
+	var/result = null
+	pull_data()
+	var/atom/A = get_pin_data(IC_INPUT, 1)
+	if(A && istype(A))
+		result = "\ref[A]"
+
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/converter/refdecode
+	name = "reference decoder"
+	desc = "This circuit can convert an encoded reference to actual reference."
+	icon_state = "ref-string"
+	inputs = list("input" = IC_PINTYPE_STRING)
+	outputs = list("output" = IC_PINTYPE_REF)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+
+/obj/item/integrated_circuit/converter/refdecode/do_work()
+	pull_data()
+	set_pin_data(IC_OUTPUT, 1, weakref(locate(get_pin_data(IC_INPUT, 1))))
+	push_data()
+	activate_pin(2)
+
 /obj/item/integrated_circuit/converter/lowercase
 	name = "lowercase string converter"
 	desc = "this will cause a string to come out in all lowercase."
@@ -168,6 +202,56 @@
 
 	activate_pin(2)
 
+/obj/item/integrated_circuit/converter/findstring
+	name = "find text"
+	desc = "This gives position of sample in the string. Or returns 0."
+	extended_desc = "The first pin is the string to be examined. The second pin is the sample to be found. \
+	For example, 'eat this burger',' ' will give you position 4. This circuit isn't case sensitive."
+	complexity = 4
+	inputs = list(
+		"string" = IC_PINTYPE_STRING,
+		"sample" = IC_PINTYPE_STRING,
+		)
+	outputs = list(
+		"position" = IC_PINTYPE_NUMBER
+		)
+	activators = list("search" = IC_PINTYPE_PULSE_IN, "after search" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+
+
+/obj/item/integrated_circuit/converter/findstring/do_work()
+
+	set_pin_data(IC_OUTPUT, 1, findtext(get_pin_data(IC_INPUT, 1),get_pin_data(IC_INPUT, 2)) )
+	push_data()
+
+	activate_pin(2)
+
+/obj/item/integrated_circuit/converter/exploders
+	name = "string exploder"
+	desc = "This splits a single string into a list of strings."
+	extended_desc = "This circuit splits a given string into a list of strings based on the string and given delimiter. \
+	For example, 'eat this burger',' ' will be converted to list('eat','this','burger')."
+	complexity = 4
+	inputs = list(
+		"string to split" = IC_PINTYPE_STRING,
+		"delimiter" = IC_PINTYPE_STRING,
+		)
+	outputs = list(
+		"list" = IC_PINTYPE_LIST
+		)
+	activators = list("separate" = IC_PINTYPE_PULSE_IN, "on separated" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+
+
+/obj/item/integrated_circuit/converter/exploders/do_work()
+	var/strin = get_pin_data(IC_INPUT, 1)
+	var/sample = get_pin_data(IC_INPUT, 2)
+	set_pin_data(IC_OUTPUT, 1, splittext( strin ,sample ))
+	push_data()
+
+	activate_pin(2)
 
 /obj/item/integrated_circuit/converter/radians2degrees
 	name = "radians to degrees converter"

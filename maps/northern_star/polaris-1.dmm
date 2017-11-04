@@ -5177,7 +5177,7 @@
 "bVC" = (/obj/machinery/ai_status_display{pixel_y = 32},/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bVD" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 4},/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bVE" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/secure/safe{pixel_x = 5; pixel_y = 28},/obj/machinery/recharger{pixel_y = 4},/turf/simulated/floor/wood,/area/crew_quarters/captain)
-"bVF" = (/obj/machinery/computer/card,/obj/item/weapon/card/id/captains_spare,/turf/simulated/floor/wood,/area/crew_quarters/captain)
+"bVF" = (/obj/machinery/computer/card,/obj/item/weapon/card/id/gold/captain/spare,/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bVG" = (/obj/machinery/computer/communications,/obj/machinery/status_display{pixel_x = 0; pixel_y = 32},/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bVH" = (/obj/machinery/keycard_auth{pixel_x = 0; pixel_y = 24},/turf/simulated/floor/wood,/area/crew_quarters/captain)
 "bVI" = (/obj/structure/table/rack,/obj/item/weapon/tank/jetpack/oxygen,/obj/item/clothing/mask/gas,/obj/item/clothing/suit/armor/captain,/obj/item/clothing/head/helmet/space/capspace,/obj/machinery/newscaster/security_unit{pixel_x = 32; pixel_y = 0},/turf/simulated/floor/wood,/area/crew_quarters/captain)

@@ -9,6 +9,7 @@
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
 	num_alternate_languages = 3
+	species_language = LANGUAGE_SOL_COMMON
 	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
@@ -24,10 +25,12 @@
 /datum/species/unathi
 	name = "Unathi"
 	name_plural = "Unathi"
-	icobase = 'icons/mob/human_races/r_lizard.dmi'
+	icobase = 'icons/mob/human_races/r_lizard_m.dmi'
+	icobase_add = 'icons/mob/human_races/r_lizard_a.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	tail = "sogtail"
-	tail_animation = 'icons/mob/species/unathi/tail.dmi'
+	tail_animation = 'icons/mob/species/unathi/tail_m.dmi'
+	tail_animation_add = 'icons/mob/species/unathi/tail_a.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
@@ -41,6 +44,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
+	species_language = LANGUAGE_UNATHI
 	health_hud_intensity = 2.5
 
 	min_age = 32
@@ -125,10 +129,12 @@
 /datum/species/tajaran
 	name = "Tajara"
 	name_plural = "Tajaran"
-	icobase = 'icons/mob/human_races/r_tajaran.dmi'
+	icobase = 'icons/mob/human_races/r_tajaran_m.dmi'
+	icobase_add = 'icons/mob/human_races/r_tajaran_a.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	tail = "tajtail"
-	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
+	tail_animation = 'icons/mob/species/tajaran/tail_m.dmi'
+	tail_animation_add = 'icons/mob/species/tajaran/tail_a.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
 	slowdown = -0.5
@@ -141,6 +147,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SIIK)
 	name_language = LANGUAGE_SIIK
+	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 
 	min_age = 17
@@ -209,7 +216,8 @@
 /datum/species/skrell
 	name = "Skrell"
 	name_plural = "Skrell"
-	icobase = 'icons/mob/human_races/r_skrell.dmi'
+	icobase = 'icons/mob/human_races/r_skrell_m.dmi'
+	icobase_add = 'icons/mob/human_races/r_skrell_a.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	primitive_form = "Neaera"
 	unarmed_types = list(/datum/unarmed_attack/punch)
@@ -221,6 +229,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
 	name_language = LANGUAGE_SKRELLIAN
+	species_language = LANGUAGE_SKRELLIAN
 	health_hud_intensity = 2
 
 	water_movement = -3
@@ -294,6 +303,7 @@
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
 	name_language = LANGUAGE_ROOTLOCAL
+	species_language = LANGUAGE_ROOTLOCAL
 	health_hud_intensity = 2.5
 	item_slowdown_mod = 0.25
 

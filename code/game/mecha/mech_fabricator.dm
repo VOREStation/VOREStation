@@ -1,6 +1,6 @@
 /obj/machinery/mecha_part_fabricator
 	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
-	icon_state = "fab-idle"
+	icon_state = "mechfab-idle"
 	name = "Exosuit Fabricator"
 	desc = "A machine used for construction of mechas."
 	density = 1
@@ -56,11 +56,11 @@
 /obj/machinery/mecha_part_fabricator/update_icon()
 	overlays.Cut()
 	if(panel_open)
-		icon_state = "fab-o"
+		icon_state = "mechfab-o"
 	else
-		icon_state = "fab-idle"
+		icon_state = "mechfab-idle"
 	if(busy)
-		overlays += "fab-active"
+		overlays += "mechfab-active"
 
 /obj/machinery/mecha_part_fabricator/dismantle()
 	for(var/f in materials)
@@ -155,9 +155,9 @@
 		if(materials[S.material.name] + amnt <= res_max_amount)
 			if(S && S.amount >= 1)
 				var/count = 0
-				overlays += "fab-load-metal"
+				overlays += "mechfab-load-metal"
 				spawn(10)
-					overlays -= "fab-load-metal"
+					overlays -= "mechfab-load-metal"
 				while(materials[S.material.name] + amnt <= res_max_amount && S.amount >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)
@@ -212,7 +212,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/can_build(var/datum/design/D)
 	for(var/M in D.materials)
-		if(materials[M] < D.materials[M])
+		if(materials[M] < (D.materials[M] * mat_efficiency))
 			return 0
 	return 1
 

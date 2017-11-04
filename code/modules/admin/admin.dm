@@ -863,7 +863,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Delay the game start/end"
 	set name="Delay"
 
-	if(!check_rights(R_SERVER))	return
+	if(!check_rights(R_SERVER|R_EVENT))	return
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
@@ -1228,16 +1228,16 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 
 /*
-	helper proc to test if someone is a mentor or not.  Got tired of writing this same check all over the place.
+	helper proc to test if someone is an event manager or not.  Got tired of writing this same check all over the place.
 */
-/proc/is_mentor(client/C)
+/proc/is_eventM(client/C)
 
 	if(!istype(C))
 		return 0
 	if(!C.holder)
 		return 0
 
-	if(C.holder.rights == R_MENTOR)
+	if(C.holder.rights == R_EVENT)
 		return 1
 	return 0
 
@@ -1269,7 +1269,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;take_question=\ref[M]'>TAKE</A>)</b>"
 
-		if(4)	//Mentors
+		if(4)	//Event Managers
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?_src_=holder;take_question=\ref[M]'>TAKE</A>)</b>"
 

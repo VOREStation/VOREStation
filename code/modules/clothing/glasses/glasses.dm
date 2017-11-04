@@ -82,6 +82,20 @@ BLIND     // can't see anything
 	desc = "Engineering Aviators with prescription lenses."
 	prescription = 1
 
+/obj/item/clothing/glasses/hud/health/aviator
+	name = "medical HUD aviators"
+	desc = "Modified aviator glasses with a toggled health HUD."
+	icon_state = "aviator_med"
+	off_state = "aviator"
+	action_button_name = "Toggle Mode"
+	toggleable = 1
+	activation_sound = 'sound/effects/pop.ogg'
+
+/obj/item/clothing/glasses/hud/health/aviator/prescription
+	name = "prescription medical HUD aviators"
+	desc = "Modified aviator glasses with a toggled health HUD. Comes with bonus prescription lenses."
+	prescription = 6
+
 /obj/item/clothing/glasses/science
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
@@ -205,6 +219,11 @@ BLIND     // can't see anything
 	icon_state = "sun"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	darkness_view = -1
+
+/obj/item/clothing/glasses/sunglasses/aviator
+	name = "aviators"
+	desc = "A pair of designer sunglasses."
+	icon_state = "aviator"
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -352,53 +371,6 @@ BLIND     // can't see anything
 		..()
 		src.hud = new/obj/item/clothing/glasses/hud/health(src)
 		return
-
-/obj/item/clothing/glasses/sunglasses/medhud/aviator
-	name = "medical HUD aviators"
-	desc = "Modified aviator glasses with a toggled health HUD."
-	icon_state = "aviator_med"
-	off_state = "aviator"
-	action_button_name = "Toggle Mode"
-	var/on = 1
-	toggleable = 1
-	activation_sound = 'sound/effects/pop.ogg'
-
-	var/hud_holder
-
-/obj/item/clothing/glasses/sunglasses/medhud/aviator/New()
-	..()
-	hud_holder = hud
-
-/obj/item/clothing/glasses/sunglasses/medhud/aviator/Destroy()
-	qdel(hud_holder)
-	hud_holder = null
-	hud = null
-	. = ..()
-
-/obj/item/clothing/glasses/sunglasses/medhud/aviator/attack_self(mob/user)
-	if(toggleable && !user.incapacitated())
-		on = !on
-		if(on)
-			src.hud = hud_holder
-			to_chat(user, "You switch the [src] to HUD mode.")
-		else
-			src.hud = null
-			to_chat(user, "You switch \the [src] off.")
-		update_icon()
-		user << activation_sound
-		user.update_inv_glasses()
-		user.update_action_buttons()
-
-/obj/item/clothing/glasses/sunglasses/medhud/aviator/update_icon()
-	if(on)
-		icon_state = initial(icon_state)
-	else
-		icon_state = off_state
-
-/obj/item/clothing/glasses/sunglasses/medhud/aviator/prescription
-	name = "prescription medical HUD aviators"
-	desc = "Modified aviator glasses with a toggled health HUD. Comes with bonus prescription lenses."
-	prescription = 6
 
 /obj/item/clothing/glasses/thermal
 	name = "optical thermal scanner"

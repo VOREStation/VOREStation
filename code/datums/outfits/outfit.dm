@@ -57,6 +57,8 @@ var/list/outfits_decls_by_type_
 
 	var/flags // Specific flags
 
+	var/undress = 1	//Does the outfit undress the mob upon equp?
+
 /decl/hierarchy/outfit/New()
 	..()
 

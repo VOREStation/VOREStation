@@ -3,6 +3,7 @@
 	belt = /obj/item/weapon/storage/belt/utility/full
 	l_ear = /obj/item/device/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/boots/workboots
+	r_pocket = /obj/item/device/t_scanner
 	backpack = /obj/item/weapon/storage/backpack/industrial
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/eng
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/engi
@@ -22,7 +23,6 @@
 	name = OUTFIT_JOB_NAME("Engineer")
 	head = /obj/item/clothing/head/hardhat
 	uniform = /obj/item/clothing/under/rank/engineer
-	r_pocket = /obj/item/device/t_scanner
 	id_type = /obj/item/weapon/card/id/engineering/engineer
 	pda_type = /obj/item/device/pda/engineering
 

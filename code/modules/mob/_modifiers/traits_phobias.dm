@@ -268,7 +268,8 @@
 		total_lum += T.get_lumcount()
 		total_tiles++
 
-	average_lum = total_lum / total_tiles
+	if(total_tiles)
+		average_lum = total_lum / total_tiles
 
 	if(average_lum > fear_threshold)
 		switch(average_lum)

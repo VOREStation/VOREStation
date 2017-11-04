@@ -78,7 +78,7 @@
 
 /obj/item/weapon/cane
 	name = "cane"
-	desc = "A cane used by a true gentlemen. Or a clown."
+	desc = "A cane used by a true gentleman."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
 	item_icons = list(
@@ -88,7 +88,7 @@
 	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
-	w_class = ITEMSIZE_SMALL
+	w_class = ITEMSIZE_NORMAL
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
@@ -218,7 +218,7 @@
 
 /obj/item/weapon/SWF_uplink
 	name = "station-bounced radio"
-	desc = "used to comunicate it appears."
+	desc = "Used to communicate, it appears."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "radio"
 	var/temp = null
@@ -607,7 +607,7 @@
 
 /obj/item/weapon/ectoplasm
 	name = "ectoplasm"
-	desc = "spooky"
+	desc = "Spooky!"
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"

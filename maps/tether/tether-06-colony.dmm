@@ -406,7 +406,7 @@
 "hP" = (/obj/machinery/light/spot{dir = 4},/turf/simulated/floor/outdoors/grass/sif/virgo3b,/area/space)
 "hQ" = (/obj/machinery/door/airlock/centcom{name = "General Access"; opacity = 1; req_access = list(101)},/turf/unsimulated/floor/steel,/area/centcom/control)
 "hR" = (/obj/structure/table/reinforced,/obj/item/device/pda/captain,/turf/unsimulated/floor/steel,/area/centcom/control)
-"hS" = (/obj/structure/table/reinforced,/obj/item/weapon/card/id/captains_spare,/turf/unsimulated/floor/steel,/area/centcom/control)
+"hS" = (/obj/structure/table/reinforced,/obj/item/weapon/card/id/gold/captain/spare,/turf/unsimulated/floor/steel,/area/centcom/control)
 "hT" = (/obj/structure/table/reinforced,/obj/structure/flora/pottedplant{icon_state = "plant-01"; pixel_y = 10; tag = "icon-plant-01"},/turf/unsimulated/floor/steel,/area/centcom/control)
 "hU" = (/obj/structure/sign/department/armory,/turf/unsimulated/wall,/area/centcom/security)
 "hV" = (/obj/machinery/door/blast/regular{dir = 8; id = "ArmouryC4"; layer = 3.3; name = "Armoury"},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/security)

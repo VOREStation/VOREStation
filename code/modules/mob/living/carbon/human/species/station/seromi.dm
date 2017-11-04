@@ -9,6 +9,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SCHECHI, LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SCHECHI
+	species_language = LANGUAGE_SCHECHI
 	min_age = 12
 	max_age = 45
 	health_hud_intensity = 3
@@ -25,8 +26,9 @@
 	tail_hair = "feathers"
 	reagent_tag = IS_TESHARI
 
-	icobase = 'icons/mob/human_races/r_seromi.dmi'
-	deform = 'icons/mob/human_races/r_seromi.dmi'
+	icobase = 'icons/mob/human_races/r_seromi_m.dmi'
+	icobase_add = 'icons/mob/human_races/r_seromi_a.dmi'
+	deform = 'icons/mob/human_races/r_seromi_m.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_seromi.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_seromi.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_seromi.dmi'

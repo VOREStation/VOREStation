@@ -67,6 +67,7 @@
 		Sleeping(20)
 
 	//No need to update all of these procs if the guy is dead.
+	fall() //VORESTATION EDIT. Prevents people from floating
 	if(stat != DEAD && !stasis)
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
@@ -823,7 +824,7 @@
 
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
-				if(I.contaminated)
+				if(I.contaminated || I.gurgled) //VOREStation Edit
 					if(check_belly(I)) continue //VOREStation Edit
 					if(src.species && src.species.get_bodytype() != "Vox")
 						total_phoronloss += vsc.plc.CONTAMINATION_LOSS

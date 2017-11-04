@@ -7,6 +7,7 @@
 	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
 	show_messages = 0
+	preserve_item = 1
 
 	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)

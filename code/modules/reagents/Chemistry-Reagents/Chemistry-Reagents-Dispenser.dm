@@ -16,7 +16,6 @@
 	reagent_state = SOLID
 	color = "#1C1300"
 	ingest_met = REM * 5
-	mrate_static = TRUE
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -73,8 +72,6 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
-
-	mrate_static = TRUE
 
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
