@@ -26,9 +26,8 @@
 	tail_hair = "feathers"
 	reagent_tag = IS_TESHARI
 
-	icobase = 'icons/mob/human_races/r_seromi_m.dmi'
-	icobase_add = 'icons/mob/human_races/r_seromi_a.dmi'
-	deform = 'icons/mob/human_races/r_seromi_m.dmi'
+	icobase = 'icons/mob/human_races/r_seromi.dmi'
+	deform = 'icons/mob/human_races/r_seromi.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_seromi.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_seromi.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_seromi.dmi'
