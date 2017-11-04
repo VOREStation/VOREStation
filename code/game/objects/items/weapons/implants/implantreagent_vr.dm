@@ -2,8 +2,8 @@
 	name = "reagent generator implant"
 	desc = "This is an implant that has attached storage and generates a reagent."
 	implant_color = "r"
-	var/datum/reagent/generated_reagent = null
-	var/gen_amount = 2 //amount of reagent generated per process tick
+	var/list/generated_reagents = list("water" = 2) //Any number of reagents, the associated value is how many units are generated per process()
+	var/reagent_name = "water" //What is shown when reagents are removed, doesn't need to be an actual reagent
 	var/gen_cost = 0.5 //amount of nutrient taken from the host per process tick
 	var/transfer_amount = 30 //amount transferred when using verb
 	var/usable_volume = 120
@@ -15,7 +15,7 @@
 	var/list/random_emote = list() //An emote the person with the implant may be forced to perform after a prob check, such as [X] meows.
 	var/assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant
 	var/verb_name = "Transfer From Reagent Implant"
-	var/verb_desc = "Remove reagents from am internal reagent into a container"
+	var/verb_desc = "Remove reagents from an internal reagent into a container"
 
 /obj/item/weapon/implant/reagent_generator/New()
 	..()
@@ -38,7 +38,7 @@
 
 /obj/item/weapon/implant/reagent_generator/process()
 	var/before_gen
-	if(imp_in && generated_reagent)
+	if(imp_in && generated_reagents)
 		before_gen = reagents.total_volume
 		if(reagents.total_volume < reagents.maximum_volume)
 			if(imp_in.nutrition >= gen_cost)
@@ -57,7 +57,8 @@
 
 /obj/item/weapon/implant/reagent_generator/proc/do_generation()
 	imp_in.nutrition -= gen_cost
-	reagents.add_reagent(generated_reagent, gen_amount)
+	for(var/reagent in generated_reagents)
+		reagents.add_reagent(reagent, generated_reagents[reagent])
 
 /mob/living/carbon/human/proc/use_reagent_implant()
 	set name = "Transfer From Reagent Implant"
@@ -90,7 +91,7 @@
 			var/container_name = container.name
 			if(rimplant.reagents.trans_to(container, amount = rimplant.transfer_amount))
 				user.visible_message("<span class='notice'>[usr] [pick(rimplant.emote_descriptor)] into \the [container_name].</span>",
-									"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] some [rimplant.generated_reagent] into \the [container_name].</span>")
+									"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] some [rimplant.reagent_name] into \the [container_name].</span>")
 				if(prob(5))
 					src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 			if(rimplant.reagents.total_volume == rimplant.reagents.maximum_volume * 0.05)
