@@ -76,6 +76,7 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 	min_age = 18
 	max_age = 80
