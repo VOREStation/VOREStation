@@ -4444,7 +4444,7 @@
 "bHx" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/paleblue/border{dir = 4},/obj/effect/floor_decal/borderfloor/corner2{dir = 5},/obj/effect/floor_decal/corner/paleblue/bordercorner2{dir = 5},/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 9},/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 10},/turf/simulated/floor/tiled,/area/hallway/station/upper)
 "bHy" = (/obj/structure/grille,/obj/structure/window/reinforced/polarized{dir = 10; icon_state = "fwindow"; id = "psych-tint"},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/medical/psych)
 "bHz" = (/obj/structure/table/woodentable,/obj/structure/plushie/ian{dir = 8; icon_state = "ianplushie"; pixel_y = 6},/obj/machinery/light_switch{dir = 2; name = "light switch "; pixel_x = 0; pixel_y = 26},/turf/simulated/floor/wood,/area/medical/psych)
-"bHA" = (/obj/structure/table/woodentable,/obj/item/toy/therapy_blue,/obj/item/weapon/storage/secure/safe{pixel_x = 5; pixel_y = 28},/turf/simulated/floor/wood,/area/medical/psych)
+"bHA" = (/obj/structure/table/woodentable,/obj/item/toy/plushie/therapy/blue,/obj/item/weapon/storage/secure/safe{pixel_x = 5; pixel_y = 28},/turf/simulated/floor/wood,/area/medical/psych)
 "bHB" = (/obj/structure/bookcase,/turf/simulated/floor/wood,/area/medical/psych)
 "bHC" = (/obj/structure/flora/pottedplant/fern,/turf/simulated/floor/wood,/area/medical/psych)
 "bHD" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/door/airlock/maintenance/common,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor,/area/maintenance/station/cargo)
