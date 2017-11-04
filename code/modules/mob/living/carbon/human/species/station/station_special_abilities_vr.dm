@@ -720,3 +720,56 @@
 			T.apply_damage(25, BRUTE, D)
 			C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") //Keep it vague. Let the /me's do the talking.
 			log_and_message_admins("shreded [D] of [T].", C)
+
+/mob/living/proc/flying_toggle()
+	set name = "Toggle Flight"
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
+		to_chat(src, "You cannot fly without wings!!")
+		return
+	if(C.incapacitated(INCAPACITATION_ALL))
+		to_chat(src, "You cannot fly in this state!")
+		return
+	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
+		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		return
+	if(C.nutrition > 1000 && !C.flying)
+		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
+		return
+
+	C.flying = !C.flying
+	update_floating()
+	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
+
+//Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
+/mob/living/proc/start_wings_hovering()
+	set name = "Hover"
+	set desc = "Allows you to stop gliding and hover. This will take a fair amount of nutrition to perform."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
+		to_chat(src, "You don't have wings!")
+		return
+	if(C.incapacitated(INCAPACITATION_ALL))
+		to_chat(src, "You cannot hover in your current state!")
+		return
+	if(C.nutrition < 50 && !C.flying) //Don't have any food in you?" You can't hover, since it takes up 25 nutrition. And it's not 25 since we don't want them to immediately fall.
+		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		return
+	if(C.anchored)
+		to_chat(C, "<span class='notice'>You are already hovering and/or anchored in place!</span>")
+		return
+
+	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
+		C.anchored = 1 //This is the only way to stop the inertial_drift.
+		C.nutrition -= 25
+		update_floating()
+		to_chat(C, "<span class='notice'>You hover in place.</span>")
+		spawn(6) //.6 seconds.
+			C.anchored = 0
+	else
+		return

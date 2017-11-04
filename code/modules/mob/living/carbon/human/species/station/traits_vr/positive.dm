@@ -119,3 +119,9 @@
 	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 50%"
 	cost = 1
 	var_changes = list("flash_mod" = 0.5)
+
+/datum/trait/winged_flight
+	name = "Winged Flight"
+	desc = "Allows you to fly by using your wings."
+	cost = 2 //Some in game value.
+	var_changes = list("can_fly" = 1)

@@ -5,6 +5,7 @@
 	var/can_drain_prey = 0 //Determines if the person can use the succubus drain or not.
 	var/hard_vore_enabled = 0 //Determines if the person has the hardvore verb or not.
 	var/metabolism = 0.0015
+	var/can_fly = 0 //Determines if the species can fly if they have wings.
 
 /datum/species/custom
 	name = "Custom Species"
