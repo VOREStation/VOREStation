@@ -34,9 +34,11 @@
 
 /obj/item/clothing/head/hairflower/white
 	icon_state = "hairflower_white"
+	addblends = "hairflower_white_a"
 
 /obj/item/clothing/head/hairflower/bow
 	icon_state = "bow"
+	addblends = "bow_a"
 	name = "hair bow"
 	desc = "A ribbon tied into a bow with a clip on the back to attach to hair."
 	item_state_slots = list(slot_r_hand_str = "pill", slot_l_hand_str = "pill")
@@ -155,6 +157,7 @@
 
 /obj/item/clothing/head/flatcap/grey
 	icon_state = "flat_capw"
+	addblends = "flat_capw_a"
 	item_state_slots = list(slot_r_hand_str = "greysoft", slot_l_hand_str = "greysoft")
 
 /obj/item/clothing/head/pirate
@@ -300,6 +303,7 @@
 	name = "hijab"
 	desc = "A veil that is wrapped to cover the head and chest"
 	icon_state = "hijab"
+	addblends = "hijab_a"
 	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = 0
 	flags_inv = BLOCKHAIR
@@ -308,12 +312,14 @@
 	name = "kippa"
 	desc = "A small, brimless cap."
 	icon_state = "kippa"
+	addblends = "kippa_a"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/turban
 	name = "turban"
 	desc = "A cloth used to wind around the head"
 	icon_state = "turban"
+	addblends = "turban_a"
 	item_state_slots = list(slot_r_hand_str = "beret_white", slot_l_hand_str = "beret_white")
 	body_parts_covered = 0
 	flags_inv = BLOCKHEADHAIR
@@ -322,24 +328,28 @@
 	name = "taqiyah"
 	desc = "A short, rounded skullcap usually worn for religious purposes."
 	icon_state = "taqiyah"
+	addblends = "taqiyah_a"
 	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
 
 /obj/item/clothing/head/beanie
 	name = "beanie"
 	desc = "A head-hugging brimless winter cap. This one is tight."
 	icon_state = "beanie"
+	addblends = "beanie_a"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/beanie_loose
 	name = "loose beanie"
 	desc = "A head-hugging brimless winter cap. This one is loose."
 	icon_state = "beanie_hang"
+	addblends = "beanie_hang_a"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/beretg
 	name = "beret"
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret_g"
+	addblends = "beret_g_a"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/sombrero

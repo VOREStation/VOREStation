@@ -258,8 +258,8 @@
 		new /obj/item/device/tape/random(src)
 		new /obj/item/device/tape/random(src)
 		new /obj/item/device/camera(src)
-		new /obj/item/toy/therapy_blue(src)
 		new /obj/item/weapon/storage/fancy/vials(src) //VOREStation Edit - adding vials for new hypo
+		new /obj/item/toy/plushie/therapy/blue(src)
 		return
 
 /obj/structure/closet/secure_closet/psych
