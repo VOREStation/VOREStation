@@ -1756,6 +1756,28 @@
 
 	glass_name = "Cuba Libre"
 	glass_desc = "A classic mix of rum and cola."
+	
+/datum/reagent/ethanol/ldaiquiri
+	name = "Lime Daiquiri"
+	id = "ldaiquiri"
+	description = "Rum mixed with sugar and lime juice"
+	taste_description = "sweetnes with a sour bite."
+	color = "#32CD32"
+	strength = 30
+
+	glass_name = "Lime Daiquiri"
+	glass_desc = "The proper daiquiri, made famous by Ernest Hemmingway himself. Don't ask me who he is, but trust me - he's real macho."
+	
+	/datum/reagent/ethanol/sdaiquiri
+	name = "Strawberry Daiquiri"
+	id = "sdaiquiri"
+	description = "Rum mixed with sugar and strawberry juice"
+	taste_description = "feminity"
+	color = "#FF69B4"
+	strength = 30
+
+	glass_name = "Strawberry Daiquiri"
+	glass_desc = "What a girly drink. Hemmingway rolls in his grave as masculinity goes down the drain."
 
 /datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
