@@ -2154,6 +2154,7 @@
 #include "code\modules\organs\subtypes\unathi.dm"
 #include "code\modules\organs\subtypes\unbreakable.dm"
 #include "code\modules\organs\subtypes\vox.dm"
+#include "code\modules\organs\subtypes\vox_vr.dm"
 #include "code\modules\organs\subtypes\xenos.dm"
 #include "code\modules\overmap\_defines.dm"
 #include "code\modules\overmap\sectors.dm"
