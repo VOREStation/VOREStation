@@ -107,6 +107,18 @@
 
 	return 1
 
+/obj/effect/landmark/virtual_reality
+	name = "virtual_reality"
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "x"
+	anchored = 1.0
+
+/obj/effect/landmark/virtual_reality/New()
+	..()
+	tag = "virtual_reality*[name]"
+	invisibility = 101
+	return 1
+
 //Costume spawner landmarks
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears
 

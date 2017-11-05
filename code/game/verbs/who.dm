@@ -70,16 +70,16 @@
 	var/msg = ""
 	var/modmsg = ""
 	var/devmsg = ""
-	var/mentmsg = ""
+	var/eventMmsg = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
 	var/num_devs_online = 0
-	var/num_mentors_online = 0
+	var/num_event_managers_online = 0
 	if(holder)
 		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
+			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_EVENT & C.holder.rights))	//Used to determine who shows up in admin rows
 
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Mentors can't see stealthmins
+				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Event Managerss can't see stealthmins
 					continue
 
 				msg += "\t[C] is a [C.holder.rank]"
@@ -102,7 +102,7 @@
 				msg += "\n"
 
 				num_admins_online++
-			else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
+			else if(R_MOD & C.holder.rights)				//Who shows up in mod rows.
 				modmsg += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -137,26 +137,26 @@
 				devmsg += "\n"
 				num_devs_online++
 
-			else if(R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]"
+			else if(R_EVENT & C.holder.rights)
+				eventMmsg += "\t[C] is a [C.holder.rank]"
 				if(isobserver(C.mob))
-					mentmsg += " - Observing"
+					eventMmsg += " - Observing"
 				else if(istype(C.mob,/mob/new_player))
-					mentmsg += " - Lobby"
+					eventMmsg += " - Lobby"
 				else
-					mentmsg += " - Playing"
+					eventMmsg += " - Playing"
 
 				if(C.is_afk())
 					var/seconds = C.last_activity_seconds()
-					mentmsg += " (AFK - "
-					mentmsg += "[round(seconds / 60)] minutes, "
-					mentmsg += "[seconds % 60] seconds)"
-				mentmsg += "\n"
-				num_mentors_online++
+					eventMmsg += " (AFK - "
+					eventMmsg += "[round(seconds / 60)] minutes, "
+					eventMmsg += "[seconds % 60] seconds)"
+				eventMmsg += "\n"
+				num_event_managers_online++
 
 	else
 		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))
+			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_EVENT & C.holder.rights))
 				if(!C.holder.fakekey)
 					msg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
@@ -166,9 +166,9 @@
 			else if (R_SERVER & C.holder.rights)
 				devmsg += "\t[C] is a [C.holder.rank]\n"
 				num_devs_online++
-			else if (R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]\n"
-				num_mentors_online++
+			else if (R_EVENT & C.holder.rights)
+				eventMmsg += "\t[C] is a [C.holder.rank]\n"
+				num_event_managers_online++
 
 	if(config.admin_irc)
 		src << "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>"
@@ -180,7 +180,7 @@
 	if(config.show_devs)
 		msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
 
-	if(config.show_mentors)
-		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg
+	if(config.show_event_managers)
+		msg += "\n<b> Current Event Managers ([num_event_managers_online]):</b>\n" + eventMmsg
 
 	src << msg

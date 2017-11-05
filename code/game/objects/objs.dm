@@ -12,6 +12,7 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/show_messages
+	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
 
 /obj/Destroy()
 	processing_objects -= src

@@ -135,3 +135,4 @@
 	name = "hand greatclaw"
 	force = 20
 	armor_penetration = 20
+	pry = 1

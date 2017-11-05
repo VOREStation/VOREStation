@@ -68,7 +68,6 @@
 			new /obj/item/stack/rods(src.loc)
 			qdel(src)
 		return
-	// VOREStation Edit - Added Catwalks
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
 		if(R.use(2))
@@ -78,7 +77,6 @@
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 		return
-	// VOREStation Edit End
 	return
 
 /obj/structure/lattice/proc/updateOverlays()

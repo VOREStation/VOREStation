@@ -5,6 +5,7 @@
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	default_language = LANGUAGE_VOX
 	language = LANGUAGE_GALCOM
+	species_language = LANGUAGE_VOX
 	num_alternate_languages = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,  /datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 	rarity_value = 4

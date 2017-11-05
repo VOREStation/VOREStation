@@ -77,6 +77,7 @@
 	desc = "A pair of gloves that reach past the elbow.  Fancy!"
 	name = "evening gloves"
 	icon_state = "evening_gloves"
+	addblends = "evening_gloves_a"
 
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE

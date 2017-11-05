@@ -47,6 +47,7 @@
 	// Language/culture vars.
 	var/default_language = LANGUAGE_GALCOM // Default language is used when 'say' is used without modifiers.
 	var/language = LANGUAGE_GALCOM         // Default racial language, if any.
+	var/species_language = LANGUAGE_GALCOM	// Used on the Character Setup screen
 	var/list/secondary_langs = list()        // The names of secondary languages that are available to this species.
 	var/list/speech_sounds                   // A list of sounds to potentially play when speaking.
 	var/list/speech_chance                   // The likelihood of a speech sound playing.
@@ -273,11 +274,14 @@
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
-		switch(T.identifying_gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
+		if(!T.species.ambiguous_genders || (T.species.ambiguous_genders && H.species == T.species))
+			switch(T.identifying_gender)
+				if(MALE)
+					t_him = "him"
+				if(FEMALE)
+					t_him = "her"
+		else
+			t_him = "them"
 	else
 		switch(target.gender)
 			if(MALE)

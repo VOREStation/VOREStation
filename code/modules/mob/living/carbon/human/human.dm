@@ -724,8 +724,6 @@
 			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
 			if(!S.on)
 				number += 1
-		else if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/medhud/aviator))
-			number += 0
 		else
 			number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
@@ -1204,12 +1202,16 @@
 		species.update_attack_types() //VOREStation Edit Start Required for any trait that updates unarmed_types in setup.
 		if(species.gets_food_nutrition != 1) //Bloodsucker trait. Tacking this on here.
 			verbs |= /mob/living/carbon/human/proc/bloodsuck
-		if(species.can_drain_prey == 1)
+		if(species.can_drain_prey)
 			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
 			verbs |= /mob/living/carbon/human/proc/succubus_drain_finialize
 			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
-		if(species.hard_vore_enabled == 1) //Hardvore verb.
-			verbs |= /mob/living/carbon/human/proc/shred_limb //VOREStation Edit End
+		if(species.hard_vore_enabled) //Hardvore verb.
+			verbs |= /mob/living/carbon/human/proc/shred_limb
+		if(species.can_fly)
+			verbs |= /mob/living/proc/flying_toggle //Flying wings!
+			verbs |= /mob/living/proc/start_wings_hovering
+		//VOREStation Edit End
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
@@ -1280,7 +1282,7 @@
 		W.message = message
 		W.add_fingerprint(src)
 
-/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
+/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
 	. = 1
 
 	if(!target_zone)
@@ -1300,10 +1302,10 @@
 	else
 		switch(target_zone)
 			if(BP_HEAD)
-				if(head && head.item_flags & THICKMATERIAL)
+				if(head && (head.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 			else
-				if(wear_suit && wear_suit.item_flags & THICKMATERIAL)
+				if(wear_suit && (wear_suit.item_flags & THICKMATERIAL) && !ignore_thickness)
 					. = 0
 	if(!. && error_msg && user)
 		if(!fail_msg)
@@ -1449,6 +1451,8 @@
 /mob/living/carbon/human/Check_Shoegrip()
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
+	if(flying) //VOREStation Edit. Checks to see if they have wings and are flying.
+		return 1 //VOREStation Edit.
 	return 0
 
 //Puts the item into our active hand if possible. returns 1 on success.
@@ -1565,3 +1569,54 @@
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
+
+// enter_vr is called on the original mob, and puts the mind into the supplied vr mob
+/mob/living/carbon/human/proc/enter_vr(var/mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
+	if(!istype(avatar))
+		return
+
+	// Link the two mobs for client transfer
+	avatar.vr_holder = src
+	src.teleop = avatar
+	src.vr_link = avatar // Can't reuse vr_holder so that death can automatically eject users from VR
+
+	// Move the mind
+	avatar.Sleeping(1)
+	src.mind.transfer_to(avatar)
+	to_chat(avatar, "<b>You have enterred Virtual Reality!\nAll normal gameplay rules still apply.\nWounds you suffer here won't persist when you leave VR, but some of the pain will.\nYou can leave VR at any time by using the \"Exit Virtual Reality\" verb in the Abilities tab, or by ghosting.\nYou can modify your appearance by using various \"Change \[X\]\" verbs in the Abilities tab.</b>")
+	to_chat(avatar, "<span class='notice'> You black out for a moment, and wake to find yourself in a new body in virtual reality.</span>") // So this is what VR feels like?
+
+// exit_vr is called on the vr mob, and puts the mind back into the original mob
+/mob/living/carbon/human/verb/exit_vr()
+	set name = "Exit Virtual Reality"
+	set category = "Abilities"
+
+	if(!vr_holder)
+		return
+	if(!mind)
+		return
+
+	var/total_damage
+	// Tally human damage
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		total_damage = H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss()
+
+	// Move the mind back to the original mob
+//	vr_holder.Sleeping(1)
+	src.mind.transfer_to(vr_holder)
+	to_chat(vr_holder, "<span class='notice'>You black out for a moment, and wake to find yourself back in your own body.</span>")
+	// Two-thirds damage is transferred as agony for /humans
+	// Getting hurt in VR doesn't damage the physical body, but you still got hurt.
+	if(ishuman(vr_holder) && total_damage)
+		var/mob/living/carbon/human/V = vr_holder
+		V.stun_effect_act(0, total_damage*2/3, null)												// 200 damage leaves the user in paincrit for several seconds, agony reaches 0 after around 2m.
+		to_chat(vr_holder, "<span class='warning'>Pain from your time in VR lingers.</span>")		// 250 damage leaves the user unconscious for several seconds in addition to paincrit
+
+	// Maintain a link with the mob, but don't use teleop
+	vr_holder.vr_link = src
+	vr_holder.teleop = null
+
+	if(istype(vr_holder.loc, /obj/machinery/vr_sleeper))
+		var/obj/machinery/vr_sleeper/V = vr_holder.loc
+		V.go_out()

@@ -154,7 +154,7 @@
 /mob/living/simple_animal/otie/friendly/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
 	var/datum/belly/B = user.vore_selected
 	var/datum/belly/belly_target = user.vore_organs[B]
-	if(check_threat(target_mob) >= 4)
+	if(ishuman(target_mob))
 		belly_target.digest_mode = DM_HOLD
 	if(istype(prey,/mob/living/simple_animal/mouse))
 		belly_target.digest_mode = DM_DIGEST
@@ -247,7 +247,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if (health > 0)
+			if(health > 0)
 				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
 				LoseTarget()
 				handle_stance(STANCE_IDLE)
@@ -257,6 +257,15 @@
 						tamed = 1
 						faction = M.faction
 				sleep(1 SECOND)
+
+		if(I_GRAB)
+			if(health > 0)
+				audible_emote("growls disapprovingly at [M].")
+				if(M == friend)
+					friend = null
+				return
+			else
+				..()
 
 		else
 			..()

@@ -20,7 +20,7 @@
 	var/material/material
 	var/material/padding_material
 	var/base_icon = "bed"
-	var/applies_material_colour = 1 //VOREStation Add - For special color beds/chairs
+	var/applies_material_colour = 1
 
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
@@ -47,6 +47,7 @@
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon) //VOREStation Edit
+		//var/image/I = image('icons/obj/furniture.dmi', base_icon) //From Polaris Sync. Not sure if this is a better way of doing it or not. Uncomment if so.
 		if(applies_material_colour) //VOREStation Add - Goes with added var
 			I.color = material.icon_colour
 		stool_cache[cache_key] = I

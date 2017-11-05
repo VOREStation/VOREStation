@@ -277,6 +277,7 @@ obj/item/clothing/suit/kimono
 	name = "kimono"
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
+	addblends = "kimono_a"
 
 /*
  * coats
@@ -344,6 +345,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "peacoat"
 	desc = "A well-tailored, stylish peacoat."
 	icon_state = "peacoat"
+	addblends = "peacoat_a"
 	item_state_slots = list(slot_r_hand_str = "peacoat", slot_l_hand_str = "peacoat")
 	flags_inv = HIDEHOLSTER
 /*
@@ -593,6 +595,12 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	desc = "A warm, black sweatshirt.  It has the logo for the popular softdrink Space Mountain Wind on both the front and the back."
 	icon_state = "smw_hoodie"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
+
+/obj/item/clothing/suit/storage/toggle/hoodie/nrti
+	name = "New Reykjavik Technical Institute hoodie"
+	desc = "A warm, gray sweatshirt. It bears the letters NRT on the back, in reference to Sif's premiere technical institute."
+	icon_state = "nrti_hoodie"
+	item_state_slots = list(slot_r_hand_str = "suit_grey", slot_l_hand_str = "suit_grey")
 
 /obj/item/clothing/suit/whitedress
 	name = "white dress"

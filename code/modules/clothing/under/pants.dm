@@ -121,6 +121,7 @@
 	name = "yoga pants"
 	desc = "A pair of tight-fitting yoga pants for those lazy days."
 	icon_state = "yogapants"
+	addblends = "yogapants_a"
 
 /*
  * Baggy Pants

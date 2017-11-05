@@ -367,7 +367,7 @@
 
 		if(usr.client)
 			var/client/C = usr.client
-			if(is_mentor(C))
+			if(is_eventM(C))
 				dat += {"<td align=center> N/A </td>"}
 			else
 				switch(is_special_character(M))

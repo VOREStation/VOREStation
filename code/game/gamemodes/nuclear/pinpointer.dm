@@ -9,6 +9,7 @@
 	throw_speed = 4
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	preserve_item = 1
 	var/obj/item/weapon/disk/nuclear/the_disk = null
 	var/active = 0
 
@@ -263,3 +264,57 @@
 				icon_state = "pinonfar"
 
 	spawn(5) .()
+
+
+// This one only points to the ship.  Useful if there is no nuking to occur today.
+/obj/item/weapon/pinpointer/shuttle
+	var/shuttle_comp_id = null
+	var/obj/machinery/computer/shuttle_control/our_shuttle = null
+
+/obj/item/weapon/pinpointer/shuttle/attack_self(mob/user as mob)
+	if(!active)
+		active = TRUE
+		find_shuttle()
+		to_chat(user, "<span class='notice'>Shuttle Locator active.</span>")
+	else
+		active = FALSE
+		icon_state = "pinoff"
+		to_chat(user, "<span class='notice'>You deactivate the pinpointer.</span>")
+
+/obj/item/weapon/pinpointer/shuttle/proc/find_shuttle()
+	if(!active)
+		return
+
+	if(!our_shuttle)
+		for(var/obj/machinery/computer/shuttle_control/S in machines)
+			if(S.shuttle_tag == shuttle_comp_id) // Shuttle tags are used so that it will work if the computer path changes, as it does on the southern cross map.
+				our_shuttle = S
+				break
+
+		if(!our_shuttle)
+			icon_state = "pinonnull"
+			return
+
+	if(loc.z != our_shuttle.z)	//If you are on a different z-level from the shuttle
+		icon_state = "pinonnull"
+	else
+		set_dir(get_dir(src, our_shuttle))
+		switch(get_dist(src, our_shuttle))
+			if(0)
+				icon_state = "pinondirect"
+			if(1 to 8)
+				icon_state = "pinonclose"
+			if(9 to 16)
+				icon_state = "pinonmedium"
+			if(16 to INFINITY)
+				icon_state = "pinonfar"
+
+	spawn(5)
+		.()
+
+
+/obj/item/weapon/pinpointer/shuttle/merc
+	shuttle_comp_id = "Mercenary"
+
+/obj/item/weapon/pinpointer/shuttle/heist
+	shuttle_comp_id = "Skipjack"
