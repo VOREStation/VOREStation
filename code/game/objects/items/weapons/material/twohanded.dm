@@ -83,6 +83,7 @@
 	base_icon = "fireaxe"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	description_info = "This weapon can cleave, striking nearby lesser, hostile enemies close to the primary target.  It must be held in both hands to do this."
 	unwielded_force_divisor = 0.25
 	force_divisor = 0.7 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
 	dulled_divisor = 0.75	//Still metal on a stick
@@ -122,6 +123,12 @@
 		else if(istype(A,/obj/effect/plant))
 			var/obj/effect/plant/P = A
 			P.die_off()
+
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/material/twohanded/fireaxe/pre_attack(var/mob/living/target, var/mob/living/user)
+	if(istype(target))
+		cleave(user, target)
+	..()
 
 /obj/item/weapon/material/twohanded/fireaxe/scythe
 	icon_state = "scythe0"

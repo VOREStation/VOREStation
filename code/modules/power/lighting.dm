@@ -329,6 +329,9 @@
 	broken()
 	return 1
 
+/obj/machinery/light/blob_act()
+	broken()
+
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/proc/seton(var/s)

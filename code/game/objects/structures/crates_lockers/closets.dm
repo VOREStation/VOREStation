@@ -185,6 +185,9 @@
 					A.forceMove(src.loc)
 				qdel(src)
 
+/obj/structure/closet/blob_act()
+	damage(100)
+
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
 	if(health <= 0)
