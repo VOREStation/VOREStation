@@ -7,7 +7,7 @@
 	genomecost = 2
 	verbpath = /mob/proc/changeling_escape_restraints
 
-//Escape Cuffs
+//Escape Cuffs. By design this does not escape from straight jackets
 /mob/proc/changeling_escape_restraints()
 	set category = "Changeling"
 	set name = "Escape Restraints (40)"
@@ -27,7 +27,7 @@
 
 	changeling.chem_charges -= 40
 
-	to_chat(C,"<span class='notice'>We slip contort our extremities and slip our cuffs.</span>")
+	to_chat(C,"<span class='notice'>We contort our extremities and slip our cuffs.</span>")
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	if(C.handcuffed)
 		var/obj/item/weapon/W = C.handcuffed
