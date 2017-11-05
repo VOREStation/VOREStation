@@ -12,16 +12,16 @@
 	mannequin.dir = NORTH
 	var/icon/stamp = getFlatIcon(mannequin)
 	stamp.Scale(stamp.Width()*size_multiplier,stamp.Height()*size_multiplier)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 65-stamp.Width()/2, 5)
+	preview_icon.Blend(stamp, ICON_OVERLAY, 64-stamp.Width()/2, 5)
 
 	mannequin.dir = WEST
 	stamp = getFlatIcon(mannequin)
 	stamp.Scale(stamp.Width()*size_multiplier,stamp.Height()*size_multiplier)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 15-stamp.Width()/2, 5)
+	preview_icon.Blend(stamp, ICON_OVERLAY, 16-stamp.Width()/2, 5)
 
 	mannequin.dir = SOUTH
 	stamp = getFlatIcon(mannequin)
 	stamp.Scale(stamp.Width()*size_multiplier,stamp.Height()*size_multiplier)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 115-stamp.Width()/2, 5)
+	preview_icon.Blend(stamp, ICON_OVERLAY, 112-stamp.Width()/2, 5)
 
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
