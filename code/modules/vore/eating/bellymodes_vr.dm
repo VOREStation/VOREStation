@@ -54,12 +54,10 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-				if(!istype(M,/mob/living/simple_animal/mouse))
-					owner.nutrition += 80
-				owner.nutrition += 20 // so eating dead mice gives you *something*.
+				owner.nutrition += 10*M.mob_size // dead mice 10, dead people 200 etc.
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 200
+					s_owner.cell.charge += 50*M.mob_size
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
