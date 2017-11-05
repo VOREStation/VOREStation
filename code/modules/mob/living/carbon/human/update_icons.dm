@@ -1162,14 +1162,19 @@ var/global/list/damage_icon_parts = list()
 	if(!tail_icon)
 		//generate a new one
 		var/species_tail_anim = species.get_tail_animation(src)
+		if(species.icobase_tail) species_tail_anim = species.icobase //VOREStation Code
 		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
 		tail_icon = new/icon(species_tail_anim)
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+		//VOREStation Code Start
+		if(species.color_mult)
+			tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
+		else
+			tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 		// The following will not work with animated tails.
 		var/use_species_tail = species.get_tail_hair(src)
 		if(use_species_tail)
 			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY) //VOREStation Edit
 			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		tail_icon_cache[icon_key] = tail_icon
 
