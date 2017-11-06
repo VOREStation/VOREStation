@@ -6300,7 +6300,7 @@
 "crh" = (/obj/structure/table/rack{dir = 4},/turf/simulated/floor/tiled,/area/vacant/vacant_shop)
 "cri" = (/obj/structure/disposalpipe/segment,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled,/area/hallway/primary/central_three)
 "crj" = (/obj/machinery/door/firedoor/glass,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled,/area/hallway/primary/central_three)
-"crk" = (/obj/structure/closet/crate,/obj/item/stack/material/gold,/obj/item/weapon/storage/belt/champion,/turf/simulated/floor/tiled/dark,/area/security/nuke_storage)
+"crk" = (/obj/structure/closet/crate,/obj/item/stack/material/silver,/obj/item/stack/material/silver,/obj/item/stack/material/silver,/obj/item/stack/material/gold,/obj/item/stack/material/gold,/obj/item/stack/material/gold,/obj/item/weapon/storage/belt/champion,/turf/simulated/floor/tiled/dark,/area/security/nuke_storage)
 "crl" = (/obj/structure/closet/secure_closet/freezer/money,/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -24},/obj/item/weapon/storage/secure/briefcase/money{desc = "An sleek tidy briefcase."; name = "secure briefcase"},/obj/structure/cable,/turf/simulated/floor/tiled/dark,/area/security/nuke_storage)
 "crm" = (/obj/effect/landmark{name = "xeno_spawn"; pixel_x = -1},/turf/simulated/floor/tiled/dark,/area/security/nuke_storage)
 "crn" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/obj/machinery/light/small{dir = 1},/turf/simulated/floor,/area/maintenance/medbay_aft)
