@@ -298,6 +298,15 @@
 	name = "speedloader (.38 rubber)"
 	path =/obj/item/ammo_magazine/s38/rubber
 
+/datum/category_item/autolathe/arms/speedloader_45
+	name = "speedloader (.45)"
+	path = /obj/item/ammo_magazine/s45
+	hidden = 1
+
+/datum/category_item/autolathe/arms/speedloader_45r
+	name = "speedloader (.45 rubber)"
+	path = /obj/item/ammo_magazine/s45/rubber
+
 // Commented out until metal exploits with autolathe is fixed.
 /*/datum/category_item/autolathe/arms/pistol_clip_45
 	name = "ammo clip (.45)"
