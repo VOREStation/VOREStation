@@ -350,7 +350,7 @@
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
 
-/datum/sprite_accessory/tail/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
+/datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
 	name = "pharoah hound tail (Shock Diamond)"
 	desc = ""
 	icon_state = "shock"
