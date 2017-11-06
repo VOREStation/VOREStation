@@ -324,7 +324,7 @@
 		name = "Overeye Long"
 		icon_state = "hair_longovereye"
 
-	fag
+	flowhair
 		name = "Flow Hair"
 		icon_state = "hair_f"
 
