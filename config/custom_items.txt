@@ -411,7 +411,7 @@ item_path: /obj/item/weapon/card/id/fluff/amaya
 
 {
 ckey: kisukegema
-character_name: Kisuke 'The Nerd' Gema
+character_name: Kisuke Gema
 item_path: /obj/item/clothing/glasses/omnihud/kamina
 }
 
