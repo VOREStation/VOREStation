@@ -349,7 +349,13 @@
 	var/desc = "You should not see this..."
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
-	
+
+/datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
+	name = "pharoah hound tail (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
+
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
 	name = "large feathered wings (colorable)"
 	desc = ""
@@ -816,12 +822,6 @@
 	icon_state = "ztail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/shock //Leaving this since it was too hard to split the wings from the tail.
-	name = "pharoah hound tail (Shock Diamond)"
-	desc = ""
-	icon_state = "shock"
-	ckeys_allowed = list("icowom")
 
 /datum/sprite_accessory/tail/snaketail
 	name = "snake tail, colorable"
