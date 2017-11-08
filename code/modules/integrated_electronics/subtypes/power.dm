@@ -62,6 +62,10 @@
 					transfer_amount *= 0.8 // Losses due to distance.
 
 				if(cell.fully_charged())
+					set_pin_data(IC_OUTPUT, 1, cell.charge)
+					set_pin_data(IC_OUTPUT, 2, cell.maxcharge)
+					set_pin_data(IC_OUTPUT, 3, cell.percent())
+					push_data()
 					return FALSE
 
 				if(transfer_amount && assembly.draw_power(amount_to_move)) // CELLRATE is already handled in draw_power()
@@ -71,6 +75,7 @@
 				set_pin_data(IC_OUTPUT, 1, cell.charge)
 				set_pin_data(IC_OUTPUT, 2, cell.maxcharge)
 				set_pin_data(IC_OUTPUT, 3, cell.percent())
+				push_data()
 				activate_pin(2)
 				return TRUE
 	return FALSE
