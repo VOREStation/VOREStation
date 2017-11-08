@@ -629,6 +629,13 @@ req_access = 1
 }
 
 {
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
+req_access = 1
+}
+
+{
 ckey: silvertalismen
 character_name: Tasy Ruffles
 item_path: /obj/item/clothing/under/sexyclown
