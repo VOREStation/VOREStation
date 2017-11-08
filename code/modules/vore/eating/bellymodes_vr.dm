@@ -57,7 +57,7 @@
 				owner.nutrition += 20 // so eating dead mobs gives you *something* (that's 0.66u nutriment yo)
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 25*M.mob_size
+					s_owner.cell.charge += 200
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
