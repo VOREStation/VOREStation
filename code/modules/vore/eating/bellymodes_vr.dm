@@ -54,10 +54,10 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-				owner.nutrition += 20 // so eating dead mobs gives you *something*.
+				owner.nutrition += 5*M.mob_size // Dead mice 5, dead people 100 etc. Miniscule amount, but come on, just one ingested unit of nutriment reagent gives 30 points (Chemistry-Reagents-Food-Drinks.dm)
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 200
+					s_owner.cell.charge += 25*M.mob_size
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -101,8 +101,8 @@
 						items_preserved += ID
 						return
 					for(var/obj/item/SubItem in T)
-						if(istype(SubItem,/obj/item/weapon/reagent_containers/food/snacks))
-							var/obj/item/weapon/reagent_containers/food/snacks/SF = SubItem
+						if(istype(SubItem,/obj/item/weapon/reagent_containers/food))
+							var/obj/item/weapon/reagent_containers/food/SF = SubItem
 							if(istype(owner,/mob/living/carbon/human))
 								var/mob/living/carbon/human/howner = owner
 								SF.reagents.trans_to_holder(howner.ingested, (SF.reagents.total_volume * 0.3), 1, 0)
@@ -111,16 +111,16 @@
 						SubItem.gurglecontaminate()
 						if(istype(SubItem,/obj/item/weapon/storage))
 							for(var/obj/item/SubSubItem in SubItem)
-								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food/snacks))
-									var/obj/item/weapon/reagent_containers/food/snacks/SSF = SubSubItem
+								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food))
+									var/obj/item/weapon/reagent_containers/food/SSF = SubSubItem
 									if(istype(owner,/mob/living/carbon/human))
 										var/mob/living/carbon/human/howner = owner
 										SSF.reagents.trans_to_holder(howner.ingested, (SSF.reagents.total_volume * 0.3), 1, 0)
 									internal_contents -= SSF
 									qdel(SSF)
 								SubSubItem.gurglecontaminate()
-					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
-						var/obj/item/weapon/reagent_containers/food/snacks/F = T
+					if(istype(T, /obj/item/weapon/reagent_containers/food)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
+						var/obj/item/weapon/reagent_containers/food/F = T
 						if(istype(owner,/mob/living/carbon/human))
 							var/mob/living/carbon/human/howner = owner
 							F.reagents.trans_to_holder(howner.reagents, (F.reagents.total_volume * 0.3), 1, 0)
@@ -136,6 +136,12 @@
 							internal_contents += M
 						internal_contents -= H
 						qdel(H)
+					if(istype(T,/obj/item/organ))
+						owner.nutrition += (50)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 100
+						qdel(T)
 					else
 						items_preserved += T
 						T.gurglecontaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
@@ -197,6 +203,12 @@
 							internal_contents += M
 						internal_contents -= H
 						qdel(H)
+					if(istype(T,/obj/item/organ))
+						owner.nutrition += (50)
+						if(isrobot(owner))
+							s_owner = owner
+							s_owner.cell.charge += 100
+						qdel(T)
 					else
 						owner.nutrition += (1 * T.w_class)
 						if(isrobot(owner))
