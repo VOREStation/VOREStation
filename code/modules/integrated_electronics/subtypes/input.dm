@@ -110,8 +110,10 @@
 
 
 /obj/item/integrated_circuit/input/adv_med_scanner
-	name = "integrated advanced medical analyser"
-	desc = "A very small version of the medbot's medical analyser.  This allows the machine to know how healthy someone is.  \
+
+	name = "integrated advanced medical analyzer"
+	desc = "A very small version of the medibot's medical analyzer.  This allows the machine to know how healthy someone is.  \
+
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
@@ -134,7 +136,9 @@
 	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
+
 	if(H in view(get_turf(H))) // Like medbot's analyzer it can be used in range..
+
 		var/total_health = round(H.health/H.getMaxHealth(), 0.01)*100
 		var/missing_health = H.getMaxHealth() - H.health
 
@@ -617,7 +621,6 @@
 				set_pin_data(IC_OUTPUT, 3, cell.percent())
 	push_data()
 	activate_pin(2)
-
 
 /obj/item/integrated_circuit/input/atmo_scanner
 	name = "integrated atmospheric analyser"
