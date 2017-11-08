@@ -54,10 +54,10 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-				owner.nutrition += 10*M.mob_size // dead mice 10, dead people 200 etc.
+				owner.nutrition += 5*M.mob_size // Dead mice 5, dead people 100 etc. Miniscule amount, but come on, just one ingested unit of nutriment reagent gives 30 points (Chemistry-Reagents-Food-Drinks.dm)
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 50*M.mob_size
+					s_owner.cell.charge += 25*M.mob_size
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
