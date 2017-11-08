@@ -137,7 +137,7 @@
 						internal_contents -= H
 						qdel(H)
 					if(istype(T,/obj/item/organ))
-						owner.nutrition += (20)
+						owner.nutrition += (50)
 						if(isrobot(owner))
 							s_owner = owner
 							s_owner.cell.charge += 100
@@ -204,7 +204,7 @@
 						internal_contents -= H
 						qdel(H)
 					if(istype(T,/obj/item/organ))
-						owner.nutrition += (20)
+						owner.nutrition += (50)
 						if(isrobot(owner))
 							s_owner = owner
 							s_owner.cell.charge += 100
