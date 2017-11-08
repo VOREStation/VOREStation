@@ -54,7 +54,7 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-				owner.nutrition += 5*M.mob_size // Dead mice 5, dead people 100 etc. Miniscule amount, but come on, just one ingested unit of nutriment reagent gives 30 points (Chemistry-Reagents-Food-Drinks.dm)
+				owner.nutrition += 20 // so eating dead mobs gives you *something* (that's 0.66u nutriment yo)
 				if(isrobot(owner))
 					s_owner = owner
 					s_owner.cell.charge += 25*M.mob_size
@@ -137,10 +137,7 @@
 						internal_contents -= H
 						qdel(H)
 					if(istype(T,/obj/item/organ))
-						owner.nutrition += (50)
-						if(isrobot(owner))
-							s_owner = owner
-							s_owner.cell.charge += 100
+						owner.nutrition += (100)
 						qdel(T)
 					else
 						items_preserved += T
@@ -204,10 +201,7 @@
 						internal_contents -= H
 						qdel(H)
 					if(istype(T,/obj/item/organ))
-						owner.nutrition += (50)
-						if(isrobot(owner))
-							s_owner = owner
-							s_owner.cell.charge += 100
+						owner.nutrition += (100)
 						qdel(T)
 					else
 						owner.nutrition += (1 * T.w_class)
@@ -286,6 +280,9 @@
 						internal_contents += M
 					internal_contents -= H
 					qdel(H)
+				if(istype(T,/obj/item/organ))
+					owner.nutrition += (100)
+					qdel(T)
 				else
 					owner.nutrition += (1 * T.w_class)
 					if(isrobot(owner))
