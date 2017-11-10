@@ -97,7 +97,7 @@
 	var_changes = list("brute_mod" = 0.5)
 
 /datum/trait/minor_burn_resist
-	name = "Minor Brute Resist"
+	name = "Minor Burn Resist"
 	desc = "Adds 15% resistance to burn damage sources."
 	cost = 1
 	var_changes = list("burn_mod" = 0.85)
