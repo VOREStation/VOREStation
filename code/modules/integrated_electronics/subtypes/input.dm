@@ -340,6 +340,7 @@
 	// Set the pins so when someone sees them, they won't show as null
 	set_pin_data(IC_INPUT, 1, frequency)
 	set_pin_data(IC_INPUT, 2, code)
+	push_data()
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)
@@ -468,6 +469,7 @@
 	set_pin_data(IC_OUTPUT, 1, null)
 	set_pin_data(IC_OUTPUT, 2, null)
 	if(!T)
+		push_data()
 		return
 
 	set_pin_data(IC_OUTPUT, 1, T.x)
@@ -490,7 +492,7 @@
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
-	activators = list("on message received" = IC_PINTYPE_PULSE_IN, "on translation" = IC_PINTYPE_PULSE_OUT)
+	activators = list("on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
