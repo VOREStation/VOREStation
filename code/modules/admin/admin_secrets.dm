@@ -100,18 +100,18 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_item/admin_secret
 	category = /datum/admin_secret_category/admin_secrets
 	log = 0
-	permissions = R_ADMIN
+	permissions = R_ADMIN|R_EVENT
 
 /datum/admin_secret_item/random_event
 	category = /datum/admin_secret_category/random_events
-	permissions = R_FUN
+	permissions = R_FUN|R_EVENT
 	warn_before_use = 1
 
 /datum/admin_secret_item/fun_secret
 	category = /datum/admin_secret_category/fun_secrets
-	permissions = R_FUN
+	permissions = R_FUN|R_EVENT
 	warn_before_use = 1
 
 /datum/admin_secret_item/final_solution
 	category = /datum/admin_secret_category/final_solutions
-	permissions = R_FUN|R_SERVER|R_ADMIN
+	permissions = R_FUN|R_SERVER|R_ADMIN|R_EVENT

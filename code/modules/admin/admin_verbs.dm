@@ -8,7 +8,6 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
-	/client/proc/cmd_eventM_check_new_players,
 //	/client/proc/deadchat				//toggles deadchat on/off,
 //	/client/proc/toggle_ahelp_sound,
 	)
@@ -336,11 +335,11 @@ var/list/admin_verbs_mod = list(
 )
 
 var/list/admin_verbs_event_manager = list(
+	/client/proc/cmd_event_say,
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/admin_ghost,
-	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
 	/client/proc/dsay,
 	/client/proc/cmd_admin_subtle_message,
@@ -454,9 +453,6 @@ var/list/admin_verbs_event_manager = list(
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-
-
-
 /client/proc/admin_ghost()
 	set category = "Admin"
 	set name = "Aghost"
@@ -467,7 +463,7 @@ var/list/admin_verbs_event_manager = list(
 		if(ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
 		else
-			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, event managers that use adminHUD while aghosting are not permitted to enter their corpse again</font>"
+			to_chat(ghost, "<font color='red'>Error:  Aghost:  Can't reenter corpse.</font>")
 			return
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

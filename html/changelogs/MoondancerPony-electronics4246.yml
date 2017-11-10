@@ -1,0 +1,5 @@
+author: MoondancerPony
+delete-after: True
+changes: 
+  - bugfix: "Fixed a mislabeled pulse pin on the microphone."
+  - bugfix: "Fixed an issue with reference pins and multiplexers, and reference pins in general."
