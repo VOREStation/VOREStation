@@ -29,7 +29,6 @@
 /datum/gear/accessory/wallet
 	display_name = "wallet, orange"
 	path = /obj/item/weapon/storage/wallet/random
-	cost = 1 //VOREStation Edit
 
 /datum/gear/accessory/wallet_poly
 	display_name = "wallet, polychromic"
