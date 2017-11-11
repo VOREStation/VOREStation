@@ -11,7 +11,7 @@
 	var/weight_vr = 137		// bodyweight of character (pounds, because I'm not doing the math again -Spades)
 	var/weight_gain = 100	// Weight gain rate.
 	var/weight_loss = 50	// Weight loss rate.
-	var/fuzzy = 0			// Preference toggle for sharp/fuzzy icon. Default sharp.
+	var/fuzzy = 1			// Preference toggle for sharp/fuzzy icon. Default sharp.
 
 // Definition of the stuff for Sizing
 /datum/category_item/player_setup_item/vore/size
@@ -45,11 +45,12 @@
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss
 	character.fuzzy				= pref.fuzzy
+	character.appearance_flags	|= pref.fuzzy*PIXEL_SCALE
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"
 	. += "<b>Scale:</b> <a href='?src=\ref[src];size_multiplier=1'>[round(pref.size_multiplier*100)]%</a><br>"
-	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
+	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Sharp" : "Fuzzy"]</b></a><br>"
 	. += "<br>"
 	. += "<b>Relative Weight:</b>  <a href='?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
 	. += "<b>Weight Gain Rate:</b> <a href='?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
