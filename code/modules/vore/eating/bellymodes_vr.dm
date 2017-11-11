@@ -137,7 +137,7 @@
 						internal_contents -= H
 						qdel(H)
 					if(istype(T,/obj/item/organ))
-						owner.nutrition += (100)
+						owner.nutrition += (66)
 						qdel(T)
 					else
 						items_preserved += T
@@ -201,7 +201,7 @@
 						internal_contents -= H
 						qdel(H)
 					if(istype(T,/obj/item/organ))
-						owner.nutrition += (100)
+						owner.nutrition += (66)
 						qdel(T)
 					else
 						owner.nutrition += (1 * T.w_class)
@@ -281,7 +281,7 @@
 					internal_contents -= H
 					qdel(H)
 				if(istype(T,/obj/item/organ))
-					owner.nutrition += (100)
+					owner.nutrition += (66)
 					qdel(T)
 				else
 					owner.nutrition += (1 * T.w_class)
