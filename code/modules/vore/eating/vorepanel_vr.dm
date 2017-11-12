@@ -498,6 +498,8 @@
 			//if(H.species.vore_numbing)
 				//menu_list += DM_DIGEST_NUMB
 			menu_list += selected.transform_modes
+		if(istype(usr, /mob/living/silicon))
+			menu_list += selected.cyborg_modes
 
 		if(selected.digest_modes.len == 1) // Don't do anything
 			return 0

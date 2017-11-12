@@ -720,3 +720,34 @@
 				continue
 
 			put_in_egg(P,1)
+
+///////////////////////////// DM_TRANSFORM_INTO_CYBORG /////////////////////////////
+	if(digest_mode == DM_TRANSFORM_INTO_CYBORG && isrobot(owner))
+		var/mob/living/silicon/O = owner //Allows AI to turn people in robots if she gets them into their core. Don't ask how or why.
+		for (var/mob/living/carbon/human/P in internal_contents)
+			if(P.stat == DEAD) //You can't change the bodies of the dead into the living! You absolute madman!
+				continue
+			if(istype(usr, /mob/living/silicon/robot)) //For power charge for borgs.
+				var/mob/living/silicon/robot/R = owner
+				var/obj/item/weapon/cell/cell = R.cell
+				if(R.cell.charge < 1250) //It costs 1000. We don't want it to be something you can do infinitely!
+					to_chat(R, "<span class='notice'>You lack a sufficient amount of charge to transform your prey! You must have at <i>least</i> 1250 charge!</span>")
+					continue
+				else
+					cell.use(1000)
+
+			if(ishuman(P)) //Unneeded check, but just in case.
+				to_chat(P, "<span class='notice'>You feel extremely odd as your body is changed into a cyborg!</span>")
+				to_chat(O, "<span class='notice'>You feel somewhat drained as you turn your captor's body into a cyborg!</span>")
+				internal_contents -= P
+				for(var/obj/item/items in P)
+					P.drop_from_inventory(items) //Drop all items like PDA, ID, clothing, etc into stomach for digestion/coughing up.
+					internal_contents |= items
+				for(var/obj/item/organ/organs in internal_contents)
+					internal_contents -= organs //Because organs give too much nutrition.
+				for(var/obj/item/keep in internal_contents)
+					keep.loc = src //Prevents the game from deleting them.
+				var/mob/living/silicon/robot/M = P.Robotize()
+				internal_contents += M
+
+		return
