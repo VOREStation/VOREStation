@@ -81,7 +81,11 @@
 	else
 		M.forceMove(get_turf(src))
 
-/obj/machinery/door/stumble_into(mob/living/M)
+/obj/machinery/door/window/stumble_into(mob/living/M)
+	..()
+	bumpopen(M)
+
+/obj/machinery/door/airlock/stumble_into(mob/living/M)
 	..()
 	bumpopen(M)
 
