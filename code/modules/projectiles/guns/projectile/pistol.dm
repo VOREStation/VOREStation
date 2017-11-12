@@ -23,7 +23,7 @@
 			icon_state = "[initial(icon_state)]-e"
 
 /obj/item/weapon/gun/projectile/colt/detective
-	desc = "A Martian recreation of an old Terran pistol. Uses .45 rounds."
+	desc = "A Martian recreation of an old pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
@@ -60,7 +60,8 @@
 	options["H&K VP"] = "VP78"
 	options["P08 Luger"] = "p08"
 	options["P08 Luger, Brown"] = "p08b"
-	var/choice = input(M,"What do you want the gun's sprite to be?","Resprite Gun") in options
+	options["Glock 37"] = "enforcer_black"
+	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		unique_reskin = options[choice]

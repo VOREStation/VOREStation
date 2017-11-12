@@ -411,7 +411,7 @@ item_path: /obj/item/weapon/card/id/fluff/amaya
 
 {
 ckey: kisukegema
-character_name: Kisuke 'The Nerd' Gema
+character_name: Kisuke Gema
 item_path: /obj/item/clothing/glasses/omnihud/kamina
 }
 
@@ -625,6 +625,13 @@ req_access = 1
 ckey: silencedmp5a5
 character_name: Serdykov Antoz
 item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+req_access = 1
+}
+
+{
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
 req_access = 1
 }
 
