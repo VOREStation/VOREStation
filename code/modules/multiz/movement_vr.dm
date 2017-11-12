@@ -34,7 +34,7 @@
 /mob/handle_fall(var/turf/landing)
 	var/mob/drop_mob= locate(/mob, loc)
 	if(drop_mob)
-		lattice.visible_message("<span class='danger'>\The [drop_mob] is dropped onto by \the [src]!</span>")
+		drop_mob.visible_message("<span class='danger'>\The [drop_mob] is dropped onto by \the [src]!</span>")
 		drop_mob.fall_impact(src)
 
 	// Then call parent to have us actually fall
