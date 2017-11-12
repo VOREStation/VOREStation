@@ -1,52 +1,46 @@
 
-/*/mob/handle_fall(var/turf/landing)
-	for(var/mob/M in landing)
-		if(M != src && M.CheckFall(src))
-			return 1
-	for(var/atom/A in landing)
-		if(!A.CanPass(src, src.loc, 1, 0))
-			return FALSE
-	// TODO - Stairs should operate thru a different mechanism, not falling, to allow side-bumping.
-
-	// Now lets move there!
-	if(!Move(landing))
-		return 1
-
-	// Detect if we made a silent landing.
-	if(locate(/obj/structure/stairs) in landing)
-		return 1
-
-	if(isopenspace(oldloc))
-		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
-
-	// If the turf has density, we give it first dibs
-	if (landing.density && landing.CheckFall(src))
-		return
-
-	// First hit objects in the turf!
-	for(var/atom/movable/A in landing)
-		if(A != src && A.CheckFall(src))
-			return
-
-	// If none of them stopped us, then hit the turf itself
-	landing.CheckFall(src)
-*/
-/mob/handle_fall(var/turf/landing)
+/mob/living/handle_fall(var/turf/landing)
 	var/mob/drop_mob= locate(/mob, loc)
-	if(drop_mob)
-		drop_mob.visible_message("<span class='danger'>\The [drop_mob] is dropped onto by \the [src]!</span>")
+	if(drop_mob && drop_mob != src && ismob(drop_mob)) //Shitload of checks. This is because the game finds various ways to screw me over.
 		drop_mob.fall_impact(src)
 
 	// Then call parent to have us actually fall
 	return ..()
 /mob/CheckFall(var/atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
-
-/mob/fall_impact(var/atom/hit_atom)
-	if(ismob(hit_atom))
-		var/mob/M = hit_atom
-		M.visible_message("<span class='danger'>\The [src] falls onto \the [M]!</span>")
-		M.Weaken(8)
+/* //Leaving this here to show my previous iterations which failed.
+/mob/living/fall_impact(var/atom/hit_atom) //This is called even when a humanoid falls. Dunno why, it just does.
+	if(isliving(hit_atom)) //THIS WEAKENS THE PERSON FALLING & NOMS THE PERSON FALLEN ONTO. SRC is person fallen onto.  hit_atom is the person falling. Confusing.
+		var/mob/living/pred = hit_atom
+		pred.visible_message("<span class='danger'>\The [pred] falls onto \the [src]! FALL IMPACT MOB</span>")
+		pred.Weaken(8) //Stun the person you're dropping onto! You /are/ suffering massive damage for a single stun.
+		if(isliving(hit_atom) && isliving(src))
+			var/mob/living/prey = src
+			if(pred.can_be_drop_pred && prey.can_be_drop_prey) //Is person falling pred & person being fallen onto prey?
+				pred.feed_grabbed_to_self_falling_nom(pred,prey)
+			else if(prey.can_be_drop_pred && pred.can_be_drop_prey) //Is person being fallen onto pred & person falling prey
+				pred.feed_grabbed_to_self_falling_nom(prey,pred) //oh, how the tables have turned.
+*/
+/mob/zshadow/fall_impact(var/atom/hit_atom) //You actually "fall" onto their shadow, first.
+	/*
+	var/floor_below = src.loc.below //holy fuck
+	for(var/mob/M in floor_below.contents)
+		if(M && M != src) //THIS WEAKENS THE MOBS YOU'RE FALLING ONTO
+			M.visible_message("<span class='danger'>\The [src] drops onto \the [M]! FALL IMPACT SHADOW WEAKEN 8</span>")
+			M.Weaken(8)
+	*/
+	if(isliving(hit_atom)) //THIS WEAKENS THE PERSON FALLING & NOMS THE PERSON FALLEN ONTO. SRC is person fallen onto.  hit_atom is the person falling. Confusing.
+		var/mob/living/pred = hit_atom
+		pred.visible_message("<span class='danger'>\The [hit_atom] falls onto \the [src]!</span>")
+		pred.Weaken(8) //Stun the person you're dropping onto! You /are/ suffering massive damage for a single stun.
+		var/mob/living/prey = src.owner //The shadow's owner
+		if(isliving(prey))
+			if(pred.can_be_drop_pred && prey.can_be_drop_prey) //Is person falling pred & person being fallen onto prey?
+				pred.feed_grabbed_to_self_falling_nom(pred,prey)
+			else if(prey.can_be_drop_pred && pred.can_be_drop_prey) //Is person being fallen onto pred & person falling prey
+				pred.feed_grabbed_to_self_falling_nom(prey,pred) //oh, how the tables have turned.
+			else
+				prey.Weaken(8) //Just fall onto them if neither of the above apply.
 
 /mob/proc/CanZPass(atom/A, direction)
 	if(z == A.z) //moving FROM this turf
