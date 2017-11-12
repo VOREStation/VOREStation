@@ -23,6 +23,7 @@
 #define DM_SHRINK									"Shrink"
 #define DM_GROW									"Grow"
 #define DM_SIZE_STEAL								"Size Steal"
+#define DM_TRANSFORM_INTO_CYBORG					"Transform (Cyborg)"
 // Stance for hostile mobs to be in while devouring someone.
 #define HOSTILE_STANCE_EATING	99
 
