@@ -352,6 +352,11 @@
 		"You hear something slam into \the [landing].")
 	playsound(loc, "punch", 25, 1, -1)
 	var/damage = 15 // Because wounds heal rather quickly, 15 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
+	for(var/mob/M in landing.contents) //VOREStation Edit Start
+		if(M != src)
+			M.visible_message("<span class='danger'>\The [src] drops onto \the [M]!</span>")
+			M.Weaken(8)
+			damage = 5 //VOREStation Edit END
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
 	apply_damage(rand(0, damage), BRUTE, BP_TORSO)
 	apply_damage(rand(0, damage), BRUTE, BP_L_LEG)
