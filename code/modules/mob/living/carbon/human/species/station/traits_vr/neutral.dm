@@ -88,9 +88,3 @@
 	desc = "Someone thought it'd be hilarious to eat the snack wrappings too instead of having to look for a bin or just littering like an animal."
 	cost = 0
 	var_changes = list("trashcan" = 1)
-
-/datum/trait/hardfeet
-	name = "Hard Feet"
-	desc = "Do you feel like your nice clawed, scaled, hooved, armored, or otherwise just hella calloused feet need more freedom without the fear of glass shards?"
-	cost = 1
-	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
