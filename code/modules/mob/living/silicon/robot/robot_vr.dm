@@ -9,11 +9,21 @@
 
 /mob/living/silicon/robot/updateicon()
 	..()
-	if(stat == CONSCIOUS)
-		if(sleeper_g == 1)
-			overlays += "[module_sprites[icontype]]-sleeper_g"
-		if(sleeper_r == 1)
-			overlays += "[module_sprites[icontype]]-sleeper_r"
+	if(icon == 'icons/mob/widerobot_vr.dmi' || 'icons/mob/62x62robot_vr.dmi')
+		if(stat == CONSCIOUS)
+			if(sleeper_g == 1)
+				overlays += "[module_sprites[icontype]]-sleeper_g"
+			if(sleeper_r == 1)
+				overlays += "[module_sprites[icontype]]-sleeper_r"
+			if(resting)
+				overlays.Cut() // Hide that gut for it has no ground sprite yo.
+				icon_state = "[module_sprites[icontype]]-rest"
+			else
+				icon_state = module_sprites[icontype]
+		else if(stat == DEAD)
+			icon_state = "[module_sprites[icontype]]-wreck"
+
+
 
 /mob/living/silicon/robot/Move(a, b, flag)
 
@@ -49,11 +59,3 @@
 							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
 		return
 	return
-
-/mob/living/silicon/robot/updateicon() // Dogborg wreck icons.
-	..()
-	if(icon == 'icons/mob/widerobot_vr.dmi' || 'icons/mob/62x62robot_vr.dmi')
-		if(stat == DEAD)
-			icon_state = "[module_sprites[icontype]]-wreck"
-		else
-			icon_state = module_sprites[icontype]
