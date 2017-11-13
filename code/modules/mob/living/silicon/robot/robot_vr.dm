@@ -49,3 +49,11 @@
 							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"//Again travis what the fuck? You and your random unrelated bugs.
 		return
 	return
+
+/mob/living/silicon/robot/updateicon() // Dogborg wreck icons.
+	..()
+	if(icon == 'icons/mob/widerobot_vr.dmi' || 'icons/mob/62x62robot_vr.dmi')
+		if(stat == DEAD)
+			icon_state = "[module_sprites[icontype]]-wreck"
+		else
+			icon_state = module_sprites[icontype]
