@@ -92,5 +92,5 @@
 /datum/trait/hardfeet
 	name = "Hard Feet"
 	desc = "Do you feel like your nice clawed, scaled, hooved, armored, or otherwise just hella calloused feet need more freedom without the fear of glass shards?"
-	cost = 0
+	cost = 1
 	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
