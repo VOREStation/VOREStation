@@ -85,6 +85,6 @@
 
 /datum/trait/trashcan
 	name = "Trash Can"
-	desc = "Someone thought it'd be hilarious to eat the snack wrappings too instead of having to look for a bin or just littering like an animal."
+	desc = "Allows you to dispose of the snack wrappings on the go instead of having to look for a bin or littering like an animal."
 	cost = 0
 	var_changes = list("trashcan" = 1)
