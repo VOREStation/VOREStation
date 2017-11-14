@@ -120,6 +120,13 @@ default behaviour is:
 			// VOREStation Edit - Begin
 			// Handle grabbing, stomping, and such of micros!
 			if(handle_micro_bump_other(tmob)) return
+			// Plow that nerd.
+			if(ishuman(tmob))
+				var/mob/living/carbon/human/H = tmob
+				if(H.species.lightweight == 1 && prob(50))
+					H.Weaken(20)
+					now_pushing = 0
+					return
 			// VOREStation Edit - End
 
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
