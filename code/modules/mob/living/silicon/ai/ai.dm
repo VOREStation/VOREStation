@@ -17,10 +17,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/show_laws_verb,
 	/mob/living/silicon/ai/proc/toggle_acceleration,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement,
-	/mob/living/silicon/ai/proc/toggle_hidden_verbs,
-)
-
-var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.com/1172/,
 	/mob/living/silicon/ai/proc/ai_announcement,
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_camera_track,
@@ -794,17 +790,6 @@ var/list/ai_verbs_hidden = list( // For why this exists, refer to https://xkcd.c
 	var/obj/item/weapon/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
-
-/mob/living/silicon/ai/proc/toggle_hidden_verbs()
-	set name = "Toggle Hidden Verbs"
-	set category = "AI Settings"
-
-	if(/mob/living/silicon/ai/proc/ai_announcement in verbs)
-		src << "Extra verbs toggled off."
-		verbs -= ai_verbs_hidden
-	else
-		src << "Extra verbs toggled on."
-		verbs |= ai_verbs_hidden
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO
