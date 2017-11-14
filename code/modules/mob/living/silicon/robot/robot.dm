@@ -394,6 +394,11 @@
 		C.toggled = 1
 		src << "<font color='red'>You enable [C.name].</font>"
 
+/mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
+	set category = "Robot Commands"
+	set name = "Emit Sparks"
+	spark_system.start()
+
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
 	// if you have a jetpack, show the internal tank pressure
@@ -637,7 +642,8 @@
 
 	else
 		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
-			spark_system.start()
+			if(W.force > 0)
+				spark_system.start()
 		return ..()
 
 /mob/living/silicon/robot/attack_hand(mob/user)
