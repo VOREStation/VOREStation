@@ -284,6 +284,9 @@
 	dat += "<br><a href='?src=\ref[src];toggle_nif=1'>Set NIF concealment</a>" //These two get their own, custom row.
 	dat += "<a href='?src=\ref[src];set_nif_flavor=1'>Set NIF Examine Message.</a>"
 
+	dat += "<br><a href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Drop-nom Prey Mode</a>" //These two get their own, custom row, too.
+	dat += "<a href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Drop-nom Pred Mode</a>"
+
 	//Returns the dat html to the vore_look
 	return dat
 
@@ -750,6 +753,26 @@
 			user.nif_examine = new_nif_examine
 		else //Returned null
 			return 0
+
+	if(href_list["toggle_dropnom_pred"])
+		var/choice = alert(user, "You are currently [user.can_be_drop_pred ? " able to eat prey that fall from above or that you fall onto" : "not able to eat prey that fall from above or that you fall onto."]", "", "Be Pred", "Cancel", "Don't be Pred")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Be Pred")
+				user.can_be_drop_pred = 1
+			if("Don't be Pred")
+				user.can_be_drop_pred = 0
+
+	if(href_list["toggle_dropnom_prey"])
+		var/choice = alert(user, "You are currently [user.can_be_drop_prey ? "able to be eaten." : "not able to be eaten."]", "", "Be Prey", "Cancel", "Don't Be Prey")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Be Prey")
+				user.can_be_drop_prey = 1
+			if("Don't Be Prey")
+				user.can_be_drop_prey = 0
 
 	if(href_list["toggledg"])
 		var/choice = alert(user, "This button is for those who don't like being digested. It can make you undigestable. Don't abuse this button by toggling it back and forth to extend a scene or whatever, or you'll make the admins cry. Digesting you is currently: [user.digestable ? "Allowed" : "Prevented"]", "", "Allow Digestion", "Cancel", "Prevent Digestion")

@@ -468,6 +468,13 @@
 	desc = ""
 	icon_state = "snag-backplate"
 
+/datum/sprite_accessory/wing/nevrean
+	name = "nevrean wings/fantail"
+	desc = ""
+	icon_state = "nevrean_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /*
 ////////////////////////////
 /  =--------------------=  /

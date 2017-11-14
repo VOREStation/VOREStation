@@ -33,10 +33,13 @@
 /datum/gear/accessory/wallet_poly
 	display_name = "wallet, polychromic"
 	path = /obj/item/weapon/storage/wallet/poly
+	cost = 0 //VOREStation Edit
+	
 
 /datum/gear/accessory/wallet/womens
 	display_name = "wallet, womens"
 	path = /obj/item/weapon/storage/wallet/womens
+	cost = 0 //VOREStation Edit
 
 /datum/gear/accessory/wallet/womens/New()
 	..()
