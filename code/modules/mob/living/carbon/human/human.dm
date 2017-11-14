@@ -15,6 +15,8 @@
 	var/spit_name = null //String
 	var/last_spit = 0 //Timestamp.
 
+	var/can_defib = 1	//Horrible damage (like beheadings) will prevent defibbing organics.
+
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
 	if(!dna)
