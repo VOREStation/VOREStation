@@ -14,7 +14,7 @@
 			user.drop_item()
 			var/belly = H.vore_selected
 			var/datum/belly/selected = H.vore_organs[belly]
-			src.forcemove(H)
+			src.loc = H
 			selected.internal_contents += src
 			to_chat(H, "<span class='notice'>You can taste the flavor of garbage. Wait what?</span>")
 			return
@@ -26,7 +26,7 @@
 			user.drop_item()
 			var/belly = R.vore_selected
 			var/datum/belly/selected = R.vore_organs[belly]
-			src.forcemove(R)
+			src.loc = R
 			selected.internal_contents += src // Too many hoops and obstacles to stick it into the sleeper module.
 			R.visible_message("<span class='warning'>[user] feeds [R] with [src]!</span>")
 			return
