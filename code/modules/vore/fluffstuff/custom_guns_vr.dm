@@ -419,7 +419,7 @@
 // ------------ Energy Luger ------------
 /obj/item/weapon/gun/energy/gun/eluger
 	name = "energy Luger"
-	desc = "The finest sidearm produced by RauMauser; this pistol can punch a hole through inch thick steel plating. This ain't your great-grand-daddy's Luger! Can switch between stun and kill."
+	desc = "The finest sidearm produced by RauMauser. Although its battery cannot be removed, its ergonomic design makes it easy to shoot, allowing for rapid follow-up shots. It also has the ability to toggle between stun and kill."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "elugerstun100"
 	item_state = "gun"
