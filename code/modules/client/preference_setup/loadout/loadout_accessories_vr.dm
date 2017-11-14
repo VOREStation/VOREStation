@@ -50,6 +50,11 @@
     path = /obj/item/weapon/storage/backpack/saddlebag_common/robust
     slot = slot_back
 
+/datum/gear/accessory/saddlebag_common/vest
+    display_name = "Taur Duty Vest (backpack)"
+    path = /obj/item/weapon/storage/backpack/saddlebag_common/vest
+    slot = slot_back
+
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"
 	path = /obj/item/weapon/storage/box/khcrystal
