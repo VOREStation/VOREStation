@@ -1134,6 +1134,9 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
+	if(species.icon_scale != 1)
+		update_transform()
+
 	if(species.base_color && default_colour)
 		//Apply colour.
 		r_skin = hex2num(copytext(species.base_color,2,4))
