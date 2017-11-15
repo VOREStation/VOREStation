@@ -204,7 +204,7 @@
 		new /obj/item/device/radio/headset/heads/cmo(src)
 		new /obj/item/device/radio/headset/heads/cmo/alt(src)
 		new /obj/item/device/flash(src)
-		new /obj/item/weapon/reagent_containers/hypospray(src)
+		new /obj/item/weapon/reagent_containers/hypospray/vial(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
 		new /obj/item/clothing/shoes/boots/winter/medical(src)
 		new /obj/item/weapon/storage/box/freezer(src)
