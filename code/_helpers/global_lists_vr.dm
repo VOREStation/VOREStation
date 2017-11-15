@@ -136,6 +136,7 @@ var/global/list/vore_sounds = list(
 		"None" = null)
 
 var/global/list/release_sounds = list(
+		"Splat" = 'sound/effects/splat.ogg',
 		"F cough" = 'sound/effects/mob_effects/f_cougha.ogg',
 		"M cough" = 'sound/effects/mob_effects/m_cougha.ogg',
 		"Synthcough" = 'sound/effects/mob_effects/m_machine_coughc.ogg',
