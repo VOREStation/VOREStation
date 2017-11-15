@@ -43,6 +43,13 @@ var/global/list/important_items = list(
 		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
 
 var/global/list/digestion_sounds = list(
+		"organic" = digest_organic,
+		"none" = digest_none/*, // NEED NOISES FOR THE REST,
+		"mech" = digest_mech,
+		"goop" = digest_goop,
+		"cyber" = digest_cyber*/)
+
+var/global/list/digest_organic = list(
 		'sound/vore/digest1.ogg',
 		'sound/vore/digest2.ogg',
 		'sound/vore/digest3.ogg',
@@ -56,7 +63,30 @@ var/global/list/digestion_sounds = list(
 		'sound/vore/digest11.ogg',
 		'sound/vore/digest12.ogg')
 
+var/global/list/digest_none = list(null)
+
+var/global/list/digest_mech = list(
+		'sound/items/poster_being_created.ogg',
+		'sound/items/pshred.ogg',
+		'sound/mecha/mechmove04.ogg') // TERRIBLE PRE-SOUND DESIGN PLACEHOLDERS
+
+var/global/list/digest_goop = list(
+		'sound/effects/slime_squish.ogg',
+		'sound/items/drink.ogg',
+		'sound/effects/slosh.ogg') // TERRIBLE PRE-SOUND DESIGN PLACEHOLDERS
+
+var/global/list/digest_cyber = list(
+		'sound/machines/boobeebeep.ogg',
+		'sound/machines/buzzbeep.ogg') // TERRIBLE PRE-SOUND DESIGN PLACEHOLDERS
+
 var/global/list/death_sounds = list(
+		"organic" = gdeath_organic,
+		"none" = gdeath_none/*, // NEED NOISES FOR THE REST,
+		"mech" = gdeath_mech,
+		"goop" = gdeath_goop,
+		"cyber" = gdeath_cyber*/)
+
+var/global/list/gdeath_organic = list(
 		'sound/vore/death1.ogg',
 		'sound/vore/death2.ogg',
 		'sound/vore/death3.ogg',
@@ -67,6 +97,18 @@ var/global/list/death_sounds = list(
 		'sound/vore/death8.ogg',
 		'sound/vore/death9.ogg',
 		'sound/vore/death10.ogg')
+
+var/global/list/gdeath_none = list(null)
+
+var/global/list/gdeath_mech = list(
+		'sound/mecha/mechdrill.ogg',
+		'sound/machines/juicer.ogg') // TERRIBLE PRE-SOUND DESIGN PLACEHOLDERS
+
+var/global/list/gdeath_goop = list(
+		'sound/effects/blobattack.ogg') // TERRIBLE PRE-SOUND DESIGN PLACEHOLDERS
+
+var/global/list/gdeath_cyber = list(
+		'sound/machines/ding.ogg') // TERRIBLE PRE-SOUND DESIGN PLACEHOLDERS
 
 var/global/list/hunger_sounds = list(
 		'sound/vore/growl1.ogg',
@@ -87,6 +129,29 @@ var/global/list/vore_sounds = list(
 		"Squish3" = 'sound/vore/squish3.ogg',
 		"Squish4" = 'sound/vore/squish4.ogg',
 		"Rustle (cloth)" = 'sound/effects/rustle5.ogg',
+		"Disposal unit" = 'sound/machines/disposalflush.ogg',
+		"Chew" = 'sound/items/eatfood.ogg',
+		"Shred" = 'sound/items/pshred.ogg',
+		"Firelock" = 'sound/machines/firelockopen.ogg',
+		"None" = null)
+
+var/global/list/release_sounds = list(
+		"F cough" = 'sound/effects/mob_effects/f_cougha.ogg',
+		"M cough" = 'sound/effects/mob_effects/m_cougha.ogg',
+		"Synthcough" = 'sound/effects/mob_effects/m_machine_coughc.ogg',
+		"Tesh cough" = 'sound/effects/mob_effects/tesharicougha.ogg',
+		"Insert" = 'sound/vore/insert.ogg',
+		"Insertion1" = 'sound/vore/insertion1.ogg',
+		"Insertion2" = 'sound/vore/insertion2.ogg',
+		"Insertion3" = 'sound/vore/insertion3.ogg',
+		"Schlorp" = 'sound/vore/schlorp.ogg',
+		"Squish1" = 'sound/vore/squish1.ogg',
+		"Squish2" = 'sound/vore/squish2.ogg',
+		"Squish3" = 'sound/vore/squish3.ogg',
+		"Squish4" = 'sound/vore/squish4.ogg',
+		"Rustle (cloth)" = 'sound/effects/rustle5.ogg',
+		"Disposal unit" = 'sound/machines/disposalflush.ogg',
+		"Shred" = 'sound/items/pshred.ogg',
 		"None" = null)
 
 var/global/list/struggle_sounds = list(

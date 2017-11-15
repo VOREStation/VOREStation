@@ -12,7 +12,11 @@
 	var/name								// Name of this location
 	var/inside_flavor						// Flavor text description of inside sight/sound/smells/feels.
 	var/vore_sound = 'sound/vore/gulp.ogg'	// Sound when ingesting someone
+	var/digestion_sounds_pref				// Digestion sound set.
+	var/death_sounds_pref					// Gurgledeath sound set.
+	var/release_sound = 'sound/effects/splat.ogg'	// Release sound.
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
+	var/release_verb = "expels"				// Verb for releasing with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emoteTime = 600						// How long between stomach emotes at prey
@@ -117,6 +121,7 @@
 /datum/belly/proc/release_all_contents()
 	if (internal_contents.len == 0)
 		return 0
+	playsound(owner, release_sound, 50, 1)
 	for (var/atom/movable/M in internal_contents)
 		if(istype(M,/mob/living))
 			var/mob/living/ML = M
@@ -130,7 +135,7 @@
 			B.internal_contents += M
 	items_preserved.Cut()
 	checked_slots.Cut()
-	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
+	owner.visible_message("<font color='green'><b>[owner] [release_verb] everything from their [lowertext(name)]!</b></font>")
 	return 1
 
 // Release a specific atom from the contents of this belly into the owning mob's location.
@@ -164,7 +169,8 @@
 	if(B)
 		B.internal_contents += M
 
-	owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
+	owner.visible_message("<font color='green'><b>[owner] [release_verb] [M] from their [lowertext(name)]!</b></font>")
+	playsound(owner, release_sound, 50, 1)
 	owner.update_icons()
 	return 1
 
@@ -544,6 +550,10 @@
 	dupe.inside_flavor = inside_flavor
 	dupe.vore_sound = vore_sound
 	dupe.vore_verb = vore_verb
+	dupe.digestion_sounds_pref = digestion_sounds_pref
+	dupe.death_sounds_pref = death_sounds_pref
+	dupe.release_sound = release_sound
+	dupe.release_verb = release_verb
 	dupe.human_prey_swallow_time = human_prey_swallow_time
 	dupe.nonhuman_prey_swallow_time = nonhuman_prey_swallow_time
 	dupe.emoteTime = emoteTime

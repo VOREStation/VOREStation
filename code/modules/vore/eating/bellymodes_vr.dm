@@ -27,7 +27,7 @@
 		var/mob/living/silicon/robot/s_owner = null
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
-			var/churnsound = pick(digestion_sounds)
+			var/churnsound = pick(digestion_sounds_pref)
 			for(var/mob/hearer in range(1,owner))
 				hearer << sound(churnsound,volume=80)
 
@@ -58,7 +58,7 @@
 				if(isrobot(owner))
 					s_owner = owner
 					s_owner.cell.charge += 200
-				var/deathsound = pick(death_sounds)
+				var/deathsound = pick(death_sounds_pref)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
 				digestion_death(M)
@@ -222,7 +222,7 @@
 		var/mob/living/silicon/robot/s_owner = null
 
 		if(prob(50))
-			var/churnsound = pick(digestion_sounds)
+			var/churnsound = pick(digestion_sounds_pref)
 			for(var/mob/hearer in range(1,owner))
 				hearer << sound(churnsound,volume=80)
 
@@ -346,7 +346,7 @@
 		for (var/mob/living/M in internal_contents)
 
 			if(prob(10)) //Less often than gurgles. People might leave this on forever.
-				var/absorbsound = pick(digestion_sounds)
+				var/absorbsound = pick(digestion_sounds_pref)
 				M << sound(absorbsound,volume=80)
 				owner << sound(absorbsound,volume=80)
 
@@ -382,7 +382,7 @@
 		for (var/mob/living/M in internal_contents)
 
 			if(prob(10)) //Less often than gurgles. People might leave this on forever.
-				var/drainsound = pick(digestion_sounds)
+				var/drainsound = pick(digestion_sounds_pref)
 				M << sound(drainsound,volume=80)
 				owner << sound(drainsound,volume=80)
 
@@ -399,7 +399,7 @@
 		for (var/mob/living/M in internal_contents)
 
 			if(prob(10)) //Infinite gurgles!
-				var/shrinksound = pick(digestion_sounds)
+				var/shrinksound = pick(digestion_sounds_pref)
 				M << sound(shrinksound,volume=80)
 				owner << sound(shrinksound,volume=80)
 
@@ -418,7 +418,7 @@
 		for (var/mob/living/M in internal_contents)
 
 			if(prob(10))
-				var/growsound = pick(digestion_sounds)
+				var/growsound = pick(digestion_sounds_pref)
 				M << sound(growsound,volume=80)
 				owner << sound(growsound,volume=80)
 
@@ -434,7 +434,7 @@
 		for (var/mob/living/M in internal_contents)
 
 			if(prob(10))
-				var/growsound = pick(digestion_sounds)
+				var/growsound = pick(digestion_sounds_pref)
 				M << sound(growsound,volume=80)
 				owner << sound(growsound,volume=80)
 
@@ -450,7 +450,7 @@
 ///////////////////////////// DM_HEAL /////////////////////////////
 	if(digest_mode == DM_HEAL)
 		if(prob(50)) //Wet heals!
-			var/healsound = pick(digestion_sounds)
+			var/healsound = pick(digestion_sounds_pref)
 			for(var/mob/hearer in range(1,owner))
 				hearer << sound(healsound,volume=80)
 

@@ -54,6 +54,8 @@
 				B.name = "Stomach"
 				B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
 				B.can_taste = 1
+				B.digestion_sounds_pref = digestion_sounds["organic"]
+				B.death_sounds_pref = death_sounds["organic"]
 				M.vore_organs[B.name] = B
 				M.vore_selected = B.name
 

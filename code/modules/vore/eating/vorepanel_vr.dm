@@ -202,6 +202,10 @@
 		dat += "<br><a href='?src=\ref[src];b_verb=\ref[selected]'>Vore Verb:</a>"
 		dat += " '[selected.vore_verb]'"
 
+		//Release verb
+		dat += "<br><a href='?src=\ref[src];b_verb_release=\ref[selected]'>Release Verb:</a>"
+		dat += " '[selected.release_verb]'"
+
 		//Inside flavortext
 		dat += "<br><a href='?src=\ref[src];b_desc=\ref[selected]'>Flavor Text:</a>"
 		dat += " '[selected.inside_flavor]'"
@@ -209,6 +213,18 @@
 		//Belly sound
 		dat += "<br><a href='?src=\ref[src];b_sound=\ref[selected]'>Set Vore Sound</a>"
 		dat += "<a href='?src=\ref[src];b_soundtest=\ref[selected]'>Test</a>"
+
+		//Release sound
+		dat += "<br><a href='?src=\ref[src];b_sound_release=\ref[selected]'>Set Release Sound</a>"
+		dat += "<a href='?src=\ref[src];b_soundtest_release=\ref[selected]'>Test</a>"
+
+		//Gurgle sound
+		dat += "<br><a href='?src=\ref[src];b_sound_digest=\ref[selected]'>Set Digestion Soundtype</a>"
+		dat += "<a href='?src=\ref[src];b_soundtest_digest=\ref[selected]'>Test</a>"
+
+		//Death sound
+		dat += "<br><a href='?src=\ref[src];b_sound_death=\ref[selected]'>Set Digestion Death Soundtype</a>"
+		dat += "<a href='?src=\ref[src];b_soundtest_death=\ref[selected]'>Test</a>"
 
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
@@ -436,7 +452,6 @@
 					return 0
 
 				selected.release_specific_contents(tgt)
-				playsound(user, 'sound/effects/splat.ogg', 50, 1)
 
 			if("Move")
 				if(user.stat)
@@ -587,6 +602,15 @@
 
 		selected.vore_verb = new_verb
 
+	if(href_list["b_verb_release"])
+		var/new_verb_release = html_encode(input(usr,"New verb when releasing contents (present tense, e.g. expels or barfs):","New Verb") as text|null)
+
+		if(length(new_verb_release) > BELLIES_NAME_MAX || length(new_verb_release) < BELLIES_NAME_MIN)
+			alert("Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
+			return 0
+
+		selected.release_verb = new_verb_release
+
 	if(href_list["b_sound"])
 		var/choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") in vore_sounds + "Cancel - No Changes"
 
@@ -597,6 +621,41 @@
 
 	if(href_list["b_soundtest"])
 		user << selected.vore_sound
+
+	if(href_list["b_sound_release"])
+		var/choice = input(user,"Currently set to [selected.release_sound]","Select Sound") in release_sounds + "Cancel - No Changes"
+
+		if(choice == "Cancel")
+			return 0
+
+		selected.release_sound = release_sounds[choice]
+
+	if(href_list["b_soundtest_release"])
+		user << selected.release_sound
+
+	if(href_list["b_sound_digest"])
+		var/choice = input(user,"","Select Sound Type") in digestion_sounds + "Cancel - No Changes"
+
+		if(choice == "Cancel")
+			return 0
+
+		selected.digestion_sounds_pref = digestion_sounds[choice]
+
+	if(href_list["b_soundtest_digest"])
+		var/sound = pick(selected.digestion_sounds_pref)
+		user << sound
+
+	if(href_list["b_sound_death"])
+		var/choice = input(user,"","Select Sound Type") in death_sounds + "Cancel - No Changes"
+
+		if(choice == "Cancel")
+			return 0
+
+		selected.death_sounds_pref = death_sounds[choice]
+
+	if(href_list["b_soundtest_death"])
+		var/sound = pick(selected.death_sounds_pref)
+		user << sound
 
 	if(href_list["b_tastes"])
 		selected.can_taste = !selected.can_taste
