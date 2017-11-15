@@ -35,7 +35,7 @@
 /datum/trait/endurance_very_low
 	name = "Extremely Low Endurance"
 	desc = "Reduces your maximum total hitpoints to 50."
-	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc. 
+	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc.
 	var_changes = list("total_health" = 50)
 
 	apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -95,3 +95,9 @@
 	desc = "Increases stun duration from flashes and other light-based stuns."
 	cost = -1
 	var_changes = list("flash_mod" = 2.0)
+
+/datum/trait/lightweight
+	name = "Lightweight"
+	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
+	cost = -4
+	var_changes = list("lightweight" = 1)
