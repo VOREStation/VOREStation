@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 29/05/2012 15:03:04
 
 /datum/event/ionstorm
-	var/botEmagChance = 0.5
+	var/botEmagChance = 0 //VOREStation Edit
 	var/list/players = list()
 
 /datum/event/ionstorm/announce()
