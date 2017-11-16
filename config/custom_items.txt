@@ -643,6 +643,12 @@ item_path: /obj/item/clothing/under/sexyclown
 
 {
 ckey: silvertalismen
+character_name: Evian
+item_path: /obj/item/weapon/implant/reagent_generator/evian
+}
+
+{
+ckey: silvertalismen
 character_name: Tasy Ruffles
 item_path: /obj/item/clothing/mask/gas/sexyclown
 }
