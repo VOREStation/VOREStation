@@ -41,6 +41,7 @@
 	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder.  Each point makes it 15% easier or harder, just like evasion.
 	var/accuracy_dispersion				// Positive numbers make gun firing cover a wider tile range, and therefore more inaccurate.  Negatives help negate dispersion penalties.
 	var/metabolism_percent				// Adjusts the mob's metabolic rate, which affects reagent processing.  Won't affect mobs without reagent processing.
+	var/icon_scale_percent				// Makes the holder's icon get scaled up or down.
 
 /datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder
@@ -62,6 +63,8 @@
 	holder.modifiers.Remove(src)
 	if(mob_overlay_state) // We do this after removing ourselves from the list so that the overlay won't remain.
 		holder.update_modifier_visuals()
+	if(icon_scale_percent) // Correct the scaling.
+		holder.update_transform()
 	qdel(src)
 
 // Override this for special effects when it gets removed.
@@ -117,6 +120,8 @@
 	modifiers.Add(mod)
 	if(mod.mob_overlay_state)
 		update_modifier_visuals()
+	if(mod.icon_scale_percent)
+		update_transform()
 
 	return mod
 
@@ -198,6 +203,8 @@
 		effects += "Your metabolism is [metabolism_percent > 1.0 ? "faster" : "slower"], \
 		causing reagents in your body to process, and hunger to occur [multipler_to_percentage(metabolism_percent, TRUE)] [metabolism_percent > 1.0 ? "faster" : "slower"]."
 
+	if(!isnull(icon_scale_percent))
+		effects += "Your appearance is [multipler_to_percentage(icon_scale_percent, TRUE)] [icon_scale_percent > 1 ? "larger" : "smaller"]."
 
 	return jointext(effects, "<br>")
 
