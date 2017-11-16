@@ -1025,7 +1025,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		accessset = 1
 	..()
 
-//verkister: Cameron Eggbert - Science goggles that ACTUALLY do nothing.
+//General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/science_proper
 	name = "Aesthetic Science Goggles"
 	desc = "The goggles really do nothing this time!"
@@ -1033,9 +1033,9 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	item_flags = AIRTIGHT
 
-//verkister: Opie Eggbert - Spiffy fluff goggles
+//General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/spiffygogs
-	name = "Chad Goggles"
+	name = "Orange Goggles"
 	desc = "You can almost feel the raw power radiating off these strange specs."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
