@@ -7,6 +7,7 @@
 	var/metabolism = 0.0015
 	var/can_fly = 0 //Determines if the species can fly if they have wings.
 	var/lightweight = 0 //Oof! Nonhelpful bump stumbles.
+	var/trashcan = 0 //It's always sunny in the wrestling ring.
 
 /datum/species/custom
 	name = "Custom Species"
