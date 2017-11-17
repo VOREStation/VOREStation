@@ -521,7 +521,7 @@
 	var/belly = user.vore_selected
 	return perform_the_falling_nom(user, prey, user, belly)
 
-/mob/living/proc/perform_the_falling_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/belly) //For dropnoms.
+/mob/living/proc/perform_the_falling_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/belly) //For dropnoms and slime feeding. This is so a nom can be performed instantly.
 	//Sanity
 	belly = pred.vore_selected
 	if(!user || !prey || !pred || !belly || !(belly in pred.vore_organs))
@@ -559,7 +559,7 @@
 
 	// Inform Admins
 	if (pred == user)
-		msg_admin_attack("[key_name(pred)] ate [key_name(prey)] via dropnoms!. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		msg_admin_attack("[key_name(pred)] ate [key_name(prey)] via dropnom/slime feeding!. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 	else
-		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)] via dropnoms! ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)] via dropnoms/slime feeding!! ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 	return 1

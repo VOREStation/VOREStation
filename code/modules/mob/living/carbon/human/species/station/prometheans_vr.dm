@@ -18,7 +18,8 @@
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/succubus_drain,
 		/mob/living/carbon/human/proc/succubus_drain_finialize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/slime_feed
 		)
 
 
