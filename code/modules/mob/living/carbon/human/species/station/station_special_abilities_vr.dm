@@ -623,8 +623,7 @@
 		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
 		return
 
-	if(G.state != GRAB_NECK)
-		to_chat(C, "<span class='warning'>You must have a tighter grip to feed this creature.</span>")
+	if(!G.state) //This should never occur. But alright
 		return
 
 	if(C.absorbing_prey)
@@ -641,13 +640,13 @@
 				C.nutrition = C.nutrition*0.95
 			if(2)
 				to_chat(C, "<span class='notice'>You feel weaker with every passing moment of feeding [T].</span>")
-				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], their body looking stronger with every passing moment!</span>")
+				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], [T]'s body looking stronger with every passing moment!</span>")
 				to_chat(T, "<span class='notice'>You feel stronger with every passing moment as [C] feeds you!</span>")
 				T.nutrition = (T.nutrition + (C.nutrition*0.1))
 				C.nutrition = C.nutrition*0.90
 			if(3 to 99)
-				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
-				T.nutrition = T.nutrition*0.9
+				T.nutrition = (T.nutrition + (C.nutrition*0.1)) //Just keep draining them.
+				C.nutrition = C.nutrition*0.9
 				T.eye_blurry += 1 //Eating a slime's body is odd and will make your vision a bit blurry!
 				if(C.nutrition < 100 && stage < 99 && C.drain_finalized == 1)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
 					stage = 99
@@ -665,8 +664,8 @@
 				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
 				return
 
-		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
-			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
+		if(!do_mob(src, T, 50) || !G.state) //One drain tick every 5 seconds.
+			to_chat(src, "<span class='warning'>Your feeding of [T] has been interrupted!</span>")
 			C.absorbing_prey = 0
 			return
 
