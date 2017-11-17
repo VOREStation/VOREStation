@@ -341,9 +341,9 @@
 						"Forward Base Sigma-Alpha in ArCon space")
 
 /datum/lore/organization/gov/imperial
-	name = "Imperium Auream"
+	name = "Auream Imperium"
 	short_name = "Imperial"
-	desc = "Also known as the \"Golden Empire\", Imperium Auream is a superpower of elf-like humanoid beings who thrive in the southern \
+	desc = "Also known as the \"Golden Empire\", Auream Imperium is a superpower of elf-like humanoid beings who thrive in the southern \
     		galaxy, presumably somewhere in the mid Centaurus Arm. Having existed in the observation shadow of the galactic core, this \
     		galactic superpower had remained undiscovered by humanity despite its size until only recently. First contact was made on \
     		June 15th 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the USDF. \

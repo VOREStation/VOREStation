@@ -79,8 +79,8 @@
 		Paralyse(3)
 		src.sleeping--
 
-	if(src.resting)
-		Weaken(5)
+	//if(src.resting) // VOREStation edit. Our borgos would rather not.
+	//	Weaken(5)
 
 	if(health < config.health_threshold_dead && src.stat != 2) //die only once
 		death()
@@ -338,7 +338,7 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockdown || !is_component_functioning("actuator")) canmove = 0
+	if(paralysis || stunned || weakened || buckled || lockdown || resting || !is_component_functioning("actuator")) canmove = 0 //VOREStation edit for resting.
 	else canmove = 1
 	return canmove
 

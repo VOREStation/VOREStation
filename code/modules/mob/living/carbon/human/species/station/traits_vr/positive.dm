@@ -125,3 +125,9 @@
 	desc = "Allows you to fly by using your wings."
 	cost = 2 //Some in game value.
 	var_changes = list("can_fly" = 1)
+
+/datum/trait/hardfeet
+	name = "Hard Feet"
+	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
+	cost = 1
+	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
