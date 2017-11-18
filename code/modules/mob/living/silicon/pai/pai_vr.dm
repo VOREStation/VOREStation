@@ -109,10 +109,10 @@
 		to_chat(C, "You cannot shred in your current state.")
 		return
 
-	last_special = world.time + 100 //10 seconds.
+	last_special = world.time + 450 //45 seconds.
 	C.visible_message("<font color='red'><b>[C] appears to be preparing to do something to [T]!</b></font>") //Let everyone know that bad times are head
 
-	if(do_after(C, 100, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
+	if(do_after(C, 45, T)) //Fourty-Five seconds. You don't need a neckgrab for this, so it's going  to take a long while.
 		if(!Adjacent(T)) return
 		if(P && P.damage >= 25) //Internal organ and it's been severely damage
 			T.apply_damage(15, BRUTE, D) //Damage the external organ they're going through.
