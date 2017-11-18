@@ -374,7 +374,10 @@
 // This proc is used so that we can return out of the revive process while ensuring that busy and update_icon() are handled
 /obj/item/weapon/shockpaddles/proc/do_revive(mob/living/carbon/human/H, mob/user)
 	if(!H.client && !H.teleop)
-		to_chat(find_dead_player(H.ckey, 1), "Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!")
+		for(var/mob/observer/dead/ghost in player_list)
+			if(ghost.mind == H.mind)
+				to_chat(ghost, "<b><font color = #330033><font size = 3>Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>")
+				break
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 	user.visible_message("<span class='warning'>\The [user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
