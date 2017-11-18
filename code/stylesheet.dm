@@ -24,6 +24,7 @@ em						{font-style: normal;font-weight: bold;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
 .ooc .admin				{color: #b82e00;}
+.ooc .event_manager		{color: #660033;}
 .ooc .aooc				{color: #960018;}
 
 /* Admin: Private Messages */
@@ -36,7 +37,7 @@ em						{font-style: normal;font-weight: bold;}
 .mod_channel			{color: #735638;	font-weight: bold;}
 .mod_channel .admin		{color: #b82e00;	font-weight: bold;}
 .admin_channel			{color: #9611D4;	font-weight: bold;}
-.event_channel			{color: #009933;	font-weight: bold;}
+.event_channel			{color: #cc3399;	font-weight: bold;}
 
 /* Radio: Misc */
 .deadsay				{color: #530FAD;}

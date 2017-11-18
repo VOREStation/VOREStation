@@ -150,20 +150,20 @@
 	item_state_slots = list(slot_r_hand_str = "medical_voidsuit_bio", slot_l_hand_str = "medical_voidsuit_bio")
 	armor = list(melee = 45, bullet = 5, laser = 20, energy = 5, bomb = 15, bio = 100, rad = 75)
 
-//Medical Surplus Voidsuit
+//Medical Streamlined Voidsuit
 /obj/item/clothing/head/helmet/space/void/medical/alt
 	name = "streamlined medical voidsuit helmet"
 	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a fetching green."
 	icon_state = "rig0-medicalalt"
-	armor = list(melee = 30, bullet = 5, laser = 10,energy = 5, bomb = 5, bio = 100, rad = 60)
+	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 25, bio = 100, rad = 80)
 	light_overlay = "helmet_light_dual_green"
 
 /obj/item/clothing/suit/space/void/medical/alt
 	icon_state = "rig-medicalalt"
 	name = "streamlined medical voidsuit"
 	desc = "A more recent model of Vey-Med voidsuit, featuring the latest in radiation shielding technology, without sacrificing comfort or style."
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical)
-	armor = list(melee = 30, bullet = 5, laser = 10,energy = 5, bomb = 5, bio = 100, rad = 60)
+	slowdown = 0
+	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 25, bio = 100, rad = 80)
 
 //Security
 /obj/item/clothing/head/helmet/space/void/security

@@ -63,11 +63,13 @@
 					/obj/item/clothing/suit/storage/vest/heavy/merc,
 					/obj/item/clothing/glasses/night,
 					/obj/item/weapon/storage/box/anti_photons,
-					/obj/item/ammo_magazine/clip/c12g/pellet,				/obj/item/ammo_magazine/clip/c12g
+					/obj/item/ammo_magazine/clip/c12g/pellet,
+					/obj/item/ammo_magazine/clip/c12g
 					),
 			list( //the doc,
 					/obj/item/weapon/storage/firstaid/combat,
-					/obj/item/weapon/gun/projectile/dartgun,				/obj/item/weapon/reagent_containers/hypospray,
+					/obj/item/weapon/gun/projectile/dartgun,
+					/obj/item/weapon/reagent_containers/hypospray,
 					/obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate,
 					/obj/item/weapon/reagent_containers/glass/bottle/cyanide,
 					/obj/item/ammo_magazine/chemdart
