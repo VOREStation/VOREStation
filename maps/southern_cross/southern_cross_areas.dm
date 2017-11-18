@@ -154,11 +154,14 @@
 	name = "\improper Xenoflora Storage"
 	icon_state = "xeno_f_store"
 
-/area/outpost/research/xenoresearch/medical
+/area/surface/outpost/research/xenoresearch/medical
 	name = "Xenoresearch First-Aid Station"
 
 /area/surface/outpost/research/xenoarcheology
 	name = "\improper Xenoarcheology"
+
+/area/surface/outpost/research/xenoarcheology/medical
+	name = "Xenoarcheology First-Aid Station"
 
 /area/surface/outpost/research/xenoarcheology/smes
 	name = "\improper Xenoarcheology SMES Maintenance"
@@ -206,9 +209,12 @@
 	icon_state = "Sleep"
 
 /area/surface/outpost/main/gen_room
-	name = "\improper Main Outpost Generator Room"
+	name = "\improper Main Outpost SMES"
 	icon_state = "substation"
-	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
+
+/area/surface/outpost/main/gen_room/smes
+	name = "\improper Main Outpost Dorm SMES"
+	icon_state = "substation"
 
 /area/surface/outpost/main/pool
 	name = "\improper Main Outpost Pool"
@@ -218,6 +224,9 @@
 	name = "\improper Main Outpost Restroom"
 	icon_state = "toilet"
 	sound_env = SMALL_ENCLOSED
+
+/area/surface/outpost/main/gym
+	name = "\improper Main Outpost Gym"
 
 /area/surface/outpost/main/garage
 	name = "\improper Main Outpost Garage"
@@ -229,6 +238,11 @@
 
 /area/surface/outpost/main/telecomms
 	name = "Main Outpost Telecommunications"
+	music = "signal"
+
+/area/surface/outpost/main/teleporter
+	name = "Main Outpost Teleporter"
+	icon_state = "teleporter"
 
 /area/surface/outpost/main/first_aid
 	name = "\improper Main Outpost First-Aid Station"
@@ -242,6 +256,20 @@
 	name = "\improper Main Outpost Gateway"
 	icon_state = "teleporter"
 	music = "signal"
+
+/area/surface/outpost/main/corridor
+	name = "\improper Main Outpost Corridor"
+
+/area/surface/outpost/main/bar
+	name = "\improper Main Outpost Bar"
+	icon_state = "bar"
+
+/area/surface/outpost/main/dorms
+	name = "\improper Main Outpost Dorms"
+
+/area/surface/outpost/main/construction_area
+	name = "\improper Main Outpost Construction Area"
+	icon_state = "construction"
 
 //Mining Station
 
@@ -258,6 +286,7 @@
 /area/outpost/mining_station/gen_station
 	name = "Mining Station Generator Room"
 	icon_state = "substation"
+	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/outpost/mining_station/crew_area
 	name = "Mining Station Crew Area"

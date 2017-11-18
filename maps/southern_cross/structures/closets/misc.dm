@@ -10,5 +10,6 @@
 /obj/structure/closet/secure_closet/guncabinet/rifle
 	name = "rifle cabinet"
 	will_contain = list(
-		/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin = 3
+		/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 3,
+		/obj/item/ammo_magazine/clip/c762 = 9
 	)
