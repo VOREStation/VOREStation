@@ -353,9 +353,12 @@
 	playsound(loc, "punch", 25, 1, -1)
 	var/damage = 15 // Because wounds heal rather quickly, 15 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 	var/mob/living/carbon/human/pred = src //VOREStation Edit Start
+	if(istype(landing, /mob)) //If you land on someone, don't get hurt a second time
+		Weaken(10) //In exchange, you're going to be aching! This prevents you from taking damage twice from hitting the floor and the person.
+		return
 	var/belly = src.vore_selected
 	var/datum/belly/belly_target = pred.vore_organs[belly]
-	if(belly_target && belly_target.internal_contents.len != 0)
+	if(belly_target && belly_target.internal_contents.len != 0) //Having stuff in your gut will pad the landing a bit.
 		damage = 5 //VOREStation Edit End
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
 	apply_damage(rand(0, damage), BRUTE, BP_TORSO)

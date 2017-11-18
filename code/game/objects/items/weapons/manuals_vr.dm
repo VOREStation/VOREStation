@@ -29,7 +29,7 @@
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
-/obj/item/weapon/book/manual/standard_operating_procedure/New()
+/obj/item/weapon/book/manual/command_guide/New()
 	..()
 	dat = {"
 
