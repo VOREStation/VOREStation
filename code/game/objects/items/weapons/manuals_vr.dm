@@ -26,7 +26,7 @@
 	desc = "A set of corporate guidelines outlining the entire command structure of NanoTrasen from top to bottom."
 	icon_state = "commandGuide"
 	icon = 'icons/obj/library_vr.dmi'
-	author = "NanoTrasen"
+	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
 /obj/item/weapon/book/manual/command_guide/New()
