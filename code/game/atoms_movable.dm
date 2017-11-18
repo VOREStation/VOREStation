@@ -1,6 +1,6 @@
 /atom/movable
 	layer = 3
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND // VOREStation edit. Our PIXEL_SCALE is applied by pref in 02_size.dm
 	var/last_move = null
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
