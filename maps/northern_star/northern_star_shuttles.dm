@@ -213,6 +213,8 @@
 	warmup_time = 0
 	origin = /area/syndicate_station/start
 	interim = /area/syndicate_station/transit
+	can_cloak = TRUE
+	cloaked = TRUE
 	start_location = "Mercenary Base"
 	destinations = list(
 		"Northwest of the station" = /area/syndicate_station/northwest,
@@ -243,6 +245,8 @@
 	warmup_time = 0
 	origin = /area/skipjack_station/start
 	interim = /area/skipjack_station/transit
+	can_cloak = TRUE
+	cloaked = TRUE
 	destinations = list(
 		"Fore Starboard Solars" = /area/skipjack_station/northeast_solars,
 		"Fore Port Solars" = /area/skipjack_station/northwest_solars,
