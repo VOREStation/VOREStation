@@ -606,15 +606,80 @@
 			C.absorbing_prey = 0
 			return
 
+/mob/living/carbon/human/proc/slime_feed()
+	set name = "Feed prey with self"
+	set desc = "Slowly feed prey with your body, draining you in the process. You may only do this to one person at a time."
+	set category = "Abilities"
+	if(!ishuman(src))
+		return //If you're not a human you don't have permission to do this.
+	var/mob/living/carbon/human/C = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to feed them.</span>")
+		return
+
+	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	if(!istype(T) || T.isSynthetic())
+		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
+		return
+
+	if(!G.state) //This should never occur. But alright
+		return
+
+	if(C.absorbing_prey)
+		to_chat(C, "<span class='warning'>You are already feeding someone!</span>")
+		return
+
+	C.absorbing_prey = 1
+	for(var/stage = 1, stage<=100, stage++) //100 stages.
+		switch(stage)
+			if(1)
+				to_chat(C, "<span class='notice'>You begin to feed [T]...</span>")
+				to_chat(T, "<span class='notice'>An odd sensation flows through your body as [C] begins to feed you!</span>")
+				T.nutrition = (T.nutrition + (C.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
+				C.nutrition = C.nutrition*0.95
+			if(2)
+				to_chat(C, "<span class='notice'>You feel weaker with every passing moment of feeding [T].</span>")
+				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], [T]'s body looking stronger with every passing moment!</span>")
+				to_chat(T, "<span class='notice'>You feel stronger with every passing moment as [C] feeds you!</span>")
+				T.nutrition = (T.nutrition + (C.nutrition*0.1))
+				C.nutrition = C.nutrition*0.90
+			if(3 to 99)
+				T.nutrition = (T.nutrition + (C.nutrition*0.1)) //Just keep draining them.
+				C.nutrition = C.nutrition*0.9
+				T.eye_blurry += 1 //Eating a slime's body is odd and will make your vision a bit blurry!
+				if(C.nutrition < 100 && stage < 99 && C.drain_finalized == 1)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
+					stage = 99
+				if(C.drain_finalized != 1 && stage == 99) //Are they not finalizing and the stage hit 100? If so, go back to stage 3 until they finalize it.
+					stage = 3
+			if(100)
+				T.nutrition = (T.nutrition + C.nutrition)
+				C.nutrition = 0 //Completely drained of everything.
+				C.absorbing_prey = 0
+				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
+				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
+				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was fed via slime feed  by [key_name(C)]</font>")
+				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Fed via slime feed [key_name(T)]</font>")
+				msg_admin_attack("[key_name(C)] fed [key_name(T)] via slime feed, resulting in them being eaten!")
+				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
+				return
+
+		if(!do_mob(src, T, 50) || !G.state) //One drain tick every 5 seconds.
+			to_chat(src, "<span class='warning'>Your feeding of [T] has been interrupted!</span>")
+			C.absorbing_prey = 0
+			return
+
+
+
 
 /mob/living/carbon/human/proc/succubus_drain_finialize()
-	set name = "Drain Finalization"
-	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained. Can be toggled at any time."
+	set name = "Drain/Feed Finalization"
+	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained, or you will feed yourself to the prey's selected stomach if you're feeding them. Can be toggled at any time."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
 	C.drain_finalized = !C.drain_finalized
-	to_chat(C, "<span class='notice'>You will [C.drain_finalized?"now":"not"] finalize draining.</span>")
+	to_chat(C, "<span class='notice'>You will [C.drain_finalized?"now":"not"] finalize draining/feeding.</span>")
 
 /mob/living/carbon/human/proc/shred_limb() //If you're looking at this, nothing but pain and suffering lies below.
 	set name = "Damage/Remove Prey's Organ"
