@@ -51,7 +51,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * but in the future we may also incorporate the "mob_size", so that
  * a macro mouse is still only effectively "normal" or a micro dragon is still large etc.
  */
-/mob/living/proc/get_effective_size()
+/mob/proc/get_effective_size()
+	return 100000 //Whatever it is, it's too big to pick up, or it's a ghost, or something.
+
+/mob/living/get_effective_size()
 	return src.size_multiplier
 
 /**

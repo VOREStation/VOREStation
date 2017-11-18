@@ -352,6 +352,11 @@
 		"You hear something slam into \the [landing].")
 	playsound(loc, "punch", 25, 1, -1)
 	var/damage = 15 // Because wounds heal rather quickly, 15 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
+	var/mob/living/carbon/human/pred = src //VOREStation Edit Start
+	var/belly = src.vore_selected
+	var/datum/belly/belly_target = pred.vore_organs[belly]
+	if(belly_target && belly_target.internal_contents.len != 0)
+		damage = 5 //VOREStation Edit End
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
 	apply_damage(rand(0, damage), BRUTE, BP_TORSO)
 	apply_damage(rand(0, damage), BRUTE, BP_L_LEG)

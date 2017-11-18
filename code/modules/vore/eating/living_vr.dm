@@ -19,6 +19,7 @@
 	var/noisy = 0						// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
+	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -31,7 +32,7 @@
 		return 1
 	M.verbs += /mob/living/proc/insidePanel
 
-	M.appearance_flags |= PIXEL_SCALE
+	//M.appearance_flags |= PIXEL_SCALE // Moved to 02_size.dm
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
@@ -235,6 +236,8 @@
 	P.vore_taste = src.vore_taste
 	P.nif_examine = src.nif_examine
 	P.conceal_nif = src.conceal_nif
+	P.can_be_drop_prey = src.can_be_drop_prey
+	P.can_be_drop_pred = src.can_be_drop_pred
 
 	return 1
 
@@ -253,6 +256,8 @@
 	src.vore_taste = P.vore_taste
 	src.nif_examine = P.nif_examine
 	src.conceal_nif = P.conceal_nif
+	src.can_be_drop_prey = P.can_be_drop_prey
+	src.can_be_drop_pred = P.can_be_drop_pred
 
 	for(var/I in P.belly_prefs)
 		var/datum/belly/Bp = P.belly_prefs[I]
@@ -511,3 +516,50 @@
 			B.internal_contents += src
 		return
 	return
+
+/mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+	var/belly = user.vore_selected
+	return perform_the_falling_nom(user, prey, user, belly)
+
+/mob/living/proc/perform_the_falling_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/belly) //For dropnoms.
+	//Sanity
+	belly = pred.vore_selected
+	if(!user || !prey || !pred || !belly || !(belly in pred.vore_organs))
+		log_debug("[user] attempted to feed [prey] to [pred], via [belly] but it went wrong.")
+		return
+
+	// The belly selected at the time of noms
+	var/datum/belly/belly_target = pred.vore_organs[belly]
+	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
+
+	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
+	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
+	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
+
+	if(user_to_pred > 1 || user_to_prey > 1)
+		return 0
+
+	// Prepare messages
+	if(user == pred) //Feeding someone to yourself
+		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
+	else //Feeding someone to another person. This shouldn't happen.
+		success_msg = text("<span class='warning'>[] manages to make [] [] [] into their []!</span>",user,pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
+
+	user.visible_message(success_msg)
+	if(belly_target.vore_sound)
+		playsound(user, belly_target.vore_sound, 100, 1)
+
+	// Actually shove prey into the belly.
+	belly_target.nom_mob(prey, user)
+	user.update_icons()
+
+	// Flavor handling
+	if(belly_target.can_taste && prey.get_taste_message(0))
+		to_chat(belly_target.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(0)].</span>")
+
+	// Inform Admins
+	if (pred == user)
+		msg_admin_attack("[key_name(pred)] ate [key_name(prey)] via dropnoms!. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+	else
+		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)] via dropnoms! ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+	return 1

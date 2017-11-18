@@ -296,6 +296,7 @@
 		..()
 		new /obj/item/clothing/accessory/badge/holo/detective(src)
 		new /obj/item/clothing/gloves/black(src)
+		new /obj/item/gunbox(src)
 		new /obj/item/weapon/storage/belt/detective(src)
 		new /obj/item/weapon/storage/box/evidence(src)
 		new /obj/item/device/radio/headset/headset_sec(src)

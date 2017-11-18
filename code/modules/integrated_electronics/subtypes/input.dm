@@ -110,8 +110,10 @@
 
 
 /obj/item/integrated_circuit/input/adv_med_scanner
-	name = "integrated advanced medical analyser"
-	desc = "A very small version of the medbot's medical analyser.  This allows the machine to know how healthy someone is.  \
+
+	name = "integrated advanced medical analyzer"
+	desc = "A very small version of the medibot's medical analyzer.  This allows the machine to know how healthy someone is.  \
+
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
@@ -134,7 +136,9 @@
 	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
+
 	if(H in view(get_turf(H))) // Like medbot's analyzer it can be used in range..
+
 		var/total_health = round(H.health/H.getMaxHealth(), 0.01)*100
 		var/missing_health = H.getMaxHealth() - H.health
 
@@ -336,6 +340,7 @@
 	// Set the pins so when someone sees them, they won't show as null
 	set_pin_data(IC_INPUT, 1, frequency)
 	set_pin_data(IC_INPUT, 2, code)
+	push_data()
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)
@@ -464,6 +469,7 @@
 	set_pin_data(IC_OUTPUT, 1, null)
 	set_pin_data(IC_OUTPUT, 2, null)
 	if(!T)
+		push_data()
 		return
 
 	set_pin_data(IC_OUTPUT, 1, T.x)
@@ -486,7 +492,7 @@
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
-	activators = list("on message received" = IC_PINTYPE_PULSE_IN, "on translation" = IC_PINTYPE_PULSE_OUT)
+	activators = list("on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
@@ -617,7 +623,6 @@
 				set_pin_data(IC_OUTPUT, 3, cell.percent())
 	push_data()
 	activate_pin(2)
-
 
 /obj/item/integrated_circuit/input/atmo_scanner
 	name = "integrated atmospheric analyser"

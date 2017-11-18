@@ -37,9 +37,7 @@
 	amount_to_move = 20000
 
 /obj/item/integrated_circuit/power/transmitter/do_work()
-	set_pin_data(IC_OUTPUT, 1, null)
-	set_pin_data(IC_OUTPUT, 2, null)
-	set_pin_data(IC_OUTPUT, 3, null)
+
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	if(AM)
 		if(!assembly)
@@ -72,7 +70,15 @@
 				set_pin_data(IC_OUTPUT, 2, cell.maxcharge)
 				set_pin_data(IC_OUTPUT, 3, cell.percent())
 				activate_pin(2)
+				push_data()
 				return TRUE
+		else
+			set_pin_data(IC_OUTPUT, 1, null)
+			set_pin_data(IC_OUTPUT, 2, null)
+			set_pin_data(IC_OUTPUT, 3, null)
+			activate_pin(2)
+			push_data()
+			return FALSE
 	return FALSE
 
 /obj/item/integrated_circuit/power/transmitter/large/do_work()

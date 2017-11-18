@@ -1025,7 +1025,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		accessset = 1
 	..()
 
-//verkister: Cameron Eggbert - Science goggles that ACTUALLY do nothing.
+//General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/science_proper
 	name = "Aesthetic Science Goggles"
 	desc = "The goggles really do nothing this time!"
@@ -1033,9 +1033,9 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	item_flags = AIRTIGHT
 
-//verkister: Opie Eggbert - Spiffy fluff goggles
+//General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/spiffygogs
-	name = "Chad Goggles"
+	name = "Orange Goggles"
 	desc = "You can almost feel the raw power radiating off these strange specs."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
@@ -1479,3 +1479,75 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
 	name = "Malady's riding crop"
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
+
+
+//SilverTalisman: Evian
+/obj/item/weapon/implant/reagent_generator/evian
+	emote_descriptor = list("an egg right out of Evian's lower belly!", "into Evian' belly firmly, forcing him to lay an egg!", "Evian really tight, who promptly lays an egg!")
+	var/verb_descriptor = list("squeezes", "pushes", "hugs")
+	var/self_verb_descriptor = list("squeeze", "push", "hug")
+	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
+	self_emote_descriptor = list("lay", "force out", "push out")
+	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
+
+/obj/item/weapon/implant/reagent_generator/evian/implanted(mob/living/carbon/source)
+	processing_objects += src
+	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	source.verbs |= assigned_proc
+	return 1
+
+/obj/item/weapon/implanter/reagent_generator/evian
+	implant_type = /obj/item/weapon/implant/reagent_generator/evian
+
+/mob/living/carbon/human/proc/use_reagent_implant_evian()
+	set name = "Lay Egg"
+	set desc = "Force Evian to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
+	set category = "Object"
+	set src in view(1)
+
+	//do_reagent_implant(usr)
+	if(!isliving(usr) || !usr.canClick())
+		return
+
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+		return
+
+	var/obj/item/weapon/implant/reagent_generator/evian/rimplant
+	for(var/I in src.contents)
+		if(istype(I, /obj/item/weapon/implant/reagent_generator))
+			rimplant = I
+			break
+	if (rimplant)
+		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			return
+
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
+
+		var/index = rand(0,3)
+
+		if (usr != src)
+			var/emote = rimplant.emote_descriptor[index]
+			var/verb_desc = rimplant.verb_descriptor[index]
+			var/self_verb_desc = rimplant.self_verb_descriptor[index]
+			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
+							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+		else
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+		if(prob(15))
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
+
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian
+	name = "dragon egg"
+	icon_state = "egg_roiz_yellow"
+
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype( W, /obj/item/weapon/pen/crayon)) //No coloring these ones!
+		return
+	else
+		..()

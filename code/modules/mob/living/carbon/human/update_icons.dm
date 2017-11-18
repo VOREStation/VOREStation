@@ -163,13 +163,13 @@ Please contact me on #coderbus IRC. ~Carn x
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
 		M.Turn(90)
-		M.Scale(size_multiplier)
+		M.Scale(size_multiplier) //VOREStation Edit. Look at Polaris pull #4267 to see things edited.
 		M.Translate(1,-6)
 		src.transform = M
 	else
 		var/matrix/M = matrix()
-		M.Scale(size_multiplier)
-		M.Translate(0, 16*(size_multiplier-1))
+		M.Scale(size_multiplier) //VOREStation Edit.
+		M.Translate(0, 16*(size_multiplier-1)) //VOREStation Edit.
 		src.transform = M
 
 var/global/list/damage_icon_parts = list()
@@ -294,6 +294,8 @@ var/global/list/damage_icon_parts = list()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
+			if(isnull(part) || part.is_stump())
+				continue
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
