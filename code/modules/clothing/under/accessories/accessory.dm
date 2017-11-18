@@ -311,7 +311,7 @@
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bracelet"
 	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_GLOVES | SLOT_TIE
+	slot_flags = SLOT_TIE
 
 /obj/item/clothing/accessory/bracelet/friendship
 	name = "friendship bracelet"
