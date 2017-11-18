@@ -9,10 +9,15 @@
 	item_cost = 5
 	path = /obj/item/device/binoculars
 
-/datum/uplink_item/item/tools/toolbox
+/datum/uplink_item/item/tools/toolbox // Leaving the basic as an option since powertools are loud.
 	name = "Fully Loaded Toolbox"
-	item_cost = 10
+	item_cost = 5
 	path = /obj/item/weapon/storage/toolbox/syndicate
+
+/datum/uplink_item/item/tools/powertoolbox
+	name = "Fully Loaded Powertool Box"
+	item_cost = 10
+	path = /obj/item/weapon/storage/toolbox/syndicate/powertools
 
 /datum/uplink_item/item/tools/clerical
 	name = "Morphic Clerical Kit"
