@@ -1047,7 +1047,7 @@ default behaviour is:
 /mob/living/proc/equip_post_job()
 	return
 
-
+/* //VOREStation Edit. We have a better system in place.
 /mob/living/update_transform()
 	// First, get the correct size.
 	var/desired_scale = icon_scale
@@ -1060,3 +1060,4 @@ default behaviour is:
 	M.Scale(desired_scale)
 	M.Translate(0, 16*(desired_scale-1))
 	src.transform = M
+*/ //VOREStation Edit

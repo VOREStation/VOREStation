@@ -160,29 +160,16 @@ Please contact me on #coderbus IRC. ~Carn x
 				for(var/inner_entry in entry)
 					overlays += inner_entry
 
-	update_transform()
-
-/mob/living/carbon/human/update_transform()
-	// First, get the correct size.
-	var/desired_scale = icon_scale
-
-	desired_scale *= species.icon_scale
-
-	for(var/datum/modifier/M in modifiers)
-		if(!isnull(M.icon_scale_percent))
-			desired_scale *= M.icon_scale_percent
-
-	// Regular stuff again.
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
 		M.Turn(90)
-		M.Scale(desired_scale)
+		M.Scale(size_multiplier) //VOREStation Edit. Look at Polaris pull #4267 to see things edited.
 		M.Translate(1,-6)
 		src.transform = M
 	else
 		var/matrix/M = matrix()
-		M.Scale(desired_scale)
-		M.Translate(0, 16*(desired_scale-1))
+		M.Scale(size_multiplier) //VOREStation Edit.
+		M.Translate(0, 16*(size_multiplier-1)) //VOREStation Edit.
 		src.transform = M
 
 var/global/list/damage_icon_parts = list()
