@@ -1543,6 +1543,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian
 	name = "dragon egg"
+	desc = "A quite large dragon egg!"
 	icon_state = "egg_roiz_yellow"
 
 
