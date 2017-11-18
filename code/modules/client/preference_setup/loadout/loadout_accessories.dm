@@ -232,4 +232,3 @@
 /datum/gear/accessory/bracelet/friendship
 	display_name = "friendship bracelet"
 	path = /obj/item/clothing/accessory/bracelet/friendship
-	cost = 0
