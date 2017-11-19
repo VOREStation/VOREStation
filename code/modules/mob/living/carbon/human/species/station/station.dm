@@ -25,12 +25,10 @@
 /datum/species/unathi
 	name = "Unathi"
 	name_plural = "Unathi"
-	icobase = 'icons/mob/human_races/r_lizard_m.dmi'
-	icobase_add = 'icons/mob/human_races/r_lizard_a.dmi'
+	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	tail = "sogtail"
-	tail_animation = 'icons/mob/species/unathi/tail_m.dmi'
-	tail_animation_add = 'icons/mob/species/unathi/tail_a.dmi'
+	tail_animation = 'icons/mob/species/unathi/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = "Stok"
 	darksight = 3
@@ -41,6 +39,8 @@
 	burn_mod = 0.85
 	metabolic_rate = 0.85
 	item_slowdown_mod = 0.5
+	mob_size = MOB_LARGE
+	blood_volume = 840
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -130,12 +130,10 @@
 /datum/species/tajaran
 	name = "Tajara"
 	name_plural = "Tajaran"
-	icobase = 'icons/mob/human_races/r_tajaran_m.dmi'
-	icobase_add = 'icons/mob/human_races/r_tajaran_a.dmi'
+	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	tail = "tajtail"
-	tail_animation = 'icons/mob/species/tajaran/tail_m.dmi'
-	tail_animation_add = 'icons/mob/species/tajaran/tail_a.dmi'
+	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
 	slowdown = -0.5
@@ -213,8 +211,7 @@
 /datum/species/skrell
 	name = "Skrell"
 	name_plural = "Skrell"
-	icobase = 'icons/mob/human_races/r_skrell_m.dmi'
-	icobase_add = 'icons/mob/human_races/r_skrell_a.dmi'
+	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	primitive_form = "Neaera"
 	unarmed_types = list(/datum/unarmed_attack/punch)

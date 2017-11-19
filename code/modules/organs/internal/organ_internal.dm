@@ -58,5 +58,7 @@
 		if (prob(3))
 			take_damage(1,silent=prob(30))
 
-	//if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE, others are handled on each specific organ
-		//Nothing that generic internal organs do for this
+	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
+		if (prob(50))
+			take_damage(1,silent=prob(15))
+

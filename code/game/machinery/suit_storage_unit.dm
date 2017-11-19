@@ -640,7 +640,7 @@
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
-	departments = list("Mercenary")
+	departments = list("Mercenary", "Charring")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
@@ -752,7 +752,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$")
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$", "Charring")
 	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
 
 	emagged = 1
@@ -1073,6 +1073,15 @@
 				suit.name = "blood-red voidsuit"
 				suit.item_state = "syndie_voidsuit"
 				suit.icon_state = "rig-syndie"
+		if("Charring")
+			if(helmet)
+				helmet.name = "soot-covered voidsuit helmet"
+				helmet.icon_state = "rig0-firebug"
+				helmet.item_state = "rig0-firebug"
+			if(suit)
+				suit.name = "soot-covered voidsuit"
+				suit.item_state = "rig-firebug"
+				suit.icon_state = "rig-firebug"
 
 	if(helmet) helmet.name = "refitted [helmet.name]"
 	if(suit) suit.name = "refitted [suit.name]"

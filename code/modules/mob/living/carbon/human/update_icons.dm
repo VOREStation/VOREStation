@@ -159,16 +159,29 @@ Please contact me on #coderbus IRC. ~Carn x
 				for(var/inner_entry in entry)
 					overlays += inner_entry
 
+	update_transform()
+
+/mob/living/carbon/human/update_transform()
+	// First, get the correct size.
+	var/desired_scale = icon_scale
+
+	desired_scale *= species.icon_scale
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.icon_scale_percent))
+			desired_scale *= M.icon_scale_percent
+
+	// Regular stuff again.
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
 		M.Turn(90)
-		M.Scale(size_multiplier)
+		M.Scale(desired_scale)
 		M.Translate(1,-6)
 		src.transform = M
 	else
 		var/matrix/M = matrix()
-		M.Scale(size_multiplier)
-		M.Translate(0, 16*(size_multiplier-1))
+		M.Scale(desired_scale)
+		M.Translate(0, 16*(desired_scale-1))
 		src.transform = M
 
 var/global/list/damage_icon_parts = list()
@@ -293,6 +306,8 @@ var/global/list/damage_icon_parts = list()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
+			if(isnull(part) || part.is_stump())
+				continue
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
@@ -1133,22 +1148,14 @@ var/global/list/damage_icon_parts = list()
 	if(!tail_icon)
 		//generate a new one
 		var/species_tail_anim = species.get_tail_animation(src)
-		var/species_tail_anim_a = species.get_tail_animation_a(src)
-		if(!species_tail_anim)
-			species_tail_anim = 'icons/effects/species.dmi'
-		if(!species_tail_anim_a)
-			species_tail_anim_a = 'icons/effects/species_a.dmi'
+		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
 		tail_icon = new/icon(species_tail_anim)
-		var/tail_icon_a = new/icon(species_tail_anim_a)
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_MULTIPLY)
-		tail_icon.Blend(tail_icon_a, ICON_ADD)
+		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 		// The following will not work with animated tails.
 		var/use_species_tail = species.get_tail_hair(src)
 		if(use_species_tail)
 			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
-			var/icon/hair_icon_a = icon('icons/effects/species_a.dmi', "[species.get_tail(src)]_[use_species_tail]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY)
-			hair_icon.Blend(hair_icon_a, ICON_ADD)
+			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		tail_icon_cache[icon_key] = tail_icon
 

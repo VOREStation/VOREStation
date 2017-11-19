@@ -25,7 +25,7 @@
 		new /obj/item/clothing/gloves/sterile/latex(src)
 		new /obj/item/device/radio/headset/heads/cmo/alt(src)
 		new /obj/item/device/flash(src)
-		new /obj/item/weapon/reagent_containers/hypospray(src)
+		new /obj/item/weapon/reagent_containers/hypospray/vial(src)
 		new /obj/item/weapon/storage/box/freezer(src)
 		new /obj/item/clothing/mask/gas(src)
 		return

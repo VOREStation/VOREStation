@@ -71,7 +71,7 @@ var/global/list/limb_icon_cache = list()
 		overlays |= lip_icon
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
-	//Head markings, duplicated (sadly) below.
+	//Head markings.
 	for(var/M in markings)
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
@@ -132,22 +132,21 @@ var/global/list/limb_icon_cache = list()
 				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][gender ? "_[gender]" : ""]")
 				apply_colouration(mob_icon)
 
-			//Body markings, does not include head, duplicated (sadly) above.
-			for(var/M in markings)
-				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-				mark_s.Blend(markings[M]["color"], ICON_ADD)
-				overlays |= mark_s //So when it's not on your body, it has icons
-				mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
-				icon_cache_key += "[M][markings[M]["color"]]"
+			//Body markings, actually does not include head this time. Done separately above.
+			if(!istype(src,/obj/item/organ/external/head))
+				for(var/M in markings)
+					var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+					var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+					mark_s.Blend(markings[M]["color"], ICON_ADD)
+					overlays |= mark_s //So when it's not on your body, it has icons
+					mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
+					icon_cache_key += "[M][markings[M]["color"]]"
 
 			if(body_hair && islist(h_col) && h_col.len >= 3)
 				var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
 				if(!limb_icon_cache[cache_key])
 					var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
-					var/icon/IA = icon(species.get_icobase_a(owner), "[icon_name]_[body_hair]")
-					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY)
-					I.Blend(IA, ICON_ADD)
+					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
 					limb_icon_cache[cache_key] = I
 				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
 
@@ -163,7 +162,10 @@ var/global/list/limb_icon_cache = list()
 
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
-		applying.SetIntensity(0.7)
+		if(species && species.get_bodytype(owner) != "Human")
+			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
+		else
+			applying.SetIntensity(0.7)
 
 	else if(status & ORGAN_DEAD)
 		icon_cache_key += "_dead"
@@ -177,12 +179,7 @@ var/global/list/limb_icon_cache = list()
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		icon_cache_key += "_tone_[s_tone]"
 	else if(s_col && s_col.len >= 3)
-		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
-		var/gender = "f"
-		if(owner && owner.gender == MALE)
-			gender = "m"
-		var/icon_a = new /icon(species.get_icobase_a(owner), "[icon_name][gendered_icon ? "_[gender]" : ""]")
-		applying.Blend(icon_a, ICON_ADD)
+		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
 		icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]"
 
 	// Translucency.
