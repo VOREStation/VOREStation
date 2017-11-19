@@ -1061,3 +1061,21 @@ var/list/multi_point_spawns
 				/obj/item/clothing/head/helmet/space/void/security/riot
 			)
 		)
+
+/obj/random/multiple/voidsuit/mining
+	name = "Random Mining Voidsuit"
+	desc = "This is a random mining voidsuit."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "rig-mining"
+
+/obj/random/multiple/voidsuit/mining/item_to_spawn()
+	return pick(
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/mining,
+				/obj/item/clothing/head/helmet/space/void/mining
+			),
+			prob(1);list(
+				/obj/item/clothing/suit/space/void/mining/alt,
+				/obj/item/clothing/head/helmet/space/void/mining/alt
+			)
+		)
