@@ -23,6 +23,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/recursive_enhancement = 0 //Used to power up other abilities from the ling power with the same name.
 	var/list/purchased_powers_history = list() //Used for round-end report, includes respec uses too.
 	var/last_shriek = null // world.time when the ling last used a shriek.
+	var/next_escape = 0	// world.time when the ling can next use Escape Restraints
 
 /datum/changeling/New(var/gender=FEMALE)
 	..()
