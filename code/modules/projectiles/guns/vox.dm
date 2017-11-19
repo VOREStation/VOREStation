@@ -85,7 +85,7 @@
 /obj/item/projectile/beam/darkmatter
 	name = "dark matter bolt"
 	icon_state = "darkb"
-	damage = 60
+	damage = 35
 	armor_penetration = 35
 	damage_type = BRUTE
 	check_armour = "energy"
