@@ -12,7 +12,8 @@
 					/area/holodeck,
 					/area/supply/station,
 					/area/mine,
-					/area/vacant/vacant_shop
+					/area/vacant/vacant_shop,
+					/area/submap
 					)
 
 	var/list/exempt_from_atmos = typesof(/area/maintenance,
