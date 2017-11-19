@@ -3,7 +3,7 @@
 	desc = "We evolve more complex joints"
 	helptext = "We can instantly escape from most restraints and bindings, but we cannot do it often."
 	enhancedtext = "More frequent escapes."
-	ability_icon_state = "ling_epinepherine_overdose"
+	ability_icon_state = "ling_escape_restraints"
 	genomecost = 2
 	verbpath = /mob/proc/changeling_escape_restraints
 
