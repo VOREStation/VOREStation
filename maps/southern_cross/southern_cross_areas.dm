@@ -21,11 +21,11 @@
 	name = "The Surface (Don't Use)"
 
 /area/surface/center
-	name = "Outpost"
+	name = "Center"
 	icon_state = "center"
 
 /area/surface/north
-	name = "Mountains"
+	name = "Outpost"
 	icon_state = "north"
 
 /area/surface/south
@@ -45,7 +45,7 @@
 	icon_state = "northeast"
 
 /area/surface/northwest
-	name = "To Be Decided"
+	name = "Mountains"
 	icon_state = "northwest"
 
 /area/surface/southwest
@@ -53,7 +53,7 @@
 	icon_state = "southwest"
 
 /area/surface/southeast
-	name = "To Be Decided"
+	name = "Southern Shoreline"
 	icon_state = "southeast"
 
 /area/surface/outside/wilderness
