@@ -478,7 +478,7 @@
 				T.nutrition = T.nutrition*0.95
 			if(2)
 				to_chat(C, "<span class='notice'>You feel stronger with every passing moment of draining [T].</span>")
-				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], their body looking weaker with every passing moment!</span>")
+				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
 				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
@@ -547,7 +547,7 @@
 				T.nutrition = T.nutrition*0.95
 			if(2)
 				to_chat(C, "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>")
-				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], [T]'s body looking weaker with every passing moment!</span>")
+				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
 				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
@@ -640,7 +640,7 @@
 				C.nutrition = C.nutrition*0.95
 			if(2)
 				to_chat(C, "<span class='notice'>You feel weaker with every passing moment of feeding [T].</span>")
-				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], [T]'s body looking stronger with every passing moment!</span>")
+				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], resulting in [T]'s body looking stronger with every passing moment!</span>")
 				to_chat(T, "<span class='notice'>You feel stronger with every passing moment as [C] feeds you!</span>")
 				T.nutrition = (T.nutrition + (C.nutrition*0.1))
 				C.nutrition = C.nutrition*0.90
