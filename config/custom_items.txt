@@ -312,33 +312,33 @@ item_path: /obj/item/clothing/head/fedora/fluff/jemli
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
 req_access = 58
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
 req_access = 58
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/shoes/boots/combat
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/under/syndicate/combat
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/suit/armor/tactical/officer/fluff/ace
 }
 
@@ -644,7 +644,7 @@ item_path: /obj/item/clothing/under/sexyclown
 {
 ckey: silvertalismen
 character_name: Evian
-item_path: /obj/item/weapon/implant/reagent_generator/evian
+item_path: /obj/item/weapon/implanter/reagent_generator/evian
 }
 
 {
