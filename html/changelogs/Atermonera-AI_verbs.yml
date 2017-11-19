@@ -1,0 +1,4 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - bugfix: "AI verbs are no longer hidden on the tabs."

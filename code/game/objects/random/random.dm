@@ -504,12 +504,12 @@
 
 /obj/random/toy/item_to_spawn()
 	return pick(/obj/item/toy/bosunwhistle,
-				/obj/item/toy/therapy_red,
-				/obj/item/toy/therapy_purple,
-				/obj/item/toy/therapy_blue,
-				/obj/item/toy/therapy_yellow,
-				/obj/item/toy/therapy_orange,
-				/obj/item/toy/therapy_green,
+				/obj/item/toy/plushie/therapy/red,
+				/obj/item/toy/plushie/therapy/purple,
+				/obj/item/toy/plushie/therapy/blue,
+				/obj/item/toy/plushie/therapy/yellow,
+				/obj/item/toy/plushie/therapy/orange,
+				/obj/item/toy/plushie/therapy/green,
 				/obj/item/toy/cultsword,
 				/obj/item/toy/katana,
 				/obj/item/toy/snappop,
@@ -1059,5 +1059,23 @@ var/list/multi_point_spawns
 			prob(5);list(
 				/obj/item/clothing/suit/space/void/security/riot,
 				/obj/item/clothing/head/helmet/space/void/security/riot
+			)
+		)
+
+/obj/random/multiple/voidsuit/mining
+	name = "Random Mining Voidsuit"
+	desc = "This is a random mining voidsuit."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "rig-mining"
+
+/obj/random/multiple/voidsuit/mining/item_to_spawn()
+	return pick(
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/mining,
+				/obj/item/clothing/head/helmet/space/void/mining
+			),
+			prob(1);list(
+				/obj/item/clothing/suit/space/void/mining/alt,
+				/obj/item/clothing/head/helmet/space/void/mining/alt
 			)
 		)

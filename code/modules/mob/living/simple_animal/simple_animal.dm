@@ -90,6 +90,7 @@
 	var/assist_distance = 25		// Radius in which I'll ask my comrades for help.
 	var/supernatural = 0			// If the mob is supernatural (used in null-rod stuff for banishing?)
 	var/grab_resist = 75			// Chance of me resisting a grab attempt.
+	var/taser_kill = 1				// Is the mob weak to tasers
 
 	//Attack ranged settings
 	var/ranged = 0					// Do I attack at range?
@@ -107,7 +108,9 @@
 	var/friendly = "nuzzles"		// What mobs do to people when they aren't really hostile
 	var/attack_sound = null			// Sound to play when I attack
 	var/environment_smash = 0		// How much environment damage do I do when I hit stuff?
-	var/melee_miss_chance = 25		// percent chance to miss a melee attack.
+	var/melee_miss_chance = 15		// percent chance to miss a melee attack.
+	var/melee_attack_minDelay = 5		// How long between attacks at least
+	var/melee_attack_maxDelay = 10		// How long between attacks at most
 
 	//Special attacks
 	var/spattack_prob = 0			// Chance of the mob doing a special attack (0 for never)
@@ -1168,7 +1171,7 @@
 	if(!Adjacent(target_mob))
 		return
 	if(!client)
-		sleep(rand(8) + 8)
+		sleep(rand(melee_attack_minDelay, melee_attack_maxDelay))
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 
@@ -1437,16 +1440,30 @@
 
 //Shot with taser/stunvolver
 /mob/living/simple_animal/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
-	var/stunDam = 0
-	var/agonyDam = 0
+	if(taser_kill)
+		var/stunDam = 0
+		var/agonyDam = 0
 
-	if(stun_amount)
-		stunDam += stun_amount * 0.5
-		adjustFireLoss(stunDam)
+		if(stun_amount)
+			stunDam += stun_amount * 0.5
+			adjustFireLoss(stunDam)
 
-	if(agony_amount)
-		agonyDam += agony_amount * 0.5
-		adjustFireLoss(agonyDam)
+		if(agony_amount)
+			agonyDam += agony_amount * 0.5
+			adjustFireLoss(agonyDam)
+
+/mob/living/simple_animal/emp_act(severity)
+	if(!isSynthetic())
+		return
+	switch(severity)
+		if(1)
+			adjustFireLoss(rand(15, 25))
+		if(2)
+			adjustFireLoss(rand(10, 18))
+		if(3)
+			adjustFireLoss(rand(5, 12))
+		if(4)
+			adjustFireLoss(rand(1, 6))
 
 // Force it to target something
 /mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)

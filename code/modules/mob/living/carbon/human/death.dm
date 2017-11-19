@@ -1,5 +1,15 @@
 /mob/living/carbon/human/gib()
 
+	if(vr_holder)
+		exit_vr()
+		// Delete the link, because this mob won't be around much longer
+		vr_holder.vr_link = null
+
+	if(vr_link)
+		vr_link.exit_vr()
+		vr_link.vr_holder = null
+		vr_link = null
+
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
 		if(istype(loc,/turf))
@@ -79,6 +89,20 @@
 
 	if(wearing_rig)
 		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")
+
+	// If the body is in VR, move the mind back to the real world
+	if(vr_holder)
+		src.exit_vr()
+		src.vr_holder.vr_link = null
+		for(var/obj/item/W in src)
+			src.drop_from_inventory(W)
+
+	// If our mind is in VR, bring it back to the real world so it can die with its body
+	if(vr_link)
+		vr_link.exit_vr()
+		vr_link.vr_holder = null
+		vr_link = null
+		to_chat(src, "<span class='danger'>Everything abruptly stops.</span>")
 
 	return ..(gibbed,species.get_death_message(src))
 

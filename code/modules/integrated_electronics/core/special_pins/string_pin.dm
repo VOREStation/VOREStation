@@ -4,11 +4,14 @@
 
 /datum/integrated_io/string/ask_for_pin_data(mob/user)
 	var/new_data = input("Please type in a string.","[src] string writing") as null|text
-	if(holder.check_interactivity(user) )
+	new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
+
+	if(new_data && holder.check_interactivity(user) )
 		to_chat(user, "<span class='notice'>You input [new_data ? "new_data" : "NULL"] into the pin.</span>")
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/string/write_data_to_pin(var/new_data)
+	new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 	if(isnull(new_data) || istext(new_data))
 		data = new_data
 		holder.on_data_written()

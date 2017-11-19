@@ -109,19 +109,27 @@
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
-			"<font color='red'>[src] was shocked by \the [source]!</font>", \
-			"<font color='red'><B>You feel a powerful shock course through your body!</B></font>", \
-			"<font color='red'>You hear a heavy electrical crack.</font>" \
+			"<span class='warning'>[src] was electrocuted[source ? " by the [source]" : ""]!</span>", \
+			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
+			"<span class='warning'>You hear a heavy electrical crack.</span>" \
 		)
-		if(stun)
-			Stun(10)//This should work for now, more is really silly and makes you lay there forever
-			Weaken(10)
 	else
 		src.visible_message(
-			"<font color='red'>[src] was mildly shocked by \the [source].</font>", \
-			"<font color='red'>You feel a mild shock course through your body.</font>", \
-			"<font color='red'>You hear a light zapping.</font>" \
+			"<span class='warning'>[src] was shocked[source ? " by the [source]" : ""].</span>", \
+			"<span class='warning'>You feel a shock course through your body.</span>", \
+			"<span class='warning'>You hear a zapping sound.</span>" \
 		)
+
+	if(stun)
+		switch(shock_damage)
+			if(16 to 20)
+				Stun(2)
+			if(21 to 25)
+				Weaken(2)
+			if(26 to 30)
+				Weaken(5)
+			if(31 to INFINITY)
+				Weaken(10) //This should work for now, more is really silly and makes you lay there forever
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)

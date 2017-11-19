@@ -54,6 +54,7 @@
 	name = "white flats"
 	desc = "Shiny white flats."
 	icon_state = "flatswhite"
+	addblends = "flatswhite_a"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
 /obj/item/clothing/shoes/flats/white/color

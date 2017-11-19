@@ -1004,3 +1004,17 @@ default behaviour is:
 // Called by job_controller.
 /mob/living/proc/equip_post_job()
 	return
+
+
+/mob/living/update_transform()
+	// First, get the correct size.
+	var/desired_scale = icon_scale
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.icon_scale_percent))
+			desired_scale *= M.icon_scale_percent
+
+	// Now for the regular stuff.
+	var/matrix/M = matrix()
+	M.Scale(desired_scale)
+	M.Translate(0, 16*(desired_scale-1))
+	src.transform = M

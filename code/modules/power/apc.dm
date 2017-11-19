@@ -681,13 +681,10 @@
 		else
 			flick("apc-spark", src)
 			if (do_after(user,6))
-				if(prob(50))
-					emagged = 1
-					locked = 0
-					to_chat(user,"<span class='notice'>You emag the APC interface.</span>")
-					update_icon()
-				else
-					to_chat(user,"<span class='warning'>The APC interface refused to unlock.</span>")
+				emagged = 1
+				locked = 0
+				to_chat(user,"<span class='notice'>You emag the APC interface.</span>")
+				update_icon()
 				return 1
 
 /obj/machinery/power/apc/attack_hand(mob/user)

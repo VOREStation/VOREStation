@@ -159,6 +159,34 @@
 	name = "ammo clip (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/a45f
 
+/obj/item/ammo_magazine/s45
+	name = "speedloader (.45)"
+	icon_state = "45s"
+	ammo_type = /obj/item/ammo_casing/a45
+	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	caliber = ".45"
+	max_ammo = 7
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/s45/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/s45/rubber
+	name = "speedloader (.45 rubber)"
+	ammo_type = /obj/item/ammo_casing/a45r
+
+/obj/item/ammo_magazine/s45/practice
+	name = "speedloader (.45 practice)"
+	ammo_type = /obj/item/ammo_casing/a45p
+
+/obj/item/ammo_magazine/s45/flash
+	name = "speedloader (.45 flash)"
+	ammo_type = /obj/item/ammo_casing/a45f
+
+/obj/item/ammo_magazine/s45/ap
+	name = "speedloader (.45 AP)"
+	ammo_type = /obj/item/ammo_casing/a45ap
+
 ///////// 9mm /////////
 
 /obj/item/ammo_magazine/m9mm

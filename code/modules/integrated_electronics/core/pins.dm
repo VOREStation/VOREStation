@@ -112,6 +112,8 @@ list[](
 
 /datum/integrated_io/proc/write_data_to_pin(var/new_data)
 	if(isnull(new_data) || isnum(new_data) || istext(new_data) || isweakref(new_data)) // Anything else is a type we don't want.
+		if(istext(new_data))
+			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 		data = new_data
 		holder.on_data_written()
 

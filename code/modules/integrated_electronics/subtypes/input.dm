@@ -110,8 +110,10 @@
 
 
 /obj/item/integrated_circuit/input/adv_med_scanner
-	name = "integrated advanced medical analyser"
-	desc = "A very small version of the medbot's medical analyser.  This allows the machine to know how healthy someone is.  \
+
+	name = "integrated advanced medical analyzer"
+	desc = "A very small version of the medibot's medical analyzer.  This allows the machine to know how healthy someone is.  \
+
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
@@ -134,7 +136,9 @@
 	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
+
 	if(H in view(get_turf(H))) // Like medbot's analyzer it can be used in range..
+
 		var/total_health = round(H.health/H.getMaxHealth(), 0.01)*100
 		var/missing_health = H.getMaxHealth() - H.health
 
@@ -336,6 +340,7 @@
 	// Set the pins so when someone sees them, they won't show as null
 	set_pin_data(IC_INPUT, 1, frequency)
 	set_pin_data(IC_INPUT, 2, code)
+	push_data()
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)
@@ -464,6 +469,7 @@
 	set_pin_data(IC_OUTPUT, 1, null)
 	set_pin_data(IC_OUTPUT, 2, null)
 	if(!T)
+		push_data()
 		return
 
 	set_pin_data(IC_OUTPUT, 1, T.x)
@@ -486,7 +492,7 @@
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
-	activators = list("on message received" = IC_PINTYPE_PULSE_IN, "on translation" = IC_PINTYPE_PULSE_OUT)
+	activators = list("on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
@@ -618,4 +624,235 @@
 	push_data()
 	activate_pin(2)
 
+/obj/item/integrated_circuit/input/atmo_scanner
+	name = "integrated atmospheric analyser"
+	desc = "The same atmospheric analysis module that is integrated into every PDA.  \
+	This allows the machine to know the composition, temperature and pressure of the surrounding atmosphere."
+	icon_state = "medscan_adv"
+	complexity = 9
+	inputs = list()
+	outputs = list(
+		"pressure"       = IC_PINTYPE_NUMBER,
+		"temperature" = IC_PINTYPE_NUMBER,
+		"oxygen"         = IC_PINTYPE_NUMBER,
+		"nitrogen"          = IC_PINTYPE_NUMBER,
+		"carbon dioxide"           = IC_PINTYPE_NUMBER,
+		"phoron"           = IC_PINTYPE_NUMBER,
+		"other"           = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 60
 
+/obj/item/integrated_circuit/input/atmo_scanner/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/pressure = environment.return_pressure()
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		var/o2_level = environment.gas["oxygen"]/total_moles
+		var/n2_level = environment.gas["nitrogen"]/total_moles
+		var/co2_level = environment.gas["carbon_dioxide"]/total_moles
+		var/phoron_level = environment.gas["phoron"]/total_moles
+		var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+		set_pin_data(IC_OUTPUT, 1, pressure)
+		set_pin_data(IC_OUTPUT, 2, round(environment.temperature-T0C,0.1))
+		set_pin_data(IC_OUTPUT, 3, round(o2_level*100,0.1))
+		set_pin_data(IC_OUTPUT, 4, round(n2_level*100,0.1))
+		set_pin_data(IC_OUTPUT, 5, round(co2_level*100,0.1))
+		set_pin_data(IC_OUTPUT, 6, round(phoron_level*100,0.01))
+		set_pin_data(IC_OUTPUT, 7, round(unknown_level, 0.01))
+	else
+		set_pin_data(IC_OUTPUT, 1, 0)
+		set_pin_data(IC_OUTPUT, 2, -273.15)
+		set_pin_data(IC_OUTPUT, 3, 0)
+		set_pin_data(IC_OUTPUT, 4, 0)
+		set_pin_data(IC_OUTPUT, 5, 0)
+		set_pin_data(IC_OUTPUT, 6, 0)
+		set_pin_data(IC_OUTPUT, 7, 0)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/pressure_sensor
+	name = "integrated pressure sensor"
+	desc = "A tiny pressure sensor module similar to that found in a PDA atmosphere analyser."
+	icon_state = "medscan_adv"
+	complexity = 3
+	inputs = list()
+	outputs = list(
+		"pressure"       = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/input/pressure_sensor/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/pressure = environment.return_pressure()
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		set_pin_data(IC_OUTPUT, 1, pressure)
+	else
+		set_pin_data(IC_OUTPUT, 1, 0)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/temperature_sensor
+	name = "integrated temperature sensor"
+	desc = "A tiny temperature sensor module similar to that found in a PDA atmosphere analyser."
+	icon_state = "medscan_adv"
+	complexity = 3
+	inputs = list()
+	outputs = list(
+		"temperature"       = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/input/temperature_sensor/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		set_pin_data(IC_OUTPUT, 1, round(environment.temperature-T0C,0.1))
+	else
+		set_pin_data(IC_OUTPUT, 1, -273.15)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/oxygen_sensor
+	name = "integrated oxygen sensor"
+	desc = "A tiny oxygen sensor module similar to that found in a PDA atmosphere analyser."
+	icon_state = "medscan_adv"
+	complexity = 3
+	inputs = list()
+	outputs = list(
+		"oxygen"       = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/input/oxygen_sensor/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		var/o2_level = environment.gas["oxygen"]/total_moles
+		set_pin_data(IC_OUTPUT, 1, round(o2_level*100,0.1))
+	else
+		set_pin_data(IC_OUTPUT, 1, 0)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/co2_sensor
+	name = "integrated co2 sensor"
+	desc = "A tiny carbon dioxide sensor module similar to that found in a PDA atmosphere analyser."
+	icon_state = "medscan_adv"
+	complexity = 3
+	inputs = list()
+	outputs = list(
+		"co2"       = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/input/co2_sensor/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		var/co2_level = environment.gas["carbon_dioxide"]/total_moles
+		set_pin_data(IC_OUTPUT, 1, round(co2_level*100,0.1))
+	else
+		set_pin_data(IC_OUTPUT, 1, 0)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/nitrogen_sensor
+	name = "integrated nitrogen sensor"
+	desc = "A tiny nitrogen sensor module similar to that found in a PDA atmosphere analyser."
+	icon_state = "medscan_adv"
+	complexity = 3
+	inputs = list()
+	outputs = list(
+		"nitrogen"       = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/input/nitrogen_sensor/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		var/n2_level = environment.gas["nitrogen"]/total_moles
+		set_pin_data(IC_OUTPUT, 1, round(n2_level*100,0.1))
+	else
+		set_pin_data(IC_OUTPUT, 1, 0)
+	push_data()
+	activate_pin(2)
+
+/obj/item/integrated_circuit/input/phoron_sensor
+	name = "integrated phoron sensor"
+	desc = "A tiny phoron gas sensor module similar to that found in a PDA atmosphere analyser."
+	icon_state = "medscan_adv"
+	complexity = 3
+	inputs = list()
+	outputs = list(
+		"phoron"       = IC_PINTYPE_NUMBER
+	)
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
+	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/input/phoron_sensor/do_work()
+	var/turf/T = get_turf(src)
+	if(!istype(T)) //Invalid input
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+
+	var/total_moles = environment.total_moles
+
+	if (total_moles)
+		var/phoron_level = environment.gas["phoron"]/total_moles
+		set_pin_data(IC_OUTPUT, 1, round(phoron_level*100,0.1))
+	else
+		set_pin_data(IC_OUTPUT, 1, 0)
+	push_data()
+	activate_pin(2)
