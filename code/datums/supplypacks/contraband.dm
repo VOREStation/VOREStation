@@ -80,7 +80,7 @@
 					/obj/item/weapon/storage/box/syndie_kit/demolitions,
 					/obj/item/device/multitool/ai_detector,
 					/obj/item/weapon/plastique,
-					/obj/item/weapon/storage/toolbox/syndicate
+					/obj/item/weapon/storage/toolbox/syndicate/powertools
 					),
 			list( //the infiltrator,
 					/obj/item/weapon/gun/projectile/silenced,
