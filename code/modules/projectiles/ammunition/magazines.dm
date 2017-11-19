@@ -551,12 +551,12 @@
 
 /obj/item/ammo_magazine/clip/c12g
 	name = "ammo clip (12g slug)"
-	icon_state = "12gclipslug" //largely a codersprite, looks good enough. feel free to make a better one.
+	icon_state = "12gclipslug" // Still a placeholder sprite. Feel free to make a better one.
 	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with slugs."
 	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g
-	matter = list(DEFAULT_WALL_MATERIAL = 1790) // slugs shells x4 + 350 metal for the clip itself.
-	max_ammo = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 1070) // slugs shells x2 + 350 metal for the clip itself.
+	max_ammo = 2
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/clip/c12g/pellet
@@ -564,14 +564,14 @@
 	icon_state = "12gclipshell"
 	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with buckshot."
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
-	matter = list(DEFAULT_WALL_MATERIAL = 1790) // buckshot and slugs cost the same
+	matter = list(DEFAULT_WALL_MATERIAL = 1070) // buckshot and slugs cost the same
 
 /obj/item/ammo_magazine/clip/c12g/beanbag
 	name = "ammo clip (12g beanbag)"
 	icon_state = "12gclipbean"
 	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with beanbags."
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
-	matter = list(DEFAULT_WALL_MATERIAL = 1070) //beanbags x4 + 350 metal
+	matter = list(DEFAULT_WALL_MATERIAL = 710) //beanbags x2 + 350 metal
 
 ///////// .75 Gyrojet /////////
 
