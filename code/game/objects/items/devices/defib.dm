@@ -284,7 +284,7 @@
 		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
 
 	H.updatehealth()
-	if(H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations))
+	if(H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations) || (!H.isSynthetic() && !H.can_defib))
 		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
 
 	var/bad_vital_organ = check_vital_organs(H)
