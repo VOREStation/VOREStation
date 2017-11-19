@@ -1467,7 +1467,7 @@ datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies
 
 
 
-	if(destination.recievefax(P))
+	if(destination.receivefax(P))
 		src.owner << "<span class='notice'>Message reply to transmitted successfully.</span>"
 		if(P.sender) // sent as a reply
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
