@@ -35,8 +35,8 @@
 	qdel_null(paddles)
 	qdel_null(bcell)
 
-/obj/item/device/defib_kit/loaded //starts with highcap cell
-	bcell = /obj/item/weapon/cell/high
+/obj/item/device/defib_kit/loaded //starts with a cell
+	bcell = /obj/item/weapon/cell/apc
 
 
 /obj/item/device/defib_kit/update_icon()
@@ -209,7 +209,7 @@
 	var/combat = 0 //If it can be used to revive people wearing thick clothing (e.g. spacesuits)
 	var/cooldowntime = (6 SECONDS) // How long in deciseconds until the defib is ready again after use.
 	var/chargetime = (2 SECONDS)
-	var/chargecost = 1000 //units of charge
+	var/chargecost = 1250 //units of charge per zap	//With the default APC level cell, this allows 4 shocks
 	var/burn_damage_amt = 5
 	var/use_on_synthetic = 0 //If 1, this is only useful on FBPs, if 0, this is only useful on fleshies
 
