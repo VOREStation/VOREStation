@@ -356,6 +356,14 @@
 	name = "extended magazine (5.45mm armor-piercing)"
 	max_ammo = 30
 
+/obj/item/ammo_magazine/m545/hunter
+	name = "magazine (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
+
+/obj/item/ammo_magazine/m545/hunter/ext
+	name = "extended magazine (5.45mm hunting)"
+	max_ammo = 30
+
 /obj/item/ammo_magazine/m545/small
 	name = "reduced magazine (5.45mm)"
 	icon_state = "m545-small"
@@ -373,6 +381,10 @@
 	name = "magazine (5.45mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a545/ap
 
+/obj/item/ammo_magazine/m545/small/hunter
+	name = "magazine (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
+
 /obj/item/ammo_magazine/clip/c545
 	name = "ammo clip (5.45mm)"
 	icon_state = "clip_rifle"
@@ -385,6 +397,10 @@
 /obj/item/ammo_magazine/clip/c545/ap
 	name = "rifle clip (5.45mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a545/ap
+
+/obj/item/ammo_magazine/clip/c545/hunter
+	name = "rifle clip (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
 
 /obj/item/ammo_magazine/clip/c545/practice
 	name = "rifle clip (5.45mm practice)"
@@ -405,6 +421,10 @@
 /obj/item/ammo_magazine/m545saw/ap
 	name = "magazine box (5.45mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a545/ap
+
+/obj/item/ammo_magazine/m545saw/hunter
+	name = "magazine box (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
 
 /obj/item/ammo_magazine/m545saw/empty
 	initial_ammo = 0
@@ -504,6 +524,10 @@
 /obj/item/ammo_magazine/clip/c762/practice
 	name = "rifle clip (7.62mm practice)"
 	ammo_type = /obj/item/ammo_casing/a762p
+
+/obj/item/ammo_magazine/clip/c762/hunter
+	name = "rifle clip (7.62mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a762/hunter
 
 /obj/item/ammo_magazine/m762svd
 	name = "\improper SVD magazine (7.62mm)"
