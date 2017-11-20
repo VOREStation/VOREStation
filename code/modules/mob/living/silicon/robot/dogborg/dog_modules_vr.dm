@@ -346,7 +346,7 @@
 		src << "You cannot leap in your current state."
 		return
 
-	last_special = world.time + 80
+	last_special = world.time + 20
 	status_flags |= LEAPING
 	pixel_y = 10
 
@@ -354,7 +354,7 @@
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	playsound(src.loc, 'sound/mecha/mechstep2.ogg', 50, 1)
 	pixel_y = 0
-	cell.charge -= 666
+	cell.charge -= 750
 
 	sleep(5)
 
@@ -364,4 +364,8 @@
 		src << "<span class='warning'>You miss!</span>"
 		return
 
-	T << "<span class='warning'>Please lay down for the arrest to commence immersively.</span>"
+	var/armor_block = run_armor_check(T, "melee")
+	var/armor_soak = get_armor_soak(T, "melee")
+	T.apply_damage(30, HALLOSS,, armor_block, armor_soak)
+	if(prob(25))
+		T.apply_effect(3, WEAKEN, armor_block)
