@@ -346,7 +346,7 @@
 		src << "You cannot leap in your current state."
 		return
 
-	last_special = world.time + 20
+	last_special = world.time + 10
 	status_flags |= LEAPING
 	pixel_y = 10
 
