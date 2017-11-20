@@ -328,7 +328,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/M in view(6,src))
+	for(var/mob/living/M in view(3,src))
 		if(!istype(M,/mob/living/silicon))
 			choices += M
 	choices -= src
@@ -337,7 +337,7 @@
 
 	if(!T || !src || src.stat) return
 
-	if(get_dist(get_turf(T), get_turf(src)) > 4) return
+	if(get_dist(get_turf(T), get_turf(src)) > 3) return
 
 	if(last_special > world.time)
 		return
@@ -346,7 +346,7 @@
 		src << "You cannot leap in your current state."
 		return
 
-	last_special = world.time + 75
+	last_special = world.time + 80
 	status_flags |= LEAPING
 	pixel_y = 10
 
@@ -354,7 +354,7 @@
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	playsound(src.loc, 'sound/mecha/mechstep2.ogg', 50, 1)
 	pixel_y = 0
-	cell.charge -= 500
+	cell.charge -= 666
 
 	sleep(5)
 
@@ -364,4 +364,4 @@
 		src << "<span class='warning'>You miss!</span>"
 		return
 
-	T.Weaken(4)
+	T.Weaken(3)
