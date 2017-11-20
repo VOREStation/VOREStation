@@ -430,7 +430,7 @@
 					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
 					return
 				if("Remove Access")
-					idcard.access = null
+					idcard.access = list()
 					user << "<span class='notice'>You remove the access from [src].</span>"
 					return
 				if("Cancel")
