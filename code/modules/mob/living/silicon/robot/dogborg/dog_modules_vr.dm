@@ -364,4 +364,4 @@
 		src << "<span class='warning'>You miss!</span>"
 		return
 
-	T.Weaken(3)
+	T << "<span class='warning'>Please lay down for the arrest to commence immersively.</span>"
