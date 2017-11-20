@@ -14,6 +14,7 @@
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
+	can_fly = 1 //They have wings by default.
 
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
@@ -74,9 +75,11 @@
 				if(H.feral == 0)
 					H << "<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>"
 					log_and_message_admins("has gone feral due to hunger.", H)
+					H.feral += 5 //just put them over the threshold by a decent amount for the first chunk.
 					if(H.stat == CONSCIOUS)
 						H.emote("twitch")
-				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
+				if(H.feral + H.nutrition < 150) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
+					H.feral += 1
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
 		if (H.stat == CONSCIOUS && H.traumatic_shock >=min(60, H.nutrition/10)) //at 360 nutrition, this is 30 brute/burn, or 18 halloss. Capped at 50 brute/30 halloss - if they take THAT much, no amount of satiation will help them. Also they're fat.

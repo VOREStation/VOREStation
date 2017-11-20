@@ -12,6 +12,7 @@
 	var/charge_cost = 50
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
+	var/bypass_protection = FALSE // If true, can inject through things like spacesuits and armor.
 
 	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "anti_toxin", "tramadol", "dexalin" ,"spaceacillin")
 	var/list/reagent_volumes = list()
@@ -25,6 +26,13 @@
 
 /obj/item/weapon/reagent_containers/borghypo/lost
 	reagent_ids = list("tricordrazine", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+
+/obj/item/weapon/reagent_containers/borghypo/merc
+	name = "advanced cyborg hypospray"
+	desc = "An advanced nanite and chemical synthesizer and injection system, designed for heavy-duty medical equipment.  This type is capable of safely bypassing \
+	thick materials that other hyposprays would struggle with."
+	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
+	reagent_ids = list("healing_nanites", "hyperzine", "tramadol", "oxycodone", "spaceacillin", "peridaxon", "osteodaxon", "myelamine")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
@@ -72,7 +80,7 @@
 			user << "<span class='danger'>You cannot inject a robotic limb.</span>"
 			return
 
-	if (M.can_inject(user, 1))
+	if(M.can_inject(user, 1, ignore_thickness = bypass_protection))
 		user << "<span class='notice'>You inject [M] with the injector.</span>"
 		M << "<span class='notice'>You feel a tiny prick!</span>"
 

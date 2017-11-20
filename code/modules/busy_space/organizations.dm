@@ -104,7 +104,7 @@
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
-		"NCS Northern Star in Vir",
+		//"NCS Northern Star in Vir",
 		"NLS Southern Cross in Vir",
 		"NAS Vir Central Command",
 		"a dockyard orbiting Sif",
@@ -363,7 +363,7 @@
 		"Please Don't Explode II"
 		)
 	destination_names = list(
-		"A trade outpost in Shelf"
+		"a trade outpost in Shelf"
 		)
 
 /datum/lore/organization/tsc/xion

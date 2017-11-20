@@ -89,6 +89,13 @@
 	result = "grubshake"
 	required_reagents = list("shockchem" = 5, "water" = 25)
 	result_amount = 30
+	
+/datum/chemical_reaction/drinks/deathbell
+	name = "Deathbell"
+	id = "deathbell"
+	result = "deathbell"
+	required_reagents = list("antifreeze" = 1, "gargleblaster" = 1, "syndicatebomb" =1)
+	result_amount = 3
 
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////

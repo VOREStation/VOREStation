@@ -120,6 +120,14 @@ default behaviour is:
 			// VOREStation Edit - Begin
 			// Handle grabbing, stomping, and such of micros!
 			if(handle_micro_bump_other(tmob)) return
+			// Plow that nerd.
+			if(ishuman(tmob))
+				var/mob/living/carbon/human/H = tmob
+				if(H.species.lightweight == 1 && prob(50))
+					H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
+					H.Weaken(20)
+					now_pushing = 0
+					return
 			// VOREStation Edit - End
 
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
@@ -146,7 +154,7 @@ default behaviour is:
 			..()
 			if (!istype(AM, /atom/movable) || AM.anchored)
 				//VOREStation Edit - object-specific proc for running into things
-				if((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run")
+				if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
 					AM.stumble_into(src)
 				//VOREStation Edit End
 				/* VOREStation Removal - See above
@@ -1038,3 +1046,18 @@ default behaviour is:
 // Called by job_controller.
 /mob/living/proc/equip_post_job()
 	return
+
+/* //VOREStation Edit. We have a better system in place.
+/mob/living/update_transform()
+	// First, get the correct size.
+	var/desired_scale = icon_scale
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.icon_scale_percent))
+			desired_scale *= M.icon_scale_percent
+
+	// Now for the regular stuff.
+	var/matrix/M = matrix()
+	M.Scale(desired_scale)
+	M.Translate(0, 16*(desired_scale-1))
+	src.transform = M
+*/ //VOREStation Edit

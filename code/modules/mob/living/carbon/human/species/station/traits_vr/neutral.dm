@@ -82,3 +82,9 @@
 	desc = "Allows you to tear off limbs & tear out internal organs."
 	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same functions.
 	var_changes = list("hard_vore_enabled" = 1) //The verb is given in human.dm
+
+/datum/trait/trashcan
+	name = "Trash Can"
+	desc = "Allows you to dispose of the snack wrappings on the go instead of having to look for a bin or littering like an animal."
+	cost = 0
+	var_changes = list("trashcan" = 1)

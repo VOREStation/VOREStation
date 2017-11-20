@@ -9,6 +9,7 @@
 
 /obj/item/organ/internal/kidneys/process()
 	..()
+
 	if(!owner) return
 
 	// Coffee is really bad for you with busted kidneys.

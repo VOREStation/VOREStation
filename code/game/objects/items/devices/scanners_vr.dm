@@ -133,6 +133,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			nif = H.nif
+			persist_nif_data(H)
 
 		usr.visible_message("[usr] begins scanning [target]'s mind.","<span class='notice'>You begin scanning [target]'s mind.</span>")
 		if(do_after(usr,8 SECONDS,target))

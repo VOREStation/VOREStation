@@ -7,6 +7,7 @@
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
+	preserve_item = 1
 
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0

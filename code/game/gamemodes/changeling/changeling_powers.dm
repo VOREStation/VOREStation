@@ -4,6 +4,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/list/datum/absorbed_dna/absorbed_dna = list()
 	var/list/absorbed_languages = list() // Necessary because of set_species stuff
 	var/absorbedcount = 0
+	var/lingabsorbedcount = 1	//Starts at one, because that's us
 	var/chem_charges = 20
 	var/chem_recharge_rate = 0.5
 	var/chem_storage = 50
@@ -11,8 +12,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
 	var/isabsorbing = 0
-	var/geneticpoints = 5
-	var/max_geneticpoints = 5
+	var/geneticpoints = 7
+	var/max_geneticpoints = 7
 	var/readapts = 1
 	var/max_readapts = 2
 	var/list/purchased_powers = list()
@@ -219,7 +220,11 @@ turf/proc/AdjacentTurfsRangedSting()
 		victims += C
 	var/mob/living/carbon/T = input(src, "Who will we sting?") as null|anything in victims
 
-	if(!T) return
+	if(!T)
+		return
+	if(T.isSynthetic())
+		src << "<span class='notice'>We are unable to pierce the outer shell of [T].</span>"
+		return
 	if(!(T in view(changeling.sting_range))) return
 	if(!sting_can_reach(T, changeling.sting_range)) return
 	if(!changeling_power(required_chems)) return

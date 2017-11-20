@@ -90,16 +90,23 @@
 					continue
 				absorbDNA(dna_data)
 				changeling.absorbedcount++
+
 			T.mind.changeling.absorbed_dna.len = 1
 
-		changeling.geneticpoints += 5
-		changeling.max_geneticpoints += 5
+		// This is where lings get boosts from eating eachother
+		if(T.mind.changeling.lingabsorbedcount)
+			for(var/a = 1 to T.mind.changeling.lingabsorbedcount)
+				changeling.lingabsorbedcount++
+				changeling.geneticpoints += 4
+				changeling.max_geneticpoints += 4
+
 		src << "<span class='notice'>We absorbed another changeling, and we grow stronger.  Our genomes increase.</span>"
 
 		T.mind.changeling.chem_charges = 0
 		T.mind.changeling.geneticpoints = -1
 		T.mind.changeling.max_geneticpoints = -1 //To prevent revival.
 		T.mind.changeling.absorbedcount = 0
+		T.mind.changeling.lingabsorbedcount = 0
 
 	changeling.absorbedcount++
 	changeling.isabsorbing = 0

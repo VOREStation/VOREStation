@@ -29,7 +29,7 @@
 	var/gender = NEUTER
 
 	// Restrict some styles to specific species
-	var/list/species_allowed = list("Human","Promethean")
+	var/list/species_allowed = list("Human","Promethean","Vatborn")
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
@@ -45,13 +45,14 @@
 
 /datum/sprite_accessory/hair
 
-	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
+	icon = 'icons/mob/Human_face_m.dmi'	  // default icon for all hairs
+	var/icon_add = 'icons/mob/human_face.dmi'
 
 	bald
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Unathi","Promethean")
+		species_allowed = list("Human","Unathi","Promethean","Vatborn")
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
@@ -203,12 +204,12 @@
 	bobcurl
 		name = "Bobcurl"
 		icon_state = "hair_bobcurl"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	bob
 		name = "Bob"
 		icon_state = "hair_bobcut"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	bobcutalt
 		name = "Chin Length Bob"
@@ -233,7 +234,7 @@
 	buzz
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	shavehair
 		name = "Shaved Hair"
@@ -323,7 +324,7 @@
 		name = "Overeye Long"
 		icon_state = "hair_longovereye"
 
-	fag
+	flowhair
 		name = "Flow Hair"
 		icon_state = "hair_f"
 
@@ -338,7 +339,7 @@
 	mohawk
 		name = "Mohawk"
 		icon_state = "hair_d"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	jensen
 		name = "Adam Jensen Hair"
@@ -355,7 +356,7 @@
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	kusangi
 		name = "Kusanagi Hair"
@@ -660,7 +661,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox","Promethean")
+		species_allowed = list("Human","Vatborn","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox","Promethean")
 
 	watson
 		name = "Watson Mustache"
@@ -701,7 +702,7 @@
 	elvis
 		name = "Elvis Sideburns"
 		icon_state = "facial_elvis"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Promethean","Vatborn","Unathi")
 
 	abe
 		name = "Abraham Lincoln Beard"
@@ -1342,12 +1343,12 @@
 	human
 		name = "Default human skin"
 		icon_state = "default"
-		species_allowed = list("Human")
+		species_allowed = list("Human","Vatborn")
 
 	human_tatt01
 		name = "Tatt01 human skin"
 		icon_state = "tatt1"
-		species_allowed = list("Human")
+		species_allowed = list("Human","Vatborn")
 
 	tajaran
 		name = "Default tajaran skin"

@@ -97,7 +97,7 @@ var/list/cargo_positions = list(
 var/list/civilian_positions = list(
 	"Head of Personnel",
 	"Bartender",
-	"Gardener",
+	"Botanist",
 	"Chef",
 	"Janitor",
 	"Librarian",

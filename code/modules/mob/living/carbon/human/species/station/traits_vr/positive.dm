@@ -97,7 +97,7 @@
 	var_changes = list("brute_mod" = 0.5)
 
 /datum/trait/minor_burn_resist
-	name = "Minor Brute Resist"
+	name = "Minor Burn Resist"
 	desc = "Adds 15% resistance to burn damage sources."
 	cost = 1
 	var_changes = list("burn_mod" = 0.85)
@@ -119,3 +119,15 @@
 	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 50%"
 	cost = 1
 	var_changes = list("flash_mod" = 0.5)
+
+/datum/trait/winged_flight
+	name = "Winged Flight"
+	desc = "Allows you to fly by using your wings."
+	cost = 2 //Some in game value.
+	var_changes = list("can_fly" = 1)
+
+/datum/trait/hardfeet
+	name = "Hard Feet"
+	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
+	cost = 1
+	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.

@@ -6,6 +6,7 @@
 #define OXY       "oxy"
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
+#define ELECTROCUTE "electrocute"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -56,3 +57,4 @@
 #define INFECTION_LEVEL_ONE   100
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
+#define INFECTION_LEVEL_MAX   1500

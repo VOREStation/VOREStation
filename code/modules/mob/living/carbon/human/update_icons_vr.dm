@@ -63,3 +63,9 @@
 		if(update_icons)
 			update_icons()
 		return
+
+/mob/proc/stop_flying(var/update_icons=1)
+	flying = 0
+
+	if(update_icons)
+		update_icons()

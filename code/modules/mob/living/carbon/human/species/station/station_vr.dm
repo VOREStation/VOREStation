@@ -76,6 +76,7 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 	min_age = 18
 	max_age = 80
@@ -119,6 +120,7 @@
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
+	can_fly = 1
 
 	min_age = 18
 	max_age = 80
@@ -344,6 +346,8 @@
 	gluttonous = 0
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	min_age = 18
+	icobase = 'icons/mob/human_races/r_vox_old.dmi'
+	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
 
 datum/species/harpy
 	name = "Rapala"
@@ -357,6 +361,7 @@ datum/species/harpy
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = null
 	color_mult = 1
+	can_fly = 1
 
 	min_age = 18
 	max_age = 80
@@ -381,3 +386,6 @@ datum/species/harpy
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+
+/datum/species/human/vatgrown
+	spawn_flags = SPECIES_IS_RESTRICTED

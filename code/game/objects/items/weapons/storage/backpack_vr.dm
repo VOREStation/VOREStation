@@ -92,3 +92,14 @@
 	item_state = "robustsaddle"
 	icon_state = "robustsaddle"
 	icon_base = "robustsaddle"
+
+/obj/item/weapon/storage/backpack/saddlebag_common/vest //Shared bag for other taurs with sturdy backs
+	name = "Taur Duty Vest"
+	desc = "An armored vest with the armor modules replaced with various handy compartments with decent storage capacity. Useless for protection though."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "taurvest"
+	icon_state = "taurvest"
+	icon_base = "taurvest"
+	max_storage_space = INVENTORY_STANDARD_SPACE
+	slowdown = 0

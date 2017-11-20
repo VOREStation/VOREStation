@@ -6,19 +6,22 @@
 	dress_preview_mob(mannequin)
 	var/icon/bgstate = pick("000", "FFF", "steel", "white", "plating", "reinforced")
 
-	preview_icon = icon('icons/effects/128x48_vr.dmi', bgstate)
-	preview_icon.Scale(64+64, 16+32)
+	preview_icon = icon('icons/effects/128x72_vr.dmi', bgstate)
+	preview_icon.Scale(128, 72)
 
 	mannequin.dir = NORTH
 	var/icon/stamp = getFlatIcon(mannequin)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 9)
+	stamp.Scale(stamp.Width()*size_multiplier,stamp.Height()*size_multiplier)
+	preview_icon.Blend(stamp, ICON_OVERLAY, 64-stamp.Width()/2, 5)
 
 	mannequin.dir = WEST
 	stamp = getFlatIcon(mannequin)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
+	stamp.Scale(stamp.Width()*size_multiplier,stamp.Height()*size_multiplier)
+	preview_icon.Blend(stamp, ICON_OVERLAY, 16-stamp.Width()/2, 5)
 
 	mannequin.dir = SOUTH
 	stamp = getFlatIcon(mannequin)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 83, 9)
+	stamp.Scale(stamp.Width()*size_multiplier,stamp.Height()*size_multiplier)
+	preview_icon.Blend(stamp, ICON_OVERLAY, 112-stamp.Width()/2, 5)
 
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
