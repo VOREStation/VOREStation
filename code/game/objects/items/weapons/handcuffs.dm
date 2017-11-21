@@ -17,6 +17,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
+	var/use_time = 30
 	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
 
 /obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
@@ -69,7 +70,7 @@
 
 	user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
 
-	if(!do_after(user,30))
+	if(!do_after(user,use_time))
 		return 0
 
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
@@ -199,6 +200,44 @@ var/last_chew = 0
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
+/obj/item/weapon/handcuffs/legcuffs/bola
+	name = "bola"
+	desc = "Keeps prey in line."
+	elastic = 1
+	use_time = 0
+	breakouttime = 30
+	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
+
+/obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
+	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
+		return 1
+
+/obj/item/weapon/handcuffs/legcuffs/bola/dropped()
+	visible_message("<span class='notice'>\The [src] falls apart!</span>")
+	qdel(src)
+
+/obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+	playsound(src.loc, cuff_sound, 30, 1, -2)
+
+	var/mob/living/carbon/human/H = target
+	if(!istype(H))
+		src.dropped()
+		return 0
+
+	if(!H.has_organ_for_slot(slot_legcuffed))
+		H.visible_message("<span class='notice'>\The [src] slams into [H], but slides off!</span>")
+		src.dropped()
+		return 0
+
+	H.visible_message("<span class='danger'>\The [H] has been snared by \the [src]!</span>")
+
+	// Apply cuffs.
+	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
+	lcuffs.loc = target
+	target.legcuffed = lcuffs
+	target.update_inv_legcuffed()
+	return 1
+
 /obj/item/weapon/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 	if(!user.IsAdvancedToolUser())
 		return
@@ -236,7 +275,7 @@ var/last_chew = 0
 
 	user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
 
-	if(!do_after(user,30))
+	if(!do_after(user,use_time))
 		return 0
 
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
