@@ -1,0 +1,4 @@
+author: PrismaticGynoid
+delete-after: True
+changes: 
+  - tweak: "Adjusts the amount of camera locations the AI can store from 10 to 30."
