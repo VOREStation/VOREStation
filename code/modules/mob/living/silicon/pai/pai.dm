@@ -442,7 +442,7 @@
 /mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Access Modifcation Permission"
 	set category = "pAI Commands"
-	desc = "Allows people to modify your access or block people from modifying your access."
+	set desc = "Allows people to modify your access or block people from modifying your access."
 
 	if(idaccessible == 0)
 		idaccessible = 1
