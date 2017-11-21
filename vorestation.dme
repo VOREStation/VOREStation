@@ -1607,6 +1607,7 @@
 #include "code\modules\gamemaster\actions\action.dm"
 #include "code\modules\gamemaster\actions\canister_leak.dm"
 #include "code\modules\gamemaster\actions\carp_migration.dm"
+#include "code\modules\gamemaster\actions\carp_migration_vr.dm"
 #include "code\modules\gamemaster\actions\comms_blackout.dm"
 #include "code\modules\gamemaster\actions\dust.dm"
 #include "code\modules\gamemaster\actions\grid_check.dm"

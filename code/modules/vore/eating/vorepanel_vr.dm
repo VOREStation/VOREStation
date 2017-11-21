@@ -7,7 +7,7 @@
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
 #define FLAVOR_MAX 40
-#define NIF_EXAMINE_MAX 60
+#define NIF_EXAMINE_MAX 100
 
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
