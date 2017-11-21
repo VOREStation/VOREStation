@@ -112,7 +112,7 @@
 	last_special = world.time + 450 //45 seconds.
 	C.visible_message("<font color='red'><b>[C] appears to be preparing to do something to [T]!</b></font>") //Let everyone know that bad times are head
 
-	if(do_after(C, 45, T)) //Fourty-Five seconds. You don't need a neckgrab for this, so it's going  to take a long while.
+	if(do_after(C, 450, T)) //Fourty-Five seconds. You don't need a neckgrab for this, so it's going  to take a long while.
 		if(!Adjacent(T)) return
 		if(P && P.damage >= 25) //Internal organ and it's been severely damage
 			T.apply_damage(15, BRUTE, D) //Damage the external organ they're going through.
