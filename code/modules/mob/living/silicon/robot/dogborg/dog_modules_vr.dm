@@ -230,7 +230,7 @@
 	else if(istype(target, /obj/structure/window))
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
-			to_chat(user, user << "<span class='notice'>You clean \the [target.name].</span>")
+			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 			target.color = initial(target.color)
 			//target.SetOpacity(initial(target.opacity)) //Apparantly this doesn't work?
 	else
