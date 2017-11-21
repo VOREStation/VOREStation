@@ -364,8 +364,8 @@
 		to_chat(src, "<span class='warning'>You miss!</span>")
 		return
 
-	if(ishuman(tmob))
-		var/mob/living/carbon/human/H = tmob
+	if(ishuman(T))
+		var/mob/living/carbon/human/H = T
 		if(H.species.lightweight == 1)
 			H.Weaken(3)
 			return
