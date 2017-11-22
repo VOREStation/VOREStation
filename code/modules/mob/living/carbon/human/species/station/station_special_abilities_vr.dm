@@ -848,12 +848,12 @@
 	if(C.haste_run != 1)
 		C.haste_run = 1
 		to_chat(C, "<span class='notice'>Haste Mode enabled.</span>")
-		C.species.slowdown -= 0.25
+		C.species.slowdown -= 0.2
 		C.species.hunger_factor += 0.5
 		return
 	if(C.haste_run == 1)
 		C.haste_run = 0
 		to_chat(C, "<span class='notice'>Haste Mode disabled.</span>")
-		C.species.slowdown += 0.25
+		C.species.slowdown += 0.2
 		C.species.hunger_factor -= 0.5
 		return
