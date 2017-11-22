@@ -13,10 +13,10 @@ SUBSYSTEM_DEF(creation)
 
 	var/map_loading = FALSE
 
-/datum/controller/subsystem/creation/StartLoadingMap()
+/datum/controller/subsystem/creation/StartLoadingMap(var/quiet)
 	map_loading = TRUE
 
-/datum/controller/subsystem/creation/StopLoadingMap()
+/datum/controller/subsystem/creation/StopLoadingMap(var/quiet)
 	map_loading = FALSE
 
 /datum/controller/subsystem/creation/proc/initialize_late_atoms()

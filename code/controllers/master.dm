@@ -540,10 +540,10 @@ var/datum/controller/master/Master = new()
 	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))")
 	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
 
-/datum/controller/master/StartLoadingMap()
+/datum/controller/master/StartLoadingMap(var/quiet = TRUE)
 	if(map_loading)
 		admin_notice("<span class='danger'>Another map is attempting to be loaded before first map released lock.  Delaying.</span>", R_DEBUG)
-	else
+	else if(!quiet)
 		admin_notice("<span class='danger'>Map is now being built.  Locking.</span>", R_DEBUG)
 
 	//disallow more than one map to load at once, multithreading it will just cause race conditions
@@ -557,8 +557,9 @@ var/datum/controller/master/Master = new()
 	air_processing_killed = TRUE
 	map_loading = TRUE
 
-/datum/controller/master/StopLoadingMap(bounds = null)
-	admin_notice("<span class='danger'>Map is finished.  Unlocking.</span>", R_DEBUG)
+/datum/controller/master/StopLoadingMap(var/quiet = TRUE)
+	if(!quiet)
+		admin_notice("<span class='danger'>Map is finished.  Unlocking.</span>", R_DEBUG)
 	air_processing_killed = FALSE
 	map_loading = FALSE
 	for(var/S in subsystems)
