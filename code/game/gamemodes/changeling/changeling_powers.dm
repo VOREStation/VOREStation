@@ -4,6 +4,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/list/datum/absorbed_dna/absorbed_dna = list()
 	var/list/absorbed_languages = list() // Necessary because of set_species stuff
 	var/absorbedcount = 0
+	var/lingabsorbedcount = 1	//Starts at one, because that's us
 	var/chem_charges = 20
 	var/chem_recharge_rate = 0.5
 	var/chem_storage = 50
@@ -11,8 +12,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
 	var/isabsorbing = 0
-	var/geneticpoints = 5
-	var/max_geneticpoints = 5
+	var/geneticpoints = 7
+	var/max_geneticpoints = 7
 	var/readapts = 1
 	var/max_readapts = 2
 	var/list/purchased_powers = list()
@@ -22,6 +23,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	var/recursive_enhancement = 0 //Used to power up other abilities from the ling power with the same name.
 	var/list/purchased_powers_history = list() //Used for round-end report, includes respec uses too.
 	var/last_shriek = null // world.time when the ling last used a shriek.
+	var/next_escape = 0	// world.time when the ling can next use Escape Restraints
 
 /datum/changeling/New(var/gender=FEMALE)
 	..()

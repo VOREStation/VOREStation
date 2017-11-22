@@ -159,16 +159,29 @@ Please contact me on #coderbus IRC. ~Carn x
 				for(var/inner_entry in entry)
 					overlays += inner_entry
 
+	update_transform()
+
+/mob/living/carbon/human/update_transform()
+	// First, get the correct size.
+	var/desired_scale = icon_scale
+
+	desired_scale *= species.icon_scale
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.icon_scale_percent))
+			desired_scale *= M.icon_scale_percent
+
+	// Regular stuff again.
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
 		M.Turn(90)
-		M.Scale(size_multiplier)
+		M.Scale(desired_scale)
 		M.Translate(1,-6)
 		src.transform = M
 	else
 		var/matrix/M = matrix()
-		M.Scale(size_multiplier)
-		M.Translate(0, 16*(size_multiplier-1))
+		M.Scale(desired_scale)
+		M.Translate(0, 16*(desired_scale-1))
 		src.transform = M
 
 var/global/list/damage_icon_parts = list()
@@ -293,6 +306,8 @@ var/global/list/damage_icon_parts = list()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
+			if(isnull(part) || part.is_stump())
+				continue
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)

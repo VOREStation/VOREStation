@@ -90,6 +90,7 @@
 	var/assist_distance = 25		// Radius in which I'll ask my comrades for help.
 	var/supernatural = 0			// If the mob is supernatural (used in null-rod stuff for banishing?)
 	var/grab_resist = 75			// Chance of me resisting a grab attempt.
+	var/taser_kill = 1				// Is the mob weak to tasers
 
 	//Attack ranged settings
 	var/ranged = 0					// Do I attack at range?
@@ -503,7 +504,10 @@
 		stun_effect_act(0, Proj.agony)
 
 	if(!Proj.nodamage)
-		adjustBruteLoss(Proj.damage)
+		var/true_damage = Proj.damage
+		if(!Proj.SA_vulnerability || Proj.SA_vulnerability == intelligence_level)
+			true_damage += Proj.SA_bonus_damage
+		adjustBruteLoss(true_damage)
 
 	if(Proj.firer)
 		react_to_attack(Proj.firer)
@@ -1439,16 +1443,17 @@
 
 //Shot with taser/stunvolver
 /mob/living/simple_animal/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
-	var/stunDam = 0
-	var/agonyDam = 0
+	if(taser_kill)
+		var/stunDam = 0
+		var/agonyDam = 0
 
-	if(stun_amount)
-		stunDam += stun_amount * 0.5
-		adjustFireLoss(stunDam)
+		if(stun_amount)
+			stunDam += stun_amount * 0.5
+			adjustFireLoss(stunDam)
 
-	if(agony_amount)
-		agonyDam += agony_amount * 0.5
-		adjustFireLoss(agonyDam)
+		if(agony_amount)
+			agonyDam += agony_amount * 0.5
+			adjustFireLoss(agonyDam)
 
 /mob/living/simple_animal/emp_act(severity)
 	if(!isSynthetic())

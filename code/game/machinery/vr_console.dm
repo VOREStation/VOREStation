@@ -53,6 +53,10 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	else if(default_deconstruction_crowbar(user, I))
+		if(occupant && avatar)
+			avatar.exit_vr()
+			avatar = null
+			go_out()
 		return
 
 

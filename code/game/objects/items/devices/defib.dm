@@ -35,8 +35,8 @@
 	qdel_null(paddles)
 	qdel_null(bcell)
 
-/obj/item/device/defib_kit/loaded //starts with highcap cell
-	bcell = /obj/item/weapon/cell/high
+/obj/item/device/defib_kit/loaded //starts with a cell
+	bcell = /obj/item/weapon/cell/apc
 
 
 /obj/item/device/defib_kit/update_icon()
@@ -209,7 +209,7 @@
 	var/combat = 0 //If it can be used to revive people wearing thick clothing (e.g. spacesuits)
 	var/cooldowntime = (6 SECONDS) // How long in deciseconds until the defib is ready again after use.
 	var/chargetime = (2 SECONDS)
-	var/chargecost = 1000 //units of charge
+	var/chargecost = 1250 //units of charge per zap	//With the default APC level cell, this allows 4 shocks
 	var/burn_damage_amt = 5
 	var/use_on_synthetic = 0 //If 1, this is only useful on FBPs, if 0, this is only useful on fleshies
 
@@ -284,7 +284,7 @@
 		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
 
 	H.updatehealth()
-	if(H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations))
+	if(H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations) || (!H.isSynthetic() && !H.can_defib))
 		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
 
 	var/bad_vital_organ = check_vital_organs(H)
@@ -374,7 +374,10 @@
 // This proc is used so that we can return out of the revive process while ensuring that busy and update_icon() are handled
 /obj/item/weapon/shockpaddles/proc/do_revive(mob/living/carbon/human/H, mob/user)
 	if(!H.client && !H.teleop)
-		to_chat(find_dead_player(H.ckey, 1), "Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!")
+		for(var/mob/observer/dead/ghost in player_list)
+			if(ghost.mind == H.mind)
+				to_chat(ghost, "<b><font color = #330033><font size = 3>Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>")
+				break
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 	user.visible_message("<span class='warning'>\The [user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")

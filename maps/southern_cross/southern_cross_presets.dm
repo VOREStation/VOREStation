@@ -97,12 +97,17 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 	listening_level = Z_LEVEL_SURFACE_WILD
 	autolinkers = list("wld_relay")
 
+/obj/machinery/telecomms/relay/preset/southerncross/transit
+	id = "Wild Relay"
+	listening_level = Z_LEVEL_TRANSIT
+	autolinkers = list("tns_relay")
+
 // #### Hub ####
 /obj/machinery/telecomms/hub/preset/southerncross
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub",
-		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay",
+		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay", "tns_relay",
 		"c_relay", "m_relay", "r_relay",
 		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "unused",
 		"hb_relay", "receiverA", "broadcasterA"

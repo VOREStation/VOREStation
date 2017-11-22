@@ -1572,7 +1572,9 @@
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))
 		var/image/holder = hud_list[LIFE_HUD]
-		if(stat == DEAD)
+		if(isSynthetic())
+			holder.icon_state = "hudrobo"
+		else if(stat == DEAD)
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
@@ -1587,7 +1589,9 @@
 
 		var/image/holder = hud_list[STATUS_HUD]
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
-		if(stat == DEAD)
+		if (isSynthetic())
+			holder.icon_state = "hudrobo"
+		else if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(foundVirus)

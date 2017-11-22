@@ -34,12 +34,15 @@
 
 /obj/item/weapon/gun/energy/New()
 	..()
-	if(cell_type)
-		power_supply = new cell_type(src)
-	else
-		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	if(self_recharge)
+		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 		processing_objects.Add(src)
+	else
+		if(cell_type)
+			power_supply = new cell_type(src)
+		else
+			power_supply = new /obj/item/weapon/cell/device/weapon(src)
+
 	update_icon()
 
 /obj/item/weapon/gun/energy/Destroy()

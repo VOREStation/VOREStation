@@ -771,13 +771,13 @@
 		user.visible_message("<span class='notice'><b>\The [user]</b> pokes [src].</span>","<span class='notice'>You poke [src].</span>")
 	last_message = world.time
 
-obj/item/toy/plushie/verb/rename_plushie()
+/obj/item/toy/plushie/verb/rename_plushie()
 	set name = "Name Plushie"
 	set category = "Object"
 	set desc = "Give your plushie a cute name!"
-	w_class = ITEMSIZE_TINY
 	var/mob/M = usr
-	if(!M.mind)	return 0
+	if(!M.mind)
+		return 0
 
 	var/input = sanitizeSafe(input("What do you want to name the plushie?", ,""), MAX_NAME_LEN)
 

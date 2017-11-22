@@ -18,6 +18,8 @@
 	return 0
 
 /obj/item/organ/internal/appendix/process()
+	..()
+
 	if(!inflamed || !owner)
 		return
 

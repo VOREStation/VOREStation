@@ -67,7 +67,7 @@
 		return 1
 
 /obj/item/weapon/gun/projectile/revolver/detective45
-	name = "revolver"
+	name = ".45 revolver"
 	desc = "A fancy replica of an old revolver, modified for .45 rounds and a seven-shot cylinder."
 	icon_state = "detective"
 	caliber = ".45"

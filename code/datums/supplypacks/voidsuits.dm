@@ -142,7 +142,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 50
+	cost = 60
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Vey-Med Medical voidsuit crate"
 	access = access_medical_equip
