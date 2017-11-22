@@ -292,6 +292,7 @@
 		"You feel uncomfortably warm.",
 		"Your chitin feels hot."
 		)
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
@@ -330,6 +331,12 @@
 	min_age = 18
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
+
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/sonar_ping,
+		/mob/living/proc/hide,
+		/mob/living/carbon/human/proc/shred_limb
+		)
 
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN
