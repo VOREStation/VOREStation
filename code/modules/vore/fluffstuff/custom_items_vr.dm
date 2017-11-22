@@ -1050,12 +1050,22 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/clothing/accessory/tronket
 	name = "metal necklace"
 	desc = "A shiny steel chain with a vague metallic object dangling off it."
-	w_class = ITEMSIZE_SMALL
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "tronket"
 	item_state = "tronket"
 	overlay_state = "tronket"
+	slot_flags = SLOT_TIE
+	slot = "over"
+
+/obj/item/clothing/accessory/flops
+	name = "drop straps"
+	desc = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "flops"
+	item_state = "flops"
+	overlay_state = "flops"
 	slot_flags = SLOT_TIE
 	slot = "over"
 
