@@ -32,7 +32,9 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/carbon/human/proc/hastemode)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
@@ -76,7 +78,9 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/carbon/human/proc/hastemode)
 
 	min_age = 18
 	max_age = 80
