@@ -20,6 +20,7 @@
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
+	var/haste_run = 0					// Toggle for nutriment sink minor haste for non-trait species.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -31,8 +32,6 @@
 		M << "<span class='warning'>The creature that you are can not eat others.</span>"
 		return 1
 	M.verbs += /mob/living/proc/insidePanel
-
-	//M.appearance_flags |= PIXEL_SCALE // Moved to 02_size.dm
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)

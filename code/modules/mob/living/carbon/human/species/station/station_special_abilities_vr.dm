@@ -669,9 +669,6 @@
 			C.absorbing_prey = 0
 			return
 
-
-
-
 /mob/living/carbon/human/proc/succubus_drain_finialize()
 	set name = "Drain/Feed Finalization"
 	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained, or you will feed yourself to the prey's selected stomach if you're feeding them. Can be toggled at any time."
@@ -840,4 +837,23 @@
 		spawn(6) //.6 seconds.
 			C.anchored = 0
 	else
+		return
+
+/mob/living/carbon/human/proc/hastemode()
+	set name = "Haste Mode"
+	set desc = "Run slightly faster with high nutriment drain."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(C.haste_run != 1)
+		C.haste_run = 1
+		to_chat(C, "<span class='notice'>Haste Mode enabled.</span>")
+		C.species.slowdown -= 0.25
+		C.species.hunger_factor += 0.5
+		return
+	if(C.haste_run == 1)
+		C.haste_run = 0
+		to_chat(C, "<span class='notice'>Haste Mode disabled.</span>")
+		C.species.slowdown += 0.25
+		C.species.hunger_factor -= 0.5
 		return

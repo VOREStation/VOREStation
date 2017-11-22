@@ -29,7 +29,8 @@
 		/mob/living/carbon/human/proc/succubus_drain_finialize,
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/shred_limb) //Xenochimera get all the special verbs since they can't select traits.
+		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/carbon/human/proc/hastemode) //Xenochimera get all the special verbs since they can't select traits.
 
 	min_age = 18
 	max_age = 80
