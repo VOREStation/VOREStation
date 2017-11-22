@@ -11,5 +11,5 @@
 	name = "rifle cabinet"
 	will_contain = list(
 		/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 3,
-		/obj/item/ammo_magazine/clip/c762/hunting = 9
+		/obj/item/ammo_magazine/clip/c762/hunter = 9
 	)
