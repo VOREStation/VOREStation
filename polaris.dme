@@ -616,6 +616,7 @@
 #include "code\game\machinery\supplybeacon.dm"
 #include "code\game\machinery\syndicatebeacon.dm"
 #include "code\game\machinery\teleporter.dm"
+#include "code\game\machinery\transportpod.dm"
 #include "code\game\machinery\turret_control.dm"
 #include "code\game\machinery\vending.dm"
 #include "code\game\machinery\vr_console.dm"

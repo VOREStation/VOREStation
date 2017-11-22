@@ -147,9 +147,18 @@
 	name = "rifle magazine (5.45mm practice)"
 	path =/obj/item/ammo_magazine/m545/practice
 
+/datum/category_item/autolathe/arms/rifle_545_hunter
+	name = "rifle magazine (5.45mm hunting)"
+	path =/obj/item/ammo_magazine/m545/hunter
+
 /datum/category_item/autolathe/arms/machinegun_545
 	name = "machinegun box magazine (5.56)"
 	path =/obj/item/ammo_magazine/m545saw
+	hidden = 1
+
+/datum/category_item/autolathe/arms/machinegun_545_hunter
+	name = "machinegun box magazine (5.56 hunting)"
+	path =/obj/item/ammo_magazine/m545saw/hunter
 	hidden = 1
 
 /////// 7.62
@@ -158,6 +167,7 @@
 	name = "rifle magazine (7.62mm)"
 	path =/obj/item/ammo_magazine/m762
 	hidden = 1
+
 /*
 /datum/category_item/autolathe/arms/rifle_small_762
 	name = "rifle magazine (7.62mm)"
@@ -383,6 +393,10 @@
 	name = "ammo clip (7.62mm)"
 	path =/obj/item/ammo_magazine/clip/c762
 	hidden = 1
+
+/datum/category_item/autolathe/arms/rifle_clip_762_hunter
+	name = "ammo clip (7.62mm hunting)"
+	path =/obj/item/ammo_magazine/clip/c762/hunter
 
 /datum/category_item/autolathe/arms/rifle_clip_762_practice
 	name = "ammo clip (7.62mm practice)"

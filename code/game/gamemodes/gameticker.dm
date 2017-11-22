@@ -43,10 +43,13 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/title2.ogg',\
 	'sound/music/clouds.s3m',\
 	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
-	do
+	
+	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
+	
+	do	
 		pregame_timeleft = 180
-		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
-		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+		to_chat(world, "<B><FONT color='blue'>Welcome to the pregame lobby!</FONT></B>")
+		to_chat(world, "Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.")
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
 				sleep(1)
@@ -76,7 +79,7 @@ var/global/datum/controller/gameticker/ticker
 		if(!runnable_modes.len)
 			current_state = GAME_STATE_PREGAME
 			Master.SetRunLevel(RUNLEVEL_LOBBY)
-			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
+			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pregame lobby.")
 			return 0
 		if(secret_force_mode != "secret")
 			src.mode = config.pick_mode(secret_force_mode)
@@ -87,11 +90,11 @@ var/global/datum/controller/gameticker/ticker
 			src.mode = gamemode_cache[pickweight(weighted_modes)]
 	else
 		src.mode = config.pick_mode(master_mode)
-
+ 
 	if(!src.mode)
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
-		world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
+		to_chat(world, "<span class='danger'>Serious error in mode setup!</span> Reverting to pregame lobby.") //Uses setup instead of set up due to computational context.
 		return 0
 
 	job_master.ResetOccupations()
@@ -100,7 +103,7 @@ var/global/datum/controller/gameticker/ticker
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+		world << "<B>Unable to start [mode.name].</B> Not enough players readied, [mode.required_players] players needed. Reverting to pregame lobby."
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
@@ -116,13 +119,13 @@ var/global/datum/controller/gameticker/ticker
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
-				world << "<B>Possibilities:</B> [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"
+				to_chat(world, "<B>Possibilities:</B> [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]")
 	else
 		src.mode.announce()
 
 	setup_economy()
 	current_state = GAME_STATE_PLAYING
-	create_characters() //Create player characters and transfer them
+	create_characters() //Create player characters and transfer them.
 	collect_minds()
 	equip_characters()
 	data_core.manifest()
@@ -139,7 +142,7 @@ var/global/datum/controller/gameticker/ticker
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if (S.name != "AI")
 				qdel(S)
-		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
+		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -152,7 +155,7 @@ var/global/datum/controller/gameticker/ticker
 		if(C.holder)
 			admins_number++
 	if(admins_number == 0)
-		send2adminirc("Round has started with no admins online.")
+		send2adminirc("A round has started with no admins online.")
 
 /*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
 	master_controller.process()		//Start master_controller.process()
@@ -304,7 +307,7 @@ var/global/datum/controller/gameticker/ticker
 		if(captainless)
 			for(var/mob/M in player_list)
 				if(!istype(M,/mob/new_player))
-					M << "Colony Directorship not forced on anyone."
+					to_chat(M, "Colony Directorship not forced on anyone.")
 
 
 	proc/process()
@@ -340,7 +343,7 @@ var/global/datum/controller/gameticker/ticker
 					feedback_set_details("end_proper","nuke")
 					time_left = 1 MINUTE //No point waiting five minutes if everyone's dead.
 					if(!delay_end)
-						world << "<span class='notice'><b>Rebooting due to destruction of station in [round(time_left/600)] minutes.</b></span>"
+						to_chat(world, "<span class='notice'><b>Rebooting due to destruction of station in [round(time_left/600)] minutes.</b></span>")
 				else
 					feedback_set_details("end_proper","proper completion")
 					time_left = round(restart_timeout)
@@ -353,15 +356,15 @@ var/global/datum/controller/gameticker/ticker
 					while(time_left > 0)
 						if(delay_end)
 							break
-						world << "<span class='notice'><b>Restarting in [round(time_left/600)] minute\s.</b></span>"
+						to_chat(world, "<span class='notice'><b>Restarting in [round(time_left/600)] minute\s.</b></span>")
 						time_left -= 1 MINUTES
 						sleep(600)
 					if(!delay_end)
 						world.Reboot()
 					else
-						world << "<span class='notice'><b>An admin has delayed the round end.</b></span>"
+						to_chat(world, "<span class='notice'><b>An admin has delayed the round end.</b></span>")
 				else
-					world << "<span class='notice'><b>An admin has delayed the round end.</b></span>"
+					to_chat(world, "<span class='notice'><b>An admin has delayed the round end.</b></span>")
 
 		else if (mode_finished)
 			post_game = 1
@@ -371,7 +374,7 @@ var/global/datum/controller/gameticker/ticker
 			//call a transfer shuttle vote
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-					world << "<span class='danger'>The round has ended!</span>"
+					to_chat(world, "<span class='danger'>The round has ended!</span>")
 					round_end_announced = 1
 				vote.autotransfer()
 
@@ -385,7 +388,7 @@ var/global/datum/controller/gameticker/ticker
 				var/turf/playerTurf = get_turf(Player)
 				if(emergency_shuttle.departed && emergency_shuttle.evac)
 					if(isNotAdminLevel(playerTurf.z))
-						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
+						Player << "<font color='blue'><b>You survived the round, but remained on [station_name()] as [Player.real_name].</b></font>"
 					else
 						Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
 				else if(isAdminLevel(playerTurf.z))
@@ -426,9 +429,9 @@ var/global/datum/controller/gameticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>"
+				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less stationbound synthetic! Its laws were:</b>"
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>"
+				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b>"
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
