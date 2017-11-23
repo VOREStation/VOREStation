@@ -121,6 +121,7 @@
 	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
 	can_fly = 1
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 	min_age = 18
 	max_age = 80
@@ -183,6 +184,7 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 /datum/species/fl_zorren
 	name = "Flatland Zorren"
@@ -214,6 +216,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 	color_mult = 1
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -239,6 +242,7 @@
 //	gluttonous = 1
 	num_alternate_languages = 3
 	color_mult = 1
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
