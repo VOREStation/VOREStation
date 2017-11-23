@@ -301,6 +301,7 @@
 	tail_animation = 'icons/mob/species/unathi/tail_vr.dmi'
 	color_mult = 1
 	min_age = 18
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -310,6 +311,7 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -355,6 +357,7 @@
 	min_age = 18
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
 
 datum/species/harpy
 	name = "Rapala"
