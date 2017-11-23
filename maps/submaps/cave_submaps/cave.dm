@@ -17,13 +17,16 @@
 	name = "Abandoned Relay"
 	desc = "An unregistered comms relay, abandoned to the elements."
 	mappath = 'maps/submaps/cave_submaps/deadBeacon.dmm'
+	cost = 10
 
 /datum/map_template/cave/prepper1
 	name = "Prepper Bunker"
 	desc = "A little hideaway for someone with more time and money than sense."
 	mappath = 'maps/submaps/cave_submaps/prepper1.dmm'
+	cost = 10
 
 /datum/map_template/cave/qshuttle
 	name = "Quarantined Shuttle"
 	desc = "An emergency landing turned viral outbreak turned tragedy."
 	mappath = 'maps/submaps/cave_submaps/quarantineshuttle.dmm'
+	cost = 20

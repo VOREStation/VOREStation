@@ -65,9 +65,19 @@
 	else
 		return ..()
 
-/datum/map/northern_star/perform_map_generation()
+/datum/map/southern_cross/perform_map_generation()
+	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
+
+	// Cave submaps are first.
+	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 100, /area/mine/unexplored, /datum/map_template/cave)
+	// Wilderness is next.
+	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 100, /area/surface/outside/wilderness, /datum/map_template/surface)
+	// If Space submaps are made, add a line to make them here as well.
+
+	// Now for the tunnels.
 	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
+	// Todo: Forest generation.
 	return 1
 
 /datum/map_z_level/southern_cross/station
