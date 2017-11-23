@@ -313,7 +313,6 @@
 				prob(2);/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 				prob(4);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
-				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,
 				prob(2);/obj/item/weapon/gun/projectile/silenced)
 
 /obj/random/projectile/sec
