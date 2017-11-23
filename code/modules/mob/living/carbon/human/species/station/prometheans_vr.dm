@@ -8,12 +8,14 @@
 	color_mult = 1
 	mob_size = MOB_MEDIUM
 	num_alternate_languages = 1 //Let's at least give them one
+	monochromatic = 0
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/regenerate,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/succubus_drain,
