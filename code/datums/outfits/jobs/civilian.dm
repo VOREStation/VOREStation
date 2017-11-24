@@ -87,3 +87,18 @@
 	l_hand = /obj/item/weapon/storage/bible
 	id_type = /obj/item/weapon/card/id/civilian/chaplain
 	pda_type = /obj/item/device/pda/chaplain
+
+/decl/hierarchy/outfit/job/explorer
+	name = OUTFIT_JOB_NAME("Explorer")
+	shoes = /obj/item/clothing/shoes/boots/winter/explorer
+	uniform = /obj/item/clothing/under/explorer
+	mask = /obj/item/clothing/mask/gas/explorer
+	suit = /obj/item/clothing/suit/storage/hooded/explorer
+	gloves = /obj/item/clothing/gloves/black
+	l_ear = /obj/item/device/radio/headset
+	id_slot = slot_wear_id
+	id_type = /obj/item/weapon/card/id/civilian
+	pda_slot = slot_belt
+	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
+	r_pocket = /obj/item/device/gps/explorer
+	id_pda_assignment = "Explorer"
