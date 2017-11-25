@@ -54,62 +54,72 @@
 	if(!..(user, 2))
 		return
 	if(reagents && reagents.reagent_list.len)
-		user << "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
+		to_chat(user, "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>")
 	else
-		user << "<span class='notice'>It is empty.</span>"
+		to_chat(user, "<span class='notice'>It is empty.</span>")
 	if(!is_open_container())
-		user << "<span class='notice'>Airtight lid seals it completely.</span>"
+		to_chat(user, "<span class='notice'>Airtight lid seals it completely.</span>")
 
 /obj/item/weapon/reagent_containers/glass/attack_self()
 	..()
 	if(is_open_container())
-		usr << "<span class = 'notice'>You put the lid on \the [src].</span>"
+		to_chat(usr, "<span class = 'notice'>You put the lid on \the [src].</span>")
 		flags ^= OPENCONTAINER
 	else
-		usr << "<span class = 'notice'>You take the lid off \the [src].</span>"
+		to_chat(usr, "<span class = 'notice'>You take the lid off \the [src].</span>")
 		flags |= OPENCONTAINER
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/do_surgery(mob/living/carbon/M, mob/living/user)
-	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
-		return ..()
-	afterattack(M, user, 1)
-	return 1
+/obj/item/weapon/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+		return	..()
+
+	if(standard_feed_mob(user, M))
+		return
+
+	return 0
+
+/obj/item/weapon/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
+	if(!is_open_container())
+		to_chat(user, "<span class='notice'>You need to open \the [src] first.</span>")
+		return 1
+	if(user.a_intent == I_HURT)
+		return 1
+	return ..()
+
+/obj/item/weapon/reagent_containers/glass/self_feed_message(var/mob/user)
+	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
 /obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
-
 	if(!is_open_container() || !proximity) //Is the container open & are they next to whatever they're clicking?
-		return //If not, do nothing.
-
+		return 1 //If not, do nothing.
 	for(var/type in can_be_placed_into) //Is it something it can be placed into?
 		if(istype(target, type))
-			return
-
+			return 1
 	if(standard_dispenser_refill(user, target)) //Are they clicking a water tank/some dispenser?
-		return
-
+		return 1
 	if(standard_pour_into(user, target)) //Pouring into another beaker?
 		return
-
-	if(user.a_intent == I_HURT) //Harm intent?
-		if(standard_splash_mob(user, target)) //If harm intent and can splash a mob, go ahead.
-			return
-		if(reagents && reagents.total_volume) //Otherwise? Splash the floor.
-			user << "<span class='notice'>You splash the solution onto [target].</span>"
+	if(user.a_intent == I_HURT)
+		if(standard_splash_mob(user,target))
+			return 1
+		if(reagents && reagents.total_volume)
+			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>") //They are on harm intent, aka wanting to spill it.
 			reagents.splash(target, reagents.total_volume)
-			return
+			return 1
+	..()
 
 /obj/item/weapon/reagent_containers/glass/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
-			user << "<span class='notice'>The label can be at most 50 characters long.</span>"
+			to_chat(user, "<span class='notice'>The label can be at most 50 characters long.</span>")
 		else if(length(tmp_label) > 10)
-			user << "<span class='notice'>You set the label.</span>"
+			to_chat(user, "<span class='notice'>You set the label.</span>")
 			label_text = tmp_label
 			update_name_label()
 		else
-			user << "<span class='notice'>You set the label to \"[tmp_label]\".</span>"
+			to_chat(user, "<span class='notice'>You set the label to \"[tmp_label]\".</span>")
 			label_text = tmp_label
 			update_name_label()
 	if(istype(W,/obj/item/weapon/storage/bag))
@@ -255,10 +265,10 @@
 		return
 	else if(istype(D, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is empty!</span>"
+			to_chat(user, "<span class='warning'>\The [src] is empty!</span>")
 		else
 			reagents.trans_to_obj(D, 5)
-			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"
+			to_chat(user, "<span class='notice'>You wet \the [D] in \the [src].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 	else
@@ -296,10 +306,10 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 		return
 	else if(istype(D, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is empty!</span>"
+			to_chat(user, "<span class='warning'>\The [src] is empty!</span>")
 		else
 			reagents.trans_to_obj(D, 5)
-			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"
+			to_chat(user, "<span class='notice'>You wet \the [D] in \the [src].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 	else
