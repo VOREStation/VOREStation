@@ -96,6 +96,12 @@
 	desc = "A pair of winter boots. These ones are lined with brown fur, and their trim is ambrosia green"
 	icon_state = "winterboots_hydro"
 
+/obj/item/clothing/shoes/boots/winter/explorer
+	name = "explorer winter boots"
+	desc = "Steel-toed winter boots for mining or exploration in hazardous environments. Very good at keeping toes warm and uncrushed."
+	icon_state = "explorer"
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"
 	desc = "Tan boots with extra padding and armor."

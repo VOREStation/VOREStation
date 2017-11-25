@@ -812,3 +812,8 @@
 	desc = "A fluffy robe to keep you from showing off to the world."
 	icon_state = "bathrobe"
 	worn_state = "bathrobe"
+
+/obj/item/clothing/under/explorer
+	desc = "A green uniform for operating in hazardous environments."
+	name = "explorer's jumpsuit"
+	icon_state = "explorer"
