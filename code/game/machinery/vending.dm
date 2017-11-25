@@ -147,7 +147,7 @@
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
-		user << "You short out the product lock on \the [src]"
+		to_chat(user, "You short out \the [src]'s product lock.")
 		return 1
 
 /obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -182,7 +182,7 @@
 		return
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		panel_open = !panel_open
-		user << "You [panel_open ? "open" : "close"] the maintenance panel."
+		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, W.usesound, 50, 1)
 		overlays.Cut()
 		if(panel_open)
@@ -199,7 +199,7 @@
 		W.forceMove(src)
 		coin = W
 		categories |= CAT_COIN
-		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
+		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
 		nanomanager.update_uis(src)
 		return
 	else if(istype(W, /obj/item/weapon/wrench))
@@ -211,7 +211,7 @@
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
-			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
 			anchored = !anchored
 		return
 	else
@@ -232,7 +232,7 @@
 
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		usr << "\icon[cashmoney] <span class='warning'>That is not enough money.</span>"
+		to_chat(usr, "\icon[cashmoney] <span class='warning'>That is not enough money.</span>")
 		return 0
 
 	if(istype(cashmoney, /obj/item/weapon/spacecash))
@@ -418,21 +418,22 @@
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
 		if(!coin)
-			usr << "There is no coin in this machine."
+			to_chat(usr, "There is no coin in this machine.")
 			return
 
 		coin.forceMove(src.loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		usr << "<span class='notice'>You remove \the [coin] from \the [src]</span>"
+		to_chat(usr, "<span class='notice'>You remove \the [coin] from \the [src]</span>")
 		coin = null
 		categories &= ~CAT_COIN
 
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-				usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
+				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 				flick(icon_deny,src)
+				playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 
 			var/key = text2num(href_list["vend"])
@@ -445,12 +446,12 @@
 			if(R.price <= 0)
 				vend(R, usr)
 			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
-				usr << "<span class='danger'>Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.</span>"
+				to_chat(usr, "<span class='danger'>Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled.</span>")
 				return
 			else
 				currently_vending = R
 				if(!vendor_account || vendor_account.suspended)
-					status_message = "This machine is currently unable to process payments due to problems with the associated account."
+					status_message = "This machine is currently unable to process payments due to issues with the associated account."
 					status_error = 1
 				else
 					status_message = "Please swipe a card or insert cash to pay for the item."
@@ -467,8 +468,9 @@
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-		usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
+		to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 		flick(icon_deny,src)
+		playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Vending..."
@@ -477,13 +479,13 @@
 
 	if(R.category & CAT_COIN)
 		if(!coin)
-			user << "<span class='notice'>You need to insert a coin to get this item.</span>"
+			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				user << "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>"
+				to_chat(user, "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>")
 			else
-				user << "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>"
+				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
 				qdel(coin)
 				coin = null
 				categories &= ~CAT_COIN
@@ -806,7 +808,6 @@
 
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)
 
-//This one's from bay12
 /obj/machinery/vending/cart
 	name = "PTech"
 	desc = "Cartridges for PDAs."
@@ -821,7 +822,7 @@
 	has_logs = 1
 
 /obj/machinery/vending/cigarette
-	name = "Cigarette machine" //OCD had to be uppercase to look nice with the new formating
+	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style!"
 	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs.;Feeling temperamental? Try a Temperamento!;Carcinoma Angels - go fuck yerself!;Don't be so hard on yourself, kid. Smoke a Lucky Star!"
@@ -865,7 +866,6 @@
 	req_log_access = access_cmo
 	has_logs = 1
 
-//This one's from bay12
 /obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
@@ -1051,7 +1051,6 @@
 	req_log_access = access_ce
 	has_logs = 1
 
-//This one's from bay12
 /obj/machinery/vending/engineering
 	name = "Robco Tool Maker"
 	desc = "Everything you need for do-it-yourself station repair."
@@ -1070,7 +1069,6 @@
 	req_log_access = access_ce
 	has_logs = 1
 
-//This one's from bay12
 /obj/machinery/vending/robotics
 	name = "Robotech Deluxe"
 	desc = "All the tools you need to create your own robot army."
