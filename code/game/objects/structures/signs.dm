@@ -235,12 +235,12 @@
 	name = "\improper EMERGENT INTELLIGENCE DETAILS"
 	icon_state = "rogueai"
 
-/obj/structure/sign/bluecross
+/obj/structure/sign/redcross
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
 	icon_state = "bluecross"
 
-/obj/structure/sign/bluecross2
+/obj/structure/sign/greencross
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
 	icon_state = "bluecross2"
