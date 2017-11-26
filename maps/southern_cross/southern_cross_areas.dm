@@ -308,6 +308,7 @@ area/outpost/mining_station/dock
 	name = "\improper Turbolift"
 	icon_state = "shuttle"
 	requires_power = 0
+	dynamic_lighting = 0
 	flags = RAD_SHIELDED
 
 /area/turbolift/start
