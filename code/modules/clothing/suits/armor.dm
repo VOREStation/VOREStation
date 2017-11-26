@@ -222,7 +222,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 50, bomb = 50, bio = 0, rad = 40)
 	siemens_coefficient = 0.4
-	var/block_chance = 25
+	var/block_chance = 20
 
 /obj/item/clothing/suit/armor/alien/tank
 	name = "alien protection suit"
