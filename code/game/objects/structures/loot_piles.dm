@@ -502,7 +502,6 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/weldingtool/alien,
 		/obj/item/weapon/wirecutters/alien,
 		/obj/item/weapon/wrench/alien,
-
 		/obj/item/weapon/surgical/FixOVein/alien,
 		/obj/item/weapon/surgical/bone_clamp/alien,
 		/obj/item/weapon/surgical/cautery/alien,
@@ -511,7 +510,6 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/surgical/retractor/alien,
 		/obj/item/weapon/surgical/scalpel/alien,
 		/obj/item/weapon/surgical/surgicaldrill/alien,
-
 		/obj/item/weapon/cell/device/weapon/recharge/alien,
 		/obj/item/clothing/suit/armor/alien,
 		/obj/item/clothing/head/helmet/alien,
