@@ -1516,6 +1516,22 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "headbando"
 
+/obj/item/clothing/suit/storage/fluff/gntop
+	name = "GN crop jacket"
+	desc = "A nifty little jacket. At least it keeps your shoulders warm."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "gntop"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "gntop"
+
+/obj/item/clothing/under/fluff/gnshorts
+	name = "GN shorts"
+	desc = "Stylish white shorts with pockets, stripes, and even a belt."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "gnshorts"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "gnshorts"
+
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
 	name = "Loincloth"

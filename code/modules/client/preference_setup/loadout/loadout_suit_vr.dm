@@ -17,3 +17,7 @@
 		var/obj/item/clothing/suit/jacket_type = the_jacket
 		the_jackets[initial(jacket_type.name)] = jacket_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(the_jackets))
+
+/datum/gear/suit/gntop
+	display_name = "GN crop jacket"
+	path = /obj/item/clothing/suit/storage/fluff/gntop
