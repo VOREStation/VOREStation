@@ -416,6 +416,24 @@
 	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft/vertical
 
+/obj/machinery/door/airlock/alien
+	name = "alien airlock"
+	desc = "You're fairly sure this is a door."
+	icon = 'icons/obj/doors/Dooralien.dmi'
+	explosion_resistance = 20
+	secured_wires = TRUE
+	hackProof = TRUE
+	assembly_type = /obj/structure/door_assembly/door_assembly_alien
+	req_one_access = list(access_alien)
+
+/obj/machinery/door/airlock/alien/locked
+	icon_state = "door_locked"
+	locked = TRUE
+
+/obj/machinery/door/airlock/alien/public // Entry to UFO.
+	req_one_access = list()
+	normalspeed = FALSE // So it closes faster and hopefully keeps the warm air inside.
+
 /*
 About the new airlock wires panel:
 *	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.

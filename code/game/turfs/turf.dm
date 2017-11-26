@@ -28,6 +28,8 @@
 
 	var/list/footstep_sounds = null
 
+	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)

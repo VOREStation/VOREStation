@@ -109,6 +109,17 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/head/helmet/alien
+	name = "alien helmet"
+	desc = "It's quite larger than your head, but it might still protect it."
+	icon_state = "alienhelmet"
+	siemens_coefficient = 0.4
+	armor = list(melee = 50, bullet = 50, laser = 50, energy = 50, bomb = 50, bio = 0, rad = 40)
+
+/obj/item/clothing/head/helmet/alien/tank
+	name = "alien warhelm"
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 70, bomb = 70, bio = 0, rad = 40)
+
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"

@@ -7,6 +7,7 @@
 #include "quarantineshuttle.dmm"
 #include "Mineshaft1.dmm"
 #include "Scave1.dmm"
+#include "crashed_ufo.dmm"
 #endif
 
 /datum/map_template/cave
@@ -44,3 +45,9 @@
 	desc = "A minning tunnel home to an aggressive collection of spiders."
 	mappath = 'maps/submaps/cave_submaps/Scave1.dmm'
 	cost = 5
+
+/datum/map_template/cave/crashed_ufo
+	name = "Crashed UFO"
+	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet it still seems to be running..."
+	mappath = 'maps/submaps/cave_submaps/crashed_ufo.dmm'
+	cost = 40

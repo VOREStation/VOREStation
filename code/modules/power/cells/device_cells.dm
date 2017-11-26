@@ -20,6 +20,11 @@
 	maxcharge = 2400
 	charge_amount = 20
 
+/obj/item/weapon/cell/device/weapon/empty/initialize()
+	..()
+	charge = 0
+	update_icon()
+
 /obj/item/weapon/cell/device/weapon/recharge
 	name = "self-charging weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry. This one recharges itself."
@@ -31,3 +36,15 @@
 /obj/item/weapon/cell/device/weapon/recharge/captain
 	charge_amount = 160	//Recharges a lot more quickly...
 	charge_delay = 100	//... but it takes a while to get started
+
+/obj/item/weapon/cell/device/weapon/recharge/alien
+	name = "void cell"
+	desc = "An alien technology that produces energy seemingly out of nowhere. Its small, cylinderal shape means it might be able to be used with human technology, perhaps?"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "cell"
+	charge_amount = 120 // 5%.
+	charge_delay = 50 // Every five seconds, bit faster than the default.
+	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6)
+
+/obj/item/weapon/cell/device/weapon/recharge/alien/update_icon()
+	return // No overlays please.

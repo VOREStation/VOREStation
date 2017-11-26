@@ -100,6 +100,8 @@ var/list/GPS_list = list()
 
 		var/area/their_area = get_area(G)
 		var/area_name = their_area.name
+		if(istype(their_area, /area/submap))
+			area_name = "Unknown Area" // Avoid spoilers.
 		var/coord = "[T.x], [T.y], [T.z]"
 		var/degrees = round(Get_Angle(curr, T))
 		var/direction = uppertext(dir2text(get_dir(curr, T)))
@@ -203,3 +205,7 @@ var/list/GPS_list = list()
 /obj/item/device/gps/internal/base
 	gps_tag = "NT_BASE"
 	desc = "A homing signal from NanoTrasen's outpost."
+
+/obj/item/device/gps/internal/alien_vessel
+	gps_tag = "Mysterious Signal"
+	desc = "A signal that seems forboding."
