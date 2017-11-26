@@ -37,3 +37,10 @@
 
 /area/submap/SnowR1
 	name = "SnowR1"
+
+/area/submap/BoomBase
+	name = "Boom1"
+
+/area/submap/Epod1
+	name = "Epod1"
+
