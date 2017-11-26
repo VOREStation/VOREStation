@@ -37,9 +37,10 @@
 	name = "Abandoned Mineshaft 1"
 	desc = "An abandoned minning tunnel from a lost money making effort."
 	mappath = 'maps/submaps/cave_submaps/Mineshaft1.dmm'
+	cost = 5
 
 /datum/map_template/cave/Scave1
 	name = "Spider Cave 1"
 	desc = "A minning tunnel home to an aggressive collection of spiders."
 	mappath = 'maps/submaps/cave_submaps/Scave1.dmm'
-
+	cost = 5
