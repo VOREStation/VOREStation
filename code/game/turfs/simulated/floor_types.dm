@@ -171,6 +171,7 @@
 	light_range = 3
 	light_power = 3
 	light_color = "#66ffff" // Bright cyan.
+	block_tele = TRUE
 
 /turf/simulated/shuttle/floor/alien/initialize()
 	..()
@@ -178,6 +179,7 @@
 
 /turf/simulated/shuttle/floor/alienplating
 	icon_state = "alienplating"
+	block_tele = TRUE
 
 /turf/simulated/shuttle/plating
 	name = "plating"

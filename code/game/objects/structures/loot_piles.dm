@@ -480,11 +480,20 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 // May contain powercells or alien weaponry.
 /obj/structure/loot_pile/surface/alien/security
 	uncommon_loot = list(
-		/obj/item/weapon/cell/device/weapon/recharge/alien
+		/obj/item/weapon/cell/device/weapon/recharge/alien,
+		/obj/item/clothing/suit/armor/alien,
+		/obj/item/clothing/head/helmet/alien
+	)
+	rare_loot = list(
+		/obj/item/clothing/suit/armor/alien/tank,
+		/obj/item/weapon/gun/energy/alien
 	)
 
 // The pile found at the very end, and as such has the best loot.
 /obj/structure/loot_pile/surface/alien/end
+	chance_uncommon = 30
+	chance_rare = 10
+
 	common_loot = list(
 		/obj/item/device/multitool/alien,
 		/obj/item/stack/cable_coil/alien,
@@ -504,8 +513,13 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/surgical/surgicaldrill/alien,
 
 		/obj/item/weapon/cell/device/weapon/recharge/alien,
+		/obj/item/clothing/suit/armor/alien,
+		/obj/item/clothing/head/helmet/alien,
+		/obj/item/weapon/gun/energy/alien
 	)
 	uncommon_loot = list(
 		/obj/item/weapon/storage/belt/medical/alien,
-		/obj/item/weapon/storage/belt/utility/alien/full
+		/obj/item/weapon/storage/belt/utility/alien/full,
+		/obj/item/clothing/suit/armor/alien/tank,
+		/obj/item/clothing/head/helmet/alien/tank,
 	)

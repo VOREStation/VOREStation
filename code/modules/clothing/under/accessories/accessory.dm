@@ -244,6 +244,14 @@
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by high ranking officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
 
+// Base type for 'medals' found in a "dungeon" submap, as a sort of trophy to celebrate the player's conquest.
+/obj/item/clothing/accessory/medal/dungeon
+
+/obj/item/clothing/accessory/medal/dungeon/alien_ufo
+	name = "alien captain's medal"
+	desc = "It vaguely like a star. It looks like something an alien captain might've worn. Probably."
+	icon_state = "alien_medal"
+
 //Scarves
 
 /obj/item/clothing/accessory/scarf

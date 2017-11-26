@@ -15,7 +15,7 @@
 	name = "Abandoned Mine"
 
 /area/submap/cave/Scave1
-	name = "Spider Cave 1"	name = "Quarantined Shuttle"
+	name = "Spider Cave 1"
 
 /area/submap/cave/crashed_ufo
 	name = "Crashed Alien Vessel"

@@ -45,3 +45,6 @@
 	charge_amount = 120 // 5%.
 	charge_delay = 50 // Every five seconds, bit faster than the default.
 	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6)
+
+/obj/item/weapon/cell/device/weapon/recharge/alien/update_icon()
+	return // No overlays please.

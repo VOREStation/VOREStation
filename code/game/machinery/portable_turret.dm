@@ -89,7 +89,7 @@
 /obj/machinery/porta_turret/alien // The kind used on the UFO submap.
 	name = "interior anti-boarding turret"
 	desc = "A very tough looking turret made by alien hands."
-	installation = /obj/item/weapon/gun/energy/laser
+	installation = /obj/item/weapon/gun/energy/alien
 	enabled = TRUE
 	lethal = TRUE
 	ailock = TRUE
