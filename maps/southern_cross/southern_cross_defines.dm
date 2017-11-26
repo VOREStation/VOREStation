@@ -57,11 +57,16 @@
 		return map_levels
 	else if (srcz == Z_LEVEL_TRANSIT)
 		return list() // Nothing on transit!
-	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE)
+	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
 		return list(
 			Z_LEVEL_STATION_ONE,
 			Z_LEVEL_STATION_TWO,
 			Z_LEVEL_STATION_THREE)
+	else if(srcz in list(Z_LEVEL_SURFACE, Z_LEVEL_SURFACE_MINE, Z_LEVEL_SURFACE_WILD)) // Being on the surface lets you see other surface Zs.
+		return list(
+			Z_LEVEL_SURFACE,
+			Z_LEVEL_SURFACE_MINE,
+			Z_LEVEL_SURFACE_WILD)
 	else
 		return ..()
 
@@ -75,7 +80,7 @@
 	// If Space submaps are made, add a line to make them here as well.
 
 	// Now for the tunnels.
-	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
 	// Todo: Forest generation.
 	return 1

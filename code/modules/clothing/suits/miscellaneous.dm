@@ -770,6 +770,42 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "mining winter hood"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/suit/storage/hooded/explorer
+	name = "explorer suit"
+	desc = "An armoured suit for exploring harsh environments."
+	icon_state = "explorer"
+	item_state = "explorer"
+	flags = THICKMATERIAL
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	hooded = TRUE
+	hoodtype = /obj/item/clothing/head/explorer
+	siemens_coefficient = 0.9
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 50, bio = 100, rad = 50) // Inferior to sec vests in bullet/laser but better for environmental protection.
+	allowed = list(
+		/obj/item/device/flashlight,
+		/obj/item/weapon/gun,
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/melee,
+		/obj/item/weapon/material/knife,
+		/obj/item/weapon/tank,
+		/obj/item/device/radio,
+		/obj/item/weapon/pickaxe
+		)
+
+/obj/item/clothing/head/explorer
+	name = "explorer hood"
+	desc = "An armoured hood for exploring harsh environments."
+	icon_state = "explorer"
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	flags = THICKMATERIAL
+	flags_inv = HIDEEARS | BLOCKHAIR
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.9
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 50, bio = 100, rad = 50)
+
 /obj/item/clothing/suit/varsity
 	name = "black varsity jacket"
 	desc = "A favorite of jocks everywhere from Sol to Nyx."

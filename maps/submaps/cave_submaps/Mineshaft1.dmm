@@ -1,0 +1,74 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral,/area/submap/cave/AMine1)
+"c" = (/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"d" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/AMine1)
+"e" = (/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/AMine1)
+"f" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/AMine1)
+"g" = (/turf/simulated/wall,/area/submap/cave/AMine1)
+"h" = (/obj/machinery/space_heater,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"i" = (/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"j" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"k" = (/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"l" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"m" = (/obj/structure/table/standard,/obj/structure/bedsheetbin,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"n" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"o" = (/obj/item/weapon/ore/gold,/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"p" = (/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"q" = (/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/gold,/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"r" = (/obj/structure/table/standard,/obj/item/device/flashlight/lamp,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"s" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"t" = (/obj/structure/window/reinforced/full,/turf/simulated/wall,/area/submap/cave/AMine1)
+"u" = (/obj/machinery/light{tag = "icon-tube1 (EAST)"; icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"v" = (/obj/structure/table/standard,/obj/machinery/cell_charger,/turf/simulated/floor,/area/submap/cave/AMine1)
+"w" = (/obj/structure/table/standard,/obj/item/weapon/cell/high,/obj/item/weapon/cell/high,/turf/simulated/floor,/area/submap/cave/AMine1)
+"x" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor,/area/submap/cave/AMine1)
+"y" = (/turf/simulated/floor,/area/submap/cave/AMine1)
+"z" = (/obj/machinery/power/apc{pixel_x = 31},/turf/simulated/wall,/area/submap/cave/AMine1)
+"A" = (/obj/structure/ore_box,/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"B" = (/obj/machinery/light/small{dir = 1},/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"C" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor,/area/submap/cave/AMine1)
+"D" = (/obj/structure/closet/crate/engineering,/turf/simulated/floor,/area/submap/cave/AMine1)
+"E" = (/obj/machinery/light,/obj/machinery/space_heater,/turf/simulated/floor,/area/submap/cave/AMine1)
+"F" = (/obj/machinery/space_heater,/turf/simulated/floor,/area/submap/cave/AMine1)
+"G" = (/obj/structure/closet/secure_closet/engineering_welding,/turf/simulated/floor,/area/submap/cave/AMine1)
+"H" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"I" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"J" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"K" = (/obj/machinery/washing_machine,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"L" = (/obj/structure/ore_box,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/AMine1)
+"M" = (/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"N" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"O" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5; dir = 8},/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+"P" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/AMine1)
+"Q" = (/obj/structure/table/standard,/obj/item/pizzabox,/turf/simulated/floor/tiled,/area/submap/cave/AMine1)
+"R" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/submap/cave/AMine1)
+"S" = (/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/turf/simulated/floor,/area/submap/cave/AMine1)
+"T" = (/obj/machinery/light/small,/turf/simulated/mineral/floor,/area/submap/cave/AMine1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbcccccddddda
+abbbbbbbbbbbceefeeeeefeea
+abbbbbbbbbbbbegggggggggga
+abbbcccbbbbbbeghigjklmjga
+abcccccbbbbbbegiiniiiiiga
+abcccccopqbbbegiigjrskjga
+abccccccccbbbetiuggggggga
+abccccccccbbbetiigvwwxyga
+abccccccccbbbetiinyyyyyga
+abcccccccccbbetiizyyyyyga
+abcccccccccABetiigCDEFGga
+abbcccccccccceghuggggggga
+abbccccccccccegHighIJiKga
+abbbcccccccccLgHigiiiiiga
+abbbcccccccceeggigMNNNuga
+abbbbOccccccPgggigikkQiga
+abbbbccccccceRSRiRiNNNiga
+abbbbbbbcccceggggggggggga
+abbbbbbbbccceeeeeeeeeebba
+abbbbbbbbbcccccccccccbbba
+abbbbbbbbbbccccccTcbbbbba
+abbbbbbbbbbbcccccbbbbbbba
+abbbbbbbbbbbcccccbbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaa
+"}
