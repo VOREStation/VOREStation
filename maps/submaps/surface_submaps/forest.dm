@@ -91,3 +91,15 @@
 	desc = "A rocky snow covered area"
 	mappath = 'maps/submaps/surface_submaps/Snowrock1.dmm'
 	cost = 5
+
+/datum/map_template/surface/Boombase
+	name = "Boombase"
+	desc = "What happens when you don't follow SOP."
+	mappath = 'maps/submaps/surface_submaps/Boombase.dmm'
+	cost = 5
+
+/datum/map_template/surface/Epod
+	name = "Emergency Pod"
+	desc = "A vacant Emergency pod in the middle of nowhere."
+	mappath = 'maps/submaps/surface_submaps/Epod.dmm'
+	cost = 5
