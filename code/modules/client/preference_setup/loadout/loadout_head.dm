@@ -154,34 +154,10 @@
 	path = /obj/item/clothing/head/fedora/grey
 
 /datum/gear/head/hairflower
-	display_name = "hair flower pin, red"
-	path = /obj/item/clothing/head/hairflower
-
-/datum/gear/head/hairflower/yellow
-	display_name = "hair flower pin, yellow"
-	path = /obj/item/clothing/head/hairflower/yellow
-
-/datum/gear/head/hairflower/pink
-	display_name = "hair flower pin, pink"
-	path = /obj/item/clothing/head/hairflower/pink
-
-/datum/gear/head/hairflower/blue
-	display_name = "hair flower pin, blue"
-	path = /obj/item/clothing/head/hairflower/blue
-
-/datum/gear/head/hairflower/violet
-	display_name = "hair flower pin, violet"
-	path = /obj/item/clothing/head/hairflower/violet
-
-/datum/gear/head/hairflower/orange
-	display_name = "hair flower pin, orange"
-	path = /obj/item/clothing/head/hairflower/orange
-
-/datum/gear/head/hairflower/white
 	display_name = "hair flower pin"
 	path = /obj/item/clothing/head/hairflower/white
 
-/datum/gear/head/hairflower/white/New()
+/datum/gear/head/hairflower/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 

@@ -199,7 +199,7 @@
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
 	if(istype(W, /obj/item/weapon/wrench) && !anchored)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
 			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/stack/material/steel(get_turf(usr), 2)
@@ -210,7 +210,7 @@
 	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/F = W
 		if(F.welding)
-			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+			playsound(src.loc, F.usesound, 50, 1)
 			if(do_after(user, 20, src))
 				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
@@ -219,7 +219,7 @@
 	// Install
 	if(istype(W, /obj/item/weapon/screwdriver))
 		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrewing \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		playsound(loc, W.usesound, 75, 1)
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))
 			anchored = !anchored

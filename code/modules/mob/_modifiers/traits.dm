@@ -59,3 +59,27 @@
 
 	metabolism_percent = 0.5
 	incoming_healing_percent = 0.6
+
+/datum/modifier/trait/larger
+	name = "Larger"
+	desc = "Your body is larger than average."
+
+	icon_scale_percent = 1.2
+
+/datum/modifier/trait/large
+	name = "Large"
+	desc = "Your body is a bit larger than average."
+
+	icon_scale_percent = 1.1
+
+/datum/modifier/trait/small
+	name = "Small"
+	desc = "Your body is a bit smaller than average."
+
+	icon_scale_percent = 0.95
+
+/datum/modifier/trait/smaller
+	name = "Smaller"
+	desc = "Your body is smaller than average."
+
+	icon_scale_percent = 0.9

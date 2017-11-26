@@ -209,3 +209,26 @@
 		var/obj/item/clothing/suit/sweater_type = sweater
 		sweaters[initial(sweater_type.name)] = sweater_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sweaters))
+
+/datum/gear/accessory/bracelet/material
+	display_name = "bracelet selection"
+	description = "Choose from a number of bracelets."
+	path = /obj/item/clothing/accessory/bracelet
+	cost = 1
+
+/datum/gear/accessory/bracelet/material/New()
+	..()
+	var/bracelettype = list()
+	bracelettype["bracelet, steel"] = /obj/item/clothing/accessory/bracelet/material/steel
+	bracelettype["bracelet, iron"] = /obj/item/clothing/accessory/bracelet/material/iron
+	bracelettype["bracelet, silver"] = /obj/item/clothing/accessory/bracelet/material/silver
+	bracelettype["bracelet, gold"] = /obj/item/clothing/accessory/bracelet/material/gold
+	bracelettype["bracelet, platinum"] = /obj/item/clothing/accessory/bracelet/material/platinum
+	bracelettype["bracelet, glass"] = /obj/item/clothing/accessory/bracelet/material/glass
+	bracelettype["bracelet, wood"] = /obj/item/clothing/accessory/bracelet/material/wood
+	bracelettype["bracelet, plastic"] = /obj/item/clothing/accessory/bracelet/material/plastic
+	gear_tweaks += new/datum/gear_tweak/path(bracelettype)
+
+/datum/gear/accessory/bracelet/friendship
+	display_name = "friendship bracelet"
+	path = /obj/item/clothing/accessory/bracelet/friendship

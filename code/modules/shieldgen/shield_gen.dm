@@ -5,7 +5,7 @@
 	icon_state = "generator0"
 	var/active = 0
 	var/field_radius = 3
-	var/max_field_radius = 100
+	var/max_field_radius = 150
 	var/list/field = list()
 	density = 1
 	var/locked = 0

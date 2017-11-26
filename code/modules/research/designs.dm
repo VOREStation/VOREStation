@@ -210,7 +210,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 
 /datum/design/item/powercell/AssembleDesignName()
-	name = "Power cell model ([item_name])"
+	name = "Power Cell Model ([item_name])"
 
 /datum/design/item/powercell/AssembleDesignDesc()
 	if(build_path)

@@ -657,6 +657,61 @@
 		reagents.add_reagent("fuel", 1)
 
 /*
+ * Backpack Welder.
+ */
+
+/obj/item/weapon/weldingtool/tubefed
+	name = "tube-fed welding tool"
+	desc = "A bulky, cooler-burning welding tool that draws from a worn welding tank."
+	icon_state = "tubewelder"
+	max_fuel = 10
+	w_class = ITEMSIZE_NO_CONTAINER
+	matter = null
+	toolspeed = 1.25
+	change_icons = 0
+	flame_intensity = 1
+	eye_safety_modifier = 1
+	always_process = TRUE
+	var/obj/item/weapon/weldpack/mounted_pack = null
+
+/obj/item/weapon/weldingtool/tubefed/New(location)
+	..()
+	if(istype(location, /obj/item/weapon/weldpack))
+		var/obj/item/weapon/weldpack/holder = location
+		mounted_pack = holder
+	else
+		qdel(src)
+
+/obj/item/weapon/weldingtool/tubefed/Destroy()
+	mounted_pack.nozzle = null
+	mounted_pack = null
+	return ..()
+
+/obj/item/weapon/weldingtool/tubefed/process()
+	if(mounted_pack)
+		if(!istype(mounted_pack.loc,/mob/living/carbon/human))
+			mounted_pack.return_nozzle()
+		else
+			var/mob/living/carbon/human/H = mounted_pack.loc
+			if(H.back != mounted_pack)
+				mounted_pack.return_nozzle()
+
+	if(mounted_pack.loc != src.loc && src.loc != mounted_pack)
+		mounted_pack.return_nozzle()
+		visible_message("<span class='notice'>\The [src] retracts to its fueltank.</span>")
+
+	if(get_fuel() <= get_max_fuel())
+		mounted_pack.reagents.trans_to_obj(src, 1)
+
+	..()
+
+/obj/item/weapon/weldingtool/tubefed/dropped(mob/user)
+	..()
+	if(src.loc != user)
+		mounted_pack.return_nozzle()
+		to_chat(user, "<span class='notice'>\The [src] retracts to its fueltank.</span>")
+
+/*
  * Electric/Arc Welder
  */
 

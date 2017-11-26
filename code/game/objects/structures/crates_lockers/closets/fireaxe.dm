@@ -36,7 +36,7 @@
 				playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 				if(do_after(user, 20 * O.toolspeed))
 					src.locked = 0
-					user << "<span class = 'caution'> You disable the locking modules.</span>"
+					to_chat(user, "<span class = 'caution'> You disable the locking modules.</span>")
 					update_icon()
 				return
 			else if(istype(O, /obj/item/weapon))
@@ -50,7 +50,7 @@
 				else
 					playsound(user, 'sound/effects/Glasshit.ogg', 100, 1) //We don't want this playing every time
 				if(W.force < 15)
-					user << "<span class='notice'>The cabinet's protective glass glances off the hit.</span>"
+					to_chat(user, "<span class='notice'>The cabinet's protective glass glances off the hit.</span>")
 				else
 					src.hitstaken++
 					if(src.hitstaken == 4)
@@ -63,12 +63,14 @@
 		if (istype(O, /obj/item/weapon/material/twohanded/fireaxe) && src.localopened)
 			if(!fireaxe)
 				if(O:wielded)
-					user << "<span class='warning'>Unwield the axe first.</span>"
-					return
+					O:wielded = 0
+					O.update_icon()
+					//to_chat(user, "<span class='warning'>Unwield the axe first.</span>")
+					//return
 				fireaxe = O
 				user.remove_from_mob(O)
 				src.contents += O
-				user << "<span class='notice'>You place the fire axe back in the [src.name].</span>"
+				to_chat(user, "<span class='notice'>You place the fire axe back in the [src.name].</span>")
 				update_icon()
 			else
 				if(src.smashed)
@@ -91,11 +93,11 @@
 					spawn(10) update_icon()
 					return
 				else
-					user << "<span class='warning'>Resetting circuitry...</span>"
+					to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 					playsound(user, 'sound/machines/lockenable.ogg', 50, 1)
 					if(do_after(user,20 * O.toolspeed))
 						src.locked = 1
-						user << "<span class = 'caution'> You re-enable the locking modules.</span>"
+						to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")
 					return
 			else
 				localopened = !localopened
@@ -116,13 +118,13 @@
 			hasaxe = 1
 
 		if(src.locked)
-			user <<"<span class='warning'>The cabinet won't budge!</span>"
+			to_chat(user, "<span class='warning'>The cabinet won't budge!</span>")
 			return
 		if(localopened)
 			if(fireaxe)
 				user.put_in_hands(fireaxe)
 				fireaxe = null
-				user << "<span class='notice'>You take the fire axe from the [name].</span>"
+				to_chat (user, "<span class='notice'>You take the fire axe from the [name].</span>")
 				src.add_fingerprint(user)
 				update_icon()
 			else
@@ -149,7 +151,7 @@
 	attack_tk(mob/user as mob)
 		if(localopened && fireaxe)
 			fireaxe.forceMove(loc)
-			user << "<span class='notice'>You telekinetically remove the fire axe.</span>"
+			to_chat(user, "<span class='notice'>You telekinetically remove the fire axe.</span>")
 			fireaxe = null
 			update_icon()
 			return
@@ -161,9 +163,9 @@
 
 		if (isrobot(usr) || src.locked || src.smashed)
 			if(src.locked)
-				usr << "<span class='warning'>The cabinet won't budge!</span>"
+				to_chat(usr, "<span class='warning'>The cabinet won't budge!</span>")
 			else if(src.smashed)
-				usr << "<span class='notice'>The protective glass is broken!</span>"
+				to_chat(usr, "<span class='notice'>The protective glass is broken!</span>")
 			return
 
 		localopened = !localopened
@@ -180,23 +182,23 @@
 			if(fireaxe)
 				usr.put_in_hands(fireaxe)
 				fireaxe = null
-				usr << "<span class='notice'>You take the Fire axe from the [name].</span>"
+				to_chat(usr, "<span class='notice'>You take the Fire axe from the [name].</span>")
 			else
-				usr << "<span class='notice'>The [src.name] is empty.</span>"
+				to_chat(usr, "<span class='notice'>The [src.name] is empty.</span>")
 		else
-			usr << "<span class='notice'>The [src.name] is closed.</span>"
+			to_chat(usr, "<span class='notice'>The [src.name] is closed.</span>")
 		update_icon()
 
 	attack_ai(mob/user as mob)
 		if(src.smashed)
-			user << "<span class='warning'>The security of the cabinet is compromised.</span>"
+			to_chat(user, "<span class='warning'>The security of the cabinet is compromised.</span>")
 			return
 		else
 			locked = !locked
 			if(locked)
-				user << "<span class='warning'>Cabinet locked.</span>"
+				to_chat(user, "<span class='warning'>Cabinet locked.</span>")
 			else
-				user << "<span class='notice'>Cabinet unlocked.</span>"
+				to_chat(user, "<span class='notice'>Cabinet unlocked.</span>")
 			return
 
 	update_icon() //Template: fireaxe[has fireaxe][is opened][hits taken][is smashed]. If you want the opening or closing animations, add "opening" or "closing" right after the numbers

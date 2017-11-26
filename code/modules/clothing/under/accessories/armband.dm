@@ -37,6 +37,7 @@
 /obj/item/clothing/accessory/armband/med/color
 	name = "armband"
 	desc = "A fancy armband."
+	addblends = "med_a"
 
 /obj/item/clothing/accessory/armband/medblue
 	name = "EMT armband"

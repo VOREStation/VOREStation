@@ -59,7 +59,7 @@
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
 	else if(istype(W, /obj/item/weapon/wirecutters))
-		user << "You cut the tag off the bodybag"
+		to_chat(user, "You cut the tag off the bodybag")
 		src.name = "body bag"
 		src.overlays.Cut()
 		return
@@ -160,7 +160,7 @@
 		O.name = "used stasis bag"
 		O.icon = src.icon
 		O.icon_state = "bodybag_used"
-		O.desc = "Pretty useless now.."
+		O.desc = "Pretty useless now..."
 		qdel(src)
 
 /obj/structure/closet/body_bag/cryobag/MouseDrop(over_object, src_location, over_location)
@@ -211,9 +211,9 @@
 /obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	..()
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		user << "<span class='info'>You peer into \the [src].</span>"
+		to_chat(user, "<span class='info'>You peer into \the [src].</span>")
 		if(syringe)
-			user << "<span class='info'>It has a syringe added to it.</span>"
+			to_chat(user, "<span class='info'>It has a syringe added to it.</span>")
 		for(var/mob/living/L in contents)
 			L.examine(user)
 

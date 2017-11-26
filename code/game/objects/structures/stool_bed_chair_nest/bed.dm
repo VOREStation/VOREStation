@@ -20,6 +20,7 @@
 	var/material/material
 	var/material/padding_material
 	var/base_icon = "bed"
+	var/applies_material_colour = 1
 
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
@@ -46,7 +47,8 @@
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image('icons/obj/furniture.dmi', base_icon)
-		I.color = material.icon_colour
+		if(applies_material_colour) //VOREStation Add - Goes with added var
+			I.color = material.icon_colour
 		stool_cache[cache_key] = I
 	overlays |= stool_cache[cache_key]
 	// Padding overlay.
@@ -172,13 +174,6 @@
 /obj/structure/bed/padded/New(var/newloc)
 	..(newloc,"plastic","cotton")
 
-/obj/structure/bed/alien
-	name = "resting contraption"
-	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
-
-/obj/structure/bed/alien/New(var/newloc)
-	..(newloc,"resin")
-
 /obj/structure/bed/double
 	name = "double bed"
 	icon_state = "doublebed"
@@ -303,3 +298,15 @@
 		spawn(0)
 			qdel(src)
 		return
+
+/obj/structure/bed/alien
+	name = "resting contraption"
+	desc = "Whatever species designed this must've enjoyed relaxation as well. Looks vaguely comfy."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "bed"
+
+/obj/structure/bed/alien/update_icon()
+	return // Doesn't care about material or anything else.
+
+/obj/structure/bed/alien/attackby(obj/item/weapon/W, mob/user)
+	return // No deconning.

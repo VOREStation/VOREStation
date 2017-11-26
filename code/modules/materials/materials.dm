@@ -642,6 +642,19 @@ var/list/name_to_material
 	display_name = "elevator panelling"
 	icon_colour = "#666666"
 
+// Ditto.
+/material/alienalloy/dungeonium
+	name = "dungeonium"
+	display_name = "ultra-durable"
+	icon_base = "dungeon"
+	icon_colour = "#FFFFFF"
+
+/material/alienalloy/alium
+	name = "alium"
+	display_name = "alien"
+	icon_base = "alien"
+	icon_colour = "#FFFFFF"
+
 /material/resin
 	name = "resin"
 	icon_colour = "#35343a"

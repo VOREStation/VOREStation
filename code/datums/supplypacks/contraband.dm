@@ -43,10 +43,10 @@
 	containername = "Moghes imports crate"
 	contraband = 1
 
-/datum/supply_packs/security/bolt_rifles_mosin
+/datum/supply_packs/security/bolt_rifles_militia
  	name = "Surplus militia rifles"
  	contains = list(
- 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin = 3,
+ 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 3,
  			/obj/item/ammo_magazine/clip/c762 = 6
  			)
  	cost = 50
@@ -63,11 +63,13 @@
 					/obj/item/clothing/suit/storage/vest/heavy/merc,
 					/obj/item/clothing/glasses/night,
 					/obj/item/weapon/storage/box/anti_photons,
-					/obj/item/ammo_magazine/clip/c12g/pellet,				/obj/item/ammo_magazine/clip/c12g
+					/obj/item/ammo_magazine/clip/c12g/pellet,
+					/obj/item/ammo_magazine/clip/c12g
 					),
 			list( //the doc,
 					/obj/item/weapon/storage/firstaid/combat,
-					/obj/item/weapon/gun/projectile/dartgun,				/obj/item/weapon/reagent_containers/hypospray,
+					/obj/item/weapon/gun/projectile/dartgun,
+					/obj/item/weapon/reagent_containers/hypospray,
 					/obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate,
 					/obj/item/weapon/reagent_containers/glass/bottle/cyanide,
 					/obj/item/ammo_magazine/chemdart
@@ -78,7 +80,7 @@
 					/obj/item/weapon/storage/box/syndie_kit/demolitions,
 					/obj/item/device/multitool/ai_detector,
 					/obj/item/weapon/plastique,
-					/obj/item/weapon/storage/toolbox/syndicate
+					/obj/item/weapon/storage/toolbox/syndicate/powertools
 					),
 			list( //the infiltrator,
 					/obj/item/weapon/gun/projectile/silenced,

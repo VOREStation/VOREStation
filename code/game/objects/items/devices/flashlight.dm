@@ -290,6 +290,7 @@
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
+	force = 10
 	brightness_on = 5
 	w_class = ITEMSIZE_LARGE
 	flags = CONDUCT

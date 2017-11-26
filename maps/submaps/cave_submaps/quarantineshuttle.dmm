@@ -1,9 +1,9 @@
 "aa" = (/turf/template_noop,/area/template_noop)
-"ab" = (/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"ac" = (/obj/item/weapon/caution/cone,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
+"ab" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ac" = (/obj/item/weapon/caution/cone,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
 "ad" = (/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
-"ae" = (/obj/structure/inflatable,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"af" = (/obj/structure/inflatable/door,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
+"ae" = (/obj/structure/inflatable,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"af" = (/obj/structure/inflatable/door,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
 "ag" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
 "ah" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"; dir = 8},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
 "ai" = (/obj/structure/grille,/obj/structure/shuttle/window,/obj/machinery/door/blast/regular{dir = 8; id = "QShuttlePoIDoors"; layer = 3.3; name = "Emergency Lockdown Shutters"},/obj/item/tape/medical{dir = 4; icon_state = "tape_door_0"; layer = 3.4},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
@@ -29,9 +29,9 @@
 "aC" = (/obj/item/weapon/material/kitchen/utensil/knife/boot,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "aD" = (/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "aE" = (/obj/item/trash/sosjerky,/obj/item/weapon/storage/box/donut/empty,/obj/item/weapon/reagent_containers/food/drinks/sillycup,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
-"aF" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aF" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
 "aG" = (/obj/machinery/door/airlock/glass,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"aH" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aH" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
 "aI" = (/obj/machinery/button{name = "Cargo Hatch"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
 "aJ" = (/obj/machinery/computer,/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
 "aK" = (/obj/structure/bed/chair/comfy/brown{dir = 8},/obj/effect/decal/cleanable/vomit,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
@@ -54,9 +54,9 @@
 "bb" = (/obj/machinery/door/airlock/command{icon_state = "door_locked"; locked = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "bc" = (/obj/item/weapon/tank/emergency/oxygen/engi,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "bd" = (/obj/effect/decal/remains/human,/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/helmet/space/emergency,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"be" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"bf" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"bg" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"be" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bf" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bg" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
 "bh" = (/obj/item/clothing/suit/space/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bi" = (/obj/item/trash/candy,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "bj" = (/obj/structure/table/rack,/obj/structure/loot_pile/maint/boxfort,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
@@ -80,8 +80,8 @@
 "bB" = (/obj/item/weapon/tank/emergency/oxygen/engi,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bC" = (/obj/item/trash/sosjerky,/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "bD" = (/obj/effect/decal/remains/human,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
-"bE" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"bF" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bE" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bF" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
 "bG" = (/obj/machinery/button{dir = 4; name = "Cargo Access"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
 "bH" = (/obj/machinery/recharge_station,/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
 "bI" = (/obj/machinery/door/airlock{name = "Charge Station"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
@@ -94,27 +94,28 @@
 "bP" = (/obj/item/weapon/contraband/poster,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bQ" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bR" = (/obj/structure/sign/biohazard,/turf/simulated/shuttle/wall/hard_corner,/area/submap/cave/qShuttle)
-"bS" = (/obj/item/tape/medical{icon_state = "tape_v_0"},/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"bT" = (/obj/item/taperoll/medical,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"bU" = (/obj/item/tape/medical{dir = 1; icon_state = "tape_dir_0"},/obj/item/tape/medical{dir = 4; icon_state = "tape_dir_0"},/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"bV" = (/obj/item/tape/medical{icon_state = "tape_h_0"},/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"bW" = (/obj/structure/lattice,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"bX" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
-"bY" = (/obj/structure/sign/kiddieplaque{desc = "By order of the S.D.D.C, this site or craft is to be buried and not disturbed until such time that sterility can be confirmed. Dated: 20/12/2491 "; name = "\improper Sif Department of Disease Control notice"},/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
-"bZ" = (/obj/structure/sign/warning,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
-"ca" = (/obj/item/bodybag,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cb" = (/obj/structure/table/steel,/obj/item/weapon/storage/box/bodybags,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cc" = (/obj/structure/table/steel,/obj/item/clothing/suit/bio_suit,/obj/random/medical/lite,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cd" = (/obj/structure/closet/l3closet/virology,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"ce" = (/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cf" = (/obj/structure/dispenser/oxygen,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cg" = (/obj/structure/table/steel,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"ch" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"ci" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/spray/cleaner{desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'"; name = "Chemistry Cleaner"},/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cj" = (/obj/structure/table/steel,/obj/item/weapon/crowbar/power,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"ck" = (/obj/structure/table/rack,/obj/item/clothing/head/bio_hood,/obj/item/clothing/suit/bio_suit,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cl" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
-"cm" = (/obj/structure/closet/crate/medical,/turf/simulated/mineral/floor,/area/submap/cave/qShuttle)
+"bS" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/space)
+"bT" = (/obj/item/tape/medical{icon_state = "tape_v_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bU" = (/obj/item/taperoll/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bV" = (/obj/item/tape/medical{dir = 1; icon_state = "tape_dir_0"},/obj/item/tape/medical{dir = 4; icon_state = "tape_dir_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bW" = (/obj/item/tape/medical{icon_state = "tape_h_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bX" = (/obj/structure/lattice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bY" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"bZ" = (/obj/structure/sign/kiddieplaque{desc = "By order of the S.D.D.C, this site or craft is to be buried and not disturbed until such time that sterility can be confirmed. Dated: 20/12/2491 "; name = "\improper Sif Department of Disease Control notice"},/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"ca" = (/obj/structure/sign/warning,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"cb" = (/obj/item/bodybag,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cc" = (/obj/structure/table/steel,/obj/item/weapon/storage/box/bodybags,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cd" = (/obj/structure/table/steel,/obj/item/clothing/suit/bio_suit,/obj/random/medical/lite,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ce" = (/obj/structure/closet/l3closet/virology,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cf" = (/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cg" = (/obj/structure/dispenser/oxygen,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ch" = (/obj/structure/table/steel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ci" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cj" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/spray/cleaner{desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'"; name = "Chemistry Cleaner"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ck" = (/obj/structure/table/steel,/obj/item/weapon/crowbar/power,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cl" = (/obj/structure/table/rack,/obj/item/clothing/head/bio_hood,/obj/item/clothing/suit/bio_suit,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cm" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cn" = (/obj/structure/closet/crate/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -133,11 +134,11 @@ aaabaiaJbmbnadbobpbqbrbsbtbqaNbuaUbvaAbwaVbxaYabaa
 aaabadadadadadaDbyaAbzaAbAbBbCbDadbEaGbFadadbGabaa
 aaababadadbHbIbJaoadbKaQbLadbMbNadbObPbQadagahabaa
 ababacabadaiajakakbRaiadaiadadadadadadadadadadaaaa
-ababababbSabaeaeafaeababababbTabababababadagahaaaa
-aaabababbUbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVadadadaaaa
-aaaaababababababababbWbXbYbZcacacaabcbcccdabceaaaa
-aaaaacababcfcgchcicjckababclabcacaababababababaaaa
-aaaaaaababcmcgababababababababaaaaaaaaaaababacaaaa
+bSabababbTabaeaeafaeababababbUabababababadagahaaaa
+aaabababbVbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWadadadaaaa
+aaaaababababababababbXbYbZcacbcbcbabcccdceabcfaaaa
+aaaaacababcgchcicjckclababcmabcbcbababababababaaaa
+aaaaaaababcnchababababababababaaaaaaaaaaababacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

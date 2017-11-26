@@ -5,6 +5,8 @@ var/list/flooring_cache = list()
 	if(lava)
 		return
 
+	overlays.Cut()
+
 	if(flooring)
 		// Set initial icon and strings.
 		name = flooring.name
@@ -20,7 +22,6 @@ var/list/flooring_cache = list()
 				flooring_override = icon_state
 
 		// Apply edges, corners, and inner corners.
-		overlays.Cut()
 		var/has_border = 0
 		if(flooring.flags & TURF_HAS_EDGES)
 			for(var/step_dir in cardinal)

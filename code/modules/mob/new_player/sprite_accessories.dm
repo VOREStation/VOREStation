@@ -45,7 +45,8 @@
 
 /datum/sprite_accessory/hair
 
-	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
+	icon = 'icons/mob/Human_face_m.dmi'	  // default icon for all hairs
+	var/icon_add = 'icons/mob/human_face.dmi'
 
 	bald
 		name = "Bald"
@@ -323,7 +324,7 @@
 		name = "Overeye Long"
 		icon_state = "hair_longovereye"
 
-	fag
+	flowhair
 		name = "Flow Hair"
 		icon_state = "hair_f"
 
