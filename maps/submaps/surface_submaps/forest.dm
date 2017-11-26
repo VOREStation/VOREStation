@@ -4,6 +4,16 @@
 #if MAP_TEST
 #include "farm1.dmm"
 #include "spider1.dmm"
+#include "Flake.dmm"
+#include "Field1.dmm"
+#include "MCamp1.dmm"
+#include "Rocky1.dmm"
+#include "Rocky2.dmm"
+#include "Rocky3.dmm"
+#include "Shack1.dmm"
+#include "Smol1.dmm"
+#include "Mudpit.dmm"
+#include "Snowrock1.dmm"
 #endif
 
 /datum/map_template/surface
@@ -24,3 +34,49 @@
 	mappath = 'maps/submaps/surface_submaps/spider1.dmm'
 	allow_duplicates = TRUE
 	cost = 5
+
+/datum/map_template/surface/Flake
+	name = "Forest Lake"
+	desc = "A serene lake sitting amidst the surface."
+	mappath = 'maps/submaps/surface_submaps/Flake.dmm'
+
+/datum/map_template/surface/Mcamp1
+	name = "Military Camp 1"
+	desc = "A derelict military camp host to some unsavory dangers"
+	mappath = 'maps/submaps/surface_submaps/MCamp1.dmm'
+
+/datum/map_template/surface/Mudpit
+	name = "Mudpit"
+	desc = "What happens when someone is a bit too careless with gas.."
+	mappath = 'maps/submaps/surface_submaps/Mudpit.dmm'
+
+/datum/map_template/surface/Rocky1
+	name = "Rocky1"
+	desc = "DununanununanununuNAnana"
+	mappath = 'maps/submaps/surface_submaps/Rocky1.dmm'
+
+/datum/map_template/surface/Rocky2
+	name =  "Rocky2"
+	desc = "More rocks."
+	mappath = 'maps/submaps/surface_submaps/Rocky2.dmm'
+
+/datum/map_template/surface/Rocky3
+	name = "Rocky3"
+	desc = "More and more and more rocks."
+	mappath = 'maps/submaps/surface_submaps/Rocky3.dmm'
+
+/datum/map_template/surface/Shack1
+	name = "Shack1"
+	desc = "A small shack in the middle of nowhere, Your halloween murder happens here"
+	mappath = 'maps/submaps/surface_submaps/Shack1.dmm'
+
+/datum/map_template/surface/Smol1
+	name = "Smol1"
+	desc = "A tiny grove of trees, The Nemesis of thicc"
+	mappath = 'maps/submaps/surface_submaps/Smol1.dmm'
+
+/datum/map_template/surface/Snowrock1
+	name = "Snowrock1"
+	desc = "A rocky snow covered area"
+	mappath = 'maps/submaps/surface_submaps/Snowrock1.dmm'
+
