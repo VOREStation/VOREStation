@@ -14,6 +14,9 @@
 #include "Smol1.dmm"
 #include "Mudpit.dmm"
 #include "Snowrock1.dmm"
+#include "Boombase.dmm"
+#include "Epod.dmm"
+
 #endif
 
 /datum/map_template/surface
