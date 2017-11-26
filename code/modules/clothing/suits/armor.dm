@@ -210,6 +210,16 @@
 	icon_state = "reactiveoff"
 	..()
 
+/obj/item/clothing/suit/armor/alien
+	name = "alien armor"
+	desc = "It's really resilient yet lightweight, so it's probably meant to be armor. Strangely enough it seems to have been designed for a humanoid shape."
+	icon_state = "alien"
+	blood_overlay_type = "armor"
+	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
+	slowdown = 0
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 65, bullet = 65, laser = 65, energy = 50, bomb = 50, bio = 0, rad = 40)
+
 //Non-hardsuit ERT armor.
 /obj/item/clothing/suit/armor/vest/ert
 	name = "emergency response team armor"

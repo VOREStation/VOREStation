@@ -52,6 +52,10 @@
 	self_recharge = 1
 	use_external_power = 1
 
+/obj/item/weapon/gun/energy/retro/empty
+	icon_state = "retro"
+	cell_type = null
+
 /obj/item/weapon/gun/energy/captain
 	name = "antique laser gun"
 	icon_state = "caplaser"

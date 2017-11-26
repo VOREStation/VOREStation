@@ -166,6 +166,19 @@
 	icon_state = "floor_glass"
 	takes_underlays = 1
 
+/turf/simulated/shuttle/floor/alien
+	icon_state = "alienpod1"
+	light_range = 3
+	light_power = 3
+	light_color = "#66ffff" // Bright cyan.
+
+/turf/simulated/shuttle/floor/alien/initialize()
+	..()
+	icon_state = "alienpod[rand(1, 9)]"
+
+/turf/simulated/shuttle/floor/alienplating
+	icon_state = "alienplating"
+
 /turf/simulated/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'
