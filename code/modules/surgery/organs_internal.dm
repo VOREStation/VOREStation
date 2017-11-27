@@ -120,7 +120,7 @@
 					if(I.organ_tag == O_EYES)
 						target.sdisabilities &= ~BLIND
 					if(I.organ_tag == O_LUNGS)
-						target.losebreath = 0
+						target.SetLosebreath(0)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 

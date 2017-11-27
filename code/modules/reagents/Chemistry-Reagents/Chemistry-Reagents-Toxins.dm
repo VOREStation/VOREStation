@@ -356,11 +356,11 @@
 	if(alien == IS_SKRELL)
 		M.take_organ_damage(2.4 * removed, 0)
 		if(M.losebreath < 10)
-			M.losebreath++
+			M.AdjustLosebreath(1)
 	else
 		M.take_organ_damage(3 * removed, 0)
 		if(M.losebreath < 15)
-			M.losebreath++
+			M.AdjustLosebreath(1)
 
 /datum/reagent/mutagen
 	name = "Unstable mutagen"
@@ -524,7 +524,7 @@
 
 /datum/reagent/chloralhydrate/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.losebreath = (min(M.losebreath + 1, 10))
+	M.SetLosebreath(10)
 	M.adjustOxyLoss(removed * overdose_mod)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots

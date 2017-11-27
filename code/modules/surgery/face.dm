@@ -43,7 +43,7 @@
 		user.visible_message("<font color='red'>[user]'s hand slips, slicing [target]'s throat wth \the [tool]!</font>" , \
 		"<font color='red'>Your hand slips, slicing [target]'s throat wth \the [tool]!</font>" )
 		affected.createwound(CUT, 60)
-		target.losebreath += 10
+		target.AdjustLosebreath(10)
 
 /datum/surgery_step/face/mend_vocal
 	allowed_tools = list(
@@ -71,7 +71,7 @@
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("<font color='red'>[user]'s hand slips, clamping [target]'s trachea shut for a moment with \the [tool]!</font>", \
 		"<font color='red'>Your hand slips, clamping [user]'s trachea shut for a moment with \the [tool]!</font>")
-		target.losebreath += 10
+		target.AdjustLosebreath(10)
 
 /datum/surgery_step/face/fix_face
 	allowed_tools = list(
