@@ -23,6 +23,10 @@
 					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1)
 	..()
 
+/obj/machinery/vending/boozeomat/New()
+	premium += list(/obj/item/weapon/reagent_containers/food/drinks/metaglass = 1)
+	..()
+
 //Custom vendors
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"

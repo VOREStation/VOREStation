@@ -79,6 +79,8 @@
 						/obj/item/weapon/stamp/solgov,
 						/obj/item/weapon/storage/fancy/cigar/havana,
 						/obj/item/xenos_claw,
+						/obj/item/weapon/storage/box/metaglasses,
+						/obj/item/weapon/storage/box/metaglasses,
 						/obj/random/contraband,
 						/obj/random/contraband,
 						/obj/random/contraband,
