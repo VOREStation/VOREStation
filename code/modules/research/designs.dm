@@ -302,7 +302,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/clothing/glasses/hud/security
 	sort_string = "GAAAB"
 
-/datum/design/item/mesons
+/datum/design/item/hud/mesons
 	name = "Optical meson scanners design"
 	desc = "Using the meson-scanning technology those glasses allow you to see through walls, floor or anything else."
 	id = "mesons"
@@ -437,7 +437,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/stack/nanopaste
 	sort_string = "MBAAA"
 
-/datum/design/item/scalpel_laser1
+/datum/design/item/medical/scalpel_laser1
 	name = "Basic Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	id = "scalpel_laser1"
@@ -446,7 +446,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/surgical/scalpel/laser1
 	sort_string = "MBBAA"
 
-/datum/design/item/scalpel_laser2
+/datum/design/item/medical/scalpel_laser2
 	name = "Improved Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
 	id = "scalpel_laser2"
@@ -455,7 +455,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/surgical/scalpel/laser2
 	sort_string = "MBBAB"
 
-/datum/design/item/scalpel_laser3
+/datum/design/item/medical/scalpel_laser3
 	name = "Advanced Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
 	id = "scalpel_laser3"
@@ -464,7 +464,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/surgical/scalpel/laser3
 	sort_string = "MBBAC"
 
-/datum/design/item/scalpel_manager
+/datum/design/item/medical/scalpel_manager
 	name = "Incision Management System"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	id = "scalpel_manager"
@@ -473,7 +473,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/surgical/scalpel/manager
 	sort_string = "MBBAD"
 
-/datum/design/item/bone_clamp
+/datum/design/item/medical/bone_clamp
 	name = "Bone Clamp"
 	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
 	id = "bone_clamp"
@@ -481,6 +481,15 @@ other types of metals and chemistry for reagents).
 	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2500)
 	build_path = /obj/item/weapon/surgical/bone_clamp
 	sort_string = "MBBAE"
+
+/datum/design/item/medical/advanced_roller
+	name = "advanced roller bed"
+	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."
+	id = "roller_bed"
+	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3, TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "phoron" = 2000)
+	build_path = /obj/item/roller/adv
+	sort_string = "MBBAF"
 
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
