@@ -34,7 +34,7 @@
 			if(!S.get_damage())
 				user << "<span class='notice'>Nothing to fix here.</span>"
 			else if(can_use(1))
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				user.setClickCooldown(user.get_attack_speed(src))
 				if(S.open >= 2)
 					if(do_after(user,5 * toolspeed))
 						S.heal_damage(20, 20, robo_repair = 1)

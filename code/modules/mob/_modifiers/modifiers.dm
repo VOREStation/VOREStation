@@ -42,6 +42,7 @@
 	var/accuracy_dispersion				// Positive numbers make gun firing cover a wider tile range, and therefore more inaccurate.  Negatives help negate dispersion penalties.
 	var/metabolism_percent				// Adjusts the mob's metabolic rate, which affects reagent processing.  Won't affect mobs without reagent processing.
 	var/icon_scale_percent				// Makes the holder's icon get scaled up or down.
+	var/attack_speed_percent			// Makes the holder's 'attack speed' (click delay) shorter or longer.
 
 /datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder
@@ -205,6 +206,9 @@
 
 	if(!isnull(icon_scale_percent))
 		effects += "Your appearance is [multipler_to_percentage(icon_scale_percent, TRUE)] [icon_scale_percent > 1 ? "larger" : "smaller"]."
+
+	if(!isnull(attack_speed_percent))
+		effects += "The delay between attacking is [multipler_to_percentage(attack_speed_percent, TRUE)] [disable_duration_percent > 1.0 ? "longer" : "shorter"]."
 
 	return jointext(effects, "<br>")
 
