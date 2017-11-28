@@ -56,6 +56,10 @@
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/cracker
 
+	hovering = TRUE
+	softfall = TRUE
+	parachuting = TRUE
+
 	var/parrot_state = PARROT_WANDER //Hunt for a perch when created
 	var/parrot_sleep_max = 25 //The time the parrot sits while perched before looking around. Mosly a way to avoid the parrot's AI in life() being run every single tick.
 	var/parrot_sleep_dur = 25 //Same as above, this is the var that physically counts down
