@@ -641,10 +641,10 @@ var/global/datum/controller/occupations/job_master
 			H.forceMove(spawnpos.get_spawn_position())
 			. = spawnpos.msg
 		else
-			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
+			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the default arrivals location instead." //VOREStation Edit - Generic, not shuttle.
 			var/spawning = pick(latejoin)
 			H.forceMove(get_turf(spawning))
-			. = "will arrive to the station shortly by shuttle"
+			. = "will arrive at the station shortly" //VOREStation Edit - Grammar but mostly 'shuttle' reference removal, and this also applies to notified spawn-character verb use
 	else
 		var/spawning = pick(latejoin)
 		H.forceMove(get_turf(spawning))
