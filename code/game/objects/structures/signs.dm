@@ -156,9 +156,11 @@
 
 /obj/structure/sign/warning/docking_area
 	name = "\improper KEEP CLEAR: DOCKING AREA"
+	icon_state = "evac"
 
 /obj/structure/sign/warning/engineering_access
 	name = "\improper ENGINEERING ACCESS"
+	icon_state = "engine"
 
 /obj/structure/sign/warning/fire
 	name = "\improper DANGER: FIRE"
@@ -185,9 +187,11 @@
 
 /obj/structure/sign/warning/mail_delivery
 	name = "\improper MAIL DELIVERY"
+	icon_state = "mail"
 
 /obj/structure/sign/warning/moving_parts
 	name = "\improper MOVING PARTS"
+	icon_state = "movingparts"
 
 /obj/structure/sign/warning/nosmoking_1
 	name = "\improper NO SMOKING"
@@ -207,12 +211,15 @@
 
 /obj/structure/sign/warning/secure_area
 	name = "\improper SECURE AREA"
+	icon_state = "securearea2"
 
 /obj/structure/sign/warning/secure_area/armory
 	name = "\improper ARMORY"
+	icon_state = "armory"
 
 /obj/structure/sign/warning/server_room
 	name = "\improper SERVER ROOM"
+	icon_state = "server"
 
 /obj/structure/sign/warning/siphon_valve
 	name = "\improper SIPHON VALVE"
@@ -224,16 +231,19 @@
 /obj/structure/sign/warning/vent_port
 	name = "\improper EJECTION/VENTING PORT"
 
+/obj/structure/sign/warning/emergence
+	name = "\improper EMERGENT INTELLIGENCE DETAILS"
+	icon_state = "rogueai"
 
 /obj/structure/sign/redcross
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
-	icon_state = "redcross"
+	icon_state = "bluecross"
 
 /obj/structure/sign/greencross
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
-	icon_state = "greencross"
+	icon_state = "bluecross2"
 
 /obj/structure/sign/goldenplaque
 	name = "The Most Robust Men Award for Robustness"
@@ -250,6 +260,11 @@
 	desc = "This plaque commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle men who have died in its hands."
 	icon_state = "atmosplaque"
 
+/obj/structure/sign/periodic
+	name = "periodic table"
+	desc = "A sign reminding those visiting of the elements of the periodic table- though, they should have memorized them by now."
+	icon_state = "periodic"
+
 /obj/structure/sign/double/maltesefalcon	//The sign is 64x32, so it needs two tiles. ;3
 	name = "The Maltese Falcon"
 	desc = "The Maltese Falcon, Space Bar and Grill."
@@ -262,7 +277,7 @@
 
 /obj/structure/sign/science			//These 3 have multiple types, just var-edit the icon_state to whatever one you want on the map
 	name = "\improper SCIENCE!"
-	desc = "A warning sign which reads 'SCIENCE!'."
+	desc = "A warning sign which reads 'SCIENCE'."
 	icon_state = "science1"
 
 /obj/structure/sign/chemistry
@@ -278,12 +293,17 @@
 /obj/structure/sign/hydro
 	name = "\improper HYDROPONICS"
 	desc = "A sign labelling an area as a place where plants are grown."
-	icon_state = "hydro1"
+	icon_state = "hydro2"
 
 /obj/structure/sign/hydrostorage
 	name = "\improper HYDROPONICS STORAGE"
 	desc = "A sign labelling an area as a place where plant growing supplies are kept."
 	icon_state = "hydro3"
+
+/obj/structure/sign/xenobio
+	name = "\improper XENOBIOLOGY"
+	desc = "A warning sign which reads XENOBIOLOGY."
+	icon_state = "xenobio3"
 
 /obj/structure/sign/directions
 	name = "direction sign"
@@ -328,6 +348,11 @@
 	desc = "A direction sign, pointing out which way the Cargo department is."
 	icon_state = "direction_crg"
 
+/obj/structure/sign/directions/roomnum
+	name = "room number"
+	desc = "A sign detailing the number of the room beside it."
+	icon_state = "roomnum"
+
 /obj/structure/sign/christmas/lights
 	name = "Christmas lights"
 	desc = "Flashy and pretty."
@@ -367,3 +392,31 @@
 /obj/structure/sign/hangar/three
 	name = "\improper Hangar Three"
 	icon_state = "hangar-3"
+
+/obj/structure/sign/atmos
+	name = "\improper WASTE"
+	icon_state = "atmos_waste"
+
+/obj/structure/sign/atmos/o2
+	name = "\improper OXYGEN"
+	icon_state = "atmos_o2"
+
+/obj/structure/sign/atmos/co2
+	name = "\improper CARBON DIOXIDE"
+	icon_state = "atmos_co2"
+
+/obj/structure/sign/atmos/phoron
+	name = "\improper PHORON"
+	icon_state = "atmos_phoron"
+
+/obj/structure/sign/atmos/n2o
+	name = "\improper NITROUS OXIDE"
+	icon_state = "atmos_n2o"
+
+/obj/structure/sign/atmos/n2
+	name = "\improper NITROGEN"
+	icon_state = "atmos_n2"
+
+/obj/structure/sign/atmos/air
+	name = "\improper AIR"
+	icon_state = "atmos_air"
