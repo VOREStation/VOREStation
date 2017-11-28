@@ -199,7 +199,7 @@
 
 
 /datum/gear/accessory/sweater
-	display_name = "Sweater Selection"
+	display_name = "sweater selection"
 	path = /obj/item/clothing/accessory/sweater
 
 /datum/gear/accessory/sweater/New()
@@ -232,3 +232,12 @@
 /datum/gear/accessory/bracelet/friendship
 	display_name = "friendship bracelet"
 	path = /obj/item/clothing/accessory/bracelet/friendship
+
+/datum/gear/accessory/stethoscope
+	display_name = "stethoscope"
+	path = /obj/item/clothing/accessory/stethoscope
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+
+/datum/gear/accessory/locket
+	display_name = "locket"
+	path = /obj/item/clothing/accessory/locket

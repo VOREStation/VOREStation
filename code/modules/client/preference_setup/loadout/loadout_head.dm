@@ -114,8 +114,12 @@
 	path = /obj/item/clothing/head/soft/yellow
 
 /datum/gear/head/cap/white
-	display_name = "cap, white"
+	display_name = "cap (colorable)"
 	path = /obj/item/clothing/head/soft/mime
+
+/datum/gear/head/cap/white/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
 
 /datum/gear/head/cap/mbill
 	display_name = "cap, bill"
@@ -154,7 +158,7 @@
 	path = /obj/item/clothing/head/fedora/grey
 
 /datum/gear/head/hairflower
-	display_name = "hair flower pin"
+	display_name = "hair flower pin (colorable)"
 	path = /obj/item/clothing/head/hairflower/white
 
 /datum/gear/head/hairflower/New()
@@ -162,21 +166,17 @@
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
 /datum/gear/head/hardhat
-	display_name = "hardhat, yellow"
+	display_name = "hardhat selection"
 	path = /obj/item/clothing/head/hardhat
 	cost = 2
 
-/datum/gear/head/hardhat/blue
-	display_name = "hardhat, blue"
-	path = /obj/item/clothing/head/hardhat/dblue
-
-/datum/gear/head/hardhat/orange
-	display_name = "hardhat, orange"
-	path = /obj/item/clothing/head/hardhat/orange
-
-/datum/gear/head/hardhat/red
-	display_name = "hardhat, red"
-	path = /obj/item/clothing/head/hardhat/red
+/datum/gear/head/hardhat/New()
+	..()
+	var/list/hardhats = list()
+	for(var/hardhat in typesof(/obj/item/clothing/head/hardhat))
+		var/obj/item/clothing/head/hardhat/hardhat_type = hardhat
+		hardhats[initial(hardhat_type.name)] = hardhat_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hardhats))
 
 /datum/gear/head/boater
 	display_name = "hat, boatsman"
@@ -194,22 +194,30 @@
 	display_name = "hat, tophat"
 	path = /obj/item/clothing/head/that
 
-/datum/gear/head/philosopher_wig
+/datum/gear/head/wig/philosopher
 	display_name = "natural philosopher's wig"
 	path = /obj/item/clothing/head/philosopher_wig
+
+/datum/gear/head/wig
+	display_name = "powdered wig"
+	path = /obj/item/clothing/head/powdered_wig
 
 /datum/gear/head/ushanka
 	display_name = "ushanka"
 	path = /obj/item/clothing/head/ushanka
 
 /datum/gear/head/santahat
-	display_name = "santa hat, red (holiday)"
+	display_name = "santa hat"
 	path = /obj/item/clothing/head/santa
 	cost = 2
 
-/datum/gear/head/santahat/green
-	display_name = "santa hat, green (holiday)"
-	path = /obj/item/clothing/head/santa/green
+/datum/gear/head/santahat/New()
+	..()
+	var/list/santahats = list()
+	for(var/santahat in typesof(/obj/item/clothing/head/santa))
+		var/obj/item/clothing/head/santa/santahat_type = santahat
+		santahats[initial(santahat_type.name)] = santahat_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(santahats))
 
 /datum/gear/head/hijab
 	display_name = "hijab"
@@ -243,10 +251,13 @@
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
-
 /datum/gear/head/kitty
 	display_name = "kitty ears"
 	path = /obj/item/clothing/head/kitty
+
+/datum/gear/head/rabbit
+	display_name = "rabbit ears"
+	path = /obj/item/clothing/head/rabbitears
 
 /datum/gear/head/beanie
 	display_name = "beanie"
