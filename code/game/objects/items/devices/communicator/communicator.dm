@@ -429,6 +429,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			exonet.send_message(their_address, "text", text)
 			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
 			log_pda("[usr] (COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]")
+			for(var/mob/M in player_list)
+				if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+					if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)
+						continue
+					if(exonet.get_atom_from_address(their_address) == M)
+						continue
+					M.show_message("Comm IM - [src] -> [exonet.get_atom_from_address(their_address)]: [text]")
 
 	if(href_list["disconnect"])
 		var/name_to_disconnect = href_list["disconnect"]
@@ -988,6 +995,14 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			src << "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>"
 			exonet_messages.Add("<b>To [chosen_communicator]:</b><br>[text_message]")
 			log_pda("[usr] (COMM: [src]) sent \"[text_message]\" to [chosen_communicator]")
+			for(var/mob/M in player_list)
+				if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+					if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)
+						continue
+					if(M == src)
+						continue
+					M.show_message("Comm IM - [src] -> [chosen_communicator]: [text_message]")
+
 
 
 // Verb: show_text_messages()
