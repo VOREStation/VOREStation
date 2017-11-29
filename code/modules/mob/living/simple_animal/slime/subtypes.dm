@@ -209,6 +209,26 @@
 /mob/living/simple_animal/slime/dark_blue/get_cold_protection()
 	return 1 // This slime is immune to cold.
 
+// Surfave variant
+/mob/living/simple_animal/slime/dark_blue/wild
+	name = "wild slime"
+	desc = "The result of slimes escaping containment from some xenobiology lab. The slime makes other entities near it feel much colder, \
+	and it is more resilient to the cold. These qualities have made this color of slime able to thrive on a harsh, cold world and is able to rival \
+	the ferocity of other apex predators in this region of Sif. As such, it is a very invasive species."
+	description_info = "This slime makes other entities near it feel much colder, and is more resilient to the cold. It also has learned advanced combat tactics from \
+	having to endure the harsh world outside its lab. Note that processing this large slime will give six cores."
+	icon_scale = 2
+	optimal_combat = TRUE // Gotta be sharp to survive out there.
+	rabid = TRUE
+	cores = 6
+	maxHealth = 150 // Base health
+	maxHealth_adult = 250
+	type_on_death = /mob/living/simple_animal/slime/dark_blue // Otherwise infinite slimes might occur.
+	pixel_y = -10 // Since the base sprite isn't centered properly, the pixel auto-adjustment needs some help.
+
+/mob/living/simple_animal/slime/dark_blue/wild/New()
+	..()
+	make_adult()
 
 /mob/living/simple_animal/slime/silver
 	desc = "This slime is shiny, and can deflect lasers or other energy weapons directed at it."

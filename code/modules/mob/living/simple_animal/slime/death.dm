@@ -4,7 +4,10 @@
 		return
 
 	if(!gibbed && is_adult)
-		var/mob/living/simple_animal/slime/S = make_new_slime()
+		var/death_type = type_on_death
+		if(!death_type)
+			death_type = src.type
+		var/mob/living/simple_animal/slime/S = make_new_slime(death_type)
 		S.rabid = TRUE
 		step_away(S, src)
 		is_adult = FALSE
