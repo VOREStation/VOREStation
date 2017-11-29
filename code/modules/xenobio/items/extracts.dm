@@ -899,6 +899,7 @@
 
 	evasion = 2
 	slowdown = -1
+	attack_speed_percent = 0.75
 
 
 // *********************

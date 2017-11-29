@@ -411,7 +411,7 @@
 			user << "<span class='warning'>You can't reach your [src.name] while holding [tool] in your [owner.get_bodypart_name(grasp)].</span>"
 			return 0
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(tool))
 	if(!do_mob(user, owner, 10))
 		user << "<span class='warning'>You must stand still to do that.</span>"
 		return 0

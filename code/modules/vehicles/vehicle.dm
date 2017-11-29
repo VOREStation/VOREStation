@@ -94,7 +94,7 @@
 			if(health < maxhealth)
 				if(open)
 					health = min(maxhealth, health+10)
-					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+					user.setClickCooldown(user.get_attack_speed(W))
 					playsound(src, T.usesound, 50, 1)
 					user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
 				else
@@ -104,7 +104,7 @@
 		else
 			user << "<span class='notice'>Unable to repair while [src] is off.</span>"
 	else if(hasvar(W,"force") && hasvar(W,"damtype"))
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(W))
 		switch(W.damtype)
 			if("fire")
 				health -= W.force * fire_dam_coeff

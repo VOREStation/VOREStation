@@ -163,7 +163,7 @@
 				else
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
 
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
+			user.setClickCooldown(user.get_attack_speed(src)) //can be used offensively
 			M.flash_eyes()
 	else
 		return ..()

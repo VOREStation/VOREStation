@@ -216,7 +216,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/show_gm_status,
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
-	/client/proc/admin_give_modifier
+	/client/proc/admin_give_modifier,
+	/client/proc/simple_DPS
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -297,6 +298,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
 	/client/proc/startSinglo,
+	/client/proc/simple_DPS,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_using_map,
 	/client/proc/cmd_debug_del_all,
