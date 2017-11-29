@@ -10,12 +10,12 @@
 	anchored = 1
 	density = 1
 	power_channel = EQUIP
-	use_power = 2
+	use_power = 1
 	idle_power_usage = 100		// Minimal lights to keep algae alive
 	active_power_usage = 5000	// Powerful grow lights to stimulate oxygen production
 	//power_rating = 7500			//7500 W ~ 10 HP
 
-	var/list/stored_material =  list(MATERIAL_ALGAE = 10000, MATERIAL_CARBON = 0)
+	var/list/stored_material =  list(MATERIAL_ALGAE = 0, MATERIAL_CARBON = 0)
 	// Capacity increases with matter bin quality
 	var/list/storage_capacity = list(MATERIAL_ALGAE = 10000, MATERIAL_CARBON = 10000)
 	// Speed at which we convert CO2 to O2.  Increases with manipulator quality
@@ -32,6 +32,9 @@
 	var/datum/gas_mixture/internal = new()
 	var/const/input_gas = "carbon_dioxide"
 	var/const/output_gas = "oxygen"
+
+/obj/machinery/atmospherics/binary/algae_farm/filled
+	stored_material = list(MATERIAL_ALGAE = 10000, MATERIAL_CARBON = 0)
 
 /obj/machinery/atmospherics/binary/algae_farm/New()
 	..()
