@@ -6,11 +6,13 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
+	/client/proc/cmd_check_new_players,	//allows us to see every new player
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
 //	/client/proc/deadchat				//toggles deadchat on/off,
 //	/client/proc/toggle_ahelp_sound,
 	)
+
 var/list/admin_verbs_admin = list(
 	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels,
 	/datum/admins/proc/set_tcrystals,
@@ -99,16 +101,19 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/fixatmos,
 	/datum/admins/proc/sendFax
-)
+	)
+
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
 	/client/proc/jobbans
 	)
+
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/play_server_sound
 	)
+
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
 	/datum/admins/proc/cmd_admin_dress,
@@ -141,6 +146,7 @@ var/list/admin_verbs_spawn = list(
 	/client/proc/map_template_upload,
 	/client/proc/map_template_load_on_new_z
 	)
+
 var/list/admin_verbs_server = list(
 	/datum/admins/proc/capture_map,
 	/client/proc/Set_Holiday,
@@ -168,6 +174,7 @@ var/list/admin_verbs_server = list(
 	/client/proc/recipe_dump,
 	/client/proc/panicbunker
 	)
+
 var/list/admin_verbs_debug = list(
 	/client/proc/getruntimelog,                     //allows us to access runtime logs to somebody,
 	/client/proc/cmd_admin_list_open_jobs,
