@@ -132,6 +132,10 @@ default behaviour is:
 					src << ("<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
 				return
 			if (!now_pushing)
+				if(isobj(AM))
+					var/obj/I = AM
+					if(!can_pull_size || can_pull_size < I.w_class)
+						return
 				now_pushing = 1
 
 				var/t = get_dir(src, AM)
