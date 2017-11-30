@@ -36,5 +36,5 @@
 			hit_mobs++
 
 	if(hit_mobs)
-		to_chat(user, "<span class='danger'>You used \the [src] to attack [hit_mobs] other thing\s!<span>")
+		to_chat(user, "<span class='danger'>You used \the [src] to attack [hit_mobs] other thing\s!</span>")
 	cleaving = FALSE // We're done now.

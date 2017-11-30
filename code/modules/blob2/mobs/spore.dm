@@ -42,7 +42,7 @@
 	factory = null
 	if(infested)
 		infested.forceMove(get_turf(src))
-		visible_message("<span class='warning'>\The [infested] falls to the ground as the blob spore bursts.<span>")
+		visible_message("<span class='warning'>\The [infested] falls to the ground as the blob spore bursts.</span>")
 		infested = null
 	return ..()
 
