@@ -226,7 +226,7 @@
 			if(gene.is_active(src))
 				gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,100)
+	radiation = Clamp(radiation,0,250)
 
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
@@ -285,8 +285,12 @@
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 
+		if (radiation > 150)
+			damage = 6
+			radiation -= 4 * RADIATION_SPEED_COEFFICIENT
+
 		if(damage)
-			damage *= isSynthetic() ? 0.5 : species.radiation_mod
+			damage *= species.radiation_mod
 			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
 			updatehealth()
 			if(!isSynthetic() && organs.len)
@@ -1375,8 +1379,14 @@
 
 	// Puke if toxloss is too high
 	if(!stat)
+		if (getToxLoss() >= 30 && isSynthetic())
+			if(!confused)
+				if(prob(5))
+					to_chat(src, "<span class='danger'>You lose directional control!</span>")
+					Confuse(10)
 		if (getToxLoss() >= 45)
 			spawn vomit()
+
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
 	if(isturf(loc) && rand(1,1000) == 1)
