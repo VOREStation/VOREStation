@@ -213,7 +213,7 @@
 	// Otherwise they're probably fighting the slime.
 	if(prob(25))
 		visible_message("<span class='danger'>\The [user]'s [W] passes right through [src]!</span>")
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(W))
 		return
 	..()
 

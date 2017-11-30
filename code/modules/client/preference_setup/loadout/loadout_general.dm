@@ -2,6 +2,10 @@
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
+/datum/gear/cane/white
+	display_name = "white cane"
+	path = /obj/item/weapon/cane/whitecane
+
 /datum/gear/dice
 	display_name = "dice pack"
 	path = /obj/item/weapon/storage/pill_bottle/dice
@@ -34,6 +38,18 @@
 	display_name = "Spaceball booster pack"
 	path = /obj/item/weapon/pack/spaceball
 
+/datum/gear/plushie
+	display_name = "plushie selection"
+	path = /obj/item/toy/plushie/
+
+/datum/gear/plushie/New()
+	..()
+	var/list/plushies = list()
+	for(var/plushie in subtypesof(/obj/item/toy/plushie/) - /obj/item/toy/plushie/therapy)
+		var/obj/item/toy/plushie/plushie_type = plushie
+		plushies[initial(plushie_type.name)] = plushie_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(plushies))
+
 /datum/gear/flask
 	display_name = "flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/barflask
@@ -49,10 +65,6 @@
 /datum/gear/vacflask/New()
 	..()
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_drink_reagents())
-
-/datum/gear/comb
-	display_name = "purple comb"
-	path = /obj/item/weapon/haircomb
 
 /datum/gear/lunchbox
 	display_name = "lunchbox"

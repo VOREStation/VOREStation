@@ -51,6 +51,8 @@ var/list/keyboard_sound = list ('sound/effects/keyboard/keyboard1.ogg','sound/ef
 var/list/mechstep_sound = list('sound/mecha/mechstep1.ogg', 'sound/mecha/mechstep2.ogg')
 var/list/bodyfall_sound = list('sound/effects/bodyfall1.ogg','sound/effects/bodyfall2.ogg','sound/effects/bodyfall3.ogg','sound/effects/bodyfall4.ogg')
 var/list/can_sound = list('sound/effects/can_open1.ogg','sound/effects/can_open2.ogg','sound/effects/can_open3.ogg','sound/effects/can_open4.ogg')
+var/list/geiger_sound = list('sound/items/geiger1.ogg', 'sound/items/geiger2.ogg', 'sound/items/geiger3.ogg', 'sound/items/geiger4.ogg', 'sound/items/geiger5.ogg')
+var/list/geiger_weak_sound = list('sound/items/geiger_weak1.ogg', 'sound/items/geiger_weak2.ogg', 'sound/items/geiger_weak3.ogg', 'sound/items/geiger_weak4.ogg')
 
 //var/list/gun_sound = list('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
 
@@ -186,4 +188,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("canopen") soundin = pick(can_sound)
 			if ("mechstep") soundin = pick(mechstep_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
+			if("geiger") soundin = pick(geiger_sound)
+			if("geiger_weak") soundin = pick(geiger_weak_sound)
 	return soundin

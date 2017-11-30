@@ -43,9 +43,9 @@
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
-	cold_protection = FEET|LEGS
+	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET|LEGS
+	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	snow_speed = -1
 	step_volume_mod = 0.8
@@ -95,6 +95,12 @@
 	name = "hydroponics winter boots"
 	desc = "A pair of winter boots. These ones are lined with brown fur, and their trim is ambrosia green"
 	icon_state = "winterboots_hydro"
+
+/obj/item/clothing/shoes/boots/winter/explorer
+	name = "explorer winter boots"
+	desc = "Steel-toed winter boots for mining or exploration in hazardous environments. Very good at keeping toes warm and uncrushed."
+	icon_state = "explorer"
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"

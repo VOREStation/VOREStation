@@ -49,7 +49,7 @@
 	if(W.force)
 		adjust_strength(-W.force / 20)
 		user.do_attack_animation(src)
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(W))
 	..()
 
 /obj/effect/energy_field/attack_hand(var/mob/living/user)

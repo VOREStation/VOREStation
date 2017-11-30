@@ -21,7 +21,7 @@
 	return
 
 /obj/effect/spider/attackby(var/obj/item/weapon/W, var/mob/user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(W.attack_verb.len)
 		visible_message("<span class='warning'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
@@ -210,25 +210,8 @@
 	//=================
 
 	if(isturf(loc))
-		if(prob(25))
-			var/list/nearby = trange(5, src) - loc
-			if(nearby.len)
-				var/target_atom = pick(nearby)
-				walk_to(src, target_atom, 5)
-				if(prob(25))
-					src.visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
-		else if(prob(5))
-			//vent crawl!
-			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
-				if(!v.welded)
-					entry_vent = v
-					walk_to(src, entry_vent, 5)
-					break
+		skitter()
 
-		if(amount_grown >= 100)
-			var/spawn_type = pick(grow_as)
-			new spawn_type(src.loc, src)
-			qdel(src)
 	else if(isorgan(loc))
 		if(!amount_grown) amount_grown = 1
 		var/obj/item/organ/external/O = loc
@@ -249,6 +232,27 @@
 	if(amount_grown)
 		amount_grown += rand(0,2)
 
+/obj/effect/spider/spiderling/proc/skitter()
+	if(isturf(loc))
+		if(prob(25))
+			var/list/nearby = trange(5, src) - loc
+			if(nearby.len)
+				var/target_atom = pick(nearby)
+				walk_to(src, target_atom, 5)
+				if(prob(25))
+					src.visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
+		else if(prob(5))
+			//vent crawl!
+			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
+				if(!v.welded)
+					entry_vent = v
+					walk_to(src, entry_vent, 5)
+					break
+		if(amount_grown >= 100)
+			var/spawn_type = pick(grow_as)
+			new spawn_type(src.loc, src)
+			qdel(src)
+
 /obj/effect/decal/cleanable/spiderling_remains
 	name = "spiderling remains"
 	desc = "Green squishy mess."
@@ -261,7 +265,7 @@
 	icon_state = "cocoon1"
 	health = 60
 
-	New()
+/obj/effect/spider/cocoon/New()
 		icon_state = pick("cocoon1","cocoon2","cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()

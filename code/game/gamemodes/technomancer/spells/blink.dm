@@ -23,9 +23,12 @@
 	var/turf/starting = get_turf(AM)
 	var/list/targets = list()
 
+	if(starting.block_tele)
+		return
+
 	valid_turfs:
 		for(var/turf/simulated/T in range(AM, range))
-			if(T.density || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
+			if(T.density || T.block_tele || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
 				continue
 			for(var/atom/movable/stuff in T.contents)
 				if(stuff.density)
@@ -54,7 +57,10 @@
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!within_range(AM))
-			user << "<span class='warning'>\The [AM] is too far away to blink.</span>"
+			to_chat(user, "<span class='warning'>\The [AM] is too far away to blink.</span>")
+			return
+		if(!allowed_to_teleport())
+			to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
 			return
 		if(pay_energy(400))
 			if(check_for_scepter())
@@ -67,6 +73,9 @@
 			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
 
 /obj/item/weapon/spell/blink/on_use_cast(mob/user)
+	if(!allowed_to_teleport())
+		to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+		return
 	if(pay_energy(200))
 		if(check_for_scepter())
 			safe_blink(user, calculate_spell_power(10))
@@ -80,6 +89,9 @@
 /obj/item/weapon/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
+		if(!allowed_to_teleport())
+			to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+			return
 		if(pay_energy(300))
 			visible_message("<span class='danger'>\The [user] reaches out towards \the [AM] with a glowing hand.</span>")
 			if(check_for_scepter())

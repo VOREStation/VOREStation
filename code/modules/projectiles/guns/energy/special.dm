@@ -43,7 +43,8 @@
 	projectile_type = /obj/item/projectile/energy/floramut
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	var/decl/plantgene/gene = null
 
 	firemodes = list(
@@ -137,7 +138,8 @@
 	charge_cost = 480
 	projectile_type = /obj/item/projectile/change
 	origin_tech = null
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	charge_meter = 0
 
 /obj/item/weapon/gun/energy/staff/special_check(var/mob/user)
@@ -188,7 +190,8 @@ obj/item/weapon/gun/energy/staff/focus
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 24 // 100 shots, it's a spray and pray (to RNGesus) weapon.
 	projectile_type = /obj/item/projectile/energy/blue_pellet
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	accuracy = 5 // Suppressive weapons don't work too well if there's no risk of being hit.
 	burst_delay = 1 // Burst faster than average.
 	origin_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 6, TECH_ILLEGAL = 6)

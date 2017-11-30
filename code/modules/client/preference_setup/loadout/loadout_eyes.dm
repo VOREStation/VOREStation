@@ -18,14 +18,18 @@
 	path = /obj/item/clothing/glasses/regular/hipster
 
 /datum/gear/eyes/glasses/monocle
-	display_name = "Monocle"
+	display_name = "monocle"
 	path = /obj/item/clothing/glasses/monocle
 
-/datum/gear/eyes/scanning_goggles
+/datum/gear/eyes/goggles
+	display_name = "plain goggles"
+	path = /obj/item/clothing/glasses/goggles
+
+/datum/gear/eyes/goggles/scanning
 	display_name = "scanning goggles"
 	path = /obj/item/clothing/glasses/regular/scanners
 
-/datum/gear/eyes/sciencegoggles
+/datum/gear/eyes/goggles/science
 	display_name = "Science Goggles"
 	path = /obj/item/clothing/glasses/science
 
@@ -73,7 +77,7 @@
 	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director")
 
 /datum/gear/eyes/meson/prescription
-	display_name = "Optical Meson Scanners, prescription (Engineering)"
+	display_name = "Optical Meson Scanners, prescription (Engineering, Science)"
 	path = /obj/item/clothing/glasses/meson/prescription
 
 /datum/gear/eyes/material
@@ -86,11 +90,11 @@
 	path = /obj/item/clothing/glasses/material/prescription
 
 /datum/gear/eyes/meson/aviator
-	display_name = "Optical Meson Aviators, (Engineering)"
+	display_name = "Optical Meson Aviators, (Engineering, Science)"
 	path = /obj/item/clothing/glasses/meson/aviator
 
 /datum/gear/eyes/meson/aviator/prescription
-	display_name = "Optical Meson Aviators, prescription (Engineering)"
+	display_name = "Optical Meson Aviators, prescription (Engineering, Science)"
 	path = /obj/item/clothing/glasses/meson/aviator/prescription
 
 /datum/gear/eyes/glasses/fakesun

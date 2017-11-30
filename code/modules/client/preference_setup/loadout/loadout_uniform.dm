@@ -349,7 +349,7 @@
 
 /datum/gear/uniform/whitewedding
 	display_name= "white wedding dress"
-	path = /obj/item/clothing/under/dress/white
+	path = /obj/item/clothing/under/wedding/bride_white
 
 /datum/gear/uniform/skirts
 	display_name = "executive skirt"

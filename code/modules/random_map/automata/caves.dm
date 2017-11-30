@@ -2,6 +2,10 @@
 	iterations = 5
 	descriptor = "moon caves"
 	var/list/ore_turfs = list()
+	var/make_cracked_turfs = TRUE
+
+/datum/random_map/automata/cave_system/no_cracks
+	make_cracked_turfs = FALSE
 
 /datum/random_map/automata/cave_system/get_appropriate_path(var/value)
 	return
@@ -47,7 +51,7 @@
 		if(map[current_cell] == FLOOR_CHAR)
 			if(prob(90))
 				T.make_floor()
-			else
+			else if(make_cracked_turfs)
 				T.ChangeTurf(/turf/space/cracked_asteroid)
 		else
 			T.make_wall()

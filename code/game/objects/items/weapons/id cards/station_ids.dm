@@ -373,8 +373,8 @@
 	job_access_type = /datum/job/bartender
 
 /obj/item/weapon/card/id/civilian/botanist
-	assignment = "Gardener"
-	rank = "Gardener"
+	assignment = "Botanist"
+	rank = "Botanist"
 	job_access_type = /datum/job/hydro
 
 /obj/item/weapon/card/id/civilian/chaplain

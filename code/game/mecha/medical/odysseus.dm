@@ -99,7 +99,9 @@
 				C.images += holder
 
 			holder = patient.hud_list[STATUS_HUD]
-			if(patient.stat == DEAD)
+			if(patient.isSynthetic())
+				holder.icon_state = "hudrobo"
+			else if(patient.stat == DEAD)
 				holder.icon_state = "huddead"
 			else if(foundVirus)
 				holder.icon_state = "hudill"

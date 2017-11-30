@@ -108,7 +108,7 @@
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
 			if(ismob(A)) // No instant mob attacking
-				setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				setClickCooldown(get_attack_speed())
 			UnarmedAttack(A, 1)
 
 		trigger_aiming(TARGET_CAN_CLICK)
@@ -129,7 +129,7 @@
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
 				if(ismob(A)) // No instant mob attacking
-					setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+					setClickCooldown(get_attack_speed())
 				UnarmedAttack(A, 1)
 			trigger_aiming(TARGET_CAN_CLICK)
 			return

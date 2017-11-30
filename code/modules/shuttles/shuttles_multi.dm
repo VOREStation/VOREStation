@@ -174,7 +174,7 @@
 		return
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		usr << "<font color='blue'>[shuttle_tag] vessel is moving.</font>"
+		to_chat(usr, "<font color='blue'>[shuttle_tag] vessel is moving.</font>")
 		return
 
 	if(href_list["dock_command"])
@@ -187,11 +187,11 @@
 
 	if(href_list["start"])
 		if(MS.at_origin)
-			usr << "<font color='red'>You are already at your home base.</font>"
+			to_chat(usr, "<font color='red'>You are already at the home base.</font>")
 			return
 
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
+			to_chat(usr, "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>")
 			return
 
 		if(!check_docking(MS))
@@ -214,11 +214,11 @@
 		if(!MS.can_cloak)
 			return
 		MS.cloaked = !MS.cloaked
-		usr << "<font color='red'>Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.</font>"
+		to_chat(usr, "<font color='red'>Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.</font>")
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
+			to_chat(usr, "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>")
 			return
 
 		if(!check_docking(MS))
@@ -228,7 +228,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		usr << "<font color='blue'>[shuttle_tag] main computer recieved message.</font>"
+		to_chat(usr, "<font color='blue'>[shuttle_tag] main computer received message.</font>")
 
 		if(MS.at_origin)
 			MS.announce_arrival()

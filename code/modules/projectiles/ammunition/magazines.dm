@@ -159,6 +159,34 @@
 	name = "ammo clip (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/a45f
 
+/obj/item/ammo_magazine/s45
+	name = "speedloader (.45)"
+	icon_state = "45s"
+	ammo_type = /obj/item/ammo_casing/a45
+	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	caliber = ".45"
+	max_ammo = 7
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/s45/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/s45/rubber
+	name = "speedloader (.45 rubber)"
+	ammo_type = /obj/item/ammo_casing/a45r
+
+/obj/item/ammo_magazine/s45/practice
+	name = "speedloader (.45 practice)"
+	ammo_type = /obj/item/ammo_casing/a45p
+
+/obj/item/ammo_magazine/s45/flash
+	name = "speedloader (.45 flash)"
+	ammo_type = /obj/item/ammo_casing/a45f
+
+/obj/item/ammo_magazine/s45/ap
+	name = "speedloader (.45 AP)"
+	ammo_type = /obj/item/ammo_casing/a45ap
+
 ///////// 9mm /////////
 
 /obj/item/ammo_magazine/m9mm
@@ -328,6 +356,14 @@
 	name = "extended magazine (5.45mm armor-piercing)"
 	max_ammo = 30
 
+/obj/item/ammo_magazine/m545/hunter
+	name = "magazine (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
+
+/obj/item/ammo_magazine/m545/hunter/ext
+	name = "extended magazine (5.45mm hunting)"
+	max_ammo = 30
+
 /obj/item/ammo_magazine/m545/small
 	name = "reduced magazine (5.45mm)"
 	icon_state = "m545-small"
@@ -345,6 +381,10 @@
 	name = "magazine (5.45mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a545/ap
 
+/obj/item/ammo_magazine/m545/small/hunter
+	name = "magazine (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
+
 /obj/item/ammo_magazine/clip/c545
 	name = "ammo clip (5.45mm)"
 	icon_state = "clip_rifle"
@@ -357,6 +397,10 @@
 /obj/item/ammo_magazine/clip/c545/ap
 	name = "rifle clip (5.45mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a545/ap
+
+/obj/item/ammo_magazine/clip/c545/hunter
+	name = "rifle clip (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
 
 /obj/item/ammo_magazine/clip/c545/practice
 	name = "rifle clip (5.45mm practice)"
@@ -377,6 +421,10 @@
 /obj/item/ammo_magazine/m545saw/ap
 	name = "magazine box (5.45mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a545/ap
+
+/obj/item/ammo_magazine/m545saw/hunter
+	name = "magazine box (5.45mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a545/hunter
 
 /obj/item/ammo_magazine/m545saw/empty
 	initial_ammo = 0
@@ -477,6 +525,10 @@
 	name = "rifle clip (7.62mm practice)"
 	ammo_type = /obj/item/ammo_casing/a762p
 
+/obj/item/ammo_magazine/clip/c762/hunter
+	name = "rifle clip (7.62mm hunting)"
+	ammo_type = /obj/item/ammo_casing/a762/hunter
+
 /obj/item/ammo_magazine/m762svd
 	name = "\improper SVD magazine (7.62mm)"
 	icon_state = "SVD"
@@ -523,12 +575,12 @@
 
 /obj/item/ammo_magazine/clip/c12g
 	name = "ammo clip (12g slug)"
-	icon_state = "12gclipslug" //largely a codersprite, looks good enough. feel free to make a better one.
+	icon_state = "12gclipslug" // Still a placeholder sprite. Feel free to make a better one.
 	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with slugs."
 	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g
-	matter = list(DEFAULT_WALL_MATERIAL = 1790) // slugs shells x4 + 350 metal for the clip itself.
-	max_ammo = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 1070) // slugs shells x2 + 350 metal for the clip itself.
+	max_ammo = 2
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/clip/c12g/pellet
@@ -536,14 +588,14 @@
 	icon_state = "12gclipshell"
 	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with buckshot."
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
-	matter = list(DEFAULT_WALL_MATERIAL = 1790) // buckshot and slugs cost the same
+	matter = list(DEFAULT_WALL_MATERIAL = 1070) // buckshot and slugs cost the same
 
 /obj/item/ammo_magazine/clip/c12g/beanbag
 	name = "ammo clip (12g beanbag)"
 	icon_state = "12gclipbean"
 	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with beanbags."
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
-	matter = list(DEFAULT_WALL_MATERIAL = 1070) //beanbags x4 + 350 metal
+	matter = list(DEFAULT_WALL_MATERIAL = 710) //beanbags x2 + 350 metal
 
 ///////// .75 Gyrojet /////////
 

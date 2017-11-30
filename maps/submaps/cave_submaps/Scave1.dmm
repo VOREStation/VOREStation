@@ -1,0 +1,54 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/cave/Scave1)
+"c" = (/turf/simulated/mineral,/area/submap/cave/Scave1)
+"d" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"e" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"f" = (/obj/effect/spider/spiderling,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"g" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"h" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"i" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"j" = (/obj/item/weapon/grenade/spawnergrenade/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"k" = (/mob/living/simple_animal/hostile/giant_spider/hunter,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"l" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"m" = (/mob/living/simple_animal/hostile/giant_spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"n" = (/mob/living/simple_animal/hostile/giant_spider/nurse,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"o" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"p" = (/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"q" = (/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"r" = (/obj/item/device/flashlight,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"s" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"t" = (/obj/effect/spider/stickyweb,/mob/living/simple_animal/hostile/giant_spider/hunter,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"u" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbaaaaaaaaaaaaaaaaaaaaaaa
+aabbbbbbaabbbbbaaaaaaabbbbbaaa
+abbccccbbbbccbbbbbbbbbbcccbaaa
+aabccbbbdbbccbbbbcccbbbbebbbaa
+aabbbbefeebbbdddbcccbeeefeebaa
+aaebbgeeeehbbefebbbbbeeeeeebaa
+aaebbigbbeeeeeeebddfeeebefebba
+aabbbbbbbeedeeeeeeeeeeebjkbbaa
+aabcccbbeeecccldeeeeeebbbbbbaa
+aabcccbdemeccccccdemeedbbbbaaa
+aabcccbdeedccccccceeeedbcbaaaa
+aabcccbbkedccccccceneedbcbaaaa
+aabccccbeeeccccccoeeeedbcbaaaa
+aabccccbpdeccccccqeeeedbcbaaaa
+aabbbccbpeeccccccdeenedbcbaaaa
+aaebbccbpekcccccccddeeebcbaaaa
+aarebccbppcccccccccmdeebbbaaaa
+aaeebbbbpppcccccccccceebbeaaaa
+aaeeeseeeeeeccccccccefebbeaaaa
+aaeessdeeeeeetcdeeeeedbbbeaaaa
+aauebbbbbeeeeeeeeeeedbbbbeaaaa
+aabbbbccbbdeeedeeeeedbccbbaaaa
+aabbcccccbbbbbbbbkbbbbccbbaaaa
+aabbbbccbbbbbbccbbbbbcccbbaaaa
+aaaaabbbbabbbbccbaabbbbbbaaaaa
+aaaaabbbbaabaabbbaaabbabaaaaaa
+aaaaaaabbaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

@@ -199,7 +199,7 @@
 
 
 /datum/gear/accessory/sweater
-	display_name = "Sweater Selection"
+	display_name = "sweater selection"
 	path = /obj/item/clothing/accessory/sweater
 
 /datum/gear/accessory/sweater/New()
@@ -209,3 +209,35 @@
 		var/obj/item/clothing/suit/sweater_type = sweater
 		sweaters[initial(sweater_type.name)] = sweater_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sweaters))
+
+/datum/gear/accessory/bracelet/material
+	display_name = "bracelet selection"
+	description = "Choose from a number of bracelets."
+	path = /obj/item/clothing/accessory/bracelet
+	cost = 1
+
+/datum/gear/accessory/bracelet/material/New()
+	..()
+	var/bracelettype = list()
+	bracelettype["bracelet, steel"] = /obj/item/clothing/accessory/bracelet/material/steel
+	bracelettype["bracelet, iron"] = /obj/item/clothing/accessory/bracelet/material/iron
+	bracelettype["bracelet, silver"] = /obj/item/clothing/accessory/bracelet/material/silver
+	bracelettype["bracelet, gold"] = /obj/item/clothing/accessory/bracelet/material/gold
+	bracelettype["bracelet, platinum"] = /obj/item/clothing/accessory/bracelet/material/platinum
+	bracelettype["bracelet, glass"] = /obj/item/clothing/accessory/bracelet/material/glass
+	bracelettype["bracelet, wood"] = /obj/item/clothing/accessory/bracelet/material/wood
+	bracelettype["bracelet, plastic"] = /obj/item/clothing/accessory/bracelet/material/plastic
+	gear_tweaks += new/datum/gear_tweak/path(bracelettype)
+
+/datum/gear/accessory/bracelet/friendship
+	display_name = "friendship bracelet"
+	path = /obj/item/clothing/accessory/bracelet/friendship
+
+/datum/gear/accessory/stethoscope
+	display_name = "stethoscope"
+	path = /obj/item/clothing/accessory/stethoscope
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+
+/datum/gear/accessory/locket
+	display_name = "locket"
+	path = /obj/item/clothing/accessory/locket

@@ -163,7 +163,7 @@
 				else
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
 
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
+			user.setClickCooldown(user.get_attack_speed(src)) //can be used offensively
 			M.flash_eyes()
 	else
 		return ..()
@@ -290,6 +290,7 @@
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
+	force = 10
 	brightness_on = 5
 	w_class = ITEMSIZE_LARGE
 	flags = CONDUCT

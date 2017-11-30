@@ -44,6 +44,7 @@
 		dead_mob_list += src
 	else
 		living_mob_list += src
+	update_transform() // Some mobs may start bigger or smaller than normal.
 	..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -534,6 +535,7 @@
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
+	if(usr.incapacitated(INCAPACITATION_STUNNED | INCAPACITATION_FORCELYING | INCAPACITATION_KNOCKOUT | INCAPACITATION_RESTRAINED)) return //Incapacitated.
 	if(istype(M,/mob/living/silicon/ai)) return
 	show_inv(usr)
 
@@ -858,6 +860,12 @@
 /mob/proc/AdjustResting(amount)
 	resting = max(resting + amount,0)
 	return
+
+/mob/proc/AdjustLosebreath(amount)
+	losebreath = Clamp(0, losebreath + amount, 25)
+
+/mob/proc/SetLosebreath(amount)
+	losebreath = Clamp(0, amount, 25)
 
 /mob/proc/get_species()
 	return ""

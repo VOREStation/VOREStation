@@ -61,7 +61,7 @@
 				"<span class='warning'>You hear shredding and ripping.</span>")
 			unbuckle()
 		else
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.setClickCooldown(user.get_attack_speed())
 			health -= rand(1,5)
 			var/text = pick("rip","tear","pull", "bite", "tug")
 			user.visible_message(\

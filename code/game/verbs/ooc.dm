@@ -43,6 +43,8 @@
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
+		if(holder.rights & R_EVENT)
+			ooc_style = "event_manager"
 		if(holder.rights & R_MOD)
 			ooc_style = "moderator"
 		if(holder.rights & R_DEBUG)

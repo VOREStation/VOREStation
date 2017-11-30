@@ -134,3 +134,12 @@
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 	new /obj/item/clothing/head/helmet/thunderdome(src)
+
+/obj/structure/closet/alien
+	name = "alien container"
+	desc = "Contains secrets of the universe."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "alien_locker"
+	icon_closed = "alien_locker"
+	icon_opened = "alien_locker_open"
+	anchored = TRUE
