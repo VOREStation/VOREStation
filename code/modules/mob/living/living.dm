@@ -655,9 +655,9 @@ default behaviour is:
 /mob/living/Move(a, b, flag)
 
 	if (buckled && buckled.loc != a) //not updating position
-		if (!buckled.anchored)
+		if(istype(buckled, /mob))	//If you're buckled to a mob, a la slime things, keep on rolling.
 			return buckled.Move(a, b)
-		else
+		else	//Otherwise, no running around for you.
 			return 0
 
 	if (restrained())
