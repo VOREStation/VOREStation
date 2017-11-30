@@ -1,7 +1,7 @@
 "aa" = (/turf/unsimulated/wall/planetary/sif,/area/mine/unexplored)
-"ab" = (/turf/simulated/mineral,/area/mine/unexplored)
-"ac" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/mine/explored)
-"ad" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/mine/unexplored)
+"ab" = (/turf/simulated/mineral/sif,/area/mine/unexplored)
+"ac" = (/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/mine/explored)
+"ad" = (/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/mine/unexplored)
 "ae" = (/obj/machinery/conveyor{dir = 2; id = "anolongstorage"},/turf/simulated/floor/plating,/area/surface/outpost/research/xenoarcheology)
 "af" = (/turf/simulated/floor/plating,/area/surface/outpost/research/xenoarcheology)
 "ag" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/surface/outpost/research/xenoarcheology)
@@ -244,7 +244,7 @@
 "eJ" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 4; use_power = 0},/obj/machinery/light,/turf/simulated/floor/reinforced,/area/surface/outpost/research/xenoarcheology/isolation_b)
 "eK" = (/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,/obj/machinery/alarm/monitor/isolation{alarm_id = "isolation_two"; dir = 1; pixel_x = 0; pixel_y = -22},/turf/simulated/floor/reinforced,/area/surface/outpost/research/xenoarcheology/isolation_b)
 "eL" = (/obj/machinery/atmospherics/unary/vent_scrubber{dir = 8},/obj/machinery/camera/network/research_outpost{c_tag = "OPR - Isolation Cell 2"; dir = 1},/turf/simulated/floor/reinforced,/area/surface/outpost/research/xenoarcheology/isolation_b)
-"eM" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/space)
+"eM" = (/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/space)
 "eN" = (/obj/machinery/door/airlock/research{autoclose = 0; frequency = 1379; icon_state = "door_locked"; id_tag = "xenoarch1_airlock_exterior"; locked = 1; name = "Research Exterior Airlock"},/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1379; master_tag = "xenoarch1_airlock_control"; name = "Xenoarch Access Button"; pixel_x = 0; pixel_y = -24; req_access = null},/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology)
 "eO" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology)
 "eP" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology)
@@ -416,7 +416,7 @@
 "hZ" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/emergency,/obj/item/clothing/accessory/armband/science,/obj/item/clothing/glasses/science,/obj/item/device/suit_cooling_unit,/obj/item/weapon/extinguisher,/obj/item/device/flashlight,/turf/simulated/floor/plating,/area/surface/outpost/research/xenoarcheology/emergencystorage)
 "ia" = (/obj/structure/cable/ender{icon_state = "1-2"; id = "surface_cave"},/turf/simulated/floor/plating{tag = "icon-asteroidplating2"; icon_state = "asteroidplating2"},/area/mine/explored)
 "ib" = (/turf/unsimulated/wall,/area/mine/unexplored)
-"ic" = (/obj/effect/step_trigger/teleporter/mine/from_mining,/turf/simulated/mineral/floor/ignore_mapgen,/area/space)
+"ic" = (/obj/effect/step_trigger/teleporter/mine/from_mining,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
