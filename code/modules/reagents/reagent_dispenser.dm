@@ -59,7 +59,8 @@
 			else
 		return
 
-
+/obj/structure/reagent_dispensers/blob_act()
+	qdel(src)
 
 
 
@@ -158,6 +159,9 @@
 			explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
+	explode()
+
+/obj/structure/reagent_dispensers/fueltank/blob_act()
 	explode()
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()

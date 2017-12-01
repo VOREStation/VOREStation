@@ -92,6 +92,13 @@
 	question = "An Alien has just been created on the facility.  Would you like to play as them?"
 	be_special_flag = BE_ALIEN
 
+/datum/ghost_query/blob
+	role_name = "Blob"
+	question = "A rapidly expanding Blob has just appeared on the facility.  Would you like to play as it?"
+	be_special_flag = BE_ALIEN
+	cutoff_number = 1
+	wait_time = 10 SECONDS
+
 /datum/ghost_query/syndicate_drone
 	role_name = "Mercenary Drone"
 	question = "A team of dubious mercenaries have purchased a powerful drone, and they are attempting to activate it.  Would you like to play as the drone?"

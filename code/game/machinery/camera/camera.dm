@@ -106,6 +106,11 @@
 
 	..() //and give it the regular chance of being deleted outright
 
+/obj/machinery/camera/blob_act()
+	if((stat & BROKEN) || invuln)
+		return
+	destroy()
+
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
 	if (istype(AM, /obj))

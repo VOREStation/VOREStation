@@ -687,6 +687,12 @@
 				update_icon()
 				return 1
 
+/obj/machinery/power/apc/blob_act()
+	if(!wires.IsAllCut())
+		wiresexposed = TRUE
+		wires.CutAll()
+		update_icon()
+
 /obj/machinery/power/apc/attack_hand(mob/user)
 //	if (!can_use(user)) This already gets called in interact() and in topic()
 //		return

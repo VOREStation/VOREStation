@@ -54,6 +54,9 @@
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
 
+/obj/structure/table/blob_act()
+	take_damage(100)
+
 /obj/structure/table/initialize()
 	..()
 

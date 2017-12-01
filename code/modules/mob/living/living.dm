@@ -243,6 +243,7 @@ default behaviour is:
 				amount *= M.incoming_healing_percent
 
 	bruteloss = min(max(bruteloss + amount, 0),(getMaxHealth()*2))
+	updatehealth()
 
 /mob/living/proc/getOxyLoss()
 	return oxyloss
@@ -262,6 +263,7 @@ default behaviour is:
 				amount *= M.incoming_healing_percent
 
 	oxyloss = min(max(oxyloss + amount, 0),(getMaxHealth()*2))
+	updatehealth()
 
 /mob/living/proc/setOxyLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -285,6 +287,7 @@ default behaviour is:
 				amount *= M.incoming_healing_percent
 
 	toxloss = min(max(toxloss + amount, 0),(getMaxHealth()*2))
+	updatehealth()
 
 /mob/living/proc/setToxLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -313,6 +316,7 @@ default behaviour is:
 				amount *= M.incoming_healing_percent
 
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
+	updatehealth()
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
@@ -332,6 +336,7 @@ default behaviour is:
 				amount *= M.incoming_healing_percent
 
 	cloneloss = min(max(cloneloss + amount, 0),(getMaxHealth()*2))
+	updatehealth()
 
 /mob/living/proc/setCloneLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -366,6 +371,7 @@ default behaviour is:
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 	halloss = min(max(halloss + amount, 0),(getMaxHealth()*2))
+	updatehealth()
 
 /mob/living/proc/setHalLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
