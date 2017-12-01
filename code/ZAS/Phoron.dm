@@ -76,7 +76,8 @@ obj/var/phoronproof = 0
 		suit_contamination()
 
 	if(!pl_head_protected())
-		if(prob(1)) suit_contamination() //Phoron can sometimes get through such an open suit.
+		if(prob(1))
+			suit_contamination() //Phoron can sometimes get through such an open suit.
 
 //Cannot wash backpacks currently.
 //	if(istype(back,/obj/item/weapon/storage/backpack))
@@ -88,7 +89,8 @@ obj/var/phoronproof = 0
 	//Handles all the bad things phoron can do.
 
 	//Contamination
-	if(vsc.plc.CLOTH_CONTAMINATION) contaminate()
+	if(vsc.plc.CLOTH_CONTAMINATION)
+		contaminate()
 
 	//Anything else requires them to not be dead.
 	if(stat >= 2)
@@ -139,22 +141,22 @@ obj/var/phoronproof = 0
 			Blind(20)
 
 /mob/living/carbon/human/proc/pl_head_protected()
-	//Checks if the head is adequately sealed.
+	//Checks if the head is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	if(head)
 		if(vsc.plc.PHORONGUARD_ONLY)
-			if(head.flags & PHORONGUARD)
+			if(head.flags & PHORONGUARD || head.phoronproof)
 				return 1
 		else if(head.body_parts_covered & EYES)
 			return 1
 	return 0
 
 /mob/living/carbon/human/proc/pl_suit_protected()
-	//Checks if the suit is adequately sealed.
+	//Checks if the suit is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	var/coverage = 0
-	for(var/obj/item/protection in list(wear_suit, gloves, shoes))
+	for(var/obj/item/protection in list(wear_suit, gloves, shoes))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
 		if(!protection)
 			continue
-		if(vsc.plc.PHORONGUARD_ONLY && !(protection.flags & PHORONGUARD))
+		if(vsc.plc.PHORONGUARD_ONLY && !(protection.flags & PHORONGUARD) && !protection.phoronproof)
 			return 0
 		coverage |= protection.body_parts_covered
 
@@ -165,9 +167,12 @@ obj/var/phoronproof = 0
 
 /mob/living/carbon/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
-	if(w_uniform) w_uniform.contaminate()
-	if(shoes) shoes.contaminate()
-	if(gloves) gloves.contaminate()
+	if(w_uniform)
+		w_uniform.contaminate()
+	if(shoes)
+		shoes.contaminate()
+	if(gloves)
+		gloves.contaminate()
 
 
 turf/Entered(obj/item/I)
