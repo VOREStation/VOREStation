@@ -37,7 +37,7 @@
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 	default_apply_parts()
 	update_icon()
-	// TODO - Make these in acutal icon states so its not silly like this
+	// TODO - Make these in actual icon states so its not silly like this
 	var/image/I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = dir)
 	I.color = PIPE_COLOR_BLUE
 	overlays += I
@@ -54,7 +54,13 @@
 	recent_moles_transferred = 0
 
 	if(inoperable() || use_power < 2)
+		if(use_power == 1)
+			last_power_draw = idle_power_usage
+		else
+			last_power_draw = 0
 		return 0
+
+	last_power_draw = active_power_usage
 
 	// STEP 1 - Check material resources
 	if(stored_material[MATERIAL_ALGAE] < algae_per_mole)
@@ -65,7 +71,7 @@
 		return
 	var/moles_to_convert = min(moles_per_tick,\
 		stored_material[MATERIAL_ALGAE] * algae_per_mole,\
-		storage_capacity[MATERIAL_CARBON] - stored_material[MATERIAL_CARBON] * carbon_per_mole)
+		storage_capacity[MATERIAL_CARBON] - stored_material[MATERIAL_CARBON])
 
 	// STEP 2 - Take the CO2 out of the input!
 	var/power_draw = scrub_gas(src, list(input_gas), air1, internal, moles_to_convert)
@@ -109,7 +115,7 @@
 	return 1
 
 /obj/machinery/atmospherics/binary/algae_farm/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -117,11 +123,12 @@
 	if(try_load_materials(user, W))
 		return
 	else
-		user << "<span class='notice'>You cannot insert this item into \the [src]!</span>"
+		to_chat(user, "<span class='notice'>You cannot insert this item into \the [src]!</span>")
 		return
 
 /obj/machinery/atmospherics/binary/algae_farm/attack_hand(mob/user)
-	if(..()) return 1
+	if(..())
+		return 1
 	ui_interact(user)
 
 /obj/machinery/atmospherics/binary/algae_farm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nano_ui/master_ui = null, var/datum/topic_state/state = default_state)
@@ -217,7 +224,7 @@
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in stored_material))
-		user << "<span class='warning'>\The [src] doesn't accept [material_display_name(S.material)]!</span>"
+		to_chat(user, "<span class='warning'>\The [src] doesn't accept [material_display_name(S.material)]!</span>")
 		return 1
 	var/max_res_amount = storage_capacity[S.material.name]
 	if(stored_material[S.material.name] + S.perunit <= max_res_amount)
@@ -229,7 +236,7 @@
 		user.visible_message("\The [user] inserts [S.name] into \the [src].", "<span class='notice'>You insert [count] [S.name] into \the [src].</span>")
 		updateUsrDialog()
 	else
-		user << "<span class='warning'>\The [src] cannot hold more [S.name].</span>"
+		to_chat(user, "<span class='warning'>\The [src] cannot hold more [S.name].</span>")
 	return 1
 
 /material/algae
