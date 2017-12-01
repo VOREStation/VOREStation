@@ -122,3 +122,13 @@
 
 	update_wing_showing()
 	return 1
+
+/mob/living/carbon/human/verb/toggle_gender_identity_vr()
+	set name = "Set Gender Identity"
+	set desc = "Sets the pronouns when examined and performing an emote."
+	set category = "IC"
+	var/new_gender_identity = input("Please select a gender Identity.") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL)
+	if(!new_gender_identity)
+		return 0
+	change_gender_identity(new_gender_identity)
+	return 1

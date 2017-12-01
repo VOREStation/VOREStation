@@ -1,0 +1,5 @@
+author: Runa-Dacino
+delete-after: True
+changes: 
+  - rscadd: "Adds the ability to change gender identity on the fly. It can be found under "IC" tab."
+
