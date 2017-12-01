@@ -379,6 +379,17 @@
 	new /obj/item/weapon/implanter(src)
 	new /obj/item/weapon/implantpad(src)
 
+/obj/item/weapon/storage/box/camerabug
+	name = "mobile camera pod box"
+	desc = "A box containing some mobile camera pods."
+	icon_state = "pda"
+
+/obj/item/weapon/storage/box/camerabug/New()
+	..()
+	for(var/i = 1 to 6)
+		new /obj/item/device/camerabug(src)
+	new /obj/item/device/bug_monitor(src)
+
 /obj/item/weapon/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
