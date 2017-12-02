@@ -177,9 +177,7 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			var/mob/living/L = A
 			L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
 		message_admins("\The [A] fell out of the sky.")
-		explosion(T, 0, 1, 2)
-		spawn(1)
-			A.forceMove(T)
+		A.forceMove(T)
 	else
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return

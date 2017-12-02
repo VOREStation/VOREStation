@@ -285,6 +285,10 @@
 /obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
 	return 1
 
+// Can't fall onto ghosts
+/mob/observer/dead/CheckFall()
+	return 0
+
 // Called by CheckFall when we actually hit something. Various Vars will be described below
 // hit_atom is the thing we fall on
 // damage_min is the smallest amount of damage a thing (currently only mobs and mechs) will take from falling
@@ -312,9 +316,16 @@
 		return
 	else
 		if(!silent)
-			visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
-				"<span class='danger'>You fall off and hit \the [landing]!</span>", \
-				"You hear something slam into \the [landing].")
+			if(planetary)
+				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
+					"<span class='danger'><font size='3'> You fall out of the skiy and crash into \the [landing]!</font></span>", \
+					"You hear something slam into \the [landing].")
+				var/turf/T = get_turf(landing)
+				explosion(T, 0, 1, 2)
+			else
+				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
+					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
+					"You hear something slam into \the [landing].")
 			playsound(loc, "punch", 25, 1, -1)
 
 		if(planetary)	//Since the planetary fall damage is calibrated for humans, we need to up this a bit
@@ -344,6 +355,8 @@
 				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
 					"<span class='danger'><font size='3'> You fall out of the skiy and crash into \the [landing]!</font></span>", \
 					"You hear something slam into \the [landing].")
+				var/turf/T = get_turf(landing)
+				explosion(T, 0, 1, 2)
 			else
 				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
 					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
