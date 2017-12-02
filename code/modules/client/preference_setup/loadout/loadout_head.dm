@@ -159,11 +159,23 @@
 
 /datum/gear/head/hairflower
 	display_name = "hair flower pin (colorable)"
-	path = /obj/item/clothing/head/hairflower/white
+	path = /obj/item/clothing/head/pin/flower/white
 
 /datum/gear/head/hairflower/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/head/pin
+	display_name = "pin selection"
+	path = /obj/item/clothing/head/pin
+
+/datum/gear/head/pin/New()
+	..()
+	var/list/pins = list()
+	for(var/pin in typesof(/obj/item/clothing/head/pin))
+		var/obj/item/clothing/head/pin/pin_type = pin
+		pins[initial(pin_type.name)] = pin_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pins))
 
 /datum/gear/head/hardhat
 	display_name = "hardhat selection"
@@ -295,11 +307,11 @@
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
-/datum/gear/head/bow
-	display_name = "hair bow"
-	path = /obj/item/clothing/head/hairflower/bow
+/datum/gear/head/bow/small
+	display_name = "hair bow, small (colorable)"
+	path = /obj/item/clothing/head/pin/bow
 
-/datum/gear/head/bow/New()
+/datum/gear/head/bow/small/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
