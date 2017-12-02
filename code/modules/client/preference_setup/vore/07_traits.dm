@@ -86,14 +86,23 @@
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
 
+	if(pref.species == "Xenochimera")
+		var/datum/species/xenochimera/CS = character.species
+		var/S = pref.custom_base ? pref.custom_base : "Human"
+		var/datum/species/xenochimera/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
+
+		//Any additional non-trait settings can be applied here
+		new_CS.blood_color = pref.blood_color
+
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
-	//if(pref.species == "Custom Species" || pref.custom_species) //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their custom species.
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
-	if(pref.species == "Custom Species")
+	if((pref.species == "Custom Species") || (pref.species == "Xenochimera"))
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+
+	if(pref.species == "Custom Species")
 
 		var/points_left = pref.starting_trait_points
 		var/traits_left = pref.max_traits
