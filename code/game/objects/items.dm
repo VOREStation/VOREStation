@@ -80,6 +80,7 @@
 	var/list/sprite_sheets_obj = list()
 
 	var/toolspeed = 1.0 // This is a multipler on how 'fast' a tool works.  e.g. setting this to 0.5 will make the tool work twice as fast.
+	var/attackspeed = DEFAULT_ATTACK_COOLDOWN // How long click delay will be when using this, in 1/10ths of a second. Checked in the user's get_attack_speed().
 	var/addblends // Icon overlay for ADD highlights when applicable.
 
 /obj/item/New()
@@ -457,7 +458,7 @@ var/list/global/slot_flags_enumeration = list(
 	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed())
 	user.do_attack_animation(M)
 
 	src.add_fingerprint(user)

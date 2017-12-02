@@ -9,6 +9,7 @@
 	mrate_static = TRUE
 	affects_dead = 1 //so you can pump blood into someone before defibbing them
 	color = "#C80000"
+	var/volume_mod = 1	// So if you add different subtypes of blood, you can affect how much vessel blood each unit of reagent adds
 
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
@@ -69,8 +70,20 @@
 		M.antibodies |= data["antibodies"]
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.inject_blood(src, volume)
+	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
+
+/datum/reagent/blood/synthblood
+	name = "Synthetic blood"
+	id = "synthblood"
+	color = "#999966"
+	volume_mod = 2
+
+/datum/reagent/blood/synthblood/initialize_data(var/newdata)
+	..()
+	if(data && !data["blood_type"])
+		data["blood_type"] = "O-"
+	return
 
 // pure concentrated antibodies
 /datum/reagent/antibodies
@@ -124,11 +137,13 @@
 	else if(volume >= 10)
 		T.wet_floor(1)
 
-/datum/reagent/water/touch_obj(var/obj/O)
+/datum/reagent/water/touch_obj(var/obj/O, var/amount)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
+	else
+		O.water_act(amount / 5)
 
 /datum/reagent/water/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))

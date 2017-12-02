@@ -197,7 +197,7 @@
 	name = "roller bed"
 	desc = "A portable bed-on-wheels made for transporting medical patients."
 	icon = 'icons/obj/rollerbed.dmi'
-	icon_state = "rollerbed_down"
+	icon_state = "rollerbed"
 	anchored = 0
 	surgery_odds = 75
 	var/bedtype = /obj/structure/bed/roller
@@ -205,7 +205,7 @@
 
 /obj/structure/bed/roller/adv
 	name = "advanced roller bed"
-	icon_state = "rollerbedadv_down"
+	icon_state = "rollerbedadv"
 	bedtype = /obj/structure/bed/roller/adv
 	rollertype = /obj/item/roller/adv
 
@@ -230,7 +230,7 @@
 	name = "roller bed"
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
-	icon_state = "rollerbed"
+	icon_state = "folded_rollerbed"
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	var/rollertype = /obj/item/roller
@@ -256,7 +256,7 @@
 /obj/item/roller/adv
 	name = "advanced roller bed"
 	desc = "A high-tech, compact version of the regular roller bed."
-	icon_state = "rollerbedadv"
+	icon_state = "folded_rollerbedadv"
 	w_class = ITEMSIZE_NORMAL
 	rollertype = /obj/item/roller/adv
 	bedtype = /obj/structure/bed/roller/adv
@@ -303,7 +303,7 @@
 		M.pixel_y = 0
 		M.old_y = 0
 		density = 0
-		icon_state = "[initial(icon_state)]_down"
+		icon_state = "[initial(icon_state)]"
 	update_icon()
 	return ..()
 

@@ -23,8 +23,13 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/attack_self(mob/user)
 	return
 
+// Called at the start of resolve_attackby(), before the actual attack.
+/obj/item/proc/pre_attack(atom/a, mob/user)
+	return
+
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
 /obj/item/proc/resolve_attackby(atom/A, mob/user)
+	pre_attack(A, user)
 	add_fingerprint(user)
 	return A.attackby(src, user)
 
@@ -45,6 +50,22 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		else
 			return 0
 	return I.attack(src, user, user.zone_sel.selecting)
+
+// Used to get how fast a mob should attack, and influences click delay.
+// This is just for inheritence.
+/mob/proc/get_attack_speed()
+	return DEFAULT_ATTACK_COOLDOWN
+
+// Same as above but actually does useful things.
+// W is the item being used in the attack, if any. modifier is if the attack should be longer or shorter than usual, for whatever reason.
+/mob/living/get_attack_speed(var/obj/item/W)
+	var/speed = DEFAULT_ATTACK_COOLDOWN
+	if(W && istype(W))
+		speed = W.attackspeed
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.attack_speed_percent))
+			speed *= M.attack_speed_percent
+	return speed
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
@@ -68,7 +89,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )
 	/////////////////////////
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(src))
 	user.do_attack_animation(M)
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)

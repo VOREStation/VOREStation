@@ -21,7 +21,7 @@
 	return
 
 /obj/effect/spider/attackby(var/obj/item/weapon/W, var/mob/user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(W.attack_verb.len)
 		visible_message("<span class='warning'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")

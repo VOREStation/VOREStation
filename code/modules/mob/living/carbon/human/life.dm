@@ -226,7 +226,7 @@
 			if(gene.is_active(src))
 				gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,100)
+	radiation = Clamp(radiation,0,250)
 
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
@@ -285,8 +285,12 @@
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 
+		if (radiation > 150)
+			damage = 6
+			radiation -= 4 * RADIATION_SPEED_COEFFICIENT
+
 		if(damage)
-			damage *= isSynthetic() ? 0.5 : species.radiation_mod
+			damage *= species.radiation_mod
 			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
 			updatehealth()
 			if(!isSynthetic() && organs.len)
@@ -816,18 +820,34 @@
 
 		if(!isSynthetic())
 
-			if(touching) touching.metabolize()
-			if(ingested) ingested.metabolize()
-			if(bloodstr) bloodstr.metabolize()
+			if(touching)
+				touching.metabolize()
+			if(ingested)
+				ingested.metabolize()
+			if(bloodstr)
+				bloodstr.metabolize()
 
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)
 					if(src.species && src.species.get_bodytype() != "Vox")
-						total_phoronloss += vsc.plc.CONTAMINATION_LOSS
-			if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
+						// This is hacky, I'm so sorry.
+						if(I != l_hand && I != r_hand)	//If the item isn't in your hands, you're probably wearing it. Full damage for you.
+							total_phoronloss += vsc.plc.CONTAMINATION_LOSS
+						else if(I == l_hand)	//If the item is in your hands, but you're wearing protection, you might be alright.
+							var/l_hand_blocked = 0
+							l_hand_blocked = 1-(100-getarmor(BP_L_HAND, "bio"))/100	//This should get a number between 0 and 1
+							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * l_hand_blocked
+						else if(I == r_hand)	//If the item is in your hands, but you're wearing protection, you might be alright.
+							var/r_hand_blocked = 0
+							r_hand_blocked = 1-(100-getarmor(BP_R_HAND, "bio"))/100	//This should get a number between 0 and 1
+							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
+			if(total_phoronloss)
+				if(!(status_flags & GODMODE))
+					adjustToxLoss(total_phoronloss)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return 0	//godmode
 
 	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
 
@@ -1375,8 +1395,14 @@
 
 	// Puke if toxloss is too high
 	if(!stat)
+		if (getToxLoss() >= 30 && isSynthetic())
+			if(!confused)
+				if(prob(5))
+					to_chat(src, "<span class='danger'>You lose directional control!</span>")
+					Confuse(10)
 		if (getToxLoss() >= 45)
 			spawn vomit()
+
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
 	if(isturf(loc) && rand(1,1000) == 1)

@@ -751,6 +751,14 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/paicard
 	sort_string = "VABAI"
 
+/datum/design/item/communicator
+	name = "Communcator"
+	id = "communicator"
+	req_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 500)
+	build_path = /obj/item/device/communicator
+	sort_string = "VABAJ"
+
 /datum/design/item/intellicard
 	name = "'intelliCore', AI preservation and transportation system"
 	desc = "Allows for the construction of an intelliCore."

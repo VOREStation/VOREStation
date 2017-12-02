@@ -106,6 +106,11 @@
 
 	..() //and give it the regular chance of being deleted outright
 
+/obj/machinery/camera/blob_act()
+	if((stat & BROKEN) || invuln)
+		return
+	destroy()
+
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
 	if (istype(AM, /obj))
@@ -125,7 +130,7 @@
 	if(user.species.can_shred(user))
 		set_status(0)
 		user.do_attack_animation(src)
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed())
 		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
@@ -205,7 +210,7 @@
 			src.bugged = 1
 
 	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(W))
 		if (W.force >= src.toughness)
 			user.do_attack_animation(src)
 			visible_message("<span class='warning'><b>[src] has been [W.attack_verb.len? pick(W.attack_verb) : "attacked"] with [W] by [user]!</b></span>")

@@ -6,6 +6,10 @@
 	sort_category = "Suits and Overwear"
 	cost = 2
 
+/datum/gear/suit/greatcoat
+	display_name = "greatcoat"
+	path = /obj/item/clothing/suit/greatcoat
+
 /datum/gear/suit/leather_coat
 	display_name = "leather coat"
 	path = /obj/item/clothing/suit/leathercoat

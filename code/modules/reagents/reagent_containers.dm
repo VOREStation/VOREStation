@@ -101,7 +101,7 @@
 				user << "<span class='warning'>\The [blocked] is in the way!</span>"
 				return
 
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
+		user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 		self_feed_message(user)
 		reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
 		feed_sound(user)
@@ -119,7 +119,7 @@
 
 		other_feed_message_start(user, target)
 
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_mob(user, target))
 			return
 

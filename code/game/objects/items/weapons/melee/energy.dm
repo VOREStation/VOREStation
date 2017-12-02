@@ -217,7 +217,7 @@
 		var/obj/O = AM
 		O.emp_act(3) // A weaker severity is used because this has infinite uses.
 		playsound(get_turf(O), 'sound/effects/EMPulse.ogg', 100, 1)
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // A lot of objects don't set click delay.
+		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
 
 /obj/item/weapon/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)

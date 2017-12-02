@@ -659,9 +659,9 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	desc = "A heavy jacket made from 'synthetic' animal furs."
 	icon_state = "coatwinter"
 	item_state_slots = list(slot_r_hand_str = "coatwinter", slot_l_hand_str = "coatwinter")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_inv = HIDEHOLSTER
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	hooded = 1
@@ -798,6 +798,9 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "explorer hood"
 	desc = "An armoured hood for exploring harsh environments."
 	icon_state = "explorer"
+	brightness_on = 3
+	light_overlay = "hood_light"
+	action_button_name = "Toggle Head-light"
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	flags = THICKMATERIAL

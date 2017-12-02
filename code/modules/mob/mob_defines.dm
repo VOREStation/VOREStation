@@ -104,8 +104,6 @@
 	var/cpr_time = 1.0//Carbon
 
 	var/bodytemperature = 310.055	//98.7 F
-	var/old_x = 0
-	var/old_y = 0
 	var/drowsyness = 0.0//Carbon
 	var/charges = 0.0
 	var/nutrition = 400.0//Carbon

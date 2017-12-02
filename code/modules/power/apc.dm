@@ -687,6 +687,12 @@
 				update_icon()
 				return 1
 
+/obj/machinery/power/apc/blob_act()
+	if(!wires.IsAllCut())
+		wiresexposed = TRUE
+		wires.CutAll()
+		update_icon()
+
 /obj/machinery/power/apc/attack_hand(mob/user)
 //	if (!can_use(user)) This already gets called in interact() and in topic()
 //		return
@@ -699,7 +705,7 @@
 		var/mob/living/carbon/human/H = user
 
 		if(H.species.can_shred(H))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.setClickCooldown(user.get_attack_speed())
 			user.visible_message("<span call='warning'>[user.name] slashes at the [src.name]!</span>", "<span class='notice'>You slash at the [src.name]!</span>")
 			playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 

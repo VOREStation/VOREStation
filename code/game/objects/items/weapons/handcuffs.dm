@@ -81,7 +81,7 @@
 	msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
 	feedback_add_details("handcuffs","H")
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(src))
 	user.do_attack_animation(H)
 
 	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
@@ -286,7 +286,7 @@ var/last_chew = 0
 	msg_admin_attack("[key_name(user)] attempted to legcuff [key_name(H)]")
 	feedback_add_details("legcuffs","H")
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(src))
 	user.do_attack_animation(H)
 
 	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")

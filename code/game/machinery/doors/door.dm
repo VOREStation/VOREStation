@@ -260,7 +260,7 @@
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
 	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
 		var/obj/item/weapon/W = I
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(W))
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			user.do_attack_animation(src)
 			if(W.force < min_force)
@@ -355,6 +355,13 @@
 				take_damage(150)
 	return
 
+/obj/machinery/door/blob_act()
+	if(density) // If it's closed.
+		if(stat & BROKEN)
+			spawn(0)
+				open(1)
+		else
+			take_damage(100)
 
 /obj/machinery/door/update_icon()
 	if(density)

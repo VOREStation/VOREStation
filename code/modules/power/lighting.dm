@@ -329,6 +329,9 @@
 	broken()
 	return 1
 
+/obj/machinery/light/blob_act()
+	broken()
+
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/proc/seton(var/s)
@@ -527,7 +530,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.setClickCooldown(user.get_attack_speed())
 			for(var/mob/M in viewers(src))
 				M.show_message("<font color='red'>[user.name] smashed the light!</font>", 3, "You hear a tinkle of breaking glass", 2)
 			broken()

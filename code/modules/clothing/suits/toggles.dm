@@ -36,7 +36,7 @@
 		var/mob/living/carbon/H = hood.loc
 		H.unEquip(hood, 1)
 		H.update_inv_wear_suit()
-	hood.loc = src
+	hood.forceMove(src)
 
 /obj/item/clothing/suit/storage/hooded/dropped()
 	RemoveHood()

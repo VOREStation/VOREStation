@@ -82,7 +82,7 @@
 
 		while(!accepted)
 			if(!B) break // prevents possible runtime errors
-			new_book_style = input(H,"Which bible style would you like?") in list("Bible", "Koran", "Scrapbook", "Creeper", "White Bible", "Holy Light", "Athiest", "Tome", "The King in Yellow", "Ithaqua", "Scientology", "the bible melts", "Necronomicon")
+			new_book_style = input(H,"Which bible style would you like?") in list("Bible", "Koran", "Scrapbook", "Pagan", "White Bible", "Holy Light", "Athiest", "Tome", "The King in Yellow", "Ithaqua", "Scientology", "the bible melts", "Necronomicon","Orthodox","Torah")
 			switch(new_book_style)
 				if("Koran")
 					B.icon_state = "koran"
@@ -90,9 +90,6 @@
 				if("Scrapbook")
 					B.icon_state = "scrapbook"
 					B.item_state = "scrapbook"
-				if("Creeper")
-					B.icon_state = "creeper"
-					B.item_state = "syringe_kit"
 				if("White Bible")
 					B.icon_state = "white"
 					B.item_state = "syringe_kit"
@@ -120,6 +117,15 @@
 				if("Necronomicon")
 					B.icon_state = "necronomicon"
 					B.item_state = "necronomicon"
+				if("Pagan")
+					B.icon_state = "shadows"
+					B.item_state = "syringe_kit"
+				if("Orthodox")
+					B.icon_state = "orthodoxy"
+					B.item_state = "bible"
+				if("Torah")
+					B.icon_state = "torah"
+					B.item_state = "clipboard"
 				else
 					B.icon_state = "bible"
 					B.item_state = "bible"
