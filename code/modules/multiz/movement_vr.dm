@@ -54,6 +54,9 @@
 			else
 				prey.Weaken(8) //Just fall onto them if neither of the above apply.
 
+/mob/observer/dead/CheckFall()
+	return
+
 /mob/proc/CanZPass(atom/A, direction)
 	if(z == A.z) //moving FROM this turf
 		return direction == UP //can't go below

@@ -1,0 +1,36 @@
+/obj/item/weapon/robot_module
+	languages = list(LANGUAGE_SOL_COMMON= 1,
+					LANGUAGE_TRADEBAND	= 1,
+					LANGUAGE_UNATHI		= 0,
+					LANGUAGE_SIIK		= 0,
+					LANGUAGE_SKRELLIAN	= 0,
+					LANGUAGE_GUTTER		= 0,
+					LANGUAGE_SCHECHI	= 0,
+					LANGUAGE_SIGN		= 0,
+					LANGUAGE_BIRDSONG	= 0,
+					LANGUAGE_SAGARU		= 0,
+					LANGUAGE_CANILUNZT	= 0,
+					LANGUAGE_ECUREUILIAN= 0,
+					LANGUAGE_DAEMON		= 0,
+					LANGUAGE_ENOCHIAN	= 0
+					)
+
+/obj/item/weapon/robot_module/robot/clerical
+	languages = list(
+					LANGUAGE_SOL_COMMON	= 1,
+					LANGUAGE_TRADEBAND	= 1,
+					LANGUAGE_UNATHI		= 1,
+					LANGUAGE_SIIK		= 1,
+					LANGUAGE_SKRELLIAN	= 1,
+					LANGUAGE_ROOTLOCAL	= 0,
+					LANGUAGE_GUTTER		= 1,
+					LANGUAGE_SCHECHI	= 1,
+					LANGUAGE_EAL		= 1,
+					LANGUAGE_SIGN		= 0,
+					LANGUAGE_BIRDSONG	= 1,
+					LANGUAGE_SAGARU		= 1,
+					LANGUAGE_CANILUNZT	= 1,
+					LANGUAGE_ECUREUILIAN= 1,
+					LANGUAGE_DAEMON		= 1,
+					LANGUAGE_ENOCHIAN	= 1
+					)
