@@ -31,6 +31,7 @@
 		"Monkey" = "monkey",
 		"Corgi" = "borgi",
 		"Fox" = "fox",
+		"Parrot" = "parrot",
 		"Rabbit" = "rabbit",
 		"Bear" = "bear"  //VOREStation Edit
 		)
