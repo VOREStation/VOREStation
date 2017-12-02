@@ -31,8 +31,8 @@
 		"Monkey" = "monkey",
 		"Corgi" = "borgi",
 		"Fox" = "fox",
-		"Parrot" = "parrot",
-		"Rabbit" = "rabbit"
+		"Rabbit" = "rabbit",
+		"Bear" = "bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
