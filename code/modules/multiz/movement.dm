@@ -303,7 +303,6 @@
 			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
 				"<span class='danger'>You land on \the [landing]!</span>", \
 				"You hear something land \the [landing].")
-		handleParachute()
 		return
 	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
 		if(!silent)
@@ -332,7 +331,6 @@
 			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
 				"<span class='danger'>You land on \the [landing]!</span>", \
 				"You hear something land \the [landing].")
-		handleParachute()
 		return
 	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
 		if(!silent)
@@ -375,15 +373,25 @@
 
 //For humans, this needs to be a wee bit more complicated
 /mob/living/carbon/human/CanParachute()
-	for(var/obj/O in contents)	//world << Just go through the slots, don't need it to be everything.
-		if(O.isParachute())
-			return TRUE
-
-	return parachuting
-
-/mob/living/carbon/human/handleParachute()
-	for(var/obj/O in contents)
-		O.handleParachute()
+	//Certain slots don't really need to be checked for parachute ability, i.e. pockets, ears, etc. If this changes, just add them to the loop, I guess?
+	//This is done in Priority Order, so items lower down the list don't call handleParachute() unless they're actually used.
+	if(back && back.isParachute())
+		back.handleParachute()
+		return TRUE
+	if(s_store && s_store.isParachute())
+		back.handleParachute()
+		return TRUE
+	if(belt && belt.isParachute())
+		back.handleParachute()
+		return TRUE
+	if(wear_suit && wear_suit.isParachute())
+		back.handleParachute()
+		return TRUE
+	if(w_uniform && w_uniform.isParachute())
+		back.handleParachute()
+		return TRUE
+	else
+		return parachuting
 
 //For human falling code
 //Using /obj instead of /obj/item because I'm not sure what all humans can pick up or wear
@@ -393,7 +401,8 @@
 /obj/proc/isParachute()
 	return parachute
 
-//This is what makes the parachute items know they've been used
+//This is what makes the parachute items know they've been used.
+//I made it /atom/movable so it can be retooled for other things (mobs, mechs, etc), though it's only currently called in human/CanParachute().
 /atom/movable/proc/handleParachute()
 	return
 

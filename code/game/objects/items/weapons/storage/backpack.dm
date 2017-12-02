@@ -376,7 +376,6 @@
 			msg += " It seems to be unpacked."
 	to_chat(user, msg)
 
-
 /obj/item/weapon/storage/backpack/parachute/handleParachute()
 	parachute = FALSE	//If you parachute in, the parachute has probably been used.
 
@@ -396,7 +395,7 @@
 	if(H.stat)
 		return
 	if(H.back == src)
-		to_chat(H, "<span class='warning'>How do you expect to pack \the [src] while it's on your back?</span>")
+		to_chat(H, "<span class='warning'>How do you expect to work on \the [src] while it's on your back?</span>")
 		return
 
 	if(!parachute)	//This packs the parachute
@@ -424,3 +423,4 @@
 		else
 			visible_message("<span class='notice'>\The [src] decides not to unpack \the [src]!</span>", \
 					"<span class='notice'>You decide not to unpack \the [src]!</span>")
+	return
