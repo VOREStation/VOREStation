@@ -31,6 +31,7 @@ var/global/list/robot_modules = list(
 	var/list/datum/matter_synth/synths = list()
 	var/obj/item/emag = null
 	var/obj/item/borg/upgrade/jetpack = null
+	var/obj/item/borg/upgrade/advhealth = null
 	var/list/subsystems = list()
 	var/list/obj/item/borg/upgrade/supported_upgrades = list()
 
