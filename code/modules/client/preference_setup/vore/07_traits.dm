@@ -73,7 +73,7 @@
 			if(!(path in negative_traits))
 				pref.neg_traits -= path
 
-	if(!pref.custom_base || !(pref.custom_base in playable_species - whitelisted_species))
+	if(!pref.custom_base || (pref.custom_base != "Xenochimera" && !(pref.custom_base in playable_species - whitelisted_species)))
 		pref.custom_base = "Human"
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
@@ -98,9 +98,13 @@
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
-	if((pref.species == "Custom Species") || (pref.species == "Xenochimera"))
+	if(pref.species == "Custom Species")
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+
+	if(pref.species == "Xenochimera")
+		. += "<b>Icon Base: </b> "
+		. += "<a href='?src=\ref[src];custom_base_xenochimera=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	if(pref.species == "Custom Species")
 
@@ -158,6 +162,12 @@
 
 	else if(href_list["custom_base"])
 		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean"
+		if(text_choice in playable_species)
+			pref.custom_base = text_choice
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["custom_base_xenochimera"])
+		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean" + "Xenochimera"
 		if(text_choice in playable_species)
 			pref.custom_base = text_choice
 		return TOPIC_REFRESH_UPDATE_PREVIEW

@@ -15,7 +15,7 @@
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
 	can_fly = 1 //They have wings by default.
-	var/base_species = "Tajaran" //They have the taj sprite.
+	var/base_species = "Xenochimera"
 
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
