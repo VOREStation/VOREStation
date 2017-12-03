@@ -41,7 +41,7 @@
 			dat += "<HR>Tracking Implants<BR>"
 			for(var/obj/item/weapon/implant/tracking/T in world)
 				Tr = get_turf(T)
-				if((Tr) && (Tr.z != src.z))	continue//Out of range
+				if((Tr)	continue//Out of range //VOREStation Edit
 				if(!T.implanted) continue
 				var/loc_display = "Unknown"
 				var/mob/living/carbon/M = T.imp_in
