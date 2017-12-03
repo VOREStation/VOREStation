@@ -16,6 +16,9 @@
 #include "Snowrock1.dmm"
 #include "Boombase.dmm"
 #include "Epod.dmm"
+#include "Blackshuttledown.dmm"
+#include "Lab1.dmm"
+#include "Rocky4.dmm"
 
 #endif
 
@@ -105,4 +108,29 @@
 	name = "Emergency Pod"
 	desc = "A vacant Emergency pod in the middle of nowhere."
 	mappath = 'maps/submaps/surface_submaps/Epod.dmm'
+	cost = 5
+
+/datum/map_template/surface/BSD
+	name = "Black Shuttle Down"
+	desc = "You REALLY shouldn't be near this."
+	mappath = 'maps/submaps/surface_submaps/Blackshuttledown.dmm'
+	cost = 30
+
+/datum/map_template/surface/Cragzone1
+	name = "Cragzone1"
+	desc = "Rocks and more rocks."
+	mappath = 'maps/submaps/surface_submaps/Cragzone1.dmm'
+	cost = 5
+	allow_duplicates = TRUE
+
+/datum/map_template/surface/Lab1
+	name = "Lab1"
+	desc = "An isolated small robotics lab."
+	mappath = 'maps/submaps/surface_submaps/Lab1.dmm'
+	cost = 5
+
+/datum/map_template/surface/Rocky4
+	name = "Rocky4"
+	desc = "An intresting Geographic formation"
+	mappath = 'maps/submaps/surface_submaps/Rocky4.dmm'
 	cost = 5
