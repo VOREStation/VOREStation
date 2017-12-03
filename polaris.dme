@@ -1990,6 +1990,7 @@
 #include "code\modules\power\fusion\fusion_circuits.dm"
 #include "code\modules\power\fusion\fusion_particle_catcher.dm"
 #include "code\modules\power\fusion\fusion_reactions.dm"
+#include "code\modules\power\fusion\fusion_reagents.dm"
 #include "code\modules\power\fusion\core\_core.dm"
 #include "code\modules\power\fusion\core\core_control.dm"
 #include "code\modules\power\fusion\core\core_field.dm"
