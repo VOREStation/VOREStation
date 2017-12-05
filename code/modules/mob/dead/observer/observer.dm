@@ -501,6 +501,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<font color='blue'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</font>"
 		src << "<font color='blue'>Heat Capacity: [round(environment.heat_capacity(),0.1)]</font>"
 
+/mob/observer/dead/verb/check_radiation()
+	set name = "Check Radiation"
+	set category = "Ghost"
+
+	var/turf/t = get_turf(src)
+	if(t)
+		var/rads = radiation_repository.get_rads_at_turf(t)
+		to_chat(src, "<span class='notice'>Radiation level: [rads ? rads : "0"] Bq.</span>")
+
+
 /mob/observer/dead/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
