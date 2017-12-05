@@ -5,7 +5,7 @@
 
 /obj/item/clothing/under/color/blackf
 	name = "feminine black jumpsuit"
-	desc = "It's very smart and in a ladies-size!"
+	desc = "It's very smart and in a ladies size!"
 	icon_state = "black"
 	worn_state = "blackf"
 
@@ -32,7 +32,7 @@
 
 /obj/item/clothing/under/color/orange
 	name = "orange jumpsuit"
-	desc = "It's standardised prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	desc = "It's standardized prisoner-wear. Its suit sensors are permanently set to the \"Tracking\" position."
 	icon_state = "orange"
 	has_sensor = 2
 	sensor_mode = 3

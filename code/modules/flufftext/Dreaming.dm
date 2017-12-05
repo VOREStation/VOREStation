@@ -14,7 +14,7 @@ var/list/dreams = list(
 	"an Unathi","a Tajaran","the Station Intelligence core","the mining station","the research station","a beaker of strange liquid",
 	"a Teshari", "a Diona nymph","the supermatter","Major Bill","a Morpheus ship with a ridiculous name","the Exodus","a star",
 	"a Dionaea gestalt","the chapel","a distant scream","endless chittering noises","glowing eyes in the shadows","an empty glass",
-	"a disoriented Promethean","towers of plastic","a Gygax","a synthetic","a Man-Machine Interface","maintanence drones", 
+	"a disoriented Promethean","towers of plastic","a Gygax","a synthetic","a Man-Machine Interface","maintenance drones", 
 	"unintelligible writings","a Fleet ship",
 	)
 
