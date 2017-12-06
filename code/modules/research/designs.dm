@@ -752,7 +752,7 @@ other types of metals and chemistry for reagents).
 	sort_string = "VABAI"
 
 /datum/design/item/communicator
-	name = "Communcator"
+	name = "Communicator"
 	id = "communicator"
 	req_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 500)
