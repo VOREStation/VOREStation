@@ -183,6 +183,12 @@
 	desc = "Small spaces and tight quarters makes you feel distressed.  Unfortunately both are rather common when living in space."
 	modifier_type = /datum/modifier/trait/phobia/claustrophobe
 
+
+/datum/trait/modifier/mental/blennophobe
+	name = "Blennophobia"
+	desc = "Slimes are quite dangerous, but just the aspect of something being slimey is uncomfortable."
+	modifier_type = /datum/modifier/trait/phobia/blennophobe
+
 /*
 // Uncomment this when/if these get finished.
 /datum/trait/modifier/mental/synthphobe
