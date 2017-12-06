@@ -1,10 +1,11 @@
 /obj/item/weapon/gun/energy/laser
-	name = "laser carbine"
-	desc = "A Hephaestus Industries G40E carbine, designed to kill with concentrated energy blasts.  This varient has the ability to \
+	name = "laser rifle"
+	desc = "A Hephaestus Industries G40E rifle, designed to kill with concentrated energy blasts.  This varient has the ability to \
 	switch between standard fire and a more efficent but weaker 'suppressive' fire."
 	icon_state = "laser"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_delay = 8
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	force = 10
@@ -15,8 +16,8 @@
 	one_handed_penalty = 2
 
 	firemodes = list(
-		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
-		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
+		list(mode_name="normal", fire_delay=8, projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
+		list(mode_name="suppressive", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
 		)
 
 /obj/item/weapon/gun/energy/laser/mounted
