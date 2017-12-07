@@ -55,3 +55,6 @@
 
 /area/submap/Rocky4
 	name = "Rocky4"
+
+/area/submap/DJOutpost1
+	name = "DJOutpost1"

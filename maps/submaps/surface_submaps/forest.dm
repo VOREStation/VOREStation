@@ -19,6 +19,7 @@
 #include "Blackshuttledown.dmm"
 #include "Lab1.dmm"
 #include "Rocky4.dmm"
+#include "DJOutpost1.dmm"
 
 #endif
 
@@ -131,6 +132,12 @@
 
 /datum/map_template/surface/Rocky4
 	name = "Rocky4"
-	desc = "An intresting Geographic formation"
+	desc = "An interesting geographic formation."
 	mappath = 'maps/submaps/surface_submaps/Rocky4.dmm'
+	cost = 5
+
+/datum/map_template/surface/DJOutpost1
+	name = "DJOutpost1"
+	desc = "Home of Sif Free Radio, the best - and only - radio station for miles around."
+	mappath = 'maps/submaps/surface_submaps/DJOutpost1.dmm'
 	cost = 5
