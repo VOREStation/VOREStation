@@ -738,6 +738,23 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/implanter/reagent_generator/vorrarkul
 	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
 
+//Lycanthorph: Savannah Dixon
+/obj/item/weapon/implant/reagent_generator/savannah
+	generated_reagents = list("milk" = 2)
+	reagent_name = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your nipples are sore from being milked!", "Your breasts feel drained, milk is no longer leaking from your nipples!")
+	full_message = list("Your breasts are full, their sweet scent emanating from your chest!", "Your breasts feel full, milk is starting to leak from your nipples, filling the air with it's sweet scent!")
+	emote_descriptor = list("squeezes sweet milk from Savannah", "tugs on Savannah's nipples, milking them", "kneads Savannah's breasts, milking them")
+	self_emote_descriptor = list("squeeze", "knead")
+	random_emote = list("lets out a soft moan", "gives an involuntary squeal")
+	verb_name = "Milk"
+	verb_desc = "Grab Savannah's breasts and extract sweet milk from them!"
+
+/obj/item/weapon/implanter/reagent_generator/savannah
+	implant_type = /obj/item/weapon/implant/reagent_generator/savannah
+
 //SpoopyLizz: Roiz Lizden
 //I made this! Woo!
 //implant
