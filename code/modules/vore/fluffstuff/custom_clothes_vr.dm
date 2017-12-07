@@ -503,6 +503,7 @@
 /obj/item/clothing/suit/storage/det_suit/fluff/tas_coat
 	name = "Armored Colony coat"
 	desc = "Dark green and grey colored sleeveless long coat with two thick metal shoulder pads. has seen some wear and tear, with noticeable patches in the fabric, scratches on the shoulder pads, but with a clean patch on the left upper chest. It has a red NT marked on the right shoulder pad and red Security on the left. "
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/flashlight/maglight,/obj/item/clothing/head/helmet)
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "tasaldcoat"
@@ -1514,6 +1515,22 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "headbando"
+
+/obj/item/clothing/suit/storage/fluff/gntop
+	name = "GN crop jacket"
+	desc = "A nifty little jacket. At least it keeps your shoulders warm."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "gntop"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "gntop"
+
+/obj/item/clothing/under/fluff/gnshorts
+	name = "GN shorts"
+	desc = "Stylish white shorts with pockets, stripes, and even a belt."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "gnshorts"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "gnshorts"
 
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth

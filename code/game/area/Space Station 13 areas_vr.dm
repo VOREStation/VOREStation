@@ -232,6 +232,11 @@
 	name = "Tether Shuttle Transit"
 	icon_state = "shuttle2"
 
+// rnd (Research and Development)
+/area/rnd/research/testingrange
+	name = "\improper Weapons Testing Range"
+	icon_state = "firingrange"
+
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"

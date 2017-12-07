@@ -37,7 +37,7 @@
 	src.modules += new /obj/item/taperoll/police(src) //Block out crime scenes.
 	src.modules += new /obj/item/device/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
-	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to see criminals.
+	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -82,12 +82,13 @@
 	src.modules += new /obj/item/device/dogborg/tongue(src) //Clean up bloody items by licking them, and eat rubbish for minor energy.
 	src.modules += new /obj/item/device/healthanalyzer(src) // See who's hurt specificially.
 	src.modules += new /obj/item/device/dogborg/sleeper(src) //So they can nom people and heal them
-	src.modules += new /obj/item/borg/sight/hud/med(src) //See who's hurt generally.
 	src.modules += new /obj/item/weapon/extinguisher/mini(src) //So they can put burning patients out.
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)//So medi-hounds aren't nearly useless
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
+	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
+	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "medihound"
@@ -116,7 +117,7 @@
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
 	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
-	R.icon 		 = 'icons/mob/62x62robot_vr.dmi'
+	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
@@ -136,6 +137,7 @@
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/tongue(src)
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor(src)
+	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "scrubpup"

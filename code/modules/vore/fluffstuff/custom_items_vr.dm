@@ -628,11 +628,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_state = "labeler1"
 
 	afterattack(obj/O, mob/user as mob)
-		var/new_icon = "ivyholoid"
+		var/new_icon_state = "ivyholoid"
+		var/new_icon = 'icons/vore/custom_items_vr.dmi'
 		var/new_desc = "Its a thin screen showing ID information, but it seems to be flickering."
 		if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
-			//O.icon = src.icon // just in case we're using custom sprite paths with fluff items.
-			O.icon_state = new_icon // Changes the icon without changing the access.
+			O.icon = new_icon
+			O.icon_state = new_icon_state // Changes the icon without changing the access.
 			O.desc = new_desc
 			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
 			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
@@ -1049,12 +1050,22 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/clothing/accessory/tronket
 	name = "metal necklace"
 	desc = "A shiny steel chain with a vague metallic object dangling off it."
-	w_class = ITEMSIZE_SMALL
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "tronket"
 	item_state = "tronket"
 	overlay_state = "tronket"
+	slot_flags = SLOT_TIE
+	slot = "over"
+
+/obj/item/clothing/accessory/flops
+	name = "drop straps"
+	desc = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "flops"
+	item_state = "flops"
+	overlay_state = "flops"
 	slot_flags = SLOT_TIE
 	slot = "over"
 
@@ -1543,6 +1554,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian
 	name = "dragon egg"
+	desc = "A quite large dragon egg!"
 	icon_state = "egg_roiz_yellow"
 
 

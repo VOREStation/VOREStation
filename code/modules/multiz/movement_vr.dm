@@ -9,6 +9,10 @@
 		Move(landing)
 		return 1
 
+	for(var/obj/O in loc)
+		if(!O.CanFallThru(src, landing))
+			return 1
+
 	if(drop_mob && drop_mob != src && ismob(drop_mob)) //Shitload of checks. This is because the game finds various ways to screw me over.
 		drop_mob.fall_impact(src)
 
