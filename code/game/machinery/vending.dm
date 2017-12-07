@@ -994,6 +994,7 @@
 	/obj/item/weapon/glass_extra/stick = 15,
 	/obj/item/weapon/glass_extra/straw = 15,
 	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/weapon/storage/bag/food = 2,
 	/obj/item/weapon/storage/toolbox/lunchbox = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/heart = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/cat = 3,
