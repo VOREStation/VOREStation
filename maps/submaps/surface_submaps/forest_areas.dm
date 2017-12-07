@@ -44,3 +44,17 @@
 /area/submap/Epod1
 	name = "Epod1"
 
+/area/submap/Blackshuttledown
+	name = "BSD"
+
+/area/submap/Cragzone1
+	name = "Craggy1"
+
+/area/submap/Lab1
+	name = "Lab1"
+
+/area/submap/Rocky4
+	name = "Rocky4"
+
+/area/submap/DJOutpost1
+	name = "DJOutpost1"

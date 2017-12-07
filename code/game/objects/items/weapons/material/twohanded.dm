@@ -145,6 +145,7 @@
 	base_icon = "spearglass"
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	description_info = "This weapon can strike from two tiles away, and over certain objects such as tables, or other people."
 	force = 10
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
@@ -159,3 +160,5 @@
 	default_material = "glass"
 	applies_material_colour = 0
 	fragile = 1	//It's a haphazard thing of glass, wire, and steel
+	reach = 2 // Spears are long.
+	attackspeed = 14

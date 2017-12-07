@@ -154,6 +154,7 @@
 #define MAT_TITANIUM		"titanium"
 #define MAT_PHORON			"phoron"
 #define MAT_DIAMOND			"diamond"
+#define MAT_SNOW			"snow"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"

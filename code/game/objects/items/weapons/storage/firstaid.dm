@@ -149,6 +149,7 @@
 	new /obj/item/weapon/surgical/bonegel(src)
 	new /obj/item/weapon/surgical/FixOVein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/device/healthanalyzer/advanced(src)
 	return
 
 /obj/item/weapon/storage/firstaid/clotting

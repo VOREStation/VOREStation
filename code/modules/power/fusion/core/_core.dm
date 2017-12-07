@@ -41,7 +41,12 @@ var/list/fusion_cores = list()
 /obj/machinery/power/fusion_core/process()
 	if((stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
-
+	if(owned_field)
+		spawn(1)
+			owned_field.stability_monitor()
+			owned_field.radiation_scale()
+			owned_field.temp_dump()
+			owned_field.temp_color()
 /obj/machinery/power/fusion_core/Topic(href, href_list)
 	if(..())
 		return 1

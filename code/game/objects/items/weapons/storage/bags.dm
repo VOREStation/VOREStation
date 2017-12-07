@@ -10,7 +10,9 @@
  *		Plant Bag
  *		Sheet Snatcher
  *		Cash Bag
- *
+ *		Chemistry Bag
+ 		Food Bag
+
  *	-Sayu
  */
 
@@ -261,3 +263,16 @@
 	w_class = ITEMSIZE_LARGE
 	slowdown = 1
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
+
+	// -----------------------------
+	//           Food Bag
+	// -----------------------------
+/obj/item/weapon/storage/bag/food
+	name = "food bag"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "foodbag"
+	desc = "A bag for storing foods of all kinds."
+	max_storage_space = ITEMSIZE_COST_NORMAL * 25
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment)

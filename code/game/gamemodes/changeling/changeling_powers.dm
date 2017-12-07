@@ -168,7 +168,8 @@ turf/proc/AdjacentTurfsRangedSting()
 		/obj/structure/target_stake,
 		/obj/structure/cable,
 		/obj/structure/disposalpipe,
-		/obj/machinery/
+		/obj/machinery,
+		/mob
 	)
 
 	var/L[] = new()

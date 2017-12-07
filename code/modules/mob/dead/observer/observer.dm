@@ -11,7 +11,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = 4
+	layer = 3.9	//Just below normal mobs
 	stat = DEAD
 	canmove = 0
 	blinded = 0
@@ -500,6 +500,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			src << "<font color='blue'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)</font>"
 		src << "<font color='blue'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</font>"
 		src << "<font color='blue'>Heat Capacity: [round(environment.heat_capacity(),0.1)]</font>"
+
+/mob/observer/dead/verb/check_radiation()
+	set name = "Check Radiation"
+	set category = "Ghost"
+
+	var/turf/t = get_turf(src)
+	if(t)
+		var/rads = radiation_repository.get_rads_at_turf(t)
+		to_chat(src, "<span class='notice'>Radiation level: [rads ? rads : "0"] Bq.</span>")
+
 
 /mob/observer/dead/verb/become_mouse()
 	set name = "Become mouse"

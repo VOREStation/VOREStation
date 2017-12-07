@@ -1,4 +1,21 @@
 "a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral,/area/submap/cave/Scave1)
+"c" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"d" = (/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"e" = (/obj/effect/spider/spiderling,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"f" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"g" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/effect/decal/remains,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"h" = (/obj/item/weapon/grenade/spawnergrenade/spider,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"i" = (/mob/living/simple_animal/hostile/giant_spider/hunter,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"j" = (/obj/random/toolbox,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"k" = (/mob/living/simple_animal/hostile/giant_spider,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"l" = (/mob/living/simple_animal/hostile/giant_spider/nurse,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"m" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"n" = (/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"o" = (/obj/item/device/flashlight,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"p" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"q" = (/obj/effect/spider/stickyweb,/mob/living/simple_animal/hostile/giant_spider/hunter,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
+"r" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor,/area/submap/cave/Scave1)
 "b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/cave/Scave1)
 "c" = (/turf/simulated/mineral,/area/submap/cave/Scave1)
 "d" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
@@ -24,6 +41,29 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbaaaaaaaaaaaaaaaaaaaaaaa
 aabbbbbbaabbbbbaaaaaaabbbbbaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbbaaa
+aabbbbbbcbbbbbbbbbbbbbbbdbbbaa
+aabbbbdeddbbbcccbbbbbdddeddbaa
+aadbbfddddcbbdedbbbbbddddddbaa
+aadbbgfbbdddddddbccedddbdedbba
+aabbbbbbbddcdddddddddddbhibbaa
+aabbbbbbdddbbbjcddddddbbbbbbaa
+aabbbbbcdkdbbbbbbcdkddcbbbbaaa
+aabbbbbcddcbbbbbbbddddcbbbaaaa
+aabbbbbbidcbbbbbbbdlddcbbbaaaa
+aabbbbbbdddbbbbbbmddddcbbbaaaa
+aabbbbbbdcdbbbbbbnddddcbbbaaaa
+aabbbbbbdddbbbbbbcddldcbbbaaaa
+aadbbbbbddibbbbbbbccdddbbbaaaa
+aaodbbbbddbbbbbbbbbkcddbbbaaaa
+aaddbbbbdddbbbbbbbbbbddbbdaaaa
+aadddpddddddbbbbbbbbdedbbdaaaa
+aaddppcddddddqbcdddddcbbbdaaaa
+aardbbbbbdddddddddddcbbbbdaaaa
+aabbbbbbbbcdddcdddddcbbbbbaaaa
+aabbbbbbbbbbbbbbbibbbbbbbbaaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbaaaa
+aaaaabbbbabbbbbbbaabbbbbbaaaaa
 abbccccbbbbccbbbbbbbbbbcccbaaa
 aabccbbbdbbccbbbbcccbbbbebbbaa
 aabbbbefeebbbdddbcccbeeefeebaa

@@ -162,4 +162,5 @@
 		))
 
 /material/snow/generate_recipes()
-	return // Snowmen and snowballs may come here later.
+	recipes = list()
+	recipes += new/datum/stack_recipe("snowball", /obj/item/weapon/material/snow/snowball, 1, time = 10)

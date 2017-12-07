@@ -332,6 +332,13 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "phoron" = 11250, "uranium" = 15000)
 	build_path = /obj/item/borg/upgrade/jetpack
 
+/datum/design/item/prosfab/robot_upgrade/advhealth
+	name = "Advanced Health Analyzer Module"
+	desc = "An advanced health analyzer suitable for diagnosing more serious injuries."
+	id = "borg_advhealth_module"
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 6500, "diamond" = 350)
+	build_path = /obj/item/borg/upgrade/advhealth
+
 /datum/design/item/prosfab/robot_upgrade/syndicate
 	name = "Scrambled Equipment Module"
 	desc = "Allows for the construction of lethal upgrades for cyborgs."

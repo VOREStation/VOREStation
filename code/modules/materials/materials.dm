@@ -735,7 +735,7 @@ var/list/name_to_material
 	destruction_desc = "crumples"
 
 /material/snow
-	name = "snow"
+	name = MAT_SNOW
 	stack_type = /obj/item/stack/material/snow
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"
@@ -749,7 +749,7 @@ var/list/name_to_material
 	melting_point = T0C+1
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
-	sheet_plural_name = "piles"
+	sheet_plural_name = "pile" //Just a bigger pile
 
 /material/cloth //todo
 	name = "cloth"
