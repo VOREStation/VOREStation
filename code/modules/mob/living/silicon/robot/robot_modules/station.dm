@@ -873,3 +873,16 @@ var/global/list/robot_modules = list(
 	LR.Charge(R, amount)
 	..()
 	return
+
+/obj/item/weapon/robot_module/drone/mining
+	name = "miner drone module"
+	channels = list("Supply" = 1)
+	networks = list(NETWORK_MINE)
+
+/obj/item/weapon/robot_module/drone/mining/New()
+	..()
+	src.modules += new /obj/item/borg/sight/material(src)
+	src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
+	src.modules += new /obj/item/weapon/storage/bag/ore(src)
+	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
+	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)

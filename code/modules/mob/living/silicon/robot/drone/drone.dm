@@ -39,6 +39,8 @@ var/list/mob_hat_cache = list()
 
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER
+	can_enter_vent_with = list(
+		/obj)
 
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = SIMPLE_ANIMAL
@@ -69,6 +71,15 @@ var/list/mob_hat_cache = list()
 	icon_state = "constructiondrone"
 	law_type = /datum/ai_laws/construction_drone
 	module_type = /obj/item/weapon/robot_module/drone/construction
+	hat_x_offset = 1
+	hat_y_offset = -12
+	can_pull_mobs = MOB_PULL_SAME
+
+/mob/living/silicon/robot/drone/mining
+	icon_state = "miningdrone"
+	item_state = "constructiondrone"
+	law_type = /datum/ai_laws/mining_drone
+	module_type = /obj/item/weapon/robot_module/drone/mining
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
@@ -338,6 +349,10 @@ var/list/mob_hat_cache = list()
 	real_name = "construction drone ([rand(100,999)])"
 	name = real_name
 
-/mob/living/silicon/robot/drone
-	can_enter_vent_with = list(
-		/obj)
+/mob/living/silicon/robot/drone/mining/init()
+	..()
+	flavor_text = "It's a bulky mining drone stamped with a Grayson logo."
+
+/mob/living/silicon/robot/drone/mining/updatename()
+	real_name = "mining drone ([rand(100,999)])"
+	name = real_name
