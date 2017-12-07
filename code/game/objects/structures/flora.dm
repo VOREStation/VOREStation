@@ -140,7 +140,7 @@
 
 /obj/structure/flora/skeleton
 	name = "hanging skeleton model"
-	icon = 'icons/obj/plants.dmi'
+	icon = 'icons/obj/plants.dmi' //what an interesting plant
 	icon_state = "hangskele"
 	desc = "It's an anatomical model of a human skeletal system made of plaster."
 
@@ -200,7 +200,7 @@
 
 /obj/structure/flora/pottedplant/orientaltree
 	name = "potted oriental tree"
-	desc = "This is a rather oriental style tree. It's flowers are bright pink."
+	desc = "This is a rather oriental style tree. Its flowers are bright pink."
 	icon_state = "plant-10"
 
 /obj/structure/flora/pottedplant/smallcactus
@@ -214,7 +214,7 @@
 	icon_state = "plant-12"
 
 /obj/structure/flora/pottedplant/sticky
-	name = "styicky potted plant"
+	name = "sticky potted plant"
 	desc = "This is an odd plant. Its sticky leaves trap insects."
 	icon_state = "plant-13"
 
