@@ -371,30 +371,17 @@
 	display_name = "sexy maid uniform"
 	path = /obj/item/clothing/under/dress/sexymaid
 
-/datum/gear/uniform/pt
-	display_name = "pt uniform"
-	path = /obj/item/clothing/under/pt
-
-/datum/gear/uniform/pt/expeditionary
-	display_name = "pt uniform, sifguard"
-	path = /obj/item/clothing/under/pt/expeditionary
-
-/datum/gear/uniform/pt/fleet
-	display_name = "pt uniform, fleet"
-	path = /obj/item/clothing/under/pt/fleet
-
 /datum/gear/uniform/utility
 	display_name = "utility, black"
 	path = /obj/item/clothing/under/utility
-	cost = 2
 
-/datum/gear/uniform/utility/fleet
-	display_name = "utility, navy"
-	path = /obj/item/clothing/under/utility/fleet
+/datum/gear/uniform/utility/blue
+	display_name = "utility, blue"
+	path = /obj/item/clothing/under/utility/blue
 
-/datum/gear/uniform/utility/marine
+/datum/gear/uniform/utility/grey
 	display_name = "utility, grey"
-	path = /obj/item/clothing/under/utility/marine
+	path = /obj/item/clothing/under/utility/grey
 
 /datum/gear/uniform/sweater
 	display_name = "sweater, grey"

@@ -384,18 +384,6 @@
 	display_name = "denim vest, corporate"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
 
-/datum/gear/suit/service
-	display_name = "service jacket selection"
-	path = /obj/item/clothing/suit/storage/service
-
-/datum/gear/suit/service/New()
-	..()
-	var/list/services = list()
-	for(var/service_style in typesof(/obj/item/clothing/suit/storage/service))
-		var/obj/item/clothing/suit/storage/service/service = service_style
-		services[initial(service.name)] = service
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(services))
-
 /datum/gear/suit/miscellaneous/kimono
 	display_name = "kimono"
 	path = /obj/item/clothing/suit/kimono
