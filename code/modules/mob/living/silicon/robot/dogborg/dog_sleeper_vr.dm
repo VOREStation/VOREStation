@@ -12,7 +12,7 @@
 	var/cleaning = 0
 	var/patient_laststat = null
 	var/mob_energy = 30000 //Energy gained from digesting mobs (including PCs)
-	var/list/injection_chems = list("dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
+	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = 0
@@ -96,24 +96,21 @@
 
 /obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
 	var/dat
-	dat += "<h3>Injector</h3>"
 
-	if(patient && !(patient.stat & DEAD)) //Why inject dead people with innaprov? Dundonuffin in Bay.
-		dat += "<A href='?src=\ref[src];inject=inaprovaline'>Inject Inaprovaline</A>"
-	else
-		dat += "<span class='linkOff'>Inject Inaprovaline</span>"
-	if(patient && patient.health > min_health)
-		for(var/re in injection_chems)
-			var/datum/reagent/C = chemical_reagents_list[re]
-			if(C)
-				dat += "<BR><A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A>"
-	else
-		for(var/re in injection_chems)
-			var/datum/reagent/C = chemical_reagents_list[re]
-			if(C)
-				dat += "<BR><span class='linkOff'>Inject [C.name]</span>"
+	if(islist(injection_chems)) //Only display this if we're a drug-dispensing doggo.
+		dat += "<h3>Injector</h3>"
+		if(patient)// && patient.health > min_health) //Not necessary, leave the buttons on, but the feedback during injection will give more information.
+			for(var/re in injection_chems)
+				var/datum/reagent/C = chemical_reagents_list[re]
+				if(C)
+					dat += "<A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
+		else
+			for(var/re in injection_chems)
+				var/datum/reagent/C = chemical_reagents_list[re]
+				if(C)
+					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
 
-	dat += "<h3>Sleeper Status</h3>"
+	dat += "<h3>[name] Status</h3>"
 	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
 	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
@@ -124,9 +121,10 @@
 
 	dat += "<div class='statusDisplay'>"
 
-	if(istype(src, /obj/item/device/dogborg/sleeper/compactor))//garbage counter for trashpup
-		if(length(contents) > 0)
-			dat += "<font color='red'><B>Current load</B> [length(contents)] / 25.</font><BR>"
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor) && length(contents))//garbage counter for trashpup
+		var/obj/item/device/dogborg/sleeper/compactor/garbo = src
+		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
+		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
@@ -141,7 +139,7 @@
 		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
 
 	if(!patient)
-		dat += "[src.name] unoccupied"
+		dat += "[src.name] Unoccupied"
 	else
 		dat += "[patient.name] => "
 
@@ -178,7 +176,7 @@
 				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"
 	dat += "</div>"
 
-	var/datum/browser/popup = new(user, "sleeper", "Sleeper Console", 520, 540)	//Set up the popup browser window
+	var/datum/browser/popup = new(user, "sleeper", "[name] Console", 520, 540)	//Set up the popup browser window
 	//popup.set_title_image(user.browse_rsc_icon(icon, icon_state)) //I have no idea what this is, but it feels irrelevant and causes runtimes idk.
 	popup.set_content(dat)
 	popup.open()
@@ -468,8 +466,10 @@
 		patient.AdjustStunned(-4)
 		patient.AdjustWeakened(-4)
 		src.drain()
+		/* Don't anymore, causes unwanted drug mixing in bloodstream
 		if((patient.reagents.get_reagent_amount("inaprovaline") < 5) && (patient.health < patient.maxHealth)) //Stop pumping full HP people full of drugs. Don't heal people you're digesting, meanie.
 			patient.reagents.add_reagent("inaprovaline", 5)
+		*/
 		return
 
 	if(!patient && !cleaning) //We think we're done working.
@@ -484,10 +484,10 @@
 	icon_state = "sleeperb"
 	inject_amount = 10
 	min_health = -100
-	injection_chems = null //So they don't have all the same chems as the medihound!
+	injection_chems = list("inaprovaline") //So they don't have all the same chems as the medihound!
 
 /obj/item/device/dogborg/sleeper/compactor //Janihound gut.
-	name = "garbage processor"
+	name = "Garbage Processor"
 	desc = "A mounted garbage compactor unit with fuel processor."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "compactor"
