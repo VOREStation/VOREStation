@@ -1,5 +1,5 @@
 /obj/machinery/sleep_console
-	name = "Sleeper Console"
+	name = "sleeper console"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
@@ -34,7 +34,7 @@
 		return 1
 
 	if(sleeper.panel_open)
-		user << "<span class='notice'>Close the maintenance panel first.</span>"
+		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 		return
 
 	if(!sleeper)
@@ -44,7 +44,7 @@
 	else if(sleeper)
 		return sleeper.ui_interact(user)
 	else
-		user << "<span class='warning'>Sleeper not found!</span>"
+		to_chat(user, "<span class='warning'>Sleeper not found!</span>")
 
 /obj/machinery/sleep_console/attackby(var/obj/item/I, var/mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
@@ -61,7 +61,7 @@
 
 /obj/machinery/sleeper
 	name = "sleeper"
-	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
+	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	density = 1
@@ -181,7 +181,7 @@
 		return 1
 
 	if(usr == occupant)
-		usr << "<span class='warning'>You can't reach the controls from the inside.</span>"
+		to_chat(usr, "<span class='warning'>You can't reach the controls from the inside.</span>")
 		return
 
 	add_fingerprint(usr)
@@ -221,7 +221,7 @@
 			I.loc = src
 			user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
 		else
-			user << "<span class='warning'>\The [src] has a beaker already.</span>"
+			to_chat(user, "<span class='warning'>\The [src] has a beaker already.</span>")
 		return
 
 /obj/machinery/sleeper/verb/move_eject()
@@ -233,7 +233,7 @@
 			if(DEAD)
 				return
 			if(UNCONSCIOUS)
-				usr << "<span class='notice'>You struggle through the haze to hit the eject button. This will take a couple of minutes...</span>"
+				to_chat(usr, "<span class='notice'>You struggle through the haze to hit the eject button. This will take a couple of minutes...</span>")
 				sleep(2 MINUTES)
 				if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
 					return
@@ -279,7 +279,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(occupant)
-		user << "<span class='warning'>\The [src] is already occupied.</span>"
+		to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
 		return
 
 	if(M == user)
@@ -289,7 +289,7 @@
 
 	if(do_after(user, 20))
 		if(occupant)
-			user << "<span class='warning'>\The [src] is already occupied.</span>"
+			to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
 			return
 		M.stop_pulling()
 		if(M.client)
@@ -333,8 +333,8 @@
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			use_power(amount * CHEM_SYNTH_ENERGY)
 			occupant.reagents.add_reagent(chemical, amount)
-			user << "Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in their bloodstream."
+			to_chat(user, "Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in their bloodstream.")
 		else
-			user << "The subject has too many chemicals."
+			to_chat(user, "The subject has too many chemicals in their bloodstream.")
 	else
-		user << "There's no suitable occupant in \the [src]."
+		to_chat(user, "There's no suitable occupant in \the [src].")

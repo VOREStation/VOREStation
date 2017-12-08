@@ -8,7 +8,7 @@
  * First Aid Kits
  */
 /obj/item/weapon/storage/firstaid
-	name = "first-aid kit"
+	name = "first aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
 	throw_speed = 2
@@ -18,8 +18,8 @@
 
 
 /obj/item/weapon/storage/firstaid/fire
-	name = "fire first-aid kit"
-	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
+	name = "fire first aid kit"
+	desc = "It's an emergency medical kit for when the toxins lab <i>spontaneously</i> burns down."
 	icon_state = "ointment"
 	item_state_slots = list(slot_r_hand_str = "firstaid-ointment", slot_l_hand_str = "firstaid-ointment")
 
@@ -55,8 +55,8 @@
 		return
 
 /obj/item/weapon/storage/firstaid/toxin
-	name = "toxin first aid"
-	desc = "Used to treat when you have a high amoutn of toxins in your body."
+	name = "poison first aid kit" //IRL the term used would be poison first aid kit.
+	desc = "Used to treat when one has a high amount of toxins in their body."
 	icon_state = "antitoxin"
 	item_state_slots = list(slot_r_hand_str = "firstaid-toxin", slot_l_hand_str = "firstaid-toxin")
 
@@ -76,7 +76,7 @@
 		return
 
 /obj/item/weapon/storage/firstaid/o2
-	name = "oxygen deprivation first aid"
+	name = "oxygen deprivation first aid kit"
 	desc = "A box full of oxygen goodies."
 	icon_state = "o2"
 	item_state_slots = list(slot_r_hand_str = "firstaid-o2", slot_l_hand_str = "firstaid-o2")
@@ -94,8 +94,8 @@
 		return
 
 /obj/item/weapon/storage/firstaid/adv
-	name = "advanced first-aid kit"
-	desc = "Contains advanced medical treatments."
+	name = "advanced first aid kit"
+	desc = "Contains advanced medical treatments, for <b>serious</b> boo-boos."
 	icon_state = "advfirstaid"
 	item_state_slots = list(slot_r_hand_str = "firstaid-advanced", slot_l_hand_str = "firstaid-advanced")
 
