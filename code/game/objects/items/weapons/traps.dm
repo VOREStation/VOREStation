@@ -34,6 +34,7 @@
 				"<span class='danger'>You have deployed \the [src]!</span>",
 				"You hear a latch click loudly."
 				)
+			playsound(src.loc, 'sound/machines/click.ogg',70, 1)
 
 			deployed = 1
 			user.drop_from_inventory(src)
@@ -56,6 +57,8 @@
 			"<span class='notice'>You begin disarming \the [src]!</span>",
 			"You hear a latch click followed by the slow creaking of a spring."
 			)
+		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+
 		if(do_after(user, 60))
 			user.visible_message(
 				"<span class='danger'>[user] has disarmed \the [src].</span>",

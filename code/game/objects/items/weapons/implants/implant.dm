@@ -351,6 +351,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	R << "You hear a faint *beep*."
 	if(!src.reagents.total_volume)
 		R << "You hear a faint click from your chest."
+		playsound(R, 'sound/weapons/empty.ogg', 10, 1)
 		spawn(0)
 			qdel(src)
 	return
