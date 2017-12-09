@@ -994,6 +994,43 @@
 			M.sleeping = max(M.sleeping, 20)
 			M.drowsyness = max(M.drowsyness, 60)
 
+/datum/reagent/drink/milkshake/chocoshake
+	name = "Chocolate Milkshake"
+	id = "chocoshake"
+	description = "A refreshing chocolate milkshake."
+	taste_description = "cold refreshing chocolate and cream"
+	color = "#8e6f44" // rgb(142, 111, 68)
+	adj_temp = -9
+
+	glass_name = "Chocolate Milkshake"
+	glass_desc = "A refreshing chocolate milkshake, just like mom used to make."
+
+/datum/reagent/drink/milkshake/berryshake
+	name = "Berry Milkshake"
+	id = "Berryshake"
+	description = "A refreshing berry milkshake."
+	taste_description = "cold refreshing berries and cream"
+	color = "#ffb2b2" // rgb(255, 178, 178)
+	adj_temp = -9
+
+	glass_name = "Berry Milkshake"
+	glass_desc = "A refreshing berry milkshake, just like mom used to make."
+
+/datum/reagent/drink/milkshake/coffeeshake
+	name = "Coffee Milkshake"
+	id = "coffeeshake"
+	description = "A refreshing coffee milkshake."
+	taste_description = "cold energizing coffee and cream"
+	color = "#8e6f44" // rgb(142, 111, 68)
+	adj_temp = -9
+	adj_dizzy = -5
+	adj_drowsy = -3
+	adj_sleepy = -2
+	overdose = 45
+
+	glass_name = "Coffee Milkshake"
+	glass_desc = "An energizing coffee milkshake, perfect for hot days at work.."
+
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
 	id = "rewriter"
@@ -1256,6 +1293,48 @@
 
 	glass_name = "nothing"
 	glass_desc = "Absolutely nothing."
+
+/datum/reagent/drink/dreamcream
+	name = "Dream Cream"
+	id = "dreamcream"
+	description = "A smoothy, silky mix of honey and dairy."
+	taste_description = "sweet, soothing dairy"
+	color = "#fcfcc9" // rgb(252, 252, 201)
+
+	glass_name = "Dream Cream"
+	glass_desc = "A smoothy, silky mix of honey and dairy."
+
+/datum/reagent/drink/soda/vilelemon
+	name = "Vile Lemon"
+	id = "vilelemon"
+	description = "A fizzy, sour lemonade mix."
+	taste_description = "fizzy, sour lemon"
+	color = "#c6c603" // rgb(198, 198, 3)
+
+	glass_name = "Vile Lemon"
+	glass_desc = "A sour, fizzy drink with lemonade and lemonlime."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/entdraught
+	name = "Ent's Draught"
+	id = "entdraught"
+	description = "A natural, earthy combination of all things peaceful."
+	taste_description = "fresh rain and sweet memories"
+	color = "#3a6617" // rgb(58, 102, 23)
+
+	glass_name = "Ent's Draught"
+	glass_desc = "You can almost smell the tranquility emanating from this."
+	
+/datum/reagent/drink/lovepotion
+	name = "Love Potion"
+	id = "lovepotion"
+	description = "Creamy strawberries and sugar, simple and sweet."
+	taste_description = "strawberries and cream"
+	color = "#fc8a8a" // rrgb(252, 138, 138)
+
+	glass_name = "Love Potion"
+	glass_desc = "Love me tender, love me sweet."
+
 
 /* Alcohol */
 
@@ -2278,6 +2357,19 @@
 	glass_name = "unathi liquor"
 	glass_desc = "This barely qualifies as a drink, and may cause euphoria and numbness. Imbiber beware!"
 
+/datum/reagent/ethanol/unathiliquor/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_DIONA)
+		return
+
+	var/drug_strength = 10
+	if(alien == IS_SKRELL)
+		drug_strength = drug_strength * 0.8
+
+	M.druggy = max(M.druggy, drug_strength)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, pick(cardinal))
+
 /datum/reagent/ethanol/sakebomb
 	name = "Sake Bomb"
 	id = "sakebomb"
@@ -2446,16 +2538,270 @@
 	glass_name = "Chrysanthemum"
 	glass_desc = "An exotic cocktail from New Kyoto."
 
-/datum/reagent/ethanol/unathiliquor/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/bitters
+	name = "Bitters"
+	id = "bitters"
+	description = "A blend of fermented fruits and herbs, commonly used in cocktails."
+	taste_description = "sharp bitterness"
+	color = "#9b6241" // rgb(155, 98, 65)
+	strength = 50
+
+	glass_name = "Bitters"
+	glass_desc = "A blend of fermented fruits and herbs, commonly used in cocktails."
+
+/datum/reagent/ethanol/soemmerfire
+	name = "Soemmer Fire"
+	id = "soemmerfire"
+	description = "A painfully hot mixed drink, for when you absolutely need to hurt right now."
+	taste_description = "pure fire"
+	color = "#d13b21" // rgb(209, 59, 33)
+	strength = 25
+
+	glass_name = "Soemmer Fire"
+	glass_desc = "A painfully hot mixed drink, for when you absolutely need to hurt right now."
+
+/datum/reagent/drink/soemmerfire/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
+	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 
-	var/drug_strength = 10
-	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+/datum/reagent/ethanol/winebrandy
+	name = "Wine Brandy"
+	id = "winebrandy"
+	description = "An premium spirit made from distilled wine."
+	taste_description = "very sweet dried fruit with many elegant notes"
+	color = "#4C130B" // rgb(76,19,11)
+	strength = 20
 
-	M.druggy = max(M.druggy, drug_strength)
-	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
+	glass_name = "Wine Brandy"
+	glass_desc = "A very classy looking after-dinner drink."
 
+/datum/reagent/ethanol/morningafter
+	name = "Morning After"
+	id = "morningafter"
+	description = "The finest hair of the dog, coming up!"
+	taste_description = "bitter regrets"
+	color = "#482000" // rgb(72, 32, 0)
+	strength = 60
+
+	glass_name = "Morning After"
+	glass_desc = "The finest hair of the dog, coming up!"
+
+/datum/reagent/ethanol/vesper
+	name = "Vesper"
+	id = "vesper"
+	description = "A dry martini, ice cold and well shaken."
+	taste_description = "lemony class"
+	color = "#cca01c" // rgb(204, 160, 28)
+	strength = 20
+
+	glass_name = "Vesper"
+	glass_desc = "A dry martini, ice cold and well shaken."
+
+/datum/reagent/ethanol/rotgut
+	name = "Rotgut Fever Dream"
+	id = "rotgut"
+	description = "A heinous combination of clashing flavors."
+	taste_description = "plague and coldsweats"
+	color = "#3a6617" // rgb(58, 102, 23)
+	strength = 10
+
+	glass_name = "Rotgut Fever Dream"
+	glass_desc = "Why are you doing this to yourself?"
+
+/datum/reagent/ethanol/voxdelight
+	name = "Vox's Delight"
+	id = "voxdelight"
+	description = "A dangerous combination of all things flammable. Why would you drink this?"
+	taste_description = "corrosive death"
+	color = "#7c003a" // rgb(124, 0, 58)
+	strength = 10
+
+	glass_name = "Vox's Delight"
+	glass_desc = "Not recommended if you enjoy having organs."
+
+/datum/reagent/drink/voxdelight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_DIONA)
+		return
+	if(alien == IS_VOX)
+		M.adjustToxLoss(-0.5 * removed)
+		return
+	M.adjustToxLoss(3 * removed)
+
+/datum/reagent/ethanol/screamingviking
+	name = "Screaming Viking"
+	id = "screamingviking"
+	description = "A boozy, citrus-packed brew."
+	taste_description = "the bartender's frustration"
+	color = "#c6c603" // rgb(198, 198, 3)
+	strength = 9
+
+	glass_name = "Screaming Viking"
+	glass_desc = "A boozy, citrus-packed brew."
+
+/datum/reagent/ethanol/robustin
+	name = "Robustin"
+	id = "robustin"
+	description = "A bootleg brew of all the worst things on station."
+	taste_description = "cough syrup and fire"
+	color = "#6b0145" // rgb(107, 1, 69)
+	strength = 10
+
+	glass_name = "Robustin"
+	glass_desc = "A bootleg brew of all the worst things on station."
+
+/datum/reagent/ethanol/virginsip
+	name = "Virgin Sip"
+	id = "virginsip"
+	description = "A perfect martini, watered down and ruined."
+	taste_description = "emasculation and failure"
+	color = "#2E6671" // rgb(46, 102, 113)
+	strength = 60
+
+	glass_name = "Virgin Sip"
+	glass_desc = "A perfect martini, watered down and ruined."
+
+/datum/reagent/ethanol/jellyshot
+	name = "Jelly Shot"
+	id = "jellyshot"
+	description = "A thick and vibrant alcoholic gel, perfect for the night life."
+	taste_description = "thick, alcoholic cherry gel"
+	color = "#e00b0b" // rgb(224, 11, 11)
+	strength = 10
+
+	glass_name = "Jelly Shot"
+	glass_desc = "A thick and vibrant alcoholic gel, perfect for the night life."
+
+/datum/reagent/ethanol/slimeshot
+	name = "Named Bullet"
+	id = "slimeshot"
+	description = "A thick and toxic slime jelly shot."
+	taste_description = "liquified organs"
+	color = "#6fa300" // rgb(111, 163, 0)
+	strength = 10
+
+	glass_name = "Named Bullet"
+	glass_desc = "A thick slime jelly shot. You can feel your death approaching."
+
+/datum/reagent/drink/slimeshot/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_DIONA)
+		return
+	M.reagents.add_reagent("slimejelly", 0.25)
+
+/datum/reagent/ethanol/cloverclub
+	name = "Clover Club"
+	id = "cloverclub"
+	description = "A light and refreshing rasberry cocktail."
+	taste_description = "sweet raspberry"
+	color = "#dd00a6" // rgb(221, 0, 166)
+	strength = 30
+
+	glass_name = "Clover Club"
+	glass_desc = "A light and refreshing rasberry cocktail."
+
+/datum/reagent/ethanol/negroni
+	name = "Negroni"
+	id = "negroni"
+	description = "A dark, complicated mix of gin and campari... classy."
+	taste_description = "summer nights and wood smoke"
+	color = "#77000d" // rgb(119, 0, 13)
+	strength = 25
+
+	glass_name = "Negroni"
+	glass_desc = "A dark, complicated blend, perfect for relaxing nights by the fire."
+
+/datum/reagent/ethanol/whiskeysour
+	name = "Whiskey Sour"
+	id = "whiskeysour"
+	description = "A smokey, refreshing lemoned whiskey."
+	taste_description = "smoke and citrus"
+	color = "#a0692e" // rgb(160, 105, 46)
+	strength = 20
+
+	glass_name = "Whisker Sour"
+	glass_desc = "A smokey, refreshing lemoned whiskey."
+
+/datum/reagent/ethanol/oldfashioned
+	name = "Old Fashioned"
+	id = "oldfashioned"
+	description = "A classic mix of whiskey and sugar... simple and direct."
+	taste_description = "smokey, divine whiskey"
+	color = "#774410" // rgb(119, 68, 16)
+	strength = 15
+
+	glass_name = "Old Fashioned"
+	glass_desc = "A classic mix of whiskey and sugar... simple and direct."
+
+/datum/reagent/ethanol/daiquiri
+	name = "Daiquiri"
+	id = "daiquiri"
+	description = "Refeshing rum and citrus. Time for a tropical get away."
+	taste_description = "refreshing citrus and rum"
+	color = "#d1ff49" // rgb(209, 255, 73
+	strength = 25
+
+	glass_name = "Daiquiri"
+	glass_desc = "Refeshing rum and citrus. Time for a tropical get away."
+
+/datum/reagent/ethanol/mojito
+	name = "Mojito"
+	id = "mojito"
+	description = "Minty rum and citrus, made for sailing."
+	taste_description = "minty rum and lime"
+	color = "#d1ff49" // rgb(209, 255, 73
+	strength = 30
+
+	glass_name = "Mojito"
+	glass_desc = "Minty rum and citrus, made for sailing."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/ethanol/paloma
+	name = "Paloma"
+	id = "paloma"
+	description = "Tequila and citrus, iced just right..."
+	taste_description = "grapefruit and cold fire"
+	color = "#ffb070" // rgb(255, 176, 112)
+	strength = 20
+
+	glass_name = "Paloma"
+	glass_desc = "Tequila and citrus, iced just right..."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/ethanol/piscosour
+	name = "Pisco Sour"
+	id = "piscosour"
+	description = "Wine Brandy, Lemon, and a dream. A South American classic"
+	taste_description = "light sweetness"
+	color = "#f9f96b" // rgb(249, 249, 107)
+	strength = 30
+
+	glass_name = "Pisco Sour"
+	glass_desc = "South American bliss, served ice cold."
+	
+/datum/reagent/ethanol/coldfront
+	name = "Cold Front"
+	id = "coldfront"
+	description = "Minty, rich, and painfully cold. It's a blizzard in a cup."
+	taste_description = "biting cold"
+	color = "#ffe8c4" // rgb(255, 232, 196)
+	strength = 30
+	adj_temp = -20
+	targ_temp = 220 //Dangerous to certain races. Drink in moderation.
+	
+	glass_name = "Cold Front"
+	glass_desc = "Minty, rich, and painfully cold. It's a blizzard in a cup."
+	
+/datum/reagent/ethanol/mintjulep
+	name = "Mint Julep"
+	id = "mintjulep"
+	description = "Minty and refreshing, perfect for a hot day."
+	taste_description = "refreshing mint"
+	color = "#bbfc8a" // rgb(187, 252, 138)
+	strength = 25
+	adj_temp = -5
+	
+	glass_name = "Mint Julep"
+	glass_desc = "Minty and refreshing, perfect for a hot day."
