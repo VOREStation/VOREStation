@@ -20,6 +20,7 @@
 
 	generate_loot()
 
+/* //Vorestation Edit
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
 	var/loot = rand(1, 99)
 	switch(loot)
@@ -142,6 +143,8 @@
 		if(99)
 			new/obj/item/weapon/storage/belt/champion(src)
 			new/obj/item/clothing/mask/luchador(src)
+
+*/ // Vorestation Edit
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
 	if(!locked)
