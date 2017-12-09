@@ -198,6 +198,49 @@
 		icon_state = "hair_messy"
 		species_allowed = list("Tajara", "Xenochimera")
 
+//Teshari things
+	teshari
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_altdefault
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_tight
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_excited
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_spike
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_long
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_burst
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_shortburst
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_mohawk
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_pointy
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_upright
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_mane
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_droopy
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_mushroom
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
 //Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
 	skr_tentacle_veryshort
 		name = "Skrell Very Short Tentacles"
@@ -492,6 +535,12 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
+	snoutstripe
+		name = "snout stripe (Vulp)"
+		icon_state = "snoutstripe"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
 	vulp_face
 		name = "face (Vulp)"
 		icon_state = "vulp_face"
@@ -532,6 +581,11 @@
 	spidereyes
 		name = "Spider Eyes"
 		icon_state = "spidereyes"
+		body_parts = list(BP_HEAD)
+
+	sergaleyes
+		name = "Sergal Eyes"
+		icon_state = "eyes_sergal"
 		body_parts = list(BP_HEAD)
 
 	nevrean_female
