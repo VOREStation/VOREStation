@@ -441,6 +441,96 @@
 				return
 	return fear_amount
 
+/datum/modifier/trait/phobia/trypanophobe
+	name = "trypanophobia"
+	desc = "Syringes and needles make you very distressed. You really don't want to get sick..."
+	fear_decay_rate = 100
+
+	on_created_text = "<span class='warning'>You are terrified by needles.</span>"
+	on_expired_text = "<span class='notice'>You feel better about being near needles..</span>"
+
+
+	zero_fear_up = list(
+		"<span class='warning'><font size='3'>That's a needle!</font></span>",
+		"<span class='warning'><font size='3'>There's a needle right there!</font></span>"
+		)
+	zero_fear_down = list(
+		"<span class='notice'>The needle is gone, no need to worry.</span>",
+		"<span class='notice'>No more needle.</span>"
+		)
+
+	half_fear_up = list(
+		"<span class='danger'><font size='3'>The needle could get you at any time!</font></span>",
+		"<span class='danger'><font size='3'>The needle is still there!</font></span>"
+		)
+	half_fear_down = list(
+		"<span class='warning'>There are no more needles... right?</span>",
+		"<span class='warning'>You don't see any more needles... But you can never be sure.</span>"
+		)
+
+	full_fear_up = list(
+		"<span class='danger'><font size='4'>The needles are going to pierce you!</font></span>",
+		"<span class='danger'><font size='4'>They could get you any second!</font></span>"
+		)
+	full_fear_down = list(
+		"<span class='danger'>There are more needles around, you can feel it...</span>",
+		"<span class='danger'>No more needles, please...</span>"
+		)
+
+/datum/modifier/trait/phobia/trypanophobe/should_fear()
+	if(holder.blinded)
+		return 0 //Cannot feareth what cannot beest seen
+
+	var/fear_amount = 0
+
+	for(var/atom/thing in view(5, holder)) // See haemophobia for why this is 5.
+
+		if(istype(thing, /obj/item/weapon/reagent_containers/syringe))
+			fear_amount += 4
+
+		if(istype(thing, /obj/machinery/iv_drip))
+			var/obj/machinery/iv_drip/I = thing
+			if(I.beaker)
+				fear_amount += 8
+			else
+				fear_amount += 6
+
+		if(istype(thing, /obj/item/weapon/reagent_containers/hypospray))
+			fear_amount += 2 //Needle doesn't look as intimidating.
+
+		if(istype(thing, /obj/item/weapon/reagent_containers/hypospray/autoinjector)) //Don't know if I need to define autoinjectors too. Meh.
+			fear_amount += 3
+
+		if(istype(thing, /obj/item/rig_module/chem_dispenser))
+			fear_amount += 5
+
+		if(istype(thing, /obj/item/weapon/storage/box/syringes))
+			fear_amount += 2
+
+		if(istype(thing, /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun))
+			fear_amount += 8 //Syringe gun for a big ass mech.
+
+		if(istype(thing, /obj/machinery/sleep_console)) //Sleepers got them needles in them.
+			fear_amount += 4
+
+		if(istype(thing, /obj/item/weapon/implanter))
+			fear_amount += 8 //Very big needle.
+
+		if(istype(thing, /obj/item/weapon/gun/launcher/syringe))
+			fear_amount += 6
+
+		if(istype(thing, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = thing
+			if(H.l_hand && istype(H.l_hand, /obj/item/weapon/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/weapon/reagent_containers/syringe))
+				fear_amount += 10
+
+			if(H.l_ear && istype(H.l_ear, /obj/item/weapon/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/weapon/reagent_containers/syringe))
+				fear_amount +=10
+
+
+	return fear_amount
+
+
 // Note for the below 'phobias' are of the xeno-phobic variety, and are less centered on pure fear as above, and more on a mix of distrust, fear, and disdainfulness.
 // As such, they are mechanically different than the fear-based phobias, in that instead of a buildup of fearful messages, it does intermittent messages specific to what holder sees.
 

@@ -189,6 +189,11 @@
 	desc = "Slimes are quite dangerous, but just the aspect of something being slimey is uncomfortable."
 	modifier_type = /datum/modifier/trait/phobia/blennophobe
 
+/datum/trait/modifier/mental/trypanophobe
+	name = "Trypanophobia"
+	desc = "Syringes and needles make you very distressed. You really don't want to get sick..."
+	modifier_type = /datum/modifier/trait/phobia/trypanophobe
+
 /*
 // Uncomment this when/if these get finished.
 /datum/trait/modifier/mental/synthphobe
