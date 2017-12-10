@@ -51,6 +51,20 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "serg_fairytail"
 		species_allowed = list("Sergal")
+				
+	sergal_esio
+		name = "Sergal Esio"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "serg_esio"
+		species_allowed = list("Sergal")
+		
+	sergal_caspar
+		name = "Sergal Caspar"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "serg_casp"
+		species_allowed = list("Sergal")
 
 	braid
 		name = "Floorlength Braid"
