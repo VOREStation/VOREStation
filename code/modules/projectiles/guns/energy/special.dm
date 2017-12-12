@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/energy/ionrifle/pistol
 	name = "ion pistol"
-	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability.."
+	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability."
 	icon_state = "ionpistol"
 	item_state = null
 	w_class = ITEMSIZE_NORMAL
@@ -127,7 +127,7 @@
 
 /obj/item/weapon/gun/energy/staff
 	name = "staff of change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself"
+	desc = "An artifact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
 	icon = 'icons/obj/gun.dmi'
 	item_icons = null
 	icon_state = "staffofchange"
@@ -144,7 +144,7 @@
 
 /obj/item/weapon/gun/energy/staff/special_check(var/mob/user)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		usr << "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>"
+		to_chat(usr, "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>")
 		return 0
 
 	return ..()
@@ -158,13 +158,13 @@
 
 /obj/item/weapon/gun/energy/staff/animate
 	name = "staff of animation"
-	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
+	desc = "An artifact that spits bolts of life force, which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
 	projectile_type = /obj/item/projectile/animate
 	charge_cost = 240
 
 obj/item/weapon/gun/energy/staff/focus
 	name = "mental focus"
-	desc = "An artefact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
+	desc = "An artifact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "focus"
 	slot_flags = SLOT_BACK
@@ -173,17 +173,17 @@ obj/item/weapon/gun/energy/staff/focus
 	attack_self(mob/living/user as mob)
 		if(projectile_type == "/obj/item/projectile/forcebolt")
 			charge_cost = 400
-			user << "<span class='warning'>The [src.name] will now strike a small area.</span>"
+			to_chat(user, "<span class='warning'>The [src.name] will now strike a small area.</span>")
 			projectile_type = "/obj/item/projectile/forcebolt/strong"
 		else
 			charge_cost = 200
-			user << "<span class='warning'>The [src.name] will now strike only a single person.</span>"
+			to_chat(user, "<span class='warning'>The [src.name] will now strike only a single person.</span>")
 			projectile_type = "/obj/item/projectile/forcebolt"
 	*/
 
 /obj/item/weapon/gun/energy/dakkalaser
 	name = "suppression gun"
-	desc = "A massive weapon, designed to pressure the opposition by raining down a torrent of energy pellets."
+	desc = "A massive weapon designed to pressure the opposition by raining down a torrent of energy pellets."
 	icon_state = "dakkalaser"
 	item_state = "dakkalaser"
 	fire_sound = 'sound/weapons/Laser.ogg'
