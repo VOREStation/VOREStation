@@ -387,6 +387,10 @@
 	var/color_blend_mode = ICON_MULTIPLY
 	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the facial hair styles.
 
+	common_shaved
+		name = "No beard"
+		icon_state = "bald"
+		gender = NEUTER
 
 	vulp_none
 		name = "None"
