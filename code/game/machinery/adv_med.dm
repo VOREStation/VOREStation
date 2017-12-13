@@ -39,20 +39,23 @@
 	else if(istype(G, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/H = G
 		if(panel_open)
-			user << "<span class='notice'>Close the maintenance panel first.</span>"
+			to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 			return
 		if(!ismob(H.affecting))
 			return
+		if(!ishuman(H.affecting))
+			to_chat(user, "<span class='warning'>\The [src] is not designed for that organism!</span>")
+			return
 		if(occupant)
-			user << "<span class='notice'>The scanner is already occupied!</span>"
+			to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
 			return
 		for(var/mob/living/simple_animal/slime/M in range(1, H.affecting))
 			if(M.victim == H.affecting)
-				user << "<span class='danger'>[H.affecting.name] has a fucking slime attached to them, deal with that first.</span>"
+				to_chat(user, "<span class='danger'>[H.affecting.name] has a slime attached to them, deal with that first.</span>")
 				return
 		var/mob/M = H.affecting
 		if(M.abiotic())
-			user << "<span class='notice'>Subject cannot have abiotic items on.</span>"
+			to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
 			return
 		M.forceMove(src)
 		occupant = M
@@ -72,20 +75,20 @@
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
-		user << "<span class='notice'>Close the maintenance panel first.</span>"
+		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 		return 0 //panel open
 	if(occupant)
-		user << "<span class='notice'>\The [src] is already occupied.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is already occupied.</span>")
 		return 0 //occupied
 
 	if(O.buckled)
 		return 0
 	if(O.abiotic())
-		user << "<span class='notice'>Subject cannot have abiotic items on.</span>"
+		to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
 		return 0
 	for(var/mob/living/simple_animal/slime/M in range(1, O))
 		if(M.victim == O)
-			user << "<span class='danger'>[O] has a fucking slime attached to them, deal with that first.</span>"
+			to_chat(user, "<span class='danger'>[O] has a slime attached to them, deal with that first.</span>")
 			return 0
 
 	if(O == user)
@@ -185,9 +188,9 @@
 				var/obj/machinery/bodyscanner/C = P.connectable
 				scanner = C
 				C.console = src
-				user << "<span class='warning'> You link the [src] to the [P.connectable]!</span>"
+				to_chat(user, "<span class='warning'> You link the [src] to the [P.connectable]!</span>")
 		else
-			user << "<span class='warning'> You store the [src] in the [P]'s buffer!</span>"
+			to_chat(user, "<span class='warning'> You store the [src] in the [P]'s buffer!</span>")
 			P.connectable = src
 		return
 	else
@@ -240,7 +243,7 @@
 		return
 
 	if (scanner.panel_open)
-		user << "<span class='notice'>Close the maintenance panel first.</span>"
+		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 		return
 
 	if(!scanner)
@@ -250,7 +253,7 @@
 	else if(scanner)
 		return ui_interact(user)
 	else
-		user << "<span class='warning'>Scanner not found!</span>"
+		to_chat(user, "<span class='warning'>Scanner not found!</span>")
 
 /obj/machinery/body_scanconsole/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
