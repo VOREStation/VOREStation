@@ -363,13 +363,17 @@
 	display_name = "red evening gown"
 	path = /obj/item/clothing/under/dress/redeveninggown
 
-/datum/gear/uniform/dresses/janimaid
-	display_name = "maid uniform"
-	path = /obj/item/clothing/under/dress/janimaid
+/datum/gear/uniform/dresses/maid
+	display_name = "maid uniform selection"
+	path = /obj/item/clothing/under/dress/maid
 
-/datum/gear/uniform/dresses/sexymaid
-	display_name = "sexy maid uniform"
-	path = /obj/item/clothing/under/dress/sexymaid
+/datum/gear/uniform/dresses/maid/New()
+	..()
+	var/list/maids = list()
+	for(var/maid in typesof(/obj/item/clothing/under/dress/maid))
+		var/obj/item/clothing/under/dress/maid/maid_type = maid
+		maids[initial(maid_type.name)] = maid_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(maids))
 
 /datum/gear/uniform/utility
 	display_name = "utility, black"
