@@ -19,6 +19,9 @@
 	pixel_x = -16
 	pixel_y = -16
 
+/mob/living/simple_animal/hostile/carp/large/huge
+	icon = 'icons/mob/vore64x64.dmi'
+
 // Activate Noms!
 /mob/living/simple_animal/hostile/carp/large
 	vore_active = 1
