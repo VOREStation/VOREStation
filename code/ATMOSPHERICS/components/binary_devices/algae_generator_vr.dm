@@ -9,12 +9,13 @@
 	circuit = /obj/item/weapon/circuitboard/algae_farm
 	anchored = 1
 	density = 1
-	use_power = 2
+	power_channel = EQUIP
+	use_power = 1
 	idle_power_usage = 100		// Minimal lights to keep algae alive
 	active_power_usage = 5000	// Powerful grow lights to stimulate oxygen production
 	//power_rating = 7500			//7500 W ~ 10 HP
 
-	var/list/stored_material =  list(MATERIAL_ALGAE = 10000, MATERIAL_CARBON = 0)
+	var/list/stored_material =  list(MATERIAL_ALGAE = 0, MATERIAL_CARBON = 0)
 	// Capacity increases with matter bin quality
 	var/list/storage_capacity = list(MATERIAL_ALGAE = 10000, MATERIAL_CARBON = 10000)
 	// Speed at which we convert CO2 to O2.  Increases with manipulator quality
@@ -31,6 +32,9 @@
 	var/datum/gas_mixture/internal = new()
 	var/const/input_gas = "carbon_dioxide"
 	var/const/output_gas = "oxygen"
+
+/obj/machinery/atmospherics/binary/algae_farm/filled
+	stored_material = list(MATERIAL_ALGAE = 10000, MATERIAL_CARBON = 0)
 
 /obj/machinery/atmospherics/binary/algae_farm/New()
 	..()
@@ -54,6 +58,8 @@
 	recent_moles_transferred = 0
 
 	if(inoperable() || use_power < 2)
+		ui_error = null
+		update_icon()
 		if(use_power == 1)
 			last_power_draw = idle_power_usage
 		else
@@ -65,9 +71,11 @@
 	// STEP 1 - Check material resources
 	if(stored_material[MATERIAL_ALGAE] < algae_per_mole)
 		ui_error = "Insufficient [material_display_name(MATERIAL_ALGAE)] to process."
+		update_icon()
 		return
 	if(stored_material[MATERIAL_CARBON] + carbon_per_mole > storage_capacity[MATERIAL_CARBON])
 		ui_error = "[material_display_name(MATERIAL_CARBON)] output storage is full."
+		update_icon()
 		return
 	var/moles_to_convert = min(moles_per_tick,\
 		stored_material[MATERIAL_ALGAE] * algae_per_mole,\
@@ -85,6 +93,7 @@
 	var/co2_moles = internal.gas[input_gas]
 	if(co2_moles < MINIMUM_MOLES_TO_FILTER)
 		ui_error = "Insufficient [gas_data.name[input_gas]] to process."
+		update_icon()
 		return
 
 	// STEP 4 - Consume the resources
@@ -104,7 +113,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/binary/algae_farm/update_icon()
-	if(inoperable() || !anchored)
+	if(inoperable() || !anchored || use_power < 2)
 		icon_state = "algae-off"
 	else if(recent_moles_transferred >= moles_per_tick)
 		icon_state = "algae-full"
@@ -120,6 +129,8 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
+	if(default_part_replacement(user, W))
+		return
 	if(try_load_materials(user, W))
 		return
 	else
@@ -130,6 +141,29 @@
 	if(..())
 		return 1
 	ui_interact(user)
+
+/obj/machinery/atmospherics/binary/algae_farm/RefreshParts()
+	..()
+
+	var/cap_rating = 0
+	var/bin_rating = 0
+	var/manip_rating = 0
+
+	for(var/obj/item/weapon/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+			cap_rating += P.rating
+		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+			bin_rating += P.rating
+		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+			manip_rating += P.rating
+
+	power_per_mole = round(initial(power_per_mole) / cap_rating)
+
+	var/storage = 5000 * (bin_rating**2)/2
+	for(var/mat in storage_capacity)
+		storage_capacity[mat] = storage
+
+	moles_per_tick = initial(moles_per_tick) + (manip_rating**2 - 1)
 
 /obj/machinery/atmospherics/binary/algae_farm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nano_ui/master_ui = null, var/datum/topic_state/state = default_state)
 	var/data[0]
@@ -254,6 +288,9 @@
 	icon_state = "sheet-uranium"
 	color = "#557722"
 	default_type = MATERIAL_ALGAE
+
+/obj/item/stack/material/algae/ten
+	amount = 10
 
 /material/carbon
 	name = MATERIAL_CARBON
