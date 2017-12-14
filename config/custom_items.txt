@@ -145,6 +145,12 @@ character_name: James Holder
 item_path: /obj/item/weapon/disk/data
 }
 
+{
+ckey: cameron653
+character_name: Jasmine Lizden
+item_path: /obj/item/weapon/implanter/reagent_generator/jasmine
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
