@@ -73,7 +73,7 @@
 			if(!(path in negative_traits))
 				pref.neg_traits -= path
 
-	if(!pref.custom_base || !(pref.custom_base in playable_species - whitelisted_species))
+	if(!pref.custom_base || (pref.custom_base != "Xenochimera" && !(pref.custom_base in playable_species - whitelisted_species)))
 		pref.custom_base = "Human"
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
@@ -86,14 +86,27 @@
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
 
+	if(pref.species == "Xenochimera")
+		var/datum/species/xenochimera/CS = character.species
+		var/S = pref.custom_base ? pref.custom_base : "Human"
+		var/datum/species/xenochimera/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
+
+		//Any additional non-trait settings can be applied here
+		new_CS.blood_color = pref.blood_color
+
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
-	//if(pref.species == "Custom Species" || pref.custom_species) //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their custom species.
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	if(pref.species == "Custom Species")
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+
+	if(pref.species == "Xenochimera")
+		. += "<b>Icon Base: </b> "
+		. += "<a href='?src=\ref[src];custom_base_xenochimera=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+
+	if(pref.species == "Custom Species")
 
 		var/points_left = pref.starting_trait_points
 		var/traits_left = pref.max_traits
@@ -149,6 +162,12 @@
 
 	else if(href_list["custom_base"])
 		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean"
+		if(text_choice in playable_species)
+			pref.custom_base = text_choice
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["custom_base_xenochimera"])
+		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean" + "Xenochimera"
 		if(text_choice in playable_species)
 			pref.custom_base = text_choice
 		return TOPIC_REFRESH_UPDATE_PREVIEW
