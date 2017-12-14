@@ -84,7 +84,10 @@
 							log_and_message_admins("lost their [breaking] with *flip, ahahah.", src)
 						else
 							src.Weaken(5)
-							E.fracture()
+							if(E.cannot_break) //Prometheans go splat
+								E.droplimb(0,DROPLIMB_BLUNT)
+							else
+								E.fracture()
 							message += " <span class='danger'>And breaks something!</span>"
 							log_and_message_admins("broke their [breaking] with *flip, ahahah.", src)
 
