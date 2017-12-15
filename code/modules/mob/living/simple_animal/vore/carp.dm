@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/carp/large
+/mob/living/simple_animal/hostile/carp/large/huge
 	name = "great white carp"
 	desc = "You're going to need a bigger ship."
 	icon = 'icons/mob/vore64x64.dmi'
@@ -19,8 +19,9 @@
 	pixel_x = -16
 	pixel_y = -16
 
-/mob/living/simple_animal/hostile/carp/large/huge
+/mob/living/simple_animal/hostile/carp/large
 	icon = 'icons/mob/vore64x64.dmi'
+	vore_icons = 0 // NO VORE SPRITES
 
 // Activate Noms!
 /mob/living/simple_animal/hostile/carp/large

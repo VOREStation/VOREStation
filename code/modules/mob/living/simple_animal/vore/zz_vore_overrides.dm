@@ -74,6 +74,12 @@
 	vore_capacity = 3
 	vore_pounce_chance = 75
 
+/mob/living/simple_animal/hostile/alien/sentinel/praetorian
+	vore_icons = 0 // NO VORE SPRITES
+
+/mob/living/simple_animal/hostile/alien/queen/empress/mother
+	vore_icons = 0 // NO VORE SPRITES
+
 /mob/living/simple_animal/hostile/bear
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
