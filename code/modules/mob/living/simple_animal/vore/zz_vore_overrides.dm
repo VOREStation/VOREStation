@@ -59,7 +59,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_animal/hostile/alien/queen/large
+/mob/living/simple_animal/hostile/alien/queen/empress
 	vore_active = 1
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "queen_s"

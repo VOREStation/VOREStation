@@ -41,7 +41,7 @@
 	. = ..()
 
 	if(module)
-		if(module.type == /obj/item/weapon/robot_module/scrubpup)//no water reserve mechanics yet.
+		if(module.type == /obj/item/weapon/robot_module/robot/scrubpup)//no water reserve mechanics yet.
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
