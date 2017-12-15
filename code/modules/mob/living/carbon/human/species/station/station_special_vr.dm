@@ -35,11 +35,9 @@
 	min_age = 18
 	max_age = 80
 
-	blurb = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus eros, egestas in sapien non, \
-	eleifend suscipit ligula. Donec malesuada lectus odio, ut pretium massa semper eu. Quisque posuere, odio viverra rutrum auctor, nisl erat finibus velit, \
-	a pretium justo ante id ex. Sed volutpat libero eu arcu efficitur dictum. Nullam egestas ornare nisl, nec faucibus enim. Vestibulum semper dolor magna, eget sodales arcu ullamcorper sed. \
-	Duis sit amet ante sagittis, tincidunt lectus sit amet, bibendum dui. Quisque in dolor venenatis est consectetur dignissim. Nunc nulla ante, lobortis nec posuere in, rhoncus eget velit. \
-	Sed ligula justo, molestie quis tellus."
+	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
+	Widely known for their voracious nature and violent tendencies when stressed or left unfed for long periods of time. \
+	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -5000     // All cold debuffs are handled below in handle_environment_special
@@ -356,9 +354,12 @@
 	min_age = 18
 	max_age = 80
 
-	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
-	Widely known for their voracious nature and violent tendencies when stressed or left unfed for long periods of time. \
-	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
+
+	blurb = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus eros, egestas in sapien non, \
+	eleifend suscipit ligula. Donec malesuada lectus odio, ut pretium massa semper eu. Quisque posuere, odio viverra rutrum auctor, nisl erat finibus velit, \
+	a pretium justo ante id ex. Sed volutpat libero eu arcu efficitur dictum. Nullam egestas ornare nisl, nec faucibus enim. Vestibulum semper dolor magna, eget sodales arcu ullamcorper sed. \
+	Duis sit amet ante sagittis, tincidunt lectus sit amet, bibendum dui. Quisque in dolor venenatis est consectetur dignissim. Nunc nulla ante, lobortis nec posuere in, rhoncus eget velit. \
+	Sed ligula justo, molestie quis tellus."
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -5000 //Temp immune
@@ -407,7 +408,7 @@
 		H.confused = max(H.confused, 20)
 	else if(H.bodytemperature >= 333.15 && H.bodytemperature < 353.15) //60C Sleeping
 		H.sleeping = max(H.sleeping, 20)
-	else if(H.bodytemperature >= 353.15) //80C Organ damage and sleeping.
+	else if(H.bodytemperature >= 353.15) //80C Organ damage and sleeping
 		H.sleeping = max(H.sleeping, 20)
 		var/obj/item/organ/internal/O = pick(H.internal_organs)
 		if(O) //In case they have no internal organs but are still alive by some magic. Prevents runtimes.
