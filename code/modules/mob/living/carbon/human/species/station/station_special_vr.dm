@@ -403,11 +403,12 @@
 	if(H.stat == 2)
 		return
 
-	if(H.bodytemperature >= 318.15 && H.bodytemperature < 333.15) //45C
+	if(H.bodytemperature >= 318.15 && H.bodytemperature < 333.15) //45C Confusion
 		H.confused = max(H.confused, 20)
-	else if(H.bodytemperature >= 333.15 && H.bodytemperature < 353.15) //60C
+	else if(H.bodytemperature >= 333.15 && H.bodytemperature < 353.15) //60C Sleeping
 		H.sleeping = max(H.sleeping, 20)
-	else if(H.bodytemperature >= 353.15) //80C
+	else if(H.bodytemperature >= 353.15) //80C Organ damage and sleeping.
+		H.sleeping = max(H.sleeping, 20)
 		var/obj/item/organ/internal/O = pick(H.internal_organs)
 		if(O) //In case they have no internal organs but are still alive by some magic. Prevents runtimes.
 			O.take_damage(5) //Welp.
