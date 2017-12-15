@@ -35,9 +35,11 @@
 	min_age = 18
 	max_age = 80
 
-	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
-	Widely known for their voracious nature and violent tendencies when stressed or left unfed for long periods of time. \
-	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
+	blurb = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus eros, egestas in sapien non, \
+	eleifend suscipit ligula. Donec malesuada lectus odio, ut pretium massa semper eu. Quisque posuere, odio viverra rutrum auctor, nisl erat finibus velit, \
+	a pretium justo ante id ex. Sed volutpat libero eu arcu efficitur dictum. Nullam egestas ornare nisl, nec faucibus enim. Vestibulum semper dolor magna, eget sodales arcu ullamcorper sed. \
+	Duis sit amet ante sagittis, tincidunt lectus sit amet, bibendum dui. Quisque in dolor venenatis est consectetur dignissim. Nunc nulla ante, lobortis nec posuere in, rhoncus eget velit. \
+	Sed ligula justo, molestie quis tellus."
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -5000     // All cold debuffs are handled below in handle_environment_special
@@ -312,3 +314,100 @@
 			H.eye_blurry = 5
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage.
 		return
+
+///////////////////////
+////////Chirret////////
+///////////////////////
+/datum/species/chirret
+	name = "Chirret"
+	name_plural = "Chirrets"
+	icobase = 'icons/mob/human_races/r_chirret.dmi'
+	deform = 'icons/mob/human_races/r_def_chirret.dmi'
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 8 //Darksight+
+	slowdown = -0.5 //Haste
+	total_health = 80
+	brute_mod = 1.25
+	burn_mod =  0.75
+	can_fly = 1
+	trashcan = 1 //Yes.
+	reagent_tag = IS_CHIRRET //Sugar messses them up. Coffee makes them jittery.
+
+	num_alternate_languages = 3
+	secondary_langs = list("Sol Common")
+	//color_mult = 1
+	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
+	icobase_tail = 1
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/begin_reconstitute_form,
+		/mob/living/carbon/human/proc/sonar_ping,
+		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/carbon/human/proc/succubus_drain_finialize,
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/bloodsuck,
+		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/carbon/human/proc/create_silk) //Chirrets get all the special verbs since they can't select traits.
+
+	male_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+
+	min_age = 18
+	max_age = 80
+
+	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
+	Widely known for their voracious nature and violent tendencies when stressed or left unfed for long periods of time. \
+	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
+
+	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
+	cold_level_1 = -5000 //Temp immune
+	cold_level_2 = -5000
+	cold_level_3 = -5000
+	heat_level_1 = 500000 //Handled below. Temperature immune, but confusion at 45c, unconscious at 60+, organs take damage at 80c+
+	heat_level_2 = 500000
+	heat_level_3 = 500000
+	breath_heat_level_1 = 500000
+	breath_heat_level_2 = 500000
+	breath_heat_level_3 = 500000
+
+	has_organ = list(
+		O_HEART =    /obj/item/organ/internal/heart/chirret,
+		O_LUNGS =    /obj/item/organ/internal/lungs/chirret,
+		O_LIVER =    /obj/item/organ/internal/liver/chirret,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys/,
+		O_BRAIN =    /obj/item/organ/internal/brain/chirret,
+		O_EYES =     /obj/item/organ/internal/eyes/,
+		O_SILKSPINNER = /obj/item/organ/internal/silkspinner,
+		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients/chirret)
+
+
+	hazard_high_pressure = 	(HAZARD_HIGH_PRESSURE + 10)
+	warning_high_pressure =	(WARNING_HIGH_PRESSURE + 10)
+	warning_low_pressure =	(WARNING_LOW_PRESSURE - 10)
+	hazard_low_pressure = 	(HAZARD_LOW_PRESSURE - 10)
+
+
+	//primitive_form = "Farwa"
+
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
+	flags = NO_MINOR_CUT
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color 	= "#333333"
+	blood_color = "#14AD8B"
+
+
+/datum/species/chirret/handle_environment_special(var/mob/living/carbon/human/H)
+	if(H.stat == 2)
+		return
+
+	if(H.bodytemperature >= 318.15 && H.bodytemperature < 333.15) //45C
+		H.confused = max(H.confused, 20)
+	else if(H.bodytemperature >= 333.15 && H.bodytemperature < 353.15) //60C
+		H.sleeping = max(H.sleeping, 20)
+	else if(H.bodytemperature >= 353.15) //80C
+		var/obj/item/organ/internal/O = pick(H.internal_organs)
+		if(O) //In case they have no internal organs but are still alive by some magic. Prevents runtimes.
+			O.take_damage(5) //Welp.

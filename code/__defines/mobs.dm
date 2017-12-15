@@ -175,6 +175,7 @@
 #define O_ACID     "acid gland"
 #define O_EGG      "egg sac"
 #define O_RESIN    "resin spinner"
+#define O_SILKSPINNER "silk spinner" //VOREStation Edit
 
 #define BP_L_FOOT "l_foot"
 #define BP_R_FOOT "r_foot"

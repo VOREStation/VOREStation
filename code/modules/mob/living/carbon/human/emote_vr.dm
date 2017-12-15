@@ -51,6 +51,14 @@
 				SC.emote_into(nifmessage,src)
 			return 1
 
+		if("chirp")
+			if(src.species.name == "Chirret")
+				message = "<B>The [src.name]</B> chirps!"
+				playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0)
+				m_type = 2
+			else
+				src << "<span class='warning'>You can't chirp without being a Chirret!</span>"
+
 		if ("flip")
 			var/danger = 1 //Base 1% chance to break something.
 			var/list/involved_parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)

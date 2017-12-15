@@ -841,3 +841,41 @@
 			C.anchored = 0
 	else
 		return
+
+
+/obj/structure/closet/body_bag/chirret
+	name = "odd silk webbing"
+	desc = "Some odd silk webbing. It looks as though it could hold someone!"
+	icon = 'icons/obj/bodybag_vr.dmi'
+	icon_state = "silk_closed"
+	icon_closed = "silk_closed"
+	icon_opened = "silk_open"
+	open_sound = 'sound/effects/rustle1.ogg'
+	close_sound = 'sound/effects/rustle1.ogg'
+	item_path = null
+	density = 0
+	storage_capacity = (MOB_MEDIUM * 2) - 1
+
+
+/mob/living/carbon/human/proc/create_silk()
+	var/mob/living/carbon/human/O = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	last_special = world.time + 600 //60 seconds. You don't get
+	if(!istype(G))
+		var/silk_path = /obj/structure/closet/body_bag/chirret
+		new silk_path(O) //For modifications in the future.
+		to_chat(O, "<span class='notice'>You create a soft silk cocoon!</span>")
+		O.visible_message("<font color='notice'>[O] creates a soft silk cocoon!</font>")
+		return
+	var/mob/living/carbon/human/T = G.affecting
+	//If they're holding someone, cocoon them.
+	O.visible_message("<font color='notice'>[O] begins to encase [T] in soft silk!</font>")
+	if(do_after(O, 200, T)) //20 seconds to cocoon someone.
+		if(!Adjacent(T)) return
+		var/silk_path = /obj/structure/closet/body_bag/chirret
+		var/obj/structure/closet/body_bag/chirret/chirrret_silk = new silk_path(O)
+		T.forceMove(chirrret_silk) //Put them in the body bag!
+		to_chat(T, "<span class='notice'>You're encased in a soft silk cocoon by [O]!</span>")
+		to_chat(O, "<span class='notice'>Your encase [T] in a soft silk cocoon!</span>")
+		O.visible_message("<font color='notice'>[O] encases [T] in a soft silk cocoon!</font>")
+
