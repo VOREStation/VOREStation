@@ -876,6 +876,6 @@
 		var/obj/structure/closet/body_bag/chirret/chirrret_silk = new silk_path(O)
 		T.forceMove(chirrret_silk) //Put them in the body bag!
 		to_chat(T, "<span class='notice'>You're encased in a soft silk cocoon by [O]!</span>")
-		to_chat(O, "<span class='notice'>Your encase [T] in a soft silk cocoon!</span>")
+		to_chat(O, "<span class='notice'>You encase [T] in a soft silk cocoon!</span>")
 		O.visible_message("<font color='notice'>[O] encases [T] in a soft silk cocoon!</font>")
 
