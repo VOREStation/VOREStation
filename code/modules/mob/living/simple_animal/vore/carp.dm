@@ -18,15 +18,13 @@
 	old_y = -16
 	pixel_x = -16
 	pixel_y = -16
-
-/mob/living/simple_animal/hostile/carp/large
-	icon = 'icons/mob/vore64x64.dmi'
-	vore_icons = 0 // NO VORE SPRITES
+	vore_capacity = 2
 
 // Activate Noms!
 /mob/living/simple_animal/hostile/carp/large
+	icon = 'icons/mob/vore64x64.dmi'
 	vore_active = 1
 	vore_pounce_chance = 50
-	vore_capacity = 2
+	vore_capacity = 1
 	vore_max_size = RESIZE_HUGE
 	vore_icons = SA_ICON_LIVING

@@ -75,7 +75,7 @@
 	vore_pounce_chance = 75
 
 /mob/living/simple_animal/hostile/alien/sentinel/praetorian
-	vore_icons = 0 // NO VORE SPRITES
+	icon = 'icons/mob/vore64x64.dmi'
 
 /mob/living/simple_animal/hostile/alien/queen/empress/mother
 	vore_icons = 0 // NO VORE SPRITES
