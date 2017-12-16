@@ -57,7 +57,7 @@
 				playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0)
 				m_type = 2
 			else
-				src << "<span class='warning'>You can't chirp without being a Chirret!</span>"
+				to_chat(src, "<span class='warning'>You can't chirp without being a Chirret!</span>")
 
 		if ("flip")
 			var/danger = 1 //Base 1% chance to break something.
