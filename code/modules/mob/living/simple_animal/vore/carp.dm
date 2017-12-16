@@ -5,6 +5,7 @@
 	icon_dead = "megacarp-dead"
 	icon_living = "megacarp"
 	icon_state = "megacarp"
+	vore_icons = SA_ICON_LIVING
 
 	maxHealth = 600 // Boss
 	health = 600
@@ -27,4 +28,3 @@
 	vore_pounce_chance = 50
 	vore_capacity = 1
 	vore_max_size = RESIZE_HUGE
-	vore_icons = SA_ICON_LIVING
