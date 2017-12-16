@@ -361,7 +361,6 @@
 	They all have four arms, the lower pair being slightly shorter than the upper, elongated heads, and smooth, dark skin. They also have four antennae atop their chitinous headshell, \
 	The females are known to have a 'blush'-like pattern under their eyes, making it the only superficial method to determine a Chirrets gender, as their bodies are androgynous."
 
-	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -5000 //Temp immune
 	cold_level_2 = -5000
 	cold_level_3 = -5000
@@ -372,6 +371,11 @@
 	breath_heat_level_2 = 500000
 	breath_heat_level_3 = 500000
 
+	hazard_high_pressure = (HAZARD_HIGH_PRESSURE + 10)
+	warning_high_pressure =(WARNING_HIGH_PRESSURE + 10)
+	warning_low_pressure = (WARNING_LOW_PRESSURE - 10)
+	hazard_low_pressure =  (HAZARD_LOW_PRESSURE - 10)
+
 	has_organ = list(
 		O_HEART =    /obj/item/organ/internal/heart/chirret,
 		O_LUNGS =    /obj/item/organ/internal/lungs/chirret,
@@ -381,13 +385,6 @@
 		O_EYES =     /obj/item/organ/internal/eyes/,
 		O_SILKSPINNER = /obj/item/organ/internal/silkspinner,
 		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients/chirret)
-
-
-	hazard_high_pressure = 	(HAZARD_HIGH_PRESSURE + 10)
-	warning_high_pressure =	(WARNING_HIGH_PRESSURE + 10)
-	warning_low_pressure =	(WARNING_LOW_PRESSURE - 10)
-	hazard_low_pressure = 	(HAZARD_LOW_PRESSURE - 10)
-
 
 	//primitive_form = "Farwa"
 
