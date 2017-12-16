@@ -327,7 +327,6 @@
 	total_health = 80
 	brute_mod = 1.25
 	burn_mod =  0.75
-	can_fly = 1
 	trashcan = 1 //Yes.
 	reagent_tag = IS_CHIRRET //Sugar messses them up. Coffee makes them jittery.
 
