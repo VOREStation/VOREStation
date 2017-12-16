@@ -355,11 +355,11 @@
 	max_age = 80
 
 
-	blurb = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus eros, egestas in sapien non, \
-	eleifend suscipit ligula. Donec malesuada lectus odio, ut pretium massa semper eu. Quisque posuere, odio viverra rutrum auctor, nisl erat finibus velit, \
-	a pretium justo ante id ex. Sed volutpat libero eu arcu efficitur dictum. Nullam egestas ornare nisl, nec faucibus enim. Vestibulum semper dolor magna, eget sodales arcu ullamcorper sed. \
-	Duis sit amet ante sagittis, tincidunt lectus sit amet, bibendum dui. Quisque in dolor venenatis est consectetur dignissim. Nunc nulla ante, lobortis nec posuere in, rhoncus eget velit. \
-	Sed ligula justo, molestie quis tellus."
+	blurb = "The Chirret are a species of semi-insectoids living in a harsh, unforgiving planet, plagued with scorching summers and freezing winters. \
+	Active during the winter nights, and hibernating in the summer, they're adapted to a live in the cold, living in enormous hives made of both organic silk \
+	they secrete from the three ant-like, flat abdomens sprouting from their rear, as well as modern construction materials. \
+	They all have four arms, the lower pair being slightly shorter than the upper, elongated heads, and smooth, dark skin. They also have four antennae atop their chitinous headshell, \
+	The females are known to have a 'blush'-like pattern under their eyes, making it the only superficial method to determine a Chirrets gender, as their bodies are androgynous."
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -5000 //Temp immune

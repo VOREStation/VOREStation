@@ -856,6 +856,8 @@
 	density = 0
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 
+/obj/structure/closet/body_bag/chirret/MouseDrop(over_object, src_location, over_location) //No folding up webbing! Bad!
+	return
 
 /mob/living/carbon/human/proc/create_silk()
 	set name = "Create Silk Cocoon"
@@ -878,7 +880,6 @@
 	O.visible_message("<font color='notice'>[O] begins to encase [T] in soft silk!</font>")
 	if(do_after(O, 200, T)) //20 seconds to cocoon someone.
 		if(!Adjacent(T)) return
-		var/silk_path = /obj/structure/closet/body_bag/chirret
 		var/obj/structure/closet/body_bag/chirret/chirrret_silk = new /obj/structure/closet/body_bag/chirret(src.loc)
 		T.forceMove(chirrret_silk) //Put them in the body bag!
 		to_chat(T, "<span class='notice'>You're encased in a soft silk cocoon by [O]!</span>")
