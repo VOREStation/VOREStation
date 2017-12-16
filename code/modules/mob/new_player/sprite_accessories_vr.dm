@@ -731,21 +731,25 @@
 		name = "Chirret Cheeks"
 		icon_state = "chirret_cheeks"
 		body_parts = list(BP_HEAD)
+		color_blend_mode = ICON_MULTIPLY
 
-	chirret_cheeks
+	chirret_claws
 		name = "Chirret Claws"
 		icon_state = "chirret_claws"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+		color_blend_mode = ICON_MULTIPLY
 
 	chirret_face_and_belly_v1
 		name = "Chirret Face and Belly Variant 1"
 		icon_state = "chirret_fb_1"
-		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+		body_parts = list(BP_HEAD,BP_GROIN,BP_TORSO,BP_R_LEG,BP_L_LEG)
+		color_blend_mode = ICON_MULTIPLY
 
 	chirret_face_and_belly_v2
 		name = "Chirret Face and Belly Variant 2"
 		icon_state = "chirret_fb_2"
-		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
+		body_parts = list(BP_HEAD,BP_GROIN,BP_TORSO,BP_R_LEG,BP_L_LEG)
+		color_blend_mode = ICON_MULTIPLY
 
 	harpy_feathers
 		name = "Rapala leg Feather"

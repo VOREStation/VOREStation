@@ -858,12 +858,18 @@
 
 
 /mob/living/carbon/human/proc/create_silk()
+	set name = "Create Silk Cocoon"
+	set desc = "Creates a silk cocoon! If you are holding someone, you will wrap them up in it."
+	set category = "Abilities"
+
+	if(world.time < last_special)
+		return
+
 	var/mob/living/carbon/human/O = src
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	last_special = world.time + 600 //60 seconds. You don't get
 	if(!istype(G))
-		var/silk_path = /obj/structure/closet/body_bag/chirret
-		new silk_path(O) //For modifications in the future.
+		new /obj/structure/closet/body_bag/chirret(src.loc)
 		to_chat(O, "<span class='notice'>You create a soft silk cocoon!</span>")
 		O.visible_message("<font color='notice'>[O] creates a soft silk cocoon!</font>")
 		return
@@ -873,7 +879,7 @@
 	if(do_after(O, 200, T)) //20 seconds to cocoon someone.
 		if(!Adjacent(T)) return
 		var/silk_path = /obj/structure/closet/body_bag/chirret
-		var/obj/structure/closet/body_bag/chirret/chirrret_silk = new silk_path(O)
+		var/obj/structure/closet/body_bag/chirret/chirrret_silk = new /obj/structure/closet/body_bag/chirret(src.loc)
 		T.forceMove(chirrret_silk) //Put them in the body bag!
 		to_chat(T, "<span class='notice'>You're encased in a soft silk cocoon by [O]!</span>")
 		to_chat(O, "<span class='notice'>You encase [T] in a soft silk cocoon!</span>")

@@ -333,7 +333,7 @@
 
 	num_alternate_languages = 3
 	secondary_langs = list("Sol Common")
-	//color_mult = 1
+	color_mult = 1
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
 	icobase_tail = 1
 	inherent_verbs = list(
