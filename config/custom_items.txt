@@ -445,6 +445,12 @@ character_name: Briana Moore
 item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
 }
 
+{
+ckey: Lycanthorph
+character_name: Savannah Dixon
+item_path: /obj/item/weapon/implanter/reagent_generator/savannah
+}
+
 # ######## M CKEYS
 {
 ckey: molenar
