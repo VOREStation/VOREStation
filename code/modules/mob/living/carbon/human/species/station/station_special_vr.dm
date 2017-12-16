@@ -369,6 +369,9 @@
 	breath_heat_level_1 = 500000
 	breath_heat_level_2 = 500000
 	breath_heat_level_3 = 500000
+	breath_cold_level_1 = -5000
+	breath_cold_level_2 = -5000
+	breath_cold_level_3 = -5000
 
 	hazard_high_pressure = (HAZARD_HIGH_PRESSURE + 10)
 	warning_high_pressure =(WARNING_HIGH_PRESSURE + 10)
@@ -385,7 +388,19 @@
 		O_SILKSPINNER = /obj/item/organ/internal/silkspinner,
 		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients/chirret)
 
-	//primitive_form = "Farwa"
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/chirret),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
 	flags = NO_MINOR_CUT

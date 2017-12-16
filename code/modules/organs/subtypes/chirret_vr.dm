@@ -16,3 +16,6 @@
 	icon_state = "silk"
 /obj/item/organ/internal/diona/nutrients/chirret
 	name = "alien organ"
+/obj/item/organ/external/head/vr/chirret
+	eye_icon = "blank_eyes"
+	eye_icon_vr = "eyes_chirret"
