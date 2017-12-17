@@ -804,6 +804,8 @@
 	//if(alien == IS_TAJARA) //VOREStation Edit Begin
 		//M.adjustToxLoss(0.5 * removed)
 		//M.make_jittery(4) //extra sensitive to caffine
+	if(alien == IS_CHIRRET)
+		M.make_jittery(20) //VOREStation Edit End
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 

@@ -74,6 +74,7 @@
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])//If there is a hologram and its master is the user.
 		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
+		if(!hologram) return //VOREStation edit. I keep getting compile warnings because of this!
 		//Human-like, sorta, heard by those who understand humans.
 		var/rendered_a
 		//Speech distorted, heard by those who do not understand AIs.

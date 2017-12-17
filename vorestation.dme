@@ -2153,6 +2153,7 @@
 #include "code\modules\organs\internal\liver.dm"
 #include "code\modules\organs\internal\lungs.dm"
 #include "code\modules\organs\internal\organ_internal.dm"
+#include "code\modules\organs\subtypes\chirret_vr.dm"
 #include "code\modules\organs\subtypes\diona.dm"
 #include "code\modules\organs\subtypes\machine.dm"
 #include "code\modules\organs\subtypes\seromi.dm"
