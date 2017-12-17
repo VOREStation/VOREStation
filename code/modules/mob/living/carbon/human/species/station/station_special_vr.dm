@@ -312,3 +312,115 @@
 			H.eye_blurry = 5
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage.
 		return
+
+///////////////////////
+////////Chirret////////
+///////////////////////
+/datum/species/chirret
+	name = "Chirret"
+	name_plural = "Chirrets"
+	icobase = 'icons/mob/human_races/r_chirret.dmi'
+	deform = 'icons/mob/human_races/r_def_chirret.dmi'
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 8 //Darksight+
+	slowdown = -0.5 //Haste
+	total_health = 80
+	brute_mod = 1.25
+	burn_mod =  0.75
+	trashcan = 1 //Yes.
+	reagent_tag = IS_CHIRRET //Sugar messses them up. Coffee makes them jittery.
+
+	num_alternate_languages = 3
+	secondary_langs = list("Sol Common")
+	color_mult = 1
+	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
+	icobase_tail = 1
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/begin_reconstitute_form,
+		/mob/living/carbon/human/proc/sonar_ping,
+		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/carbon/human/proc/succubus_drain_finialize,
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/bloodsuck,
+		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/carbon/human/proc/create_silk) //Chirrets get all the special verbs since they can't select traits.
+
+	male_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
+	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+
+	min_age = 18
+	max_age = 80
+
+
+	blurb = "The Chirret are a species of semi-insectoids living in a harsh, unforgiving planet, plagued with scorching summers and freezing winters. \
+	Active during the winter nights, and hibernating in the summer, they're adapted to a live in the cold, living in enormous hives made of both organic silk \
+	they secrete from the three ant-like, flat abdomens sprouting from their rear, as well as modern construction materials. \
+	They all have four arms, the lower pair being slightly shorter than the upper, elongated heads, and smooth, dark skin. They also have four antennae atop their chitinous headshell, \
+	The females are known to have a 'blush'-like pattern under their eyes, making it the only superficial method to determine a Chirrets gender, as their bodies are androgynous."
+
+	cold_level_1 = -5000 //Temp immune
+	cold_level_2 = -5000
+	cold_level_3 = -5000
+	heat_level_1 = 500000 //Handled below. Temperature immune, but confusion at 45c, unconscious at 60+, organs take damage at 80c+
+	heat_level_2 = 500000
+	heat_level_3 = 500000
+	breath_heat_level_1 = 500000
+	breath_heat_level_2 = 500000
+	breath_heat_level_3 = 500000
+	breath_cold_level_1 = -5000
+	breath_cold_level_2 = -5000
+	breath_cold_level_3 = -5000
+
+	hazard_high_pressure = (HAZARD_HIGH_PRESSURE + 10)
+	warning_high_pressure =(WARNING_HIGH_PRESSURE + 10)
+	warning_low_pressure = (WARNING_LOW_PRESSURE - 10)
+	hazard_low_pressure =  (HAZARD_LOW_PRESSURE - 10)
+
+	has_organ = list(
+		O_HEART =    /obj/item/organ/internal/heart/chirret,
+		O_LUNGS =    /obj/item/organ/internal/lungs/chirret,
+		O_LIVER =    /obj/item/organ/internal/liver/chirret,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys/,
+		O_BRAIN =    /obj/item/organ/internal/brain/chirret,
+		O_EYES =     /obj/item/organ/internal/eyes/,
+		O_SILKSPINNER = /obj/item/organ/internal/silkspinner,
+		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients/chirret)
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/chirret),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
+
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
+	flags = NO_MINOR_CUT
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color 	= "#333333"
+	blood_color = "#14AD8B"
+
+
+/datum/species/chirret/handle_environment_special(var/mob/living/carbon/human/H)
+	if(H.stat == 2)
+		return
+
+	if(H.bodytemperature >= 318.15 && H.bodytemperature < 333.15) //45C Confusion
+		H.confused = max(H.confused, 20)
+	else if(H.bodytemperature >= 333.15 && H.bodytemperature < 353.15) //60C Sleeping
+		H.sleeping = max(H.sleeping, 20)
+	else if(H.bodytemperature >= 353.15) //80C Organ damage and sleeping
+		H.sleeping = max(H.sleeping, 20)
+		var/obj/item/organ/internal/O = pick(H.internal_organs)
+		if(O) //In case they have no internal organs but are still alive by some magic. Prevents runtimes.
+			O.take_damage(5) //Welp.
