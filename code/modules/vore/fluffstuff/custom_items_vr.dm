@@ -738,6 +738,23 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/implanter/reagent_generator/vorrarkul
 	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
 
+//Lycanthorph: Savannah Dixon
+/obj/item/weapon/implant/reagent_generator/savannah
+	generated_reagents = list("milk" = 2)
+	reagent_name = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your nipples are sore from being milked!", "Your breasts feel drained, milk is no longer leaking from your nipples!")
+	full_message = list("Your breasts are full, their sweet scent emanating from your chest!", "Your breasts feel full, milk is starting to leak from your nipples, filling the air with it's sweet scent!")
+	emote_descriptor = list("squeezes sweet milk from Savannah", "tugs on Savannah's nipples, milking them", "kneads Savannah's breasts, milking them")
+	self_emote_descriptor = list("squeeze", "knead")
+	random_emote = list("lets out a soft moan", "gives an involuntary squeal")
+	verb_name = "Milk"
+	verb_desc = "Grab Savannah's breasts and extract sweet milk from them!"
+
+/obj/item/weapon/implanter/reagent_generator/savannah
+	implant_type = /obj/item/weapon/implant/reagent_generator/savannah
+
 //SpoopyLizz: Roiz Lizden
 //I made this! Woo!
 //implant
@@ -808,6 +825,81 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+//Cameron653: Jasmine Lizden
+/obj/item/weapon/implant/reagent_generator/jasmine
+	name = "egg laying implant"
+	desc = "This is an implant that allows the user to lay eggs."
+	generated_reagents = list("egg" = 2)
+	usable_volume = 500
+	transfer_amount = 50
+
+	empty_message = list("Your lower belly feels flat, empty, and somewhat rough!", "Your lower belly feels completely empty, no more bulges visible... At least, for the moment!")
+	full_message = list("Your lower belly is stretched out, smooth,and heavy, small bulges visible from within!", "It takes considerably more effort to move yourself, the large bulges within your gut most likely the cause!")
+	emote_descriptor = list("an egg from Jasmine's tauric belly!", "into Jasmine's gut, forcing her to lay a considerably large egg!", "Jasmine with a considerable amount of force, causing an egg to slip right out of her!")
+	var/verb_descriptor = list("squeezes", "pushes", "hugs")
+	var/self_verb_descriptor = list("squeeze", "push", "hug")
+	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
+	self_emote_descriptor = list("lay", "force out", "push out")
+	random_emote = list("hisses softly with a blush on her face", "bites down on her lower lip", "lets out a light huff")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_jasmine
+
+/obj/item/weapon/implant/reagent_generator/jasmine/implanted(mob/living/carbon/source)
+	processing_objects += src
+	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	source.verbs |= assigned_proc
+	return 1
+
+/obj/item/weapon/implanter/reagent_generator/jasmine
+	implant_type = /obj/item/weapon/implant/reagent_generator/jasmine
+
+/mob/living/carbon/human/proc/use_reagent_implant_jasmine()
+	set name = "Lay Egg"
+	set desc = "Cause Jasmine to lay an egg by squeezing her tauric belly!"
+	set category = "Object"
+	set src in view(1)
+
+	//do_reagent_implant(usr)
+	if(!isliving(usr) || !usr.canClick())
+		return
+
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+		return
+
+	var/obj/item/weapon/implant/reagent_generator/jasmine/rimplant
+	for(var/I in src.contents)
+		if(istype(I, /obj/item/weapon/implant/reagent_generator))
+			rimplant = I
+			break
+	if (rimplant)
+		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			return
+
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz(get_turf(src))
+
+		var/index = rand(0,3)
+
+		if (usr != src)
+			var/emote = rimplant.emote_descriptor[index]
+			var/verb_desc = rimplant.verb_descriptor[index]
+			var/self_verb_desc = rimplant.self_verb_descriptor[index]
+			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
+							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+		else
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+		if(prob(15))
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+
+
+
+
+
+
 
 /obj/item/weapon/implant/reagent_generator/pumila_apple
 	name = "apple laying implant"
