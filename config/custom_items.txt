@@ -145,6 +145,12 @@ character_name: James Holder
 item_path: /obj/item/weapon/disk/data
 }
 
+{
+ckey: cameron653
+character_name: Jasmine Lizden
+item_path: /obj/item/weapon/implanter/reagent_generator/jasmine
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
@@ -443,6 +449,12 @@ item_path: /obj/item/weapon/storage/box/fluff/briana_moore
 ckey: luminescentring
 character_name: Briana Moore
 item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+}
+
+{
+ckey: Lycanthorph
+character_name: Savannah Dixon
+item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 }
 
 # ######## M CKEYS
