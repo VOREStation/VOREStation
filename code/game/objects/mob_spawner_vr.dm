@@ -113,34 +113,88 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 
 /obj/structure/mob_spawner/scanner
 	name ="Lazy Mob Spawner"
-	var/range = 3
-
-/obj/structure/mob_spawner/New()
-	..()
-	processing_objects.Add(src)
-	last_spawn = world.time
+	var/range = 10 //range in tiles from the spawner to detect moving stuff
 
 /obj/structure/mob_spawner/scanner/process()
+	if(!can_spawn())
+		return
 	if(world.time > last_spawn + spawn_delay)
 		var/turf/mainloc = get_turf(src)
 		for(var/mob/living/A in range(range,mainloc))
-			if (A.move_speed < 12)
+			if ((A.faction != mob_faction) && (A.move_speed < 12))
 				var/chosen_mob = choose_spawn()
 				if(chosen_mob)
 					do_spawn(chosen_mob)
-	return
+
+//////////////
+// Spawners //
+/////////////
 
 /obj/structure/mob_spawner/scanner/corgi
 	name = "Corgi Lazy Spawner"
 	desc = "This is a proof of concept, not sure why you would use this one"
-	spawn_delay = 1 MINUTE
+	spawn_delay = 3 MINUTES
+	mob_faction = "Corgi"
 	spawn_types = list(
 	/mob/living/simple_animal/corgi = 75,
 	/mob/living/simple_animal/corgi/puppy = 50
 	)
 
 	simultaneous_spawns = 5
-	range = 3
+	range = 7
 	destructible = 1
 	health = 200
-	total_spawns = 10
+	total_spawns = 100
+
+/obj/structure/mob_spawner/scanner/wild_animals
+	name = "Wilderness Lazy Spawner"
+	spawn_delay = 10 MINUTES
+	range = 10
+	simultaneous_spawns = 1
+	mob_faction = "wild animal"
+	total_spawns = -1
+	destructible = 0
+	anchored = 1
+	invisibility = 101
+	spawn_types = list(
+	/mob/living/simple_animal/retaliate/gaslamp = 20,
+	/mob/living/simple_animal/otie/feral = 10,
+	/mob/living/simple_animal/hostile/dino/virgo3b = 5,
+	/mob/living/simple_animal/hostile/dragon/virgo3b = 1
+	)
+
+/obj/structure/mob_spawner/scanner/xenos
+	name = "Xenomorph Egg"
+	spawn_delay = 10 MINUTES
+	range = 10
+	simultaneous_spawns = 1
+	mob_faction = "xeno"
+	total_spawns = -1
+	destructible = 1
+	health = 50
+	anchored = 1
+	icon = 'icons/mob/actions.dmi'
+	icon_state = "alien_egg"
+	spawn_types = list(
+	/mob/living/simple_animal/hostile/alien/drone = 20,
+	/mob/living/simple_animal/hostile/alien = 10,
+	/mob/living/simple_animal/hostile/alien/sentinel = 5,
+	/mob/living/simple_animal/hostile/alien/queen = 1
+	)
+
+/obj/structure/mob_spawner/scanner/xenos/royal
+	name = "Royal Xenomorph Egg"
+	spawn_delay = 10 MINUTES
+	range = 10
+	simultaneous_spawns = 1
+	mob_faction = "xeno"
+	total_spawns = 1
+	destructible = 1
+	health = 50
+	anchored = 1
+	icon = 'icons/mob/actions.dmi'
+	icon_state = "alien_egg"
+	spawn_types = list(
+	/mob/living/simple_animal/hostile/alien/queen = 5,
+	/mob/living/simple_animal/hostile/alien/queen/large = 1
+	)

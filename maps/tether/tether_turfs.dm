@@ -40,6 +40,16 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
 
+VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/wall/dark/hard_corner)
+/turf/simulated/shuttle/wall/dark/hard_corner/virgo3b/New()
+	..()
+	outdoor_turfs.Add(src)
+
+VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
+/turf/simulated/shuttle/floor/black/virgo3b/New()
+	..()
+	outdoor_turfs.Add(src)
+
 //Unsimulated
 /turf/unsimulated/wall/planetary/virgo3b
 	name = "facility wall"

@@ -1957,7 +1957,7 @@
 "aLG" = (/obj/structure/cable/cyan,/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 28},/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/engineering/atmos/intake)
 "aLH" = (/turf/simulated/floor/outdoors/dirt/virgo3b,/area/tether/surfacebase/outside/outside1)
 "aLI" = (/obj/structure/sign/warning/caution{desc = "No unarmed personnel beyond this point."; name = "\improper DANGER - WILDERNESS"},/turf/unsimulated/wall/planetary/virgo3b,/area/tether/surfacebase/outside/outside1)
-"aLJ" = (/obj/effect/step_trigger/teleporter/wild/to_wild_1,/turf/unsimulated/wall/planetary/virgo3b,/area/tether/surfacebase/outside/outside1)
+"aLJ" = (/obj/effect/step_trigger/teleporter/wild/to_wild_1,/turf/simulated/floor/outdoors/dirt/virgo3b,/area/tether/surfacebase/outside/outside1)
 "aLK" = (/turf/unsimulated/wall/planetary/virgo3b,/area/tether/surfacebase/outside/outside2)
 "aLL" = (/turf/simulated/open/virgo3b,/area/tether/surfacebase/outside/outside2)
 "aLM" = (/turf/simulated/mineral,/area/tether/surfacebase/outside/outside2)
@@ -6019,4 +6019,3 @@ bsobspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbs
 bsobspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbspbso
 bsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobso
 "}
-
