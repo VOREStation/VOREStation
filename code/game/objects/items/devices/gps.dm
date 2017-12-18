@@ -7,7 +7,7 @@ var/list/GPS_list = list()
 	icon_state = "gps-c"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_MATERIALS = 2, TECH_BLUESPACE = 2, TECH_MAGNETS = 1)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 2, TECH_MAGNET = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	var/gps_tag = "COM0"
 	var/emped = FALSE
@@ -182,7 +182,7 @@ var/list/GPS_list = list()
 	icon_state = "gps-syndie"
 	gps_tag = "NULL"
 	desc = "A positioning system that has extended range and can detect other GPS device signals without revealing its own. How that works is best left a mystery. Alt+click to toggle power."
-	origin_tech = list(TECH_MATERIALS = 2, TECH_BLUESPACE = 3, TECH_MAGNETS = 2, TECH_ILLEGAL = 2)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	long_range = TRUE
 	hide_signal = TRUE
 	can_hide_signal = TRUE
