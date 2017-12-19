@@ -455,6 +455,19 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 */
 
+//Cameron653: Diana Kuznetsova
+/obj/item/clothing/suit/fluff/purp_robes
+	name = "purple robes"
+	desc = "Heavy, royal purple robes threaded with silver lining."
+	icon_state = "psyamp"
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+
+/obj/item/clothing/head/fluff/pink_tiara
+	name = "Pink Tourmaline Tiara"
+	desc = "A small, steel tiara with a large, pink tourmaline gem in the center."
+	icon_state = "amp"
+	body_parts_covered = 0
+
 //Lots of people are using this now.
 /obj/item/clothing/accessory/collar/khcrystal
 	name = "life crystal"

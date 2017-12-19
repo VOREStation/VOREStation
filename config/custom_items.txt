@@ -151,6 +151,18 @@ character_name: Jasmine Lizden
 item_path: /obj/item/weapon/implanter/reagent_generator/jasmine
 }
 
+{
+ckey: cameron653
+character_name: Diana Kuznetsova
+item_path: /obj/item/clothing/suit/fluff/purp_robes
+}
+
+{
+ckey: cameron653
+character_name: Diana Kuznetsova
+item_path: /obj/item/clothing/head/fluff/pink_tiara
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
