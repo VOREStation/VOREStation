@@ -16,6 +16,3 @@
 
 /mob/living/carbon/human/spider/New(var/new_loc)
 	..(new_loc, "Vasilissan")
-
-/mob/living/carbon/human/chirret/New(var/new_loc)
-	..(new_loc, "Chirret")
