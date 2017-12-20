@@ -90,13 +90,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/ears/antennae
-	name = "chirret antennae, colorable"
-	desc = ""
-	icon_state = "antennae_chirret"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
 /datum/sprite_accessory/ears/oni_h1
 	name = "oni horns"
 	desc = ""
@@ -851,14 +844,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sergal_mark"
-
-/datum/sprite_accessory/tail/sergaltaildc
-	name = "chirret, dual-color"
-	desc = ""
-	icon_state = "chirret"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "chirret_mark"
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special

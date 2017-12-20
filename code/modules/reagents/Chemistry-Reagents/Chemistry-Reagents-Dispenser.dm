@@ -414,20 +414,6 @@
 		else
 			M.sleeping = max(M.sleeping, 20)
 			M.drowsyness = max(M.drowsyness, 60)
-	else if(alien == IS_CHIRRET) //VOREStation Edit Start
-		if(effective_dose < 2)
-			if(effective_dose == metabolism * 2 || prob(5))
-				M.make_dizzy(6)
-				M.slurring = max(M.slurring, 30)
-				M.eye_blurry = max(M.eye_blurry, 10)
-		else if(effective_dose < 10)
-			M.slurring = max(M.slurring, 30)
-			M.eye_blurry = max(M.eye_blurry, 10)
-			M.drowsyness = max(M.drowsyness, 20)
-			M.eye_blurry = max(M.eye_blurry, 10)
-			M.confused = max(M.confused, 20)
-		else
-			M.paralysis = max(M.paralysis, 20)//VOREStation Edit End
 
 /datum/reagent/sulfur
 	name = "Sulfur"
