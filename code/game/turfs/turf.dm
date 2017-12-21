@@ -28,6 +28,8 @@
 
 	var/list/footstep_sounds = null
 
+	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -81,6 +83,24 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(S.use_to_pickup && S.collection_mode)
 			S.gather_all(src, user)
 	return ..()
+
+/turf/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+	var/turf/T = get_turf(user)
+	var/area/A = T.loc
+	if((istype(A) && !(A.has_gravity)) || (istype(T,/turf/space)))
+		return
+	if(istype(O, /obj/screen))
+		return
+	if(user.restrained() || user.stat || user.stunned || user.paralysis)
+		return
+	if((!(istype(O, /atom/movable)) || O.anchored || !Adjacent(user) || !Adjacent(O) || !user.Adjacent(O)))
+		return
+	if(!isturf(O.loc) || !isturf(user.loc))
+		return
+	if(isanimal(user) && O != user)
+		return
+	if (do_after(user, 25 + (5 * user.weakened)) && !(user.stat))
+		step_towards(O, src)
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)

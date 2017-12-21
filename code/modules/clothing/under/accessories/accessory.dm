@@ -244,6 +244,14 @@
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by high ranking officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
 
+// Base type for 'medals' found in a "dungeon" submap, as a sort of trophy to celebrate the player's conquest.
+/obj/item/clothing/accessory/medal/dungeon
+
+/obj/item/clothing/accessory/medal/dungeon/alien_ufo
+	name = "alien captain's medal"
+	desc = "It vaguely like a star. It looks like something an alien captain might've worn. Probably."
+	icon_state = "alien_medal"
+
 //Scarves
 
 /obj/item/clothing/accessory/scarf
@@ -302,3 +310,81 @@
 /obj/item/clothing/accessory/scarf/stripedblue
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"
+
+//bracelets
+
+/obj/item/clothing/accessory/bracelet
+	name = "bracelet"
+	desc = "A simple silver bracelet with a clasp."
+	icon = 'icons/obj/clothing/ties.dmi'
+	icon_state = "bracelet"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+
+/obj/item/clothing/accessory/bracelet/friendship
+	name = "friendship bracelet"
+	desc = "A beautiful friendship bracelet in all the colors of the rainbow."
+	icon_state = "friendbracelet"
+
+/obj/item/clothing/accessory/bracelet/friendship/verb/dedicate_bracelet()
+	set name = "Dedicate Bracelet"
+	set category = "Object"
+	set desc = "Dedicate your friendship bracelet to a special someone."
+	var/mob/M = usr
+	if(!M.mind)
+		return 0
+
+	var/input = sanitizeSafe(input("Who do you want to dedicate the bracelet to?", ,""), MAX_NAME_LEN)
+
+	if(src && input && !M.stat && in_range(M,src))
+		desc = "A beautiful friendship bracelet in all the colors of the rainbow. It's dedicated to [input]."
+		to_chat(M, "You dedicate the bracelet to [input], remembering the times you've had together.")
+		return 1
+
+
+/obj/item/clothing/accessory/bracelet/material
+	icon_state = "materialbracelet"
+
+/obj/item/clothing/accessory/bracelet/material/New(var/newloc, var/new_material)
+	..(newloc)
+	if(!new_material)
+		new_material = DEFAULT_WALL_MATERIAL
+	material = get_material_by_name(new_material)
+	if(!istype(material))
+		qdel(src)
+		return
+	name = "[material.display_name] bracelet"
+	desc = "A bracelet made from [material.display_name]."
+	color = material.icon_colour
+
+/obj/item/clothing/accessory/bracelet/material/get_material()
+	return material
+
+/obj/item/clothing/accessory/bracelet/material/wood/New(var/newloc)
+	..(newloc, "wood")
+
+/obj/item/clothing/accessory/bracelet/material/plastic/New(var/newloc)
+	..(newloc, "plastic")
+
+/obj/item/clothing/accessory/bracelet/material/iron/New(var/newloc)
+	..(newloc, "iron")
+
+/obj/item/clothing/accessory/bracelet/material/steel/New(var/newloc)
+	..(newloc, "steel")
+
+/obj/item/clothing/accessory/bracelet/material/silver/New(var/newloc)
+	..(newloc, "silver")
+
+/obj/item/clothing/accessory/bracelet/material/gold/New(var/newloc)
+	..(newloc, "gold")
+
+/obj/item/clothing/accessory/bracelet/material/platinum/New(var/newloc)
+	..(newloc, "platinum")
+
+/obj/item/clothing/accessory/bracelet/material/phoron/New(var/newloc)
+	..(newloc, "phoron")
+
+/obj/item/clothing/accessory/bracelet/material/glass/New(var/newloc)
+	..(newloc, "glass")
+
+	..()

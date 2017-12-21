@@ -51,7 +51,7 @@
 
 		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow \the [src].</span>")
 
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_mob(user, M))
 			return
 

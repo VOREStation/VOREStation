@@ -62,6 +62,10 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
+	short3
+		name = "Short Hair 3"
+		icon_state = "hair_shorthair4"
+
 	twintail
 		name = "Twintail"
 		icon_state = "hair_twintail"

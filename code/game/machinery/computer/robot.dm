@@ -37,6 +37,7 @@
 	// Locks or unlocks the cyborg
 	if (href_list["lockdown"])
 		var/mob/living/silicon/robot/target = get_cyborg_by_name(href_list["lockdown"])
+		var/failmsg = ""
 		if(!target || !istype(target))
 			return
 
@@ -57,11 +58,19 @@
 
 		var/istraitor = target.mind.special_role
 		if (istraitor)
+			failmsg = "failed (target is traitor) "
 			target.lockcharge = !target.lockcharge
 			if (target.lockcharge)
-				target << "Someone tried to lock you down!"
+				to_chat(target, "Someone tried to lock you down!")
 			else
-				target << "Someone tried to lift your lockdown!"
+				to_chat(target, "Someone tried to lift your lockdown!")
+		else if (target.emagged)
+			failmsg = "failed (target is hacked) "
+			target.lockcharge = !target.lockcharge
+			if (target.lockcharge)
+				to_chat(target, "Someone tried to lock you down!")
+			else
+				to_chat(target, "Someone tried to lift your lockdown!")
 		else
 			target.canmove = !target.canmove
 			target.lockcharge = !target.canmove //when canmove is 1, lockcharge should be 0
@@ -70,7 +79,7 @@
 				target << "You have been locked down!"
 			else
 				target << "Your lockdown has been lifted!"
-		message_admins("<span class='notice'>[key_name_admin(usr)] [istraitor ? "failed (target is traitor) " : ""][target.lockcharge ? "lockdown" : "release"] on [target.name]!</span>")
+		message_admins("<span class='notice'>[key_name_admin(usr)] [failmsg][target.lockcharge ? "lockdown" : "release"] on [target.name]!</span>")
 		log_game("[key_name(usr)] attempted to [target.lockcharge ? "lockdown" : "release"] [target.name] on the robotics console!")
 
 

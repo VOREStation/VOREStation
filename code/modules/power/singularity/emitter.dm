@@ -250,14 +250,21 @@
 	if(!P || !P.damage || P.get_structure_damage() <= 0 )
 		return
 
-	integrity = integrity - P.damage
-	if(integrity <= 0)
+	adjust_integrity(-P.get_structure_damage())
+
+/obj/machinery/power/emitter/blob_act()
+	adjust_integrity(-1000) // This kills the emitter.
+
+/obj/machinery/power/emitter/proc/adjust_integrity(amount)
+	integrity = between(0, integrity + amount, initial(integrity))
+	if(integrity == 0)
 		if(powernet && avail(active_power_usage)) // If it's powered, it goes boom if killed.
 			visible_message(src, "<span class='danger'>\The [src] explodes violently!</span>", "<span class='danger'>You hear an explosion!</span>")
 			explosion(get_turf(src), 1, 2, 4)
 		else
 			src.visible_message("<span class='danger'>\The [src] crumples apart!</span>", "<span class='warning'>You hear metal collapsing.</span>")
-		qdel(src)
+		if(src)
+			qdel(src)
 
 /obj/machinery/power/emitter/examine(mob/user)
 	..()

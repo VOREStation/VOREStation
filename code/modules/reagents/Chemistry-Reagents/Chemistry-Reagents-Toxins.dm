@@ -298,6 +298,49 @@
 	power = 10
 	meltdose = 4
 
+/datum/reagent/thermite/venom
+	name = "Pyrotoxin"
+	id = "thermite_v"
+	description = "A biologically produced compound capable of melting steel or other metals, similarly to thermite."
+	taste_description = "sweet chalk"
+	reagent_state = SOLID
+	color = "#673910"
+	touch_met = 50
+
+/datum/reagent/thermite/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustFireLoss(3 * removed)
+	if(M.fire_stacks <= 1.5)
+		M.adjust_fire_stacks(0.15)
+	if(alien == IS_DIONA)
+		return
+	if(prob(10))
+		to_chat(M,"<span class='warning'>Your veins feel like they're on fire!</span>")
+		M.adjust_fire_stacks(0.1)
+	else if(prob(5))
+		M.IgniteMob()
+		to_chat(M,"<span class='critical'>Some of your veins rupture, the exposed blood igniting!</span>")
+
+/datum/reagent/condensedcapsaicin/venom
+	name = "Irritant toxin"
+	id = "condensedcapsaicin_v"
+	description = "A biological agent that acts similarly to pepperspray. This compound seems to be particularly cruel, however, capable of permeating the barriers of blood vessels."
+	taste_description = "fire"
+	color = "#B31008"
+
+/datum/reagent/condensedcapsaicin/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	if(prob(50))
+		M.adjustToxLoss(0.5 * removed)
+	if(prob(50))
+		M.apply_effect(4, AGONY, 0)
+		if(prob(20))
+			to_chat(M,"<span class='danger'>You feel like your insides are burning!</span>")
+		else if(prob(20))
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!","rubs at their eyes!")]</span>")
+	else
+		M.eye_blurry = max(M.eye_blurry, 10)
+
 /datum/reagent/lexorin
 	name = "Lexorin"
 	id = "lexorin"
@@ -313,11 +356,11 @@
 	if(alien == IS_SKRELL)
 		M.take_organ_damage(2.4 * removed, 0)
 		if(M.losebreath < 10)
-			M.losebreath++
+			M.AdjustLosebreath(1)
 	else
 		M.take_organ_damage(3 * removed, 0)
 		if(M.losebreath < 15)
-			M.losebreath++
+			M.AdjustLosebreath(1)
 
 /datum/reagent/mutagen
 	name = "Unstable mutagen"
@@ -481,7 +524,7 @@
 
 /datum/reagent/chloralhydrate/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.losebreath = (min(M.losebreath + 1, 10))
+	M.SetLosebreath(10)
 	M.adjustOxyLoss(removed * overdose_mod)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
@@ -541,6 +584,21 @@
 	if(prob(7))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
 	return
+
+/datum/reagent/serotrotium/venom
+	name = "Serotropic venom"
+	id = "serotrotium_v"
+	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans. This appears to be a biologically produced form, resulting in a specifically toxic nature."
+	taste_description = "chalky bitterness"
+
+/datum/reagent/serotrotium/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	if(prob(30))
+		if(prob(25))
+			M.emote(pick("shiver", "blink_r"))
+		M.adjustBrainLoss(0.2 * removed)
+	return ..()
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"

@@ -505,7 +505,7 @@
 	return
 
 /obj/mecha/attack_hand(mob/user as mob)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed())
 	src.log_message("Attack by hand/paw. Attacker - [user].",1)
 
 	if(istype(user,/mob/living/carbon/human))
@@ -513,7 +513,6 @@
 		if(H.species.can_shred(user))
 			if(!prob(src.deflect_chance))
 				src.take_damage(15)
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
 				user << "<span class='danger'>You slash at the armored suit!</span>"
@@ -666,7 +665,7 @@
 	return
 
 /obj/mecha/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(W))
 	src.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(src.deflect_chance))
 		user << "<span class='danger'>\The [W] bounces off [src.name].</span>"
@@ -1763,7 +1762,7 @@
 
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed())
 	if(!damage)
 		return 0
 

@@ -491,7 +491,7 @@
 			return
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.setClickCooldown(user.get_attack_speed(WT))
 			adjustBruteLoss(-30)
 			updatehealth()
 			add_fingerprint(user)
@@ -507,7 +507,7 @@
 			return
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.use(1))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.setClickCooldown(user.get_attack_speed(W))
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
@@ -633,7 +633,7 @@
 		if(!opened)
 			usr << "You must access the borgs internals!"
 		else if(!src.module && U.require_module)
-			usr << "The borg must choose a module before he can be upgraded!"
+			usr << "The borg must choose a module before it can be upgraded!"
 		else if(U.locked)
 			usr << "The upgrade is locked and cannot be used yet!"
 		else

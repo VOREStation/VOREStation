@@ -58,9 +58,9 @@
 
 /obj/item/weapon/melee/energy/suicide_act(mob/user)
 	var/tempgender = "[user.gender == MALE ? "he's" : user.gender == FEMALE ? "she's" : "they are"]"
-	if (active)
-		viewers(user) << pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>", \
-		                      "<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>")
+	if(active)
+		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
+			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
 		return (BRUTELOSS|FIRELOSS)
 
 /*
@@ -90,15 +90,15 @@
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	..()
 	icon_state = "axe1"
-	user << "<span class='notice'>\The [src] is now energised.</span>"
+	to_chat(user, "<span class='notice'>\The [src] is now energised.</span>")
 
 /obj/item/weapon/melee/energy/axe/deactivate(mob/living/user)
 	..()
 	icon_state = initial(icon_state)
-	user << "<span class='notice'>\The [src] is de-energised. It's just a regular axe now.</span>"
+	to_chat(user, "<span class='notice'>\The [src] is de-energised. It's just a regular axe now.</span>")
 
 /obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
-	viewers(user) << "<span class='warning'>\The [user] swings \the [src] towards \his head! It looks like \he's trying to commit suicide.</span>"
+	visible_message("<span class='warning'>\The [user] swings \the [src] towards \his head! It looks like \he's trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)
 
 /*
@@ -153,7 +153,7 @@
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
-		user << "<span class='notice'>\The [src] is now energised.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is now energised.</span>")
 
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -162,7 +162,7 @@
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
 	if(active)
-		user << "<span class='notice'>\The [src] deactivates!</span>"
+		to_chat(user, "<span class='notice'>\The [src] deactivates!</span>")
 	..()
 	attack_verb = list()
 	icon_state = initial(icon_state)
@@ -217,7 +217,7 @@
 		var/obj/O = AM
 		O.emp_act(3) // A weaker severity is used because this has infinite uses.
 		playsound(get_turf(O), 'sound/effects/EMPulse.ogg', 100, 1)
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // A lot of objects don't set click delay.
+		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
 
 /obj/item/weapon/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
@@ -294,3 +294,73 @@
 			host.embedded -= src
 			host.drop_from_inventory(src)
 		spawn(1) if(src) qdel(src)
+
+/*
+ *Energy Spear
+ */
+
+/obj/item/weapon/melee/energy/spear
+ 	name = "energy spear"
+ 	desc = "Concentrated energy forming a sharp tip at the end of a long rod."
+ 	icon_state = "espear0"
+ 	armor_penetration = 75
+ 	sharp = 1
+ 	edge = 1
+ 	force = 5
+ 	throwforce = 10
+ 	throw_speed = 7
+ 	throw_range = 11
+ 	reach = 2
+ 	w_class = ITEMSIZE_LARGE
+ 	active_force = 25
+ 	active_throwforce = 30
+ 	active_w_class = ITEMSIZE_HUGE
+ 	var/random_color = TRUE
+ 	var/tip_color = ""
+ 	var/active_state = "espear"
+
+/obj/item/weapon/melee/energy/spear/New()
+	if(random_color)
+		tip_color = pick("red","blue","green","purple")
+		lcolor = tip_color
+
+/obj/item/weapon/melee/energy/spear/green/New()
+	tip_color = "green"
+	lcolor = "#008000"
+
+/obj/item/weapon/melee/energy/spear/red/New()
+	tip_color = "red"
+	lcolor = "#FF0000"
+
+/obj/item/weapon/melee/energy/spear/blue/New()
+	tip_color = "blue"
+	lcolor = "#0000FF"
+
+/obj/item/weapon/melee/energy/spear/purple/New()
+	tip_color = "purple"
+	lcolor = "#800080"
+
+/obj/item/weapon/melee/energy/spear/activate(mob/living/user)
+	if(!active)
+		to_chat(user, "<span class='notice'>\The [src] is now energised.</span>")
+	..()
+	attack_verb = list("jabbed", "stabbed", "impaled")
+	icon_state = "[active_state]-[tip_color]"
+
+
+/obj/item/weapon/melee/energy/spear/deactivate(mob/living/user)
+	if(active)
+		to_chat(user, "<span class='notice'>\The [src] deactivates!</span>")
+	..()
+	attack_verb = list("whacked", "beat", "slapped", "thonked")
+	icon_state = "espear0"
+
+/obj/item/weapon/melee/energy/spear/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+	return 0

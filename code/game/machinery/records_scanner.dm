@@ -1,6 +1,6 @@
 //not a computer
 obj/machinery/scanner
-	name = "Identity Analyser"
+	name = "identity analyzer"
 	var/outputdir = 0
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "scanner_idle"
@@ -70,7 +70,7 @@ obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	<b><u>Black Marks</u></b>:<br> "}
 	for(var/A in marks)
 		text += "<span class='danger'>[A]</span><br>"
-	user << "<span class='notice'>You feel a sting as the scanner extracts some of your blood.</span>"
+	to_chat(user, "<span class='notice'>You feel a sting as the scanner extracts some of your blood.</span>")
 	var/turf/T = get_step(src,outputdir)
 	var/obj/item/weapon/paper/print = new(T)
 	print.name = "[mname] Report"

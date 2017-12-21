@@ -885,6 +885,7 @@ proc/sort_atoms_by_layer(var/list/atoms)
 	plane = FLOAT_PLANE // No clue why this is 0 by default yet images are on FLOAT_PLANE
 						// And yes this does have to be in the constructor, BYOND ignores it if you set it as a normal var
 
+/* //Now in mutable_appearance.dm VOREStation edit?
 // Helper similar to image()
 /proc/mutable_appearance(icon, icon_state = "", layer = FLOAT_LAYER)
 	var/mutable_appearance/MA = new()
@@ -892,3 +893,4 @@ proc/sort_atoms_by_layer(var/list/atoms)
 	MA.icon_state = icon_state
 	MA.layer = layer
 	return MA
+*/

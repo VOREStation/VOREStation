@@ -181,7 +181,7 @@ var/global/list/damage_icon_parts = list()
 	var/damage_appearance = ""
 
 	for(var/obj/item/organ/external/O in organs)
-		if(O.is_stump())
+		if(isnull(O) || O.is_stump())
 			continue
 		damage_appearance += O.damage_state
 
@@ -197,7 +197,7 @@ var/global/list/damage_icon_parts = list()
 
 	// blend the individual damage states with our icons
 	for(var/obj/item/organ/external/O in organs)
-		if(O.is_stump())
+		if(isnull(O) || O.is_stump())
 			continue
 
 		O.update_icon()
@@ -1288,7 +1288,7 @@ var/global/list/damage_icon_parts = list()
 	var/image/total = new
 	for(var/obj/item/organ/external/E in organs)
 		if(E.open)
-			var/image/I = image("icon"='icons/mob/surgery.dmi', "icon_state"="[E.name][round(E.open)]", "layer"=-SURGERY_LEVEL)
+			var/image/I = image("icon"='icons/mob/surgery.dmi', "icon_state"="[E.icon_name][round(E.open)]", "layer"=-SURGERY_LEVEL)
 			total.overlays += I
 	overlays_standing[SURGERY_LEVEL] = total
 	if(update_icons)   update_icons()

@@ -6,7 +6,7 @@
 
 /mob/living/bot/floorbot
 	name = "Floorbot"
-	desc = "A little floor repairing robot, he looks so excited!"
+	desc = "A little floor repairing robot, it looks so excited!"
 	icon_state = "floorbot0"
 	req_one_access = list(access_robotics, access_construction)
 	wait_if_pulled = 1
@@ -58,6 +58,7 @@
 		emagged = 1
 		if(user)
 			user << "<span class='notice'>The [src] buzzes and beeps.</span>"
+			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, 0)
 		return 1
 
 /mob/living/bot/floorbot/Topic(href, href_list)
@@ -100,7 +101,8 @@
 		addTiles(1)
 
 	if(prob(1))
-		custom_emote(2, "makes an excited booping beeping sound!")
+		custom_emote(2, "makes an excited beeping sound!")
+		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
 
 /mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
@@ -276,6 +278,7 @@
 /mob/living/bot/floorbot/explode()
 	turn_off()
 	visible_message("<span class='danger'>\The [src] blows apart!</span>")
+	playsound(src.loc, "sparks", 50, 1)
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/weapon/storage/toolbox/mechanical/N = new /obj/item/weapon/storage/toolbox/mechanical(Tsec)

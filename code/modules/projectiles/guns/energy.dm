@@ -7,7 +7,7 @@
 
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 240 //How much energy is needed to fire.
-	var/cell_type = null
+	var/cell_type = /obj/item/weapon/cell/device/weapon
 	var/projectile_type = /obj/item/projectile/beam/practice
 	var/modifystate
 	var/charge_meter = 1	//if set, the icon state will be chosen based on the current charge
@@ -34,12 +34,15 @@
 
 /obj/item/weapon/gun/energy/New()
 	..()
-	if(cell_type)
-		power_supply = new cell_type(src)
-	else
-		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	if(self_recharge)
+		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 		processing_objects.Add(src)
+	else
+		if(cell_type)
+			power_supply = new cell_type(src)
+		else
+			power_supply = null
+
 	update_icon()
 
 /obj/item/weapon/gun/energy/Destroy()

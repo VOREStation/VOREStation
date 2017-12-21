@@ -756,7 +756,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/cerulean
 
-/datum/chemical_reaction/slime/cerulean_enhance/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/slime/cerulean_enhancer/on_reaction(var/datum/reagents/holder)
 	new /obj/item/slimepotion/enhancer(get_turf(holder.my_atom))
 	..()
 
@@ -899,6 +899,7 @@
 
 	evasion = 2
 	slowdown = -1
+	attack_speed_percent = 0.75
 
 
 // *********************

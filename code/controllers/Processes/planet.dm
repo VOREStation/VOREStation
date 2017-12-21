@@ -51,9 +51,10 @@ var/datum/controller/process/planet/planet_controller = null
 			//Redraw weather icons
 			for(var/T in P.planet_floors)
 				var/turf/simulated/turf = T
-				turf.overlays -= turf.weather_overlay
+		//		turf.overlays -= turf.weather_overlay
 				turf.weather_overlay = new_overlay
-				turf.overlays += turf.weather_overlay
+		//		turf.overlays += turf.weather_overlay
+				turf.update_icon()
 				SCHECK
 
 		//Sun light needs changing

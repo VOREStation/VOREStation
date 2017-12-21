@@ -12,10 +12,11 @@
 					/area/holodeck,
 					/area/supply/station,
 					/area/mine,
-					/area/turbolift, // VOREStation Edit - Its a turbolift,
 					/area/tether/surfacebase/outside, // VOREStation Edit - Outside,
-					/area/vacant // VOREStation Edit - All vacant areas!,
-					)
+					/area/vacant, // VOREStation Edit - All vacant areas!,
+					/area/vacant/vacant_shop,
+					/area/turbolift,
+					/area/submap					)
 
 	var/list/exempt_from_atmos = typesof(/area/maintenance,
 						/area/storage,
@@ -39,6 +40,11 @@
 						/area/mine,
 						/area/vacant/vacant_shop
 						)
+
+	// Some maps have areas specific to the map, so include those.
+	exempt_areas += using_map.unit_test_exempt_areas
+	exempt_from_atmos += using_map.unit_test_exempt_from_atmos
+	exempt_from_apc += using_map.unit_test_exempt_from_apc
 
 	for(var/area/A in world)
 		if(A.z == 1 && !(A.type in exempt_areas))

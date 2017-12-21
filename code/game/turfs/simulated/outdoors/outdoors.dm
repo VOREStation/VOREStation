@@ -40,7 +40,10 @@ var/list/outdoor_turfs = list()
 
 /turf/simulated/proc/make_indoors()
 	outdoors = FALSE
-	planet_controller.unallocateTurf(src)
+	if(planet_controller)
+		planet_controller.unallocateTurf(src)
+	else // This is happening during map gen, if there's no planet_controller (hopefully).
+		outdoor_turfs -= src
 	qdel(weather_overlay)
 	update_icon()
 
