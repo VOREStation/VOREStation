@@ -51,7 +51,7 @@
 	return 1
 
 /obj/structure/mob_spawner/proc/choose_spawn()
-	return pickweight(spawn_types)
+	return 0//pickweight(spawn_types)
 
 /obj/structure/mob_spawner/proc/do_spawn(var/mob_path)
 	if(!ispath(mob_path))
