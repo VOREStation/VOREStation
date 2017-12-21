@@ -9,7 +9,7 @@
 	icon = 'icons/mob/human_face_or_vr.dmi'
 	//var/icon_add = 'icons/mob/human_face.dmi' //Already defined in sprite_accessories.dm line 49.
 	var/color_blend_mode = ICON_MULTIPLY
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala", "Chirret") //This lets all races use the default hairstyles.
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the default hairstyles.
 
 	awoohair
 		name = "Shoulder-length Messy"
@@ -69,7 +69,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Xenochimera", "Rapala", "Chirret") //Lets all the races be bald if they want.
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Xenochimera", "Rapala") //Lets all the races be bald if they want.
 
 	ponytail6_fixed //Eggnerd's done with waiting for upstream fixes lmao.
 		name = "Ponytail 6 but fixed"
@@ -428,13 +428,13 @@
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/human_face_or_vr.dmi'
 	var/color_blend_mode = ICON_MULTIPLY
-	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala", "Chirret") //This lets all races use the facial hair styles.
+	species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This lets all races use the facial hair styles.
 
 	shaved
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala", "Chirret") //This needed to be manually defined, apparantly.
+		species_allowed = list("Human","Skrell","Unathi","Tajara", "Teshari", "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Xenochimera", "Xenomorph Hybrid", "Vasilissan", "Rapala") //This needed to be manually defined, apparantly.
 
 
 	vulp_none
@@ -780,30 +780,6 @@
 		icon_state = "tesh-feathers"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-
-	chirret_cheeks
-		name = "Chirret Cheeks"
-		icon_state = "chirret_cheeks"
-		body_parts = list(BP_HEAD)
-		color_blend_mode = ICON_MULTIPLY
-
-	chirret_claws
-		name = "Chirret Claws"
-		icon_state = "chirret_claws"
-		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND)
-		color_blend_mode = ICON_MULTIPLY
-
-	chirret_face_and_belly_v1
-		name = "Chirret Face and Belly Variant 1"
-		icon_state = "chirret_fb_1"
-		body_parts = list(BP_HEAD,BP_GROIN,BP_TORSO,BP_R_LEG,BP_L_LEG)
-		color_blend_mode = ICON_MULTIPLY
-
-	chirret_face_and_belly_v2
-		name = "Chirret Face and Belly Variant 2"
-		icon_state = "chirret_fb_2"
-		body_parts = list(BP_HEAD,BP_GROIN,BP_TORSO,BP_R_LEG,BP_L_LEG)
-		color_blend_mode = ICON_MULTIPLY
 
 	harpy_feathers
 		name = "Rapala leg Feather"
