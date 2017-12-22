@@ -7,7 +7,7 @@
 
 	last_special = world.time + 50 //To prevent button spam.
 
-	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to thirty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
 		var/mob/living/carbon/human/C = src
 		var/nutrition_used = C.nutrition/2
@@ -18,7 +18,7 @@
 
 		if(C.stat == DEAD) //Uh oh, you died!
 			if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
-				var/time = (500+1/((nutrition_used/100+1)/1300))
+				var/time = (240+960/(1 + nutrition_used/75))
 				C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 				C.reviving = 1
 				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
@@ -44,7 +44,7 @@
 				return
 
 		else if(C.stat != DEAD) //If they're alive at the time of reviving.
-			var/time = (500+1/((nutrition_used/100+1)/1300))
+			var/time = (240+960/(1 + nutrition_used/75))
 			C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 			C.reviving = 1
 			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
@@ -87,7 +87,7 @@
 	C.reviving = 1 // apply cooldown, this also locks out their main regen.
 	C << "<span class='notice'>You start to purge your body of poisons and intruders...</span>"
 
-	var/grossness = min(20, toxloss)
+	var/grossness = min(100, toxloss*5)
 
 	for(var/i = 0, i<10,i++) // tick some tox down. This'll clear 20 toxloss in total.
 		if(C)
@@ -97,23 +97,25 @@
 	for(var/obj/item/organ/external/E in C.organs) //half the germ_level of everything. If they're anything short of outright necrotic they'll be fine.
 		var/obj/item/organ/external/G = E
 		if(G.germ_level)
-			grossness += G.germ_level/100
+			grossness += G.germ_level/10
 			G.germ_level = min(0, (G.germ_level/2) - 100)
 
 	for(var/obj/item/organ/internal/I in C.internal_organs)
 		var/obj/item/organ/internal/G = I
 		if(G.germ_level)
-			grossness += G.germ_level/100
+			grossness += G.germ_level/5
 			G.germ_level = min(0, (G.germ_level/2) - 100)
 
 	//and now comes the fun part because they're gross
-	for (var/i = 0, i<10,i++)
+	for (var/i = 0, i< grossness/10,i++)
 		if (prob(min(100, grossness)))
 			C << "<span class='warning'>You feel nauseous...</span>"
-			spawn(30)
+			sleep(30)
+			if(prob(min(100, grossness/2))) // relatively small chance unless they really let themselves go to shit
+				C << "<span class='warning'>You double over, gagging!</span>"
+				C.Stun(3)
 			C.vomit()
 		sleep(50)
-		grossness = (grossness/2)
 
 	C << "<span class='notice'>You have finished purging your body of impurities.</span>"
 
@@ -138,11 +140,11 @@
 
 	last_special = world.time + 50 //To prevent button spam.
 
-	var/confirm = alert(usr, "Are you sure you want to reconstruct your form this moment? This will happen immediately and alert an.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
 		var/mob/living/carbon/human/C = src
 		if(C.stat == DEAD) //Uh oh, you died!
-			if(C.reagents.has_reagent("nutriment")) //Let's hope you have nutriment in you.... If not
+			if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
 				if(C) //Runtime prevention.
 					C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
 					var/old_nutrition = C.nutrition //Since the game is being annoying.
@@ -154,6 +156,7 @@
 					C.does_not_breathe = 0 //start breathing again
 					C.revive() // I did have special snowflake code, but this is easier.
 					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
+					C.mutations.Remove(HUSK)
 					C.nutrition = old_nutrition
 					C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
 					C.update_canmove()
@@ -178,6 +181,7 @@
 			var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
 			C.revive() // I did have special snowflake code, but this is easier.
 			C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
+			C.mutations.Remove(HUSK)
 			C.nutrition = old_nutrition
 			C.brainloss = (braindamage) //Gives them half their prior brain damage plus ten more.
 			C.update_canmove()
@@ -204,10 +208,8 @@
 /mob/living/carbon/human/proc/handle_feral()
 	if(handling_hal) return //avoid conflict with actual hallucinations
 	handling_hal = 1
-	var/light_amount = getlightlevel() //how much light there is in the place
 
-	while(client && feral > 10 && light_amount >= 0.5) // largely a copy of handle_hallucinations() without the fake attackers
-		light_amount = getlightlevel()
+	if(client && feral) // largely a copy of handle_hallucinations() without the fake attackers. Unlike hallucinations, only fires once - if they're still feral they'll get hit again anyway.
 		sleep(rand(200,500)/(feral/10))
 		var/halpick = rand(1,100)
 		switch(halpick)
