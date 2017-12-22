@@ -80,6 +80,7 @@
 	var/list/sprite_sheets_obj = list()
 
 	var/toolspeed = 1.0 // This is a multipler on how 'fast' a tool works.  e.g. setting this to 0.5 will make the tool work twice as fast.
+	var/addblends // Icon overlay for ADD highlights when applicable.
 
 /obj/item/New()
 	..()

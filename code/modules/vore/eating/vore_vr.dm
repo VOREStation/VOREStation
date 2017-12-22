@@ -46,6 +46,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/vore_taste
 	var/conceal_nif
 	var/nif_examine
+	var/can_be_drop_prey
+	var/can_be_drop_pred
 
 	//Mechanically required
 	var/path
@@ -107,6 +109,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	S["vore_taste"] >> vore_taste
 	S["conceal_nif"] >> conceal_nif
 	S["nif_examine"] >> nif_examine
+	S["can_be_drop_prey"] >> can_be_drop_prey
+	S["can_be_drop_pred"] >> can_be_drop_pred
 
 	if(isnull(digestable))
 		digestable = 1
@@ -127,5 +131,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	S["vore_taste"] << vore_taste
 	S["conceal_nif"] << conceal_nif
 	S["nif_examine"] << nif_examine
+	S["can_be_drop_prey"] << can_be_drop_prey
+	S["can_be_drop_pred"] << can_be_drop_pred
 
 	return 1

@@ -93,8 +93,7 @@ SHOW_DEVS
 SHOW_MODS
 
 ##Show mentors on staffwho
-SHOW_MENTORS
-
+SHOW_EVENT
 ## Chooses whether mods have the ability to tempban or not
 MODS_CAN_TEMPBAN
 

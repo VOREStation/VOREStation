@@ -53,9 +53,9 @@
 	r_pocket = /obj/item/device/analyzer/plant_analyzer
 	backpack = /obj/item/weapon/storage/backpack/hydroponics
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/hyd
+	messenger_bag = /obj/item/weapon/storage/backpack/messenger/hyd
 	id_type = /obj/item/weapon/card/id/civilian/botanist
 	pda_type = /obj/item/device/pda/botanist
-	messenger_bag = /obj/item/weapon/storage/backpack/messenger/hyd
 
 /decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME("Janitor")
@@ -77,7 +77,7 @@
 	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses/big
-	l_hand = /obj/item/weapon/storage/briefcase
+	l_hand = /obj/item/weapon/clipboard
 	id_type = /obj/item/weapon/card/id/civilian/internal_affairs_agent
 	pda_type = /obj/item/device/pda/lawyer
 

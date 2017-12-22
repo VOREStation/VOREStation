@@ -1,78 +1,6 @@
-//trees
-/obj/structure/flora/tree
-	name = "tree"
-	anchored = 1
-	density = 1
-	pixel_x = -16
-	layer = MOB_LAYER // You know what, let's play it safe.
-
-/obj/structure/flora/tree/pine
-	name = "pine tree"
-	icon = 'icons/obj/flora/pinetrees.dmi'
-	icon_state = "pine_1"
-
-/obj/structure/flora/tree/pine/New()
-	..()
-	icon_state = "pine_[rand(1, 3)]"
-
-/obj/structure/flora/tree/pine/xmas
-	name = "xmas tree"
-	icon = 'icons/obj/flora/pinetrees.dmi'
-	icon_state = "pine_c"
-
-/obj/structure/flora/tree/pine/xmas/New()
-	..()
-	icon_state = "pine_c"
-
-/obj/structure/flora/tree/dead
-	icon = 'icons/obj/flora/deadtrees.dmi'
-	icon_state = "tree_1"
-
-/obj/structure/flora/tree/dead/New()
-	..()
-	icon_state = "tree_[rand(1, 6)]"
-
-/obj/structure/flora/tree/sif
-	name = "glowing tree"
-	desc = "It's a tree, except this one seems quite alien.  It glows a deep blue."
-	icon = 'icons/obj/flora/deadtrees.dmi'
-	icon_state = "tree_sif"
-
-/obj/structure/flora/tree/sif/New()
-	update_icon()
-
-/obj/structure/flora/tree/sif/update_icon()
-	set_light(5, 1, "#33ccff")
-	overlays.Cut()
-	overlays.Add(image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[icon_state]_glow", layer = LIGHTING_LAYER + 0.1))
-
-//grass
-/obj/structure/flora/grass
-	name = "grass"
-	icon = 'icons/obj/flora/snowflora.dmi'
-	anchored = 1
-
-/obj/structure/flora/grass/brown
-	icon_state = "snowgrass1bb"
-
-/obj/structure/flora/grass/brown/New()
-	..()
-	icon_state = "snowgrass[rand(1, 3)]bb"
 
 
-/obj/structure/flora/grass/green
-	icon_state = "snowgrass1gb"
 
-/obj/structure/flora/grass/green/New()
-	..()
-	icon_state = "snowgrass[rand(1, 3)]gb"
-
-/obj/structure/flora/grass/both
-	icon_state = "snowgrassall1"
-
-/obj/structure/flora/grass/both/New()
-	..()
-	icon_state = "snowgrassall[rand(1, 3)]"
 
 
 //bushes
@@ -360,3 +288,42 @@
 	name = "small christmas tree"
 	desc = "This is a tiny well lit decorative christmas tree."
 	icon_state = "plant-xmas"
+
+//Pumpkins
+/obj/structure/flora/pumpkin
+	name = "pumpkin"
+	icon = 'icons/obj/flora/pumpkins.dmi'
+	desc = "A healthy, fat pumpkin. It looks as if it was freshly plucked from its vines and shows no signs of decay."
+	icon_state = "decor-pumpkin"
+
+/obj/effect/landmark/carved_pumpkin_spawn
+	name = "jack o'lantern spawn"
+	icon = 'icons/obj/flora/pumpkins.dmi'
+	icon_state = "spawner-jackolantern"
+
+/obj/effect/landmark/carved_pumpkin_spawn/New()
+    var/new_pumpkin = pick(
+		prob(70);/obj/structure/flora/pumpkin,
+        prob(60);/obj/structure/flora/pumpkin/carved,
+        prob(30);/obj/structure/flora/pumpkin/carved/scream,
+        prob(30);/obj/structure/flora/pumpkin/carved/girly,
+        prob(10);/obj/structure/flora/pumpkin/carved/owo)
+    new new_pumpkin(src.loc)
+    ..()
+
+/obj/structure/flora/pumpkin/carved
+	name = "jack o'lantern"
+	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has develishly evil-looking eyes and a grinning mouth more than big enough for a very small person to hide in."
+	icon_state = "decor-jackolantern"
+
+/obj/structure/flora/pumpkin/carved/scream
+	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has rounded eyes looking in completely opposite directions and a wide mouth, forever frozen in a silent scream. It looks ridiculous, actually."
+	icon_state = "decor-jackolantern-scream"
+
+/obj/structure/flora/pumpkin/carved/girly
+	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has neatly rounded eyes topped with what appear to be cartoony eyelashes, completed with what seems to have been the carver's attempt at friendly, toothy smile. The mouth is easily the scariest part of its face."
+	icon_state = "decor-jackolantern-girly"
+
+/obj/structure/flora/pumpkin/carved/owo
+	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has large, round eyes and a squiggly, cat-like smiling mouth. Its pleasantly surprised expression seems to suggest that the pumpkin has noticed something about you."
+	icon_state = "decor-jackolantern-owo"

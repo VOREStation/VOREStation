@@ -104,8 +104,28 @@
 	loot_list = list(/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/clothing/suit/armor/vest/alt)
 	vore_pounce_chance = 60 // Good boys don't do too much police brutality.
 
-	var/check_records = 1 // If true, arrests people without a record.
+	var/check_records = 0 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
+
+/mob/living/simple_animal/otie/friendly/security/phoron
+	name = "mutated guard otie"
+	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs."
+	icon_state = "sifguard"
+	icon_living = "sifguard"
+	icon_rest = "sifguard_rest"
+	icon_dead = "sifguard-dead"
+
+	melee_damage_lower = 10
+	melee_damage_upper = 25
+	// Lazy way of making sure this otie survives outside.
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
 
 /mob/living/simple_animal/otie/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_animal/mouse))
@@ -141,20 +161,28 @@
 		return found_atom
 	..()
 
-/mob/living/simple_animal/otie/friendly/security/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut))
+/mob/living/simple_animal/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
+	if(istype(O, /obj/item/weapon/reagent_containers/food))
 		qdel(O)
-		user << "<span class='notice'>The guard pup accepts your offer for their catch.</span>"
-		for(var/I in vore_organs)
-			var/datum/belly/B = vore_organs[I]
-			B.release_all_contents()
+		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_animal/otie/friendly/security))
+			user << "<span class='notice'>The guard pup accepts your offer for their catch.</span>"
+			for(var/I in vore_organs)
+				var/datum/belly/B = vore_organs[I]
+				B.release_all_contents()
+			return
+		if(prob(2)) //Small chance to get prey out from non-sec oties.
+			for(var/I in vore_organs)
+				var/datum/belly/B = vore_organs[I]
+				B.release_all_contents()
+			return
 		return
 	..()
 
 /mob/living/simple_animal/otie/friendly/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
 	var/datum/belly/B = user.vore_selected
 	var/datum/belly/belly_target = user.vore_organs[B]
-	if(check_threat(target_mob) >= 4)
+	if(ishuman(target_mob))
 		belly_target.digest_mode = DM_HOLD
 	if(istype(prey,/mob/living/simple_animal/mouse))
 		belly_target.digest_mode = DM_DIGEST
@@ -247,7 +275,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if (health > 0)
+			if(health > 0)
 				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
 				LoseTarget()
 				handle_stance(STANCE_IDLE)
@@ -257,6 +285,15 @@
 						tamed = 1
 						faction = M.faction
 				sleep(1 SECOND)
+
+		if(I_GRAB)
+			if(health > 0)
+				audible_emote("growls disapprovingly at [M].")
+				if(M == friend)
+					friend = null
+				return
+			else
+				..()
 
 		else
 			..()

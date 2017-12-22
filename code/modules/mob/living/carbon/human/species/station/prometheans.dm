@@ -25,6 +25,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
+	species_language = LANGUAGE_SOL_COMMON
 
 	breath_type = null
 	poison_type = null
@@ -107,6 +108,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 /datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
+	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand") return ..() //VOREStation Edit
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target

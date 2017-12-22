@@ -32,7 +32,8 @@
 		"Corgi" = "borgi",
 		"Fox" = "fox",
 		"Parrot" = "parrot",
-		"Rabbit" = "rabbit"
+		"Rabbit" = "rabbit",
+		"Bear" = "bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -296,6 +297,7 @@
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
 	verbs += /mob/living/proc/set_size //VOREStation edit
+	verbs += /mob/living/silicon/pai/proc/shred_limb //VORREStation edit
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"

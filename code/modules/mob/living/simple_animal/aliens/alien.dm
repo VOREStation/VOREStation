@@ -66,6 +66,19 @@
 	projectiletype = /obj/item/projectile/energy/neurotoxin/toxic
 	projectilesound = 'sound/weapons/pierce.ogg'
 
+/mob/living/simple_animal/hostile/alien/sentinel/praetorian
+	name = "alien praetorian"
+	icon = 'icons/mob/64x64.dmi'
+	icon_state = "prat_s"
+	icon_living = "prat_s"
+	icon_dead = "prat_dead"
+	move_to_delay = 5
+	maxHealth = 200
+	health = 200
+
+	pixel_x = -16
+	old_x = -16
+	meat_amount = 5
 
 /mob/living/simple_animal/hostile/alien/queen
 	name = "alien queen"
@@ -83,15 +96,36 @@
 	rapid = 1
 	status_flags = 0
 
-/mob/living/simple_animal/hostile/alien/queen/large
+/mob/living/simple_animal/hostile/alien/queen/empress
 	name = "alien empress"
-	icon = 'icons/mob/alienqueen.dmi'
+	icon = 'icons/mob/64x64.dmi'
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
+	meat_amount = 5
+	speed = 1
+
+	pixel_x = -16
+	old_x = -16
+
+/mob/living/simple_animal/hostile/alien/queen/empress/mother
+	name = "alien mother"
+	icon = 'icons/mob/96x96.dmi'
+	icon_state = "empress_s"
+	icon_living = "empress_s"
+	icon_dead = "empress_dead"
+	maxHealth = 600
+	health = 600
+	meat_amount = 10
+	melee_damage_lower = 15
+	melee_damage_upper = 25
+	speed = 2
+
+	pixel_x = -32
+	old_x = -32
 
 /mob/living/simple_animal/hostile/alien/death()
 	..()

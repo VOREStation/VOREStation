@@ -628,11 +628,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_state = "labeler1"
 
 	afterattack(obj/O, mob/user as mob)
-		var/new_icon = "ivyholoid"
+		var/new_icon_state = "ivyholoid"
+		var/new_icon = 'icons/vore/custom_items_vr.dmi'
 		var/new_desc = "Its a thin screen showing ID information, but it seems to be flickering."
 		if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
-			//O.icon = src.icon // just in case we're using custom sprite paths with fluff items.
-			O.icon_state = new_icon // Changes the icon without changing the access.
+			O.icon = new_icon
+			O.icon_state = new_icon_state // Changes the icon without changing the access.
 			O.desc = new_desc
 			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
 			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
@@ -667,7 +668,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/implant/reagent_generator/tempest
-	generated_reagent = "milk"
+	generated_reagents = list("milk" = 2)
+	reagent_name = "milk"
 	usable_volume = 1000
 
 	empty_message = list("Your breasts are almost completely drained!")
@@ -684,7 +686,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //Hottokeeki: Belle Day
 /obj/item/weapon/implant/reagent_generator/belle
-	generated_reagent = "milk"
+	generated_reagents = list("milk" = 2)
+	reagent_name = "milk"
 	usable_volume = 5000
 
 	empty_message = list("Your breasts and or udder feel almost completely drained!", "You're feeling a liittle on the empty side...")
@@ -703,7 +706,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/implant/reagent_generator/eldi
 	name = "lactation implant"
 	desc = "This is an implant that allows the user to lactate."
-	generated_reagent = "milk"
+	generated_reagents = list("milk" = 2)
+	reagent_name = "milk"
 	usable_volume = 1000
 
 	empty_message = list("Your breasts feel unusually empty.", "Your chest feels lighter - your milk supply is empty!", "Your milk reserves have run dry.", "Your grateful nipples ache as the last of your milk leaves them.")
@@ -719,7 +723,8 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 //Vorrarkul: Theodora Lindt
 /obj/item/weapon/implant/reagent_generator/vorrarkul
-	generated_reagent = "chocolate_milk"
+	generated_reagents = list("chocolate_milk" = 2)
+	reagent_name = "chocalate milk"
 	usable_volume = 1000
 
 	empty_message = list("Your nipples are sore from being milked!")
@@ -733,6 +738,23 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/implanter/reagent_generator/vorrarkul
 	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
 
+//Lycanthorph: Savannah Dixon
+/obj/item/weapon/implant/reagent_generator/savannah
+	generated_reagents = list("milk" = 2)
+	reagent_name = "milk"
+	usable_volume = 1000
+
+	empty_message = list("Your nipples are sore from being milked!", "Your breasts feel drained, milk is no longer leaking from your nipples!")
+	full_message = list("Your breasts are full, their sweet scent emanating from your chest!", "Your breasts feel full, milk is starting to leak from your nipples, filling the air with it's sweet scent!")
+	emote_descriptor = list("squeezes sweet milk from Savannah", "tugs on Savannah's nipples, milking them", "kneads Savannah's breasts, milking them")
+	self_emote_descriptor = list("squeeze", "knead")
+	random_emote = list("lets out a soft moan", "gives an involuntary squeal")
+	verb_name = "Milk"
+	verb_desc = "Grab Savannah's breasts and extract sweet milk from them!"
+
+/obj/item/weapon/implanter/reagent_generator/savannah
+	implant_type = /obj/item/weapon/implant/reagent_generator/savannah
+
 //SpoopyLizz: Roiz Lizden
 //I made this! Woo!
 //implant
@@ -740,7 +762,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/implant/reagent_generator/roiz
 	name = "egg laying implant"
 	desc = "This is an implant that allows the user to lay eggs."
-	generated_reagent = "egg"
+	generated_reagents = list("egg" = 2)
 	usable_volume = 500
 	transfer_amount = 50
 
@@ -802,12 +824,87 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		if(prob(15))
 			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 
-		rimplant.reagents.remove_reagent(rimplant.generated_reagent, rimplant.transfer_amount)
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+//Cameron653: Jasmine Lizden
+/obj/item/weapon/implant/reagent_generator/jasmine
+	name = "egg laying implant"
+	desc = "This is an implant that allows the user to lay eggs."
+	generated_reagents = list("egg" = 2)
+	usable_volume = 500
+	transfer_amount = 50
+
+	empty_message = list("Your lower belly feels flat, empty, and somewhat rough!", "Your lower belly feels completely empty, no more bulges visible... At least, for the moment!")
+	full_message = list("Your lower belly is stretched out, smooth,and heavy, small bulges visible from within!", "It takes considerably more effort to move yourself, the large bulges within your gut most likely the cause!")
+	emote_descriptor = list("an egg from Jasmine's tauric belly!", "into Jasmine's gut, forcing her to lay a considerably large egg!", "Jasmine with a considerable amount of force, causing an egg to slip right out of her!")
+	var/verb_descriptor = list("squeezes", "pushes", "hugs")
+	var/self_verb_descriptor = list("squeeze", "push", "hug")
+	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
+	self_emote_descriptor = list("lay", "force out", "push out")
+	random_emote = list("hisses softly with a blush on her face", "bites down on her lower lip", "lets out a light huff")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_jasmine
+
+/obj/item/weapon/implant/reagent_generator/jasmine/implanted(mob/living/carbon/source)
+	processing_objects += src
+	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	source.verbs |= assigned_proc
+	return 1
+
+/obj/item/weapon/implanter/reagent_generator/jasmine
+	implant_type = /obj/item/weapon/implant/reagent_generator/jasmine
+
+/mob/living/carbon/human/proc/use_reagent_implant_jasmine()
+	set name = "Lay Egg"
+	set desc = "Cause Jasmine to lay an egg by squeezing her tauric belly!"
+	set category = "Object"
+	set src in view(1)
+
+	//do_reagent_implant(usr)
+	if(!isliving(usr) || !usr.canClick())
+		return
+
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+		return
+
+	var/obj/item/weapon/implant/reagent_generator/jasmine/rimplant
+	for(var/I in src.contents)
+		if(istype(I, /obj/item/weapon/implant/reagent_generator))
+			rimplant = I
+			break
+	if (rimplant)
+		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			return
+
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz(get_turf(src))
+
+		var/index = rand(0,3)
+
+		if (usr != src)
+			var/emote = rimplant.emote_descriptor[index]
+			var/verb_desc = rimplant.verb_descriptor[index]
+			var/self_verb_desc = rimplant.self_verb_descriptor[index]
+			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
+							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+		else
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+		if(prob(15))
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+
+
+
+
+
+
 
 /obj/item/weapon/implant/reagent_generator/pumila_apple
 	name = "apple laying implant"
 	desc = "This is an implant that allows the user to grow apples."
-	generated_reagent = "sugar" //This actually allows them to.
+	generated_reagents = list("sugar" = 2) //This actually allows them to.
 	usable_volume = 250 //Five apples. Let's not get /too/ crazy here.
 	transfer_amount = 50
 
@@ -867,10 +964,11 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an apple.</span>",
 								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an apple.</span>")
 
-		rimplant.reagents.remove_reagent(rimplant.generated_reagent, rimplant.transfer_amount)
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
 /*
 /obj/item/weapon/implant/reagent_generator/pumila_nectar //Bugged. Two implants at once messes things up.
-	generated_reagent = "honey"
+	generated_reagents = list("honey" = 2)
+	reagent_name = "honey"
 	usable_volume = 5000
 
 	empty_message = list("You appear to be all out of nectar", "You feel as though you are lacking a majority of your nectar.")
@@ -1020,7 +1118,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		accessset = 1
 	..()
 
-//verkister: Cameron Eggbert - Science goggles that ACTUALLY do nothing.
+//General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/science_proper
 	name = "Aesthetic Science Goggles"
 	desc = "The goggles really do nothing this time!"
@@ -1028,9 +1126,9 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	item_flags = AIRTIGHT
 
-//verkister: Opie Eggbert - Spiffy fluff goggles
+//General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/spiffygogs
-	name = "Chad Goggles"
+	name = "Orange Goggles"
 	desc = "You can almost feel the raw power radiating off these strange specs."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
@@ -1044,12 +1142,22 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/clothing/accessory/tronket
 	name = "metal necklace"
 	desc = "A shiny steel chain with a vague metallic object dangling off it."
-	w_class = ITEMSIZE_SMALL
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "tronket"
 	item_state = "tronket"
 	overlay_state = "tronket"
+	slot_flags = SLOT_TIE
+	slot = "over"
+
+/obj/item/clothing/accessory/flops
+	name = "drop straps"
+	desc = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "flops"
+	item_state = "flops"
+	overlay_state = "flops"
 	slot_flags = SLOT_TIE
 	slot = "over"
 
@@ -1474,3 +1582,76 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
 	name = "Malady's riding crop"
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
+
+
+//SilverTalisman: Evian
+/obj/item/weapon/implant/reagent_generator/evian
+	emote_descriptor = list("an egg right out of Evian's lower belly!", "into Evian' belly firmly, forcing him to lay an egg!", "Evian really tight, who promptly lays an egg!")
+	var/verb_descriptor = list("squeezes", "pushes", "hugs")
+	var/self_verb_descriptor = list("squeeze", "push", "hug")
+	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
+	self_emote_descriptor = list("lay", "force out", "push out")
+	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
+
+/obj/item/weapon/implant/reagent_generator/evian/implanted(mob/living/carbon/source)
+	processing_objects += src
+	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	source.verbs |= assigned_proc
+	return 1
+
+/obj/item/weapon/implanter/reagent_generator/evian
+	implant_type = /obj/item/weapon/implant/reagent_generator/evian
+
+/mob/living/carbon/human/proc/use_reagent_implant_evian()
+	set name = "Lay Egg"
+	set desc = "Force Evian to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
+	set category = "Object"
+	set src in view(1)
+
+	//do_reagent_implant(usr)
+	if(!isliving(usr) || !usr.canClick())
+		return
+
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+		return
+
+	var/obj/item/weapon/implant/reagent_generator/evian/rimplant
+	for(var/I in src.contents)
+		if(istype(I, /obj/item/weapon/implant/reagent_generator))
+			rimplant = I
+			break
+	if (rimplant)
+		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			return
+
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
+
+		var/index = rand(0,3)
+
+		if (usr != src)
+			var/emote = rimplant.emote_descriptor[index]
+			var/verb_desc = rimplant.verb_descriptor[index]
+			var/self_verb_desc = rimplant.self_verb_descriptor[index]
+			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
+							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+		else
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+		if(prob(15))
+			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
+
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian
+	name = "dragon egg"
+	desc = "A quite large dragon egg!"
+	icon_state = "egg_roiz_yellow"
+
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype( W, /obj/item/weapon/pen/crayon)) //No coloring these ones!
+		return
+	else
+		..()

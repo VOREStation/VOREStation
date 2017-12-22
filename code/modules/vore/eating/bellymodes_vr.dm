@@ -54,10 +54,10 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-				owner.nutrition += 20 // so eating dead mobs gives you *something*.
+				owner.nutrition += 20 // so eating dead mobs gives you *something* (that's 0.66u nutriment yo)
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 750
+					s_owner.cell.charge += 200
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -79,11 +79,11 @@
 				var/difference = owner.size_multiplier / M.size_multiplier
 				if(isrobot(owner))
 					s_owner = owner
-					s_owner.cell.charge += 100
+					s_owner.cell.charge += 20*(digest_brute+digest_burn)
 				if(offset) // If any different than default weight, multiply the % of offset.
-					owner.nutrition += offset*(10/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
+					owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
-					owner.nutrition += (10/difference)
+					owner.nutrition += 2*(digest_brute+digest_burn)/difference
 			M.updateVRPanel()
 
 		if(digest_mode == DM_ITEMWEAK)
@@ -101,24 +101,26 @@
 						items_preserved += ID
 						return
 					for(var/obj/item/SubItem in T)
-						if(istype(SubItem,/obj/item/weapon/reagent_containers/food/snacks))
-							var/obj/item/weapon/reagent_containers/food/snacks/SF = SubItem
+						if(istype(SubItem,/obj/item/weapon/reagent_containers/food))
+							var/obj/item/weapon/reagent_containers/food/SF = SubItem
 							if(istype(owner,/mob/living/carbon/human))
 								var/mob/living/carbon/human/howner = owner
 								SF.reagents.trans_to_holder(howner.ingested, (SF.reagents.total_volume * 0.3), 1, 0)
 							internal_contents -= SF
 							qdel(SF)
+						SubItem.gurglecontaminate()
 						if(istype(SubItem,/obj/item/weapon/storage))
 							for(var/obj/item/SubSubItem in SubItem)
-								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food/snacks))
-									var/obj/item/weapon/reagent_containers/food/snacks/SSF = SubSubItem
+								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food))
+									var/obj/item/weapon/reagent_containers/food/SSF = SubSubItem
 									if(istype(owner,/mob/living/carbon/human))
 										var/mob/living/carbon/human/howner = owner
 										SSF.reagents.trans_to_holder(howner.ingested, (SSF.reagents.total_volume * 0.3), 1, 0)
 									internal_contents -= SSF
 									qdel(SSF)
-					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
-						var/obj/item/weapon/reagent_containers/food/snacks/F = T
+								SubSubItem.gurglecontaminate()
+					if(istype(T, /obj/item/weapon/reagent_containers/food)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
+						var/obj/item/weapon/reagent_containers/food/F = T
 						if(istype(owner,/mob/living/carbon/human))
 							var/mob/living/carbon/human/howner = owner
 							F.reagents.trans_to_holder(howner.reagents, (F.reagents.total_volume * 0.3), 1, 0)
@@ -127,11 +129,23 @@
 							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
+					if(istype(T,/obj/item/weapon/holder))
+						var/obj/item/weapon/holder/H = T
+						for(var/mob/living/M in H.contents)
+							M.loc = owner
+							internal_contents += M
+						internal_contents -= H
+						qdel(H)
+					if(istype(T,/obj/item/organ))
+						owner.nutrition += (66)
+						internal_contents -= T
+						qdel(T)
 					else
 						items_preserved += T
-						T.contaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
+						T.gurglecontaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
 				else
 					return
+			owner.updateVRPanel()
 			return
 		else
 		// Handle leftovers.
@@ -180,6 +194,17 @@
 							s_owner.cell.charge += 150
 						internal_contents -= F
 						qdel(F)
+					if(istype(T,/obj/item/weapon/holder))
+						var/obj/item/weapon/holder/H = T
+						for(var/mob/living/M in H.contents)
+							M.loc = owner
+							internal_contents += M
+						internal_contents -= H
+						qdel(H)
+					if(istype(T,/obj/item/organ))
+						owner.nutrition += (66)
+						internal_contents -= T
+						qdel(T)
 					else
 						owner.nutrition += (1 * T.w_class)
 						if(isrobot(owner))
@@ -250,6 +275,17 @@
 						s_owner.cell.charge += (150)
 					internal_contents -= F
 					qdel(F)
+				if(istype(T,/obj/item/weapon/holder))
+					var/obj/item/weapon/holder/H = T
+					for(var/mob/living/M in H.contents)
+						M.loc = owner
+						internal_contents += M
+					internal_contents -= H
+					qdel(H)
+				if(istype(T,/obj/item/organ))
+					owner.nutrition += (66)
+					internal_contents -= T
+					qdel(T)
 				else
 					owner.nutrition += (1 * T.w_class)
 					if(isrobot(owner))

@@ -94,7 +94,7 @@
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
 	path = /obj/item/weapon/implant/tracking/weak
-	cost = 10
+	cost = 0 //VOREStation Edit. Changed cost to 0
 	slot = "implant"
 	exploitable = 1
 

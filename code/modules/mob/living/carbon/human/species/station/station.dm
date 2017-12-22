@@ -9,6 +9,7 @@
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
 	num_alternate_languages = 3
+	species_language = LANGUAGE_SOL_COMMON
 	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
@@ -38,9 +39,12 @@
 	burn_mod = 0.85
 	metabolic_rate = 0.85
 	item_slowdown_mod = 0.5
+	mob_size = MOB_LARGE
+	blood_volume = 840
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
+	species_language = LANGUAGE_UNATHI
 	health_hud_intensity = 2.5
 
 	min_age = 32
@@ -141,6 +145,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SIIK)
 	name_language = LANGUAGE_SIIK
+	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 
 	min_age = 17
@@ -221,6 +226,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
 	name_language = LANGUAGE_SKRELLIAN
+	species_language = LANGUAGE_SKRELLIAN
 	health_hud_intensity = 2
 
 	water_movement = -3
@@ -294,6 +300,7 @@
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
 	name_language = LANGUAGE_ROOTLOCAL
+	species_language = LANGUAGE_ROOTLOCAL
 	health_hud_intensity = 2.5
 	item_slowdown_mod = 0.25
 

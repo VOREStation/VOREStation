@@ -447,38 +447,39 @@
 	set name = "Drain prey of nutrition"
 	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. You may only do this to one person at a time."
 	set category = "Abilities"
-	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
+	if(!ishuman(src))
+		return //If you're not a human you don't have permission to do this.
 	var/mob/living/carbon/human/C = src
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
-		C << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to absorb them.</span>")
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T) || T.isSynthetic())
-		src << "<span class='warning'>\The [T] is not able to be drained.</span>"
+		to_chat(src, "<span class='warning'>\The [T] is not able to be drained.</span>")
 		return
 
 	if(G.state != GRAB_NECK)
-		C << "<span class='warning'>You must have a tighter grip to drain this creature.</span>"
+		to_chat(C, "<span class='warning'>You must have a tighter grip to drain this creature.</span>")
 		return
 
 	if(C.absorbing_prey)
-		C << "<span class='warning'>You are already draining someone!</span>"
+		to_chat(C, "<span class='warning'>You are already draining someone!</span>")
 		return
 
 	C.absorbing_prey = 1
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
-				C << "<span class='notice'>You begin to drain [T]...</span>"
-				T << "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
+				to_chat(C, "<span class='notice'>You begin to drain [T]...</span>")
+				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
 			if(2)
-				C << "<span class='notice'>You feel stronger with every passing moment of draining [T].</span>"
-				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], their body looking weaker with every passing moment!</span>")
-				T << "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>"
+				to_chat(C, "<span class='notice'>You feel stronger with every passing moment of draining [T].</span>")
+				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
+				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
 			if(3 to 99)
@@ -495,40 +496,42 @@
 				var/damage_to_be_applied = T.species.total_health //Get their max health.
 				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 				C.absorbing_prey = 0
-				C << "<span class='notice'>You have completely drained [T], causing them to pass out.</span>"
-				T << "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>"
+				to_chat(C, "<span class='notice'>You have completely drained [T], causing them to pass out.</span>")
+				to_chat(T, "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>")
 				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
 				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
 				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
-			src << "<span class='warning'>Our draining of [T] has been interrupted!</span>"
+			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
 			C.absorbing_prey = 0
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_lethal()
-	set name = "(LETHAL!!!) Drain prey of nutrition and lifeforce (LETHAL!!!)" //Provide a warning that THIS WILL KILL YOUR PREY.
-	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to  You may only do this to one person at a time."
+	set name = "Lethally Drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
+	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to drain their lifeforce. You may only do this to one person at a time."
 	set category = "Abilities"
-	if(!ishuman(src)) return //If you're not a human you don't have permission to do this.
+	if(!ishuman(src))
+		return //If you're not a human you don't have permission to do this.
+
 	var/mob/living/carbon/human/C = src
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
-		src << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		to_chat(src, "<span class='warning'>You must be grabbing a creature in your active hand to drain them.</span>")
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T) || T.isSynthetic())
-		src << "<span class='warning'>\The [T] is not able to be drained.</span>"
+		to_chat(src, "<span class='warning'>\The [T] is not able to be drained.</span>")
 		return
 
 	if(G.state != GRAB_NECK)
-		src << "<span class='warning'>You must have a tighter grip to drain this creature.</span>"
+		to_chat(src, "<span class='warning'>You must have a tighter grip to drain this creature.</span>")
 		return
 
 	if(C.absorbing_prey)
-		src << "<span class='warning'>You are already draining someone!</span>"
+		to_chat(src, "<span class='warning'>You are already draining someone!</span>")
 		return
 
 	C.absorbing_prey = 1
@@ -536,16 +539,16 @@
 		switch(stage)
 			if(1)
 				if(T.stat == DEAD)
-					C << "<span class='warning'>[T] is dead and can not be drained..</span>"
+					to_chat(C, "<span class='warning'>[T] is dead and can not be drained..</span>")
 					return
-				C << "<span class='notice'>You begin to drain [T]...</span>"
-				T << "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>"
+				to_chat(C, "<span class='notice'>You begin to drain [T]...</span>")
+				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
 			if(2)
-				C << "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>"
-				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], [T]'s body looking weaker with every passing moment!</span>")
-				T << "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>"
+				to_chat(C, "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>")
+				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
+				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>")
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
 			if(3 to 48) //Should be more than enough to get under 100.
@@ -559,22 +562,22 @@
 					stage = 3 //Otherwise, advance to stage 50 (Lethal draining.)
 			if(50)
 				if(!T.digestable)
-					C << "<span class='danger'>You feel invigorated as you completely drain [T] and begin to move onto draining their lifeforce before realizing they have too strong of a grasp on their lifeforce for you to do so!</span>"
-					T << "<span class='danger'>You feel completely drained as [C] finishes draining you and begins to move onto your lifeforce, but you have too strong a grasp on it for them to do so!</span>"
+					to_chat(C, "<span class='danger'>You feel invigorated as you completely drain [T] and begin to move onto draining their lifeforce before realizing they have too strong of a grasp on their lifeforce for you to do so!</span>")
+					to_chat(T, "<span class='danger'>You feel completely drained as [C] finishes draining you and begins to move onto your lifeforce, but you have too strong a grasp on it for them to do so!</span>")
 					C.nutrition = (C.nutrition + T.nutrition)
 					T.nutrition = 0 //Completely drained of everything.
 					var/damage_to_be_applied = T.species.total_health //Get their max health.
 					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 					return
-				C << "<span class='notice'>You begin to drain [T]'s lifeforce...</span>"
-				T << "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>"
+				to_chat(C, "<span class='notice'>You begin to drain [T]'s lifeforce...</span>")
+				to_chat(T, "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>")
 			if(51 to 98)
 				if(T.stat == DEAD)
-					src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
+					to_chat(src, "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>")
 					T.apply_damage(500, OXY) //Bit of fluff.
 					C.absorbing_prey = 0
-					src << "<span class='notice'>You have completely drained [T], killing them.</span>"
-					T << "<span class='danger'size='5'>You feel... So... Weak...</span>"
+					to_chat(src, "<span class='notice'>You have completely drained [T], killing them.</span>")
+					to_chat(T, "<span class='danger'size='5'>You feel... So... Weak...</span>")
 					T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
 					src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
 					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
@@ -587,11 +590,11 @@
 				if(C.drain_finalized != 1)
 					stage = 51
 			if(100) //They shouldn't  survive long enough to get here, but just in case.
-				src << "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>"
+				to_chat(src, "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>")
 				T.apply_damage(500, OXY) //Kill them.
 				C.absorbing_prey = 0
-				C << "<span class='notice'>You have completely drained [T], killing them in the process.</span>"
-				T << "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>"
+				to_chat(C, "<span class='notice'>You have completely drained [T], killing them in the process.</span>")
+				to_chat(T, "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>")
 				C.visible_message("<span class='danger'>[C] seems to finish whatever they were doing to [T].</span>")
 				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
 				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
@@ -599,23 +602,242 @@
 				return
 
 		if(!do_mob(C, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
-			C << "<span class='warning'>Our draining of [T] has been interrupted!</span>"
+			to_chat(C, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
+			C.absorbing_prey = 0
+			return
+
+/mob/living/carbon/human/proc/slime_feed()
+	set name = "Feed prey with self"
+	set desc = "Slowly feed prey with your body, draining you in the process. You may only do this to one person at a time."
+	set category = "Abilities"
+	if(!ishuman(src))
+		return //If you're not a human you don't have permission to do this.
+	var/mob/living/carbon/human/C = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to feed them.</span>")
+		return
+
+	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	if(!istype(T) || T.isSynthetic())
+		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
+		return
+
+	if(!G.state) //This should never occur. But alright
+		return
+
+	if(C.absorbing_prey)
+		to_chat(C, "<span class='warning'>You are already feeding someone!</span>")
+		return
+
+	C.absorbing_prey = 1
+	for(var/stage = 1, stage<=100, stage++) //100 stages.
+		switch(stage)
+			if(1)
+				to_chat(C, "<span class='notice'>You begin to feed [T]...</span>")
+				to_chat(T, "<span class='notice'>An odd sensation flows through your body as [C] begins to feed you!</span>")
+				T.nutrition = (T.nutrition + (C.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
+				C.nutrition = C.nutrition*0.95
+			if(2)
+				to_chat(C, "<span class='notice'>You feel weaker with every passing moment of feeding [T].</span>")
+				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], resulting in [T]'s body looking stronger with every passing moment!</span>")
+				to_chat(T, "<span class='notice'>You feel stronger with every passing moment as [C] feeds you!</span>")
+				T.nutrition = (T.nutrition + (C.nutrition*0.1))
+				C.nutrition = C.nutrition*0.90
+			if(3 to 99)
+				T.nutrition = (T.nutrition + (C.nutrition*0.1)) //Just keep draining them.
+				C.nutrition = C.nutrition*0.9
+				T.eye_blurry += 1 //Eating a slime's body is odd and will make your vision a bit blurry!
+				if(C.nutrition < 100 && stage < 99 && C.drain_finalized == 1)//Did they drop below 100 nutrition? If so, immediately jump to stage 99 so it can advance to 100.
+					stage = 99
+				if(C.drain_finalized != 1 && stage == 99) //Are they not finalizing and the stage hit 100? If so, go back to stage 3 until they finalize it.
+					stage = 3
+			if(100)
+				T.nutrition = (T.nutrition + C.nutrition)
+				C.nutrition = 0 //Completely drained of everything.
+				C.absorbing_prey = 0
+				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
+				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
+				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was fed via slime feed  by [key_name(C)]</font>")
+				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Fed via slime feed [key_name(T)]</font>")
+				msg_admin_attack("[key_name(C)] fed [key_name(T)] via slime feed, resulting in them being eaten!")
+				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
+				return
+
+		if(!do_mob(src, T, 50) || !G.state) //One drain tick every 5 seconds.
+			to_chat(src, "<span class='warning'>Your feeding of [T] has been interrupted!</span>")
 			C.absorbing_prey = 0
 			return
 
 
+
+
 /mob/living/carbon/human/proc/succubus_drain_finialize()
-	set name = "Drain Finalization"
-	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained. Can be toggled at any time."
+	set name = "Drain/Feed Finalization"
+	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained, or you will feed yourself to the prey's selected stomach if you're feeding them. Can be toggled at any time."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
-	if(C.drain_finalized == 1)
-		C.drain_finalized = 0
-		C << "<span class='notice'>You will now finalize draining.</span>"
+	C.drain_finalized = !C.drain_finalized
+	to_chat(C, "<span class='notice'>You will [C.drain_finalized?"now":"not"] finalize draining/feeding.</span>")
+
+/mob/living/carbon/human/proc/shred_limb() //If you're looking at this, nothing but pain and suffering lies below.
+	set name = "Damage/Remove Prey's Organ"
+	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
+	set category = "Abilities"
+	if(!ishuman(src))
+		return //If you're not a human you don't have permission to do this.
+
+	if(last_special > world.time)
 		return
 
-	else if(C.drain_finalized == 0)
-		C.drain_finalized = 1
-		C << "<span class='notice'>You will not finalize draining.</span>"
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		to_chat(src, "You cannot severely damage anything in your current state!")
+		return
+
+	var/mob/living/carbon/human/C = src
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		to_chat(C, "<span class='warning'>We must be grabbing a creature in our active hand to severely damage them.</span>")
+		return
+
+	var/mob/living/carbon/human/T = G.affecting
+	if(!istype(T)) //Are they a mob?
+		to_chat(C, "<span class='warning'>\The [T] is not able to be severely damaged!</span>")
+		return
+
+	if(G.state != GRAB_NECK)
+		to_chat(C, "<span class='warning'>You must have a tighter grip to severely damage this creature.</span>")
+		return
+
+	if(!T || !C || C.stat)
+		return
+
+	if(!Adjacent(T))
+		return
+
+	var/list/choices2 = list()
+	for(var/obj/item/organ/O in T.organs) //External organs
+		choices2 += O
+
+	var/obj/item/organ/external/D = input(C,"What do you wish to severely damage?") as null|anything in choices2 //D for destroy.
+	if(D.vital)
+		if(alert("Are you sure you wish to severely damage their [D]? It most likely will kill the prey...",,"Yes", "No") != "Yes")
+			return //If they reconsider, don't continue.
+
+	var/list/choices3 = list()
+	for(var/obj/item/organ/internal/I in D.internal_organs) //Look for the internal organ in the organ being shreded.
+		choices3 += I
+
+	var/obj/item/organ/internal/P = input(C,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in choices3
+
+	var/eat_limb = input(C,"Do you wish to swallow the organ if you tear if out? If so, select which stomach.") as null|anything in C.vore_organs  //EXTREMELY EFFICIENT
+
+	if(last_special > world.time)
+		return
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		to_chat(C, "You cannot shred in your current state.")
+		return
+
+	last_special = world.time + 100 //10 seconds.
+	C.visible_message("<font color='red'><b>[C] appears to be preparing to do something to [T]!</b></font>") //Let everyone know that bad times are head
+
+	if(do_after(C, 100, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
+		if(!Adjacent(T)) return
+		if(P && P.damage >= 25) //Internal organ and it's been severely damage
+			T.apply_damage(15, BRUTE, D) //Damage the external organ they're going through.
+			P.removed()
+			P.forceMove(T.loc) //Move to where prey is.
+			log_and_message_admins("tore out [P] of [T].", C)
+			if(eat_limb)
+				var/datum/belly/S = C.vore_organs[eat_limb]
+				P.forceMove(C) //Move to pred's gut
+				S.internal_contents |= P //Add to pred's gut.
+				C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") // Same as below, but (pred) damages the (right hand) of (person)
+				to_chat(C, "[P] of [T] moves into your [S]!") //Quietly eat their internal organ! Comes out "The (right hand) of (person) moves into your (stomach)
+				playsound(C, S.vore_sound, 70, 1)
+				log_and_message_admins("tore out and ate [P] of [T].", C)
+			else
+				log_and_message_admins("tore out [P] of [T].", C)
+				C.visible_message("<font color='red'><b>[C] severely damages [D] of [T], resulting in their [P] coming out!</b></font>")
+		else if(!P && (D.damage >= 25 || D.brute_dam >= 25)) //Not targeting an internal organ & external organ has been severely damaged already.
+			D.droplimb(1,DROPLIMB_EDGE) //Clean cut so it doesn't kill the prey completely.
+			if(D.cannot_amputate) //Is it groin/chest? You can't remove those.
+				T.apply_damage(25, BRUTE, D)
+				C.visible_message("<font color='red'><b>[C] severely damage [T]'s [D]!</b></font>") //Keep it vague. Let the /me's do the talking.
+				log_and_message_admins("shreded [T]'s [D].", C)
+				return
+			if(eat_limb)
+				var/datum/belly/S = C.vore_organs[eat_limb]
+				D.forceMove(C) //Move to pred's gut
+				S.internal_contents |= D //Add to pred's gut.
+				C.visible_message("<span class='warning'>[C] swallows [D] of [T] into their [S]!</span>","You swallow [D] of [T]!")
+				playsound(C, S.vore_sound, 70, 1)
+				to_chat(C, "Their [D] moves into your [S]!")
+				log_and_message_admins("tore off and ate [D] of [T].", C)
+			else
+				C.visible_message("<span class='warning'>[C] tears off [D] of [T]!</span>","You tear out [D] of [T]!") //Will come out "You tear out (the right foot) of (person)
+				log_and_message_admins("tore off [T]'s [D].", C)
+		else //Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
+			if(P)
+				P.damage = 25 //Internal organs can only take damage, not brute damage.
+			T.apply_damage(25, BRUTE, D)
+			C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") //Keep it vague. Let the /me's do the talking.
+			log_and_message_admins("shreded [D] of [T].", C)
+
+/mob/living/proc/flying_toggle()
+	set name = "Toggle Flight"
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
+		to_chat(src, "You cannot fly without wings!!")
+		return
+	if(C.incapacitated(INCAPACITATION_ALL))
+		to_chat(src, "You cannot fly in this state!")
+		return
+	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
+		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		return
+	if(C.nutrition > 1000 && !C.flying)
+		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
+		return
+
+	C.flying = !C.flying
+	update_floating()
+	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
+
+//Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
+/mob/living/proc/start_wings_hovering()
+	set name = "Hover"
+	set desc = "Allows you to stop gliding and hover. This will take a fair amount of nutrition to perform."
+	set category = "Abilities"
+
+	var/mob/living/carbon/human/C = src
+	if(!C.wing_style) //The species var isn't taken into account here, as it's only purpose is to give this proc to a person.
+		to_chat(src, "You don't have wings!")
+		return
+	if(!C.flying)
+		to_chat(src, "You must be flying to hover!")
+		return
+	if(C.incapacitated(INCAPACITATION_ALL))
+		to_chat(src, "You cannot hover in your current state!")
+		return
+	if(C.nutrition < 50 && !C.flying) //Don't have any food in you?" You can't hover, since it takes up 25 nutrition. And it's not 25 since we don't want them to immediately fall.
+		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		return
+	if(C.anchored)
+		to_chat(C, "<span class='notice'>You are already hovering and/or anchored in place!</span>")
+		return
+
+	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
+		C.anchored = 1 //This is the only way to stop the inertial_drift.
+		C.nutrition -= 25
+		update_floating()
+		to_chat(C, "<span class='notice'>You hover in place.</span>")
+		spawn(6) //.6 seconds.
+			C.anchored = 0
+	else
 		return

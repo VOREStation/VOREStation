@@ -1,8 +1,8 @@
 /hook/startup/proc/robot_modules_vr()
-	robot_modules["Medihound"] = /obj/item/weapon/robot_module/medihound
-	robot_modules["K9"] = /obj/item/weapon/robot_module/knine
-	robot_modules["ERT"] = /obj/item/weapon/robot_module/ert
-	robot_modules["Janihound"] = /obj/item/weapon/robot_module/scrubpup
+	robot_modules["Medihound"] = /obj/item/weapon/robot_module/robot/medihound
+	robot_modules["K9"] = /obj/item/weapon/robot_module/robot/knine
+	robot_modules["ERT"] = /obj/item/weapon/robot_module/robot/ert
+	robot_modules["Janihound"] = /obj/item/weapon/robot_module/robot/scrubpup
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -17,7 +17,7 @@
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
 
-/obj/item/weapon/robot_module/knine
+/obj/item/weapon/robot_module/robot/knine
 	name = "k9 robot module"
 	sprites = list(
 					"K9 hound" = "k9",
@@ -27,8 +27,7 @@
 	networks = list(NETWORK_SECURITY)
 	can_be_pushed = 0
 
-/obj/item/weapon/robot_module/knine/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/flash(src)
+/obj/item/weapon/robot_module/robot/knine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
 	src.modules += new /obj/item/weapon/dogborg/jaws/big(src) //In case there's some kind of hostile mob.
 	src.modules += new /obj/item/weapon/melee/baton/robot(src) //Since the pounce module refused to work, they get a stunbaton instead.
@@ -37,7 +36,8 @@
 	src.modules += new /obj/item/taperoll/police(src) //Block out crime scenes.
 	src.modules += new /obj/item/device/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
-	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to see criminals.
+	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
+	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to access crime records etc.
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -46,7 +46,7 @@
 	R.old_x 	 = -16
 	..()
 
-/obj/item/weapon/robot_module/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/weapon/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -65,7 +65,7 @@
 		B.bcell.give(amount)
 
 
-/obj/item/weapon/robot_module/medihound
+/obj/item/weapon/robot_module/robot/medihound
 	name = "MediHound module"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
@@ -76,18 +76,19 @@
 					"Dark Medical Hound (Static)" = "medihounddark"
 					)
 
-/obj/item/weapon/robot_module/medihound/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
 	src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop the crew.
 	src.modules += new /obj/item/device/dogborg/tongue(src) //Clean up bloody items by licking them, and eat rubbish for minor energy.
 	src.modules += new /obj/item/device/healthanalyzer(src) // See who's hurt specificially.
 	src.modules += new /obj/item/device/dogborg/sleeper(src) //So they can nom people and heal them
-	src.modules += new /obj/item/borg/sight/hud/med(src) //See who's hurt generally.
-	src.modules += new /obj/item/weapon/extinguisher/mini(src) //So they can put burning patients out.
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo(src)//So medi-hounds aren't nearly useless
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
+	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
+	src.modules += new /obj/item/borg/sight/hud/med(src) //Medhud for accessing records and such.
+	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "medihound"
@@ -95,7 +96,7 @@
 	R.old_x  	 = -16
 	..()
 
-/obj/item/weapon/robot_module/ert
+/obj/item/weapon/robot_module/robot/ert
 	name = "Emergency Responce module"
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -104,8 +105,7 @@
 					"Standard" = "ert"
 					)
 
-/obj/item/weapon/robot_module/ert/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/flash(src)
+/obj/item/weapon/robot_module/robot/ert/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
 	src.modules += new /obj/item/weapon/melee/baton/robot(src)
@@ -116,13 +116,13 @@
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
 	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
-	R.icon 		 = 'icons/mob/62x62robot_vr.dmi'
+	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	..()
 
-/obj/item/weapon/robot_module/scrubpup
+/obj/item/weapon/robot_module/robot/scrubpup
 	name = "Custodial Hound module"
 	sprites = list(
 					"Custodial Hound" = "scrubpup",
@@ -130,12 +130,13 @@
 	channels = list("Service" = 1)
 	can_be_pushed = 0
 
-/obj/item/weapon/robot_module/scrubpup/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/scrubpup/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/lightreplacer/dogborg(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/tongue(src)
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor(src)
+	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "scrubpup"
@@ -143,6 +144,6 @@
 	R.old_x 	 = -16
 	..()
 
-/obj/item/weapon/robot_module/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/weapon/robot_module/robot/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)

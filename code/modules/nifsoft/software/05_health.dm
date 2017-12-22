@@ -210,3 +210,26 @@
 		breath.adjust_gas("oxygen", 300)
 		breath.temperature = T20C
 		return breath
+
+/datum/nifsoft/mindbackup
+	name = "Mind Backup"
+	desc = "Backup your mind on the go. Stores a one-time sync of your current mindstate upon activation"
+	list_pos = NIF_BACKUP
+	cost = 250
+
+	activate()
+		if((. = ..()))
+			var/mob/living/carbon/human/H = nif.human
+			SStranscore.m_backup(H.mind,H.nif,one_time = TRUE)
+			persist_nif_data(H)
+			nif.notify("Mind backed up!")
+			nif.use_charge(0.1)
+			deactivate()
+			return TRUE
+
+	deactivate()
+		if((. = ..()))
+			return TRUE
+
+	stat_text()
+		return "Store Backup"

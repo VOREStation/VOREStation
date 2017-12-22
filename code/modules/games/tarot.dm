@@ -24,14 +24,20 @@
 			P.back_icon = "card_back_tarot"
 			cards += P
 
-/obj/item/weapon/deck/tarot/attack_self(var/mob/user as mob)
-	var/list/newcards = list()
-	while(cards.len)
-		var/datum/playingcard/P = pick(cards)
-		P.name = replacetext(P.name," reversed","")
-		if(prob(50))
-			P.name += " reversed"
-		newcards += P
-		cards -= P
-	cards = newcards
-	user.visible_message("\The [user] shuffles [src].")
+/obj/item/weapon/deck/tarot/shuffle()
+	var/mob/living/user = usr
+	if (cooldown < world.time - 10)
+		var/list/newcards = list()
+		while(cards.len)
+			var/datum/playingcard/P = pick(cards)
+			P.name = replacetext(P.name," reversed","")
+			if(prob(50))
+				P.name += " reversed"
+			newcards += P
+			cards -= P
+		cards = newcards
+		playsound(user, 'sound/items/cardshuffle.ogg', 50, 1)
+		user.visible_message("\The [user] shuffles [src].")
+		cooldown = world.time
+	else
+		return

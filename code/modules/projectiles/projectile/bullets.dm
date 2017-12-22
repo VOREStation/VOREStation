@@ -272,6 +272,7 @@
 	flammability = 4
 	agony = 30
 	kill_count = 4
+	vacuum_traversal = 0
 
 /obj/item/projectile/bullet/incendiary/flamethrower/large
 	damage = 15

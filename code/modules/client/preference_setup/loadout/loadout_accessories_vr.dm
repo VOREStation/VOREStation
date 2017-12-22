@@ -26,6 +26,9 @@
 	display_name = "Collar, Pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
+/datum/gear/collar/holo
+	display_name = "Collar, Holo"
+	path = /obj/item/clothing/accessory/collar/holo
 /datum/gear/accessory/white_drop_pouches
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
 
@@ -47,6 +50,11 @@
     path = /obj/item/weapon/storage/backpack/saddlebag_common/robust
     slot = slot_back
 
+/datum/gear/accessory/saddlebag_common/vest
+    display_name = "Taur Duty Vest (backpack)"
+    path = /obj/item/weapon/storage/backpack/saddlebag_common/vest
+    slot = slot_back
+
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"
 	path = /obj/item/weapon/storage/box/khcrystal
@@ -56,3 +64,12 @@
     display_name = "Metal necklace"
     description = "A shiny steel chain with a vague metallic object dangling off it."
     path = /obj/item/clothing/accessory/tronket
+
+/datum/gear/accessory/flops
+    display_name = "Drop straps"
+    description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+    path = /obj/item/clothing/accessory/flops
+
+/datum/gear/accessory/flops/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

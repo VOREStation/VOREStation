@@ -1,3 +1,11 @@
+/mob/living/silicon/robot
+	var/sleeper_g
+	var/sleeper_r
+	var/leaping = 0
+	var/pounce_cooldown = 0
+	var/pounce_cooldown_time = 40
+	var/leap_at
+
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in oview(1))
 	set name = "Robot Nom"
 	set category = "IC"
@@ -9,18 +17,31 @@
 
 /mob/living/silicon/robot/updateicon()
 	..()
-	if(stat == CONSCIOUS)
-		if(sleeper_g == 1)
-			overlays += "[module_sprites[icontype]]-sleeper_g"
-		if(sleeper_r == 1)
-			overlays += "[module_sprites[icontype]]-sleeper_r"
+	if(icon == 'icons/mob/widerobot_vr.dmi' || 'icons/mob/64x64robot_vr.dmi')
+		if(stat == CONSCIOUS)
+			if(sleeper_g == 1)
+				overlays += "[module_sprites[icontype]]-sleeper_g"
+			if(sleeper_r == 1)
+				overlays += "[module_sprites[icontype]]-sleeper_r"
+			if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
+				overlays += "laser"
+			if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
+				overlays += "taser"
+			if(resting)
+				overlays.Cut() // Hide that gut for it has no ground sprite yo.
+				icon_state = "[module_sprites[icontype]]-rest"
+			else
+				icon_state = module_sprites[icontype]
+		else if(stat == DEAD)
+			icon_state = "[module_sprites[icontype]]-wreck"
+			overlays += "wreck-overlay"
 
 /mob/living/silicon/robot/Move(a, b, flag)
 
 	. = ..()
 
 	if(module)
-		if(module.type == /obj/item/weapon/robot_module/scrubpup)//no water reserve mechanics yet.
+		if(module.type == /obj/item/weapon/robot_module/robot/scrubpup)//no water reserve mechanics yet.
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
@@ -46,6 +67,6 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"//Again travis what the fuck? You and your random unrelated bugs.
+							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
 		return
 	return

@@ -10,7 +10,7 @@
 */
 
 /datum/language/birdsong
-	name = "Birdsong"
+	name = LANGUAGE_BIRDSONG
 	desc = "A language primarily spoken by Narvians"
 	speech_verb = "chirps"
 	colour = "birdsongc"
@@ -18,7 +18,7 @@
 	syllables = list ("cheep", "peep", "tweet")
 
 /datum/language/sergal
-	name = "Sagaru"
+	name = LANGUAGE_SAGARU
 	desc = "The dominant language of the Sergal homeworld, Vilous. It consists of aggressive low-pitched hissing and throaty growling."
 	speech_verb = "snarls"
 	colour = "sergal"
@@ -26,7 +26,7 @@
 	syllables = list ("grr", "gah", "woof", "arf", "arra", "rah", "wor", "sarg")
 
 /datum/language/vulpkanin
-	name = "Canilunzt"
+	name = LANGUAGE_CANILUNZT
 	desc = "The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements. Vulpkanin speak this language with ease."
 	speech_verb = "rrrfts"
 	ask_verb = "rurs"
@@ -39,7 +39,7 @@
 	"bin","ket","jarl","vulf","einech","cresthz","azunein","ghzth")
 
 /datum/language/squirrel
-	name = "Ecureuilian"
+	name = LANGUAGE_ECUREUILIAN
 	desc = "The native tongue of the inhabitants of Gaia. Squirrelkin and other beastkins of Gaia can use their ears and tails in addition to speech to communitcate."
 	speech_verb = "squeaks"
 	whisper_verb = "whispers"
@@ -48,7 +48,7 @@
 	syllables = list("sque","sqah","boo","beh","nweh","boopa","nah","wah","een","sweh")
 
 /datum/language/demon
-	name = "Daemon"
+	name = LANGUAGE_DAEMON
 	desc = "The language spoken by the demons of Infernum, it's composed of deep chanting. It's rarely spoken off of Infernum due to the volume one has to exert."
 	speech_verb = "chants"
 	ask_verb = "croons"
@@ -59,7 +59,7 @@
 	"dttm","aggr","uujl","hjjifr","wwuthaav",)
 
 /datum/language/angel
-	name = "Enochian"
+	name = LANGUAGE_ENOCHIAN
 	desc = "The graceful language spoken by angels, composed of quiet hymns. Formally, Angels sing it."
 	speech_verb = "sings"
 	ask_verb = "hums"

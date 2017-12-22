@@ -4,7 +4,7 @@ client/proc/ZoneTick()
 
 	var/result = air_master.Tick()
 	if(result)
-		src << "Sucessfully Processed."
+		src << "Successfully Processed."
 
 	else
 		src << "Failed to process! ([air_master.tick_progress])"

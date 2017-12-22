@@ -163,13 +163,13 @@ Please contact me on #coderbus IRC. ~Carn x
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
 		M.Turn(90)
-		M.Scale(size_multiplier)
+		M.Scale(size_multiplier) //VOREStation Edit. Look at Polaris pull #4267 to see things edited.
 		M.Translate(1,-6)
 		src.transform = M
 	else
 		var/matrix/M = matrix()
-		M.Scale(size_multiplier)
-		M.Translate(0, 16*(size_multiplier-1))
+		M.Scale(size_multiplier) //VOREStation Edit.
+		M.Translate(0, 16*(size_multiplier-1)) //VOREStation Edit.
 		src.transform = M
 
 var/global/list/damage_icon_parts = list()
@@ -294,6 +294,8 @@ var/global/list/damage_icon_parts = list()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
+			if(isnull(part) || part.is_stump())
+				continue
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
@@ -383,11 +385,14 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
 		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
-				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY) //VOREStation edit
+				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_MULTIPLY)
+				hair_s.Blend(hair_s_add, ICON_ADD)
+			overlays |= hair_s //VOREStation edit? Sync note: The new Polaris doesn't have this, but looking elsewhere I assume this is needed. Comment out/remove if not.
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
@@ -510,7 +515,16 @@ var/global/list/damage_icon_parts = list()
 
 		//need to append _s to the icon state for legacy compatibility
 		var/image/standing = image(icon = under_icon, icon_state = "[under_state]_s")
-		standing.color = w_uniform.color
+
+		if(w_uniform.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = w_uniform.addblends)
+			if(w_uniform.color)
+				base.Blend(w_uniform.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = w_uniform.color
 
 		//apply blood overlay
 		if(w_uniform.blood_DNA)
@@ -574,7 +588,15 @@ var/global/list/damage_icon_parts = list()
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
 		gloves.screen_loc = ui_gloves
-		standing.color = gloves.color
+		if(gloves.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = gloves.addblends)
+			if(gloves.color)
+				base.Blend(gloves.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = gloves.color
 		overlays_standing[GLOVES_LAYER]	= standing
 	else
 		if(blood_DNA)
@@ -595,7 +617,15 @@ var/global/list/damage_icon_parts = list()
 			standing = image("icon" = glasses.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[glasses.icon_state]")
 		else
 			standing = image("icon" = 'icons/mob/eyes.dmi', "icon_state" = "[glasses.icon_state]")
-		standing.color = glasses.color
+		if(glasses.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = glasses.addblends)
+			if(glasses.color)
+				base.Blend(glasses.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = glasses.color
 		overlays_standing[GLASSES_LAYER] = standing
 
 	else
@@ -623,7 +653,15 @@ var/global/list/damage_icon_parts = list()
 				standing = image("icon" = l_ear.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[t_type]")
 			else
 				standing = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
-			standing.color = l_ear.color
+			if(l_ear.addblends)
+				var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+				var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = l_ear.addblends)
+				if(l_ear.color)
+					base.Blend(l_ear.color, ICON_MULTIPLY)
+				base.Blend(addblend_icon, ICON_ADD)
+				standing = image(base)
+			else
+				standing.color = l_ear.color
 			both.overlays += standing
 
 		if(r_ear)
@@ -637,7 +675,15 @@ var/global/list/damage_icon_parts = list()
 				standing = image("icon" = r_ear.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[t_type]")
 			else
 				standing = image("icon" = 'icons/mob/ears.dmi', "icon_state" = "[t_type]")
-			standing.color = r_ear.color
+			if(r_ear.addblends)
+				var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+				var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = r_ear.addblends)
+				if(r_ear.color)
+					base.Blend(r_ear.color, ICON_MULTIPLY)
+				base.Blend(addblend_icon, ICON_ADD)
+				standing = image(base)
+			else
+				standing.color = r_ear.color
 			both.overlays += standing
 
 		overlays_standing[EARS_LAYER] = both
@@ -671,8 +717,18 @@ var/global/list/damage_icon_parts = list()
 			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
 			standing.overlays += bloodsies
-		standing.color = shoes.color
+
+		if(shoes.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = shoes.addblends)
+			if(shoes.color)
+				base.Blend(shoes.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = shoes.color
 		overlays_standing[shoe_layer] = standing
+
 	else
 		if(feet_blood_DNA)
 			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
@@ -738,7 +794,15 @@ var/global/list/damage_icon_parts = list()
 			if(hat.on && light_overlay_cache[cache_key])
 				standing.overlays |= light_overlay_cache[cache_key]
 
-		standing.color = head.color
+		if(head.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = head.addblends)
+			if(head.color)
+				base.Blend(head.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = head.color
 		overlays_standing[HEAD_LAYER] = standing
 
 	else
@@ -773,7 +837,15 @@ var/global/list/damage_icon_parts = list()
 					if(!i_state) i_state = i.icon_state
 					standing.overlays	+= image("icon" = 'icons/mob/belt.dmi', "icon_state" = "[i_state]")
 
-		standing.color = belt.color
+		if(belt.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = belt.addblends)
+			if(belt.color)
+				base.Blend(belt.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = belt.color
 
 		overlays_standing[belt_layer] = standing
 	else
@@ -792,7 +864,7 @@ var/global/list/damage_icon_parts = list()
 		var/t_icon = INV_SUIT_DEF_ICON
 		if(wear_suit.icon_override)
 			t_icon = wear_suit.icon_override
-		else if(wear_suit.sprite_sheets && wear_suit.sprite_sheets[species.get_bodytype(src)])
+		else if(wear_suit.sprite_sheets && src && wear_suit.sprite_sheets[species.get_bodytype(src)]) //Vorestation edit
 			t_icon = wear_suit.sprite_sheets[species.get_bodytype(src)] //Vorestation edit
 		else if(wear_suit.item_icons && wear_suit.item_icons[slot_wear_suit_str])
 			t_icon = wear_suit.item_icons[slot_wear_suit_str]
@@ -802,6 +874,17 @@ var/global/list/damage_icon_parts = list()
 		if(wear_suit.icon_override && wear_suit.item_state)
 			t_state = wear_suit.item_state
 		//VOREStation Code End
+		standing = image("icon" = t_icon, "icon_state" = "[wear_suit.icon_state]")
+
+		if(wear_suit.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = wear_suit.addblends)
+			if(wear_suit.color)
+				base.Blend(wear_suit.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = wear_suit.color
 
 		standing = image("icon" = t_icon, "icon_state" = t_state) //VOREStation Edit
 		standing.color = wear_suit.color
@@ -859,7 +942,15 @@ var/global/list/damage_icon_parts = list()
 			standing = image("icon" = wear_mask.sprite_sheets[species.get_bodytype(src)], "icon_state" = "[wear_mask.icon_state]")
 		else
 			standing = image("icon" = 'icons/mob/mask.dmi', "icon_state" = "[wear_mask.icon_state]")
-		standing.color = wear_mask.color
+		if(wear_mask.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = wear_mask.addblends)
+			if(wear_mask.color)
+				base.Blend(wear_mask.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = wear_mask.color
 
 		if( !istype(wear_mask, /obj/item/clothing/mask/smokable/cigarette) && wear_mask.blood_DNA )
 			var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "maskblood")
@@ -901,7 +992,15 @@ var/global/list/damage_icon_parts = list()
 
 		//apply color
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
-		standing.color = back.color
+		if(back.addblends)
+			var/icon/base = new/icon("icon" = standing.icon, "icon_state" = standing.icon_state)
+			var/addblend_icon = new/icon("icon" = standing.icon, "icon_state" = back.addblends)
+			if(back.color)
+				base.Blend(back.color, ICON_MULTIPLY)
+			base.Blend(addblend_icon, ICON_ADD)
+			standing = image(base)
+		else
+			standing.color = back.color
 
 		//create the image
 		overlays_standing[BACK_LAYER] = standing

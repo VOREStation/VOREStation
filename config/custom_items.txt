@@ -145,6 +145,12 @@ character_name: James Holder
 item_path: /obj/item/weapon/disk/data
 }
 
+{
+ckey: cameron653
+character_name: Jasmine Lizden
+item_path: /obj/item/weapon/implanter/reagent_generator/jasmine
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
@@ -312,33 +318,33 @@ item_path: /obj/item/clothing/head/fedora/fluff/jemli
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
 req_access = 58
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
 req_access = 58
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/shoes/boots/combat
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/under/syndicate/combat
 }
 
 {
 ckey: jertheace
-character_name: Jeremiah 'Ace' Acacius
+character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/suit/armor/tactical/officer/fluff/ace
 }
 
@@ -411,7 +417,7 @@ item_path: /obj/item/weapon/card/id/fluff/amaya
 
 {
 ckey: kisukegema
-character_name: Kisuke 'The Nerd' Gema
+character_name: Kisuke Gema
 item_path: /obj/item/clothing/glasses/omnihud/kamina
 }
 
@@ -443,6 +449,12 @@ item_path: /obj/item/weapon/storage/box/fluff/briana_moore
 ckey: luminescentring
 character_name: Briana Moore
 item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+}
+
+{
+ckey: Lycanthorph
+character_name: Savannah Dixon
+item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 }
 
 # ######## M CKEYS
@@ -629,9 +641,22 @@ req_access = 1
 }
 
 {
+ckey: silencedmp5a5
+character_name: Serdykov Antoz
+item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
+req_access = 1
+}
+
+{
 ckey: silvertalismen
 character_name: Tasy Ruffles
 item_path: /obj/item/clothing/under/sexyclown
+}
+
+{
+ckey: silvertalismen
+character_name: Evian
+item_path: /obj/item/weapon/implanter/reagent_generator/evian
 }
 
 {
@@ -644,6 +669,12 @@ item_path: /obj/item/clothing/mask/gas/sexyclown
 ckey: silvertalismen
 character_name: Tasy Ruffles
 item_path: /obj/item/device/pda/clown
+}
+
+{
+ckey: silvertalismen
+character_name: Camilla
+item_path: /obj/item/toy/plushie/farwa
 }
 
 {

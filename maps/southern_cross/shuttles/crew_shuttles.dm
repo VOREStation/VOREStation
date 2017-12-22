@@ -32,7 +32,6 @@
 	destination_class = /datum/shuttle_destination/shuttle2
 	starting_destination = /datum/shuttle_destination/shuttle2/root
 
-
 /datum/shuttle_destination/shuttle1/root
 	name = "Southern Cross Hangar One"
 	my_area = /area/shuttle/shuttle1/start

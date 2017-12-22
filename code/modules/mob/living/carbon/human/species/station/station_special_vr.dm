@@ -14,6 +14,8 @@
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
+	can_fly = 1 //They have wings by default.
+	var/base_species = "Xenochimera"
 
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
@@ -23,7 +25,12 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/begin_reconstitute_form,
 		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/purge_impurities)
+		/mob/living/carbon/human/proc/purge_impurities,
+		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/carbon/human/proc/succubus_drain_finialize,
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/bloodsuck,
+		/mob/living/carbon/human/proc/shred_limb) //Xenochimera get all the special verbs since they can't select traits.
 
 	min_age = 18
 	max_age = 80
@@ -69,9 +76,11 @@
 				if(H.feral == 0)
 					H << "<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>"
 					log_and_message_admins("has gone feral due to hunger.", H)
+					H.feral += 5 //just put them over the threshold by a decent amount for the first chunk.
 					if(H.stat == CONSCIOUS)
 						H.emote("twitch")
-				H.feral = min(150-H.nutrition, H.feral+1) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
+				if(H.feral + H.nutrition < 150) //Feralness increases while this hungry, capped at 50-150 depending on hunger.
+					H.feral += 1
 
 		// If they're hurt, chance of snapping. Not if they're straight-up KO'd though.
 		if (H.stat == CONSCIOUS && H.traumatic_shock >=min(60, H.nutrition/10)) //at 360 nutrition, this is 30 brute/burn, or 18 halloss. Capped at 50 brute/30 halloss - if they take THAT much, no amount of satiation will help them. Also they're fat.
@@ -186,6 +195,52 @@
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage or trigger feral.
 		return
 
+/datum/species/xenochimera/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
+	ASSERT(to_copy)
+	ASSERT(istype(H))
+
+	if(ispath(to_copy))
+		to_copy = "[initial(to_copy.name)]"
+	if(istext(to_copy))
+		to_copy = all_species[to_copy]
+
+	var/datum/species/xenochimera/new_copy = new()
+
+	//Initials so it works with a simple path passed, or an instance
+	new_copy.base_species = to_copy.name
+	new_copy.icobase = to_copy.icobase
+	new_copy.deform = to_copy.deform
+	new_copy.tail = to_copy.tail
+	new_copy.tail_animation = to_copy.tail_animation
+	new_copy.icobase_tail = to_copy.icobase_tail
+	new_copy.color_mult = to_copy.color_mult
+	new_copy.primitive_form = to_copy.primitive_form
+	new_copy.appearance_flags = to_copy.appearance_flags
+	new_copy.flesh_color = to_copy.flesh_color
+	new_copy.base_color = to_copy.base_color
+	new_copy.blood_mask = to_copy.blood_mask
+	new_copy.damage_mask = to_copy.damage_mask
+	new_copy.damage_overlays = to_copy.damage_overlays
+
+	//Set up a mob
+	H.species = new_copy
+	H.icon_state = lowertext(new_copy.get_bodytype())
+
+	if(new_copy.holder_type)
+		H.holder_type = new_copy.holder_type
+
+	if(H.dna)
+		H.dna.ready_dna(H)
+
+	return new_copy
+
+/datum/species/xenochimera/get_bodytype()
+	return base_species
+
+/datum/species/xenochimera/get_race_key()
+	var/datum/species/real = all_species[base_species]
+	return real.race_key
+
 
 /////////////////////
 /////SPIDER RACE/////
@@ -227,7 +282,7 @@
 	//primitive_form = "Monkey" //I dunno. Replace this in the future.
 
 	spawn_flags = SPECIES_CAN_JOIN
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR | NO_MINOR_CUT
 
 	flesh_color = "#AFA59E" //Gray-ish. Not sure if this is really needed, but eh.
 	base_color 	= "#333333" //Blackish-gray

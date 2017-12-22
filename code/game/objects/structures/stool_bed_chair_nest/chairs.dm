@@ -83,7 +83,6 @@
 		src.set_dir(turn(src.dir, 90))
 		return
 
-//VOREStation Add - Shuttle Chair
 /obj/structure/bed/chair/shuttle
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
@@ -91,7 +90,7 @@
 	color = null
 	base_icon = "shuttle_chair"
 	applies_material_colour = 0
-//VOREStation Add End
+
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
 	desc = "It's a chair. It looks comfy."

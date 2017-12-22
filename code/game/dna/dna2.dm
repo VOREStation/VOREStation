@@ -33,13 +33,13 @@
 #define DNA_UI_GENDER      14
 #define DNA_UI_BEARD_STYLE 15
 #define DNA_UI_HAIR_STYLE  16
-#define DNA_UI_EAR_STYLE   17
+#define DNA_UI_EAR_STYLE   17 // VOREStation snippet.
 #define DNA_UI_TAIL_STYLE  18
 #define DNA_UI_PLAYERSCALE 19
 #define DNA_UI_TAIL_R      20
 #define DNA_UI_TAIL_G      21
 #define DNA_UI_TAIL_B      22
-#define DNA_UI_TAIL2_R     23 // VOREStation snippet.
+#define DNA_UI_TAIL2_R     23
 #define DNA_UI_TAIL2_G     24
 #define DNA_UI_TAIL2_B     25
 #define DNA_UI_EARS_R      26
@@ -54,7 +54,7 @@
 #define DNA_UI_WING_B      35 // VOREStation snippet end.
 #define DNA_UI_LENGTH      35 // VOREStation Edit to 35
 
-#define DNA_SE_LENGTH 27
+#define DNA_SE_LENGTH 46 // VOREStation Edit (original was UI+11)
 // For later:
 //#define DNA_SE_LENGTH 50 // Was STRUCDNASIZE, size 27. 15 new blocks added = 42, plus room to grow.
 
@@ -190,6 +190,12 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	if(istype(character.species,/datum/species/custom))
 		var/datum/species/custom/CS = character.species
 		src.species_traits = CS.traits.Copy()
+		src.base_species = CS.base_species
+		src.blood_color = CS.blood_color
+
+	if(istype(character.species,/datum/species/xenochimera))
+		var/datum/species/xenochimera/CS = character.species
+		//src.species_traits = CS.traits.Copy() //No traits
 		src.base_species = CS.base_species
 		src.blood_color = CS.blood_color
 

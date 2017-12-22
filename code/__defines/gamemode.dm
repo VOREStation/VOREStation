@@ -86,6 +86,7 @@ var/list/be_special_flags = list(
 #define MODE_TRAITOR "traitor"
 #define MODE_AUTOTRAITOR "autotraitor"
 #define MODE_INFILTRATOR "infiltrator"
+#define MODE_THUG "thug"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 120
 

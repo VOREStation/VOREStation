@@ -51,7 +51,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * but in the future we may also incorporate the "mob_size", so that
  * a macro mouse is still only effectively "normal" or a micro dragon is still large etc.
  */
-/mob/living/proc/get_effective_size()
+/mob/proc/get_effective_size()
+	return 100000 //Whatever it is, it's too big to pick up, or it's a ghost, or something.
+
+/mob/living/get_effective_size()
 	return src.size_multiplier
 
 /**
@@ -141,6 +144,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		now_pushing = 0
 		if(src.get_effective_size() > tmob.get_effective_size())
 			var/mob/living/carbon/human/H = src
+			if(H.flying)
+				return 1 //Silently pass without a message.
 			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 				src << "You carefully slither around [tmob]."
 				tmob << "[src]'s huge tail slithers past beside you!"
@@ -166,6 +171,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  */
 /mob/living/proc/handle_micro_bump_other(var/mob/living/tmob)
 	ASSERT(istype(tmob)) // Baby don't hurt me
+	if(ishuman(src))
+		var/mob/living/carbon/human/P = src
+		if(P.flying) //If they're flying, don't do any special interactions.
+			return
+	if(ishuman(tmob))
+		var/mob/living/carbon/human/D = tmob
+		if(D.flying) //if the prey is flying, don't smush them.
+			return
 
 	if(!src.canmove ||src.buckled)
 		return
@@ -228,7 +241,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						M.drip(0.1)
 						for(var/obj/item/organ/I in M.organs) // ???
 							tmob.take_overall_damage(calculated_damage, 0) //Due to the fact that this deals damage across random body parts, this should heal quite fast.
-						log_and_message_admins("has trampled [M] for [calculated_damage * 10] damage.") //Only crushing humans get logged.
 						admin_attack_log(src, M, "trampled [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				else
 					src << "You carelessly step down onto [tmob], crushing them!!"
@@ -238,7 +250,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(calculated_damage, 0) // 5 damage min, 30 damage max, depending on size & RNG. If they're only stepped on once, the damage will heal over time.
 						M.drip(0.1)
-						log_and_message_admins("has trampled [M] for [calculated_damage * 10] damage.")
 						admin_attack_log(src, M, "Crushed [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				return 1
 
@@ -253,7 +264,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(damage, 0) //15 damage min, 90 damage max. If they're only stepped on once, the damage will heal over time.
 						M.drip(3) //The least of your problems, honestly.
-						log_and_message_admins("has harshly crushed [M] for [damage * 10] damage.")
 						admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				else
 					src << "<span class='warning'>You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!</span>"
@@ -263,7 +273,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(damage, 0)
 						M.drip(3)
-						log_and_message_admins("has harshly crushed [M] for [damage * 10] damage.")
 						admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				return 1
 

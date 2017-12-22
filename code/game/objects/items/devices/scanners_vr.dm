@@ -125,7 +125,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//The actual options
 	if(href_list["mindscan"])
-		if(!target.mind)
+		if(!target.mind || target.mind.name in prevent_respawns)
 			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
 			return
 
@@ -133,6 +133,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			nif = H.nif
+			persist_nif_data(H)
 
 		usr.visible_message("[usr] begins scanning [target]'s mind.","<span class='notice'>You begin scanning [target]'s mind.</span>")
 		if(do_after(usr,8 SECONDS,target))
@@ -161,7 +162,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		return
 
 	if(href_list["mindsteal"])
-		if(!target.mind)
+		if(!target.mind || target.mind.name in prevent_respawns)
 			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
 			return
 

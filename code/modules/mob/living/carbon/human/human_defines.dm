@@ -103,3 +103,8 @@
 	var/step_count = 0 // Track how many footsteps have been taken to know when to play footstep sounds
 
 	can_be_antagged = TRUE
+
+// Used by mobs in virtual reality to point back to the "real" mob the client belongs to.
+	var/mob/living/carbon/human/vr_holder = null
+	// Used by "real" mobs after they leave a VR session
+	var/mob/living/carbon/human/vr_link = null
