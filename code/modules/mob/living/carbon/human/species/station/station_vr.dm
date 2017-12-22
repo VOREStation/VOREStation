@@ -337,6 +337,7 @@
 	min_age = 18
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
+	pass_flags = 0
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
