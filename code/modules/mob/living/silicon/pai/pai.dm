@@ -104,12 +104,6 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
-	// Vorestation Edit: Meta Info for pAI's
-	if (client)
-		var/meta_info = client.prefs.metadata
-		if (meta_info)
-			ooc_notes = meta_info
-
 	//PDA
 	pda = new(src)
 	spawn(5)
@@ -121,6 +115,9 @@
 
 /mob/living/silicon/pai/Login()
 	..()
+	// Vorestation Edit: Meta Info for pAI
+	if (client.prefs)
+		ooc_notes = client.prefs.metadata
 
 
 // this function shows the information about being silenced as a pAI in the Status panel
