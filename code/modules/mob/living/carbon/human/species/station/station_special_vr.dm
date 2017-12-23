@@ -145,10 +145,10 @@
 					if(H.stat == CONSCIOUS)
 						H.emote("twitch")
 					if(!H.handling_hal)
-						spawn H.handle_feral()
+						H.handle_feral()
 			else // nobody around
 				if(!H.handling_hal)
-					spawn H.handle_feral()
+					H.handle_feral()
 				if(prob(2)) //periodic nagmessages
 					if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
 						H << "<span class='danger'> Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>"
