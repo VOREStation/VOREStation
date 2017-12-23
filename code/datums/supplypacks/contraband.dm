@@ -46,7 +46,7 @@
 /datum/supply_packs/security/bolt_rifles_militia
  	name = "Surplus militia rifles"
  	contains = list(
- 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin = 3, //VOREStation Edit. By request of Ace.
+ 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 3,
  			/obj/item/ammo_magazine/clip/c762 = 6
  			)
  	cost = 50
