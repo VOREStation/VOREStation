@@ -312,3 +312,13 @@
 				icon_state = icon_closed
 		else
 			icon_state = icon_opened
+
+/obj/structure/closet/secure_closet/medical_wall/pills
+	name = "pill cabinet"
+
+	New()
+		..()
+		new /obj/item/weapon/storage/pill_bottle/tramadol(src)
+		new /obj/item/weapon/storage/pill_bottle/antitox(src)
+		new /obj/item/weapon/storage/pill_bottle/carbon(src)
+		new /obj/random/medical/pillbottle(src)
