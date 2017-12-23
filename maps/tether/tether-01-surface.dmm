@@ -3838,7 +3838,7 @@
 "bvP" = (/obj/machinery/newscaster{pixel_x = 0; pixel_y = 30},/turf/simulated/floor/wood,/area/tether/surfacebase/reading_room)
 "bvQ" = (/obj/machinery/light_switch{pixel_y = 25},/turf/simulated/floor/wood,/area/tether/surfacebase/reading_room)
 "bvR" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 28},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/wood,/area/tether/surfacebase/reading_room)
-"bvS" = (/obj/structure/table/glass,/obj/machinery/photocopier/faxmachine,/obj/machinery/atmospherics/unary/vent_scrubber/on,/obj/machinery/status_display{pixel_y = 30},/turf/simulated/floor/wood,/area/tether/surfacebase/reading_room)
+"bvS" = (/obj/structure/table/glass,/obj/machinery/photocopier/faxmachine{department = "Reading Room"},/obj/machinery/atmospherics/unary/vent_scrubber/on,/obj/machinery/status_display{pixel_y = 30},/turf/simulated/floor/wood,/area/tether/surfacebase/reading_room)
 "bvT" = (/obj/structure/catwalk,/turf/simulated/open/virgo3b,/area/tether/surfacebase/outside/outside3)
 "bvU" = (/obj/effect/floor_decal/corner_oldtile/green/full{dir = 8},/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/tether/surfacebase/outside/outside3)
 "bvV" = (/obj/effect/floor_decal/corner_oldtile/green{dir = 5},/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/tether/surfacebase/outside/outside3)
