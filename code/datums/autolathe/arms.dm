@@ -147,9 +147,9 @@
 	name = "rifle magazine (5.45mm practice)"
 	path =/obj/item/ammo_magazine/m545/practice
 
-/datum/category_item/autolathe/arms/rifle_545_hunter
+/*/datum/category_item/autolathe/arms/rifle_545_hunter //VOREStation Edit Start. By request of Ace
 	name = "rifle magazine (5.45mm hunting)"
-	path =/obj/item/ammo_magazine/m545/hunter
+	path =/obj/item/ammo_magazine/m545/hunter*/ //VOREStation Edit End.
 
 /datum/category_item/autolathe/arms/machinegun_545
 	name = "machinegun box magazine (5.45)"
