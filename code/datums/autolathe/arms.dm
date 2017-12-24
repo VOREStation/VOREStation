@@ -156,10 +156,10 @@
 	path =/obj/item/ammo_magazine/m545saw
 	hidden = 1
 
-/datum/category_item/autolathe/arms/machinegun_545_hunter
+/*/datum/category_item/autolathe/arms/machinegun_545_hunter //VOREStation Edit Start. By request of Ace
 	name = "machinegun box magazine (5.56 hunting)"
 	path =/obj/item/ammo_magazine/m545saw/hunter
-	hidden = 1
+	hidden = 1*/ //VOREStation Edit End.
 
 /////// 7.62
 
@@ -394,9 +394,9 @@
 	path =/obj/item/ammo_magazine/clip/c762
 	hidden = 1
 
-/datum/category_item/autolathe/arms/rifle_clip_762_hunter
+/*/datum/category_item/autolathe/arms/rifle_clip_762_hunter //VOREStation Edit Start. By request of Ace
 	name = "ammo clip (7.62mm hunting)"
-	path =/obj/item/ammo_magazine/clip/c762/hunter
+	path =/obj/item/ammo_magazine/clip/c762/hunter*/ //VOREStation Edit End.
 
 /datum/category_item/autolathe/arms/rifle_clip_762_practice
 	name = "ammo clip (7.62mm practice)"
