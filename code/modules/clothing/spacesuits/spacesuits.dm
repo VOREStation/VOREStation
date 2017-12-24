@@ -16,6 +16,7 @@
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude","Diona")
 	preserve_item = 1
+	phoronproof = 1
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -61,6 +62,7 @@
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude","Diona")
 	preserve_item = 1
+	phoronproof = 1
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 

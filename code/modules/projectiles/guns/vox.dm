@@ -60,7 +60,8 @@
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 300
 	projectile_type = /obj/item/projectile/beam/stun/darkmatter
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	accuracy = 2
 
 	firemodes = list(
@@ -85,7 +86,7 @@
 /obj/item/projectile/beam/darkmatter
 	name = "dark matter bolt"
 	icon_state = "darkb"
-	damage = 60
+	damage = 35
 	armor_penetration = 35
 	damage_type = BRUTE
 	check_armour = "energy"
@@ -118,7 +119,8 @@
 	item_state = "noise"
 	fire_sound = 'sound/effects/basscannon.ogg'
 	w_class = ITEMSIZE_HUGE
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	charge_cost = 600
 
 	projectile_type=/obj/item/projectile/sonic/weak

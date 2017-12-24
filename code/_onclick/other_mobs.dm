@@ -59,7 +59,7 @@
 	if(!..())
 		return 0
 
-	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	setClickCooldown(get_attack_speed())
 	A.attack_generic(src,rand(5,6),"bitten")
 
 /*
@@ -87,7 +87,7 @@
 		custom_emote(1,"[friendly] [A]!")
 		return
 
-	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	setClickCooldown(get_attack_speed())
 	if(isliving(A))
 		target_mob = A
 		PunchTarget()
@@ -96,7 +96,7 @@
 		A.attack_generic(src, rand(melee_damage_lower, melee_damage_upper), attacktext)
 
 /mob/living/simple_animal/RangedAttack(var/atom/A)
-	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	setClickCooldown(get_attack_speed())
 	var/distance = get_dist(src, A)
 
 	if(prob(spattack_prob) && (distance >= spattack_min_range) && (distance <= spattack_max_range))

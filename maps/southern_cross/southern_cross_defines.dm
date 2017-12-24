@@ -42,6 +42,14 @@
 	station_networks = list()
 
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
+	unit_test_exempt_areas = list(
+		/area/ninja_dojo
+	)
+
+	unit_test_exempt_from_atmos = list(
+		/area/tcomm/chamber
+	)
+
 
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
 /datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)
@@ -49,17 +57,32 @@
 		return map_levels
 	else if (srcz == Z_LEVEL_TRANSIT)
 		return list() // Nothing on transit!
-	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE)
+	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
 		return list(
 			Z_LEVEL_STATION_ONE,
 			Z_LEVEL_STATION_TWO,
 			Z_LEVEL_STATION_THREE)
+	else if(srcz in list(Z_LEVEL_SURFACE, Z_LEVEL_SURFACE_MINE, Z_LEVEL_SURFACE_WILD)) // Being on the surface lets you see other surface Zs.
+		return list(
+			Z_LEVEL_SURFACE,
+			Z_LEVEL_SURFACE_MINE,
+			Z_LEVEL_SURFACE_WILD)
 	else
 		return ..()
 
-/datum/map/northern_star/perform_map_generation()
-	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
+/datum/map/southern_cross/perform_map_generation()
+	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
+
+	// Cave submaps are first.
+	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 100, /area/mine/unexplored, /datum/map_template/cave)
+	// Wilderness is next.
+	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 100, /area/surface/outside/wilderness, /datum/map_template/surface)
+	// If Space submaps are made, add a line to make them here as well.
+
+	// Now for the tunnels.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
+	// Todo: Forest generation.
 	return 1
 
 /datum/map_z_level/southern_cross/station

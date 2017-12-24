@@ -74,7 +74,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/vermouth,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/bitters
 		)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure

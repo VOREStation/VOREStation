@@ -20,12 +20,12 @@ var/list/grass_types = list(
 	grass_chance = 0
 	var/tree_chance = 2
 
-/turf/simulated/floor/outdoors/grass/sif/New()
+/turf/simulated/floor/outdoors/grass/sif/initialize()
 	if(tree_chance && prob(tree_chance))
 		new /obj/structure/flora/tree/sif(src)
 	..()
 
-/turf/simulated/floor/outdoors/grass/New()
+/turf/simulated/floor/outdoors/grass/initialize()
 	if(prob(50))
 		icon_state += "2"
 		//edge_blending_priority++

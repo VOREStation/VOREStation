@@ -276,6 +276,9 @@
 	max_uses = 16
 	var/cooldown = 0
 
+/obj/item/device/lightreplacer/dogborg/proc/AddUses(var/amount = 1)
+	uses = min(max(uses + amount, 0), max_uses)
+
 /obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Boo recharger fill is slow as shit and removes all the extra cyberfat gains you worked so hard for!
 	if(uses >= max_uses)
 		to_chat(user, "<span class='warning'>[src.name] is full.</span>")

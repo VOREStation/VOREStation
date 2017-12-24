@@ -164,7 +164,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 5
+	heal_brute = 3
 	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -225,7 +225,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 5
+	heal_burn = 3
 	origin_tech = list(TECH_BIO = 1)
 
 

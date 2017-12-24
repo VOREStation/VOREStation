@@ -50,8 +50,8 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 
-		//initiating or cancelling a launch ALWAYS requires authorization, but if we are already set to launch anyways than forcing does not.
-		//this is so that people can force launch if the docking controller cannot safely undock without needing X heads to swipe.
+		//Initiating or cancelling a launch ALWAYS requires authorization, but if we are already set to launch anyways than forcing does not.
+		//This is so that people can force launch if the docking controller cannot safely undock without needing X heads to swipe.
 		if (!(process_state == WAIT_LAUNCH || C.has_authorization()))
 			return 0
 	return ..()
@@ -69,11 +69,11 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence initiated!</b></span>"
+			to_chat(world, "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence initiated!</b></span>")
 
 	if(usr)
-		log_admin("[key_name(usr)] has overridden the shuttle autopilot and activated launch sequence")
-		message_admins("[key_name_admin(usr)] has overridden the shuttle autopilot and activated launch sequence")
+		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
+		message_admins("[key_name_admin(usr)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
 
 	..(user)
 
@@ -83,11 +83,11 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!</b></span>"
+			to_chat(world, "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!</b></span>")
 
 	if(usr)
-		log_admin("[key_name(usr)] has overridden the shuttle autopilot and forced immediate launch")
-		message_admins("[key_name_admin(usr)] has overridden the shuttle autopilot and forced immediate launch")
+		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and forced immediate launch.")
+		message_admins("[key_name_admin(usr)] has overridden the departure shuttle's autopilot and forced immediate launch.")
 
 	..(user)
 
@@ -97,11 +97,11 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence aborted!</b></span>"
+			to_chat(world, "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence aborted!</b></span>")
 
 	if(usr)
-		log_admin("[key_name(usr)] has overridden the shuttle autopilot and cancelled launch sequence")
-		message_admins("[key_name_admin(usr)] has overridden the shuttle autopilot and cancelled launch sequence")
+		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and cancelled the launch sequence.")
+		message_admins("[key_name_admin(usr)] has overridden the departure shuttle's autopilot and cancelled the launch sequence.")
 
 	..(user)
 
@@ -117,7 +117,7 @@
 	return (authorized.len >= req_authorizations || emagged)
 
 /obj/machinery/computer/shuttle_control/emergency/proc/reset_authorization()
-	//no need to reset emagged status. If they really want to go back to the station they can.
+	//No need to reset emagged status. If they really want to go back to the station they can.
 	authorized = initial(authorized)
 
 //returns 1 if the ID was accepted and a new authorization was added, 0 otherwise
@@ -145,16 +145,19 @@
 
 	if (dna_hash in authorized)
 		src.visible_message("\The [src] buzzes. That ID has already been scanned.")
+		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return 0
 
 	if (!(access_heads in access))
 		src.visible_message("\The [src] buzzes, rejecting [ident].")
+		playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return 0
 
 	src.visible_message("\The [src] beeps as it scans [ident].")
+	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
 	authorized[dna_hash] = auth_name
 	if (req_authorizations - authorized.len)
-		world << "<span class='notice'><b>Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot.</b></span>"
+		to_chat(world, "<span class='notice'><b>Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot.</b></span>") //TODO- Belsima, make this an announcement instead of magic.
 
 	if(usr)
 		log_admin("[key_name(usr)] has inserted [ID] into the shuttle control computer - [req_authorizations - authorized.len] authorisation\s needed")
@@ -164,7 +167,7 @@
 
 /obj/machinery/computer/shuttle_control/emergency/emag_act(var/remaining_charges, var/mob/user)
 	if (!emagged)
-		user << "<span class='notice'>You short out \the [src]'s authorization protocols.</span>"
+		to_chat(user, "<span class='notice'>You short out \the [src]'s authorization protocols.</span>")
 		emagged = 1
 		return 1
 
@@ -190,11 +193,11 @@
 			if (shuttle.in_use)
 				shuttle_status = "Busy."
 			else if (!shuttle.location)
-				shuttle_status = "Standing-by at [station_name()]."
+				shuttle_status = "Standing by at [station_name()]."
 			else
-				shuttle_status = "Standing-by at [using_map.dock_name]."
+				shuttle_status = "Standing by at [using_map.dock_name]."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
-			shuttle_status = "Shuttle has recieved command and will depart shortly."
+			shuttle_status = "Shuttle has received command and will depart shortly."
 		if(WAIT_ARRIVE)
 			shuttle_status = "Proceeding to destination."
 		if(WAIT_FINISH)

@@ -297,7 +297,7 @@
 
 	var/open_tiles_needed = 15 // Tends to be just right, as maint triggers this but hallways don't.
 
-	on_created_text = "<span class='warning'>You are terrified of tight spaces.  Why did you come to space??</span>"
+	on_created_text = "<span class='warning'>You are terrified of tight spaces.  Why did you come to space?</span>"
 	on_expired_text = "<span class='notice'>Small rooms aren't so bad now.</span>"
 
 	zero_fear_up = list(
@@ -357,6 +357,180 @@
 
 	return fear_amount
 
+/datum/modifier/trait/phobia/blennophobe
+	name = "blennophobia"
+	desc = "Slimes are quite dangerous, but just the aspect of something being slimey is uncomfortable."
+	fear_decay_rate = 1
+
+	on_created_text = "<span class='warning'>You are disgusted and horrified by slime.</span>"
+	on_expired_text = "<span class='notice'>You feel more... okay with slime.</span>"
+
+	zero_fear_up = list(
+		"<span class='warning'><font size='3'>That's some slime!</font></span>",
+		"<span class='warning'><font size='3'>There's slime right there!</font></span>"
+		)
+	zero_fear_down = list(
+		"<span class='notice'>The slime is out of sight and out of mind.</span>",
+		"<span class='notice'>Clean. No more slime.</span>"
+		)
+
+	half_fear_up = list(
+		"<span class='danger'><font size='3'>The slimes might strike at any point!</font></span>",
+		"<span class='danger'><font size='3'>The slime is still there!</font></span>"
+		)
+	half_fear_down = list(
+		"<span class='warning'>The slime is gone... right?</span>",
+		"<span class='warning'>You can't see any slime right now, but you're still anxious.</span>"
+		)
+
+	full_fear_up = list(
+		"<span class='danger'><font size='4'>The slime is everywhere!</font></span>",
+		"<span class='danger'><font size='4'>You're gonna get absorbed if you don't get out!</font></span>"
+		)
+	full_fear_down = list(
+		"<span class='danger'>There must be more of that slime somewhere...</span>",
+		"<span class='danger'>No more of this slime, please....</span>"
+		)
+
+/datum/modifier/trait/phobia/blennophobe/should_fear()
+	if(holder.blinded)
+		return 0 // Can't fear what cannot be seen.
+
+	var/fear_amount = 0
+	for(var/atom/thing in view(5, holder)) // See haemophobia for why this is 5.
+		if(istype(thing, /obj/structure/blob)) // blobs are uncomfortable things
+			fear_amount += 3
+
+		if(istype(thing, /obj/effect/alien/resin)) // Resin's a bit slimy according to its own description.
+			fear_amount += 1
+
+		if(istype(thing, /obj/item/weed_extract))
+			fear_amount += 1
+
+		if(istype(thing, /obj/effect/decal/cleanable/mucus)) // Blennophobia apparently includes mucus, so!
+			fear_amount += 2
+
+		if(istype(thing, /obj/item/slime_extract)) // Gooey.
+			fear_amount += 1
+
+		if(istype(thing, /obj/item/slime_cube)) // Also gooey, alongside harbinger of bad news.
+			fear_amount += 2
+
+		if(istype(thing, /obj/item/organ/internal/brain/slime))
+			fear_amount += 2
+
+		if(istype(thing, /obj/item/clothing/head/collectable/slime)) // Some hats are spooky so people can be assholes with them.
+			fear_amount += 1
+
+		if(istype(thing, /mob/living/simple_animal/slime)) // An actual predatory specimen!
+			var/mob/living/simple_animal/slime/S = thing
+			if(S.stat == DEAD) // Dead slimes are somewhat less spook.
+				fear_amount += 4
+			if(S.is_adult == TRUE) //big boy
+				fear_amount += 8
+			else
+				fear_amount += 6
+
+		if(istype(thing, /mob/living/carbon/human))
+			var/mob/living/carbon/human/S = thing
+			if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
+				fear_amount += 1
+			if(istype(S.species, /datum/species/shapeshifter/promethean))
+				fear_amount += 4
+			else
+				return
+	return fear_amount
+
+/datum/modifier/trait/phobia/trypanophobe
+	name = "trypanophobia"
+	desc = "Syringes and needles make you very distressed. You really don't want to get sick..."
+	fear_decay_rate = 100
+
+	on_created_text = "<span class='warning'>You are terrified by needles.</span>"
+	on_expired_text = "<span class='notice'>You feel better about being near needles..</span>"
+
+
+	zero_fear_up = list(
+		"<span class='warning'><font size='3'>That's a needle!</font></span>",
+		"<span class='warning'><font size='3'>There's a needle right there!</font></span>"
+		)
+	zero_fear_down = list(
+		"<span class='notice'>The needle is gone, no need to worry.</span>",
+		"<span class='notice'>No more needle.</span>"
+		)
+
+	half_fear_up = list(
+		"<span class='danger'><font size='3'>The needle could get you at any time!</font></span>",
+		"<span class='danger'><font size='3'>The needle is still there!</font></span>"
+		)
+	half_fear_down = list(
+		"<span class='warning'>There are no more needles... right?</span>",
+		"<span class='warning'>You don't see any more needles... But you can never be sure.</span>"
+		)
+
+	full_fear_up = list(
+		"<span class='danger'><font size='4'>The needles are going to pierce you!</font></span>",
+		"<span class='danger'><font size='4'>They could get you any second!</font></span>"
+		)
+	full_fear_down = list(
+		"<span class='danger'>There are more needles around, you can feel it...</span>",
+		"<span class='danger'>No more needles, please...</span>"
+		)
+
+/datum/modifier/trait/phobia/trypanophobe/should_fear()
+	if(holder.blinded)
+		return 0 //Cannot feareth what cannot beest seen
+
+	var/fear_amount = 0
+
+	for(var/atom/thing in view(5, holder)) // See haemophobia for why this is 5.
+
+		if(istype(thing, /obj/item/weapon/reagent_containers/syringe))
+			fear_amount += 4
+
+		if(istype(thing, /obj/machinery/iv_drip))
+			var/obj/machinery/iv_drip/I = thing
+			if(I.beaker)
+				fear_amount += 8
+			else
+				fear_amount += 6
+
+		if(istype(thing, /obj/item/weapon/reagent_containers/hypospray))
+			fear_amount += 2 //Needle doesn't look as intimidating.
+
+		if(istype(thing, /obj/item/weapon/reagent_containers/hypospray/autoinjector)) //Don't know if I need to define autoinjectors too. Meh.
+			fear_amount += 3
+
+		if(istype(thing, /obj/item/rig_module/chem_dispenser))
+			fear_amount += 5
+
+		if(istype(thing, /obj/item/weapon/storage/box/syringes))
+			fear_amount += 2
+
+		if(istype(thing, /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun))
+			fear_amount += 8 //Syringe gun for a big ass mech.
+
+		if(istype(thing, /obj/machinery/sleep_console)) //Sleepers got them needles in them.
+			fear_amount += 4
+
+		if(istype(thing, /obj/item/weapon/implanter))
+			fear_amount += 8 //Very big needle.
+
+		if(istype(thing, /obj/item/weapon/gun/launcher/syringe))
+			fear_amount += 6
+
+		if(istype(thing, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = thing
+			if(H.l_hand && istype(H.l_hand, /obj/item/weapon/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/weapon/reagent_containers/syringe))
+				fear_amount += 10
+
+			if(H.l_ear && istype(H.l_ear, /obj/item/weapon/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/weapon/reagent_containers/syringe))
+				fear_amount +=10
+
+
+	return fear_amount
+
+
 // Note for the below 'phobias' are of the xeno-phobic variety, and are less centered on pure fear as above, and more on a mix of distrust, fear, and disdainfulness.
 // As such, they are mechanically different than the fear-based phobias, in that instead of a buildup of fearful messages, it does intermittent messages specific to what holder sees.
 
@@ -367,7 +541,7 @@
 	closely, waiting to strike."
 
 	on_created_text = "<span class='warning'>You remain vigilant against the Alien.</span>"
-	on_expired_text = "<span class='notice'>Aliens aren't so bad afterall.</span>"
+	on_expired_text = "<span class='notice'>Aliens aren't so bad after all.</span>"
 
 	var/last_message = null	// world.time we last did a message.
 	var/message_cooldown = 1 MINUTE
@@ -442,7 +616,7 @@
 	desc = "Humans are bound to get us all killed with their reckless use of technology..."
 
 	on_created_text = "<span class='warning'>You unfortunately are likely to have to deal with humans today.</span>"
-	on_expired_text = "<span class='notice'>Humans aren't so bad afterall.</span>"
+	on_expired_text = "<span class='notice'>Humans aren't so bad after all.</span>"
 
 /datum/modifier/trait/phobia/xenophobia/human/get_xenos()
 	var/list/humans = list()
@@ -471,7 +645,7 @@
 	desc = "The Skrell pretend that they are Humanity's enlightened allies, but you can see past that."
 
 	on_created_text = "<span class='warning'>Hopefully no Skrell show up today.</span>"
-	on_expired_text = "<span class='notice'>Skrell aren't so bad afterall.</span>"
+	on_expired_text = "<span class='notice'>Skrell aren't so bad after all.</span>"
 
 /datum/modifier/trait/phobia/xenophobia/skrell/get_xenos()
 	var/list/skrell = list()
@@ -490,3 +664,4 @@
 		"WetSkrell was a mistake."
 		)
 	return pick(generic_responses)
+

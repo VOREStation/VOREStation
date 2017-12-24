@@ -16,6 +16,56 @@
 
 // callproc moved to code/modules/admin/callproc
 
+/client/proc/simple_DPS()
+	set name = "Simple DPS"
+	set category = "Debug"
+	set desc = "Gives a really basic idea of how much hurt something in-hand does."
+
+	var/obj/item/I = null
+	var/mob/living/user = null
+	if(isliving(usr))
+		user = usr
+		I = user.get_active_hand()
+		if(!I || !istype(I))
+			to_chat(user, "<span class='warning'>You need to have something in your active hand, to use this verb.</span>")
+			return
+		var/weapon_attack_speed = user.get_attack_speed(I) / 10
+		var/weapon_damage = I.force
+
+		if(istype(I, /obj/item/weapon/gun))
+			var/obj/item/weapon/gun/G = I
+			var/obj/item/projectile/P
+
+			if(istype(I, /obj/item/weapon/gun/energy))
+				var/obj/item/weapon/gun/energy/energy_gun = G
+				P = new energy_gun.projectile_type()
+
+			else if(istype(I, /obj/item/weapon/gun/projectile))
+				var/obj/item/weapon/gun/projectile/projectile_gun = G
+				var/obj/item/ammo_casing/ammo = projectile_gun.chambered
+				P = ammo.BB
+
+			else
+				to_chat(user, "<span class='warning'>DPS calculation by this verb is not supported for \the [G]'s type. Energy or Ballistic only, sorry.</span>")
+
+			weapon_damage = P.damage
+			weapon_attack_speed = G.fire_delay / 10
+			qdel(P)
+
+		var/DPS = weapon_damage / weapon_attack_speed
+		to_chat(user, "<span class='notice'>Damage: [weapon_damage]</span>")
+		to_chat(user, "<span class='notice'>Attack Speed: [weapon_attack_speed]/s</span>")
+		to_chat(user, "<span class='notice'>\The [I] does <b>[DPS]</b> damage per second.</span>")
+		if(DPS > 0)
+			to_chat(user, "<span class='notice'>At your maximum health ([user.getMaxHealth()]), it would take approximately;</span>")
+			to_chat(user, "<span class='notice'>[(user.getMaxHealth() - config.health_threshold_softcrit) / DPS] seconds to softcrit you. ([config.health_threshold_softcrit] health)</span>")
+			to_chat(user, "<span class='notice'>[(user.getMaxHealth() - config.health_threshold_crit) / DPS] seconds to hardcrit you. ([config.health_threshold_crit] health)</span>")
+			to_chat(user, "<span class='notice'>[(user.getMaxHealth() - config.health_threshold_dead) / DPS] seconds to kill you. ([config.health_threshold_dead] health)</span>")
+
+	else
+		to_chat(user, "<span class='warning'>You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb.</span>")
+		return
+
 /client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"
