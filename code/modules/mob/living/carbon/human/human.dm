@@ -38,22 +38,18 @@
 	nutrition = rand(200,400)
 
 	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
-	hud_list[STATUS_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	//VOREStation Add - Custom HUDs
-	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
-	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
-	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
-	hud_list[VANTAG_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
-	//VOREStation Add End
-	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	/* //VORESTATION Comment out. Look into later. I have 58 damn files to deal with.
 	if(isSynthetic())
 		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
 		hud_list[LIFE_HUD]	  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
 	else
 		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 		hud_list[LIFE_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	*/
+	//VOREStation Add - Custom HUDs
+	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
+	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
+	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
+	hud_list[VANTAG_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
+	//VOREStation Add End
 	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
 	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
