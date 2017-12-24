@@ -40,7 +40,8 @@ SUBSYSTEM_DEF(mobs)
 				var/time_before = world.tick_usage
 				M.Life(times_fired)
 				var/time_after = world.tick_usage
-				if(log_extensively) timelog += list("[time_before] - [M] ([M.x],[M.y],[M.z]) - [time_after]" = M)
+				var/time_diff = time_after - time_before
+				if(log_extensively && (time_diff > 0.01)) timelog += list("[time_diff]% - [M] ([M.x],[M.y],[M.z])" = M)
 			catch(var/exception/e)
 				log_runtime(e, M, "Caught by [name] subsystem")
 
