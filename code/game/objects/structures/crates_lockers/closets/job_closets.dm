@@ -20,10 +20,12 @@
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
-	new /obj/item/clothing/head/hairflower(src)
-	new /obj/item/clothing/head/hairflower/pink(src)
-	new /obj/item/clothing/head/hairflower/yellow(src)
-	new /obj/item/clothing/head/hairflower/blue(src)
+	new /obj/item/clothing/head/pin/flower(src)
+	new /obj/item/clothing/head/pin/flower/pink(src)
+	new /obj/item/clothing/head/pin/flower/yellow(src)
+	new /obj/item/clothing/head/pin/flower/blue(src)
+	new /obj/item/clothing/head/pin/pink(src)
+	new /obj/item/clothing/head/pin/magnetic(src)
 	new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/rank/bartender(src)
@@ -34,6 +36,7 @@
 	new /obj/item/clothing/accessory/wcoat(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/shoes/laceup(src)
 
 /*
  * Chef
@@ -70,6 +73,7 @@
 /obj/structure/closet/jcloset/New()
 	..()
 	new /obj/item/clothing/under/rank/janitor(src)
+	new /obj/item/clothing/under/dress/maid/janitor(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/weapon/cartridge/janitor(src)
 	new /obj/item/clothing/gloves/black(src)

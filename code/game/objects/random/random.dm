@@ -139,19 +139,30 @@
 
 /obj/random/medical/item_to_spawn()
 	return pick(prob(21);/obj/random/medical/lite,
-				prob(4);/obj/item/bodybag,
-				prob(4);/obj/item/weapon/storage/pill_bottle/tramadol,
-				prob(1);/obj/item/weapon/storage/pill_bottle/spaceacillin,
+				prob(5);/obj/random/medical/pillbottle,
 				prob(1);/obj/item/weapon/storage/pill_bottle/tramadol,
-				prob(1);/obj/item/weapon/storage/pill_bottle/dermaline,
-				prob(1);/obj/item/weapon/storage/pill_bottle/dexalin_plus,
-				prob(1);/obj/item/weapon/storage/pill_bottle/bicaridine,
-				prob(6);/obj/item/weapon/reagent_containers/syringe/antitoxin,
-				prob(1);/obj/item/weapon/reagent_containers/syringe/antiviral,
-				prob(6);/obj/item/weapon/reagent_containers/syringe/inaprovaline,
+				prob(1);/obj/item/weapon/storage/pill_bottle/antitox,
+				prob(1);/obj/item/weapon/storage/pill_bottle/carbon,
+				prob(3);/obj/item/bodybag/cryobag,
+				prob(5);/obj/item/weapon/reagent_containers/syringe/antitoxin,
+				prob(3);/obj/item/weapon/reagent_containers/syringe/antiviral,
+				prob(5);/obj/item/weapon/reagent_containers/syringe/inaprovaline,
 				prob(1);/obj/item/weapon/reagent_containers/hypospray,
 				prob(1);/obj/item/weapon/storage/box/freezer,
 				prob(2);/obj/item/stack/nanopaste)
+
+/obj/random/medical/pillbottle
+	name = "Random Pill Bottle"
+	desc = "This is a random pill bottle."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "pill_canister"
+
+/obj/random/medical/pillbottle/item_to_spawn()
+	return pick(prob(1);/obj/item/weapon/storage/pill_bottle/spaceacillin,
+				prob(1);/obj/item/weapon/storage/pill_bottle/dermaline,
+				prob(1);/obj/item/weapon/storage/pill_bottle/dexalin_plus,
+				prob(1);/obj/item/weapon/storage/pill_bottle/bicaridine,
+				prob(1);/obj/item/weapon/storage/pill_bottle/iron)
 
 /obj/random/medical/lite
 	name = "Random Medicine"
@@ -167,7 +178,7 @@
 				prob(2);/obj/item/stack/medical/advanced/ointment,
 				prob(1);/obj/item/stack/medical/splint,
 				prob(4);/obj/item/device/healthanalyzer,
-				prob(1);/obj/item/bodybag/cryobag,
+				prob(1);/obj/item/bodybag,
 				prob(3);/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 				prob(2);/obj/item/weapon/storage/pill_bottle/kelotane,
 				prob(2);/obj/item/weapon/storage/pill_bottle/antitox)

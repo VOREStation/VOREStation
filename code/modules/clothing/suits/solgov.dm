@@ -12,47 +12,47 @@
 	siemens_coefficient = 0.9
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/flashlight,/obj/item/weapon/pen,/obj/item/clothing/head/soft,/obj/item/clothing/head/beret,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,/obj/item/device/analyzer,/obj/item/device/radio,/obj/item/taperoll)
 
-/obj/item/clothing/suit/storage/service/expeditionary
+/obj/item/clothing/suit/storage/service/sifguard
 	name = "\improper SifGuard jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons."
 	icon_state = "blackservice_crew"
 
-/obj/item/clothing/suit/storage/service/expeditionary/medical
+/obj/item/clothing/suit/storage/service/sifguard/medical
 	name = "\improper SifGuard medical jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and blue trim."
 	icon_state = "blackservice_med"
 
-/obj/item/clothing/suit/storage/service/expeditionary/medical/command
+/obj/item/clothing/suit/storage/service/sifguard/medical/command
 	name = "\improper SifGuard medical command jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and blue trim."
 	icon_state = "blackservice_medcom"
 
-/obj/item/clothing/suit/storage/service/expeditionary/engineering
+/obj/item/clothing/suit/storage/service/sifguard/engineering
 	name = "\improper SifGuard engineering jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and orange trim."
 	icon_state = "blackservice_eng"
 
-/obj/item/clothing/suit/storage/service/expeditionary/engineering/command
+/obj/item/clothing/suit/storage/service/sifguard/engineering/command
 	name = "\improper SifGuard engineering command jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and orange trim."
 	icon_state = "blackservice_engcom"
 
-/obj/item/clothing/suit/storage/service/expeditionary/supply
+/obj/item/clothing/suit/storage/service/sifguard/supply
 	name = "\improper SifGuard supply jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and brown trim."
 	icon_state = "blackservice_sup"
 
-/obj/item/clothing/suit/storage/service/expeditionary/security
+/obj/item/clothing/suit/storage/service/sifguard/security
 	name = "\improper SifGuard security jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has silver buttons and red trim."
 	icon_state = "blackservice_sec"
 
-/obj/item/clothing/suit/storage/service/expeditionary/security/command
+/obj/item/clothing/suit/storage/service/sifguard/security/command
 	name = "\improper SifGuard security command jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and red trim."
 	icon_state = "blackservice_seccom"
 
-/obj/item/clothing/suit/storage/service/expeditionary/command
+/obj/item/clothing/suit/storage/service/sifguard/command
 	name = "\improper SifGuard command jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force. It has gold buttons and gold trim."
 	icon_state = "blackservice_com"
