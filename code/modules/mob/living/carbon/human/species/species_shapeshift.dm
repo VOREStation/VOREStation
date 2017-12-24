@@ -224,3 +224,66 @@ var/list/wrapped_species_by_ref = list()
 /mob/living/carbon/human/proc/shapeshifter_set_facial_color(var/new_fhair)
 
 	change_facial_hair_color(hex2num(copytext(new_fhair, 2, 4)), hex2num(copytext(new_fhair, 4, 6)), hex2num(copytext(new_fhair, 6, 8)))
+
+// Replaces limbs and copies wounds
+/mob/living/carbon/human/proc/shapeshifter_change_species(var/new_species)
+	if(!species)
+		return
+
+	dna.species = new_species
+
+	var/list/limb_exists = list(
+		BP_TORSO =  0,
+		BP_GROIN =  0,
+		BP_HEAD =   0,
+		BP_L_ARM =  0,
+		BP_R_ARM =  0,
+		BP_L_LEG =  0,
+		BP_R_LEG =  0,
+		BP_L_HAND = 0,
+		BP_R_HAND = 0,
+		BP_L_FOOT = 0,
+		BP_R_FOOT = 0
+		)
+	var/list/wounds_by_limb = list(
+		BP_TORSO =  new/list(),
+		BP_GROIN =  new/list(),
+		BP_HEAD =   new/list(),
+		BP_L_ARM =  new/list(),
+		BP_R_ARM =  new/list(),
+		BP_L_LEG =  new/list(),
+		BP_R_LEG =  new/list(),
+		BP_L_HAND = new/list(),
+		BP_R_HAND = new/list(),
+		BP_L_FOOT = new/list(),
+		BP_R_FOOT = new/list()
+		)
+
+	// Copy damage values
+	for(var/limb in organs_by_name)
+		var/obj/item/organ/external/O = organs_by_name[limb]
+		limb_exists[O.organ_tag] = 1
+		wounds_by_limb[O.organ_tag] = O.wounds
+
+	species = all_species[new_species]
+	species.create_organs(src)
+//	species.handle_post_spawn(src)
+
+	for(var/limb in organs_by_name)
+		var/obj/item/organ/external/O = organs_by_name[limb]
+		if(limb_exists[O.organ_tag])
+			O.species = all_species[new_species]
+			O.wounds = wounds_by_limb[O.organ_tag]
+			// sync the organ's damage with its wounds
+			O.update_damages()
+			O.owner.updatehealth() //droplimb will call updatehealth() again if it does end up being called
+		else
+			organs.Remove(O)
+			organs_by_name.Remove(O)
+
+	spawn(0)
+		regenerate_icons()
+
+	if(species && mind)
+		apply_traits()
+	return
