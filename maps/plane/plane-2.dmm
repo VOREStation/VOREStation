@@ -1,6 +1,6 @@
-"a" = (/turf/unsimulated/wall/planetary/sif,/area/plane_sky)
-"b" = (/turf/simulated/open,/area/plane_sky)
-"c" = (/obj/effect/landmark/map_data{height = 2},/turf/simulated/open,/area/plane_sky)
+"a" = (/turf/unsimulated/wall/planetary/sif,/area/space)
+"b" = (/turf/simulated/open,/area/space)
+"c" = (/obj/effect/landmark/map_data{height = 2},/turf/simulated/open,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

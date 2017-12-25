@@ -36,16 +36,18 @@
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_EMPTY_SURFACE				13
 #define Z_LEVEL_EMPTY_SPACE					14
+#define Z_LEVEL_ABELT_VIRGO	             	15
 
 // These are still defined here, but the levels have been removed. I could delete these but it will cause compile errors. Don't delete them unless you have to.
-#define Z_LEVEL_SURFACE_WILDERNESS_1		15
-#define Z_LEVEL_SURFACE_WILDERNESS_2		16
-#define Z_LEVEL_SURFACE_WILDERNESS_3		17
-#define Z_LEVEL_SURFACE_WILDERNESS_4		18
-#define Z_LEVEL_SURFACE_WILDERNESS_5		19
-#define Z_LEVEL_SURFACE_WILDERNESS_6		20
-#define Z_LEVEL_SURFACE_WILDERNESS_CRASH	21
-#define Z_LEVEL_SURFACE_WILDERNESS_RUINS	22
+#define Z_LEVEL_SURFACE_WILDERNESS_1		16
+#define Z_LEVEL_SURFACE_WILDERNESS_2		17
+#define Z_LEVEL_SURFACE_WILDERNESS_3		18
+#define Z_LEVEL_SURFACE_WILDERNESS_4		19
+#define Z_LEVEL_SURFACE_WILDERNESS_5		20
+#define Z_LEVEL_SURFACE_WILDERNESS_6		21
+#define Z_LEVEL_SURFACE_WILDERNESS_CRASH	22
+#define Z_LEVEL_SURFACE_WILDERNESS_RUINS	23
+
 
 
 /datum/map/tether

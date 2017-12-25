@@ -39,7 +39,7 @@ var/datum/controller/rogue/rm_controller = new()
 
 	// The world.time at which the scanner was last run (for cooldown)
 	var/last_scan = 0
-	var/scan_wait = 10 //In minutes
+	var/scan_wait = 2 //In minutes
 
 	var/debugging = 0
 

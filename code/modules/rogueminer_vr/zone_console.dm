@@ -2,9 +2,9 @@
 // The zone control console, fluffed ingame as
 // a scanner console for the asteroid belt
 //////////////////////////////
-#define OUTPOST_Z 5
-#define TRANSIT_Z 2
-#define BELT_Z 7
+#define OUTPOST_Z 8
+#define TRANSIT_Z 12
+#define BELT_Z 15
 
 /obj/machinery/computer/roguezones
 	name = "asteroid belt scanning computer"
@@ -41,7 +41,7 @@
 	user.set_machine(src)
 
 
-	var/chargePercent = min(100, ((((world.time - rm_controller.last_scan) / 10) / 60) / rm_controller.scan_wait) * 100)
+	var/chargePercent = min(100, ((((world.time - rm_controller.last_scan) / 10) / 60) / rm_controller.scan_wait) * 50)
 	var/curZoneOccupied = rm_controller.current_zone ? rm_controller.current_zone.is_occupied() : 0
 
 	var/list/data = list()

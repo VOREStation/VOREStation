@@ -3,12 +3,12 @@
 	teleport_z_offset = 7
 
 /obj/effect/step_trigger/teleporter/random/rogue/fourbyfour
-	var/margin = 15 //How far from the side should we teleport? Make sure to place the opposite
+	var/margin = 2 //How far from the side should we teleport? Make sure to place the opposite
 					//side's wrappers at less than this far from the hard boundary
 					//else people will get stuck in the margins
 					//Important for auto-determining the size, as well.
 
-	var/mapsize = 300 //I don't know of a way to obtain map size sorry.
+	var/mapsize = 120 //I don't know of a way to obtain map size sorry.
 
 	//Important infos!
 	var/quad_L
