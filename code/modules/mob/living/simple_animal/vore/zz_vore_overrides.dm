@@ -59,7 +59,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_animal/hostile/alien/queen/large
+/mob/living/simple_animal/hostile/alien/queen/empress
 	vore_active = 1
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "queen_s"
@@ -73,6 +73,12 @@
 
 	vore_capacity = 3
 	vore_pounce_chance = 75
+
+/mob/living/simple_animal/hostile/alien/sentinel/praetorian
+	icon = 'icons/mob/vore64x64.dmi'
+
+/mob/living/simple_animal/hostile/alien/queen/empress/mother
+	vore_icons = 0 // NO VORE SPRITES
 
 /mob/living/simple_animal/hostile/bear
 	vore_active = 1

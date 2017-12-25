@@ -82,7 +82,7 @@
 	contains = list(
 			/obj/item/weapon/storage/firstaid/clotting
 			)
-	cost = 40
+	cost = 100
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Clotting Medicine crate"
 	access = access_medical

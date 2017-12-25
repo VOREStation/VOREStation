@@ -1,6 +1,6 @@
 /datum/power/changeling/resonant_shriek
 	name = "Resonant Shriek"
-	desc = "Our lungs and vocal chords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded biologicals and synthetics."
+	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded."
 	helptext = "Lights are blown, organics are disoriented, and synthetics act as if they were flashed."
 	enhancedtext = "Range is doubled."
 	ability_icon_state = "ling_resonant_shriek"
@@ -20,19 +20,19 @@
 /mob/proc/changeling_resonant_shriek()
 	set category = "Changeling"
 	set name = "Resonant Shriek (20)"
-	set desc = "Emits a high-frequency sound that confuses and deafens humans, blows out nearby lights and overloads cyborg sensors."
+	set desc = "Emits a high-frequency sound that confuses and deafens organics, blows out nearby lights, and overloads synthetics' sensors."
 
 	var/datum/changeling/changeling = changeling_power(20,0,100,CONSCIOUS)
 	if(!changeling)	return 0
 
 	if(is_muzzled())
-		src << "<span class='danger'>Mmmf mrrfff!</span>"
+		to_chat(src, "<span class='danger'>Mmmf mrrfff!</span>")
 		return 0
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
-			src << "<span class='danger'>You can't speak!</span>"
+			to_chat(src, "<span class='danger'>You can't speak!</span>")
 			return 0
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
@@ -49,7 +49,7 @@
 	var/range = 4
 	if(src.mind.changeling.recursive_enhancement)
 		range = range * 2
-		src << "<span class='notice'>We are extra loud.</span>"
+		to_chat(src, "<span class='notice'>We are extra loud.</span>")
 
 	src.attack_log += text("\[[time_stamp()]\] <font color='red'>Used Resonant Shriek.</font>")
 	message_admins("[key_name(src)] used Resonant Shriek ([src.x],[src.y],[src.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>).")

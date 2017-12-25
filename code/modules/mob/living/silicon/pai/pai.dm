@@ -32,7 +32,8 @@
 		"Corgi" = "borgi",
 		"Fox" = "fox",
 		"Parrot" = "parrot",
-		"Rabbit" = "rabbit"
+		"Rabbit" = "rabbit",
+		"Bear" = "bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -103,12 +104,6 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
-	// Vorestation Edit: Meta Info for pAI's
-	if (client)
-		var/meta_info = client.prefs.metadata
-		if (meta_info)
-			ooc_notes = meta_info
-
 	//PDA
 	pda = new(src)
 	spawn(5)
@@ -120,6 +115,9 @@
 
 /mob/living/silicon/pai/Login()
 	..()
+	// Vorestation Edit: Meta Info for pAI
+	if (client.prefs)
+		ooc_notes = client.prefs.metadata
 
 
 // this function shows the information about being silenced as a pAI in the Status panel
@@ -445,7 +443,7 @@
 					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
 					return
 				if("Remove Access")
-					idcard.access = null
+					idcard.access = list()
 					user << "<span class='notice'>You remove the access from [src].</span>"
 					return
 				if("Cancel")
@@ -457,7 +455,7 @@
 /mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Access Modifcation Permission"
 	set category = "pAI Commands"
-	desc = "Allows people to modify your access or block people from modifying your access."
+	set desc = "Allows people to modify your access or block people from modifying your access."
 
 	if(idaccessible == 0)
 		idaccessible = 1

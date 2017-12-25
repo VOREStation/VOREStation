@@ -18,7 +18,7 @@
 
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>\The [src] slips out of your hand.</span>"
+		to_chat(user, "<span class='warning'>\The [src] slips out of your hand.</span>")
 		user.drop_item()
 		return 0
 	return 1
@@ -43,7 +43,7 @@
 		if(prob( round(times_used / 2) ))	//if you use it 10 times in a minute it has a 5% chance to break.
 			broken = 1
 			if(user)
-				user << "<span class='warning'>The bulb has burnt out!</span>"
+				to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 			icon_state = "flashburnt"
 			return FALSE
 		else
@@ -51,7 +51,8 @@
 			return TRUE
 	else	//can only use it 10 times a minute
 		if(user)
-			user << "<span class='warning'>*click* *click*</span>"
+			to_chat(user, "<span class='warning'><i>click</i></span>")
+			playsound(src.loc, 'sound/weapons/empty.ogg', 80, 1)
 		return FALSE
 
 //attack_as_weapon
@@ -62,21 +63,18 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [src.name] to flash [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(src))
 	user.do_attack_animation(M)
 
 	if(!clown_check(user))	return
 	if(broken)
-		user << "<span class='warning'>\The [src] is broken.</span>"
+		to_chat(user, "<span class='warning'>\The [src] is broken.</span>")
 		return
 
 	flash_recharge()
 
 	if(!check_capacitor(user))
 		return
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.do_attack_animation(M)
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
@@ -155,7 +153,7 @@
 /obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(src))
 
 	if(broken)
 		user.show_message("<span class='warning'>The [src.name] is broken</span>", 2)
@@ -215,12 +213,12 @@
 	..()
 	if(!broken)
 		broken = 1
-		user << "<span class='warning'>The bulb has burnt out!</span>"
+		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		icon_state = "flashburnt"
 
 /obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1
-		user << "<span class='warning'>The bulb has burnt out!</span>"
+		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		icon_state = "flashburnt"

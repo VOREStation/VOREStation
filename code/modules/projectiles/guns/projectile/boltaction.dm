@@ -20,16 +20,12 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial
 	name = "ceremonial bolt-action rifle"
 	desc = "A bolt-action rifle with a heavy, high-quality wood stock that has a beautiful finish. Clearly not intended to be used in combat. Uses 7.62mm rounds."
+	icon_state = "boltaction_c"
+	item_state = "boltaction_c"
 	ammo_type = /obj/item/ammo_casing/a762/blank
 
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin
-	name = "\improper Mosin Nagant"
-	desc = "Despite its age, the Mosin Nagant continues to be a favorite weapon among colonists, conscripts, and militias across the cosmos. Most today are built by Chen-Iltchenko Firearms, but it's hard to say who built this particular gun, considering the design has been ripped off by just about every arms manufacturer in the galaxy. Uses 7.62mm rounds."
-	icon_state = "mosin"
-	item_state = "mosin"
-
 // Stole hacky terrible code from doublebarrel shotgun. -Spades
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/weapon/surgical/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
 		user << "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>"
 		if(loaded.len)
@@ -38,16 +34,16 @@
 			user.visible_message("<span class='danger'>[src] goes off!</span>", "<span class='danger'>The rifle goes off in your face!</span>")
 			return
 		if(do_after(user, 30))
-			icon_state = "obrez"
+			icon_state = "sawnrifle"
 			w_class = ITEMSIZE_NORMAL
 			recoil = 2 // Owch
 			accuracy = -1 // You know damn well why.
 			item_state = "gun"
 			slot_flags &= ~SLOT_BACK	//you can't sling it on your back
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
-			name = "\improper Obrez"
-			desc = "The firepower of a Mosin, now the size of a pistol, with an effective combat range of about three feet. Uses 7.62mm rounds."
-			user << "<span class='warning'>You shorten the barrel and stock of \the [src]!</span>"
+			name = "sawn-off rifle"
+			desc = "The firepower of a rifle, now the size of a pistol, with an effective combat range of about three feet. Uses 7.62mm rounds."
+			to_chat(user, "<span class='warning'>You shorten the barrel and stock of \the [src]!</span>")
 	else
 		..()
 

@@ -16,6 +16,8 @@
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 	var/icon_scale = 1 // Used to scale icons up or down in update_transform().
+	var/old_x = 0
+	var/old_y = 0
 	var/auto_init = 1
 
 /atom/movable/New()

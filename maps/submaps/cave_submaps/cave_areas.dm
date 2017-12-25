@@ -10,3 +10,13 @@
 
 /area/submap/cave/qShuttle
 	name = "Quarantined Shuttle"
+
+/area/submap/cave/AMine1
+	name = "Abandoned Mine"
+
+/area/submap/cave/Scave1
+	name = "Spider Cave 1"
+
+/area/submap/cave/crashed_ufo
+	name = "Crashed Alien Vessel"
+	requires_power = FALSE

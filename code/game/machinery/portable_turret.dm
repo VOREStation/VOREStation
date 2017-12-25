@@ -86,6 +86,23 @@
 	health = 250 // Since lasers do 40 each.
 	maxhealth = 250
 
+/obj/machinery/porta_turret/alien // The kind used on the UFO submap.
+	name = "interior anti-boarding turret"
+	desc = "A very tough looking turret made by alien hands."
+	installation = /obj/item/weapon/gun/energy/alien
+	enabled = TRUE
+	lethal = TRUE
+	ailock = TRUE
+	check_all = TRUE
+	health = 250 // Similar to the AI turrets.
+	maxhealth = 250
+
+/obj/machinery/porta_turret/alien/destroyed // Turrets that are already dead, to act as a warning of what the rest of the submap contains.
+	name = "broken interior anti-boarding turret"
+	desc = "A very tough looking turret made by alien hands. This one looks destroyed, thankfully."
+	icon_state = "destroyed_target_prism"
+	stat = BROKEN
+
 /obj/machinery/porta_turret/New()
 	..()
 	req_access.Cut()
@@ -102,6 +119,11 @@
 	..()
 	req_one_access.Cut()
 	req_access = list(access_cent_specops)
+
+/obj/machinery/porta_turret/alien/New()
+	..()
+	req_one_access.Cut()
+	req_access = list(access_alien)
 
 /obj/machinery/porta_turret/Destroy()
 	qdel(spark_system)
@@ -359,7 +381,7 @@ var/list/turret_icons
 
 	else
 		//if the turret was attacked with the intention of harming it:
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(I))
 		take_damage(I.force * 0.5)
 		if(I.force * 0.5 > 1) //if the force of impact dealt at least 1 damage, the turret gets pissed off
 			if(!attacked && !emagged)
@@ -435,6 +457,14 @@ var/list/turret_icons
 	if(prob(33)) // One in three chance to resist an EMP.  This is significant if an AoE EMP is involved against multiple turrets.
 		return
 	..()
+
+/obj/machinery/porta_turret/alien/emp_act(severity) // This is overrided to give an EMP resistance as well as avoid scambling the turret settings.
+	if(prob(75)) // Superior alien technology, I guess.
+		return
+	enabled = FALSE
+	spawn(rand(1 MINUTE, 2 MINUTES))
+		if(!enabled)
+			enabled = TRUE
 
 /obj/machinery/porta_turret/ex_act(severity)
 	switch (severity)

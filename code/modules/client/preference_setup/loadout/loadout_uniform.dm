@@ -349,7 +349,7 @@
 
 /datum/gear/uniform/whitewedding
 	display_name= "white wedding dress"
-	path = /obj/item/clothing/under/dress/white
+	path = /obj/item/clothing/under/wedding/bride_white
 
 /datum/gear/uniform/skirts
 	display_name = "executive skirt"
@@ -363,38 +363,29 @@
 	display_name = "red evening gown"
 	path = /obj/item/clothing/under/dress/redeveninggown
 
-/datum/gear/uniform/dresses/janimaid
-	display_name = "maid uniform"
-	path = /obj/item/clothing/under/dress/janimaid
+/datum/gear/uniform/dresses/maid
+	display_name = "maid uniform selection"
+	path = /obj/item/clothing/under/dress/maid
 
-/datum/gear/uniform/dresses/sexymaid
-	display_name = "sexy maid uniform"
-	path = /obj/item/clothing/under/dress/sexymaid
-
-/datum/gear/uniform/pt
-	display_name = "pt uniform"
-	path = /obj/item/clothing/under/pt
-
-/datum/gear/uniform/pt/expeditionary
-	display_name = "pt uniform, sifguard"
-	path = /obj/item/clothing/under/pt/expeditionary
-
-/datum/gear/uniform/pt/fleet
-	display_name = "pt uniform, fleet"
-	path = /obj/item/clothing/under/pt/fleet
+/datum/gear/uniform/dresses/maid/New()
+	..()
+	var/list/maids = list()
+	for(var/maid in typesof(/obj/item/clothing/under/dress/maid))
+		var/obj/item/clothing/under/dress/maid/maid_type = maid
+		maids[initial(maid_type.name)] = maid_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(maids))
 
 /datum/gear/uniform/utility
 	display_name = "utility, black"
 	path = /obj/item/clothing/under/utility
-	cost = 2
 
-/datum/gear/uniform/utility/fleet
-	display_name = "utility, navy"
-	path = /obj/item/clothing/under/utility/fleet
+/datum/gear/uniform/utility/blue
+	display_name = "utility, blue"
+	path = /obj/item/clothing/under/utility/blue
 
-/datum/gear/uniform/utility/marine
+/datum/gear/uniform/utility/grey
 	display_name = "utility, grey"
-	path = /obj/item/clothing/under/utility/marine
+	path = /obj/item/clothing/under/utility/grey
 
 /datum/gear/uniform/sweater
 	display_name = "sweater, grey"

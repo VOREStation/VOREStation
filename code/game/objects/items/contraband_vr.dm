@@ -73,7 +73,7 @@
 						/obj/item/weapon/reagent_containers/food/snacks/clownstears,
 						/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
 						/obj/item/weapon/reagent_containers/glass/beaker/neurotoxin,
-						/obj/item/weapon/rig/combat/equipped,
+						/obj/item/weapon/rig/combat,
 						/obj/item/weapon/shield/energy,
 						/obj/item/weapon/stamp/centcomm,
 						/obj/item/weapon/stamp/solgov,

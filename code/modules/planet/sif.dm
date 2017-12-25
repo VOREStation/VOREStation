@@ -195,8 +195,8 @@ datum/weather/sif
 /datum/weather/sif/blizzard
 	name = "blizzard"
 	icon_state = "snowfall_heavy"
-	temp_high = 233.15 // -40c
-	temp_low = 213.15  // -60c
+	temp_high = 243.15 // -30c
+	temp_low = 233.15  // -40c
 	light_modifier = 0.3
 	flight_falure_modifier = 10
 	transition_chances = list(
@@ -241,7 +241,7 @@ datum/weather/sif
 	name = "storm"
 	icon_state = "storm"
 	temp_high = 243.15 // -30c
-	temp_low = 233.15  // -50c
+	temp_low = 233.15  // -40c
 	light_modifier = 0.3
 	flight_falure_modifier = 10
 	transition_chances = list(

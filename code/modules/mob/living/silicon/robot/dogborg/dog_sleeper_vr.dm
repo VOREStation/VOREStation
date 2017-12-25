@@ -12,7 +12,7 @@
 	var/cleaning = 0
 	var/patient_laststat = null
 	var/mob_energy = 30000 //Energy gained from digesting mobs (including PCs)
-	var/list/injection_chems = list("dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
+	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = 0
@@ -96,24 +96,21 @@
 
 /obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
 	var/dat
-	dat += "<h3>Injector</h3>"
 
-	if(patient && !(patient.stat & DEAD)) //Why inject dead people with innaprov? Dundonuffin in Bay.
-		dat += "<A href='?src=\ref[src];inject=inaprovaline'>Inject Inaprovaline</A>"
-	else
-		dat += "<span class='linkOff'>Inject Inaprovaline</span>"
-	if(patient && patient.health > min_health)
-		for(var/re in injection_chems)
-			var/datum/reagent/C = chemical_reagents_list[re]
-			if(C)
-				dat += "<BR><A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A>"
-	else
-		for(var/re in injection_chems)
-			var/datum/reagent/C = chemical_reagents_list[re]
-			if(C)
-				dat += "<BR><span class='linkOff'>Inject [C.name]</span>"
+	if(islist(injection_chems)) //Only display this if we're a drug-dispensing doggo.
+		dat += "<h3>Injector</h3>"
+		if(patient)// && patient.health > min_health) //Not necessary, leave the buttons on, but the feedback during injection will give more information.
+			for(var/re in injection_chems)
+				var/datum/reagent/C = chemical_reagents_list[re]
+				if(C)
+					dat += "<A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
+		else
+			for(var/re in injection_chems)
+				var/datum/reagent/C = chemical_reagents_list[re]
+				if(C)
+					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
 
-	dat += "<h3>Sleeper Status</h3>"
+	dat += "<h3>[name] Status</h3>"
 	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
 	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
@@ -124,9 +121,10 @@
 
 	dat += "<div class='statusDisplay'>"
 
-	if(istype(src, /obj/item/device/dogborg/sleeper/compactor))//garbage counter for trashpup
-		if(length(contents) > 0)
-			dat += "<font color='red'><B>Current load</B> [length(contents)] / 25.</font><BR>"
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor) && length(contents))//garbage counter for trashpup
+		var/obj/item/device/dogborg/sleeper/compactor/garbo = src
+		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
+		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
@@ -141,7 +139,7 @@
 		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
 
 	if(!patient)
-		dat += "[src.name] unoccupied"
+		dat += "[src.name] Unoccupied"
 	else
 		dat += "[patient.name] => "
 
@@ -178,7 +176,7 @@
 				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"
 	dat += "</div>"
 
-	var/datum/browser/popup = new(user, "sleeper", "Sleeper Console", 520, 540)	//Set up the popup browser window
+	var/datum/browser/popup = new(user, "sleeper", "[name] Console", 520, 540)	//Set up the popup browser window
 	//popup.set_title_image(user.browse_rsc_icon(icon, icon_state)) //I have no idea what this is, but it feels irrelevant and causes runtimes idk.
 	popup.set_content(dat)
 	popup.open()
@@ -468,18 +466,16 @@
 		patient.AdjustStunned(-4)
 		patient.AdjustWeakened(-4)
 		src.drain()
+		/* Don't anymore, causes unwanted drug mixing in bloodstream
 		if((patient.reagents.get_reagent_amount("inaprovaline") < 5) && (patient.health < patient.maxHealth)) //Stop pumping full HP people full of drugs. Don't heal people you're digesting, meanie.
 			patient.reagents.add_reagent("inaprovaline", 5)
+		*/
 		return
 
 	if(!patient && !cleaning) //We think we're done working.
 		if(!update_patient()) //One last try to find someone
 			processing_objects.Remove(src)
 			return
-
-/mob/living/silicon/robot
-	var/sleeper_g
-	var/sleeper_r
 
 /obj/item/device/dogborg/sleeper/K9 //The K9 portabrig
 	name = "Brig-Belly"
@@ -488,10 +484,10 @@
 	icon_state = "sleeperb"
 	inject_amount = 10
 	min_health = -100
-	injection_chems = null //So they don't have all the same chems as the medihound!
+	injection_chems = list("inaprovaline") //So they don't have all the same chems as the medihound!
 
 /obj/item/device/dogborg/sleeper/compactor //Janihound gut.
-	name = "garbage processor"
+	name = "Garbage Processor"
 	desc = "A mounted garbage compactor unit with fuel processor."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "compactor"
@@ -569,202 +565,3 @@
 				sleeperUI(usr)
 		return
 	return
-
-/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/handcuffs))
-		return
-	if(opened)
-		for(var/V in components)
-			var/datum/robot_component/C = components[V]
-			if(!C.installed && istype(W, C.external_type))
-				C.installed = 1
-				C.wrapped = W
-				C.install()
-				user.drop_item()
-				W.loc = null
-
-				var/obj/item/robot_parts/robot_component/WC = W
-				if(istype(WC))
-					C.brute_damage = WC.brute
-					C.electronics_damage = WC.burn
-
-				usr << "<font color='blue'>You install the [W.name].</font>"
-
-				return
-
-
-	if (istype(W, /obj/item/weapon/weldingtool))
-		if (src == user)
-			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
-			return
-
-		if (!getBruteLoss())
-			user << "Nothing to fix here!"
-			return
-		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			adjustBruteLoss(-30)
-			updatehealth()
-			add_fingerprint(user)
-			for(var/mob/O in viewers(user, null))
-				O.show_message(text("<span class='warning'>[user] has fixed some of the dents on [src]!</span>,"), 1)
-		else
-			user << "Need more welding fuel!"
-			return
-
-	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
-		if (!getFireLoss())
-			user << "Nothing to fix here!"
-			return
-		var/obj/item/stack/cable_coil/coil = W
-		if (coil.use(1))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			adjustFireLoss(-30)
-			updatehealth()
-			for(var/mob/O in viewers(user, null))
-				O.show_message("<span class='warning'>\[user] has fixed some of the burnt wires on [src]</span>", 1)
-
-	else if (istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
-		if(opened)
-			if(cell)
-				user << "You close the cover."
-				opened = 0
-				updateicon()
-			else if(wiresexposed && wires.IsAllCut())
-				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
-				if(!mmi)
-					user << "\The [src] has no brain to remove."
-					return
-
-				user << "You jam the crowbar into the robot and begin levering [mmi]."
-				sleep(30)
-				user << "You damage some parts of the chassis, but eventually manage to rip out [mmi]!"
-				var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
-				C.l_leg = new/obj/item/robot_parts/l_leg(C)
-				C.r_leg = new/obj/item/robot_parts/r_leg(C)
-				C.l_arm = new/obj/item/robot_parts/l_arm(C)
-				C.r_arm = new/obj/item/robot_parts/r_arm(C)
-				C.updateicon()
-				new/obj/item/robot_parts/chest(loc)
-				qdel(src)
-			else
-				// Okay we're not removing the cell or an MMI, but maybe something else?
-				var/list/removable_components = list()
-				for(var/V in components)
-					if(V == "power cell") continue
-					var/datum/robot_component/C = components[V]
-					if(C.installed == 1 || C.installed == -1)
-						removable_components += V
-
-				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
-				if(!remove)
-					return
-				var/datum/robot_component/C = components[remove]
-				var/obj/item/robot_parts/robot_component/I = C.wrapped
-				user << "You remove \the [I]."
-				if(istype(I))
-					I.brute = C.brute_damage
-					I.burn = C.electronics_damage
-
-				I.loc = src.loc
-
-				if(C.installed == 1)
-					C.uninstall()
-				C.installed = 0
-
-		else
-			if(locked)
-				user << "The cover is locked and cannot be opened."
-			else
-				user << "You open the cover."
-				opened = 1
-				updateicon()
-
-	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
-		var/datum/robot_component/C = components["power cell"]
-		if(wiresexposed)
-			user << "Close the panel first."
-		else if(cell)
-			user << "There is a power cell already installed."
-		else if(W.w_class != ITEMSIZE_NORMAL)
-			user << "\The [W] is too [W.w_class < ITEMSIZE_NORMAL ? "small" : "large"] to fit here."
-		else
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user << "You insert the power cell."
-
-			C.installed = 1
-			C.wrapped = W
-			C.install()
-			//This will mean that removing and replacing a power cell will repair the mount, but I don't care at this point. ~Z
-			C.brute_damage = 0
-			C.electronics_damage = 0
-
-	else if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/multitool))
-		if (wiresexposed)
-			wires.Interact(user)
-		else
-			user << "You can't reach the wiring."
-
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
-		wiresexposed = !wiresexposed
-		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
-		updateicon()
-
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio
-		if(radio)
-			radio.attackby(W,user)//Push it to the radio to let it handle everything
-		else
-			user << "Unable to locate a radio."
-		updateicon()
-
-	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
-		if(radio)//sanityyyyyy
-			radio.attackby(W,user)//GTFO, you have your own procs
-		else
-			user << "Unable to locate a radio."
-
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda)||istype(W, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
-		if(emagged)//still allow them to open the cover
-			user << "The interface seems slightly damaged"
-		if(opened)
-			user << "You must close the cover to swipe an ID card."
-		else
-			if(allowed(usr))
-				locked = !locked
-				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
-				updateicon()
-			else
-				user << "<span class='warning'>Access denied.</span>"
-
-	else if(istype(W, /obj/item/borg/upgrade/))
-		var/obj/item/borg/upgrade/U = W
-		if(!opened)
-			usr << "You must access the borgs internals!"
-		else if(!src.module && U.require_module)
-			usr << "The borg must choose a module before he can be upgraded!"
-		else if(U.locked)
-			usr << "The upgrade is locked and cannot be used yet!"
-		else
-			if(U.action(src))
-				usr << "You apply the upgrade to [src]!"
-				usr.drop_item()
-				U.loc = src
-			else
-				usr << "Upgrade error!"
-
-	else if(module_active && istype(module_active,/obj/item/device/dogborg/sleeper/compactor && user.a_intent == I_HELP)) //Feeding?
-		if(src == user)
-			return
-		if(user.a_intent == I_HELP)
-			var/obj/item/device/dogborg/sleeper/compactor/CR = module_active
-			user << "You attempt to feed [W] to [src]."
-			W.attackby(CR,src)
-
-
-	else
-		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
-			spark_system.start()
-		return ..()

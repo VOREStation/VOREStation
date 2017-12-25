@@ -104,8 +104,6 @@
 	var/cpr_time = 1.0//Carbon
 
 	var/bodytemperature = 310.055	//98.7 F
-	var/old_x = 0
-	var/old_y = 0
 	var/drowsyness = 0.0//Carbon
 	var/charges = 0.0
 	var/nutrition = 400.0//Carbon
@@ -215,3 +213,8 @@
 	var/forbid_seeing_deadchat = FALSE // Used for lings to not see deadchat, and to have ghosting behave as if they were not really dead.
 
 	var/seedarkness = 1	//Determines mob's ability to see shadows. 1 = Normal vision, 0 = darkvision
+
+	// Falling things
+	var/hovering = FALSE	// Is the mob floating or flying in some way? If so, don't fall normally.	//Not implemented yet, idea is to let them ignore terrain slowdown and falling down floors
+	var/softfall = FALSE	// Is the mob able to lessen their impact upon falling?
+	var/parachuting = FALSE	// Is the mob able to jump out of planes and survive? Don't check this directly outside of CanParachute().

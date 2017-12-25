@@ -81,12 +81,12 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
+		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/regenerate
 		)
 
-	valid_transform_species = list("Human", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
-	monochromatic = 1
+	valid_transform_species = list("Human", "Vatborn", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
 
 	var/heal_rate = 0.5 // Temp. Regen per tick.
 
@@ -108,6 +108,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 /datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
+	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand") return ..() //VOREStation Edit
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target

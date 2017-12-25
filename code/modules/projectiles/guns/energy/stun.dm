@@ -41,7 +41,8 @@
 	fire_sound = 'sound/weapons/Genhit.ogg'
 	projectile_type = /obj/item/projectile/energy/bolt
 	charge_cost = 480
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	charge_meter = 0
 
 /obj/item/weapon/gun/energy/crossbow/ninja

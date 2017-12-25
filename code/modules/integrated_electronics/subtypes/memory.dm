@@ -1,7 +1,7 @@
 /obj/item/integrated_circuit/memory
 	name = "memory chip"
 	desc = "This tiny chip can store one piece of data."
-	icon_state = "memory"
+	icon_state = "memory1"
 	complexity = 1
 	inputs = list()
 	outputs = list()

@@ -1,6 +1,10 @@
 //
 // Mobs Subsystem - Process mob.Life()
 //
+
+//VOREStation Edits - Contains temporary debugging code to diagnose extreme tick consumption.
+//Revert file to Polaris version when done.
+
 SUBSYSTEM_DEF(mobs)
 	name = "Mobs"
 	priority = 100
@@ -9,6 +13,8 @@ SUBSYSTEM_DEF(mobs)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/list/currentrun = list()
+	var/log_extensively = FALSE
+	var/list/timelog = list()
 
 /datum/controller/subsystem/mobs/stat_entry()
 	..("P: [global.mob_list.len]")
@@ -16,6 +22,7 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = mob_list.Copy()
+		if(log_extensively) timelog = list("-Start- [world.tick_usage]")
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -30,7 +37,11 @@ SUBSYSTEM_DEF(mobs)
 			// Right now mob.Life() is unstable enough I think we need to use a try catch.
 			// Obviously we should try and get rid of this for performance reasons when we can.
 			try
+				var/time_before = world.tick_usage
 				M.Life(times_fired)
+				var/time_after = world.tick_usage
+				var/time_diff = time_after - time_before
+				if(log_extensively && (time_diff > 0.01)) timelog += list("[time_diff]% - [M] ([M.x],[M.y],[M.z])" = M)
 			catch(var/exception/e)
 				log_runtime(e, M, "Caught by [name] subsystem")
 

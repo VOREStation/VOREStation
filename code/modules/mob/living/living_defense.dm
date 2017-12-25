@@ -162,6 +162,43 @@
 		O.emp_act(severity)
 	..()
 
+/mob/living/blob_act(var/obj/structure/blob/B)
+	if(stat == DEAD)
+		return
+
+	var/damage = rand(30, 40)
+	var/armor_pen = 0
+	var/armor_check = "melee"
+	var/damage_type = BRUTE
+	var/attack_message = "The blob attacks you!"
+	var/attack_verb = "attacks"
+	var/def_zone = pick(BP_HEAD, BP_TORSO, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
+
+	if(B && B.overmind)
+		var/datum/blob_type/blob = B.overmind.blob_type
+
+		damage = rand(blob.damage_lower, blob.damage_upper)
+		armor_check = blob.armor_check
+		armor_pen = blob.armor_pen
+		damage_type = blob.damage_type
+
+		attack_message = "[blob.attack_message][isSynthetic() ? "[blob.attack_message_synth]":"[blob.attack_message_living]"]"
+		attack_verb = blob.attack_verb
+		B.overmind.blob_type.on_attack(B, src, def_zone)
+
+	if( (damage_type == TOX || damage_type == OXY) && isSynthetic()) // Borgs and FBPs don't really handle tox/oxy damage the same way other mobs do.
+		damage_type = BRUTE
+		damage *= 0.66 // Take 2/3s as much damage.
+
+	visible_message("<span class='danger'>\The [B] [attack_verb] \the [src]!</span>", "<span class='danger'>[attack_message]!</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+
+	//Armor
+	var/soaked = get_armor_soak(def_zone, armor_check, armor_pen)
+	var/absorb = run_armor_check(def_zone, armor_check, armor_pen)
+
+	apply_damage(damage, damage_type, def_zone, absorb, soaked)
+
 /mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	return target_zone
 

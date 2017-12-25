@@ -45,6 +45,7 @@
 	else
 		living_mob_list += src
 	hook_vr("mob_new",list(src)) //VOREStation Code
+	update_transform() // Some mobs may start bigger or smaller than normal.
 	..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -860,6 +861,12 @@
 /mob/proc/AdjustResting(amount)
 	resting = max(resting + amount,0)
 	return
+
+/mob/proc/AdjustLosebreath(amount)
+	losebreath = Clamp(0, losebreath + amount, 25)
+
+/mob/proc/SetLosebreath(amount)
+	losebreath = Clamp(0, amount, 25)
 
 /mob/proc/get_species()
 	return ""

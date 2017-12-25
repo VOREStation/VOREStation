@@ -175,18 +175,20 @@
 
 		// VORE StationEdit Start
 
-		//Ears
+		// Ears
 		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
+		if(ears <= 1)
+			H.ear_style = null
+		else if((0 < ears) && (ears <= ear_styles_list.len))
+			H.ear_style = ear_styles_list[ear_styles_list[ears]]
+
+		// Ear Color
 		H.r_ears  = dna.GetUIValueRange(DNA_UI_EARS_R,    255)
 		H.g_ears  = dna.GetUIValueRange(DNA_UI_EARS_G,    255)
 		H.b_ears  = dna.GetUIValueRange(DNA_UI_EARS_B, 	  255)
 		H.r_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_R,   255)
 		H.g_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_G,   255)
 		H.b_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_B,	  255)
-		if(ears <= 1)
-			H.ear_style = null
-		else if((0 < ears) && (ears <= ear_styles_list.len))
-			H.ear_style = ear_styles_list[ear_styles_list[ears]]
 
 		//Tail
 		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1
@@ -201,6 +203,11 @@
 			H.wing_style = null
 		else if((0 < wing) && (wing <= wing_styles_list.len))
 			H.wing_style = wing_styles_list[wing_styles_list[wing]]
+
+		//Wing Color
+		H.r_wing   = dna.GetUIValueRange(DNA_UI_WING_R,    255)
+		H.g_wing   = dna.GetUIValueRange(DNA_UI_WING_G,    255)
+		H.b_wing   = dna.GetUIValueRange(DNA_UI_WING_B,    255)
 
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
@@ -222,6 +229,10 @@
 			var/datum/species/custom/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
 			new_CS.blood_color = dna.blood_color
 
+		if(istype(H.species,/datum/species/xenochimera))
+			var/datum/species/xenochimera/CS = H.species
+			var/datum/species/xenochimera/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
+			new_CS.blood_color = dna.blood_color
 		// VOREStation Edit End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too

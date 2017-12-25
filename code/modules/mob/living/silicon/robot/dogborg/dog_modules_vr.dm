@@ -79,15 +79,15 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.visible_message("<span class='notice'>[user] sniffs the air.</span>", "<span class='notice'>You sniff the air...</span>")
 
-	user << "<span class='notice'><B>Smells like:</B></span>"
+	to_chat(user, "<span class='notice'><B>Smells like:</B></span>")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		user << "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>"
+		to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 	else
-		user << "<span class='warning'>Pressure: [round(pressure,0.1)] kPa</span>"
+		to_chat(user, "<span class='warning'>Pressure: [round(pressure,0.1)] kPa</span>")
 	if(total_moles)
 		for(var/g in environment.gas)
-			user << "<span class='notice'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>"
-		user << "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>"
+			to_chat(user, "<span class='notice'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>")
+		to_chat(user, "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>")
 
 /obj/item/device/dogborg/boop_module/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
@@ -107,11 +107,11 @@
 				dat += "\n \t <span class='notice'>[R]</span>"
 
 		if(dat)
-			user << "<span class='notice'>Your BOOP module indicates: [dat]</span>"
+			to_chat(user, "<span class='notice'>Your BOOP module indicates: [dat]</span>")
 		else
-			user << "<span class='notice'>No active chemical agents smelled in [O].</span>"
+			to_chat(user, "<span class='notice'>No active chemical agents smelled in [O].</span>")
 	else
-		user << "<span class='notice'>No significant chemical agents smelled in [O].</span>"
+		to_chat(user, "<span class='notice'>No significant chemical agents smelled in [O].</span>")
 
 	return
 
@@ -132,59 +132,15 @@
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
 */
 
-/obj/item/device/dogborg/dog_zapper //TODO
+/obj/item/weapon/shockpaddles/robot/hound
 	name = "paws of life"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "defibpaddles0"
 	desc = "Zappy paws. For fixing cardiac arrest."
-	flags = CONDUCT
-	force = 0
-	throwforce = 0
-	hitsound = 'sound/weapons/bite.ogg'
+	combat = 1
 	attack_verb = list("batted", "pawed", "bopped", "whapped")
-	w_class = ITEMSIZE_TINY
-	var/charge = 0
-	var/charge_required = 1000
-	var/charge_per = 100
-	var/state = 0 //0 = Off, 1 = Charging, 2 = Ready
+	chargecost = 500
 
-	//[round(((world.realtime - src.disconnect_time) / 10) / 60)]
-
-/obj/item/device/dogborg/dog_zapper/attack_self(mob/user)
-	switch(state)
-		if(0) // Was off when clicked
-			if(charge < charge_required) //Turned on and now charging
-				state = 1
-				//TODO Change Icon
-				//TODO Start charging
-				user << "<span class='notice'>[name] now charging.</span>"
-			else //Turned on and was already charged
-				state = 2
-				user << "<span class='notice'>[name] now READY.</span>"
-		if(1) // Was charging when clicked
-			state = 0
-			//TODO Change Icon
-			user << "<span class='notice'>[name] now turned off.</span>"
-		if(2) // Was ready when clicked
-			state = 0
-			//TODO Change Icon
-			user << "<span class='notice'>[name] now turned off (fully charged).</span>"
-/*
-/obj/item/device/dogborg/dog_zapper/proc/charge()
-	var/mob/living/silicon/robot.R = usr
-
-	do
-		R.cell.charge -= charge_per
-		charge += charge_per
-		sleep(1)
-	while(state = 1 && charge < charge_required && (R.cell.charge > (charge_required - charge)))
-
-	if(charge = charge_required)
-		usr << "<span class='notice'>[name] now READY.</span>"
-
-
-/obj/item/device/dogborg/dog_zapper/afterattack(mob/living/carbon/target, mob/living/silicon/user, proximity)
-*/
 //Tongue stuff
 /obj/item/device/dogborg/tongue
 	name = "synthetic tongue"
@@ -220,37 +176,37 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.client && (target in user.client.screen))
-		user << "<span class='warning'>You need to take \the [target.name] off before cleaning it!</span>"
+		to_chat(user, "<span class='warning'>You need to take \the [target.name] off before cleaning it!</span>")
 	else if(istype(target,/obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to lick off \the [target.name].", "<span class='notice'>You begin to lick off \the [target.name]...</span>")
 		if(do_after (user, 50))
-			user << "<span class='notice'>You finish licking off \the [target.name].</span>"
+			to_chat(user, "<span class='notice'>You finish licking off \the [target.name].</span>")
 			qdel(target)
 			var/mob/living/silicon/robot.R = user
-			R.cell.charge = R.cell.charge + 50
+			R.cell.charge += 50
 	else if(istype(target,/obj/item))
 		if(istype(target,/obj/item/trash))
 			user.visible_message("[user] nibbles away at \the [target.name].", "<span class='notice'>You begin to nibble away at \the [target.name]...</span>")
 			if(do_after (user, 50))
 				user.visible_message("[user] finishes eating \the [target.name].", "<span class='notice'>You finish eating \the [target.name].</span>")
-				user << "<span class='notice'>You finish off \the [target.name].</span>"
+				to_chat(user, "<span class='notice'>You finish off \the [target.name].</span>")
 				qdel(target)
 				var/mob/living/silicon/robot.R = user
-				R.cell.charge = R.cell.charge + 250
+				R.cell.charge += 250
 			return
 		if(istype(target,/obj/item/weapon/cell))
 			user.visible_message("[user] begins cramming \the [target.name] down its throat.", "<span class='notice'>You begin cramming \the [target.name] down your throat...</span>")
 			if(do_after (user, 50))
 				user.visible_message("[user] finishes gulping down \the [target.name].", "<span class='notice'>You finish swallowing \the [target.name].</span>")
-				user << "<span class='notice'>You finish off \the [target.name], and gain some charge!</span>"
+				to_chat(user, "<span class='notice'>You finish off \the [target.name], and gain some charge!</span>")
 				var/mob/living/silicon/robot.R = user
 				var/obj/item/weapon/cell.C = target
-				R.cell.charge = R.cell.charge + (C.maxcharge / 3)
+				R.cell.charge += C.maxcharge / 3
 				qdel(target)
 			return
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
-			user << "<span class='notice'>You clean \the [target.name].</span>"
+			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 			var/obj/effect/decal/cleanable/C = locate() in target
 			qdel(C)
 			target.clean_blood()
@@ -266,7 +222,7 @@
 			L.visible_message("<span class='danger'>[user] has shocked [L] with its tongue!</span>", \
 								"<span class='userdanger'>[user] has shocked you with its tongue! You can feel the betrayal.</span>")
 			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-			R.cell.charge = R.cell.charge - 666
+			R.cell.charge -= 666
 		else
 			user.visible_message("<span class='notice'>\the [user] affectionally licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionally lick all over \the [target]'s face!</span>")
 			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
@@ -274,13 +230,13 @@
 	else if(istype(target, /obj/structure/window))
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
-			user << "<span class='notice'>You clean \the [target.name].</span>"
+			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 			target.color = initial(target.color)
 			//target.SetOpacity(initial(target.opacity)) //Apparantly this doesn't work?
 	else
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
-			user << "<span class='notice'>You clean \the [target.name].</span>"
+			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 			var/obj/effect/decal/cleanable/C = locate() in target
 			qdel(C)
 			target.clean_blood()
@@ -320,23 +276,104 @@
 	max_uses = 16
 	var/cooldown = 0
 
+/obj/item/device/lightreplacer/dogborg/proc/AddUses(var/amount = 1)
+	uses = min(max(uses + amount, 0), max_uses)
+
 /obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Boo recharger fill is slow as shit and removes all the extra cyberfat gains you worked so hard for!
 	if(uses >= max_uses)
-		user << "<span class='warning'>[src.name] is full.</span>"
+		to_chat(user, "<span class='warning'>[src.name] is full.</span>")
 		return
 	if(uses < max_uses && cooldown == 0)
 		var/mob/living/silicon/robot.R = user
 		if(R.cell.charge <= 1000)
-			user << "<span class='warning'>Insufficient power reserves. Please recharge.</span>"
+			to_chat(user, "<span class='warning'>Insufficient power reserves. Please recharge.</span>")
 			return
-		usr << "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still."
+		to_chat(user, "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still.")
 		cooldown = 1
 		if(do_after(user, 50))
-			R.cell.charge = R.cell.charge - 800
+			R.cell.charge -= 800
 			AddUses(1)
 			cooldown = 0
 		else
 			cooldown = 0
 	else
-		usr << "It has [uses] lights remaining."
+		to_chat(user, "It has [uses] lights remaining.")
 		return
+
+//Pounce stuff for K-9
+/obj/item/weapon/dogborg/pounce
+	name = "pounce"
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "pounce"
+	desc = "Leap at your target to momentarily stun them."
+	force = 0
+	throwforce = 0
+
+/obj/item/weapon/dogborg/pounce/New()
+	..()
+	flags |= NOBLUDGEON
+
+/obj/item/weapon/dogborg/pounce/attack_self(mob/user)
+	var/mob/living/silicon/robot.R = user
+	R.leap()
+
+/mob/living/silicon/robot/proc/leap()
+	if(last_special > world.time)
+		to_chat(src, "Your leap actuators are still recharging.")
+		return
+
+	if(cell.charge < 1000)
+		to_chat(src, "Cell charge too low to continue.")
+		return
+
+	if(usr.incapacitated(INCAPACITATION_DISABLED))
+		to_chat(src, "You cannot leap in your current state.")
+		return
+
+	var/list/choices = list()
+	for(var/mob/living/M in view(3,src))
+		if(!istype(M,/mob/living/silicon))
+			choices += M
+	choices -= src
+
+	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+
+	if(!T || !src || src.stat) return
+
+	if(get_dist(get_turf(T), get_turf(src)) > 3) return
+
+	if(last_special > world.time)
+		return
+
+	if(usr.incapacitated(INCAPACITATION_DISABLED))
+		to_chat(src, "You cannot leap in your current state.")
+		return
+
+	last_special = world.time + 10
+	status_flags |= LEAPING
+	pixel_y = 10
+
+	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
+	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
+	playsound(src.loc, 'sound/mecha/mechstep2.ogg', 50, 1)
+	pixel_y = 0
+	cell.charge -= 750
+
+	sleep(5)
+
+	if(status_flags & LEAPING) status_flags &= ~LEAPING
+
+	if(!src.Adjacent(T))
+		to_chat(src, "<span class='warning'>You miss!</span>")
+		return
+
+	if(ishuman(T))
+		var/mob/living/carbon/human/H = T
+		if(H.species.lightweight == 1)
+			H.Weaken(3)
+			return
+	var/armor_block = run_armor_check(T, "melee")
+	var/armor_soak = get_armor_soak(T, "melee")
+	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
+	if(prob(25))
+		T.apply_effect(3, WEAKEN, armor_block)

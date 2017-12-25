@@ -23,7 +23,7 @@ var/savefile/Banlist
 				.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: [GetExp(Banlist["minutes"])]\nBy: [Banlist["bannedby"]][appeal]"
 		else
 			Banlist.cd	= "/base/[ckey][id]"
-			.["desc"]	= "\nReason: [Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [Banlist["bannedby"]][appeal]"
+			.["desc"]	= "\nReason: [Banlist["reason"]]\nExpires: <B>PERMANENT</B>\nBy: [Banlist["bannedby"]][appeal]"
 		.["reason"]	= "ckey/id"
 		return .
 	else
@@ -49,7 +49,7 @@ var/savefile/Banlist
 					else
 						.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: [GetExp(Banlist["minutes"])]\nBy: [Banlist["bannedby"]][appeal]"
 				else
-					.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [Banlist["bannedby"]][appeal]"
+					.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: <B>PERMANENT</B>\nBy: [Banlist["bannedby"]][appeal]"
 				.["reason"] = matches
 				return .
 	return 0
