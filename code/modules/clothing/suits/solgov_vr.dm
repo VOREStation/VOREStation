@@ -1,39 +1,39 @@
 //SolGov Uniform Suits
 
 //Service
-/obj/item/clothing/suit/storage/service/expeditionary
+/obj/item/clothing/suit/storage/service/sifguard
 	name = "explorer's jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons."
 
-/obj/item/clothing/suit/storage/service/expeditionary/medical
+/obj/item/clothing/suit/storage/service/sifguard/medical
 	name = "explorer's medical jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and blue trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/medical/command
+/obj/item/clothing/suit/storage/service/sifguard/medical/command
 	name = "explorer's medical command jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and blue trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/engineering
+/obj/item/clothing/suit/storage/service/sifguard/engineering
 	name = "explorer's engineering jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and orange trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/engineering/command
+/obj/item/clothing/suit/storage/service/sifguard/engineering/command
 	name = "explorer's engineering command jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and orange trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/supply
+/obj/item/clothing/suit/storage/service/sifguard/supply
 	name = "explorer's supply jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and brown trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/security
+/obj/item/clothing/suit/storage/service/sifguard/security
 	name = "explorer's security jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and red trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/security/command
+/obj/item/clothing/suit/storage/service/sifguard/security/command
 	name = "explorer's security command jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and red trim."
 
-/obj/item/clothing/suit/storage/service/expeditionary/command
+/obj/item/clothing/suit/storage/service/sifguard/command
 	name = "explorer's command jacket"
 	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and gold trim."
 
