@@ -122,7 +122,6 @@
 			return
 		if(affected && affected.cavity)
 			var/total_volume = tool.w_class
-			if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
 			for(var/obj/item/I in affected.implants)
 				if(istype(I,/obj/item/weapon/implant))
 					continue
@@ -149,6 +148,7 @@
 	user.drop_item()
 	affected.implants += tool
 	tool.loc = affected
+	if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
 	affected.cavity = 0
 
 //////////////////////////////////////////////////////////////////
