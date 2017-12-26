@@ -19,6 +19,7 @@
 
 /area/surface
 	name = "The Surface (Don't Use)"
+	flags = RAD_SHIELDED
 
 /area/surface/center
 	name = "Center"
@@ -60,6 +61,27 @@
 	name = "Wilderness"
 	icon_state = "green"
 
+/area/surface/outside/wilderness/deep
+	name = "Deep Wilderness"
+	icon_state = "green"
+
+/area/surface/outside/river
+	name = "River"
+	icon_state = "bluenew"
+
+/area/surface/outside/river/faxalven
+	name = "Faxälven River"
+
+/area/surface/outside/river/indalsalven
+	name = "Indalsälven River"
+
+/area/surface/outside/river/svartan
+	name = "Svartån River"
+
+/area/surface/outside/lake/romsele
+	name = "Romsele Lake"
+	icon_state = "blue2"
+
 /area/surface/cave
 	flags = RAD_SHIELDED
 
@@ -76,7 +98,6 @@
 //Surface Outposts
 
 /area/surface/outpost
-	flags = RAD_SHIELDED
 
 // Main mining outpost
 /area/surface/outpost/mining_main
