@@ -58,7 +58,7 @@ var/global/list/limb_icon_cache = list()
 	if(owner.should_have_organ(O_EYES))
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eye_icon)
-			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
+			var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
 			if(eyes)
 				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			else
@@ -178,9 +178,10 @@ var/global/list/limb_icon_cache = list()
 		else
 			applying.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 		icon_cache_key += "_tone_[s_tone]"
-	else if(s_col && s_col.len >= 3)
-		applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
-		icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]"
+	else
+		if(s_col && s_col.len >= 3)
+			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), s_col_blend)
+			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[s_col_blend]"
 
 	// Translucency.
 	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND

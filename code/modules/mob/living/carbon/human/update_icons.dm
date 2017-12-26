@@ -107,34 +107,35 @@ Please contact me on #coderbus IRC. ~Carn x
 
 //Human Overlays Indexes/////////
 #define MUTATIONS_LAYER			1
-#define DAMAGE_LAYER			2
-#define SURGERY_LEVEL			3		//bs12 specific.
-#define UNDERWEAR_LAYER  		4
-#define SHOES_LAYER_ALT			5
-#define UNIFORM_LAYER			6
-#define ID_LAYER				7
-#define SHOES_LAYER				8
-#define GLOVES_LAYER			9
-#define BELT_LAYER				10
-#define SUIT_LAYER				11
-#define TAIL_LAYER				12		//bs12 specific.	//In a perfect world the parts of the tail that show between legs would be on a new layer. Until then, sprite's been tweaked
-#define GLASSES_LAYER			13
-#define BELT_LAYER_ALT			14
-#define SUIT_STORE_LAYER		15
-#define BACK_LAYER				16
-#define HAIR_LAYER				17		//TODO: make part of head layer?
-#define EARS_LAYER				18
-#define FACEMASK_LAYER			19
-#define HEAD_LAYER				20
-#define COLLAR_LAYER			21
-#define HANDCUFF_LAYER			22
-#define LEGCUFF_LAYER			23
-#define L_HAND_LAYER			24
-#define R_HAND_LAYER			25
-#define MODIFIER_EFFECTS_LAYER	26
-#define FIRE_LAYER				27		//If you're on fire
-#define WATER_LAYER				28		//If you're submerged in water.
-#define TARGETED_LAYER			29		//BS12: Layer for the target overlay from weapon targeting system
+#define SKIN_LAYER				2
+#define DAMAGE_LAYER			3
+#define SURGERY_LEVEL			4		//bs12 specific.
+#define UNDERWEAR_LAYER  		5
+#define SHOES_LAYER_ALT			6
+#define UNIFORM_LAYER			7
+#define ID_LAYER				8
+#define SHOES_LAYER				9
+#define GLOVES_LAYER			10
+#define BELT_LAYER				11
+#define SUIT_LAYER				12
+#define TAIL_LAYER				13		//bs12 specific.	//In a perfect world the parts of the tail that show between legs would be on a new layer. Until then, sprite's been tweaked
+#define GLASSES_LAYER			14
+#define BELT_LAYER_ALT			15
+#define SUIT_STORE_LAYER		16
+#define BACK_LAYER				17
+#define HAIR_LAYER				18		//TODO: make part of head layer?
+#define EARS_LAYER				19
+#define FACEMASK_LAYER			20
+#define HEAD_LAYER				21
+#define COLLAR_LAYER			22
+#define HANDCUFF_LAYER			23
+#define LEGCUFF_LAYER			24
+#define L_HAND_LAYER			25
+#define R_HAND_LAYER			26
+#define MODIFIER_EFFECTS_LAYER	27
+#define FIRE_LAYER				28		//If you're on fire
+#define WATER_LAYER				29		//If you're submerged in water.
+#define TARGETED_LAYER			30		//BS12: Layer for the target overlay from weapon targeting system
 #define TOTAL_LAYERS			30
 //////////////////////////////////
 
@@ -158,6 +159,8 @@ Please contact me on #coderbus IRC. ~Carn x
 			else if(istype(entry, /list))
 				for(var/inner_entry in entry)
 					overlays += inner_entry
+	if(species && species.has_floating_eyes)
+		overlays |= species.get_eyes(src)
 
 	update_transform()
 
@@ -280,6 +283,7 @@ var/global/list/damage_icon_parts = list()
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
+				icon_key += "[part.s_col_blend]"
 			else
 				icon_key += "#000000"
 			for(var/M in part.markings)
@@ -311,7 +315,7 @@ var/global/list/damage_icon_parts = list()
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
-			if(part.icon_position&(LEFT|RIGHT))
+			if(part.icon_position & (LEFT | RIGHT))
 				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
@@ -325,6 +329,8 @@ var/global/list/damage_icon_parts = list()
 				if(part.icon_position & RIGHT)
 					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
 				base_icon.Blend(temp2, ICON_UNDERLAY)
+			else if(part.icon_position & UNDER)
+				base_icon.Blend(temp, ICON_UNDERLAY)
 			else
 				base_icon.Blend(temp, ICON_OVERLAY)
 
@@ -353,6 +359,10 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
+
+/mob/living/carbon/human/proc/update_skin(var/update_icons=1)
+	overlays_standing[SKIN_LAYER] = species.update_skin(src)
+	if(update_icons)   update_icons()
 
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
@@ -463,6 +473,7 @@ var/global/list/damage_icon_parts = list()
 	if(transforming || QDELETED(src))		return
 
 	update_mutations(0)
+	update_skin(0)
 	update_body(0)
 	update_underwear(0)
 	update_hair(0)

@@ -87,6 +87,8 @@
 
 	reagent_tag = IS_UNATHI
 
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/claw
+
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unathi),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unathi),
@@ -187,6 +189,8 @@
 	base_color = "#333333"
 
 	reagent_tag = IS_TAJARA
+
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
 	heat_discomfort_level = 292
 	heat_discomfort_strings = list(

@@ -38,7 +38,7 @@
 		return 0
 
 	var/area/area = get_area(src)
-	if(direction == UP && area.has_gravity)
+	if(direction == UP && area.has_gravity() && !can_overcome_gravity())
 		var/obj/structure/lattice/lattice = locate() in destination.contents
 		if(lattice)
 			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
@@ -60,6 +60,12 @@
 	if(!Move(destination))
 		return 0
 	return 1
+
+/mob/proc/can_overcome_gravity()
+	return FALSE
+
+/mob/living/carbon/human/can_overcome_gravity()
+	return species && species.can_overcome_gravity(src)
 
 /mob/observer/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
@@ -183,6 +189,10 @@
 	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
 		return FALSE
 
+/mob/living/carbon/human/can_fall()
+	if(..())
+		return species.can_fall(src)
+
 /mob/living/simple_animal/parrot/can_fall() // Poly can fly.
 	return FALSE
 
@@ -222,7 +232,6 @@
 		return FALSE
 	return falling_atom.fall_impact(src)
 
-
 // Actually process the falling movement and impacts.
 /atom/movable/proc/handle_fall(var/turf/landing)
 	var/turf/oldloc = loc
@@ -244,50 +253,89 @@
 	// Detect if we made a silent landing.
 	if(locate(/obj/structure/stairs) in landing)
 		return 1
+	else
+		var/atom/A = find_fall_target(oldloc, landing)
+		if(special_fall_handle(A) || !A || !A.check_impact(src))
+			return
+		fall_impact(A)
 
+/atom/movable/proc/special_fall_handle(var/atom/A)
+	return FALSE
+
+/mob/living/carbon/human/special_fall_handle(var/atom/A)
+	if(species)
+		return species.fall_impact_special(src, A)
+	return FALSE
+
+/atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
 	if(isopenspace(oldloc))
 		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
 
 	// If the turf has density, we give it first dibs
 	if (landing.density && landing.CheckFall(src))
-		return
+		return landing
 
 	// First hit objects in the turf!
 	for(var/atom/movable/A in landing)
 		if(A != src && A.CheckFall(src))
-			return
+			return A
 
 	// If none of them stopped us, then hit the turf itself
-	landing.CheckFall(src)
+	if(landing.CheckFall(src))
+		return landing
 
+/mob/living/carbon/human/find_fall_target(var/turf/landing)
+	if(species)
+		var/atom/A = species.find_fall_target_special(src, landing)
+		if(A)
+			return A
+	return ..()
+
+//CheckFall landing.fall_impact(src)
 
 // ## THE FALLING PROCS ###
 
-// Called on everything that falling_atom might hit. Return 1 if you're handling it so handle_fall() will stop checking.
-// If you're soft and break the fall gently, just return 1
-// If the falling atom will hit you hard, call fall_impact() and return its result.
+// Called on everything that falling_atom might hit. Return TRUE if you're handling it so find_fall_target() will stop checking.
 /atom/proc/CheckFall(var/atom/movable/falling_atom)
 	if(density && !(flags & ON_BORDER))
-		return falling_atom.fall_impact(src)
+		return TRUE
+
+// If you are hit: how is it handled.
+// Return TRUE if the generic fall_impact should be called
+// Return FALSE if you handled it yourself or if there's no effect from hitting you
+/atom/proc/check_impact(var/atom/movable/falling_atom)
+	if(density && !(flags & ON_BORDER))
+		return TRUE
 
 // By default all turfs are gonna let you hit them regardless of density.
 /turf/CheckFall(var/atom/movable/falling_atom)
-	return falling_atom.fall_impact(src)
+	return TRUE
+
+/turf/check_impact(var/atom/movable/falling_atom)
+	return TRUE
 
 // Obviously you can't really hit open space.
 /turf/simulated/open/CheckFall(var/atom/movable/falling_atom)
-	// Don't need to print this, the open space it falls into will print it for us!
-	// visible_message("\The [falling_atom] falls from above through \the [src]!", "You hear a whoosh of displaced air.")
-	return 0
+	return FALSE
+
+/turf/simulated/open/check_impact(var/atom/movable/falling_atom)
+	return FALSE
 
 // We return 1 without calling fall_impact in order to provide a soft landing. So nice.
 // Note this really should never even get this far
 /obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
-	return 1
+	return TRUE
+
+/obj/structure/stairs/check_impact(var/atom/movable/falling_atom)
+	return FALSE
 
 // Can't fall onto ghosts
 /mob/observer/dead/CheckFall()
-	return 0
+	return FALSE
+
+/mob/observer/dead/check_impact()
+	return FALSE
+
 
 // Called by CheckFall when we actually hit something. Various Vars will be described below
 // hit_atom is the thing we fall on
