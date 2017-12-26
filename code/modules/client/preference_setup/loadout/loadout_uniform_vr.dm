@@ -3,9 +3,9 @@
 	path = /obj/item/clothing/under/permit
 
 //Polaris overrides
-/datum/gear/uniform/pt/expeditionary
+/datum/gear/uniform/pt/sifguard
 	display_name = "pt uniform, planetside sec"
-	path = /obj/item/clothing/under/pt/expeditionary
+	path = /obj/item/clothing/under/pt/sifguard
 
 //KHI Uniforms
 /datum/gear/uniform/job_khi/cmd

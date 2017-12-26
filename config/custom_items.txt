@@ -63,7 +63,7 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/under/utility/expeditionary/medical/command
+item_path: /obj/item/clothing/under/utility/sifguard/medical/command
 item_name: centcom medical uniform
 item_desc: A medical uniform straight from Central Command.
 }
@@ -71,7 +71,7 @@ item_desc: A medical uniform straight from Central Command.
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/suit/storage/service/expeditionary/medical/command
+item_path: /obj/item/clothing/suit/storage/service/sifguard/medical/command
 item_name: centcom medical jacket
 item_desc: A medical jacket straight from Central Command.
 }
@@ -135,7 +135,7 @@ item_path: /obj/item/weapon/storage/box/fluff/octavious
 {
 ckey: burritojustice
 character_name: Jayda Wilson
-item_path: /obj/item/clothing/under/utility/expeditionary/medical
+item_path: /obj/item/clothing/under/utility/sifguard/medical
 }
 
 # ######## C CKEYS
