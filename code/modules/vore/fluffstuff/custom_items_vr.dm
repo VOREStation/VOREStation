@@ -38,33 +38,33 @@
 	var/to_suit = /obj/item/clothing/suit/cardborg
 
 	//Conversion proc
-	afterattack(obj/O, mob/user as mob)
-		var/flag
-		var/to_type
-		if(istype(O,from_helmet))
-			flag = 1
-			to_type = to_helmet
-		else if(istype(O,from_suit))
-			flag = 2
-			to_type = to_suit
-		else
-			return
-		if(!(parts & flag))
-			user << "<span class='warning'>This kit has no parts for this modification left.</span>"
-			return
-		if(istype(O,to_type))
-			user << "<span class='notice'>[O] is already modified.</span>"
-			return
-		if(!isturf(O.loc))
-			user << "<span class='warning'>[O] must be safely placed on the ground for modification.</span>"
-			return
-		playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-		var/N = new to_type(O.loc)
-		user.visible_message("<span class='warning'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='warning'>You open \the [src] and modify \the [O] into \the [N].</span>")
-		qdel(O)
-		parts &= ~flag
-		if(!parts)
-			qdel(src)
+/obj/item/device/modkit_conversion/afterattack(obj/O, mob/user as mob)
+	var/flag
+	var/to_type
+	if(istype(O,from_helmet))
+		flag = 1
+		to_type = to_helmet
+	else if(istype(O,from_suit))
+		flag = 2
+		to_type = to_suit
+	else
+		return
+	if(!(parts & flag))
+		to_chat(user, "<span class='warning'>This kit has no parts for this modification left.</span>")
+		return
+	if(istype(O,to_type))
+		to_chat(user, "<span class='notice'>[O] is already modified.</span>")
+		return
+	if(!isturf(O.loc))
+		to_chat(user, "<span class='warning'>[O] must be safely placed on the ground for modification.</span>")
+		return
+	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+	var/N = new to_type(O.loc)
+	user.visible_message("<span class='warning'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='warning'>You open \the [src] and modify \the [O] into \the [N].</span>")
+	qdel(O)
+	parts &= ~flag
+	if(!parts)
+		qdel(src)
 
 //JoanRisu:Joan Risu
 /obj/item/weapon/flame/lighter/zippo/fluff/joan
@@ -101,7 +101,7 @@
 	name = "tactical Knife"
 	desc = "A tactical knife with a small butterly engraved on the blade."
 
-obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
@@ -137,13 +137,13 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	assignment = "Centcom Officer"
 
 
-	attack_self(mob/user as mob)
-		if(isliving(user))
-			user.visible_message("<span class='warning'>[user] flashes their golden security badge.\nIt reads:NT Security.</span>","<span class='warning'>You display the faded badge.\nIt reads: NT Security.</span>")
+/obj/item/weapon/card/id/centcom/fluff/joanbadge/attack_self(mob/user as mob)
+	if(isliving(user))
+		user.visible_message("<span class='warning'>[user] flashes their golden security badge.\nIt reads:NT Security.</span>","<span class='warning'>You display the faded badge.\nIt reads: NT Security.</span>")
 
-	attack(mob/living/carbon/human/M, mob/living/user)
-		if(isliving(user))
-			user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
+/obj/item/weapon/card/id/centcom/fluff/joanbadge/attack(mob/living/carbon/human/M, mob/living/user)
+	if(isliving(user))
+		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
 //JoanRisu:Joan Risu
 /obj/item/device/pda/heads/hos/joanpda
@@ -205,44 +205,44 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "Flag_Nanotrasen_mob"
 
-	attack_self(mob/user as mob)
-		if(isliving(user))
-			user.visible_message("<span class='warning'>[user] waves their Banner around!</span>","<span class='warning'>You wave your Banner around.</span>")
+/obj/item/weapon/flag/attack_self(mob/user as mob)
+	if(isliving(user))
+		user.visible_message("<span class='warning'>[user] waves their Banner around!</span>","<span class='warning'>You wave your Banner around.</span>")
 
-	attack(mob/living/carbon/human/M, mob/living/user)
-		if(isliving(user))
-			user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
+/obj/item/weapon/flag/attack(mob/living/carbon/human/M, mob/living/user)
+	if(isliving(user))
+		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
 
-	federation
-		name = "Federation Banner"
-		desc = "Space, The Final Frontier. Sorta. Just go with it and say the damn oath."
+/obj/item/weapon/flag/federation
+	name = "Federation Banner"
+	desc = "Space, The Final Frontier. Sorta. Just go with it and say the damn oath."
 
-		icon = 'icons/vore/custom_items_vr.dmi'
-		icon_state = "flag_federation"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "flag_federation"
 
-		icon_override = 'icons/vore/custom_items_vr.dmi'
-		item_state = "flag_federation_mob"
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "flag_federation_mob"
 
-	xcom
-		name = "Alien Combat Command Banner"
-		desc = "A banner bearing the symbol of a task force fighting an unknown alien power."
+/obj/item/weapon/flag/xcom
+	name = "Alien Combat Command Banner"
+	desc = "A banner bearing the symbol of a task force fighting an unknown alien power."
 
-		icon = 'icons/vore/custom_items_vr.dmi'
-		icon_state = "flag_xcom"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "flag_xcom"
 
-		icon_override = 'icons/vore/custom_items_vr.dmi'
-		item_state = "flag_xcom_mob"
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "flag_xcom_mob"
 
-	advent
-		name = "ALIEN Coalition Banner"
-		desc = "A banner belonging to traitors who work for an unknown alien power."
+/obj/item/weapon/flag/advent
+	name = "ALIEN Coalition Banner"
+	desc = "A banner belonging to traitors who work for an unknown alien power."
 
-		icon = 'icons/vore/custom_items_vr.dmi'
-		icon_state = "flag_advent"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "flag_advent"
 
-		icon_override = 'icons/vore/custom_items_vr.dmi'
-		item_state = "flag_advent_mob"
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "flag_advent_mob"
 
 
 //Vorrakul: Kaitlyn Fiasco
@@ -300,20 +300,20 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
 
-	afterattack(obj/O, mob/user as mob)
-		var/new_icon = "mime"
-		if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
-			//O.icon = src.icon // just in case we're using custom sprite paths with fluff items.
-			O.icon_state = new_icon // Changes the icon without changing the access.
-			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
-			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
-			qdel(src)
-		else if(O.icon_state == new_icon)
-			user << "<span class='notice'>[O] already has been reprinted.</span>"
-			return
-		else
-			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
-			return
+/obj/item/device/fluff/id_kit_mime/afterattack(obj/O, mob/user as mob)
+	var/new_icon = "mime"
+	if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
+		//O.icon = icon // just in case we're using custom sprite paths with fluff items.
+		O.icon_state = new_icon // Changes the icon without changing the access.
+		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
+		qdel(src)
+	else if(O.icon_state == new_icon)
+		to_chat(user, "<span class='notice'>[O] already has been reprinted.</span>")
+		return
+	else
+		to_chat(user, "<span class='warning'>This isn't even an ID card you idiot.</span>")
+		return
 
 //arokha:Aronai Kadigan - Centcom ID (Medical dept)
 /obj/item/weapon/card/id/centcom/fluff/aronai
@@ -321,15 +321,15 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	assignment = "CC Medical"
 	var/configured = 0
 
-	attack_self(mob/user as mob)
-		if(configured)
-			return ..()
+/obj/item/weapon/card/id/centcom/fluff/aronai/attack_self(mob/user as mob)
+	if(configured)
+		return ..()
 
-		user.set_id_info(src)
-		if(user.mind && user.mind.initial_account)
-			associated_account_number = user.mind.initial_account.account_number
-		configured = 1
-		user << "<span class='notice'>Card settings set.</span>"
+	user.set_id_info(src)
+	if(user.mind && user.mind.initial_account)
+		associated_account_number = user.mind.initial_account.account_number
+	configured = 1
+	to_chat(user, "<span class='notice'>Card settings set.</span>")
 
 //arokha:Aronai Kadigan - Bloo glasses
 /obj/item/clothing/glasses/omnihud/med/fluff/aronai
@@ -355,10 +355,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 
 	if(icon_state == initial(icon_state))
 		icon_state = "[initial(icon_state)]_on"
-		H << "<span class='notice'>You ENABLE the AR-K HUD.</span>"
+		to_chat(H, "<span class='notice'>You ENABLE the AR-K HUD.</span>")
 	else
 		icon_state = initial(icon_state)
-		H << "<span class='notice'>You DISABLE the AR-K HUD.</span>"
+		to_chat(H, "<span class='notice'>You DISABLE the AR-K HUD.</span>")
 
 	H.update_inv_glasses()
 
@@ -369,30 +369,29 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "aro_hypo"
 
-	New()
-		..()
-		loaded_vial.name = "[initial(loaded_vial.name)] (tricord)"
-		loaded_vial.desc = "30 Tricordrazine"
-		reagents.add_reagent("tricordrazine", 30)
+/obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai/New()
+	..()
+	loaded_vial.name = "[initial(loaded_vial.name)] (tricord)"
+	loaded_vial.desc = "30 Tricordrazine"
+	reagents.add_reagent("tricordrazine", 30)
 
 //arokha:Aronai Kadigan - Vials to go with mk2 hypo
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff
-	aro_st
-		name = "vial (stabilize)"
-		desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
-		comes_with = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
-	aro_bt
-		name = "vial (brute)"
-		desc = "25 Bicaridine, 5 Tricordrazine"
-		comes_with = list("bicaridine"=25,"tricordrazine"=5)
-	aro_bu
-		name = "vial (burn)"
-		desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
-		comes_with = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
-	aro_tx
-		name = "vial (toxins)"
-		desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
-		comes_with = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st
+	name = "vial (stabilize)"
+	desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
+	comes_with = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt
+	name = "vial (brute)"
+	desc = "25 Bicaridine, 5 Tricordrazine"
+	comes_with = list("bicaridine"=25,"tricordrazine"=5)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu
+	name = "vial (burn)"
+	desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
+	comes_with = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx
+	name = "vial (toxins)"
+	desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
+	comes_with = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -421,15 +420,16 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon_override = 'icons/mob/taursuits_vr.dmi' //Needs to be this since it's 64*32
 	icon_state = "serdy_armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
-			icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
-			icon_state = "serdy_armor" //Just in case
-			pixel_x = -16
-			return ..()
-		else
-			H << "<span class='warning'>You need to have a wolf-taur half to wear this.</span>"
-			return 0
+
+/obj/item/clothing/suit/armor/vest/wolftaur/serdy/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+		icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
+		icon_state = "serdy_armor" //Just in case
+		pixel_x = -16
+		return ..()
+	else
+		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+		return 0
 
 /obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
 	name = "KSS-8 security helmet"
@@ -475,48 +475,48 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	var/client/owner_c = null //They'll be dead when we message them probably.
 	var/state = 0 //0 - New, 1 - Paired, 2 - Breaking, 3 - Broken (same as iconstates)
 
-	New()
-		..()
-		update_state(0)
+/obj/item/clothing/accessory/collar/khcrystal/New()
+	..()
+	update_state(0)
 
-	Destroy() //Waitwaitwait
-		if(state == 1)
-			process() //Nownownow
-		return ..() //Okfine
+/obj/item/clothing/accessory/collar/khcrystal/Destroy() //Waitwaitwait
+	if(state == 1)
+		process() //Nownownow
+	return ..() //Okfine
 
-	process()
-		check_owner()
-		if((state > 1) || !owner)
-			processing_objects.Remove(src)
+/obj/item/clothing/accessory/collar/khcrystal/process()
+	check_owner()
+	if((state > 1) || !owner)
+		processing_objects.Remove(src)
 
-	attack_self(mob/user as mob)
-		if(state > 0) //Can't re-pair, one time only, for security reasons.
-			user << "<span class='notice'>The [name] doesn't do anything.</span>"
-			return 0
+/obj/item/clothing/accessory/collar/khcrystal/attack_self(mob/user as mob)
+	if(state > 0) //Can't re-pair, one time only, for security reasons.
+		to_chat(user, "<span class='notice'>The [name] doesn't do anything.</span>")
+		return 0
 
-		owner = user	//We're paired to this guy
-		owner_c = user.client	//This is his client
-		update_state(1)
-		user << "<span class='notice'>The [name] glows pleasantly blue.</span>"
-		processing_objects.Add(src)
+	owner = user	//We're paired to this guy
+	owner_c = user.client	//This is his client
+	update_state(1)
+	to_chat(user, "<span class='notice'>The [name] glows pleasantly blue.</span>")
+	processing_objects.Add(src)
 
-	proc/check_owner()
-		//He's dead, jim
-		if((state == 1) && owner && (owner.stat == DEAD))
-			update_state(2)
-			audible_message("<span class='warning'>The [name] begins flashing red.</span>")
-			sleep(30)
-			visible_message("<span class='warning'>The [name] shatters into dust!</span>")
-			if(owner_c)
-				owner_c << "<span class='notice'>The HAVENS system is notified of your demise via \the [name].</span>"
-			update_state(3)
-			name = "broken [initial(name)]"
-			desc = "This seems like a necklace, but the actual pendant is missing."
+/obj/item/clothing/accessory/collar/khcrystal/proc/check_owner()
+	//He's dead, jim
+	if((state == 1) && owner && (owner.stat == DEAD))
+		update_state(2)
+		audible_message("<span class='warning'>The [name] begins flashing red.</span>")
+		sleep(30)
+		visible_message("<span class='warning'>The [name] shatters into dust!</span>")
+		if(owner_c)
+			to_chat(owner_c, "<span class='notice'>The HAVENS system is notified of your demise via \the [name].</span>")
+		update_state(3)
+		name = "broken [initial(name)]"
+		desc = "This seems like a necklace, but the actual pendant is missing."
 
-	proc/update_state(var/tostate)
-		state = tostate
-		icon_state = "[initial(icon_state)][tostate]"
-		update_icon()
+/obj/item/clothing/accessory/collar/khcrystal/proc/update_state(var/tostate)
+	state = tostate
+	icon_state = "[initial(icon_state)][tostate]"
+	update_icon()
 
 /obj/item/weapon/paper/khcrystal_manual
 	name = "KH-LC91-1 manual"
@@ -587,10 +587,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
-	tasald
-		name = "Ornate Walking Cane"
-		desc = "An elaborately made custom walking stick with a dark wooding core, a crimson red gemstone on its head and a steel cover around the bottom. you'd probably hear someone using this down the hall."
-		icon = 'icons/vore/custom_items_vr.dmi'
+/obj/item/weapon/cane/fluff/tasald
+	name = "Ornate Walking Cane"
+	desc = "An elaborately made custom walking stick with a dark wooding core, a crimson red gemstone on its head and a steel cover around the bottom. you'd probably hear someone using this down the hall."
+	icon = 'icons/vore/custom_items_vr.dmi'
 
 //Stobarico - Alexis Bloise
 /obj/item/weapon/cane/wand
@@ -627,23 +627,23 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
 
-	afterattack(obj/O, mob/user as mob)
-		var/new_icon_state = "ivyholoid"
-		var/new_icon = 'icons/vore/custom_items_vr.dmi'
-		var/new_desc = "Its a thin screen showing ID information, but it seems to be flickering."
-		if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
-			O.icon = new_icon
-			O.icon_state = new_icon_state // Changes the icon without changing the access.
-			O.desc = new_desc
-			playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
-			user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
-			qdel(src)
-		else if(O.icon_state == new_icon)
-			user << "<span class='notice'>[O] already has been reprinted.</span>"
-			return
-		else
-			user << "<span class='warning'>This isn't even an ID card you idiot.</span>"
-			return
+/obj/item/device/fluff/id_kit_ivy/afterattack(obj/O, mob/user as mob)
+	var/new_icon_state = "ivyholoid"
+	var/new_icon = 'icons/vore/custom_items_vr.dmi'
+	var/new_desc = "Its a thin screen showing ID information, but it seems to be flickering."
+	if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
+		O.icon = new_icon
+		O.icon_state = new_icon_state // Changes the icon without changing the access.
+		O.desc = new_desc
+		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
+		qdel(src)
+	else if(O.icon_state == new_icon)
+		to_chat(user, "<span class='notice'>[O] already has been reprinted.</span>")
+		return
+	else
+		to_chat(user, "<span class='warning'>This isn't even an ID card you idiot.</span>")
+		return
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/reagent_containers/hypospray/vr/tempest
@@ -799,7 +799,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/roiz/rimplant
-	for(var/I in src.contents)
+	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
 			break
@@ -819,10 +819,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
 							"<span class='notice'>You [self_verb_desc] [emote]</span>")
 		else
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
 								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
 		if(prob(15))
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
+			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
@@ -867,7 +867,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/jasmine/rimplant
-	for(var/I in src.contents)
+	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
 			break
@@ -887,10 +887,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
 							"<span class='notice'>You [self_verb_desc] [emote]</span>")
 		else
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
 								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
 		if(prob(15))
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
@@ -940,7 +940,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/roiz/rimplant
-	for(var/I in src.contents)
+	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
 			break
@@ -961,7 +961,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
 							"<span class='notice'>You [self_verb_desc] [emote]</span>")
 		else
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an apple.</span>",
+			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an apple.</span>",
 								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an apple.</span>")
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
@@ -1106,12 +1106,12 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 	var/tempname = pick(title_strings)
 	name = tempname + " ([title])"
 	configured = 1
-	user << "<span class='notice'>Card settings set.</span>"
+	to_chat(user, "<span class='notice'>Card settings set.</span>")
 
 /obj/item/weapon/card/id/fluff/amaya/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		src.access |= O.access
+		access |= O.access
 		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
 		user.drop_from_inventory(I)
 		qdel(I)
@@ -1476,37 +1476,37 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
 			if(do_after(user,5 SECONDS,src))
 				user.unEquip(src)
-				src.forceMove(user)
+				forceMove(user)
 				B.internal_contents |= src
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
 				playsound(user, B.vore_sound, 70, 1)
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
-    name = "Hisstective's Badge"
-    desc = "This is Ruda Lizden's personal Detective's badge. The polish is dull, as if it's simply been huffed upon and wiped against a coat. Labeled 'Hisstective.'"
-    icon = 'icons/vore/custom_items_vr.dmi'
-    icon_state = "hisstective_badge"
-    //slot_flags = SLOT_TIE | SLOT_BELT
+	name = "Hisstective's Badge"
+	desc = "This is Ruda Lizden's personal Detective's badge. The polish is dull, as if it's simply been huffed upon and wiped against a coat. Labeled 'Hisstective.'"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "hisstective_badge"
+	//slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/detective/ruda/attack(mob/living/carbon/human/M, mob/living/user)
-    if(isliving(user))
-        user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>")
-        user.do_attack_animation(M)
-        user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+	if(isliving(user))
+		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>")
+		user.do_attack_animation(M)
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
 /obj/item/clothing/accessory/badge/holo/detective/ruda/attack_self(mob/user as mob)
 
-    if(!stored_name)
-        user << "You huff along the front of your badge, then rub your sleeve on it to polish it up."
-        set_name(user.real_name)
-        return
+	if(!stored_name)
+		to_chat(user, "You huff along the front of your badge, then rub your sleeve on it to polish it up.")
+		set_name(user.real_name)
+		return
 
-    if(isliving(user))
-        if(stored_name)
-            user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src.name].\nIt reads: [stored_name], [badge_string].</span>")
-        else
-            user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
+	if(isliving(user))
+		if(stored_name)
+			user.visible_message("<span class='notice'>[user] displays their [src].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src].\nIt reads: [stored_name], [badge_string].</span>")
+		else
+			user.visible_message("<span class='notice'>[user] displays their [src].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src]. It reads: [badge_string].</span>")
 
 /obj/item/weapon/card/id/fluff/xennith
 	name = "\improper Amy Lessen's Central Command ID (Xenobiology Director)"
@@ -1617,7 +1617,7 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/evian/rimplant
-	for(var/I in src.contents)
+	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
 			break
@@ -1637,10 +1637,10 @@ obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shie
 			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
 							"<span class='notice'>You [self_verb_desc] [emote]</span>")
 		else
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
 								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
 		if(prob(15))
-			src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
+			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
