@@ -1394,6 +1394,7 @@
 #include "code\modules\client\preference_setup\loadout\loadout_head_vr.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_mask.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_shoes.dm"
+#include "code\modules\client\preference_setup\loadout\loadout_shoes_vr.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_smoking.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_suit.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_suit_vr.dm"
