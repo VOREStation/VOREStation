@@ -79,6 +79,8 @@
 	new_copy.damage_mask = to_copy.damage_mask
 	new_copy.damage_overlays = to_copy.damage_overlays
 	new_copy.traits = traits
+	new_copy.move_trail = move_trail
+	new_copy.has_floating_eyes = has_floating_eyes
 
 	//If you had traits, apply them
 	if(new_copy.traits)

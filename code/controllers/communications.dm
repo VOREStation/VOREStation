@@ -119,6 +119,7 @@ var/const/MED_FREQ = 1355
 var/const/SCI_FREQ = 1351
 var/const/SRV_FREQ = 1349
 var/const/SUP_FREQ = 1347
+var/const/EXP_FREQ = 1361
 
 // internal department channels
 var/const/MED_I_FREQ = 1485
@@ -137,6 +138,7 @@ var/list/radiochannels = list(
 	"Raider"		= RAID_FREQ,
 	"Supply" 		= SUP_FREQ,
 	"Service" 		= SRV_FREQ,
+	"Explorer"		= EXP_FREQ,
 	"AI Private"	= AI_FREQ,
 	"Entertainment" = ENT_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
@@ -181,6 +183,8 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC
 		return "supradio"
 	if(frequency == SRV_FREQ) // service
 		return "srvradio"
+	if(frequency == EXP_FREQ) // explorer
+		return "expradio"
 	if(frequency == ENT_FREQ) // entertainment
 		return "entradio"
 	if(frequency in DEPT_FREQS)

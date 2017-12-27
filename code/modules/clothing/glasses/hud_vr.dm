@@ -86,7 +86,7 @@
 	desc = "The KHI-62-S AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with security records integration and flash protection."
 	mode = "sec"
-	flash_prot = 1 //Flash protection.
+	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Security Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor/security
 
@@ -100,7 +100,7 @@
 	desc = "The KHI-62-E AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding."
 	mode = "eng"
-	flash_prot = 2 //Welding protection.
+	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Station Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor
 
@@ -126,7 +126,6 @@
 	icon_state = "projector"
 	off_state = "projector-off"
 	body_parts_covered = 0
-	flash_prot = 0 //No welding protection for these.
 	toggleable = 1
 	vision_flags = SEE_TURFS //but they can spot breaches. Due to the way HUDs work, they don't provide darkvision up-close the way mesons do.
 
@@ -161,7 +160,7 @@
 	desc = "The KHI-62-B AR glasses are a design from Kitsuhana Heavy Industries. \
 	These have been upgraded with every feature the lesser models have. Now we're talkin'."
 	mode = "best"
-	flash_prot = 2 //Welding protection.
+	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/glasses/hud/omni
 	name = "internal omni hud"

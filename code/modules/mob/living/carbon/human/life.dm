@@ -975,7 +975,7 @@
 
 		if(paralysis || sleeping)
 			blinded = 1
-			stat = UNCONSCIOUS
+			set_stat(UNCONSCIOUS)
 			animate_tail_reset()
 			adjustHalLoss(-3)
 
@@ -990,7 +990,7 @@
 						emote("snore")
 		//CONSCIOUS
 		else
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
@@ -1077,6 +1077,11 @@
 			gloves.germ_level += 1
 
 	return 1
+
+/mob/living/carbon/human/proc/set_stat(var/new_stat)
+	stat = new_stat
+	if(stat)
+		update_skin(1)
 
 /mob/living/carbon/human/handle_regular_hud_updates()
 	if(hud_updateflag) // update our mob's hud overlays, AKA what others see flaoting above our head
@@ -1209,8 +1214,9 @@
 				healths.icon_state = "health_numb"
 			else
 				// Generate a by-limb health display.
-				healths.icon_state = "blank"
-				healths.overlays = null
+				var/mutable_appearance/healths_ma = new(healths)
+				healths_ma.icon_state = "blank"
+				healths_ma.overlays = null
 
 				var/no_damage = 1
 				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
@@ -1238,7 +1244,8 @@
 				else if(no_damage)
 					health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
 
-				healths.overlays += health_images
+				healths_ma.overlays += health_images
+				healths.appearance = healths_ma
 
 		if(nutrition_icon)
 			switch(nutrition)

@@ -86,6 +86,8 @@
 
 	//reagent_tag = IS_UNATHI //VOREStation Edit
 
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/claw
+
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unathi),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unathi),
@@ -193,6 +195,7 @@
 	//reagent_tag = IS_TAJARA //VOREStation Removal
 
 	//heat_discomfort_level = 292 //VOREStation Removal
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
