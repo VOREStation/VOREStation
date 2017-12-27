@@ -1,3 +1,8 @@
+// ### Wooo, inheritance. Basically copying everything I don't need to edit from prometheans, because they mostly work already.
+// ### Any and all of this is open to change for balance or whatever.
+// ###
+// ###
+// Species definition follows.
 /datum/species/shapeshifter/promethean/avatar
 
 	name =             "Virtual Reality Avatar"
@@ -26,6 +31,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/regenerate,
+		/mob/living/carbon/human/proc/shapeshifter_change_opacity,
 		/mob/living/carbon/human/proc/exit_vr
 		)
 
@@ -35,6 +41,23 @@
 
 /datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/carbon/human/H)
 	return
+
+/mob/living/carbon/human/proc/shapeshifter_change_opacity()
+
+	set name = "Toggle Opacity"
+	set category = "Abilities"
+
+	if(stat || world.time < last_special)
+		return
+
+	last_special = world.time + 10
+
+	if(src.icon_state == "promethean")
+		icon_state = lowertext(src.species.get_bodytype(src))
+		shapeshifter_change_species("Virtual Reality [src.species.get_bodytype(src)]")
+	else
+		icon_state = "promethean"
+		shapeshifter_change_species("Virtual Reality Avatar")
 
 
 // enter_vr is called on the original mob, and puts the mind into the supplied vr mob

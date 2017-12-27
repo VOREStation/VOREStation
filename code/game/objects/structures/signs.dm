@@ -362,6 +362,11 @@
 	icon_state = "direction_elv"
 // VOREStation Edit End
 
+/obj/structure/sign/directions/cryo
+	name = "\improper Cryogenic Storage"
+	desc = "A direction sign, pointing out which way cryogenic storage is."
+	icon_state = "direction_cry"
+
 /obj/structure/sign/directions/roomnum
 	name = "room number"
 	desc = "A sign detailing the number of the room beside it."
