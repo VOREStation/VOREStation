@@ -271,7 +271,12 @@ var/global/list/damage_icon_parts = list()
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
-				icon_key += "[part.s_col_blend]"
+				//VOREStation Edit - Different way of tracking add/mult species
+				if(species.color_mult)
+					icon_key += "[ICON_MULTIPLY]"
+				else
+					icon_key += "[ICON_ADD]"
+				//VOREStation Edit End
 			else
 				icon_key += "#000000"
 			for(var/M in part.markings)
