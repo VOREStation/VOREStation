@@ -283,7 +283,8 @@ var/list/wrapped_species_by_ref = list()
 
 	spawn(0)
 		regenerate_icons()
-
+/* VOREStation Edit - Our own trait system, sorry.
 	if(species && mind)
 		apply_traits()
+*/
 	return
