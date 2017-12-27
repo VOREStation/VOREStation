@@ -265,6 +265,8 @@
 	force = 3
 	throwforce = 7
 
+	var/eye_icon_location = 'icons/mob/human_face.dmi'
+
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	return ..(company, skip_prosthetics, 1)
 

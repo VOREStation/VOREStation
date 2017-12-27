@@ -82,13 +82,41 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 	listening_level = Z_LEVEL_TRANSIT
 	autolinkers = list("tns_relay")
 
-// #### Hub ####
+// #### Telecomms ####
 /obj/machinery/telecomms/hub/preset/southerncross
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub",
-		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay", "tns_relay",
+		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay", "tns_relay", "explorer",
 		"c_relay", "m_relay", "r_relay",
 		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
+	)
+
+/obj/machinery/telecomms/receiver/preset_right/southerncross
+	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ)
+
+/obj/machinery/telecomms/bus/preset_two/southerncross
+	freq_listening = list(SUP_FREQ, SRV_FREQ, EXP_FREQ)
+
+/obj/machinery/telecomms/server/presets/service/southerncross
+	freq_listening = list(SRV_FREQ, EXP_FREQ)
+	autolinkers = list("service", "explorer")
+
+/datum/map/southern_cross/default_internal_channels()
+	return list(
+		num2text(PUB_FREQ) = list(),
+		num2text(AI_FREQ)  = list(access_synth),
+		num2text(ENT_FREQ) = list(),
+		num2text(ERT_FREQ) = list(access_cent_specops),
+		num2text(COMM_FREQ)= list(access_heads),
+		num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
+		num2text(MED_FREQ) = list(access_medical_equip),
+		num2text(MED_I_FREQ)=list(access_medical_equip),
+		num2text(SEC_FREQ) = list(access_security),
+		num2text(SEC_I_FREQ)=list(access_security),
+		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
+		num2text(SUP_FREQ) = list(access_cargo),
+		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics),
+		num2text(EXP_FREQ) = list(access_explorer)
 	)

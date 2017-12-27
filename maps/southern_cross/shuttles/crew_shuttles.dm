@@ -53,8 +53,8 @@
 
 	dock_target = "hangar_2"
 	announcer = "Southern Cross Docking Computer"
-	arrival_message = "Attention, shuttle one has arrived to Hangar Two."
-	departure_message = "Attention, shuttle one has departed Hangar Two."
+	arrival_message = "Attention, shuttle two has arrived to Hangar Two."
+	departure_message = "Attention, shuttle two has departed Hangar Two."
 
 	routes_to_make = list(
 		/datum/shuttle_destination/shuttle2/outside_SC = 0,
