@@ -128,7 +128,7 @@
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
 //JoanRisu:Joan Risu
-/obj/item/weapon/card/id/centcom/fluff/joanbadge
+/obj/item/weapon/card/id/centcom/station/fluff/joanbadge
 	name = "Faded Badge"
 	desc = "A faded badge, backed with leather, that reads 'NT Security Force' across the front."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -137,11 +137,11 @@
 	assignment = "Centcom Officer"
 
 
-/obj/item/weapon/card/id/centcom/fluff/joanbadge/attack_self(mob/user as mob)
+/obj/item/weapon/card/id/centcom/station/fluff/joanbadge/attack_self(mob/user as mob)
 	if(isliving(user))
 		user.visible_message("<span class='warning'>[user] flashes their golden security badge.\nIt reads:NT Security.</span>","<span class='warning'>You display the faded badge.\nIt reads: NT Security.</span>")
 
-/obj/item/weapon/card/id/centcom/fluff/joanbadge/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/weapon/card/id/centcom/station/fluff/joanbadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
 		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
@@ -316,12 +316,12 @@
 		return
 
 //arokha:Aronai Kadigan - Centcom ID (Medical dept)
-/obj/item/weapon/card/id/centcom/fluff/aronai
+/obj/item/weapon/card/id/centcom/station/fluff/aronai
 	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
 	var/configured = 0
 
-/obj/item/weapon/card/id/centcom/fluff/aronai/attack_self(mob/user as mob)
+/obj/item/weapon/card/id/centcom/station/fluff/aronai/attack_self(mob/user as mob)
 	if(configured)
 		return ..()
 
