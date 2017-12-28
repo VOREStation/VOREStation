@@ -26,7 +26,7 @@
 	var/frame_size = 5			// Sheets of metal required to build.
 	var/frame_class				// Determines construction method.  "machine", "computer", "alarm", or "display"
 	var/circuit					// Type path of the circuit board that comes built in with this frame. Null to require adding a circuit.
-	var/frame_style = FRAME_STYLE_WALL	// "floor" or "wall"
+	var/frame_style = FRAME_STYLE_FLOOR	// "floor" or "wall"
 	var/x_offset				// For wall frames: pixel_x
 	var/y_offset				// For wall frames: pixel_y
 

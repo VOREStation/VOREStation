@@ -100,8 +100,8 @@ var/const/access_explorer = 43
 	minimal_access = list(access_pilot, access_explorer)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	alt_titles = list(
-		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer/technician,
-		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer/medic)
+		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
+		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
 
 /datum/job/sar
 	title = "Search and Rescue"
