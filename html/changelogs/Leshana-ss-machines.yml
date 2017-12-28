@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - tweak: "Convert the machinery controller to a StonedMC subsystem"
