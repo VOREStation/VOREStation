@@ -11,7 +11,7 @@
 #define DAYS *864000
 
 #define TimeOfGame (get_game_time())
-#define TimeOfTick (world.tick_usage*0.01*world.tick_lag)
+#define TimeOfTick (TICK_USAGE*0.01*world.tick_lag)
 
 /proc/get_game_time()
 	var/global/time_offset = 0
@@ -19,7 +19,7 @@
 	var/global/last_usage = 0
 
 	var/wtime = world.time
-	var/wusage = world.tick_usage * 0.01
+	var/wusage = TICK_USAGE * 0.01
 
 	if(last_time < wtime && last_usage > 1)
 		time_offset += last_usage - 1
@@ -111,7 +111,7 @@ var/round_start_time = 0
 
 //Increases delay as the server gets more overloaded,
 //as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
-#define DELTA_CALC max(((max(world.tick_usage, world.cpu) / 100) * max(Master.sleep_delta,1)), 1)
+#define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta,1)), 1)
 
 /proc/stoplag()
 	. = 0
@@ -120,4 +120,4 @@ var/round_start_time = 0
 		. += round(i*DELTA_CALC)
 		sleep(i*world.tick_lag*DELTA_CALC)
 		i *= 2
-	while (world.tick_usage > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
+	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))

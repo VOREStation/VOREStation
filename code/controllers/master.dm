@@ -279,7 +279,7 @@ var/datum/controller/master/Master = new()
 
 		//if there are mutiple sleeping procs running before us hogging the cpu, we have to run later
 		//	because sleeps are processed in the order received, so longer sleeps are more likely to run first
-		if (world.tick_usage > TICK_LIMIT_MC)
+		if (TICK_USAGE > TICK_LIMIT_MC)
 			sleep_delta += 2
 			current_ticklimit = TICK_LIMIT_RUNNING * 0.5
 			sleep(world.tick_lag * (processing + sleep_delta))
@@ -288,7 +288,7 @@ var/datum/controller/master/Master = new()
 		sleep_delta = MC_AVERAGE_FAST(sleep_delta, 0)
 		if (last_run + (world.tick_lag * processing) > world.time)
 			sleep_delta += 1
-		if (world.tick_usage > (TICK_LIMIT_MC*0.5))
+		if (TICK_USAGE > (TICK_LIMIT_MC*0.5))
 			sleep_delta += 1
 
 		if (make_runtime)
@@ -394,13 +394,13 @@ var/datum/controller/master/Master = new()
 
 	//keep running while we have stuff to run and we haven't gone over a tick
 	//	this is so subsystems paused eariler can use tick time that later subsystems never used
-	while (ran && queue_head && world.tick_usage < TICK_LIMIT_MC)
+	while (ran && queue_head && TICK_USAGE < TICK_LIMIT_MC)
 		ran = FALSE
 		bg_calc = FALSE
 		current_tick_budget = queue_priority_count
 		queue_node = queue_head
 		while (queue_node)
-			if (ran && world.tick_usage > TICK_LIMIT_RUNNING)
+			if (ran && TICK_USAGE > TICK_LIMIT_RUNNING)
 				break
 
 			queue_node_flags = queue_node.flags
@@ -412,7 +412,7 @@ var/datum/controller/master/Master = new()
 			//(unless we haven't even ran anything this tick, since its unlikely they will ever be able run
 			//	in those cases, so we just let them run)
 			if (queue_node_flags & SS_NO_TICK_CHECK)
-				if (queue_node.tick_usage > TICK_LIMIT_RUNNING - world.tick_usage && ran_non_ticker)
+				if (queue_node.tick_usage > TICK_LIMIT_RUNNING - TICK_USAGE && ran_non_ticker)
 					queue_node.queued_priority += queue_priority_count * 0.10
 					queue_priority_count -= queue_node_priority
 					queue_priority_count += queue_node.queued_priority
@@ -424,19 +424,19 @@ var/datum/controller/master/Master = new()
 				current_tick_budget = queue_priority_count_bg
 				bg_calc = TRUE
 
-			tick_remaining = TICK_LIMIT_RUNNING - world.tick_usage
+			tick_remaining = TICK_LIMIT_RUNNING - TICK_USAGE
 
 			if (current_tick_budget > 0 && queue_node_priority > 0)
 				tick_precentage = tick_remaining / (current_tick_budget / queue_node_priority)
 			else
 				tick_precentage = tick_remaining
 
-			current_ticklimit = world.tick_usage + tick_precentage
+			current_ticklimit = TICK_USAGE + tick_precentage
 
 			if (!(queue_node_flags & SS_TICKER))
 				ran_non_ticker = TRUE
 			ran = TRUE
-			tick_usage = world.tick_usage
+			tick_usage = TICK_USAGE
 			queue_node_paused = (queue_node.state == SS_PAUSED || queue_node.state == SS_PAUSING)
 			last_type_processed = queue_node
 
@@ -446,7 +446,7 @@ var/datum/controller/master/Master = new()
 			if (state == SS_RUNNING)
 				state = SS_IDLE
 			current_tick_budget -= queue_node_priority
-			tick_usage = world.tick_usage - tick_usage
+			tick_usage = TICK_USAGE - tick_usage
 
 			if (tick_usage < 0)
 				tick_usage = 0
