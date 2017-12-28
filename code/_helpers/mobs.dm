@@ -182,7 +182,7 @@ Proc for attack log creation, because really why not
 	var/starttime = world.time
 	. = 1
 	while (world.time < endtime)
-		sleep(1)
+		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 		if(!user || !target)
@@ -229,7 +229,7 @@ Proc for attack log creation, because really why not
 	var/starttime = world.time
 	. = 1
 	while (world.time < endtime)
-		sleep(1)
+		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 

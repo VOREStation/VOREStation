@@ -296,8 +296,7 @@
 	if (holder)
 		sleep(1)
 	else
-		sleep(5)
-		stoplag()
+		stoplag(5)
 
 /client/proc/last_activity_seconds()
 	return inactivity / 10
