@@ -221,7 +221,7 @@
 		break
 
 	if(update_power)
-		makepowernets()
+		SSmachines.makepowernets()
 	return
 
 //returns 1 if the shuttle has a valid arrive time
