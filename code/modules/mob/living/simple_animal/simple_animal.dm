@@ -1165,7 +1165,7 @@
 	//They ran away!
 	else
 		ai_log("AttackTarget() out of range!",3)
-		sleep(1) // Unfortunately this is needed to protect from ClosestDistance() sometimes not updating fast enough to prevent an infinite loop.
+		stoplag(1) // Unfortunately this is needed to protect from ClosestDistance() sometimes not updating fast enough to prevent an infinite loop.
 		handle_stance(STANCE_ATTACK)
 		return 0
 

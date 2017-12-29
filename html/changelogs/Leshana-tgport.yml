@@ -1,0 +1,4 @@
+author: MrStonedOne
+delete-after: True
+changes: 
+  - rscadd: "Added admin verb 'Display del() Log' displaying garabage collector statistics."

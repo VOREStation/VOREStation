@@ -124,7 +124,7 @@
 	cpu_defer_count = 0
 
 	// Prepare usage tracking (defer() updates these)
-	tick_usage_start = world.tick_usage
+	tick_usage_start = TICK_USAGE
 	tick_usage_accumulated = 0
 
 	running()
@@ -142,7 +142,7 @@
 
 /datum/controller/process/proc/recordRunTime()
 	// Convert from tick usage (100/tick) to seconds of CPU time used
-	var/total_usage = (tick_usage_accumulated + (world.tick_usage - tick_usage_start)) / 1000 * world.tick_lag
+	var/total_usage = (tick_usage_accumulated + (TICK_USAGE - tick_usage_start)) / 1000 * world.tick_lag
 
 	last_run_time = total_usage
 	if(total_usage > highest_run_time)
@@ -222,14 +222,14 @@
 		handleHung()
 		CRASH("Process [name] hung and was restarted.")
 
-	tick_usage_accumulated += (world.tick_usage - tick_usage_start)
-	if(world.tick_usage < defer_usage)
+	tick_usage_accumulated += (TICK_USAGE - tick_usage_start)
+	if(TICK_USAGE < defer_usage)
 		sleep(0)
 	else
 		sleep(world.tick_lag)
 		cpu_defer_count++
-	tick_usage_start = world.tick_usage
-	next_sleep_usage = min(world.tick_usage + sleep_interval, defer_usage)
+	tick_usage_start = TICK_USAGE
+	next_sleep_usage = min(TICK_USAGE + sleep_interval, defer_usage)
 
 /datum/controller/process/proc/update()
 	// Clear delta

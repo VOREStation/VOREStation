@@ -15,4 +15,4 @@
 #define PROCESS_DEFAULT_DEFER_USAGE       90  // 90% of a tick
 
 // Sleep check macro
-#define SCHECK if(world.tick_usage >= next_sleep_usage) defer()
+#define SCHECK if(TICK_USAGE >= next_sleep_usage) defer()
