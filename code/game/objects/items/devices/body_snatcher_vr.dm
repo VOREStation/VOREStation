@@ -33,7 +33,7 @@
 		var/choice = alert(usr,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation","Continue","Cancel")
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(M))
 
-			usr.visible_message("<span class='warning'>[usr] pushes the device up his forehead and [M]'s head, the device beginning to let out a series of light beeps!</span>","<span class='notice'>You begin swap minds with [M]!</span>")
+			usr.visible_message("<span class='warning'>[usr] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!</span>","<span class='notice'>You begin swap minds with [M]!</span>")
 			if(do_after(usr,35 SECONDS,M))
 				if(usr.mind && M.mind && M.stat != DEAD && usr.stat != DEAD)
 					log_and_message_admins("[usr.ckey] used a Bodysnatcher to swap bodies with [M.ckey]")
