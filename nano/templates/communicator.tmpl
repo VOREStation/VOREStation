@@ -234,9 +234,39 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 		</div>
 	</div>
 
-<!-- Sixth Tab, Settings -->
+<!-- Sixth Tab, Weather -->
 
 {{else data.currentTab == 6}}
+	<h3>Weather</h3>
+	
+	<HR>
+	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
+	
+	{{for data.weather}}
+		<div class="item">
+			<div class="itemLabel">
+				{{:value.Planet}}:
+			</div>
+			<div class="itemContent">
+				Weather: {{:value.Weather}}, {{:value.Temperature - 273.15}}&#8451;<BR>
+				High: {{:value.High - 273.15}}&#8451;	| 	Low: {{:value.Low - 273.15}}&#8451;<BR>
+				Wind: {{:value.Wind}}
+			</div>
+		</div>
+	{{empty}}
+		<div class="item">
+			<div class="itemLabel">
+				Error
+			</div>
+			<div class="itemContent">
+				No weather reports available. Please try again later.
+			</div>
+		</div>
+	{{/for}}
+
+<!-- Seventh Tab, Settings -->
+
+{{else data.currentTab == 7}}
 
 	<h3>Settings</h3>
 	
@@ -294,5 +324,13 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-on', {'toggle_ringer' : 1}, data.ring ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_ringer' : 1}, data.ring ? null : 'selected')}}</div>
 		</div>
 	</div>
+
+<!-- Eighth Tab, External Device -->
+
+{{else data.currentTab == 8}}
+
+
+
+
 
 {{/if}}
