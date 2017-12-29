@@ -67,6 +67,9 @@ var/list/mob_hat_cache = list()
 		hat.loc = get_turf(src)
 	..()
 
+/mob/living/silicon/robot/drone/is_sentient()
+	return FALSE
+
 /mob/living/silicon/robot/drone/construction
 	icon_state = "constructiondrone"
 	law_type = /datum/ai_laws/construction_drone

@@ -11,8 +11,8 @@
 	intelligence_level = SA_ANIMAL
 	cooperative = 1
 
-	maxHealth = 60
-	health = 60
+	maxHealth = 120
+	health = 120
 	turns_per_move = 5
 	see_in_dark = 6
 	stop_when_pulled = 0
@@ -43,9 +43,20 @@
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
 
-	var/stance_step = 0
+//	var/stance_step = 0
 
-/mob/living/simple_animal/hostile/bear/handle_stance()
+/mob/living/simple_animal/hostile/bear/handle_stance(var/new_stance)
+	// Below was a bunch of code that made this specific mob be 'alert' and will hurt you when it gets closer.
+	// It's commented out because it made infinite loops and the AI is going to be moved/rewritten sometime soon (famous last words)
+	// and it would be better if this 'alert before attacking' behaviour was on the parent instead of a specific type of mob anyways.
+
+	// Instead we're just gonna get angry if we're dying.
+	..(new_stance)
+	if(stance == STANCE_ATTACK || stance == STANCE_ATTACKING)
+		if((health / maxHealth) <= 0.5) // At half health, and fighting someone currently.
+			add_modifier(/datum/modifier/berserk, 30 SECONDS)
+
+	/*
 	switch(stance)
 		if(STANCE_TIRED)
 			stop_automated_movement = 1
@@ -87,6 +98,7 @@
 				return
 		else
 			..()
+	*/
 
 /mob/living/simple_animal/hostile/bear/update_icons()
 	..()
@@ -103,7 +115,7 @@
 	. = ..()
 	if(.)
 		custom_emote(1,"stares alertly at [.]")
-		handle_stance(STANCE_ALERT)
+//		handle_stance(STANCE_ALERT)
 
 /mob/living/simple_animal/hostile/bear/PunchTarget()
 	if(!Adjacent(target_mob))

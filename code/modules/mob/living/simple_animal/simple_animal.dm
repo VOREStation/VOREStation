@@ -1474,6 +1474,9 @@
 		return
 	set_target(new_target)
 
+/mob/living/simple_animal/is_sentient()
+	return intelligence_level != SA_PLANT && intelligence_level != SA_ROBOTIC
+
 //Commands, reactions, etc
 /mob/living/simple_animal/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	..()

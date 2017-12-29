@@ -791,5 +791,10 @@ var/list/ai_verbs_default = list(
 	if(rig)
 		rig.force_rest(src)
 
+/mob/living/silicon/ai/is_sentient()
+	// AI cores don't store what brain was used to build them so we're just gonna assume they can think to some degree.
+	// If that is ever fixed please update this proc.
+	return TRUE
+
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

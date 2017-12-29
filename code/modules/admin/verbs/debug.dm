@@ -31,6 +31,12 @@
 			return
 		var/weapon_attack_speed = user.get_attack_speed(I) / 10
 		var/weapon_damage = I.force
+		var/modified_damage_percent = 1
+
+		for(var/datum/modifier/M in user.modifiers)
+			if(!isnull(M.outgoing_melee_damage_percent))
+				weapon_damage *= M.outgoing_melee_damage_percent
+				modified_damage_percent *= M.outgoing_melee_damage_percent
 
 		if(istype(I, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = I
@@ -53,7 +59,7 @@
 			qdel(P)
 
 		var/DPS = weapon_damage / weapon_attack_speed
-		to_chat(user, "<span class='notice'>Damage: [weapon_damage]</span>")
+		to_chat(user, "<span class='notice'>Damage: [weapon_damage][modified_damage_percent != 1 ? " (Modified by [modified_damage_percent*100]%)":""]</span>")
 		to_chat(user, "<span class='notice'>Attack Speed: [weapon_attack_speed]/s</span>")
 		to_chat(user, "<span class='notice'>\The [I] does <b>[DPS]</b> damage per second.</span>")
 		if(DPS > 0)

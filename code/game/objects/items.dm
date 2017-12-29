@@ -234,7 +234,9 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
-	if(zoom) zoom() //binoculars, scope, etc
+	if(zoom)
+		zoom() //binoculars, scope, etc
+	appearance_flags &= ~NO_CLIENT_COLOR
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -259,8 +261,11 @@
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	layer = 20
-	if(user.client)	user.client.screen |= src
-	if(user.pulling == src) user.stop_pulling()
+	if(user.client)
+		user.client.screen |= src
+	if(user.pulling == src)
+		user.stop_pulling()
+	appearance_flags |= NO_CLIENT_COLOR
 	return
 
 //Defines which slots correspond to which slot flags

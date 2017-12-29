@@ -1118,3 +1118,11 @@ mob/proc/yank_out_object()
 		return
 	var/obj/screen/zone_sel/selector = mob.zone_sel
 	selector.set_selected_zone(next_in_list(mob.zone_sel.selecting,zones))
+
+// This handles setting the client's color variable, which makes everything look a specific color.
+// This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
+// This is for inheritence since /mob/living will serve most cases. If you need ghosts to use this you'll have to implement that yourself.
+/mob/proc/update_client_color()
+	if(client && client.color)
+		animate(client, color = null, time = 10)
+	return
