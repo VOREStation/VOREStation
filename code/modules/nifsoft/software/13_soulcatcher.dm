@@ -12,12 +12,12 @@
 	name = "Soulcatcher"
 	desc = "A mind storage and processing system capable of capturing and supporting human-level minds in a small VR space."
 	list_pos = NIF_SOULCATCHER
-	cost = 50 //If I wanna trap people's minds and lood them, then by god I'll do so.
+	cost = 100 //If I wanna trap people's minds and lood them, then by god I'll do so.
 	wear = 1
 	p_drain = 0.01
-	other_flags = (NIF_O_SCMYSELF|NIF_O_SCOTHERS) // Default on when installed, clear when uninstalled
+	other_flags = (NIF_O_SCOTHERS) // Default on when installed, clear when uninstalled
 
-	var/setting_flags = (NIF_SC_CATCHING_ME|NIF_SC_CATCHING_OTHERS|NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS)
+	var/setting_flags = (NIF_SC_CATCHING_OTHERS|NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS)
 	var/list/brainmobs = list()
 	var/inside_flavor = "A small completely white room with a couch, and a window to what seems to be the outside world. A small sign in the corner says 'Configure Me'."
 
@@ -41,6 +41,16 @@
 
 	stat_text()
 		return "Change Settings ([brainmobs.len] minds)"
+
+	install()
+		if((. = ..()))
+			nif.human.verbs |= /mob/living/carbon/human/proc/nsay
+			nif.human.verbs |= /mob/living/carbon/human/proc/nme
+
+	uninstall()
+		if((. = ..()))
+			nif.human.verbs -= /mob/living/carbon/human/proc/nsay
+			nif.human.verbs -= /mob/living/carbon/human/proc/nme
 
 	proc/save_settings()
 		nif.save_data["[list_pos]"] = inside_flavor
@@ -173,7 +183,10 @@
 
 		return TRUE
 
-	proc/catch_mob(var/mob/living/carbon/human/H)
+	//Complex version for catching in-round characters
+	proc/catch_mob(var/mob/M)
+		if(!M.mind)	return
+
 		//Create a new brain mob
 		var/mob/living/carbon/brain/caught_soul/brainmob = new(nif)
 		brainmob.nif = nif
@@ -185,22 +198,27 @@
 		brainmob.add_language(LANGUAGE_GALCOM)
 		brainmobs |= brainmob
 
+		//Put the mind and player into the mob
+		M.mind.transfer_to(brainmob)
+		brainmob.name = brainmob.mind.name
+
 		//If we caught our owner, special settings.
-		if(H == nif.human)
+		if(M == nif.human)
 			brainmob.ext_deaf = FALSE
 			brainmob.ext_blind = FALSE
 			brainmob.parent_mob = TRUE
-			SStranscore.m_backup(H.mind,H) //ONE backup. Won't be called in life due to avoidance of parent_mob backups.
 
-		//Set some basics on the mob.
-		brainmob.dna = H.dna
-		brainmob.timeofhostdeath = H.timeofdeath
-		brainmob.stat = 0
+		//If they have these values, apply them
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			brainmob.dna = H.dna
+			brainmob.timeofhostdeath = H.timeofdeath
+			SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
-		//Put the mind and player into the mob
-		H.mind.transfer_to(brainmob)
-		brainmob.name = brainmob.mind.name
-		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
+		//Else maybe they're a joining ghost
+		else if(isobserver(M))
+			brainmob.transient = TRUE
+			qdel(M) //Bye ghost
 
 		//Give them a flavortext message
 		var/message = "<span class='notice'>Your vision fades in a haze of static, before returning.</span>\n\
@@ -212,7 +230,7 @@
 		//Reminder on how this works to host
 		if(brainmobs.len == 1) //Only spam this on the first one
 			to_chat(nif.human,"<span class='notice'>Your occupant's messages/actions can only be seen by you, and you can \
-			send messages that only they can hear/see by 'say'ing either '*nsay' or '*nme'.</span>")
+			send messages that only they can hear/see by using the NSay and NMe verbs (or the *nsay and *nme emotes).</span>")
 
 		//Announce to host and other minds
 		notify_into("New mind loaded: [brainmob.name]")
@@ -227,6 +245,9 @@
 	var/ext_deaf = FALSE		//Forbidden from 'ear' access on host
 	var/ext_blind = FALSE		//Forbidden from 'eye' access on host
 	var/parent_mob = FALSE		//If we've captured our owner
+	var/transient = FALSE		//Someone who ghosted into the NIF
+	var/client_missing = 0		//How long the client has been missing
+
 	var/obj/item/device/nif/nif
 	var/datum/nifsoft/soulcatcher/soulcatcher
 
@@ -241,18 +262,23 @@
 	return ..()
 
 /mob/living/carbon/brain/caught_soul/Life()
-	if(!mind)
+	if(!mind || !key)
 		qdel(src)
 		return
 
 	. = ..()
 
-	if(!parent_mob && (life_tick % 150 == 0) && soulcatcher.setting_flags & NIF_SC_BACKUPS)
+	if(!parent_mob && !transient &&(life_tick % 150 == 0) && soulcatcher.setting_flags & NIF_SC_BACKUPS)
 		SStranscore.m_backup(mind,0) //Passed 0 means "Don't touch the nif fields on the mind record"
 
 	life_tick++
 
-	if(!client) return
+	if(!client && ++client_missing == 300)
+		qdel(src)
+		return
+	else
+		client_missing = 0
+
 	if(parent_mob) return
 	//If they're blinded
 	if(ext_blind)
@@ -328,13 +354,59 @@
 /hook/death/proc/nif_soulcatcher(var/mob/living/carbon/human/H)
 	if(!istype(H) || !H.mind) return TRUE //Hooks must return TRUE
 
-	if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
-		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
-		SC.catch_mob(H,TRUE)
-	else if(ishuman(H.loc)) //Died in someone
+	if(ishuman(H.loc)) //Died in someone
 		var/mob/living/carbon/human/HP = H.loc
 		if(HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
-			SC.catch_mob(H,FALSE)
+			SC.catch_mob(H)
+	else if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
+		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
+		SC.catch_mob(H)
+
 
 	return TRUE
+
+///////////////////
+//Verbs for humans
+/mob/living/carbon/human/proc/nsay(message as text|null)
+	set name = "NSay"
+	set desc = "Speak into your NIF's Soulcatcher."
+	set category = "IC"
+
+	if(!nif)
+		to_chat(src,"<span class='warning'>You can't use NSay without a NIF.</span>")
+		return
+	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
+	if(!SC)
+		to_chat(src,"<span class='warning'>You need the Soulcatcher software to use NSay.</span>")
+		return
+	if(!SC.brainmobs.len)
+		to_chat(src,"<span class='warning'>You need a loaded mind to use NSay.</span>")
+		return
+	if(!message)
+		message = input("Type a message to say.","Speak into Soulcatcher") as text|null
+	if(message)
+		var/sane_message = sanitize(message)
+		SC.say_into(sane_message,src)
+
+/mob/living/carbon/human/proc/nme(message as text|null)
+	set name = "NMe"
+	set desc = "Emote into your NIF's Soulcatcher."
+	set category = "IC"
+
+	if(!nif)
+		to_chat(src,"<span class='warning'>You can't use NMe without a NIF.</span>")
+		return
+	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
+	if(!SC)
+		to_chat(src,"<span class='warning'>You need the Soulcatcher software to use NMe.</span>")
+		return
+	if(!SC.brainmobs.len)
+		to_chat(src,"<span class='warning'>You need a loaded mind to use NMe.</span>")
+		return
+
+	if(!message)
+		message = input("Type an action to perform.","Emote into Soulcatcher") as text|null
+	if(message)
+		var/sane_message = sanitize(message)
+		SC.emote_into(sane_message,src)

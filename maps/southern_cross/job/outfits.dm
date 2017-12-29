@@ -17,13 +17,13 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_type = /obj/item/weapon/card/id/civilian/explorer
 	id_pda_assignment = "Explorer"
 
-/decl/hierarchy/outfit/job/explorer/technician
+/decl/hierarchy/outfit/job/explorer2/technician
 	name = OUTFIT_JOB_NAME("Explorer Technician")
 	belt = /obj/item/weapon/storage/belt/utility/full
 	pda_slot = slot_l_store
 	id_pda_assignment = "Explorer Technician"
 
-/decl/hierarchy/outfit/job/explorer/medic
+/decl/hierarchy/outfit/job/explorer2/medic
 	name = OUTFIT_JOB_NAME("Explorer Medic")
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 	pda_slot = slot_l_store
