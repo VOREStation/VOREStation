@@ -17,7 +17,7 @@
 	species_restricted = list("exclude","Diona")
 	preserve_item = 1
 	phoronproof = 1
-	flash_protection = FLASH_PROTECTION_NONE
+	flash_protection = FLASH_PROTECTION_MAJOR
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
