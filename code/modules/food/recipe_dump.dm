@@ -214,4 +214,13 @@
 	html += "</table></body></html>"
 	src << browse(html, "window=recipes;file=recipes_drinks.html;display=0")
 
+ //////Output Css
+    ///food
+	html = "html {color: #fff; background-color: #292929; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; line-height: 1.42857143; } .hide { display: none; } .recipes {border-collapse:collapse; width: 80%; margin-left: auto; margin-right: auto;} .recipes td, th {border:1px solid black; background-color:#272727; color:white; padding: .5em} .recipes th {background-color: #40628A; color:white; text-align: center;} .recipes tr.head th { background-color: #013D3B; } .recipes td:first-child {text-align: center} .recipes tr:nth-child(odd) td {background-color: #373737; color:white}"
+	src << browse(html, "window=recipes;file=recipes_style_food.css;display=0")
+
+	///drink
+	html = "html {color: #fff; background-color: #292929; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; line-height: 1.42857143; } .hide { display: none; } .recipes {border-collapse:collapse; width: 70%; margin-left: auto; margin-right: auto;} .recipes td, th {border:1px solid black; background-color:#272727; color:white; padding: .5em} .recipes th {background-color: #40628A; color:white; text-align: center;} .recipes tr.head th { background-color: #013D3B; } .recipes td:first-child {text-align: right} .recipes tr:nth-child(odd) td {background-color: #373737; color:white}"
+	src << browse(html, "window=recipes;file=recipes_style_drinks.css;display=0")
+
 	src << "<span class='notice'>In your byond cache, recipe-xxx.png files and recipes_drinks.html and recipes_food.html now exist. Place recipe-xxx.png files in a subfolder named 'imgrecipes' wherever you put them. The file will take a food.css or drinks.css file if in the same path.</span>"
