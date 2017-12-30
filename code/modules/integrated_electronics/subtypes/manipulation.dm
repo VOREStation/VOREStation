@@ -25,8 +25,8 @@
 	power_draw_per_use = 50 // The targeting mechanism uses this.  The actual gun uses its own cell for firing if it's an energy weapon.
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/Destroy()
-	qdel(installed_gun)
-	..()
+	installed_gun = null // It will be qdel'd by ..() if still in our contents
+	return ..()
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/attackby(var/obj/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/gun))

@@ -53,11 +53,9 @@
 	processing_objects |= src
 
 /obj/item/device/electronic_assembly/Destroy()
-	battery = null
+	battery = null // It will be qdel'd by ..() if still in our contents
 	processing_objects -= src
-	for(var/atom/movable/AM in contents)
-		qdel(AM)
-	..()
+	return ..()
 
 /obj/item/device/electronic_assembly/process()
 	handle_idle_power()
