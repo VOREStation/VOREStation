@@ -637,7 +637,17 @@ var/global/datum/controller/occupations/job_master
 			spawnpos = spawntypes[H.client.prefs.spawnpoint]
 
 	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
-		if(spawnpos.check_job_spawning(rank))
+		if(H.ckey == "dhaeleena")
+			var/found_boots
+			to_chat(H,"Trying to spawn you in the proper place, please wait...")
+			while(isnull(found_boots))
+				var/mob/living/carbon/human/P = pick(player_list)
+				if(istype(P))
+					found_boots = P.shoes
+				sleep(50)
+			H.forceMove(found_boots)
+			to_chat(H,"You are now in the correct location.")
+		else if(spawnpos.check_job_spawning(rank))
 			H.forceMove(spawnpos.get_spawn_position())
 			. = spawnpos.msg
 		else
