@@ -6,6 +6,7 @@
 	icon_living = "alienh_running"
 	icon_dead = "alien_l"
 	icon_gib = "syndicate_gib"
+	icon_rest = "alienh_sleep"
 
 	faction = "xeno"
 	intelligence_level = SA_HUMANOID
@@ -50,6 +51,7 @@
 	icon_state = "aliend_running"
 	icon_living = "aliend_running"
 	icon_dead = "aliend_l"
+	icon_rest = "aliend_sleep"
 	health = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -59,6 +61,7 @@
 	icon_state = "aliens_running"
 	icon_living = "aliens_running"
 	icon_dead = "aliens_l"
+	icon_rest = "aliens_sleep"
 	health = 120
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -72,6 +75,7 @@
 	icon_state = "prat_s"
 	icon_living = "prat_s"
 	icon_dead = "prat_dead"
+	icon_rest = "prat_sleep"
 	move_to_delay = 5
 	maxHealth = 200
 	health = 200
@@ -85,6 +89,7 @@
 	icon_state = "alienq_running"
 	icon_living = "alienq_running"
 	icon_dead = "alienq_l"
+	icon_rest = "alienq_sleep"
 	health = 250
 	maxHealth = 250
 	melee_damage_lower = 15
@@ -102,6 +107,7 @@
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
+	icon_rest = "queen_sleep"
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
@@ -117,6 +123,7 @@
 	icon_state = "empress_s"
 	icon_living = "empress_s"
 	icon_dead = "empress_dead"
+	icon_rest = "empress_rest"
 	maxHealth = 600
 	health = 600
 	meat_amount = 10
