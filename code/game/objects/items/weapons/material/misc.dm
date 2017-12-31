@@ -32,6 +32,13 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
+	var/should_cleave = TRUE // Because knives inherit from hatchets. For some reason.
+
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/material/hatchet/pre_attack(var/mob/living/target, var/mob/living/user)
+	if(should_cleave && istype(target))
+		cleave(user, target)
+	..()
 
 /obj/item/weapon/material/hatchet/unathiknife
 	name = "duelling knife"
@@ -39,6 +46,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
+	should_cleave = FALSE
 	var hits = 0
 
 /obj/item/weapon/material/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
@@ -56,6 +64,7 @@
 	hits = initial(hits)
 	..()
 
+// These probably shouldn't inherit from hatchets.
 /obj/item/weapon/material/hatchet/tacknife
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
@@ -64,6 +73,7 @@
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
+	should_cleave = FALSE
 
 /obj/item/weapon/material/hatchet/tacknife/combatknife
 	name = "combat knife"
@@ -75,6 +85,7 @@
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
 	attack_verb = list("sliced", "stabbed", "chopped", "cut")
 	applies_material_colour = 1
+	should_cleave = FALSE
 
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"
