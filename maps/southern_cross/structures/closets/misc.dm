@@ -32,7 +32,7 @@
 	name = "explorer locker"
 	req_access = list(access_explorer)
 
-/obj/structure/closet/secure_closet/guncabinet/explorer/New()
+/obj/structure/closet/secure_closet/explorer/New()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack(src)
