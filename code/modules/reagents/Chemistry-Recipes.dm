@@ -2172,7 +2172,7 @@
 	result = "mojito"
 	required_reagents = list("rum" = 3, "limejuice" = 1, "mint" = 1)
 	result_amount = 5
-	
+
 /datum/chemical_reaction/drinks/piscosour
 	name = "Pisco Sour"
 	id = "piscosour"
@@ -2186,8 +2186,8 @@
 	result = "coldfront"
 	required_reagents = list("icecoffee" = 1, "whiskey" = 1, "mint" = 1)
 	result_amount = 3
-	
-	
+
+
 //R-UST Port
 /datum/chemical_reaction/hyrdophoron
 	name = "Hydrophoron"
