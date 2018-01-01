@@ -202,7 +202,7 @@
 			return TRUE
 
 	else if(on_fire)
-		set_light(light_range + 3, round(fire_stacks), l_color = "#FF9933")
+		set_light(min(round(fire_stacks), 3), round(fire_stacks), l_color = "#FF9933")
 		return TRUE
 
 	else

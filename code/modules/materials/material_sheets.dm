@@ -214,6 +214,7 @@
 
 /obj/item/stack/material/log/sif
 	name = "alien log"
+	default_type = "alien log"
 	color = "#0099cc"
 
 /obj/item/stack/material/log/attackby(var/obj/item/W, var/mob/user)
