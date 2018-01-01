@@ -956,15 +956,21 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/rainbow
 
-/datum/chemical_reaction/slime/rainbow_random_slime/on_reaction(var/datum/reagents/holder)
-	var/list/forbidden_types = list(
-		/mob/living/simple_animal/slime/rainbow/kendrick
-	)
-	var/list/potential_types = typesof(/mob/living/simple_animal/slime) - forbidden_types
-	var/slime_type = pick(potential_types)
-	new slime_type(get_turf(holder.my_atom))
-	..()
 
+/datum/chemical_reaction/slime/rainbow_random_slime/on_reaction(var/datum/reagents/holder)
+	var/mob/living/simple_animal/slime/S
+	var/list/slime_types = typesof(/mob/living/simple_animal/slime)
+
+	while(slime_types.len)
+		S = pick(slime_types)
+		if(initial(S.rainbow_core_candidate) == TRUE)
+			break
+		else
+			slime_types -= S
+			S = null
+
+	if(S)
+		new S(get_turf(holder.my_atom))
 
 /datum/chemical_reaction/slime/rainbow_unity
 	name = "Slime Unity"
