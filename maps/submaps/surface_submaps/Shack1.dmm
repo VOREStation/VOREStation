@@ -1,6 +1,6 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/wall/log_sif,/area/submap/Shack1)
-"c" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/Shack1)
+"c" = (/turf/template_noop,/area/submap/Shack1)
 "d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Shack1)
 "e" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood{tag = "icon-wood_broken1"; icon_state = "wood_broken1"},/area/submap/Shack1)
 "f" = (/obj/structure/table/wooden_reinforced,/turf/simulated/floor/wood,/area/submap/Shack1)
@@ -9,7 +9,7 @@
 "i" = (/turf/simulated/floor/wood,/area/submap/Shack1)
 "j" = (/turf/simulated/floor/holofloor/wood{tag = "icon-wood_broken0"; icon_state = "wood_broken0"},/area/submap/Shack1)
 "k" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood{tag = "icon-wood_broken5"; icon_state = "wood_broken5"},/area/submap/Shack1)
-"l" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Shack1)
+"l" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Shack1)
 "m" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/Shack1)
 "n" = (/turf/simulated/floor/holofloor/wood{tag = "icon-wood_broken3"; icon_state = "wood_broken3"},/area/submap/Shack1)
 "o" = (/obj/structure/table/bench/wooden,/turf/simulated/floor/wood,/area/submap/Shack1)
@@ -18,7 +18,7 @@
 "r" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/floor/wood,/area/submap/Shack1)
 "s" = (/turf/simulated/floor/holofloor/wood{tag = "icon-wood_broken6"; icon_state = "wood_broken6"},/area/submap/Shack1)
 "t" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/device/flashlight/lamp,/turf/simulated/floor/wood,/area/submap/Shack1)
-"u" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Shack1)
+"u" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Shack1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaa

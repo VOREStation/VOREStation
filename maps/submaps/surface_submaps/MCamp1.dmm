@@ -34,24 +34,6 @@
 "H" = (/obj/machinery/light,/obj/structure/table/standard,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
 "I" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "J" = (/obj/effect/mine,/turf/template_noop,/area/submap/MilitaryCamp1)
-"p" = (/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"q" = (/obj/effect/mine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"r" = (/obj/structure/table/standard,/obj/item/weapon/gun/energy/gun,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"s" = (/obj/structure/table/standard,/obj/item/weapon/gun/projectile/automatic/c20r,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"t" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/syndie_kit/space,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"u" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"v" = (/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"w" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"x" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"y" = (/obj/machinery/computer/security,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"z" = (/obj/machinery/computer/message_monitor,/turf/simulated/floor/holofloor/tiled,/area/submap/MilitaryCamp1)
-"A" = (/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"B" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
-"C" = (/obj/structure/door_assembly,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"D" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"E" = (/obj/machinery/light,/obj/structure/table/standard,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
-"F" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"G" = (/obj/effect/mine,/turf/template_noop,/area/submap/MilitaryCamp1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -73,17 +55,5 @@ abedddlllmmllldcceda
 abcddddlldnlldkcddba
 achceddddedjddchibba
 abccfbJdigddeccdbbba
-abbdlltmmmpuvpllddda
-abdnlllllwpllllxdeda
-adddmlplyppzlpllddda
-agedmlpuAvpAuvlldeda
-adddxlpllllllplxdBda
-adddllwpppCpppllddda
-aBddllDoppppEollndga
-addfdllllFmlllldedda
-abedddlllmmllldcceda
-abcddddlldnlldkcddba
-achceddddedjddchibba
-abccfbGdigddeccdbbba
 aaaaaaaaaaaaaaaaaaaa
 "}

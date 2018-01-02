@@ -1,8 +1,8 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/snow,/area/submap/Rocky3)
-"c" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/snow,/area/submap/Rocky3)
+"b" = (/turf/template_noop,/area/submap/Rocky3)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rocky3)
 "d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rocky3)
-"e" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/outdoors/snow,/area/submap/Rocky3)
+"e" = (/obj/structure/flora/tree/pine,/turf/template_noop,/area/submap/Rocky3)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
