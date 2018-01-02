@@ -18,19 +18,20 @@
 
 /mob/living/silicon/robot/updateicon()
 	..()
-	if(dogborg == TRUE && stat == CONSCIOUS && sleeper_g == TRUE)
-		overlays += "[module_sprites[icontype]]-sleeper_g"
-	if(dogborg == TRUE && stat == CONSCIOUS && sleeper_r == TRUE)
-		overlays += "[module_sprites[icontype]]-sleeper_r"
-	if(dogborg == TRUE && stat == CONSCIOUS && istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
-		overlays += "laser"
-	if(dogborg == TRUE && stat == CONSCIOUS && istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
-		overlays += "taser"
-	if(dogborg == TRUE && stat == CONSCIOUS && resting)
-		overlays.Cut() // Hide that gut for it has no ground sprite yo.
-		icon_state = "[module_sprites[icontype]]-rest"
-	if(dogborg == TRUE && stat == CONSCIOUS && !resting)
-		icon_state = "[module_sprites[icontype]]"
+	if(dogborg == TRUE && stat == CONSCIOUS)
+		if(sleeper_g == TRUE)
+			overlays += "[module_sprites[icontype]]-sleeper_g"
+		if(sleeper_r == TRUE)
+			overlays += "[module_sprites[icontype]]-sleeper_r"
+		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
+			overlays += "laser"
+		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
+			overlays += "taser"
+		if(resting)
+			overlays.Cut() // Hide that gut for it has no ground sprite yo.
+			icon_state = "[module_sprites[icontype]]-rest"
+		else
+			icon_state = "[module_sprites[icontype]]"
 	if(dogborg == TRUE && stat == DEAD)
 		icon_state = "[module_sprites[icontype]]-wreck"
 		overlays += "wreck-overlay"
