@@ -25,6 +25,8 @@
 	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
 		var/list/touchable_items = internal_contents - items_preserved
 		var/mob/living/silicon/robot/s_owner = null
+		if(!length(touchable_items))
+			return
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			var/churnsound = pick(digestion_sounds)
@@ -222,6 +224,8 @@
 	if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
 		var/list/touchable_items = internal_contents - items_preserved
 		var/mob/living/silicon/robot/s_owner = null
+		if(!length(touchable_items))
+			return
 
 		if(prob(50))
 			var/churnsound = pick(digestion_sounds)
