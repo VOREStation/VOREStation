@@ -9,9 +9,9 @@
 "ai" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/holofloor/desert,/area/houseboat/holodeck/desert)
 "aj" = (/turf/simulated/floor/holofloor/desert,/area/houseboat/holodeck/desert)
 "ak" = (/obj/structure/flora/ausbushes/brflowers,/obj/effect/floor_decal/spline/fancy/wood/corner,/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
-"al" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood,/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
-"am" = (/obj/structure/flora/ausbushes/brflowers,/obj/effect/floor_decal/spline/fancy/wood,/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
-"an" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 8},/obj/effect/floor_decal/spline/fancy/wood,/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
+"al" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 6},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
+"am" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 8},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
+"an" = (/obj/structure/flora/ausbushes/brflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 8},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
 "ao" = (/turf/simulated/floor/holofloor/space,/area/houseboat/holodeck/space)
 "ap" = (/obj/structure/window/reinforced{dir = 8},/turf/unsimulated/wall,/area/space)
 "aq" = (/obj/effect/overlay/palmtree_r,/turf/simulated/floor/holofloor/beach/sand,/area/houseboat/holodeck/beach)
@@ -27,13 +27,13 @@
 "aA" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 4},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
 "aB" = (/obj/structure/table/woodentable/holotable,/turf/simulated/floor/holofloor/desert,/area/houseboat/holodeck/picnic)
 "aC" = (/turf/simulated/floor/holofloor/desert,/area/houseboat/holodeck/picnic)
-"aD" = (/obj/structure/flora/ausbushes/brflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 1},/obj/effect/floor_decal/spline/fancy/wood,/obj/effect/floor_decal/spline/fancy/wood{dir = 8},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
+"aD" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 4},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
 "aE" = (/turf/simulated/floor/holofloor/beach/water,/area/houseboat/holodeck/beach)
 "aF" = (/obj/structure/flora/grass/green,/turf/simulated/floor/holofloor/snow,/area/houseboat/holodeck/snow)
 "aG" = (/obj/structure/flora/ausbushes/brflowers,/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 1},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
 "aH" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 1},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
 "aI" = (/obj/structure/flora/ausbushes/brflowers,/obj/effect/floor_decal/spline/fancy/wood{dir = 1},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
-"aJ" = (/obj/structure/flora/ausbushes/ywflowers,/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 4},/obj/effect/floor_decal/spline/fancy/wood{dir = 1},/turf/simulated/floor/holofloor/grass,/area/houseboat/holodeck/picnic)
+"aJ" = (/obj/structure/railing,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
 "aK" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/turf/unsimulated/wall,/area/space)
 "aL" = (/turf/simulated/floor/holofloor/reinforced,/area/houseboat/holodeck/off)
 "aM" = (/obj/structure/table/holotable,/obj/item/clothing/head/helmet/thunderdome,/obj/item/clothing/suit/armor/tdome/red,/obj/item/clothing/under/color/red,/obj/item/weapon/holo/esword/red,/obj/effect/floor_decal/corner/red{dir = 5},/turf/simulated/floor/holofloor/tiled,/area/houseboat/holodeck/thunderdome)
@@ -62,278 +62,363 @@
 "bj" = (/obj/effect/floor_decal/corner/green/full{dir = 4},/turf/simulated/floor/holofloor/tiled,/area/houseboat/holodeck/basketball)
 "bk" = (/obj/structure/window/reinforced{dir = 1},/turf/unsimulated/wall,/area/space)
 "bl" = (/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
-"bm" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/machinery/door/blast/shutters{density = 1; icon_state = "shutter1"; id = "cc_cruiser_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/turf/simulated/shuttle/plating,/area/houseboat)
+"bm" = (/obj/structure/shuttle/engine/heater,/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating/airless,/area/space)
 "bn" = (/turf/simulated/shuttle/wall/voidcraft/blue{hard_corner = 1; icon_state = "void-hc"; name = "small craft wall hc"; stripe_color = "#45b3d8"},/area/houseboat)
-"bo" = (/obj/effect/floor_decal/techfloor{dir = 9},/obj/structure/table/steel_reinforced,/obj/item/stack/material/steel{amount = 50},/obj/item/stack/material/steel{amount = 50},/obj/item/stack/material/glass{amount = 50},/obj/item/stack/material/glass{amount = 50},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bp" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/pros_fabricator{req_access = list()},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bq" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/autolathe{desc = "Your typical Autolathe. It appears to have much more options than your regular one, however..."; hacked = 1; name = "Centcom Autolathe"},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"br" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/mecha_part_fabricator{req_access = list()},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bs" = (/obj/effect/floor_decal/techfloor{dir = 5},/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bt" = (/obj/effect/floor_decal/techfloor{dir = 9},/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bu" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 1},/obj/effect/floor_decal/techfloor/corner{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bv" = (/obj/effect/floor_decal/industrial/outline/blue,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bw" = (/obj/effect/floor_decal/industrial/outline/grey,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bx" = (/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"by" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/machinery/light{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bz" = (/obj/machinery/transhuman/resleever,/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bA" = (/obj/structure/bed/chair/office/light{dir = 4},/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bB" = (/obj/machinery/computer/transhuman/resleeving{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bC" = (/obj/structure/shuttle/engine/heater{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating/airless,/area/houseboat)
-"bD" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/space,/area/houseboat)
-"bE" = (/obj/effect/floor_decal/techfloor{dir = 9},/obj/effect/floor_decal/techfloor/hole{dir = 1},/obj/structure/closet/secure_closet/personal,/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bF" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/structure/closet/secure_closet/personal,/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bG" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/power/fractal_reactor,/obj/structure/cable/green{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bH" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/shield_capacitor{dir = 4},/obj/structure/cable/green{icon_state = "0-8"},/obj/item/weapon/wrench,/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bI" = (/obj/effect/floor_decal/techfloor{dir = 5},/obj/effect/floor_decal/techfloor/hole/right{dir = 1},/obj/machinery/shield_gen/external{field_radius = 30},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bJ" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bK" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bL" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bM" = (/obj/effect/floor_decal/techfloor{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"bN" = (/obj/effect/floor_decal/techfloor{dir = 9},/obj/structure/flora/pottedplant/minitree,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"bO" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/computer/arcade/orion_trail,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"bP" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/computer/transhuman/designer,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"bQ" = (/obj/effect/floor_decal/techfloor{dir = 5},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
+"bo" = (/obj/structure/shuttle/engine/propulsion,/turf/space,/area/space)
+"bp" = (/obj/structure/closet{name = "custodial"},/obj/item/weapon/reagent_containers/spray/cleaner,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/mop,/obj/item/weapon/storage/box/lights/mixed,/obj/machinery/light/small{dir = 8; pixel_x = 0},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"bq" = (/turf/simulated/shuttle/wall,/area/shuttle/cruiser/cruiser)
+"br" = (/obj/machinery/cooker/oven,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/tiled/white,/area/houseboat)
+"bs" = (/obj/structure/closet/secure_closet/freezer/kitchen,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/white,/area/houseboat)
+"bt" = (/obj/machinery/media/jukebox,/turf/simulated/floor/wood,/area/houseboat)
+"bu" = (/obj/item/device/perfect_tele,/turf/simulated/floor/reinforced,/area/houseboat)
+"bv" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"bw" = (/obj/structure/railing{dir = 1},/turf/simulated/shuttle/wall/voidcraft/blue{hard_corner = 1; icon_state = "void-hc"; name = "small craft wall hc"; stripe_color = "#45b3d8"},/area/houseboat)
+"bx" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"by" = (/obj/structure/railing{dir = 8},/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"bz" = (/obj/structure/railing,/obj/machinery/atmospherics/pipe/simple/visible/purple{dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"bA" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"bB" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"bC" = (/obj/machinery/atmospherics/pipe/simple/hidden/purple{icon_state = "intact"; dir = 4},/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"bD" = (/obj/structure/railing{dir = 1},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/turf/simulated/shuttle/wall/voidcraft/blue{hard_corner = 1; icon_state = "void-hc"; name = "small craft wall hc"; stripe_color = "#45b3d8"},/area/houseboat)
+"bE" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/turf/simulated/shuttle/wall/voidcraft/blue{hard_corner = 1; icon_state = "void-hc"; name = "small craft wall hc"; stripe_color = "#45b3d8"},/area/houseboat)
+"bF" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"bG" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"bH" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; pixel_y = -32; teleport_x = 108; teleport_y = 82; teleport_z = 12},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"bI" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; pixel_y = -32; teleport_x = 109; teleport_y = 82; teleport_z = 12},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"bJ" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"bK" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 5},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"bL" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 10},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"bM" = (/obj/machinery/computer/HolodeckControl/houseboat{dir = 2},/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"bN" = (/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"bO" = (/obj/structure/holostool,/turf/simulated/floor/holofloor/wood,/area/houseboat/holodeck/bunking)
+"bP" = (/obj/machinery/light{dir = 4},/obj/structure/table/standard,/obj/structure/bedsheetbin,/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"bQ" = (/obj/structure/table/standard,/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
 "bR" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/turf/simulated/shuttle/plating,/area/houseboat)
-"bS" = (/obj/machinery/bodyscanner{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bT" = (/obj/machinery/body_scanconsole,/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bU" = (/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bV" = (/obj/machinery/light{dir = 4},/obj/machinery/clonepod/transhuman,/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"bW" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bX" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bY" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/machinery/light_switch{dir = 8; pixel_x = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"bZ" = (/obj/effect/floor_decal/techfloor{dir = 10},/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"ca" = (/obj/effect/floor_decal/techfloor,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"cb" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 10},/obj/effect/floor_decal/techfloor/corner{dir = 8},/obj/effect/floor_decal/techfloor/corner,/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"cc" = (/obj/effect/floor_decal/techfloor,/obj/effect/floor_decal/techfloor/hole/right,/obj/machinery/light_switch{dir = 1; pixel_y = -28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"cd" = (/obj/effect/floor_decal/techfloor{dir = 6},/turf/simulated/floor/tiled/techfloor,/area/houseboat/robotics)
-"ce" = (/obj/effect/floor_decal/techfloor{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"cf" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"cg" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"ch" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/machinery/light{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"ci" = (/obj/effect/floor_decal/corner_steel_grid{dir = 5},/obj/machinery/light_switch{dir = 4; pixel_x = -28},/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cj" = (/obj/effect/floor_decal/corner_steel_grid{dir = 5},/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"ck" = (/obj/effect/floor_decal/corner_steel_grid{dir = 1},/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cl" = (/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cm" = (/obj/machinery/transhuman/synthprinter,/turf/simulated/floor/tiled/steel_grid,/area/houseboat/medical)
-"cn" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"co" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/houseboat/dining_area)
-"cp" = (/turf/simulated/floor/wood,/area/houseboat/dining_area)
-"cq" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/wood,/area/houseboat/dining_area)
-"cr" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/carpet,/area/houseboat/dining_area)
-"cs" = (/obj/structure/flora/pottedplant/orientaltree,/turf/simulated/floor/carpet,/area/houseboat/dining_area)
-"ct" = (/obj/effect/floor_decal/techfloor{dir = 10},/obj/structure/table/steel_reinforced,/obj/machinery/recharger,/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"cu" = (/obj/effect/floor_decal/techfloor,/obj/machinery/computer/HolodeckControl/houseboat{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"cv" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 10},/obj/effect/floor_decal/techfloor/corner,/obj/effect/floor_decal/techfloor/corner{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"cw" = (/obj/effect/floor_decal/techfloor,/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"cx" = (/obj/structure/closet/crate{name = "gaming stuff"},/obj/item/weapon/dice/d4,/obj/item/weapon/dice,/obj/item/weapon/dice/d8,/obj/item/weapon/dice/d10,/obj/item/weapon/dice/d12,/obj/item/weapon/dice/d100,/obj/item/weapon/deck/cards,/obj/item/weapon/deck/cah,/obj/item/weapon/deck/cah/black,/obj/effect/floor_decal/techfloor{dir = 6},/turf/simulated/floor/tiled/techfloor,/area/houseboat/lockers)
-"cy" = (/obj/machinery/door/airlock/voidcraft,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
-"cz" = (/obj/effect/floor_decal/corner_techfloor_grid,/obj/effect/floor_decal/corner_techfloor_grid{dir = 4},/obj/effect/floor_decal/techfloor/corner{dir = 4},/obj/effect/floor_decal/techfloor/corner,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"cA" = (/obj/machinery/door/airlock/voidcraft/vertical,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
-"cB" = (/obj/machinery/vending/medical{density = 0; pixel_x = 32; pixel_y = 0; req_access = list()},/obj/machinery/iv_drip,/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cC" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/book/codex,/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"cD" = (/obj/machinery/light{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"cE" = (/obj/machinery/vending/boozeomat{pixel_x = -32},/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/houseboat/dining_area)
-"cF" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/houseboat/dining_area)
-"cG" = (/obj/machinery/media/jukebox,/turf/simulated/floor/carpet,/area/houseboat/dining_area)
-"cH" = (/obj/effect/floor_decal/techfloor{dir = 9},/obj/structure/flora/pottedplant/minitree,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"cI" = (/obj/effect/floor_decal/techfloor{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"cJ" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 5},/obj/effect/floor_decal/techfloor/corner{dir = 4},/obj/effect/floor_decal/techfloor/corner{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"cK" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/light_switch{pixel_y = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"cL" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/effect/floor_decal/corner_techfloor_grid,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"cM" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/machinery/door/airlock/voidcraft/vertical,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
-"cN" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 1},/obj/effect/floor_decal/techfloor/corner{dir = 1},/obj/effect/floor_decal/corner_techfloor_grid{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"cO" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/machinery/button/remote/blast_door{dir = 8; id = "cc_cruiser_blast"; name = "exterior shutters"; pixel_x = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"cP" = (/obj/machinery/optable,/obj/item/weapon/storage/firstaid/surgery,/obj/item/weapon/tank/anesthetic,/obj/item/clothing/mask/breath/medical,/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cQ" = (/obj/item/weapon/storage/firstaid/regular{pixel_x = -2; pixel_y = 4},/obj/item/weapon/storage/firstaid/regular{pixel_x = -2; pixel_y = 4},/obj/item/bodybag/cryobag{pixel_x = 5},/obj/item/bodybag/cryobag{pixel_x = 5},/obj/item/weapon/storage/firstaid/o2{layer = 2.8; pixel_x = 4; pixel_y = 6},/obj/item/weapon/storage/box/masks{pixel_x = 0; pixel_y = 0},/obj/item/weapon/storage/box/gloves{pixel_x = 3; pixel_y = 4},/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/fire{layer = 2.9; pixel_x = 2; pixel_y = 3},/obj/item/weapon/storage/firstaid/adv{pixel_x = -2},/obj/item/weapon/reagent_containers/blood/empty,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/structure/closet/medical_wall{pixel_y = -32},/obj/item/weapon/storage/box/body_record_disk,/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cR" = (/obj/machinery/chem_master,/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cS" = (/obj/structure/table/steel_reinforced,/obj/machinery/chemical_dispenser/ert,/turf/simulated/floor/tiled/white,/area/houseboat/medical)
-"cT" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/machinery/door/blast/shutters{density = 1; dir = 8; icon_state = "shutter1"; id = "cc_cruiser_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/turf/simulated/shuttle/plating,/area/houseboat)
-"cU" = (/obj/machinery/computer/crew{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"cV" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"cW" = (/obj/machinery/vending/food/arojoan{pixel_x = -32},/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/houseboat/dining_area)
-"cX" = (/obj/machinery/light_switch{dir = 1; pixel_y = -28},/turf/simulated/floor/wood,/area/houseboat/dining_area)
-"cY" = (/obj/structure/bed/chair/wood{dir = 1},/turf/simulated/floor/carpet,/area/houseboat/dining_area)
+"bS" = (/obj/machinery/button/remote/blast_door{dir = 8; id = "dongleship_blast"; name = "exterior shutters"; pixel_x = 28},/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"bT" = (/obj/machinery/computer/security/telescreen/entertainment,/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"bU" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"bV" = (/obj/structure/bed/chair/shuttle{dir = 1},/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"bW" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "cruiser_shuttle"; pixel_x = 25; pixel_y = 0; tag_door = "cruiser_shuttle_hatch"},/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"bX" = (/obj/machinery/airlock_sensor{frequency = 1380; id_tag = "cruiser_shuttle_bay_sensor"; pixel_x = -11; pixel_y = 28},/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "cruiser_shuttle_bay"; pixel_x = 0; pixel_y = 28; tag_door = "cruiser_shuttle_bay_hatch"},/obj/machinery/light{dir = 1},/obj/machinery/computer/shuttle_control/cruiser_shuttle,/turf/simulated/floor/reinforced,/area/houseboat)
+"bY" = (/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"bZ" = (/obj/structure/flora/pottedplant,/turf/simulated/floor/wood,/area/houseboat)
+"ca" = (/obj/machinery/door/airlock/glass_external{frequency = 1380; icon_state = "door_locked"; id_tag = "cruiser_shuttle_hatch"; locked = 1; name = "Shuttle Hatch"},/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"cb" = (/obj/structure/shuttle/engine/heater,/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/shuttle/cruiser/cruiser)
+"cc" = (/obj/structure/shuttle/engine/propulsion,/turf/simulated/floor/reinforced,/area/shuttle/cruiser/cruiser)
+"cd" = (/obj/machinery/door/blast/shutters{density = 1; dir = 8; icon_state = "shutter1"; id = "dongleship_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/shuttle/plating,/area/houseboat)
+"ce" = (/turf/simulated/floor/reinforced/airless{name = "outer hull"},/area/space)
+"cf" = (/obj/machinery/porta_turret,/turf/simulated/floor/reinforced/airless{name = "outer hull"},/area/space)
+"cg" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/tiled/white,/area/houseboat)
+"ch" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/simulated/floor/tiled/white,/area/houseboat)
+"ci" = (/obj/structure/table/standard,/obj/item/weapon/tank/anesthetic,/obj/item/clothing/mask/breath/medical,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"cj" = (/obj/machinery/recharge_station,/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/dark,/area/houseboat)
+"ck" = (/obj/machinery/button/remote/blast_door{dir = 8; id = "dongleship_blast"; name = "exterior shutters"; pixel_x = 28},/turf/simulated/floor/reinforced,/area/houseboat)
+"cl" = (/obj/structure/grille,/obj/machinery/door/blast/shutters{density = 1; dir = 4; icon_state = "shutter1"; id = "dongleship_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/houseboat)
+"cm" = (/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/tiled/white,/area/houseboat)
+"cn" = (/obj/machinery/iv_drip,/turf/simulated/floor/tiled/white,/area/houseboat)
+"co" = (/obj/machinery/bodyscanner{dir = 8},/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/white,/area/houseboat)
+"cp" = (/obj/machinery/chem_master,/turf/simulated/floor/tiled/white,/area/houseboat)
+"cq" = (/obj/machinery/suit_storage_unit/standard_unit,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"cr" = (/obj/machinery/light/small{dir = 8; pixel_y = 0},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"cs" = (/obj/machinery/computer/teleporter{icon_state = "computer"; dir = 1},/turf/simulated/floor/reinforced,/area/houseboat)
+"ct" = (/obj/machinery/computer/shuttle_control/cruiser_shuttle,/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"cu" = (/obj/machinery/door/airlock/glass_external{frequency = 1380; icon_state = "door_locked"; id_tag = null; locked = 1; name = "Shuttle Hatch"},/turf/simulated/shuttle/floor/black,/area/shuttle/cruiser/cruiser)
+"cv" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; pixel_y = 0; teleport_x = 81; teleport_y = 91; teleport_z = 12},/turf/simulated/floor/tiled/steel,/area/houseboat)
+"cw" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; pixel_y = 0; teleport_x = 82; teleport_y = 91; teleport_z = 12},/turf/simulated/floor/tiled/steel,/area/houseboat)
+"cx" = (/obj/effect/step_trigger/teleporter{dir = 2; icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; teleport_x = 79; teleport_y = 86; teleport_z = 12},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
 "cZ" = (/turf/simulated/floor/reinforced{name = "Holodeck Projector Floor"},/area/houseboat/holodeck_area)
-"da" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/effect/floor_decal/techfloor/hole{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"db" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dc" = (/obj/effect/floor_decal/corner_techfloor_grid,/obj/effect/floor_decal/techfloor/corner,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dd" = (/obj/effect/floor_decal/techfloor,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"de" = (/obj/effect/floor_decal/techfloor,/obj/effect/floor_decal/techfloor/hole/right,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"df" = (/obj/effect/floor_decal/techfloor,/obj/effect/floor_decal/corner_techfloor_grid{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dg" = (/obj/effect/floor_decal/techfloor,/obj/machinery/door/airlock/voidcraft/vertical,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
-"dh" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 8},/obj/effect/floor_decal/techfloor/corner{dir = 8},/obj/effect/floor_decal/corner_techfloor_grid{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"di" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/floor_decal/techfloor/hole/right{dir = 4},/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"dj" = (/obj/machinery/computer/aiupload{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dk" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dl" = (/obj/machinery/light_switch{dir = 8; pixel_x = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dm" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 9},/obj/effect/floor_decal/techfloor/corner{dir = 1},/obj/effect/floor_decal/techfloor/corner{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dn" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/table/steel_reinforced,/obj/item/clothing/accessory/collar/holo,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"do" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 1},/turf/simulated/floor/water,/area/houseboat/fountain)
-"dp" = (/obj/structure/railing{dir = 1},/turf/simulated/floor/water,/area/houseboat/fountain)
-"dq" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"dr" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"ds" = (/obj/machinery/mech_recharger,/obj/mecha/working/hoverpod/shuttlepod,/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat/teleporter)
-"dt" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 4},/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat/teleporter)
-"du" = (/obj/machinery/light_switch{pixel_y = 28},/turf/simulated/floor/reinforced,/area/houseboat/teleporter)
-"dv" = (/turf/simulated/floor/reinforced,/area/houseboat/teleporter)
-"dw" = (/obj/machinery/computer/teleporter{dir = 8},/turf/simulated/floor/reinforced,/area/houseboat/teleporter)
-"dx" = (/obj/machinery/computer/card/centcom{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dy" = (/obj/machinery/computer/guestpass{dir = 4; pixel_x = -28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dz" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dA" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dB" = (/obj/machinery/light_switch{pixel_y = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dC" = (/obj/machinery/computer/cryopod{pixel_y = 32},/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dD" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dE" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/floor_decal/techfloor/hole{dir = 4},/obj/effect/floor_decal/techfloor/hole/right{dir = 4},/obj/structure/table/steel_reinforced,/obj/item/device/perfect_tele,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dF" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/water,/area/houseboat/fountain)
-"dG" = (/obj/structure/flora/pottedplant{icon_state = "plant-10"; pixel_y = 10},/turf/simulated/floor/grass,/area/houseboat/fountain)
-"dH" = (/obj/machinery/light{dir = 4},/turf/simulated/floor/water,/area/houseboat/fountain)
-"dI" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/effect/floor_decal/techfloor/hole/right{dir = 8},/obj/effect/floor_decal/techfloor/hole{dir = 8},/obj/machinery/light{dir = 8},/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"dJ" = (/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat/teleporter)
-"dK" = (/obj/machinery/light{dir = 4},/obj/machinery/teleport/station{dir = 2},/turf/simulated/floor/reinforced,/area/houseboat/teleporter)
-"dL" = (/obj/machinery/computer/message_monitor{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dM" = (/obj/machinery/light,/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dN" = (/obj/machinery/cryopod,/turf/simulated/floor/tiled/techfloor,/area/houseboat/neck)
-"dO" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dP" = (/obj/structure/railing,/obj/structure/railing{dir = 8},/turf/simulated/floor/water,/area/houseboat/fountain)
-"dQ" = (/obj/structure/railing,/turf/simulated/floor/water,/area/houseboat/fountain)
-"dR" = (/obj/machinery/teleport/hub,/turf/simulated/floor/reinforced,/area/houseboat/teleporter)
-"dS" = (/obj/machinery/computer/secure_data{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dT" = (/obj/machinery/button/remote/blast_door{dir = 8; pixel_x = 28},/obj/machinery/button/remote/blast_door{dir = 8; id = "cc_cruiser_blast"; name = "exterior shutters"; pixel_x = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
-"dU" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/effect/floor_decal/techfloor/hole/right{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dV" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 4},/obj/effect/floor_decal/techfloor/corner{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dW" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/effect/floor_decal/techfloor/hole{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"dX" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/floor_decal/techfloor/hole{dir = 4},/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"dY" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"dZ" = (/obj/machinery/light_switch{pixel_y = 28},/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"ea" = (/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"eb" = (/obj/item/weapon/book/codex,/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"ec" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"ed" = (/obj/structure/table/woodentable,/obj/item/device/laptop,/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"ee" = (/obj/structure/table/woodentable,/obj/structure/flora/pottedplant/shoot{pixel_y = 10},/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"ef" = (/obj/effect/floor_decal/techfloor{dir = 10},/obj/structure/flora/pottedplant/minitree,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"eg" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 10},/obj/effect/floor_decal/techfloor/corner{dir = 8},/obj/effect/floor_decal/techfloor/corner,/turf/simulated/floor/tiled/techfloor,/area/houseboat/fountain)
-"eh" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 8},/obj/effect/floor_decal/corner_techfloor_grid{dir = 1},/obj/effect/floor_decal/techfloor/corner{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"ei" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/machinery/light_switch{dir = 8; pixel_x = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"ej" = (/obj/effect/floor_decal/industrial/outline/blue,/obj/machinery/portable_atmospherics/powered/pump,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"ek" = (/obj/machinery/portable_atmospherics/powered/pump,/obj/effect/floor_decal/industrial/outline/blue,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"el" = (/obj/machinery/portable_atmospherics/powered/scrubber,/obj/effect/floor_decal/industrial/outline,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"em" = (/obj/structure/bed/double,/obj/item/weapon/bedsheet/captaindouble,/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"en" = (/obj/machinery/light,/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"eo" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/simulated/floor/wood,/area/houseboat/cap_room)
-"ep" = (/turf/simulated/floor/tiled/white,/area/houseboat/shower)
-"eq" = (/obj/structure/sink{pixel_y = 20},/obj/item/frame/mirror{pixel_y = 32},/turf/simulated/floor/tiled/white,/area/houseboat/shower)
-"er" = (/obj/machinery/light_switch{pixel_y = 28},/turf/simulated/floor/tiled/white,/area/houseboat/shower)
-"es" = (/obj/structure/curtain/open/shower,/obj/machinery/shower{pixel_y = 10},/turf/simulated/floor/tiled/white,/area/houseboat/shower)
-"et" = (/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eu" = (/obj/structure/closet/hydrant{pixel_x = 32},/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"ev" = (/obj/structure/window/reinforced,/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/machinery/door/blast/shutters{density = 1; dir = 2; icon_state = "shutter1"; id = "cc_cruiser_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/turf/simulated/shuttle/plating,/area/houseboat)
-"ew" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/white,/area/houseboat/shower)
-"ex" = (/obj/effect/floor_decal/techfloor{dir = 9},/obj/machinery/washing_machine,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"ey" = (/obj/effect/floor_decal/techfloor{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"ez" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 5},/obj/effect/floor_decal/techfloor/corner{dir = 4},/obj/effect/floor_decal/techfloor/corner{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eA" = (/obj/effect/floor_decal/techfloor{dir = 1},/obj/effect/floor_decal/techfloor/hole{dir = 1},/obj/machinery/light_switch{pixel_y = 28},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eB" = (/obj/effect/floor_decal/techfloor{dir = 5},/obj/structure/table/steel_reinforced,/obj/item/stack/material/uranium,/obj/item/stack/material/uranium,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eC" = (/obj/machinery/light_switch{dir = 4; pixel_x = -28},/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eD" = (/obj/machinery/telecomms/relay/preset/houseboat,/turf/simulated/floor/bluegrid,/area/houseboat/engineering)
-"eE" = (/obj/structure/toilet{dir = 4},/turf/simulated/floor/tiled/white,/area/houseboat/shower)
-"eF" = (/obj/effect/floor_decal/techfloor{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eG" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eH" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eI" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/machinery/light{dir = 4},/obj/structure/table/steel_reinforced,/obj/item/stack/material/diamond,/obj/item/stack/material/gold,/obj/item/stack/material/silver,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eJ" = (/obj/effect/floor_decal/techfloor{dir = 10},/obj/structure/flora/pottedplant/minitree,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"eK" = (/obj/effect/floor_decal/techfloor,/obj/structure/coatrack,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"eL" = (/obj/effect/floor_decal/techfloor,/obj/machinery/recharge_station,/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"eM" = (/obj/effect/floor_decal/techfloor{dir = 6},/turf/simulated/floor/tiled/techfloor,/area/houseboat/common_area)
-"eN" = (/obj/machinery/vending/engivend,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eO" = (/obj/machinery/vending/tool,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eP" = (/obj/machinery/light{dir = 4},/obj/machinery/suit_storage_unit/standard_unit,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eQ" = (/obj/effect/floor_decal/techfloor{dir = 10},/obj/structure/table/steel_reinforced,/obj/structure/bedsheetbin,/obj/item/weapon/bedsheet/hos,/obj/item/weapon/bedsheet/hos,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eR" = (/obj/effect/floor_decal/corner_techfloor_grid{dir = 8},/obj/effect/floor_decal/techfloor/corner{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eS" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/table/steel_reinforced,/obj/item/stack/material/phoron,/obj/item/stack/material/phoron,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eT" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/rcd,/obj/item/weapon/rcd_ammo,/obj/item/weapon/rcd_ammo,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eU" = (/obj/structure/table/steel_reinforced,/obj/item/device/suit_cooling_unit,/obj/item/weapon/tank/air,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eV" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/tiled/techmaint,/area/houseboat/engineering)
-"eW" = (/obj/effect/floor_decal/techfloor{dir = 10},/obj/structure/closet{name = "custodial"},/obj/item/weapon/reagent_containers/spray/cleaner,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/mop,/obj/item/weapon/storage/box/lights/mixed,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eX" = (/obj/effect/floor_decal/techfloor,/obj/structure/table/steel_reinforced,/obj/item/stack/material/steel{amount = 50},/obj/item/stack/material/steel{amount = 50},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eY" = (/obj/effect/floor_decal/techfloor,/obj/structure/table/steel_reinforced,/obj/item/stack/material/glass{amount = 50},/obj/item/stack/material/glass{amount = 50},/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"eZ" = (/obj/effect/floor_decal/techfloor,/obj/structure/table/steel_reinforced,/obj/item/stack/material/plasteel,/obj/item/stack/material/plasteel,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"fa" = (/obj/effect/floor_decal/techfloor{dir = 6},/obj/structure/table/steel_reinforced,/obj/item/stack/material/plastic,/obj/item/stack/material/plastic,/turf/simulated/floor/tiled/techfloor,/area/houseboat/cargo)
-"fb" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/secure/briefcase/nsfw_pack,/turf/simulated/floor/tiled/techfloor,/area/houseboat/bridge)
+"fc" = (/turf/simulated/floor/carpet/blue,/area/houseboat)
+"fd" = (/turf/simulated/floor/wood,/area/houseboat)
+"fe" = (/obj/structure/table/marble,/turf/simulated/floor/carpet/blue,/area/houseboat)
+"ff" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/wood,/area/houseboat)
+"fg" = (/obj/structure/bed/chair/comfy/black{icon_state = "comfychair_preview"; dir = 1},/turf/simulated/floor/carpet/blue,/area/houseboat)
+"fh" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/simulated/floor/wood,/area/houseboat)
+"fk" = (/obj/structure/bed/chair/wood{icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor/carpet/blue,/area/houseboat)
+"fl" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet/blue,/area/houseboat)
+"fm" = (/obj/structure/bed/chair/wood{icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/carpet/blue,/area/houseboat)
+"fn" = (/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 1},/obj/structure/table/standard,/obj/machinery/reagentgrinder,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fo" = (/obj/effect/floor_decal/spline/fancy/wood{dir = 1},/turf/simulated/floor/tiled/white,/area/houseboat)
+"fp" = (/obj/effect/floor_decal/spline/fancy/wood/corner{dir = 4},/obj/machinery/vending/dinnerware,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fq" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fw" = (/obj/machinery/cooker/grill,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fx" = (/obj/machinery/door/airlock/voidcraft,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fy" = (/obj/machinery/computer/operating,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"fz" = (/obj/machinery/optable,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"fA" = (/obj/structure/table/standard,/obj/item/weapon/storage/firstaid/surgery,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"fB" = (/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"fC" = (/obj/structure/table/steel_reinforced,/obj/item/stack/material/plasteel,/obj/item/stack/material/plasteel,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fE" = (/obj/structure/table/steel_reinforced,/obj/item/stack/material/diamond,/obj/item/stack/material/gold,/obj/item/stack/material/silver,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fG" = (/obj/structure/table/steel_reinforced,/obj/item/stack/material/uranium,/obj/item/stack/material/uranium,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fI" = (/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"fJ" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 12; pixel_y = 5},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"fK" = (/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fL" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fN" = (/turf/simulated/floor/tiled/white,/area/houseboat)
+"fO" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fP" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/simulated/floor/tiled/white,/area/houseboat)
+"fQ" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fR" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fS" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fU" = (/obj/structure/bed/chair/office/light{dir = 4},/turf/simulated/floor/tiled/white,/area/houseboat)
+"fV" = (/obj/machinery/computer/transhuman/resleeving{dir = 8},/turf/simulated/floor/tiled/white,/area/houseboat)
+"fW" = (/obj/machinery/clonepod/transhuman,/turf/simulated/floor/tiled/white,/area/houseboat)
+"fX" = (/obj/structure/table/steel_reinforced,/obj/item/stack/material/steel{amount = 50},/obj/item/stack/material/steel{amount = 50},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"fY" = (/obj/structure/table/steel_reinforced,/obj/item/stack/material/glass{amount = 50},/obj/item/stack/material/glass{amount = 50},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"ga" = (/obj/machinery/body_scanconsole,/turf/simulated/floor/tiled/white,/area/houseboat)
+"gb" = (/obj/machinery/transhuman/synthprinter,/turf/simulated/floor/tiled/white,/area/houseboat)
+"gc" = (/obj/machinery/pros_fabricator{req_access = list()},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"gd" = (/obj/machinery/autolathe{desc = "Your typical Autolathe. It appears to have much more options than your regular one, however..."; hacked = 1; name = "Centcom Autolathe"},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"ge" = (/obj/machinery/mecha_part_fabricator{req_access = list()},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"gf" = (/obj/machinery/transhuman/resleever,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/simulated/floor/tiled/white,/area/houseboat)
+"gg" = (/obj/effect/floor_decal/industrial/outline/blue,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"gh" = (/obj/effect/floor_decal/industrial/outline/grey,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"gi" = (/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"gj" = (/obj/machinery/vending/medical{density = 0; pixel_x = 0; pixel_y = 0; req_access = list()},/turf/simulated/floor/tiled/white,/area/houseboat)
+"gk" = (/obj/machinery/door/airlock/voidcraft,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"gm" = (/obj/machinery/chemical_dispenser/ert,/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/white,/area/houseboat)
+"gn" = (/obj/item/weapon/storage/firstaid/regular{pixel_x = -2; pixel_y = 4},/obj/item/weapon/storage/firstaid/regular{pixel_x = -2; pixel_y = 4},/obj/item/bodybag/cryobag{pixel_x = 5},/obj/item/bodybag/cryobag{pixel_x = 5},/obj/item/weapon/storage/firstaid/o2{layer = 2.8; pixel_x = 4; pixel_y = 6},/obj/item/weapon/storage/box/masks{pixel_x = 0; pixel_y = 0},/obj/item/weapon/storage/box/gloves{pixel_x = 3; pixel_y = 4},/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/fire{layer = 2.9; pixel_x = 2; pixel_y = 3},/obj/item/weapon/storage/firstaid/adv{pixel_x = -2},/obj/item/weapon/reagent_containers/blood/empty,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/item/weapon/reagent_containers/blood/OMinus,/obj/structure/closet/medical_wall{pixel_y = -32},/obj/item/weapon/storage/box/body_record_disk,/turf/simulated/floor/tiled/white,/area/houseboat)
+"go" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"gq" = (/obj/structure/closet/secure_closet/personal,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"gs" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"gt" = (/obj/machinery/door/airlock/voidcraft/vertical,/turf/simulated/floor/tiled/white,/area/houseboat)
+"gu" = (/obj/machinery/light,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"gv" = (/obj/structure/table/rack,/obj/item/device/suit_cooling_unit,/obj/item/weapon/tank/air,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"gw" = (/turf/simulated/shuttle/wall/voidcraft/blue,/area/houseboat)
+"gx" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled/white,/area/houseboat)
+"gz" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/simulated/floor/tiled/white,/area/houseboat)
+"gA" = (/obj/structure/sink{icon_state = "sink"; dir = 8; pixel_x = -12; pixel_y = 2},/turf/simulated/floor/tiled/white,/area/houseboat)
+"gB" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/glass,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8; health = 1e+006},/obj/machinery/door/blast/regular{density = 0; dir = 4; icon_state = "pdoor0"; id = "security_lockdown"; name = "Security Blast Doors"; opacity = 0},/turf/simulated/floor/plating,/area/houseboat)
+"gC" = (/obj/machinery/door/window/brigdoor/southleft{tag = "icon-leftsecure (NORTH)"; name = "Cell 3"; icon_state = "leftsecure"; dir = 1; req_access = list(2); id = "Cell 3"},/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/blast/regular{density = 0; dir = 4; icon_state = "pdoor0"; id = "security_lockdown"; name = "Security Blast Doors"; opacity = 0},/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gE" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/white,/area/houseboat)
+"gF" = (/obj/structure/toilet{dir = 8},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gG" = (/obj/structure/closet/secure_closet/brig{id = "Cell 3"},/obj/effect/floor_decal/industrial/outline,/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gH" = (/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gI" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 12; pixel_y = 5},/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gJ" = (/obj/structure/bed/padded,/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gK" = (/obj/structure/toilet{dir = 8},/turf/simulated/floor/tiled/dark,/area/houseboat)
+"gL" = (/obj/effect/floor_decal/techfloor{dir = 9},/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat)
+"gM" = (/obj/machinery/cryopod,/obj/effect/floor_decal/techfloor{dir = 1},/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat)
+"gN" = (/obj/machinery/washing_machine,/turf/simulated/floor/tiled/white,/area/houseboat)
+"gO" = (/obj/structure/catwalk,/turf/simulated/floor/plating,/area/houseboat)
+"gP" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/simulated/floor/plating,/area/houseboat)
+"gQ" = (/obj/structure/railing,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 6},/turf/simulated/floor/plating,/area/houseboat)
+"gR" = (/obj/structure/railing,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"gS" = (/obj/structure/railing,/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"gT" = (/obj/structure/railing,/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/houseboat)
+"gU" = (/obj/structure/railing,/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 9},/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers,/turf/simulated/floor/plating,/area/houseboat)
+"gV" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 10},/turf/simulated/floor/plating,/area/houseboat)
+"gW" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/simple/visible/purple,/obj/machinery/atmospherics/pipe/simple/visible/supply,/obj/machinery/light/small{dir = 8; pixel_y = 0},/turf/simulated/floor/plating,/area/houseboat)
+"gX" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/turf/simulated/floor/plating,/area/houseboat)
+"gY" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/plating,/area/houseboat)
+"gZ" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"ha" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"hb" = (/obj/structure/railing{dir = 8},/obj/structure/cable/cyan{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/effect/floor_decal/rust,/obj/machinery/light/small{dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hd" = (/obj/structure/railing,/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/simple/visible/purple{icon_state = "intact"; dir = 9},/obj/machinery/atmospherics/pipe/simple/visible/supply,/turf/simulated/floor/plating,/area/houseboat)
+"he" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/plating,/area/houseboat)
+"hf" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/obj/structure/cable/cyan{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/effect/floor_decal/rust,/turf/simulated/floor/plating,/area/houseboat)
+"hg" = (/obj/structure/railing,/obj/structure/cable/cyan{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/effect/floor_decal/rust,/turf/simulated/floor/plating,/area/houseboat)
+"hh" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 5},/turf/simulated/floor/plating,/area/houseboat)
+"hi" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hj" = (/obj/structure/railing{dir = 1},/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 6},/obj/machinery/atmospherics/pipe/manifold/visible/supply{icon_state = "map-supply"; dir = 1},/turf/simulated/floor/plating,/area/houseboat)
+"hk" = (/obj/structure/railing{dir = 1},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 4},/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/houseboat)
+"hl" = (/obj/structure/railing{dir = 1},/obj/machinery/atmospherics/pipe/simple/visible/supply{icon_state = "intact-supply"; dir = 4},/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers,/turf/simulated/floor/plating,/area/houseboat)
+"hn" = (/obj/structure/railing{dir = 1},/turf/simulated/floor/plating,/area/houseboat)
+"ho" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/structure/railing{dir = 1},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/turf/simulated/floor/plating,/area/houseboat)
+"hp" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/houseboat)
+"hq" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/floor_decal/rust,/turf/simulated/floor/plating,/area/houseboat)
+"hr" = (/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/machinery/atmospherics/pipe/simple/visible/supply,/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"hs" = (/obj/structure/cable/cyan{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/power/fractal_reactor/fluff/converter,/turf/simulated/floor/plating,/area/houseboat)
+"ht" = (/obj/structure/table/woodentable,/obj/item/device/laptop,/turf/simulated/floor/wood,/area/houseboat)
+"hu" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/wood,/area/houseboat)
+"hv" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; use_power = 1; power_setting = 20; set_temperature = 73},/turf/simulated/floor/plating,/area/houseboat)
+"hw" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 5},/turf/simulated/floor/plating,/area/houseboat)
+"hx" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hy" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/houseboat)
+"hz" = (/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/yellow,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hA" = (/obj/effect/floor_decal/rust,/turf/simulated/floor/plating,/area/houseboat)
+"hB" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/effect/floor_decal/rust,/turf/simulated/floor/plating,/area/houseboat)
+"hC" = (/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/machinery/atmospherics/pipe/simple/visible/supply,/turf/simulated/floor/plating,/area/houseboat)
+"hD" = (/obj/item/weapon/bedsheet/captaindouble,/obj/structure/bed/double,/turf/simulated/floor/wood,/area/houseboat)
+"hE" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/simulated/floor/wood,/area/houseboat)
+"hF" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hG" = (/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/yellow{icon_state = "intact"; dir = 5},/turf/simulated/floor/plating,/area/houseboat)
+"hH" = (/obj/machinery/atmospherics/pipe/simple/visible/yellow{icon_state = "intact"; dir = 8},/turf/simulated/floor/plating,/area/houseboat)
+"hI" = (/turf/simulated/floor/reinforced,/area/houseboat)
+"hJ" = (/obj/structure/bed/chair/office/dark,/turf/simulated/floor/wood,/area/houseboat)
+"hK" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/tank/nitrogen,/turf/simulated/floor/plating,/area/houseboat)
+"hL" = (/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor/plating,/area/houseboat)
+"hM" = (/obj/effect/floor_decal/techfloor/orange{icon_state = "techfloororange_edges"; dir = 5},/obj/effect/floor_decal/corner_techfloor_grid{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"hN" = (/obj/effect/floor_decal/techfloor/orange{icon_state = "techfloororange_edges"; dir = 9},/obj/effect/floor_decal/corner_techfloor_grid,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"hO" = (/obj/machinery/atmospherics/pipe/tank/oxygen{icon_state = "o2_map"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hP" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/machinery/atmospherics/pipe/manifold/visible,/turf/simulated/floor/plating,/area/houseboat)
+"hQ" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hR" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"hS" = (/obj/structure/railing{dir = 8},/obj/machinery/atmospherics/pipe/manifold/visible,/turf/simulated/floor/plating,/area/houseboat)
+"hT" = (/obj/machinery/atmospherics/pipe/tank/air{icon_state = "air_map"; dir = 8},/turf/simulated/floor/plating,/area/houseboat)
+"hU" = (/obj/effect/floor_decal/techfloor/orange/corner{icon_state = "techfloororange_corners"; dir = 4},/obj/effect/floor_decal/techfloor/orange/corner,/obj/effect/floor_decal/corner_techfloor_grid{dir = 9},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"hV" = (/obj/effect/floor_decal/techfloor/orange,/obj/effect/floor_decal/techfloor/orange{icon_state = "techfloororange_edges"; dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"hW" = (/obj/effect/floor_decal/techfloor/orange/corner{icon_state = "techfloororange_corners"; dir = 1},/obj/effect/floor_decal/techfloor/orange/corner{icon_state = "techfloororange_corners"; dir = 8},/obj/effect/floor_decal/corner_techfloor_grid{icon_state = "corner_techfloor_grid"; dir = 6},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"hX" = (/obj/structure/cable/cyan{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/plating,/area/houseboat)
+"hY" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"hZ" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/houseboat)
+"ia" = (/obj/structure/railing{dir = 8},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"ib" = (/obj/structure/cable/cyan{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/plating,/area/houseboat)
+"ic" = (/obj/effect/floor_decal/techfloor/orange{icon_state = "techfloororange_edges"; dir = 6},/obj/effect/floor_decal/corner_techfloor_grid{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"id" = (/obj/effect/floor_decal/techfloor/orange{icon_state = "techfloororange_edges"; dir = 10},/obj/effect/floor_decal/corner_techfloor_grid{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"ie" = (/obj/machinery/power/fractal_reactor/fluff/converter,/obj/structure/cable/cyan,/turf/simulated/floor/plating,/area/houseboat)
+"if" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"ig" = (/obj/structure/catwalk,/obj/machinery/vending/tool,/turf/simulated/floor/plating,/area/houseboat)
+"ih" = (/obj/structure/catwalk,/obj/machinery/vending/engivend,/turf/simulated/floor/plating,/area/houseboat)
+"ii" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/telecomms/relay/preset/houseboat,/turf/simulated/floor/plating,/area/houseboat)
+"ij" = (/obj/structure/railing{dir = 8},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
+"ik" = (/turf/simulated/floor/plating,/area/houseboat)
+"il" = (/obj/structure/railing{dir = 1},/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; use_power = 1; power_setting = 20; set_temperature = 73},/turf/simulated/floor/plating,/area/houseboat)
+"im" = (/obj/structure/railing{dir = 1},/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/houseboat)
+"in" = (/obj/machinery/atmospherics/unary/heater,/turf/simulated/floor/plating,/area/houseboat)
+"io" = (/obj/machinery/power/fractal_reactor/fluff/smes,/obj/structure/cable/green{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/plating,/area/houseboat)
+"ip" = (/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/houseboat)
+"iq" = (/obj/structure/cable/green{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/plating,/area/houseboat)
+"ir" = (/obj/machinery/power/fractal_reactor/fluff/smes,/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/houseboat)
+"is" = (/obj/machinery/door/blast/regular{icon_state = "pdoor1"; dir = 8},/turf/space,/area/houseboat)
+"iB" = (/obj/structure/flora/pottedplant,/obj/machinery/button/remote/blast_door{dir = 8; id = "dongleship_blast"; name = "exterior shutters"; pixel_x = 28},/turf/simulated/floor/wood,/area/houseboat)
+"iC" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/machinery/door/blast/shutters{density = 1; dir = 1; icon_state = "shutter1"; id = "dongleship_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/houseboat)
+"iD" = (/obj/structure/bed/chair/wood{dir = 4},/turf/simulated/floor/carpet/blue,/area/houseboat)
+"iE" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/table/steel_reinforced,/obj/item/weapon/rcd,/obj/item/weapon/rcd_ammo,/obj/item/weapon/rcd_ammo,/turf/simulated/floor/plating,/area/houseboat)
+"iF" = (/obj/structure/catwalk,/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/portable_atmospherics/powered/pump,/turf/simulated/floor/plating,/area/houseboat)
+"iG" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/table/steel_reinforced,/obj/machinery/recharger,/turf/simulated/floor/plating,/area/houseboat)
+"iH" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/plating,/area/houseboat)
+"iI" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/portable_atmospherics/powered/pump,/turf/simulated/floor/plating,/area/houseboat)
+"iQ" = (/obj/machinery/computer/gyrotron_control,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iR" = (/obj/structure/bed/chair/shuttle{dir = 1},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iS" = (/obj/structure/bed/chair,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iT" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iU" = (/obj/machinery/computer/card/centcom,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iV" = (/obj/machinery/light{dir = 4},/obj/machinery/computer/message_monitor,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iW" = (/obj/effect/floor_decal/techfloor/corner{dir = 4},/obj/effect/floor_decal/techfloor/corner{dir = 1},/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"iX" = (/obj/machinery/button/remote/blast_door{dir = 8; id = "dongleship_blast"; name = "exterior shutters"; pixel_x = 28},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"iY" = (/obj/structure/closet/hydrant{pixel_x = 32},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"iZ" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; teleport_x = 106; teleport_y = 104; teleport_z = 12},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"ja" = (/obj/structure/sign/department/bridge,/turf/simulated/shuttle/wall/voidcraft/blue{name = "small craft wall"; stripe_color = "#45b3d8"},/area/houseboat)
+"jc" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"jd" = (/obj/machinery/door/airlock/voidcraft/vertical,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"je" = (/obj/machinery/light{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"jh" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"ji" = (/obj/machinery/light{dir = 1},/obj/structure/ore_box,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jj" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"jk" = (/obj/structure/ore_box,/turf/simulated/floor/tiled/steel,/area/houseboat)
+"jm" = (/turf/simulated/floor/tiled/steel,/area/houseboat)
+"jn" = (/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jo" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/steel,/area/houseboat)
+"jp" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jq" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/light{dir = 4},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jr" = (/obj/structure/table/steel,/obj/item/weapon/storage/secure/briefcase/nsfw_pack,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"js" = (/obj/structure/window/reinforced{dir = 4; health = 1e+006},/turf/unsimulated/wall,/area/space)
+"jt" = (/obj/structure/table/steel,/obj/machinery/recharger,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jy" = (/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jz" = (/obj/structure/closet/hydrant{pixel_x = -32},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"jA" = (/turf/simulated/floor/tiled/steel_ridged,/area/houseboat)
+"jB" = (/obj/effect/floor_decal/industrial/warning/corner,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jD" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled/steel,/area/houseboat)
+"jF" = (/obj/machinery/light,/obj/machinery/teleport/station{dir = 4},/turf/simulated/floor/reinforced,/area/houseboat)
+"jG" = (/obj/machinery/teleport/hub,/turf/simulated/floor/reinforced,/area/houseboat)
+"jJ" = (/obj/machinery/light,/obj/structure/closet/crate,/turf/simulated/floor/tiled/steel,/area/houseboat)
+"jK" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jM" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 10; icon_state = "fwindow"},/obj/machinery/door/blast/shutters{density = 1; dir = 2; icon_state = "shutter1"; id = "dongleship_blast"; layer = 3.3; name = "Blast Shutters"; opacity = 1},/obj/structure/window/reinforced,/turf/simulated/shuttle/plating,/area/houseboat)
+"jN" = (/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 1},/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jO" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/houseboat)
+"jP" = (/obj/structure/flora/pottedplant/minitree,/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"jR" = (/obj/structure/catwalk,/obj/structure/closet/crate/bin,/turf/simulated/floor/plating,/area/houseboat)
+"jS" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/tiled/steel_grid,/area/houseboat)
+"jT" = (/obj/structure/table/steel_reinforced,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"jU" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
+"jV" = (/obj/effect/floor_decal/techfloor{dir = 8},/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat)
+"jW" = (/obj/machinery/computer/cryopod{pixel_x = 32},/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat)
+"jX" = (/obj/effect/floor_decal/techfloor{dir = 10},/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat)
+"jY" = (/obj/machinery/cryopod,/obj/effect/floor_decal/techfloor,/turf/simulated/floor/tiled/techfloor/grid,/area/houseboat)
+"jZ" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"ka" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/reinforced,/area/houseboat)
+"kb" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/reinforced,/area/houseboat)
+"kc" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/reinforced,/area/houseboat)
+"ke" = (/obj/structure/table/woodentable,/obj/item/weapon/book/codex,/turf/simulated/floor/carpet/blue,/area/houseboat)
+"kf" = (/obj/structure/table/standard,/obj/item/weapon/material/knife/butch,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/tiled/white,/area/houseboat)
+"kh" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/unsimulated/wall,/area/space)
+"ki" = (/obj/structure/table/standard,/obj/machinery/microwave,/turf/simulated/floor/tiled/white,/area/houseboat)
+"kj" = (/obj/machinery/vending/food/arojoan{pixel_x = -32},/turf/simulated/floor/wood,/area/houseboat)
+"kk" = (/obj/machinery/vending/boozeomat{pixel_x = 32},/turf/simulated/floor/wood,/area/houseboat)
 
 (1,1,1) = {"
-aaabababababaaabababababaaabababababaaabababababaaabababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaeaeaeaeaeafagahahahahafaiajajajajafakalamalanafaoaoaoaoaoapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaqaraeaeasafahahahahahafajajajajatafauavavawawafaoaoaoaoaoapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaxaxaxaxaxafahayahazahafajatajajajafaAaBaBaCaDafaoaoaoaoaoapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaEaEaEaEaEafahahaFahahafajajajajajafaAavavawawafaoaoaoaoaoapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaEaEaEaEaEafahahahahahafajajajajaiafaGaHaIaHaJafaoaoaoaoaoapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-aaaKaKaKaKaKaaaKaKaKaKaKaaaKaKaKaKaKaaaKaKaKaKaKaaaKaKaKaKaKaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaLaLaLaLaLafaMaNaNaNaMafaOaPaQaRaOafaSaSaSaSaSafaTaUaVaUaTapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaLaLaLaLaLafaWaWaWaWaWafaXaXaXaXaXafaSaYaYaYaSafaVaVaVaVaVapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaLaLaLaLaLafaWaWaWaWaWafaZaZbaaZaZafaSbbbbbbaSafaVaVaVaVaVapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaLaLaLaLaLafaWaWaWaWaWafbcbcbcbcbcafaSbdbdbdaSafaVaVaVaVaVapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-adaLaLaLaLaLafbebfbfbfbeafbgbhbibjbgafaSaSaSaSaSafaTaUaVaUaTapacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-aabkbkbkbkbkaabkbkbkbkbkaabkbkbkbkbkaabkbkbkbkbkaabkbkbkbkbkaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacblbmbmbmbmbmblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacblbnbobpbqbrbsblblacacacacacblbmbmbmblblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacblbmbmbmbmbmblbtbubvbwbxbyblbnbmbmbmbnblbnbzbAbBbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacblblbEbFbGbHbIblbJbKbLbLbLbMblbNbObPbQbRbSbTbUbUbVbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacblblbnbmbmbmbmbmbmblblbWbXbXbXbYblbZcacbcccacdblcecfcgchblcicjckclcmbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacblblfbblcocpcpcqcrcrcsblctcucvcwcxblblbRcyblblblblcecgcgczcAclclclcBbnblblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacblblcCcDblcEcpcpcpcFcFcGblblbRcybRblblcHcIcJcIcKcLcMcNcgcgcOblcPcQcRcSblbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacaccTcUcVcVblcWcpcpcXcYcYcsblcZcZcZcZcZbldadbdcdddedfdgdhcgcgdiblblblblblbnbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacaccTdjdkdlbnblblcyblblblblbncZcZcZcZcZcAdmdbdndodpdpbRdqcgcgdrbldsdtdudvdwbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacaccTdxcVcVbldydzdzdAdzdBdCcAcZcZcZcZcZbRdDdbdEdFdGdHbRdIcgcgczcAdJdtdvdvdKbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacaccTdLdkcVcAdzdzdzdMdzdzdNblcZcZcZcZcZcAdmdbdOdPdQdQbRdqcgcgdrbldsdtdvdvdRbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacaccTdScVdTbnblblcyblblblblbncZcZcZcZcZbldUdbdVcIdWcLcMcNcgcgdXblblblblblbnbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacblblcncDbldYdZeaebecedeeblblblcyblblblefddegdddddfdgehcgcgeiblejejekelblbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacblblcnblemeaeaeneaeoeacAepeqeperesblblbRcyblblblblcecgcgczcAeteteteubnblblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacblblbnevevevevevevblblewepepepepblexeyezeAeyeBblcecgcgchbleCeteteteDbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacblbleEepepepepcAeFeGeHeHeGeIbleJeKeLeMbReNeOetetePbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacblevevevevevbleQeReGeGeGeSblbnevevevbnblbneTeUeVbCbDacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacblbneWeXeYeZfablblacacacacacblevevevblblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacblevevevevevblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblacacacacacacacacacacacacacacacacaccecececececececececececececececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblacacacacacacacacacacacacacacacaccececececececfcececececfcecececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbTbTbTbTblacacacacacacacacacacacacacacaccecececececececececececececececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbnfcfcfcfcbnblacacacacacacacacacacacacacaccecececececececececececececececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbtfcfcfcfcfdblacacacacacacacacacacacacacaccecececececececececececececececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblfdfcfefefcfdblacacacacacacacacacacacacacaccecececececececececececececececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblfdfcfcfcfcfdblacacacacacacacacacacacacacaccecececececebliCiCiCiCblcecececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbnfffgfgfgfgfhbnblacacacacacacacacacacacacaccecececececebliQfIfIiQblcecececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbZfdfdfdfdfdfdiBblacacacacacacacacacacacacaccecececececebliRfIfIiRblcecececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfdfcfcfcfcfcfcjOclacacacacacacacacacacacacaccecececececebliTfIiUiVblcecececececeacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfdfcfkflflfmfcfdclacacacacacacacacacacacacacacacacacacacblfIfIiRiRblacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfdfciDkeflfmfcfdclacacacacacacacacacacacacacacacacacacacbljSfIfIfIblacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblfffcfkflflfmfcfhblacacacacacacacacacacacacacacacacacacaciWbnfIiXbnblacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbnkjfcfcfcfcfcfckkbnblacacacacacacacacacacacacacacacacacblblblgkgkblblacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcgfofofofofofofofofpblacacacacacacacacacacacacacacacacacblfBjafBfBjablblblblblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblchfnkibsfNfNbrfwfqkfblacacacacacacacacacacacacacacacacacblcxblfBfBblfIiSiSjSblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblblfxfxblblblblblacacacacacacacacacacacacacacacacacbljcjdfBjebljnjpjpjqblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblfyfzfAblfBjZblfCfEfGblblacacacacacacacacacacacacacacacacblblblfBfBbljnjrjtjKblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcifIfIfJblfBiYbljUfKfKjTblacacacacacacacacacacacacacacacacacacblfBfBjdfIjNjNfIblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdcmfNfOfPblfBfBblfQfKfRfSclacacacacacacacacacacacacacacacacblblblgkgkblblblblblblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdcnfNfUfVbRfBfBbRfKfKfKfLclacacacacacacacacacacacacacacacacblcZcZcZcZcZbMblacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblfNfNfNfWbRfBfBbRfKfKfXfYblblacacacacacacacacacacacacacacacblcZcZcZcZcZbNblacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcogafNfNgbbRfBfBbRfKfKgcgdgeblacacacacacacacacacacacacacacacblcZcZcZcZcZbPblacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfNfNfNfNgfbljjfBblfQfKggghgiclacacacacacacacacacacacacacacacblcZcZcZcZcZbQblacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfNfNfNfNgjblgkgkblfKfKfKfKfKclacacacacacacacacacacacacacacacblcZcZcZcZcZbSblacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfNfNgnfNbnblfBfBblbnfKfKfKfKclacacacacacacacacacacacacacacacbljMjMjMjMjMblblacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcpgmbnfxbnjPfBfBjPbnfxbngogoblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblblfBbvfBaJaJfBbvfBblblblblblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcqblblfBfBfBbGbHbIbJfBfBfBblblgqblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcrbljjfBfBfBbGfKfKbJfBfBfBjZblgsblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfBgtfBfBfBfBfBbKbKfBfBfBfBfBgtfBclacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcqbljjfBfBfBgufBfBgufBfBfBjZblgvblacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblfxblbnfBbnfBfBbnfxblblfxblblblacacacacacacacacacacacacblblblisisisisisisblblblacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblfUgxfNfNblbLblgkgkblbpblfNfNfNgNblblacacacacacacacacacacacbljmjhfIfIfIfIfIfIjijkblacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblfNfNfNgzblfBblfBjZbnblblgAfNfNblblblblacacacacacacacacacaccdjmjmfIfIfIfIfIfIjmjkclacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblgBgBgCgBgBbliZbljzfBgLgMblgEfNfNgtgFblblacacacacacacacacacaccdjmjmjmfIfIfIfIjmjmjmclacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblgGgJgHgHgIblblblfBfBjVjWblgAfNfNblblblblacacacacacacacacacaccdjmjmjmfIfIfIfIjmjmjmclacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblgGgJgHgHgKblblbljjfBjXjYblfqfNfNgtcjblblacacacacacacacacacaccdjojojojyjAjAjBjojojoclacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblblblblblblblblgkgkblblblblblbxblblblblblacacacacacacacacaccdhIbuckbljmjmbljDjkjkclacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblbAjRgOgPgQgRgRgRbBfBjZbFgSgSgTgSgUgVgObyblblblacacacacacacacacblcsjFjGblcvcwbljDjJjkblacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblbngWgOgOgOgXgOgOgOgtfBfBgtgOgOgYgZgZhagZhbbnblblblacacacacacacacblblblblblblblblblblblblacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblbCbzhdgOgOhehagZgZgZbljjfBblgOgOgOgOgOgXgOhfhgblblblacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblgOhhhihjhkhlbDblblblgkgkblblblbwhnhnhogOgOhpbnblblacacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblbnhqgZgZgZhrhsbnblhthublfBjZblhuhtblbnhvhwhxhxhyhzbEblblacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhAhBgOgOgOhCblblhDhEfdgtfBfBgtfdhEhDblblhFgOgOhphGhHblblacacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblblfxfxblbxblblblblblblfBfBblblblblblblblblfxfxblblblblblacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblkahIhIkablblblhDhJfdgtfBfBgtfdhJhDblblblkahIhIbXgwgwblblacacacacacacacacacacacacacacacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblhIhIhIhIhIhIblblblhthubljjfBblhuhtblblblhIhIhIhIhIhIgwblblblacacaaabababababaaabababababaaabababababaaac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblhIhIhIhIhIhIhIhIblblblblblgkgkblblblblblhIhIbqbqbqbqhIhIgwblblacacjsaeaeaeaeaeafagahahahahafaiajajajajapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhIhIhIhIhIhIhIhIhIhIblgwhKighphpihhLblblhIhIfBbqctbUbqfBhIhIblblacacjsaqaraeaeasafahahahahahafajajajajatapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhIhIhMhIhIhIhIhNhIhIblhOhPhQhRhRhQhShTblhIhIfBbqbVbWbqfBhIhIblblacacjsaxaxaxaxaxafahayahazahafajatajajajapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblkbhIhUhVhVhVhVhWhIkcblhXhYiEhZgYiFiaibblkbhIfBcubYbYcafBhIkcblblacacjsaEaEaEaEaEafahahaFahahafajajajajajapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhIhIichIhIhIhIidhIhIblieifiGiHiiiIijieblhIhIfBbqbVbVbqfBhIhIblblacacjsaEaEaEaEaEafahahahahahafajajajajaiapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhIhIhIhIhIhIhIhIhIhIblikikilimimilikikblhIhIfBbqcbcbbqfBhIhIblblacacaaaKaKaKaKaKaaaKaKaKaKaKaaaKaKaKaKaKaaac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhIhIhIhIhIhIhIhIhIhIblinikioipiqirikinblhIhIhIbqccccbqhIhIhIblblacacjsakalawawamafaoaoaoaoaoafaTaVaVaVaVapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblhIhIhIhIhIhIhIhIhIhIblblblblblblblblblblhIhIhIhIhIhIhIhIhIhIblblacacjsauavavawamafaoaoaoaoaoafaTaVaVaVaVapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblfBfBfBfBfBfBfBfBblblbmbmbmbmbmbmbmbmblblfBfBfBfBfBfBfBfBblblacacacjsaAaBaBaCanafaoaoaoaoaoafaTaVaVaVaVapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacbnisisisisisisisisbnbobobobobobobobobobobnisisisisisisisisbnacacacacjsaAavavawanafaoaoaoaoaoafaTaVbObOaVapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacjsaGaHaIaHaDafaoaoaoaoaoafaTaVaUaUaVapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaKaKaKaKaKaaaKaKaKaKaKaakhkhkhkhkhaaac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacjsaSaSaSaSaSafaOaPaQaRaOafaMaNaNaNaMapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacjsaSaYaYaYaSafaXaXaXaXaXafaWaWaWaWaWapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacjsaSbbbbbbaSafaZaZbaaZaZafaWaWaWaWaWapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacjsaSbdbdbdaSafbcbcbcbcbcafaWaWaWaWaWapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacjsaSaSaSaSaSafbgbhbibjbgafbebfbfbfbeapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaabkbkbkbkbkaabkbkbkbkbkaakhkhkhkhkhaaac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadaLaLaLaLaLapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadaLaLaLaLaLapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadaLaLaLaLaLapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadaLaLaLaLaLapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadaLaLaLaLaLapac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaabkbkbkbkbkaaac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
@@ -383,4 +468,3 @@ acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 "}
-
