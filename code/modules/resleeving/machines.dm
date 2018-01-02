@@ -108,7 +108,7 @@
 /obj/machinery/clonepod/transhuman/process()
 
 	var/visible_message = 0
-	for(var/obj/item/weapon/reagent_containers/food/snacks/meat in range(1, src))
+	for(var/obj/item/weapon/reagent_containers/food/snacks/meat/meat in range(1, src))
 		qdel(meat)
 		biomass += 50
 		visible_message = 1 // Prevent chatspam if multiple meat are near
