@@ -94,28 +94,27 @@
 "bP" = (/obj/item/weapon/contraband/poster,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bQ" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bR" = (/obj/structure/sign/biohazard,/turf/simulated/shuttle/wall/hard_corner,/area/submap/cave/qShuttle)
-"bS" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/space)
-"bT" = (/obj/item/tape/medical{icon_state = "tape_v_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"bU" = (/obj/item/taperoll/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"bV" = (/obj/item/tape/medical{dir = 1; icon_state = "tape_dir_0"},/obj/item/tape/medical{dir = 4; icon_state = "tape_dir_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"bW" = (/obj/item/tape/medical{icon_state = "tape_h_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"bX" = (/obj/structure/lattice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"bY" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
-"bZ" = (/obj/structure/sign/kiddieplaque{desc = "By order of the S.D.D.C, this site or craft is to be buried and not disturbed until such time that sterility can be confirmed. Dated: 20/12/2491 "; name = "\improper Sif Department of Disease Control notice"},/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
-"ca" = (/obj/structure/sign/warning,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
-"cb" = (/obj/item/bodybag,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cc" = (/obj/structure/table/steel,/obj/item/weapon/storage/box/bodybags,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cd" = (/obj/structure/table/steel,/obj/item/clothing/suit/bio_suit,/obj/random/medical/lite,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"ce" = (/obj/structure/closet/l3closet/virology,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cf" = (/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cg" = (/obj/structure/dispenser/oxygen,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"ch" = (/obj/structure/table/steel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"ci" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cj" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/spray/cleaner{desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'"; name = "Chemistry Cleaner"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"ck" = (/obj/structure/table/steel,/obj/item/weapon/crowbar/power,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cl" = (/obj/structure/table/rack,/obj/item/clothing/head/bio_hood,/obj/item/clothing/suit/bio_suit,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cm" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"cn" = (/obj/structure/closet/crate/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bS" = (/obj/item/tape/medical{icon_state = "tape_v_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bT" = (/obj/item/taperoll/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bU" = (/obj/item/tape/medical{dir = 1; icon_state = "tape_dir_0"},/obj/item/tape/medical{dir = 4; icon_state = "tape_dir_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bV" = (/obj/item/tape/medical{icon_state = "tape_h_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bW" = (/obj/structure/lattice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bX" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"bY" = (/obj/structure/sign/kiddieplaque{desc = "By order of the S.D.D.C, this site or craft is to be buried and not disturbed until such time that sterility can be confirmed. Dated: 20/12/2491 "; name = "\improper Sif Department of Disease Control notice"},/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"bZ" = (/obj/structure/sign/warning,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"ca" = (/obj/item/bodybag,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cb" = (/obj/structure/table/steel,/obj/item/weapon/storage/box/bodybags,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cc" = (/obj/structure/table/steel,/obj/item/clothing/suit/bio_suit,/obj/random/medical/lite,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cd" = (/obj/structure/closet/l3closet/virology,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ce" = (/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cf" = (/obj/structure/dispenser/oxygen,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cg" = (/obj/structure/table/steel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ch" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ci" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/spray/cleaner{desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'"; name = "Chemistry Cleaner"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cj" = (/obj/structure/table/steel,/obj/item/weapon/crowbar/power,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ck" = (/obj/structure/table/rack,/obj/item/clothing/head/bio_hood,/obj/item/clothing/suit/bio_suit,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cl" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cm" = (/obj/structure/closet/crate/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -134,11 +133,11 @@ aaabaiaJbmbnadbobpbqbrbsbtbqaNbuaUbvaAbwaVbxaYabaa
 aaabadadadadadaDbyaAbzaAbAbBbCbDadbEaGbFadadbGabaa
 aaababadadbHbIbJaoadbKaQbLadbMbNadbObPbQadagahabaa
 ababacabadaiajakakbRaiadaiadadadadadadadadadadaaaa
-bSabababbTabaeaeafaeababababbUabababababadagahaaaa
-aaabababbVbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWadadadaaaa
-aaaaababababababababbXbYbZcacbcbcbabcccdceabcfaaaa
-aaaaacababcgchcicjckclababcmabcbcbababababababaaaa
-aaaaaaababcnchababababababababaaaaaaaaaaababacaaaa
+ababababbSabaeaeafaeababababbTabababababadagahaaaa
+aaabababbUbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVadadadaaaa
+aaaaababababababababbWbXbYbZcacacaabcbcccdabceaaaa
+aaaaacababcfcgchcicjckababclabcacaababababababaaaa
+aaaaaaababcmcgababababababababaaaaaaaaaaababacaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

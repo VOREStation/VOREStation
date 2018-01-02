@@ -35,9 +35,9 @@
 						)
 
 	// Some maps have areas specific to the map, so include those.
-	exempt_areas += using_map.unit_test_exempt_areas
-	exempt_from_atmos += using_map.unit_test_exempt_from_atmos
-	exempt_from_apc += using_map.unit_test_exempt_from_apc
+	exempt_areas += using_map.unit_test_exempt_areas.Copy()
+	exempt_from_atmos += using_map.unit_test_exempt_from_atmos.Copy()
+	exempt_from_apc += using_map.unit_test_exempt_from_apc.Copy()
 
 	for(var/area/A in world)
 		if(A.z == 1 && !(A.type in exempt_areas))

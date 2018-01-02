@@ -118,6 +118,16 @@ Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
 </span>"}, R_DEBUG)
 
+	// Uncomment this if you're having problems finding where active edges are.
+	/*
+	for(var/connection_edge/E in active_edges)
+		world << "Edge became active: [E]."
+		var/i = 1
+		for(var/turf/T in E.connecting_turfs)
+			world << "[i] [T]:[T.x],[T.y],[T.z]"
+			i++
+	*/
+
 
 //	spawn Start()
 

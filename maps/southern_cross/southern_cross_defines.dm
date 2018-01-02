@@ -42,13 +42,9 @@
 	station_networks = list()
 
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
-	unit_test_exempt_areas = list(
-		/area/ninja_dojo
-	)
+	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 
-	unit_test_exempt_from_atmos = list(
-		/area/tcomm/chamber
-	)
+	unit_test_exempt_from_atmos = list(/area/tcomm/chamber)
 
 
 // Short range computers see only the six main levels, others can see the surrounding surface levels.

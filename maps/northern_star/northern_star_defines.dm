@@ -104,3 +104,47 @@
 	name = "Empty"
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 60
+
+
+//Unit test stuff.
+
+/datum/unit_test/zas_area_test/supply_centcomm
+	name = "ZAS: Supply Shuttle (CentCom)"
+	area_path = /area/supply/dock
+
+/datum/unit_test/zas_area_test/emergency_shuttle
+	name = "ZAS: Emergency Shuttle"
+	area_path = /area/shuttle/escape/centcom
+
+/datum/unit_test/zas_area_test/ai_chamber
+	name = "ZAS: AI Chamber"
+	area_path = /area/ai
+
+/datum/unit_test/zas_area_test/mining_shuttle_at_station
+	name = "ZAS: Mining Shuttle (Station)"
+	area_path = /area/shuttle/mining/station
+
+/datum/unit_test/zas_area_test/cargo_maint
+	name = "ZAS: Cargo Maintenance"
+	area_path = /area/maintenance/cargo
+
+/datum/unit_test/zas_area_test/eng_shuttle
+	name = "ZAS: Construction Site Shuttle (Station)"
+	area_path = /area/shuttle/constructionsite/station
+
+/datum/unit_test/zas_area_test/virology
+	name = "ZAS: Virology"
+	area_path = /area/medical/virology
+
+/datum/unit_test/zas_area_test/xenobio
+	name = "ZAS: Xenobiology"
+	area_path = /area/rnd/xenobiology
+
+/datum/unit_test/zas_area_test/mining_area
+	name = "ZAS: Mining Area (Vacuum)"
+	area_path = /area/mine/explored
+	expectation = UT_VACUUM
+
+/datum/unit_test/zas_area_test/cargo_bay
+	name = "ZAS: Cargo Bay"
+	area_path = /area/quartermaster/storage
