@@ -5,6 +5,7 @@
 	var/pounce_cooldown = 0
 	var/pounce_cooldown_time = 40
 	var/leap_at
+	var/dogborg = 0
 
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in oview(1))
 	set name = "Robot Nom"
@@ -17,7 +18,7 @@
 
 /mob/living/silicon/robot/updateicon()
 	..()
-	if(icon == 'icons/mob/widerobot_vr.dmi' || 'icons/mob/64x64robot_vr.dmi')
+	if(dogborg == 1)
 		if(stat == CONSCIOUS)
 			if(sleeper_g == 1)
 				overlays += "[module_sprites[icontype]]-sleeper_g"
