@@ -202,7 +202,7 @@
 				total_bulge += P.size_multiplier
 		if(total_bulge >= bulge_size && bulge_size != 0)
 			return("<span class='warning'>[formatted_message]</span><BR>")
-		else if(total_bulge < bulge_size || bulge_size == 0) //Are they absorbed, too small to show up, or examining this stomach is disabled?
+		else
 			return ""
 
 // The next function gets the messages set on the belly, in human-readable format.
