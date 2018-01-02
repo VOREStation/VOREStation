@@ -14,6 +14,7 @@
 	var/im_list_ui[0]				//List of messages.
 
 	var/weather[0]
+	var/injection = null
 	var/modules_ui[0]				//Home screen info.
 
 	//First we add other 'local' communicators.
@@ -70,8 +71,22 @@
 	//Weather reports.
 	for(var/datum/planet/planet in planet_controller.planets)
 		if(planet.weather_holder && planet.weather_holder.current_weather)
-			weather[++weather.len] = list("Planet" = planet.name, "Weather" = planet.weather_holder.current_weather.name, "Temperature" = (round(planet.weather_holder.temperature*1000)/1000),\
-			"High" = planet.weather_holder.current_weather.temp_high, "Low" = planet.weather_holder.current_weather.temp_low, "Wind" = "[planet.weather_holder.wind_speed]|[dir2text(planet.weather_holder.wind_dir)]")
+			var/list/W = list(
+				"Planet" = planet.name,
+				"Time" = planet.current_time.show_time("hh:mm"),
+				"Weather" = planet.weather_holder.current_weather.name,
+				"Temperature" = planet.weather_holder.temperature,
+				"High" = planet.weather_holder.current_weather.temp_high,
+				"Low" = planet.weather_holder.current_weather.temp_low)
+			weather[++weather.len] = W
+//			world << "Temperature, unrounded: [planet.weather_holder.temperature]"
+//			world << "Temperature: [round(planet.weather_holder.temperature)]"
+//			world << "High, unrounded: [planet.weather_holder.current_weather.temp_high]"
+//			world << "High: [round(planet.weather_holder.current_weather.temp_high)]"
+//			world << "Low, unrounded: [planet.weather_holder.current_weather.temp_low]"
+//			world << "Low: [round(planet.weather_holder.current_weather.temp_low)]"
+
+	injection = "<div>Test</div>"
 
 	//Modules for homescreen.
 	for(var/list/R in modules)
@@ -98,6 +113,8 @@
 	data["homeScreen"] = modules_ui
 	data["note"] = note					// current notes
 	data["weather"] = weather
+	data["aircontents"] = src.analyze_air()
+	data["injection"] = injection
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
