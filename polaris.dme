@@ -2371,7 +2371,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\southern_cross\southern_cross.dm"
+#include "maps\northern_star\northern_star.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\cave_submaps\cave.dm"
 #include "maps\submaps\cave_submaps\cave_areas.dm"
