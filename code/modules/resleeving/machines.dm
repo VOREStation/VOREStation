@@ -70,7 +70,7 @@
 	H.original_player = current_project.ckey
 
 	//Apply damage
-	H.adjustCloneLoss(150)
+	H.adjustCloneLoss((H.getMaxHealth() - config.health_threshold_dead)*0.75)
 	H.Paralyse(4)
 	H.updatehealth()
 
