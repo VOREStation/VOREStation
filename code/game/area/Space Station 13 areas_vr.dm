@@ -134,87 +134,56 @@
 /area/bigship/teleporter
 	name = "Bigship Teleporter Room"
 
-//////// Houseboat Areas ////////
+//////// Small Cruiser Areas ////////
 /area/houseboat
-	name = "Houseboat"
+	name = "Small Cruiser"
 	requires_power = 0
 	flags = RAD_SHIELDED
 	base_turf = /turf/space
 	icon_state = "red2"
-	lightswitch = 0
+	lightswitch = TRUE
 
-/area/houseboat/bridge
-	name = "Houseboat - Bridge"
-	icon_state = "blue2"
-/area/houseboat/neck
-	name = "Houseboat - Neck"
-	icon_state = "blue2"
-/area/houseboat/cap_room
-	name = "Houseboat - Captain's Room"
-	icon_state = "blue2"
-/area/houseboat/teleporter
-	name = "Houseboat - Teleporter"
-	icon_state = "blue2"
-/area/houseboat/robotics
-	name = "Houseboat - Robotics"
-	icon_state = "blue2"
-/area/houseboat/cargo
-	name = "Houseboat - Cargo"
-	icon_state = "blue2"
-/area/houseboat/medical
-	name = "Houseboat - Medical"
-	icon_state = "blue2"
-/area/houseboat/engineering
-	name = "Houseboat - Engineering"
-	icon_state = "blue2"
-/area/houseboat/shower
-	name = "Houseboat - Shower"
-	icon_state = "blue2"
-/area/houseboat/common_area
-	name = "Houseboat - Common Area"
-	icon_state = "blue2"
-/area/houseboat/dining_area
-	name = "Houseboat - Dining Area"
-	icon_state = "blue2"
 /area/houseboat/holodeck_area
-	name = "Houseboat - Holodeck"
-	icon_state = "blue2"
-/area/houseboat/lockers
-	name = "Houseboat - Locker Room"
-	icon_state = "blue2"
-/area/houseboat/fountain
-	name = "Houseboat - Fountain"
+	name = "Small Cruiser - Holodeck"
 	icon_state = "blue2"
 
 /area/houseboat/holodeck/off
-	name = "Houseboat Holo - Off"
+	name = "Small Cruiser Holo - Off"
 	icon_state = "blue2"
 /area/houseboat/holodeck/beach
-	name = "Houseboat Holo - Beach"
+	name = "Small Cruiser Holo - Beach"
 	icon_state = "blue2"
 /area/houseboat/holodeck/snow
-	name = "Houseboat Holo - Snow"
+	name = "Small Cruiser Holo - Snow"
 	icon_state = "blue2"
 /area/houseboat/holodeck/desert
-	name = "Houseboat Holo - Desert"
+	name = "Small Cruiser Holo - Desert"
 	icon_state = "blue2"
 /area/houseboat/holodeck/picnic
-	name = "Houseboat Holo - Picnic"
+	name = "Small Cruiser Holo - Picnic"
 	icon_state = "blue2"
 /area/houseboat/holodeck/thunderdome
-	name = "Houseboat Holo - Thunderdome"
+	name = "Small Cruiser Holo - Thunderdome"
 	icon_state = "blue2"
 /area/houseboat/holodeck/basketball
-	name = "Houseboat Holo - Basketball"
+	name = "Small Cruiser Holo - Basketball"
 	icon_state = "blue2"
 /area/houseboat/holodeck/gaming
-	name = "Houseboat Holo - Gaming Table"
+	name = "Small Cruiser Holo - Gaming Table"
 	icon_state = "blue2"
 /area/houseboat/holodeck/space
-	name = "Houseboat Holo - Space"
+	name = "Small Cruiser Holo - Space"
 	icon_state = "blue2"
 /area/houseboat/holodeck/bunking
-	name = "Houseboat Holo - Bunking"
+	name = "Small Cruiser Holo - Bunking"
+	icon_state = "blue2"
+
+/area/shuttle/cruiser/cruiser
+	name = "Small Cruiser Shuttle - Cruiser"
+	icon_state = "blue2"
+	base_turf = /turf/simulated/floor/tiled/techfloor
+/area/shuttle/cruiser/station
+	name = "Small Cruiser Shuttle - Station"
 	icon_state = "blue2"
 
 
