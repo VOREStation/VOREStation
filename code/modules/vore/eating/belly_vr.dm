@@ -192,15 +192,18 @@
 	if(internal_contents.len && examine_messages.len)
 		var/formatted_message
 		var/raw_message = pick(examine_messages)
+		var/total_bulge = 0
 
 		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
 		formatted_message = replacetext(formatted_message,"%pred",owner)
 		formatted_message = replacetext(formatted_message,"%prey",english_list(internal_contents))
 		for(var/mob/living/P in internal_contents)
-			if(!P.absorbed && P.size_multiplier >= bulge_size && bulge_size != 0) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
-				return("<span class='warning'>[formatted_message]</span><BR>")
-			else if(P.absorbed || P.size_multiplier < bulge_size || bulge_size == 0) //Are they absorbed, too small to show up, or examining this stomach is disabled?
-				return ""
+			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
+				total_bulge += P.size_multiplier
+		if(total_bulge >= bulge_size && bulge_size != 0)
+			return("<span class='warning'>[formatted_message]</span><BR>")
+		else
+			return ""
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
