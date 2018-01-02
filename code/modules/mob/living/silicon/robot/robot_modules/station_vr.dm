@@ -81,7 +81,7 @@
 	//R.icon_state = "k9"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
-	R.dogborg = 1
+	R.dogborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -132,7 +132,7 @@
 	//R.icon_state = "medihound"
 	R.pixel_x 	 = -16
 	R.old_x  	 = -16
-	R.dogborg = 1
+	R.dogborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/ert
@@ -159,7 +159,7 @@
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
-	R.dogborg = 1
+	R.dogborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup
@@ -182,7 +182,7 @@
 	//R.icon_state = "scrubpup"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
-	R.dogborg = 1
+	R.dogborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
