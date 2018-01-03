@@ -60,13 +60,27 @@
 	throwforce = 8
 	attack_verb = list("drilled", "screwed", "jabbed")
 	toolspeed = 0.25
+	var/obj/item/weapon/screwdriver/power/counterpart = null
+
+/obj/item/weapon/wrench/power/New(newloc, no_counterpart = TRUE)
+	..(newloc)
+	if(!counterpart && no_counterpart)
+		counterpart = new(src, FALSE)
+		counterpart.counterpart = src
+
+/obj/item/weapon/wrench/power/Destroy()
+	if(counterpart)
+		counterpart.counterpart = null // So it can qdel cleanly.
+		qdel_null(counterpart)
+	return ..()
 
 /obj/item/weapon/wrench/power/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	var/obj/item/weapon/screwdriver/power/s_drill = new /obj/item/weapon/screwdriver/power
+	user.drop_item(src)
+	counterpart.forceMove(get_turf(src))
+	src.forceMove(counterpart)
+	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
-	qdel(src)
-	user.put_in_active_hand(s_drill)
 
 /*
  * Screwdriver
@@ -168,13 +182,27 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.25
 	random_color = FALSE
+	var/obj/item/weapon/wrench/power/counterpart = null
+
+/obj/item/weapon/screwdriver/power/New(newloc, no_counterpart = TRUE)
+	..(newloc)
+	if(!counterpart && no_counterpart)
+		counterpart = new(src, FALSE)
+		counterpart.counterpart = src
+
+/obj/item/weapon/screwdriver/power/Destroy()
+	if(counterpart)
+		counterpart.counterpart = null // So it can qdel cleanly.
+		qdel_null(counterpart)
+	return ..()
 
 /obj/item/weapon/screwdriver/power/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	var/obj/item/weapon/wrench/power/w_drill = new /obj/item/weapon/wrench/power
+	user.drop_item(src)
+	counterpart.forceMove(get_turf(src))
+	src.forceMove(counterpart)
+	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
-	qdel(src)
-	user.put_in_active_hand(w_drill)
 
 /*
  * Wirecutters
@@ -245,13 +273,27 @@
 	force = 15
 	toolspeed = 0.25
 	random_color = FALSE
+	var/obj/item/weapon/crowbar/power/counterpart = null
+
+/obj/item/weapon/wirecutters/power/New(newloc, no_counterpart = TRUE)
+	..(newloc)
+	if(!counterpart && no_counterpart)
+		counterpart = new(src, FALSE)
+		counterpart.counterpart = src
+
+/obj/item/weapon/wirecutters/power/Destroy()
+	if(counterpart)
+		counterpart.counterpart = null // So it can qdel cleanly.
+		qdel_null(counterpart)
+	return ..()
 
 /obj/item/weapon/wirecutters/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
-	var/obj/item/weapon/crowbar/power/pryjaws = new /obj/item/weapon/crowbar/power
+	user.drop_item(src)
+	counterpart.forceMove(get_turf(src))
+	src.forceMove(counterpart)
+	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
-	qdel(src)
-	user.put_in_active_hand(pryjaws)
 
 /*
  * Welding Tool
@@ -909,13 +951,28 @@
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.25
+	var/obj/item/weapon/wirecutters/power/counterpart = null
+
+/obj/item/weapon/crowbar/power/New(newloc, no_counterpart = TRUE)
+	..(newloc)
+	if(!counterpart && no_counterpart)
+		counterpart = new(src, FALSE)
+		counterpart.counterpart = src
+
+/obj/item/weapon/crowbar/power/Destroy()
+	if(counterpart)
+		counterpart.counterpart = null // So it can qdel cleanly.
+		qdel_null(counterpart)
+	return ..()
 
 /obj/item/weapon/crowbar/power/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
-	var/obj/item/weapon/wirecutters/power/cutjaws = new /obj/item/weapon/wirecutters/power
+	user.drop_item(src)
+	counterpart.forceMove(get_turf(src))
+	src.forceMove(counterpart)
+	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
-	qdel(src)
-	user.put_in_active_hand(cutjaws)
+
 
 /*/obj/item/weapon/combitool
 	name = "combi-tool"
