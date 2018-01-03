@@ -1670,7 +1670,7 @@
 		..()
 
 //jacknoir413:Areax Third
-/obj/item/weapon/melee/baton/stunstaff
+/obj/items/weapons/melee/baton/fluff/stunstaff
 	name = "Electrostaff"
 	desc = "Six-foot long staff from dull, rugged metal, with two thin spikes protruding from each end. Small etching near to the middle of it reads 'Children Of Nyx Facilities: Product No. 12'."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -1690,13 +1690,13 @@
 	var/wielded = 0
 	var/base_name = "stunstaff"
 
-/obj/item/weapon/melee/baton/stunstaff/New()
+/obj/items/weapons/melee/baton/fluff/stunstaff/New()
 	..()
 	bcell = new/obj/item/weapon/cell/device/weapon(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/stunstaff/update_held_icon()
+/obj/items/weapons/melee/baton/fluff/stunstaff/update_held_icon()
 	var/mob/living/M = loc
 	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
 		wielded = 1
@@ -1710,14 +1710,14 @@
 	update_icon()
 	..()
 
-/obj/item/weapon/melee/baton/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/items/weapons/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
-/obj/item/weapon/melee/baton/stunstaff/update_icon()
+/obj/items/weapons/melee/baton/fluff/stunstaff/update_icon()
 	icon_state = "[base_icon][wielded][status]"
 	item_state = icon_state
 	if(status==1)
@@ -1725,52 +1725,14 @@
 	else
 		set_light(0)
 
-/obj/item/weapon/melee/baton/stunstaff/dropped()
+/obj/items/weapons/melee/baton/fluff/stunstaff/dropped()
 	..()
 	if(wielded)
 		wielded = 0
 		spawn(0)
 			update_held_icon()
 
-/obj/item/weapon/melee/baton/stunstaff/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
-	if(isrobot(target))
-		return ..()
-
-	var/agony = agonyforce
-	var/stun = stunforce
-	var/obj/item/organ/external/affecting = null
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		affecting = H.get_organ(hit_zone)
-
-	if(user.a_intent == I_HURT || user.a_intent == I_DISARM)
-		. = ..()
-		agony *= 0.5
-		stun *= 0.5
-
-	else if(!status)
-		if(affecting)
-			target.visible_message("<span class='warning'>[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off.</span>")
-		else
-			target.visible_message("<span class='warning'>[target] has been prodded with [src] by [user]. Luckily it was off.</span>")
-	else
-		if(affecting)
-			target.visible_message("<span class='danger'>[target] has been prodded in the [affecting.name] with [src] by [user]!</span>")
-		else
-			target.visible_message("<span class='danger'>[target] has been prodded with [src] by [user]!</span>")
-		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-
-	//stun effects
-	if(status)
-		target.stun_effect_act(stun, agony, hit_zone, src)
-		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
-
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			H.forcesay(hit_appends)
-	powercheck(hitcost)
-
-/obj/item/weapon/melee/baton/stunstaff/attack_self(mob/user)
+/obj/items/weapons/melee/baton/fluff/stunstaff/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)
 		status = !status
 		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
@@ -1784,7 +1746,7 @@
 	update_held_icon()
 	add_fingerprint(user)
 
-/obj/item/weapon/storage/box/stunstaff
+/obj/item/weapon/storage/box/fluff/stunstaff
 	name = "Electrostaff sheath"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "holster_stunstaff"
@@ -1792,12 +1754,12 @@
 	slot_flags = SLOT_BACK
 	item_icons = list(slot_back_str = 'icons/vore/custom_onmob_vr.dmi')
 
-	can_hold = list(/obj/item/weapon/melee/baton/stunstaff)
+	can_hold = list(/obj/items/weapons/melee/baton/fluff/stunstaff)
 
 	w_class = ITEMSIZE_HUGE
 	max_w_class = ITEMSIZE_HUGE
 	max_storage_space = 16
 
-/obj/item/weapon/storage/box/stunstaff/New()
+/obj/item/weapon/storage/box/fluff/stunstaff/New()
 	..()
-	new /obj/item/weapon/melee/baton/stunstaff(src)
+	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)
