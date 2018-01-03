@@ -98,7 +98,7 @@ var/list/global/map_templates = list()
 	admin_notice("<span class='danger'>[i] pipe\s initialized.</span>", R_DEBUG)
 
 	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
-	makepowernets()
+	SSmachines.makepowernets()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
