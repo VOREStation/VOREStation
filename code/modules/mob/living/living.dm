@@ -113,9 +113,6 @@ default behaviour is:
 			if(!can_move_mob(tmob, 0, 0))
 				now_pushing = 0
 				return
-			if(a_intent == I_HELP || src.restrained())
-				now_pushing = 0
-				return
 
 			// VOREStation Edit - Begin
 			// Handle grabbing, stomping, and such of micros!
@@ -129,6 +126,10 @@ default behaviour is:
 					now_pushing = 0
 					return
 			// VOREStation Edit - End
+
+			if(a_intent == I_HELP || src.restrained())
+				now_pushing = 0
+				return
 
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
