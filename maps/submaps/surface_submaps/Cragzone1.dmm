@@ -1,6 +1,6 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/Cragzone1)
-"c" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Cragzone1)
+"b" = (/turf/template_noop,/area/submap/Cragzone1)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Cragzone1)
 "d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Cragzone1)
 "e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Cragzone1)
 

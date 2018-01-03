@@ -6,8 +6,6 @@
 "f" = (/obj/structure/closet/crate/trashcart,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
 "g" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
 "h" = (/obj/random/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
-"i" = (/turf/simulated/floor/outdoors/snow,/area/submap/SnowR1)
-"j" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/snow,/area/submap/SnowR1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -29,18 +27,5 @@ abbbccccccccccccbbba
 abbbbbcccccccbcbbbba
 abbbbbbbbbbbbbbbbdba
 abdbbbbbbbbbbbbbbbba
-abbccccchggggcccibba
-abbcccccggggiiiiiiba
-abbcciiiiiiiiiijiiba
-abbciiiiiiiiiiiiiiba
-abbiiiiiiiiiiiiiiiia
-abbbiiiiiijiiiiiiiba
-abbbjiiiiiiiiiiiiiba
-abiiiiiiiiicccccibba
-abbiiiiiccccccccibba
-abbicccccccccccciiba
-abbbbiccccccciciibba
-abbbbbiiiiiiiiiiidba
-abdbbbbiiiiiiiibbbba
 aaaaaaaaaaaaaaaaaaaa
 "}
