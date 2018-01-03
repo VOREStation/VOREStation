@@ -54,7 +54,7 @@
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
 
-/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 17, list/splitJobs = list("Chief Medical Officer"))
+/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 18, list/splitJobs = list("Chief Medical Officer"))
 	if(!job_master)
 		return
 
@@ -70,13 +70,14 @@
 	if (!job_master)		return
 	for(var/datum/job/job in job_master.occupations)
 
-		index += 1
-		if((index >= limit) || (job.title in splitJobs))
+		if((++index >= limit) || (job.title in splitJobs))
+/*******
 			if((index < limit) && (lastJob != null))
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
-				//the last job's selection color. Creating a rather nice effect.
-				for(var/i = 0, i < (limit - index), i += 1)
-					. += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
+				//the last job's selection color and blank buttons that do nothing. Creating a rather nice effect.
+				for(var/i = 0, i < (limit - index), i++)
+					. += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>//>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
+*******/
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
 
