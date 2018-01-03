@@ -126,6 +126,8 @@
 "cv" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; pixel_y = 0; teleport_x = 81; teleport_y = 91; teleport_z = 12},/turf/simulated/floor/tiled/steel,/area/houseboat)
 "cw" = (/obj/effect/step_trigger/teleporter{icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; pixel_y = 0; teleport_x = 82; teleport_y = 91; teleport_z = 12},/turf/simulated/floor/tiled/steel,/area/houseboat)
 "cx" = (/obj/effect/step_trigger/teleporter{dir = 2; icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; teleport_x = 79; teleport_y = 86; teleport_z = 12},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
+"cy" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/obj/item/device/healthanalyzer/advanced,/turf/simulated/floor/tiled/white,/area/houseboat)
+"cz" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/item/roller/adv,/turf/simulated/floor/tiled/white,/area/houseboat)
 "cZ" = (/turf/simulated/floor/reinforced{name = "Holodeck Projector Floor"},/area/houseboat/holodeck_area)
 "fc" = (/turf/simulated/floor/carpet/blue,/area/houseboat)
 "fd" = (/turf/simulated/floor/wood,/area/houseboat)
@@ -154,8 +156,6 @@
 "fK" = (/turf/simulated/floor/tiled/techmaint,/area/houseboat)
 "fL" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
 "fN" = (/turf/simulated/floor/tiled/white,/area/houseboat)
-"fO" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/turf/simulated/floor/tiled/white,/area/houseboat)
-"fP" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/simulated/floor/tiled/white,/area/houseboat)
 "fQ" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/techmaint,/area/houseboat)
 "fR" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
 "fS" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/tiled/techmaint,/area/houseboat)
@@ -366,7 +366,7 @@ acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblblfxfxblblblblblacacacacacacacacacacacacacacacacacbljcjdfBjebljnjpjpjqblacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblfyfzfAblfBjZblfCfEfGblblacacacacacacacacacacacacacacacacblblblfBfBbljnjrjtjKblacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcifIfIfJblfBiYbljUfKfKjTblacacacacacacacacacacacacacacacacacacblfBfBjdfIjNjNfIblacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdcmfNfOfPblfBfBblfQfKfRfSclacacacacacacacacacacacacacacacacblblblgkgkblblblblblblacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdcmfNcyczblfBfBblfQfKfRfSclacacacacacacacacacacacacacacacacblblblgkgkblblblblblblacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdcnfNfUfVbRfBfBbRfKfKfKfLclacacacacacacacacacacacacacacacacblcZcZcZcZcZbMblacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblfNfNfNfWbRfBfBbRfKfKfXfYblblacacacacacacacacacacacacacacacblcZcZcZcZcZbNblacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcogafNfNgbbRfBfBbRfKfKgcgdgeblacacacacacacacacacacacacacacacblcZcZcZcZcZbPblacacacacacacacac
