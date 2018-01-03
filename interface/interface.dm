@@ -97,8 +97,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t2 = disarm-intent
 \t3 = grab-intent
 \t4 = harm-intent
-\tCtrl = drag
-\tShift = examine
+\tCtrl+Click = pull
+\tShift+Click = examine
 </font>"}
 
 	var/other = {"<font color='purple'>
@@ -148,8 +148,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t3 = activate module 3
 \t4 = toggle intents
 \t5 = emote
-\tCtrl = drag
-\tShift = examine
+\tCtrl+Click = pull
+\tShift+Click = examine
 </font>"}
 
 	var/robot_other = {"<font color='purple'>
