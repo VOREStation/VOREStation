@@ -122,7 +122,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tF2 = ooc
 \tF3 = say
 \tF4 = emote
-\tDEL = pull
+\tDEL = stop pulling
 \tINS = cycle-intents-right
 \tHOME = drop
 \tPGUP = swap-hand
@@ -171,7 +171,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tF2 = ooc
 \tF3 = say
 \tF4 = emote
-\tDEL = pull
+\tDEL = stop pulling
 \tINS = toggle intents
 \tPGUP = cycle active modules
 \tPGDN = activate held object
