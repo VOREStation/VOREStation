@@ -305,6 +305,13 @@ item_path: /obj/item/weapon/storage/box/fluff/morxaina
 }
 
 {
+ckey: jacknoir413
+character_name: Areax Third
+item_path: /obj/item/weapon/storage/box/fluff/stunstaff
+req_titles: Security Officer
+}
+
+{
 ckey: jacobdragon
 character_name: Earthen Breath
 item_path: /obj/item/clothing/under/fluff/earthenbreath
@@ -889,10 +896,4 @@ item_path: /obj/item/clothing/head/fluff/xeno
 ckey: zodiacshadow
 character_name: Nehi Maximus
 item_path: /obj/item/device/radio/headset/fluff/zodiacshadow
-}
-
-{
-ckey: jacknoir413
-character_name: Areax Third
-item_path: /obj/item/weapon/storage/box/fluff/stunstaff
 }
