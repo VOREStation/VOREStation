@@ -1670,7 +1670,7 @@
 		..()
 
 //jacknoir413:Areax Third
-/obj/items/weapon/melee/baton/fluff/stunstaff
+/obj/item/weapon/melee/baton/fluff/stunstaff
 	name = "Electrostaff"
 	desc = "Six-foot long staff from dull, rugged metal, with two thin spikes protruding from each end. Small etching near to the middle of it reads 'Children Of Nyx Facilities: Product No. 12'."
 	icon = 'icons/vore/custom_items_vr.dmi'
@@ -1746,7 +1746,7 @@
 	update_held_icon()
 	add_fingerprint(user)
 
-/obj/items/weapon/storage/box/fluff/stunstaff
+/obj/item/weapon/storage/box/fluff/stunstaff
 	name = "Electrostaff sheath"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "holster_stunstaff"
@@ -1754,12 +1754,12 @@
 	slot_flags = SLOT_BACK
 	item_icons = list(slot_back_str = 'icons/vore/custom_onmob_vr.dmi')
 
-	can_hold = list(/obj/items/weapon/melee/baton/fluff/stunstaff)
+	can_hold = list(/obj/item/weapon/melee/baton/fluff/stunstaff)
 
 	w_class = ITEMSIZE_HUGE
 	max_w_class = ITEMSIZE_HUGE
 	max_storage_space = 16
 
-/obj/items/weapon/storage/box/fluff/stunstaff/New()
+/obj/item/weapon/storage/box/fluff/stunstaff/New()
 	..()
 	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)
