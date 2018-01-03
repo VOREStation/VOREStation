@@ -25,7 +25,7 @@
 /obj/item/weapon/spell/radiance/Destroy()
 	processing_objects -= src
 	log_and_message_admins("has stopped maintaining [src].")
-	..()
+	return ..()
 
 /obj/item/weapon/spell/radiance/process()
 	var/turf/T = get_turf(src)

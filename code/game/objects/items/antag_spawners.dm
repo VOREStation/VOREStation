@@ -12,7 +12,7 @@
 	sparks.attach(loc)
 
 /obj/item/weapon/antag_spawner/Destroy()
-	qdel(sparks)
+	qdel_null(sparks)
 	return ..()
 
 /obj/item/weapon/antag_spawner/proc/spawn_antag(client/C, turf/T)
