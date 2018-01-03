@@ -875,6 +875,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
+			appearance_flags &= ~PIXEL_SCALE
 			compile_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()
