@@ -454,11 +454,11 @@
 	playsound(R.loc, strsound, 50, 1)
 
 	if(escapable) //If the stomach has escapable enabled.
-		R << "<span class='warning'>You attempt to climb out of \the [name].</span>"
-		owner << "<span class='warning'>Someone is attempting to climb out of your [name]!</span>"
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
+			R << "<span class='warning'>You start to climb out of \the [name].</span>"
+			owner << "<span class='warning'>Someone is attempting to climb out of your [name]!</span>"
 			if(do_after(R, escapetime))
-				if((escapable) && (R in internal_contents)) //Does the owner still have escapable enabled?
+				if((escapable) && (R in internal_contents) && !R.absorbed) //Does the owner still have escapable enabled?
 					release_specific_contents(R)
 					R << "<span class='warning'>You climb out of \the [name].</span>"
 					owner << "<span class='warning'>[R] climbs out of your [name]!</span>"
@@ -467,10 +467,10 @@
 					return
 				else if(!(R in internal_contents)) //Aren't even in the belly. Quietly fail.
 					return
-			else //Belly became inescapable.
-				R << "<span class='warning'>Your attempt to escape [name] has failed!</span>"
-				owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
-				return
+				else //Belly became inescapable.
+					R << "<span class='warning'>Your attempt to escape [name] has failed!</span>"
+					owner << "<span class='notice'>The attempt to escape from your [name] has failed!</span>"
+					return
 
 		else if(prob(transferchance) && istype(transferlocation)) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
 			var/location_found = 0
@@ -499,20 +499,20 @@
 			transfer_contents(R, transferlocation)
 			return
 
-		else if(prob(absorbchance)) //After that, let's have it run the absorb chance.
-			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
-			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
+		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to cling more tightly...</span>"
+			owner << "<span class='warning'>You feel your [name] start to cling onto its contents...</span>"
 			digest_mode = DM_ABSORB
 			return
 
-		else if(prob(digestchance)) //Finally, let's see if it should run the digest chance.
+		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
 			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
 			digest_mode = DM_DIGEST
 			return
 		else //Nothing interesting happened.
-			R << "<span class='warning'>But make no progress in escaping [owner]'s [name].</span>"
-			owner << "<span class='warning'>But appears to be unable to make any progress in escaping your [name].</span>"
+			R << "<span class='warning'>You make no progress in escaping [owner]'s [name].</span>"
+			owner << "<span class='warning'>Your prey appears to be unable to make any progress in escaping your [name].</span>"
 			return
 
 //Transfers contents from one belly to another

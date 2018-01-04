@@ -36,6 +36,8 @@
 /mob/living/simple_animal/Destroy()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
+		for(var/mob/living/M in B.internal_contents) // because release_all_contents doesn't release absorbed things
+			M.absorbed = 0
 		B.release_all_contents() // When your stomach is empty
 	prey_excludes.Cut()
 	. = ..()
@@ -127,6 +129,8 @@
 /mob/living/simple_animal/death()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
+		for(var/mob/living/M in B.internal_contents) // because release_all_contents doesn't release absorbed things
+			M.absorbed = 0
 		B.release_all_contents() // When your stomach is empty
 	..() // then you have my permission to die.
 
