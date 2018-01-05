@@ -290,6 +290,14 @@
 	id = "mech_taser"
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
 
+/datum/design/item/mecha/shocker
+	name = "Exosuit Electrifier"
+	desc = "A device to electrify the external portions of a mecha in order to increase its defensive capabilities."
+	id = "mech_shocker"
+	req_tech = list(TECH_COMBAT = 3, TECH_POWER = 6, TECH_MAGNET = 1)
+	build_path = /obj/item/mecha_parts/mecha_equipment/shocker
+	materials = list(DEFAULT_WALL_MATERIAL = 3500, "gold" = 750, "glass" = 1000)
+
 /datum/design/item/mecha/lmg
 	name = "Ultra AC 2"
 	id = "mech_lmg"
@@ -407,7 +415,13 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "gold" = 750, "silver" = 1500, "glass" = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
 
-//obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
+/datum/design/item/mecha/jetpack
+	name = "Ion Jetpack"
+	desc = "Using directed ion bursts and cunning solar wind reflection technique, this device enables controlled space flight."
+	id = "mech_jetpack"
+	req_tech = list(TECH_ENGINEERING = 3, TECH_MAGNET = 4) //One less magnet than the actual got-damn teleporter.
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/jetpack
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "silver" = 300, "glass" = 600)
 
 /datum/design/item/mecha/phoron_generator
 	desc = "Phoron Reactor"

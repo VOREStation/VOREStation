@@ -62,8 +62,8 @@
 					illusion.emote(what_to_emote)
 
 /obj/item/weapon/spell/illusion/Destroy()
-	if(illusion)
-		qdel(illusion)
+	qdel_null(illusion)
+	copied = null
 	return ..()
 
 // Makes a tiny overlay of the thing the player has copied, so they can easily tell what they currently have.

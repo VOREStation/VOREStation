@@ -1,41 +1,40 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/template_noop,/area/submap/Rocky2)
-"c" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rocky2)
-"e" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"f" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky2)
-"g" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"h" = (/obj/structure/flora/ausbushes/grassybush,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"i" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"j" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"k" = (/obj/structure/flora/ausbushes/sunnybush,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"l" = (/obj/structure/flora/ausbushes/stalkybush,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
-"m" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/grass/sif,/area/submap/Rocky2)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rocky2)
+"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rocky2)
+"e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky2)
+"f" = (/obj/structure/flora/tree/pine,/turf/template_noop,/area/submap/Rocky2)
+"g" = (/obj/structure/flora/ausbushes/grassybush,/turf/template_noop,/area/submap/Rocky2)
+"h" = (/obj/structure/flora/ausbushes/fullgrass,/turf/template_noop,/area/submap/Rocky2)
+"i" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/template_noop,/area/submap/Rocky2)
+"j" = (/obj/structure/flora/ausbushes/sunnybush,/turf/template_noop,/area/submap/Rocky2)
+"k" = (/obj/structure/flora/ausbushes/stalkybush,/turf/template_noop,/area/submap/Rocky2)
+"l" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Rocky2)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa
-abbbbbbcccbbbbbbccddcbbba
-abbbbcccdddddddddcdddcbea
-abbccccddddddddcccddddcca
-acccffdddddddddccdddddcca
-agccfdddddddcddcdddddddca
-acccfdddddddhcccdddddddca
-abcccddddddcccccddddddfca
-abbccdddddcicgcccddddfffa
-abcccccdddccccccjddddfffa
-abbccccdddcecciccddddfffa
-abecccddddccccccccdddfffa
-abcccddddcciccccccddffffa
-acccddddddgcccecccddddffa
-accfddddddccccccgjddddffa
-accfddddddchciccccddddcca
-accffdddddccccccccdddddca
-accffdddddkcecccicdddddba
-abccfdddddcccccccddddddba
-abbcfdddffcclccccddddddba
-abbccdddffddccgcdddddccca
-accccdddfffddddddddddccca
-acmccdddcfddddddcccdbbmba
-abcbbbccccccdddcccccbbbba
+abbbbbbbbbbbbbbbbbccbbbba
+abbbbbbbcccccccccbcccbbda
+abbbbbbccccccccbbbccccbba
+abbbeecccccccccbbcccccbba
+afbbecccccccbccbcccccccba
+abbbecccccccgbbbcccccccba
+abbbbccccccbbbbbcccccceba
+abbbbcccccbhbfbbbcccceeea
+abbbbbbcccbbbbbbicccceeea
+abbbbbbcccbdbbhbbcccceeea
+abdbbbccccbbbbbbbbccceeea
+abbbbccccbbhbbbbbbcceeeea
+abbbccccccfbbbdbbbcccceea
+abbeccccccbbbbbbficccceea
+abbeccccccbgbhbbbbccccbba
+abbeecccccbbbbbbbbcccccba
+abbeecccccjbdbbbhbcccccba
+abbbecccccbbbbbbbccccccba
+abbbeccceebbkbbbbccccccba
+abbbbccceeccbbfbcccccbbba
+abbbbccceeeccccccccccbbba
+ablbbcccbeccccccbbbcbblba
+abbbbbbbbbbbcccbbbbbbbbba
 aaaaaaaaaaaaaaaaaaaaaaaaa
 "}

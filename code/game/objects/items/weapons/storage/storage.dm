@@ -592,8 +592,9 @@
 
 /obj/item/weapon/storage/attack_self(mob/user as mob)
 	if((user.get_active_hand() == src) || (isrobot(user)) && allow_quick_empty)
-		src.quick_empty()
-		return 1 // Is this return even needed?
+		if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
+			src.quick_empty()
+			return 1
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.

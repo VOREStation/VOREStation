@@ -180,7 +180,6 @@
 /obj/machinery/atmospherics/tvalve/process()
 	..()
 	. = PROCESS_KILL
-	//machines.Remove(src)
 
 	return
 
