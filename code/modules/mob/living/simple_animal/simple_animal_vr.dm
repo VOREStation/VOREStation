@@ -36,7 +36,7 @@
 /mob/living/simple_animal/Destroy()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
-		B.release_all_contents() // When your stomach is empty
+		B.release_all_contents(include_absorbed = TRUE) // When your stomach is empty
 	prey_excludes.Cut()
 	. = ..()
 
@@ -130,7 +130,7 @@
 /mob/living/simple_animal/death()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
-		B.release_all_contents() // When your stomach is empty
+		B.release_all_contents(include_absorbed = TRUE) // When your stomach is empty
 	..() // then you have my permission to die.
 
 // Simple animals have only one belly.  This creates it (if it isn't already set up)
