@@ -1,6 +1,7 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
 	var/digestable = 1					// Can the mob be digested inside a belly?
+	var/allowmobvore = 1				// Will simplemobs attempt to eat the mob?
 	var/vore_selected					// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = 0					// If a mob is absorbed into another
@@ -232,6 +233,7 @@
 	var/datum/vore_preferences/P = client.prefs_vr
 
 	P.digestable = src.digestable
+	P.allowmobvore = src.allowmobvore
 	P.belly_prefs = src.vore_organs
 	P.vore_taste = src.vore_taste
 	P.nif_examine = src.nif_examine
@@ -252,6 +254,7 @@
 	var/datum/vore_preferences/P = client.prefs_vr
 
 	src.digestable = P.digestable
+	src.allowmobvore = P.allowmobvore
 	src.vore_organs = list()
 	src.vore_taste = P.vore_taste
 	src.nif_examine = P.nif_examine
