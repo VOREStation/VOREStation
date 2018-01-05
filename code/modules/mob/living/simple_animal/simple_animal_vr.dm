@@ -75,6 +75,9 @@
 	if(vore_ignores_undigestable && !M.digestable) //Don't eat people with nogurgle prefs
 		ai_log("vr/wont eat [M] because I am picky", 3)
 		return 0
+	if(!M.allowmobvore) // Don't eat people who don't want to be ate by mobs
+		ai_log("vr/wont eat [M] because they don't allow mob vore", 3)
+		return 0
 	if(M in prey_excludes) // They're excluded
 		ai_log("vr/wont eat [M] because they are excluded", 3)
 		return 0
