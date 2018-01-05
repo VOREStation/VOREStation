@@ -9,11 +9,11 @@
 	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
 	item_state = null	//so the human update icon uses the icon_state instead
 	fire_sound = 'sound/weapons/wave.ogg'
-	charge_cost = 100
+	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
 	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
-	self_recharge = 1
+	battery_lock = 1
 	var/size_set_to = 1
 	firemodes = list(
 		list(mode_name		= "select size",
