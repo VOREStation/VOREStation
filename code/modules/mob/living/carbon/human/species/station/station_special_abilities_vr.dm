@@ -511,13 +511,12 @@
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_lethal()
-	set name = "Lethally Drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
-	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to drain their lifeforce. You may only do this to one person at a time."
+	set name = "Lethally drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
+	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to drain them lethally. You may only do this to one person at a time."
 	set category = "Abilities"
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
 
-	var/mob/living/carbon/human/C = src
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
 		to_chat(src, "<span class='warning'>You must be grabbing a creature in your active hand to drain them.</span>")
@@ -532,29 +531,29 @@
 		to_chat(src, "<span class='warning'>You must have a tighter grip to drain this creature.</span>")
 		return
 
-	if(C.absorbing_prey)
+	if(absorbing_prey)
 		to_chat(src, "<span class='warning'>You are already draining someone!</span>")
 		return
 
-	C.absorbing_prey = 1
+	absorbing_prey = 1
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
 				if(T.stat == DEAD)
-					to_chat(C, "<span class='warning'>[T] is dead and can not be drained..</span>")
+					to_chat(src, "<span class='warning'>[T] is dead and can not be drained..</span>")
 					return
-				to_chat(C, "<span class='notice'>You begin to drain [T]...</span>")
-				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>")
-				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
+				to_chat(src, "<span class='notice'>You begin to drain [T]...</span>")
+				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [src] begins to drain you!</span>")
+				nutrition = (nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
 			if(2)
-				to_chat(C, "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>")
-				C.visible_message("<span class='danger'>[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
-				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>")
-				C.nutrition = (C.nutrition + (T.nutrition*0.1))
+				to_chat(src, "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>")
+				visible_message("<span class='danger'>[src] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
+				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [src] drains you!</span>")
+				nutrition = (nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
 			if(3 to 48) //Should be more than enough to get under 100.
-				C.nutrition = (C.nutrition + (T.nutrition*0.1)) //Just keep draining them.
+				nutrition = (nutrition + (T.nutrition*0.1)) //Just keep draining them.
 				T.nutrition = T.nutrition*0.9
 				T.eye_blurry += 5 //Some eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done.
 				if(T.nutrition < 100)//Did they drop below 100 nutrition? If so, do one last check then jump to stage 50 (Lethal!)
@@ -564,48 +563,47 @@
 					stage = 3 //Otherwise, advance to stage 50 (Lethal draining.)
 			if(50)
 				if(!T.digestable)
-					to_chat(C, "<span class='danger'>You feel invigorated as you completely drain [T] and begin to move onto draining their lifeforce before realizing they have too strong of a grasp on their lifeforce for you to do so!</span>")
-					to_chat(T, "<span class='danger'>You feel completely drained as [C] finishes draining you and begins to move onto your lifeforce, but you have too strong a grasp on it for them to do so!</span>")
-					C.nutrition = (C.nutrition + T.nutrition)
+					to_chat(src, "<span class='danger'>You feel invigorated as you completely drain [T] and begin to move onto draining them lethally before realizing they are too strong for you to do so!</span>")
+					to_chat(T, "<span class='danger'>You feel completely drained as [src] finishes draining you and begins to move onto draining you lethally, but you are too strong for them to do so!</span>")
+					nutrition = (nutrition + T.nutrition)
 					T.nutrition = 0 //Completely drained of everything.
 					var/damage_to_be_applied = T.species.total_health //Get their max health.
 					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
+					absorbing_prey = 0 //Clean this up before we return
 					return
-				to_chat(C, "<span class='notice'>You begin to drain [T]'s lifeforce...</span>")
-				to_chat(T, "<span class='danger'>An odd sensation flows through your body as you feel your lifeforce slowly being sucked away into [C]!</span>")
+				to_chat(src, "<span class='notice'>You begin to drain [T] completely...</span>")
+				to_chat(T, "<span class='danger'>An odd sensation flows through your body as you as [src] begins to drain you to dangerous levels!</span>")
 			if(51 to 98)
 				if(T.stat == DEAD)
-					to_chat(src, "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>")
 					T.apply_damage(500, OXY) //Bit of fluff.
-					C.absorbing_prey = 0
+					absorbing_prey = 0
 					to_chat(src, "<span class='notice'>You have completely drained [T], killing them.</span>")
 					to_chat(T, "<span class='danger'size='5'>You feel... So... Weak...</span>")
-					T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
+					T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(src)]</font>")
 					src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(src)]")
 					return
-				if(C.drain_finalized == 1 || T.getBrainLoss() < 55) //Let's not kill them with this unless the drain is finalized. This will still stack up to 55, since 60 is lethal.
+				if(drain_finalized == 1 || T.getBrainLoss() < 55) //Let's not kill them with this unless the drain is finalized. This will still stack up to 55, since 60 is lethal.
 					T.adjustBrainLoss(5) //Will kill them after a short bit!
 				T.eye_blurry += 20 //A lot of eye blurry just to signify to the prey that they are still being drained. This'll stack up over time, leave the prey a bit more "weakened" after the deed is done. More than non-lethal due to their lifeforce being sucked out
-				C.nutrition = (C.nutrition + 25) //Assuming brain damage kills at 60, this gives 300 nutrition.
+				nutrition = (nutrition + 25) //Assuming brain damage kills at 60, this gives 300 nutrition.
 			if(99)
-				if(C.drain_finalized != 1)
+				if(drain_finalized != 1)
 					stage = 51
 			if(100) //They shouldn't  survive long enough to get here, but just in case.
-				to_chat(src, "<span class='warning'>You suck out the last remaining portion of [T]'s lifeforce.</span>")
 				T.apply_damage(500, OXY) //Kill them.
-				C.absorbing_prey = 0
-				to_chat(C, "<span class='notice'>You have completely drained [T], killing them in the process.</span>")
+				absorbing_prey = 0
+				to_chat(src, "<span class='notice'>You have completely drained [T], killing them in the process.</span>")
 				to_chat(T, "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>")
-				C.visible_message("<span class='danger'>[C] seems to finish whatever they were doing to [T].</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+				visible_message("<span class='danger'>[src] seems to finish whatever they were doing to [T].</span>")
+				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(src)]</font>")
+				src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
+				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(src)]")
 				return
 
-		if(!do_mob(C, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
-			to_chat(C, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
-			C.absorbing_prey = 0
+		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
+			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
+			absorbing_prey = 0
 			return
 
 /mob/living/carbon/human/proc/slime_feed()
