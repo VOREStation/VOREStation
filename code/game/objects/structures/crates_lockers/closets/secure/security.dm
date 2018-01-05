@@ -147,8 +147,9 @@
 		new /obj/item/ammo_magazine/m44/rubber(src)
 		new /obj/item/ammo_magazine/m44(src)
 		new /obj/item/ammo_magazine/m44(src)*/ // NO YOU DO NOT GET A .44 MAGNUM! -Ace
-		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/weapon/cell/device/weapon(src)
+		//new /obj/item/weapon/gun/energy/gun(src) //VOREStation Edit
+		new /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos(src) //VOREStation Edit - No need with NSFW
+		//new /obj/item/weapon/cell/device/weapon(src) //VOREStation Edit - No need with NSFW
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
