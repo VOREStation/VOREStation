@@ -128,6 +128,8 @@
 "cx" = (/obj/effect/step_trigger/teleporter{dir = 2; icon = 'icons/obj/stairs.dmi'; invisibility = 0; name = "stairs"; teleport_x = 79; teleport_y = 86; teleport_z = 12},/turf/simulated/floor/tiled/techfloor,/area/houseboat)
 "cy" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/obj/item/device/healthanalyzer/advanced,/turf/simulated/floor/tiled/white,/area/houseboat)
 "cz" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table/standard,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/item/roller/adv,/turf/simulated/floor/tiled/white,/area/houseboat)
+"cA" = (/obj/machinery/vending/food/arojoan{density = 0; pixel_x = -32},/turf/simulated/floor/wood,/area/houseboat)
+"cB" = (/obj/machinery/vending/boozeomat{density = 0; pixel_x = 32},/turf/simulated/floor/wood,/area/houseboat)
 "cZ" = (/turf/simulated/floor/reinforced{name = "Holodeck Projector Floor"},/area/houseboat/holodeck_area)
 "fc" = (/turf/simulated/floor/carpet/blue,/area/houseboat)
 "fd" = (/turf/simulated/floor/wood,/area/houseboat)
@@ -343,8 +345,6 @@
 "kf" = (/obj/structure/table/standard,/obj/item/weapon/material/knife/butch,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/tiled/white,/area/houseboat)
 "kh" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/unsimulated/wall,/area/space)
 "ki" = (/obj/structure/table/standard,/obj/machinery/microwave,/turf/simulated/floor/tiled/white,/area/houseboat)
-"kj" = (/obj/machinery/vending/food/arojoan{pixel_x = -32},/turf/simulated/floor/wood,/area/houseboat)
-"kk" = (/obj/machinery/vending/boozeomat{pixel_x = 32},/turf/simulated/floor/wood,/area/houseboat)
 
 (1,1,1) = {"
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblacacacacacacacacacacacacacacacacaccecececececececececececececececececeacacac
@@ -360,7 +360,7 @@ acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfdfcfkflflfmfcfdclacacacacacacacacacacacacacacacacacacacblfIfIiRiRblacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaccdfdfciDkeflfmfcfdclacacacacacacacacacacacacacacacacacacacbljSfIfIfIblacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblfffcfkflflfmfcfhblacacacacacacacacacacacacacacacacacacaciWbnfIiXbnblacacacacacacacacac
-acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbnkjfcfcfcfcfcfckkbnblacacacacacacacacacacacacacacacacacblblblgkgkblblacacacacacacacacac
+acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblbncAfcfcfcfcfcfccBbnblacacacacacacacacacacacacacacacacacblblblgkgkblblacacacacacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblcgfofofofofofofofofpblacacacacacacacacacacacacacacacacacblfBjafBfBjablblblblblacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblchfnkibsfNfNbrfwfqkfblacacacacacacacacacacacacacacacacacblcxblfBfBblfIiSiSjSblacacacacac
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacblblblblblfxfxblblblblblacacacacacacacacacacacacacacacacacbljcjdfBjebljnjpjpjqblacacacacac
