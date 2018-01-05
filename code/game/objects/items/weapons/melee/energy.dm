@@ -97,6 +97,12 @@
 	icon_state = initial(icon_state)
 	to_chat(user, "<span class='notice'>\The [src] is de-energised. It's just a regular axe now.</span>")
 
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/melee/energy/axe/pre_attack(var/mob/living/target, var/mob/living/user)
+	if(istype(target))
+		cleave(user, target)
+	..()
+
 /obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
 	visible_message("<span class='warning'>\The [user] swings \the [src] towards \his head! It looks like \he's trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)

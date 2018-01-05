@@ -415,7 +415,7 @@
 "hY" = (/obj/machinery/radiocarbon_spectrometer,/obj/machinery/firealarm{dir = 4; pixel_x = 24},/turf/simulated/floor/tiled/dark,/area/surface/outpost/research/xenoarcheology/analysis)
 "hZ" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/emergency,/obj/item/clothing/accessory/armband/science,/obj/item/clothing/glasses/science,/obj/item/device/suit_cooling_unit,/obj/item/weapon/extinguisher,/obj/item/device/flashlight,/turf/simulated/floor/plating,/area/surface/outpost/research/xenoarcheology/emergencystorage)
 "ia" = (/obj/structure/cable/ender{icon_state = "1-2"; id = "surface_cave"},/turf/simulated/floor/plating{tag = "icon-asteroidplating2"; icon_state = "asteroidplating2"},/area/mine/explored)
-"ib" = (/turf/unsimulated/wall,/area/mine/unexplored)
+"ib" = (/turf/simulated/wall/dungeon,/area/mine/unexplored)
 "ic" = (/obj/effect/step_trigger/teleporter/mine/from_mining,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/space)
 
 (1,1,1) = {"
@@ -675,4 +675,3 @@ aaababababababababababababababababababababababababababababababababababababababab
 aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababiaacacacababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaibicicicaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

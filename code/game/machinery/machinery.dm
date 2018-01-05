@@ -118,16 +118,12 @@ Class Procs:
 	..(l)
 	if(d)
 		set_dir(d)
-	if(!machinery_sort_required && ticker)
-		dd_insertObjectList(machines, src)
-	else
-		machines += src
-		machinery_sort_required = 1
+	START_MACHINE_PROCESSING(src)
 	if(circuit)
 		circuit = new circuit(src)
 
 /obj/machinery/Destroy()
-	machines -= src
+	STOP_MACHINE_PROCESSING(src)
 	if(component_parts)
 		for(var/atom/A in component_parts)
 			if(A.loc == src) // If the components are inside the machine, delete them.

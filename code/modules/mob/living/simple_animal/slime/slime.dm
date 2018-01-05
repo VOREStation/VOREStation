@@ -85,9 +85,11 @@
 		/mob/living/simple_animal/slime/purple
 	)
 	var/type_on_death = null // Set this if you want dying slimes to split into a specific type and not their type.
+	var/rainbow_core_candidate = TRUE // If false, rainbow cores cannot make this type randomly.
 
 	var/reagent_injected = null // Some slimes inject reagents on attack.  This tells the game what reagent to use.
 	var/injection_amount = 5 // This determines how much.
+
 
 	can_enter_vent_with = list(
 	/obj/item/clothing/head,

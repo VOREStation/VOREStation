@@ -178,21 +178,21 @@
 /////// Shotgun
 
 /datum/category_item/autolathe/arms/shotgun_clip_beanbag
-	name = "4-round 12g shell clip (beanbag)"
+	name = "2-round 12g speedloader (beanbag)"
 	path =/obj/item/ammo_magazine/clip/c12g/beanbag
 
 /datum/category_item/autolathe/arms/shotgun_clip_slug
-	name = "4-round 12g shell clip (slug)"
+	name = "2-round 12g speedloader (slug)"
 	path =/obj/item/ammo_magazine/clip/c12g
 	hidden = 1
 
 /datum/category_item/autolathe/arms/shotgun_clip_pellet
-	name = "4-round 12g shell clip (buckshot)"
+	name = "2-round 12g speedloader (buckshot)"
 	path =/obj/item/ammo_magazine/clip/c12g/pellet
 	hidden = 1
 
 /datum/category_item/autolathe/arms/shotgun_clip_beanbag
-	name = "4-round 12g shell clip (beanbag)"
+	name = "2-round 12g speedloader (beanbag)"
 	path =/obj/item/ammo_magazine/clip/c12g/beanbag
 
 /* Commented out until autolathe stuff is decided/fixed. Will probably remove these entirely. -Spades
