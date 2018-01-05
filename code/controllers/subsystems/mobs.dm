@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = mob_list.Copy()
-		if(log_extensively) timelog = list("-Start- [world.tick_usage]")
+		if(log_extensively) timelog = list("-Start- [TICK_USAGE]")
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -37,9 +37,9 @@ SUBSYSTEM_DEF(mobs)
 			// Right now mob.Life() is unstable enough I think we need to use a try catch.
 			// Obviously we should try and get rid of this for performance reasons when we can.
 			try
-				var/time_before = world.tick_usage
+				var/time_before = TICK_USAGE
 				M.Life(times_fired)
-				var/time_after = world.tick_usage
+				var/time_after = TICK_USAGE
 				var/time_diff = time_after - time_before
 				if(log_extensively && (time_diff > 0.01)) timelog += list("[time_diff]% - [M] ([M.x],[M.y],[M.z])" = M)
 			catch(var/exception/e)

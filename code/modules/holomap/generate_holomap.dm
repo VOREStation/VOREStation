@@ -80,7 +80,7 @@ var/global/list/extraMiniMaps = list()
 				else if(IS_PATH(tile))
 					canvas.DrawBox(HOLOMAP_PATH, x + offset_x, y + offset_y)
 		// Check sleeping after each row to avoid *completely* destroying the server
-		if(world.tick_usage >= 80) sleep(world.tick_lag * 0.2)
+		CHECK_TICK
 	return canvas
 
 // Okay, what does this one do?
