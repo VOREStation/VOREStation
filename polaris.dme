@@ -1001,6 +1001,7 @@
 #include "code\game\objects\structures\alien_props.dm"
 #include "code\game\objects\structures\barsign.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"
+#include "code\game\objects\structures\bonfire.dm"
 #include "code\game\objects\structures\catwalk.dm"
 #include "code\game\objects\structures\coathanger.dm"
 #include "code\game\objects\structures\curtains.dm"
