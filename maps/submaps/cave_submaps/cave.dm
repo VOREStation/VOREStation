@@ -8,6 +8,10 @@
 #include "Mineshaft1.dmm"
 #include "Scave1.dmm"
 #include "crashed_ufo.dmm"
+#include "crystal1.dmm"
+#include "crystal2.dmm"
+#include "crystal3.dmm"
+#include "lost_explorer.dmm"
 #endif
 
 /datum/map_template/cave
@@ -46,8 +50,35 @@
 	mappath = 'maps/submaps/cave_submaps/Scave1.dmm'
 	cost = 5
 
+/datum/map_template/cave/crystal1
+	name = "Crystal Cave 1"
+	desc = "A small cave with glowing gems and diamonds."
+	mappath = 'maps/submaps/cave_submaps/crystal1.dmm'
+	cost = 5
+	allow_duplicates = TRUE
+
+/datum/map_template/cave/crystal2
+	name = "Crystal Cave 2"
+	desc = "A moderate sized cave with glowing gems and diamonds."
+	mappath = 'maps/submaps/cave_submaps/crystal2.dmm'
+	cost = 10
+	allow_duplicates = TRUE
+
+/datum/map_template/cave/crystal2
+	name = "Crystal Cave 3"
+	desc = "A large spiral of crystals with diamonds in the center."
+	mappath = 'maps/submaps/cave_submaps/crystal3.dmm'
+	cost = 15
+
 /datum/map_template/cave/crashed_ufo
 	name = "Crashed UFO"
 	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet it still seems to be running..."
 	mappath = 'maps/submaps/cave_submaps/crashed_ufo.dmm'
 	cost = 40
+
+/datum/map_template/cave/lost_explorer
+	name = "Lost Explorer"
+	desc = "The remains of an explorer who rotted away ages ago, and their equipment."
+	mappath = 'maps/submaps/cave_submaps/lost_explorer.dmm'
+	cost = 5
+	allow_duplicates = TRUE
