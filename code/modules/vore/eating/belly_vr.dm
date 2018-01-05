@@ -114,20 +114,22 @@
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
-/datum/belly/proc/release_all_contents()
+/datum/belly/proc/release_all_contents(var/include_absorbed = FALSE)
 	if (internal_contents.len == 0)
 		return 0
-	for (var/atom/movable/M in internal_contents)
+	for (var/M in internal_contents)
 		if(istype(M,/mob/living))
 			var/mob/living/ML = M
-			if(ML.absorbed)
+			if(ML.absorbed && !include_absorbed)
 				continue
+			ML.absorbed = FALSE
 
-		M.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
-		internal_contents -= M  // Remove from the belly contents
+		var/atom/movable/AM = M
+		AM.forceMove(owner.loc)  // Move the belly contents into the same location as belly's owner.
+		internal_contents -= AM  // Remove from the belly contents
 		var/datum/belly/B = check_belly(owner) // This makes sure that the mob behaves properly if released into another mob
 		if(B)
-			B.internal_contents += M
+			B.internal_contents += AM
 	items_preserved.Cut()
 	checked_slots.Cut()
 	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
