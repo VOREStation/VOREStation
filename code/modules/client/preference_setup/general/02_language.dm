@@ -12,6 +12,10 @@
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
 	if(!islist(pref.alternate_languages))	pref.alternate_languages = list()
+	if(pref.species)
+		var/datum/species/S = all_species[pref.species]
+		if(S && pref.alternate_languages.len > S.num_alternate_languages)
+			pref.alternate_languages.len = S.num_alternate_languages // Truncate to allowed length
 	if(isnull(pref.language_prefixes) || !pref.language_prefixes.len)
 		pref.language_prefixes = config.language_prefixes.Copy()
 
@@ -61,7 +65,7 @@
 				alert(user, "There are no additional languages available to select.")
 			else
 				var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
-				if(new_lang)
+				if(new_lang && pref.alternate_languages.len < S.num_alternate_languages)
 					pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
 
