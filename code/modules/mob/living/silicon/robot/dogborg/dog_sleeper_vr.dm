@@ -256,12 +256,12 @@
 	if(patient in contents)
 		if(patient_laststat != patient.stat)
 			if(patient.stat & DEAD)
-				hound.sleeper_r = 1
-				hound.sleeper_g = 0
+				hound.sleeper_r = TRUE
+				hound.sleeper_g = FALSE
 				patient_laststat = patient.stat
 			else
-				hound.sleeper_r = 0
-				hound.sleeper_g = 1
+				hound.sleeper_r = FALSE
+				hound.sleeper_g = TRUE
 				patient_laststat = patient.stat
 			//Update icon
 			hound.updateicon()
@@ -273,12 +273,12 @@
 		for(var/mob/living/carbon/human/C in contents)
 			patient = C
 			if(patient.stat & DEAD)
-				hound.sleeper_r = 1
-				hound.sleeper_g = 0
+				hound.sleeper_r = TRUE
+				hound.sleeper_g = FALSE
 				patient_laststat = patient.stat
 			else
-				hound.sleeper_r = 0
-				hound.sleeper_g = 1
+				hound.sleeper_r = FALSE
+				hound.sleeper_g = TRUE
 				patient_laststat = patient.stat
 			//Update icon and return new patient
 			hound.updateicon()
@@ -286,13 +286,13 @@
 
 	//Cleaning looks better with red on, even with nobody in it
 	if((cleaning && !patient) || (length(contents) > 11))
-		hound.sleeper_r = 1
-		hound.sleeper_g = 0
+		hound.sleeper_r = TRUE
+		hound.sleeper_g = FALSE
 
 	//Couldn't find anyone, and not cleaning
 	else if(!cleaning && !patient)
-		hound.sleeper_r = 0
-		hound.sleeper_g = 0
+		hound.sleeper_r = FALSE
+		hound.sleeper_g = FALSE
 
 	patient_laststat = null
 	patient = null
@@ -522,7 +522,7 @@
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
 			if(length(contents) > 11) //grow that tum after a certain junk amount
-				hound.sleeper_r = 1
+				hound.sleeper_r = TRUE
 				hound.updateicon()
 			if(UI_open == 1)
 				sleeperUI(usr)
@@ -537,7 +537,7 @@
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
 			if(length(contents) > 11) //grow that tum after a certain junk amount
-				hound.sleeper_r = 1
+				hound.sleeper_r = TRUE
 				hound.updateicon()
 			if(UI_open == 1)
 				sleeperUI(usr)
@@ -559,7 +559,7 @@
 			processing_objects.Add(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
-			hound.sleeper_r = 1
+			hound.sleeper_r = TRUE
 			hound.updateicon()
 			if(UI_open == 1)
 				sleeperUI(usr)

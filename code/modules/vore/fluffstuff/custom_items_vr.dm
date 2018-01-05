@@ -1668,3 +1668,98 @@
 		return
 	else
 		..()
+
+//jacknoir413:Areax Third
+/obj/item/weapon/melee/baton/fluff/stunstaff
+	name = "Electrostaff"
+	desc = "Six-foot long staff from dull, rugged metal, with two thin spikes protruding from each end. Small etching near to the middle of it reads 'Children Of Nyx Facilities: Product No. 12'."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	item_icons = list(slot_l_hand_str = 'icons/vore/custom_items_left_hand_vr.dmi', slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi')
+	icon_state = "stunstaff00"
+	var/base_icon = "stunstaff"
+	force = 5
+	sharp = 0
+	edge = 0
+	throwforce = 7
+	w_class = ITEMSIZE_HUGE
+	origin_tech = list(TECH_COMBAT = 2)
+	attack_verb = list("beaten")
+	lightcolor = "#CC33FF"
+
+	//Two Handed
+	var/wielded = 0
+	var/base_name = "stunstaff"
+
+/obj/item/weapon/melee/baton/fluff/stunstaff/New()
+	..()
+	bcell = new/obj/item/weapon/cell/device/weapon(src)
+	update_icon()
+	return
+
+/obj/item/weapon/melee/baton/fluff/stunstaff/update_held_icon()
+	var/mob/living/M = loc
+	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
+		wielded = 1
+		force = 15
+		name = "[base_name] (wielded)"
+		update_icon()
+	else
+		wielded = 0
+		force = 8
+		name = "[base_name]"
+	update_icon()
+	..()
+
+/obj/item/weapon/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+
+/obj/item/weapon/melee/baton/fluff/stunstaff/update_icon()
+	icon_state = "[base_icon][wielded][status]"
+	item_state = icon_state
+	if(status==1)
+		set_light(2, 2, lightcolor)
+	else
+		set_light(0)
+
+/obj/item/weapon/melee/baton/fluff/stunstaff/dropped()
+	..()
+	if(wielded)
+		wielded = 0
+		spawn(0)
+			update_held_icon()
+
+/obj/item/weapon/melee/baton/fluff/stunstaff/attack_self(mob/user)
+	if(bcell && bcell.charge > hitcost)
+		status = !status
+		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		if(status == 0)
+			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		else
+			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+	else
+		status = 0
+		user << "<span class='warning'>[src] is out of charge.</span>"
+	update_held_icon()
+	add_fingerprint(user)
+
+/obj/item/weapon/storage/box/fluff/stunstaff
+	name = "Electrostaff sheath"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "holster_stunstaff"
+	desc = "A sturdy synthetic leather sheath with matching belt and rubberized interior."
+	slot_flags = SLOT_BACK
+	item_icons = list(slot_back_str = 'icons/vore/custom_onmob_vr.dmi')
+
+	can_hold = list(/obj/item/weapon/melee/baton/fluff/stunstaff)
+
+	w_class = ITEMSIZE_HUGE
+	max_w_class = ITEMSIZE_HUGE
+	max_storage_space = 16
+
+/obj/item/weapon/storage/box/fluff/stunstaff/New()
+	..()
+	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)

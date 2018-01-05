@@ -42,13 +42,9 @@
 	station_networks = list()
 
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
-	unit_test_exempt_areas = list(
-		/area/ninja_dojo
-	)
+	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 
-	unit_test_exempt_from_atmos = list(
-		/area/tcomm/chamber
-	)
+	unit_test_exempt_from_atmos = list(/area/tcomm/chamber)
 
 
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
@@ -115,19 +111,19 @@
 /datum/map_z_level/southern_cross/surface
 	z = Z_LEVEL_SURFACE
 	name = "Planet"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/surface_mine
 	z = Z_LEVEL_SURFACE_MINE
 	name = "Planet"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/surface_wild
 	z = Z_LEVEL_SURFACE_WILD
 	name = "Wild"
-	flags = MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/misc

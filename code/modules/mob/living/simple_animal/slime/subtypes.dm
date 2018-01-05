@@ -209,9 +209,9 @@
 /mob/living/simple_animal/slime/dark_blue/get_cold_protection()
 	return 1 // This slime is immune to cold.
 
-// Surfave variant
-/mob/living/simple_animal/slime/dark_blue/wild
-	name = "wild slime"
+// Surface variant
+/mob/living/simple_animal/slime/dark_blue/feral
+	name = "feral slime"
 	desc = "The result of slimes escaping containment from some xenobiology lab. The slime makes other entities near it feel much colder, \
 	and it is more resilient to the cold. These qualities have made this color of slime able to thrive on a harsh, cold world and is able to rival \
 	the ferocity of other apex predators in this region of Sif. As such, it is a very invasive species."
@@ -220,13 +220,14 @@
 	icon_scale = 2
 	optimal_combat = TRUE // Gotta be sharp to survive out there.
 	rabid = TRUE
+	rainbow_core_candidate = FALSE
 	cores = 6
-	maxHealth = 150 // Base health
+	maxHealth = 150
 	maxHealth_adult = 250
 	type_on_death = /mob/living/simple_animal/slime/dark_blue // Otherwise infinite slimes might occur.
 	pixel_y = -10 // Since the base sprite isn't centered properly, the pixel auto-adjustment needs some help.
 
-/mob/living/simple_animal/slime/dark_blue/wild/New()
+/mob/living/simple_animal/slime/dark_blue/feral/New()
 	..()
 	make_adult()
 
@@ -735,6 +736,7 @@
 /mob/living/simple_animal/slime/rainbow/kendrick
 	name = "Kendrick"
 	desc = "The Research Director's pet slime.  It shifts colors constantly."
+	rainbow_core_candidate = FALSE
 
 /mob/living/simple_animal/slime/rainbow/kendrick/New()
 	pacify()

@@ -105,3 +105,37 @@ var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret
 #define ATMOS_DEFAULT_VOLUME_FILTER 200 // L.
 #define ATMOS_DEFAULT_VOLUME_MIXER  200 // L.
 #define ATMOS_DEFAULT_VOLUME_PIPE   70  // L.
+
+// Fancy-pants START/STOP_PROCESSING() macros that lets us custom define what the list is.
+#define START_PROCESSING_IN_LIST(DATUM, LIST) \
+if (DATUM.is_processing) {\
+	if(DATUM.is_processing != #LIST)\
+	{\
+		crash_with("Failed to start processing. [log_info_line(DATUM)] is already being processed by [DATUM.is_processing] but queue attempt occured on [#LIST]."); \
+	}\
+} else {\
+	DATUM.is_processing = #LIST;\
+	LIST += DATUM;\
+}
+
+#define STOP_PROCESSING_IN_LIST(DATUM, LIST) \
+if(DATUM.is_processing) {\
+	if(LIST.Remove(DATUM)) {\
+		DATUM.is_processing = null;\
+	} else {\
+		crash_with("Failed to stop processing. [log_info_line(DATUM)] is being processed by [is_processing] and not found in SSmachines.[#LIST]"); \
+	}\
+}
+
+// Note - I would prefer these be defined machines.dm, but some are used prior in file order. ~Leshana
+#define START_MACHINE_PROCESSING(Datum) START_PROCESSING_IN_LIST(Datum, global.machines)
+#define STOP_MACHINE_PROCESSING(Datum) STOP_PROCESSING_IN_LIST(Datum, global.machines)
+
+#define START_PROCESSING_PIPENET(Datum) START_PROCESSING_IN_LIST(Datum, global.pipe_networks)
+#define STOP_PROCESSING_PIPENET(Datum) STOP_PROCESSING_IN_LIST(Datum, global.pipe_networks)
+
+#define START_PROCESSING_POWERNET(Datum) START_PROCESSING_IN_LIST(Datum, global.powernets)
+#define STOP_PROCESSING_POWERNET(Datum) STOP_PROCESSING_IN_LIST(Datum, global.powernets)
+
+#define START_PROCESSING_POWER_OBJECT(Datum) START_PROCESSING_IN_LIST(Datum, global.processing_power_items)
+#define STOP_PROCESSING_POWER_OBJECT(Datum) STOP_PROCESSING_IN_LIST(Datum, global.processing_power_items)

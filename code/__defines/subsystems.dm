@@ -12,4 +12,8 @@
 var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_GAME, RUNLEVEL_POSTGAME)
 #define RUNLEVEL_FLAG_TO_INDEX(flag) (log(2, flag) + 1)	// Convert from the runlevel bitfield constants to index in runlevel_flags list
 
+// Subsystem init_order, from highest priority to lowest priority
+// Subsystems shutdown in the reverse of the order they initialize in
+// The numbers just define the ordering, they are meaningless otherwise.
+#define INIT_ORDER_MACHINES 10
 #define INIT_ORDER_LIGHTING 0

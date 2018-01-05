@@ -16,6 +16,7 @@
 	var/initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
 	var/slowdown_held = 2
 	var/slowdown_worn = 1
+	var/empty_sound = 'sound/machines/twobeep.ogg'
 
 /obj/item/weapon/gun/magnetic/railgun/New()
 	capacitor = new initial_capacitor_type(src)
@@ -43,14 +44,13 @@
 	var/obj/item/weapon/rcd_ammo/ammo = loaded
 	ammo.remaining--
 	if(ammo.remaining <= 0)
-		spawn(3)
-			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 		out_of_ammo()
 
 /obj/item/weapon/gun/magnetic/railgun/proc/out_of_ammo()
-	qdel(loaded)
+	loaded.forceMove(get_turf(src))
 	loaded = null
-	visible_message("<span class='warning'>\The [src] beeps and ejects its empty cartridge.</span>")
+	visible_message("<span class='warning'>\The [src] beeps and ejects its empty cartridge.</span>","<span class='warning'>There's a beeping sound!</span>")
+	playsound(get_turf(src), empty_sound, 40, 1)
 
 /obj/item/weapon/gun/magnetic/railgun/automatic // Adminspawn only, this shit is absurd.
 	name = "\improper RHR accelerator"
@@ -92,13 +92,9 @@
 	projectile_type = /obj/item/projectile/bullet/magnetic/flechette
 	loaded = /obj/item/weapon/magnetic_ammo
 	fire_sound = 'sound/weapons/rapidslice.ogg'
+	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
 		list(mode_name="semiauto",    burst=1, fire_delay=0,    move_delay=null, one_handed_penalty=1, burst_accuracy=null, dispersion=null),
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5,    one_handed_penalty=2, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		)
-
-/obj/item/weapon/gun/magnetic/railgun/flechette/out_of_ammo()
-	audible_message("<span class='warning'>\The [src] beeps to indicate the magazine is empty.</span>")
-	playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
-	..()
