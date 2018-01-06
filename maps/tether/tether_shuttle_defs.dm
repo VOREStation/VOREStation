@@ -204,3 +204,15 @@
 	docking_controller_tag = "cruiser_shuttle"
 	dock_target_station = "d1a1_dock"
 	dock_target_offsite = "cruiser_shuttle_bay"
+
+//////////////////////////////////////////////////////////////
+// DENGAR ARMORY
+/datum/shuttle/ferry/cruiser_shuttle
+	name = "Danger Armory"
+	location = 1
+	warmup_time = 60
+	area_offsite = /area/shuttle/armory/away
+	area_station = /area/shuttle/armory/station
+	docking_controller_tag = "danger_armory_ship"
+	dock_target_station = "danger_armory_bay"
+	dock_target_offsite = ""
