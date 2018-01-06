@@ -309,8 +309,8 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			</div>
 			<div class="itemContent">
 				Time: {{:value.Time}}<BR>
-				Weather: {{:value.Weather}}, {{:value.Temperature}}&deg;C<BR>
-				High: {{:value.High}}&deg;C	| 	Low: {{:value.Low}}&deg;C
+				Weather: {{:value.Weather}}, {{:helper.fixed(value.Temperature)}}&deg;C<BR>
+				High: {{:helper.fixed(value.High)}}&deg;C	| 	Low: {{:helper.fixed(value.Low)}}&deg;C
 			</div>
 		</div>
 	{{empty}}

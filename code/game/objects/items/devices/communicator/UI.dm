@@ -75,16 +75,10 @@
 				"Planet" = planet.name,
 				"Time" = planet.current_time.show_time("hh:mm"),
 				"Weather" = planet.weather_holder.current_weather.name,
-				"Temperature" = planet.weather_holder.temperature,
-				"High" = planet.weather_holder.current_weather.temp_high,
-				"Low" = planet.weather_holder.current_weather.temp_low)
+				"Temperature" = planet.weather_holder.temperature - T0C,
+				"High" = planet.weather_holder.current_weather.temp_high - T0C,
+				"Low" = planet.weather_holder.current_weather.temp_low - T0C)
 			weather[++weather.len] = W
-//			world << "Temperature, unrounded: [planet.weather_holder.temperature]"
-//			world << "Temperature: [round(planet.weather_holder.temperature)]"
-//			world << "High, unrounded: [planet.weather_holder.current_weather.temp_high]"
-//			world << "High: [round(planet.weather_holder.current_weather.temp_high)]"
-//			world << "Low, unrounded: [planet.weather_holder.current_weather.temp_low]"
-//			world << "Low: [round(planet.weather_holder.current_weather.temp_low)]"
 
 	injection = "<div>Test</div>"
 
