@@ -307,7 +307,7 @@ item_path: /obj/item/weapon/storage/box/fluff/morxaina
 {
 ckey: jacknoir413
 character_name: Areax Third
-item_path: /obj/item/weapon/storage/box/fluff/stunstaff
+item_path: /obj/item/weapon/storage/backpack/fluff/stunstaff
 req_titles: Security Officer, Warden, Head of Security
 }
 

@@ -1746,7 +1746,7 @@
 	update_held_icon()
 	add_fingerprint(user)
 
-/obj/item/weapon/storage/box/fluff/stunstaff
+/obj/item/weapon/storage/backpack/fluff/stunstaff
 	name = "Electrostaff sheath"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "holster_stunstaff"
@@ -1760,6 +1760,6 @@
 	max_w_class = ITEMSIZE_HUGE
 	max_storage_space = 16
 
-/obj/item/weapon/storage/box/fluff/stunstaff/New()
+/obj/item/weapon/storage/backpack/fluff/stunstaff/New()
 	..()
 	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)
