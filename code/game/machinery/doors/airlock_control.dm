@@ -21,8 +21,7 @@ obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 
 	cur_command = signal.data["command"]
-	spawn()
-		execute_current_command()
+	execute_current_command()
 
 obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)
@@ -31,9 +30,10 @@ obj/machinery/door/airlock/proc/execute_current_command()
 	if (!cur_command)
 		return
 
-	do_command(cur_command)
-	if (command_completed(cur_command))
-		cur_command = null
+	spawn()
+		do_command(cur_command)
+		if (command_completed(cur_command))
+			cur_command = null
 
 obj/machinery/door/airlock/proc/do_command(var/command)
 	switch(command)
