@@ -39,3 +39,16 @@
 		part3 = -part3
 
 	return list(part1, part2, part3)
+
+//Sender is optional
+/proc/admin_chat_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
+	if (!config.chat_webhook_url || !message)
+		return
+	spawn(0)
+		var/query_string = "type=adminalert"
+		query_string += "&key=[url_encode(config.chat_webhook_key)]"
+		query_string += "&msg=[url_encode(message)]"
+		query_string += "&color=[url_encode(color)]"
+		if(sender)
+			query_string += "&from=[url_encode(sender)]"
+		world.Export("[config.chat_webhook_url]?[query_string]")

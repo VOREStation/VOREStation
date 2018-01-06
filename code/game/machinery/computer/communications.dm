@@ -458,6 +458,7 @@
 	emergency_shuttle.call_evac()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
+	admin_chat_message(message = "Emergency evac beginning! Called by [key_name(user)]!", color = "#CC2222") //VOREStation Add
 
 
 	return
@@ -505,6 +506,7 @@
 
 	log_game("[user? key_name(user) : "Autotransfer"] has called the shuttle.")
 	message_admins("[user? key_name_admin(user) : "Autotransfer"] has called the shuttle.", 1)
+	admin_chat_message(message = "Autotransfer shuttle dispatched, shift ending soon.", color = "#2277BB") //VOREStation Add
 
 	return
 
