@@ -25,6 +25,12 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+//atom creation method that preloads variables at creation
+/atom/New()
+	// Don't call ..() unless /datum/New() ever exists
+	if(use_preloader && (src.type == _preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		_preloader.load(src)
+
 /atom/proc/reveal_blood()
 	return
 

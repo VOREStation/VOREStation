@@ -86,6 +86,11 @@ datum/controller/game_controller/proc/setup_objects()
 		CHECK_SLEEP_MASTER
 	sleep(1)
 
+	admin_notice("<span class='danger'>Initializing atmos machinery connections.</span>", R_DEBUG)
+	for(var/obj/machinery/atmospherics/machine in machines)
+		machine.atmos_init()
+		CHECK_SLEEP_MASTER
+
 	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
