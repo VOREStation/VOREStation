@@ -22,6 +22,37 @@
 			fire_sound		= 'sound/weapons/pulse3.ogg'
 		))
 
+/obj/item/weapon/gun/energy/sizegun/New()
+	..()
+	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+
+/obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
+	. = ..()
+	select_size()
+
+/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
+	. = ..()
+	var/obj/item/projectile/beam/sizelaser/G = .
+	if(istype(G))
+		G.set_size = size_set_to
+
+/obj/item/weapon/gun/energy/sizegun/proc/select_size()
+	set name = "Select Size"
+	set category = "Object"
+	set src in view(1)
+
+	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to*100) as num
+	if(size_select>200 || size_select<25)
+		usr << "<span class='notice'>Invalid size.</span>"
+		return
+	size_set_to = (size_select/100)
+	usr << "<span class='notice'>You set the size to [size_select]%</span>"
+
+/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
+	..()
+	var/size_examine = (size_set_to*100)
+	user << "<span class='info'>It is currently set at [size_examine]%</span>"
+
 //
 // Beams for size gun
 //
@@ -51,26 +82,3 @@
 			H.updateicon()
 		else
 			return 1
-
-/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
-	. = ..()
-	var/obj/item/projectile/beam/sizelaser/G = .
-	if(istype(G))
-		G.set_size = size_set_to
-
-/obj/item/weapon/gun/energy/sizegun/verb/select_size()
-	set name = "Select Size"
-	set category = "Object"
-	set src in view(1)
-
-	var/size_select = input("Put the desired size (25-200%)", "Set Size", 200) as num
-	if(size_select>200 || size_select<25)
-		usr << "<span class='notice'>Invalid size.</span>"
-		return
-	size_set_to = (size_select/100)
-	usr << "<span class='notice'>You set the size to [size_select]%</span>"
-
-/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
-	..()
-	var/size_examine = (size_set_to*100)
-	user << "<span class='info'>It is currently set at [size_examine]%</span>"
