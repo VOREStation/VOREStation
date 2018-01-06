@@ -201,6 +201,15 @@
 	name = "Tether Shuttle Transit"
 	icon_state = "shuttle2"
 
+// Armory shuttle
+/area/shuttle/armory/station
+	name = "Danger Armory - Station"
+	icon_state = "shuttle"
+
+/area/shuttle/armory/away
+	name = "Danger Armory - Away"
+	icon_state = "shuttle"
+
 // rnd (Research and Development)
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"

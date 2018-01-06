@@ -20,6 +20,20 @@
 	shuttle_tag = "Cruiser Shuttle"
 	req_one_access = list(access_heads)
 
+/obj/machinery/computer/shuttle_control/danger_armory_shuttle
+	name = "danger armory control console"
+	shuttle_tag = "Danger Armory"
+	req_one_access = list(access_heads)
+	//needs code to stop use below code red
+	//!get_security_level() == "red"
+
+/obj/machinery/computer/shuttle_control/danger_armory_shuttle/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	if(get_security_level() == "red")
+		return ..()
+	else
+		to_chat(usr,"<span class='warning'>The screen remains static. This console only works on Alert Level Red or higher.</span>")
+		return FALSE
+
 //
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
