@@ -15,6 +15,7 @@
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
 	can_fly = 1 //They have wings by default.
+	var/base_species = "Xenochimera"
 
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
@@ -122,45 +123,45 @@
 
 		H.shock_stage = max(H.shock_stage-(H.feral/20), 0) //if they lose enough health to hit softcrit, handle_shock() will keep resetting this. Otherwise, pissed off critters will lose shock faster than they gain it.
 
-		for(var/mob/living/M in viewers(H))
-			if(M != H) // someone in view
-				if(prob(0.5)) // 1 in 200 chance of doing something so as not to interrupt scenes
-					if(light_amount <= 0.5) // in the darkness
-						if(H.nutrition <= 250 || H.jitteriness > 0) //tell them that person looks like food and is good to pounce.
-							H << "<span class='info'> Secure in your hiding place, you still feel the urge to hunt, and [M] looks like an extremely tempting target...</span>"
-					else // in lit area
-						if(H.nutrition <= 250 || H.jitteriness > 0) //tell them that person looks like food. It CAN happen when you're not hungry enough to be feral, especially if coffee is involved.
-							H << "<span class='danger'> Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>"
-							if(H.stat == CONSCIOUS)
-								H.emote("twitch")
-							if(!H.handling_hal)
-								spawn H.handle_feral()
-
-			else if(M == H) //nobody is in view.
-				if(light_amount <= 0.5) // in the darkness
-					if(prob(1)) //periodic nagmessages
-						if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
-							H << "<span class='info'> Secure in your hiding place, your hunger still gnaws at you. You need to track down some food...</span>"
-						else if(H.jitteriness >= 100)
-							H << "<span class='info'> sneakysneakyyesyesyescleverhidingfindthingsyessssss</span>"
-						else //otherwise, just tell them to hide.
-							H << "<span class='info'> ...safe...</span>"
-				else // in light
+		if(light_amount <= 0.5) // in the darkness. No need for custom scene-protection checks as it's just an occational infomessage.
+			if(prob(2)) //periodic nagmessages just to remind 'em they're still feral
+				if (H.traumatic_shock >=min(60, H.nutrition/10)) // if hurt, tell 'em to heal up
+					H << "<span class='info'> This place seems safe, secure, hidden, a place to lick your wounds and recover...</span>"
+				else if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
+					H << "<span class='info'> Secure in your hiding place, your hunger still gnaws at you. You need to catch some food...</span>"
+				else if(H.jitteriness >= 100)
+					H << "<span class='info'> sneakysneakyyesyesyescleverhidingfindthingsyessssss</span>"
+				else //otherwise, just tell them to keep hiding.
+					H << "<span class='info'> ...safe...</span>"
+		else // must be in a lit area
+			var/list/nearby = oviewers(H)
+			if (nearby.len) // someone's nearby
+				if(prob(1)) // 1 in 100 chance of doing something so as not to interrupt scenes
+					var/mob/M = pick(nearby)
+					if (H.traumatic_shock >=min(60, H.nutrition/10)) //tell 'em to be wary of a random person
+						H << "<span class='danger'> You're hurt, in danger, exposed, and [M] looks to be a little too close for comfort...</span>"
+					else if(H.nutrition <= 250 || H.jitteriness > 0) //tell them a random person in view looks like food. It CAN happen when you're not hungry enough to be feral, especially if coffee is involved.
+						H << "<span class='danger'> Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>"
+					if(H.stat == CONSCIOUS)
+						H.emote("twitch")
 					if(!H.handling_hal)
-						spawn H.handle_feral()
-					if(prob(1)) //periodic nagmessages
-						if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
-							H << "<span class='danger'> Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>"
-							if(H.stat == CONSCIOUS)
-								H.emote("twitch")
-						else if(H.jitteriness >= 100)
-							H << "<span class='danger'> yesyesyesyesyesyesgetthethingGETTHETHINGfindfoodsfindpreypounceyesyesyes</span>"
-							if(H.stat == CONSCIOUS)
-								H.emote("twitch")
-						else //otherwise, just tell them to hide.
-							H << "<span class='danger'> Confusing sights and sounds and smells surround you, this place is wrong, confusing, frightening. You need to hide, go to ground...</span>"
-							if(H.stat == CONSCIOUS)
-								H.emote("twitch")
+						H.handle_feral()
+			else // nobody around
+				if(!H.handling_hal)
+					H.handle_feral()
+				if(prob(2)) //periodic nagmessages
+					if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
+						H << "<span class='danger'> Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>"
+						if(H.stat == CONSCIOUS)
+							H.emote("twitch")
+					else if(H.jitteriness >= 100)
+						H << "<span class='danger'> yesyesyesyesyesyesgetthethingGETTHETHINGfindfoodsfindpreypounceyesyesyes</span>"
+						if(H.stat == CONSCIOUS)
+							H.emote("twitch")
+					else //otherwise, just tell them to hide.
+						H << "<span class='danger'> Confusing sights and sounds and smells surround you, this place is wrong, confusing, frightening. You need to hide, go to ground...</span>"
+						if(H.stat == CONSCIOUS)
+							H.emote("twitch")
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -193,6 +194,52 @@
 			H.eye_blurry = 5
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage or trigger feral.
 		return
+
+/datum/species/xenochimera/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
+	ASSERT(to_copy)
+	ASSERT(istype(H))
+
+	if(ispath(to_copy))
+		to_copy = "[initial(to_copy.name)]"
+	if(istext(to_copy))
+		to_copy = all_species[to_copy]
+
+	var/datum/species/xenochimera/new_copy = new()
+
+	//Initials so it works with a simple path passed, or an instance
+	new_copy.base_species = to_copy.name
+	new_copy.icobase = to_copy.icobase
+	new_copy.deform = to_copy.deform
+	new_copy.tail = to_copy.tail
+	new_copy.tail_animation = to_copy.tail_animation
+	new_copy.icobase_tail = to_copy.icobase_tail
+	new_copy.color_mult = to_copy.color_mult
+	new_copy.primitive_form = to_copy.primitive_form
+	new_copy.appearance_flags = to_copy.appearance_flags
+	new_copy.flesh_color = to_copy.flesh_color
+	new_copy.base_color = to_copy.base_color
+	new_copy.blood_mask = to_copy.blood_mask
+	new_copy.damage_mask = to_copy.damage_mask
+	new_copy.damage_overlays = to_copy.damage_overlays
+
+	//Set up a mob
+	H.species = new_copy
+	H.icon_state = lowertext(new_copy.get_bodytype())
+
+	if(new_copy.holder_type)
+		H.holder_type = new_copy.holder_type
+
+	if(H.dna)
+		H.dna.ready_dna(H)
+
+	return new_copy
+
+/datum/species/xenochimera/get_bodytype()
+	return base_species
+
+/datum/species/xenochimera/get_race_key()
+	var/datum/species/real = all_species[base_species]
+	return real.race_key
 
 
 /////////////////////
@@ -235,7 +282,7 @@
 	//primitive_form = "Monkey" //I dunno. Replace this in the future.
 
 	spawn_flags = SPECIES_CAN_JOIN
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR | NO_MINOR_CUT
 
 	flesh_color = "#AFA59E" //Gray-ish. Not sure if this is really needed, but eh.
 	base_color 	= "#333333" //Blackish-gray

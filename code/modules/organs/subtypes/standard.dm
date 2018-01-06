@@ -265,6 +265,8 @@
 	force = 3
 	throwforce = 7
 
+	var/eye_icon_location = 'icons/mob/human_face.dmi'
+
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	return ..(company, skip_prosthetics, 1)
 
@@ -279,6 +281,8 @@
 		spawn(1)
 			owner.update_hair()
 	get_icon()
+	if(vital)	//This is just in case we ever add something that both a) Doesn't need a head to live, and b) Can be defibbed
+		owner.can_defib = 0
 	..()
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())

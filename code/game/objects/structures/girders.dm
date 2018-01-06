@@ -43,6 +43,9 @@
 
 	return
 
+/obj/structure/girder/blob_act()
+	dismantle()
+
 /obj/structure/girder/proc/reset_girder()
 	anchored = 1
 	cover = initial(cover)

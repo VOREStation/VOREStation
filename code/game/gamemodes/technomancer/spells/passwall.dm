@@ -46,6 +46,9 @@
 		checked_turf = get_step(checked_turf, direction) //Advance in the given direction
 		total_cost += check_for_scepter() ? 400 : 800 //Phasing through matter's expensive, you know.
 		i--
+		if(checked_turf.block_tele) // The fun ends here.
+			break
+
 		if(!checked_turf.density) //If we found a destination (a non-dense turf), then we can stop.
 			var/dense_objs_on_turf = 0
 			for(var/atom/movable/stuff in checked_turf.contents) //Make sure nothing dense is where we want to go, like an airlock or window.

@@ -49,7 +49,7 @@
 	item_state = "tesh_cloak_by"
 
 /obj/item/clothing/suit/storage/seromi/cloak/black_green
-	name = "black and Green cloak"
+	name = "black and green cloak"
 	icon_state = "tesh_cloak_bgr"
 	item_state = "tesh_cloak_bgr"
 
@@ -115,8 +115,8 @@
 
 /obj/item/clothing/suit/storage/seromi/cloak/blue_grey
 	name = "blue and grey cloak"
-	icon_state = "tesh_cloak_blg"
-	item_state = "tesh_cloak_blg"
+	icon_state = "tesh_cloak_blug"
+	item_state = "tesh_cloak_blug"
 
 /obj/item/clothing/suit/storage/seromi/cloak/purple_grey
 	name = "purple and grey cloak"
@@ -124,11 +124,11 @@
 	item_state = "tesh_cloak_pg"
 
 /obj/item/clothing/suit/storage/seromi/cloak/pink_grey
-	name = "black and orange cloak"
+	name = "pink and grey cloak"
 	icon_state = "tesh_cloak_pig"
 	item_state = "tesh_cloak_pig"
 
 /obj/item/clothing/suit/storage/seromi/cloak/brown_grey
-	name = "purple and grey cloak"
+	name = "brown and grey cloak"
 	icon_state = "tesh_cloak_brg"
 	item_state = "tesh_cloak_brg"

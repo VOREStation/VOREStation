@@ -19,7 +19,7 @@
 			owner.drip(10)
 		if(prob(8))
 			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15
+			owner.AdjustLosebreath(15)
 
 /obj/item/organ/internal/lungs/proc/rupture()
 	var/obj/item/organ/external/parent = owner.get_organ(parent_organ)

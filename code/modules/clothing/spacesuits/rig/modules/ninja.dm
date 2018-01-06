@@ -37,8 +37,8 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H << "<font color='blue'><b>You are now invisible to normal detection.</b></font>"
-	H.invisibility = INVISIBILITY_LEVEL_TWO
+	to_chat(H, "<font color='blue'><b>You are now nearly invisible to normal detection.</b></font>")
+	H.alpha = 5
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
 
@@ -51,11 +51,11 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H << "<span class='danger'>You are now visible.</span>"
-	H.invisibility = 0
+	to_chat(H, "<span class='danger'>You are now visible.</span>")
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
+	H.alpha = initial(H.alpha)
 
 	for(var/mob/O in oviewers(H))
 		O.show_message("[H.name] appears from thin air!",1)

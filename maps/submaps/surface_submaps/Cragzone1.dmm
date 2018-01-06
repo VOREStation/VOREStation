@@ -1,0 +1,38 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Cragzone1)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Cragzone1)
+"d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Cragzone1)
+"e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Cragzone1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbcbddbbbbbbcbbbbbbbbbbbbbba
+abcbddddbbbbbbbbbbbbbbdddbbbba
+abbbddddbbbbbbbbbbbbdddddbbbba
+abbbdddbbbbbbbbbcbbbdddddbbcba
+abbbbddbbcbbdbbbbbdbbdddbbbbba
+abbbbbbbbbdddbbbbddbbbbbbbbbba
+abbbbbbbbbddddbbddddbbcbbbbbba
+abbbbbcbbbdddddbddddbbbbbcbbba
+abbbbbbbbbdddddddddddbbbbbbcba
+abbbbbbbbbbbedeeeddebbbbbbbbba
+abcbbbbbbbbbbeeeeeebbbbbdddbba
+abbbbbbbbcbbbbeeeebbbbbbddddba
+abbbddbbbbbbbbbbbbbbbbbbbdddba
+abbbdddebbbbbbbbdbbbbcbbbbbbba
+abbddddeeeebbbbdddbbbbddbbbbba
+abbddddddeeebbbbddbbbddddbbbba
+abbbbbddddeebbbbdbbbbddddbbbba
+abbbbbbdddeebbbbbbbbbbdddbbbba
+abcbbbbbdddebbbbbbbbbbbddbbcba
+abbbbbbbbbdbbbbbbbbbbbbbbbbbba
+abbbcbbbbbbbbbbcbbbbbbbcbbbbba
+abbbbbbbbbbbbbbbbbbddbbbbbbbba
+abbbbbbbbbbbbbdbbbbdddbbbddbba
+abbbbdddbbcbbddbbbddddbbdddbba
+abbbbddddbbbddddbbbdddbbddddba
+abbbbbdddbbbbddbbbbbbbbbbddbba
+abcbbbbbbbbbbbbbcbbbbbbcbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

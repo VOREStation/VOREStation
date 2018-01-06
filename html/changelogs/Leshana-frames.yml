@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - tweak: "Examining construction frames shows which circuit board (if any) is installed."

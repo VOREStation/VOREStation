@@ -320,13 +320,13 @@
 	desc = "Maid in China."
 	icon_state = "maid"
 
-/obj/item/clothing/under/dress/janimaid
+/obj/item/clothing/under/dress/maid/janitor
 	name = "maid uniform"
 	desc = "A simple maid uniform for housekeeping."
 	icon_state = "janimaid"
 
-/obj/item/clothing/under/dress/sexymaid
-	name = "sexy maid uniform"
+/obj/item/clothing/under/dress/maid/sexy
+	name = "sexy maid costume"
 	desc = "You must be a bit risque teasing all of them in a maid uniform!"
 	icon_state = "sexymaid"
 
@@ -812,3 +812,8 @@
 	desc = "A fluffy robe to keep you from showing off to the world."
 	icon_state = "bathrobe"
 	worn_state = "bathrobe"
+
+/obj/item/clothing/under/explorer
+	desc = "A green uniform for operating in hazardous environments."
+	name = "explorer's jumpsuit"
+	icon_state = "explorer"

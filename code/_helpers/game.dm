@@ -281,9 +281,12 @@
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
+		//VOREStation Edit - Trying to fix some vorestation bug.
 		if(!istype(mob, /mob))
-			crash_with("There is a null or non-mob reference inside player_list.")
+			player_list -= mob
+			crash_with("There is a null or non-mob reference inside player_list ([mob]).")
 			continue
+		//VOREStation Edit End - Trying to fix some vorestation bug.
 		if(get_turf(mob) in hearturfs)
 			mobs |= mob
 			continue

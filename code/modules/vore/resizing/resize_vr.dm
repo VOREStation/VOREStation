@@ -194,7 +194,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				else
 					src << "You quickly push [tmob] to the ground with your foot!"
 					tmob << "[src] pushes you down to the ground with their foot!"
-				log_and_message_admins("has pushed [tmob] to the ground by stepping on them.") //Both humans and mobs, since stepping on mobs can be abused.
 				admin_attack_log(src, tmob, "Pinned [tmob.name] under foot.", "Was pinned under foot by [src.name].", "Pinned [tmob.name] under foot.")
 				return 1
 			if(src.m_intent == "walk") //Most likely intentionally stepping on them.
@@ -203,7 +202,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob.apply_damage(damage, HALLOSS)
 				tmob.resting = 1
 				var/mob/living/carbon/human/H = src
-				log_and_message_admins("has stomped on [tmob], pinning them to the ground and dealing [damage] HALLOSS.") //Both humans and mobs, since stepping on mobs can be abused.
 				admin_attack_log(src, tmob, "Pinned [tmob.name] under foot for [damage] HALLOSS.", "Was pinned under foot by [src.name] for [damage] HALLOSS.", "Pinned [tmob.name] under foot for [damage] HALLOSS.")
 				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
 					src << "You push down on [tmob] with your tail, pinning them down under you!"
@@ -231,7 +229,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						M.drip(0.1)
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(calculated_damage, 0) //Due to the fact that this deals damage across random body parts, this should heal quite fast.
-						log_and_message_admins("has trampled [M] for [calculated_damage * 10] damage.") //Only crushing humans get logged.
 						admin_attack_log(src, M, "trampled [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				else
 					src << "You carelessly step down onto [tmob], crushing them!!"
@@ -241,7 +238,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will heal over time.
 						M.drip(0.1)
-						log_and_message_admins("has trampled [M] for [calculated_damage * 10] damage.")
 						admin_attack_log(src, M, "Crushed [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				return 1
 
@@ -256,7 +252,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(damage, 0) //17.5 damage min, 91.875 damage max. If they're only stepped on once, the damage will heal over time.
 						M.drip(3) //The least of your problems, honestly.
-						log_and_message_admins("has harshly crushed [M] for [damage * 10] damage.")
 						admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				else
 					src << "You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
@@ -266,7 +261,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in M.organs)
 							tmob.take_overall_damage(damage, 0)
 						M.drip(3)
-						log_and_message_admins("has harshly crushed [M] for [damage * 10] damage.")
 						admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				return 1
 

@@ -1,10 +1,11 @@
 /obj/item/weapon/gun/energy/laser
-	name = "laser carbine"
-	desc = "A Hephaestus Industries G40E carbine, designed to kill with concentrated energy blasts.  This varient has the ability to \
+	name = "laser rifle"
+	desc = "A Hephaestus Industries G40E rifle, designed to kill with concentrated energy blasts.  This varient has the ability to \
 	switch between standard fire and a more efficent but weaker 'suppressive' fire."
 	icon_state = "laser"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_delay = 8
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	force = 10
@@ -15,8 +16,8 @@
 	one_handed_penalty = 2
 
 	firemodes = list(
-		list(mode_name="normal", projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
-		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
+		list(mode_name="normal", fire_delay=8, projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
+		list(mode_name="suppressive", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
 		)
 
 /obj/item/weapon/gun/energy/laser/mounted
@@ -52,6 +53,26 @@
 	self_recharge = 1
 	use_external_power = 1
 
+/obj/item/weapon/gun/energy/retro/empty
+	icon_state = "retro"
+	cell_type = null
+
+
+/obj/item/weapon/gun/energy/alien
+	name = "alien pistol"
+	desc = "A weapon that works very similarly to a traditional energy weapon. How this came to be will likely be a mystery for the ages."
+	icon_state = "alienpistol"
+	item_state = "alienpistol"
+	fire_sound = 'sound/weapons/eLuger.ogg'
+	fire_delay = 10 // Handguns should be inferior to two-handed weapons. Even alien ones I suppose.
+	charge_cost = 480 // Five shots.
+
+	projectile_type = /obj/item/projectile/beam/cyan
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien // Self charges.
+	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
+	modifystate = "alienpistol"
+
+
 /obj/item/weapon/gun/energy/captain
 	name = "antique laser gun"
 	icon_state = "caplaser"
@@ -65,9 +86,8 @@
 	origin_tech = null
 	fire_delay = 10		//Old pistol
 	charge_cost = 480	//to compensate a bit for self-recharging
-	self_recharge = 1
-	recharge_time = 3	//Recharges a bit more quickly...
-	charge_delay = 100	//... but it takes a while to get started
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge/captain
+	battery_lock = 1
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "laser cannon"
@@ -86,7 +106,6 @@
 	one_handed_penalty = 6 // The thing's heavy and huge.
 	accuracy = 3
 	charge_cost = 600
-
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -145,10 +164,11 @@
 	item_state = "laser"
 	desc = "Standard issue weapon of the Imperial Guard"
 	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
-	self_recharge = 1
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	fire_sound = 'sound/weapons/Laser.ogg'
 	projectile_type = /obj/item/projectile/beam/lastertag/blue
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	var/required_vest
 
 /obj/item/weapon/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)

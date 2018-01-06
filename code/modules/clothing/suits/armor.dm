@@ -210,6 +210,36 @@
 	icon_state = "reactiveoff"
 	..()
 
+// Alien armor has a chance to completely block attacks.
+/obj/item/clothing/suit/armor/alien
+	name = "alien enhancement vest"
+	desc = "It's a strange piece of what appears to be armor. It looks very light and agile. Strangely enough it seems to have been designed for a humanoid shape."
+	description_info = "It has a 20% chance to completely nullify an incoming attack, and the wearer moves slightly faster."
+	icon_state = "alien_speed"
+	blood_overlay_type = "armor"
+	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
+	slowdown = -1
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 50, bullet = 50, laser = 50, energy = 50, bomb = 50, bio = 0, rad = 40)
+	siemens_coefficient = 0.4
+	var/block_chance = 20
+
+/obj/item/clothing/suit/armor/alien/tank
+	name = "alien protection suit"
+	desc = "It's really resilient yet lightweight, so it's probably meant to be armor. Strangely enough it seems to have been designed for a humanoid shape."
+	description_info = "It has a 40% chance to completely nullify an incoming attack."
+	icon_state = "alien_tank"
+	slowdown = 0
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 70, bomb = 70, bio = 0, rad = 40)
+	block_chance = 40
+
+/obj/item/clothing/suit/armor/alien/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(prob(block_chance))
+		user.visible_message("<span class='danger'>\The [src] completely absorbs [attack_text]!</span>")
+		return TRUE
+	return FALSE
+
 //Non-hardsuit ERT armor.
 /obj/item/clothing/suit/armor/vest/ert
 	name = "emergency response team armor"

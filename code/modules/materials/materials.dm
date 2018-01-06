@@ -642,6 +642,19 @@ var/list/name_to_material
 	display_name = "elevator panelling"
 	icon_colour = "#666666"
 
+// Ditto.
+/material/alienalloy/dungeonium
+	name = "dungeonium"
+	display_name = "ultra-durable"
+	icon_base = "dungeon"
+	icon_colour = "#FFFFFF"
+
+/material/alienalloy/alium
+	name = "alium"
+	display_name = "alien"
+	icon_base = "alien"
+	icon_colour = "#FFFFFF"
+
 /material/resin
 	name = "resin"
 	icon_colour = "#35343a"
@@ -722,7 +735,7 @@ var/list/name_to_material
 	destruction_desc = "crumples"
 
 /material/snow
-	name = "snow"
+	name = MAT_SNOW
 	stack_type = /obj/item/stack/material/snow
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"
@@ -736,7 +749,7 @@ var/list/name_to_material
 	melting_point = T0C+1
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
-	sheet_plural_name = "piles"
+	sheet_plural_name = "pile" //Just a bigger pile
 
 /material/cloth //todo
 	name = "cloth"

@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/energy/ionrifle/pistol
 	name = "ion pistol"
-	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability.."
+	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability."
 	icon_state = "ionpistol"
 	item_state = null
 	w_class = ITEMSIZE_NORMAL
@@ -43,7 +43,8 @@
 	projectile_type = /obj/item/projectile/energy/floramut
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	var/decl/plantgene/gene = null
 
 	firemodes = list(
@@ -126,7 +127,7 @@
 
 /obj/item/weapon/gun/energy/staff
 	name = "staff of change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself"
+	desc = "An artifact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
 	icon = 'icons/obj/gun.dmi'
 	item_icons = null
 	icon_state = "staffofchange"
@@ -137,12 +138,13 @@
 	charge_cost = 480
 	projectile_type = /obj/item/projectile/change
 	origin_tech = null
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	charge_meter = 0
 
 /obj/item/weapon/gun/energy/staff/special_check(var/mob/user)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		usr << "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>"
+		to_chat(usr, "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>")
 		return 0
 
 	return ..()
@@ -156,13 +158,13 @@
 
 /obj/item/weapon/gun/energy/staff/animate
 	name = "staff of animation"
-	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
+	desc = "An artifact that spits bolts of life force, which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
 	projectile_type = /obj/item/projectile/animate
 	charge_cost = 240
 
 obj/item/weapon/gun/energy/staff/focus
 	name = "mental focus"
-	desc = "An artefact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
+	desc = "An artifact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "focus"
 	slot_flags = SLOT_BACK
@@ -171,24 +173,25 @@ obj/item/weapon/gun/energy/staff/focus
 	attack_self(mob/living/user as mob)
 		if(projectile_type == "/obj/item/projectile/forcebolt")
 			charge_cost = 400
-			user << "<span class='warning'>The [src.name] will now strike a small area.</span>"
+			to_chat(user, "<span class='warning'>The [src.name] will now strike a small area.</span>")
 			projectile_type = "/obj/item/projectile/forcebolt/strong"
 		else
 			charge_cost = 200
-			user << "<span class='warning'>The [src.name] will now strike only a single person.</span>"
+			to_chat(user, "<span class='warning'>The [src.name] will now strike only a single person.</span>")
 			projectile_type = "/obj/item/projectile/forcebolt"
 	*/
 
 /obj/item/weapon/gun/energy/dakkalaser
 	name = "suppression gun"
-	desc = "A massive weapon, designed to pressure the opposition by raining down a torrent of energy pellets."
+	desc = "A massive weapon designed to pressure the opposition by raining down a torrent of energy pellets."
 	icon_state = "dakkalaser"
 	item_state = "dakkalaser"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 24 // 100 shots, it's a spray and pray (to RNGesus) weapon.
 	projectile_type = /obj/item/projectile/energy/blue_pellet
-	self_recharge = 1
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
 	accuracy = 5 // Suppressive weapons don't work too well if there's no risk of being hit.
 	burst_delay = 1 // Burst faster than average.
 	origin_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 6, TECH_ILLEGAL = 6)

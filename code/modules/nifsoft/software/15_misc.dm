@@ -71,8 +71,8 @@
 
 	activate()
 		if((. = ..()))
-			if(used >= 50)
-				nif.notify("Heat sinks not safe to operate again yet!",TRUE)
+			if(used >= 1500)
+				nif.notify("Heat sinks not safe to operate again yet! Max 75% on activation.",TRUE)
 				spawn(0)
 					deactivate()
 				return FALSE
@@ -82,6 +82,9 @@
 		if((. = ..()))
 			nif.clear_flag(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)
 
+	stat_text()
+		return "[active ? "Active" : "Disabled"] (Stored Heat: [Floor(used/20)]%)"
+
 	life()
 		if((. = ..()))
 			//Not being used, all clean.
@@ -89,7 +92,7 @@
 				return TRUE
 
 			//Being used, and running out.
-			else if(active && ++used == 100)
+			else if(active && ++used == 2000)
 				nif.notify("Heat sinks overloaded! Shutting down!",TRUE)
 				deactivate()
 

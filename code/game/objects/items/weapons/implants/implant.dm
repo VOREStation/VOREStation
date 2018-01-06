@@ -52,6 +52,7 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
+	part = null
 	return ..()
 
 /obj/item/weapon/implant/attackby(obj/item/I, mob/user)
@@ -351,6 +352,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	R << "You hear a faint *beep*."
 	if(!src.reagents.total_volume)
 		R << "You hear a faint click from your chest."
+		playsound(R, 'sound/weapons/empty.ogg', 10, 1)
 		spawn(0)
 			qdel(src)
 	return

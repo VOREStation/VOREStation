@@ -68,7 +68,7 @@
 /atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = FALSE)
 	if(!ticker)
 		user << "<span class='warning'>You can't buckle anyone in before the game starts.</span>"
-	if(!user.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
+	if(!user.Adjacent(M) || user.restrained() || user.stat || istype(user, /mob/living/silicon/pai))
 		return
 	if(M == buckled_mob)
 		return

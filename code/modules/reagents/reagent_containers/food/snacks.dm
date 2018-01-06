@@ -29,7 +29,8 @@
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
-	if(!usr)	return
+	if(!usr)
+		usr = M
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		usr.drop_from_inventory(src)	//so icons update :[
@@ -69,7 +70,7 @@
 					return
 
 			 // Vorestation edits in this section.
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
+			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
 				M << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
 			if (fullness > 50 && fullness <= 150)
@@ -115,7 +116,7 @@
 					return 0*/
 				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>") // Vorestation edit
 
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				user.setClickCooldown(user.get_attack_speed(src))
 				if(!do_mob(user, M)) return
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
@@ -238,7 +239,7 @@
 		return
 	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
 	bitecount++
-	if(reagents && user.reagents)
+	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)

@@ -30,6 +30,11 @@
 	fabricator_tag = "Upper Level Construction"
 	drone_type = /mob/living/silicon/robot/drone/construction
 
+/obj/machinery/drone_fabricator/mining
+	name = "mining drone fabricator"
+	fabricator_tag = "Upper Level Mining"
+	drone_type = /mob/living/silicon/robot/drone/mining
+
 /obj/machinery/drone_fabricator/New()
 	..()
 

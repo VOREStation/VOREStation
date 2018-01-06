@@ -104,3 +104,43 @@
 		if(T.z == L_T.z)
 			return 0
 	return 1
+
+
+/*
+This code is based on the mob spawner and the proximity sensor, the idea is to lazy load mobs to avoid having the server use mobs when they arent needed.
+It also makes it so a ghost wont know where all the goodies/mobs are.
+*/
+
+/obj/structure/mob_spawner/scanner
+	name ="Lazy Mob Spawner"
+	var/range = 3
+
+/obj/structure/mob_spawner/New()
+	..()
+	processing_objects.Add(src)
+	last_spawn = world.time
+
+/obj/structure/mob_spawner/scanner/process()
+	if(world.time > last_spawn + spawn_delay)
+		var/turf/mainloc = get_turf(src)
+		for(var/mob/living/A in range(range,mainloc))
+			if (A.move_speed < 12)
+				var/chosen_mob = choose_spawn()
+				if(chosen_mob)
+					do_spawn(chosen_mob)
+	return
+
+/obj/structure/mob_spawner/scanner/corgi
+	name = "Corgi Lazy Spawner"
+	desc = "This is a proof of concept, not sure why you would use this one"
+	spawn_delay = 1 MINUTE
+	spawn_types = list(
+	/mob/living/simple_animal/corgi = 75,
+	/mob/living/simple_animal/corgi/puppy = 50
+	)
+
+	simultaneous_spawns = 5
+	range = 3
+	destructible = 1
+	health = 200
+	total_spawns = 10

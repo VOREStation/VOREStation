@@ -81,7 +81,7 @@
 				health = maxhealth
 	else
 		take_damage(C.force)
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(C))
 	return ..()
 
 /obj/structure/catwalk/Crossed()

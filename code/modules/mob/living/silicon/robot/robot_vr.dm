@@ -1,3 +1,12 @@
+/mob/living/silicon/robot
+	var/sleeper_g
+	var/sleeper_r
+	var/leaping = 0
+	var/pounce_cooldown = 0
+	var/pounce_cooldown_time = 40
+	var/leap_at
+	var/dogborg = FALSE
+
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in oview(1))
 	set name = "Robot Nom"
 	set category = "IC"
@@ -9,28 +18,30 @@
 
 /mob/living/silicon/robot/updateicon()
 	..()
-	if(icon == 'icons/mob/widerobot_vr.dmi' || 'icons/mob/62x62robot_vr.dmi')
-		if(stat == CONSCIOUS)
-			if(sleeper_g == 1)
-				overlays += "[module_sprites[icontype]]-sleeper_g"
-			if(sleeper_r == 1)
-				overlays += "[module_sprites[icontype]]-sleeper_r"
-			if(resting)
-				overlays.Cut() // Hide that gut for it has no ground sprite yo.
-				icon_state = "[module_sprites[icontype]]-rest"
-			else
-				icon_state = module_sprites[icontype]
-		else if(stat == DEAD)
-			icon_state = "[module_sprites[icontype]]-wreck"
-
-
+	if(dogborg == TRUE && stat == CONSCIOUS)
+		if(sleeper_g == TRUE)
+			overlays += "[module_sprites[icontype]]-sleeper_g"
+		if(sleeper_r == TRUE)
+			overlays += "[module_sprites[icontype]]-sleeper_r"
+		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
+			overlays += "laser"
+		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
+			overlays += "taser"
+		if(resting)
+			overlays.Cut() // Hide that gut for it has no ground sprite yo.
+			icon_state = "[module_sprites[icontype]]-rest"
+		else
+			icon_state = "[module_sprites[icontype]]"
+	if(dogborg == TRUE && stat == DEAD)
+		icon_state = "[module_sprites[icontype]]-wreck"
+		overlays += "wreck-overlay"
 
 /mob/living/silicon/robot/Move(a, b, flag)
 
 	. = ..()
 
 	if(module)
-		if(module.type == /obj/item/weapon/robot_module/scrubpup)//no water reserve mechanics yet.
+		if(module.type == /obj/item/weapon/robot_module/robot/scrubpup)//no water reserve mechanics yet.
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()

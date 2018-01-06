@@ -64,3 +64,12 @@
     display_name = "Metal necklace"
     description = "A shiny steel chain with a vague metallic object dangling off it."
     path = /obj/item/clothing/accessory/tronket
+
+/datum/gear/accessory/flops
+    display_name = "Drop straps"
+    description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+    path = /obj/item/clothing/accessory/flops
+
+/datum/gear/accessory/flops/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

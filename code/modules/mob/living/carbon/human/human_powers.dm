@@ -165,6 +165,12 @@
 
 	output += "Current Battery Charge: [nutrition]\n"
 
+	var/toxDam = getToxLoss()
+	if(toxDam)
+		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>\n"
+	else
+		output += "System Instability: <span style='color:green;'>OK</span>\n"
+
 	for(var/obj/item/organ/external/EO in organs)
 		if(EO.brute_dam || EO.burn_dam)
 			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > ROBOLIMB_REPAIR_CAP ? "Heavy Damage" : "Light Damage"]</span>\n"

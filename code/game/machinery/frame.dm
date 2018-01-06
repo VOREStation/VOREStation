@@ -7,7 +7,7 @@
 	construction_frame_floor = list()
 	for(var/R in typesof(/datum/frame/frame_types) - /datum/frame/frame_types)
 		var/datum/frame/frame_types/type = new R
-		if(type.frame_style == "wall")
+		if(type.frame_style == FRAME_STYLE_WALL)
 			construction_frame_wall += type
 		else
 			construction_frame_floor += type
@@ -16,13 +16,17 @@
 	construction_frame_wall += cancel
 	construction_frame_floor += cancel
 
+
+//////////////////////////////
+// Frame Type Datum - Describes the frame structures that can be created from a frame item.
+//////////////////////////////
 /datum/frame/frame_types
 	var/icon/icon_override		// Icon to set on frame object when building. If null icon is unchanged.
 	var/name					// Name assigned to the frame object.
 	var/frame_size = 5			// Sheets of metal required to build.
 	var/frame_class				// Determines construction method.  "machine", "computer", "alarm", or "display"
 	var/circuit					// Type path of the circuit board that comes built in with this frame. Null to require adding a circuit.
-	var/frame_style = "floor"	// "floor" or "wall"
+	var/frame_style = FRAME_STYLE_FLOOR	// "floor" or "wall"
 	var/x_offset				// For wall frames: pixel_x
 	var/y_offset				// For wall frames: pixel_y
 
@@ -34,157 +38,161 @@
 
 /datum/frame/frame_types/computer
 	name = "Computer"
-	frame_class = "computer"
+	frame_class = FRAME_CLASS_COMPUTER
 
 /datum/frame/frame_types/machine
 	name = "Machine"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/conveyor
 	name = "Conveyor"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/weapon/circuitboard/conveyor
 
 /datum/frame/frame_types/photocopier
 	name = "Photocopier"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/washing_machine
 	name = "Washing Machine"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/medical_console
 	name = "Medical Console"
-	frame_class = "computer"
+	frame_class = FRAME_CLASS_COMPUTER
 
 /datum/frame/frame_types/medical_pod
 	name = "Medical Pod"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/dna_analyzer
 	name = "DNA Analyzer"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/mass_driver
 	name = "Mass Driver"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/weapon/circuitboard/mass_driver
 
 /datum/frame/frame_types/holopad
 	name = "Holopad"
-	frame_class = "computer"
+	frame_class = FRAME_CLASS_COMPUTER
 	frame_size = 4
 
 /datum/frame/frame_types/microwave
 	name = "Microwave"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 4
 
 /datum/frame/frame_types/fax
 	name = "Fax"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 3
 
 /datum/frame/frame_types/recharger
 	name = "Recharger"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/weapon/circuitboard/recharger
 	frame_size = 3
 
 /datum/frame/frame_types/grinder
 	name = "Grinder"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/weapon/circuitboard/grinder
 	frame_size = 3
 
 /datum/frame/frame_types/display
 	name = "Display"
-	frame_class = "display"
-	frame_style = "wall"
+	frame_class = FRAME_CLASS_DISPLAY
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
 	y_offset = 32
 
 /datum/frame/frame_types/supply_request_console
 	name = "Supply Request Console"
-	frame_class = "display"
-	frame_style = "wall"
+	frame_class = FRAME_CLASS_DISPLAY
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
 	y_offset = 32
 
 /datum/frame/frame_types/atm
 	name = "ATM"
-	frame_class = "display"
+	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 3
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
 	y_offset = 32
 
 /datum/frame/frame_types/newscaster
 	name = "Newscaster"
-	frame_class = "display"
+	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 3
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
 	y_offset = 30
 
 /datum/frame/frame_types/wall_charger
 	name = "Wall Charger"
-	frame_class = "machine"
+	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
 	frame_size = 3
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
 	y_offset = 32
 
 /datum/frame/frame_types/fire_alarm
 	name = "Fire Alarm"
-	frame_class = "alarm"
+	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 24
 	y_offset = 24
 
 /datum/frame/frame_types/air_alarm
 	name = "Air Alarm"
-	frame_class = "alarm"
+	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 24
 	y_offset = 24
 
 /datum/frame/frame_types/guest_pass_console
 	name = "Guest Pass Console"
-	frame_class = "display"
+	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 2
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 30
 	y_offset = 30
 
 /datum/frame/frame_types/intercom
 	name = "Intercom"
-	frame_class = "alarm"
+	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
 	y_offset = 28
 
 /datum/frame/frame_types/keycard_authenticator
 	name = "Keycard Authenticator"
-	frame_class = "alarm"
+	frame_class = FRAME_CLASS_ALARM
 	frame_size = 1
-	frame_style = "wall"
+	frame_style = FRAME_STYLE_WALL
 	x_offset = 24
 	y_offset = 24
 
 /datum/frame/frame_types/cancel //used to get out of input dialogue
 	name = "Cancel"
 
+//////////////////////////////
+// Frame Object (Structure)
+//////////////////////////////
+
 /obj/structure/frame
 	anchored = 0
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
-	var/state = 0
+	var/state = FRAME_PLACED
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/need_circuit = 1
 	var/datum/frame/frame_types/frame_type = new /datum/frame/frame_types/machine
@@ -197,6 +205,11 @@
 	frame_type = new /datum/frame/frame_types/computer
 	anchored = 1
 	density = 1
+
+/obj/structure/frame/examine(mob/user)
+	..()
+	if(circuit)
+		to_chat(user, "It has \a [circuit] installed.")
 
 /obj/structure/frame/proc/update_desc()
 	var/D
@@ -228,7 +241,7 @@
 	..()
 	if(building)
 		frame_type = type
-		state = 0
+		state = FRAME_PLACED
 
 		if(dir)
 			set_dir(dir)
@@ -237,10 +250,10 @@
 			src.loc = loc
 
 		if(frame_type.x_offset)
-			pixel_x = (dir & 3)? 0 : (dir == 4 ? -frame_type.x_offset : frame_type.x_offset)
+			pixel_x = (dir & 3)? 0 : (dir == EAST ? -frame_type.x_offset : frame_type.x_offset)
 
 		if(frame_type.y_offset)
-			pixel_y = (dir & 3)? (dir == 1 ? -frame_type.y_offset : frame_type.y_offset) : 0
+			pixel_y = (dir & 3)? (dir == NORTH ? -frame_type.y_offset : frame_type.y_offset) : 0
 
 		if(frame_type.circuit)
 			need_circuit = 0
@@ -249,34 +262,34 @@
 	if(frame_type.name == "Computer")
 		density = 1
 
-	if(frame_type.frame_class == "machine")
+	if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 		density = 1
 
 	update_icon()
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/wrench))
-		if(state == 0 && !anchored)
+		if(state == FRAME_PLACED && !anchored)
 			user << "<span class='notice'>You start to wrench the frame into place.</span>"
 			playsound(src.loc, P.usesound, 50, 1)
 			if(do_after(user, 20 * P.toolspeed))
 				anchored = 1
 				if(!need_circuit && circuit)
-					state = 2
+					state = FRAME_FASTENED
 					check_components()
 					update_desc()
 					user << "<span class='notice'>You wrench the frame into place and set the outer cover.</span>"
 				else
 					user << "<span class='notice'>You wrench the frame into place.</span>"
 
-		else if(state == 0 && anchored)
+		else if(state == FRAME_PLACED && anchored)
 			playsound(src, P.usesound, 50, 1)
 			if(do_after(user, 20 * P.toolspeed))
 				user << "<span class='notice'>You unfasten the frame.</span>"
 				anchored = 0
 
 	else if(istype(P, /obj/item/weapon/weldingtool))
-		if(state == 0)
+		if(state == FRAME_PLACED)
 			var/obj/item/weapon/weldingtool/WT = P
 			if(WT.remove_fuel(0, user))
 				playsound(src.loc, P.usesound, 50, 1)
@@ -291,7 +304,7 @@
 				return
 
 	else if(istype(P, /obj/item/weapon/circuitboard) && need_circuit && !circuit)
-		if(state == 0 && anchored)
+		if(state == FRAME_PLACED && anchored)
 			var/obj/item/weapon/circuitboard/B = P
 			var/datum/frame/frame_types/board_type = B.board_type
 			if(board_type.name == frame_type.name)
@@ -300,8 +313,8 @@
 				circuit = P
 				user.drop_item()
 				P.loc = src
-				state = 1
-				if(frame_type.frame_class == "machine")
+				state = FRAME_UNFASTENED
+				if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 					check_components()
 					update_desc()
 			else
@@ -309,25 +322,25 @@
 				return
 
 	else if(istype(P, /obj/item/weapon/screwdriver))
-		if(state == 1)
+		if(state == FRAME_UNFASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You screw the circuit board into place.</span>"
-				state = 2
+				state = FRAME_FASTENED
 
-		else if(state == 2)
+		else if(state == FRAME_FASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You unfasten the circuit board.</span>"
-				state = 1
+				state = FRAME_UNFASTENED
 
 			else if(!need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You unfasten the outer cover.</span>"
-				state = 0
+				state = FRAME_PLACED
 
-		else if(state == 3)
-			if(frame_type.frame_class == "machine")
+		else if(state == FRAME_WIRED)
+			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)
@@ -363,7 +376,7 @@
 					qdel(src)
 					return
 
-			else if(frame_type.frame_class == "alarm")
+			else if(frame_type.frame_class == FRAME_CLASS_ALARM)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You fasten the cover.</span>"
 				var/obj/machinery/B = new circuit.build_path(src.loc)
@@ -376,8 +389,8 @@
 				qdel(src)
 				return
 
-		else if(state == 4)
-			if(frame_type.frame_class == "computer")
+		else if(state == FRAME_PANELED)
+			if(frame_type.frame_class == FRAME_CLASS_COMPUTER)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
 				var/obj/machinery/B = new circuit.build_path(src.loc)
@@ -390,7 +403,7 @@
 				qdel(src)
 				return
 
-			else if(frame_type.frame_class == "display")
+			else if(frame_type.frame_class == FRAME_CLASS_DISPLAY)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
 				var/obj/machinery/B = new circuit.build_path(src.loc)
@@ -404,18 +417,18 @@
 				return
 
 	else if(istype(P, /obj/item/weapon/crowbar))
-		if(state == 1)
+		if(state == FRAME_UNFASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the circuit board.</span>"
-				state = 0
+				state = FRAME_PLACED
 				circuit.forceMove(src.loc)
 				circuit = null
-				if(frame_type.frame_class == "machine")
+				if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 					req_components = null
 
-		else if(state == 3)
-			if(frame_type.frame_class == "machine")
+		else if(state == FRAME_WIRED)
+			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				playsound(src, P.usesound, 50, 1)
 				if(components.len == 0)
 					user << "<span class='notice'>There are no components to remove.</span>"
@@ -427,35 +440,35 @@
 					update_desc()
 					user << desc
 
-		else if(state == 4)
-			if(frame_type.frame_class == "computer")
+		else if(state == FRAME_PANELED)
+			if(frame_type.frame_class == FRAME_CLASS_COMPUTER)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
-				state = 3
+				state = FRAME_WIRED
 				new /obj/item/stack/material/glass(src.loc, 2)
 
-			else if(frame_type.frame_class == "display")
+			else if(frame_type.frame_class == FRAME_CLASS_DISPLAY)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the glass panel.</span>"
-				state = 3
+				state = FRAME_WIRED
 				new /obj/item/stack/material/glass(src.loc, 2)
 
 	else if(istype(P, /obj/item/stack/cable_coil))
-		if(state == 2)
+		if(state == FRAME_FASTENED)
 			var/obj/item/stack/cable_coil/C = P
 			if(C.get_amount() < 5)
 				user << "<span class='warning'>You need five coils of wire to add them to the frame.</span>"
 				return
 			user << "<span class='notice'>You start to add cables to the frame.</span>"
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			if(do_after(user, 20) && state == 2)
+			if(do_after(user, 20) && state == FRAME_FASTENED)
 				if(C.use(5))
 					user << "<span class='notice'>You add cables to the frame.</span>"
-					state = 3
-					if(frame_type.frame_class == "machine")
+					state = FRAME_WIRED
+					if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 						user << desc
-		else if(state == 3)
-			if(frame_type.frame_class == "machine")
+		else if(state == FRAME_WIRED)
+			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -481,60 +494,60 @@
 				user << desc
 
 	else if(istype(P, /obj/item/weapon/wirecutters))
-		if(state == 3)
-			if(frame_type.frame_class == "computer")
+		if(state == FRAME_WIRED)
+			if(frame_type.frame_class == FRAME_CLASS_COMPUTER)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
-				state = 2
+				state = FRAME_FASTENED
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
-			else if(frame_type.frame_class == "display")
+			else if(frame_type.frame_class == FRAME_CLASS_DISPLAY)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
-				state = 2
+				state = FRAME_FASTENED
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
-			else if(frame_type.frame_class == "alarm")
+			else if(frame_type.frame_class == FRAME_CLASS_ALARM)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
-				state = 2
+				state = FRAME_FASTENED
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
-			else if(frame_type.frame_class == "machine")
+			else if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				playsound(src, P.usesound, 50, 1)
 				user << "<span class='notice'>You remove the cables.</span>"
-				state = 2
+				state = FRAME_FASTENED
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
 	else if(istype(P, /obj/item/stack/material) && P.get_material_name() == "glass")
-		if(state == 3)
-			if(frame_type.frame_class == "computer")
+		if(state == FRAME_WIRED)
+			if(frame_type.frame_class == FRAME_CLASS_COMPUTER)
 				var/obj/item/stack/G = P
 				if(G.get_amount() < 2)
 					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "<span class='notice'>You start to put in the glass panel.</span>"
-				if(do_after(user, 20) && state == 3)
+				if(do_after(user, 20) && state == FRAME_WIRED)
 					if(G.use(2))
 						user << "<span class='notice'>You put in the glass panel.</span>"
-						state = 4
+						state = FRAME_PANELED
 
-			else if(frame_type.frame_class == "display")
+			else if(frame_type.frame_class == FRAME_CLASS_DISPLAY)
 				var/obj/item/stack/G = P
 				if(G.get_amount() < 2)
 					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "<span class='notice'>You start to put in the glass panel.</span>"
-				if(do_after(user, 20) && state == 3)
+				if(do_after(user, 20) && state == FRAME_WIRED)
 					if(G.use(2))
 						user << "<span class='notice'>You put in the glass panel.</span>"
-						state = 4
+						state = FRAME_PANELED
 
 	else if(istype(P, /obj/item))
-		if(state == 3)
-			if(frame_type.frame_class == "machine")
+		if(state == FRAME_WIRED)
+			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -578,17 +591,7 @@
 
 	set_dir(turn(dir, 90))
 
-	var/dir_text
-	if(dir == 1)
-		dir_text = "north"
-	else if(dir == 2)
-		dir_text = "south"
-	else if(dir == 4)
-		dir_text = "east"
-	else if(dir == 8)
-		dir_text = "west"
-
-	usr << "<span class='notice'>You rotate the [src] to face [dir_text]!</span>"
+	usr << "<span class='notice'>You rotate the [src] to face [dir2text(dir)]!</span>"
 
 	return
 
@@ -607,16 +610,6 @@
 
 	set_dir(turn(dir, 270))
 
-	var/dir_text
-	if(dir == 1)
-		dir_text = "north"
-	else if(dir == 2)
-		dir_text = "south"
-	else if(dir == 4)
-		dir_text = "east"
-	else if(dir == 8)
-		dir_text = "west"
-
-	usr << "<span class='notice'>You rotate the [src] to face [dir_text]!</span>"
+	usr << "<span class='notice'>You rotate the [src] to face [dir2text(dir)]!</span>"
 
 	return

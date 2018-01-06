@@ -70,7 +70,7 @@
 
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
-	desc = "<i>'HONK!'</i>"
+	desc = "<i><font face='comic sans ms'>Honk!</i></font>"
 	icon_state = "clown"
 	rolled_sleeves = -1
 
@@ -173,7 +173,7 @@
 
 /obj/item/clothing/under/lawyer/oldman
 	name = "Old Man's Suit"
-	desc = "A classic suit for the older gentleman with built in back support."
+	desc = "A classic suit for the older gentleman, with built in back support."
 	icon_state = "oldman"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 

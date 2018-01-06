@@ -15,53 +15,52 @@
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return
 
-	New()
-		var/datum/reagents/R = new/datum/reagents(1000)
-		reagents = R
-		R.my_atom = src
-		if (!possible_transfer_amounts)
-			src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-		..()
+/obj/structure/reagent_dispensers/New()
+	var/datum/reagents/R = new/datum/reagents(5000)
+	reagents = R
+	R.my_atom = src
+	if (!possible_transfer_amounts)
+		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
+	..()
 
-	examine(mob/user)
-		if(!..(user, 2))
+/obj/structure/reagent_dispensers/examine(mob/user)
+	if(!..(user, 2))
+		return
+	user << "<span class='notice'>It contains:</span>"
+	if(reagents && reagents.reagent_list.len)
+		for(var/datum/reagent/R in reagents.reagent_list)
+			user << "<span class='notice'>[R.volume] units of [R.name]</span>"
+	else
+		user << "<span class='notice'>Nothing.</span>"
+
+/obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
+	set name = "Set transfer amount"
+	set category = "Object"
+	set src in view(1)
+	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
+	if (N)
+		amount_per_transfer_from_this = N
+
+/obj/structure/reagent_dispensers/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
 			return
-		user << "<span class='notice'>It contains:</span>"
-		if(reagents && reagents.reagent_list.len)
-			for(var/datum/reagent/R in reagents.reagent_list)
-				user << "<span class='notice'>[R.volume] units of [R.name]</span>"
-		else
-			user << "<span class='notice'>Nothing.</span>"
-
-	verb/set_APTFT() //set amount_per_transfer_from_this
-		set name = "Set transfer amount"
-		set category = "Object"
-		set src in view(1)
-		var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
-		if (N)
-			amount_per_transfer_from_this = N
-
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
+		if(2.0)
+			if (prob(50))
+				new /obj/effect/effect/water(src.loc)
 				qdel(src)
 				return
-			if(2.0)
-				if (prob(50))
-					new /obj/effect/effect/water(src.loc)
-					qdel(src)
-					return
-			if(3.0)
-				if (prob(5))
-					new /obj/effect/effect/water(src.loc)
-					qdel(src)
-					return
-			else
-		return
+		if(3.0)
+			if (prob(5))
+				new /obj/effect/effect/water(src.loc)
+				qdel(src)
+				return
+		else
+	return
 
-
-
-
+/obj/structure/reagent_dispensers/blob_act()
+	qdel(src)
 
 
 
@@ -72,16 +71,19 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("water",1000)
 
-/obj/structure/reagent_dispensers/watertank/high/New()
+/obj/structure/reagent_dispensers/watertank/New()
+	..()
+	reagents.add_reagent("water", 1000)
+
+/obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
 	desc = "A highly-pressurized water tank made to hold vast amounts of water.."
 	icon_state = "watertank_high"
+
+/obj/structure/reagent_dispensers/watertank/high/New()
 	..()
-	reagents.add_reagent("water",4000)
+	reagents.add_reagent("water", 4000)
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
@@ -91,9 +93,10 @@
 	amount_per_transfer_from_this = 10
 	var/modded = 0
 	var/obj/item/device/assembly_holder/rig = null
-	New()
-		..()
-		reagents.add_reagent("fuel",1000)
+
+/obj/structure/reagent_dispensers/fueltank/New()
+	..()
+	reagents.add_reagent("fuel",1000)
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
@@ -160,6 +163,9 @@
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
 
+/obj/structure/reagent_dispensers/fueltank/blob_act()
+	explode()
+
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
 	if (reagents.total_volume > 500)
 		explosion(src.loc,1,2,4)
@@ -197,9 +203,10 @@
 	anchored = 1
 	density = 0
 	amount_per_transfer_from_this = 45
-	New()
-		..()
-		reagents.add_reagent("condensedcapsaicin",1000)
+
+/obj/structure/reagent_dispensers/peppertank/New()
+	..()
+	reagents.add_reagent("condensedcapsaicin",1000)
 
 
 /obj/structure/reagent_dispensers/water_cooler
@@ -343,9 +350,10 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("beer",1000)
+
+/obj/structure/reagent_dispensers/beerkeg/New()
+	..()
+	reagents.add_reagent("beer",1000)
 
 /obj/structure/reagent_dispensers/beerkeg/fakenuke
 	name = "nuclear beer keg"
@@ -361,9 +369,9 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 
-	New()
-		..()
-		reagents.add_reagent("virusfood", 1000)
+/obj/structure/reagent_dispensers/virusfood/New()
+	..()
+	reagents.add_reagent("virusfood", 1000)
 
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
@@ -373,6 +381,6 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 
-	New()
-		..()
-		reagents.add_reagent("sacid", 1000)
+/obj/structure/reagent_dispensers/acid/New()
+	..()
+	reagents.add_reagent("sacid", 1000)

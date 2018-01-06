@@ -1,0 +1,24 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Rocky4)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rocky4)
+"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rocky4)
+"e" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Rocky4)
+"f" = (/turf/simulated/floor/water,/area/submap/Rocky4)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbbbbbccbbbbbbbbbba
+abbbbcccccbbdbbbbdba
+abbbbcccccccbbbbbbba
+abbbbbbcccccbbbbbbba
+abdbbbbbbbbbbbbbbbba
+abbbbeeebbbbbbbccbba
+abbbeefeeeeebdbccbba
+abbbefffffeebbccccba
+abbeeffffffebcccccba
+abceeffffeeebcccccba
+abccceeeeebbbbcccbba
+abccccbbbbbbbbccbbba
+adbcccbbbbbbdbbbbbda
+aaaaaaaaaaaaaaaaaaaa
+"}

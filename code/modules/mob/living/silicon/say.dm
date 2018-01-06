@@ -73,7 +73,6 @@
 
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])//If there is a hologram and its master is the user.
-		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 		//Human-like, sorta, heard by those who understand humans.
 		var/rendered_a
 		//Speech distorted, heard by those who do not understand AIs.
@@ -88,7 +87,6 @@
 			rendered_a = "<span class='game say'><span class='name'>[name]</span> [verb], <span class='message'>\"[message]\"</span></span>"
 			rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verb], <span class='message'>\"[message_stars]\"</span></span>"
 			src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>"//The AI can "hear" its own message.
-		if(hologram.bellied) hologram.bellied.show_message(rendered_a, 2) //VOREStation Add so holobellied people can hear
 		var/list/listeners = get_mobs_and_objs_in_view_fast(get_turf(T), world.view)
 		var/list/listening = listeners["mobs"]
 		var/list/listening_obj = listeners["objs"]
@@ -125,7 +123,6 @@
 		var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message]</span></span>"
 		src << "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>"
 		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
-		if(hologram.bellied) hologram.bellied.show_message(rendered, 2) //VOREStation Add so holobellied people can hear
 
 		//var/obj/effect/overlay/hologram = T.masters[src] //VOREStation edit. Done above.
 		var/list/in_range = get_mobs_and_objs_in_view_fast(get_turf(hologram), world.view, 2) //Emotes are displayed from the hologram, not the pad

@@ -9,11 +9,11 @@
 	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
 	item_state = null	//so the human update icon uses the icon_state instead
 	fire_sound = 'sound/weapons/wave.ogg'
-	charge_cost = 100
+	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
 	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
-	self_recharge = 1
+	battery_lock = 1
 	var/size_set_to = 1
 	firemodes = list(
 		list(mode_name		= "select size",
@@ -21,6 +21,37 @@
 			modifystate		= "sizegun-grow",
 			fire_sound		= 'sound/weapons/pulse3.ogg'
 		))
+
+/obj/item/weapon/gun/energy/sizegun/New()
+	..()
+	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+
+/obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
+	. = ..()
+	select_size()
+
+/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
+	. = ..()
+	var/obj/item/projectile/beam/sizelaser/G = .
+	if(istype(G))
+		G.set_size = size_set_to
+
+/obj/item/weapon/gun/energy/sizegun/proc/select_size()
+	set name = "Select Size"
+	set category = "Object"
+	set src in view(1)
+
+	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to*100) as num
+	if(size_select>200 || size_select<25)
+		usr << "<span class='notice'>Invalid size.</span>"
+		return
+	size_set_to = (size_select/100)
+	usr << "<span class='notice'>You set the size to [size_select]%</span>"
+
+/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
+	..()
+	var/size_examine = (size_set_to*100)
+	user << "<span class='info'>It is currently set at [size_examine]%</span>"
 
 //
 // Beams for size gun
@@ -51,26 +82,3 @@
 			H.updateicon()
 		else
 			return 1
-
-/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
-	. = ..()
-	var/obj/item/projectile/beam/sizelaser/G = .
-	if(istype(G))
-		G.set_size = size_set_to
-
-/obj/item/weapon/gun/energy/sizegun/verb/select_size()
-	set name = "Select Size"
-	set category = "Object"
-	set src in view(1)
-
-	var/size_select = input("Put the desired size (25-200%)", "Set Size", 200) as num
-	if(size_select>200 || size_select<25)
-		usr << "<span class='notice'>Invalid size.</span>"
-		return
-	size_set_to = (size_select/100)
-	usr << "<span class='notice'>You set the size to [size_select]%</span>"
-
-/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
-	..()
-	var/size_examine = (size_set_to*100)
-	user << "<span class='info'>It is currently set at [size_examine]%</span>"

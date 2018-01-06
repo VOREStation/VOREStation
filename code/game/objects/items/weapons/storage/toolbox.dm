@@ -69,14 +69,24 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = 14
 
-/obj/item/weapon/storage/toolbox/syndicate/New()
+/obj/item/weapon/storage/toolbox/syndicate/New() // This is found in maint, so it should have the basics, plus some gloves.
 	..()
 	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/weapon/screwdriver(src)
+	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/device/multitool(src)
+
+/obj/item/weapon/storage/toolbox/syndicate/powertools/New() // Available in the uplink and is the 'real' syndie toolbox.
+	// ..() isn't called or else this box would contain the basic tools, power tools, and duplicate gloves.
+	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/weapon/screwdriver/power(src)
-	new /obj/item/stack/cable_coil/random(src,30)
 	new /obj/item/weapon/weldingtool/experimental(src)
 	new /obj/item/weapon/crowbar/power(src)
 	new /obj/item/device/multitool(src)
+	new /obj/item/stack/cable_coil/random(src,30)
 	new /obj/item/device/analyzer(src)
 
 /obj/item/weapon/storage/toolbox/lunchbox

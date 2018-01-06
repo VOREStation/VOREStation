@@ -1,7 +1,7 @@
 //SolGov Uniforms
 
 //PT
-/obj/item/clothing/under/pt/expeditionary
+/obj/item/clothing/under/pt/sifguard
 	name = "explorer's pt uniform"
 	desc = "A baggy shirt bearing the seal of the Society of Universal Cartographers and some dorky looking blue shorts."
 
@@ -20,39 +20,39 @@
 	name = "utility uniform"
 	desc = "A comfortable turtleneck and black utility trousers."
 
-/obj/item/clothing/under/utility/expeditionary
+/obj/item/clothing/under/utility/sifguard
 	name = "explorer's uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has silver trim."
 
-/obj/item/clothing/under/utility/expeditionary/medical
+/obj/item/clothing/under/utility/sifguard/medical
 	name = "explorer's medical uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has silver trim and blue blazes."
 
-/obj/item/clothing/under/utility/expeditionary/medical/command
+/obj/item/clothing/under/utility/sifguard/medical/command
 	name = "explorer's medical command uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has gold trim and blue blazes."
 
-/obj/item/clothing/under/utility/expeditionary/engineering
+/obj/item/clothing/under/utility/sifguard/engineering
 	name = "explorer's engineering uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has silver trim and organge blazes."
 
-/obj/item/clothing/under/utility/expeditionary/engineering/command
+/obj/item/clothing/under/utility/sifguard/engineering/command
 	name = "explorer's engineering command uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has gold trim and organge blazes."
 
-/obj/item/clothing/under/utility/expeditionary/supply
+/obj/item/clothing/under/utility/sifguard/supply
 	name = "explorer's supply uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has silver trim and brown blazes."
 
-/obj/item/clothing/under/utility/expeditionary/security
+/obj/item/clothing/under/utility/sifguard/security
 	name = "explorer's security uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has silver trim and red blazes."
 
-/obj/item/clothing/under/utility/expeditionary/security/command
+/obj/item/clothing/under/utility/sifguard/security/command
 	name = "explorer's security command uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has gold trim and red blazes."
 
-/obj/item/clothing/under/utility/expeditionary/command
+/obj/item/clothing/under/utility/sifguard/command
 	name = "explorer's command uniform"
 	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This one has gold trim and gold blazes."
 

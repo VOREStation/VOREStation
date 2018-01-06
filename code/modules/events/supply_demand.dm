@@ -51,7 +51,7 @@
 	else
 		message += "has a warehouse full of empty crates! "
 	message += "We have to fill that gap quick before anyone starts asking questions. "
-	message += "You'd better have this here stuff by [worldtime2stationtime(end_time)]<br>"
+	message += "You'd better have this stuff here by [worldtime2stationtime(end_time)]<br>"
 	message += "The requested items are as follows"
 	message += "<hr>"
 	for (var/datum/supply_demand_order/req in required_items)

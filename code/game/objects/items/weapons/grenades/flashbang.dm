@@ -16,10 +16,11 @@
 		for(var/mob/living/carbon/M in hear(7, get_turf(src)))
 			bang(get_turf(src), M)
 
-		for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
+		for(var/obj/structure/blob/B in hear(8,get_turf(src)))       		//Blob damage here
 			var/damage = round(30/(get_dist(B,get_turf(src))+1))
-			B.health -= damage
-			B.update_icon()
+			if(B.overmind)
+				damage *= B.overmind.blob_type.burn_multiplier
+			B.adjust_integrity(-damage)
 
 		new/obj/effect/effect/sparks(src.loc)
 		new/obj/effect/effect/smoke/illumination(src.loc, 5, range=30, power=30, color="#FFFFFF")

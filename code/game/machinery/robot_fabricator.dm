@@ -1,5 +1,5 @@
 /obj/machinery/robotic_fabricator
-	name = "Robotic Fabricator"
+	name = "robotic fabricator"
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
 	density = 1
@@ -30,7 +30,7 @@
 					overlays -= "fab-load-metal"
 					updateDialog()
 		else
-			user << "The robot part maker is full. Please remove metal from the robot part maker in order to insert more."
+			to_chat(user, "The robot part maker is full. Please remove metal from the robot part maker in order to insert more.")
 
 /obj/machinery/robotic_fabricator/attack_hand(user as mob)
 	var/dat

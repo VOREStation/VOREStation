@@ -381,3 +381,20 @@
 	new /obj/item/ammo_magazine/nsfw_mag(src)
 	for(var/path in typesof(/obj/item/ammo_casing/nsfw_batt))
 		new path(src)
+
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos
+	name = "\improper KHI-102b \'NSFW\' gun kit"
+	desc = "A storage case for a multi-purpose handgun. Variety hour!"
+	max_w_class = ITEMSIZE_NORMAL
+
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos/New()
+	..()
+	new /obj/item/weapon/gun/projectile/nsfw(src)
+	new /obj/item/ammo_magazine/nsfw_mag(src)
+	new /obj/item/ammo_casing/nsfw_batt(src)
+	new /obj/item/ammo_casing/nsfw_batt(src)
+	new /obj/item/ammo_casing/nsfw_batt/stun(src)
+	new /obj/item/ammo_casing/nsfw_batt/stun(src)
+	new /obj/item/ammo_casing/nsfw_batt/net(src)
+	new /obj/item/ammo_casing/nsfw_batt/ion(src)
+

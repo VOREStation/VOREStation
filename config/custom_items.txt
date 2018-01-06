@@ -63,7 +63,7 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/under/utility/expeditionary/medical/command
+item_path: /obj/item/clothing/under/utility/sifguard/medical/command
 item_name: centcom medical uniform
 item_desc: A medical uniform straight from Central Command.
 }
@@ -71,7 +71,7 @@ item_desc: A medical uniform straight from Central Command.
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/suit/storage/service/expeditionary/medical/command
+item_path: /obj/item/clothing/suit/storage/service/sifguard/medical/command
 item_name: centcom medical jacket
 item_desc: A medical jacket straight from Central Command.
 }
@@ -135,7 +135,7 @@ item_path: /obj/item/weapon/storage/box/fluff/octavious
 {
 ckey: burritojustice
 character_name: Jayda Wilson
-item_path: /obj/item/clothing/under/utility/expeditionary/medical
+item_path: /obj/item/clothing/under/utility/sifguard/medical
 }
 
 # ######## C CKEYS
@@ -143,6 +143,24 @@ item_path: /obj/item/clothing/under/utility/expeditionary/medical
 ckey: cockatricexl
 character_name: James Holder
 item_path: /obj/item/weapon/disk/data
+}
+
+{
+ckey: cameron653
+character_name: Jasmine Lizden
+item_path: /obj/item/weapon/implanter/reagent_generator/jasmine
+}
+
+{
+ckey: cameron653
+character_name: Diana Kuznetsova
+item_path: /obj/item/clothing/suit/fluff/purp_robes
+}
+
+{
+ckey: cameron653
+character_name: Diana Kuznetsova
+item_path: /obj/item/clothing/head/fluff/pink_tiara
 }
 
 # ######## D CKEYS
@@ -284,6 +302,13 @@ item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
 ckey: jacknoir413
 character_name: Mor Xaina
 item_path: /obj/item/weapon/storage/box/fluff/morxaina
+}
+
+{
+ckey: jacknoir413
+character_name: Areax Third
+item_path: /obj/item/weapon/storage/box/fluff/stunstaff
+req_titles: Security Officer, Warden, Head of Security
 }
 
 {
@@ -443,6 +468,12 @@ item_path: /obj/item/weapon/storage/box/fluff/briana_moore
 ckey: luminescentring
 character_name: Briana Moore
 item_path: /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+}
+
+{
+ckey: Lycanthorph
+character_name: Savannah Dixon
+item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 }
 
 # ######## M CKEYS

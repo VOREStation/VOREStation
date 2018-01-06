@@ -13,10 +13,10 @@
 
 	//First, check if we can breathe at all
 	if(health < config.health_threshold_crit && !(CE_STABLE in chem_effects)) //crit aka circulatory shock
-		losebreath++
+		AdjustLosebreath(1)
 
 	if(losebreath>0) //Suffocating so do not take a breath
-		losebreath--
+		AdjustLosebreath(-1)
 		if (prob(10)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
 	else

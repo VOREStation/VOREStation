@@ -35,6 +35,24 @@
 	var/const/signfont = "Times New Roman"
 	var/const/crayonfont = "Comic Sans MS"
 
+/obj/item/weapon/paper/alien
+	name = "alien tablet"
+	desc = "It looks highly advanced"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "alienpaper"
+
+/obj/item/weapon/paper/alien/update_icon()
+	if(info)
+		icon_state = "alienpaper_words"
+	else
+		icon_state = "alienpaper"
+
+/obj/item/weapon/paper/alien/burnpaper()
+	return
+
+/obj/item/weapon/paper/alien/AltClick() // No airplanes for me.
+	return
+
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
 /obj/item/weapon/paper/New()

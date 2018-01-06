@@ -42,12 +42,16 @@ BLIND     // can't see anything
 			active = 0
 			icon_state = off_state
 			user.update_inv_glasses()
-			usr << "You deactivate the optical matrix on the [src]."
+			flash_protection = FLASH_PROTECTION_NONE
+			tint = TINT_NONE
+			to_chat(usr, "You deactivate the optical matrix on the [src].")
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			usr << "You activate the optical matrix on the [src]."
+			flash_protection = initial(flash_protection)
+			tint = initial(tint)
+			to_chat(usr, "You activate the optical matrix on the [src].")
 		user.update_action_buttons()
 
 /obj/item/clothing/glasses/meson
@@ -128,6 +132,7 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Goggles"
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
+	flash_protection = FLASH_PROTECTION_REDUCED
 
 /obj/item/clothing/glasses/night/vox
 	name = "Alien Optics"
@@ -219,6 +224,7 @@ BLIND     // can't see anything
 	icon_state = "sun"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	darkness_view = -1
+	flash_protection = FLASH_PROTECTION_MODERATE
 
 /obj/item/clothing/glasses/sunglasses/aviator
 	name = "aviators"
@@ -234,6 +240,8 @@ BLIND     // can't see anything
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
 	item_flags = AIRTIGHT
 	var/up = 0
+	flash_protection = FLASH_PROTECTION_MAJOR
+	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
@@ -249,13 +257,17 @@ BLIND     // can't see anything
 			flags_inv |= HIDEEYES
 			body_parts_covered |= EYES
 			icon_state = initial(icon_state)
-			usr << "You flip \the [src] down to protect your eyes."
+			flash_protection = initial(flash_protection)
+			tint = initial(tint)
+			to_chat(usr, "You flip \the [src] down to protect your eyes.")
 		else
 			src.up = !src.up
 			flags_inv &= ~HIDEEYES
 			body_parts_covered &= ~EYES
 			icon_state = "[initial(icon_state)]up"
-			usr << "You push \the [src] up out of your face."
+			flash_protection = FLASH_PROTECTION_NONE
+			tint = TINT_NONE
+			to_chat(usr, "You push \the [src] up out of your face.")
 		update_clothing_icon()
 		usr.update_action_buttons()
 
@@ -263,13 +275,15 @@ BLIND     // can't see anything
 	name = "superior welding goggles"
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
+	tint = TINT_MODERATE
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
-	//vision_flags = BLIND  	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
+	flash_protection = FLASH_PROTECTION_MAJOR
+	tint = BLIND
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"
@@ -340,11 +354,13 @@ BLIND     // can't see anything
 	if(toggleable && !user.incapacitated())
 		on = !on
 		if(on)
+			flash_protection = FLASH_PROTECTION_NONE
 			src.hud = hud_holder
-			to_chat(user, "You switch the [src] to HUD mode.")
+			to_chat(usr, "You switch the [src] to HUD mode.")
 		else
+			flash_protection = initial(flash_protection)
 			src.hud = null
-			to_chat(user, "You switch \the [src] to flash protection mode.")
+			to_chat(usr, "You switch \the [src] to flash protection mode.")
 		update_icon()
 		user << activation_sound
 		user.update_inv_glasses()
@@ -382,7 +398,7 @@ BLIND     // can't see anything
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
-
+	flash_protection = FLASH_PROTECTION_REDUCED
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))

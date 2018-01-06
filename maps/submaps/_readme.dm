@@ -24,4 +24,8 @@ is being loaded (to clear trees, etc).  Be sure to not load the map on top of an
 irreplacable objects or players, as they will all get deleted if annihilate is on.  If you load the submap before
 other objects have a chance to spawn (before random map gen), you shouldn't need to use annihilate.
 
+	When adding a new submap which will be loaded at runtime, you should add it to the list of '#include'-s on the top of the
+map template file. This forces the submap to be compiled when the code is undergoing a unit test, which will help keep the
+submap from suffering errors such as invalid paths due to them being changed elsewhere.
+
 */

@@ -94,7 +94,7 @@
 			singulo.target = src
 	icon_state = "[icontype]1"
 	active = 1
-	machines |= src
+	START_MACHINE_PROCESSING(src)
 	if(user)
 		user << "<span class='notice'>You activate the beacon.</span>"
 

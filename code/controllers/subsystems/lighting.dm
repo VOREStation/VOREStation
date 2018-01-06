@@ -50,27 +50,27 @@ SUBSYSTEM_DEF(lighting)
 		stage = SSLIGHTING_STAGE_LIGHTS // Start with Step 1 of course
 
 	if(stage == SSLIGHTING_STAGE_LIGHTS)
-		timer = world.tick_usage
+		timer = TICK_USAGE
 		internal_process_lights(resumed)
-		cost_lights = MC_AVERAGE(cost_lights, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_lights = MC_AVERAGE(cost_lights, TICK_DELTA_TO_MS(TICK_USAGE - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
 		stage = SSLIGHTING_STAGE_CORNERS
 
 	if(stage == SSLIGHTING_STAGE_CORNERS)
-		timer = world.tick_usage
+		timer = TICK_USAGE
 		internal_process_corners(resumed)
-		cost_corners = MC_AVERAGE(cost_corners, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_corners = MC_AVERAGE(cost_corners, TICK_DELTA_TO_MS(TICK_USAGE - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
 		stage = SSLIGHTING_STAGE_OVERLAYS
 
 	if(stage == SSLIGHTING_STAGE_OVERLAYS)
-		timer = world.tick_usage
+		timer = TICK_USAGE
 		internal_process_overlays(resumed)
-		cost_overlays = MC_AVERAGE(cost_overlays, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_overlays = MC_AVERAGE(cost_overlays, TICK_DELTA_TO_MS(TICK_USAGE - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0

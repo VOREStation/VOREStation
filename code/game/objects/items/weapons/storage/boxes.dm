@@ -370,6 +370,15 @@
 	for(var/i = 1 to 7)
 		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
 
+/obj/item/weapon/storage/box/flare
+	name = "box of flares"
+	desc = "A box containing 4 flares."
+
+/obj/item/weapon/storage/box/flare/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/device/flashlight/flare(src)
+
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
 	desc = "Box full of scum-bag tracking utensils."
@@ -394,6 +403,17 @@
 		new /obj/item/weapon/implantcase/chem(src)
 	new /obj/item/weapon/implanter(src)
 	new /obj/item/weapon/implantpad(src)
+
+/obj/item/weapon/storage/box/camerabug
+	name = "mobile camera pod box"
+	desc = "A box containing some mobile camera pods."
+	icon_state = "pda"
+
+/obj/item/weapon/storage/box/camerabug/New()
+	..()
+	for(var/i = 1 to 6)
+		new /obj/item/device/camerabug(src)
+	new /obj/item/device/bug_monitor(src)
 
 /obj/item/weapon/storage/box/rxglasses
 	name = "box of prescription glasses"

@@ -36,7 +36,7 @@
 /mob/living/simple_animal/Destroy()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
-		B.release_all_contents() // When your stomach is empty
+		B.release_all_contents(include_absorbed = TRUE) // When your stomach is empty
 	prey_excludes.Cut()
 	. = ..()
 
@@ -74,6 +74,9 @@
 		return 0
 	if(vore_ignores_undigestable && !M.digestable) //Don't eat people with nogurgle prefs
 		ai_log("vr/wont eat [M] because I am picky", 3)
+		return 0
+	if(!M.allowmobvore) // Don't eat people who don't want to be ate by mobs
+		ai_log("vr/wont eat [M] because they don't allow mob vore", 3)
 		return 0
 	if(M in prey_excludes) // They're excluded
 		ai_log("vr/wont eat [M] because they are excluded", 3)
@@ -127,7 +130,7 @@
 /mob/living/simple_animal/death()
 	for(var/I in vore_organs)
 		var/datum/belly/B = vore_organs[I]
-		B.release_all_contents() // When your stomach is empty
+		B.release_all_contents(include_absorbed = TRUE) // When your stomach is empty
 	..() // then you have my permission to die.
 
 // Simple animals have only one belly.  This creates it (if it isn't already set up)

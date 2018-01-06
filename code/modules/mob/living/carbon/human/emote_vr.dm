@@ -20,37 +20,11 @@
 			message = "awoos loudly. AwoooOOOOoooo!"
 			m_type = 2
 		if ("nsay")
-			if(!nif)
-				to_chat(src,"<span class='warning'>You can't use *nsay without a NIF.</span>")
-				return 1
-			var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
-			if(!SC)
-				to_chat(src,"<span class='warning'>You need the Soulcatcher software to use *nme.</span>")
-				return 1
-			if(!SC.brainmobs.len)
-				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
-				return 1
-			var/nifmessage = sanitize(input("Type a message to say.","Speak into NIF") as text|null)
-			if(nifmessage)
-				SC.say_into(nifmessage,src)
-			return 1
-
+			nsay()
+			return TRUE
 		if ("nme")
-			if(!nif)
-				to_chat(src,"<span class='warning'>You can't use *nme without a NIF.</span>")
-				return 1
-			var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
-			if(!SC)
-				to_chat(src,"<span class='warning'>You need the Soulcatcher software to use *nme.</span>")
-				return 1
-			if(!SC.brainmobs.len)
-				to_chat(src,"<span class='warning'>You need a loaded mind to use *nme.</span>")
-				return 1
-			var/nifmessage = sanitize(input("Type an action to perform.","Emote into NIF") as text|null)
-			if(nifmessage)
-				SC.emote_into(nifmessage,src)
-			return 1
-
+			nme()
+			return TRUE
 		if ("flip")
 			var/danger = 1 //Base 1% chance to break something.
 			var/list/involved_parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
@@ -84,7 +58,10 @@
 							log_and_message_admins("lost their [breaking] with *flip, ahahah.", src)
 						else
 							src.Weaken(5)
-							E.fracture()
+							if(E.cannot_break) //Prometheans go splat
+								E.droplimb(0,DROPLIMB_BLUNT)
+							else
+								E.fracture()
 							message += " <span class='danger'>And breaks something!</span>"
 							log_and_message_admins("broke their [breaking] with *flip, ahahah.", src)
 
@@ -121,4 +98,14 @@
 		flapping = !flapping
 
 	update_wing_showing()
+	return 1
+
+/mob/living/carbon/human/verb/toggle_gender_identity_vr()
+	set name = "Set Gender Identity"
+	set desc = "Sets the pronouns when examined and performing an emote."
+	set category = "IC"
+	var/new_gender_identity = input("Please select a gender Identity.") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL)
+	if(!new_gender_identity)
+		return 0
+	change_gender_identity(new_gender_identity)
 	return 1

@@ -1,0 +1,32 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"d" = (/turf/simulated/floor/outdoors/mud,/area/submap/Mudpit)
+"e" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"f" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"g" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"h" = (/obj/effect/decal/remains/mouse,/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"i" = (/obj/effect/decal/cleanable/liquid_fuel,/turf/template_noop,/area/template_noop)
+"j" = (/turf/simulated/mineral,/area/submap/Mudpit)
+"k" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"l" = (/obj/machinery/portable_atmospherics/canister/empty/phoron,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"m" = (/obj/effect/decal/remains,/obj/item/clothing/suit/space/void/merc/fire,/obj/item/clothing/head/helmet/space/void/merc/fire,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+"n" = (/obj/effect/decal/mecha_wreckage/ripley/firefighter,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaa
+abcccaacbbbdeea
+acccbcccbbddefa
+accdddgcccdddha
+aibcddjjcbcddca
+aibbdjjjccccdca
+aibjjjjcccgcdaa
+accjjjkccccccaa
+agdjjjlcmcnccia
+adddjjjccccccca
+acddddjgcccddca
+aadddddbbbbddca
+aacdddddbbdddda
+abbacgcccacddba
+aaaaaaaaaaaaaaa
+"}

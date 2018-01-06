@@ -90,6 +90,23 @@
 	material = get_material_by_name("holowood")
 	..()
 
+/obj/structure/table/alien
+	name = "alien table"
+	desc = "Advanced flat surface technology at work!"
+	icon_state = "alien_preview"
+	can_reinforce = FALSE
+	can_plate = FALSE
+
+/obj/structure/table/alien/New()
+	material = get_material_by_name("alium")
+	verbs -= /obj/structure/table/verb/do_flip
+	verbs -= /obj/structure/table/proc/do_put
+	..()
+
+/obj/structure/table/alien/dismantle(obj/item/weapon/wrench/W, mob/user)
+	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
+	return
+
 //BENCH PRESETS
 /obj/structure/table/bench/standard
 	icon_state = "plain_preview"

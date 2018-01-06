@@ -2,7 +2,7 @@
 #define TRACKING_NO_COVERAGE 1
 #define TRACKING_TERMINATE 2
 
-/mob/living/silicon/ai/var/max_locations = 10
+/mob/living/silicon/ai/var/max_locations = 30
 /mob/living/silicon/ai/var/stored_locations[0]
 
 /proc/InvalidPlayerTurf(turf/T as turf)

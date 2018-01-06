@@ -8,6 +8,13 @@ Used In File(s): \code\game\machinery\partslathe.dm
 
 <div class="statusDisplay">
 	<div class="line">
+		{{if data.usePower==2}}
+			{{:helper.link('Deactivate Processing', 'power', {'deactivate' : 1})}}
+		{{else}}
+			{{:helper.link('Activate Processing', 'power', {'activate' : 1})}}
+		{{/if}}
+	</div>
+	<div class="line">
 		<div class="statusLabel">Flow Rate</div>
 		<div class="statusValue">{{:helper.fixed(data.last_flow_rate)}} L/s</div>
 	</div>

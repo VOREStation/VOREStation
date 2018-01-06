@@ -26,6 +26,8 @@
 	tail_hair = "feathers"
 	reagent_tag = IS_TESHARI
 
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
+
 	icobase = 'icons/mob/human_races/r_seromi.dmi'
 	deform = 'icons/mob/human_races/r_seromi.dmi'
 	damage_overlays = 'icons/mob/human_races/masks/dam_seromi.dmi'

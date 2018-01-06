@@ -38,7 +38,7 @@
 					prob(8);/obj/item/weapon/melee/energy/sword,\
 					prob(8);/obj/item/weapon/gun/projectile/derringer,\
 					prob(8);/obj/item/weapon/gun/projectile/revolver/lemat,\
-					prob(8);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\
+				/*	prob(8);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\ */
 				/*	prob(8);/obj/item/weapon/gun/projectile/automatic/m41a,\ */
 					prob(7);/obj/item/weapon/material/butterfly,\
 					prob(7);/obj/item/weapon/material/butterfly/switchblade,\

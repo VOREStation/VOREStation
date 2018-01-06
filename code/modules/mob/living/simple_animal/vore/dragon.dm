@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/dragon
-	name = "phoron dragon"
+	name = "red dragon"
 	desc = "Here to pillage stations and kidnap princesses, and there probably aren't any princesses."
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_dead = "reddragon-dead"

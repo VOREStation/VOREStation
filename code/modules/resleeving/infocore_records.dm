@@ -79,6 +79,7 @@
 	var/toocomplex
 	var/sizemult
 	var/weight
+	var/aflags
 
 /datum/transhuman/body_record/New(var/copyfrom, var/add_to_db = 0, var/ckeylock = 0)
 	..()
@@ -114,6 +115,7 @@
 	body_oocnotes = M.ooc_notes
 	sizemult = M.size_multiplier
 	weight = M.weight
+	aflags = M.appearance_flags
 
 	//Probably should
 	M.dna.check_integrity()
@@ -204,3 +206,4 @@
 	src.organ_data = orig.organ_data.Copy()
 	src.toocomplex = orig.toocomplex
 	src.sizemult = orig.sizemult
+	src.aflags = orig.aflags

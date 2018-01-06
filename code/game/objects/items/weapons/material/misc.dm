@@ -32,6 +32,13 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
+	var/should_cleave = TRUE // Because knives inherit from hatchets. For some reason.
+
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/material/hatchet/pre_attack(var/mob/living/target, var/mob/living/user)
+	if(should_cleave && istype(target))
+		cleave(user, target)
+	..()
 
 /obj/item/weapon/material/hatchet/unathiknife
 	name = "duelling knife"
@@ -39,6 +46,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
+	should_cleave = FALSE
 	var hits = 0
 
 /obj/item/weapon/material/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
@@ -56,6 +64,7 @@
 	hits = initial(hits)
 	..()
 
+// These probably shouldn't inherit from hatchets.
 /obj/item/weapon/material/hatchet/tacknife
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
@@ -64,6 +73,7 @@
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
+	should_cleave = FALSE
 
 /obj/item/weapon/material/hatchet/tacknife/combatknife
 	name = "combat knife"
@@ -75,6 +85,7 @@
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
 	attack_verb = list("sliced", "stabbed", "chopped", "cut")
 	applies_material_colour = 1
+	should_cleave = FALSE
 
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"
@@ -86,3 +97,36 @@
 	dulled_divisor = 0.75	//Still metal on a long pole
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
+
+/obj/item/weapon/material/snow/snowball
+	name = "loose packed snowball"
+	desc = "A fun snowball. Throw it at your friends!"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "snowball"
+	default_material = MAT_SNOW
+	health = 1
+	fragile = 1
+	force_divisor = 0.01
+	thrown_force_divisor = 0.10
+	w_class = ITEMSIZE_SMALL
+	attack_verb = list("mushed", "splatted", "splooshed", "splushed") // Words that totally exist.
+
+/obj/item/weapon/material/snow/snowball/attack_self(mob/user as mob)
+	if(user.a_intent == I_HURT)
+		visible_message("[user] has smashed the snowball in their hand!", "You smash the snowball in your hand.")
+		var/atom/S = new /obj/item/stack/material/snow(user.loc)
+		del(src)
+		user.put_in_hands(S)
+	else
+		visible_message("[user] starts compacting the snowball.", "You start compacting the snowball.")
+		if(do_after(user, 2000))
+			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
+			del(src)
+			user.put_in_hands(S)
+
+/obj/item/weapon/material/snow/snowball/reinforced
+	name = "snowball"
+	desc = "A well-formed and fun snowball. It looks kind of dangerous."
+	icon_state = "snowball-reinf"
+	force_divisor = 0.20
+	thrown_force_divisor = 0.25

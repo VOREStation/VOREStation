@@ -1,17 +1,3 @@
-/obj/item/device/gps
-	name = "relay positioning device"
-	desc = "Triangulates the approximate co-ordinates using a nearby satellite network."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "locator"
-	item_state = "locator"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
-	w_class = ITEMSIZE_SMALL
-
-/obj/item/device/gps/attack_self(var/mob/user as mob)
-	var/turf/T = get_turf(src)
-	user << "<span class='notice'>\icon[src] \The [src] flashes <i>[T.x]:[T.y]:[T.z]</i>.</span>"
-
 /obj/item/device/measuring_tape
 	name = "measuring tape"
 	desc = "A coiled metallic tape used to check dimensions and lengths."

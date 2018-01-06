@@ -31,11 +31,12 @@
 /obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
 	icon_state = "[initial(icon_state)]"
 	suittoggled = 0
+	hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
 		H.unEquip(hood, 1)
 		H.update_inv_wear_suit()
-	hood.loc = src
+	hood.forceMove(src)
 
 /obj/item/clothing/suit/storage/hooded/dropped()
 	RemoveHood()
@@ -53,6 +54,7 @@
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
 				suittoggled = 1
+				hood.canremove = FALSE
 				icon_state = "[initial(icon_state)]_t"
 				H.update_inv_wear_suit()
 	else

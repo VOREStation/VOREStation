@@ -27,6 +27,23 @@
 		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
 		icon_state = "piano"
 
+/obj/structure/device/piano/verb/rotate()
+	set name = "Rotate Piano"
+	set category = "Object"
+	set src in oview(1)
+
+	if(istype(usr,/mob/living/simple_animal/mouse))
+		return
+	else if(!usr || !isturf(usr.loc))
+		return
+	else if(usr.stat || usr.restrained())
+		return
+	else if (istype(usr,/mob/observer/ghost) && !config.ghost_interaction)
+		return
+	else
+		src.set_dir(turn(src.dir, 90))
+		return
+
 /obj/structure/device/piano/proc/playnote(var/note as text)
 	//world << "Note: [note]"
 	var/soundfile

@@ -68,6 +68,9 @@
 			user << "<span class='danger'>There's no Mark!</span>"
 			return 0
 		else
+			if(!allowed_to_teleport())
+				to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+				return
 			visible_message("<span class='warning'>\The [user] starts glowing!</span>")
 			var/light_intensity = 2
 			var/time_left = 3

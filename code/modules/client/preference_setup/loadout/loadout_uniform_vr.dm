@@ -3,9 +3,9 @@
 	path = /obj/item/clothing/under/permit
 
 //Polaris overrides
-/datum/gear/uniform/pt/expeditionary
+/datum/gear/uniform/pt/sifguard
 	display_name = "pt uniform, planetside sec"
-	path = /obj/item/clothing/under/pt/expeditionary
+	path = /obj/item/clothing/under/pt/sifguard
 
 //KHI Uniforms
 /datum/gear/uniform/job_khi/cmd
@@ -155,3 +155,7 @@ Swimsuits
 		var/obj/item/weapon/storage/box/fluff/swimsuit/swimsuit_type = swimsuit
 		swimsuits[initial(swimsuit_type.name)] = swimsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(swimsuits))
+
+/datum/gear/uniform/suit/gnshorts
+	display_name = "GN shorts"
+	path = /obj/item/clothing/under/fluff/gnshorts

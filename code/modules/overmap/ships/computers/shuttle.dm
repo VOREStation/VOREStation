@@ -19,7 +19,7 @@
 		shuttle.area_offsite = shuttle.area_station
 		shuttle_controller.shuttles[shuttle_tag] = shuttle
 		shuttle_controller.process_shuttles += shuttle
-		testing("Exploration shuttle '[shuttle_tag]' at zlevel [z] successfully added.")
+		testing("Exploration shuttle '[shuttle_tag]' at z-level [z] successfully added.")
 
 //Sets destination to new sector. Can be null.
 /obj/machinery/computer/shuttle_control/explore/proc/update_destination(var/obj/effect/map/D)
@@ -84,7 +84,7 @@
 			else
 				shuttle_status = "Standing-by at offsite location."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
-			shuttle_status = "Shuttle has recieved command and will depart shortly."
+			shuttle_status = "Shuttle has received command and will depart shortly."
 		if(WAIT_ARRIVE)
 			shuttle_status = "Proceeding to destination."
 		if(WAIT_FINISH)

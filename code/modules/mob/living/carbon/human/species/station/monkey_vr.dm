@@ -13,7 +13,7 @@
 	icobase = 'icons/mob/human_races/monkeys/r_sergaling_vr.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_sergaling_vr.dmi'
 	tail = null
-	default_language = "Sagaru"
+	default_language = LANGUAGE_SAGARU
 
 /datum/species/monkey/sparra
 	name = "Sparra"
@@ -22,7 +22,7 @@
 	tail = null
 	icobase = 'icons/mob/human_races/monkeys/r_sparra_vr.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_sparra_vr.dmi'
-	default_language = "Birdsong"
+	default_language = LANGUAGE_BIRDSONG
 
 
 /* Example from Polaris code
@@ -48,7 +48,7 @@
 	deform = 'icons/mob/human_races/monkeys/r_wolpin.dmi'
 
 	greater_form = "Vulpkanin"
-	default_language = "Canilunzt"
+	default_language = LANGUAGE_CANILUNZT
 	flesh_color = "#966464"
 	base_color = "#000000"
 	tail = null

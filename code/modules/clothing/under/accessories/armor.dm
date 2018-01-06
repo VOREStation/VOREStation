@@ -150,16 +150,16 @@
 //Decorative attachments
 /obj/item/clothing/accessory/armor/tag
 	name = "\improper SCG Flag"
-	desc = "An emblem depicting the Sol Central Government's flag."
+	desc = "An emblem depicting the Solar Confederate Government's flag."
 	icon_override = 'icons/mob/modular_armor.dmi'
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 //	accessory_icons = list(slot_tie_str = 'icons/mob/modular_armor.dmi', slot_wear_suit_str = 'icons/mob/modular_armor.dmi')
 	icon_state = "solflag"
 	slot = ACCESSORY_SLOT_ARMOR_M
 
-/obj/item/clothing/accessory/armor/tag/ec
-	name = "\improper Expeditionary Corps crest"
-	desc = "An emblem depicting the crest of the SCG Expeditionary Corps."
+/obj/item/clothing/accessory/armor/tag/sifguard
+	name = "\improper Sif Defense Force crest"
+	desc = "An emblem depicting the crest of the Sif Defense Force."
 	icon_state = "ecflag"
 
 /obj/item/clothing/accessory/armor/tag/sec
@@ -169,7 +169,7 @@
 
 /obj/item/clothing/accessory/armor/tag/com
 	name = "\improper SCG tag"
-	desc = "An armor tag with the words SOL CENTRAL GOVERNMENT printed in gold lettering on it."
+	desc = "An armor tag with the words SOLAR CONFEDERATE GOVERNMENT printed in gold lettering on it."
 	icon_state = "comtag"
 
 /obj/item/clothing/accessory/armor/tag/nt

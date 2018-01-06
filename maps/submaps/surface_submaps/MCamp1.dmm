@@ -1,0 +1,59 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/MilitaryCamp1)
+"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/MilitaryCamp1)
+"d" = (/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"e" = (/obj/effect/mine,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"f" = (/obj/structure/flora/bush,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"g" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"h" = (/obj/effect/decal/remains,/turf/simulated/floor/outdoors/dirt,/area/submap/MilitaryCamp1)
+"i" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"j" = (/obj/item/stack/rods,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"k" = (/obj/effect/mine,/turf/simulated/floor/outdoors/dirt,/area/submap/MilitaryCamp1)
+"l" = (/turf/simulated/wall,/area/submap/MilitaryCamp1)
+"m" = (/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"n" = (/obj/item/weapon/material/shard,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"o" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"p" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"q" = (/obj/effect/mine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"r" = (/obj/structure/table/standard,/obj/item/weapon/gun/energy/gun,/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"s" = (/obj/structure/table/standard,/obj/item/weapon/gun/projectile/automatic/c20r,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"t" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/syndie_kit/space,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"u" = (/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"v" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"w" = (/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"x" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"y" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"z" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"A" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"B" = (/obj/machinery/computer/security,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"C" = (/obj/machinery/computer/message_monitor,/turf/simulated/floor/holofloor/tiled,/area/submap/MilitaryCamp1)
+"D" = (/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"E" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/MilitaryCamp1)
+"F" = (/obj/structure/door_assembly,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"G" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"H" = (/obj/machinery/light,/obj/structure/table/standard,/turf/simulated/floor/tiled/steel,/area/submap/MilitaryCamp1)
+"I" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"J" = (/obj/effect/mine,/turf/template_noop,/area/submap/MilitaryCamp1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbcdedfgedddbbbbbba
+achcdddddddgedchbbba
+adccddeddijdddcckiba
+adiddjllmlllmlncddda
+abdddlllmmllllldedea
+abbellopqmplrslldfda
+abbdlltmmmuvwxllddda
+abdnlllllyullllzAeda
+adddmlplBuuClullddda
+agedmluvDppDvplldeda
+adddzlullllllulzdEda
+addAllyuuuFuuullddda
+aEddllGouuuuHollndga
+addfdllllImlllldedda
+abedddlllmmllldcceda
+abcddddlldnlldkcddba
+achceddddedjddchibba
+abccfbJdigddeccdbbba
+aaaaaaaaaaaaaaaaaaaa
+"}

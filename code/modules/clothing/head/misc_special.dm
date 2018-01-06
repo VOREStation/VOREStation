@@ -25,6 +25,8 @@
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	var/base_state
+	flash_protection = FLASH_PROTECTION_MAJOR
+	tint = TINT_HEAVY
 
 /obj/item/clothing/head/welding/attack_self()
 	toggle()
@@ -44,13 +46,17 @@
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = base_state
-			usr << "You flip the [src] down to protect your eyes."
+			flash_protection = FLASH_PROTECTION_MAJOR
+			tint = initial(tint)
+			to_chat(usr, "You flip the [src] down to protect your eyes.")
 		else
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]up"
-			usr << "You push the [src] up out of your face."
+			flash_protection = FLASH_PROTECTION_NONE
+			tint = TINT_NONE
+			to_chat(usr, "You push the [src] up out of your face.")
 		update_clothing_icon()	//so our mob-overlays
 		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = src.loc

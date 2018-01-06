@@ -21,9 +21,14 @@
 	return 0
 
 /obj/item/weapon/spell/proc/allowed_to_teleport()
-	if(owner && owner.z in using_map.admin_levels)
-		return 0
-	return 1
+	if(owner)
+		if(owner.z in using_map.admin_levels)
+			return FALSE
+
+		var/turf/T = get_turf(owner)
+		if(T.block_tele)
+			return FALSE
+	return TRUE
 
 /obj/item/weapon/spell/proc/within_range(var/atom/target, var/max_range = 7) // Beyond 7 is off the screen.
 	if(range(get_dist(owner, target) <= max_range))

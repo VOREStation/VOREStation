@@ -83,6 +83,7 @@
 	base_icon = "fireaxe"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	description_info = "This weapon can cleave, striking nearby lesser, hostile enemies close to the primary target.  It must be held in both hands to do this."
 	unwielded_force_divisor = 0.25
 	force_divisor = 0.7 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
 	dulled_divisor = 0.75	//Still metal on a stick
@@ -123,6 +124,12 @@
 			var/obj/effect/plant/P = A
 			P.die_off()
 
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/material/twohanded/fireaxe/pre_attack(var/mob/living/target, var/mob/living/user)
+	if(istype(target))
+		cleave(user, target)
+	..()
+
 /obj/item/weapon/material/twohanded/fireaxe/scythe
 	icon_state = "scythe0"
 	base_icon = "scythe"
@@ -138,6 +145,7 @@
 	base_icon = "spearglass"
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	description_info = "This weapon can strike from two tiles away, and over certain objects such as tables, or other people."
 	force = 10
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
@@ -152,3 +160,5 @@
 	default_material = "glass"
 	applies_material_colour = 0
 	fragile = 1	//It's a haphazard thing of glass, wire, and steel
+	reach = 2 // Spears are long.
+	attackspeed = 14

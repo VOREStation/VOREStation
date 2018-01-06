@@ -23,6 +23,8 @@
 	var/g_skin = 0
 	var/b_skin = 0
 
+	var/skin_state = SKIN_NORMAL
+
 	//Synth colors
 	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
 	var/r_synth							//Used with synth_color to color synth parts that normaly can't be colored.

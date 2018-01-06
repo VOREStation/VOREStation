@@ -107,6 +107,25 @@
 	icon_state = "dark-nj"
 	join_group = null
 
+/turf/simulated/shuttle/wall/alien
+	icon = 'icons/turf/shuttle_alien.dmi'
+	icon_state = "alien"
+	base_state = "alien"
+	light_range = 3
+	light_power = 3
+	light_color = "#ff0066" // Pink-ish
+	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
+
+/turf/simulated/shuttle/wall/alien/hard_corner
+	name = "hardcorner wall"
+	icon_state = "alien-hc"
+	hard_corner = 1
+
+/turf/simulated/shuttle/wall/alien/no_join
+	name = "nojoin wall"
+	icon_state = "alien-nj"
+	join_group = null
+
 /turf/simulated/shuttle/wall/New()
 	..()
 	//To allow mappers to rename shuttle walls to like "redfloor interior" or whatever for ease of use.

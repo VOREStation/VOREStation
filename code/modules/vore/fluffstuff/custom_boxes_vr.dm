@@ -91,7 +91,7 @@
 		new /obj/item/clothing/accessory/holster/hip(src)
 		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
 		new /obj/item/clothing/head/caphat/formal/fedcover(src)
-		new /obj/item/weapon/card/id/centcom/fluff/joanbadge(src)
+		new /obj/item/weapon/card/id/centcom/station/fluff/joanbadge(src)
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/clothing/accessory/permit/gun/fluff/joanrisu(src)
@@ -172,7 +172,7 @@
 	New()
 		..() //Might look like a lot... but all small items.
 		//Centcom stuff and permit
-		new /obj/item/weapon/card/id/centcom/fluff/aronai(src)
+		new /obj/item/weapon/card/id/centcom/station/fluff/aronai(src)
 		new /obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan(src)
 		//Gun and holster
 		new /obj/item/weapon/gun/projectile/nsfw(src)

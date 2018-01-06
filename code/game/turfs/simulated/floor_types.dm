@@ -166,6 +166,24 @@
 	icon_state = "floor_glass"
 	takes_underlays = 1
 
+/turf/simulated/shuttle/floor/alien
+	icon_state = "alienpod1"
+	light_range = 3
+	light_power = 3
+	light_color = "#66ffff" // Bright cyan.
+	block_tele = TRUE
+
+/turf/simulated/shuttle/floor/alien/initialize()
+	..()
+	icon_state = "alienpod[rand(1, 9)]"
+
+/turf/simulated/shuttle/floor/alienplating
+	icon_state = "alienplating"
+	block_tele = TRUE
+
+/turf/simulated/shuttle/floor/alienplating/external // For the outer rim of the UFO, to avoid active edges.
+// The actual temperature adjustment is defined if the SC or other future map is compiled.
+
 /turf/simulated/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'

@@ -3,7 +3,6 @@
 	name = "loot spawner"
 	icon_state = "grabbed1"
 	var/live_cargo = 1 // So you can turn off aliens.
-	var/blobchance = 0 // So you can turn on blobs.
 	var/low_probability = 0
 	var/spawned_faction = "hostile" // Spawned mobs can have their faction changed.
 
@@ -19,7 +18,6 @@
 	low_probability * 1000;"nothing", \
 	200 - low_probability * 175;"treasure", \
 	25 + low_probability * 75;"remains", \
-	5; "blob", \
 	50 + low_probability * 50;"clothes", \
 	"glasses", \
 	100 - low_probability * 50;"weapons", \
@@ -78,8 +76,6 @@
 				new /obj/effect/decal/remains/mouse(src.loc)
 			else
 				new /obj/effect/decal/remains/xeno(src.loc)
-		if("blob")
-			if(blobchance) new /obj/effect/blob/core(src.loc)
 		if("clothes")
 			var/obj/structure/closet/C = new(src.loc)
 			C.icon_state = "blue"
@@ -130,7 +126,7 @@
 					prob(10);/obj/item/weapon/gun/projectile/colt,\
 					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump,\
 					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\
+				/*	prob(10);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\ */
 					prob(10);/obj/item/weapon/melee/baton,\
 					prob(10);/obj/item/weapon/melee/telebaton,\
 					prob(10);/obj/item/weapon/melee/classic_baton,\

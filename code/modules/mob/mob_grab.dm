@@ -277,7 +277,7 @@
 		msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")
 
 		affecting.setClickCooldown(10)
-		affecting.losebreath += 1
+		affecting.AdjustLosebreath(1)
 		affecting.set_dir(WEST)
 	adjust_position()
 

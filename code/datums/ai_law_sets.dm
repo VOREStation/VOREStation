@@ -133,6 +133,16 @@
 	add_inherent_law("Prevent unplanned damage to your assigned vessel wherever possible.")
 	..()
 
+/datum/ai_laws/mining_drone
+	name = "Excavation Protocols"
+	law_header = "Excavation Protocols"
+
+/datum/ai_laws/mining_drone/New()
+	add_inherent_law("Do not interfere with the excavation work of non-drones whenever possible.")
+	add_inherent_law("Provide materials for repairing, refitting, and upgrading your assigned vessel.")
+	add_inherent_law("Prevent unplanned damage to your assigned excavation equipment wherever possible.")
+	..()
+
 /******************** T.Y.R.A.N.T. ********************/
 /datum/ai_laws/tyrant
 	name = "T.Y.R.A.N.T."

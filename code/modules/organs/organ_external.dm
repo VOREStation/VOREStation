@@ -36,6 +36,7 @@
 	var/gendered_icon = 0              // Whether or not the icon state appends a gender.
 	var/s_tone                         // Skin tone.
 	var/list/s_col                     // skin colour
+	var/s_col_blend = ICON_ADD         // How the skin colour is applied.
 	var/list/h_col                     // hair colour
 	var/body_hair                      // Icon blend for body hair if any.
 	var/mob/living/applied_pressure
@@ -413,7 +414,7 @@
 			user << "<span class='warning'>You can't reach your [src.name] while holding [tool] in your [owner.get_bodypart_name(grasp)].</span>"
 			return 0
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(user.get_attack_speed(tool))
 	if(!do_mob(user, owner, 10))
 		user << "<span class='warning'>You must stand still to do that.</span>"
 		return 0
@@ -876,6 +877,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
+			appearance_flags &= ~PIXEL_SCALE
 			compile_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()

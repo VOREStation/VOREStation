@@ -15,3 +15,7 @@
 		adjustFireLoss(-1)
 		adjustToxLoss(-1)
 		adjustOxyLoss(-1)
+		
+		
+ 	if(!client)
+ 		handle_npc(src) 

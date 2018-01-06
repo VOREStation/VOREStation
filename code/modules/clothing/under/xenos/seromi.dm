@@ -82,7 +82,7 @@
 	item_state = "tesh_uniform_by"
 
 /obj/item/clothing/under/seromi/undercoat/black_green
-	name = "black and Green undercoat"
+	name = "black and green undercoat"
 	icon_state = "tesh_uniform_bgr"
 	item_state = "tesh_uniform_bgr"
 
@@ -148,8 +148,8 @@
 
 /obj/item/clothing/under/seromi/undercoat/blue_grey
 	name = "blue and grey undercoat"
-	icon_state = "tesh_uniform_blg"
-	item_state = "tesh_uniform_blg"
+	icon_state = "tesh_uniform_blug"
+	item_state = "tesh_uniform_blug"
 
 /obj/item/clothing/under/seromi/undercoat/purple_grey
 	name = "purple and grey undercoat"
@@ -157,11 +157,11 @@
 	item_state = "tesh_uniform_pg"
 
 /obj/item/clothing/under/seromi/undercoat/pink_grey
-	name = "black and orange undercoat"
+	name = "pink and grey undercoat"
 	icon_state = "tesh_uniform_pig"
 	item_state = "tesh_uniform_pig"
 
 /obj/item/clothing/under/seromi/undercoat/brown_grey
-	name = "purple and grey undercoat"
+	name = "brown and grey undercoat"
 	icon_state = "tesh_uniform_brg"
 	item_state = "tesh_uniform_brg"

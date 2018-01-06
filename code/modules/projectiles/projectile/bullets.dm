@@ -209,6 +209,11 @@
 	armor_penetration = -50
 	penetrating = 0
 
+/obj/item/projectile/bullet/rifle/a762/hunter // Optimized for killing simple animals and not people, because Balance.
+	damage = 20
+	SA_bonus_damage = 50 // 70 total on animals.
+	SA_vulnerability = SA_ANIMAL
+
 /obj/item/projectile/bullet/rifle/a545
 	damage = 25
 
@@ -220,6 +225,11 @@
 	damage = 35
 	armor_penetration = -50
 	penetrating = 0
+
+/obj/item/projectile/bullet/rifle/a545/hunter
+	damage = 15
+	SA_bonus_damage = 35 // 50 total on animals.
+	SA_vulnerability = SA_ANIMAL
 
 /obj/item/projectile/bullet/rifle/a145
 	damage = 80

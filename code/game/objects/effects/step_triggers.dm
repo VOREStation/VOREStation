@@ -175,12 +175,9 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 
 		if(isliving(A)) // Someday, implement parachutes.  For now, just turbomurder whoever falls.
 			var/mob/living/L = A
-			for(var/i = 1 to 6)
-				L.adjustBruteLoss(100)
+			L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
 		message_admins("\The [A] fell out of the sky.")
-		explosion(T, 0, 1, 2)
 		A.forceMove(T)
-		T.visible_message("<span class='danger'><font size='3'>\A [A] falls out of the sky and crashes into \the [T]!</font></span>")
 	else
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return

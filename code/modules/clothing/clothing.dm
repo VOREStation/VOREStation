@@ -9,6 +9,9 @@
 	var/list/restricted_accessory_slots
 	var/list/starting_accessories
 
+	var/flash_protection = FLASH_PROTECTION_NONE
+	var/tint = TINT_NONE
+
 	/*
 		Sprites used when the clothing item is refit. This is done by setting icon_override.
 		For best results, if this is set then sprite_sheets should be null and vice versa, but that is by no means necessary.

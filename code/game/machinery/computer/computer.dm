@@ -59,6 +59,9 @@
 		set_broken()
 	..()
 
+/obj/machinery/computer/blob_act()
+	ex_act(2)
+
 /obj/machinery/computer/update_icon()
 	overlays.Cut()
 	if(stat & NOPOWER)

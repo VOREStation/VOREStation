@@ -35,12 +35,14 @@
 	ambiguous_genders = TRUE
 	//gluttonous = 1 //VOREStation Edit - Redundant
 	slowdown = 0.5
+	total_health = 125
 	brute_mod = 0.85
 	burn_mod = 0.85
 	metabolic_rate = 0.85
 	item_slowdown_mod = 0.5
 	mob_size = MOB_LARGE
 	blood_volume = 840
+	bloodloss_rate = 0.75
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_UNATHI)
 	name_language = LANGUAGE_UNATHI
@@ -83,6 +85,8 @@
 	base_color = "#066000"
 
 	//reagent_tag = IS_UNATHI //VOREStation Edit
+
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/claw
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unathi),
@@ -191,6 +195,7 @@
 	//reagent_tag = IS_TAJARA //VOREStation Removal
 
 	//heat_discomfort_level = 292 //VOREStation Removal
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
@@ -237,6 +242,8 @@
 	darksight = 4
 	flash_mod = 1.2
 	chemOD_mod = 0.9
+
+	bloodloss_rate = 1.5
 
 	ambiguous_genders = TRUE
 

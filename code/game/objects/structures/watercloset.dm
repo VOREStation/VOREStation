@@ -18,7 +18,7 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
-		usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		usr.setClickCooldown(user.get_attack_speed())
 		usr.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
 		swirlie.adjustBruteLoss(5)
 		return
@@ -54,7 +54,7 @@
 			return
 
 	if(istype(I, /obj/item/weapon/grab))
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(I))
 		var/obj/item/weapon/grab/G = I
 
 		if(isliving(G.affecting))

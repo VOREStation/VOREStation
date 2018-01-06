@@ -192,3 +192,15 @@
 	move_time = move_time + rand(10, 40)
 	..()
 */
+
+//////////////////////////////////////////////////////////////
+// CC Lewdship shuttle
+/datum/shuttle/ferry/cruiser_shuttle
+	name = "Cruiser Shuttle"
+	location = 1
+	warmup_time = 10	//want some warmup time so people can cancel.
+	area_offsite = /area/shuttle/cruiser/cruiser
+	area_station = /area/shuttle/cruiser/station
+	docking_controller_tag = "cruiser_shuttle"
+	dock_target_station = "d1a1_dock"
+	dock_target_offsite = "cruiser_shuttle_bay"

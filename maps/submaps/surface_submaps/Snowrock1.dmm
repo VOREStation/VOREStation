@@ -1,0 +1,31 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/SnowR1)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/SnowR1)
+"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/SnowR1)
+"e" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
+"f" = (/obj/structure/closet/crate/trashcart,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
+"g" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
+"h" = (/obj/random/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/SnowR1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbbbbbba
+abbbbbbccccccbbbdbba
+abdbbbccccccccbbbbba
+abbbbbcccccccccbbbba
+abbbbcccefghhcccbbba
+abbccccchggggcccbbba
+abbcccccggggbbbbbbba
+abbccbbbbbbbbbbdbbba
+abbcbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbdbbbbbbbba
+abbbdbbbbbbbbbbbbbba
+abbbbbbbbbbcccccbbba
+abbbbbbbccccccccbbba
+abbbccccccccccccbbba
+abbbbbcccccccbcbbbba
+abbbbbbbbbbbbbbbbdba
+abdbbbbbbbbbbbbbbbba
+aaaaaaaaaaaaaaaaaaaa
+"}

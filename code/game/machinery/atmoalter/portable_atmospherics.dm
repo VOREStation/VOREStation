@@ -40,6 +40,9 @@
 	else
 		update_icon()
 
+/obj/machinery/portable_atmospherics/blob_act()
+	qdel(src)
+
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()
 	return list(
 		"oxygen" = O2STANDARD * MolesForPressure(),

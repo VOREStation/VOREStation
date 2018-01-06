@@ -58,7 +58,7 @@ var/global/list/limb_icon_cache = list()
 	if(owner.should_have_organ(O_EYES))
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eye_icon)
-			var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', eye_icon)
+			var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
 			if(eyes)
 				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			else
@@ -199,8 +199,10 @@ var/global/list/limb_icon_cache = list()
 		//VOREStation Edit - Support for species.color_mult
 		if(species && species.color_mult)
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
+			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_MULTIPLY]"
 		else
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
+			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_ADD]"
 		//VOREStation Edit End
 
 	// Translucency.

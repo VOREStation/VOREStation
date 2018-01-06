@@ -15,8 +15,13 @@
 	name = "protoshuttle control console"
 	shuttle_tag = "Proto"
 
+/obj/machinery/computer/shuttle_control/cruiser_shuttle
+	name = "cruiser shuttle control console"
+	shuttle_tag = "Cruiser Shuttle"
+	req_one_access = list(access_heads)
+
 //
-// "Tram" Emergency Shuttle
+// "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
 // Just open the gosh darn doors!  Also we avoid having a physical docking controller obj for gameplay reasons.
 /datum/shuttle/ferry/emergency

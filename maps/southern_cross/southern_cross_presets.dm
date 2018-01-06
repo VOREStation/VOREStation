@@ -1,25 +1,17 @@
-var/const/NETWORK_BRIDGE       = "Bridge"
-var/const/NETWORK_FIFTH_DECK   = "Fifth Deck"
-var/const/NETWORK_FOURTH_DECK  = "Fourth Deck"
 var/const/NETWORK_THIRD_DECK   = "Third Deck"
 var/const/NETWORK_SECOND_DECK  = "Second Deck"
 var/const/NETWORK_FIRST_DECK   = "First Deck"
-var/const/NETWORK_POD          = "General Utility Pod"
 var/const/NETWORK_SUPPLY       = "Supply"
 var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 
 /datum/map/southern_cross
 	// Networks that will show up as options in the camera monitor program
 	station_networks = list(
-		NETWORK_BRIDGE,,
 		NETWORK_ENGINE,
-		NETWORK_FIFTH_DECK,
-		NETWORK_FOURTH_DECK,
 		NETWORK_THIRD_DECK,
 		NETWORK_SECOND_DECK,
 		NETWORK_FIRST_DECK,
 		NETWORK_ROBOTS,
-		NETWORK_POD,
 		NETWORK_SUPPLY,
 		NETWORK_COMMAND,
 		NETWORK_ENGINEERING,
@@ -35,15 +27,6 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 //
 
 // Networks
-/obj/machinery/camera/network/bridge
-	network = list(NETWORK_BRIDGE)
-
-/obj/machinery/camera/network/fifth_deck
-	network = list(NETWORK_FIFTH_DECK)
-
-/obj/machinery/camera/network/fourth_deck
-	network = list(NETWORK_FOURTH_DECK)
-
 /obj/machinery/camera/network/third_deck
 	network = list(NETWORK_THIRD_DECK)
 
@@ -55,9 +38,6 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 
 /obj/machinery/camera/network/main_outpost
 	network = list(NETWORK_MAIN_OUTPOST)
-
-/obj/machinery/camera/network/pod
-	network = list(NETWORK_POD)
 
 /obj/machinery/camera/network/supply
 	network = list(NETWORK_SUPPLY)
@@ -97,13 +77,46 @@ var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 	listening_level = Z_LEVEL_SURFACE_WILD
 	autolinkers = list("wld_relay")
 
-// #### Hub ####
+/obj/machinery/telecomms/relay/preset/southerncross/transit
+	id = "Wild Relay"
+	listening_level = Z_LEVEL_TRANSIT
+	autolinkers = list("tns_relay")
+
+// #### Telecomms ####
 /obj/machinery/telecomms/hub/preset/southerncross
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub",
-		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay",
+		"d1_relay", "d2_relay", "d3_relay", "pnt_relay", "cve_relay", "wld_relay", "tns_relay", "explorer",
 		"c_relay", "m_relay", "r_relay",
 		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
+	)
+
+/obj/machinery/telecomms/receiver/preset_right/southerncross
+	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ)
+
+/obj/machinery/telecomms/bus/preset_two/southerncross
+	freq_listening = list(SUP_FREQ, SRV_FREQ, EXP_FREQ)
+
+/obj/machinery/telecomms/server/presets/service/southerncross
+	freq_listening = list(SRV_FREQ, EXP_FREQ)
+	autolinkers = list("service", "explorer")
+
+/datum/map/southern_cross/default_internal_channels()
+	return list(
+		num2text(PUB_FREQ) = list(),
+		num2text(AI_FREQ)  = list(access_synth),
+		num2text(ENT_FREQ) = list(),
+		num2text(ERT_FREQ) = list(access_cent_specops),
+		num2text(COMM_FREQ)= list(access_heads),
+		num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
+		num2text(MED_FREQ) = list(access_medical_equip),
+		num2text(MED_I_FREQ)=list(access_medical_equip),
+		num2text(SEC_FREQ) = list(access_security),
+		num2text(SEC_I_FREQ)=list(access_security),
+		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
+		num2text(SUP_FREQ) = list(access_cargo),
+		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics),
+		num2text(EXP_FREQ) = list(access_explorer)
 	)

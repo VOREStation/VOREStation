@@ -70,7 +70,7 @@
 	H.original_player = current_project.ckey
 
 	//Apply damage
-	H.adjustCloneLoss(150)
+	H.adjustCloneLoss((H.getMaxHealth() - config.health_threshold_dead)*0.75)
 	H.Paralyse(4)
 	H.updatehealth()
 
@@ -89,6 +89,7 @@
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult, FALSE)
+	H.appearance_flags = current_project.aflags
 	H.weight = current_project.weight
 	if(current_project.speciesname)
 		H.custom_species = current_project.speciesname
@@ -107,7 +108,7 @@
 /obj/machinery/clonepod/transhuman/process()
 
 	var/visible_message = 0
-	for(var/obj/item/weapon/reagent_containers/food/snacks/meat in range(1, src))
+	for(var/obj/item/weapon/reagent_containers/food/snacks/meat/meat in range(1, src))
 		qdel(meat)
 		biomass += 50
 		visible_message = 1 // Prevent chatspam if multiple meat are near
@@ -312,6 +313,7 @@
 	H.ooc_notes = current_project.body_oocnotes
 	H.flavor_texts = current_project.mydna.flavor.Copy()
 	H.resize(current_project.sizemult)
+	H.appearance_flags = current_project.aflags
 	H.weight = current_project.weight
 	if(current_project.speciesname)
 		H.custom_species = current_project.speciesname

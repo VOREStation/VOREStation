@@ -462,3 +462,9 @@
 /datum/access/trader
 	id = access_trader
 	access_type = ACCESS_TYPE_PRIVATE
+
+/var/const/access_alien = 300 // For things like crashed ships.
+/datum/access/alien
+	id = access_alien
+	desc = "#%_^&*@!"
+	access_type = ACCESS_TYPE_PRIVATE

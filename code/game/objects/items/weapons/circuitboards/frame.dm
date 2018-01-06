@@ -37,7 +37,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
 /obj/item/weapon/circuitboard/request
-	name = T_BOARD("reques console")
+	name = T_BOARD("request console")
 	build_path = /obj/machinery/requests_console
 	board_type = new /datum/frame/frame_types/supply_request_console
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)

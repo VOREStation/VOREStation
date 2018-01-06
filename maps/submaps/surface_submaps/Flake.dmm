@@ -1,0 +1,34 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Lake1)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Lake1)
+"d" = (/obj/structure/flora/ausbushes/grassybush,/turf/template_noop,/area/submap/Lake1)
+"e" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Lake1)
+"f" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Lake1)
+"g" = (/obj/structure/flora/ausbushes/palebush,/turf/template_noop,/area/submap/Lake1)
+"h" = (/turf/simulated/floor/water,/area/submap/Lake1)
+"i" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Lake1)
+"j" = (/turf/simulated/mineral,/area/submap/Lake1)
+"k" = (/obj/structure/flora/ausbushes/stalkybush,/turf/template_noop,/area/submap/Lake1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaabbbbbbbbbbbbbbbaaaaaaa
+aaaaaaabbbcbbdbbbbcbbbbbaaebaa
+abaabbbbdbbbbbffffffbbbbbbbaaa
+abgbbebffffffffhhhhffcbbbbbaaa
+abbfffffhhhhhhhhhhhhfbbbbbaaaa
+abffhhhhhhhhhhhhhhhhffbbbbaaaa
+abfhhhhhhhhhhhhhhhhhhfbbcbbaaa
+abfhhhhhhhhhhhhhhhhhhfbbbbbbba
+aefhhhhhhhhhhhhhhhhhhfiiiibeba
+abfhhhhhhhhhhhhhhhhhhfiiijibba
+abfhhhhhhhhhhhhhhhhhhfiijjjiba
+abfhhhhhhhhhhhhhhhhhhfiijjjiba
+abffhhhhhhhhhhhhhhhhffijjjiiba
+abbfhhhhhhhhhhhhhhhhfiiiiiibba
+abbffffhhhhhhhhhfffffiiibbbbca
+aabbbbfffffffffffbbkbbbbcbbbaa
+aaabcbbbbbbaaabkbkcbbbbaaaaaaa
+aaaabbbbcbaaaaabbbbbbaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

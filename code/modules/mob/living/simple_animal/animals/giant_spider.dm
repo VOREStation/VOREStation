@@ -55,6 +55,10 @@
 /mob/living/simple_animal/hostile/giant_spider/proc/remove_eyes()
 	overlays -= eye_layer
 
+/*
+Nurse Family
+*/
+
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/giant_spider/nurse
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes."
@@ -95,7 +99,105 @@
 	old_x = -16
 	old_y = -16
 
+/mob/living/simple_animal/hostile/giant_spider/webslinger
+	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes, and a cloak of web."
+	icon_state = "webslinger"
+	icon_living = "webslinger"
+	icon_dead = "webslinger_dead"
+
+	maxHealth = 90
+	health = 90
+
+	projectilesound = 'sound/weapons/thudswoosh.ogg'
+	projectiletype = /obj/item/projectile/bola
+	ranged = 1
+	firing_lines = 1
+	cooperative = 1
+	shoot_range = 5
+
+	melee_damage_lower = 5
+	melee_damage_upper = 10
+	poison_per_bite = 2
+	poison_type = "psilocybin"
+
+	spattack_prob = 15
+	spattack_min_range = 0
+	spattack_max_range = 5
+
+/mob/living/simple_animal/hostile/giant_spider/webslinger/AttackTarget() //One day.
+	var/mob/living/carbon/human/victim = null //Webslinger needs to know if its target is human later.
+	if(ishuman(target_mob))
+		victim = target_mob
+		if(!victim.legcuffed)
+			projectiletype = /obj/item/projectile/bola
+			shoot_range = 7
+		else
+			projectiletype = /obj/item/projectile/webball
+			shoot_range = 5
+	else
+		projectiletype = /obj/item/projectile/webball
+		shoot_range = 5
+	return ..()
+
+/mob/living/simple_animal/hostile/giant_spider/carrier
+	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes."
+	icon_state = "carrier"
+	icon_living = "carrier"
+	icon_dead = "carrier_dead"
+
+	maxHealth = 100
+	health = 100
+
+	melee_damage_lower = 5
+	melee_damage_upper = 20
+
+	poison_per_bite = 3
+	poison_type = "chloralhydrate"
+
+	var/spiderling_count = 0
+	var/spiderling_type = /obj/effect/spider/spiderling
+	var/swarmling_type = /mob/living/simple_animal/hostile/giant_spider/hunter
+	var/swarmling_faction = "spiders"
+
+/mob/living/simple_animal/hostile/giant_spider/carrier/New()
+	spiderling_count = rand(5,10)
+	adjust_scale(1.2)
+	..()
+
+/mob/living/simple_animal/hostile/giant_spider/carrier/death()
+	visible_message("<span class='notice'>\The [src]'s abdomen splits as it rolls over, spiderlings crawling from the wound.</span>")
+	spawn(1)
+		for(var/I = 1 to spiderling_count)
+			if(prob(10) && src)
+				var/mob/living/simple_animal/hostile/giant_spider/swarmling = new swarmling_type(src.loc)
+				var/swarm_health = Floor(swarmling.maxHealth * 0.4)
+				var/swarm_dam_lower = Floor(melee_damage_lower * 0.4)
+				var/swarm_dam_upper = Floor(melee_damage_upper * 0.4)
+				swarmling.name = "spiderling"
+				swarmling.maxHealth = swarm_health
+				swarmling.health = swarm_health
+				swarmling.melee_damage_lower = swarm_dam_lower
+				swarmling.melee_damage_upper = swarm_dam_upper
+				swarmling.faction = swarmling_faction
+				swarmling.adjust_scale(0.75)
+			else if(src)
+				var/obj/effect/spider/spiderling/child = new spiderling_type(src.loc)
+				child.skitter()
+			else
+				break
+	return ..()
+
+/mob/living/simple_animal/hostile/giant_spider/carrier/recursive
+	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes. You have a distinctly <font face='comic sans ms'>bad</font> feeling about this."
+
+	swarmling_type = /mob/living/simple_animal/hostile/giant_spider/carrier/recursive
+
+/*
+Hunter Family
+*/
+
 //hunters have the most poison and move the fastest, so they can find prey
+
 /mob/living/simple_animal/hostile/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	icon_state = "hunter"
@@ -110,6 +212,150 @@
 	melee_damage_upper = 20
 
 	poison_per_bite = 5
+
+/mob/living/simple_animal/hostile/giant_spider/lurker
+	desc = "Translucent and white, it makes you shudder to look at it. This one has incandescent red eyes."
+	icon_state = "lurker"
+	icon_living = "lurker"
+	icon_dead = "lurker_dead"
+	alpha = 45
+
+	maxHealth = 100
+	health = 100
+	move_to_delay = 4
+
+	melee_damage_lower = 5
+	melee_damage_upper = 20
+
+
+	poison_chance = 20
+	poison_type = "cryptobiolin"
+	poison_per_bite = 2
+
+/mob/living/simple_animal/hostile/giant_spider/lurker/death()
+	alpha = 255
+	return ..()
+
+/mob/living/simple_animal/hostile/giant_spider/tunneler
+	desc = "Sandy and brown, it makes you shudder to look at it. This one has glittering yellow eyes."
+	icon_state = "tunneler"
+	icon_living = "tunneler"
+	icon_dead = "tunneler_dead"
+
+	maxHealth = 120
+	health = 120
+	move_to_delay = 4
+
+	melee_damage_lower = 10
+	melee_damage_upper = 20
+
+	poison_chance = 15
+	poison_per_bite = 3
+	poison_type = "serotrotium_v"
+
+/mob/living/simple_animal/hostile/giant_spider/tunneler/death()
+	spawn(1)
+		for(var/I = 1 to rand(3,6))
+			if(src)
+				new/obj/item/weapon/ore/glass(src.loc)
+			else
+				break
+	return ..()
+
+/*
+Guard Family
+*/
+
+/mob/living/simple_animal/hostile/giant_spider/pepper
+	desc = "Red and brown, it makes you shudder to look at it. This one has glinting red eyes."
+	icon_state = "pepper"
+	icon_living = "pepper"
+	icon_dead = "pepper_dead"
+
+	maxHealth = 210
+	health = 210
+
+	melee_damage_lower = 5
+	melee_damage_upper = 10
+
+	poison_chance = 20
+	poison_per_bite = 5
+	poison_type = "condensedcapsaicin_v"
+
+/mob/living/simple_animal/hostile/giant_spider/pepper/New()
+	adjust_scale(1.1)
+	..()
+
+/mob/living/simple_animal/hostile/giant_spider/thermic
+	desc = "Mirage-cloaked and orange, it makes you shudder to look at it. This one has simmering orange eyes."
+	icon_state = "pit"
+	icon_living = "pit"
+	icon_dead = "pit_dead"
+
+	maxHealth = 175
+	health = 175
+
+	melee_damage_lower = 5
+	melee_damage_upper = 15
+
+	poison_chance = 30
+	poison_per_bite = 1
+	poison_type = "thermite_v"
+
+/mob/living/simple_animal/hostile/giant_spider/electric
+	desc = "Spined and yellow, it makes you shudder to look at it. This one has flickering gold eyes."
+	icon_state = "spark"
+	icon_living = "spark"
+	icon_dead = "spark_dead"
+
+	maxHealth = 210
+	health = 210
+	taser_kill = 0 //It -is- the taser.
+
+	melee_damage_lower = 5
+	melee_damage_upper = 10
+
+	ranged = 1
+	projectilesound = 'sound/weapons/taser2.ogg'
+	projectiletype = /obj/item/projectile/beam/stun/weak
+	firing_lines = 1
+	cooperative = 1
+
+	poison_chance = 15
+	poison_per_bite = 3
+	poison_type = "stimm"
+
+/mob/living/simple_animal/hostile/giant_spider/phorogenic
+	desc = "Crystalline and purple, it makes you shudder to look at it. This one has haunting purple eyes."
+	icon_state = "phoron"
+	icon_living = "phoron"
+	icon_dead = "phoron_dead"
+
+	maxHealth = 225
+	health = 225
+	taser_kill = 0 //You will need more than a peashooter to kill the juggernaut.
+
+	melee_damage_lower = 10
+	melee_damage_upper = 20
+
+	poison_chance = 30
+	poison_per_bite = 0.5
+	poison_type = "phoron"
+
+	var/exploded = 0
+
+/mob/living/simple_animal/hostile/giant_spider/phorogenic/New()
+	adjust_scale(1.25)
+	return ..()
+
+/mob/living/simple_animal/hostile/giant_spider/phorogenic/death()
+	visible_message("<span class='danger'>\The [src]'s body begins to rupture!</span>")
+	spawn(rand(1,5))
+		if(src && !exploded)
+			visible_message("<span class='critical'>\The [src]'s body detonates!</span>")
+			exploded = 1
+			explosion(src.loc, 1, 2, 4, 6)
+	return ..()
 
 /mob/living/simple_animal/hostile/giant_spider/frost
 	desc = "Icy and blue, it makes you shudder to look at it. This one has brilliant blue eyes."
@@ -126,6 +372,9 @@
 	poison_per_bite = 5
 	poison_type = "cryotoxin"
 
+/*
+Spider Procs
+*/
 
 /mob/living/simple_animal/hostile/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
@@ -166,6 +415,16 @@
 						var/eggs = new /obj/effect/spider/eggcluster/small(O, src)
 						O.implants += eggs
 						to_chat(H, "<font size='3'><span class='warning'>\The [src] injects something into your [O.name]!</span></font>")
+
+/mob/living/simple_animal/hostile/giant_spider/webslinger/DoPunch(var/atom/A)
+	. = ..()
+	if(.) // If we succeeded in hitting.
+		if(isliving(A))
+			var/mob/living/L = A
+			var/obj/effect/spider/stickyweb/W = locate() in get_turf(L)
+			if(!W && prob(75))
+				visible_message("<span class='danger'>\The [src] throws a layer of web at \the [L]!</span>")
+				new /obj/effect/spider/stickyweb(L.loc)
 
 /mob/living/simple_animal/hostile/giant_spider/handle_stance()
 	. = ..()

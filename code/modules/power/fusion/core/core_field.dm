@@ -1,4 +1,6 @@
 #define FUSION_ENERGY_PER_K 20
+#define FUSION_MAX_ENVIRO_HEAT 5000 //raise this if you want the reactor to dump more energy into the atmosphere
+#define PLASMA_TEMP_RADIATION_DIVISIOR 15 //radiation divisior. plasma temp / divisor = radiation.
 
 /obj/effect/fusion_em_field
 	name = "electromagnetic field"
@@ -7,7 +9,7 @@
 	icon_state = "emfield_s1"
 	alpha = 50
 	layer = 4
-	light_color = COLOR_BLUE
+	light_color = "#cc7700"
 
 	var/size = 1
 	var/energy = 0
@@ -16,6 +18,7 @@
 	var/field_strength = 0.01
 	var/tick_instability = 0
 	var/percent_unstable = 0
+	var/stable = 1
 
 	var/obj/machinery/power/fusion_core/owned_core
 	var/list/dormant_reactant_quantities = list()
@@ -33,8 +36,8 @@
 
 	var/light_min_range = 2
 	var/light_min_power = 3
-	var/light_max_range = 10
-	var/light_max_power = 10
+	var/light_max_range = 5
+	var/light_max_power = 5
 
 	var/last_range
 	var/last_power
@@ -173,8 +176,6 @@
 
 	check_instability()
 	Radiate()
-	if(radiation)
-		radiation_repository.radiate(src, radiation)
 	return 1
 
 /obj/effect/fusion_em_field/proc/check_instability()
@@ -200,9 +201,10 @@
 				var/flare
 				var/fuel_loss
 				var/rupture
-				if(percent_unstable < 0.7)
+				if(percent_unstable < 0.2)
 					visible_message("<span class='danger'>\The [src] ripples uneasily, like a disturbed pond.</span>")
 					fuel_loss = prob(5)
+					flare = prob(50)
 				else if(percent_unstable < 0.9)
 					visible_message("<span class='danger'>\The [src] undulates violently, shedding plumes of plasma!</span>")
 					flare = prob(50)
@@ -238,6 +240,7 @@
 	set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), ceil(plasma_temperature/1000), ceil(plasma_temperature/300))
 	sleep(5)
+	global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
 	RadiateAll()
 	explosion(get_turf(owned_core),-1,-1,8,10) // Blow out all the windows.
 	return
@@ -317,12 +320,6 @@
 			AM.visible_message("<span class='danger'>The field buckles visibly around \the [AM]!</span>")
 			tick_instability += rand(15,30)
 			AM.emp_act(empsev)
-
-	if(owned_core && owned_core.loc)
-		var/datum/gas_mixture/environment = owned_core.loc.return_air()
-		if(environment && environment.temperature < (T0C+1000)) // Putting an upper bound on it to stop it being used in a TEG.
-			environment.add_thermal_energy(plasma_temperature*20000)
-	radiation = 0
 
 /obj/effect/fusion_em_field/proc/change_size(var/newsize = 1)
 	var/changed = 0
@@ -490,5 +487,59 @@
 	AddEnergy(Proj.damage)
 	update_icon()
 	return 0
+//All procs below this point are called in _core.dm, starting at line 41.
+//Stability monitoring. Gives radio annoucements if field stability is below 80%
+/obj/effect/fusion_em_field/proc/stability_monitor()
+	var/warnpoint = 0.10
+	var/warnmessage = "Warning! Field unstable! Instability at [percent_unstable * 100]%, plasma temperature at [plasma_temperature + 295]k."
+	var/stablemessage = "Containment field returning to stable conditions."
+
+	if(percent_unstable >= warnpoint)
+		global_announcer.autosay(warnmessage, "Field Stability Monitor", "Engineering")
+		stable = 0
+		sleep(20 SECONDS)
+		return
+	if(percent_unstable < warnpoint && stable == 0)
+		global_announcer.autosay(stablemessage, "Field Stability Monitor", "Engineering")
+		stable = 1
+		return
+
+//Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
+/obj/effect/fusion_em_field/proc/radiation_scale()
+	radiation_repository.radiate(src, 2 + plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)
+
+//Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.
+/obj/effect/fusion_em_field/proc/temp_dump()
+	if(owned_core && owned_core.loc)
+		var/datum/gas_mixture/environment = owned_core.loc.return_air()
+		if(environment && environment.temperature < (T0C+FUSION_MAX_ENVIRO_HEAT))
+			environment.add_thermal_energy(plasma_temperature*20000)
+
+//Temperature changes depending on color.
+/obj/effect/fusion_em_field/proc/temp_color()
+	if(plasma_temperature > 60000) //high ultraviolet - magenta
+		light_color = "#cc005f"
+		light_max_range = 25
+		light_max_power = 10
+	else if(plasma_temperature > 12000) //ultraviolet - blue
+		light_color = "#1b00cc"
+		light_max_range = 20
+		light_max_power = 10
+	else if(plasma_temperature > 8000) //nearing ultraviolet - cyan
+		light_color = "#00cccc"
+		light_max_range = 15
+		light_max_power = 10
+	else if(plasma_temperature > 4000) // green
+		light_color = "#1ab705"
+		light_max_range = 10
+		light_max_power = 10
+	else if(plasma_temperature <= 4000) //orange
+		light_color = "#cc7700"
+		light_max_range = 5
+		light_max_power = 5
+	return
+
 
 #undef FUSION_HEAT_CAP
+#undef FUSION_MAX_ENVIRO_HEAT
+#undef PLASMA_TEMP_RADIATION_DIVISIOR

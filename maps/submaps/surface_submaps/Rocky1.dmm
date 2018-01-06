@@ -1,0 +1,35 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Rocky1)
+"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
+"d" = (/obj/structure/boulder,/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
+"e" = (/turf/simulated/mineral,/area/submap/Rocky1)
+"f" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rocky1)
+"g" = (/obj/random/handgun/sec,/obj/effect/decal/remains/human,/obj/item/weapon/spacecash/c200,/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aabbbbbbbbbbbbbbbbbbbbbaa
+aabbccdebbbbfbbbbbeeeebaa
+aabcceeecbbbbbbbbeeeeebaa
+aabcceeeccbbbbbbccdeeeeaa
+aabbceeedccbbbbccccceeeaa
+aabbcccccccbbbcccccgeeeaa
+aabbbcbbccbbbbcccccceeeaa
+aabbbbbccccbbbccccceeeeaa
+aafbbbbcccccbbbcccdeeeeaa
+aabbbcbbcccccccccceeeeeaa
+aabbbccccceeeeeecdeeeebaa
+aabbbceeeeeeeeeeeeebbbbaa
+aabbcceeeeeeeeeeebbfbbbaa
+aabcceeeccbbeeebbbbbbbbaa
+aabceeeccbbbbbbbbbbbbbbaa
+aabceeecbbbbbbbfbbbbbbbaa
+aabbccecbbbbbbbbbbbbbbbaa
+aabbbccccbbbbbbbbbbbbbbaa
+aabbbbbbbbbfbbbbbbfbbbbaa
+aabbbbbbbbbbbbbbbbbbbbbaa
+aabfbbbbbbbbbbbbbbbbbbbaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+"}

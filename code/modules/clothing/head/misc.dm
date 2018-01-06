@@ -10,38 +10,78 @@
 	desc = "A formal hat for SolGov Customs Officers."
 	icon_state = "customshat"
 
-/obj/item/clothing/head/hairflower
-	name = "hair flower pin"
-	icon_state = "hairflower"
-	desc = "Smells nice."
+/obj/item/clothing/head/pin
+	icon_state = "pin"
+	addblends = "pin_a"
+	name = "hair pin"
+	desc = "A nice hair pin."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
 
-/obj/item/clothing/head/hairflower/blue
+/obj/item/clothing/head/pin/pink
+	icon_state = "pinkpin"
+	name = "pink hair hat"
+
+/obj/item/clothing/head/pin/clover
+	icon_state = "cloverpin"
+	name = "clover pin"
+	desc = "A hair pin in the shape of a clover leaf."
+
+/obj/item/clothing/head/pin/butterfly
+	icon_state = "butterflypin"
+	name = "butterfly pin"
+	desc = "A hair pin in the shape of a bright blue butterfly."
+
+/obj/item/clothing/head/pin/magnetic
+	icon_state = "magnetpin"
+	name = "magnetic 'pin'"
+	desc = "Finally, a hair pin even a Morpheus chassis can use."
+	matter = list(DEFAULT_WALL_MATERIAL = 10)
+
+/obj/item/clothing/head/pin/flower
+	name = "red flower pin"
+	icon_state = "hairflower"
+	desc = "Smells nice."
+
+/obj/item/clothing/head/pin/flower/blue
 	icon_state = "hairflower_blue"
+	name = "blue flower pin"
 
-/obj/item/clothing/head/hairflower/pink
+/obj/item/clothing/head/pin/flower/pink
 	icon_state = "hairflower_pink"
+	name = "pink flower pin"
 
-/obj/item/clothing/head/hairflower/yellow
+/obj/item/clothing/head/pin/flower/yellow
 	icon_state = "hairflower_yellow"
+	name = "yellow flower pin"
 
-/obj/item/clothing/head/hairflower/violet
+/obj/item/clothing/head/pin/flower/violet
 	icon_state = "hairflower_violet"
+	name = "violet flower pin"
 
-/obj/item/clothing/head/hairflower/orange
+/obj/item/clothing/head/pin/flower/orange
 	icon_state = "hairflower_orange"
+	name = "orange flower pin"
 
-/obj/item/clothing/head/hairflower/white
+/obj/item/clothing/head/pin/flower/white
 	icon_state = "hairflower_white"
 	addblends = "hairflower_white_a"
+	name = "flower pin"
 
-/obj/item/clothing/head/hairflower/bow
+/obj/item/clothing/head/pin/bow
 	icon_state = "bow"
 	addblends = "bow_a"
 	name = "hair bow"
 	desc = "A ribbon tied into a bow with a clip on the back to attach to hair."
 	item_state_slots = list(slot_r_hand_str = "pill", slot_l_hand_str = "pill")
+
+/obj/item/clothing/head/pin/bow/big
+	icon_state = "whiteribbon"
+	name = "ribbon"
+
+/obj/item/clothing/head/pin/bow/big/red
+	icon_state = "redribbon"
+	name = "red ribbon"
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -356,4 +396,10 @@
 	name = "sombrero"
 	desc = "A wide-brimmed hat popularly worn in Mexico."
 	icon_state = "sombrero"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/headband/maid
+	name = "maid headband"
+	desc = "Keeps hair out of the way for important... jobs."
+	icon_state = "maid"
 	body_parts_covered = 0

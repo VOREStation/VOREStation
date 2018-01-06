@@ -7,6 +7,7 @@
 	organ_tag = O_EYES
 	parent_organ = BP_HEAD
 	var/list/eye_colour = list(0,0,0)
+	var/innate_flash_protection = FLASH_PROTECTION_NONE
 
 /obj/item/organ/internal/eyes/robotize()
 	..()
@@ -86,3 +87,9 @@
 		if(prob(1))
 			owner.custom_pain("Your eyes are watering, making it harder to see clearly for a moment.",1)
 			owner.eye_blurry += 10
+
+/obj/item/organ/internal/eyes/proc/get_total_protection(var/flash_protection = FLASH_PROTECTION_NONE)
+	return (flash_protection + innate_flash_protection)
+
+/obj/item/organ/internal/eyes/proc/additional_flash_effects(var/intensity)
+	return -1

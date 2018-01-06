@@ -5,6 +5,7 @@
 /obj/item/weapon/storage/backpack
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
+	icon = 'icons/obj/clothing/backpack.dmi'
 	icon_state = "backpack"
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/back.dmi'
@@ -347,6 +348,8 @@
 /obj/item/weapon/storage/backpack/messenger/black
 	icon_state = "courierbagblk"
 
+
+//Purses
 /obj/item/weapon/storage/backpack/purse
 	name = "purse"
 	desc = "A small, fashionable bag typically worn over the shoulder."
@@ -355,3 +358,69 @@
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5
+
+//Parachutes
+/obj/item/weapon/storage/backpack/parachute
+	name = "parachute"
+	desc = "A specially made backpack, designed to help one survive jumping from incredible heights. It sacrifices some storage space for that added functionality."
+	icon_state = "parachute"
+	item_state_slots = list(slot_r_hand_str = "backpack", slot_l_hand_str = "backpack")
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5
+
+/obj/item/weapon/storage/backpack/parachute/examine(mob/user)
+	var/msg = desc
+	if(get_dist(src, user) <= 1)
+		if(parachute)
+			msg += " It seems to be packed."
+		else
+			msg += " It seems to be unpacked."
+	to_chat(user, msg)
+
+/obj/item/weapon/storage/backpack/parachute/handleParachute()
+	parachute = FALSE	//If you parachute in, the parachute has probably been used.
+
+/obj/item/weapon/storage/backpack/parachute/verb/pack_parachute()
+
+	set name = "Pack/Unpack Parachute"
+	set category = "Object"
+	set src in usr
+
+	if(!istype(src.loc, /mob/living))
+		return
+
+	var/mob/living/carbon/human/H = usr
+
+	if(!istype(H))
+		return
+	if(H.stat)
+		return
+	if(H.back == src)
+		to_chat(H, "<span class='warning'>How do you expect to work on \the [src] while it's on your back?</span>")
+		return
+
+	if(!parachute)	//This packs the parachute
+		visible_message("<span class='notice'>\The [H] starts to pack \the [src]!</span>", \
+					"<span class='notice'>You start to pack \the [src]!</span>", \
+					"You hear the shuffling of cloth.")
+		if(do_after(H, 50))
+			visible_message("<span class='notice'>\The [H] finishes packing \the [src]!</span>", \
+					"<span class='notice'>You finish packing \the [src]!</span>", \
+					"You hear the shuffling of cloth.")
+			parachute = TRUE
+		else
+			visible_message("<span class='notice'>\The [src] gives up on packing \the [src]!</span>", \
+					"<span class='notice'>You give up on packing \the [src]!</span>")
+			return
+	else			//This unpacks the parachute
+		visible_message("<span class='notice'>\The [src] starts to unpack \the [src]!</span>", \
+					"<span class='notice'>You start to unpack \the [src]!</span>", \
+					"You hear the shuffling of cloth.")
+		if(do_after(H, 25))
+			visible_message("<span class='notice'>\The [src] finishes unpacking \the [src]!</span>", \
+					"<span class='notice'>You finish unpacking \the [src]!</span>", \
+					"You hear the shuffling of cloth.")
+			parachute = FALSE
+		else
+			visible_message("<span class='notice'>\The [src] decides not to unpack \the [src]!</span>", \
+					"<span class='notice'>You decide not to unpack \the [src]!</span>")
+	return

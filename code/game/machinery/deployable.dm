@@ -96,7 +96,7 @@ for reference:
 				return
 		return
 	else
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(user.get_attack_speed(W))
 		switch(W.damtype)
 			if("fire")
 				health -= W.force * 1
@@ -214,7 +214,7 @@ for reference:
 			if(health <= 0)
 				explode()
 			return
-			
+
 /obj/machinery/deployable/barrier/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
 		return

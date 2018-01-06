@@ -15,6 +15,8 @@
 	var/spit_name = null //String
 	var/last_spit = 0 //Timestamp.
 
+	var/can_defib = 1	//Horrible damage (like beheadings) will prevent defibbing organics.
+
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
 	if(!dna)
@@ -36,14 +38,18 @@
 	nutrition = rand(200,400)
 
 	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
-	hud_list[STATUS_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
+	if(isSynthetic())
+		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
+		hud_list[LIFE_HUD]	  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
+	else
+		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
+		hud_list[LIFE_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 	//VOREStation Add - Custom HUDs
 	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
 	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
 	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
 	hud_list[VANTAG_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
 	//VOREStation Add End
-	hud_list[LIFE_HUD]	      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
 	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
 	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
@@ -330,7 +336,7 @@
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
-	if(id_name && (id_name != face_name))
+	if((face_name == "Unknown") && id_name && (id_name != face_name))
 		return "[face_name] (as [id_name])"
 	return face_name
 
@@ -693,48 +699,37 @@
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
 
-	var/obj/item/organ/I = internal_organs_by_name[O_EYES]
-	if(!I || I.status & (ORGAN_CUT_AWAY|ORGAN_DESTROYED))
-		return 2
+	var/obj/item/organ/internal/eyes/I
 
-	var/number = 0
-	if(istype(src.head, /obj/item/clothing/head/welding))
-		if(!src.head:up)
-			number += 2
-	if(istype(back, /obj/item/weapon/rig))
-		var/obj/item/weapon/rig/O = back
-		if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
-			number += 2
-	if(istype(src.head, /obj/item/clothing/head/helmet/space))
-		number += 2
-	if(istype(src.head, /obj/item/clothing/head/helmet/space/emergency))
-		number -= 2
-	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
-		var/obj/item/clothing/glasses/thermal/T = src.glasses
-		if(T.active)
-			number -= 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/night))
-		var/obj/item/clothing/glasses/night/N = src.glasses
-		if(N.active)
-			number -= 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
-		if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses/sechud/aviator))
-			var/obj/item/clothing/glasses/sunglasses/sechud/aviator/S = src.glasses
-			if(!S.on)
-				number += 1
-		else
-			number += 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
-		var/obj/item/clothing/glasses/welding/W = src.glasses
-		if(!W.up)
-			number += 2
-	//VOREStation Add - Omnihud Handling
-	if(istype(src.glasses, /obj/item/clothing/glasses/omnihud))
-		var/obj/item/clothing/glasses/omnihud/omn = src.glasses
-		number += omn.flash_prot
-		omn.flashed()
-	//VOREStation Add End
+	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
+		I = internal_organs_by_name[O_EYES]
+		if(I.is_broken())
+			return FLASH_PROTECTION_MAJOR
+	else // They can't be flashed if they don't have eyes.
+		return FLASH_PROTECTION_MAJOR
+
+	var/number = get_equipment_flash_protection()
+	number = I.get_total_protection(number)
+	I.additional_flash_effects(number)
 	return number
+
+#define add_clothing_protection(A)	\
+	var/obj/item/clothing/C = A; \
+	flash_protection += C.flash_protection; \
+
+/mob/living/carbon/human/proc/get_equipment_flash_protection()
+	var/flash_protection = 0
+
+	if(istype(src.head, /obj/item/clothing/head))
+		add_clothing_protection(head)
+	if(istype(src.glasses, /obj/item/clothing/glasses))
+		add_clothing_protection(glasses)
+	if(istype(src.wear_mask, /obj/item/clothing/mask))
+		add_clothing_protection(wear_mask)
+
+	return flash_protection
+
+#undef add_clothing_protection
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
@@ -1567,54 +1562,3 @@
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
-
-// enter_vr is called on the original mob, and puts the mind into the supplied vr mob
-/mob/living/carbon/human/proc/enter_vr(var/mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
-	if(!istype(avatar))
-		return
-
-	// Link the two mobs for client transfer
-	avatar.vr_holder = src
-	src.teleop = avatar
-	src.vr_link = avatar // Can't reuse vr_holder so that death can automatically eject users from VR
-
-	// Move the mind
-	avatar.Sleeping(1)
-	src.mind.transfer_to(avatar)
-	to_chat(avatar, "<b>You have enterred Virtual Reality!\nAll normal gameplay rules still apply.\nWounds you suffer here won't persist when you leave VR, but some of the pain will.\nYou can leave VR at any time by using the \"Exit Virtual Reality\" verb in the Abilities tab, or by ghosting.\nYou can modify your appearance by using various \"Change \[X\]\" verbs in the Abilities tab.</b>")
-	to_chat(avatar, "<span class='notice'> You black out for a moment, and wake to find yourself in a new body in virtual reality.</span>") // So this is what VR feels like?
-
-// exit_vr is called on the vr mob, and puts the mind back into the original mob
-/mob/living/carbon/human/verb/exit_vr()
-	set name = "Exit Virtual Reality"
-	set category = "Abilities"
-
-	if(!vr_holder)
-		return
-	if(!mind)
-		return
-
-	var/total_damage
-	// Tally human damage
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		total_damage = H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss()
-
-	// Move the mind back to the original mob
-//	vr_holder.Sleeping(1)
-	src.mind.transfer_to(vr_holder)
-	to_chat(vr_holder, "<span class='notice'>You black out for a moment, and wake to find yourself back in your own body.</span>")
-	// Two-thirds damage is transferred as agony for /humans
-	// Getting hurt in VR doesn't damage the physical body, but you still got hurt.
-	if(ishuman(vr_holder) && total_damage)
-		var/mob/living/carbon/human/V = vr_holder
-		V.stun_effect_act(0, total_damage*2/3, null)												// 200 damage leaves the user in paincrit for several seconds, agony reaches 0 after around 2m.
-		to_chat(vr_holder, "<span class='warning'>Pain from your time in VR lingers.</span>")		// 250 damage leaves the user unconscious for several seconds in addition to paincrit
-
-	// Maintain a link with the mob, but don't use teleop
-	vr_holder.vr_link = src
-	vr_holder.teleop = null
-
-	if(istype(vr_holder.loc, /obj/machinery/vr_sleeper))
-		var/obj/machinery/vr_sleeper/V = vr_holder.loc
-		V.go_out()

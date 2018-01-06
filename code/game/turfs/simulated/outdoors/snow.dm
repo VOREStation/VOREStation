@@ -33,3 +33,11 @@
 			to_chat(user, "<span class='notice'>You decide to not finish removing \the [src].</span>")
 	else
 		..()
+
+/turf/simulated/floor/outdoors/snow/attack_hand(mob/user as mob)
+	visible_message("[user] starts scooping up some snow.", "You start scooping up some snow.")
+	if(do_after(user, 1 SECOND))
+		var/obj/S = new /obj/item/stack/material/snow(user.loc)
+		user.put_in_hands(S)
+		visible_message("[user] scoops up a pile of snow.", "You scoop up a pile of snow.")
+	return

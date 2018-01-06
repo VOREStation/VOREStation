@@ -9,7 +9,7 @@
 	equip_cooldown = 50
 	var/mob/living/carbon/human/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
-	var/inject_amount = 10
+	var/inject_amount = 5
 	required_type = /obj/mecha/medical
 	salvageable = 0
 
@@ -185,10 +185,14 @@
 		if(!R || !occupant || !SG || !(SG in chassis.equipment))
 			return 0
 		var/to_inject = min(R.volume, inject_amount)
-		if(to_inject && occupant.reagents.get_reagent_amount(R.id) + to_inject <= inject_amount*2)
+		if(to_inject && occupant.reagents.get_reagent_amount(R.id) + to_inject > inject_amount*4)
+			occupant_message("Sleeper safeties prohibit you from injecting more than [inject_amount*4] units of [R.name].")
+		else
 			occupant_message("Injecting [occupant] with [to_inject] units of [R.name].")
 			log_message("Injecting [occupant] with [to_inject] units of [R.name].")
-			SG.reagents.trans_id_to(occupant,R.id,to_inject)
+			//SG.reagents.trans_id_to(occupant,R.id,to_inject)
+			SG.reagents.remove_reagent(R.id,to_inject)
+			occupant.reagents.add_reagent(R.id,to_inject)
 			update_equip_info()
 		return
 
@@ -199,6 +203,19 @@
 			send_byjax(chassis.occupant,"msleeper.browser","injectwith",get_available_reagents())
 			return 1
 		return
+
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/verb/eject()
+	set name = "Sleeper Eject"
+	set category = "Exosuit Interface"
+	set src = usr.loc
+	set popup_menu = 0
+	if(usr!=src.occupant || usr.stat == 2)
+		return
+	to_chat(usr,"<span class='notice'>Release sequence activated. This will take one minute.</span>")
+	sleep(600)
+	if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
+		return
+	go_out()//and release him from the eternal prison.
 
 /datum/global_iterator/mech_sleeper
 
