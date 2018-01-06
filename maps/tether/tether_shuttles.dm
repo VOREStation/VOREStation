@@ -28,10 +28,10 @@
 	//!get_security_level() == "red"
 
 /obj/machinery/computer/shuttle_control/danger_armory_shuttle/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	if(get_security_level() == "red")
+	if(get_security_level() in list("red","delta"))
 		return ..()
 	else
-		to_chat(usr,"<span class='warning'>The screen remains static. This console only works on Alert Level Red or higher.</span>")
+		to_chat(usr,"<span class='warning'>The screen doesn't respond. This console only works on security level 'red' or higher.</span>")
 		return FALSE
 
 //
