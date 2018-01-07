@@ -2,4 +2,5 @@
 	robot_module_types += "Medihound"
 	robot_module_types += "K9"
 	robot_module_types += "Janihound"
+	robot_module_types += "Sci-borg"
 	return 1
