@@ -105,7 +105,7 @@ datum/preferences
 	var/exploit_record = ""
 	var/disabilities = 0
 
-	var/nanotrasen_relation = "Neutral"
+	var/economic_status = "Average"
 
 	var/uplinklocation = "PDA"
 
