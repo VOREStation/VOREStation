@@ -149,6 +149,7 @@
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			global_announcer.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
+			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
 			public_alert = 1
 		else if(safe_warned && public_alert)
 			global_announcer.autosay(alert_msg, "Supermatter Monitor")
