@@ -29,7 +29,7 @@
 	var/turns_since_scan = 0
 	var/obj/movement_target
 
-/mob/living/simple_animal/snake/Noodle/Life() //All taken directly from Ian in corgi.dm
+/mob/living/simple_animal/snake/Noodle/Life() //stolen from Ian in corgi.dm
 	if(!..())
 		return 0
 
@@ -37,45 +37,40 @@
 		turns_since_scan++
 		if(turns_since_scan > 5)
 			turns_since_scan = 0
-			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
+			if(movement_target && !(isturf(movement_target.loc) || ishuman(movement_target.loc)))
 				movement_target = null
 				stop_automated_movement = 0
 			if(!movement_target || !(movement_target.loc in oview(src, 5)) )
 				movement_target = null
 				stop_automated_movement = 0
+				walk(src,0)
 				for(var/obj/item/weapon/reagent_containers/food/snacks/snakesnack/S in oview(src,3))
 					if(isturf(S.loc))
 						movement_target = S
+						visible_emote("turns towards \the [movement_target] and slithers towards it.")
 						break
-			if(movement_target)
-				stop_automated_movement = 1
-				step_to(src,movement_target,1)
-				sleep(5)
-				step_to(src,movement_target,1)
-				sleep(5)
-				step_to(src,movement_target,1)
 
-				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 10 decisecomds
-					if (movement_target.loc.x < src.x)
-						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
-						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
-						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
-						set_dir(NORTH)
-					else
-						set_dir(SOUTH)
+		if(movement_target)
+			stop_automated_movement = 1
+			walk_to(src, movement_target, 0, 5)
+			spawn(10)
+				if(Adjacent(movement_target))
+					visible_message("<span class='notice'>[src] swallows the [movement_target] whole!</span>")
+					qdel(movement_target)
+					walk(src,0)
+				else if(ishuman(movement_target.loc) && prob(20))
+					visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
 
-					if(isturf(movement_target.loc) )
-						visible_message("<span class='notice'>[src] swallows the [movement_target] whole!</span>")
-						qdel(movement_target)
-					else if(ishuman(movement_target.loc) && prob(20))
-						visible_emote("stares at the [movement_target] that [movement_target.loc] with an unknowable reptilian gaze.")
+/mob/living/simple_animal/snake/Noodle/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/snakesnack))
+		visible_message("<span class='notice'>[user] feeds \the [O] to [src].</span>")
+		qdel(O)
+	else
+		return ..()
 
 //Special snek-snax for Noodle!
 /obj/item/weapon/reagent_containers/food/snacks/snakesnack
-	name = "Sugar mouse"
+	name = "sugar mouse"
 	desc = "A little mouse treat made of coloured sugar. Noodle loves these!"
 	var/snack_colour
 	icon = 'icons/mob/snake_vr.dmi'
@@ -92,7 +87,7 @@
 	reagents.add_reagent("sugar", 2)
 
 /obj/item/weapon/storage/box/fluff/snakesnackbox
-	name = "Box of Snake Snax"
+	name = "box of Snake Snax"
 	desc = "A box containing Noodle's special sugermouse treats."
 	icon = 'icons/mob/snake_vr.dmi'
 	icon_state = "sneksnakbox"
