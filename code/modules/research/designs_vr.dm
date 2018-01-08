@@ -112,7 +112,7 @@
 	name = "adv. NIF repair tool"
 	id = "anrt"
 	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 8000)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 3000, "uranium" = 2000, "diamond" = 2000)
 	build_path = /obj/item/device/nifrepairer
 	sort_string = "HABBD"
 
