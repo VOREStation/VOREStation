@@ -140,6 +140,16 @@
 	combat = 1
 	attack_verb = list("batted", "pawed", "bopped", "whapped")
 	chargecost = 500
+	
+/obj/item/weapon/shockpaddles/robot/hound/jumper
+	name = "paws of life"
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "defibpaddles0"
+	desc = "Zappy paws. For rebooting a full body prostetic."
+	combat = 1
+	attack_verb = list("batted", "pawed", "bopped", "whapped")
+	chargecost = 500
+	use_on_synthetic = 1
 
 //Tongue stuff
 /obj/item/device/dogborg/tongue
