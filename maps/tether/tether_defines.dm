@@ -37,13 +37,13 @@
 #define Z_LEVEL_EMPTY_SURFACE				13
 #define Z_LEVEL_EMPTY_SPACE					14
 
-// These are still defined here, but the levels have been removed. I could delete these but it will cause compile errors. Don't delete them unless you have to.
 #define Z_LEVEL_SURFACE_WILDERNESS_1		15
 #define Z_LEVEL_SURFACE_WILDERNESS_2		16
 #define Z_LEVEL_SURFACE_WILDERNESS_3		17
 #define Z_LEVEL_SURFACE_WILDERNESS_4		18
 #define Z_LEVEL_SURFACE_WILDERNESS_5		19
 #define Z_LEVEL_SURFACE_WILDERNESS_6		20
+
 #define Z_LEVEL_SURFACE_WILDERNESS_CRASH	21
 #define Z_LEVEL_SURFACE_WILDERNESS_RUINS	22
 
@@ -249,7 +249,6 @@
 		frozen_mobs -= M
 	frozen_mobs.Cut()
 
-/*
 /datum/map_z_level/tether/wilderness/wild_1
 	z = Z_LEVEL_SURFACE_WILDERNESS_1
 
@@ -273,7 +272,6 @@
 
 /datum/map_z_level/tether/wilderness/wild_ruins
 	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
-*/ // Wilderness stuff removed until mobs can be optimized better.
 
 /proc/get_z_level_datum(atom/A)
 	var/turf/T = get_turf(A)
