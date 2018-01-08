@@ -1746,13 +1746,13 @@
 	update_held_icon()
 	add_fingerprint(user)
 
-/obj/item/weapon/storage/box/fluff/stunstaff
+/obj/item/weapon/storage/backpack/fluff/stunstaff
 	name = "Electrostaff sheath"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "holster_stunstaff"
 	desc = "A sturdy synthetic leather sheath with matching belt and rubberized interior."
 	slot_flags = SLOT_BACK
-	item_icons = list(slot_back_str = 'icons/vore/custom_onmob_vr.dmi')
+	item_icons = list(slot_back_str = 'icons/vore/custom_onmob_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_left_hand_vr.dmi', slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi')
 
 	can_hold = list(/obj/item/weapon/melee/baton/fluff/stunstaff)
 
@@ -1760,6 +1760,6 @@
 	max_w_class = ITEMSIZE_HUGE
 	max_storage_space = 16
 
-/obj/item/weapon/storage/box/fluff/stunstaff/New()
+/obj/item/weapon/storage/backpack/fluff/stunstaff/New()
 	..()
 	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)

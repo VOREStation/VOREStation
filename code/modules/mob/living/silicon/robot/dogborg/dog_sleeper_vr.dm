@@ -496,6 +496,15 @@
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	var/max_item_count = 25
 
+/obj/item/device/dogborg/sleeper/analyzer //sci-borg gut.
+	name = "Dogborg Digestive Analyzer"
+	desc = "A mounted destructive analyzer unit with fuel processor."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "analyzer"
+	inject_amount = 10
+	min_health = -100
+	injection_chems = null //So they don't have all the same chems as the medihound!
+
 /obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
 

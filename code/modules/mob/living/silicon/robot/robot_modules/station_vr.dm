@@ -40,6 +40,7 @@
 	robot_modules["K9"] = /obj/item/weapon/robot_module/robot/knine
 	robot_modules["ERT"] = /obj/item/weapon/robot_module/robot/ert
 	robot_modules["Janihound"] = /obj/item/weapon/robot_module/robot/scrubpup
+	robot_modules["Sci-borg"] = /obj/item/weapon/robot_module/robot/science
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -111,7 +112,8 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Medical Hound" = "medihound",
-					"Dark Medical Hound (Static)" = "medihounddark"
+					"Dark Medical Hound (Static)" = "medihounddark",
+					"Mediborg model V-2" = "vale"
 					)
 
 /obj/item/weapon/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
@@ -188,3 +190,30 @@
 /obj/item/weapon/robot_module/robot/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
+
+/obj/item/weapon/robot_module/robot/science
+	name = "Research Hound Module"
+	sprites = list(
+					"Research Hound" = "science",
+					)
+	channels = list("Science" = 1)
+	can_be_pushed = 0
+
+/obj/item/weapon/robot_module/robot/science/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
+	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/device/dogborg/tongue(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/analyzer(src) //doesnt have a destructive analyzer in it yet
+	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/weapon/gripper/research(src)
+	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	src.modules += new /obj/item/weapon/storage/part_replacer(src)
+	src.emag = new /obj/item/weapon/hand_tele(src)
+	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	//R.icon_state = "science"
+	R.pixel_x 	 = -16
+	R.old_x 	 = -16
+	..()
+
