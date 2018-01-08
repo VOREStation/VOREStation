@@ -86,7 +86,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity
 	name = "purity hypo"
-	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This varient excels at \
+	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This variant excels at \
 	resolving viruses, infections, radiation, and genetic maladies."
 	filled_reagents = list("spaceacillin" = 9, "arithrazine" = 5, "ryetalyn" = 1)
 
@@ -97,7 +97,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ
 	name = "organ hypo"
-	desc = "A refined version of the standard autoinjector, allowing greater capacity.  Organ damage is resolved by this varient."
+	desc = "A refined version of the standard autoinjector, allowing greater capacity.  Organ damage is resolved by this variant."
 	filled_reagents = list("alkysine" = 1, "imidazoline" = 1, "peridaxon" = 13)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat
