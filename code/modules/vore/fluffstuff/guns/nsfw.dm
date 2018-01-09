@@ -85,19 +85,13 @@
 
 	//Find an ammotype that ISN'T the same, or exhaust the list and don't change.
 	var/our_slot = stored_ammo.Find(chambered)
-	var/index = our_slot + 1
-	var/obj/item/ammo_casing/nsfw_batt/new_choice
 
-	while((index != our_slot) && !new_choice)
-		if(index > stored_ammo.len)
-			index = 1
-		var/obj/item/ammo_casing/nsfw_batt/next_batt = stored_ammo[index]
-		if(!istype(next_batt,chambered.type))
-			new_choice = next_batt
-		index++
-
-	if(new_choice)
-		switch_to(new_choice)
+	for(var/index in 1 to stored_ammo.len)
+		var/true_index = ((our_slot + index - 1) % stored_ammo.len) + 1 // Stupid ONE BASED lists!
+		var/obj/item/ammo_casing/nsfw_batt/next_batt = stored_ammo[true_index]
+		if(chambered != next_batt && !istype(next_batt, chambered.type))
+			switch_to(next_batt)
+			break
 /*
 /obj/item/weapon/gun/projectile/nsfw/special_check(mob/user)
 	if(!chambered)
