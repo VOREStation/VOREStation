@@ -269,7 +269,7 @@
 	flags = OPENCONTAINER | NOREACT
 	complexity = 8
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_MATERIALS = 4, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
+	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/integrated_circuit/reagent/storage/big
 	name = "big reagent storage"
@@ -280,7 +280,7 @@
 	complexity = 16
 	volume = 180
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_MATERIALS = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/integrated_circuit/reagent/storage/scan
 	name = "reagent scanner"
@@ -292,7 +292,7 @@
 	outputs = list("volume used" = IC_PINTYPE_NUMBER,"self reference" = IC_PINTYPE_REF,"list of reagents" = IC_PINTYPE_LIST)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_MATERIALS = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/integrated_circuit/reagent/storage/scan/do_work()
 	var/cont[0]
