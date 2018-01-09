@@ -44,10 +44,20 @@
 	item_cost = 40
 	path = /obj/item/weapon/melee/energy/sword/pirate
 
+/datum/uplink_item/item/visible_weapons/energy_spear
+	name = "Energy Spear"
+	item_cost = 50
+	path = /obj/item/weapon/melee/energy/spear
+
 /datum/uplink_item/item/visible_weapons/claymore
 	name = "Claymore"
 	item_cost = 40
 	path = /obj/item/weapon/material/sword
+
+/datum/uplink_item/item/visible_weapons/chainsaw
+	name = "Chainsaw"
+	item_cost = 40
+	path = /obj/item/weapon/chainsaw
 
 /datum/uplink_item/item/visible_weapons/katana
 	name = "Katana"
