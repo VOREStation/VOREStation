@@ -169,11 +169,13 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Scale(size_multiplier) //VOREStation Edit. Look at Polaris pull #4267 to see things edited.
 		M.Translate(1,-6)
 		src.transform = M
+		src.layer = MOB_LAYER -0.1 //VOREStation Edit. Laying people under other people. LEWD.
 	else
 		var/matrix/M = matrix()
 		M.Scale(size_multiplier) //VOREStation Edit.
 		M.Translate(0, 16*(size_multiplier-1)) //VOREStation Edit.
 		src.transform = M
+		src.layer = MOB_LAYER //VOREStation Edit. Unset laying layer. UNLEWD.
 
 var/global/list/damage_icon_parts = list()
 
