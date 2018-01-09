@@ -32,6 +32,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Armor crate"
+	access_armory //VOREStation Add - Armor is for the armory.
 
 /datum/supply_packs/security/riot_gear
 	name = "Riot gear crate"
@@ -86,7 +87,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "bullet resistant armor set crate"
 	access = access_armory
-
+/* VOREStation Removal - Howabout no ERT armor being orderable?
 /datum/supply_packs/security/combat_armor
 	name = "Combat armor set crate"
 	contains = list(
@@ -124,7 +125,7 @@
 			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/black
 			)
-
+*/
 /datum/supply_packs/security/securitybarriers
 	name = "Security barrier crate"
 	contains = list(/obj/machinery/deployable/barrier = 4)

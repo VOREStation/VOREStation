@@ -2554,6 +2554,7 @@
 #include "code\modules\tables\interactions.dm"
 #include "code\modules\tables\presets.dm"
 #include "code\modules\tables\rack.dm"
+#include "code\modules\tables\rack_vr.dm"
 #include "code\modules\tables\tables.dm"
 #include "code\modules\tables\update_triggers.dm"
 #include "code\modules\telesci\bscyrstal.dm"
