@@ -30,16 +30,9 @@
 	var/turf/T = src.loc
 	T.contents += contents
 	if(beaker)
-		beaker.loc = get_step(src.loc, SOUTH) //Beaker is carefully ejected from the wreckage of the cryotube
-	..()
-
-/obj/machinery/atmospherics/unary/cryo_cell/initialize()
-	if(node) return
-	var/node_connect = dir
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node = target
-			break
+		beaker.forceMove(get_step(loc, SOUTH)) //Beaker is carefully ejected from the wreckage of the cryotube
+		beaker = null
+	. = ..()
 
 /obj/machinery/atmospherics/unary/cryo_cell/process()
 	..()
