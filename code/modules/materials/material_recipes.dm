@@ -140,7 +140,8 @@
 	recipes += new/datum/stack_recipe("coilgun stock", /obj/item/weapon/coilgun_assembly, 5)
 
 /material/wood/log/generate_recipes()
-	return // Feel free to add log-only recipes here later if desired.
+	recipes = list()
+	recipes += new/datum/stack_recipe("bonfire", /obj/structure/bonfire, 5, time = 50, supplied_material = "[name]")
 
 /material/cardboard/generate_recipes()
 	..()

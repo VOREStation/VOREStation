@@ -13,7 +13,6 @@
 
 /obj/machinery/atmospherics/unary/New()
 	..()
-	init_dir()
 	air_contents = new
 
 	air_contents.volume = 200
@@ -42,16 +41,13 @@
 
 	node = null
 
-/obj/machinery/atmospherics/unary/initialize()
+/obj/machinery/atmospherics/unary/atmos_init()
 	if(node)
 		return
-
-	init_dir()
 
 	var/node_connect = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node = target

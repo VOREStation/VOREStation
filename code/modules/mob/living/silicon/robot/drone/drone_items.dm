@@ -100,7 +100,7 @@
 		)
 
 /obj/item/weapon/gripper/gravekeeper	//Used for handling grave things, flowers, etc.
-	name = ""
+	name = "grave gripper"
 	icon_state = "gripper"
 	desc = "A specialized grasping tool used in the preparation and maintenance of graves."
 
