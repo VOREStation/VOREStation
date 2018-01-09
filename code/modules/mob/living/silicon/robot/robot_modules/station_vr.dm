@@ -215,5 +215,6 @@
 	//R.icon_state = "science"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.dogborg = TRUE
 	..()
 
