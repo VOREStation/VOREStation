@@ -134,6 +134,12 @@ var/list/mechtoys = list(
     var/orderedby = null
     var/comment = null
 
+//VOREStation Edit - Export reports
+/datum/exported_crate
+    var/name
+    var/value
+//VOREStation Edit End
+
 /datum/controller/supply
     //supply points
     var/points = 50
@@ -147,6 +153,7 @@ var/list/mechtoys = list(
     var/list/shoppinglist = list()
     var/list/requestlist = list()
     var/list/supply_packs = list()
+    var/list/exported_crates = list() //VOREStation Edit - Export reports
     //shuttle movement
     var/movetime = 1200
     var/datum/shuttle/ferry/supply/shuttle
@@ -190,11 +197,20 @@ var/list/mechtoys = list(
         var/plat_count = 0
         var/money_count = 0
 
+        exported_crates = list() //VOREStation Edit - Export reports
+
         for(var/atom/movable/MA in area_shuttle)
             if(MA.anchored) continue
 
             // Must be in a crate!
             if(istype(MA,/obj/structure/closet/crate))
+                //VOREStation Edit - Export reports
+                var/oldpoints = points
+                var/oldphoron = phoron_count
+                var/oldplatinum = plat_count
+                var/oldmoney = money_count
+                //VOREStation Edit End
+
                 var/obj/structure/closet/crate/CR = MA
                 callHook("sell_crate", list(CR, area_shuttle))
 
@@ -222,6 +238,17 @@ var/list/mechtoys = list(
                     if(istype(A, /obj/item/weapon/spacecash))
                         var/obj/item/weapon/spacecash/cashmoney = A
                         money_count += cashmoney.worth
+
+                //VOREStation Edit - Export reports
+                var/datum/exported_crate/EC = new /datum/exported_crate()
+                EC.name = CR.name
+                EC.value = points - oldpoints
+                EC.value += (phoron_count - oldphoron) * points_per_phoron
+                EC.value += (plat_count - oldplatinum) * points_per_platinum
+                EC.value += (money_count - oldmoney) * points_per_money
+                exported_crates += EC
+                //VOREStation Edit End
+
             qdel(MA)
 
         if(phoron_count)
