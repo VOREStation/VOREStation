@@ -247,6 +247,7 @@
 		else
 			to_chat(usr, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1)
+		sleeperUI(usr)
 		return
 
 	if(patient && !(patient.stat & DEAD)) //What is bitwise NOT? ... Thought it was tilde.
