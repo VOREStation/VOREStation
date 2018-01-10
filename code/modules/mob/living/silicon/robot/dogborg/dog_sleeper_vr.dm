@@ -128,8 +128,8 @@
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
 		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
 
-	if(istype(src, /obj/item/device/dogborg/sleeper/compactor/analyzer))//garbage counter for trashpup
-		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A>"
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor/analyzer))
+		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
