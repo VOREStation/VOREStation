@@ -355,6 +355,20 @@
 				B.internal_contents -= Mm
 				absorb_living(Mm)
 
+//Digest a single item
+//Receives a return value from digest_act that's how much nutrition
+//the item should be worth
+/datum/belly/proc/digest_item(var/obj/item/item)
+	var/digested = item.digest_act(internal_contents, owner)
+	if(!digested)
+		items_preserved |= item
+	else
+		internal_contents -= item
+		owner.nutrition += (digested)
+		if(isrobot(owner))
+			var/mob/living/silicon/robot/R = owner
+			R.cell.charge += (50 * digested)
+
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
 /datum/belly/proc/relay_resist(var/mob/living/R)

@@ -87,14 +87,10 @@
 		var/obj/item/T = pick(touchable_items)
 		if(istype(T))
 			if(digest_mode == DM_ITEMWEAK)
-				T.gurgle_contaminate(src)
+				T.gurgle_contaminate(internal_contents, owner)
 				items_preserved |= T
 			else
-				var/digested = T.digest_act(belly = src) //Isn't this much better?
-				if(!digested)
-					items_preserved |= T
-				else
-					internal_contents -= T
+				digest_item(T)
 
 		owner.updateVRPanel()
 		return
@@ -113,11 +109,7 @@
 		// Handle loose items first.
 		var/obj/item/T = pick(touchable_items)
 		if(istype(T))
-			var/digested = T.digest_act(belly = src) //Isn't this much better?
-			if(!digested)
-				items_preserved |= T
-			else
-				internal_contents -= T
+			digest_item(T)
 
 		for(var/mob/living/carbon/human/M in internal_contents)
 			if (M.absorbed)
@@ -128,7 +120,7 @@
 					M.unEquip(thingy,force = TRUE)
 					thingy.forceMove(owner)
 					internal_contents |= thingy
-					thingy.digest_act(src) //Shame to move it just before gurgling it, but it might be indigestible.
+					digest_item(T)
 			M.updateVRPanel()
 
 		owner.updateVRPanel()

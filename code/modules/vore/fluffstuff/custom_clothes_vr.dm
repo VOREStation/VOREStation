@@ -105,7 +105,7 @@
 	else
 		RemoveHood_roiz()
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/datum/belly/belly = null)
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	return FALSE
 
 //ketrai:Ketrai
@@ -679,7 +679,7 @@
 		else
 			return 1
 
-/obj/item/clothing/under/fluff/screesuit/digest_act(var/datum/belly/belly = null)
+/obj/item/clothing/under/fluff/screesuit/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	return FALSE
 
 //HOS Hardsuit
@@ -769,7 +769,7 @@
 
 	action_button_name = "Toggle pom-pom"
 
-/obj/item/clothing/head/fluff/pompom/digest_act(var/datum/belly/belly = null)
+/obj/item/clothing/head/fluff/pompom/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)

@@ -404,10 +404,11 @@
 		else
 			var/obj/item/T = target
 			if(istype(T))
-				var/digested = T.digest_act()
+				var/digested = T.digest_act(item_storage = src)
 				if(!digested)
 					items_preserved |= T
-					return
+				else
+					hound.cell.charge += (50 * digested)
 
 			if(UI_open == 1)
 				update_patient()

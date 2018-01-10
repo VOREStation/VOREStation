@@ -5,7 +5,7 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	var/cleanname
 	var/cleandesc
 
-/obj/item/proc/gurgle_contaminate(var/datum/belly/belly = null)
+/obj/item/proc/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	if(!can_gurgle())
 		return FALSE
 
@@ -18,7 +18,7 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 		name = "[gurgleflavor] [cleanname]"
 		desc = "[cleandesc] It seems to be covered in ominously foul residue and needs a wash."
 		for(var/obj/item/O in contents)
-			gurgle_contaminate(belly)
+			gurgle_contaminate(internal_contents, item_storage)
 		return TRUE
 
 /obj/item/proc/can_gurgle()
@@ -93,34 +93,34 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 //////////////
 // Special handling of gurgle_contaminate
 //////////////
-/obj/item/weapon/card/id/gurgle_contaminate(var/datum/belly/belly = null)
-	digest_act(belly) //Digesting these anyway
+/obj/item/weapon/card/id/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	digest_act(internal_contents, item_storage) //Digesting these anyway
 	return TRUE
 
-/obj/item/weapon/reagent_containers/food/gurgle_contaminate(var/datum/belly/belly = null)
-	digest_act(belly)
+/obj/item/weapon/reagent_containers/food/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	digest_act(internal_contents, item_storage)
 	return TRUE
 
-/obj/item/weapon/holder/gurgle_contaminate(var/datum/belly/belly = null)
-	digest_act(belly)
+/obj/item/weapon/holder/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	digest_act(internal_contents, item_storage)
 	return TRUE
 
-/obj/item/organ/gurgle_contaminate(var/datum/belly/belly = null)
-	digest_act(belly)
+/obj/item/organ/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	digest_act(internal_contents, item_storage)
 	return TRUE
 
-/obj/item/weapon/cell/gurgle_contaminate(var/datum/belly/belly = null)
+/obj/item/weapon/cell/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	if(!gurgled)
 	//Don't make them wet, just drain
 		var/obj/item/weapon/cell/C = src
 		C.charge = 0
 	return TRUE
 
-/obj/item/weapon/storage/box/gurgle_contaminate(var/datum/belly/belly = null)
+/obj/item/weapon/storage/box/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	if((. = ..()))
 		name = "soggy [cleanname]"
 		desc = "This soggy box is about to fall apart any time."
 
-/obj/item/device/pda/gurgle_contaminate(var/datum/belly/belly = null)
+/obj/item/device/pda/gurgle_contaminate(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	if((. = ..()))
 		desc = "This device seems completely unresponsive while drenched with sludge. Perhaps you could still wash it."
