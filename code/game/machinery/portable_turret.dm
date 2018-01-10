@@ -81,7 +81,7 @@
 
 /obj/machinery/porta_turret/ai_defense
 	name = "defense turret"
-	desc = "This varient appears to be much more durable."
+	desc = "This variant appears to be much more durable."
 	installation = /obj/item/weapon/gun/energy/xray // For the armor pen.
 	health = 250 // Since lasers do 40 each.
 	maxhealth = 250
