@@ -619,15 +619,15 @@
 		if(target_obj.w_class > ITEMSIZE_LARGE)
 			to_chat(user, "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>")
 			return
-		if(istype(target,/obj/item/weapon))
-			var/obj/item/weapon/tech_item = target
-			for(var/T in tech_item.origin_tech)
-				to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
 		user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
 		if(do_after(user, 30, target) && length(contents) < max_item_count)
 			target.forceMove(src)
 			user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+			if(istype(target,/obj/item/weapon))
+				var/obj/item/weapon/tech_item = target
+				for(var/T in tech_item.origin_tech)
+					to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = TRUE
 				hound.updateicon()
