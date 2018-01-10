@@ -19,7 +19,6 @@
 	// BubbleWrap
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
 	..()
-	init_dir()
 // BubbleWrap END
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 
@@ -28,7 +27,6 @@
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
-	init_dir()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -41,12 +39,10 @@
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node1_dir))
-		target.init_dir()
 		if(target.initialize_directions_he & get_dir(target,src))
 			node1 = target
 			break
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node2_dir))
-		target.init_dir()
 		if(target.initialize_directions_he & get_dir(target,src))
 			node2 = target
 			break
@@ -137,14 +133,11 @@
 
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/initialize()
-	init_dir()
 	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			node1 = target
 			break
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,initialize_directions_he))
-		target.init_dir()
 		if(target.initialize_directions_he & get_dir(target,src))
 			node2 = target
 			break

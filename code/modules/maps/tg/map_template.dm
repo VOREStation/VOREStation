@@ -82,7 +82,7 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)
-		machine.initialize()
+		machine.atmos_init()
 		i++
 
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)

@@ -21,10 +21,6 @@
 /obj/machinery/atmospherics/portables_connector/init_dir()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/portables_connector/New()
-	init_dir()
-	..()
-
 /obj/machinery/atmospherics/portables_connector/update_icon()
 	icon_state = "connector"
 
@@ -74,16 +70,13 @@
 
 	node = null
 
-/obj/machinery/atmospherics/portables_connector/initialize()
+/obj/machinery/atmospherics/portables_connector/atmos_init()
 	if(node)
 		return
-
-	init_dir()
 
 	var/node_connect = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node = target
@@ -138,7 +131,7 @@
 	if (!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if (connected_device)
-		user << "<span class='warning'>You cannot unwrench \the [src], dettach \the [connected_device] first.</span>"
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], dettach \the [connected_device] first.</span>")
 		return 1
 	if (locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
@@ -147,7 +140,7 @@
 		add_fingerprint(user)
 		return 1
 	playsound(src, W.usesound, 50, 1)
-	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
+	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
