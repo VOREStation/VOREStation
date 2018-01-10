@@ -203,8 +203,8 @@
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/tongue(src)
-	src.modules += new /obj/item/device/dogborg/sleeper/analyzer(src) //doesnt have a destructive analyzer in it yet
-	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
+	//src.modules += new /obj/item/weapon/portable_destructive_analyzer(src) //Belly works now.
 	src.modules += new /obj/item/weapon/gripper/research(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)

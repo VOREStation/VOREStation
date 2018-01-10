@@ -15,11 +15,13 @@
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
-	var/UI_open = 0
+	var/UI_open = FALSE
+	var/datum/research/techonly/files //Analyzerbelly var.
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
+	files = new /datum/research/techonly(src)
 
 /obj/item/device/dogborg/sleeper/Exit(atom/movable/O)
 	return 0
@@ -31,10 +33,10 @@
 	if(!ishuman(target))
 		return
 	if(target.buckled)
-		user << "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>"
+		to_chat(user, "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>")
 		return
 	if(patient)
-		user << "<span class='warning'>Your [src.name] is already occupied.</span>"
+		to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
 		return
 	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src]...</span>")
 	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50, target))
@@ -51,7 +53,7 @@
 			user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [target.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [target] slips into your [src]. Life support functions engaged.</span>")
 			message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 			playsound(hound, 'sound/vore/gulp.ogg', 100, 1) //POLARISTODO
-			if(UI_open == 1)
+			if(UI_open == TRUE)
 				sleeperUI(usr)
 
 /obj/item/device/dogborg/sleeper/proc/go_out(var/target)
@@ -92,7 +94,7 @@
 	if(..())
 		return
 	sleeperUI(user)
-	UI_open = 1
+	UI_open = TRUE
 
 /obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
 	var/dat
@@ -125,6 +127,9 @@
 		var/obj/item/device/dogborg/sleeper/compactor/garbo = src
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
 		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
+
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor/analyzer))//garbage counter for trashpup
+		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
@@ -180,8 +185,6 @@
 	//popup.set_title_image(user.browse_rsc_icon(icon, icon_state)) //I have no idea what this is, but it feels irrelevant and causes runtimes idk.
 	popup.set_content(dat)
 	popup.open()
-	onclose(user, "sleeper")
-	UI_open = 0
 	return
 
 /obj/item/device/dogborg/sleeper/Topic(href, href_list)
@@ -197,6 +200,9 @@
 		go_out()
 		sleeperUI(usr)
 		return
+	if( href_list["close"] )
+		UI_open = FALSE
+		return
 	if(href_list["clean"])
 		if(!cleaning)
 			var/confirm = alert(usr, "You are about to engage self-cleaning mode. This will fill your [src] with caustic enzymes to remove any objects or biomatter, and convert them into energy. Are you sure?", "Confirmation", "Self-Clean", "Cancel")
@@ -209,7 +215,7 @@
 					processing_objects.Add(src)
 					sleeperUI(usr)
 					if(patient)
-						patient << "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>"
+						to_chat(patient, "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>")
 					return
 		if(cleaning)
 			sleeperUI(usr)
@@ -223,13 +229,30 @@
 		sleeperUI(usr)
 		return
 
+	if(href_list["sync"])
+		var/success = 0
+		for(var/obj/machinery/r_n_d/server/S in machines)
+			for(var/datum/tech/T in files.known_tech) //Uploading
+				S.files.AddTech2Known(T)
+			for(var/datum/tech/T in S.files.known_tech) //Downloading
+				files.AddTech2Known(T)
+			success = 1
+			files.RefreshResearch()
+		if(success)
+			to_chat(usr, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
+			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+		else
+			to_chat(usr, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
+			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1)
+		return
+
 	if(patient && !(patient.stat & DEAD)) //What is bitwise NOT? ... Thought it was tilde.
 		if(href_list["inject"] == "inaprovaline" || patient.health > min_health)
 			inject_chem(usr, href_list["inject"])
 		else
-			usr << "<span class='notice'>ERROR: Subject is not in stable condition for injections.</span>"
+			to_chat(usr, "<span class='notice'>ERROR: Subject is not in stable condition for injections.</span>")
 	else
-		usr << "<span class='notice'>ERROR: Subject cannot metabolise chemicals.</span>"
+		to_chat(usr, "<span class='notice'>ERROR: Subject cannot metabolise chemicals.</span>")
 
 	src.updateUsrDialog()
 	sleeperUI(usr) //Needs a callback to boop the page to refresh.
@@ -239,15 +262,15 @@
 	if(patient && patient.reagents)
 		if(chem in injection_chems + "inaprovaline")
 			if(hound.cell.charge < 800) //This is so borgs don't kill themselves with it.
-				hound << "<span class='notice'>You don't have enough power to synthesize fluids.</span>"
+				to_chat(hound, "<span class='notice'>You don't have enough power to synthesize fluids.</span>")
 				return
 			else if(patient.reagents.get_reagent_amount(chem) + 10 >= 20) //Preventing people from accidentally killing themselves by trying to inject too many chemicals!
-				hound << "<span class='notice'>Your stomach is currently too full of fluids to secrete more fluids of this kind.</span>"
+				to_chat(hound, "<span class='notice'>Your stomach is currently too full of fluids to secrete more fluids of this kind.</span>")
 			else if(patient.reagents.get_reagent_amount(chem) + 10 <= 20) //No overdoses for you
 				patient.reagents.add_reagent(chem, inject_amount)
 				drain(750) //-750 charge per injection
 			var/units = round(patient.reagents.get_reagent_amount(chem))
-			hound << "<span class='notice'>Injecting [units] unit\s of [chemical_reagents_list[chem]] into occupant.</span>" //If they were immersed, the reagents wouldn't leave with them.
+			to_chat(hound, "<span class='notice'>Injecting [units] unit\s of [chemical_reagents_list[chem]] into occupant.</span>") //If they were immersed, the reagents wouldn't leave with them.
 
 //For if the dogborg's existing patient uh, doesn't make it.
 /obj/item/device/dogborg/sleeper/proc/update_patient()
@@ -297,7 +320,7 @@
 	patient_laststat = null
 	patient = null
 	hound.updateicon()
-	if(UI_open == 1)
+	if(UI_open == TRUE)
 		sleeperUI(usr)
 	return
 
@@ -313,7 +336,7 @@
 
 	//Belly is entirely empty
 	if(!length(contents))
-		hound << "<span class='notice'>Your [src.name] is now clean. Ending self-cleaning cycle.</span>"
+		to_chat(hound, "<span class='notice'>Your [src.name] is now clean. Ending self-cleaning cycle.</span>")
 		cleaning = 0
 		update_patient()
 		return
@@ -358,8 +381,8 @@
 			//Mob is now dead
 			if(T.stat & DEAD)
 				message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-				hound << "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>"
-				T << "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>"
+				to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
+				to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
 				src.drain(-30000) //Fueeeeellll
 				var/deathsound = pick(
 					'sound/vore/death1.ogg',
@@ -384,7 +407,7 @@
 						for (var/mob/subprey in belly.internal_contents)
 							subprey.loc = src
 							belly.internal_contents -= subprey
-							subprey << "As [T] melts away around you, you find yourself in [hound]'s [name]"
+							to_chat(subprey, "As [T] melts away around you, you find yourself in [hound]'s [name]")
 				for(var/obj/item/I in T)
 					if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
 						var/obj/item/organ/internal/mmi_holder/MMI = I
@@ -397,7 +420,7 @@
 						T.drop_from_inventory(I, src)
 				qdel(T)
 				src.update_patient()
-				if(UI_open == 1)
+				if(UI_open == TRUE)
 					sleeperUI(hound)
 
 		//Handle the target being anything but a /mob/living/carbon/human
@@ -409,6 +432,10 @@
 					return
 				if(T in items_preserved)
 					return
+				if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer) && istype(T,/obj/item/weapon))
+					var/obj/item/weapon/tech_item = T
+					for(var/tech in tech_item.origin_tech)
+						files.UpdateTech(tech, tech_item.origin_tech[tech])
 				//If the object is not one to preserve
 				if(istype(T, /obj/item/device/pda))
 					var/obj/item/device/pda/PDA = T
@@ -447,7 +474,7 @@
 					contents -= T
 					qdel(T)
 					src.update_patient()
-				if(UI_open == 1)
+				if(UI_open == TRUE)
 					sleeperUI(hound)
 
 		return
@@ -496,14 +523,11 @@
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	var/max_item_count = 25
 
-/obj/item/device/dogborg/sleeper/analyzer //sci-borg gut.
+/obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
 	name = "Dogborg Digestive Analyzer"
 	desc = "A mounted destructive analyzer unit with fuel processor."
-	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "analyzer"
-	inject_amount = 10
-	min_health = -100
-	injection_chems = null //So they don't have all the same chems as the medihound!
+	max_item_count = 10
 
 /obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
@@ -517,13 +541,13 @@
 	if(target in hound.module.modules)
 		return
 	if(length(contents) > (max_item_count - 1))
-		user << "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>"
+		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
 		return
 
 	if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
 		var/obj/target_obj = target
 		if(target_obj.w_class > ITEMSIZE_LARGE)
-			user << "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>"
+			to_chat(user, "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>")
 			return
 		user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
 		if(do_after(user, 30, target) && length(contents) < max_item_count)
@@ -533,7 +557,7 @@
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = TRUE
 				hound.updateicon()
-			if(UI_open == 1)
+			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
 
@@ -548,17 +572,17 @@
 			if(length(contents) > 11) //grow that tum after a certain junk amount
 				hound.sleeper_r = TRUE
 				hound.updateicon()
-			if(UI_open == 1)
+			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
 
 	else if(ishuman(target))
 		var/mob/living/carbon/human/trashman = target
 		if(patient)
-			user << "<span class='warning'>Your [src.name] is already occupied.</span>"
+			to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
 			return
 		if(trashman.buckled)
-			user << "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>"
+			to_chat(user, "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>")
 			return
 		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
 		if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
@@ -570,7 +594,66 @@
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 			hound.sleeper_r = TRUE
 			hound.updateicon()
-			if(UI_open == 1)
+			if(UI_open == TRUE)
+				sleeperUI(usr)
+		return
+	return
+
+/obj/item/device/dogborg/sleeper/compactor/analyzer/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
+	hound = loc
+
+	if(!istype(target))
+		return
+	if(!proximity)
+		return
+	if(target.anchored)
+		return
+	if(target in hound.module.modules)
+		return
+	if(length(contents) > (max_item_count - 1))
+		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
+		return
+
+	if(istype(target, /obj/item))
+		var/obj/target_obj = target
+		if(target_obj.w_class > ITEMSIZE_LARGE)
+			to_chat(user, "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>")
+			return
+		if(istype(target,/obj/item/weapon))
+			var/obj/item/weapon/tech_item = target
+			for(var/T in tech_item.origin_tech)
+				to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
+		if(do_after(user, 30, target) && length(contents) < max_item_count)
+			target.forceMove(src)
+			user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+			if(length(contents) > 11) //grow that tum after a certain junk amount
+				hound.sleeper_r = TRUE
+				hound.updateicon()
+			if(UI_open == TRUE)
+				sleeperUI(usr)
+		return
+
+	else if(ishuman(target))
+		var/mob/living/carbon/human/trashman = target
+		if(patient)
+			to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
+			return
+		if(trashman.buckled)
+			to_chat(user, "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>")
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
+		if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
+			trashman.forceMove(src)
+			trashman.reset_view(src)
+			update_patient()
+			processing_objects.Add(src)
+			user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
+			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+			hound.sleeper_r = TRUE
+			hound.updateicon()
+			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
 	return
