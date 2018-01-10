@@ -211,7 +211,7 @@
 					return
 				else
 					cleaning = 1
-					drain(500)
+					drain(50)
 					processing_objects.Add(src)
 					sleeperUI(usr)
 					if(patient)
@@ -521,7 +521,7 @@
 	inject_amount = 10
 	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
-	var/max_item_count = 25
+	var/max_item_count = 1
 
 /obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
 	name = "Dogborg Digestive Analyzer"
