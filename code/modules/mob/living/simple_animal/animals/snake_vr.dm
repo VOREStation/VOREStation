@@ -86,19 +86,19 @@
 	desc = "A little mouse treat made of coloured sugar. Noodle loves these! This one is [snack_colour]."
 	reagents.add_reagent("sugar", 2)
 
-/obj/item/weapon/storage/box/fluff/snakesnackbox
+/obj/item/weapon/storage/box/snakesnackbox
 	name = "box of Snake Snax"
 	desc = "A box containing Noodle's special sugermouse treats."
 	icon = 'icons/mob/snake_vr.dmi'
 	icon_state = "sneksnakbox"
 	storage_slots = 7
 
-/obj/item/weapon/storage/box/fluff/snakesnackbox/New()
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
-		..()
+/obj/item/weapon/storage/box/snakesnackbox/New()
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/snakesnack(src)
+	..()
