@@ -211,7 +211,7 @@
 					return
 				else
 					cleaning = 1
-					drain(50)
+					drain(100)
 					processing_objects.Add(src)
 					sleeperUI(usr)
 					if(patient)
