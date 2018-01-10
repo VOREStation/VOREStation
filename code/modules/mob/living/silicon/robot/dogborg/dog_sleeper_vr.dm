@@ -17,6 +17,7 @@
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
 	var/datum/research/techonly/files //Analyzerbelly var.
+	var/synced = FALSE
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -128,7 +129,7 @@
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
 		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
 
-	if(istype(src, /obj/item/device/dogborg/sleeper/compactor/analyzer))
+	if(istype(src, /obj/item/device/dogborg/sleeper/compactor/analyzer) && synced == FALSE)
 		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
@@ -230,6 +231,7 @@
 		return
 
 	if(href_list["sync"])
+		synced = TRUE
 		var/success = 0
 		for(var/obj/machinery/r_n_d/server/S in machines)
 			for(var/datum/tech/T in files.known_tech) //Uploading
@@ -436,6 +438,7 @@
 					var/obj/item/weapon/tech_item = T
 					for(var/tech in tech_item.origin_tech)
 						files.UpdateTech(tech, tech_item.origin_tech[tech])
+						synced = FALSE
 				//If the object is not one to preserve
 				if(istype(T, /obj/item/device/pda))
 					var/obj/item/device/pda/PDA = T
