@@ -436,8 +436,8 @@
 					return
 				if(T in items_preserved)
 					return
-				if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer) && istype(T,/obj/item/weapon))
-					var/obj/item/weapon/tech_item = T
+				if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer) && istype(T,/obj/item))
+					var/obj/item/tech_item = T
 					for(var/tech in tech_item.origin_tech)
 						files.UpdateTech(tech, tech_item.origin_tech[tech])
 						synced = FALSE
@@ -561,8 +561,8 @@
 				target.forceMove(src)
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
-				if(istype(target,/obj/item/weapon))
-					var/obj/item/weapon/tech_item = target
+				if(istype(target,/obj/item))
+					var/obj/item/tech_item = target
 					for(var/T in tech_item.origin_tech)
 						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
 				if(length(contents) > 11) //grow that tum after a certain junk amount
