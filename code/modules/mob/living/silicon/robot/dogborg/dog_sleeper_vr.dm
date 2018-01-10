@@ -18,6 +18,7 @@
 	var/UI_open = FALSE
 	var/datum/research/techonly/files //Analyzerbelly var.
 	var/synced = FALSE
+	var/startdrain = 500
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -212,7 +213,7 @@
 					return
 				else
 					cleaning = 1
-					drain(100)
+					drain(startdrain)
 					processing_objects.Add(src)
 					sleeperUI(usr)
 					if(patient)
@@ -531,6 +532,7 @@
 	desc = "A mounted destructive analyzer unit with fuel processor."
 	icon_state = "analyzer"
 	max_item_count = 5
+	startdrain = 100
 
 /obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
