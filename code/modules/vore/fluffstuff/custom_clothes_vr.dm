@@ -105,6 +105,9 @@
 	else
 		RemoveHood_roiz()
 
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/datum/belly/belly = null)
+	return FALSE
+
 //ketrai:Ketrai
 /obj/item/clothing/head/fluff/ketrai
 	name = "Pink Bear Hat"
@@ -676,6 +679,9 @@
 		else
 			return 1
 
+/obj/item/clothing/under/fluff/screesuit/digest_act(var/datum/belly/belly = null)
+	return FALSE
+
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
 	name = "\improper prototype voidsuit"
@@ -762,6 +768,9 @@
 	light_overlay = null
 
 	action_button_name = "Toggle pom-pom"
+
+/obj/item/clothing/head/fluff/pompom/digest_act(var/datum/belly/belly = null)
+	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
 	//if(!isturf(user.loc)) -- doesn't seem to cause problems to allow this and it's silly not to

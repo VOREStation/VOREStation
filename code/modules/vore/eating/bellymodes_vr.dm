@@ -4,13 +4,13 @@
 
 /////////////////////////// Auto-Emotes ///////////////////////////
 	if((digest_mode in emote_lists) && !emotePend)
-		emotePend = 1
+		emotePend = TRUE
 
 		spawn(emoteTime)
 			var/list/EL = emote_lists[digest_mode]
 			for(var/mob/living/M in internal_contents)
 				M << "<span class='notice'>[pick(EL)]</span>"
-			src.emotePend = 0
+			src.emotePend = FALSE
 
 //////////////////////// Absorbed Handling ////////////////////////
 	for(var/mob/living/M in internal_contents)
@@ -24,7 +24,6 @@
 //////////////////////////// DM_DIGEST ////////////////////////////
 	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
 		var/list/touchable_items = internal_contents - items_preserved
-		var/mob/living/silicon/robot/s_owner = null
 		if(!length(touchable_items))
 			return
 
@@ -56,10 +55,6 @@
 				owner << "<span class='notice'>" + digest_alert_owner + "</span>"
 				M << "<span class='notice'>" + digest_alert_prey + "</span>"
 
-				owner.nutrition += 20 // so eating dead mobs gives you *something* (that's 0.66u nutriment yo)
-				if(isrobot(owner))
-					s_owner = owner
-					s_owner.cell.charge += 200
 				var/deathsound = pick(death_sounds)
 				for(var/mob/hearer in range(1,owner))
 					hearer << deathsound
@@ -80,142 +75,26 @@
 				var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 				var/difference = owner.size_multiplier / M.size_multiplier
 				if(isrobot(owner))
-					s_owner = owner
-					s_owner.cell.charge += 20*(digest_brute+digest_burn)
+					var/mob/living/silicon/robot/R = owner
+					R.cell.charge += 20*(digest_brute+digest_burn)
 				if(offset) // If any different than default weight, multiply the % of offset.
 					owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 				else
 					owner.nutrition += 2*(digest_brute+digest_burn)/difference
 			M.updateVRPanel()
 
-		if(digest_mode == DM_ITEMWEAK)
-			var/obj/item/T = pick(touchable_items)
-			if(istype(T, /obj/item))
-				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
-					if(T in items_preserved)// Doublecheck just in case.
-						return
-					if(istype(T,/obj/item/weapon/card/id))// Mess up unprotected IDs
-						var/obj/item/weapon/card/id/ID = T
-						ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-						ID.icon = 'icons/obj/card_vr.dmi'
-						ID.icon_state = "digested"
-						ID.access = list() // No access
-						items_preserved += ID
-						return
-					for(var/obj/item/SubItem in T)
-						if(istype(SubItem,/obj/item/weapon/reagent_containers/food))
-							var/obj/item/weapon/reagent_containers/food/SF = SubItem
-							if(istype(owner,/mob/living/carbon/human))
-								var/mob/living/carbon/human/howner = owner
-								SF.reagents.trans_to_holder(howner.ingested, (SF.reagents.total_volume * 0.3), 1, 0)
-							internal_contents -= SF
-							qdel(SF)
-						SubItem.gurglecontaminate()
-						if(istype(SubItem,/obj/item/weapon/storage))
-							for(var/obj/item/SubSubItem in SubItem)
-								if(istype(SubSubItem,/obj/item/weapon/reagent_containers/food))
-									var/obj/item/weapon/reagent_containers/food/SSF = SubSubItem
-									if(istype(owner,/mob/living/carbon/human))
-										var/mob/living/carbon/human/howner = owner
-										SSF.reagents.trans_to_holder(howner.ingested, (SSF.reagents.total_volume * 0.3), 1, 0)
-									internal_contents -= SSF
-									qdel(SSF)
-								SubSubItem.gurglecontaminate()
-					if(istype(T, /obj/item/weapon/reagent_containers/food)) // Weakgurgles still act on foodstuff. Hopefully your prey didn't load their bag with donk boxes.
-						var/obj/item/weapon/reagent_containers/food/F = T
-						if(istype(owner,/mob/living/carbon/human))
-							var/mob/living/carbon/human/howner = owner
-							F.reagents.trans_to_holder(howner.reagents, (F.reagents.total_volume * 0.3), 1, 0)
-						if(isrobot(owner))
-							s_owner = owner
-							s_owner.cell.charge += 150
-						internal_contents -= F
-						qdel(F)
-					if(istype(T,/obj/item/weapon/holder))
-						var/obj/item/weapon/holder/H = T
-						for(var/mob/living/M in H.contents)
-							M.loc = owner
-							internal_contents += M
-						internal_contents -= H
-						qdel(H)
-					if(istype(T,/obj/item/organ))
-						owner.nutrition += (66)
-						internal_contents -= T
-						qdel(T)
-					else
-						items_preserved += T
-						T.gurglecontaminate() // Someone got gurgled in this crap. You wouldn't wear/use it unwashed. :v
+		//Contaminate or gurgle items
+		var/obj/item/T = pick(touchable_items)
+		if(istype(T))
+			if(digest_mode == DM_ITEMWEAK)
+				T.gurgle_contaminate(src)
+				items_preserved |= T
+			else
+				var/digested = T.digest_act(belly = src) //Isn't this much better?
+				if(!digested)
+					items_preserved |= T
 				else
-					return
-			owner.updateVRPanel()
-			return
-		else
-		// Handle leftovers.
-			var/obj/item/T = pick(touchable_items)
-			if(istype(T, /obj/item))
-				if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
-					if(T in items_preserved)// Doublecheck just in case.
-						return
-					if(istype(T, /obj/item/device/pda))
-						var/obj/item/device/pda/PDA = T
-						if(PDA.id)
-							PDA.id.forceMove(owner)
-							internal_contents += PDA.id
-							PDA.id = null
-						owner.nutrition += (2)
-						if(isrobot(owner))
-							s_owner = owner
-							s_owner.cell.charge += 100
-						internal_contents -= PDA
-						qdel(PDA)
-					for(var/obj/item/SubItem in T)
-						if(istype(SubItem,/obj/item/weapon/storage/internal))
-							var/obj/item/weapon/storage/internal/SI = SubItem
-							for(var/obj/item/SubSubItem in SI)
-								SubSubItem.forceMove(owner)
-								internal_contents += SubSubItem
-							qdel(SI)
-						else
-							SubItem.forceMove(owner)
-							internal_contents += SubItem
-					if(istype(T,/obj/item/weapon/card/id))// In case the ID didn't come from gurgle drop.
-						var/obj/item/weapon/card/id/ID = T
-						ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-						ID.icon = 'icons/obj/card_vr.dmi'
-						ID.icon_state = "digested"
-						ID.access = list() // No access
-						items_preserved += ID
-						return
-					if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
-						var/obj/item/weapon/reagent_containers/food/snacks/F = T
-						if(istype(owner,/mob/living/carbon/human))
-							var/mob/living/carbon/human/howner = owner
-							F.reagents.trans_to_holder(howner.ingested, (F.reagents.total_volume * 0.3), 1, 0)
-						if(isrobot(owner))
-							s_owner = owner
-							s_owner.cell.charge += 150
-						internal_contents -= F
-						qdel(F)
-					if(istype(T,/obj/item/weapon/holder))
-						var/obj/item/weapon/holder/H = T
-						for(var/mob/living/M in H.contents)
-							M.loc = owner
-							internal_contents += M
-						internal_contents -= H
-						qdel(H)
-					if(istype(T,/obj/item/organ))
-						owner.nutrition += (66)
-						internal_contents -= T
-						qdel(T)
-					else
-						owner.nutrition += (1 * T.w_class)
-						if(isrobot(owner))
-							s_owner = owner
-							s_owner.cell.charge += (50 * T.w_class)
-						internal_contents -= T
-						qdel(T)
-				else
-					return
+					internal_contents -= T
 
 		owner.updateVRPanel()
 		return
@@ -223,7 +102,6 @@
 //////////////////////////// DM_STRIPDIGEST ////////////////////////////
 	if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
 		var/list/touchable_items = internal_contents - items_preserved
-		var/mob/living/silicon/robot/s_owner = null
 		if(!length(touchable_items))
 			return
 
@@ -234,114 +112,23 @@
 
 		// Handle loose items first.
 		var/obj/item/T = pick(touchable_items)
-		if(istype(T, /obj/item))
-			if(istype(T, /obj/item) && _is_digestable(T) && !(T in items_preserved))
-				if(T in items_preserved)// Doublecheck just in case.
-					return
-				if(istype(T, /obj/item/device/pda))
-					var/obj/item/device/pda/PDA = T
-					if(PDA.id)
-						PDA.id.forceMove(owner)
-						internal_contents += PDA.id
-						PDA.id = null
-					owner.nutrition += (2)
-					if(isrobot(owner))
-						s_owner = owner
-						s_owner.cell.charge += (100)
-					internal_contents -= PDA
-					qdel(PDA)
-
-				if(istype(T,/obj/item/weapon/card/id))
-					var/obj/item/weapon/card/id/ID = T
-					ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-					ID.icon = 'icons/obj/card_vr.dmi'
-					ID.icon_state = "digested"
-					ID.access = list() // No access
-					items_preserved += ID
-					return
-				for(var/obj/item/SubItem in T)
-					if(istype(SubItem,/obj/item/weapon/storage/internal))
-						var/obj/item/weapon/storage/internal/SI = SubItem
-						for(var/obj/item/SubSubItem in SI)
-							SubSubItem.forceMove(owner)
-							internal_contents += SubSubItem
-						qdel(SI)
-					else
-						SubItem.forceMove(owner)
-						internal_contents += SubItem
-				if(istype(T, /obj/item/weapon/reagent_containers/food/snacks)) // Food gets its own treatment now. Hopefully your prey didn't load their bag with donk boxes.
-					var/obj/item/weapon/reagent_containers/food/snacks/F = T
-					if(istype(owner,/mob/living/carbon/human))
-						var/mob/living/carbon/human/howner = owner
-						F.reagents.trans_to_holder(howner.ingested, (F.reagents.total_volume * 0.3), 1, 0)
-					if(isrobot(owner))
-						s_owner = owner
-						s_owner.cell.charge += (150)
-					internal_contents -= F
-					qdel(F)
-				if(istype(T,/obj/item/weapon/holder))
-					var/obj/item/weapon/holder/H = T
-					for(var/mob/living/M in H.contents)
-						M.loc = owner
-						internal_contents += M
-					internal_contents -= H
-					qdel(H)
-				if(istype(T,/obj/item/organ))
-					owner.nutrition += (66)
-					internal_contents -= T
-					qdel(T)
-				else
-					owner.nutrition += (1 * T.w_class)
-					if(isrobot(owner))
-						s_owner = owner
-						s_owner.cell.charge += (50 * T.w_class)
-					internal_contents -= T
-					qdel(T)
-				for(var/mob/living/carbon/human/M in internal_contents)
-					M.updateVRPanel()
+		if(istype(T))
+			var/digested = T.digest_act(belly = src) //Isn't this much better?
+			if(!digested)
+				items_preserved |= T
+			else
+				internal_contents -= T
 
 		for(var/mob/living/carbon/human/M in internal_contents)
-			if(!M)
-				M = owner
-			//Pref protection!
-			if (!M.digestable || M.absorbed)
+			if (M.absorbed)
 				continue
-			if(length(slots - checked_slots) < 1)
-				checked_slots.Cut()
-			var/validslot = pick(slots - checked_slots)
-			checked_slots += validslot // Avoid wasting cycles on already checked slots.
-			var/obj/item/I = M.get_equipped_item(validslot)
-			if(!I)
-				return
-			if(istype(I,/obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/ID = I
-				ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-				ID.icon = 'icons/obj/card_vr.dmi'
-				ID.icon_state = "digested"
-				ID.access = list() // No access
-				M.remove_from_mob(ID,owner)
-				internal_contents += ID
-				items_preserved += ID
-				return
-			if(!_is_digestable(I))
-				M.remove_from_mob(I,owner)
-				items_preserved += I
-				internal_contents += I
-				return
-			if(I == M.get_equipped_item(slot_w_uniform))
-				var/list/stash = list(slot_r_store,slot_l_store,slot_wear_id,slot_belt)
-				for(var/stashslot in stash)
-					var/obj/item/SL = M.get_equipped_item(stashslot)
-					if(SL)
-						M.remove_from_mob(SL,owner)
-						internal_contents += SL
-				M.remove_from_mob(I,owner)
-				internal_contents += I
-				return
-			else
-				if(!(istype(I,/obj/item/organ) || istype(I,/obj/item/weapon/storage/internal) || istype(I,/obj/screen)))
-					M.remove_from_mob(I,owner)
-					internal_contents += I
+			for(var/slot in slots)
+				var/obj/item/thingy = M.get_equipped_item(slot = slot)
+				if(thingy)
+					M.unEquip(thingy,force = TRUE)
+					thingy.forceMove(owner)
+					internal_contents |= thingy
+					thingy.digest_act(src) //Shame to move it just before gurgling it, but it might be indigestible.
 			M.updateVRPanel()
 
 		owner.updateVRPanel()
@@ -727,7 +514,6 @@
 				put_in_egg(P,1)
 
 		return
-
 
 ///////////////////////////// DM_EGG /////////////////////////////
 	if(digest_mode == DM_EGG && ishuman(owner))
