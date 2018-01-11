@@ -196,7 +196,9 @@
 	name = "unusual potted plant"
 	desc = "This is an unusual plant. It's bulbous ends emit a soft blue light."
 	icon_state = "plant-09"
-	set_light(l_range = 1, l_power = 0.5, l_color = "#0000FF")
+	light_range = 2
+	light_power = 1
+	light_color = "#33CCFF"
 
 /obj/structure/flora/pottedplant/orientaltree
 	name = "potted oriental tree"
@@ -252,7 +254,9 @@
 	name = "subterranean potted plant"
 	desc = "This is a subterranean plant. It's bulbous ends glow faintly."
 	icon_state = "plant-20"
-	set_light(l_range = 1, l_power = 0.5, l_color = "#FF6633")
+	light_range = 2
+	light_power = 1
+	light_color = "#FF6633"
 
 /obj/structure/flora/pottedplant/minitree
 	name = "potted tree"
@@ -289,6 +293,29 @@
 	desc = "This is a tiny well lit decorative christmas tree."
 	icon_state = "plant-xmas"
 
+/obj/structure/flora/sif
+	icon = 'icons/obj/flora/sifflora.dmi'
+
+/obj/structure/flora/sif/subterranean
+	name = "subterranean plant"
+	desc = "This is a subterranean plant. It's bulbous ends glow faintly."
+	icon_state = "glowplant"
+	light_range = 2
+	light_power = 1
+	light_color = "#FF6633"
+
+/obj/structure/flora/sif/subterranean/initialize()
+	icon_state = "[initial(icon_state)][rand(1,2)]"
+
+/obj/structure/flora/sif/eyes
+	name = "mysterious bulbs"
+	desc = "This is a mysterious looking plant. They kind of look like eyeballs. Creepy."
+	icon_state = "eyeplant"
+
+/obj/structure/flora/sif/eyes/initialize()
+	icon_state = "[initial(icon_state)][rand(1,3)]"
+
+// VOREStation Edit Start
 //Pumpkins
 /obj/structure/flora/pumpkin
 	name = "pumpkin"
@@ -327,3 +354,4 @@
 /obj/structure/flora/pumpkin/carved/owo
 	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has large, round eyes and a squiggly, cat-like smiling mouth. Its pleasantly surprised expression seems to suggest that the pumpkin has noticed something about you."
 	icon_state = "decor-jackolantern-owo"
+// VOREStation Edit End

@@ -84,7 +84,7 @@
 					user << "<font color='blue'>You secure the generator to the floor.</font>"
 				else
 					user << "<font color='blue'>You unsecure the generator from the floor.</font>"
-				makepowernets()
+				SSmachines.makepowernets()
 			else if(istype(O, /obj/item/weapon/screwdriver))
 				open = !open
 				playsound(loc, O.usesound, 50, 1)

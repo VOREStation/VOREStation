@@ -15,7 +15,6 @@
 
 /obj/machinery/atmospherics/trinary/New()
 	..()
-	init_dir()
 
 	air1 = new
 	air2 = new
@@ -71,31 +70,26 @@
 	node2 = null
 	node3 = null
 
-/obj/machinery/atmospherics/trinary/initialize()
+/obj/machinery/atmospherics/trinary/atmos_init()
 	if(node1 && node2 && node3)
 		return
-
-	init_dir()
 
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, -90)
 	var/node3_connect = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
 				break
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node2 = target
 				break
 	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node3 = target

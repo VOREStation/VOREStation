@@ -42,7 +42,7 @@
 		..()
 		nif = newloc
 		nifsoft = soft
-		register_device(nif.human)
+		spawn(10) register_device(nif.human) //Need to outwait the other spawn in communicators, sigh.
 		qdel_null(camera) //Not supported on internal one.
 
 	Destroy()

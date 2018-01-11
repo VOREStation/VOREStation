@@ -462,6 +462,10 @@
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
 				R.dose = max(R.dose - removed * 5, 0)
+	if(M.bloodstr)
+		for(var/datum/reagent/R in M.bloodstr.reagent_list)
+			if(istype(R, /datum/reagent/ethanol))
+				R.dose = max(R.dose - removed * 15, 0) 
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"

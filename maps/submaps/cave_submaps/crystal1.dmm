@@ -1,0 +1,15 @@
+"a" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/cave/crystal1)
+"b" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/crystal1)
+"c" = (/obj/machinery/crystal,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/crystal1)
+"d" = (/obj/item/weapon/ore/diamond,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/crystal1)
+
+(1,1,1) = {"
+aaabbaaa
+accbbcaa
+acdbbdca
+aacbbbda
+aacbbbba
+acbbbbba
+abbbbbca
+aaabbbaa
+"}

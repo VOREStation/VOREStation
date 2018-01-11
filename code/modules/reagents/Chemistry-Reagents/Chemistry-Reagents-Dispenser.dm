@@ -80,10 +80,46 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
-/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
 	if(issmall(M)) removed *= 2
-	M.adjustToxLoss(removed * 2 * toxicity)
-	return
+	var/strength_mod = 3 //Alcohol is 3x stronger when injected into the veins.
+	if(alien == IS_SKRELL)
+		strength_mod *= 5
+	if(alien == IS_TAJARA)
+		strength_mod *= 1.25
+	if(alien == IS_UNATHI)
+		strength_mod *= 0.75
+	if(alien == IS_DIONA)
+		strength_mod = 0
+
+	M.add_chemical_effect(CE_ALCOHOL, 1)
+
+	if(dose * strength_mod >= strength) // Early warning
+		M.make_dizzy(18) // It is decreased at the speed of 3 per tick
+	if(dose * strength_mod >= strength * 2) // Slurring
+		M.slurring = max(M.slurring, 90)
+	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
+		M.Confuse(60)
+	if(dose * strength_mod >= strength * 4) // Blurry vision
+		M.eye_blurry = max(M.eye_blurry, 30)
+	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
+		M.drowsyness = max(M.drowsyness, 60)
+	if(dose * strength_mod >= strength * 6) // Toxic dose
+		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity*3)
+	if(dose * strength_mod >= strength * 7) // Pass out
+		M.paralysis = max(M.paralysis, 60)
+		M.sleeping  = max(M.sleeping, 90)
+
+	if(druggy != 0)
+		M.druggy = max(M.druggy, druggy*3)
+
+	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
+		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+	if(adj_temp < 0 && M.bodytemperature > targ_temp)
+		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+
+	if(halluci)
+		M.hallucination = max(M.hallucination, halluci*3)
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2

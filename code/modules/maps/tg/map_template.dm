@@ -82,7 +82,7 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)
-		machine.initialize()
+		machine.atmos_init()
 		i++
 
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)
@@ -98,7 +98,7 @@ var/list/global/map_templates = list()
 	admin_notice("<span class='danger'>[i] pipe\s initialized.</span>", R_DEBUG)
 
 	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
-	makepowernets()
+	SSmachines.makepowernets()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 

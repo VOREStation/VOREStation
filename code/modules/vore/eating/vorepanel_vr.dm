@@ -281,6 +281,12 @@
 		if(0)
 			dat += "<a href='?src=\ref[src];toggledg=1'><span style='color:green;'>Toggle Digestable</span></a>"
 
+	switch(user.allowmobvore)
+		if(1)
+			dat += "<a href='?src=\ref[src];togglemv=1'>Toggle Mob Vore</a>"
+		if(0)
+			dat += "<a href='?src=\ref[src];togglemv=1'><span style='color:green;'>Toggle Mob Vore</span></a>"
+
 	dat += "<br><a href='?src=\ref[src];toggle_nif=1'>Set NIF concealment</a>" //These two get their own, custom row.
 	dat += "<a href='?src=\ref[src];set_nif_flavor=1'>Set NIF Examine Message.</a>"
 
@@ -788,6 +794,21 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
+
+	if(href_list["togglemv"])
+		var/choice = alert(user, "This button is for those who don't like being eaten by mobs. Don't abuse this button by toggling it back and forth in combat or whatever, or you'll make the admins cry. Mobs are currently: [user.allowmobvore ? "Allowed to eat" : "Prevented from eating"] you.", "", "Allow Mob Predation", "Cancel", "Prevent Mob Predation")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Allow Mob Predation")
+				user.allowmobvore = 1
+			if("Prevent Mob Predation")
+				user.allowmobvore = 0
+
+		message_admins("[key_name(user)] toggled their mob vore preference to [user.allowmobvore] ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
+
+		if(user.client.prefs_vr)
+			user.client.prefs_vr.allowmobvore = user.allowmobvore
 
 	if(href_list["togglenoisy"])
 		var/choice = alert(user, "Toggle audible hunger noises. Currently: [user.noisy ? "Enabled" : "Disabled"]", "", "Enable audible hunger", "Cancel", "Disable audible hunger")

@@ -48,7 +48,7 @@
 			nif.human.verbs |= /mob/living/carbon/human/proc/nme
 
 	uninstall()
-		if((. = ..()))
+		if((. = ..()) && nif && nif.human) //Sometimes NIFs are deleted outside of a human
 			nif.human.verbs -= /mob/living/carbon/human/proc/nsay
 			nif.human.verbs -= /mob/living/carbon/human/proc/nme
 
@@ -201,6 +201,7 @@
 		//Put the mind and player into the mob
 		M.mind.transfer_to(brainmob)
 		brainmob.name = brainmob.mind.name
+		brainmob.real_name = brainmob.mind.name
 
 		//If we caught our owner, special settings.
 		if(M == nif.human)

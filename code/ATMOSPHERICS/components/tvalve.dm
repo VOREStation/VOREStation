@@ -46,10 +46,6 @@
 /obj/machinery/atmospherics/tvalve/hide(var/i)
 	update_underlays()
 
-/obj/machinery/atmospherics/tvalve/New()
-	init_dir()
-	..()
-
 /obj/machinery/atmospherics/tvalve/init_dir()
 	switch(dir)
 		if(NORTH)
@@ -180,35 +176,29 @@
 /obj/machinery/atmospherics/tvalve/process()
 	..()
 	. = PROCESS_KILL
-	//machines.Remove(src)
 
 	return
 
-/obj/machinery/atmospherics/tvalve/initialize()
+/obj/machinery/atmospherics/tvalve/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
-
-	init_dir()
 
 	node1_dir = turn(dir, 180)
 	node2_dir = turn(dir, -90)
 	node3_dir = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
 				break
 	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node2 = target
 				break
 	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node3 = target
@@ -309,7 +299,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	..()
 
@@ -351,14 +341,14 @@
 	if (!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
-		user << "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>"
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>")
 		return 1
 	if(!can_unwrench())
 		to_chat(user, "<span class='warnng'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
 		return 1
 	playsound(src, W.usesound, 50, 1)
-	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
+	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
@@ -385,7 +375,7 @@
 		if(WEST)
 			initialize_directions = EAST|WEST|SOUTH
 
-/obj/machinery/atmospherics/tvalve/mirrored/initialize()
+/obj/machinery/atmospherics/tvalve/mirrored/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -447,7 +437,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	..()
 

@@ -147,8 +147,9 @@
 		new /obj/item/ammo_magazine/m44/rubber(src)
 		new /obj/item/ammo_magazine/m44(src)
 		new /obj/item/ammo_magazine/m44(src)*/ // NO YOU DO NOT GET A .44 MAGNUM! -Ace
-		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/weapon/cell/device/weapon(src)
+		//new /obj/item/weapon/gun/energy/gun(src) //VOREStation Edit
+		new /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos(src) //VOREStation Edit - No need with NSFW
+		//new /obj/item/weapon/cell/device/weapon(src) //VOREStation Edit - No need with NSFW
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/security(src)
@@ -296,7 +297,7 @@
 		..()
 		new /obj/item/clothing/accessory/badge/holo/detective(src)
 		new /obj/item/clothing/gloves/black(src)
-		new /obj/item/gunbox(src)
+		//new /obj/item/gunbox(src) // Vorestation edit. If you can't be trusted to not be stupid with lethals, you can't be trusted with less-than-lethals either.
 		new /obj/item/weapon/storage/belt/detective(src)
 		new /obj/item/weapon/storage/box/evidence(src)
 		new /obj/item/device/radio/headset/headset_sec(src)

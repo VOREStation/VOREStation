@@ -381,6 +381,17 @@ var/global/list/latejoin_tram   = list()
 	reagents.add_reagent("anti_toxin", 15)
 	reagents.add_reagent("paracetamol", 5)
 
+//"Red" Armory Door
+/obj/machinery/door/airlock/multi_tile/metal/red
+	name = "Red Armory"
+	//color = ""
+
+/obj/machinery/door/airlock/multi_tile/metal/red/allowed(mob/user)
+	if(get_security_level() in list("green","blue"))
+		return FALSE
+
+	return ..(user)
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window

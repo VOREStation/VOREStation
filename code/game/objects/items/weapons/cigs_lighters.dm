@@ -16,16 +16,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame
 	var/lit = 0
 
-/proc/isflamesource(A)
-	if(istype(A, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = A
-		return (WT.isOn())
-	else if(istype(A, /obj/item/weapon/flame))
-		var/obj/item/weapon/flame/F = A
-		return (F.lit)
-	else if(istype(A, /obj/item/device/assembly/igniter))
-		return 1
-	return 0
+/obj/item/weapon/flame/is_hot()
+	return lit
 
 ///////////
 //MATCHES//
@@ -237,7 +229,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(isflamesource(W))
+	if(W.is_hot())
 		var/text = matchmes
 		if(istype(W, /obj/item/weapon/flame/match))
 			text = matchmes

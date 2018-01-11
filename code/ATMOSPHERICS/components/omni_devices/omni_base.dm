@@ -86,7 +86,7 @@
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
 		return 1
-	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
+	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	playsound(src, W.usesound, 50, 1)
 	if(do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
@@ -245,14 +245,13 @@
 			qdel(P.network)
 			P.node = null
 
-	..()
+	. = ..()
 
-/obj/machinery/atmospherics/omni/initialize()
+/obj/machinery/atmospherics/omni/atmos_init()
 	for(var/datum/omni_port/P in ports)
 		if(P.node || P.mode == 0)
 			continue
 		for(var/obj/machinery/atmospherics/target in get_step(src, P.dir))
-			target.init_dir()
 			if(target.initialize_directions & get_dir(target,src))
 				if (check_connect_types(target,src))
 					P.node = target

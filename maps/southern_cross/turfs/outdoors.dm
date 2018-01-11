@@ -76,3 +76,55 @@
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/floor/outdoors/mud/sif/planetuse
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+// PoI compatability, to stop active edges.
+// In hindsight it would've been better to do this first instead of making a billion /sif subtypes above,
+// but maybe we can transition to this instead now and over time get rid of the /sif subtypes.
+// The downside is if someone wants to use this in normal/vaccum they'll need to make a new subtype, but since the typical use case has changed, this might be acceptable.
+
+/turf/simulated/mineral
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/floor/outdoors
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/floor/water
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/shuttle/floor/alienplating/external
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+// Space mineral tiles are now not the default, so they get demoted to subtype status.
+
+/turf/simulated/mineral/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
+/turf/simulated/mineral/ignore_mapgen/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
+/turf/simulated/mineral/floor/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB

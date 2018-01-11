@@ -305,6 +305,13 @@ item_path: /obj/item/weapon/storage/box/fluff/morxaina
 }
 
 {
+ckey: jacknoir413
+character_name: Areax Third
+item_path: /obj/item/weapon/storage/backpack/fluff/stunstaff
+req_titles: Security Officer, Warden, Head of Security
+}
+
+{
 ckey: jacobdragon
 character_name: Earthen Breath
 item_path: /obj/item/clothing/under/fluff/earthenbreath
@@ -470,6 +477,12 @@ item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 }
 
 # ######## M CKEYS
+{
+ckey: mewchild
+character_name: Phi Vietsi
+item_path: /obj/item/clothing/gloves/fluff/vietsi
+}
+
 {
 ckey: molenar
 character_name: Uya Kohakuren
