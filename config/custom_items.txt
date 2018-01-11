@@ -217,7 +217,7 @@ item_desc: An engraved coin made of diamond. On the side for heads is printed th
 {
 ckey: draycu
 character_name: Schae Yonra
-item_path: /obj/item/weapon/melee/fluff/holochain
+item_path: /obj/item/weapon/melee/fluff/holochain/mass
 }
 
 # ######## E CKEYS
