@@ -529,7 +529,7 @@
 	var/max_item_count = 25
 
 /obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
-	name = "Dogborg Digestive Analyzer"
+	name = "Digestive Analyzer"
 	desc = "A mounted destructive analyzer unit with fuel processor."
 	icon_state = "analyzer"
 	max_item_count = 1
