@@ -559,7 +559,7 @@
 			user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
 			if(do_after(user, 30, target) && length(contents) < max_item_count)
 				target.forceMove(src)
-				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
+				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [target] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
 				if(istype(target,/obj/item))
 					var/obj/item/tech_item = target
@@ -586,7 +586,7 @@
 				trashman.reset_view(src)
 				update_patient()
 				processing_objects.Add(src)
-				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
+				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 				hound.sleeper_r = TRUE
 				hound.updateicon()
