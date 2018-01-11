@@ -907,12 +907,86 @@
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
+//Draycu: Schae Yonra
+/obj/item/weapon/implant/reagent_generator/yonra
+	name = "egg laying implant"
+	desc = "This is an implant that allows the user to lay eggs."
+	generated_reagents = list("egg" = 2)
+	usable_volume = 500
+	transfer_amount = 50
 
+	empty_message = list("Your feathery lower belly feels smooth and empty. For now...", "The lack of clacking eggs in your abdomen lets you know you're free to continue your day as normal.",  "The reduced pressure in your lower belly tells you there are no more eggs.", "With a soft sigh, you can feel your lower body is empty.  You know it will only be a matter of time before another batch fills you up again, however.")
+	full_message = list("Your feathery lower belly looks swollen with irregular bumps, and feels very heavy.", "Your feathery covered lower abdomen feels really heavy, making it a bit hard to walk.", "The added weight from your collection of eggs constantly reminds you that you'll have to lay soon!", "The sounds of eggs clacking as you walk reminds you that you will have to lay soon!")
+	emote_descriptor = list("an egg right out of Yonra's feathery crotch!", "into Yonra's belly firmly, forcing her to lay an egg!", ", making Yonra gasp and softly moan while an egg slides out.")
+	var/verb_descriptor = list("squeezes", "pushes", "hugs")
+	var/self_verb_descriptor = list("squeeze", "push", "hug")
+	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
+	self_emote_descriptor = list("lay", "force out", "push out")
+	random_emote = list("hisses softly with a blush on her face", "yelps in embarrassment", "grunts a little")
+	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_yonra
 
+/obj/item/weapon/implant/reagent_generator/yonra/implanted(mob/living/carbon/source)
+	processing_objects += src
+	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	source.verbs |= assigned_proc
+	return 1
 
+/obj/item/weapon/implanter/reagent_generator/yonra
+	implant_type = /obj/item/weapon/implant/reagent_generator/yonra
 
+/mob/living/carbon/human/proc/use_reagent_implant_yonra()
+	set name = "Lay Egg"
+	set desc = "Force Yonra to lay an egg by squeezing into her lower body! This makes the Teshari stop whatever she is doing at the time, greatly embarassing her."
+	set category = "Object"
+	set src in view(1)
 
+	//do_reagent_implant(usr)
+	if(!isliving(usr) || !usr.canClick())
+		return
 
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+		return
+
+	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
+	for(var/I in contents)
+		if(istype(I, /obj/item/weapon/implant/reagent_generator))
+			rimplant = I
+			break
+	if (rimplant)
+		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			return
+
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/teshari(get_turf(src))
+
+		var/index = rand(0,3)
+
+		if (usr != src)
+			var/emote = rimplant.emote_descriptor[index]
+			var/verb_desc = rimplant.verb_descriptor[index]
+			var/self_verb_desc = rimplant.self_verb_descriptor[index]
+			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
+							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+		else
+			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
+								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+		if(prob(15))
+			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+
+		rimplant.reagents.remove_any(rimplant.transfer_amount)
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/teshari
+	name = "teshari egg"
+	desc = "It's a large teshari egg."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "tesh_egg"
+	filling_color = "#FDFFD1"
+	volume = 12
+
+/obj/item/weapon/reagent_containers/food/snacks/egg/teshari/New()
+	..()
+	reagents.add_reagent("egg", 9)
+	bitesize = 2
 
 /obj/item/weapon/implant/reagent_generator/pumila_apple
 	name = "apple laying implant"
