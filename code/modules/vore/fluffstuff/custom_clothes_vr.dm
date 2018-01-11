@@ -1016,7 +1016,7 @@
 
 
 /obj/item/clothing/shoes/black/cuffs
-	name = "Gilded cuffs"
+	name = "gilded leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Gilded!"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "gildedcuffs"
@@ -1029,13 +1029,13 @@
 	species_restricted = null
 
 /obj/item/clothing/shoes/black/cuffs/red
-	name = "Red Cuffs"
+	name = "red leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Red!"
 	icon_state = "redcuffs"
 	item_state = "redcuffs_mob"
 
 /obj/item/clothing/shoes/black/cuffs/blue
-	name = "Blue Cuffs"
+	name = "blue leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Blue!"
 	icon_state = "bluecuffs"
 	item_state = "bluecuffs_mob"
