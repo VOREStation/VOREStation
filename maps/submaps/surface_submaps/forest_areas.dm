@@ -46,6 +46,7 @@
 
 /area/submap/Blackshuttledown
 	name = "BSD"
+	requires_power = FALSE
 
 /area/submap/Cragzone1
 	name = "Craggy1"
