@@ -108,7 +108,6 @@
 	data["note"] = note					// current notes
 	data["weather"] = weather
 	data["aircontents"] = src.analyze_air()
-	data["flashlight"] = fon
 	data["injection"] = injection
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -245,10 +244,6 @@
 		else
 			note = ""
 			notehtml = note
-
-	if(href_list["Light"])
-		fon = !fon
-		set_light(fon * flum)
 
 	nanomanager.update_uis(src)
 	add_fingerprint(usr)
