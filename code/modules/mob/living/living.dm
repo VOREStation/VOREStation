@@ -1013,6 +1013,9 @@ default behaviour is:
 /mob/living/proc/equip_post_job()
 	return
 
+// Used to check if something is capable of thought, in the traditional sense.
+/mob/living/proc/is_sentient()
+	return TRUE
 
 /mob/living/update_transform()
 	// First, get the correct size.
@@ -1025,4 +1028,40 @@ default behaviour is:
 	var/matrix/M = matrix()
 	M.Scale(desired_scale)
 	M.Translate(0, 16*(desired_scale-1))
-	src.transform = M
+	animate(src, transform = M, time = 10)
+
+// This handles setting the client's color variable, which makes everything look a specific color.
+// This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
+/mob/living/update_client_color()
+	if(!client)
+		return
+
+	var/list/colors_to_blend = list()
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.client_color))
+			colors_to_blend += M.client_color
+
+	if(colors_to_blend.len)
+		var/final_color
+		if(colors_to_blend.len == 1) // If it's just one color we can skip all of this work.
+			final_color = colors_to_blend[1]
+
+		else // Otherwise we need to do some messy additive blending.
+			var/R = 0
+			var/G = 0
+			var/B = 0
+
+			for(var/C in colors_to_blend)
+				var/RGB = hex2rgb(C)
+				R = between(0, R + RGB[1], 255)
+				G = between(0, G + RGB[2], 255)
+				B = between(0, B + RGB[3], 255)
+			final_color = rgb(R,G,B)
+
+		if(final_color)
+			var/old_color = client.color // Don't know if BYOND has an internal optimization to not care about animate() calls that effectively do nothing.
+			if(final_color != old_color) // Gonna do a check just incase.
+				animate(client, color = final_color, time = 10)
+
+	else // No colors, so remove the client's color.
+		animate(client, color = null, time = 10)

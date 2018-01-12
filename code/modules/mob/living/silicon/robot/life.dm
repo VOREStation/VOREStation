@@ -13,6 +13,7 @@
 	handle_actions()
 	handle_instability()
 	// For some reason borg Life() doesn't call ..()
+	handle_modifiers()
 	handle_light()
 
 	if(client)
