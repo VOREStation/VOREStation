@@ -1145,10 +1145,12 @@
 /datum/sprite_accessory/tail/taur/drake //Enabling on request, no suit compatibility but then again see 2 above.
 	name = "Drake"
 	icon_state = "drake_s"
+	extra_overlay = "drake_markings"
 
 /datum/sprite_accessory/tail/taur/otie //Eh whatever.
 	name = "Otie"
 	icon_state = "otie_s"
+	extra_overlay = "otie_markings"
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
