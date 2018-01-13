@@ -65,7 +65,7 @@
 	..()
 
 // These probably shouldn't inherit from hatchets.
-/obj/item/weapon/material/hatchet/tacknife
+/obj/item/weapon/material/knife/tacknife
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
 	icon = 'icons/obj/weapons.dmi'
@@ -73,9 +73,8 @@
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
-	should_cleave = FALSE
 
-/obj/item/weapon/material/hatchet/tacknife/combatknife
+/obj/item/weapon/material/knife/tacknife/combatknife
 	name = "combat knife"
 	desc = "If only you had a boot to put it in."
 	icon = 'icons/obj/weapons.dmi'
@@ -85,7 +84,6 @@
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
 	attack_verb = list("sliced", "stabbed", "chopped", "cut")
 	applies_material_colour = 1
-	should_cleave = FALSE
 
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"

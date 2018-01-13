@@ -409,7 +409,7 @@
 
 /datum/category_item/autolathe/arms/tacknife
 	name = "tactical knife"
-	path =/obj/item/weapon/material/hatchet/tacknife
+	path =/obj/item/weapon/material/knife/tacknife
 	hidden = 1
 
 /datum/category_item/autolathe/arms/flamethrower

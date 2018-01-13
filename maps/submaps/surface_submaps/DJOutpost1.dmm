@@ -7,7 +7,7 @@
 "g" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "h" = (/mob/living/simple_animal/hostile/giant_spider/frost{returns_home = 1},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "i" = (/obj/structure/sign/goldenplaque{desc = "An award given to Sif Free Radio for media excellency. It looks fake."; name = "Best Radio Station 2558"; pixel_y = 30},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"j" = (/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood,/obj/item/clothing/under/frontier,/obj/item/device/radio/headset/heads/captain/alt{desc = "A headset belonging to a Sif Free Radio DJ. SFR, best tunes in the wilderness."; name = "SFR headset"},/obj/item/weapon/material/hatchet/tacknife/combatknife,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"j" = (/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood,/obj/item/clothing/under/frontier,/obj/item/device/radio/headset/heads/captain/alt{desc = "A headset belonging to a Sif Free Radio DJ. SFR, best tunes in the wilderness."; name = "SFR headset"},/obj/item/weapon/material/knife/tacknife/combatknife,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "k" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "l" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio/intercom{tag = "icon-intercom (WEST)"; icon_state = "intercom"; dir = 8},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "m" = (/obj/machinery/computer/message_monitor,/obj/item/weapon/paper/monitorkey,/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/wood,/area/submap/DJOutpost1)

@@ -93,11 +93,10 @@
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/material/hatchet/tacknife/survival
+/obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"
 	desc = "A hunting grade survival knife."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
-	should_cleave = FALSE

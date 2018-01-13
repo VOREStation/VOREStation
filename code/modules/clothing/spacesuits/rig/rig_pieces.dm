@@ -55,7 +55,7 @@
 		"Vox" = 'icons/mob/species/vox/suit.dmi'
 		)
 	supporting_limbs = list()
-	var/obj/item/weapon/material/hatchet/tacknife
+	var/obj/item/weapon/material/knife/tacknife
 
 /obj/item/clothing/suit/space/rig/attack_hand(var/mob/living/M)
 	if(tacknife)
@@ -69,7 +69,7 @@
 	..()
 
 /obj/item/clothing/suit/space/rig/attackby(var/obj/item/I, var/mob/living/M)
-	if(istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	if(istype(I, /obj/item/weapon/material/knife/tacknife))
 		if(tacknife)
 			return
 		M.drop_item()

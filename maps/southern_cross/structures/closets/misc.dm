@@ -46,7 +46,7 @@
 	new /obj/item/device/radio/headset(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/device/gps/explorer(src)
-	new /obj/item/weapon/material/hatchet/tacknife/survival(src)
+	new /obj/item/weapon/material/knife/tacknife/survival(src)
 	new /obj/item/weapon/storage/box/flare(src)
 	new /obj/item/device/geiger(src)
 	new /obj/item/weapon/cell/device(src)

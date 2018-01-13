@@ -42,7 +42,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/gun/energy/xray,
 		/obj/item/weapon/storage/box/emps,
 		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/material/hatchet/tacknife/combatknife)
+		/obj/item/weapon/material/knife/tacknife/combatknife)
 
 /datum/supply_drop_loot/ballistics
 	name = "Ballistic Warfare"
@@ -66,7 +66,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/weapon/gun/projectile/colt,
 		/obj/item/ammo_magazine/m45,
-		/obj/item/weapon/material/hatchet/tacknife/combatknife)
+		/obj/item/weapon/material/knife/tacknife/combatknife)
 
 /datum/supply_drop_loot/heavy_warfare
 	name = "Heavy Warfare"
@@ -94,7 +94,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/grenade/flashbang,
 		/obj/item/weapon/grenade/empgrenade,
 		/obj/item/weapon/grenade/empgrenade,
-		/obj/item/weapon/material/hatchet/tacknife/combatknife)
+		/obj/item/weapon/material/knife/tacknife/combatknife)
 
 datum/supply_drop_loot/riot
 	name = "Riot Gear"

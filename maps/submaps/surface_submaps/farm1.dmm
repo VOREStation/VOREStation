@@ -12,7 +12,7 @@
 "l" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/wood,/area/submap/farm1)
 "m" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/cornseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
 "n" = (/obj/item/weapon/material/minihoe,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"o" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/utensil/knife,/turf/simulated/floor/wood,/area/submap/farm1)
+"o" = (/obj/structure/table/marble,/obj/item/weapon/material/knife,/turf/simulated/floor/wood,/area/submap/farm1)
 "p" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/bluetomatoseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
 "q" = (/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
 "r" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/icepepperseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
