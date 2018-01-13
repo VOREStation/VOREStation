@@ -990,7 +990,7 @@
 		/obj/item/weapon/wirecutters,
 		/obj/item/weapon/material/knife,
 		/obj/item/weapon/material/kitchen/utensil/fork,
-		/obj/item/weapon/material/hatchet
+		/obj/item/weapon/material/knife/machete/hatchet
 		)
 	var/list/tools = list()
 	var/current_tool = 1

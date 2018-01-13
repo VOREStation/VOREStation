@@ -52,7 +52,7 @@
 		/obj/item/device/radio/headset,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
-		/obj/item/weapon/material/hatchet,
+		/obj/item/weapon/material/knife/machete/hatchet,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/tape_roll,

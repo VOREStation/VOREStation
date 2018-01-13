@@ -298,7 +298,7 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 	if(isprox(D))
 		user << "This wooden bucket doesn't play well with electronics."
 		return
-	else if(istype(D, /obj/item/weapon/material/hatchet))
+	else if(istype(D, /obj/item/weapon/material/knife/machete/hatchet))
 		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")
 		user.put_in_hands(new /obj/item/clothing/head/helmet/bucket/wood)
 		user.drop_from_inventory(src)

@@ -19,7 +19,7 @@
 "s" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/farm1)
 "t" = (/mob/living/bot/farmbot,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
 "u" = (/obj/structure/sink/puddle,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
-"v" = (/obj/item/weapon/material/hatchet,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"v" = (/obj/item/weapon/material/knife/machete/hatchet,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
 "w" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/matches,/obj/item/weapon/flame/match,/turf/simulated/floor/wood,/area/submap/farm1)
 "x" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/farm1)
 "y" = (/obj/item/clothing/shoes/boots/winter/hydro,/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,/turf/simulated/floor/wood,/area/submap/farm1)
