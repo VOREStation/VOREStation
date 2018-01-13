@@ -107,7 +107,7 @@
 	name = "Slime Bork"
 	id = "m_tele2"
 	result = null
-	required_reagents = list("phoron" = 10, "slimejelly" = 10, "nutriment" = 10)
+	required_reagents = list("phoron" = 10, "slimejelly" = 5, "nutriment" = 20)
 	result_amount = 1
 	on_reaction(var/datum/reagents/holder)
 

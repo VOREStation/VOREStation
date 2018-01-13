@@ -35,3 +35,6 @@
 	activate()
 	add_fingerprint(user)
 	return
+
+/obj/item/device/assembly/igniter/is_hot()
+	return TRUE

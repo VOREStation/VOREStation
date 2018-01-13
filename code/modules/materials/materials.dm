@@ -697,13 +697,14 @@ var/list/name_to_material
 	name = "log"
 	icon_base = "log"
 	stack_type = /obj/item/stack/material/log
-	sheet_singular_name = "log"
-	sheet_plural_name = "logs"
+	sheet_singular_name = null
+	sheet_plural_name = "pile"
 
 /material/wood/log/sif
 	name = "alien log"
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+	stack_type = /obj/item/stack/material/log/sif
 
 /material/wood/holographic
 	name = "holowood"

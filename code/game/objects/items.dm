@@ -650,3 +650,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(AStar(get_turf(us), get_turf(them), /turf/proc/AdjacentTurfsRangedSting, /turf/proc/Distance, max_nodes=25, max_node_depth=range))
 		return TRUE
 	return FALSE
+
+// Check if an object should ignite others, like a lit lighter or candle.
+/obj/item/proc/is_hot()
+	return FALSE

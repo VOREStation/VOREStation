@@ -338,6 +338,15 @@
 /area/security/brig/bathroom
 	name = "\improper Brig Bathroom"
 	icon_state = "security"
+/area/security/armory/green
+	name = "\improper Armory - Green"
+	icon_state = "security_equip_storage"
+/area/security/armory/blue
+	name = "\improper Armory - Blue"
+	icon_state = "armory"
+/area/security/armory/red
+	name = "\improper Armory - Red"
+	icon_state = "red2"
 
 /area/engineering/atmos/backup
 	name = "\improper Backup Atmospherics"

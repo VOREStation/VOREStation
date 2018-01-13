@@ -20,3 +20,15 @@
 /area/submap/cave/crashed_ufo
 	name = "Crashed Alien Vessel"
 	requires_power = FALSE
+
+/area/submap/cave/crystal1
+	name = "Crystaline Cave"
+
+/area/submap/cave/crystal2
+	name = "Crystaline Cave"
+
+/area/submap/cave/crystal3
+	name = "Crystaline Cave"
+
+/area/submap/cave/lost_explorer
+	name = "Final Resting Place"

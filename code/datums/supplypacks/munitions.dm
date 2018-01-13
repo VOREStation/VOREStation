@@ -8,7 +8,7 @@
 
 /datum/supply_packs/randomised/munitions
 	group = "Munitions"
-
+/* VOREStation Removal - What? This crate costs 40... the crate with just two eguns costs 50... what??? This crate is also like "the armory" and has OFFICER access?
 /datum/supply_packs/munitions/weapons
 	name = "Weapons crate"
 	contains = list(
@@ -22,7 +22,7 @@
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
 	access = access_security
-
+*/
 /datum/supply_packs/munitions/flareguns
 	name = "Flare guns crate"
 	contains = list(
@@ -34,7 +34,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Flare gun crate"
-	access = access_security
+	access = access_armory //VOREStation Edit - Guns are for the armory.
 
 /datum/supply_packs/munitions/eweapons
 	name = "Experimental weapons crate"
@@ -65,7 +65,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Shotgun crate"
 	access = access_armory
-
+/* VOREStation edit -- This is a bad idea. -- So is this.
 /datum/supply_packs/munitions/erifle
 	name = "Energy marksman crate"
 	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)
@@ -73,7 +73,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Energy marksman crate"
 	access = access_armory
-/* VOREStation edit -- This is a bad idea.
+
 /datum/supply_packs/munitions/burstlaser
 	name = "Burst laser crate"
 	contains = list(/obj/item/weapon/gun/energy/gun/burst = 2)
@@ -137,7 +137,7 @@
  	cost = 40
  	containertype = /obj/structure/closet/crate/secure/weapon
  	containername = "Weapons crate"
- 	access = access_security
+ 	access = access_armory //VOREStation Edit - Guns are for the armory.
 
 /datum/supply_packs/munitions/shotgunammo
 	name = "Shotgun ammunition crate"
@@ -169,4 +169,4 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Beanbag shells"
-	access = null
+	access = access_armory //VOREStation Edit - Guns are for the armory.
