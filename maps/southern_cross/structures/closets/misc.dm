@@ -51,6 +51,7 @@
 	new /obj/item/device/geiger(src)
 	new /obj/item/weapon/cell/device(src)
 	new /obj/item/device/radio(src)
+	new /obj/item/stack/marker_beacon/thirty(src)
 	return
 
 /obj/structure/closet/secure_closet/sar
