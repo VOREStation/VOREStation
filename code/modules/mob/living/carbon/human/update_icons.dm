@@ -152,14 +152,20 @@ Please contact me on #coderbus IRC. ~Carn x
 	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
-	if (icon_update)
-		icon = stand_icon
-		for(var/entry in overlays_standing)
-			if(istype(entry, /image))
-				overlays += entry
-			else if(istype(entry, /list))
-				for(var/inner_entry in entry)
-					overlays += inner_entry
+	icon = icon('icons/effects/effects.dmi', "icon_state"="nothing")
+	if(has_huds)
+		for(var/I in hud_list)
+			overlays += I
+		overlays += backplane
+
+	overlays += stand_icon
+	for(var/entry in overlays_standing)
+		if(istype(entry, /image))
+			overlays += entry
+		else if(istype(entry, /list))
+			for(var/inner_entry in entry)
+				overlays += inner_entry
+
 	if(species && species.has_floating_eyes)
 		overlays |= species.get_eyes(src)
 

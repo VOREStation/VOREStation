@@ -34,6 +34,9 @@
 	var/obj/screen/wizard/energy/wiz_energy_display = null
 	var/obj/screen/wizard/instability/wiz_instability_display = null
 
+	var/datum/plane_holder/plane_holder = null
+	var/list/vis_enabled = null
+
 	//spells hud icons - this interacts with add_spell and remove_spell
 	var/list/obj/screen/movable/spell_master/spell_masters = null
 	var/obj/screen/movable/ability_master/ability_master = null

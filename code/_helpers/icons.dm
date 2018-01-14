@@ -873,3 +873,9 @@ proc/sort_atoms_by_layer(var/list/atoms)
 				result.Swap(i, gap + i)
 				swapped = 1
 	return result
+
+/proc/gen_hud_image(var/file, var/person, var/state, var/plane)
+	var/image/img = image(file, person, state)
+	img.plane = plane //Thanks Byond.
+	img.appearance_flags = APPEARANCE_UI|KEEP_APART
+	return img

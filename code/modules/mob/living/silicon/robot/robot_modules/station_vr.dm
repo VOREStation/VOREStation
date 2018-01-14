@@ -59,7 +59,8 @@
 	name = "k9 robot module"
 	sprites = list(
 					"K9 hound" = "k9",
-					"K9 Alternative (Static)" = "k92"
+					"K9 Alternative (Static)" = "k92",
+					"Secborg model V-2" = "secborg"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -206,6 +207,7 @@
 	src.modules += new /obj/item/device/dogborg/sleeper/analyzer(src) //doesnt have a destructive analyzer in it yet
 	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
 	src.modules += new /obj/item/weapon/gripper/research(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)

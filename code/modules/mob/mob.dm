@@ -13,6 +13,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
+	qdel_null(plane_holder)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 

@@ -108,6 +108,58 @@
 
 	return FBP_NONE
 
+/mob/living/carbon/human/proc/make_hud_overlays()
+	hud_list[HEALTH_HUD]      = gen_hud_image(ingame_hud_med, src, "100", plane = PLANE_CH_HEALTH)
+	if(isSynthetic())
+		hud_list[STATUS_HUD]  = gen_hud_image(ingame_hud, src, "hudrobo", plane = PLANE_CH_STATUS)
+		hud_list[LIFE_HUD]	  = gen_hud_image(ingame_hud, src, "hudrobo", plane = PLANE_CH_LIFE)
+	else
+		hud_list[STATUS_HUD]  = gen_hud_image(ingame_hud, src, "hudhealthy", plane = PLANE_CH_STATUS)
+		hud_list[LIFE_HUD]    = gen_hud_image(ingame_hud, src, "hudhealthy", plane = PLANE_CH_LIFE)
+	hud_list[ID_HUD]          = gen_hud_image(using_map.id_hud_icons, src, "hudunknown", plane = PLANE_CH_ID)
+	hud_list[WANTED_HUD]      = gen_hud_image(ingame_hud, src, "hudblank", plane = PLANE_CH_WANTED)
+	hud_list[IMPLOYAL_HUD]    = gen_hud_image(ingame_hud, src, "hudblank", plane = PLANE_CH_IMPLOYAL)
+	hud_list[IMPCHEM_HUD]     = gen_hud_image(ingame_hud, src, "hudblank", plane = PLANE_CH_IMPCHEM)
+	hud_list[IMPTRACK_HUD]    = gen_hud_image(ingame_hud, src, "hudblank", plane = PLANE_CH_IMPTRACK)
+	hud_list[SPECIALROLE_HUD] = gen_hud_image(ingame_hud, src, "hudblank", plane = PLANE_CH_SPECIAL)
+	hud_list[STATUS_HUD_OOC]  = gen_hud_image(ingame_hud, src, "hudhealthy", plane = PLANE_CH_STATUS_OOC)
+
+/mob/living/carbon/human/recalculate_vis()
+	if(!vis_enabled || !plane_holder)
+		return
+
+	//These things are allowed to add vision flags.
+	//If you code some crazy item that goes on your feet that lets you see ghosts, you need to add a slot here.
+	var/tmp/list/slots = list(slot_glasses,slot_head)
+	var/tmp/list/compiled_vis = list()
+
+	for(var/slot in slots)
+		var/obj/item/clothing/O = get_equipped_item(slot) //Change this type if you move the vision stuff to item or something.
+		if(O && O.enables_planes && (slot in O.plane_slots))
+			compiled_vis |= O.enables_planes
+
+	//VOREStation Add - NIF Support
+	if(nif)
+		compiled_vis |= nif.planes_visible
+	//VOREStation Add End
+
+	if(!compiled_vis.len && !vis_enabled.len)
+		return //Nothin' doin'.
+
+	var/tmp/list/oddities = vis_enabled ^ compiled_vis
+	if(!oddities.len)
+		return //Same thing in both lists!
+
+	var/tmp/list/to_enable = oddities - vis_enabled
+	var/tmp/list/to_disable = oddities - compiled_vis
+
+	for(var/vis in to_enable)
+		plane_holder.set_vis(vis,TRUE)
+		vis_enabled += vis
+	for(var/vis in to_disable)
+		plane_holder.set_vis(vis,FALSE)
+		vis_enabled -= vis
+
 #undef HUMAN_EATING_NO_ISSUE
 #undef HUMAN_EATING_NO_MOUTH
 #undef HUMAN_EATING_BLOCKED_MOUTH

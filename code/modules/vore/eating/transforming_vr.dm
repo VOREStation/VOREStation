@@ -260,7 +260,7 @@
 	M.forceMove(egg)
 	egg.name = egg_name
 	internal_contents -= M
-	internal_contents += egg
+	internal_contents |= egg
 	if(message)
 		to_chat(M, "<span class='notice'>You lose sensation of your body, feeling only the warmth around you as you're encased in an egg.</span>")
 		to_chat(O, "<span class='notice'>Your body shifts as you encase [M] in an egg.</span>")

@@ -87,7 +87,7 @@
 	visible_message("<span class='warning'>[src] is trying to inject [H]!</span>")
 	if(declare_treatment)
 		var/area/location = get_area(src)
-		broadcast_medical_hud_message("[src] is treating <b>[H]</b> in <b>[location]</b>", src)
+		global_announcer.autosay("[src] is treating <b>[H]</b> in <b>[location]</b>", "[src]", "Medical")
 	busy = 1
 	update_icons()
 	if(do_mob(src, H, 30))
