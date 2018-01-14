@@ -26,6 +26,7 @@ var/global/list/vantag_choices_list = list(
 		VANTAG_KIDNAP	=	"Be Kidnapped",
 		VANTAG_KILL		=	"Be Killed")
 
+/* Time to finally undo this. Replaced with digest_act on these items.
 //Important items that are preserved when people are digested, etc.
 //On Polaris, different from Cryo list as MMIs need to be removed for FBPs to be logged out.
 var/global/list/important_items = list(
@@ -40,7 +41,9 @@ var/global/list/important_items = list(
 		/obj/item/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/weapon/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
+		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz,
+		/obj/item/device/perfect_tele_beacon)
+*/
 
 var/global/list/digestion_sounds = list(
 		'sound/vore/digest1.ogg',

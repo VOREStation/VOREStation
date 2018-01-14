@@ -145,7 +145,7 @@
 			if(do_after(user,30,src))
 				user.drop_item()
 				I.loc = src
-				B.internal_contents += I
+				B.internal_contents |= I
 				src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
 				playsound(src, B.vore_sound, 100, 1)
 				return 1
@@ -486,7 +486,7 @@
 			src.loc = H.loc
 			var/datum/belly/B = check_belly(H)
 			if(B)
-				B.internal_contents += src
+				B.internal_contents |= src
 			return
 		else //Being held by a human
 			src << "<font color='blue'>You start to climb out of \the [C]!</font>"
@@ -504,7 +504,7 @@
 			src.loc = H.loc
 			var/datum/belly/B = check_belly(H)
 			if(B)
-				B.internal_contents += src
+				B.internal_contents |= src
 			return
 
 	src << "<font color='blue'>You start to climb out of \the [C]!</font>"
@@ -516,7 +516,7 @@
 		if(check_belly(C)) B = check_belly(C)
 		if(check_belly(C.loc)) B = check_belly(C.loc)
 		if(B)
-			B.internal_contents += src
+			B.internal_contents |= src
 		return
 	return
 
