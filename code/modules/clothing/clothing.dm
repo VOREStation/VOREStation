@@ -496,7 +496,7 @@
 	if((can_hold_knife == 1) && (istype(I, /obj/item/weapon/material/shard) || \
 	 istype(I, /obj/item/weapon/material/butterfly) || \
 	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife)))
+	 istype(I, /obj/item/weapon/material/knife/tacknife)))
 		if(holding)
 			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
 			return

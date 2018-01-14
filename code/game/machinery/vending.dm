@@ -986,7 +986,7 @@
 	products = list(
 	/obj/item/weapon/tray = 8,
 	/obj/item/weapon/material/kitchen/utensil/fork = 6,
-	/obj/item/weapon/material/kitchen/utensil/knife = 6,
+	/obj/item/weapon/material/knife = 6,
 	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 	/obj/item/weapon/material/knife = 3,
 	/obj/item/weapon/material/kitchen/rollingpin = 2,

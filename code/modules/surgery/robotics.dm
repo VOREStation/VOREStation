@@ -30,7 +30,7 @@
 	allowed_tools = list(
 		/obj/item/weapon/screwdriver = 100,
 		/obj/item/weapon/coin = 50,
-		/obj/item/weapon/material/kitchen/utensil/knife = 50
+		/obj/item/weapon/material/knife = 50
 	)
 	req_open = 0
 

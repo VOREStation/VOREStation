@@ -215,7 +215,7 @@
 				prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
 				prob(2);/obj/item/weapon/material/knuckledusters,
-				prob(1);/obj/item/weapon/material/hatchet/tacknife,
+				prob(1);/obj/item/weapon/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
 				prob(1);/obj/item/weapon/handcuffs,

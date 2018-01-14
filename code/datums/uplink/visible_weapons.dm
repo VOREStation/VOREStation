@@ -7,12 +7,12 @@
 /datum/uplink_item/item/visible_weapons/tactknife
 	name = "Tactical Knife"
 	item_cost = 10
-	path = /obj/item/weapon/material/hatchet/tacknife
+	path = /obj/item/weapon/material/knife/tacknife
 
 /datum/uplink_item/item/visible_weapons/combatknife
 	name = "Combat Knife"
 	item_cost = 20
-	path = /obj/item/weapon/material/hatchet/tacknife/combatknife
+	path = /obj/item/weapon/material/knife/tacknife/combatknife
 
 /datum/uplink_item/item/visible_weapons/energy_sword
 	name = "Energy Sword, Random"

@@ -87,17 +87,29 @@
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
-	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/material/hatchet/tacknife/survival
+/obj/item/weapon/material/knife/machete
+	name = "machete"
+	desc = "A sharp machete often found in survival kits."
+	icon_state = "machete"
+	force_divisor = 0.3 // 20 when hardness 60 (steel)
+	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
+	var/should_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
+
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/material/knife/machete/pre_attack(var/mob/living/target, var/mob/living/user)
+	if(should_cleave && istype(target))
+		cleave(user, target)
+	..()
+
+/obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"
 	desc = "A hunting grade survival knife."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
-	should_cleave = FALSE
