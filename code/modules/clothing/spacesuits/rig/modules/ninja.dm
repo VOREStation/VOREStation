@@ -161,6 +161,7 @@
 
 	if(holder && holder.wearer)
 		if(..(target) && target)
+			set_dir(get_dir(src,target))  // Face the target
 			holder.wearer.Beam(target,"n_beam",,10)
 		return 1
 	return 0
