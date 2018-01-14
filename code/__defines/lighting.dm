@@ -9,7 +9,7 @@
 #define LIGHTING_LAMBERTIAN 0 // use lambertian shading for light sources
 #define LIGHTING_HEIGHT 1 // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
 
-#define LIGHTING_LAYER 10 // drawing layer for lighting overlays
+//#define LIGHTING_LAYER 10 // drawing layer for lighting overlays
 #define LIGHTING_ICON 'icons/effects/lighting_overlay.dmi' // icon used for lighting shading effects
 #define LIGHTING_ICON_STATE_DARK "soft_dark" // Change between "soft_dark" and "dark" to swap soft darkvision
 

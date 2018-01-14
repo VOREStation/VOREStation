@@ -113,3 +113,4 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
+	toolspeed = 2 // Use a real axe if you want to chop logs.

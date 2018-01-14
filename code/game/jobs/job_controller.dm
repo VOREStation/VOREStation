@@ -470,7 +470,7 @@ var/global/datum/controller/occupations/job_master
 				H.buckled = W
 				H.update_canmove()
 				W.set_dir(H.dir)
-				W.buckled_mob = H
+				W.buckled_mobs |= H
 				W.add_fingerprint(H)
 				if(R)
 					W.color = R.color

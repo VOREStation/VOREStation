@@ -338,8 +338,9 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockdown || !is_component_functioning("actuator")) canmove = 0
-	else canmove = 1
+	..() // Let's not reinvent the wheel.
+	if(lockdown || !is_component_functioning("actuator"))
+		canmove = FALSE
 	return canmove
 
 /mob/living/silicon/robot/update_fire()

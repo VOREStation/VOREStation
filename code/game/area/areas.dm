@@ -294,7 +294,7 @@ var/list/mob/living/forced_ambiance_list = new
 		for(var/obj/machinery/door/window/temp_windoor in src)
 			temp_windoor.open()
 
-/area/proc/has_gravity()
+/area/has_gravity()
 	return has_gravity
 
 /area/space/has_gravity()

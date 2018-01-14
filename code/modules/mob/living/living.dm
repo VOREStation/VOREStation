@@ -822,7 +822,7 @@ default behaviour is:
 
 /mob/living/proc/escape_buckle()
 	if(buckled)
-		buckled.user_unbuckle_mob(src)
+		buckled.user_unbuckle_mob(src, src)
 
 /mob/living/proc/resist_grab()
 	var/resisting = 0
@@ -951,11 +951,14 @@ default behaviour is:
 			if(is_physically_disabled())
 				lying = 0
 				canmove = 1
-				pixel_y = V.mob_offset_y - 5
+				if(!V.riding_datum) // If it has a riding datum, the datum handles moving the pixel_ vars.
+					pixel_y = V.mob_offset_y - 5
 			else
-				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
+				if(buckled.buckle_lying != -1)
+					lying = buckled.buckle_lying
 				canmove = 1
-				pixel_y = V.mob_offset_y
+				if(!V.riding_datum) // If it has a riding datum, the datum handles moving the pixel_ vars.
+					pixel_y = V.mob_offset_y
 		else if(buckled)
 			anchored = 1
 			canmove = 0

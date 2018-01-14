@@ -52,3 +52,21 @@ What is the naming convention for planes or layers?
 #define OPENSPACE_PLANE -25 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
 
 #define OVER_OPENSPACE_PLANE -7
+
+
+// Now for the regular layers. Try to keep these in order, from lowest to highest numbers, please.
+
+//#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
+#define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
+//#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
+#define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
+
+#define BELOW_MOB_LAYER 3.9
+//#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
+#define ABOVE_MOB_LAYER 4.1
+
+//#define FLY_LAYER 5 //For easy recordkeeping; this is a byond define
+#define LIGHTING_LAYER 11
+#define HUD_LAYER 20			//Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
+#define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
+#define SCREEN_LAYER 22			//Mob HUD/effects layer

@@ -519,3 +519,13 @@ its easier to just keep the beam vertical.
 
 /atom/proc/InsertedContents()
 	return contents
+
+/atom/proc/has_gravity(turf/T)
+	if(!T || !isturf(T))
+		T = get_turf(src)
+	if(istype(T, /turf/space)) // Turf never has gravity
+		return FALSE
+	var/area/A = get_area(T)
+	if(A && A.has_gravity())
+		return TRUE
+	return FALSE

@@ -42,14 +42,16 @@
 			anchored = 1
 
 /obj/item/weapon/beartrap/attack_hand(mob/user as mob)
-	if(buckled_mob && can_use(user))
+	if(has_buckled_mobs() && can_use(user))
+		var/victim = english_list(buckled_mobs)
 		user.visible_message(
-			"<span class='notice'>[user] begins freeing [buckled_mob] from \the [src].</span>",
-			"<span class='notice'>You carefully begin to free [buckled_mob] from \the [src].</span>",
+			"<span class='notice'>[user] begins freeing [victim] from \the [src].</span>",
+			"<span class='notice'>You carefully begin to free [victim] from \the [src].</span>",
 			)
 		if(do_after(user, 60))
-			user.visible_message("<span class='notice'>[buckled_mob] has been freed from \the [src] by [user].</span>")
-			unbuckle_mob()
+			user.visible_message("<span class='notice'>[victim] has been freed from \the [src] by [user].</span>")
+			for(var/A in buckled_mobs)
+				unbuckle_mob(A)
 			anchored = 0
 	else if(deployed && can_use(user))
 		user.visible_message(
@@ -109,7 +111,7 @@
 				"<b>You hear a loud metallic snap!</b>"
 				)
 			attack_mob(L)
-			if(!buckled_mob)
+			if(!has_buckled_mobs())
 				anchored = 0
 			deployed = 0
 			update_icon()

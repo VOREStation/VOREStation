@@ -14,7 +14,7 @@
 /obj/structure/bonfire/New(newloc, material_name)
 	..(newloc)
 	if(!material_name)
-		material_name = "wood"
+		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
 		qdel(src)
@@ -23,14 +23,14 @@
 
 // Blue wood.
 /obj/structure/bonfire/sifwood/New(newloc, material_name)
-	..(newloc, "alien wood")
+	..(newloc, MAT_SIFWOOD)
 
 /obj/structure/bonfire/permanent/New(newloc, material_name)
 	..()
 	ignite()
 
 /obj/structure/bonfire/permanent/sifwood/New(newloc, material_name)
-	..(newloc, "alien wood")
+	..(newloc, MAT_SIFWOOD)
 
 /obj/structure/bonfire/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/rods) && !can_buckle && !grill)
@@ -63,7 +63,7 @@
 		return ..()
 
 /obj/structure/bonfire/attack_hand(mob/user)
-	if(buckled_mob)
+	if(has_buckled_mobs())
 		return ..()
 
 	if(get_fuel_amount())
@@ -194,7 +194,7 @@
 		I.appearance_flags = RESET_COLOR
 		overlays += I
 
-		if(buckled_mob && get_fuel_amount() >= 5)
+		if(has_buckled_mobs() && get_fuel_amount() >= 5)
 			I = image(icon, "bonfire_intense")
 			I.pixel_y = 13
 			I.layer = MOB_LAYER + 0.1
@@ -231,7 +231,7 @@
 		extinguish()
 
 /obj/structure/bonfire/post_buckle_mob(mob/living/M)
-	if(buckled_mob) // Just buckled someone
+	if(M.buckled == src) // Just buckled someone
 		M.pixel_y += 13
 	else // Just unbuckled someone
 		M.pixel_y -= 13
