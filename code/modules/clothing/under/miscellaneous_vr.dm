@@ -75,7 +75,7 @@
 	if (isnull(H.size_multiplier))
 		to_chat(H,"<span class='warning'>The uniform panics and corrects your apparently microscopic size.</span>")
 		H.resize(RESIZE_NORMAL)
-		H.update_icons()
+		H.update_icons() //Just want the matrix transform
 		return
 
 	if (!IsInRange(new_size,25,200))

@@ -101,8 +101,8 @@
 
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
+			icon = H.icon
+			overlays = H.overlays
 		else
 			icon = body.icon
 			icon_state = body.icon_state

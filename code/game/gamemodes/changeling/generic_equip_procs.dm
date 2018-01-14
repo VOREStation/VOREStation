@@ -122,7 +122,7 @@
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
 			visible_message("<span class='warning'>[src] pulls on their clothes, peeling it off along with parts of their skin attached!</span>",
 			"<span class='notice'>We remove and deform our equipment.</span>")
-		M.update_icons()
+		M.update_icons_layers()
 		M.mind.changeling.armor_deployed = 0
 		return success
 
@@ -138,7 +138,7 @@
 			M.equip_to_slot_or_del(I, slot_head)
 			grown_items_list.Add("a helmet")
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -148,7 +148,7 @@
 			M.equip_to_slot_or_del(I, slot_w_uniform)
 			grown_items_list.Add("a uniform")
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -158,7 +158,7 @@
 			M.equip_to_slot_or_del(I, slot_gloves)
 			grown_items_list.Add("some gloves")
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -168,7 +168,7 @@
 			M.equip_to_slot_or_del(I, slot_shoes)
 			grown_items_list.Add("shoes")
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -178,7 +178,7 @@
 			M.equip_to_slot_or_del(I, slot_belt)
 			grown_items_list.Add("a belt")
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -188,7 +188,7 @@
 			M.equip_to_slot_or_del(I, slot_glasses)
 			grown_items_list.Add("some glasses")
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -198,7 +198,7 @@
 			M.equip_to_slot_or_del(I, slot_wear_mask)
 			grown_items_list.Add("a mask")
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -208,7 +208,7 @@
 			M.equip_to_slot_or_del(I, slot_back)
 			grown_items_list.Add("a backpack")
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -218,7 +218,7 @@
 			M.equip_to_slot_or_del(I, slot_wear_suit)
 			grown_items_list.Add("an exosuit")
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 
@@ -228,7 +228,7 @@
 			M.equip_to_slot_or_del(I, slot_wear_id)
 			grown_items_list.Add("an ID card")
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			M.update_icons()
+			M.update_icons_layers()
 			success = 1
 			sleep(1 SECOND)
 

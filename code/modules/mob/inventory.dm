@@ -134,7 +134,7 @@ var/list/slot_equipment_priority = list( \
 		remove_from_mob(W, target)
 		if(!(W && W.loc))
 			return 1 // self destroying objects (tk, grabs)
-		update_icons()
+		update_icons_layers()
 		return 1
 	return 0
 

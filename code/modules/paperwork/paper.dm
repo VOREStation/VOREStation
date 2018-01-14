@@ -169,7 +169,7 @@
 			if(H == user)
 				user << "<span class='notice'>You wipe off the lipstick with [src].</span>"
 				H.lip_style = null
-				H.update_body()
+				H.update_icons_body()
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
 								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
@@ -177,7 +177,7 @@
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
-					H.update_body()
+					H.update_icons_body()
 
 /obj/item/weapon/paper/proc/addtofield(var/id, var/text, var/links = 0)
 	var/locid = 0

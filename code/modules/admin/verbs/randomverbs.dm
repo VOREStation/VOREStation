@@ -482,7 +482,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		data_core.manifest_inject(new_character)
 
 	//A redraw for good measure
-	new_character.update_icons()
+	new_character.update_icons_all()
 
 	//If we're announcing their arrival
 	if(announce)

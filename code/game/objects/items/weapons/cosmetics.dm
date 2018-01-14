@@ -50,7 +50,7 @@
 			user.visible_message("<span class='notice'>[user] does their lips with \the [src].</span>", \
 								 "<span class='notice'>You take a moment to apply \the [src]. Perfect!</span>")
 			H.lip_style = colour
-			H.update_body()
+			H.update_icons_body()
 		else
 			user.visible_message("<span class='warning'>[user] begins to do [H]'s lips with \the [src].</span>", \
 								 "<span class='notice'>You begin to apply \the [src].</span>")
@@ -58,7 +58,7 @@
 				user.visible_message("<span class='notice'>[user] does [H]'s lips with \the [src].</span>", \
 									 "<span class='notice'>You apply \the [src].</span>")
 				H.lip_style = colour
-				H.update_body()
+				H.update_icons_body()
 	else
 		user << "<span class='notice'>Where are the lips on that?</span>"
 
