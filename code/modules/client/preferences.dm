@@ -50,7 +50,9 @@ datum/preferences
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
-	var/list/gear						//Custom/fluff item loadout.
+	var/list/gear						//Left in for Legacy reasons, will no longer save.
+	var/list/gear_list = list()			//Custom/fluff item loadouts.
+	var/gear_slot = 1					//The current gear save slot
 	var/list/traits						//Traits which modifier characters for better or worse (mostly worse).
 	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
 	var/r_synth							//Used with synth_color to color synth parts that normaly can't be colored.
@@ -131,6 +133,8 @@ datum/preferences
 	b_type = RANDOM_BLOOD_TYPE
 
 	gear = list()
+	gear_list = list()
+	gear_slot = 1
 
 	if(istype(C))
 		client = C
