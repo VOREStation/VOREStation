@@ -81,17 +81,7 @@
 
 /////// 9mm
 
-/obj/item/ammo_magazine/m9mm/flash
-	ammo_type =/obj/item/ammo_casing/a9mmf
-
-/obj/item/ammo_magazine/m9mm/rubber
-	name = "magazine (9mm rubber)"
-	ammo_type =/obj/item/ammo_casing/a9mmr
-
-/obj/item/ammo_magazine/m9mm/practice
-	name = "magazine (9mm practice)"
-	ammo_type =/obj/item/ammo_casing/a9mmp
-
+// Full size pistol mags.
 /datum/category_item/autolathe/arms/pistol_9mm
 	name = "pistol magazine (9mm)"
 	path =/obj/item/ammo_magazine/m9mm
@@ -109,6 +99,28 @@
 	name = "pistol magazine (9mm flash)"
 	path =/obj/item/ammo_magazine/m9mm/flash
 
+// Small mags for small or old guns.
+/datum/category_item/autolathe/arms/pistol_9mm_compact
+	name = "compact pistol magazine (9mm)"
+	path =/obj/item/ammo_magazine/m9mm/compact
+	hidden = 1
+
+/datum/category_item/autolathe/arms/pistol_9mmr_compact
+	name = "compact pistol magazine (9mm rubber)"
+	path =/obj/item/ammo_magazine/m9mm/compact/rubber
+	hidden = 1 // These are all hidden because they are traitor mags and will otherwise just clutter the Autolathe.
+
+/datum/category_item/autolathe/arms/pistol_9mmp_compact
+	name = "compact pistol magazine (9mm practice)"
+	path =/obj/item/ammo_magazine/m9mm/compact/practice
+	hidden = 1
+
+/datum/category_item/autolathe/arms/pistol_9mmf_compact
+	name = "compact pistol magazine (9mm flash)"
+	path =/obj/item/ammo_magazine/m9mm/compact/flash
+	hidden = 1
+
+// SMG mags
 /datum/category_item/autolathe/arms/smg_9mm
 	name = "top-mounted SMG magazine (9mm)"
 	path =/obj/item/ammo_magazine/m9mmt

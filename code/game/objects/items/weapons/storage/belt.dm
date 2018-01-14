@@ -160,6 +160,7 @@
 		/obj/item/weapon/melee,
 		/obj/item/clothing/accessory/badge,
 		/obj/item/weapon/gun/projectile/sec,
+		/obj/item/weapon/gun/projectile/p92x,
 		/obj/item/taperoll,
 		/obj/item/weapon/gun/projectile/colt/detective
 		)

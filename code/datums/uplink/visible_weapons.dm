@@ -99,6 +99,16 @@
 	item_cost = 70
 	path = /obj/item/weapon/gun/projectile/revolver/judge
 
+/datum/uplink_item/item/visible_weapons/pistol_standard_capacity
+	name = "9mm Pistol"
+	item_cost = 40
+	path = /obj/item/weapon/gun/projectile/p92x
+
+/datum/uplink_item/item/visible_weapons/pistol_large_capacity
+	name = "9mm Pistol (with large capacity magazine)"
+	item_cost = 70
+	path = /obj/item/weapon/gun/projectile/p92x/large
+
 /datum/uplink_item/item/visible_weapons/lemat
 	name = "LeMat"
 	item_cost = 60
