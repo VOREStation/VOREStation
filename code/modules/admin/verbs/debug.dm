@@ -512,12 +512,25 @@
 		return
 
 	for(var/obj/machinery/power/emitter/E in world)
-		if(E.anchored)
-			E.active = 1
+		if(istype(get_area(E), /area/space))
+			E.anchored = TRUE
+			E.state = 2
+			E.connect_to_network()
+			E.active = TRUE
 
 	for(var/obj/machinery/field_generator/F in world)
-		if(F.anchored)
+		if(istype(get_area(F), /area/space))
 			F.Varedit_start = 1
+
+	for(var/obj/structure/particle_accelerator/PA in world)
+		PA.anchored = TRUE
+		PA.construction_state = 3
+		PA.update_icon()
+	for(var/obj/machinery/particle_accelerator/PA in world)
+		PA.anchored = TRUE
+		PA.construction_state = 3
+		PA.update_icon()
+
 	spawn(30)
 		for(var/obj/machinery/the_singularitygen/G in world)
 			if(G.anchored)
@@ -548,10 +561,6 @@
 
 			if(!Rad.active)
 				Rad.toggle_power()
-
-	for(var/obj/machinery/power/smes/SMES in world)
-		if(SMES.anchored)
-			SMES.input_attempt = 1
 
 /client/proc/setup_supermatter_engine()
 	set category = "Debug"
