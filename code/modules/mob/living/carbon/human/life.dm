@@ -1217,6 +1217,7 @@
 				var/mutable_appearance/healths_ma = new(healths)
 				healths_ma.icon_state = "blank"
 				healths_ma.overlays = null
+				healths_ma.plane = PLANE_PLAYER_HUD
 
 				var/no_damage = 1
 				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
@@ -1382,29 +1383,13 @@
 			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
-			if(!druggy && !seer)
-				see_invisible = SEE_INVISIBLE_MINIMUM
-		if(G.see_invisible >= 0)
-			see_invisible = G.see_invisible
 		if(istype(G,/obj/item/clothing/glasses/night) && !seer)
 			see_invisible = SEE_INVISIBLE_MINIMUM
-/* HUD shit goes here, as long as it doesn't modify sight flags */
-// The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
-		var/obj/item/clothing/glasses/hud/O = G
-		//VOREStation Add - Support for omnihud glasses
-		if(istype(G, /obj/item/clothing/glasses/omnihud))
-			var/obj/item/clothing/glasses/omnihud/S = G
-			O = S.hud
-        //VOREStation Add End
-		else if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud)) //VOREStation Edit - Added else
-			var/obj/item/clothing/glasses/sunglasses/sechud/S = G
-			O = S.hud
-		else if(istype(G, /obj/item/clothing/glasses/sunglasses/medhud)) //VOREStation Edit - Added else
-			var/obj/item/clothing/glasses/sunglasses/medhud/M = G
-			O = M.hud
-		if(istype(O))
-			O.process_hud(src)
-			if(!druggy && !seer)	see_invisible = SEE_INVISIBLE_LIVING
+
+		if(G.see_invisible >= 0)
+			see_invisible = G.see_invisible
+		else if(!druggy && !seer)
+			see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/human/handle_random_events()
 	if(inStasisNow())
@@ -1733,6 +1718,7 @@
 			hud_list[SPECIALROLE_HUD] = holder
 	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
 	hud_updateflag = 0
+	update_icons()
 
 /mob/living/carbon/human/handle_stunned()
 	if(!can_feel_pain())

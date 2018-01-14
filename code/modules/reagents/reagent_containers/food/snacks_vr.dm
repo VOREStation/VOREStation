@@ -58,12 +58,12 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/goulash
 	name = "goulash"
-	desc = "Paprika put to good use, finally, in a soup of meat and vegitables."
+	desc = "Paprika put to good use, finally, in a soup of meat and vegetables."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "goulash"
 	trash = /obj/item/trash/snack_bowl
 	nutriment_amt = 6
-	nutriment_desc = list("meat" = 2, "vegitables" = 2, "seasoning" = 5)
+	nutriment_desc = list("meat" = 2, "vegetables" = 2, "seasoning" = 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/goulash/New()
 	..()
@@ -77,7 +77,7 @@
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "doner_kebab"
 	nutriment_amt = 5
-	nutriment_desc = list("vegitables" = 2, "seasoned meat" = 5)
+	nutriment_desc = list("vegetables" = 2, "seasoned meat" = 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/donerkebab/New()
 	..()

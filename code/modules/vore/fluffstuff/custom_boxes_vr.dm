@@ -182,6 +182,9 @@
 		new /obj/item/ammo_casing/nsfw_batt/net(src)
 		new /obj/item/clothing/accessory/holster(src)
 
+/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(var/datum/belly/belly = null)
+	return FALSE //I get eaten a lot, okay
+
 //Aerowing:Sebastian Aji
 /obj/item/weapon/storage/box/fluff/sebastian_aji
 	name = "Sebastian's Lumoco Arms P3 Box"

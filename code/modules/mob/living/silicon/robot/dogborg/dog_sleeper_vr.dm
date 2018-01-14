@@ -402,53 +402,17 @@
 
 		//Handle the target being anything but a /mob/living/carbon/human
 		else
-			var/obj/T = target
-			if(!(T in items_preserved))
-				if(T.type in important_items)
-					src.items_preserved += T
-					return
-				if(T in items_preserved)
-					return
-				//If the object is not one to preserve
-				if(istype(T, /obj/item/device/pda))
-					var/obj/item/device/pda/PDA = T
-					if (PDA.id)
-						PDA.id.forceMove(src)
-						PDA.id = null
-					src.hound.cell.charge += (50 * T.w_class)
-					contents -= T
-					qdel(T)
-					src.update_patient()
-				//Special case for IDs to make them digested
-				if(istype(T, /obj/item/weapon/card/id))
-					var/obj/item/weapon/card/id/ID = T
-					ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-					ID.icon = 'icons/obj/card_vr.dmi'
-					ID.icon_state = "digested"
-					ID.access = list() // No access
-					src.items_preserved += ID
-					return
-				//Anything not preserved, PDA, or ID
-				else if(istype(T, /obj/item))
-					for(var/obj/item/SubItem in T)
-						if(istype(SubItem,/obj/item/weapon/storage/internal))
-							var/obj/item/weapon/storage/internal/SI = SubItem
-							for(var/obj/item/SubSubItem in SI)
-								SubSubItem.forceMove(src)
-							qdel(SI)
-						else
-							SubItem.forceMove(src)
-					src.hound.cell.charge += (50 * T.w_class)
-					contents -= T
-					qdel(T)
-					src.update_patient()
+			var/obj/item/T = target
+			if(istype(T))
+				var/digested = T.digest_act(item_storage = src)
+				if(!digested)
+					items_preserved |= T
 				else
-					src.hound.cell.charge += 120
-					contents -= T
-					qdel(T)
-					src.update_patient()
-				if(UI_open == 1)
-					sleeperUI(hound)
+					hound.cell.charge += (50 * digested)
+
+			if(UI_open == 1)
+				update_patient()
+				sleeperUI(hound)
 
 		return
 

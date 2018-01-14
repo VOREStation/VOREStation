@@ -40,15 +40,57 @@ What is the naming convention for planes or layers?
 
 */
 
-#define DEFAULT_PLANE	0		// BYOND's default value for plane, the "base plane"
+#define PLANE_ADMIN1			-92 //Purely for shenanigans
+#define PLANE_ADMIN2			-91 //And adminbuse
+#define PLANE_ADMIN3			-90 //And generating salt
 
-#define SPACE_PLANE     -32		// Reserved for use in space/parallax
-
-#define PARALLAX_PLANE  -30		// Reserved for use in space/parallax
+#define SPACE_PLANE     		-32	// Reserved for use in space/parallax
+#define PARALLAX_PLANE  		-30	// Reserved for use in space/parallax
 
 // OPENSPACE_PLANE reserves all planes between OPENSPACE_PLANE_START and OPENSPACE_PLANE_END inclusive
-#define OPENSPACE_PLANE_START -23
-#define OPENSPACE_PLANE_END -8
-#define OPENSPACE_PLANE -25 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
+#define OPENSPACE_PLANE 		-55 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
+#define OPENSPACE_PLANE_START 	-53
+#define OPENSPACE_PLANE_END		-38
+#define OVER_OPENSPACE_PLANE	-37
 
-#define OVER_OPENSPACE_PLANE -7
+////////////////////////////////////////////////////////////////////////////////////////
+#define PLANE_WORLD				0	// BYOND's default value for plane, the "base plane"
+////////////////////////////////////////////////////////////////////////////////////////
+
+#define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
+
+#define PLANE_GHOSTS			10 //Spooooooooky ghooooooosts
+#define PLANE_AI_EYE			11 //The AI eye lives here
+
+// "Character HUDs", aka HUDs, but not the game's UI. Things like medhuds. I know Planes say they must be intergers, but it's lies.
+#define PLANE_CH_STATUS			15 //Status icon
+#define PLANE_CH_HEALTH			16 //Health icon
+#define PLANE_CH_LIFE			17 //Health bar
+#define PLANE_CH_ID				18 //Job icon
+#define PLANE_CH_WANTED			19 //Arrest icon
+#define PLANE_CH_IMPLOYAL		20 //Loyalty implant icon
+#define PLANE_CH_IMPTRACK		21 //Tracking implant icon
+#define PLANE_CH_IMPCHEM		22 //Chemical implant icon
+#define PLANE_CH_SPECIAL		23 //Special role icon (revhead or w/e)
+#define PLANE_CH_STATUS_OOC		24 //OOC status hud for spooks
+
+//Fullscreen overlays under inventory
+#define PLANE_FULLSCREEN		90	//Blindness, mesons, druggy, etc
+
+//Client UI HUD stuff
+#define PLANE_PLAYER_HUD		95 //The character's UI is on this plane
+	#define LAYER_HUD_UNDER		1 //Under the HUD items
+	#define LAYER_HUD_BASE		2 //The HUD items themselves
+	#define LAYER_HUD_ITEM		3 //Things sitting on HUD items (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
+	#define LAYER_HUD_ABOVE		4 //Things that reside above items (highlights)
+#define PLANE_PLAYER_HUD_ITEMS	96 //Separate layer with which to apply colorblindness
+
+
+//////////////////////////
+/atom/proc/hud_layerise()
+	plane = PLANE_PLAYER_HUD_ITEMS
+	layer = LAYER_HUD_ITEM
+
+/atom/proc/reset_plane_and_layer()
+	plane = initial(plane)
+	layer = initial(layer)

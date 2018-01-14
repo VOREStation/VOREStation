@@ -213,7 +213,7 @@
 		last_target_time = world.time
 		return M
 		if(check_threat(M) >= 4)
-			broadcast_security_hud_message("[src] is attempting to 'detain' suspect <b>[target_name(M)]</b> in <b>[get_area(src)]</b>.", src)
+			global_announcer.autosay("[src] is attempting to 'detain' suspect <b>[target_name(M)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	else if(investigates)
 		spawn(1)
 			WanderTowards(seen)

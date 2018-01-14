@@ -3,10 +3,6 @@
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags = 0 //doesn't protect eyes because it's a monocle, duh
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)
-	var/list/icon/current = list() //the current hud icons
-
-	proc
-		process_hud(var/mob/M)	return
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
@@ -14,6 +10,7 @@
 	icon_state = "healthhud"
 	item_state_slots = list(slot_r_hand_str = "headset", slot_l_hand_str = "headset")
 	body_parts_covered = 0
+	enables_planes = list(VIS_CH_STATUS,VIS_CH_HEALTH)
 
 /obj/item/clothing/glasses/hud/health/prescription
 	name = "Prescription Health Scanner HUD"
@@ -22,16 +19,13 @@
 	icon_state = "healthhudpresc"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 
-/obj/item/clothing/glasses/hud/health/process_hud(var/mob/M)
-	process_med_hud(M, 1)
-
 /obj/item/clothing/glasses/hud/security
 	name = "Security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
 	item_state_slots = list(slot_r_hand_str = "headset", slot_l_hand_str = "headset")
 	body_parts_covered = 0
-	var/global/list/jobs[0]
+	enables_planes = list(VIS_CH_ID,VIS_CH_WANTED,VIS_CH_IMPTRACK,VIS_CH_IMPLOYAL,VIS_CH_IMPCHEM)
 
 /obj/item/clothing/glasses/hud/security/prescription
 	name = "Prescription Security HUD"
@@ -47,6 +41,3 @@
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
-
-/obj/item/clothing/glasses/hud/security/process_hud(var/mob/M)
-	process_sec_hud(M, 1)
