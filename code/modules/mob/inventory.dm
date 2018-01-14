@@ -122,7 +122,7 @@ var/list/slot_equipment_priority = list( \
 	if(!W)
 		return 0
 	W.forceMove(get_turf(src))
-	W.layer = initial(W.layer)
+	W.reset_plane_and_layer()
 	W.dropped()
 	return 0
 
@@ -198,7 +198,7 @@ var/list/slot_equipment_priority = list( \
 	src.u_equip(O)
 	if (src.client)
 		src.client.screen -= O
-	O.layer = initial(O.layer)
+	O.reset_plane_and_layer()
 	O.screen_loc = null
 	if(istype(O, /obj/item))
 		var/obj/item/I = O

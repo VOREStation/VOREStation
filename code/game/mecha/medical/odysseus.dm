@@ -23,6 +23,7 @@
 				occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
 			else
 				H.glasses = hud
+				H.recalculate_vis()
 			return 1
 		else
 			return 0
@@ -32,6 +33,7 @@
 			var/mob/living/carbon/human/H = occupant
 			if(H.glasses == hud)
 				H.glasses = null
+				H.recalculate_vis()
 		..()
 		return
 /*
@@ -63,7 +65,7 @@
 	name = "Integrated Medical Hud"
 
 
-	process_hud(var/mob/M)
+//	process_hud(var/mob/M) //TODO VIS
 /*
 		world<< "view(M)"
 		for(var/mob/mob in view(M))
@@ -74,7 +76,7 @@
 		world<< "view(M.loc)"
 		for(var/mob/mob in view(M.loc))
 			world << "[mob]"
-*/
+
 
 		if(!M || M.stat || !(M in view(M)))	return
 		if(!M.client)	return
@@ -115,7 +117,7 @@
 				holder.icon_state = "hudhealthy"
 
 			C.images += holder
-
+*/
 /obj/mecha/medical/odysseus/loaded/New()
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/sleeper

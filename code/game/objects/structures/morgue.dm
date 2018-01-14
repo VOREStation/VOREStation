@@ -48,7 +48,7 @@
 				else
 					src.icon_state = "morgue3"
 					if(broadcast)
-						broadcast_medical_hud_message("[src] was able to establish a mental interface with occupant.", src)
+						global_announcer.autosay("[src] was able to establish a mental interface with occupant.", "[src]", "Medical")
 		else
 			src.icon_state = "morgue1"
 	return

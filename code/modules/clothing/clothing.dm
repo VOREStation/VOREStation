@@ -11,6 +11,8 @@
 
 	var/flash_protection = FLASH_PROTECTION_NONE
 	var/tint = TINT_NONE
+	var/list/enables_planes		//Enables these planes in the wearing mob's plane_holder
+	var/list/plane_slots		//But only if it's equipped into this specific slot
 
 	/*
 		Sprites used when the clothing item is refit. This is done by setting icon_override.
@@ -36,6 +38,16 @@
 		for(var/T in starting_accessories)
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
+
+/obj/item/clothing/equipped(var/mob/user,var/slot)
+	..()
+	if(enables_planes)
+		user.recalculate_vis()
+
+/obj/item/clothing/dropped(var/mob/user)
+	..()
+	if(enables_planes)
+		user.recalculate_vis()
 
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(M as mob, slot)
