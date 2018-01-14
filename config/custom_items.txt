@@ -214,6 +214,12 @@ item_name: theseus' diamond coin
 item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
 }
 
+{
+ckey: draycu
+character_name: Schae Yonra
+item_path: /obj/item/weapon/melee/fluff/holochain/mass
+}
+
 # ######## E CKEYS
 
 # Permit Expired
