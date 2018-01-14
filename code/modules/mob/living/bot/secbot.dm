@@ -39,7 +39,7 @@
 			var/mob/living/L = pulledby
 			UnarmedAttack(L)
 			say("Do not interfere with active law enforcement routines!")
-			broadcast_security_hud_message("[src] was interfered with in <b>[get_area(src)]</b>, activating defense routines.", src)
+			global_announcer.autosay("[src] was interfered with in <b>[get_area(src)]</b>, activating defense routines.", "[src]", "Security")
 //VOREStation Add End
 /mob/living/bot/secbot/beepsky
 	name = "Officer Beepsky"

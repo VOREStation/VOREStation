@@ -42,7 +42,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/install_done				// Time when install will finish
 	var/tmp/open = FALSE				// If it's open for maintenance (1-3)
 
-	var/obj/item/clothing/glasses/hud/nif_hud/nif_hud	// The AR ones require this
 	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
 
 	var/global/icon/big_icon
@@ -58,6 +57,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	var/list/save_data
 
+	var/list/planes_visible = list()
+
 //Constructor comes with a free AR HUD
 /obj/item/device/nif/New(var/newloc,var/wear,var/list/load_data)
 	..(newloc)
@@ -65,9 +66,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//First one to spawn in the game, make a big icon
 	if(!big_icon)
 		big_icon = new(icon,icon_state = "nif_full")
-
-	//Required for AR stuff.
-	nif_hud = new(src)
 
 	//Put loaded data here if we loaded any
 	save_data = islist(load_data) ? load_data.Copy() : list()
@@ -101,7 +99,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human.nif = null
 		human = null
 	qdel_null_list(nifsofts)
-	qdel_null(nif_hud)
 	qdel_null(comm)
 	nifsofts_life.Cut()
 	return ..()
@@ -294,11 +291,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			//Perform our passive drain
 			if(!use_charge(power_usage))
 				stat = NIF_POWFAIL
+				update_vision()
 				notify("Insufficient energy!",TRUE)
 				return FALSE
 
 			//HUD update!
-			nif_hud.process_hud(human,1)
+			//nif_hud.process_hud(human,1) //TODO VIS
 
 			//Process all the ones that want that
 			for(var/S in nifsofts_life)
@@ -310,6 +308,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 				return FALSE
 			else
 				stat = NIF_WORKING
+				update_vision()
 				notify("System Reboot Complete.")
 
 		if(NIF_TEMPFAIL)
@@ -466,6 +465,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	switch(hint)
 		if(NIF_FLAGS_VISION)
 			vision_flags |= flag
+			update_vision()
 		if(NIF_FLAGS_HEALTH)
 			health_flags |= flag
 		if(NIF_FLAGS_COMBAT)
@@ -482,6 +482,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	switch(hint)
 		if(NIF_FLAGS_VISION)
 			vision_flags &= ~flag
+			update_vision()
 		if(NIF_FLAGS_HEALTH)
 			health_flags &= ~flag
 		if(NIF_FLAGS_COMBAT)
@@ -524,35 +525,27 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	return result
 
-///////////////////////////////////////////////////////////////////////////////////////
-//NIF HUD object becasue HUD handling is trash and should be rewritten
-/obj/item/clothing/glasses/hud/nif_hud/var/obj/item/device/nif/nif
+/obj/item/device/nif/proc/update_vision()
+	if(stat != NIF_WORKING)
+		planes_visible.Cut()
 
-/obj/item/clothing/glasses/hud/nif_hud/New(var/newloc)
-	..(newloc)
-	nif = newloc
+	else if(NIF_V_AR_OMNI & vision_flags)
+		planes_visible = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	else if(NIF_V_AR_SECURITY & vision_flags)
+		planes_visible = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED)
+	else if(NIF_V_AR_MEDICAL & vision_flags)
+		planes_visible = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP)
+	else if(NIF_V_AR_ENGINE & vision_flags)
+		planes_visible = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	else if(NIF_V_AR_SCIENCE & vision_flags)
+		planes_visible = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	else if(NIF_V_AR_CIVILIAN & vision_flags)
+		planes_visible = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	else
+		planes_visible = list()
 
-/obj/item/clothing/glasses/hud/nif_hud/Destroy()
-	if(nif)
-		nif.nif_hud = null
-		nif = null
-	return ..()
-
-/obj/item/clothing/glasses/hud/nif_hud/process_hud(M,var/thing)
-	//Faster checking with local var, and this is called often so I want fast.
-	var/visflags = nif.vision_flags
-	if(NIF_V_AR_OMNI & visflags)
-		process_omni_hud(nif.human, "best")
-	else if(NIF_V_AR_SECURITY & visflags)
-		process_omni_hud(nif.human, "sec")
-	else if(NIF_V_AR_MEDICAL & visflags)
-		process_omni_hud(nif.human, "med")
-	else if(NIF_V_AR_ENGINE & visflags)
-		process_omni_hud(nif.human, "eng")
-	else if(NIF_V_AR_SCIENCE & visflags)
-		process_omni_hud(nif.human, "sci")
-	else if(NIF_V_AR_CIVILIAN & visflags)
-		process_omni_hud(nif.human, "civ")
+	if(human)
+		human.recalculate_vis()
 
 // Alternate NIFs
 /obj/item/device/nif/bad
