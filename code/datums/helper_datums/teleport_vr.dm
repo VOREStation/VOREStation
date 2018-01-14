@@ -14,7 +14,7 @@
 	if(target_belly)
 		teleatom.forceMove(destination.loc)
 		playSpecials(destination,effectout,soundout)
-		target_belly.internal_contents += teleatom
+		target_belly.internal_contents |= teleatom
 		playsound(destination, target_belly.vore_sound, 100, 1)
 		return 1
 

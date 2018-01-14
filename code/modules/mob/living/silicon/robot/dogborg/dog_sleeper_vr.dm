@@ -11,7 +11,7 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/mob_energy = 30000 //Energy gained from digesting mobs (including PCs)
+	var/mob_energy = -20000 //Energy gained from digesting mobs (including PCs)
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
@@ -316,6 +316,11 @@
 		hound.sleeper_r = TRUE
 		hound.sleeper_g = FALSE
 
+	//Letting analyzer gut swell if overloaded.
+	if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer) && (length(contents) > 1))
+		hound.sleeper_r = TRUE
+		hound.sleeper_g = FALSE
+
 	//Couldn't find anyone, and not cleaning
 	else if(!cleaning && !patient)
 		hound.sleeper_r = FALSE
@@ -387,7 +392,7 @@
 				message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 				to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
-				src.drain(-30000) //Fueeeeellll
+				src.drain(mob_energy) //Fueeeeellll
 				var/deathsound = pick(
 					'sound/vore/death1.ogg',
 					'sound/vore/death2.ogg',
@@ -429,58 +434,22 @@
 
 		//Handle the target being anything but a /mob/living/carbon/human
 		else
-			var/obj/T = target
-			if(!(T in items_preserved))
-				if(T.type in important_items)
-					src.items_preserved += T
-					return
-				if(T in items_preserved)
-					return
-				if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer) && istype(T,/obj/item))
+			var/obj/item/T = target
+			if(istype(T))
+				if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer))
 					var/obj/item/tech_item = T
 					for(var/tech in tech_item.origin_tech)
 						files.UpdateTech(tech, tech_item.origin_tech[tech])
 						synced = FALSE
-				//If the object is not one to preserve
-				if(istype(T, /obj/item/device/pda))
-					var/obj/item/device/pda/PDA = T
-					if (PDA.id)
-						PDA.id.forceMove(src)
-						PDA.id = null
-					src.hound.cell.charge += (50 * T.w_class)
-					contents -= T
-					qdel(T)
-					src.update_patient()
-				//Special case for IDs to make them digested
-				if(istype(T, /obj/item/weapon/card/id))
-					var/obj/item/weapon/card/id/ID = T
-					ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-					ID.icon = 'icons/obj/card_vr.dmi'
-					ID.icon_state = "digested"
-					ID.access = list() // No access
-					src.items_preserved += ID
-					return
-				//Anything not preserved, PDA, or ID
-				else if(istype(T, /obj/item))
-					for(var/obj/item/SubItem in T)
-						if(istype(SubItem,/obj/item/weapon/storage/internal))
-							var/obj/item/weapon/storage/internal/SI = SubItem
-							for(var/obj/item/SubSubItem in SI)
-								SubSubItem.forceMove(src)
-							qdel(SI)
-						else
-							SubItem.forceMove(src)
-					src.hound.cell.charge += (50 * T.w_class)
-					contents -= T
-					qdel(T)
-					src.update_patient()
+				var/digested = T.digest_act(item_storage = src)
+				if(!digested)
+					items_preserved |= T
 				else
-					src.hound.cell.charge += 120
-					contents -= T
-					qdel(T)
-					src.update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(hound)
+					hound.cell.charge += (50 * digested)
+
+			if(UI_open == TRUE)
+				src.update_patient()
+				sleeperUI(hound)
 
 		return
 
@@ -512,19 +481,13 @@
 /obj/item/device/dogborg/sleeper/K9 //The K9 portabrig
 	name = "Brig-Belly"
 	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
-	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "sleeperb"
-	inject_amount = 10
-	min_health = -100
-	injection_chems = list("inaprovaline") //So they don't have all the same chems as the medihound!
+	injection_chems = null //So they don't have all the same chems as the medihound!
 
 /obj/item/device/dogborg/sleeper/compactor //Janihound gut.
 	name = "Garbage Processor"
 	desc = "A mounted garbage compactor unit with fuel processor."
-	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "compactor"
-	inject_amount = 10
-	min_health = -100
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	var/max_item_count = 25
 
@@ -565,9 +528,7 @@
 					var/obj/item/tech_item = target
 					for(var/T in tech_item.origin_tech)
 						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
-				if(length(contents) > 11) //grow that tum after a certain junk amount
-					hound.sleeper_r = TRUE
-					hound.updateicon()
+				src.update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
 			return
@@ -584,12 +545,10 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				update_patient()
 				processing_objects.Add(src)
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
-				hound.sleeper_r = TRUE
-				hound.updateicon()
+				src.update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
 			return
@@ -605,9 +564,7 @@
 			target.forceMove(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
-			if(length(contents) > 11) //grow that tum after a certain junk amount
-				hound.sleeper_r = TRUE
-				hound.updateicon()
+			src.update_patient()
 			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
@@ -620,9 +577,7 @@
 			trashmouse.reset_view(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
-			if(length(contents) > 11) //grow that tum after a certain junk amount
-				hound.sleeper_r = TRUE
-				hound.updateicon()
+			src.update_patient()
 			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
@@ -639,12 +594,10 @@
 		if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 			trashman.forceMove(src)
 			trashman.reset_view(src)
-			update_patient()
 			processing_objects.Add(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
-			hound.sleeper_r = TRUE
-			hound.updateicon()
+			src.update_patient()
 			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return

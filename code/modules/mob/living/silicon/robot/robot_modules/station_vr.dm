@@ -59,7 +59,8 @@
 	name = "k9 robot module"
 	sprites = list(
 					"K9 hound" = "k9",
-					"K9 Alternative (Static)" = "k92"
+					"K9 Alternative (Static)" = "k92",
+					"Secborg model V-2" = "secborg"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -99,9 +100,9 @@
 		T.update_icon()
 	else
 		T.charge_tick = 0
-	var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules
+	/*var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules //Borg baton uses borg cell.
 	if(B && B.bcell)
-		B.bcell.give(amount)
+		B.bcell.give(amount)*/
 
 
 /obj/item/weapon/robot_module/robot/medihound
@@ -206,6 +207,7 @@
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
 	//src.modules += new /obj/item/weapon/portable_destructive_analyzer(src) //Belly works now.
 	src.modules += new /obj/item/weapon/gripper/research(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)

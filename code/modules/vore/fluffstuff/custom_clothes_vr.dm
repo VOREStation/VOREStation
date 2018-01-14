@@ -105,6 +105,9 @@
 	else
 		RemoveHood_roiz()
 
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	return FALSE
+
 //ketrai:Ketrai
 /obj/item/clothing/head/fluff/ketrai
 	name = "Pink Bear Hat"
@@ -676,6 +679,9 @@
 		else
 			return 1
 
+/obj/item/clothing/under/fluff/screesuit/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	return FALSE
+
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
 	name = "\improper prototype voidsuit"
@@ -762,6 +768,9 @@
 	light_overlay = null
 
 	action_button_name = "Toggle pom-pom"
+
+/obj/item/clothing/head/fluff/pompom/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
 	//if(!isturf(user.loc)) -- doesn't seem to cause problems to allow this and it's silly not to
@@ -1016,7 +1025,7 @@
 
 
 /obj/item/clothing/shoes/black/cuffs
-	name = "Gilded cuffs"
+	name = "gilded leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Gilded!"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "gildedcuffs"
@@ -1029,13 +1038,13 @@
 	species_restricted = null
 
 /obj/item/clothing/shoes/black/cuffs/red
-	name = "Red Cuffs"
+	name = "red leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Red!"
 	icon_state = "redcuffs"
 	item_state = "redcuffs_mob"
 
 /obj/item/clothing/shoes/black/cuffs/blue
-	name = "Blue Cuffs"
+	name = "blue leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Blue!"
 	icon_state = "bluecuffs"
 	item_state = "bluecuffs_mob"

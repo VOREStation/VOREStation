@@ -37,7 +37,7 @@
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/list/internal_contents = list()		// People/Things you've eaten into this belly!
 	var/tmp/is_full								// Flag for if digested remeans are present. (for disposal messages)
-	var/tmp/emotePend = 0						// If there's already a spawned thing counting for the next emote
+	var/tmp/emotePend = FALSE						// If there's already a spawned thing counting for the next emote
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest.
 	var/tmp/list/checked_slots = list()			// Checked gear slots for strip digest.
 	var/list/slots = list(slot_back,slot_handcuffed,slot_l_store,slot_r_store,slot_wear_mask,slot_l_hand,slot_r_hand,slot_wear_id,slot_glasses,slot_gloves,slot_head,slot_shoes,slot_belt,slot_wear_suit,slot_w_uniform,slot_s_store,slot_l_ear,slot_r_ear)
@@ -95,7 +95,7 @@
 	//Mostly for being overridden on precreated bellies on mobs. Could be VV'd into
 	//a carbon's belly if someone really wanted. No UI for carbons to adjust this.
 	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
-	var/list/emote_lists = list()
+	var/tmp/list/emote_lists = list()
 
 // Constructor that sets the owning mob
 /datum/belly/New(var/mob/living/owning_mob)
@@ -294,7 +294,6 @@
 		if(!H)
 			H = owner
 		for(var/obj/item/W in H)
-			//_handle_digested_item(W,M) //The gut handles them now.
 			if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
 				var/atom/movable/brain = MMI.removed()
@@ -303,22 +302,12 @@
 					brain.forceMove(owner)
 					items_preserved += brain
 					internal_contents += brain
-			if(W == H.get_equipped_item(slot_wear_id))
-				H.remove_from_mob(W,owner)
-				internal_contents += W
-			if(W == H.get_equipped_item(slot_w_uniform))
-				var/list/stash = list(slot_r_store,slot_l_store,slot_wear_id,slot_belt)
-				for(var/stashslot in stash)
-					var/obj/item/SL = H.get_equipped_item(stashslot)
-					if(SL)
-						SL.forceMove(owner)
-						internal_contents += SL
-				H.remove_from_mob(W,owner)
-				internal_contents += W
-			else
-				if(!(istype(W,/obj/item/organ) || istype(W,/obj/item/weapon/storage/internal) || istype(W,/obj/screen)))//Don't drop organs or pocket spaces
-					H.remove_from_mob(W,owner)
-					internal_contents += W
+			for(var/slot in slots)
+				var/obj/item/thingy = M.get_equipped_item(slot = slot)
+				if(thingy)
+					M.unEquip(thingy,force = TRUE)
+					thingy.forceMove(owner)
+					internal_contents |= thingy
 
 	//Reagent transfer
 	if(ishuman(owner))
@@ -333,50 +322,6 @@
 
 	// Delete the digested mob
 	qdel(M)
-
-// Recursive method - To recursively scan thru someone's inventory for digestable/indigestable.
-/datum/belly/proc/_handle_digested_item(var/obj/item/W,var/mob/M)
-	// SOME mob has to use some procs. If somehow they're gone, then the pred can handle it.
-	if(!M)
-		M = owner
-
-	// IDs are handled specially to 'digest' them
-	if(istype(W,/obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = W
-		ID.desc = "A partially digested card that has seen better days.  Much of it's data has been destroyed."
-		ID.icon = 'icons/obj/card_vr.dmi'
-		ID.icon_state = "digested"
-		ID.access = list() // No access
-		M.remove_from_mob(ID,owner)
-		items_preserved += ID
-
-	// Posibrains have to be pulled 'out' of their organ version.
-
-	if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
-		var/obj/item/organ/internal/mmi_holder/MMI = W
-		var/atom/movable/brain = MMI.removed()
-		if(brain)
-			M.remove_from_mob(brain,owner)
-			brain.forceMove(owner)
-			items_preserved += brain
-			internal_contents += brain
-
-	if(!_is_digestable(W))
-		items_preserved += W
-		M.remove_from_mob(W,owner)
-		internal_contents += W
-
-	else
-		for(var/obj/item/SubItem in W)
-			_handle_digested_item(SubItem,M)
-		if(!(istype(W,/obj/item/organ) || istype(W,/obj/item/weapon/storage/internal) || istype(W,/obj/screen)))// Don't drop organs or pocket spaces.
-			M.remove_from_mob(W,owner)
-			internal_contents += W
-
-/datum/belly/proc/_is_digestable(var/obj/item/I)
-	if(is_type_in_list(I,important_items))
-		return 0
-	return 1
 
 // Handle a mob being absorbed
 /datum/belly/proc/absorb_living(var/mob/living/M)
@@ -409,6 +354,20 @@
 				internal_contents += Mm
 				B.internal_contents -= Mm
 				absorb_living(Mm)
+
+//Digest a single item
+//Receives a return value from digest_act that's how much nutrition
+//the item should be worth
+/datum/belly/proc/digest_item(var/obj/item/item)
+	var/digested = item.digest_act(internal_contents, owner)
+	if(!digested)
+		items_preserved |= item
+	else
+		internal_contents -= item
+		owner.nutrition += (digested)
+		if(isrobot(owner))
+			var/mob/living/silicon/robot/R = owner
+			R.cell.charge += (50 * digested)
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
