@@ -134,7 +134,7 @@
 /datum/reagent/toxin/mold
 	name = "Mold"
 	id = "mold"
-	description = "A mold is a fungus that causes biodegradation of natural materials. This varient contains mycotoxins, and is dangerous to humans."
+	description = "A mold is a fungus that causes biodegradation of natural materials. This variant contains mycotoxins, and is dangerous to humans."
 	taste_description = "mold"
 	reagent_state = SOLID
 	strength = 5
