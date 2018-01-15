@@ -138,6 +138,14 @@
 		if(O && O.enables_planes && (slot in O.plane_slots))
 			compiled_vis |= O.enables_planes
 
+	//Check to see if we have a rig (ugh, blame rigs, desnowflake this)
+	var/obj/item/weapon/rig/rig = back
+	if(istype(rig) && rig.visor)
+		if(!rig.helmet || (head && rig.helmet == head))
+			if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
+				var/obj/item/clothing/glasses/V = rig.visor.vision.glasses
+				compiled_vis |= V.enables_planes
+
 	//VOREStation Add - NIF Support
 	if(nif)
 		compiled_vis |= nif.planes_visible

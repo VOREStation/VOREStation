@@ -13,6 +13,7 @@ var/list/global_huds = list(
 		global_hud.thermal,
 		global_hud.meson,
 		global_hud.science,
+		global_hud.material,
 		global_hud.holomap
 		)
 
@@ -31,6 +32,7 @@ var/list/global_huds = list(
 	var/obj/screen/thermal
 	var/obj/screen/meson
 	var/obj/screen/science
+	var/obj/screen/material
 	var/obj/screen/holomap
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
@@ -68,6 +70,7 @@ var/list/global_huds = list(
 	thermal = setup_overlay("thermal_hud")
 	meson = setup_overlay("meson_hud")
 	science = setup_overlay("science_hud")
+	material = setup_overlay("material_hud")
 
 	// The holomap screen object is actually totally invisible.
 	// Station maps work by setting it as an images location before sending to client, not

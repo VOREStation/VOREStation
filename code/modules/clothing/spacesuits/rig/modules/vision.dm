@@ -28,6 +28,11 @@
 /datum/rig_vision/meson/New()
 	glasses = new /obj/item/clothing/glasses/meson
 
+/datum/rig_vision/material
+	mode = "material scanner"
+/datum/rig_vision/material/New()
+	glasses = new /obj/item/clothing/glasses/material
+
 /datum/rig_vision/sechud
 	mode = "security HUD"
 /datum/rig_vision/sechud/New()
@@ -93,6 +98,19 @@
 	interface_desc = "An integrated meson scanner."
 
 	vision_modes = list(/datum/rig_vision/meson)
+
+/obj/item/rig_module/vision/material
+
+	name = "hardsuit material scanner"
+	desc = "A layered, translucent visor system for a hardsuit."
+	icon_state = "material"
+
+	usable = 0
+
+	interface_name = "material scanner"
+	interface_desc = "An integrated material scanner."
+
+	vision_modes = list(/datum/rig_vision/material)
 
 /obj/item/rig_module/vision/thermal
 
@@ -174,6 +192,14 @@
 	else
 		holder.wearer << "<font color='blue'>Your sensors only have one mode.</font>"
 	return 1
+
+/obj/item/rig_module/vision/activate()
+	if((. = ..()) && holder.wearer)
+		holder.wearer.recalculate_vis()
+
+/obj/item/rig_module/vision/deactivate()
+	if((. = ..()) && holder.wearer)
+		holder.wearer.recalculate_vis()
 
 /obj/item/rig_module/vision/New()
 	..()
