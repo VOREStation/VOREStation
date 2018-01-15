@@ -191,7 +191,7 @@ var/global/photo_count = 0
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
-			var/icon/img = getFlatIcon(A)//build_composite_icon(A)
+			var/icon/img = getFlatIcon(A, picture_planes = picture_planes)//build_composite_icon(A)
 
 			// If what we got back is actually a picture, draw it.
 			if(istype(img, /icon))

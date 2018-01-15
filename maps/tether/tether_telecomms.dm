@@ -45,9 +45,19 @@
 	autolinkers = list("hub",
 		"tbl_relay", "tbm_relay", "tbh_relay", "tsl_relay", "tsm_relay", "tsh_relay",
 		"c_relay", "m_relay", "r_relay", "sci_o_relay",
-		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "unused",
+		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "explorer", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
 	)
+
+/obj/machinery/telecomms/receiver/preset_right/tether
+	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ)
+
+/obj/machinery/telecomms/bus/preset_two/tether
+	freq_listening = list(SUP_FREQ, SRV_FREQ, EXP_FREQ)
+
+/obj/machinery/telecomms/server/presets/service/tether
+	freq_listening = list(SRV_FREQ, EXP_FREQ)
+	autolinkers = list("service", "explorer")
 
 // Telecommunications Satellite
 /area/tether/surfacebase/tcomms
@@ -80,3 +90,21 @@
 
 /area/maintenance/station/tcomms
 	name = "\improper Telecoms Maintenance"
+
+/datum/map/tether/default_internal_channels()
+	return list(
+		num2text(PUB_FREQ) = list(),
+		num2text(AI_FREQ)  = list(access_synth),
+		num2text(ENT_FREQ) = list(),
+		num2text(ERT_FREQ) = list(access_cent_specops),
+		num2text(COMM_FREQ)= list(access_heads),
+		num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
+		num2text(MED_FREQ) = list(access_medical_equip),
+		num2text(MED_I_FREQ)=list(access_medical_equip),
+		num2text(SEC_FREQ) = list(access_security),
+		num2text(SEC_I_FREQ)=list(access_security),
+		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
+		num2text(SUP_FREQ) = list(access_cargo),
+		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics),
+		num2text(EXP_FREQ) = list(access_explorer)
+	)

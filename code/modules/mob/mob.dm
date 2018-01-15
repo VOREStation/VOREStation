@@ -707,6 +707,8 @@
 							continue
 						if(is_type_in_list(A, shouldnt_see))
 							continue
+						if(A.plane > plane)
+							continue
 						stat(A)
 
 

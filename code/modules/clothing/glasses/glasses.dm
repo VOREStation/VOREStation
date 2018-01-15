@@ -189,6 +189,11 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_OBJS
+	enables_planes = list(VIS_FULLBRIGHT)
+
+/obj/item/clothing/glasses/material/New()
+	..()
+	overlay = global_hud.material
 
 /obj/item/clothing/glasses/material/prescription
 	name = "prescription optical material scanner"
