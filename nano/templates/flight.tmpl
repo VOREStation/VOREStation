@@ -1,3 +1,22 @@
+{{if data.autopilot == 1}}
+	<div class='notice'>
+		<b><h3>AI PILOT (CLASS D) ACTIVE</h3></b>
+		<i>This vessel will start and stop automatically.<br>
+		Ensure that all non-cycling capable hatches and doors are closed, as the automated system may not be able to control them.<br>
+		Docking and flight controls are locked. To unlock, disable the automated flight system.</i><br>
+	</div>
+{{/if}}
+
+{{if data.can_rename == 1}}
+	<div class='item'>
+		<div class="itemContent">
+			<div style="float: left; width: 100%;">
+				{{:helper.link('Rename', 'pencil', {"rename_command" : 1})}}
+			</div> 
+		</div>
+	</div>
+{{/if}}
+
 <h3>Shuttle Status</h3>
 {{if data.is_moving == 0}}
 	<div class="item">
@@ -77,6 +96,18 @@
 			<span style="float:right">
 				{{:helper.link('Cloak', 'radio-off', {'cloak_command' : 1}, (data.cloaked == 1)? 'selected' : null)}}
 				{{:helper.link('Uncloak', 'radio-on', {'uncloak_command' : 1}, (data.cloaked == 0)? 'selected' : null)}}
+			</div>
+		</div>
+	{{/if}}
+	
+	{{if data.can_autopilot == 1}}
+		<div class="item">
+			<div class="itemLabel">
+				Automated Flight Control:
+			</div>
+			<span style="float:right">
+				{{:helper.link('On', 'circle-check', {'autopilot_on_command' : 1}, (data.autopilot == 1)? 'selected' : null)}}
+				{{:helper.link('Off', 'circle-close	', {'autopilot_off_command' : 1}, (data.autopilot == 0)? 'selected' : null)}}
 			</div>
 		</div>
 	{{/if}}

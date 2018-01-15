@@ -26,13 +26,11 @@
 /obj/effect/temporary_effect/destablize
 	name = "destablizing disturbance"
 	desc = "This can't be good..."
-	icon = 'icons/effects/effects.dmi'
 	icon_state = "blueshatter"
 	time_to_die = null
-	invisibility = 0
-	new_light_range = 6
-	new_light_power = 20
-	new_light_color = "#C26DDE"
+	light_range = 6
+	light_power = 20
+	light_color = "#C26DDE"
 	var/pulses_remaining = 40 // Lasts 20 seconds.
 	var/instability_power = 5
 	var/instability_range = 6

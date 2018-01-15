@@ -281,15 +281,11 @@ var/list/blobs = list()
 /obj/effect/temporary_effect/blob_attack
 	name = "blob"
 	desc = "The blob lashing out at something."
-	icon = 'icons/effects/effects.dmi'
 	icon_state = "blob_attack"
 	layer = 5.2
 	time_to_die = 6
 	alpha = 140
-	invisibility = 0
 	mouse_opacity = 0
-	new_light_range = 0
-	new_light_power = 0
 
 /obj/structure/grille/blob_act()
 	qdel(src)
