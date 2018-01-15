@@ -175,6 +175,14 @@
 		holder.wearer << "<font color='blue'>Your sensors only have one mode.</font>"
 	return 1
 
+/obj/item/rig_module/vision/activate()
+	if((. = ..()) && holder.wearer)
+		holder.wearer.recalculate_vis()
+
+/obj/item/rig_module/vision/deactivate()
+	if((. = ..()) && holder.wearer)
+		holder.wearer.recalculate_vis()
+
 /obj/item/rig_module/vision/New()
 	..()
 
