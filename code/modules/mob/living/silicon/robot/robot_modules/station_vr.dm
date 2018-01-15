@@ -76,7 +76,6 @@
 	src.modules += new /obj/item/device/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
 	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
-	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to access crime records etc.
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -128,7 +127,6 @@
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
-	src.modules += new /obj/item/borg/sight/hud/med(src) //Medhud for accessing records and such.
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -154,7 +152,6 @@
 	src.modules += new /obj/item/device/dogborg/tongue(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/device/dogborg/sleeper/K9(src)
-	src.modules += new /obj/item/borg/sight/hud/sec(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
 	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
