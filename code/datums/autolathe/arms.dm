@@ -164,12 +164,12 @@
 	path =/obj/item/ammo_magazine/m545/hunter
 
 /datum/category_item/autolathe/arms/machinegun_545
-	name = "machinegun box magazine (5.56)"
+	name = "machinegun box magazine (5.45)"
 	path =/obj/item/ammo_magazine/m545saw
 	hidden = 1
 
 /datum/category_item/autolathe/arms/machinegun_545_hunter
-	name = "machinegun box magazine (5.56 hunting)"
+	name = "machinegun box magazine (5.45 hunting)"
 	path =/obj/item/ammo_magazine/m545saw/hunter
 	hidden = 1
 
