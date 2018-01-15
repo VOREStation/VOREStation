@@ -191,6 +191,9 @@ BLIND     // can't see anything
 	vision_flags = SEE_OBJS
 	enables_planes = list(VIS_FULLBRIGHT)
 
+/obj/item/clothing/glasses/material/New()
+	..()
+	overlay = global_hud.material
 
 /obj/item/clothing/glasses/material/prescription
 	name = "prescription optical material scanner"
