@@ -105,6 +105,16 @@
 
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
 
+	unit_test_exempt_areas = list(
+		/area/tether/surfacebase/outside/outside1,
+		/area/vacant/vacant_site)
+	unit_test_exempt_from_atmos = list(
+		/area/engineering/atmos/intake, // Outside,
+		/area/rnd/external, //  Outside,
+		/area/tether/surfacebase/mining_main/external, // Outside,
+		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
+		/area/tether/surfacebase/emergency_storage/rnd,
+		/area/tether/surfacebase/emergency_storage/atrium)
 
 /datum/map/tether/perform_map_generation()
 
