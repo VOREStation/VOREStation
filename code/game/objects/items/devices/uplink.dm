@@ -19,12 +19,15 @@
 /obj/item/device/uplink/nano_host()
 	return loc
 
-/obj/item/device/uplink/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
+/obj/item/device/uplink/New(var/location, var/datum/mind/owner = null, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	..()
 	src.uplink_owner = owner
 	purchase_log = list()
 	world_uplinks += src
-	uses = owner.tcrystals
+	if(owner)
+		uses = owner.tcrystals
+	else
+		uses = telecrystals
 	processing_objects += src
 
 /obj/item/device/uplink/Destroy()
