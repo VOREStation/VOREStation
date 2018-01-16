@@ -108,6 +108,8 @@
 	spawnpoint_left = /datum/spawnpoint/tram
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
+	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
 		/area/vacant/vacant_site)
