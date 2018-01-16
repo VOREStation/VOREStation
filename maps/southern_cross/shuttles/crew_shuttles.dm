@@ -90,6 +90,7 @@
 	preferred_interim_area = /area/shuttle/shuttle1/transit
 
 	dock_target = "hangar_1"
+	radio_announce = 1
 	announcer = "Southern Cross Docking Computer"
 
 	routes_to_make = list(
@@ -108,6 +109,7 @@
 	preferred_interim_area = /area/shuttle/shuttle2/transit
 
 	dock_target = "hangar_2"
+	radio_announce = 1
 	announcer = "Southern Cross Docking Computer"
 
 	routes_to_make = list(
@@ -148,6 +150,7 @@
 	preferred_interim_area = /area/shuttle/shuttle1/transit
 
 	dock_target = "shuttle1_dock_airlocksc"
+	radio_announce = 1
 	announcer = "Southern Cross Docking Computer"
 
 /datum/shuttle_destination/shuttle1/docked_SC/get_arrival_message()
@@ -163,6 +166,7 @@
 	preferred_interim_area = /area/shuttle/shuttle2/transit
 
 	dock_target = "shuttle2_dock_airlocksc"
+	radio_announce = 1
 	announcer = "Southern Cross Docking Computer"
 
 /datum/shuttle_destination/shuttle2/docked_SC/get_arrival_message()
@@ -218,6 +222,7 @@
 	preferred_interim_area = /area/shuttle/shuttle1/sky_transit
 
 	dock_target = "surface_dock_1"
+	radio_announce = 1
 	announcer = "Outpost Automated ATC"
 
 /datum/shuttle_destination/shuttle1/main_base/get_arrival_message()
@@ -232,6 +237,7 @@
 	preferred_interim_area = /area/shuttle/shuttle2/sky_transit
 
 	dock_target = "surface_dock_2"
+	radio_announce = 1
 	announcer = "Outpost Automated ATC"
 
 /datum/shuttle_destination/shuttle2/main_base/get_arrival_message()
@@ -247,7 +253,9 @@
 	preferred_interim_area = /area/shuttle/shuttle1/sky_transit
 
 	dock_target = "mining_dock_1"
+	radio_announce = 1
 	announcer = "Outpost Automated ATC"
+
 /datum/shuttle_destination/shuttle1/mining_base/get_arrival_message()
 	return "Attention, [master.my_shuttle.visible_name] has arrived to the Mining Outpost."
 
@@ -260,6 +268,7 @@
 	preferred_interim_area = /area/shuttle/shuttle2/sky_transit
 
 	dock_target = "mining_dock_2"
+	radio_announce = 1
 	announcer = "Outpost Automated ATC"
 
 /datum/shuttle_destination/shuttle2/mining_base/get_arrival_message()

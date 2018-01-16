@@ -57,6 +57,7 @@
 
 	var/dock_target = null				// The tag_id that the shuttle will use to try to dock to the destination, if able.
 
+	var/radio_announce = 0				// Whether it will make a station announcement (0) or a radio announcement (1).
 	var/announcer = null				// The name of the 'announcer' that will say the arrival/departure messages.  Defaults to the map's boss name if blank.
 //	var/arrival_message = null			// Message said if the ship enters this destination.  Not announced if the ship is cloaked.
 //	var/departure_message = null		// Message said if the ship exits this destination.  Not announced if the ship is cloaked.
@@ -116,7 +117,10 @@
 	if(isnull(get_departure_message()) || master.my_shuttle.cloaked)
 		return
 
-	command_announcement.Announce(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
+	if(!radio_announce)
+		command_announcement.Announce(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
+	else
+		global_announcer.autosay(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
 
 /datum/shuttle_destination/proc/get_arrival_message()
 	return null
@@ -125,7 +129,10 @@
 	if(isnull(get_arrival_message()) || master.my_shuttle.cloaked)
 		return
 
-	command_announcement.Announce(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
+	if(!radio_announce)
+		command_announcement.Announce(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
+	else
+		global_announcer.autosay(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
 
 /datum/shuttle_destination/proc/link_destinations(var/datum/shuttle_destination/other_place, var/area/interim_area, var/travel_time = 0)
 	// First, check to make sure this doesn't cause a duplicate route.
