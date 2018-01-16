@@ -16,7 +16,6 @@
 	src.modules += new /obj/item/borg/combat/shield(src)
 
 	// Med
-	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/lost(src)
 
