@@ -100,9 +100,9 @@
 		T.update_icon()
 	else
 		T.charge_tick = 0
-	var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules
+	/*var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules //Borg baton uses borg cell.
 	if(B && B.bcell)
-		B.bcell.give(amount)
+		B.bcell.give(amount)*/
 
 
 /obj/item/weapon/robot_module/robot/medihound
@@ -204,8 +204,8 @@
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/tongue(src)
-	src.modules += new /obj/item/device/dogborg/sleeper/analyzer(src) //doesnt have a destructive analyzer in it yet
-	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
+	//src.modules += new /obj/item/weapon/portable_destructive_analyzer(src) //Belly works now.
 	src.modules += new /obj/item/weapon/gripper/research(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
