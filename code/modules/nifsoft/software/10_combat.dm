@@ -8,7 +8,7 @@
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
 	activates = FALSE //It's armor.
-	combat_flags = NIF_C_BRUTEARMOR // Default on when installed, clear when uninstalled
+	combat_flags = (NIF_C_BRUTEARMOR) // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/burn_armor
 	name = "Dragon's Skin"
@@ -20,7 +20,7 @@
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
 	activates = FALSE //It's armor.
-	combat_flags = NIF_C_BURNARMOR // Default on when installed, clear when uninstalled
+	combat_flags = (NIF_C_BURNARMOR) // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/painkillers
 	name = "Nova Shock"
@@ -32,14 +32,7 @@
 	wear = 2
 	access = 999 //Prevents anyone from buying it without an emag.
 	tick_flags = NIF_ACTIVETICK
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_C_PAINKILLERS,NIF_FLAGS_COMBAT)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_C_PAINKILLERS,NIF_FLAGS_COMBAT)
+	combat_flags = (NIF_C_PAINKILLERS)
 
 	life()
 		if((. = ..()))
@@ -55,14 +48,7 @@
 	illegal = TRUE
 	wear = 4
 	access = 999 //Prevents anyone from buying it without an emag.
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)
+	combat_flags = (NIF_C_HARDCLAWS)
 
 // The unarmed attack to go with the hardclaws
 var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
@@ -86,10 +72,10 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	wear = 6
 	access = 999 //Prevents anyone from buying it without an emag.
 	var/used = FALSE
+	combat_flags = (NIF_C_HIDELASER)
 
 	activate()
 		if((. = ..()))
-			nif.set_flag(NIF_C_HIDELASER,NIF_FLAGS_COMBAT)
 			if(used)
 				nif.notify("You do not have a hidden weapon to deploy anymore!",TRUE)
 				deactivate()
@@ -107,10 +93,6 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 			used = TRUE
 			spawn(0)
 				uninstall()
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_C_HIDELASER,NIF_FLAGS_COMBAT)
 
 //The gun to go with this implant
 /obj/item/weapon/gun/energy/gun/martin/dazzle

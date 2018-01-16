@@ -6,15 +6,9 @@
 	list_pos = NIF_CIVILIAN_AR
 	cost = 500
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
-			nif.set_flag(NIF_V_AR_CIVILIAN,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_AR_CIVILIAN,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	vision_flags = (NIF_V_AR_CIVILIAN)
+	incompatible_with = list(NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
 /datum/nifsoft/ar_med
 	name = "AR Overlay (Med)"
@@ -23,15 +17,9 @@
 	cost = 750
 	access = access_medical
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
-			nif.set_flag(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP)
+	vision_flags = (NIF_V_AR_MEDICAL)
+	incompatible_with = list(NIF_CIVILIAN_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
 /datum/nifsoft/ar_sec
 	name = "AR Overlay (Sec)"
@@ -40,15 +28,9 @@
 	cost = 750
 	access = access_security
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
-			nif.set_flag(NIF_V_AR_SECURITY,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_AR_SECURITY,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED)
+	vision_flags = (NIF_V_AR_SECURITY)
+	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
 /datum/nifsoft/ar_eng
 	name = "AR Overlay (Eng)"
@@ -57,15 +39,9 @@
 	cost = 750
 	access = access_engine
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
-			nif.set_flag(NIF_V_AR_ENGINE,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_AR_ENGINE,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	vision_flags = (NIF_V_AR_ENGINE)
+	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
 /datum/nifsoft/ar_science
 	name = "AR Overlay (Sci)"
@@ -74,15 +50,9 @@
 	cost = 750
 	access = access_research
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_OMNI_AR)
-			nif.set_flag(NIF_V_AR_SCIENCE,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_AR_SCIENCE,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	vision_flags = (NIF_V_AR_SCIENCE)
+	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_OMNI_AR)
 
 /datum/nifsoft/ar_omni
 	name = "AR Overlay (Omni)"
@@ -91,16 +61,9 @@
 	cost = 750
 	access = access_captain
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR)
-			nif.set_flag(NIF_V_AR_OMNI,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_AR_OMNI,NIF_FLAGS_VISION)
-
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	vision_flags = (NIF_V_AR_OMNI)
+	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR)
 //////////////
 // Misc Vision
 /datum/nifsoft/corrective
@@ -109,14 +72,7 @@
 	list_pos = NIF_CORRECTIVE_GLASS
 	cost = 200
 	a_drain = 0.025
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_V_CORRECTIVE,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_CORRECTIVE,NIF_FLAGS_VISION)
+	vision_flags = (NIF_V_CORRECTIVE)
 
 /datum/nifsoft/uvblocker
 	name = "Nictating Membrane"
@@ -124,14 +80,7 @@
 	list_pos = NIF_UVFILTER
 	cost = 450
 	a_drain = 0.2
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_V_UVFILTER,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_UVFILTER,NIF_FLAGS_VISION)
+	vision_flags = (NIF_V_UVFILTER)
 
 /datum/nifsoft/flashprot
 	name = "Responsive Filter"
@@ -140,14 +89,7 @@
 	cost = 600
 	access = access_security
 	a_drain = 0.05
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_V_FLASHPROT,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_FLASHPROT,NIF_FLAGS_VISION)
+	vision_flags = (NIF_V_FLASHPROT)
 
 ////////////////
 // Goggle-alikes
@@ -159,15 +101,9 @@
 	a_drain = 0.1
 	access = access_engine
 	tick_flags = NIF_ACTIVETICK
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
-			nif.set_flag(NIF_V_MESONS,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_MESONS,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_FULLBRIGHT)
+	vision_flags = (NIF_V_MESONS)
+	incompatible_with = list(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
 
 	life()
 		if((. = ..()))
@@ -184,19 +120,16 @@
 	a_drain = 0.1
 	access = access_research
 	tick_flags = NIF_ACTIVETICK
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_MESONS,NIF_THERMALS,NIF_NIGHTVIS)
-			nif.set_flag(NIF_V_MATERIAL,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_MATERIAL,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_FULLBRIGHT)
+	vision_flags = (NIF_V_MATERIAL)
+	incompatible_with = list(NIF_MESONS,NIF_THERMALS,NIF_NIGHTVIS)
 
 	life()
 		if((. = ..()))
-			nif.human.sight |= SEE_OBJS
+			var/mob/living/carbon/human/H = nif.human
+			H.sight |= SEE_OBJS
+			if(H.client)
+				H.client.screen |= global_hud.material
 
 /datum/nifsoft/thermals
 	name = "Thermal Scanner"
@@ -207,21 +140,14 @@
 	illegal = TRUE
 	access = 999
 	tick_flags = NIF_ACTIVETICK
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
-			nif.set_flag(NIF_V_THERMALS,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_THERMALS,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_FULLBRIGHT)
+	vision_flags = (NIF_V_THERMALS)
+	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
 
 	life()
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.sight |= SEE_MOBS
-			H.see_invisible = SEE_INVISIBLE_NOLIGHTING
 			if(H.client)
 				H.client.screen |= global_hud.thermal
 
@@ -233,21 +159,13 @@
 	a_drain = 0.1
 	access = access_security
 	tick_flags = NIF_ACTIVETICK
-
-	activate()
-		if((. = ..()))
-			nif.deactivate_these(NIF_MESONS,NIF_MATERIAL,NIF_THERMALS)
-			nif.set_flag(NIF_V_NIGHTVIS,NIF_FLAGS_VISION)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_V_NIGHTVIS,NIF_FLAGS_VISION)
+	planes_enabled = list(VIS_FULLBRIGHT)
+	vision_flags = (NIF_V_NIGHTVIS)
+	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_THERMALS)
 
 	life()
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
 			H.see_in_dark += 7
-			H.see_invisible = SEE_INVISIBLE_NOLIGHTING
 			if(H.client)
 				H.client.screen |= global_hud.nvg
-

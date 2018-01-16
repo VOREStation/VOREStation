@@ -148,7 +148,7 @@
 
 	//VOREStation Add - NIF Support
 	if(nif)
-		compiled_vis |= nif.planes_visible
+		compiled_vis |= nif.planes_visible()
 	//VOREStation Add End
 
 	if(!compiled_vis.len && !vis_enabled.len)
