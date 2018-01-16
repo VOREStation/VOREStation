@@ -18,13 +18,7 @@
 	cost = 0
 	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 0.5, "metabolism" = 0.010) //Big boy level
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
-/*
-/datum/trait/vore_numbing
-	name = "Prey Numbing"
-	desc = "Adds a 'Digest (Numbing)' belly mode, to douse prey in numbing enzymes during digestion."
-	cost = 0
-	var_changes = list("vore_numbing" = TRUE)
-*/
+
 /datum/trait/cold_discomfort
 	name = "Hot-Blooded"
 	desc = "You are too hot at the standard 20C. 18C is more suitable. Rolling down your jumpsuit or being unclothed helps."
@@ -71,17 +65,29 @@
 	cost = 0
 	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm
 
-/datum/trait/succubus_drain //Completely RP only trait.
+/datum/trait/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/bloodsuck
+
+/datum/trait/succubus_drain
 	name = "Succubus Drain"
 	desc = "Makes you able to gain nutrition from draining prey in your grasp."
 	cost = 0
-	var_changes = list("can_drain_prey" = 1) //The verb is given in human.dm
+
+/datum/trait/succubus_drain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/succubus_drain
+	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
+	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
 
 /datum/trait/hard_vore
 	name = "Brutal Predation"
 	desc = "Allows you to tear off limbs & tear out internal organs."
 	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same functions.
-	var_changes = list("hard_vore_enabled" = 1) //The verb is given in human.dm
+
+/datum/trait/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/shred_limb
 
 /datum/trait/trashcan
 	name = "Trash Can"
