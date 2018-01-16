@@ -271,7 +271,7 @@
 //
 // Clearly super important. Obviously.
 //
-/mob/living/proc/lick(var/mob/living/tasted in oview(1))
+/mob/living/proc/lick(var/mob/living/tasted in living_mobs(1))
 	set name = "Lick Someone"
 	set category = "IC"
 	set desc = "Lick someone nearby!"
@@ -279,12 +279,12 @@
 	if(!istype(tasted))
 		return
 
-	if(!src.canClick() || incapacitated(INCAPACITATION_ALL))
+	if(!canClick() || incapacitated(INCAPACITATION_ALL))
 		return
 
-	src.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-	src.visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
+	visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
 
 
 /mob/living/proc/get_taste_message(allow_generic = 1)
