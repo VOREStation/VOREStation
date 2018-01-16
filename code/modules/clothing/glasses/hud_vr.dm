@@ -101,7 +101,7 @@
 	mode = "eng"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Station Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor
+	arscreen_path = /datum/nano_module/alarm_monitor/engineering
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(arscreen)
