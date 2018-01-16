@@ -149,7 +149,7 @@
 				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
 
 			nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
-			nif.human.update_icons()
+			nif.human.update_icons() //Apply matrix transform asap
 
 			spawn(0)
 				deactivate()

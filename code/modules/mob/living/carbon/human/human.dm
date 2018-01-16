@@ -2,8 +2,8 @@
 	name = "unknown"
 	real_name = "unknown"
 	voice_name = "unknown"
-	icon = 'icons/mob/human.dmi'
-	icon_state = "body_m_s"
+	icon = 'icons/effects/effects.dmi' //We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
+	icon_state = "nothing"
 
 	var/list/hud_list[TOTAL_HUDS]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -56,6 +56,14 @@
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
+
+	list_layers.Cut()
+	list_layers = null //Be free!
+	list_body.Cut()
+	list_body = null
+	list_huds.Cut()
+	list_huds = null
+
 	return ..()
 
 /mob/living/carbon/human/Stat()

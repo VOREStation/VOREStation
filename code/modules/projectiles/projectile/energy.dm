@@ -178,7 +178,7 @@
 	else
 		if (M.ear_damage >= 5)
 			to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
-	M.update_icons()
+	M.update_icons() //Just to apply matrix transform for laying asap
 
 /obj/item/projectile/energy/plasmastun/on_hit(var/atom/target)
 	bang(target)
