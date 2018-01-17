@@ -47,6 +47,7 @@
 		client.perspective = MOB_PERSPECTIVE
 	reload_fullscreen() // Reload any fullscreen overlays this mob has.
 	add_click_catcher()
+	update_client_color()
 
 	if(!plane_holder) //Lazy
 		plane_holder = new(src) //Not a location, it takes it and saves it.

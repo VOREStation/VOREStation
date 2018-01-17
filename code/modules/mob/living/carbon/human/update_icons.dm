@@ -167,25 +167,42 @@ Please contact me on #coderbus IRC. ~Carn x
 	ma_compiled.overlays += list_layers
 
 	//4: Apply transforms based on situation
-	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
-		var/matrix/M = matrix()
-		M.Turn(90)
-		M.Scale(size_multiplier) //VOREStation Edit. Look at Polaris pull #4267 to see things edited.
-		M.Translate(1,-6)
-		ma_compiled.transform = M
-		ma_compiled.layer = MOB_LAYER -0.1 //VOREStation Edit. Laying people under other people. LEWD.
-	else
-		var/matrix/M = matrix()
-		M.Scale(size_multiplier) //VOREStation Edit.
-		M.Translate(0, 16*(size_multiplier-1)) //VOREStation Edit.
-		ma_compiled.transform = M
-		ma_compiled.layer = MOB_LAYER //VOREStation Edit. Unset laying layer. UNLEWD.
+	update_transform(ma_compiled, FALSE)
 
 	//4.5 Set layer to PLANE_WORLD to make sure its not magically FLOAT_PLANE due to byond madness
 	ma_compiled.plane = PLANE_WORLD
 
 	//5: Set appearance once
 	appearance = ma_compiled
+
+/mob/living/carbon/human/update_transform(var/mutable_appearance/ma)
+	/* VOREStation Edit START - TODO - Consider switching to icon_scale
+	// First, get the correct size.
+	var/desired_scale = icon_scale
+
+	desired_scale *= species.icon_scale
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.icon_scale_percent))
+			desired_scale *= M.icon_scale_percent
+	*/
+	var/desired_scale = size_multiplier
+	//VOREStation Edit End
+
+	// Regular stuff again.
+	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
+		var/matrix/M = matrix()
+		M.Turn(90)
+		M.Scale(desired_scale)
+		M.Translate(1,-6)
+		ma.transform = M
+		ma.layer = MOB_LAYER -0.1 // Fix for a byond bug where turf entry order no longer matters
+	else
+		var/matrix/M = matrix()
+		M.Scale(desired_scale)
+		M.Translate(0, 16*(desired_scale-1))
+		ma.transform = M
+		ma.layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
 //Update the layers from the defines above
 /mob/living/carbon/human/update_icons_layers(var/update_icons = 1)

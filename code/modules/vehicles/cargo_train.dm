@@ -81,8 +81,9 @@
 
 //cargo trains are open topped, so there is a chance the projectile will hit the mob ridding the train instead
 /obj/vehicle/train/cargo/bullet_act(var/obj/item/projectile/Proj)
-	if(buckled_mob && prob(70))
-		buckled_mob.bullet_act(Proj)
+	if(has_buckled_mobs() && prob(70))
+		var/mob/living/L = pick(buckled_mobs)
+		L.bullet_act(Proj)
 		return
 	..()
 
@@ -256,7 +257,7 @@
 //-------------------------------------------
 // Loading/unloading procs
 //-------------------------------------------
-/obj/vehicle/train/cargo/trolley/load(var/atom/movable/C)
+/obj/vehicle/train/cargo/trolley/load(var/atom/movable/C, var/mob/user)
 	if(ismob(C) && !passenger_allowed)
 		return 0
 	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
@@ -267,12 +268,12 @@
 	if(istype(C, /obj/machinery))
 		load_object(C)
 	else
-		..()
+		..(C, user)
 
 	if(load)
 		return 1
 
-/obj/vehicle/train/cargo/engine/load(var/atom/movable/C)
+/obj/vehicle/train/cargo/engine/load(var/atom/movable/C, var/mob/user)
 	if(!istype(C, /mob/living/carbon/human))
 		return 0
 

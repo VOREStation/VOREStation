@@ -514,9 +514,9 @@ proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)
-			if(man.client.prefs.nanotrasen_relation == COMPANY_OPPOSED)
+			if(man.client.prefs.economic_status == CLASS_LOWER)
 				dudes += man
-			else if(man.client.prefs.nanotrasen_relation == COMPANY_SKEPTICAL && prob(50))
+			else if(man.client.prefs.economic_status == CLASS_LOWMID && prob(50))
 				dudes += man
 	if(dudes.len == 0) return null
 	return pick(dudes)
