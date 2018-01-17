@@ -249,6 +249,7 @@
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 82
 
+/*
 /datum/map_z_level/tether/wilderness
 	name = "Wilderness"
 	flags = MAP_LEVEL_PLAYER
@@ -287,9 +288,4 @@
 
 /datum/map_z_level/tether/wilderness/wild_ruins
 	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
-
-/proc/get_z_level_datum(atom/A)
-	var/turf/T = get_turf(A)
-	var/datum/map_z_level/z_level = using_map.zlevels["[T.z]"]
-	if(z_level)
-		return z_level
+*/
