@@ -31,11 +31,15 @@
 	var/applies_to = (NIF_ORGANIC|NIF_SYNTHETIC) // Who this software is useful for
 
 	var/vision_flags = 0	// Various flags for fast lookups that are settable on the NIF
-	var/health_flags = 0	// These are added as soon as the implant is installed
-	var/combat_flags = 0	// Otherwise use set_flag on the nif in your activate/deactivate
+	var/health_flags = 0	// These are added as soon as the implant is activated
+	var/combat_flags = 0	// Otherwise use set_flag/clear_flag in one of your own procs for tricks
 	var/other_flags = 0
 
-	var/obj/effect/nif_stat/stat_line
+	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
+
+	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
+
+	var/obj/effect/nif_stat/stat_line // The stat line in the statpanel for this NIFSoft
 
 
 //Constructor accepts the NIF it's being loaded into
@@ -74,21 +78,53 @@
 	return TRUE
 
 //Called when attempting to activate an implant (could be a 'pulse' activation or toggling it on)
-/datum/nifsoft/proc/activate()
-	if(active)
+/datum/nifsoft/proc/activate(var/force = FALSE)
+	if(active && !force)
 		return
 	var/nif_result = nif.activate(src)
-	if(nif_result)
+
+	//If the NIF was fine with it, or we're forcing it
+	if(nif_result || force)
 		active = TRUE
+
+		//If we enable vision planes
+		if(planes_enabled)
+			nif.add_plane(planes_enabled)
+			nif.vis_update()
+
+		//If we have other NIFsoft we need to turn off
+		if(incompatible_with)
+			nif.deactivate_these(incompatible_with)
+
+		//Set all our activation flags
+		nif.set_flag(vision_flags,NIF_FLAGS_VISION)
+		nif.set_flag(health_flags,NIF_FLAGS_HEALTH)
+		nif.set_flag(combat_flags,NIF_FLAGS_COMBAT)
+		nif.set_flag(other_flags,NIF_FLAGS_OTHER)
+
 	return nif_result
 
 //Called when attempting to deactivate an implant
-/datum/nifsoft/proc/deactivate()
-	if(!active)
+/datum/nifsoft/proc/deactivate(var/force = FALSE)
+	if(!active && !force)
 		return
 	var/nif_result = nif.deactivate(src)
-	if(nif_result)
+
+	//If the NIF was fine with it or we're forcing it
+	if(nif_result || force)
 		active = FALSE
+
+		//If we enable vision planes, disable them
+		if(planes_enabled)
+			nif.del_plane(planes_enabled)
+			nif.vis_update()
+
+		//Clear all our activation flags
+		nif.clear_flag(vision_flags,NIF_FLAGS_VISION)
+		nif.clear_flag(health_flags,NIF_FLAGS_HEALTH)
+		nif.clear_flag(combat_flags,NIF_FLAGS_COMBAT)
+		nif.clear_flag(other_flags,NIF_FLAGS_OTHER)
+
 	return nif_result
 
 //Called when an implant expires
