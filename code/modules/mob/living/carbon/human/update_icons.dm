@@ -181,6 +181,9 @@ Please contact me on #coderbus IRC. ~Carn x
 		ma_compiled.transform = M
 		ma_compiled.layer = MOB_LAYER //VOREStation Edit. Unset laying layer. UNLEWD.
 
+	//4.5 Set layer to PLANE_WORLD to make sure its not magically FLOAT_PLANE due to byond madness
+	ma_compiled.plane = PLANE_WORLD
+
 	//5: Set appearance once
 	appearance = ma_compiled
 
