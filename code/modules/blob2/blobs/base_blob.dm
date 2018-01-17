@@ -248,7 +248,10 @@ var/list/blobs = list()
 	if(!P)
 		return
 
-	var/damage = P.damage
+	var/damage = P.get_structure_damage() // So tasers don't hurt the blob.
+	if(!damage)
+		return
+
 	switch(P.damage_type)
 		if(BRUTE)
 			if(overmind)
