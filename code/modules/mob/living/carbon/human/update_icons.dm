@@ -175,7 +175,13 @@ Please contact me on #coderbus IRC. ~Carn x
 	//5: Set appearance once
 	appearance = ma_compiled
 
-/mob/living/carbon/human/update_transform(var/mutable_appearance/ma)
+/mob/living/carbon/human/update_transform(var/mutable_appearance/passed_ma)
+	var/mutable_appearance/ma
+	if(passed_ma)
+		ma = passed_ma
+	else
+		ma = new(src)
+
 	/* VOREStation Edit START - TODO - Consider switching to icon_scale
 	// First, get the correct size.
 	var/desired_scale = icon_scale
@@ -203,6 +209,9 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Translate(0, 16*(desired_scale-1))
 		ma.transform = M
 		ma.layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
+
+	if(!passed_ma)
+		appearance = ma
 
 //Update the layers from the defines above
 /mob/living/carbon/human/update_icons_layers(var/update_icons = 1)
