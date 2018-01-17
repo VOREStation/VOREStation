@@ -306,6 +306,7 @@
 
 /obj/structure/flora/sif/subterranean/initialize()
 	icon_state = "[initial(icon_state)][rand(1,2)]"
+	..()
 
 /obj/structure/flora/sif/eyes
 	name = "mysterious bulbs"
@@ -314,3 +315,4 @@
 
 /obj/structure/flora/sif/eyes/initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
+	..()

@@ -1,0 +1,19 @@
+"a" = (/turf/template_noop,/area/submap/beacons)
+"b" = (/obj/structure/marker_beacon,/turf/template_noop,/area/submap/beacons)
+"c" = (/obj/item/stack/marker_beacon{amount = 3},/turf/template_noop,/area/submap/beacons)
+
+(1,1,1) = {"
+abaaaaabaaaaa
+abaaaaababaaa
+abaaaaababaaa
+abaaaaababaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+aaaaaaaaaaaaa
+ababaaabaaaaa
+ababaaabaaaaa
+ababaaababbbb
+ababaaabaaaaa
+aaaaaaaaaaaaa
+aaaaacaaaaaaa
+"}
