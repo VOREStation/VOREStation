@@ -2,9 +2,6 @@
 	name = "Submap Area"
 	icon_state = "submap"
 
-/area/submap/farm1
-	name = "farm"
-
 /area/submap/spider1
 	name = "spider nest"
 
@@ -46,6 +43,7 @@
 
 /area/submap/Blackshuttledown
 	name = "BSD"
+	requires_power = FALSE
 
 /area/submap/Cragzone1
 	name = "Craggy1"

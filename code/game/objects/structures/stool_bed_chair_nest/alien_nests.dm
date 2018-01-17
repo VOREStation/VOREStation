@@ -10,7 +10,7 @@
 /obj/structure/bed/nest/update_icon()
 	return
 
-/obj/structure/bed/nest/user_unbuckle_mob(mob/user as mob)
+/obj/structure/bed/nest/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
@@ -20,7 +20,7 @@
 					"<span class='notice'>You hear squelching...</span>")
 				buckled_mob.pixel_y = 0
 				buckled_mob.old_y = 0
-				unbuckle_mob()
+				unbuckle_mob(buckled_mob)
 			else
 				if(world.time <= buckled_mob.last_special+NEST_RESIST_TIME)
 					return
@@ -34,7 +34,7 @@
 						buckled_mob.last_special = world.time
 						buckled_mob.pixel_y = 0
 						buckled_mob.old_y = 0
-						unbuckle_mob()
+						unbuckle_mob(buckled_mob)
 			src.add_fingerprint(user)
 	return
 
@@ -66,7 +66,7 @@
 	M.update_canmove()
 	M.pixel_y = 6
 	M.old_y = 6
-	src.buckled_mob = M
+	src.buckled_mobs |= M
 	src.add_fingerprint(user)
 	return
 

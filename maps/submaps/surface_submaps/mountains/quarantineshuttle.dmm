@@ -26,7 +26,7 @@
 "az" = (/obj/item/trash/syndi_cakes,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "aA" = (/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "aB" = (/obj/item/weapon/cigbutt,/obj/item/weapon/tank/emergency/oxygen,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"aC" = (/obj/item/weapon/material/kitchen/utensil/knife/boot,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aC" = (/obj/item/weapon/material/knife/boot,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "aD" = (/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "aE" = (/obj/item/trash/sosjerky,/obj/item/weapon/storage/box/donut/empty,/obj/item/weapon/reagent_containers/food/drinks/sillycup,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "aF" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)

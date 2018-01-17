@@ -236,3 +236,9 @@
 	name = "voidcraft tiles"
 	icon_state = "void_light"
 
+/turf/simulated/shuttle/floor/voidcraft/external // For avoiding active edges.
+// The actual temperature adjustment is defined if the SC or other future map is compiled.
+
+/turf/simulated/shuttle/floor/voidcraft/external/dark
+
+/turf/simulated/shuttle/floor/voidcraft/external/light

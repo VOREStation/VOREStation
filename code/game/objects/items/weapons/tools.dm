@@ -45,7 +45,7 @@
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'
 	toolspeed = 0.1
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEER = 5)
+	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 
 /obj/item/weapon/wrench/power
 	name = "hand drill"
@@ -989,9 +989,9 @@
 		/obj/item/weapon/screwdriver,
 		/obj/item/weapon/wrench,
 		/obj/item/weapon/wirecutters,
-		/obj/item/weapon/material/kitchen/utensil/knife,
+		/obj/item/weapon/material/knife,
 		/obj/item/weapon/material/kitchen/utensil/fork,
-		/obj/item/weapon/material/hatchet
+		/obj/item/weapon/material/knife/machete/hatchet
 		)
 	var/list/tools = list()
 	var/current_tool = 1

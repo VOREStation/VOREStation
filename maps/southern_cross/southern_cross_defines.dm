@@ -70,9 +70,13 @@
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
 
 	// Cave submaps are first.
-	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 100, /area/mine/unexplored, /datum/map_template/cave)
+	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 75, /area/surface/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
+	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 75, /area/surface/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
+	// Plains to make them less plain.
+	seed_submaps(list(Z_LEVEL_SURFACE), 100, /area/surface/outside/plains/normal, /datum/map_template/surface/plains) // Center area is WIP until map editing settles down.
 	// Wilderness is next.
-	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 100, /area/surface/outside/wilderness, /datum/map_template/surface)
+	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 75, /area/surface/outside/wilderness/normal, /datum/map_template/surface/wilderness/normal)
+	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 75, /area/surface/outside/wilderness/deep, /datum/map_template/surface/wilderness/deep)
 	// If Space submaps are made, add a line to make them here as well.
 
 	// Now for the tunnels.
@@ -169,6 +173,47 @@
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE
+
+
+/obj/effect/step_trigger/teleporter/bridge/east_to_west/New()
+	..()
+	teleport_x = src.x - 4
+	teleport_y = src.y
+	teleport_z = src.z
+
+/obj/effect/step_trigger/teleporter/bridge/east_to_west/small/New()
+	..()
+	teleport_x = src.x - 3
+	teleport_y = src.y
+	teleport_z = src.z
+
+
+/obj/effect/step_trigger/teleporter/bridge/west_to_east/New()
+	..()
+	teleport_x = src.x + 4
+	teleport_y = src.y
+	teleport_z = src.z
+
+/obj/effect/step_trigger/teleporter/bridge/west_to_east/small/New()
+	..()
+	teleport_x = src.x + 3
+	teleport_y = src.y
+	teleport_z = src.z
+
+
+/obj/effect/step_trigger/teleporter/bridge/north_to_south/New()
+	..()
+	teleport_x = src.x
+	teleport_y = src.y - 4
+	teleport_z = src.z
+
+
+/obj/effect/step_trigger/teleporter/bridge/south_to_north/New()
+	..()
+	teleport_x = src.x
+	teleport_y = src.y + 4
+	teleport_z = src.z
+
 
 /datum/planet/sif
 	expected_z_levels = list(

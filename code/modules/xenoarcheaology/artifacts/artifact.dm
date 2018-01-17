@@ -48,6 +48,17 @@
 		if(prob(25))
 			my_effect.trigger = pick(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
 
+/obj/machinery/artifact/proc/choose_effect()
+	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in typesof(/datum/artifact_effect) - /datum/artifact_effect
+	if(effect_type)
+		my_effect = new effect_type(src)
+		if(alert(usr, "Do you want a secondary effect?", "Second Effect", "No", "Yes") == "Yes")
+			var/second_effect_type = input(usr, "What type do you want as well?", "Second Effect Type") as null|anything in typesof(/datum/artifact_effect) - list(/datum/artifact_effect, effect_type)
+			secondary_effect = new second_effect_type(src)
+		else
+			secondary_effect = null
+
+
 /obj/machinery/artifact/process()
 	var/turf/L = loc
 	if(!istype(L)) 	// We're inside a container or on null turf, either way stop processing effects

@@ -195,7 +195,7 @@ var/list/GPS_list = list()
 	tracking = TRUE // On by default.
 
 /obj/item/device/gps/internal // Base type for immobile/internal GPS units.
-	icon_state = null
+	icon_state = "internal"
 	gps_tag = "Eerie Signal"
 	desc = "Report to a coder immediately."
 	invisibility = INVISIBILITY_MAXIMUM

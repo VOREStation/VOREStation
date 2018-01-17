@@ -60,7 +60,7 @@
 
 	// For growing flowers
 	src.modules += new /obj/item/weapon/material/minihoe(src)
-	src.modules += new /obj/item/weapon/material/hatchet(src)
+	src.modules += new /obj/item/weapon/material/knife/machete/hatchet(src)
 	src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
 	src.modules += new /obj/item/weapon/storage/bag/plants(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)

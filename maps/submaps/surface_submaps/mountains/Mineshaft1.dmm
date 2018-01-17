@@ -22,7 +22,7 @@
 "v" = (/obj/structure/table/standard,/obj/item/weapon/cell/high,/obj/item/weapon/cell/high,/turf/simulated/floor,/area/submap/cave/AMine1)
 "w" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor,/area/submap/cave/AMine1)
 "x" = (/turf/simulated/floor,/area/submap/cave/AMine1)
-"y" = (/obj/machinery/power/apc{pixel_x = 31},/turf/simulated/floor,/area/submap/cave/AMine1)
+"y" = (/obj/machinery/power/apc{operating = 0; pixel_x = 31},/turf/simulated/floor,/area/submap/cave/AMine1)
 "z" = (/obj/structure/ore_box,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/AMine1)
 "A" = (/obj/machinery/light/small{dir = 1},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/AMine1)
 "B" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor,/area/submap/cave/AMine1)

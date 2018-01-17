@@ -204,7 +204,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/under/tactical,
 		/obj/item/weapon/beartrap,
 		/obj/item/clothing/suit/storage/vest/press,
-		/obj/item/weapon/material/hatchet/tacknife,
+		/obj/item/weapon/material/knife/tacknife,
 		/obj/item/weapon/material/butterfly/switchblade
 	)
 

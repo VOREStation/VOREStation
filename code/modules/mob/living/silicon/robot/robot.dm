@@ -1096,3 +1096,6 @@
 				src << "Hack attempt detected."
 			return 1
 		return
+
+/mob/living/silicon/robot/is_sentient()
+	return braintype != "Drone"

@@ -57,13 +57,47 @@
 	name = "Southern Shoreline"
 	icon_state = "southeast"
 
-/area/surface/outside/wilderness
-	name = "Wilderness"
+// The area near the outpost, so POIs don't show up right next to the outpost.
+/area/surface/outside/plains/outpost
+	name = "Outpost Perimeter"
 	icon_state = "green"
+
+// Rest of the 'plains' Z-level, for POIs.
+/area/surface/outside/plains/normal
+	name = "Plains"
+	icon_state = "yellow"
+
+// So POIs don't get embedded in rock.
+/area/surface/outside/plains/mountains
+	name = "Mountains"
+	icon_state = "darkred"
+
+// Paths get their own area so POIs don't overwrite pathways.
+/area/surface/outside/path
+	name = "Pathway"
+	icon_state = "purple"
+
+/area/surface/outside/path/plains
+
+/area/surface/outside/wilderness/normal
+	name = "Wilderness"
+	icon_state = "yellow"
 
 /area/surface/outside/wilderness/deep
 	name = "Deep Wilderness"
-	icon_state = "green"
+	icon_state = "red"
+
+// So POIs don't get embedded in rock.
+/area/surface/outside/wilderness/mountains
+	name = "Mountains"
+	icon_state = "darkred"
+
+/area/surface/outside/path/wilderness
+
+// Water
+/area/surface/outside/ocean
+	name = "Sea"
+	icon_state = "bluenew"
 
 /area/surface/outside/river
 	name = "River"
@@ -82,18 +116,33 @@
 	name = "Romsele Lake"
 	icon_state = "blue2"
 
+
+
 /area/surface/cave
 	flags = RAD_SHIELDED
 
-/area/surface/cave/mine/explored
-	name = "Mine"
-	icon_state = "explored"
+/area/surface/cave
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 
-/area/surface/cave/mine/unexplored
-	name = "Mine"
+// The bottom half that connects to the outpost and is safer.
+/area/surface/cave/explored/normal
+	name = "Tunnels"
+	icon_state = "explored"
+
+/area/surface/cave/unexplored/normal
+	name = "Tunnels"
 	icon_state = "unexplored"
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+
+// The top half of the map that is more dangerous.
+/area/surface/cave/explored/deep
+	name = "Depths"
+	icon_state = "explored_deep"
+
+/area/surface/cave/unexplored/deep
+	name = "Depths"
+	icon_state = "unexplored_deep"
+
+
 
 //Surface Outposts
 
@@ -292,6 +341,11 @@
 	name = "\improper Main Outpost Construction Area"
 	icon_state = "construction"
 
+/area/surface/outpost/wall
+	name = "The Wall"
+	icon_state = "red"
+	requires_power = FALSE
+
 //Mining Station
 
 /area/outpost/mining_station
@@ -315,13 +369,12 @@
 /area/outpost/mining_station/refinery
 	name = "Mining Station Refinery"
 
-area/outpost/mining_station/telecomms
+/area/outpost/mining_station/telecomms
 	name = "Main Station Telecommunications"
 	sound_env = SMALL_ENCLOSED
 
-area/outpost/mining_station/dock
+/area/outpost/mining_station/dock
 	name = "Mining Station Dock"
-
 
 //Turbolift
 

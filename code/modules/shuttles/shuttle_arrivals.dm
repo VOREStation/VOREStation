@@ -57,9 +57,9 @@
 
 	..() // Do everything else
 
-/datum/shuttle/ferry/arrivals/proc/message_passengers(area/A, var/message)
+/datum/shuttle/proc/message_passengers(area/A, var/message)
 	for(var/mob/M in A)
-		to_chat(M, message)
+		M.show_message(message, 2)
 
 /*
 /datum/shuttle/ferry/arrivals/current_dock_target()
