@@ -231,7 +231,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.loc = src
 				src.r_ear = O
-				O.layer = 20
+				O.hud_layerise()
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(slot_r_ear)
@@ -240,7 +240,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.loc = src
 				src.l_ear = O
-				O.layer = 20
+				O.hud_layerise()
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(slot_glasses)
@@ -303,7 +303,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		src.r_hand = null
 		update_inv_r_hand()
 
-	W.layer = 20
+	W.hud_layerise()
 
 	if(W.action_button_name)
 		update_action_buttons()

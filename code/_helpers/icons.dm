@@ -635,7 +635,7 @@ The _flatIcons list is a cache for generated icon files.
 */
 
 proc // Creates a single icon from a given /atom or /image.  Only the first argument is required.
-	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0, picture_planes = list(PLANE_WORLD))
 		// We start with a blank canvas, otherwise some icon procs crash silently
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
 		if(!A)
@@ -700,6 +700,10 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 			if(curIndex<=process.len)
 				current = process[curIndex]
 				if(current)
+					var/currentPlane = current:plane
+					if (currentPlane != FLOAT_PLANE && !(currentPlane in picture_planes))
+						curIndex++
+						continue;
 					currentLayer = current:layer
 					if(currentLayer<0) // Special case for FLY_LAYER
 						if(currentLayer <= -1000) return flat
@@ -760,7 +764,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 						// Pull the default direction.
 						add = icon(I:icon, I:icon_state)
 			else // 'I' is an appearance object.
-				add = getFlatIcon(new/image(I), curdir, curicon, curstate, curblend)
+				add = getFlatIcon(new/image(I), curdir, curicon, curstate, curblend, picture_planes = picture_planes)
 
 			// Find the new dimensions of the flat icon to fit the added overlay
 			addX1 = min(flatX1, I:pixel_x+1)
@@ -873,3 +877,9 @@ proc/sort_atoms_by_layer(var/list/atoms)
 				result.Swap(i, gap + i)
 				swapped = 1
 	return result
+
+/proc/gen_hud_image(var/file, var/person, var/state, var/plane)
+	var/image/img = image(file, person, state)
+	img.plane = plane //Thanks Byond.
+	img.appearance_flags = APPEARANCE_UI|KEEP_APART
+	return img

@@ -129,7 +129,7 @@ proc/age2agedescription(age)
 		else				return "unknown"
 
 /proc/RoundHealth(health)
-	var/list/icon_states = icon_states('icons/mob/hud_med.dmi')
+	var/list/icon_states = icon_states(ingame_hud_med)
 	for(var/icon_state in icon_states)
 		if(health >= text2num(icon_state))
 			return icon_state

@@ -47,5 +47,12 @@
 	reload_fullscreen() // Reload any fullscreen overlays this mob has.
 	add_click_catcher()
 	update_client_color()
+
+	if(!plane_holder) //Lazy
+		plane_holder = new(src) //Not a location, it takes it and saves it.
+		vis_enabled = list()
+	client.screen += plane_holder.plane_masters
+	recalculate_vis()
+
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	winset(src, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")

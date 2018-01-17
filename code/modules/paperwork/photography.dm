@@ -131,6 +131,7 @@ var/global/photo_count = 0
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 	var/size = 3
+	var/picture_planes = list(PLANE_WORLD)
 
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"
@@ -181,6 +182,7 @@ var/global/photo_count = 0
 		// As well as anything that isn't invisible.
 		for(var/atom/A in the_turf)
 			if(A.invisibility) continue
+			if(!(A.plane in picture_planes)) continue
 			atoms.Add(A)
 
 	// Sort the atoms into their layers
@@ -189,7 +191,7 @@ var/global/photo_count = 0
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
-			var/icon/img = getFlatIcon(A)//build_composite_icon(A)
+			var/icon/img = getFlatIcon(A, picture_planes = picture_planes)//build_composite_icon(A)
 
 			// If what we got back is actually a picture, draw it.
 			if(istype(img, /icon))

@@ -673,7 +673,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"
-			owner.update_body(1)
+			owner.update_icons_body()
 			for (var/obj/item/organ/external/child in children)
 				child.germ_level += 110 //Burst of infection from a parent organ becoming necrotic
 
@@ -1110,11 +1110,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(src.robotic >= ORGAN_ROBOT)
 		return
 	src.status |= ORGAN_MUTATED
-	if(owner) owner.update_body()
+	if(owner) owner.update_icons_body()
 
 /obj/item/organ/external/proc/unmutate()
 	src.status &= ~ORGAN_MUTATED
-	if(owner) owner.update_body()
+	if(owner) owner.update_icons_body()
 
 /obj/item/organ/external/proc/get_damage()	//returns total damage
 	return (brute_dam+burn_dam)	//could use max_damage?
@@ -1201,7 +1201,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			qdel(spark_system)
 		qdel(src)
 
-	victim.update_body()
+	victim.update_icons_body()
 
 /obj/item/organ/external/proc/disfigure(var/type = "brute")
 	if (disfigured)

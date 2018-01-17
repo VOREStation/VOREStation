@@ -404,7 +404,7 @@
 			O.show_message(message, 1, blind_message, 2)
 		else if(ismob(I))
 			var/mob/M = I
-			if(M.see_invisible >= invisibility) // Cannot view the invisible
+			if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane)) // Cannot view the invisible
 				M.show_message(message, 1, blind_message, 2)
 			else if (blind_message)
 				M.show_message(blind_message, 2)

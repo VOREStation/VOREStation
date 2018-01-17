@@ -144,7 +144,7 @@
 /mob/living/bot/secbot/proc/react_to_attack(mob/attacker)
 	if(!target)
 		playsound(src.loc, pick(threat_found_sounds), 50)
-		broadcast_security_hud_message("[src] was attacked by a hostile <b>[target_name(attacker)]</b> in <b>[get_area(src)]</b>.", src)
+		global_announcer.autosay("[src] was attacked by a hostile <b>[target_name(attacker)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	target = attacker
 	awaiting_surrender = INFINITY	// Don't try and wait for surrender
 
@@ -152,7 +152,7 @@
 /mob/living/bot/secbot/proc/demand_surrender(mob/target, var/threat)
 	var/suspect_name = target_name(target)
 	if(declare_arrests)
-		broadcast_security_hud_message("[src] is [arrest_type ? "detaining" : "arresting"] a level [threat] suspect <b>[suspect_name]</b> in <b>[get_area(src)]</b>.", src)
+		global_announcer.autosay("[src] is [arrest_type ? "detaining" : "arresting"] a level [threat] suspect <b>[suspect_name]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	say("Down on the floor, [suspect_name]! You have [SECBOT_WAIT_TIME] seconds to comply.")
 	playsound(src.loc, pick(preparing_arrest_sounds), 50)
 	// Register to be told when the target moves
@@ -205,7 +205,7 @@
 			var/action = arrest_type ? "detaining" : "arresting"
 			if(istype(target, /mob/living/simple_animal))
 				action = "fighting"
-			broadcast_security_hud_message("[src] is [action] a level [threat] [action != "fighting" ? "suspect" : "threat"] <b>[target_name(target)]</b> in <b>[get_area(src)]</b>.", src)
+			global_announcer.autosay("[src] is [action] a level [threat] [action != "fighting" ? "suspect" : "threat"] <b>[target_name(target)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 		UnarmedAttack(target)
 
 // So Beepsky talks while beating up simple mobs.

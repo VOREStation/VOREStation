@@ -174,7 +174,7 @@
 	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
 	for(var/obj/O in src.contents)
 		O.screen_loc = "[cx],[cy]"
-		O.layer = 20
+		O.hud_layerise()
 		cx++
 		if (cx > mx)
 			cx = tx
@@ -192,7 +192,7 @@
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = 20
+			ND.sample_object.hud_layerise()
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -201,7 +201,7 @@
 		for(var/obj/O in contents)
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
-			O.layer = 20
+			O.hud_layerise()
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -252,7 +252,7 @@
 
 		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
 		O.maptext = ""
-		O.layer = 20
+		O.hud_layerise()
 
 	src.closer.screen_loc = "4:[storage_width+19],2:16"
 	return
@@ -395,9 +395,9 @@
 		if(ismob(loc))
 			W.dropped(usr)
 		if(ismob(new_location))
-			W.layer = 20
+			W.hud_layerise()
 		else
-			W.layer = initial(W.layer)
+			W.reset_plane_and_layer()
 		W.forceMove(new_location)
 	else
 		W.forceMove(get_turf(src))
@@ -546,41 +546,38 @@
 	src.boxes.master = src
 	src.boxes.icon_state = "block"
 	src.boxes.screen_loc = "7,7 to 10,8"
-	src.boxes.layer = 19
 
 	src.storage_start = new /obj/screen/storage(  )
 	src.storage_start.name = "storage"
 	src.storage_start.master = src
 	src.storage_start.icon_state = "storage_start"
 	src.storage_start.screen_loc = "7,7 to 10,8"
-	src.storage_start.layer = 19
+
 	src.storage_continue = new /obj/screen/storage(  )
 	src.storage_continue.name = "storage"
 	src.storage_continue.master = src
 	src.storage_continue.icon_state = "storage_continue"
 	src.storage_continue.screen_loc = "7,7 to 10,8"
-	src.storage_continue.layer = 19
+
 	src.storage_end = new /obj/screen/storage(  )
 	src.storage_end.name = "storage"
 	src.storage_end.master = src
 	src.storage_end.icon_state = "storage_end"
 	src.storage_end.screen_loc = "7,7 to 10,8"
-	src.storage_end.layer = 19
 
 	src.stored_start = new /obj //we just need these to hold the icon
 	src.stored_start.icon_state = "stored_start"
-	src.stored_start.layer = 19
+
 	src.stored_continue = new /obj
 	src.stored_continue.icon_state = "stored_continue"
-	src.stored_continue.layer = 19
+
 	src.stored_end = new /obj
 	src.stored_end.icon_state = "stored_end"
-	src.stored_end.layer = 19
 
 	src.closer = new /obj/screen/close(  )
 	src.closer.master = src
 	src.closer.icon_state = "storage_close"
-	src.closer.layer = 20
+	src.closer.hud_layerise()
 	orient2hud()
 	return
 
