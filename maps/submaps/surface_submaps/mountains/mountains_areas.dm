@@ -32,3 +32,12 @@
 
 /area/submap/cave/lost_explorer
 	name = "Final Resting Place"
+
+/area/submap/Rockb1
+	name = "RockyBase1"
+
+/area/submap/Cavelake
+	name = "Cavelake"
+
+/area/submap/CaveTrench
+	name = "Cave River"
