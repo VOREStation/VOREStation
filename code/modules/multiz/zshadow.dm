@@ -20,14 +20,16 @@
 	if(!istype(L))
 		qdel(src)
 		return
-	..() // I'm cautious about this, but its the right thing to do.
 	owner = L
 	sync_icon(L)
 
+/mob/zshadow/Destroy()
+	owner = null
+	..() //But we don't return because the hint is wrong
+	return QDEL_HINT_QUEUE
+
 /mob/Destroy()
-	if(shadow)
-		qdel(shadow)
-		shadow = null
+	qdel_null(shadow)
 	. = ..()
 
 /mob/zshadow/examine(mob/user, distance, infix, suffix)
