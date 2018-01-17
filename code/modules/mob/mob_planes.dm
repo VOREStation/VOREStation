@@ -51,6 +51,11 @@
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
 			set_vis(which = SP, state = state)
+	var/plane = PM.plane
+	if(state && !(plane in my_mob.planes_visible))
+		LAZYADD(my_mob.planes_visible, plane)
+	else if(!state && (plane in my_mob.planes_visible))
+		LAZYREMOVE(my_mob.planes_visible, plane)
 
 /datum/plane_holder/proc/set_desired_alpha(var/which = null, var/new_alpha)
 	ASSERT(which)
@@ -136,7 +141,6 @@
 /obj/screen/plane_master/ghosts
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
-
 
 //'Normal'ness						 v								 v								 v
 //Various types of colorblindness	R2R		R2G		R2B		G2R		G2G		G2B		B2R		B2G		B2B
