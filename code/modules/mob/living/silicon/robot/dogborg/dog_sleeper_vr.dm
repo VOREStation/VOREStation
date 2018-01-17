@@ -372,7 +372,7 @@
 	if(air_master.current_cycle%3==1 && length(touchable_items))
 
 		//Burn all the mobs or add them to the exclusion list
-		for(var/mob/living/carbon/human/T in (touchable_items))
+		for(var/mob/living/T in (touchable_items))
 			if((T.status_flags & GODMODE) || !T.digestable)
 				src.items_preserved += T
 			else
@@ -384,12 +384,14 @@
 		var/atom/target = pick(touchable_items)
 
 		//Handle the target being a mob
-		if(ishuman(target))
-			var/mob/living/carbon/human/T = target
+		if(isliving(target))
+			var/mob/living/T = target
 
 			//Mob is now dead
-			if(T.stat & DEAD)
-				message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+			if(T.stat == DEAD)
+				if(ishuman(target))
+					message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+
 				to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 				to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
 				src.drain(mob_energy) //Fueeeeellll
@@ -432,7 +434,7 @@
 				if(UI_open == TRUE)
 					sleeperUI(hound)
 
-		//Handle the target being anything but a /mob/living/carbon/human
+		//Handle the target being anything but a /mob/living
 		else
 			var/obj/item/T = target
 			if(istype(T))
@@ -446,6 +448,8 @@
 					items_preserved |= T
 				else
 					hound.cell.charge += (50 * digested)
+			else
+				items_preserved |= target
 
 			if(UI_open == TRUE)
 				src.update_patient()
