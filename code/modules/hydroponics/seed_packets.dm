@@ -11,10 +11,11 @@ var/global/list/plant_seed_sprites = list()
 	var/datum/seed/seed
 	var/modified = 0
 
-/obj/item/seeds/New()
-	while(!plant_controller)
-		sleep(30)
+/obj/item/seeds/initialize()
 	update_seed()
+	..()
+
+/obj/item/seeds/New()
 	..()
 
 //Grabs the appropriate seed datum from the global list.
@@ -75,7 +76,7 @@ var/global/list/plant_seed_sprites = list()
 /obj/item/seeds/random
 	seed_type = null
 
-/obj/item/seeds/random/New()
+/obj/item/seeds/random/initialize()
 	seed = plant_controller.create_random_seed()
 	seed_type = seed.name
 	update_seed()
