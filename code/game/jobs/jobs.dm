@@ -113,6 +113,13 @@ var/list/security_positions = list(
 )
 
 
+var/list/planet_positions = list(
+	"Explorer",
+	"Pilot",
+	"Search and Rescue"
+)
+
+
 var/list/nonhuman_positions = list(
 	"AI",
 	"Cyborg",

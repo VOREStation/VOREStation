@@ -65,15 +65,16 @@ var/global/list/PDA_Manifest = list()
 /datum/datacore/proc/get_manifest_list()
 	if(PDA_Manifest.len)
 		return
-	var/heads[0]
-	var/sec[0]
-	var/eng[0]
-	var/med[0]
-	var/sci[0]
-	var/car[0]
-	var/civ[0]
-	var/bot[0]
-	var/misc[0]
+	var/list/heads = list()
+	var/list/sec = list()
+	var/list/eng = list()
+	var/list/med = list()
+	var/list/sci = list()
+	var/list/car = list()
+	var/list/pla = list() // Planetside crew: Explorers, Pilots, S&S
+	var/list/civ = list()
+	var/list/bot = list()
+	var/list/misc = list()
 	for(var/datum/data/record/t in data_core.general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
@@ -113,6 +114,10 @@ var/global/list/PDA_Manifest = list()
 			if(depthead && sci.len != 1)
 				sci.Swap(1,sci.len)
 
+		if(real_rank in planet_positions)
+			pla[++pla.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+
 		if(real_rank in cargo_positions)
 			car[++car.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
@@ -133,16 +138,17 @@ var/global/list/PDA_Manifest = list()
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
 
-	PDA_Manifest = list(\
-		"heads" = heads,\
-		"sec" = sec,\
-		"eng" = eng,\
-		"med" = med,\
-		"sci" = sci,\
-		"car" = car,\
-		"civ" = civ,\
-		"bot" = bot,\
-		"misc" = misc\
+	PDA_Manifest = list(
+		list("cat" = "Command", "elems" = heads),
+		list("cat" = "Security", "elems" = sec),
+		list("cat" = "Engineering", "elems" = eng),
+		list("cat" = "Medical", "elems" = med),
+		list("cat" = "Science", "elems" = sci),
+		list("cat" = "Cargo", "elems" = car),
+		list("cat" = "Planetside", "elems" = pla),
+		list("cat" = "Civilian", "elems" = civ),
+		list("cat" = "Silicon", "elems" = bot),
+		list("cat" = "Miscellaneous", "elems" = misc)
 		)
 	return
 
