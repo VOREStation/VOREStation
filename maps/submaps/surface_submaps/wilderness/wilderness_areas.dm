@@ -38,9 +38,6 @@
 /area/submap/BoomBase
 	name = "Boom1"
 
-/area/submap/Epod1
-	name = "Epod1"
-
 /area/submap/Blackshuttledown
 	name = "BSD"
 	requires_power = FALSE
@@ -56,3 +53,9 @@
 
 /area/submap/DJOutpost1
 	name = "DJOutpost1"
+
+/area/submap/MHR
+	name = "Manhack Rock"
+
+/area/submap/Rockybase
+	name = "Rockybase"

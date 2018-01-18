@@ -12,3 +12,12 @@
 
 /area/submap/beacons
 	name = "collection of marker beacons"
+
+/area/submap/Epod1
+	name = "Epod1"
+
+/area/submap/Rocky2
+	name = "Rocky2"
+
+/area/submap/Peninsula
+	name = "Peninsula"
