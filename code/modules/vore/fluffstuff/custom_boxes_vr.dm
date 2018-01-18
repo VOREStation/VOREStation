@@ -116,10 +116,10 @@
 		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/clothing/accessory/storage/black_vest(src)
-		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
-		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
-		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
-		new /obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
+		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
 //drakefrostpaw:Drake Frostpaw
