@@ -151,6 +151,9 @@ Please contact me on #coderbus IRC. ~Carn x
 //UPDATES OVERLAYS FROM OVERLAYS_LYING/OVERLAYS_STANDING
 //I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
 /mob/living/carbon/human/update_icons()
+	if(QDESTROYING(src))
+		return
+
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this
 
@@ -176,6 +179,9 @@ Please contact me on #coderbus IRC. ~Carn x
 	appearance = ma_compiled
 
 /mob/living/carbon/human/update_transform(var/mutable_appearance/passed_ma)
+	if(QDESTROYING(src))
+		return
+
 	var/mutable_appearance/ma
 	if(passed_ma)
 		ma = passed_ma
@@ -215,6 +221,9 @@ Please contact me on #coderbus IRC. ~Carn x
 
 //Update the layers from the defines above
 /mob/living/carbon/human/update_icons_layers(var/update_icons = 1)
+	if(QDESTROYING(src))
+		return
+
 	list_layers.Cut()
 
 	for(var/entry in overlays_standing)
@@ -233,6 +242,9 @@ Please contact me on #coderbus IRC. ~Carn x
 //HUD Icons (ingame huds, not the user interface)
 //Update things like med/sec hud icons
 /mob/living/carbon/human/update_icons_huds(var/update_icons = 1)
+	if(QDESTROYING(src))
+		return
+
 	list_huds.Cut()
 
 	if(has_huds)
@@ -244,6 +256,9 @@ Please contact me on #coderbus IRC. ~Carn x
 
 //A full, crunchy reprocess of all three cached lists
 /mob/living/carbon/human/update_icons_all(var/update_icons = 1)
+	if(QDESTROYING(src))
+		return
+
 	update_icons_huds(FALSE)
 	update_icons_body(FALSE)
 	update_icons_layers(FALSE)
@@ -255,6 +270,9 @@ var/global/list/damage_icon_parts = list()
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 
@@ -299,6 +317,8 @@ var/global/list/damage_icon_parts = list()
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/update_icons_body(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -433,11 +453,17 @@ var/global/list/damage_icon_parts = list()
 	update_wing_showing(0) //VOREStation edit
 
 /mob/living/carbon/human/proc/update_skin(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[SKIN_LAYER] = species.update_skin(src)
 	if(update_icons)   update_icons_layers()
 
 //UNDERWEAR OVERLAY
 /mob/living/carbon/human/proc/update_underwear(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[UNDERWEAR_LAYER] = null
 
 	if(species.appearance_flags & HAS_UNDERWEAR)
@@ -452,6 +478,9 @@ var/global/list/damage_icon_parts = list()
 
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	//Reset our hair
 	overlays_standing[HAIR_LAYER]	= null
 
@@ -502,6 +531,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	var/fat
 	if(FAT in mutations)
 		fat = "fat"
@@ -586,6 +618,9 @@ var/global/list/damage_icon_parts = list()
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
 /mob/living/carbon/human/update_inv_w_uniform(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if( (w_uniform && istype(w_uniform, /obj/item/clothing/under)) && !(wear_suit && istype(wear_suit, /obj/item/clothing/suit/space) && wear_suit.flags_inv & HIDEJUMPSUIT && !istype(wear_suit, /obj/item/clothing/suit/space/rig) ))
 		w_uniform.screen_loc = ui_iclothing
 
@@ -645,6 +680,9 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/update_inv_wear_id(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(wear_id)
 		wear_id.screen_loc = ui_id	//TODO
 		if(w_uniform && w_uniform:displays_id)
@@ -667,6 +705,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_gloves(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(gloves)
 		var/t_state = gloves.item_state
 		if(!t_state)	t_state = gloves.icon_state
@@ -705,6 +746,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_glasses(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(glasses)
 		var/image/standing
 		if(glasses.icon_override)
@@ -729,6 +773,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_ears(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[EARS_LAYER] = null
 	if( (head && (head.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR))) || (wear_mask && (wear_mask.flags_inv & (BLOCKHAIR | BLOCKHEADHAIR))))
 		if(update_icons)   update_icons_layers()
@@ -789,6 +836,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_shoes(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(shoes && !((wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES)))
 
 		var/image/standing
@@ -836,6 +886,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(s_store)
 		var/t_state = s_store.item_state
 		if(!t_state)	t_state = s_store.icon_state
@@ -847,6 +900,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_head(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(head)
 		head.screen_loc = ui_head		//TODO
 
@@ -906,6 +962,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_belt(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(belt)
 		belt.screen_loc = ui_belt	//TODO
 		var/t_state = belt.item_state
@@ -951,6 +1010,8 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_wear_suit(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
 
 	if( wear_suit && istype(wear_suit, /obj/item/) )
 		wear_suit.screen_loc = ui_oclothing
@@ -1022,12 +1083,18 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_pockets(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(l_store)			l_store.screen_loc = ui_storage1	//TODO
 	if(r_store)			r_store.screen_loc = ui_storage2	//TODO
 	if(update_icons)	update_icons_layers()
 
 
 /mob/living/carbon/human/update_inv_wear_mask(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if( wear_mask && ( istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/accessory) || istype(wear_mask, /obj/item/weapon/grenade) ) && !(head && head.flags_inv & HIDEMASK))
 		wear_mask.screen_loc = ui_mask	//TODO
 
@@ -1059,6 +1126,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_back(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(back)
 		back.screen_loc = ui_back	//TODO
 
@@ -1107,6 +1177,9 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
+	if(QDESTROYING(src))
+		return
+
 	if(client)
 		client.screen |= contents
 		if(hud_used)
@@ -1114,11 +1187,17 @@ var/global/list/damage_icon_parts = list()
 
 //update whether handcuffs appears on our hud.
 /mob/living/carbon/proc/update_hud_handcuffed()
+	if(QDESTROYING(src))
+		return
+
 	if(hud_used && hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon()
 		hud_used.r_hand_hud_object.update_icon()
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(handcuffed)
 		drop_r_hand()
 		drop_l_hand()
@@ -1140,6 +1219,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_legcuffed(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(legcuffed)
 
 		var/image/standing
@@ -1162,6 +1244,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_r_hand(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(r_hand)
 		r_hand.screen_loc = ui_rhand	//TODO
 
@@ -1198,6 +1283,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_l_hand(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(l_hand)
 		l_hand.screen_loc = ui_lhand	//TODO
 
@@ -1233,6 +1321,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons) update_icons_layers()
 
 /mob/living/carbon/human/proc/update_tail_showing(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[TAIL_LAYER] = null
 
 	// VOREStation Edit - START
@@ -1254,6 +1345,9 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/get_tail_icon()
+	if(QDESTROYING(src))
+		return
+
 	var/icon_key = "[species.get_race_key(src)][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
 	var/icon/tail_icon = tail_icon_cache[icon_key]
 	if(!tail_icon)
@@ -1279,6 +1373,9 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
+	if(QDESTROYING(src))
+		return
+
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
 
 	if(tail_overlay && species.get_tail_animation(src))
@@ -1289,6 +1386,9 @@ var/global/list/damage_icon_parts = list()
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
 /mob/living/carbon/human/proc/animate_tail_once(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	var/t_state = "[species.get_tail(src)]_once"
 
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
@@ -1306,18 +1406,27 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/animate_tail_start(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	set_tail_state("[species.get_tail(src)]_slow[rand(0,9)]")
 
 	if(update_icons)
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/animate_tail_fast(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	set_tail_state("[species.get_tail(src)]_loop[rand(0,9)]")
 
 	if(update_icons)
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/animate_tail_reset(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(stat != DEAD)
 		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
 	else
@@ -1327,6 +1436,9 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/animate_tail_stop(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	set_tail_state("[species.get_tail(src)]_static")
 
 	if(update_icons)
@@ -1336,6 +1448,9 @@ var/global/list/damage_icon_parts = list()
 //Adds a collar overlay above the helmet layer if the suit has one
 //	Suit needs an identically named sprite in icons/mob/collar.dmi
 /mob/living/carbon/human/proc/update_collar(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	var/icon/C = new('icons/mob/collar.dmi')
 	var/image/standing = null
 
@@ -1348,6 +1463,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_modifier_visuals(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[MODIFIER_EFFECTS_LAYER] = null
 	var/image/effects = new()
 	for(var/datum/modifier/M in modifiers)
@@ -1361,6 +1479,9 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/update_fire(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[FIRE_LAYER] = null
 	if(on_fire)
 		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state" = get_fire_icon_state())
@@ -1368,6 +1489,9 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_water(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[WATER_LAYER] = null
 	var/depth = check_submerged()
 	if(depth)
@@ -1379,6 +1503,9 @@ var/global/list/damage_icon_parts = list()
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/update_surgery(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[SURGERY_LEVEL] = null
 	var/image/total = new
 	for(var/obj/item/organ/external/E in organs)
