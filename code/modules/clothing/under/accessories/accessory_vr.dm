@@ -34,20 +34,25 @@
 	icon_state = "collar_shk0"
 	item_state = "collar_shk_overlay"
 	overlay_state = "collar_shk_overlay"
-	// How about some copypasta?
-	var/on = 0 // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
+	var/on = FALSE // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
 	var/frequency = 1449
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
-	var/list/datum/radio_frequency/secure_radio_connections = new
-	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, frequency)
-		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
-		
+
 /obj/item/clothing/accessory/collar/shock/New()
+	..()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
-	
+
+/obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
+	radio_controller.remove_object(src, frequency)
+	radio_connection = null //Don't delete this, this is a shared object.
+	return ..()
+
+/obj/item/clothing/accessory/collar/shock/proc/set_frequency(new_frequency)
+	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+
 /obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
 	if(usr.stat || usr.restrained())
 		return
@@ -107,24 +112,23 @@
 		return
 	user.set_machine(src)
 	var/dat = {"<TT>
-<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
-<B>Frequency/Code</B> for collar:<BR>
-Frequency:
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+			<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+			<B>Frequency/Code</B> for collar:<BR>
+			Frequency:
+			<A href='byond://?src=\ref[src];freq=-10'>-</A>
+			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
+			<A href='byond://?src=\ref[src];freq=2'>+</A>
+			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 
-Code:
-<A href='byond://?src=\ref[src];code=-5'>-</A>
-<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-<A href='byond://?src=\ref[src];code=1'>+</A>
-<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-</TT>"}
+			Code:
+			<A href='byond://?src=\ref[src];code=-5'>-</A>
+			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
+			<A href='byond://?src=\ref[src];code=1'>+</A>
+			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
+			</TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
-	
 
 /obj/item/clothing/accessory/collar/spike
 	name = "Spiked collar"
