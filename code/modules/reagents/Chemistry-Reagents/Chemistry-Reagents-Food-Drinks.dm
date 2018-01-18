@@ -521,6 +521,17 @@
 	glass_name = "lemon juice"
 	glass_desc = "Sour..."
 
+/datum/reagent/drink/juice/apple
+	name = "Apple Juice"
+	id = "applejuice"
+	description = "The most basic juice."
+	taste_description = "crispness"
+	taste_mult = 1.1
+	color = "#E2A55F"
+
+	glass_name = "apple juice"
+	glass_desc = "An earth favorite."
+
 /datum/reagent/drink/juice/lime
 	name = "Lime Juice"
 	id = "limejuice"
@@ -1324,7 +1335,7 @@
 
 	glass_name = "Ent's Draught"
 	glass_desc = "You can almost smell the tranquility emanating from this."
-	
+
 /datum/reagent/drink/lovepotion
 	name = "Love Potion"
 	id = "lovepotion"
@@ -2780,7 +2791,7 @@
 
 	glass_name = "Pisco Sour"
 	glass_desc = "South American bliss, served ice cold."
-	
+
 /datum/reagent/ethanol/coldfront
 	name = "Cold Front"
 	id = "coldfront"
@@ -2790,10 +2801,10 @@
 	strength = 30
 	adj_temp = -20
 	targ_temp = 220 //Dangerous to certain races. Drink in moderation.
-	
+
 	glass_name = "Cold Front"
 	glass_desc = "Minty, rich, and painfully cold. It's a blizzard in a cup."
-	
+
 /datum/reagent/ethanol/mintjulep
 	name = "Mint Julep"
 	id = "mintjulep"
@@ -2802,6 +2813,6 @@
 	color = "#bbfc8a" // rgb(187, 252, 138)
 	strength = 25
 	adj_temp = -5
-	
+
 	glass_name = "Mint Julep"
 	glass_desc = "Minty and refreshing, perfect for a hot day."
