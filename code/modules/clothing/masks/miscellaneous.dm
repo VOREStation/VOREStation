@@ -125,6 +125,42 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
 
+/obj/item/clothing/mask/shark
+	name = "shark mask"
+	desc = "A rubber shark mask."
+	icon_state = "shark"
+	flags_inv = HIDEFACE
+	w_class = ITEMSIZE_SMALL
+	siemens_coefficient = 0.9
+	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/dolphin
+	name = "dolphin mask"
+	desc = "A rubber dolphin mask."
+	icon_state = "dolphin"
+	flags_inv = HIDEFACE
+	w_class = ITEMSIZE_SMALL
+	siemens_coefficient = 0.9
+	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/goblin
+	name = "goblin mask"
+	desc = "A rubber goblin mask."
+	icon_state = "goblin"
+	flags_inv = HIDEFACE
+	w_class = ITEMSIZE_SMALL
+	siemens_coefficient = 0.9
+	body_parts_covered = HEAD|FACE|EYES
+
+/obj/item/clothing/mask/demon
+	name = "demon mask"
+	desc = "A rubber demon mask."
+	icon_state = "demon"
+	flags_inv = HIDEFACE
+	w_class = ITEMSIZE_SMALL
+	siemens_coefficient = 0.9
+	body_parts_covered = HEAD|FACE|EYES
+
 /obj/item/clothing/mask/horsehead
 	name = "horse head mask"
 	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
