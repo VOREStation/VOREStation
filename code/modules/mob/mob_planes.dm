@@ -7,6 +7,7 @@
 	var/list/plane_masters[VIS_COUNT]
 
 /datum/plane_holder/New(mob/this_guy)
+	ASSERT(ismob(this_guy))
 	my_mob = this_guy
 
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
