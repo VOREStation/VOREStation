@@ -19,6 +19,8 @@
 
 	var/label_text = ""
 
+	var/list/prefill = list()	//Reagents to fill the container with on New()
+
 	var/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,
 		/obj/machinery/chemical_dispenser,
@@ -47,6 +49,10 @@
 
 /obj/item/weapon/reagent_containers/glass/New()
 	..()
+	if(prefill.len)
+		for(var/R in prefill)
+			reagents.add_reagent(R,prefill[R])
+		update_icon()
 	base_name = name
 	base_desc = desc
 
@@ -225,15 +231,11 @@
 	possible_transfer_amounts = list(5,10,15,25)
 	flags = OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone/New()
-	..()
-	reagents.add_reagent("cryoxadone", 30)
-	update_icon()
+/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
+	prefill = list("cryoxadone" = 30)
 
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric/New()
-		..()
-		reagents.add_reagent("sacid", 60)
-		update_icon()
+/obj/item/weapon/reagent_containers/glass/beaker/sulphuric
+	prefill = list("sacid" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."
