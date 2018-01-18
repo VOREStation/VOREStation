@@ -1,0 +1,5 @@
+author: Leshana
+delete-after: True
+changes: 
+  - tweak: "Fix singularity energy balance so it is stable under normal operation."
+  - bugfix: "Fix emitter beams and PA effects from being grav pulled or consumed."

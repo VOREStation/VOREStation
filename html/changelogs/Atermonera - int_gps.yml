@@ -1,0 +1,5 @@
+author: Atermonera
+
+delete-after: True
+
+  - rscadd: "Station-bound synthetics now have gps units"

@@ -64,12 +64,14 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()
-	if(buckled_mob)
-		buckled_mob.burn_skin(85)
-		buckled_mob << "<span class='danger'>You feel a deep shock course through your body!</span>"
-		sleep(1)
-		buckled_mob.burn_skin(85)
-		buckled_mob.Stun(600)
+	if(has_buckled_mobs())
+		for(var/a in buckled_mobs)
+			var/mob/living/L = a
+			L.burn_skin(85)
+			to_chat(L, "<span class='danger'>You feel a deep shock course through your body!</span>")
+			sleep(1)
+			L.burn_skin(85)
+			L.Stun(600)
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
 
 	A.power_light = light

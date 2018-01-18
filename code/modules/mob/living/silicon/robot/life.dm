@@ -13,6 +13,7 @@
 	handle_actions()
 	handle_instability()
 	// For some reason borg Life() doesn't call ..()
+	handle_modifiers()
 	handle_light()
 
 	if(client)
@@ -328,8 +329,9 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockdown || resting || !is_component_functioning("actuator")) canmove = 0 //VOREStation edit for resting.
-	else canmove = 1
+	..() // Let's not reinvent the wheel.
+	if(lockdown || !is_component_functioning("actuator"))
+		canmove = FALSE
 	return canmove
 
 /mob/living/silicon/robot/update_fire()

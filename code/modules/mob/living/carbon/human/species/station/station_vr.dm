@@ -120,8 +120,7 @@
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
-	can_fly = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb,/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
 
 	min_age = 18
 	max_age = 80
@@ -376,7 +375,7 @@ datum/species/harpy
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = null
 	color_mult = 1
-	can_fly = 1
+	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
 
 	min_age = 18
 	max_age = 80

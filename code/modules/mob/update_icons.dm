@@ -7,6 +7,25 @@
 /mob/proc/update_icons()
 	return
 
+/mob/proc/update_icons_layers(var/update_icons = TRUE)
+	if(update_icons)
+		update_icons()
+
+/mob/proc/update_icons_huds(var/update_icons = TRUE)
+	if(update_icons)
+		update_icons()
+
+/mob/proc/update_icons_body(var/update_icons = TRUE)
+	if(update_icons)
+		update_icons()
+
+/mob/proc/update_icons_all()
+	update_icons_huds(FALSE)
+	update_icons_body(FALSE)
+	update_icons_layers(FALSE)
+
+	update_icons()
+
 /mob/proc/update_hud()
 	return
 

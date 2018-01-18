@@ -22,13 +22,11 @@
 /obj/effect/temporary_effect/fire_blast
 	name = "fire blast"
 	desc = "Run!"
-	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield1"
 	time_to_die = 2.5 SECONDS // After which we go boom.
-	invisibility = 0
-	new_light_range = 4
-	new_light_power = 5
-	new_light_color = "#FF6A00"
+	light_range = 4
+	light_power = 5
+	light_color = "#FF6A00"
 
 /obj/effect/temporary_effect/fire_blast/Destroy()
 	explosion(get_turf(src), -1, 1, 2, 5, adminlog = 1)

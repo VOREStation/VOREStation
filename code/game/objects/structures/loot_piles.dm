@@ -6,7 +6,7 @@ If that roll fails, they do one final roll, using chance_uncommon.  If they succ
 If that fails again, they walk away with some common junk.
 
 The same player cannot roll again, however other players can.  This has two benefits.  The first benefit is that someone raiding all of
-maintenance will not deprive other people from a shot at loot, and that for the surface varients, it quietly encourages bringing along
+maintenance will not deprive other people from a shot at loot, and that for the surface variants, it quietly encourages bringing along
 buddies, to get more chances at getting cool things instead of someone going solo to hoard all the stuff.
 
 Loot piles can be depleted, if loot_depleted is turned on.  Note that players who searched the pile already won't deplete the loot furthers when searching again.
@@ -204,7 +204,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/under/tactical,
 		/obj/item/weapon/beartrap,
 		/obj/item/clothing/suit/storage/vest/press,
-		/obj/item/weapon/material/hatchet/tacknife,
+		/obj/item/weapon/material/knife/tacknife,
 		/obj/item/weapon/material/butterfly/switchblade
 	)
 

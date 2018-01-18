@@ -87,7 +87,6 @@
 #define SHUTTLE_IDLE      0
 #define SHUTTLE_WARMUP    1
 #define SHUTTLE_INTRANSIT 2
-#define SHUTTLE_CRASHED   3 // VOREStation Edit - Yup that can happen now
 
 // Sound defines for shuttles.
 #define HYPERSPACE_WARMUP    0
@@ -121,18 +120,6 @@
 
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
-// VOREStation Edit Begin
-#define BLUE_SHIELDED 2 // shield from bluespace teleportation (telescience)
-// VOREStation Edit End
-
-// Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
-#define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
-#define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
-#define LIGHTING_LAYER 11
-#define HUD_LAYER 20			//Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
-#define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
-#define SCREEN_LAYER 22			//Mob HUD/effects layer
-#define ABOVE_WINDOW_LAYER 3.25	//Above full tile windows so wall items are clickable // VOREStation Edit
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
@@ -160,6 +147,10 @@
 #define MAT_PHORON			"phoron"
 #define MAT_DIAMOND			"diamond"
 #define MAT_SNOW			"snow"
+#define MAT_WOOD			"wood"
+#define MAT_LOG				"log"
+#define MAT_SIFWOOD			"alien wood"
+#define MAT_SIFLOG			"alien log"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
@@ -228,6 +219,7 @@
 #define MAP_MAXX 4
 #define MAP_MAXY 5
 #define MAP_MAXZ 6
+
 // /atom/proc/use_check flags
 #define USE_ALLOW_NONLIVING 1
 #define USE_ALLOW_NON_ADV_TOOL_USR 2

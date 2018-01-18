@@ -57,7 +57,7 @@
 	"<span class='notice'>You have attached [target]'s [E.name] to the [E.amputation_point].</span>")
 	user.drop_from_inventory(E)
 	E.replaced(target)
-	target.update_body()
+	target.update_icons_body(FALSE)
 	target.updatehealth()
 	target.UpdateDamageIcon()
 
@@ -99,7 +99,7 @@
 	if(E.children)
 		for(var/obj/item/organ/external/C in E.children)
 			C.status &= ~ORGAN_DESTROYED
-	target.update_body()
+	target.update_icons_body(FALSE)
 	target.updatehealth()
 	target.UpdateDamageIcon()
 
@@ -149,7 +149,7 @@
 			if(L.sabotaged)
 				new_limb.sabotaged = 1
 
-	target.update_body()
+	target.update_icons_body(FALSE)
 	target.updatehealth()
 	target.UpdateDamageIcon()
 

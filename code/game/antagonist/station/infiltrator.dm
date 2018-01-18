@@ -1,4 +1,4 @@
-// Infiltrator is a varient of Traitor, except that the traitors are in a team and can communicate with a special headset.
+// Infiltrator is a variant of Traitor, except that the traitors are in a team and can communicate with a special headset.
 
 var/datum/antagonist/traitor/infiltrator/infiltrators
 

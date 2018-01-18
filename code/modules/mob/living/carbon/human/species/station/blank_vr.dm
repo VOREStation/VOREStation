@@ -1,11 +1,8 @@
 
 /datum/species
 	//var/vore_numbing = 0
-	var/gets_food_nutrition = 1 // If this is set to 0, the person can't get nutrrition from food.
-	var/can_drain_prey = 0 //Determines if the person can use the succubus drain or not.
-	var/hard_vore_enabled = 0 //Determines if the person has the hardvore verb or not.
+	var/gets_food_nutrition = 1 // If this is set to 0, the person can't get nutrition from food.
 	var/metabolism = 0.0015
-	var/can_fly = 0 //Determines if the species can fly if they have wings.
 	var/lightweight = 0 //Oof! Nonhelpful bump stumbles.
 	var/trashcan = 0 //It's always sunny in the wrestling ring.
 

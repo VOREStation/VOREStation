@@ -36,7 +36,7 @@
 		set_wing_state("[species.get_wing(src)]_static")
 	toggle_wing_vr(0)
 	if(update_icons)
-		update_icons()
+		update_icons_layers()
 
 /mob/living/carbon/human/proc/get_wing_image()
 	//If you are FBP with tail style and didn't set a custom one
@@ -61,11 +61,11 @@
 	overlays_standing[WING_LAYER] = get_wing_image()
 	if(overlays_standing[WING_LAYER])
 		if(update_icons)
-			update_icons()
+			update_icons_layers()
 		return
 
 /mob/proc/stop_flying(var/update_icons=1)
 	flying = 0
 
 	if(update_icons)
-		update_icons()
+		update_icons_layers()

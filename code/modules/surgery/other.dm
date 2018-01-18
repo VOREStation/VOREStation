@@ -110,7 +110,7 @@
 	var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 	if (trans > 0)
 		affected.status &= ~ORGAN_DEAD
-		affected.owner.update_body(1)
+		affected.owner.update_icons_body()
 
 		user.visible_message("<font color='blue'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name].</font>", \
 			"<font color='blue'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].</font>")

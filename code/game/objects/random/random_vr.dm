@@ -180,33 +180,22 @@
 	var/faction = "wild animal"
 
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
-	var/mob = pick(
+	return pick(
 				prob(50);/mob/living/simple_animal/retaliate/gaslamp,
 //				prob(50);/mob/living/simple_animal/otie/feral, // Removed until Otie code is unfucked.
 				prob(20);/mob/living/simple_animal/hostile/dino/virgo3b,
 				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
-	if (istype(mob, /mob/living)) // This is just to prevent runtime errors in case some dev is a dumbass and puts invalid items into this.
-		var/mob/living/simple_animal/this_mob = mob
+
+/obj/random/outside_mob/spawn_item()
+	. = ..()
+	if(istype(., /mob/living/simple_animal))
+		var/mob/living/simple_animal/this_mob = .
 		this_mob.faction = src.faction
 		if (this_mob.minbodytemp > 200) // Temporary hotfix. Eventually I'll add code to change all mob vars to fit the environment they are spawned in.
 			this_mob.minbodytemp = 200
-		return this_mob
-	else
-		return mob
-
-/obj/random/outside_mob/spawn_item()
-	..()
-	var/datum/map_z_level/z_level = get_z_level_datum(spawned_thing)
-	if(!istype(z_level, /datum/map_z_level/tether/wilderness))
-		return
-	if(!istype(spawned_thing, /mob/living/simple_animal))
-		return
-	var/datum/map_z_level/tether/wilderness/wilderness = z_level
-	if(wilderness.activated)
-		return
-	var/mob/living/simple_animal/M = spawned_thing
-	wilderness.frozen_mobs += M
-	M.life_disabled = 1
-	for(var/i = 1 to 20) //wander the mobs around so they aren't always in the same spots
-		step_rand(M)
-		sleep(2)
+		//wander the mobs around so they aren't always in the same spots
+		var/turf/T = null
+		for(var/i = 1 to 20)
+			T = get_step_rand(this_mob) || T
+		if(T)
+			this_mob.forceMove(T)

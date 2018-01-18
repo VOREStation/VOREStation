@@ -989,8 +989,8 @@ var/list/admin_verbs_event_manager = list(
 		else
 			M.gender = NEUTER
 
-	M.update_hair()
-	M.update_body()
+	M.update_hair(FALSE)
+	M.update_icons_body()
 	M.check_dna(M)
 
 /client/proc/playernotes()

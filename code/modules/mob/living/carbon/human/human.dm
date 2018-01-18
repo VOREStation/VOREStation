@@ -2,8 +2,8 @@
 	name = "unknown"
 	real_name = "unknown"
 	voice_name = "unknown"
-	icon = 'icons/mob/human.dmi'
-	icon_state = "body_m_s"
+	icon = 'icons/effects/effects.dmi' //We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
+	icon_state = "nothing"
 
 	var/list/hud_list[TOTAL_HUDS]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -56,6 +56,14 @@
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
+
+	list_layers.Cut()
+	list_layers = null //Be free!
+	list_body.Cut()
+	list_body = null
+	list_huds.Cut()
+	list_huds = null
+
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -1173,19 +1181,7 @@
 			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
-		species.update_attack_types() //VOREStation Edit Start Required for any trait that updates unarmed_types in setup.
-		if(species.gets_food_nutrition != 1) //Bloodsucker trait. Tacking this on here.
-			verbs |= /mob/living/carbon/human/proc/bloodsuck
-		if(species.can_drain_prey)
-			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
-			verbs |= /mob/living/carbon/human/proc/succubus_drain_finialize
-			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
-		if(species.hard_vore_enabled) //Hardvore verb.
-			verbs |= /mob/living/carbon/human/proc/shred_limb
-		if(species.can_fly)
-			verbs |= /mob/living/proc/flying_toggle //Flying wings!
-			verbs |= /mob/living/proc/start_wings_hovering
-		//VOREStation Edit End
+		species.update_attack_types() //VOREStation Edit - Required for any trait that updates unarmed_types in setup.
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
@@ -1523,11 +1519,19 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
+	for(var/datum/modifier/M in modifiers)
+		if(M.pain_immunity == TRUE)
+			return 0
 	if(check_organ)
 		if(!istype(check_organ))
 			return 0
 		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
+
+/mob/living/carbon/human/is_sentient()
+	if(get_FBP_type() == FBP_DRONE)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))

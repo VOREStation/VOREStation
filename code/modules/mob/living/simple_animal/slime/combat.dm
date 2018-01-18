@@ -44,11 +44,12 @@
 	if(istype(L, /mob/living/carbon) && L.getCloneLoss() >= L.getMaxHealth() * 1.5 || istype(L, /mob/living/simple_animal) && L.stat == DEAD)
 		to_chat(src, "This subject does not have an edible life energy...")
 		return FALSE
-	if(L.buckled_mob)
-		if(istype(L.buckled_mob, /mob/living/simple_animal/slime))
-			if(L.buckled_mob != src)
-				to_chat(src, "\The [L.buckled_mob] is already feeding on this subject...")
-				return FALSE
+	if(L.has_buckled_mobs())
+		for(var/A in L.buckled_mobs)
+			if(istype(A, /mob/living/simple_animal/slime))
+				if(A != src)
+					to_chat(src, "\The [A] is already feeding on this subject...")
+					return FALSE
 	return TRUE
 
 /mob/living/simple_animal/slime/proc/start_consuming(var/mob/living/L)

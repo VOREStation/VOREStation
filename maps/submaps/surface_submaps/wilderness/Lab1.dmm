@@ -18,7 +18,7 @@
 "r" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "s" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "t" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"u" = (/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/hyper; dir = 8; name = "Unknown APC"; pixel_x = -24},/turf/simulated/wall/r_wall,/area/submap/Lab1)
+"u" = (/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/hyper; dir = 8; name = "Unknown APC"; operating = 0; pixel_x = -24},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "v" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "w" = (/obj/structure/table/standard,/obj/item/device/flashlight/lamp,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "x" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
@@ -46,7 +46,7 @@ acghhihhjhhjhhihhhca
 ackhgcdfcllcdfchhhca
 acmhncbbchhcbbcohpca
 acqhrcbbcshcbbcthtca
-achhhubbchhcbbcvhwca
+acuhhcbbchhcbbcvhwca
 acdefcbbcllcbbcdefca
 abbbbbbbbbbbbbbbbbba
 abbbbbbbbbbbbbbbbbba

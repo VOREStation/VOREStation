@@ -34,12 +34,14 @@
 
 /datum/shuttle/web_shuttle/syndicate
 	name = "Mercenary"
+	visible_name = "Unknown Vessel"
 	warmup_time = 0
 	can_cloak = TRUE
 	cloaked = TRUE
 	current_area = /area/syndicate_station/start
 	docking_controller_tag = "merc_shuttle"
 	web_master_type = /datum/shuttle_web_master/syndie
+	flight_time_modifier = 2	// Assumption that 'larger ship + few engines = slower'
 
 /datum/shuttle_web_master/syndie
 	destination_class = /datum/shuttle_destination/syndie
@@ -55,7 +57,7 @@
 	dock_target = "merc_base"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/syndie/orbit = 3 MINUTES,
+		/datum/shuttle_destination/syndie/orbit = 1.5 MINUTES,
 	)
 
 /datum/shuttle_destination/syndie/orbit
@@ -64,10 +66,10 @@
 	preferred_interim_area = /area/syndicate_station/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/syndie/outside_SC_1d = 1 MINUTE,
-		/datum/shuttle_destination/syndie/outside_SC_2d = 1 MINUTE,
-		/datum/shuttle_destination/syndie/outside_SC_3d = 1 MINUTE,
-		/datum/shuttle_destination/syndie/sky = 1 MINUTE
+		/datum/shuttle_destination/syndie/outside_SC_1d = 30 SECONDS,
+		/datum/shuttle_destination/syndie/outside_SC_2d = 30 SECONDS,
+		/datum/shuttle_destination/syndie/outside_SC_3d = 30 SECONDS,
+		/datum/shuttle_destination/syndie/sky = 30 SECONDS
 	)
 
 /datum/shuttle_destination/syndie/outside_SC_1d
@@ -110,8 +112,12 @@
 
 	dock_target = "nuke_shuttle_dock_airlock"
 	announcer = "Southern Cross Docking Computer"
-	arrival_message = "Attention, a shuttle has arrived to the Arrivals Dock."
-	departure_message = "Attention, a shuttle has departed the Arrivals Dock."
+
+/datum/shuttle_destination/syndie/docked_SC/get_arrival_message()
+	return "Attention, [master.my_shuttle.visible_name] has arrived to the Arrivals Dock."
+
+/datum/shuttle_destination/syndie/docked_SC/get_departure_message()
+	return "Attention, [master.my_shuttle.visible_name] has departed the Arrivals Dock."
 
 /datum/shuttle_destination/syndie/sky
 	name = "Skies of Sif"
@@ -119,7 +125,7 @@
 	preferred_interim_area = /area/syndicate_station/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/syndie/planet = 30 SECONDS
+		/datum/shuttle_destination/syndie/planet = 15 SECONDS
 	)
 
 /datum/shuttle_destination/syndie/planet

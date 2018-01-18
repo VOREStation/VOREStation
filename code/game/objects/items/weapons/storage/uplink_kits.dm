@@ -169,7 +169,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/g9mm
 	name = "\improper Smooth operator"
-	desc = "9mm with silencer kit."
+	desc = "Compact 9mm with silencer kit."
 
 /obj/item/weapon/storage/box/syndie_kit/g9mm/New()
 	..()

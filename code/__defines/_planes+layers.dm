@@ -49,7 +49,7 @@ What is the naming convention for planes or layers?
 
 // OPENSPACE_PLANE reserves all planes between OPENSPACE_PLANE_START and OPENSPACE_PLANE_END inclusive
 #define OPENSPACE_PLANE 		-55 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
-#define OPENSPACE_PLANE_START 	-53
+#define OPENSPACE_PLANE_START	-53
 #define OPENSPACE_PLANE_END		-38
 #define OVER_OPENSPACE_PLANE	-37
 
@@ -57,7 +57,24 @@ What is the naming convention for planes or layers?
 #define PLANE_WORLD				0	// BYOND's default value for plane, the "base plane"
 ////////////////////////////////////////////////////////////////////////////////////////
 
+	//#define TURF_LAYER		2 //For easy recordkeeping; this is a byond define
+	#define DOOR_OPEN_LAYER		2.7 //Under all objects if opened. 2.7 due to tables being at 2.6
+	//#define OBJ_LAYER			3 //For easy recordkeeping; this is a byond define
+	#define DOOR_CLOSED_LAYER	3.1 //Above most items if closed
+	#define SHOWER_OPEN_LAYER	3.4
+	#define BELOW_MOB_LAYER		3.9
+	//#define MOB_LAYER			4 //For easy recordkeeping; this is a byond define
+	#define ABOVE_MOB_LAYER		4.1
+	#define SHOWER_CLOSED_LAYER 4.2
+
+	//#define FLY_LAYER			5 //For easy recordkeeping; this is a byond define
+	#define LIGHTING_LAYER		11 //Layer that lighting used to be on (now it's on a plane)
+	#define HUD_LAYER			20 //Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
+	#define OBFUSCATION_LAYER	21 //Where images covering the view for eyes are put
+	#define SCREEN_LAYER		22 //Mob HUD/effects layer
+
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
+#define PLANE_LIGHTING_ABOVE	6 //For glowy eyes etc. that shouldn't be affected by darkness
 
 #define PLANE_GHOSTS			10 //Spooooooooky ghooooooosts
 #define PLANE_AI_EYE			11 //The AI eye lives here
@@ -74,8 +91,13 @@ What is the naming convention for planes or layers?
 #define PLANE_CH_SPECIAL		23 //Special role icon (revhead or w/e)
 #define PLANE_CH_STATUS_OOC		24 //OOC status hud for spooks
 
+
 //Fullscreen overlays under inventory
 #define PLANE_FULLSCREEN		90	//Blindness, mesons, druggy, etc
+	#define FULLSCREEN_LAYER	18
+	#define DAMAGE_LAYER		18.1
+	#define BLIND_LAYER			18.2
+	#define CRIT_LAYER			18.3
 
 //Client UI HUD stuff
 #define PLANE_PLAYER_HUD		95 //The character's UI is on this plane
@@ -94,3 +116,7 @@ What is the naming convention for planes or layers?
 /atom/proc/reset_plane_and_layer()
 	plane = initial(plane)
 	layer = initial(layer)
+
+
+// Check if a mob can "logically" see an atom plane
+#define MOB_CAN_SEE_PLANE(M, P) (P == PLANE_WORLD || (P >= OPENSPACE_PLANE_START && P <= OPENSPACE_PLANE_END) || (P in M.planes_visible))

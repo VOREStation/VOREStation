@@ -1001,7 +1001,11 @@
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
 			M.drop_from_inventory(I, locker)
-		M.update_icons()
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.update_icons_layers() //Cheaper
+		else
+			M.update_icons()
 
 		//so they black out before warping
 		M.Paralyse(5)

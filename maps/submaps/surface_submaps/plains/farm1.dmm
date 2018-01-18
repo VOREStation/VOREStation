@@ -1,0 +1,93 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ac" = (/obj/structure/railing,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ad" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ae" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"af" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ag" = (/turf/simulated/wall/wood,/area/submap/farm1)
+"ah" = (/obj/structure/grille/rustic,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/submap/farm1)
+"ai" = (/obj/structure/window/reinforced,/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"aj" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/wood,/area/submap/farm1)
+"ak" = (/turf/simulated/floor/wood,/area/submap/farm1)
+"al" = (/obj/structure/table/marble,/turf/simulated/floor/wood,/area/submap/farm1)
+"am" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/wood,/area/submap/farm1)
+"an" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"ao" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/cornseed,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ap" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/cornseed,/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aq" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/cornseed,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ar" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"as" = (/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"at" = (/obj/item/weapon/material/minihoe,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"au" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"av" = (/obj/structure/table/marble,/obj/item/weapon/material/knife,/turf/simulated/floor/wood,/area/submap/farm1)
+"aw" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"ax" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/bluetomatoseed,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"ay" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/bluetomatoseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"az" = (/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"aA" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/icepepperseed,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aB" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/icepepperseed,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aC" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/farm1)
+"aD" = (/obj/machinery/door/window/eastleft,/obj/machinery/door/window/westleft,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aE" = (/mob/living/bot/farmbot,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aF" = (/obj/structure/sink/puddle,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"aG" = (/obj/item/weapon/material/knife/machete/hatchet,/turf/simulated/floor/outdoors/mud,/area/submap/farm1)
+"aH" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/matches,/obj/item/weapon/flame/match,/turf/simulated/floor/wood,/area/submap/farm1)
+"aI" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/farm1)
+"aJ" = (/obj/item/clothing/shoes/boots/winter/hydro,/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,/turf/simulated/floor/wood,/area/submap/farm1)
+"aK" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"aL" = (/obj/structure/bed/chair/wood{tag = "icon-wooden_chair (WEST)"; icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/wood,/area/submap/farm1)
+"aM" = (/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aN" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/farm1)
+"aO" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aP" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/obj/structure/window/reinforced,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aQ" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"aR" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/submap/farm1)
+"aS" = (/obj/machinery/space_heater,/turf/simulated/floor/wood,/area/submap/farm1)
+"aT" = (/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
+"aU" = (/obj/structure/bookcase,/obj/item/weapon/book/manual/hydroponics_pod_people,/turf/simulated/floor/wood,/area/submap/farm1)
+"aV" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/blue,/turf/simulated/floor/wood,/area/submap/farm1)
+"aW" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/turf/simulated/floor/wood,/area/submap/farm1)
+"aX" = (/turf/simulated/floor/outdoors/rocks,/area/submap/farm1)
+"aY" = (/turf/simulated/floor/plating,/area/submap/farm1)
+"aZ" = (/turf/simulated/floor/water,/area/submap/farm1)
+"ba" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating,/area/submap/farm1)
+"bb" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/farm1)
+"bc" = (/obj/structure/closet/crate/hydroponics/prespawned,/turf/simulated/floor/plating,/area/submap/farm1)
+"bd" = (/obj/structure/table/steel,/obj/machinery/cell_charger,/turf/simulated/floor/plating,/area/submap/farm1)
+"be" = (/obj/structure/table/steel,/turf/simulated/floor/plating,/area/submap/farm1)
+"bf" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabacacacacacacacacacacacacacacacacacacacacacacacacabaaaaaaaaaa
+aaadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafaaaaaaaaaa
+aaadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafaaaaaaaaaa
+aaadaeaeagagahahagagaeaeaeaeaeaiaiaiaiaiaiaiaiaiaeaeafaaaaaaaaaa
+aaadaeaeagajakalamagaeaeaeaeanaoapapapapapapapaqaraeafaaaaaaaaaa
+aaadaeaeagakakakalahaeaeaeaeanasatababababababauaraeafaaaaaaaaaa
+aaadaeaeagakakakavagaeababaeawaxayayazazazaAaAaBaraeafaaaaaaaaaa
+aaadaeagagagaCagagagaeabababaDaEababazaFaGababauaraeafaaaaaaaaaa
+aaadaeagaHaIakaJagaeaeaeababaKaxayayazazazaAaAaBaraeafaaaaaaaaaa
+aaadaeahaIaLakakagagagaeabaeanasabaMabababababauaraeafaaaaaaaaaa
+aaadaeahaNakakakaCakaCababaeanaOaPaPaPaPaPaPaPaQaraeafaaaaaaaaaa
+aaadaeagaRakakaSagagagaeabaeaeaTaTaTaTaTaTaTaTaTaeaeafaaaaaaaaaa
+aaadaeagagaCagagagaeaeaeabaeaeaeaeaeaeaeaeaeaeaeaeaeafaaaaaaaaaa
+aaadaeagaUakakaVagaeaeabababaeaeaeaeaeababababababababababababaa
+aaadaeagaSakakaWagaeaeababababababababababababababababababababaa
+aaadaeagagagagagagaeaeabaeaeaeaeaeaeaeababababababababababababaa
+aaadaeaeababababababababaeaeaeaeaeaeaeabababaeaeaeaeafaaaaaaaaaa
+aaadaeababaXaXaXaXaXaXababaeaeaeagagagaYaYaYagagagaeafaaaaaaaaaa
+aaadaeabaXaXaZaZaZaZaXaXababaeaeagbaaYaYaYaYaYbaagaeafaaaaaaaaaa
+aaadaeabaXaZaZaZaZaZaZaXaXababaeahbbaYaYaYaYaYaYahaeafaaaaaaaaaa
+aaadaeabaXaXaZaZaZaZaZaZaXaXabaeahbaaYaYaYaYaYbaahaeafaaaaaaaaaa
+aaadaeababaXaXaZaZaZaZaZaZaXabaeahbcaYaYaYaYaYaYahaeafaaaaaaaaaa
+aaadaeaeababaXaXaZaZaZaZaXaXabaeagbaaYbdbebeaYbaagaeafaaaaaaaaaa
+aaadaeaeaeababaXaXaXaXaXaXababaeagagagagagagagagagaeafaaaaaaaaaa
+aaadaeaeaeaeababababababababaeaeaeaeaeaeaeaeaeaeaeaeafaaaaaaaaaa
+aaadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeafaaaaaaaaaa
+aaabbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfbfabaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

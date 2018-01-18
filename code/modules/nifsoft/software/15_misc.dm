@@ -7,11 +7,11 @@
 	applies_to = NIF_SYNTHETIC
 	tick_flags = NIF_ACTIVETICK
 	var/obj/machinery/power/apc/apc
+	other_flags = (NIF_O_APCCHARGE)
 
 	activate()
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
-			nif.set_flag(NIF_O_APCCHARGE,NIF_FLAGS_OTHER)
 			apc = locate(/obj/machinery/power/apc) in get_step(H,H.dir)
 			if(!apc)
 				apc = locate(/obj/machinery/power/apc) in get_step(H,0)
@@ -25,7 +25,6 @@
 
 	deactivate()
 		if((. = ..()))
-			nif.clear_flag(NIF_O_APCCHARGE,NIF_FLAGS_OTHER)
 			apc = null
 
 	life()
@@ -49,14 +48,7 @@
 	a_drain = 0.5
 	wear = 3
 	applies_to = NIF_SYNTHETIC
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)
+	other_flags = (NIF_O_PRESSURESEAL)
 
 /datum/nifsoft/heatsinks
 	name = "Heat Sinks"
@@ -68,6 +60,7 @@
 	var/used = 0
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_SYNTHETIC
+	other_flags = (NIF_O_HEATSINKS)
 
 	activate()
 		if((. = ..()))
@@ -76,11 +69,6 @@
 				spawn(0)
 					deactivate()
 				return FALSE
-			nif.set_flag(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)
 
 	stat_text()
 		return "[active ? "Active" : "Disabled"] (Stored Heat: [Floor(used/20)]%)"
@@ -149,7 +137,7 @@
 				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
 
 			nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
-			nif.human.update_icons()
+			nif.human.update_icons() //Apply matrix transform asap
 
 			spawn(0)
 				deactivate()

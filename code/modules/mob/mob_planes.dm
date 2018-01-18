@@ -51,6 +51,11 @@
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
 			set_vis(which = SP, state = state)
+	var/plane = PM.plane
+	if(state && !(plane in my_mob.planes_visible))
+		LAZYADD(my_mob.planes_visible, plane)
+	else if(!state && (plane in my_mob.planes_visible))
+		LAZYREMOVE(my_mob.planes_visible, plane)
 
 /datum/plane_holder/proc/set_desired_alpha(var/which = null, var/new_alpha)
 	ASSERT(which)
@@ -62,6 +67,17 @@
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
 			set_vis(which = SP, new_alpha = new_alpha)
+
+/datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
+	ASSERT(which)
+	var/obj/screen/plane_master/PM = plane_masters[which]
+	if(!PM)
+		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+	PM.alter_plane_values(arglist(values))
+	if(PM.sub_planes)
+		var/list/subplanes = PM.sub_planes
+		for(var/SP in subplanes)
+			alter_values(SP, values)
 
 ////////////////////
 // The Plane Master
@@ -103,6 +119,9 @@
 		new_alpha = sanitize_integer(new_alpha, 0, 255, 255)
 		alpha = new_alpha
 
+/obj/screen/plane_master/proc/alter_plane_values()
+	return //Stub
+
 ////////////////////
 // Special masters
 ////////////////////
@@ -122,7 +141,6 @@
 /obj/screen/plane_master/ghosts
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
-
 
 //'Normal'ness						 v								 v								 v
 //Various types of colorblindness	R2R		R2G		R2B		G2R		G2G		G2B		B2R		B2G		B2B
@@ -162,11 +180,11 @@
 		"Paradise Taj"		= MATRIX_Taj_Colorblind
 		)
 
-/obj/screen/plane_master/colorblindness/proc/set_variety(var/which = null)
-	var/new_type = varieties[which]
-	if(!new_type) return
+/obj/screen/plane_master/colorblindness/alter_plane_values(var/variety = null)
+	var/new_matrix = varieties[variety]
+	if(!new_matrix) return
 
-	color = new_type
+	color = new_matrix
 
 /obj/screen/plane_master/colorblindness/proc/debug_variety()
 	var/choice = input(usr,"Pick a type of colorblindness","Which?") as null|anything in varieties
