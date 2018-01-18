@@ -110,7 +110,7 @@
 /datum/trait/colorblind/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	if(!H.plane_holder)
-		H.plane_holder = new(src)
+		H.plane_holder = new(H)
 	H.plane_holder.set_vis(VIS_D_COLORBLIND,TRUE) //The default is monocrhomia, no need to set values
 
 /datum/trait/colorblind/para_vulp
