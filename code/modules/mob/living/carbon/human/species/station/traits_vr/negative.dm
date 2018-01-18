@@ -105,18 +105,18 @@
 /datum/trait/colorblind
 	name = "Colorblindness (Monochromancy)"
 	desc = "You simply can't see colors at all, period. You are 100% colorblind."
-	cost = -4
+	cost = -3
 
 /datum/trait/colorblind/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	if(!H.plane_holder)
-		H.plane_holder = new
+		H.plane_holder = new(src)
 	H.plane_holder.set_vis(VIS_D_COLORBLIND,TRUE) //The default is monocrhomia, no need to set values
 
 /datum/trait/colorblind/para_vulp
 	name = "Colorblindness (Para Vulp)"
 	desc = "You have a severe issue with green colors and have difficulty recognizing them from red colors."
-	cost = -3
+	cost = -2
 
 /datum/trait/colorblind/para_vulp/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -125,7 +125,7 @@
 /datum/trait/colorblind/para_taj
 	name = "Colorblindness (Para Taj)"
 	desc = "You have a minor issue with blue colors and have difficulty recognizing them from red colors."
-	cost = -2
+	cost = -1
 
 /datum/trait/colorblind/para_taj/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
