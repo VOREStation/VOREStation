@@ -703,8 +703,9 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat != DEAD)
 			e.amount *= 0.5
+	else
+		holder.clear_reagents() //No more powergaming by creating a tiny amount of this
 	e.start()
-	holder.clear_reagents()
 	return
 
 /datum/chemical_reaction/flash_powder
@@ -749,7 +750,8 @@
 	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
 	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
 	empulse(location, round(created_volume / 24), round(created_volume / 20), round(created_volume / 18), round(created_volume / 14), 1)
-	holder.clear_reagents()
+	if(!isliving(holder.my_atom)) //No more powergaming by creating a tiny amount of this
+		holder.clear_reagents()
 	return
 
 /datum/chemical_reaction/nitroglycerin
@@ -768,9 +770,10 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat!=DEAD)
 			e.amount *= 0.5
+	else
+		holder.clear_reagents() //No more powergaming by creating a tiny amount of this
 	e.start()
 
-	holder.clear_reagents()
 	return
 
 /datum/chemical_reaction/napalm
@@ -803,7 +806,8 @@
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	spawn(0)
 		S.start()
-	holder.clear_reagents()
+	if(!isliving(holder.my_atom)) //No more powergaming by creating a tiny amount of this
+		holder.clear_reagents()
 	return
 
 /datum/chemical_reaction/foam
@@ -823,7 +827,8 @@
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
-	holder.clear_reagents()
+	if(!isliving(holder.my_atom)) //No more powergaming by creating a tiny amount of this
+		holder.clear_reagents()
 	return
 
 /datum/chemical_reaction/metalfoam
