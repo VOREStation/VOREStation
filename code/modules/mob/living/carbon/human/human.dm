@@ -57,11 +57,11 @@
 	for(var/organ in organs)
 		qdel(organ)
 
-	list_layers.Cut()
+	LAZYCLEARLIST(list_layers)
 	list_layers = null //Be free!
-	list_body.Cut()
+	LAZYCLEARLIST(list_body)
 	list_body = null
-	list_huds.Cut()
+	LAZYCLEARLIST(list_huds)
 	list_huds = null
 
 	return ..()
