@@ -40,7 +40,7 @@
 		my_mob.plane_holder = null
 		my_mob = null
 	plane_masters.Cut() //Goodbye my children, be free
-	..() //We will get qdel'd, as there will not be references to us, then our planelets will disappear on their own.
+	return ..()
 
 /datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)
 	ASSERT(which)
