@@ -6,7 +6,8 @@
 	anchored = 1
 	icon = LIGHTING_ICON
 	layer = LIGHTING_LAYER
-	invisibility = INVISIBILITY_LIGHTING
+	plane = PLANE_LIGHTING
+	//invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX
 	icon_state = "light1"
 	auto_init = 0 // doesn't need special init
@@ -52,10 +53,11 @@
 
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
 	// No I seriously cannot think of a more efficient method, fuck off Comic.
-	var/datum/lighting_corner/cr = T.corners[3] || dummy_lighting_corner
-	var/datum/lighting_corner/cg = T.corners[2] || dummy_lighting_corner
-	var/datum/lighting_corner/cb = T.corners[4] || dummy_lighting_corner
-	var/datum/lighting_corner/ca = T.corners[1] || dummy_lighting_corner
+
+	var/datum/lighting_corner/cr = LAZYACCESS(T.corners,3) || dummy_lighting_corner
+	var/datum/lighting_corner/cg = LAZYACCESS(T.corners,2) || dummy_lighting_corner
+	var/datum/lighting_corner/cb = LAZYACCESS(T.corners,4) || dummy_lighting_corner
+	var/datum/lighting_corner/ca = LAZYACCESS(T.corners,1) || dummy_lighting_corner
 
 	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
 

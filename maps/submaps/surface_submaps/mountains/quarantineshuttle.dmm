@@ -1,0 +1,145 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ac" = (/obj/item/weapon/caution/cone,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ad" = (/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
+"ae" = (/obj/structure/inflatable,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"af" = (/obj/structure/inflatable/door,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ag" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"ah" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"; dir = 8},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"ai" = (/obj/structure/grille,/obj/structure/shuttle/window,/obj/machinery/door/blast/regular{dir = 8; id = "QShuttlePoIDoors"; layer = 3.3; name = "Emergency Lockdown Shutters"},/obj/item/tape/medical{dir = 4; icon_state = "tape_door_0"; layer = 3.4},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"aj" = (/turf/simulated/shuttle/wall/hard_corner,/area/submap/cave/qShuttle)
+"ak" = (/obj/machinery/door/airlock/external{desc = "It opens and closes. It is stamped with the logo of Major Bill's Transportation"; frequency = 1380; icon_state = "door_locked"; id_tag = null; locked = 1; name = "MBT-540"},/obj/item/tape/medical{dir = 4; icon_state = "tape_door_0"; layer = 3.4},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"al" = (/obj/structure/sign/biohazard{dir = 1},/turf/simulated/shuttle/wall/hard_corner,/area/submap/cave/qShuttle)
+"am" = (/obj/structure/toilet{dir = 4},/obj/effect/decal/cleanable/vomit,/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
+"an" = (/obj/machinery/door/airlock{name = "Restroom"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
+"ao" = (/obj/effect/decal/cleanable/vomit,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"ap" = (/obj/effect/decal/remains/human,/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/helmet/space/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aq" = (/obj/structure/bed/chair,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"ar" = (/obj/structure/bed/chair,/obj/effect/decal/remains/human,/obj/item/clothing/suit/space/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"as" = (/obj/machinery/vending/snack{contraband = null; products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 0, /obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/weapon/reagent_containers/food/snacks/chips = 0, /obj/item/weapon/reagent_containers/food/snacks/sosjerky = 0, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 0, /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 0, /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 0, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 0)},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"at" = (/obj/machinery/vending/cola{contraband = null; products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 0)},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"au" = (/obj/structure/closet/crate/secure/loot,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"av" = (/obj/item/weapon/pickaxe/drill,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aw" = (/obj/item/clothing/mask/breath,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"ax" = (/obj/effect/decal/cleanable/generic,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"ay" = (/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"az" = (/obj/item/trash/syndi_cakes,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aA" = (/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aB" = (/obj/item/weapon/cigbutt,/obj/item/weapon/tank/emergency/oxygen,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aC" = (/obj/item/weapon/material/knife/boot,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aD" = (/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aE" = (/obj/item/trash/sosjerky,/obj/item/weapon/storage/box/donut/empty,/obj/item/weapon/reagent_containers/food/drinks/sillycup,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aF" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"aG" = (/obj/machinery/door/airlock/glass,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aH" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"aI" = (/obj/machinery/button{name = "Cargo Hatch"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
+"aJ" = (/obj/machinery/computer,/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
+"aK" = (/obj/structure/bed/chair/comfy/brown{dir = 8},/obj/effect/decal/cleanable/vomit,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aL" = (/obj/structure/table/standard,/obj/item/clothing/head/helmet/space/emergency,/obj/item/weapon/paper{desc = "It looks old."; icon_state = "paper_words"; info = "<B>Pilot's Log for Major Bill's Transportation Shuttle MBT-540</B><BR>Routine flight inbound for VIMC Outpost C-12 6:35AM 03/12/2491, Estimated arrival 7:05AM. 16 passengers, 2 crew.<BR><B>V.I.S Traffic Control 06:05:55:</B>Major Bill's MBT-540 you are clear for departure from Dock 6 on departure route Charlie. Have a safe flight.<BR><B>Captain Willis 06:06:33:</B> You too, control. Departing route Charlie.<BR><B>Captain Willis 06:06:48:</B> ...Damn it.<BR> ** <BR><B>Captain Adisu 06:10:23: </B> Hey Ted, I'm seeing a fuel line pressure drop on engine 3?<BR><B>Captain Willis 06:10:50</B>: Yeah, I see it. Heater's fading out, redistributing thrust 30% to compensate.<BR><B>06:12:31: A loud thud is heard.</B><BR><B>Captain Adisu 06:12:34: </B> What the (Expletives)?<BR><B>Captain Adisu 06:12:39:</B> We just lost power to engine- engine two. Hold on... Atmospheric alarm in the cargo bay. Son of a...<BR><B>Captain Willis 06:12:59:</B> Reducing thrust further 30%, do we have a breach Adi, a breach?<BR><B>Captain Adisu 06:13:05:</B>No breach, checking cameras... Looks like- looks like some cargo came loose back there.<BR><B>Captain Willis 06:13:15:</B> (Expletives), I'm turning us around. Put out a distress call to Control, we'll be back in Sif orbit in a couple of minutes. <BR> ** <BR> <BR><B>V.I.S Traffic Control 06:15:49:</B> MBT-540 we are recieving you. Your atmospheric sensors are reading potentially harmful toxins in your cargo bay. Advise locking down interior cargo bay doors. Please stand by.<BR><B>Captain Adisu 06:16:10:</B> Understood. <BR> ** <BR><B>V.I.S Traffic Control 06:27:02: </B> MBT-540, we have no docking bays available at this time, are you equipped for atmospheric re-entry?<BR><B>Captain Willis 06:27:12:</B> We-We are shielded. But we have fuel and air for-<BR><B>V.I.S Traffic Control 06:27:17:</B> Please make an emergency landing at the coordinates provided and standby for further information.<BR> ** <BR><B>Captain Willis 06:36:33:</B> Emergency landing successful. Adi, er Adisu is checking on the passengers but we had a smooth enough landing, are we clear to begin evacu-<BR><B>06:36:50: (Sound of emergency shutters closing)</B><BR><B>Captain Willis 06:36:51: </B>What the hell? Control we just had a remote activation of our emergency shutters, please advise.<BR><B>V.I.S Traffic Control 06:38:10:</B> Captain, please tune to frequency 1493.8 we are passing you on to local emergency response units. Godspeed.<BR><B>Captain Willis 06:38:49:</B> This is Captain Willis of Major Bill's Transportation flight MBT-540 we have eighteen souls aboard and our emergency lockdown shutters have engaged remotely. Do you read?<BR><B>S.D.D.C:</B> This is the Sif Department of Disease Control, your vessel has been identified as carrying highly sensitive materials, and due to the nature of your system's automated alerts you will be asked to remain in quarantine until we are able to determine the nature of the pathogens aboard and whether it has entered the air circulation system. Please remain in your cockpit at this time.<BR> ** </BR><B>Captain Adisu 17:23:58:09:</B> I don't think they're opening those doors Ted. I don't think they're coming.</BR>"; item_state = "paper"; name = "Black Box Transcript MBT-540"},/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
+"aM" = (/obj/item/trash/cheesie,/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aN" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aO" = (/obj/structure/bed/chair{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aP" = (/obj/structure/bed/chair{dir = 1},/obj/effect/decal/remains/human,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aQ" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aR" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aS" = (/obj/effect/decal/cleanable/vomit,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aT" = (/obj/item/clothing/head/helmet/space/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"aU" = (/obj/machinery/door/airlock/engineering{icon_state = "door_locked"; locked = 1; name = "Cargo Bay"},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aV" = (/obj/item/weapon/virusdish/random,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aW" = (/obj/item/weapon/material/shard,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aX" = (/obj/item/device/paicard,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aY" = (/obj/machinery/door/blast/regular{name = "Cargo Door"},/obj/item/tape/medical{dir = 4; icon_state = "tape_door_0"; layer = 3.4},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"aZ" = (/obj/effect/decal/remains/human,/obj/item/clothing/under/mbill{desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation. This looks at least a few decades out of date."; name = "\improper old Major Bill's uniform"},/obj/item/clothing/head/soft/mbill{desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date."; name = "old shipping cap"},/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
+"ba" = (/obj/item/weapon/cigbutt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bb" = (/obj/machinery/door/airlock/command{icon_state = "door_locked"; locked = 1},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bc" = (/obj/item/weapon/tank/emergency/oxygen/engi,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bd" = (/obj/effect/decal/remains/human,/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/helmet/space/emergency,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"be" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bf" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bg" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bh" = (/obj/item/clothing/suit/space/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bi" = (/obj/item/trash/candy,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bj" = (/obj/structure/table/rack,/obj/structure/loot_pile/maint/boxfort,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bk" = (/obj/structure/table/rack,/obj/item/weapon/shovel,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bl" = (/obj/structure/closet/crate/secure/science{icon_state = "scisecurecrateopen"; locked = 0; name = "Virus Samples - FRAGILE"; opened = 1},/obj/item/weapon/virusdish/random,/obj/item/weapon/virusdish/random,/obj/item/weapon/virusdish/random,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bm" = (/obj/structure/bed/chair/comfy/brown{dir = 8},/obj/effect/decal/remains/human,/obj/item/clothing/under/mbill{desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation. This looks at least a few decades out of date."; name = "\improper old Major Bill's uniform"},/obj/item/clothing/head/soft/mbill{desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date."; name = "old shipping cap"},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bn" = (/obj/structure/table/standard,/obj/item/device/taperecorder,/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
+"bo" = (/obj/item/weapon/crowbar/red,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bp" = (/obj/item/trash/chips,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bq" = (/obj/structure/bed/chair,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"br" = (/obj/structure/bed/chair,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bs" = (/obj/structure/bed/chair,/obj/effect/decal/remains/human,/obj/item/clothing/mask/breath,/obj/item/clothing/head/soft/mbill{desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date."; name = "old shipping cap"},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bt" = (/obj/structure/bed/chair,/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bu" = (/obj/effect/decal/remains/xeno,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bv" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bw" = (/obj/effect/decal/remains/mouse,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bx" = (/obj/random/maintenance,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"by" = (/obj/item/weapon/coin/silver,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bz" = (/obj/effect/decal/remains/human,/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/helmet/space/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bA" = (/obj/effect/decal/cleanable/generic,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bB" = (/obj/item/weapon/tank/emergency/oxygen/engi,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bC" = (/obj/item/trash/sosjerky,/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bD" = (/obj/effect/decal/remains/human,/obj/item/clothing/mask/breath,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bE" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bF" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/plating,/area/submap/cave/qShuttle)
+"bG" = (/obj/machinery/button{dir = 4; name = "Cargo Access"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
+"bH" = (/obj/machinery/recharge_station,/turf/simulated/shuttle/floor,/area/submap/cave/qShuttle)
+"bI" = (/obj/machinery/door/airlock{name = "Charge Station"},/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
+"bJ" = (/obj/item/trash/tastybread,/obj/item/weapon/material/butterfly/boxcutter,/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bK" = (/obj/structure/bed/chair{dir = 1},/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bL" = (/obj/structure/bed/chair{dir = 1},/obj/item/weapon/card/id/external{desc = "An identification card of some sort. Looks like this one was issued by the Vir Independent Mining Corp."; name = "VIMC identification card"; rank = "Miner"; registered_name = "Nadia Chu"},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bM" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/emergency,/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bN" = (/obj/structure/table/rack,/obj/item/clothing/head/soft/mbill{desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date."; name = "old shipping cap"},/turf/simulated/shuttle/floor{tag = "icon-floor_white"; icon_state = "floor_white"},/area/submap/cave/qShuttle)
+"bO" = (/obj/structure/ore_box,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bP" = (/obj/item/weapon/contraband/poster,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bQ" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/shuttle/floor{tag = "icon-floor_yellow"; icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bR" = (/obj/structure/sign/biohazard,/turf/simulated/shuttle/wall/hard_corner,/area/submap/cave/qShuttle)
+"bS" = (/obj/item/tape/medical{icon_state = "tape_v_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bT" = (/obj/item/taperoll/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bU" = (/obj/item/tape/medical{dir = 1; icon_state = "tape_dir_0"},/obj/item/tape/medical{dir = 4; icon_state = "tape_dir_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bV" = (/obj/item/tape/medical{icon_state = "tape_h_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bW" = (/obj/structure/lattice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"bX" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"bY" = (/obj/structure/sign/kiddieplaque{desc = "By order of the S.D.D.C, this site or craft is to be buried and not disturbed until such time that sterility can be confirmed. Dated: 20/12/2491 "; name = "\improper Sif Department of Disease Control notice"},/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"bZ" = (/obj/structure/sign/warning,/turf/simulated/wall/iron,/area/submap/cave/qShuttle)
+"ca" = (/obj/item/bodybag,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cb" = (/obj/structure/table/steel,/obj/item/weapon/storage/box/bodybags,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cc" = (/obj/structure/table/steel,/obj/item/clothing/suit/bio_suit,/obj/random/medical/lite,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cd" = (/obj/structure/closet/l3closet/virology,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ce" = (/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cf" = (/obj/structure/dispenser/oxygen,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cg" = (/obj/structure/table/steel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ch" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/syringe/antiviral,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ci" = (/obj/structure/table/steel,/obj/item/weapon/reagent_containers/spray/cleaner{desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'"; name = "Chemistry Cleaner"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cj" = (/obj/structure/table/steel,/obj/item/weapon/crowbar/power,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ck" = (/obj/structure/table/rack,/obj/item/clothing/head/bio_hood,/obj/item/clothing/suit/bio_suit,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cl" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"cm" = (/obj/structure/closet/crate/medical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacababaaaaadadadacaa
+aaabababababaeafaeaeabaaaaabababababababadagahabaa
+aaacababadaiajakakalaiadaiadadadadadadadadadadaaaa
+aaababadadamanaoapadaqaqaradasatadauavauadagahaaaa
+aaaaadadadadadawaxayazaAaBaCaDaEadaFaGaHadaIadabaa
+aaaaaiaJaKaLadaMaNaOaPaQaQaRaSaTaUaVaAaWaXaAaYabaa
+aaabaiaZbababbbcbdadbebfbgadbhbiadbjaAbkaAblaYabaa
+aaabaiaJbmbnadbobpbqbrbsbtbqaNbuaUbvaAbwaVbxaYabaa
+aaabadadadadadaDbyaAbzaAbAbBbCbDadbEaGbFadadbGabaa
+aaababadadbHbIbJaoadbKaQbLadbMbNadbObPbQadagahabaa
+ababacabadaiajakakbRaiadaiadadadadadadadadadadaaaa
+ababababbSabaeaeafaeababababbTabababababadagahaaaa
+aaabababbUbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVadadadaaaa
+aaaaababababababababbWbXbYbZcacacaabcbcccdabceaaaa
+aaaaacababcfcgchcicjckababclabcacaababababababaaaa
+aaaaaaababcmcgababababababababaaaaaaaaaaababacaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

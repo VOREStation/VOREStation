@@ -198,5 +198,6 @@
 
 /obj/structure/flora/tree/sif/update_icon()
 	set_light(5, 1, "#33ccff")
-	overlays.Cut()
-	overlays.Add(image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[icon_state]_glow", layer = LIGHTING_LAYER + 0.1))
+	var/image/glow = image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[icon_state]_glow")
+	glow.plane = PLANE_LIGHTING_ABOVE
+	overlays = list(glow)

@@ -47,7 +47,7 @@
 
 /obj/singularity/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/singularity/attack_hand(mob/user as mob)
 	consume(user)
@@ -169,7 +169,7 @@
 				pixel_y = -64
 				grav_pull = 8
 				consume_range = 2
-				dissipate_delay = 10
+				dissipate_delay = 4
 				dissipate_track = 0
 				dissipate_strength = 20
 				overlays = 0
@@ -267,19 +267,15 @@
 	return 1
 
 /obj/singularity/proc/eat()
-	for(var/atom/X in orange(grav_pull, src))
+	for(var/T in orange(grav_pull, src))
+		var/atom/X = T
+		if(!X.simulated)
+			continue
 		var/dist = get_dist(X, src)
-		var/obj/singularity/S = src
-		if(!istype(src))
-			return
 		if(dist > consume_range)
-			X.singularity_pull(S, current_size)
-		else if(dist <= consume_range)
+			X.singularity_pull(src, current_size)
+		else
 			consume(X)
-
-	//for (var/turf/T in trange(grav_pull, src)) //TODO: Create a similar trange for orange to prevent snowflake of self check.
-	//	consume(T)
-
 	return
 
 /obj/singularity/proc/consume(const/atom/A)

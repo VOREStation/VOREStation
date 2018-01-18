@@ -14,7 +14,6 @@
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
-	can_fly = 1 //They have wings by default.
 	var/base_species = "Xenochimera"
 
 	num_alternate_languages = 2
@@ -27,10 +26,12 @@
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/carbon/human/proc/purge_impurities,
 		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finialize,
+		/mob/living/carbon/human/proc/succubus_drain_finalize,
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/shred_limb) //Xenochimera get all the special verbs since they can't select traits.
+		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/proc/flying_toggle,
+		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
 
 	min_age = 18
 	max_age = 80

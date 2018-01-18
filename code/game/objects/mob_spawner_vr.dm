@@ -196,5 +196,4 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon_state = "alien_egg"
 	spawn_types = list(
 	/mob/living/simple_animal/hostile/alien/queen = 5,
-	/mob/living/simple_animal/hostile/alien/queen/large = 1
 	)

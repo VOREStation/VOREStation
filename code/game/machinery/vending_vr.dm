@@ -32,7 +32,7 @@
 	products = list(
 	/obj/item/weapon/tray = 8,
 	/obj/item/weapon/material/kitchen/utensil/fork = 6,
-	/obj/item/weapon/material/kitchen/utensil/knife = 6,
+	/obj/item/weapon/material/knife/plastic = 6,
 	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 	/obj/item/weapon/material/knife = 3,
 	/obj/item/weapon/material/kitchen/rollingpin = 2,
@@ -60,7 +60,7 @@
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/tray = 8,
 					/obj/item/weapon/material/kitchen/utensil/fork = 6,
-					/obj/item/weapon/material/kitchen/utensil/knife = 6,
+					/obj/item/weapon/material/knife/plastic = 6,
 					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/tomatosoup = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/mushroomsoup = 8,
@@ -94,7 +94,7 @@
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/tray = 6,
 					/obj/item/weapon/material/kitchen/utensil/fork = 6,
-					/obj/item/weapon/material/kitchen/utensil/knife = 6,
+					/obj/item/weapon/material/knife/plastic = 6,
 					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup = 3,
 					/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon = 3,

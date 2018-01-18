@@ -9,15 +9,15 @@
 	var/datum/nano_module/arscreen
 	var/arscreen_path
 	var/flash_prot = 0 //0 for none, 1 for flash weapon protection, 2 for welder protection
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	plane_slots = list(slot_glasses)
 
 /obj/item/clothing/glasses/omnihud/New()
 	..()
-	src.hud = new/obj/item/clothing/glasses/hud/omni(src)
 	if(arscreen_path)
 		arscreen = new arscreen_path(src)
 
 /obj/item/clothing/glasses/omnihud/Destroy()
-	qdel_null(hud)
 	qdel_null(arscreen)
 	. = ..()
 
@@ -27,12 +27,9 @@
 	..()
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)
-	var/disconnect_hud = hud
 	var/disconnect_ar = arscreen
-	hud = null
 	arscreen = null
 	spawn(20 SECONDS)
-		hud = disconnect_hud
 		arscreen = disconnect_ar
 	..()
 
@@ -75,6 +72,7 @@
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
 	arscreen_path = /datum/nano_module/crew_monitor
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP)
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(arscreen)
@@ -89,6 +87,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Security Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor/security
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(arscreen)
@@ -102,7 +101,7 @@
 	mode = "eng"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Station Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor
+	arscreen_path = /datum/nano_module/alarm_monitor/engineering
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(arscreen)
@@ -161,21 +160,4 @@
 	These have been upgraded with every feature the lesser models have. Now we're talkin'."
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
-
-/obj/item/clothing/glasses/hud/omni
-	name = "internal omni hud"
-	desc = "You shouldn't see this. This is an internal item for glasses."
-	var/obj/item/clothing/glasses/omnihud/shades = null
-
-	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_NOLIGHTING
-
-	New()
-		..()
-		if(istype(loc,/obj/item/clothing/glasses/omnihud))
-			shades = loc
-		else
-			qdel(src)
-
-/obj/item/clothing/glasses/hud/omni/process_hud(var/mob/M)
-	process_omni_hud(M,shades.mode)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)

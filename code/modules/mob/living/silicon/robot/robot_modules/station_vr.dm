@@ -59,7 +59,8 @@
 	name = "k9 robot module"
 	sprites = list(
 					"K9 hound" = "k9",
-					"K9 Alternative (Static)" = "k92"
+					"K9 Alternative (Static)" = "k92",
+					"Secborg model V-2" = "secborg"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -75,7 +76,6 @@
 	src.modules += new /obj/item/device/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
 	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
-	src.modules += new /obj/item/borg/sight/hud/sec(src) //Security hud to access crime records etc.
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -99,9 +99,9 @@
 		T.update_icon()
 	else
 		T.charge_tick = 0
-	var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules
+	/*var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules //Borg baton uses borg cell.
 	if(B && B.bcell)
-		B.bcell.give(amount)
+		B.bcell.give(amount)*/
 
 
 /obj/item/weapon/robot_module/robot/medihound
@@ -127,7 +127,6 @@
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
-	src.modules += new /obj/item/borg/sight/hud/med(src) //Medhud for accessing records and such.
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -153,7 +152,6 @@
 	src.modules += new /obj/item/device/dogborg/tongue(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/device/dogborg/sleeper/K9(src)
-	src.modules += new /obj/item/borg/sight/hud/sec(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
 	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
@@ -203,9 +201,10 @@
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/device/dogborg/tongue(src)
-	src.modules += new /obj/item/device/dogborg/sleeper/analyzer(src) //doesnt have a destructive analyzer in it yet
-	src.modules += new /obj/item/weapon/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
+	//src.modules += new /obj/item/weapon/portable_destructive_analyzer(src) //Belly works now.
 	src.modules += new /obj/item/weapon/gripper/research(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)

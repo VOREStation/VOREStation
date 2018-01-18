@@ -32,6 +32,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/notehtml = ""
 
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
+	var/fon = 0 // Internal light
+	var/flum = 2 // Brightness
+
 	var/list/modules = list(
 							list("module" = "Phone", "icon" = "phone64", "number" = 2),
 							list("module" = "Contacts", "icon" = "person64", "number" = 3),

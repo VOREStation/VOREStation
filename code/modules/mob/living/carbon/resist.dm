@@ -175,4 +175,4 @@
 				return
 			visible_message("<span class='danger'>[usr] manages to unbuckle themself!</span>",
 							"<span class='notice'>You successfully unbuckle yourself.</span>")
-			buckled.user_unbuckle_mob(src)
+			buckled.user_unbuckle_mob(src, src)

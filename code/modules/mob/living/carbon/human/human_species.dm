@@ -1,6 +1,7 @@
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
 	status_flags = GODMODE|CANPUSH
+	has_huds = FALSE
 
 /mob/living/carbon/human/dummy/mannequin/New()
 	..()

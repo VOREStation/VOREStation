@@ -34,7 +34,7 @@
 		H.restore_blood()
 		H.mutations.Remove(HUSK)
 		H.status_flags -= DISFIGURED
-		H.update_body(1)
+		H.update_icons_body()
 		for(var/limb in H.organs_by_name)
 			var/obj/item/organ/external/current_limb = H.organs_by_name[limb]
 			if(current_limb)

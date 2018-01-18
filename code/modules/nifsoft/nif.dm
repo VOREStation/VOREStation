@@ -42,7 +42,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/install_done				// Time when install will finish
 	var/tmp/open = FALSE				// If it's open for maintenance (1-3)
 
-	var/obj/item/clothing/glasses/hud/nif_hud/nif_hud	// The AR ones require this
 	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
 
 	var/global/icon/big_icon
@@ -58,6 +57,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	var/list/save_data
 
+	var/list/planes_visible = list()
+
 //Constructor comes with a free AR HUD
 /obj/item/device/nif/New(var/newloc,var/wear,var/list/load_data)
 	..(newloc)
@@ -65,9 +66,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//First one to spawn in the game, make a big icon
 	if(!big_icon)
 		big_icon = new(icon,icon_state = "nif_full")
-
-	//Required for AR stuff.
-	nif_hud = new(src)
 
 	//Put loaded data here if we loaded any
 	save_data = islist(load_data) ? load_data.Copy() : list()
@@ -101,7 +99,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human.nif = null
 		human = null
 	qdel_null_list(nifsofts)
-	qdel_null(nif_hud)
 	qdel_null(comm)
 	nifsofts_life.Cut()
 	return ..()
@@ -137,11 +134,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Being removed from some mob
 /obj/item/device/nif/proc/unimplant(var/mob/living/carbon/human/H)
-	human = null
 	stat = NIF_PREINSTALL
+	vis_update()
+	H.nif = null
+	human = null
 	install_done = null
-	if(istype(H))
-		H.nif = null
 	update_icon()
 
 //EMP adds wear and disables all nifsoft
@@ -294,11 +291,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			//Perform our passive drain
 			if(!use_charge(power_usage))
 				stat = NIF_POWFAIL
+				vis_update()
 				notify("Insufficient energy!",TRUE)
 				return FALSE
 
 			//HUD update!
-			nif_hud.process_hud(human,1)
+			//nif_hud.process_hud(human,1) //TODO VIS
 
 			//Process all the ones that want that
 			for(var/S in nifsofts_life)
@@ -310,6 +308,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 				return FALSE
 			else
 				stat = NIF_WORKING
+				vis_update()
 				notify("System Reboot Complete.")
 
 		if(NIF_TEMPFAIL)
@@ -371,15 +370,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(new_soft.tick_flags == NIF_ALWAYSTICK)
 		nifsofts_life += new_soft
 
-	if(new_soft.vision_flags)
-		vision_flags |= new_soft.vision_flags
-	if(new_soft.health_flags)
-		health_flags |= new_soft.health_flags
-	if(new_soft.combat_flags)
-		combat_flags |= new_soft.combat_flags
-	if(new_soft.other_flags)
-		other_flags |= new_soft.other_flags
-
 	return TRUE
 
 //Uninstall a piece of software
@@ -395,18 +385,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		nifsofts_life -= old_soft
 
 	if(old_soft.active)
-		power_usage -= old_soft.a_drain
-		if(old_soft.tick_flags == NIF_ACTIVETICK)
-			nifsofts_life -= old_soft
-
-	if(old_soft.vision_flags)
-		vision_flags &= ~old_soft.vision_flags
-	if(old_soft.health_flags)
-		health_flags &= ~old_soft.health_flags
-	if(old_soft.combat_flags)
-		combat_flags &= ~old_soft.combat_flags
-	if(old_soft.other_flags)
-		other_flags &= ~old_soft.other_flags
+		old_soft.deactivate(force = TRUE)
 
 	return TRUE
 
@@ -426,6 +405,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			notify("The software \"[soft]\" is not supported in organic life and will be uninstalled.",TRUE)
 			uninstall(soft)
 			return FALSE
+		human << click_sound
 
 	if(!use_charge(soft.a_drain))
 		notify("Not enough power to activate \"[soft]\" NIFsoft!",TRUE)
@@ -435,7 +415,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		nifsofts_life += soft
 
 	power_usage += soft.a_drain
-	human << click_sound
 
 	return TRUE
 
@@ -443,12 +422,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/deactivate(var/datum/nifsoft/soft)
 	if(human)
 		if(prob(5)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
+		human << click_sound
 
 	if(soft.tick_flags == NIF_ACTIVETICK)
 		nifsofts_life -= soft
 
 	power_usage -= soft.a_drain
-	human << click_sound
 
 	return TRUE
 
@@ -461,7 +440,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Add a flag to one of the holders
 /obj/item/device/nif/proc/set_flag(var/flag,var/hint)
-	ASSERT(flag && hint)
+	ASSERT(flag != null && hint)
 
 	switch(hint)
 		if(NIF_FLAGS_VISION)
@@ -473,11 +452,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		if(NIF_FLAGS_OTHER)
 			other_flags |= flag
 		else
-			CRASH("Not a valid NIF flag hint: [hint]")
+			CRASH("Not a valid NIF set_flag hint: [hint]")
 
 //Clear a flag from one of the holders
 /obj/item/device/nif/proc/clear_flag(var/flag,var/hint)
-	ASSERT(flag && hint)
+	ASSERT(flag != null && hint)
 
 	switch(hint)
 		if(NIF_FLAGS_VISION)
@@ -489,7 +468,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		if(NIF_FLAGS_OTHER)
 			other_flags &= ~flag
 		else
-			CRASH("Not a valid NIF flag hint: [hint]")
+			CRASH("Not a valid NIF clear_flag hint: [hint]")
 
 //Check for an installed implant
 /obj/item/device/nif/proc/imp_check(var/soft)
@@ -524,35 +503,25 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	return result
 
-///////////////////////////////////////////////////////////////////////////////////////
-//NIF HUD object becasue HUD handling is trash and should be rewritten
-/obj/item/clothing/glasses/hud/nif_hud/var/obj/item/device/nif/nif
+/obj/item/device/nif/proc/planes_visible()
+	if(stat != NIF_WORKING)
+		return list() //None!
 
-/obj/item/clothing/glasses/hud/nif_hud/New(var/newloc)
-	..(newloc)
-	nif = newloc
+	return planes_visible
 
-/obj/item/clothing/glasses/hud/nif_hud/Destroy()
-	if(nif)
-		nif.nif_hud = null
-		nif = null
-	return ..()
+/obj/item/device/nif/proc/add_plane(var/planeid = null)
+	if(!planeid)
+		return
+	planes_visible |= planeid
 
-/obj/item/clothing/glasses/hud/nif_hud/process_hud(M,var/thing)
-	//Faster checking with local var, and this is called often so I want fast.
-	var/visflags = nif.vision_flags
-	if(NIF_V_AR_OMNI & visflags)
-		process_omni_hud(nif.human, "best")
-	else if(NIF_V_AR_SECURITY & visflags)
-		process_omni_hud(nif.human, "sec")
-	else if(NIF_V_AR_MEDICAL & visflags)
-		process_omni_hud(nif.human, "med")
-	else if(NIF_V_AR_ENGINE & visflags)
-		process_omni_hud(nif.human, "eng")
-	else if(NIF_V_AR_SCIENCE & visflags)
-		process_omni_hud(nif.human, "sci")
-	else if(NIF_V_AR_CIVILIAN & visflags)
-		process_omni_hud(nif.human, "civ")
+/obj/item/device/nif/proc/del_plane(var/planeid = null)
+	if(!planeid)
+		return
+	planes_visible -= planeid
+
+/obj/item/device/nif/proc/vis_update()
+	if(human)
+		human.recalculate_vis()
 
 // Alternate NIFs
 /obj/item/device/nif/bad

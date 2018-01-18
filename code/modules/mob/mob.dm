@@ -13,6 +13,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
+	qdel_null(plane_holder)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -93,7 +94,7 @@
 			var/mob/M = I
 			if(self_message && M==src)
 				M.show_message( self_message, 1, blind_message, 2)
-			else if(M.see_invisible >= invisibility) // Cannot view the invisible
+			else if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane)) // Cannot view the invisible
 				M.show_message( message, 1, blind_message, 2)
 			else if (blind_message)
 				M.show_message(blind_message, 2)
@@ -243,6 +244,7 @@
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
+	P.plane = plane
 	spawn (20)
 		if(P)
 			qdel(P)	// qdel
@@ -706,6 +708,8 @@
 							continue
 						if(is_type_in_list(A, shouldnt_see))
 							continue
+						if(A.plane > plane)
+							continue
 						stat(A)
 
 
@@ -1119,3 +1123,11 @@ mob/proc/yank_out_object()
 		return
 	var/obj/screen/zone_sel/selector = mob.zone_sel
 	selector.set_selected_zone(next_in_list(mob.zone_sel.selecting,zones))
+
+// This handles setting the client's color variable, which makes everything look a specific color.
+// This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
+// This is for inheritence since /mob/living will serve most cases. If you need ghosts to use this you'll have to implement that yourself.
+/mob/proc/update_client_color()
+	if(client && client.color)
+		animate(client, color = null, time = 10)
+	return

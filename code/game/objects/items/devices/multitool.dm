@@ -44,4 +44,4 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool"
 	toolspeed = 0.1
-	origin_tech = list(TECH_MAGNETS = 5, TECH_ENGINEERING = 5)
+	origin_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 5)

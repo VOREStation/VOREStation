@@ -7,7 +7,7 @@
 	if(!istype(M))
 		return
 
-	if(!buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/3))))
+	if(!has_buckled_mobs() && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/3))))
 		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
 		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
 		spawn(1)
@@ -35,31 +35,35 @@
 	seed.do_sting(victim,src,pick("r_foot","l_foot","r_leg","l_leg"))
 
 /obj/effect/plant/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
-		buckled_mob = null
+	if(has_buckled_mobs())
+		for(var/A in buckled_mobs)
+			var/mob/living/L = A
+			if(L.buckled == src)
+				L.buckled = null
+				L.anchored = initial(L.anchored)
+				L.update_canmove()
+		buckled_mobs = list()
 	return
 
 /obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
+	if(has_buckled_mobs())
 		var/chance = 20
 		if(seed)
 			chance = round(100/(20*seed.get_trait(TRAIT_POTENCY)/100))
 		if(prob(chance))
-			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-				"<span class='notice'>\The [user] frees \the [buckled_mob] from \the [src].</span>",\
-				"<span class='notice'>\The [user] frees you from \the [src].</span>",\
-				"<span class='warning'>You hear shredding and ripping.</span>")
-			else
-				buckled_mob.visible_message(\
-				"<span class='notice'>\The [buckled_mob] struggles free of \the [src].</span>",\
-				"<span class='notice'>You untangle \the [src] from around yourself.</span>",\
-				"<span class='warning'>You hear shredding and ripping.</span>")
-			unbuckle()
+			for(var/A in buckled_mobs)
+				var/mob/living/L = A
+				if(!(user in buckled_mobs))
+					L.visible_message(\
+					"<span class='notice'>\The [user] frees \the [L] from \the [src].</span>",\
+					"<span class='notice'>\The [user] frees you from \the [src].</span>",\
+					"<span class='warning'>You hear shredding and ripping.</span>")
+				else
+					L.visible_message(\
+					"<span class='notice'>\The [L] struggles free of \the [src].</span>",\
+					"<span class='notice'>You untangle \the [src] from around yourself.</span>",\
+					"<span class='warning'>You hear shredding and ripping.</span>")
+				unbuckle()
 		else
 			user.setClickCooldown(user.get_attack_speed())
 			health -= rand(1,5)
@@ -73,7 +77,7 @@
 
 /obj/effect/plant/proc/entangle(var/mob/living/victim)
 
-	if(buckled_mob)
+	if(has_buckled_mobs())
 		return
 
 	if(victim.buckled || victim.anchored)

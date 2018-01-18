@@ -672,7 +672,7 @@
 
 
 
-/mob/living/carbon/human/proc/succubus_drain_finialize()
+/mob/living/carbon/human/proc/succubus_drain_finalize()
 	set name = "Drain/Feed Finalization"
 	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained, or you will feed yourself to the prey's selected stomach if you're feeding them. Can be toggled at any time."
 	set category = "Abilities"

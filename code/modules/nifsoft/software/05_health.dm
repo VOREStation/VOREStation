@@ -39,16 +39,15 @@
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_ORGANIC
 	var/mode = 0
+	health_flags = (NIF_H_ORGREPAIR)
 
 	//These self-activate on their own, these aren't user-settable to on/off.
 	activate()
 		if((. = ..()))
-			nif.set_flag(NIF_H_ORGREPAIR,NIF_FLAGS_HEALTH)
 			mode = 1
 
 	deactivate()
 		if((. = ..()))
-			nif.clear_flag(NIF_H_ORGREPAIR,NIF_FLAGS_HEALTH)
 			a_drain = initial(a_drain)
 			mode = initial(mode)
 			nif.human.Stasis(0)
@@ -113,16 +112,15 @@
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_SYNTHETIC
 	var/mode = 0
+	health_flags = (NIF_H_SYNTHREPAIR)
 
 	//These self-activate on their own, these aren't user-settable to on/off.
 	activate()
 		if((. = ..()))
-			nif.set_flag(NIF_H_SYNTHREPAIR,NIF_FLAGS_HEALTH)
 			mode = 1
 
 	deactivate()
 		if((. = ..()))
-			nif.clear_flag(NIF_H_SYNTHREPAIR,NIF_FLAGS_HEALTH)
 			mode = 0
 
 	life()
@@ -166,18 +164,17 @@
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_ORGANIC
 	var/filled = 100 //Tracks the internal tank 'refilling', which still uses power
+	health_flags = (NIF_H_SPAREBREATH)
 
 	activate()
 		if(!(filled > 50))
 			nif.notify("Respirocytes not saturated!",TRUE)
 			return FALSE
 		if((. = ..()))
-			nif.set_flag(NIF_H_SPAREBREATH,NIF_FLAGS_HEALTH)
 			nif.notify("Now taking air from reserves.")
 
 	deactivate()
 		if((. = ..()))
-			nif.clear_flag(NIF_H_SPAREBREATH,NIF_FLAGS_HEALTH)
 			nif.notify("Now taking air from environment and refilling reserves.")
 
 	life()
@@ -213,7 +210,7 @@
 
 /datum/nifsoft/mindbackup
 	name = "Mind Backup"
-	desc = "Backup your mind on the go. Stores a one-time sync of your current mindstate upon activation"
+	desc = "Backup your mind on the go. Stores a one-time sync of your current mindstate upon activation."
 	list_pos = NIF_BACKUP
 	cost = 250
 

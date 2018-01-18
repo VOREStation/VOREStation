@@ -1,0 +1,51 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/structure/lattice,/turf/template_noop,/area/template_noop)
+"c" = (/turf/simulated/floor/outdoors/rocks,/area/template_noop)
+"d" = (/obj/structure/grille,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"e" = (/obj/structure/firedoor_assembly,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"f" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/rocks,/area/template_noop)
+"g" = (/turf/simulated/floor/plating/external,/area/submap/construction1)
+"h" = (/obj/structure/firedoor_assembly,/obj/structure/grille,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"i" = (/obj/item/clothing/gloves/black,/turf/simulated/floor/outdoors/rocks,/area/template_noop)
+"j" = (/turf/simulated/floor/tiled/external,/area/submap/construction1)
+"k" = (/obj/item/weapon/wrench,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"l" = (/turf/simulated/wall,/area/submap/construction1)
+"m" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"n" = (/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/outdoors/rocks,/area/template_noop)
+"o" = (/obj/structure/girder,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"p" = (/obj/item/clothing/head/hardhat,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"q" = (/obj/item/frame,/turf/simulated/floor/tiled/external,/area/submap/construction1)
+"r" = (/obj/item/clothing/head/orangebandana,/turf/template_noop,/area/template_noop)
+"s" = (/obj/item/clothing/head/welding/engie,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"t" = (/obj/structure/door_assembly/door_assembly_mai,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"u" = (/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"v" = (/obj/item/weapon/airlock_electronics,/turf/simulated/floor/tiled/external,/area/submap/construction1)
+"w" = (/obj/item/clothing/suit/storage/hazardvest,/turf/template_noop,/area/template_noop)
+"x" = (/obj/structure/windoor_assembly,/turf/simulated/floor/tiled/external,/area/submap/construction1)
+"y" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"z" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled/external,/area/submap/construction1)
+"A" = (/obj/item/weapon/shovel,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"B" = (/obj/item/weapon/airlock_electronics,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"C" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/floor/tiled/external,/area/submap/construction1)
+"D" = (/obj/item/weapon/crowbar,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"E" = (/obj/item/clothing/glasses/welding,/turf/simulated/floor/plating/external,/area/submap/construction1)
+"F" = (/obj/item/clothing/suit/storage/hazardvest,/turf/simulated/floor/plating/external,/area/submap/construction1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaa
+aaaaaaaaaaaabaaa
+aaaacdecffccfgba
+aaaachgggficffaa
+aaacchgjkfccccaa
+aaccclmjgfcnccaa
+aalloojjgpfccaaa
+aalggljqgefccraa
+aalsgtjjuffcaaaa
+aalgglvjgffcwaaa
+aalllllxlgfcaaaa
+acyjjzjjjAfcaaaa
+acgBjjjCggfcaaaa
+acddDpggEgfcaaaa
+aacccdeFfffaaaaa
+aaaaaaaaaaaaaaaa
+"}

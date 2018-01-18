@@ -172,16 +172,6 @@ var/list/ai_verbs_default = list(
 	spawn(5)
 		new /obj/machinery/ai_powersupply(src)
 
-	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[LIFE_HUD] 		  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[ID_HUD]          = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[SPECIALROLE_HUD] = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-
 	ai_list += src
 	..()
 	return
@@ -803,6 +793,11 @@ var/list/ai_verbs_default = list(
 	var/obj/item/weapon/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
+
+/mob/living/silicon/ai/is_sentient()
+	// AI cores don't store what brain was used to build them so we're just gonna assume they can think to some degree.
+	// If that is ever fixed please update this proc.
+	return TRUE
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

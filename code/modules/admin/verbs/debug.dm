@@ -31,6 +31,12 @@
 			return
 		var/weapon_attack_speed = user.get_attack_speed(I) / 10
 		var/weapon_damage = I.force
+		var/modified_damage_percent = 1
+
+		for(var/datum/modifier/M in user.modifiers)
+			if(!isnull(M.outgoing_melee_damage_percent))
+				weapon_damage *= M.outgoing_melee_damage_percent
+				modified_damage_percent *= M.outgoing_melee_damage_percent
 
 		if(istype(I, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = I
@@ -53,7 +59,7 @@
 			qdel(P)
 
 		var/DPS = weapon_damage / weapon_attack_speed
-		to_chat(user, "<span class='notice'>Damage: [weapon_damage]</span>")
+		to_chat(user, "<span class='notice'>Damage: [weapon_damage][modified_damage_percent != 1 ? " (Modified by [modified_damage_percent*100]%)":""]</span>")
 		to_chat(user, "<span class='notice'>Attack Speed: [weapon_attack_speed]/s</span>")
 		to_chat(user, "<span class='notice'>\The [I] does <b>[DPS]</b> damage per second.</span>")
 		if(DPS > 0)
@@ -506,12 +512,25 @@
 		return
 
 	for(var/obj/machinery/power/emitter/E in world)
-		if(E.anchored)
-			E.active = 1
+		if(istype(get_area(E), /area/space))
+			E.anchored = TRUE
+			E.state = 2
+			E.connect_to_network()
+			E.active = TRUE
 
 	for(var/obj/machinery/field_generator/F in world)
-		if(F.anchored)
+		if(istype(get_area(F), /area/space))
 			F.Varedit_start = 1
+
+	for(var/obj/structure/particle_accelerator/PA in world)
+		PA.anchored = TRUE
+		PA.construction_state = 3
+		PA.update_icon()
+	for(var/obj/machinery/particle_accelerator/PA in world)
+		PA.anchored = TRUE
+		PA.construction_state = 3
+		PA.update_icon()
+
 	spawn(30)
 		for(var/obj/machinery/the_singularitygen/G in world)
 			if(G.anchored)
@@ -542,10 +561,6 @@
 
 			if(!Rad.active)
 				Rad.toggle_power()
-
-	for(var/obj/machinery/power/smes/SMES in world)
-		if(SMES.anchored)
-			SMES.input_attempt = 1
 
 /client/proc/setup_supermatter_engine()
 	set category = "Debug"

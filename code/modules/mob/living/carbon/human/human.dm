@@ -2,8 +2,8 @@
 	name = "unknown"
 	real_name = "unknown"
 	voice_name = "unknown"
-	icon = 'icons/mob/human.dmi'
-	icon_state = "body_m_s"
+	icon = 'icons/effects/effects.dmi' //We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
+	icon_state = "nothing"
 
 	var/list/hud_list[TOTAL_HUDS]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -37,26 +37,7 @@
 
 	nutrition = rand(200,400)
 
-	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
-	if(isSynthetic())
-		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
-		hud_list[LIFE_HUD]	  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
-	else
-		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-		hud_list[LIFE_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	//VOREStation Add - Custom HUDs
-	hud_list[HEALTH_VR_HUD]   = new /image/hud_overlay('icons/mob/hud_med_vr.dmi', src, "100")
-	hud_list[STATUS_R_HUD]    = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudhealthy")
-	hud_list[BACKUP_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
-	hud_list[VANTAG_HUD]      = new /image/hud_overlay('icons/mob/hud_vr.dmi', src, "hudblank")
-	//VOREStation Add End
-	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
-	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[SPECIALROLE_HUD] = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD_OOC]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
+	make_hud_overlays()
 
 	human_mob_list |= src
 	..()
@@ -75,6 +56,14 @@
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
+
+	LAZYCLEARLIST(list_layers)
+	list_layers = null //Be free!
+	LAZYCLEARLIST(list_body)
+	list_body = null
+	LAZYCLEARLIST(list_huds)
+	list_huds = null
+
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -1192,19 +1181,7 @@
 			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
-		species.update_attack_types() //VOREStation Edit Start Required for any trait that updates unarmed_types in setup.
-		if(species.gets_food_nutrition != 1) //Bloodsucker trait. Tacking this on here.
-			verbs |= /mob/living/carbon/human/proc/bloodsuck
-		if(species.can_drain_prey)
-			verbs |= /mob/living/carbon/human/proc/succubus_drain //Succubus drain trait.
-			verbs |= /mob/living/carbon/human/proc/succubus_drain_finialize
-			verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
-		if(species.hard_vore_enabled) //Hardvore verb.
-			verbs |= /mob/living/carbon/human/proc/shred_limb
-		if(species.can_fly)
-			verbs |= /mob/living/proc/flying_toggle //Flying wings!
-			verbs |= /mob/living/proc/start_wings_hovering
-		//VOREStation Edit End
+		species.update_attack_types() //VOREStation Edit - Required for any trait that updates unarmed_types in setup.
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
@@ -1542,11 +1519,19 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
+	for(var/datum/modifier/M in modifiers)
+		if(M.pain_immunity == TRUE)
+			return 0
 	if(check_organ)
 		if(!istype(check_organ))
 			return 0
 		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
+
+/mob/living/carbon/human/is_sentient()
+	if(get_FBP_type() == FBP_DRONE)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))

@@ -258,7 +258,7 @@ var/obj/screen/robot_inventory
 					A.screen_loc = "CENTER[x]:16,SOUTH+[y]:7"
 				else
 					A.screen_loc = "CENTER+[x]:16,SOUTH+[y]:7"
-				A.layer = 20
+				A.hud_layerise()
 
 				x++
 				if(x == 4)
