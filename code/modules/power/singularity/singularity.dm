@@ -363,6 +363,11 @@
 	if (!isturf(T))
 		return 0
 
+	// VOREStation Edit Start
+	if(istype(get_area(T), /area/crew_quarters/sleep)) //No going to dorms
+		return 0
+	// VOREStation Edit End
+
 	if ((locate(/obj/machinery/containment_field) in T) || (locate(/obj/machinery/shieldwall) in T))
 		return 0
 	else if (locate(/obj/machinery/field_generator) in T)
