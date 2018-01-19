@@ -138,6 +138,14 @@
 		..()
 	return
 
+// Power machinery should also connect/disconnect from the network.
+/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/wrench/W, var/time = 20)
+	if((. = ..()))
+		if(anchored)
+			connect_to_network()
+		else
+			disconnect_from_network()
+
 // Used for power spikes by the engine, has specific effects on different machines.
 /obj/machinery/power/proc/overload(var/obj/machinery/power/source)
 	return
