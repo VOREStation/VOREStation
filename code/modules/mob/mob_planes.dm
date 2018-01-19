@@ -36,9 +36,7 @@
 	..()
 
 /datum/plane_holder/Destroy()
-	if(my_mob)
-		my_mob.plane_holder = null
-		my_mob = null
+	my_mob = null
 	plane_masters.Cut() //Goodbye my children, be free
 	return ..()
 

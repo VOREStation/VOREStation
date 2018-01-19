@@ -63,7 +63,7 @@
 	list_body = null
 	LAZYCLEARLIST(list_huds)
 	list_huds = null
-
+	if(nif) qdel_null(nif)	//VOREStation Add
 	return ..()
 
 /mob/living/carbon/human/Stat()

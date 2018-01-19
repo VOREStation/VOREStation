@@ -114,7 +114,7 @@
 					prob(10);/obj/item/weapon/gun/launcher/crossbow,\
 					prob(10);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,\
 					prob(10);/obj/item/weapon/material/knife,\
-					prob(10);/obj/item/weapon/material/hatchet/tacknife/combatknife,\
+					prob(10);/obj/item/weapon/material/knife/tacknife/combatknife,\
 					prob(10);/obj/item/weapon/material/butterfly/switchblade,\
 					prob(10);/obj/item/weapon/gun/projectile/luger,\
 					prob(10);/obj/item/weapon/gun/projectile/luger/brown,\

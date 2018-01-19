@@ -49,14 +49,14 @@
 					prob(6);/obj/item/weapon/gun/energy/sniperrifle,\
 					prob(6);/obj/item/weapon/gun/projectile/automatic/z8,\
 					prob(6);/obj/item/weapon/gun/energy/captain,\
-					prob(6);/obj/item/weapon/material/hatchet/tacknife,\
+					prob(6);/obj/item/weapon/material/knife/tacknife,\
 					prob(5);/obj/item/weapon/gun/projectile/shotgun/pump/USDF,\
 					prob(5);/obj/item/weapon/gun/projectile/giskard/olivaw,\
 					prob(5);/obj/item/weapon/gun/projectile/revolver/consul,\
 					prob(5);/obj/item/weapon/gun/projectile/revolver/mateba,\
 					prob(5);/obj/item/weapon/gun/projectile/revolver,\
 					prob(4);/obj/item/weapon/gun/projectile/deagle,\
-					prob(4);/obj/item/weapon/material/hatchet/tacknife/combatknife,\
+					prob(4);/obj/item/weapon/material/knife/tacknife/combatknife,\
 					prob(4);/obj/item/weapon/melee/energy/sword,\
 					prob(4);/obj/item/weapon/gun/projectile/automatic/mini_uzi,\
 					prob(4);/obj/item/weapon/gun/projectile/contender,\
@@ -154,7 +154,7 @@
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,\
 				prob(2);/obj/item/weapon/material/knuckledusters,\
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,\
-				prob(1);/obj/item/weapon/material/hatchet/tacknife,\
+				prob(1);/obj/item/weapon/material/knife/tacknife,\
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,\
 				prob(1);/obj/item/weapon/beartrap,\
 				prob(1);/obj/item/weapon/handcuffs,\
