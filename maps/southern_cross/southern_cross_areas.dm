@@ -465,6 +465,10 @@
 	name = "\improper Auxiliary Engineering Station"
 	sound_env = SMALL_ENCLOSED
 
+/area/crew_quarters/firstdeck/gym
+	name = "\improper Station Gym"
+	icon_state = "fitness"
+
 /area/construction/firstdeck/
 	name = "\improper Engineering Construction Area"
 	icon_state = "construction"
@@ -566,15 +570,15 @@
 	icon_state = "docking_hallway"
 
 /area/hallway/secondary/escape/firstdeck/ep_port
-	name = "\improper Escape Pod Port"
+	name = "\improper Large Escape Pod 2 Port"
 	icon_state = "escape_pod"
 
 /area/hallway/secondary/escape/firstdeck/ep_starboard1
-	name = "\improper Escape Pod Starboard 1"
+	name = "\improper Escape Pod 3 Starboard"
 	icon_state = "escape_pod"
 
 /area/hallway/secondary/escape/firstdeck/ep_starboard2
-	name = "\improper Escape Pod Starboard 2"
+	name = "\improper Large Escape Pod 2 Starboard"
 	icon_state = "escape_pod"
 
 /area/hallway/secondary/escape/firstdeck/ep_aftport
@@ -1132,7 +1136,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	name = "\improper Hangar Deck"
 	icon_state = "yellow"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = 1
 	flags = RAD_SHIELDED
 
 /area/shuttle/shuttle2/start
@@ -1234,6 +1238,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/syndicate_station/planet
 	name = "planetside"
+	dynamic_lighting = 1
 	icon_state = "shuttlered"
 	base_turf = /turf/simulated/floor/outdoors/grass/sif/planetuse
 
@@ -1259,6 +1264,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/syndicate_station/arrivals_dock
 	name = "\improper docked with Southern Cross"
+	dynamic_lighting = 0
 	icon_state = "shuttle"
 
 //Skipjack
@@ -1375,6 +1381,7 @@ area/crew_quarters/heads/sc/hop/quarters
 /area/ninja_dojo/arrivals_dock
 	name = "\improper docked with Southern Cross"
 	icon_state = "shuttle"
+	dynamic_lighting = 0
 
 //Trade Ship
 
