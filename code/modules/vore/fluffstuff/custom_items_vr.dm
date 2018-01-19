@@ -985,7 +985,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/teshari/New()
 	..()
-	reagents.add_reagent("egg", 9)
+	reagents.add_reagent("egg", 10)
 	bitesize = 2
 
 /obj/item/weapon/implant/reagent_generator/pumila_apple
