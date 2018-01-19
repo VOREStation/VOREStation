@@ -57,13 +57,14 @@
 	hits = initial(hits)
 	..()
 
-// These probably shouldn't inherit from hatchets.
+// These no longer inherit from hatchets.
 /obj/item/weapon/material/knife/tacknife
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "tacknife"
 	item_state = "knife"
+	force_divisor = 0.25 //15 when hardness 60 (steel)
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
 
