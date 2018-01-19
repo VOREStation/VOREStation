@@ -1,0 +1,5 @@
+author: battlefieldCommander
+delete-after: True
+changes:
+  - rscadd: "Adds a communicator watch, a variant of the communicator you can wear on your wrist."
+  - rscadd: "Replaces the communicator in the loadout with a communicator selection. Choose either the traditional communicator, or the new commwatch."

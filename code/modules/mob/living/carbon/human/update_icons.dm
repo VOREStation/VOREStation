@@ -208,7 +208,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Scale(desired_scale)
 		M.Translate(1,-6)
 		ma.transform = M
-		ma.layer = MOB_LAYER -0.1 // Fix for a byond bug where turf entry order no longer matters
+		ma.layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 	else
 		var/matrix/M = matrix()
 		M.Scale(desired_scale)
