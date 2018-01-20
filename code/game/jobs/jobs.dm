@@ -78,6 +78,7 @@ var/list/medical_positions = list(
 	"Geneticist",
 	"Psychiatrist",
 	"Chemist",
+	"Search and Rescue", // VOREStation Edit - Moved SAR from planetary -> medical
 	"Paramedic"
 )
 
@@ -87,6 +88,7 @@ var/list/science_positions = list(
 	"Scientist",
 	"Geneticist",	//Part of both medical and science
 	"Roboticist",
+	"Explorer", // VOREStation Edit - Moved Explorer from planetary -> science
 	"Xenobiologist"
 )
 
@@ -106,6 +108,7 @@ var/list/civilian_positions = list(
 	"Librarian",
 	"Lawyer",
 	"Chaplain",
+	"Pilot",  // VOREStation Edit - Moved Pilot from planetary -> civ
 	"Assistant"
 )
 
@@ -119,9 +122,9 @@ var/list/security_positions = list(
 
 
 var/list/planet_positions = list(
-	"Explorer",
-	"Pilot",
-	"Search and Rescue"
+	// "Explorer", // VOREStation Edit - Moved Explorer from planetary -> science
+	// "Pilot",  // VOREStation Edit - Moved Pilot from planetary -> civ
+	// "Search and Rescue"  // VOREStation Edit - Moved SAR from planetary -> medical
 )
 
 
