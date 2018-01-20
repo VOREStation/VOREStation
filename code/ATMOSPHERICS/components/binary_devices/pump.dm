@@ -39,6 +39,10 @@ Thus, the two variables affect pump operation are set in New():
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
+/obj/machinery/atmospherics/binary/pump/Destroy()
+	unregister_radio(src, frequency)
+	. = ..()
+
 /obj/machinery/atmospherics/binary/pump/on
 	icon_state = "map_on"
 	use_power = 1
