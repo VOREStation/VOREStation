@@ -24,7 +24,7 @@
 	storage_capacity = 3.5 * MOB_MEDIUM
 
 	New()
-		..()
+		. = ..()
 		if(prob(25))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
@@ -70,7 +70,7 @@
 	storage_capacity = 3.5 * MOB_MEDIUM
 
 	New()
-		..()
+		. = ..()
 		if(prob(25))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
@@ -124,7 +124,7 @@
 
 
 	New()
-		..()
+		. = ..()
 		if(prob(25))
 			new /obj/item/weapon/storage/backpack/security(src)
 		else
@@ -155,3 +155,8 @@
 		new /obj/item/clothing/shoes/boots/jackboots(src)
 		new /obj/item/clothing/shoes/boots/jackboots/toeless(src)
 		return
+
+/obj/structure/closet/secure_closet/detective
+	New()
+		. = ..()
+		new /obj/item/weapon/gun/energy/taser
