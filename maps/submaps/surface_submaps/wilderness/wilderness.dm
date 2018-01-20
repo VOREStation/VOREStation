@@ -14,11 +14,12 @@
 #include "Mudpit.dmm"
 #include "Snowrock1.dmm"
 #include "Boombase.dmm"
-#include "Epod.dmm"
 #include "Blackshuttledown.dmm"
 #include "Lab1.dmm"
 #include "Rocky4.dmm"
 #include "DJOutpost1.dmm"
+#include "Rockybase.dmm"
+#include "MHR.dmm"
 
 #endif
 
@@ -103,12 +104,6 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/Snowrock1.dmm'
 	cost = 5
 
-/datum/map_template/surface/wilderness/normal/Epod
-	name = "Emergency Pod"
-	desc = "A vacant Emergency pod in the middle of nowhere."
-	mappath = 'maps/submaps/surface_submaps/wilderness/Epod.dmm'
-	cost = 5
-
 /datum/map_template/surface/wilderness/normal/Cragzone1
 	name = "Cragzone1"
 	desc = "Rocks and more rocks."
@@ -128,8 +123,6 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/Rocky4.dmm'
 	cost = 5
 
-
-
 /datum/map_template/surface/wilderness/deep/DJOutpost1
 	name = "DJOutpost1"
 	desc = "Home of Sif Free Radio, the best - and only - radio station for miles around."
@@ -147,3 +140,15 @@
 	desc = "You REALLY shouldn't be near this."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Blackshuttledown.dmm'
 	cost = 30
+
+/datum/map_template/surface/wilderness/deep/Rockybase
+	name = "Rocky Base"
+	desc = "A guide to upsetting Icarus and the EIO"
+	mappath = 'maps/submaps/surface_submaps/wilderness/Rockybase.dmm'
+	cost = 35
+
+/datum/map_template/surface/wilderness/deep/MHR
+	name = "Manhack Rock"
+	desc = "A rock filled with nasty Synthetics."
+	mappath = 'maps/submaps/surface_submaps/wilderness/MHR.dmm'
+	cost = 15

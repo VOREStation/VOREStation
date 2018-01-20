@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes:
+  - rscadd: "Wiki search URL is now configurable in config.txt"

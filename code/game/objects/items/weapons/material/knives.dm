@@ -96,7 +96,7 @@
 	name = "machete"
 	desc = "A sharp machete often found in survival kits."
 	icon_state = "machete"
-	force_divisor = 0.3 // 20 when hardness 60 (steel)
+	force_divisor = 0.3 // 18 when hardness 60 (steel)
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	var/should_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 

@@ -93,3 +93,19 @@
 	new /obj/item/device/gps(src)
 	new /obj/item/device/geiger(src)
 	return
+
+/obj/structure/closet/crate/hydroponics/exotic
+	name = "exotic seeds crate"
+	desc = "All you need to destroy that pesky planet."
+
+/obj/structure/closet/crate/hydroponics/exotic/New()
+	..()
+	for(var/i = 1 to 6)
+		new /obj/item/seeds/random(src)
+	new /obj/item/seeds/kudzuseed(src)
+	new /obj/item/seeds/replicapod(src)
+	new /obj/item/seeds/replicapod(src)
+	new /obj/item/seeds/ambrosiavulgarisseed(src)
+	new /obj/item/seeds/ambrosiavulgarisseed(src)
+	new /obj/item/seeds/libertymycelium(src)
+	new /obj/item/seeds/reishimycelium(src)

@@ -379,19 +379,19 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st
 	name = "vial (stabilize)"
 	desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
-	comes_with = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
+	prefill = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt
 	name = "vial (brute)"
 	desc = "25 Bicaridine, 5 Tricordrazine"
-	comes_with = list("bicaridine"=25,"tricordrazine"=5)
+	prefill = list("bicaridine"=25,"tricordrazine"=5)
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu
 	name = "vial (burn)"
 	desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
-	comes_with = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
+	prefill = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx
 	name = "vial (toxins)"
 	desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
-	comes_with = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
+	prefill = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
