@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - bugfix: "Construction of heat exchange pipes, vents, and scrubbers now works properly again."
