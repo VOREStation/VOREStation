@@ -12,6 +12,8 @@
 #include "crystal2.dmm"
 #include "crystal3.dmm"
 #include "lost_explorer.dmm"
+#include "CaveTrench.dmm"
+#include "Cavelake.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -107,4 +109,16 @@
 	name = "Spider Cave 1"
 	desc = "A minning tunnel home to an aggressive collection of spiders."
 	mappath = 'maps/submaps/surface_submaps/mountains/Scave1.dmm'
+	cost = 20
+
+/datum/map_template/surface/mountains/deep/CaveTrench
+	name = "Cave River"
+	desc = "A strange underground river"
+	mappath = 'maps/submaps/surface_submaps/mountains/CaveTrench.dmm'
+	cost = 20
+
+/datum/map_template/surface/mountains/deep/Cavelake
+	name = "Cave Lake"
+	desc = "A large underground lake."
+	mappath = 'maps/submaps/surface_submaps/mountains/Cavelake.dmm'
 	cost = 20

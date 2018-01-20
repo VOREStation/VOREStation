@@ -1094,6 +1094,15 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
+/proc/is_wire_tool(obj/item/I)
+	if(istype(I, /obj/item/device/multitool))
+		return TRUE
+	if(istype(I, /obj/item/weapon/wirecutters))
+		return TRUE
+	if(istype(I, /obj/item/device/assembly/signaler))
+		return TRUE
+	return
+
 proc/is_hot(obj/item/W as obj)
 	switch(W.type)
 		if(/obj/item/weapon/weldingtool)

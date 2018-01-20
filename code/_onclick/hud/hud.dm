@@ -14,7 +14,7 @@ var/list/global_huds = list(
 		global_hud.meson,
 		global_hud.science,
 		global_hud.material,
-		global_hud.holomap
+		global_hud.holomap	// VOREStation Edit - Holomap
 		)
 
 /datum/hud/var/obj/screen/grab_intent
@@ -33,7 +33,7 @@ var/list/global_huds = list(
 	var/obj/screen/meson
 	var/obj/screen/science
 	var/obj/screen/material
-	var/obj/screen/holomap
+	var/obj/screen/holomap // VOREStation Edit - Holomap
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
 	var/obj/screen/screen = new /obj/screen()
@@ -72,6 +72,7 @@ var/list/global_huds = list(
 	science = setup_overlay("science_hud")
 	material = setup_overlay("material_hud")
 
+	// VOREStation Edit Begin - Holomap
 	// The holomap screen object is actually totally invisible.
 	// Station maps work by setting it as an images location before sending to client, not
 	// actually changing the icon or icon state of the screen object itself!
@@ -83,6 +84,7 @@ var/list/global_huds = list(
 	holomap.icon = null
 	holomap.screen_loc = ui_holomap
 	holomap.mouse_opacity = 0
+	// VOREStation Edit End
 
 	var/obj/screen/O
 	var/i

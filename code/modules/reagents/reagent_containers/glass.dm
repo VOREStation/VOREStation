@@ -19,7 +19,7 @@
 
 	var/label_text = ""
 
-	var/list/prefill = list()	//Reagents to fill the container with on New()
+	var/list/prefill = null	//Reagents to fill the container with on New(), formatted as "reagentID" = quantity
 
 	var/list/can_be_placed_into = list(
 		/obj/machinery/chem_master/,
@@ -49,9 +49,10 @@
 
 /obj/item/weapon/reagent_containers/glass/New()
 	..()
-	if(prefill.len)
+	if(LAZYLEN(prefill))
 		for(var/R in prefill)
 			reagents.add_reagent(R,prefill[R])
+		prefill = null
 		update_icon()
 	base_name = name
 	base_desc = desc
@@ -228,7 +229,7 @@
 	volume = 30
 	w_class = ITEMSIZE_TINY
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25)
+	possible_transfer_amounts = list(5,10,15,30)
 	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone

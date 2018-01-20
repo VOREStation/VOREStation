@@ -90,6 +90,9 @@ Drinks Data
 /datum/reagent/drink/juice/lemon
 	glass_icon_state = "lemonjuice"
 
+/datum/reagent/drink/juice/apple
+	glass_icon_state = "applejuice"
+
 /datum/reagent/drink/juice/lime
 	glass_icon_state = "glass_green"
 

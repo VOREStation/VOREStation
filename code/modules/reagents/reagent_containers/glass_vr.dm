@@ -1,7 +1,6 @@
 /obj/item/weapon/reagent_containers/glass/beaker/neurotoxin
 	prefill = list("neurotoxin" = 50)
 
-
 /obj/item/weapon/reagent_containers/glass/beaker/vial/bicaridine
 	name = "vial (bicaridine)"
 	prefill = list("bicaridine" = 30)

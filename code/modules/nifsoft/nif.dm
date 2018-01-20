@@ -95,9 +95,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
-	if(human)
-		human.nif = null
-		human = null
+	human = null
 	qdel_null_list(nifsofts)
 	qdel_null(comm)
 	nifsofts_life.Cut()

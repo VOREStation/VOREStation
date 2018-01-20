@@ -1,0 +1,43 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Peninsula)
+"c" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Peninsula)
+"d" = (/turf/simulated/floor/water,/area/submap/Peninsula)
+"e" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Peninsula)
+"f" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Peninsula)
+"g" = (/obj/structure/table/woodentable,/obj/item/device/flashlight,/turf/template_noop,/area/submap/Peninsula)
+"h" = (/obj/structure/table/woodentable,/obj/item/weapon/cell/device,/obj/item/weapon/cell/device,/turf/template_noop,/area/submap/Peninsula)
+"i" = (/obj/structure/bonfire,/turf/template_noop,/area/submap/Peninsula)
+"j" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/template_noop)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbcccccccccccccccbbbba
+abbbcccccccdddddddddddddccccea
+aecccddddddddddddddddddddddcba
+abcddddddddddddddddddddddddcba
+abcddddddddddddddddddddddddcba
+abcddddddddddddddddddddddddcca
+abcdddddddddddddddddddddddddca
+abcdddddddddddddddddddddddddca
+abccdddddddcccccccddddddddddca
+abbcddddddccbbbbbccddccdddddca
+abbcdddddccbbffbbecccccdddddca
+abbcdddddcbbfffbbbbbebccdddcca
+abbcdddddcbbfffgbbbbbbbccdddca
+abbcdddddcbbfffhbbibbbbbcdddca
+jbbccddddcbbbfbbebbbbbbccdddca
+abbbcddddccebbbbbbbbbbccdddcca
+abbccdddddcbbbbbbbbebccddddcba
+abbccdddddcbbbbbbbbbbcdddddcba
+aebcddddddccbbbbbbbbbcdddddcba
+abbccddddddcbbbbbbbbbcdddddcba
+abbcdddddddcbbbbbbbbbcdddddcba
+abbcdddddddcbbebbbbbbcdddddcba
+abbcdddddddcbbbbbbbbbcdddddcba
+abbcdddddddcbbbbbbbbbcdddddcba
+abbcdddddddcbbbbbbbbccdddddcba
+abccccddddccbbbbbbbbcddddddcba
+abcbbccccccbbbbbbbbbbcdcccccba
+abbbbbbbbbbebbbbbbbebccccbbbea
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
