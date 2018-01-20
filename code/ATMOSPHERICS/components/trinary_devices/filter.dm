@@ -54,6 +54,10 @@
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air3.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
+/obj/machinery/atmospherics/trinary/atmos_filter/Destroy()
+	unregister_radio(src, frequency)
+	. = ..()
+
 /obj/machinery/atmospherics/trinary/atmos_filter/update_icon()
 	if(istype(src, /obj/machinery/atmospherics/trinary/atmos_filter/m_filter))
 		icon_state = "m"
