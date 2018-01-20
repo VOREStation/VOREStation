@@ -155,3 +155,8 @@
 		new /obj/item/clothing/shoes/boots/jackboots(src)
 		new /obj/item/clothing/shoes/boots/jackboots/toeless(src)
 		return
+
+/obj/structure/closet/secure_closet/detective
+	New()
+		..()
+		new /obj/item/weapon/gun/energy/taser
