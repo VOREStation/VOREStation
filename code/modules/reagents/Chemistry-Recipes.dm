@@ -1863,7 +1863,7 @@
 	required_reagents = list("tea" = 5, "limejuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/drinks/limetea
+/datum/chemical_reaction/drinks/orangetea
 	name = "Orange Tea"
 	id = "orangetea"
 	result = "orangetea"
