@@ -2489,13 +2489,13 @@
 /datum/reagent/ethanol/euphoria
 	name = "Euphoria"
 	id = "euphoria"
-	description = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existance."
+	description = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existence."
 	taste_description = "impossibly rich alcohol"
 	color = "#614126"
 	strength = 9
 
 	glass_name = "Euphoria"
-	glass_desc = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existance."
+	glass_desc = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existence."
 
 /datum/reagent/ethanol/xanaducannon
 	name = "Xanadu Cannon"
@@ -2583,7 +2583,7 @@
 /datum/reagent/ethanol/winebrandy
 	name = "Wine Brandy"
 	id = "winebrandy"
-	description = "An premium spirit made from distilled wine."
+	description = "A premium spirit made from distilled wine."
 	taste_description = "very sweet dried fruit with many elegant notes"
 	color = "#4C130B" // rgb(76,19,11)
 	strength = 20
@@ -2735,7 +2735,7 @@
 	color = "#a0692e" // rgb(160, 105, 46)
 	strength = 20
 
-	glass_name = "Whisker Sour"
+	glass_name = "Whiskey Sour"
 	glass_desc = "A smokey, refreshing lemoned whiskey."
 
 /datum/reagent/ethanol/oldfashioned

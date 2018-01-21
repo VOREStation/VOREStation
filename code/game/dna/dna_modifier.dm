@@ -327,7 +327,7 @@
   */
 /obj/machinery/computer/scan_consolenew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
-	if(user == connected.occupant || user.stat)
+	if(!connected || user == connected.occupant || user.stat)
 		return
 
 	// this is the data which will be sent to the ui
