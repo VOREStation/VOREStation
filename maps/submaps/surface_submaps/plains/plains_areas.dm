@@ -23,3 +23,4 @@
 	name = "Peninsula"
 
 /area/submap/PascalB
+	name = "PascalB"
