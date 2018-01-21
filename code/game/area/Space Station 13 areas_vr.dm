@@ -244,3 +244,7 @@
 
 /area/maintenance/substation/outpost
 	name = "Research Outpost Substation"
+
+/area/engineering/engine_gas
+	name = "\improper Engine Gas Storage"
+	icon_state = "engine_waste"
