@@ -1229,6 +1229,14 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/grid_checker
 	sort_string = "JBABC"
 
+/datum/design/circuit/breakerbox
+	name = "breaker box"
+	desc = "Allows for the construction of circuit boards used to build a breaker box."
+	id = "breakerbox"
+	req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/breakerbox
+	sort_string = "JBABD"
+
 /datum/design/circuit/gas_heater
 	name = "gas heating system"
 	id = "gasheater"
