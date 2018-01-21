@@ -5,8 +5,8 @@
 	desc = "Provides a general identification and health status overlay on your vision with no frills."
 	list_pos = NIF_CIVILIAN_AR
 	cost = 500
-	a_drain = 0.05
-	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	a_drain = 0.01
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_CIVILIAN)
 	incompatible_with = list(NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
@@ -16,8 +16,8 @@
 	list_pos = NIF_MEDICAL_AR
 	cost = 750
 	access = access_medical
-	a_drain = 0.05
-	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP)
+	a_drain = 0.01
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_MEDICAL)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
@@ -27,8 +27,8 @@
 	list_pos = NIF_SECURITY_AR
 	cost = 750
 	access = access_security
-	a_drain = 0.05
-	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED)
+	a_drain = 0.01
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_SECURITY)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
@@ -38,8 +38,8 @@
 	list_pos = NIF_ENGINE_AR
 	cost = 750
 	access = access_engine
-	a_drain = 0.05
-	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	a_drain = 0.01
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_ENGINE)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
@@ -49,8 +49,8 @@
 	list_pos = NIF_SCIENCE_AR
 	cost = 750
 	access = access_research
-	a_drain = 0.05
-	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	a_drain = 0.01
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_SCIENCE)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_OMNI_AR)
 
@@ -60,10 +60,11 @@
 	list_pos = NIF_OMNI_AR
 	cost = 750
 	access = access_captain
-	a_drain = 0.05
-	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	a_drain = 0.01
+	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_OMNI)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR)
+
 //////////////
 // Misc Vision
 /datum/nifsoft/corrective

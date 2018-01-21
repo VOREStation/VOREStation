@@ -5,4 +5,6 @@
 #define VIS_CH_BACKUP		20
 #define VIS_CH_VANTAG		21
 
-#define VIS_COUNT			21
+#define VIS_AUGMENTED		22
+
+#define VIS_COUNT			22
