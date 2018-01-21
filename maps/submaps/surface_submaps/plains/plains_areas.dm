@@ -21,3 +21,5 @@
 
 /area/submap/Peninsula
 	name = "Peninsula"
+
+/area/submap/PascalB
