@@ -18,3 +18,10 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "algae sheets crate"
+
+/datum/supply_packs/eng/engine/tesla_gen
+	name = "Tesla Generator crate"
+	contains = list(/obj/machinery/the_singularitygen/tesla)
+	containertype = /obj/structure/closet/crate/secure/engineering
+	containername = "Tesla Generator crate"
+	access = access_ce
