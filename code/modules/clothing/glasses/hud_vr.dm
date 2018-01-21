@@ -9,7 +9,7 @@
 	var/datum/nano_module/arscreen
 	var/arscreen_path
 	var/flash_prot = 0 //0 for none, 1 for flash weapon protection, 2 for welder protection
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	plane_slots = list(slot_glasses)
 
 /obj/item/clothing/glasses/omnihud/New()
@@ -72,7 +72,7 @@
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
 	arscreen_path = /datum/nano_module/crew_monitor
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(arscreen)
@@ -87,7 +87,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Security Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor/security
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(arscreen)
