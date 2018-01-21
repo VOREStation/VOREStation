@@ -147,6 +147,76 @@
 				</body>
 			</html>"}
 
+// TESLA Engine
+
+/obj/item/weapon/book/manual/tesla_engine
+	name = "Tesla Operating Manual"
+	icon_state ="bookTesla"
+	author = "Engineering Encyclopedia"
+	title = "Tesla Engine User's Guide"
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 18px; margin: 15px 0px 5px;}
+				h2 {font-size: 15px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				body {font-size: 13px; font-family: Verdana;}
+				</style>
+				</head>
+				<body>
+				<h1>OPERATING MANUAL FOR MK 2 PROTOTYPE TESLA ENGINE &apos;EDISON&apos;S BANE&apos;</h1>
+				<br>
+				<h2>OPERATING PRINCIPLES</h2>
+				<p>This big floaty ball of pure electricity can only be contained by the containment field. It periodically will discharge energy in the form of an electric shock which can be harvested for energy.</p>
+				<p>When you shoot the energy ball with the Particle Accelerator, it gains energy, and when enough energy is accumulated a mini-energy ball that orbits the big energy ball will be formed. This can happen as many times as you let it, each mini-ball will send off an extra shock when the energy ball pulses. Be warned, the more mini-balls the energy ball has, the more shocks it sends out at once and the further it can travel each move.</p>
+				<p>An energy ball will shoot bolts of electricity off at conductors, which it prioritizes in this order:
+				<ol>
+					<li>Tesla coils</li>
+					<li>Grounding rods</li>
+					<li>People and animals</li>
+					<li>Machines</li>
+				</ol>
+				</p>
+				<p>Tesla Coils will attract the energy ball&apos;s bolts. They will take half the power of the bolt (if they are connected to a wire node), pump it into the powernet it is hooked to, and then will send the other half of the power to the next available conductor, which follows the criteria listed above. Preferably, this will be another coil to harness more of the power and pump it into the grid.</p>
+				<p>Grounding Rods are safety precautions to prevent the tesla bolts from hitting machinery or personnel. If the tesla is loose, being near one will usually keep you safe from direct shocks.</p>
+				<br>
+				<h2>STARTUP PROCEDURE</h2>
+				<ol>
+				<li>Bolt and weld down the Field Generators, ensuring they form a complete rectangle.</li>
+				<li>Bolt and weld down the Emitters, ensuring their fire will strike the corner Field Generators</li>
+				<li>Bolt down the Tesla Generator inside the rectangle formed by the Field Generators in a spot where it will be struck by fire from the Particle Accelerator</li>
+				<li>Bolt down Telsa Coils and Grounding Rods</li>
+				<li>Activate the Emitters</li>
+				<li>Activate each of the Field Generators, then wait until the containment field has completely formed.</li>
+				<li>Setup the Particle Accelerator (see our best seller <i>&quot;Particle Accelerator User&apos;s Guide&quot;</i>!) and activate it.</li>
+				<li>After a short time the Telsa Generator will create an energy ball, being consumed in the process.</li>
+				</ol>
+				<br>
+				<h2>OPERATION AND MAINTENANCE</h2>
+				<ol>
+				<li>Ensure that electrical protection and meson goggles are worn at all times while working in the engine room.</li>
+				<li>Ensure that Telsa Coils and/or Grounding Rods are placed to safely collect or ground any and all shock.</li>
+				<li>Ensure that all Emitters remain activated and have unobstructed lines of fire to the Field Generators.</li>
+				<li>Do <b>not</b> let the Emitters run out of power.</li>
+				</ol>
+				<br>
+				<h2>SHUTDOWN PROCEDURE</h2>
+				<ol>
+				<li>De-activate the Particle Accelerator.  The energy ball will begin to shrink and lose mini-balls.</li>
+				<li>When the energy ball has completely dissipated, the Emitters can be de-activated.</li>
+				</ol>
+				<br>
+				<h2>ENERGY BALL ESCAPE PROCEDURE</h2>
+				<ol>
+				<li>Do not let it escape.</li>
+				<li>Have someone ready to blame when it does escape.</li>
+				<li>Buy our forthcoming manual &quot;<i>Celebrity Grounding Rod Shelters of the Galaxy</i>&quot;</li>
+				</ol>
+				</body>
+			</html>"}
+
 //R-UST port
 /obj/item/weapon/book/manual/rust_engine
 	name = "R-UST Operating Manual"
