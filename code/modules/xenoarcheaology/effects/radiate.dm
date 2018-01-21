@@ -20,5 +20,5 @@
 
 /datum/artifact_effect/radiate/DoEffectPulse()
 	if(holder)
-		radiation_repository.radiate(holder, ((radiation_amount * 25) * (sqrt(src.effectrange)))) //Need to get feedback on this
+		radiation_repository.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange)))) //Need to get feedback on this //VOREStation Edit - Was too crazy-strong.
 		return 1
