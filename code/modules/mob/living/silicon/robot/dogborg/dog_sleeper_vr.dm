@@ -447,7 +447,7 @@
 					items_preserved |= T
 				else
 					hound.cell.charge += (50 * digested)
-			if(istype(target,/obj/effect/decal/remains))
+			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
 				hound.cell.charge += 50
 			else
