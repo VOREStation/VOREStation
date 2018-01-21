@@ -264,7 +264,7 @@
 // then adds additional mobs or objects if they are in range 'smartly',
 // based on their presence in lists of players or registered objects
 // Type: 1-audio, 2-visual, 0-neither
-/proc/get_mobs_and_objs_in_view_fast(var/turf/T, var/range, var/type = 1)
+/proc/get_mobs_and_objs_in_view_fast(var/turf/T, var/range, var/type = 1, var/remote_ghosts = TRUE)
 	var/list/mobs = list()
 	var/list/objs = list()
 
@@ -274,10 +274,10 @@
 	for(var/thing in hear)
 		if(istype(thing,/obj))
 			objs += thing
-			hearturfs += get_turf(thing)
+			hearturfs |= get_turf(thing)
 		else if(istype(thing,/mob))
 			mobs += thing
-			hearturfs += get_turf(thing)
+			hearturfs |= get_turf(thing)
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
@@ -289,7 +289,7 @@
 			continue
 
 		var/mob/M = mob
-		if(M && M.stat == DEAD && !M.forbid_seeing_deadchat)
+		if(M && M.stat == DEAD && remote_ghosts && !M.forbid_seeing_deadchat)
 			switch(type)
 				if(1) //Audio messages use ghost_ears
 					if(M.is_preference_enabled(/datum/client_preference/ghost_ears))
