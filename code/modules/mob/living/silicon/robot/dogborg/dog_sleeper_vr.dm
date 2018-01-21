@@ -322,7 +322,7 @@
 		hound.sleeper_g = FALSE
 
 	//Couldn't find anyone, and not cleaning
-	else if(!cleaning && !patient)
+	else if(!cleaning && !patient && !length(contents))
 		hound.sleeper_r = FALSE
 		hound.sleeper_g = FALSE
 
@@ -391,10 +391,9 @@
 			if(T.stat == DEAD)
 				if(ishuman(target))
 					message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-
+					src.drain(mob_energy) //Fueeeeellll
 				to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 				to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
-				src.drain(mob_energy) //Fueeeeellll
 				var/deathsound = pick(
 					'sound/vore/death1.ogg',
 					'sound/vore/death2.ogg',
@@ -448,6 +447,9 @@
 					items_preserved |= T
 				else
 					hound.cell.charge += (50 * digested)
+			if(istype(target,/obj/effect/decal/remains))
+				qdel(target)
+				hound.cell.charge += 50
 			else
 				items_preserved |= target
 
