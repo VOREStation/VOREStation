@@ -59,3 +59,6 @@
 
 /area/submap/Rockybase
 	name = "Rockybase"
+
+/area/submap/GovPatrol
+	name = "GovPatrol"

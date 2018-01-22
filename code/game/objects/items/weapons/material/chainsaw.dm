@@ -4,7 +4,7 @@ obj/item/weapon/chainsaw
 	icon_state = "chainsaw0"
 	item_state = "chainsaw0"
 	var/on = 0
-	var/max_fuel = 20
+	var/max_fuel = 100
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE
@@ -26,20 +26,20 @@ obj/item/weapon/chainsaw/Destroy()
 		qdel(reagents)
 	..()
 
-obj/item/weapon/chainsaw/proc/turnOn()
+obj/item/weapon/chainsaw/proc/turnOn(mob/user as mob)
 	if(on) return
 
 	visible_message("You start pulling the string on \the [src].", "[usr] starts pulling the string on the [src].")
 
 	if(max_fuel <= 0)
-		if(do_after(usr, 15))
-			to_chat(usr, "\The [src] won't start!")
+		if(do_after(user, 15))
+			to_chat(user, "\The [src] won't start!")
 		else
-			to_chat(usr, "You fumble with the string.")
+			to_chat(user, "You fumble with the string.")
 	else
-		if(do_after(usr, 15))
+		if(do_after(user, 15))
 			visible_message("You start \the [src] up with a loud grinding!", "[usr] starts \the [src] up with a loud grinding!")
-			attack_verb = list("shreds", "rips", "tears")
+			attack_verb = list("shredded", "ripped", "torn")
 			playsound(src, 'sound/weapons/chainsaw_startup.ogg',40,1)
 			force = active_force
 			edge = 1
@@ -47,13 +47,13 @@ obj/item/weapon/chainsaw/proc/turnOn()
 			on = 1
 			update_icon()
 		else
-			to_chat(usr, "You fumble with the string.")
+			to_chat(user, "You fumble with the string.")
 
-obj/item/weapon/chainsaw/proc/turnOff()
+obj/item/weapon/chainsaw/proc/turnOff(mob/user as mob)
 	if(!on) return
-	to_chat(usr, "You switch the gas nozzle on the chainsaw, turning it off.")
+	to_chat(user, "You switch the gas nozzle on the chainsaw, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
-	playsound(src, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
+	playsound(user, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
 	force = inactive_force
 	edge = 0
 	sharp = 0
@@ -62,9 +62,9 @@ obj/item/weapon/chainsaw/proc/turnOff()
 
 obj/item/weapon/chainsaw/attack_self(mob/user as mob)
 	if(!on)
-		turnOn()
+		turnOn(user)
 	else
-		turnOff()
+		turnOff(user)
 
 obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
@@ -72,6 +72,8 @@ obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mo
 	if(on)
 		playsound(src, 'sound/weapons/chainsaw_attack.ogg',40,1)
 	if(A && on)
+		if(get_fuel() > 0)
+			reagents.remove_reagent("fuel", 1)
 		if(istype(A,/obj/structure/window))
 			var/obj/structure/window/W = A
 			W.shatter()
