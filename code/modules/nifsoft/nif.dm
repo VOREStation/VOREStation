@@ -132,6 +132,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Being removed from some mob
 /obj/item/device/nif/proc/unimplant(var/mob/living/carbon/human/H)
+	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
+	if(SC) //Clean up stored people, this is dirty but the easiest way.
+		qdel_null_list(SC.brainmobs)
+		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
 	H.nif = null
