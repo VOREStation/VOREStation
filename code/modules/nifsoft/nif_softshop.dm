@@ -29,6 +29,7 @@
 
 /obj/machinery/vending/nifsoft_shop/power_change()
 	..()
+	if(!entopic) return //Early APC init(), ignore
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 		entopic.hide()
