@@ -220,6 +220,12 @@ character_name: Schae Yonra
 item_path: /obj/item/weapon/melee/fluff/holochain/mass
 }
 
+{
+ckey: draycu
+character_name: Schae Yonra
+item_path: /obj/item/weapon/implanter/reagent_generator/yonra
+}
+
 # ######## E CKEYS
 
 # Permit Expired
@@ -462,6 +468,12 @@ item_path: /obj/item/clothing/under/fluff/taiga
 ckey: kligor
 character_name: Andy Gettemy
 item_path: /obj/item/device/pda_mod/fluff/kligor
+}
+
+{
+ckey: konabird
+character_name: Rischi
+item_path: /obj/item/weapon/implanter/reagent_generator/rischi
 }
 
 # ######## L CKEYS
