@@ -245,7 +245,7 @@
 	name = "\improper Surface EVA Access"
 
 /area/tether/surfacebase/shuttle_pad
-	name = "\improper Teather Shuttle Pad"
+	name = "\improper Tether Shuttle Pad"
 /area/tether/surfacebase/reading_room
 	name = "\improper Reading Room"
 /area/tether/surfacebase/vacant_site
