@@ -57,6 +57,15 @@
 	name = "\improper North Stairwell Third Floor"
 	icon_state = "dk_yellow"
 
+// /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
+
+/area/tether/surfacebase/east_stairs_two
+	name = "\improper East Stairwell Second Floor"
+	icon_state = "dk_yellow"
+/area/vacant/vacant_site/east
+	name = "\improper East Base Vacant Site"
+
+// /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
 /area/tether/surfacebase/emergency_storage
 	icon_state = "emergencystorage"
@@ -357,6 +366,8 @@
 
 /area/hallway/station
 	icon_state = "hallC1"
+/area/hallway/station/atrium
+	name = "\improper Main Station Atrium"
 /area/hallway/station/port
 	name = "\improper Main Port Hallway"
 /area/hallway/station/starboard
