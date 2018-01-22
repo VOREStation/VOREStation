@@ -1366,6 +1366,63 @@
 	..()
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/mashedpotato
+	name = "Mashed Potato"
+	desc = "Pillowy mounds of mashed potato."
+	icon_state = "mashedpotato"
+	trash = /obj/item/trash/plate
+	filling_color = "#EDDD00"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 4
+	nutriment_desc = list("fluffy mashed potatoes" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/mashedpotato/New()
+	..()
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bangersandmash
+	name = "Bangers and Mash"
+	desc = "An English treat."
+	icon_state = "bangersandmash"
+	trash = /obj/item/trash/plate
+	filling_color = "#EDDD00"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 4
+	nutriment_desc = list("fluffy potato" = 3, "sausage" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/bangersandmash/New()
+	..()
+	reagents.add_reagent("protein", 3)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/cheesymash
+	name = "Cheesy Mashed Potato"
+	desc = "The only thing that could make mash better."
+	icon_state = "cheesymash"
+	trash = /obj/item/trash/plate
+	filling_color = "#EDDD00"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 4
+	nutriment_desc = list("cheesy potato" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/cheesymash/New()
+	..()
+	reagents.add_reagent("protein", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/blackpudding
+	name = "Black Pudding"
+	desc = "This doesn't seem like a pudding at all."
+	icon_state = "blackpudding"
+	filling_color = "#FF0000"
+	center_of_mass = list("x"=16, "y"=7)
+
+/obj/item/weapon/reagent_containers/food/snacks/blackpudding/New()
+	..()
+	reagents.add_reagent("protein", 2)
+	reagents.add_reagent("blood", 5)
+	bitesize = 3
+
 /obj/item/weapon/reagent_containers/food/snacks/soydope
 	name = "Soy Dope"
 	desc = "Dope from a soy."
