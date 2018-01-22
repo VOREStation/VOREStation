@@ -10,7 +10,7 @@
 	name = "Tether Debug Space"
 	requires_power = 0
 
-// Teather Areas itself
+// Tether Areas itself
 /area/tether/surfacebase/tether
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "tether1"
