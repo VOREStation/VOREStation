@@ -84,6 +84,11 @@ var/list/flooring_cache = list()
 				continue
 			F.update_icon()
 
+	// Show 'ceilingless' overlay.
+	var/turf/above = GetAbove(src)
+	if(above && isopenspace(above) && !istype(src, /turf/simulated/floor/outdoors)) // This won't apply to outdoor turfs since its assumed they don't have a ceiling anyways.
+		overlays |= image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling", layer = TURF_LAYER + 0.02)
+
 /turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)

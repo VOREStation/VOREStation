@@ -12,9 +12,14 @@
 // Called after turf replaces old one
 /turf/proc/post_change()
 	levelupdate()
-	var/turf/simulated/open/T = GetAbove(src)
-	if(istype(T))
-		T.update_icon()
+
+	var/turf/simulated/open/above = GetAbove(src)
+	if(istype(above))
+		above.update_icon()
+
+	var/turf/simulated/below = GetBelow(src)
+	if(istype(below))
+		below.update_icon() // To add or remove the 'ceiling-less' overlay.
 
 //Creates a new turf
 /turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
