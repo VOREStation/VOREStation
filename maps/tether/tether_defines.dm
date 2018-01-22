@@ -125,6 +125,14 @@
 		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
 		/area/tether/surfacebase/emergency_storage/rnd,
 		/area/tether/surfacebase/emergency_storage/atrium)
+	unit_test_z_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_SPACE_LOW,
+		Z_LEVEL_SPACE_MID,
+		Z_LEVEL_SPACE_HIGH)
+
 
 /datum/map/tether/perform_map_generation()
 
