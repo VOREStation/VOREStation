@@ -5,7 +5,7 @@
 
 /obj/item/poi/pascalb
 	icon_state = "pascalb"
-	name = "Misshapen Manhole Cover"
+	name = "misshapen manhole cover"
 	desc = "The top of this twisted chunk of metal is faintly stamped with a five pointed star. 'Property of US Army, Pascal B - 1957'."
 
 /obj/item/poi/pascalb/New()
