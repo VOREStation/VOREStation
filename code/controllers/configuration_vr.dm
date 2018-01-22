@@ -32,6 +32,10 @@
 			continue
 
 		switch (name)
+			if ("assistants_ratio")
+				config.assistants_ratio = value
+			if ("assistants_assured")
+				config.assistants_assured = value
 			if ("chat_webhook_url")
 				config.chat_webhook_url = value
 			if ("chat_webhook_key")
@@ -42,8 +46,5 @@
 				config.fax_export_dir = value
 			if ("items_survive_digestion")
 				config.items_survive_digestion = 1
-			if ("assistants_ratio")
-				config.assistants_ratio = value
-			if ("assistants_assured")
-				config.assistants_assured = value
+
 	return 1

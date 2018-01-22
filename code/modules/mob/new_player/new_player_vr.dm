@@ -48,7 +48,7 @@
 			to_chat(src,"<span class='warning'>Your custom species is not playable. Reconfigure your traits on the VORE tab.</span>")
 
 	//Assistant ratio enforcement
-	if (config.assistants_ratio)
+	if (config.assistants_ratio > 0) //Stored as a negative number when inactive by admin verb
 
 		var/nonassistants = 0
 		var/assistants = 0
