@@ -13,7 +13,6 @@
 	path = /obj/item/device/communicator
 	cost = 0
 
-	display_name = "communicator watch"
 /datum/gear/utility/communicator/New()
 	..()
 	var/list/communicators = list()
