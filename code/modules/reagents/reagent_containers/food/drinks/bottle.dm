@@ -431,6 +431,18 @@
 	..()
 	reagents.add_reagent("orangejuice", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/applejuice
+	name = "Apple Juice"
+	desc = "Squeezed, pressed and ground to perfection!"
+	icon_state = "applejuice"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=7)
+	isGlass = 0
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/applejuice/New()
+	..()
+	reagents.add_reagent("applejuice", 100)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/milk
 	name = "Large Milk Carton"
 	desc = "It's milk. This carton's large enough to serve your biggest milk drinkers."
