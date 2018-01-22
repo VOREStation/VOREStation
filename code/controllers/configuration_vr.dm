@@ -33,9 +33,9 @@
 
 		switch (name)
 			if ("assistants_ratio")
-				config.assistants_ratio = value
+				config.assistants_ratio = text2num(value)
 			if ("assistants_assured")
-				config.assistants_assured = value
+				config.assistants_assured = text2num(value)
 			if ("chat_webhook_url")
 				config.chat_webhook_url = value
 			if ("chat_webhook_key")
