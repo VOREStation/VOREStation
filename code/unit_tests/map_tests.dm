@@ -39,8 +39,10 @@
 	exempt_from_atmos += using_map.unit_test_exempt_from_atmos.Copy()
 	exempt_from_apc += using_map.unit_test_exempt_from_apc.Copy()
 
+	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
+
 	for(var/area/A in world)
-		if(A.z == 1 && !(A.type in exempt_areas))
+		if((A.z in zs_to_test) && !(A.type in exempt_areas))
 			area_test_count++
 			var/area_good = 1
 			var/bad_msg = "--------------- [A.name]([A.type])"
