@@ -36,7 +36,7 @@
 /area/turbolift/t_surface/level1
 	name = "surface (level 1)"
 	lift_floor_label = "Surface 1"
-	lift_floor_name = "Tram, Mining, Moon EVA"
+	lift_floor_name = "Tram, Dorms, Mining, Surf. EVA"
 	lift_announce_str = "Arriving at Base Level 1."
 
 /area/turbolift/t_surface/level2
@@ -54,7 +54,7 @@
 /area/turbolift/t_station/level1
 	name = "asteroid (level 1)"
 	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Bridge, Dorms, Cryo"
+	lift_floor_name = "Eng, Bridge, Park, Cryo"
 	lift_announce_str = "Arriving at Station Level 1."
 
 /area/turbolift/t_station/level2
