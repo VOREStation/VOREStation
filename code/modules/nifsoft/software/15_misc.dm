@@ -148,3 +148,30 @@
 
 	stat_text()
 		return "Change Size"
+
+/datum/nifsoft/worldbend
+	name = "World Bender"
+	desc = "Alters your perception of various objects in the world. Only has one setting for now: displaying all your crewmates as farm animals."
+	list_pos = NIF_WORLDBEND
+	cost = 200
+	a_drain = 0.01
+
+	activate()
+		if((. = ..()))
+			var/list/justme = list(nif.human)
+			for(var/human in human_mob_list)
+				if(human == nif.human)
+					continue
+				var/mob/living/carbon/human/H = human
+				H.display_alt_appearance("animals", justme)
+				alt_farmanimals += nif.human
+
+	deactivate()
+		if((. = ..()))
+			var/list/justme = list(nif.human)
+			for(var/human in human_mob_list)
+				if(human == nif.human)
+					continue
+				var/mob/living/carbon/human/H = human
+				H.hide_alt_appearance("animals", justme)
+				alt_farmanimals -= nif.human

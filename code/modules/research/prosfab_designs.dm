@@ -12,11 +12,18 @@
 		var/obj/machinery/pros_fabricator/prosfab = fabricator
 		var/obj/item/organ/O = new build_path(newloc)
 		//VOREStation Edit - Suggesting a species
+		var/newspecies = "Human"
 		if(prosfab.manufacturer)
 			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
-			O.species = all_species["[manf.suggested_species]"]
-		else
-			O.species = all_species["Human"]
+			newspecies = manf.suggested_species
+		O.species = all_species[newspecies]
+		if(istype(O,/obj/item/organ/external))
+			var/obj/item/organ/external/EO = O
+			if(EO.species.base_color)
+				var/r_skin = hex2num(copytext(EO.species.base_color,2,4))
+				var/g_skin = hex2num(copytext(EO.species.base_color,4,6))
+				var/b_skin = hex2num(copytext(EO.species.base_color,6,8))
+				EO.s_col = list(r_skin, g_skin, b_skin)
 		//VOREStation Edit End
 		O.robotize(prosfab.manufacturer)
 		O.dna = new/datum/dna() //Uuughhhh... why do I have to do this?

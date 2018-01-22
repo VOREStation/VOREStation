@@ -7,6 +7,7 @@
 #include "camp1.dmm"
 #include "house1.dmm"
 #include "beacons.dmm"
+#include "Epod.dmm"
 #endif
 
 // The 'plains' is the area outside the immediate perimeter of the big outpost.
@@ -46,4 +47,17 @@
 	name = "Collection of Marker Beacons"
 	desc = "A bunch of marker beacons, scattered in a strange pattern."
 	mappath = 'maps/submaps/surface_submaps/plains/beacons.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/Epod
+	name = "Emergency Pod"
+	desc = "A vacant Emergency pod in the middle of nowhere."
+	mappath = 'maps/submaps/surface_submaps/plains/Epod.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/Rocky2
+	name =  "Rocky2"
+	desc = "More rocks."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Rocky2.dmm'
+	allow_duplicates = TRUE
 	cost = 5

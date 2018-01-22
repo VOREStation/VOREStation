@@ -1,0 +1,6 @@
+author: Leshana
+delete-after: True
+  - soundadd: "Sounds of Tesla engine lighting bolts"
+  - imageadd: "Sprites for grounding rod and Tesla coil"
+  - imageadd: "Sprites for lighting bolts"
+  - rscadd: "The Tesla Engine, Tesla Coils, and Grounding Rods"

@@ -326,3 +326,28 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	..()
 	client_huds |= global_hud.whitense
 	client_huds |= global_hud.darkMask
+
+//It's the 26th century. We should have smart watches by now.
+/obj/item/device/communicator/watch
+	name = "communicator watch"
+	desc = "A personal device used to enable long range dialog between two people, utilizing existing telecommunications infrastructure to allow \
+	communications across different stations, planets, or even star systems. You can wear this one on your wrist!"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "commwatch"
+	slot_flags = SLOT_GLOVES
+
+/obj/item/device/communicator/watch/update_icon()
+	if(video_source)
+		icon_state = "commwatch-video"
+		return
+
+	if(voice_mobs.len || communicating.len)
+		icon_state = "commwatch-active"
+		return
+
+	if(alert_called)
+		icon_state = "commwatch-called"
+		return
+
+	icon_state = initial(icon_state)
+

@@ -64,7 +64,7 @@
 	)
 
 /datum/shuttle_destination/ninja/outside_SC_3d
-	name = "NLS Southern Cross - Starboard of Third Deck"
+	name = "NLS Southern Cross - Port of Third Deck"
 	my_area = /area/ninja_dojo/thirddeck
 	preferred_interim_area = /area/ninja_dojo/transit
 

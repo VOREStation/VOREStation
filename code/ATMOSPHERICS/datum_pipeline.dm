@@ -16,7 +16,8 @@ datum/pipeline
 			temporarily_store_air()
 		for(var/obj/machinery/atmospherics/pipe/P in members)
 			P.parent = null
-
+		members = null
+		edges = null
 		. = ..()
 
 	proc/process()//This use to be called called from the pipe networks

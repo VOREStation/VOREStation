@@ -1,0 +1,40 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/MHR)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/MHR)
+"d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"e" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/MHR)
+"f" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"g" = (/obj/structure/table/rack,/obj/item/weapon/storage/backpack,/turf/template_noop,/area/submap/MHR)
+"h" = (/obj/structure/table/standard,/turf/template_noop,/area/submap/MHR)
+"i" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "Do not enter the cave. The estimated active time of the Vicerators is much longer due to the improvements on the rotor bearings. It's estimated to be roughly a few months before we start to see any chancces of mechanical failure. "; name = "NOTICE: DO NOT ENTER"},/turf/template_noop,/area/submap/MHR)
+"j" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"k" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"l" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"m" = (/obj/effect/decal/cleanable/spiderling_remains,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"n" = (/obj/effect/decal/remains/robot,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"o" = (/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"p" = (/obj/effect/decal/remains,/obj/item/clothing/mask/gas/explorer,/obj/item/weapon/material/twohanded/fireaxe,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+"q" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/simulated/floor/outdoors/dirt,/area/submap/MHR)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abcbbbbbbbbbbdbeeeca
+abbbbbbbbbbdddfeeeea
+abbbbbbbbbbdfdddeeea
+abbbbbghieeeedddeeea
+abbbbeeeeeeeeeddeeea
+abbbeeeeeeeeeeedeeea
+acbeeeeeeeeeeeedeeea
+abeeeeeeeeeeeeedjeea
+abeeeeedkjeelddddeea
+abeeemddddnfdddddeea
+abeeeododdddddddpeea
+abeeedddfdddddddeeea
+abbeedoddddqddneeeea
+abbeeefeeqodddeeeeba
+abbeeeeeeeeeeeeeebba
+abbbeeeeeeeeeeeeebba
+acbbbeeeeeeeebbbbbba
+abbbbcbbbbbbbbbbbbca
+aaaaaaaaaaaaaaaaaaaa
+"}

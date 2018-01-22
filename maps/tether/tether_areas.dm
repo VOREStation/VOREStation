@@ -10,7 +10,7 @@
 	name = "Tether Debug Space"
 	requires_power = 0
 
-// Teather Areas itself
+// Tether Areas itself
 /area/tether/surfacebase/tether
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "tether1"
@@ -76,10 +76,6 @@
 /area/vacant/vacant_restaurant_lower
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
-
-/area/engineering/engine_gas
-	name = "\improper Engine Gas Storage"
-	icon_state = "engine_waste"
 
 /area/engineering/engineering_airlock
 	name = "\improper Engineering Airlock"

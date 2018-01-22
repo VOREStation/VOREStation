@@ -196,7 +196,7 @@
 "dN" = (/obj/structure/closet/bombclosetsecurity,/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/base)
 "dO" = (/obj/structure/closet/medical_wall{pixel_y = -32},/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/adv,/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/base)
 "dP" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/backpack/satchel/sec,/turf/simulated/floor/tiled/dark,/area/awaymission/snowfield/base)
-"dQ" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/winterhood,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
+"dQ" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/hood/winter,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "dR" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/internals,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "dS" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/decal/remains/human,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)
 "dT" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/effect/decal/remains/human,/mob/living/simple_animal/hostile/mimic/crate,/turf/simulated/floor/tiled/neutral,/area/awaymission/snowfield/base)

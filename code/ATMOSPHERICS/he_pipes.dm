@@ -26,7 +26,7 @@
 	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_init()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -135,7 +135,7 @@
 			initialize_directions_he = WEST
 
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))
 		if(target.initialize_directions & get_dir(target,src))
 			node1 = target

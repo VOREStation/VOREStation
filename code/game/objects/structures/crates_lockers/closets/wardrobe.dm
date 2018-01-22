@@ -29,6 +29,8 @@
 	new /obj/item/clothing/under/rank/security2(src)
 	new /obj/item/clothing/under/rank/security2(src)
 	new /obj/item/clothing/under/rank/security2(src)
+	new /obj/item/clothing/under/rank/security/skirt(src)
+	new /obj/item/clothing/under/rank/security/skirt(src)
 	new /obj/item/clothing/shoes/boots/jackboots(src)
 	new /obj/item/clothing/shoes/boots/jackboots(src)
 	new /obj/item/clothing/shoes/boots/jackboots(src)

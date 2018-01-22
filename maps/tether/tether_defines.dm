@@ -112,7 +112,12 @@
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
-		/area/vacant/vacant_site)
+		/area/vacant/vacant_site,
+		/area/vacant/vacant_site/east,
+		/area/crew_quarters/sleep/Dorm_1/holo,
+		/area/crew_quarters/sleep/Dorm_3/holo,
+		/area/crew_quarters/sleep/Dorm_5/holo,
+		/area/crew_quarters/sleep/Dorm_7/holo)
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos/intake, // Outside,
 		/area/rnd/external, //  Outside,

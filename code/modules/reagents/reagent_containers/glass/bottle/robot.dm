@@ -13,11 +13,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	reagent = "inaprovaline"
-
-/obj/item/weapon/reagent_containers/glass/bottle/robot/inaprovaline/New()
-	..()
-	reagents.add_reagent("inaprovaline", 60)
-	update_icon()
+	prefill = list("inaprovaline" = 60)
 
 
 /obj/item/weapon/reagent_containers/glass/bottle/robot/antitoxin
@@ -26,9 +22,4 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	reagent = "anti_toxin"
-
-/obj/item/weapon/reagent_containers/glass/bottle/robot/antitoxin/New()
-	..()
-	reagents.add_reagent("anti_toxin", 60)
-	update_icon()
-
+	prefill = list("anti_toxin" = 60)

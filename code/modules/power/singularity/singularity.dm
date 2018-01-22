@@ -29,14 +29,10 @@
 
 	var/chained = 0//Adminbus chain-grab
 
-/obj/singularity/New(loc, var/starting_energy = 50, var/temp = 0)
+/obj/singularity/New(loc, var/starting_energy = 50)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 	energy = starting_energy
-
-	if (temp)
-		spawn (temp)
-			qdel(src)
 
 	..()
 	processing_objects += src
@@ -366,6 +362,11 @@
 /obj/singularity/proc/can_move(const/turf/T)
 	if (!isturf(T))
 		return 0
+
+	// VOREStation Edit Start
+	if(istype(get_area(T), /area/crew_quarters/sleep)) //No going to dorms
+		return 0
+	// VOREStation Edit End
 
 	if ((locate(/obj/machinery/containment_field) in T) || (locate(/obj/machinery/shieldwall) in T))
 		return 0
