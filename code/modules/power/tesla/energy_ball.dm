@@ -55,7 +55,8 @@
 /obj/singularity/energy_ball/process(var/wait = 20)
 	set waitfor = FALSE
 	if(!orbiting)
-		handle_energy()
+		if (handle_energy())
+			return
 
 		move_the_basket_ball(max(wait - 5, 4 + orbiting_balls.len * 1.5))
 
@@ -91,6 +92,11 @@
 			sleep(1) // So movement is smooth
 
 /obj/singularity/energy_ball/proc/handle_energy()
+	if (energy <= 0)
+		investigate_log("collapsed.", I_SINGULO)
+		qdel(src)
+		return TRUE
+
 	if(energy >= energy_to_raise)
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
