@@ -4,6 +4,8 @@
 
 /datum/configuration
 	var/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
+	var/assistants_ratio
+	var/assistants_assured = 15 // Default 15, only used if the ratio is set though.
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -40,4 +42,8 @@
 				config.fax_export_dir = value
 			if ("items_survive_digestion")
 				config.items_survive_digestion = 1
+			if ("assistants_ratio")
+				config.assistants_ratio = value
+			if ("assistants_assured")
+				config.assistants_assured = value
 	return 1

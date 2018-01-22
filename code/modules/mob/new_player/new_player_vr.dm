@@ -47,6 +47,22 @@
 			pass = FALSE
 			to_chat(src,"<span class='warning'>Your custom species is not playable. Reconfigure your traits on the VORE tab.</span>")
 
+	//Assistant ratio enforcement
+	if (config.assistants_ratio)
+
+		var/nonassistants = 0
+		var/assistants = 0
+		for(var/job in job_master.occupations)
+			var/datum/job/J = job
+			if(istype(J,/datum/job/assistant))
+				assistants += J.current_positions
+			else
+				nonassistants += J.current_positions
+
+		if(assistants != 0 && assistants >= config.assistants_assured && nonassistants/assistants < config.assistants_ratio)
+			pass = FALSE
+			to_chat(src,"There are currently [assistants] assistants, and [nonassistants] normal employees, while we enforce a specific ratio. Please join as a job instead of assistant.")
+
 	//Final popup notice
 	if (!pass)
 		alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
