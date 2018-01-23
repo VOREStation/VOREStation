@@ -1018,7 +1018,7 @@
 
 /datum/reagent/drink/milkshake/berryshake
 	name = "Berry Milkshake"
-	id = "Berryshake"
+	id = "berryshake"
 	description = "A refreshing berry milkshake."
 	taste_description = "cold refreshing berries and cream"
 	color = "#ffb2b2" // rgb(255, 178, 178)
