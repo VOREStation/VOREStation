@@ -55,6 +55,10 @@ var/list/planetary_walls = list()
 	nitrogen	= 114.50978 * 0.819
 	temperature	= 243.15 // Roughly -30C / -22F
 
+//High Alt Sif
+/turf/unsimulated/wall/planetary/sif/alt
+	temperature	= 225.15
+
 // Fairly close to Mars in terms of temperature and pressure.
 /turf/unsimulated/wall/planetary/magni
 	carbon_dioxide = 0.90998361

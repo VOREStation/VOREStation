@@ -11,3 +11,10 @@
 	icon_state = "mine_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/explorer
+
+/obj/item/device/radio/headset/headset_sar
+	name = "sar radio headset"
+	desc = "A headset for search and rescue."
+	icon_state = "med_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/sar
