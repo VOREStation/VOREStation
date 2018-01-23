@@ -453,10 +453,10 @@
 				if(!digested)
 					items_preserved |= T
 				else
-					hound.cell.charge += (50 * digested)
+					drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
-				hound.cell.charge += 50
+				drain(-100)
 			else
 				items_preserved |= target
 
@@ -525,7 +525,7 @@
 	if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer))
 		if(istype(target, /obj/item))
 			var/obj/target_obj = target
-			if(target_obj.w_class >= ITEMSIZE_LARGE)
+			if(target_obj.w_class > ITEMSIZE_LARGE)
 				to_chat(user, "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>")
 				return
 			user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
