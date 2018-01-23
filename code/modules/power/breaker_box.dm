@@ -13,6 +13,7 @@
 	var/icon_state_off = "bbox_off"
 	density = 1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/breakerbox
 	var/on = 0
 	var/busy = 0
 	var/directions = list(1,2,4,8,5,6,9,10)
@@ -20,15 +21,22 @@
 	var/update_locked = 0
 
 /obj/machinery/power/breakerbox/Destroy()
+	for(var/obj/structure/cable/C in src.loc)
+		qdel(C)
 	. = ..()
 	for(var/datum/nano_module/rcon/R in world)
 		R.FindDevices()
 
+/obj/machinery/power/breakerbox/initialize()
+	. = ..()
+	default_apply_parts()
+
 /obj/machinery/power/breakerbox/activated
 	icon_state = "bbox_on"
 
-	// Enabled on server startup. Used in substations to keep them in bypass mode.
+// Enabled on server startup. Used in substations to keep them in bypass mode.
 /obj/machinery/power/breakerbox/activated/initialize()
+	. = ..()
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
@@ -87,10 +95,15 @@
 		if(newtag)
 			RCon_tag = newtag
 			user << "<span class='notice'>You changed the RCON tag to: [newtag]</span>"
-
-
-
-
+	if(on)
+		to_chat(user, "<font color='red'>Disable the breaker before performing maintenance.</font>")
+		return
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
 
 /obj/machinery/power/breakerbox/proc/set_state(var/state)
 	on = state
