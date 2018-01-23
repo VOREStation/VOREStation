@@ -11,7 +11,7 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/mob_energy = -20000 //Energy gained from digesting mobs (including PCs)
+	var/mob_energy = -200 //Energy gained from digesting dead mobs (including PCs)
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
@@ -215,6 +215,7 @@
 					cleaning = 1
 					drain(startdrain)
 					processing_objects.Add(src)
+					update_patient()
 					sleeperUI(usr)
 					if(patient)
 						to_chat(patient, "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>")
@@ -279,10 +280,11 @@
 //For if the dogborg's existing patient uh, doesn't make it.
 /obj/item/device/dogborg/sleeper/proc/update_patient()
 	hound = src.loc
+
 	//Well, we HAD one, what happened to them?
 	if(patient in contents)
 		if(patient_laststat != patient.stat)
-			if(patient.stat & DEAD)
+			if((patient.stat & DEAD) || cleaning)
 				hound.sleeper_r = TRUE
 				hound.sleeper_g = FALSE
 				patient_laststat = patient.stat
@@ -293,13 +295,15 @@
 			//Update icon
 			hound.updateicon()
 		//Return original patient
+		if(UI_open == TRUE)
+			sleeperUI(usr)
 		return(patient)
 
 	//Check for a new patient
 	else
 		for(var/mob/living/carbon/human/C in contents)
 			patient = C
-			if(patient.stat & DEAD)
+			if((patient.stat & DEAD) || cleaning)
 				hound.sleeper_r = TRUE
 				hound.sleeper_g = FALSE
 				patient_laststat = patient.stat
@@ -309,10 +313,12 @@
 				patient_laststat = patient.stat
 			//Update icon and return new patient
 			hound.updateicon()
+			if(UI_open == TRUE)
+				sleeperUI(usr)
 			return(C)
 
 	//Cleaning looks better with red on, even with nobody in it
-	if((cleaning && !patient) || (length(contents) > 11))
+	if(cleaning || (length(contents) > 11))
 		hound.sleeper_r = TRUE
 		hound.sleeper_g = FALSE
 
@@ -374,11 +380,12 @@
 		//Burn all the mobs or add them to the exclusion list
 		for(var/mob/living/T in (touchable_items))
 			if((T.status_flags & GODMODE) || !T.digestable)
-				src.items_preserved += T
+				items_preserved += T
 			else
 				T.adjustBruteLoss(2)
 				T.adjustFireLoss(3)
-				src.update_patient()
+				drain(-100) //20*total loss as with voreorgan stats.
+				update_patient()
 
 		//Pick a random item to deal with (if there are any)
 		var/atom/target = pick(touchable_items)
@@ -391,9 +398,9 @@
 			if(T.stat == DEAD)
 				if(ishuman(target))
 					message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-					src.drain(mob_energy) //Fueeeeellll
 				to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 				to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
+				drain(mob_energy) //Fueeeeellll
 				var/deathsound = pick(
 					'sound/vore/death1.ogg',
 					'sound/vore/death2.ogg',
@@ -429,7 +436,7 @@
 					else
 						T.drop_from_inventory(I, src)
 				qdel(T)
-				src.update_patient()
+				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(hound)
 
@@ -454,7 +461,7 @@
 				items_preserved |= target
 
 			if(UI_open == TRUE)
-				src.update_patient()
+				update_patient()
 				sleeperUI(hound)
 
 		return
@@ -462,7 +469,7 @@
 /obj/item/device/dogborg/sleeper/process()
 
 	if(cleaning) //We're cleaning, return early after calling this as we don't care about the patient.
-		src.clean_cycle()
+		clean_cycle()
 		return
 
 	if(patient)	//We're caring for the patient. Medical emergency! Or endo scene.
@@ -472,11 +479,7 @@
 			patient.updatehealth()
 		patient.AdjustStunned(-4)
 		patient.AdjustWeakened(-4)
-		src.drain()
-		/* Don't anymore, causes unwanted drug mixing in bloodstream
-		if((patient.reagents.get_reagent_amount("inaprovaline") < 5) && (patient.health < patient.maxHealth)) //Stop pumping full HP people full of drugs. Don't heal people you're digesting, meanie.
-			patient.reagents.add_reagent("inaprovaline", 5)
-		*/
+		drain()
 		return
 
 	if(!patient && !cleaning) //We think we're done working.
@@ -534,7 +537,7 @@
 					var/obj/item/tech_item = target
 					for(var/T in tech_item.origin_tech)
 						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
-				src.update_patient()
+				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
 			return
@@ -554,7 +557,7 @@
 				processing_objects.Add(src)
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
-				src.update_patient()
+				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
 			return
@@ -570,7 +573,7 @@
 			target.forceMove(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
-			src.update_patient()
+			update_patient()
 			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
@@ -583,7 +586,7 @@
 			trashmouse.reset_view(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
-			src.update_patient()
+			update_patient()
 			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
@@ -603,7 +606,7 @@
 			processing_objects.Add(src)
 			user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 			playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
-			src.update_patient()
+			update_patient()
 			if(UI_open == TRUE)
 				sleeperUI(usr)
 		return
