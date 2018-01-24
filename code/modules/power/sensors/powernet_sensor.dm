@@ -32,6 +32,13 @@
 /obj/machinery/power/sensor/proc/auto_set_name()
 	name = "[name_tag] - Powernet Sensor"
 
+/obj/machinery/power/sensor/Destroy()
+	. = ..()
+	// TODO - Switch power_monitor to register deletion events instead of this.
+	for(var/obj/machinery/computer/power_monitor/PM in world)
+		if(PM.power_monitor)
+			PM.power_monitor.refresh_sensors()
+
 // Proc: check_grid_warning()
 // Parameters: None
 // Description: Checks connected powernet for warnings. If warning is found returns 1

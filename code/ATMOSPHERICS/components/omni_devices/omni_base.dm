@@ -244,7 +244,7 @@
 			P.node.disconnect(src)
 			qdel(P.network)
 			P.node = null
-
+	ports = null
 	. = ..()
 
 /obj/machinery/atmospherics/omni/atmos_init()
