@@ -125,12 +125,12 @@
 
 	dat += "<div class='statusDisplay'>"
 
-	if(istype(src, /obj/item/device/dogborg/sleeper/compactor) && length(contents))//garbage counter for trashpup
+	if(istype(/obj/item/device/dogborg/sleeper/compactor) && length(contents))//garbage counter for trashpup
 		var/obj/item/device/dogborg/sleeper/compactor/garbo = src
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
 		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
 
-	if(istype(src, /obj/item/device/dogborg/sleeper/compactor/analyzer) && synced == FALSE)
+	if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer) && synced == FALSE)
 		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
@@ -202,7 +202,7 @@
 		go_out()
 		sleeperUI(usr)
 		return
-	if( href_list["close"] )
+	if(href_list["close"])
 		UI_open = FALSE
 		return
 	if(href_list["clean"])
@@ -259,7 +259,7 @@
 	else
 		to_chat(usr, "<span class='notice'>ERROR: Subject cannot metabolise chemicals.</span>")
 
-	src.updateUsrDialog()
+	updateUsrDialog()
 	sleeperUI(usr) //Needs a callback to boop the page to refresh.
 	return
 
@@ -284,7 +284,11 @@
 	//Well, we HAD one, what happened to them?
 	if(patient in contents)
 		if(patient_laststat != patient.stat)
-			if((patient.stat & DEAD) || cleaning)
+			if(cleaning)
+				hound.sleeper_r = TRUE
+				hound.sleeper_g = FALSE
+				patient_laststat = patient.stat
+			else if(patient.stat & DEAD)
 				hound.sleeper_r = TRUE
 				hound.sleeper_g = FALSE
 				patient_laststat = patient.stat
@@ -303,7 +307,11 @@
 	else
 		for(var/mob/living/carbon/human/C in contents)
 			patient = C
-			if((patient.stat & DEAD) || cleaning)
+			if(cleaning)
+				hound.sleeper_r = TRUE
+				hound.sleeper_g = FALSE
+				patient_laststat = patient.stat
+			else if(patient.stat & DEAD)
 				hound.sleeper_r = TRUE
 				hound.sleeper_g = FALSE
 				patient_laststat = patient.stat
@@ -323,7 +331,7 @@
 		hound.sleeper_g = FALSE
 
 	//Letting analyzer gut swell if overloaded.
-	if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer) && (length(contents) > 1))
+	if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer) && (length(contents) > 1))
 		hound.sleeper_r = TRUE
 		hound.sleeper_g = FALSE
 
@@ -444,7 +452,7 @@
 		else
 			var/obj/item/T = target
 			if(istype(T))
-				if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer))
+				if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer))
 					var/obj/item/tech_item = T
 					for(var/tech in tech_item.origin_tech)
 						files.UpdateTech(tech, tech_item.origin_tech[tech])
@@ -522,7 +530,7 @@
 		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
 		return
 
-	if(istype(src,/obj/item/device/dogborg/sleeper/compactor/analyzer))
+	if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer))
 		if(istype(target, /obj/item))
 			var/obj/target_obj = target
 			if(target_obj.w_class > ITEMSIZE_LARGE)
