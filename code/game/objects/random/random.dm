@@ -897,6 +897,20 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/weapon/beartrap,
 				prob(2);/obj/item/weapon/handcuffs,)
 
+/obj/random/rigsuit
+	name = "Random rigsuit"
+	desc = "This is a random rigsuit."
+	icon = 'icons/obj/rig_modules.dmi'
+	icon_state = "generic"
+
+/obj/random/rigsuit/item_to_spawn()
+	return pick(prob(4);/obj/item/weapon/rig/light/hacker,
+				prob(5);/obj/item/weapon/rig/industrial,
+				prob(5);/obj/item/weapon/rig/eva,
+				prob(4);/obj/item/weapon/rig/light/stealth,
+				prob(3);/obj/item/weapon/rig/hazard,
+				prob(1);/obj/item/weapon/rig/merc/empty)
+
 var/list/random_junk_
 var/list/random_useful_
 /proc/get_random_useful_type()
