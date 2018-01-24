@@ -16,6 +16,8 @@
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
 	var/UI_open = FALSE
+	var/compactor = FALSE
+	var/analyzer = FALSE
 	var/datum/research/techonly/files //Analyzerbelly var.
 	var/synced = FALSE
 	var/startdrain = 500
@@ -125,12 +127,12 @@
 
 	dat += "<div class='statusDisplay'>"
 
-	if(istype(/obj/item/device/dogborg/sleeper/compactor) && length(contents))//garbage counter for trashpup
+	if(compactor == TRUE && length(contents))//garbage counter for trashpup
 		var/obj/item/device/dogborg/sleeper/compactor/garbo = src
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [garbo.max_item_count] objects.</font><BR>"
 		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
 
-	if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer) && synced == FALSE)
+	if(analyzer == TRUE && synced == FALSE)
 		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
@@ -331,7 +333,7 @@
 		hound.sleeper_g = FALSE
 
 	//Letting analyzer gut swell if overloaded.
-	if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer) && (length(contents) > 1))
+	if(analyzer == TRUE && (length(contents) > 1))
 		hound.sleeper_r = TRUE
 		hound.sleeper_g = FALSE
 
@@ -452,7 +454,7 @@
 		else
 			var/obj/item/T = target
 			if(istype(T))
-				if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer))
+				if(analyzer == TRUE)
 					var/obj/item/tech_item = T
 					for(var/tech in tech_item.origin_tech)
 						files.UpdateTech(tech, tech_item.origin_tech[tech])
@@ -506,6 +508,7 @@
 	desc = "A mounted garbage compactor unit with fuel processor."
 	icon_state = "compactor"
 	injection_chems = null //So they don't have all the same chems as the medihound!
+	compactor = TRUE
 	var/max_item_count = 25
 
 /obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
@@ -514,6 +517,7 @@
 	icon_state = "analyzer"
 	max_item_count = 1
 	startdrain = 100
+	analyzer = TRUE
 
 /obj/item/device/dogborg/sleeper/compactor/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)//GARBO NOMS
 	hound = loc
@@ -530,7 +534,7 @@
 		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
 		return
 
-	if(istype(/obj/item/device/dogborg/sleeper/compactor/analyzer))
+	if(analyzer == TRUE)
 		if(istype(target, /obj/item))
 			var/obj/target_obj = target
 			if(target_obj.w_class > ITEMSIZE_LARGE)
