@@ -47,3 +47,6 @@
 
 	var/evasion = 0 // Makes attacks harder to land.  Each number equals 15% more likely to miss.  Negative numbers increase hit chance.
 	var/force_max_speed = 0 // If 1, the mob runs extremely fast and cannot be slowed.
+
+	var/glow_toggle = 0					// If they're glowing!
+	var/glow_color = "#FFFFFF"			// The color they're glowing!
