@@ -21,6 +21,8 @@
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
+	var/glow_toggle = 0					// If they're glowing!
+	var/glow_color = "#FFFFFF"			// The color they're glowing!
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -565,4 +567,25 @@
 		msg_admin_attack("[key_name(pred)] ate [key_name(prey)] via dropnom/slime feeding!. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 	else
 		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)] via dropnoms/slime feeding!! ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
-	return 1
+
+/mob/living/proc/glow_toggle()
+	set name = "Glow (Toggle)"
+	set category = "Abilities"
+	set desc = "Toggle your glowing on/off!"
+
+	//I don't really see a point to any sort of checking here.
+	//If they're passed out, the light won't help them. Same with buckled. Really, I think it's fine to do this whenever.
+	glow_toggle = !glow_toggle
+
+	to_chat(src,"<span class='notice'>You <b>[glow_toggle ? "en" : "dis"]</b>able your body's glow.</span>")
+
+/mob/living/proc/glow_color()
+	set name = "Glow (Set Color)"
+	set category = "Abilities"
+	set desc = "Pick a color for your body's glow."
+
+	//Again, no real need for a check on this. I'm unsure how it could be somehow abused.
+	//Even if they open the box 900 times, who cares, they get the wrong color and do it again.
+	var/new_color = input(src,"Select a new color","Body Glow",glow_color) as color
+	if(new_color)
+		glow_color = new_color
