@@ -11,7 +11,7 @@
 	color = LIGHTING_BASE_MATRIX
 	icon_state = "light1"
 	auto_init = 0 // doesn't need special init
-	blend_mode = BLEND_MULTIPLY
+	blend_mode = BLEND_OVERLAY
 
 	var/lum_r = 0
 	var/lum_g = 0
