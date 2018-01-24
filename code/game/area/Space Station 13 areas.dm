@@ -1645,7 +1645,6 @@ area/space/atmosalert()
 	requires_power = 1
 	always_unpowered = 1
 	dynamic_lighting = 0
-	base_turf = /turf/space
 
 	auxport
 		name = "\improper Fore Port Solar Array"

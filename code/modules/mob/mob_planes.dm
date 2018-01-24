@@ -33,6 +33,8 @@
 	plane_masters[VIS_D_COLORBLIND] = new /obj/screen/plane_master/colorblindness					//Colorblindness (affects world)
 	plane_masters[VIS_D_COLORBLINDI]= new /obj/screen/plane_master/colorblindness/items 			//Colorblindness (items in HUD, subplane of above, don't toggle)
 
+	plane_masters[VIS_MESONS]		= new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+
 	..()
 
 /datum/plane_holder/Destroy()
