@@ -21,6 +21,7 @@
 	var/datum/research/techonly/files //Analyzerbelly var.
 	var/synced = FALSE
 	var/startdrain = 500
+	var/max_item_count = 1
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -609,7 +610,7 @@
 	icon_state = "compactor"
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	compactor = TRUE
-	var/max_item_count = 25
+	max_item_count = 25
 
 /obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
 	name = "Digestive Analyzer"
