@@ -44,9 +44,6 @@
 	if(length(contents) > (max_item_count - 1))
 		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
 		return
-	if(target.buckled)
-		to_chat(user, "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>")
-		return
 	
 	if(analyzer == TRUE)
 		if(istype(target, /obj/item))
@@ -138,28 +135,31 @@
 					sleeperUI(usr)
 			return
 		return
-	if(!ishuman(target))
-		return
-	if(patient)
-		to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
-		return
-	user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src]...</span>")
-	if(!patient && ishuman(target) && !target.buckled && do_after (user, 50, target))
+	else if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.buckled)
+			to_chat(user, "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>")
+			return
+		if(patient)
+			to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
+			return
+		user.visible_message("<span class='warning'>[hound.name] is ingesting [H.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [H] into your [src]...</span>")
+		if(!patient && !H.buckled && do_after (user, 50, H))
 
-		if(!proximity) return //If they moved away, you can't eat them.
+			if(!proximity) return //If they moved away, you can't eat them.
 
-		if(patient) return //If you try to eat two people at once, you can only eat one.
+			if(patient) return //If you try to eat two people at once, you can only eat one.
 
-		else //If you don't have someone in you, proceed.
-			target.forceMove(src)
-			target.reset_view(src)
-			update_patient()
-			processing_objects.Add(src)
-			user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [target.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [target] slips into your [src]. Life support functions engaged.</span>")
-			message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-			playsound(hound, 'sound/vore/gulp.ogg', 100, 1) //POLARISTODO
-			if(UI_open == TRUE)
-				sleeperUI(usr)
+			else //If you don't have someone in you, proceed.
+				H.forceMove(src)
+				H.reset_view(src)
+				update_patient()
+				processing_objects.Add(src)
+				user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [H.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [H] slips into your [src]. Life support functions engaged.</span>")
+				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				playsound(hound, 'sound/vore/gulp.ogg', 100, 1) //POLARISTODO
+				if(UI_open == TRUE)
+					sleeperUI(usr)
 
 /obj/item/device/dogborg/sleeper/proc/go_out(var/target)
 	hound = src.loc
