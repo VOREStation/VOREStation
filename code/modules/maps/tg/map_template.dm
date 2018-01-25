@@ -103,18 +103,23 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z()
-	var/x = round(world.maxx/2)
-	var/y = round(world.maxy/2)
+/datum/map_template/proc/load_new_z(var/centered = FALSE, var/dont_init = FALSE)
+	var/x = 1
+	var/y = 1
 
-	var/list/bounds = maploader.load_map(file(mappath), x, y)
+	if(centered)
+		x = round((world.maxx - width)/2)
+		y = round((world.maxy - height)/2)
+
+	var/list/bounds = maploader.load_map(file(mappath), x, y, no_changeturf = TRUE)
 	if(!bounds)
 		return FALSE
 
 //	repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
-	initTemplateBounds(bounds)
+	if(!dont_init)
+		initTemplateBounds(bounds)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 	return TRUE
 

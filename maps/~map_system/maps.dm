@@ -38,6 +38,12 @@ var/list/all_maps = list()
 	//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 	var/list/accessible_z_levels = list()
 
+	//List of additional z-levels to load above the existing .dmm file z-levels using the maploader. Must be map template >>> NAMES <<<.
+	var/list/lateload_z_levels = list()
+
+	//Similar to above, but only pick ONE to load, useful for random away missions and whatnot
+	var/list/lateload_single_pick = list()
+
 	var/list/allowed_jobs = list() //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
 	                               //We don't have to C&P ones that are only common between two of them
