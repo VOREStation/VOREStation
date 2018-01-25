@@ -137,7 +137,8 @@
 					sleeperUI(usr)
 			return
 		return
-	
+	if(!ishuman(target))
+		return
 	if(patient)
 		to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
 		return
