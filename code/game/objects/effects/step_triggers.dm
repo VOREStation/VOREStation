@@ -146,8 +146,6 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 /obj/effect/step_trigger/teleporter/planetary_fall
 	var/datum/planet/planet = null
 /* //VOREStation Removal
-/obj/effect/step_trigger/teleporter/planetary_fall/sif/initialize()
-	planet = planet_sif
 */ //VOREStation Removal end
 /obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
 	if(planet)
