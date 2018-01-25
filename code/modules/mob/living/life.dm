@@ -205,6 +205,9 @@
 		set_light(min(round(fire_stacks), 3), round(fire_stacks), l_color = "#FF9933")
 		return TRUE
 
+	else if(glow_toggle)
+		set_light(2, l_color = glow_color) //2 is PDA brightness, so neutral in terms of balance
+
 	else
 		set_light(0)
 		return FALSE
