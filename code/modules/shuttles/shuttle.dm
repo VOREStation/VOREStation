@@ -150,9 +150,9 @@
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
 
-		//on_shuttle_arrival()//VOREStation Edit.
+		on_shuttle_arrival()
 
-		//make_sounds(destination, HYPERSPACE_END)//VOREStation Edit. See above comment.
+		make_sounds(destination, HYPERSPACE_END)
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
