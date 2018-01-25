@@ -166,3 +166,93 @@
 	wear = 20
 	update_icon()
 	return 1
+
+////////////////////////////////////////
+//////// Excursion Shuttle /////////////
+////////////////////////////////////////
+/obj/machinery/computer/shuttle_control/web/excursion
+	name = "shuttle control console"
+	shuttle_tag = "Excursion Shuttle"
+
+/datum/shuttle/web_shuttle/excursion
+	name = "Excursion Shuttle"
+	warmup_time = 0
+	current_area = /area/shuttle/excursion/tether
+	docking_controller_tag = "expshuttle_docker"
+	web_master_type = /datum/shuttle_web_master/excursion
+	autopilot = TRUE
+	can_autopilot = TRUE
+	autopilot_delay = 60
+	autopilot_first_delay = 300 // Ten minutes at roundstart. Two minutes otherwise.
+
+/datum/shuttle_web_master/excursion
+	destination_class = /datum/shuttle_destination/excursion
+	autopath_class = null
+	starting_destination = /datum/shuttle_destination/excursion/tether
+
+
+/datum/shuttle_destination/excursion/tether
+	name = "NSB Adephagia Excursion Hangar"
+	my_area = /area/shuttle/excursion/tether
+
+	dock_target = "expshuttle_dock"
+	radio_announce = 1
+	announcer = "Excursion Shuttle"
+
+	routes_to_make = list(
+		/datum/shuttle_destination/excursion/outside_tether = 0,
+	)
+
+/datum/shuttle_destination/excursion/tether/get_arrival_message()
+	return "Attention, [master.my_shuttle.visible_name] has arrived to Excursion Hangar."
+
+/datum/shuttle_destination/excursion/tether/get_departure_message()
+	return "Attention, [master.my_shuttle.visible_name] has departed Excursion Hangar."
+
+
+/datum/shuttle_destination/excursion/outside_tether
+	name = "Nearby NSB Adephagia"
+	my_area = /area/shuttle/excursion/tether_nearby
+	preferred_interim_area = /area/shuttle/excursion/space_moving
+
+	routes_to_make = list(
+		/datum/shuttle_destination/excursion/docked_tether = 0,
+		/datum/shuttle_destination/excursion/virgo3b_orbit = 30 SECONDS
+	)
+
+
+/datum/shuttle_destination/excursion/docked_tether
+	name = "NSB Adephagia Docking Arm"
+	my_area = /area/shuttle/excursion/tether_dockarm
+
+	dock_target = "d1a2_dock"
+	radio_announce = 1
+	announcer = "Excursion Shuttle"
+
+/datum/shuttle_destination/excursion/docked_tether/get_arrival_message()
+	return "Attention, [master.my_shuttle.visible_name] has arrived at Docking Arm One."
+
+/datum/shuttle_destination/excursion/docked_tether/get_departure_message()
+	return "Attention, [master.my_shuttle.visible_name] has departed Docking Arm One."
+
+
+/datum/shuttle_destination/excursion/virgo3b_orbit
+	name = "Virgo 3B Orbit"
+	my_area = /area/shuttle/excursion/space
+	preferred_interim_area = /area/shuttle/excursion/space_moving
+
+	routes_to_make = list(
+		/datum/shuttle_destination/excursion/virgo3b_sky = 30 SECONDS,
+		/datum/shuttle_destination/excursion/bluespace = 30 SECONDS
+	)
+
+
+/datum/shuttle_destination/excursion/virgo3b_sky
+	name = "Skies of Virgo 3B"
+	my_area = /area/shuttle/excursion/virgo3b_sky
+
+////////// Distant Destinations
+/datum/shuttle_destination/excursion/bluespace
+	name = "Bluespace Jump"
+	my_area = /area/shuttle/excursion/bluespace
+	preferred_interim_area = /area/shuttle/excursion/space_moving

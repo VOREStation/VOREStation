@@ -18,12 +18,6 @@
 	#include "tether-05-solars.dmm"
 	#include "tether-06-colony.dmm"
 	#include "tether-07-misc.dmm"
-	#include "tether-08-ships.dmm"
-	#include "tether-09-empty-surface.dmm"
-	#include "tether-10-empty-space.dmm"
-	//#include "tether-11-wild-surface.dmm"
-	//#include "tether-12-wild-crash-alt.dmm"
-	//#include "tether-13-wild-temple.dmm"
 
 	#define USING_MAP_DATUM /datum/map/tether
 

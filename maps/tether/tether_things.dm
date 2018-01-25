@@ -116,6 +116,8 @@
 	..()
 	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
 
+/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
+	planet = planet_virgo3b
 
 // Invisible object that blocks z transfer to/from its turf and the turf above.
 /obj/effect/ceiling

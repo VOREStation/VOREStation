@@ -126,6 +126,9 @@
 		/area/tether/surfacebase/emergency_storage/rnd,
 		/area/tether/surfacebase/emergency_storage/atrium)
 
+	lateload_z_levels = list(
+		"Tether - Ships")
+
 /datum/map/tether/perform_map_generation()
 
 	new /datum/random_map/automata/cave_system(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.

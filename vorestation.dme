@@ -2522,7 +2522,6 @@
 #include "code\modules\shuttles\departmental.dm"
 #include "code\modules\shuttles\escape_pods.dm"
 #include "code\modules\shuttles\shuttle.dm"
-#include "code\modules\shuttles\shuttle_arrivals.dm"
 #include "code\modules\shuttles\shuttle_console.dm"
 #include "code\modules\shuttles\shuttle_emergency.dm"
 #include "code\modules\shuttles\shuttle_ferry.dm"
@@ -2766,6 +2765,8 @@
 #include "maps\submaps\surface_submaps\plains\plains_areas.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
+#include "maps\submaps\tether_submaps\tether_submaps.dm"
+#include "maps\submaps\tether_submaps\tether_submaps_defines.dm"
 #include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

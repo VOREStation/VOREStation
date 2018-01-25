@@ -99,3 +99,40 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
 /obj/effect/transit/light
 	icon = 'icons/turf/transit_128.dmi'
 	icon_state = "tube1-2"
+
+// Bluespace jump turf!
+/turf/space/bluespace
+	name = "bluespace"
+	icon_state = "bluespace"
+/turf/space/bluespace/New()
+	..()
+	icon_state = "bluespace"
+
+//Sky stuff!
+// A simple turf to fake the appearance of flying.
+/turf/simulated/sky/virgo3b
+	color = "#FFBBBB"
+
+/turf/simulated/sky/virgo3b/initialize()
+	outdoor_turfs.Add(src)
+	set_light(2, 2, "#FFBBBB")
+
+/turf/simulated/sky/virgo3b/north
+	dir = NORTH
+/turf/simulated/sky/virgo3b/south
+	dir = SOUTH
+/turf/simulated/sky/virgo3b/east
+	dir = EAST
+/turf/simulated/sky/virgo3b/west
+	dir = WEST
+
+/turf/simulated/sky/virgo3b/moving
+	icon_state = "sky_fast"
+/turf/simulated/sky/virgo3b/moving/north
+	dir = NORTH
+/turf/simulated/sky/virgo3b/moving/south
+	dir = SOUTH
+/turf/simulated/sky/virgo3b/moving/east
+	dir = EAST
+/turf/simulated/sky/virgo3b/moving/west
+	dir = WEST
