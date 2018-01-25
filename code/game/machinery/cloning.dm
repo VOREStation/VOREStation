@@ -153,7 +153,7 @@
 	modifier_lower_bound = round(modifier_lower_bound * clone_sickness_length, 1)
 	modifier_upper_bound = round(modifier_upper_bound * clone_sickness_length, 1)
 
-	H.add_modifier(/datum/modifier/cloning_sickness, rand(modifier_lower_bound, modifier_upper_bound))
+	H.add_modifier(H.species.cloning_modifier, rand(modifier_lower_bound, modifier_upper_bound))
 
 	// Modifier that doesn't do anything.
 	H.add_modifier(/datum/modifier/cloned)
@@ -342,7 +342,10 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = src.loc
 	eject_wait = 0 //If it's still set somehow.
-	domutcheck(occupant) //Waiting until they're out before possible transforming.
+	if(ishuman(occupant)) //Need to be safe.
+		var/mob/living/carbon/human/patient = occupant
+		if(!(patient.species.flags & NO_SCAN)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
+			domutcheck(occupant) //Waiting until they're out before possible transforming.
 	occupant = null
 
 	biomass -= CLONE_BIOMASS

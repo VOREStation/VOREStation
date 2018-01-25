@@ -39,7 +39,25 @@
 
 // Prevents borging (specifically the MMI part), actual effect is on the MMI.
 /datum/modifier/no_borg
-	name = "Cyboernetic Incompatability"
+	name = "Cybernetic Incompatability"
 	desc = "For whatever reason, your brain is incompatable with direct cybernetic interfaces, such as the MMI."
 
 	flags = MODIFIER_GENETIC
+
+//////////////////////////////////////
+//Species-Specific Cloning Modifiers//
+/////////////////////////////////////
+
+/datum/modifier/cloning_sickness/promethean
+	name = "reformation sickness"
+	desc = "Your core feels damaged, as you were reformed with the improper machinery."
+
+	on_created_text = "<span class='warning'><font size='3'>Your core aches.</font></span>"
+	on_expired_text = "<span class='notice'><font size='3'>You feel your core's strength returning to normal.</font></span>"
+
+	incoming_damage_percent = 1 //Level the incoming damage from the parent modifier. They already take 200% burn.
+	incoming_brute_damage_percent = 1.5 //150% incoming brute damage. Decreases the effectiveness of their 0.75 modifier.
+	incoming_hal_damage_percent = 1.25 //125% incoming halloss.
+
+	outgoing_melee_damage_percent = 0.5 //50% less outgoing melee damage.
+	attack_speed_percent = 1.2 //20% slower attack speed.
