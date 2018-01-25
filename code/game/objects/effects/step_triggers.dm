@@ -158,7 +158,10 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 		var/safety = 100 // Infinite loop protection.
 		while(!T && safety)
 			var/turf/simulated/candidate = pick(planet.planet_floors)
-			if(!istype(candidate) || istype(candidate, /turf/simulated/sky) || !T.outdoors)
+			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
+				safety--
+				continue
+			else if(candidate && !candidate.outdoors)
 				safety--
 				continue
 			else
