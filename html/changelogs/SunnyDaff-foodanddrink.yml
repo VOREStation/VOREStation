@@ -1,0 +1,10 @@
+author: SunnyDaff
+delete-after: True
+
+  - rscadd: Added new food items.
+  - rscadd: Added Cider.
+  - rscadd: Added Apple Juice to bar vending machine.
+  - bugfix: Fixed Vodka recipe.
+  - bugfix: Fixed Apple and Carrot cake recipes
+  - tweak: Changed Cake recipes to not include fruit juice
+

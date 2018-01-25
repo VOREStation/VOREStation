@@ -352,3 +352,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_l_ear)      return l_ear
 		if(slot_r_ear)      return r_ear
 	return ..()
+
+
+/mob/living/carbon/human/is_holding_item_of_type(typepath)
+	for(var/obj/item/I in list(l_hand, r_hand))
+		if(istype(I, typepath))
+			return I
+	return FALSE

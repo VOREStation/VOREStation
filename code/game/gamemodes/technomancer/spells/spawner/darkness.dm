@@ -25,5 +25,6 @@
 /obj/effect/temporary_effect/darkness
 	name = "darkness"
 	time_to_die = 2 MINUTES
-	new_light_range = 6
-	new_light_power = -20
+	invisibility = 101
+	light_range = 6
+	light_power = -20

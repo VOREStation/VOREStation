@@ -52,6 +52,7 @@ var/list/all_maps = list()
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 	// VOREStation Edit End
+	var/list/meteor_strike_areas	// VOREStation Edit - Areas meteor strikes may choose to hit.
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -74,6 +75,12 @@ var/list/all_maps = list()
 	var/list/station_networks = list() 		// Camera networks that will show up on the console.
 
 	var/allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
+
+	// VOREStation Edit - Persistence!
+	var/datum/spawnpoint/spawnpoint_died = /datum/spawnpoint/arrivals 	// Used if you end the round dead.
+	var/datum/spawnpoint/spawnpoint_left = /datum/spawnpoint/arrivals 	// Used of you end the round at centcom.
+	var/datum/spawnpoint/spawnpoint_stayed = /datum/spawnpoint/cryo 	// Used if you end the round on the station.
+	// VOREStation Edit End
 
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
 	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.

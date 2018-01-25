@@ -208,7 +208,7 @@
 	..(newloc, direct)
 	update_shield_positions()
 
-/obj/item/shield_projector/on_loc_moved(var/newloc, var/direct)
+/obj/item/shield_projector/on_loc_moved(atom/oldloc)
 	update_shield_positions()
 
 

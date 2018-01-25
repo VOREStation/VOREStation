@@ -1,0 +1,17 @@
+"a" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"b" = (/obj/item/device/geiger,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"c" = (/obj/item/clothing/mask/gas/explorer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"d" = (/obj/item/weapon/material/knife/tacknife/survival,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"e" = (/obj/item/clothing/shoes/boots/winter/explorer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"f" = (/obj/item/clothing/under/explorer,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"g" = (/obj/item/clothing/suit/storage/hooded/explorer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"h" = (/obj/item/device/gps/explorer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+"i" = (/obj/item/device/flashlight/lantern,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/lost_explorer)
+
+(1,1,1) = {"
+aabaa
+acada
+aefaa
+aagah
+iaaaa
+"}

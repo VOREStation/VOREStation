@@ -97,11 +97,11 @@
 	return 0
 
 //joanrisu:Katarina Eine
-/obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina
+/obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina
 	name = "tactical Knife"
 	desc = "A tactical knife with a small butterly engraved on the blade."
 
-/obj/item/weapon/material/hatchet/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
@@ -363,35 +363,35 @@
 	H.update_inv_glasses()
 
 //arokha:Aronai Kadigan - Fluff hypospray
-/obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai
+/obj/item/weapon/reagent_containers/hypospray/vial/fluff/aronai
 	name = "worn hypospray"
 	desc = "This hypospray seems a bit well-used. The blue band indicates it's from the CentCom medical division. There's an 'A' scratched into the bottom."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "aro_hypo"
 
-/obj/item/weapon/reagent_containers/hypospray/vr/fluff/aronai/New()
+/obj/item/weapon/reagent_containers/hypospray/vial/fluff/aronai/New()
 	..()
 	loaded_vial.name = "[initial(loaded_vial.name)] (tricord)"
 	loaded_vial.desc = "30 Tricordrazine"
 	reagents.add_reagent("tricordrazine", 30)
 
 //arokha:Aronai Kadigan - Vials to go with mk2 hypo
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_st
+/obj/item/weapon/reagent_containers/glass/beaker/vial/fluff/aro_st
 	name = "vial (stabilize)"
 	desc = "10 Tricordrazine, 10 Dexalin Plus, 5 Tramadol, 5 Inaprovaline"
-	comes_with = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bt
+	prefill = list("tricordrazine"=10,"dexalinp"=10,"tramadol"=5,"inaprovaline"=5)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/fluff/aro_bt
 	name = "vial (brute)"
 	desc = "25 Bicaridine, 5 Tricordrazine"
-	comes_with = list("bicaridine"=25,"tricordrazine"=5)
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_bu
+	prefill = list("bicaridine"=25,"tricordrazine"=5)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/fluff/aro_bu
 	name = "vial (burn)"
 	desc = "10 Kelotane, 15 Dermaline, 5 Tricordrazine"
-	comes_with = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vr/fluff/aro_tx
+	prefill = list("kelotane"=10,"dermaline"=15,"tricordrazine"=5)
+/obj/item/weapon/reagent_containers/glass/beaker/vial/fluff/aro_tx
 	name = "vial (toxins)"
 	desc = "25 Dylovene, 2 Hyronalin, 3 Tricordrazine"
-	comes_with = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
+	prefill = list("anti_toxin"=25,"hyronalin"=2,"tricordrazine"=3)
 
 //Swat43:Fortune Bloise
 /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
@@ -659,7 +659,7 @@
 		return
 
 //WickedTempest: Chakat Tempest
-/obj/item/weapon/reagent_containers/hypospray/vr/tempest
+/obj/item/weapon/reagent_containers/hypospray/vial/tempest
 	name = "Tempest's Hypospray"
 	desc = "A custom-made MKII hypospray belonging to Chakat Tempest. There's small print engraved on the handle: A medicine-cat has no time for doubt. Act now, act swiftly."
 	icon = 'icons/vore/custom_items_vr.dmi'

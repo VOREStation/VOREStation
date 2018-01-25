@@ -57,13 +57,13 @@
 	for(var/organ in organs)
 		qdel(organ)
 
-	list_layers.Cut()
+	LAZYCLEARLIST(list_layers)
 	list_layers = null //Be free!
-	list_body.Cut()
+	LAZYCLEARLIST(list_body)
 	list_body = null
-	list_huds.Cut()
+	LAZYCLEARLIST(list_huds)
 	list_huds = null
-
+	if(nif) qdel_null(nif)	//VOREStation Add
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -1519,11 +1519,19 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
+	for(var/datum/modifier/M in modifiers)
+		if(M.pain_immunity == TRUE)
+			return 0
 	if(check_organ)
 		if(!istype(check_organ))
 			return 0
 		return check_organ.organ_can_feel_pain()
 	return !(species.flags & NO_PAIN)
+
+/mob/living/carbon/human/is_sentient()
+	if(get_FBP_type() == FBP_DRONE)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/is_muzzled()
 	return (wear_mask && (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)))

@@ -1,4 +1,7 @@
 /mob/living/carbon/human/proc/get_wing_icon()
+	if(QDESTROYING(src))
+		return
+
 	var/icon_key = "[species.get_race_key(src)][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
 	var/icon/wing_icon = wing_icon_cache[icon_key]
 	if(!wing_icon)
@@ -22,6 +25,9 @@
 	return wing_icon
 
 /mob/living/carbon/human/proc/set_wing_state(var/t_state)
+	if(QDESTROYING(src))
+		return
+
 	var/image/wing_overlay = overlays_standing[WING_LAYER]
 
 	if(wing_overlay && species.get_wing_animation(src))
@@ -30,6 +36,9 @@
 	return null
 
 /mob/living/carbon/human/proc/animate_wing_reset(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	if(stat != DEAD)
 		set_wing_state("[species.get_wing(src)]_idle[rand(0,9)]")
 	else
@@ -39,6 +48,9 @@
 		update_icons_layers()
 
 /mob/living/carbon/human/proc/get_wing_image()
+	if(QDESTROYING(src))
+		return
+
 	//If you are FBP with tail style and didn't set a custom one
 	if(synthetic && synthetic.includes_wing && !wing_style)
 		var/icon/wing_s = new/icon("icon" = synthetic.icon, "icon_state" = "wing") //I dunno. If synths have some custom wing?
@@ -56,6 +68,9 @@
 	return null
 
 /mob/living/carbon/human/proc/update_wing_showing(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	overlays_standing[WING_LAYER] = null
 
 	overlays_standing[WING_LAYER] = get_wing_image()
@@ -65,6 +80,9 @@
 		return
 
 /mob/proc/stop_flying(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
 	flying = 0
 
 	if(update_icons)

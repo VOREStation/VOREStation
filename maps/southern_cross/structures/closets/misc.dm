@@ -46,11 +46,12 @@
 	new /obj/item/device/radio/headset(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/device/gps/explorer(src)
-	new /obj/item/weapon/material/hatchet/tacknife/survival(src)
+	new /obj/item/weapon/material/knife/tacknife/survival(src)
 	new /obj/item/weapon/storage/box/flare(src)
 	new /obj/item/device/geiger(src)
 	new /obj/item/weapon/cell/device(src)
 	new /obj/item/device/radio(src)
+	new /obj/item/stack/marker_beacon/thirty(src)
 	return
 
 /obj/structure/closet/secure_closet/sar
@@ -92,3 +93,19 @@
 	new /obj/item/device/gps(src)
 	new /obj/item/device/geiger(src)
 	return
+
+/obj/structure/closet/crate/hydroponics/exotic
+	name = "exotic seeds crate"
+	desc = "All you need to destroy that pesky planet."
+
+/obj/structure/closet/crate/hydroponics/exotic/New()
+	..()
+	for(var/i = 1 to 6)
+		new /obj/item/seeds/random(src)
+	new /obj/item/seeds/kudzuseed(src)
+	new /obj/item/seeds/replicapod(src)
+	new /obj/item/seeds/replicapod(src)
+	new /obj/item/seeds/ambrosiavulgarisseed(src)
+	new /obj/item/seeds/ambrosiavulgarisseed(src)
+	new /obj/item/seeds/libertymycelium(src)
+	new /obj/item/seeds/reishimycelium(src)

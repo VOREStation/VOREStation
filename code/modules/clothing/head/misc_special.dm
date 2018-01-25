@@ -6,6 +6,7 @@
  *		Pumpkin head
  *		Kitty ears
  *		Holiday hats
+ 		Crown of Wrath
  */
 
 /*
@@ -208,3 +209,67 @@
 	icon_state = "santahatgreen"
 	item_state_slots = list(slot_r_hand_str = "santahatgreen", slot_l_hand_str = "santahatgreen")
 	body_parts_covered = 0
+
+/*
+ * Xenoarch/Surface Loot Hats
+ */
+
+// Triggers an effect when the wearer is 'in grave danger'.
+// Causes brainloss when it happens.
+/obj/item/clothing/head/psy_crown
+	name = "broken crown"
+	desc = "A crown-of-thorns with a missing gem."
+	var/tension_threshold = 150
+	var/cooldown = null // world.time of when this was last triggered.
+	var/cooldown_duration = 3 MINUTES // How long the cooldown should be.
+	var/flavor_equip = null // Message displayed to someone who puts this on their head. Drones don't get a message.
+	var/flavor_unequip = null // Ditto, but for taking it off.
+	var/flavor_drop = null // Ditto, but for dropping it.
+	var/flavor_activate = null // Ditto, for but activating.
+	var/brainloss_cost = 3 // Whenever it activates, inflict this much brainloss on the wearer, as its not good for the mind to wear things that manipulate it.
+
+/obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
+	cooldown = world.time + cooldown_duration
+	to_chat(wearer, flavor_activate)
+	to_chat(wearer, "<span class='danger'>The inside of your head hurts...</span>")
+	wearer.adjustBrainLoss(brainloss_cost)
+
+/obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
+	..()
+	if(istype(H) && H.head == src && H.is_sentient())
+		processing_objects += src
+		to_chat(H, flavor_equip)
+
+/obj/item/clothing/head/psy_crown/dropped(var/mob/living/carbon/human/H)
+	..()
+	processing_objects -= src
+	if(H.is_sentient())
+		if(loc == H) // Still inhand.
+			to_chat(H, flavor_unequip)
+		else
+			to_chat(H, flavor_drop)
+
+/obj/item/clothing/head/psy_crown/Destroy()
+	processing_objects -= src
+	return ..()
+
+/obj/item/clothing/head/psy_crown/process()
+	if(isliving(loc))
+		var/mob/living/L = loc
+		if(world.time >= cooldown && L.is_sentient() && L.get_tension() >= tension_threshold)
+			activate_ability(L)
+
+
+/obj/item/clothing/head/psy_crown/wrath
+	name = "red crown"
+	desc = "A crown-of-thorns set with a red gemstone that seems to glow unnaturally. It feels rather disturbing to touch."
+	description_info = "This has a chance to cause the wearer to become extremely angry when in extreme danger."
+	icon_state = "wrathcrown"
+	flavor_equip = "<span class='warning'>You feel a bit angrier after putting on this crown.</span>"
+	flavor_unequip = "<span class='notice'>You feel calmer after removing the crown.</span>"
+	flavor_drop = "<span class='notice'>You feel much calmer after letting go of the crown.</span>"
+	flavor_activate = "<span class='danger'>An otherworldly feeling seems to enter your mind, and it ignites your mind in fury!</span>"
+
+/obj/item/clothing/head/psy_crown/wrath/activate_ability(var/mob/living/wearer)
+	..()
+	wearer.add_modifier(/datum/modifier/berserk, 30 SECONDS)

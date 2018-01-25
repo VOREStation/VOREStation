@@ -7,11 +7,11 @@
 	applies_to = NIF_SYNTHETIC
 	tick_flags = NIF_ACTIVETICK
 	var/obj/machinery/power/apc/apc
+	other_flags = (NIF_O_APCCHARGE)
 
 	activate()
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
-			nif.set_flag(NIF_O_APCCHARGE,NIF_FLAGS_OTHER)
 			apc = locate(/obj/machinery/power/apc) in get_step(H,H.dir)
 			if(!apc)
 				apc = locate(/obj/machinery/power/apc) in get_step(H,0)
@@ -25,7 +25,6 @@
 
 	deactivate()
 		if((. = ..()))
-			nif.clear_flag(NIF_O_APCCHARGE,NIF_FLAGS_OTHER)
 			apc = null
 
 	life()
@@ -49,14 +48,7 @@
 	a_drain = 0.5
 	wear = 3
 	applies_to = NIF_SYNTHETIC
-
-	activate()
-		if((. = ..()))
-			nif.set_flag(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)
+	other_flags = (NIF_O_PRESSURESEAL)
 
 /datum/nifsoft/heatsinks
 	name = "Heat Sinks"
@@ -68,6 +60,7 @@
 	var/used = 0
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_SYNTHETIC
+	other_flags = (NIF_O_HEATSINKS)
 
 	activate()
 		if((. = ..()))
@@ -76,11 +69,6 @@
 				spawn(0)
 					deactivate()
 				return FALSE
-			nif.set_flag(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)
-
-	deactivate()
-		if((. = ..()))
-			nif.clear_flag(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)
 
 	stat_text()
 		return "[active ? "Active" : "Disabled"] (Stored Heat: [Floor(used/20)]%)"
@@ -160,3 +148,30 @@
 
 	stat_text()
 		return "Change Size"
+
+/datum/nifsoft/worldbend
+	name = "World Bender"
+	desc = "Alters your perception of various objects in the world. Only has one setting for now: displaying all your crewmates as farm animals."
+	list_pos = NIF_WORLDBEND
+	cost = 200
+	a_drain = 0.01
+
+	activate()
+		if((. = ..()))
+			var/list/justme = list(nif.human)
+			for(var/human in human_mob_list)
+				if(human == nif.human)
+					continue
+				var/mob/living/carbon/human/H = human
+				H.display_alt_appearance("animals", justme)
+				alt_farmanimals += nif.human
+
+	deactivate()
+		if((. = ..()))
+			var/list/justme = list(nif.human)
+			for(var/human in human_mob_list)
+				if(human == nif.human)
+					continue
+				var/mob/living/carbon/human/H = human
+				H.hide_alt_appearance("animals", justme)
+				alt_farmanimals -= nif.human

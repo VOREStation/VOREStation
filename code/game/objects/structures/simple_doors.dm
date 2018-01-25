@@ -192,10 +192,10 @@
 	..(newloc, "diamond")
 
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
-	..(newloc, "wood")
+	..(newloc, MAT_WOOD)
 
 /obj/structure/simple_door/sifwood/New(var/newloc,var/material_name)
-	..(newloc, "alien wood")
+	..(newloc, MAT_SIFWOOD)
 
 /obj/structure/simple_door/resin/New(var/newloc,var/material_name)
 	..(newloc, "resin")

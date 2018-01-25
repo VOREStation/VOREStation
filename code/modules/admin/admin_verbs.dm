@@ -103,6 +103,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/fixatmos,
 	/datum/admins/proc/quick_nif, //VOREStation Add,
+	/datum/admins/proc/assistant_ratio, //VOREStation Add,
 	/datum/admins/proc/sendFax
 	)
 

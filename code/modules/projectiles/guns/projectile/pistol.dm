@@ -147,7 +147,7 @@
 /*
 /obj/item/weapon/gun/projectile/fiveseven
 	name = "\improper WT-AP57"
-	desc = "This tacticool pistol made by Ward-Takahashi trades stopping power for armor piercing and a high capacity. Uses 5mm rounds."
+	desc = "This tacticool pistol made by Ward-Takahashi trades stopping power for armor piercing and a large capacity. Uses 5mm rounds."
 	icon_state = "fnseven"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "5mm"
@@ -187,8 +187,8 @@
 		icon_state = "gyropistol"
 
 /obj/item/weapon/gun/projectile/pistol
-	name = "holdout pistol"
-	desc = "The Lumoco Arms P3 Whisper. A small, easily concealable gun. Uses 9mm rounds."
+	name = "compact pistol"
+	desc = "The Lumoco Arms P3 Whisper. A compact, easily concealable gun, though it's only compatible with compact magazines. Uses 9mm rounds."
 	icon_state = "pistol"
 	item_state = null
 	w_class = ITEMSIZE_SMALL
@@ -197,12 +197,12 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	fire_sound = 'sound/weapons/gunshot3.ogg'
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/m9mm
-	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
+	magazine_type = /obj/item/ammo_magazine/m9mm/compact
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm/compact)
 
 /obj/item/weapon/gun/projectile/pistol/flash
-	name = "holdout signal pistol"
-	magazine_type = /obj/item/ammo_magazine/m9mm/flash
+	name = "compact signal pistol"
+	magazine_type = /obj/item/ammo_magazine/m9mm/compact/flash
 
 /obj/item/weapon/gun/projectile/pistol/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
@@ -294,14 +294,14 @@
 
 /obj/item/weapon/gun/projectile/luger
 	name = "\improper P08 Luger"
-	desc = "Not some cheap Scheisse .45 caliber Martian knockoff! This Luger is an authentic reproduction by RauMauser. Accuracy, easy handling, and its signature appearance make it popular among historic gun collectors. Uses 9mm rounds."
+	desc = "Not some cheap scheisse Martian knockoff! This Luger is an authentic reproduction by RauMauser. Accuracy, easy handling, and its signature appearance make it popular among historic gun collectors. Uses 9mm rounds."
 	icon_state = "p08"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "9mm"
 	load_method = MAGAZINE
 	fire_sound = 'sound/weapons/gunshot3.ogg'
-	magazine_type = /obj/item/ammo_magazine/m9mm
-	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
+	magazine_type = /obj/item/ammo_magazine/m9mm/compact
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm/compact)
 
 /obj/item/weapon/gun/projectile/luger/update_icon()
 	..()
@@ -312,3 +312,27 @@
 
 /obj/item/weapon/gun/projectile/luger/brown
 	icon_state = "p08b"
+
+/obj/item/weapon/gun/projectile/p92x
+	name = "9mm pistol"
+	desc = "A widespread sidearm called the P92X which is used by military, police, and security forces across the galaxy. Uses 9mm rounds."
+	icon_state = "p92x"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
+	caliber = "9mm"
+	load_method = MAGAZINE
+	fire_sound = 'sound/weapons/gunshot3.ogg'
+	magazine_type = /obj/item/ammo_magazine/m9mm
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mm) // Can accept illegal large capacity magazines, or compact magazines.
+
+/obj/item/weapon/gun/projectile/p92x/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-e"
+
+/obj/item/weapon/gun/projectile/p92x/brown
+	icon_state = "p92x-brown"
+
+/obj/item/weapon/gun/projectile/p92x/large
+	magazine_type = /obj/item/ammo_magazine/m9mm/large // Spawns with illegal magazines.

@@ -277,6 +277,10 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
+/obj/machinery/atmospherics/tvalve/digital/Destroy()
+	unregister_radio(src, frequency)
+	. = ..()
+
 /obj/machinery/atmospherics/tvalve/digital/bypass
 	icon_state = "map_tvalve1"
 	state = 1
@@ -414,6 +418,10 @@
 	var/frequency = 0
 	var/id = null
 	var/datum/radio_frequency/radio_connection
+
+/obj/machinery/atmospherics/tvalve/mirrored/digital/Destroy()
+	unregister_radio(src, frequency)
+	. = ..()
 
 /obj/machinery/atmospherics/tvalve/mirrored/digital/bypass
 	icon_state = "map_tvalvem1"

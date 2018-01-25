@@ -50,7 +50,7 @@
 	dock_target = "response_base"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ert/orbit = 2 MINUTES,
+		/datum/shuttle_destination/ert/orbit = 1 MINUTE,
 	)
 
 /datum/shuttle_destination/ert/orbit
@@ -59,10 +59,10 @@
 	preferred_interim_area = /area/shuttle/response_ship/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ert/outside_SC_1d = 1 MINUTE,
-		/datum/shuttle_destination/ert/outside_SC_2d = 1 MINUTE,
-		/datum/shuttle_destination/ert/outside_SC_3d = 1 MINUTE,
-		/datum/shuttle_destination/ert/sky = 1 MINUTE
+		/datum/shuttle_destination/ert/outside_SC_1d = 30 SECONDS,
+		/datum/shuttle_destination/ert/outside_SC_2d = 30 SECONDS,
+		/datum/shuttle_destination/ert/outside_SC_3d = 30 SECONDS,
+		/datum/shuttle_destination/ert/sky = 30 SECONDS
 	)
 
 /datum/shuttle_destination/ert/outside_SC_1d
@@ -106,8 +106,12 @@
 
 	dock_target = "response_shuttle_dock_airlock"
 	announcer = "Southern Cross Docking Computer"
-	arrival_message = "Attention, the Emergency Response Team's shuttle has arrived to the Arrivals Dock."
-	departure_message = "Attention, the Emergency Response Team's shuttle has departed the Arrivals Dock."
+
+/datum/shuttle_destination/ert/docked_SC/get_arrival_message()
+	return "Attention, the Emergency Response Team's shuttle has arrived to the Arrivals Dock."
+
+/datum/shuttle_destination/ert/docked_SC/get_departure_message()
+	return "Attention, the Emergency Response Team's shuttle has departed the Arrivals Dock."
 
 /datum/shuttle_destination/ert/sky
 	name = "Skies of Sif"
@@ -115,7 +119,7 @@
 	preferred_interim_area = /area/shuttle/response_ship/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ert/planet = 30 SECONDS
+		/datum/shuttle_destination/ert/planet = 15 SECONDS
 	)
 
 /datum/shuttle_destination/ert/planet

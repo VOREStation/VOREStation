@@ -1,0 +1,46 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/cave/Scave1)
+"c" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"d" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"e" = (/obj/effect/spider/spiderling/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"f" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"g" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"h" = (/obj/item/weapon/grenade/spawnergrenade/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"i" = (/mob/living/simple_animal/hostile/giant_spider/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"j" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"k" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"l" = (/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"m" = (/obj/item/device/flashlight,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"n" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"o" = (/obj/effect/spider/stickyweb,/mob/living/simple_animal/hostile/giant_spider/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"p" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbaaaaaaaaaaaaaaaaaaaaaaa
+aabbbbbbaabbbbbaaaaaaabbbbbaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbbaaa
+aabbbbbbcbbbbbbbbbbbbbbbdbbbaa
+aabbbbdeddbbbcccbbbbbdddeddbaa
+aadbbfddddcbbdedbbbbbddddddbaa
+aadbbgfbbdddddddbccedddbdedbba
+aabbbbbbbddcdddddddddddbhibbaa
+aabbbbbbdddbbbjcddddddbbbbbbaa
+aabbbbbcdidbbbbbbcdiddcbbbbaaa
+aabbbbbcddcbbbbbbbddddcbbbaaaa
+aabbbbbbidcbbbbbbbdiddcbbbaaaa
+aabbbbbbdddbbbbbbkddddcbbbaaaa
+aabbbbbbdcdbbbbbblddddcbbbaaaa
+aabbbbbbdddbbbbbbcddidcbbbaaaa
+aadbbbbbddibbbbbbbccdddbbbaaaa
+aamdbbbbddbbbbbbbbbicddbbbaaaa
+aaddbbbbdddbbbbbbbbbbddbbdaaaa
+aadddnddedddbbbbbbbbdedbbdaaaa
+aaddnncddddddobcdddddcbbbdaaaa
+aapdbbbbbdddddddddddcbbbbdaaaa
+aabbbbbbbbcdddcdddddcbbbbbaaaa
+aabbbbbbbbbbbbbbbibbbbbbbbaaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbaaaa
+aaaaabbbbabbbbbbbaabbbbbbaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

@@ -106,8 +106,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
-	if (!node)
-		use_power = 0
 
 	overlays.Cut()
 
@@ -122,10 +120,10 @@
 
 	if(welded)
 		vent_icon += "weld"
-	else if(!powered())
+	else if(!use_power || !node || (stat & (NOPOWER|BROKEN)))
 		vent_icon += "off"
 	else
-		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
+		vent_icon += "[pump_direction ? "out" : "in"]"
 
 	overlays += icon_manager.get_atmos_icon("device", , , vent_icon)
 
@@ -256,7 +254,7 @@
 	return 1
 
 
-/obj/machinery/atmospherics/unary/vent_pump/initialize()
+/obj/machinery/atmospherics/unary/vent_pump/atmos_init()
 	..()
 
 	//some vents work his own special way

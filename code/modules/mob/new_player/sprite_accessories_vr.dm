@@ -65,6 +65,12 @@
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "hair_braid"
 
+	twindrills
+		name = "Twin Drills"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "hair_twincurl"
+
 	bald
 		name = "Bald"
 		icon_state = "bald"

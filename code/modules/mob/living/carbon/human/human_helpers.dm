@@ -135,7 +135,7 @@
 
 	for(var/slot in slots)
 		var/obj/item/clothing/O = get_equipped_item(slot) //Change this type if you move the vision stuff to item or something.
-		if(O && O.enables_planes && (slot in O.plane_slots))
+		if(istype(O) && O.enables_planes && (slot in O.plane_slots))
 			compiled_vis |= O.enables_planes
 
 	//Check to see if we have a rig (ugh, blame rigs, desnowflake this)
@@ -148,7 +148,7 @@
 
 	//VOREStation Add - NIF Support
 	if(nif)
-		compiled_vis |= nif.planes_visible
+		compiled_vis |= nif.planes_visible()
 	//VOREStation Add End
 
 	if(!compiled_vis.len && !vis_enabled.len)

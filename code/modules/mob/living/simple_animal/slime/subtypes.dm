@@ -469,6 +469,10 @@
 			enrage() // How dare you try to control the red slime.
 			say("Grrr...!")
 
+/mob/living/simple_animal/slime/red/enrage()
+	..()
+	add_modifier(/datum/modifier/berserk, 30 SECONDS)
+
 
 /mob/living/simple_animal/slime/green
 	desc = "This slime is radioactive."

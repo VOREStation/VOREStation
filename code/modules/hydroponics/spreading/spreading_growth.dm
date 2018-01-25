@@ -73,10 +73,12 @@
 		else
 			plant.layer = layer + 0.1
 
-	if(buckled_mob)
-		seed.do_sting(buckled_mob,src)
-		if(seed.get_trait(TRAIT_CARNIVOROUS))
-			seed.do_thorns(buckled_mob,src)
+	if(has_buckled_mobs())
+		for(var/A in buckled_mobs)
+			var/mob/living/L = A
+			seed.do_sting(L,src)
+			if(seed.get_trait(TRAIT_CARNIVOROUS))
+				seed.do_thorns(L,src)
 
 	if(world.time >= last_tick+NEIGHBOR_REFRESH_TIME)
 		last_tick = world.time
@@ -88,7 +90,7 @@
 		if(prob(chance))
 			sampled = 0
 
-	if(is_mature() && !buckled_mob)
+	if(is_mature() && !has_buckled_mobs())
 		for(var/turf/neighbor in neighbors)
 			for(var/mob/living/M in neighbor)
 				if(seed.get_trait(TRAIT_SPREAD) >= 2 && (M.lying || prob(round(seed.get_trait(TRAIT_POTENCY)))))
@@ -107,7 +109,7 @@
 
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health()
-	if(buckled_mob || neighbors.len)
+	if(has_buckled_mobs() || neighbors.len)
 		plant_controller.add_plant(src)
 
 //spreading vines aren't created on their final turf.

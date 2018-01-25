@@ -71,7 +71,8 @@
 	qdel(src)
 	return
 
-
+/obj/effect/accelerated_particle/singularity_act()
+	return
 
 /obj/effect/accelerated_particle/proc/toxmob(var/mob/living/M)
 	var/radiation = (energy*2)

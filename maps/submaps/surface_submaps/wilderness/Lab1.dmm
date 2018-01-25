@@ -1,0 +1,62 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Lab1)
+"c" = (/turf/simulated/wall/r_wall,/area/submap/Lab1)
+"d" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/submap/Lab1)
+"e" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/submap/Lab1)
+"f" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/submap/Lab1)
+"g" = (/obj/machinery/space_heater,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"h" = (/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"i" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"j" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"k" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox,/obj/random/tool,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"l" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"m" = (/obj/structure/table/standard,/obj/random/tool,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"n" = (/obj/machinery/vending/tool,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"o" = (/obj/structure/table/rack,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/shoes/boots/winter,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"p" = (/obj/structure/table/rack,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/shoes/boots/winter,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"q" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"r" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"s" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"t" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"u" = (/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/hyper; dir = 8; name = "Unknown APC"; operating = 0; pixel_x = -24},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"v" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"w" = (/obj/structure/table/standard,/obj/item/device/flashlight/lamp,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"x" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"y" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"z" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"A" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"B" = (/obj/structure/table/standard,/obj/fiftyspawner/steel,/obj/fiftyspawner/glass,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"C" = (/obj/structure/table/standard,/obj/item/device/multitool,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"D" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"E" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"F" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"G" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"H" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"I" = (/obj/item/weapon/storage/bag/circuits,/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"J" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"K" = (/obj/item/robot_parts/chest,/obj/item/robot_parts/l_arm,/obj/item/robot_parts/r_arm,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"L" = (/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"M" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbbbbbba
+acdefcdeeeeeefcdefca
+acghhihhjhhjhhihhhca
+ackhgcdfcllcdfchhhca
+acmhncbbchhcbbcohpca
+acqhrcbbcshcbbcthtca
+acuhhcbbchhcbbcvhwca
+acdefcbbcllcbbcdefca
+abbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbba
+acdefcbbcllcbbcdefca
+achxycbbchzcbbcABCca
+acDhhcbbchhcbbcEhFca
+acGhHcdfcllcdfchhIca
+acDhhihhJhhJhhihhKca
+acLMvcdeeeeeefchhhca
+acdefcbbbbbbbbcdefca
+abbbbbbbbbbbbbbbbbba
+aaaaaaaaaaaaaaaaaaaa
+"}

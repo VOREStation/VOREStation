@@ -25,8 +25,7 @@
 	var/obj/item/weapon/card/id/idcard
 	var/idcard_type = /obj/item/weapon/card/id/synthetic
 
-	#define SEC_HUD 1 //Security HUD mode
-	#define MED_HUD 2 //Medical HUD mode
+	var/hudmode = null
 
 /mob/living/silicon/New()
 	silicon_mob_list |= src
@@ -279,6 +278,8 @@
 				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
 				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
 			to_chat(src,"Sensor augmentations disabled.")
+
+	hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"

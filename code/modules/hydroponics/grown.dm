@@ -198,7 +198,7 @@
 				qdel(src)
 				return
 			else if(seed.chems)
-				if(istype(W,/obj/item/weapon/material/hatchet) && !isnull(seed.chems["woodpulp"]))
+				if(W.sharp && W.edge && !isnull(seed.chems["woodpulp"]))
 					user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 					playsound(loc, 'sound/effects/woodcutting.ogg', 50, 1)
 					var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)

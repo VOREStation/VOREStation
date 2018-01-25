@@ -1,0 +1,4 @@
+author: Arokha
+delete-after: True
+changes: 
+  - tweak: "Remove borg hud items as they have normal huds as their sensor augs now, and can see records with them."

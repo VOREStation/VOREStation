@@ -104,7 +104,27 @@
 							)
 
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
+	spawnpoint_died = /datum/spawnpoint/tram
+	spawnpoint_left = /datum/spawnpoint/tram
+	spawnpoint_stayed = /datum/spawnpoint/cryo
 
+	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+
+	unit_test_exempt_areas = list(
+		/area/tether/surfacebase/outside/outside1,
+		/area/vacant/vacant_site,
+		/area/vacant/vacant_site/east,
+		/area/crew_quarters/sleep/Dorm_1/holo,
+		/area/crew_quarters/sleep/Dorm_3/holo,
+		/area/crew_quarters/sleep/Dorm_5/holo,
+		/area/crew_quarters/sleep/Dorm_7/holo)
+	unit_test_exempt_from_atmos = list(
+		/area/engineering/atmos/intake, // Outside,
+		/area/rnd/external, //  Outside,
+		/area/tether/surfacebase/mining_main/external, // Outside,
+		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
+		/area/tether/surfacebase/emergency_storage/rnd,
+		/area/tether/surfacebase/emergency_storage/atrium)
 
 /datum/map/tether/perform_map_generation()
 
@@ -234,6 +254,7 @@
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 82
 
+/*
 /datum/map_z_level/tether/wilderness
 	name = "Wilderness"
 	flags = MAP_LEVEL_PLAYER
@@ -272,9 +293,4 @@
 
 /datum/map_z_level/tether/wilderness/wild_ruins
 	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
-
-/proc/get_z_level_datum(atom/A)
-	var/turf/T = get_turf(A)
-	var/datum/map_z_level/z_level = using_map.zlevels["[T.z]"]
-	if(z_level)
-		return z_level
+*/

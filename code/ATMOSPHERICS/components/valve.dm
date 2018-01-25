@@ -229,6 +229,10 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
+/obj/machinery/atmospherics/valve/digital/Destroy()
+	unregister_radio(src, frequency)
+	. = ..()
+
 /obj/machinery/atmospherics/valve/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 

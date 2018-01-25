@@ -1,0 +1,28 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/GovPatrol)
+"c" = (/turf/template_noop,/area/submap/Cragzone1)
+"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/GovPatrol)
+"e" = (/obj/item/device/radio/off,/turf/template_noop,/area/submap/GovPatrol)
+"f" = (/obj/item/weapon/storage/box/flare,/turf/template_noop,/area/submap/GovPatrol)
+"g" = (/obj/item/ammo_casing,/turf/template_noop,/area/submap/GovPatrol)
+"h" = (/obj/item/clothing/under/utility/sifguard,/obj/item/clothing/shoes/boots/jackboots,/obj/effect/decal/remains,/turf/template_noop,/area/submap/GovPatrol)
+"i" = (/obj/item/stack/material/wood/sif,/turf/template_noop,/area/submap/GovPatrol)
+"j" = (/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,/turf/template_noop,/area/submap/GovPatrol)
+"k" = (/obj/structure/bonfire/sifwood,/turf/template_noop,/area/submap/GovPatrol)
+"l" = (/obj/effect/decal/remains,/turf/template_noop,/area/submap/GovPatrol)
+
+(1,1,1) = {"
+aaaaaaaaaaaaa
+abbbbbbbbbbba
+abbbbbbbbcbba
+abbdbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbedbbbbba
+abbbbbbfgbbba
+adbgbhbbbbbba
+abbibbbbbbbba
+abbbjbbkbbgba
+abbgbbbbblgba
+aaaaaaaaaaaaa
+"}

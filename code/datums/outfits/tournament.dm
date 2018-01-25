@@ -30,8 +30,8 @@
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
 	r_hand = /obj/item/weapon/material/kitchen/rollingpin
-	l_pocket = /obj/item/weapon/material/hatchet/tacknife
-	r_pocket = /obj/item/weapon/material/hatchet/tacknife
+	l_pocket = /obj/item/weapon/material/knife/tacknife
+	r_pocket = /obj/item/weapon/material/knife/tacknife
 
 /decl/hierarchy/outfit/tournament_gear/janitor
 	name = "Tournament gear - Janitor"
