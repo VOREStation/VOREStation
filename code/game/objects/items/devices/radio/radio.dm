@@ -80,7 +80,7 @@ var/global/list/default_medbay_channels = list(
 
 
 /obj/item/device/radio/initialize()
-
+	. = ..()
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)

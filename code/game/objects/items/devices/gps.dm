@@ -18,6 +18,7 @@ var/list/GPS_list = list()
 	var/can_hide_signal = FALSE	// If it can toggle the above var.
 
 /obj/item/device/gps/initialize()
+	. = ..()
 	GPS_list += src
 	name = "global positioning system ([gps_tag])"
 	update_icon()

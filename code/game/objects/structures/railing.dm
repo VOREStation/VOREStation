@@ -24,7 +24,7 @@
 		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/railing/initialize()
-	..()
+	. = ..()
 	if(src.anchored)
 		update_icon(0)
 

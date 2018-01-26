@@ -111,7 +111,7 @@
 	var/overheating = 0		//if this gets high enough the generator explodes
 
 /obj/machinery/power/port_gen/pacman/initialize()
-	..()
+	. = ..()
 	if(anchored)
 		connect_to_network()
 

@@ -194,7 +194,7 @@
 	block_tele = TRUE
 
 /turf/simulated/shuttle/floor/alien/initialize()
-	..()
+	. = ..()
 	icon_state = "alienpod[rand(1, 9)]"
 
 /turf/simulated/shuttle/floor/alienplating
