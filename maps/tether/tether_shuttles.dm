@@ -173,6 +173,8 @@
 /obj/machinery/computer/shuttle_control/web/excursion
 	name = "shuttle control console"
 	shuttle_tag = "Excursion Shuttle"
+	req_access = list()
+	req_one_access = list(access_heads,access_explorer,access_pilot)
 
 /datum/shuttle/web_shuttle/excursion
 	name = "Excursion Shuttle"
@@ -180,16 +182,10 @@
 	current_area = /area/shuttle/excursion/tether
 	docking_controller_tag = "expshuttle_docker"
 	web_master_type = /datum/shuttle_web_master/excursion
-	autopilot = TRUE
-	can_autopilot = TRUE
-	autopilot_delay = 60
-	autopilot_first_delay = 300 // Ten minutes at roundstart. Two minutes otherwise.
 
 /datum/shuttle_web_master/excursion
 	destination_class = /datum/shuttle_destination/excursion
-	autopath_class = null
 	starting_destination = /datum/shuttle_destination/excursion/tether
-
 
 /datum/shuttle_destination/excursion/tether
 	name = "NSB Adephagia Excursion Hangar"

@@ -437,10 +437,11 @@
 
 /area/shuttle/excursion/bluespace
 	name = "\improper Excursion Shuttle - Bluespace"
+	base_turf = /turf/space/bluespace
 
-/area/shuttle/excursion/virgo4c_sky
-	name = "\improper Excursion Shuttle - Virgo4c Sky"
-	base_turf = /turf/simulated/sky
+/area/shuttle/excursion/sand_moving
+	name = "\improper Excursion Shuttle - Sand Transit"
+	base_turf = /turf/space/sandyscroll
 
 /area/shuttle/excursion/virgo3b_sky
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
