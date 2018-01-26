@@ -1,4 +1,4 @@
-var/datum/controller/air_system/air_master
+var/datum/controller/subsystem/air/air_master
 
 var/tick_multiplier = 2
 
@@ -65,34 +65,35 @@ Class Procs:
 
 */
 
+//
+// The rest of the air subsystem is defined in air.dm
+//
 
-//Geometry lists
-/datum/controller/air_system/var/list/zones = list()
-/datum/controller/air_system/var/list/edges = list()
+/datum/controller/subsystem/air
+	//Geometry lists
+	var/list/zones = list()
+	var/list/edges = list()
+	//Geometry updates lists
+	var/list/tiles_to_update = list()
+	var/list/zones_to_update = list()
+	var/list/active_fire_zones = list()
+	var/list/active_hotspots = list()
+	var/list/active_edges = list()
 
-//Geometry updates lists
-/datum/controller/air_system/var/list/tiles_to_update = list()
-/datum/controller/air_system/var/list/zones_to_update = list()
-/datum/controller/air_system/var/list/active_fire_zones = list()
-/datum/controller/air_system/var/list/active_hotspots = list()
-/datum/controller/air_system/var/list/active_edges = list()
+	var/active_zones = 0
+	var/current_cycle = 0
+	var/next_id = 1 //Used to keep track of zone UIDs.
 
-/datum/controller/air_system/var/active_zones = 0
-
-/datum/controller/air_system/var/current_cycle = 0
-
-/datum/controller/air_system/var/next_id = 1 //Used to keep track of zone UIDs.
-
-/datum/controller/air_system/proc/add_zone(zone/z)
+/datum/controller/subsystem/air/proc/add_zone(zone/z)
 	zones.Add(z)
 	z.name = "Zone [next_id++]"
 	mark_zone_update(z)
 
-/datum/controller/air_system/proc/remove_zone(zone/z)
+/datum/controller/subsystem/air/proc/remove_zone(zone/z)
 	zones.Remove(z)
 	zones_to_update.Remove(z)
 
-/datum/controller/air_system/proc/air_blocked(turf/A, turf/B)
+/datum/controller/subsystem/air/proc/air_blocked(turf/A, turf/B)
 	#ifdef ZASDBG
 	ASSERT(isturf(A))
 	ASSERT(isturf(B))
@@ -101,13 +102,13 @@ Class Procs:
 	if(ablock == BLOCKED) return BLOCKED
 	return ablock | B.c_airblock(A)
 
-/datum/controller/air_system/proc/has_valid_zone(turf/simulated/T)
+/datum/controller/subsystem/air/proc/has_valid_zone(turf/simulated/T)
 	#ifdef ZASDBG
 	ASSERT(istype(T))
 	#endif
 	return istype(T) && T.zone && !T.zone.invalid
 
-/datum/controller/air_system/proc/merge(zone/A, zone/B)
+/datum/controller/subsystem/air/proc/merge(zone/A, zone/B)
 	#ifdef ZASDBG
 	ASSERT(istype(A))
 	ASSERT(istype(B))
@@ -122,7 +123,7 @@ Class Procs:
 		B.c_merge(A)
 		mark_zone_update(A)
 
-/datum/controller/air_system/proc/connect(turf/simulated/A, turf/simulated/B)
+/datum/controller/subsystem/air/proc/connect(turf/simulated/A, turf/simulated/B)
 	#ifdef ZASDBG
 	ASSERT(istype(A))
 	ASSERT(isturf(B))
@@ -163,7 +164,7 @@ Class Procs:
 
 	if(direct) c.mark_direct()
 
-/datum/controller/air_system/proc/mark_for_update(turf/T)
+/datum/controller/subsystem/air/proc/mark_for_update(turf/T)
 	#ifdef ZASDBG
 	ASSERT(isturf(T))
 	#endif
@@ -174,7 +175,7 @@ Class Procs:
 	#endif
 	T.needs_air_update = 1
 
-/datum/controller/air_system/proc/mark_zone_update(zone/Z)
+/datum/controller/subsystem/air/proc/mark_zone_update(zone/Z)
 	#ifdef ZASDBG
 	ASSERT(istype(Z))
 	#endif
@@ -182,7 +183,7 @@ Class Procs:
 	zones_to_update.Add(Z)
 	Z.needs_update = 1
 
-/datum/controller/air_system/proc/mark_edge_sleeping(connection_edge/E)
+/datum/controller/subsystem/air/proc/mark_edge_sleeping(connection_edge/E)
 	#ifdef ZASDBG
 	ASSERT(istype(E))
 	#endif
@@ -190,7 +191,7 @@ Class Procs:
 	active_edges.Remove(E)
 	E.sleeping = 1
 
-/datum/controller/air_system/proc/mark_edge_active(connection_edge/E)
+/datum/controller/subsystem/air/proc/mark_edge_active(connection_edge/E)
 	#ifdef ZASDBG
 	ASSERT(istype(E))
 	#endif
@@ -198,10 +199,10 @@ Class Procs:
 	active_edges.Add(E)
 	E.sleeping = 0
 
-/datum/controller/air_system/proc/equivalent_pressure(zone/A, zone/B)
+/datum/controller/subsystem/air/proc/equivalent_pressure(zone/A, zone/B)
 	return A.air.compare(B.air)
 
-/datum/controller/air_system/proc/get_edge(zone/A, zone/B)
+/datum/controller/subsystem/air/proc/get_edge(zone/A, zone/B)
 
 	if(istype(B))
 		for(var/connection_edge/zone/edge in A.edges)
@@ -218,7 +219,7 @@ Class Procs:
 		edge.recheck()
 		return edge
 
-/datum/controller/air_system/proc/has_same_air(turf/A, turf/B)
+/datum/controller/subsystem/air/proc/has_same_air(turf/A, turf/B)
 	if(A.oxygen != B.oxygen) return 0
 	if(A.nitrogen != B.nitrogen) return 0
 	if(A.phoron != B.phoron) return 0
@@ -226,6 +227,6 @@ Class Procs:
 	if(A.temperature != B.temperature) return 0
 	return 1
 
-/datum/controller/air_system/proc/remove_edge(connection_edge/E)
+/datum/controller/subsystem/air/proc/remove_edge(connection_edge/E)
 	edges.Remove(E)
 	if(!E.sleeping) active_edges.Remove(E)

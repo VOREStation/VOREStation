@@ -28,13 +28,12 @@ SUBSYSTEM_DEF(air)
 	var/list/selfblock_deferred = null
 
 /datum/controller/subsystem/air/PreInit()
-	// Initialize the singleton /datum/controller/air_system
-	// TODO - We could actually incorporate that into this subsystem!  But in the spirit of not fucking with ZAS more than necessary, lets not for now. ~Leshana
-	air_master = new()
+	air_master = src
 
 /datum/controller/subsystem/air/Initialize(timeofday)
 	report_progress("Processing Geometry...")
 
+	current_cycle = 0
 	var/simulated_turf_count = 0
 	for(var/turf/simulated/S in world)
 		simulated_turf_count++
@@ -44,17 +43,17 @@ SUBSYSTEM_DEF(air)
 	admin_notice({"<span class='danger'>Geometry initialized in [round(0.1*(REALTIMEOFDAY-timeofday),0.1)] seconds.</span>
 <span class='info'>
 Total Simulated Turfs: [simulated_turf_count]
-Total Zones: [air_master.zones.len]
-Total Edges: [air_master.edges.len]
-Total Active Edges: [air_master.active_edges.len ? "<span class='danger'>[air_master.active_edges.len]</span>" : "None"]
+Total Zones: [zones.len]
+Total Edges: [edges.len]
+Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
 </span>"}, R_DEBUG)
 
 	// Note - Baystation settles the air by running for one tick.  We prefer to not have active edges.
 	// Maps should not have active edges on boot.  If we've got some, log it so it can get fixed.
-	if(air_master.active_edges.len)
+	if(active_edges.len)
 		var/list/edge_log = list()
-		for(var/connection_edge/E in air_master.active_edges)
+		for(var/connection_edge/E in active_edges)
 			edge_log += "Active Edge [E] ([E.type])"
 			for(var/turf/T in E.connecting_turfs)
 				edge_log += "+--- Connecting Turf [T] @ [T.x], [T.y], [T.z]"
@@ -67,7 +66,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	if(!resumed)
 		ASSERT(LAZYLEN(currentrun) == 0)  // Santity checks to make sure we don't somehow have items left over from last cycle
 		ASSERT(current_step == null) // Or somehow didn't finish all the steps from last cycle
-		air_master.current_cycle++ // Begin a new air_master cycle!
+		current_cycle++ // Begin a new air_master cycle!
 		current_step = SSAIR_TURFS // Start with Step 1 of course
 
 	INTERNAL_PROCESS_STEP(SSAIR_TURFS, TRUE, process_tiles_to_update, cost_turfs, SSAIR_EDGES)
@@ -86,8 +85,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	if (!resumed)
 		// NOT a copy, because we are supposed to drain active turfs each cycle anyway, so just replace with empty list.
 		// We still use a separate list tho, to ensure we don't process a turf twice during a single cycle!
-		src.currentrun = air_master.tiles_to_update
-		air_master.tiles_to_update = list()
+		src.currentrun = tiles_to_update
+		tiles_to_update = list()
 
 		//defer updating of self-zone-blocked turfs until after all other turfs have been updated.
 		//this hopefully ensures that non-self-zone-blocked turfs adjacent to self-zone-blocked ones
@@ -141,7 +140,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 /datum/controller/subsystem/air/proc/process_active_edges(resumed = 0)
 	if (!resumed)
-		src.currentrun = air_master.active_edges.Copy()
+		src.currentrun = active_edges.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
@@ -154,7 +153,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 /datum/controller/subsystem/air/proc/process_active_fire_zones(resumed = 0)
 	if (!resumed)
-		src.currentrun = air_master.active_fire_zones.Copy()
+		src.currentrun = active_fire_zones.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
@@ -167,7 +166,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 /datum/controller/subsystem/air/proc/process_active_hotspots(resumed = 0)
 	if (!resumed)
-		src.currentrun = air_master.active_hotspots.Copy()
+		src.currentrun = active_hotspots.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
@@ -180,15 +179,15 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 /datum/controller/subsystem/air/proc/process_zones_to_update(resumed = 0)
 	if (!resumed)
-		air_master.active_zones = air_master.zones_to_update.len // Save how many zones there were to update this cycle (used by some debugging stuff)
-		if(!air_master.zones_to_update.len)
+		active_zones = zones_to_update.len // Save how many zones there were to update this cycle (used by some debugging stuff)
+		if(!zones_to_update.len)
 			return // Nothing to do here this cycle!
 		// NOT a copy, because we are supposed to drain active turfs each cycle anyway, so just replace with empty list.
 		// Blanking the public list means we actually are removing processed ones from the list! Maybe we could we use zones_for_update directly?
 		// But if we dom any zones added to zones_to_update DURING this step will get processed again during this step.
 		// I don't know if that actually happens?  But if it does, it could lead to an infinate loop.  Better preserve original semantics.
-		src.currentrun = air_master.zones_to_update
-		air_master.zones_to_update = list()
+		src.currentrun = zones_to_update
+		zones_to_update = list()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -211,23 +210,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	msg += "H [round(cost_hotspots, 1)] | "
 	msg += "Z [round(cost_zones, 1)] "
 	msg += "}"
-	if(air_master)
-		msg += "T:[round((cost ? air_master.tiles_to_update.len/cost : 0), 0.1)]"
-	..(msg.Join())
-	if(air_master)
-		air_master.stat_entry()
-
-
-// Since air_master is still a separate controller from SSAir (Wait, why is that again? Get on that...)
-// I want it showing up in the statpanel too. We'll just hack it in as a separate line for now.
-/datum/controller/air_system/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-	var/title = "   air_master"
-	var/list/msg = list()
-	msg += "Zones: [zones.len] "
-	msg += "Edges: [edges.len] "
+	msg += "Z: [zones.len] "
+	msg += "E: [edges.len] "
 	msg += "Cycle: [current_cycle] {"
 	msg += "T [tiles_to_update.len] | "
 	msg += "E [active_edges.len] | "
@@ -235,8 +219,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	msg += "H [active_hotspots.len] | "
 	msg += "Z [zones_to_update.len] "
 	msg += "}"
-
-	stat(title, statclick.update(msg.Join()))
+	..(msg.Join())
 
 // ZAS might displace objects as the map loads if an air tick is processed mid-load.
 /datum/controller/subsystem/air/StartLoadingMap(var/quiet = TRUE)
@@ -248,7 +231,6 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	. = ..()
 
 // Reboot the air master.  A bit hacky right now, but sometimes necessary still.
-// TODO - Make this better by SSair and air_master together, then just reboot SSair
 /datum/controller/subsystem/air/proc/RebootZAS()
 	can_fire = FALSE // Pause processing while we reboot
 	// If we should happen to be in the middle of processing... wait until that finishes.
@@ -257,18 +239,29 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		while (state != SS_IDLE)
 			stoplag()
 
-	var/datum/controller/air_system/old_air = global.air_master
 	// Invalidate all zones
-	for(var/zone/zone in old_air.zones)
+	for(var/zone/zone in zones)
 		zone.c_invalidate()
-	// Destroy the air_master and create a new one.
-	qdel(old_air)
-	global.air_master = new
+
+	// Reset all the lists
+	zones.Cut()
+	edges.Cut()
+	tiles_to_update.Cut()
+	zones_to_update.Cut()
+	active_fire_zones.Cut()
+	active_hotspots.Cut()
+	active_edges.Cut()
+
+	// Start it up again
 	Initialize(REALTIMEOFDAY)
 
 	// Update next_fire so the MC doesn't try to make up for missed ticks.
 	next_fire = world.time + wait
 	can_fire = TRUE // Unpause
+
+//
+// The procs from the ZAS Air Controller are in ZAS/Controller.dm
+//
 
 #undef SSAIR_TURFS
 #undef SSAIR_EDGES
