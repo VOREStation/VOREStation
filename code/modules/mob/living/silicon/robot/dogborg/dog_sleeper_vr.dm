@@ -11,7 +11,7 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/mob_energy = -200 //Energy gained from digesting dead mobs (including PCs)
+	var/mob_energy = -250 //Energy gained from digesting dead mobs (including PCs)
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
@@ -44,7 +44,7 @@
 	if(length(contents) > (max_item_count - 1))
 		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
 		return
-	
+
 	if(analyzer == TRUE)
 		if(istype(target, /obj/item))
 			var/obj/target_obj = target
@@ -85,7 +85,7 @@
 					sleeperUI(usr)
 			return
 		return
-	
+
 	if(compactor == TRUE)
 		if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
 			var/obj/target_obj = target
