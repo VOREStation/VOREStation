@@ -172,7 +172,7 @@
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
 /datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(T, amount)
+	new /obj/effect/decal/cleanable/liquid_fuel(T, amount, FALSE)
 	remove_self(amount)
 	return
 

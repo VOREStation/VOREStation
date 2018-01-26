@@ -73,9 +73,6 @@
 	var/skill_specialization = null
 	var/list/skills = list()
 
-	var/icon/stand_icon = null
-	var/icon/lying_icon = null
-
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
 	var/miming = null //Toggle for the mime's abilities.
@@ -104,6 +101,8 @@
 	var/step_count = 0 // Track how many footsteps have been taken to know when to play footstep sounds
 
 	can_be_antagged = TRUE
+
+	var/has_huds = TRUE //Do they have all the fancy life huds? Not for mannequins.
 
 // Used by mobs in virtual reality to point back to the "real" mob the client belongs to.
 	var/mob/living/carbon/human/vr_holder = null

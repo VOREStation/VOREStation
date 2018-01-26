@@ -45,6 +45,7 @@ var/datum/antagonist/renegade/renegades
 		/obj/item/weapon/gun/projectile/sec/wood,
 		/obj/item/weapon/gun/projectile/silenced,
 		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/p92x,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/gun/projectile/derringer,
 		/obj/item/weapon/gun/projectile/shotgun/pump,

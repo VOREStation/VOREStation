@@ -77,7 +77,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "slime_crystal_small"
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_MAGNETS = 6, TECH_BLUESPACE = 3)
+	origin_tech = list(TECH_MAGNET = 6, TECH_BLUESPACE = 3)
 	force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 
 /obj/item/slime_crystal/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
@@ -109,7 +109,7 @@
 	icon_state = "slime_crystal_large"
 	uses = 1
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNETS = 5, TECH_BLUESPACE = 4)
+	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 4)
 
 
 

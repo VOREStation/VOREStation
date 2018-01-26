@@ -2,7 +2,8 @@
  * SC Medical
  */
 
-/obj/structure/closet/secure_closet/CMO/lite
+
+/obj/structure/closet/secure_closet/CMO_wardrobe
 	name = "chief medical officer's locker"
 	req_access = list(access_cmo)
 	icon_state = "cmosecure1"
@@ -12,37 +13,7 @@
 	icon_broken = "cmosecurebroken"
 	icon_off = "cmosecureoff"
 
-/obj/structure/closet/secure_closet/CMO/lite/New()
-	..()
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/medic(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/med(src)
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/dufflebag/med(src)
-	new /obj/item/clothing/suit/bio_suit/cmo(src)
-	new /obj/item/clothing/head/bio_hood/cmo(src)
-	new /obj/item/clothing/gloves/sterile/latex(src)
-	new /obj/item/device/radio/headset/heads/cmo/alt(src)
-	new /obj/item/device/flash(src)
-	new /obj/item/weapon/reagent_containers/hypospray/vial(src)
-	new /obj/item/weapon/storage/box/freezer(src)
-	new /obj/item/clothing/mask/gas(src)
-	return
-
-
-
-/obj/structure/closet/secure_closet/CMO/wardrobe
-	name = "chief medical officer's locker"
-	req_access = list(access_cmo)
-	icon_state = "cmosecure1"
-	icon_closed = "cmosecure"
-	icon_locked = "cmosecure1"
-	icon_opened = "cmosecureopen"
-	icon_broken = "cmosecurebroken"
-	icon_off = "cmosecureoff"
-
-/obj/structure/closet/secure_closet/CMO/wardrobe/New()
+/obj/structure/closet/secure_closet/CMO_wardrobe/New()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)

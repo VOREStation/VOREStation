@@ -355,19 +355,6 @@ proc/is_blind(A)
 			return 1
 	return 0
 
-/proc/broadcast_security_hud_message(var/message, var/broadcast_source)
-	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
-
-/proc/broadcast_medical_hud_message(var/message, var/broadcast_source)
-	broadcast_hud_message(message, broadcast_source, med_hud_users, /obj/item/clothing/glasses/hud/health)
-
-/proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
-	var/turf/sourceturf = get_turf(broadcast_source)
-	for(var/mob/M in targets)
-		var/turf/targetturf = get_turf(M)
-		if((targetturf.z == sourceturf.z))
-			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
-
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in mob_list)
@@ -616,3 +603,22 @@ var/list/global/organ_rel_size = list(
 
 /mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
 	return
+
+//Recalculates what planes this mob can see using their plane_holder, for humans this is checking slots, for others, could be whatever.
+/mob/proc/recalculate_vis()
+	return
+
+//General HUD updates done regularly (health puppet things, etc)
+/mob/proc/handle_regular_hud_updates()
+	return
+
+//Icon is used to occlude things like huds from the faulty byond context menu.
+//   http://www.byond.com/forum/?post=2336679
+var/global/image/backplane
+/hook/startup/proc/generate_backplane()
+	backplane = image('icons/misc/win32.dmi')
+	backplane.alpha = 0
+	backplane.plane = -100
+	backplane.mouse_opacity = 0
+
+	return TRUE

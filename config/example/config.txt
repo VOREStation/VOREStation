@@ -217,6 +217,11 @@ GUEST_BAN
 ## Wiki address
 # WIKIURL http://example.com
 
+## Wiki search path
+## Set this to whatever path your wiki uses to search for articles
+## Use %s to mark where the search query should be inserted
+# WIKISEARCHURL http://example.com/index.php?title=Special%3ASearch&search=%s
+
 ## GitHub address
 # GITHUBURL https://github.com/example-user/example-repository
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
@@ -305,6 +310,9 @@ REQ_CULT_GHOSTWRITER 6
 
 ## Sets the number of available character slots
 CHARACTER_SLOTS 10
+
+## Sets the number of loadout slots per character
+LOADOUT_SLOTS 3
 
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP

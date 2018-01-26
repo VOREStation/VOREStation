@@ -98,11 +98,9 @@
 /obj/item/clothing/accessory/storage/knifeharness/New()
 	..()
 	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
-	hold.can_hold = list(/obj/item/weapon/material/hatchet/unathiknife,\
-	/obj/item/weapon/material/kitchen/utensil/knife,\
-	/obj/item/weapon/material/kitchen/utensil/knife/plastic,\
+	hold.can_hold = list(/obj/item/weapon/material/knife/machete/hatchet/unathiknife,\
 	/obj/item/weapon/material/knife,\
-	/obj/item/weapon/material/knife/ritual)
+	/obj/item/weapon/material/knife/plastic)
 
-	new /obj/item/weapon/material/hatchet/unathiknife(hold)
-	new /obj/item/weapon/material/hatchet/unathiknife(hold)
+	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife(hold)
+	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife(hold)

@@ -1,6 +1,3 @@
-var/global/list/image/ghost_darkness_images = list() //this is a list of images for things ghosts should still be able to see when they toggle darkness
-var/global/list/image/ghost_sightless_images = list() //this is a list of images for things ghosts should still be able to see even without ghost sight
-
 /mob/observer
 	name = "observer"
 	desc = "This shouldn't appear"
@@ -12,11 +9,12 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	layer = 3.9	//Just below normal mobs
+	plane = PLANE_GHOSTS
+	alpha = 127
 	stat = DEAD
 	canmove = 0
 	blinded = 0
 	anchored = 1	//  don't get pushed around
-	invisibility = INVISIBILITY_OBSERVER
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
@@ -30,9 +28,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/atom/movable/following = null
 	var/admin_ghosted = 0
 	var/anonsay = 0
-	var/image/ghostimage = null //this mobs ghost image, for deleting and stuff
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
-//	var/seedarkness = 1
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
@@ -92,14 +88,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 /mob/observer/dead/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
-	see_in_dark = 100
+	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
+	plane = PLANE_GHOSTS //Why doesn't the var above work...???
 	verbs += /mob/observer/dead/proc/dead_tele
 
 	stat = DEAD
-
-	ghostimage = image(src.icon,src,src.icon_state)
-	ghost_darkness_images |= ghostimage
-	updateallghostimages()
 
 	var/turf/T
 	if(ismob(body))
@@ -108,14 +101,14 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
+			icon = H.icon
+			LAZYCLEARLIST(H.list_huds)
+			H.update_icons()
+			overlays = H.overlays
 		else
 			icon = body.icon
 			icon_state = body.icon_state
 			overlays = body.overlays
-
-		alpha = 127
 
 		gender = body.gender
 		if(body.mind && body.mind.name)
@@ -139,21 +132,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	real_name = name
 	..()
 
-/mob/observer/dead/Destroy()
-	if (ghostimage)
-		ghost_darkness_images -= ghostimage
-		qdel(ghostimage)
-		ghostimage = null
-		updateallghostimages()
-	return ..()
-
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 		if(target)
 			ManualFollow(target)
-
-
 
 /mob/observer/dead/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/weapon/book/tome))
@@ -173,31 +156,6 @@ Works together with spawning an observer, noted above.
 	if(!client) return 0
 
 	handle_regular_hud_updates()
-
-	if(antagHUD)
-		var/list/target_list = list()
-		for(var/mob/living/target in oview(src, 14))
-			if(target.mind && target.mind.special_role)
-				target_list += target
-		if(target_list.len)
-			assess_targets(target_list, src)
-	if(medHUD)
-		process_medHUD(src)
-
-
-/mob/observer/dead/proc/process_medHUD(var/mob/M)
-	var/client/C = M.client
-	for(var/mob/living/carbon/human/patient in oview(M, 14))
-		C.images += patient.hud_list[HEALTH_HUD]
-		C.images += patient.hud_list[STATUS_HUD_OOC]
-
-/mob/observer/dead/proc/assess_targets(list/target_list, mob/observer/dead/U)
-	var/client/C = U.client
-	for(var/mob/living/carbon/human/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
-	for(var/mob/living/silicon/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
-	return 1
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
@@ -300,41 +258,33 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Toggle MedicHUD"
 	set desc = "Toggles Medical HUD allowing you to see how everyone is doing"
-	if(!client)
-		return
-	if(medHUD)
-		medHUD = 0
-		src << "<font color='blue'><B>Medical HUD Disabled</B></font>"
-	else
-		medHUD = 1
-		src << "<font color='blue'><B>Medical HUD Enabled</B></font>"
+
+	medHUD = !medHUD
+	plane_holder.set_vis(VIS_CH_HEALTH, medHUD)
+	plane_holder.set_vis(VIS_CH_STATUS_OOC, medHUD)
+	to_chat(src,"<font color='blue'><B>Medical HUD [medHUD ? "Enabled" : "Disabled"]</B></font>")
 
 /mob/observer/dead/verb/toggle_antagHUD()
 	set category = "Ghost"
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
 
-	if(!client)
-		return
 	if(!config.antag_hud_allowed && !client.holder)
 		src << "<font color='red'>Admins have disabled this for this round.</font>"
 		return
-	var/mob/observer/dead/M = src
-	if(jobban_isbanned(M, "AntagHUD"))
+	if(jobban_isbanned(src, "AntagHUD"))
 		src << "<font color='red'><B>You have been banned from using this feature</B></font>"
 		return
-	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && !client.holder)
+	if(config.antag_hud_restricted && !has_enabled_antagHUD && !client.holder)
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
-		M.can_reenter_corpse = 0
-	if(!M.has_enabled_antagHUD && !client.holder)
-		M.has_enabled_antagHUD = 1
-	if(M.antagHUD)
-		M.antagHUD = 0
-		src << "<font color='blue'><B>AntagHUD Disabled</B></font>"
-	else
-		M.antagHUD = 1
-		src << "<font color='blue'><B>AntagHUD Enabled</B></font>"
+		can_reenter_corpse = FALSE
+	if(!has_enabled_antagHUD && !client.holder)
+		has_enabled_antagHUD = TRUE
+
+	antagHUD = !antagHUD
+	plane_holder.set_vis(VIS_CH_SPECIAL, antagHUD)
+	to_chat(src,"<font color='blue'><B>AntagHUD [antagHUD ? "Enabled" : "Disabled"]</B></font>")
 
 /mob/observer/dead/proc/dead_tele(var/area/A in return_sorted_areas())
 	set category = "Ghost"
@@ -428,7 +378,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(check_rights(R_ADMIN|R_FUN, 0, src))
 		return 0
 
-	return (T && T.holy) && (invisibility <= SEE_INVISIBLE_LIVING || (mind in cult.current_antagonists))
+	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
 
 /mob/observer/dead/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -660,18 +610,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 1
 
 /mob/observer/dead/proc/manifest(mob/user)
-	is_manifest = 0
-	if(!is_manifest)
-		is_manifest = 1
-		verbs += /mob/observer/dead/proc/toggle_visibility
-		verbs += /mob/observer/dead/proc/ghost_whisper
-		src << "<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>"
-	if(src.invisibility != 0)
+	is_manifest = TRUE
+	verbs |= /mob/observer/dead/proc/toggle_visibility
+	verbs |= /mob/observer/dead/proc/ghost_whisper
+	to_chat(src,"<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>")
+	if(plane != PLANE_WORLD)
 		user.visible_message( \
 			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
 			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
 		)
-		toggle_visibility(1)
+		toggle_visibility(TRUE)
 	else
 		user.visible_message ( \
 			"<span class='warning'>\The [user] just tried to smash \his book into that ghost!  It's not very effective.</span>", \
@@ -698,17 +646,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Allows you to turn (in)visible (almost) at will."
 
 	var/toggled_invisible
-	if(!forced && invisibility && world.time < toggled_invisible + 600)
+	if(!forced && plane == PLANE_GHOSTS && world.time < toggled_invisible + 600)
 		src << "You must gather strength before you can turn visible again..."
 		return
 
-	if(invisibility == 0)
+	if(plane == PLANE_WORLD)
 		toggled_invisible = world.time
 		visible_message("<span class='emote'>It fades from sight...</span>", "<span class='info'>You are now invisible.</span>")
 	else
 		src << "<span class='info'>You are now visible!</span>"
 
-	invisibility = invisibility == INVISIBILITY_OBSERVER ? 0 : INVISIBILITY_OBSERVER
+	plane = PLANE_GHOSTS ? PLANE_WORLD : PLANE_GHOSTS
+
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
 
@@ -733,41 +682,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Ghost Vision"
 	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts"
 	set category = "Ghost"
-	ghostvision = !(ghostvision)
+	ghostvision = !ghostvision
 	updateghostsight()
-	usr << "You [(ghostvision?"now":"no longer")] have ghost vision."
+	to_chat(src,"You [ghostvision ? "now" : "no longer"] have ghost vision.")
 
 /mob/observer/dead/verb/toggle_darkness()
 	set name = "Toggle Darkness"
+	set desc = "Toggles your ability to see lighting overlays, and the darkness they create."
 	set category = "Ghost"
-	seedarkness = !(seedarkness)
+	seedarkness = !seedarkness
 	updateghostsight()
+	to_chat(src,"You [seedarkness ? "now" : "no longer"] see darkness.")
 
 /mob/observer/dead/proc/updateghostsight()
-	if (!seedarkness)
-		see_invisible = SEE_INVISIBLE_NOLIGHTING
-	else
-		see_invisible = SEE_INVISIBLE_OBSERVER
-		if (!ghostvision)
-			see_invisible = SEE_INVISIBLE_LIVING;
-	updateghostimages()
-
-/proc/updateallghostimages()
-	for (var/mob/observer/dead/O in player_list)
-		O.updateghostimages()
-
-/mob/observer/dead/proc/updateghostimages()
-	if (!client)
-		return
-	if (seedarkness || !ghostvision)
-		client.images -= ghost_darkness_images
-		client.images |= ghost_sightless_images
-	else
-		//add images for the 60inv things ghosts can normally see when darkness is enabled so they can see them now
-		client.images -= ghost_sightless_images
-		client.images |= ghost_darkness_images
-		if (ghostimage)
-			client.images -= ghostimage //remove ourself
+	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness) //Inversion, because "not seeing" the darkness is "seeing" the lighting plane master.
+	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
 mob/observer/dead/MayRespawn(var/feedback = 0)
 	if(!client)

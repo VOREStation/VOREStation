@@ -215,7 +215,7 @@
 				prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
 				prob(2);/obj/item/weapon/material/knuckledusters,
-				prob(1);/obj/item/weapon/material/hatchet/tacknife,
+				prob(1);/obj/item/weapon/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
 				prob(1);/obj/item/weapon/handcuffs,
@@ -289,7 +289,7 @@
 
 /obj/random/projectile
 	name = "Random Projectile Weapon"
-	desc = "This is a random security weapon."
+	desc = "This is a random projectile weapon."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "revolver"
 
@@ -310,6 +310,8 @@
 				prob(3);/obj/item/weapon/gun/projectile/luger/brown,
 				prob(4);/obj/item/weapon/gun/projectile/sec,
 				prob(3);/obj/item/weapon/gun/projectile/sec/wood,
+				prob(4);/obj/item/weapon/gun/projectile/p92x,
+				prob(3);/obj/item/weapon/gun/projectile/p92x/brown,
 				prob(4);/obj/item/weapon/gun/projectile/pistol,
 				prob(5);/obj/item/weapon/gun/projectile/pirate,
 				prob(2);/obj/item/weapon/gun/projectile/revolver,
@@ -345,13 +347,15 @@
 
 /obj/random/handgun/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/gun/projectile/sec,
-				prob(4);/obj/item/weapon/gun/projectile/luger,
+				prob(4);/obj/item/weapon/gun/projectile/p92x,
+				prob(3);/obj/item/weapon/gun/projectile/sec/wood,
+				prob(3);/obj/item/weapon/gun/projectile/p92x/brown,
+				prob(3);/obj/item/weapon/gun/projectile/colt,
+				prob(2);/obj/item/weapon/gun/projectile/luger,
 				prob(2);/obj/item/weapon/gun/energy/gun,
-				prob(2);/obj/item/weapon/gun/projectile/colt,
 				prob(2);/obj/item/weapon/gun/projectile/pistol,
 				prob(1);/obj/item/weapon/gun/energy/retro,
-				prob(1);/obj/item/weapon/gun/projectile/sec/wood,
-				prob(3);/obj/item/weapon/gun/projectile/luger/brown)
+				prob(1);/obj/item/weapon/gun/projectile/luger/brown)
 
 /obj/random/handgun/sec
 	name = "Random Security Handgun"
@@ -365,7 +369,7 @@
 
 /obj/random/ammo
 	name = "Random Ammunition"
-	desc = "This is random ammunition."
+	desc = "This is random security ammunition."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "45-10"
 
@@ -892,6 +896,20 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/clothing/ears/earmuffs,
 				prob(1);/obj/item/weapon/beartrap,
 				prob(2);/obj/item/weapon/handcuffs,)
+
+/obj/random/rigsuit
+	name = "Random rigsuit"
+	desc = "This is a random rigsuit."
+	icon = 'icons/obj/rig_modules.dmi'
+	icon_state = "generic"
+
+/obj/random/rigsuit/item_to_spawn()
+	return pick(prob(4);/obj/item/weapon/rig/light/hacker,
+				prob(5);/obj/item/weapon/rig/industrial,
+				prob(5);/obj/item/weapon/rig/eva,
+				prob(4);/obj/item/weapon/rig/light/stealth,
+				prob(3);/obj/item/weapon/rig/hazard,
+				prob(1);/obj/item/weapon/rig/merc/empty)
 
 var/list/random_junk_
 var/list/random_useful_

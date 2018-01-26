@@ -228,3 +228,31 @@
 #define SLIME_COMMAND_OBEY		1 // When disciplined.
 #define SLIME_COMMAND_FACTION	2 // When in the same 'faction'.
 #define SLIME_COMMAND_FRIEND	3 // When befriended with a slime friendship agent.
+
+//Vision flags, for dealing with plane visibility
+#define VIS_FULLBRIGHT		1
+#define VIS_LIGHTING		2
+#define VIS_GHOSTS			3
+#define VIS_AI_EYE			4
+
+#define VIS_CH_STATUS		5
+#define VIS_CH_HEALTH		6
+#define VIS_CH_LIFE			7
+#define VIS_CH_ID			8
+#define VIS_CH_WANTED		9
+#define VIS_CH_IMPLOYAL		10
+#define VIS_CH_IMPTRACK		11
+#define VIS_CH_IMPCHEM		12
+#define VIS_CH_SPECIAL		13
+#define VIS_CH_STATUS_OOC	14
+
+#define VIS_D_COLORBLIND	15
+#define VIS_D_COLORBLINDI	16
+
+#define VIS_ADMIN1			17
+#define VIS_ADMIN2			18
+#define VIS_ADMIN3			19
+
+#define VIS_MESONS			20
+
+#define VIS_COUNT			20 //Must be highest number from above.

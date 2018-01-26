@@ -512,30 +512,28 @@
 		return
 
 	for(var/obj/machinery/power/emitter/E in world)
-		if(E.anchored)
-			E.active = 1
-
+		if(istype(get_area(E), /area/space))
+			E.anchored = TRUE
+			E.state = 2
+			E.connect_to_network()
+			E.active = TRUE
 	for(var/obj/machinery/field_generator/F in world)
-		if(F.anchored)
+		if(istype(get_area(F), /area/space))
 			F.Varedit_start = 1
-	spawn(30)
-		for(var/obj/machinery/the_singularitygen/G in world)
-			if(G.anchored)
-				var/obj/singularity/S = new /obj/singularity(get_turf(G), 50)
-				spawn(0)
-					qdel(G)
-				S.energy = 1750
-				S.current_size = 7
-				S.icon = 'icons/effects/224x224.dmi'
-				S.icon_state = "singularity_s7"
-				S.pixel_x = -96
-				S.pixel_y = -96
-				S.grav_pull = 0
-				//S.consume_range = 3
-				S.dissipate = 0
-				//S.dissipate_delay = 10
-				//S.dissipate_track = 0
-				//S.dissipate_strength = 10
+	for(var/obj/machinery/power/grounding_rod/GR in world)
+		GR.anchored = TRUE
+		GR.update_icon()
+	for(var/obj/machinery/power/tesla_coil/TC in world)
+		TC.anchored = TRUE
+		TC.update_icon()
+	for(var/obj/structure/particle_accelerator/PA in world)
+		PA.anchored = TRUE
+		PA.construction_state = 3
+		PA.update_icon()
+	for(var/obj/machinery/particle_accelerator/PA in world)
+		PA.anchored = TRUE
+		PA.construction_state = 3
+		PA.update_icon()
 
 	for(var/obj/machinery/power/rad_collector/Rad in world)
 		if(Rad.anchored)
@@ -548,10 +546,6 @@
 
 			if(!Rad.active)
 				Rad.toggle_power()
-
-	for(var/obj/machinery/power/smes/SMES in world)
-		if(SMES.anchored)
-			SMES.input_attempt = 1
 
 /client/proc/setup_supermatter_engine()
 	set category = "Debug"

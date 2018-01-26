@@ -8,6 +8,7 @@
 #define MOLES_N2SIF (MOLES_CELLSIF * N2SIF) // N2 value on Sif(82%)
 
 #define TEMPERATURE_SIF 243.15 // Roughly -30C / -22F
+#define TEMPERATURE_ALTSIF 225.15
 
 /turf/simulated/floor/outdoors/mud/sif/planetuse
 	oxygen		= MOLES_O2SIF
@@ -106,6 +107,36 @@
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/shuttle/floor/voidcraft/external
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/shuttle/floor/voidcraft/external/dark
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/shuttle/floor/voidcraft/external/light
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/floor/plating/external
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/floor/tiled/external
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_SIF
+
+/turf/simulated/sky
+	oxygen		= MOLES_O2SIF
+	nitrogen	= MOLES_N2SIF
+	temperature	= TEMPERATURE_ALTSIF
 
 // Space mineral tiles are now not the default, so they get demoted to subtype status.
 

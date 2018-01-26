@@ -420,6 +420,9 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice
 	price_tag = 6
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/applejuice
+	price_tag = 6
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream
 	price_tag = 6
 

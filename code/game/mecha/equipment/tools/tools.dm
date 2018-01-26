@@ -19,7 +19,7 @@
 		//loading
 		if(istype(target,/obj))
 			var/obj/O = target
-			if(O.buckled_mob)
+			if(O.has_buckled_mobs())
 				return
 			if(locate(/mob/living) in O)
 				occupant_message("<span class='warning'>You can't load living things into the cargo compartment.</span>")

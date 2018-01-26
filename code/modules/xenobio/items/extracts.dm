@@ -141,11 +141,7 @@
 	desc = "A small bottle. Contains some really weird liquid metal."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-
-/obj/item/weapon/reagent_containers/glass/bottle/metamorphic/New()
-	..()
-	reagents.add_reagent("metamorphic", 60)
-	update_icon()
+	prefill = list("metamorphic" = 60)
 
 
 // This is kind of a waste since iron is in the chem dispenser but it would be inconsistent if this wasn't here.
@@ -216,11 +212,7 @@
 	desc = "A small bottle. Contains some really weird liquid metal."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-
-/obj/item/weapon/reagent_containers/glass/bottle/binding/New()
-	..()
-	reagents.add_reagent("binding", 60)
-	update_icon()
+	prefill = list("binding" = 60)
 
 
 /datum/chemical_reaction/binding

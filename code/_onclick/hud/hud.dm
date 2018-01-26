@@ -12,7 +12,8 @@ var/list/global_huds = list(
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
-		global_hud.science
+		global_hud.science,
+		global_hud.material
 		)
 
 /datum/hud/var/obj/screen/grab_intent
@@ -26,10 +27,12 @@ var/list/global_huds = list(
 	var/obj/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
+	var/obj/screen/darksight
 	var/obj/screen/nvg
 	var/obj/screen/thermal
 	var/obj/screen/meson
 	var/obj/screen/science
+	var/obj/screen/material
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
 	var/obj/screen/screen = new /obj/screen()
@@ -37,37 +40,43 @@ var/list/global_huds = list(
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
 	screen.layer = SCREEN_LAYER
+	screen.plane = PLANE_FULLSCREEN
 	screen.mouse_opacity = 0
 
 	return screen
 
+/obj/screen/global_screen
+	screen_loc = ui_entire_screen
+	layer = 17
+	plane = PLANE_FULLSCREEN
+	mouse_opacity = 0
+
 /datum/global_hud/New()
 	//420erryday psychedellic colours screen overlay for when you are high
-	druggy = new /obj/screen()
-	druggy.screen_loc = ui_entire_screen
+	druggy = new /obj/screen/global_screen()
 	druggy.icon_state = "druggy"
-	druggy.layer = 17
-	druggy.mouse_opacity = 0
 
 	//that white blurry effect you get when you eyes are damaged
-	blurry = new /obj/screen()
-	blurry.screen_loc = ui_entire_screen
+	blurry = new /obj/screen/global_screen()
 	blurry.icon_state = "blurry"
-	blurry.layer = 17
-	blurry.mouse_opacity = 0
 
 	//static overlay effect for cameras and the like
-	whitense = new /obj/screen()
-	whitense.screen_loc = ui_entire_screen
+	whitense = new /obj/screen/global_screen()
 	whitense.icon = 'icons/effects/static.dmi'
 	whitense.icon_state = "1 light"
-	whitense.layer = 17
-	whitense.mouse_opacity = 0
+
+	//darksight 'hanger' for attached icons
+	darksight = new /obj/screen()
+	darksight.icon = null
+	darksight.screen_loc = "1,1"
+	darksight.plane = PLANE_LIGHTING
+	darksight.plane = LIGHTING_LAYER + 0.1
 
 	nvg = setup_overlay("nvg_hud")
 	thermal = setup_overlay("thermal_hud")
 	meson = setup_overlay("meson_hud")
 	science = setup_overlay("science_hud")
+	material = setup_overlay("material_hud")
 
 	var/obj/screen/O
 	var/i
@@ -75,12 +84,16 @@ var/list/global_huds = list(
 	vimpaired = newlist(/obj/screen,/obj/screen,/obj/screen,/obj/screen)
 	O = vimpaired[1]
 	O.screen_loc = "1,1 to 5,15"
+	O.plane = PLANE_FULLSCREEN
 	O = vimpaired[2]
 	O.screen_loc = "5,1 to 10,5"
+	O.plane = PLANE_FULLSCREEN
 	O = vimpaired[3]
 	O.screen_loc = "6,11 to 10,15"
+	O.plane = PLANE_FULLSCREEN
 	O = vimpaired[4]
 	O.screen_loc = "11,1 to 15,15"
+	O.plane = PLANE_FULLSCREEN
 
 	//welding mask overlay black/dither
 	darkMask = newlist(/obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen)
@@ -105,18 +118,21 @@ var/list/global_huds = list(
 		O = vimpaired[i]
 		O.icon_state = "dither50"
 		O.layer = 17
+		O.plane = PLANE_FULLSCREEN
 		O.mouse_opacity = 0
 
 		O = darkMask[i]
 		O.icon_state = "dither50"
 		O.layer = 17
+		O.plane = PLANE_FULLSCREEN
 		O.mouse_opacity = 0
 
 	for(i = 5, i <= 8, i++)
 		O = darkMask[i]
 		O.icon_state = "black"
 		O.layer = 17
-		O.mouse_opacity = 0
+		O.plane = PLANE_FULLSCREEN
+		O.mouse_opacity = 2
 
 /*
 	The hud datum

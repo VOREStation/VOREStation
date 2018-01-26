@@ -1,20 +1,32 @@
 //This shuttle traverses a "web" of route_datums to have a wider range of places to go and make flying feel like movement is actually occuring.
 /datum/shuttle/web_shuttle
 	flags = SHUTTLE_FLAGS_NONE
+	var/visible_name = null // The pretty name shown to people in announcements, since the regular name var is used internally for other things.
 	var/cloaked = FALSE
 	var/can_cloak = FALSE
-	var/cooldown = 5 SECONDS
+	var/cooldown = 0
 	var/last_move = 0	//the time at which we last moved
 	var/area/current_area = null
 	var/datum/shuttle_web_master/web_master = null
 	var/web_master_type = null
 	var/flight_time_modifier = 1.0
+	var/autopilot = FALSE
+	var/can_autopilot = FALSE
+	var/autopilot_delay = 60 // How many ticks to not do anything when not following an autopath. Should equal two minutes.
+	var/autopilot_first_delay = null // If your want your shuttle to stay for a different amount of time for the first time, set this.
+	var/can_rename = TRUE // Lets the pilot rename the shuttle. Only available once.
 	category = /datum/shuttle/web_shuttle
 
 /datum/shuttle/web_shuttle/New()
 	current_area = locate(current_area)
 	web_master = new web_master_type(src)
 	build_destinations()
+	if(autopilot)
+		flags |= SHUTTLE_FLAGS_PROCESS
+		if(autopilot_first_delay)
+			autopilot_delay = autopilot_first_delay
+	if(!visible_name)
+		visible_name = name
 	..()
 
 /datum/shuttle/web_shuttle/Destroy()
@@ -38,6 +50,78 @@
 
 /datum/shuttle/web_shuttle/proc/build_destinations()
 	return
+
+/datum/shuttle/web_shuttle/process()
+	if(moving_status == SHUTTLE_IDLE)
+		if(web_master.autopath) // We're currently flying a path.
+			autopilot_say("Continuing route.")
+			web_master.process_autopath()
+
+		else // Otherwise we are about to start one or just finished one.
+			if(autopilot_delay > 0) // Wait for awhile so people can get on and off.
+				if(docking_controller && !skip_docking_checks()) // Dock to the destination if possible.
+					var/docking_status = docking_controller.get_docking_status()
+					if(docking_status == "undocked")
+						dock()
+						autopilot_say("Docking.")
+						return
+					else if(docking_status == "docking")
+						return // Give it a few more ticks to finish docking.
+
+				if(autopilot_delay % 10 == 0) // Every ten ticks.
+					var/seconds_left = autopilot_delay * 2
+					if(seconds_left >= 60) // A minute
+						var/minutes_left = Floor(seconds_left / 60)
+						seconds_left = seconds_left % 60
+						autopilot_say("Departing in [minutes_left] minute\s[seconds_left ? ", [seconds_left] seconds":""].")
+					else
+						autopilot_say("Departing in [seconds_left] seconds.")
+				autopilot_delay--
+
+			else // Time to go.
+				if(docking_controller && !skip_docking_checks()) // Undock if possible.
+					var/docking_status = docking_controller.get_docking_status()
+					if(docking_status == "docked")
+						undock()
+						autopilot_say("Undocking.")
+						return
+					else if(docking_status == "undocking")
+						return // Give it a few more ticks to finish undocking.
+
+				autopilot_delay = initial(autopilot_delay)
+				autopilot_say("Taking off.")
+				web_master.process_autopath()
+
+/datum/shuttle/web_shuttle/proc/adjust_autopilot(on)
+	if(on)
+		if(autopilot)
+			return
+		autopilot = TRUE
+		autopilot_delay = initial(autopilot_delay)
+		shuttle_controller.process_shuttles += src
+	else
+		if(!autopilot)
+			return
+		autopilot = FALSE
+		shuttle_controller.process_shuttles -= src
+
+/datum/shuttle/web_shuttle/proc/autopilot_say(message) // Makes the autopilot 'talk' to the passengers.
+	var/padded_message = "<span class='game say'><span class='name'>shuttle autopilot</span> states, \"[message]\"</span>"
+	message_passengers(current_area, padded_message)
+
+/datum/shuttle/web_shuttle/proc/rename_shuttle(mob/user)
+	if(!can_rename)
+		to_chat(user, "<span class='warning'>You can't rename this vessel.</span>")
+		return
+	var/new_name = input(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name) as null|text
+	var/sanitized_name = sanitizeName(new_name, MAX_NAME_LEN, TRUE)
+	if(sanitized_name)
+		can_rename = FALSE
+		to_chat(user, "<span class='notice'>You've renamed the vessel to '[sanitized_name]'.</span>")
+		message_admins("[key_name_admin(user)] renamed shuttle '[visible_name]' to '[sanitized_name]'.")
+		visible_name = sanitized_name
+	else
+		to_chat(user, "<span class='warning'>The name you supplied was invalid. Try another name.</span>")
 
 /obj/machinery/computer/shuttle_control/web
 	name = "flight computer"
@@ -174,13 +258,16 @@
 		"travel_progress" = between(0, percent_finished, 100),
 		"time_left" = round( (total_time - elapsed_time) / 10),
 		"can_cloak" = shuttle.can_cloak ? 1 : 0,
-		"cloaked" = shuttle.cloaked ? 1 : 0
+		"cloaked" = shuttle.cloaked ? 1 : 0,
+		"can_autopilot" = shuttle.can_autopilot ? 1 : 0,
+		"autopilot" = shuttle.autopilot ? 1 : 0,
+		"can_rename" = shuttle.can_rename ? 1 : 0
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "flight.tmpl", "[shuttle_tag] Flight Computer", 470, 500)
+		ui = new(user, src, ui_key, "flight.tmpl", "[shuttle.visible_name] Flight Computer", 470, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -202,13 +289,22 @@
 		ui_interact(usr)
 
 	if (WS.moving_status != SHUTTLE_IDLE)
-		usr << "<font color='blue'>[shuttle_tag] vessel is busy moving.</font>"
+		usr << "<font color='blue'>[WS.visible_name] is busy moving.</font>"
 		return
 
+	if(href_list["rename_command"])
+		WS.rename_shuttle(usr)
+
 	if(href_list["dock_command"])
+		if(WS.autopilot)
+			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
+			return
 		WS.dock()
 
 	if(href_list["undock_command"])
+		if(WS.autopilot)
+			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
+			return
 		WS.undock()
 
 	if(href_list["cloak_command"])
@@ -223,7 +319,17 @@
 		WS.cloaked = FALSE
 		to_chat(usr, "<span class='danger'>Ship stealth systems have been deactivated. The station will be warned of our arrival.</span>")
 
+	if(href_list["autopilot_on_command"])
+		WS.adjust_autopilot(TRUE)
+
+	if(href_list["autopilot_off_command"])
+		WS.adjust_autopilot(FALSE)
+
 	if(href_list["traverse"])
+		if(WS.autopilot)
+			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
+			return
+
 		if((WS.last_move + WS.cooldown) > world.time)
 			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
 			return
@@ -245,7 +351,8 @@
 			return
 
 		WS.web_master.future_destination = target_destination
-		to_chat(usr, "<span class='notice'>[shuttle_tag] flight computer received command.</span>")
+		to_chat(usr, "<span class='notice'>[WS.visible_name] flight computer received command.</span>")
+		WS.web_master.reset_autopath() // Deviating from the path will almost certainly confuse the autopilot, so lets just reset its memory.
 
 		var/travel_time = new_route.travel_time * WS.flight_time_modifier
 

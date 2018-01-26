@@ -260,7 +260,7 @@
 		B.visible_message("<span class='danger'>The [name] retaliates, lashing out at \the [attacker]!</span>")
 		B.blob_attack_animation(attacker, B.overmind)
 		attacker.blob_act(B)
-	..()
+	return ..()
 
 
 // Spreads damage to nearby blobs, and attacks with the force of all nearby blobs.

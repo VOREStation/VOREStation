@@ -131,7 +131,7 @@
 	else if(istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
 		var/mob/living/affecting = G.affecting
-		if(buckled_mob) //Handles trying to buckle someone else to a chair when someone else is on it
+		if(has_buckled_mobs()) //Handles trying to buckle someone else to a chair when someone else is on it
 			to_chat(user, "<span class='notice'>\The [src] already has someone buckled to it.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
@@ -183,7 +183,7 @@
 	..(newloc,"wood","cotton")
 
 /obj/structure/bed/double/post_buckle_mob(mob/living/M as mob)
-	if(M == buckled_mob)
+	if(M.buckled == src)
 		M.pixel_y = 13
 		M.old_y = 13
 	else
@@ -216,8 +216,9 @@
 	if(istype(W, /obj/item/weapon/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
 		return
 	else if(istype(W,/obj/item/roller_holder))
-		if(buckled_mob)
-			user_unbuckle_mob(user)
+		if(has_buckled_mobs())
+			for(var/A in buckled_mobs)
+				user_unbuckle_mob(A, user)
 		else
 			visible_message("[user] collapses \the [src.name].")
 			new rollertype(get_turf(src))
@@ -287,14 +288,15 @@
 
 /obj/structure/bed/roller/Move()
 	..()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.loc = src.loc
-		else
-			buckled_mob = null
+	if(has_buckled_mobs())
+		for(var/A in buckled_mobs)
+			var/mob/living/L = A
+
+			if(L.buckled == src)
+				L.loc = src.loc
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
-	if(M == buckled_mob)
+	if(M.buckled == src)
 		M.pixel_y = 6
 		M.old_y = 6
 		density = 1
@@ -311,7 +313,7 @@
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return
-		if(buckled_mob)	return 0
+		if(has_buckled_mobs())	return 0
 		visible_message("[usr] collapses \the [src.name].")
 		new rollertype(get_turf(src))
 		spawn(0)

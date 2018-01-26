@@ -4,7 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	anchored = 0
-	density = 1 
+	density = 1
 	climbable = 1
 	flags = OPENCONTAINER
 	//copypaste sorry
@@ -17,7 +17,7 @@
 
 
 /obj/structure/janitorialcart/New()
-	create_reagents(100)
+	create_reagents(300)
 
 
 /obj/structure/janitorialcart/examine(mob/user)
@@ -178,7 +178,7 @@
 
 
 /obj/structure/bed/chair/janicart/New()
-	create_reagents(100)
+	create_reagents(300)
 	update_layer()
 
 
@@ -229,9 +229,11 @@
 
 /obj/structure/bed/chair/janicart/Move()
 	..()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.loc = loc
+	if(has_buckled_mobs())
+		for(var/A in buckled_mobs)
+			var/mob/living/L = A
+			if(L.buckled == src)
+				L.loc = loc
 
 
 /obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)
@@ -257,36 +259,41 @@
 /obj/structure/bed/chair/janicart/set_dir()
 	..()
 	update_layer()
-	if(buckled_mob)
-		if(buckled_mob.loc != loc)
-			buckled_mob.buckled = null //Temporary, so Move() succeeds.
-			buckled_mob.buckled = src //Restoring
+	if(has_buckled_mobs())
+		for(var/A in buckled_mobs)
+			var/mob/living/L = A
+			if(L.loc != loc)
+				L.buckled = null //Temporary, so Move() succeeds.
+				L.buckled = src //Restoring
 
 	update_mob()
 
 
 /obj/structure/bed/chair/janicart/proc/update_mob()
-	if(buckled_mob)
-		buckled_mob.set_dir(dir)
-		switch(dir)
-			if(SOUTH)
-				buckled_mob.pixel_x = 0
-				buckled_mob.pixel_y = 7
-			if(WEST)
-				buckled_mob.pixel_x = 13
-				buckled_mob.pixel_y = 7
-			if(NORTH)
-				buckled_mob.pixel_x = 0
-				buckled_mob.pixel_y = 4
-			if(EAST)
-				buckled_mob.pixel_x = -13
-				buckled_mob.pixel_y = 7
+	if(has_buckled_mobs())
+		for(var/A in buckled_mobs)
+			var/mob/living/L = A
+			L.set_dir(dir)
+			switch(dir)
+				if(SOUTH)
+					L.pixel_x = 0
+					L.pixel_y = 7
+				if(WEST)
+					L.pixel_x = 13
+					L.pixel_y = 7
+				if(NORTH)
+					L.pixel_x = 0
+					L.pixel_y = 4
+				if(EAST)
+					L.pixel_x = -13
+					L.pixel_y = 7
 
 
 /obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
-	if(buckled_mob)
+	if(has_buckled_mobs())
 		if(prob(85))
-			return buckled_mob.bullet_act(Proj)
+			var/mob/living/L = pick(buckled_mobs)
+			return L.bullet_act(Proj)
 	visible_message("<span class='warning'>[Proj] ricochets off the [callme]!</span>")
 
 

@@ -264,4 +264,4 @@
 			var/obj/item/organ/O = new limb_path(src)
 			organ_data["descriptor"] = O.name
 			to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
-			src.update_body()
+	update_icons_all()

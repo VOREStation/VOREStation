@@ -161,6 +161,9 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
 				safety--
 				continue
+			else if(candidate && !candidate.outdoors)
+				safety--
+				continue
 			else
 				T = candidate
 				break

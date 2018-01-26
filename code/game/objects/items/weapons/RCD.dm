@@ -122,10 +122,7 @@
 		build_delay = deconstruct ? 50 : 20
 		build_cost =  deconstruct ? 10 : 3
 		build_type =  deconstruct ? "floor" : "wall"
-		if(F.check_destroy_override(F))
-			build_turf =  deconstruct ? destroy_floor_override_path : /turf/simulated/wall
-		else
-			build_turf =  deconstruct ? /turf/space : /turf/simulated/wall
+		build_turf =  deconstruct ? get_base_turf_by_area(F) : /turf/simulated/wall
 
 	if(!build_type)
 		working = 0

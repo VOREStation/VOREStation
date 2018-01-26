@@ -37,11 +37,19 @@
 		supply_controller.shuttle = null
 	. = ..()
 
+/datum/shuttle/proc/process()
+	return
+
 /datum/shuttle/proc/init_docking_controllers()
 	if(docking_controller_tag)
 		docking_controller = locate(docking_controller_tag)
 		if(!istype(docking_controller))
 			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_tag] could not find it's controller!</span>"
+
+// This creates a graphical warning to where the shuttle is about to land, in approximately five seconds.
+/datum/shuttle/proc/create_warning_effect(area/landing_area)
+	for(var/turf/T in landing_area)
+		new /obj/effect/temporary_effect/shuttle_landing(T) // It'll delete itself when needed.
 
 // Return false to abort a jump, before the 'warmup' phase.
 /datum/shuttle/proc/pre_warmup_checks()
@@ -70,6 +78,7 @@
 	spawn(warmup_time*10)
 
 		make_sounds(origin, HYPERSPACE_WARMUP)
+		create_warning_effect(destination)
 		sleep(5 SECONDS) // so the sound finishes.
 
 		if(!post_warmup_checks())
@@ -102,6 +111,7 @@
 	spawn(warmup_time*10)
 
 		make_sounds(departing, HYPERSPACE_WARMUP)
+		create_warning_effect(interim) // Really doubt someone is gonna get crushed in the interim area but for completeness's sake we'll make the warning.
 		sleep(5 SECONDS) // so the sound finishes.
 
 		if(!post_warmup_checks())
@@ -122,11 +132,16 @@
 		move(departing, interim, direction)
 
 		var/last_progress_sound = 0
+		var/made_warning = FALSE
 		while (world.time < arrive_time)
 			// Make the shuttle make sounds every four seconds, since the sound file is five seconds.
 			if(last_progress_sound + 4 SECONDS < world.time)
 				make_sounds(interim, HYPERSPACE_PROGRESS)
 				last_progress_sound = world.time
+
+			if(arrive_time - world.time <= 5 SECONDS && !made_warning)
+				made_warning = TRUE
+				create_warning_effect(destination)
 			sleep(5)
 
 		move(interim, destination, direction)

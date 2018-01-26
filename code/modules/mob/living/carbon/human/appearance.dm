@@ -23,7 +23,7 @@
 
 	src.gender = gender
 	reset_hair()
-	update_body()
+	update_icons_body()
 	update_dna()
 	return 1
 
@@ -91,7 +91,7 @@
 	b_eyes = blue
 
 	update_eyes()
-	update_body()
+	update_icons_body()
 	return 1
 
 /mob/living/carbon/human/proc/change_hair_color(var/red, var/green, var/blue)
@@ -102,8 +102,6 @@
 	g_hair = green
 	b_hair = blue
 
-	force_update_limbs()
-	update_body()
 	update_hair()
 	return 1
 
@@ -127,7 +125,7 @@
 	b_skin = blue
 
 	force_update_limbs()
-	update_body()
+	update_icons_body()
 	return 1
 
 /mob/living/carbon/human/proc/change_skin_tone(var/tone)
@@ -137,7 +135,7 @@
 	s_tone = tone
 
 	force_update_limbs()
-	update_body()
+	update_icons_body()
 	return 1
 
 /mob/living/carbon/human/proc/update_dna()
@@ -211,4 +209,4 @@
 /mob/living/carbon/human/proc/force_update_limbs()
 	for(var/obj/item/organ/external/O in organs)
 		O.sync_colour_to_human(src)
-	update_body(0)
+	update_icons_body(FALSE)

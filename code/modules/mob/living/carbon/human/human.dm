@@ -2,8 +2,8 @@
 	name = "unknown"
 	real_name = "unknown"
 	voice_name = "unknown"
-	icon = 'icons/mob/human.dmi'
-	icon_state = "body_m_s"
+	icon = 'icons/effects/effects.dmi' //We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
+	icon_state = "nothing"
 
 	var/list/hud_list[TOTAL_HUDS]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -37,20 +37,7 @@
 
 	nutrition = rand(200,400)
 
-	hud_list[HEALTH_HUD]      = new /image/hud_overlay('icons/mob/hud_med.dmi', src, "100")
-	if(isSynthetic())
-		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
-		hud_list[LIFE_HUD]	  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudrobo")
-	else
-		hud_list[STATUS_HUD]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-		hud_list[LIFE_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
-	hud_list[ID_HUD]          = new /image/hud_overlay(using_map.id_hud_icons, src, "hudunknown")
-	hud_list[WANTED_HUD]      = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPLOYAL_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[SPECIALROLE_HUD] = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD_OOC]  = new /image/hud_overlay('icons/mob/hud.dmi', src, "hudhealthy")
+	make_hud_overlays()
 
 	human_mob_list |= src
 	..()
@@ -69,6 +56,14 @@
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
+
+	LAZYCLEARLIST(list_layers)
+	list_layers = null //Be free!
+	LAZYCLEARLIST(list_body)
+	list_body = null
+	LAZYCLEARLIST(list_huds)
+	list_huds = null
+
 	return ..()
 
 /mob/living/carbon/human/Stat()

@@ -191,19 +191,29 @@
 
 /obj/item/ammo_magazine/m9mm
 	name = "magazine (9mm)"
-	icon_state = "9x19p"
+	icon_state = "9x19p_fullsize"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(DEFAULT_WALL_MATERIAL = 480)
+	matter = list(DEFAULT_WALL_MATERIAL = 600)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
-	max_ammo = 8
+	max_ammo = 10
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m9mm/large
+	desc = "\"FOR LAW ENFORCEMENT/MILITARY USE ONLY\" is clearly etched on the magazine. This is probably illegal for you to have." // Remember, Security is not Law Enforcement, so it's illegal for Security to use as well.
+	icon_state = "9x19p_highcap"
+	max_ammo = 17
+	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
+
+/obj/item/ammo_magazine/m9mm/large/preban // Sold by traders.
+	desc = "A large capacity magazine that was built before the SolGov Assault Weapons Ban, so it's legal to own."
 
 /obj/item/ammo_magazine/m9mm/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/m9mm/flash
+	name = "magazine (9mm flash)"
 	ammo_type = /obj/item/ammo_casing/a9mmf
 
 /obj/item/ammo_magazine/m9mm/rubber
@@ -214,6 +224,34 @@
 	name = "magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/a9mmp
 
+// Compact
+/obj/item/ammo_magazine/m9mm/compact
+	name = "compact magazine (9mm)"
+	icon_state = "9x19p"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	matter = list(DEFAULT_WALL_MATERIAL = 480)
+	caliber = "9mm"
+	ammo_type = /obj/item/ammo_casing/a9mm
+	max_ammo = 8
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m9mm/compact/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/m9mm/compact/flash
+	name = "compact magazine (9mm flash)"
+	ammo_type = /obj/item/ammo_casing/a9mmf
+
+/obj/item/ammo_magazine/m9mm/compact/rubber
+	name = "compact magazine (9mm rubber)"
+	ammo_type = /obj/item/ammo_casing/a9mmr
+
+/obj/item/ammo_magazine/m9mm/compact/practice
+	name = "compact magazine (9mm practice)"
+	ammo_type = /obj/item/ammo_casing/a9mmp
+
+// SMG
 /obj/item/ammo_magazine/m9mmt
 	name = "top mounted magazine (9mm)"
 	icon_state = "9mmt"
@@ -240,7 +278,7 @@
 	ammo_type = /obj/item/ammo_casing/a9mmp
 
 /obj/item/ammo_magazine/m9mmp90
-	name = "high capacity top mounted magazine (9mm armor-piercing)"
+	name = "large capacity top mounted magazine (9mm armor-piercing)"
 	icon_state = "p90"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a9mm/ap

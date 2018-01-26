@@ -1331,9 +1331,18 @@
 	name = "Vodka"
 	id = "vodka"
 	result = "vodka"
-	required_reagents = list("potato" = 10)
+	required_reagents = list("potatojuice" = 10)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
+
+/datum/chemical_reaction/drinks/cider
+	name = "Cider"
+	id = "cider"
+	result = "cider"
+	required_reagents = list("applejuice" = 10)
+	catalysts = list("enzyme" = 5)
+	result_amount = 10
+
 
 /datum/chemical_reaction/drinks/sake
 	name = "Sake"
@@ -1863,7 +1872,7 @@
 	required_reagents = list("tea" = 5, "limejuice" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/drinks/limetea
+/datum/chemical_reaction/drinks/orangetea
 	name = "Orange Tea"
 	id = "orangetea"
 	result = "orangetea"

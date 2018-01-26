@@ -1,3 +1,20 @@
+/mob/living/New()
+	..()
+
+	//I'll just hang my coat up over here
+	dsoverlay = image('icons/mob/darksight.dmi',global_hud.darksight) //This is a secret overlay! Go look at the file, you'll see.
+	var/mutable_appearance/dsma = new(dsoverlay) //Changing like ten things, might as well.
+	dsma.alpha = 0
+	dsma.plane = PLANE_LIGHTING
+	dsma.layer = LIGHTING_LAYER + 0.1
+	dsma.blend_mode = BLEND_ADD
+	dsoverlay.appearance = dsma
+
+/mob/living/Destroy()
+	dsoverlay.loc = null //I'll take my coat with me
+	dsoverlay = null
+	return ..()
+
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
@@ -822,7 +839,7 @@ default behaviour is:
 
 /mob/living/proc/escape_buckle()
 	if(buckled)
-		buckled.user_unbuckle_mob(src)
+		buckled.user_unbuckle_mob(src, src)
 
 /mob/living/proc/resist_grab()
 	var/resisting = 0
@@ -951,11 +968,14 @@ default behaviour is:
 			if(is_physically_disabled())
 				lying = 0
 				canmove = 1
-				pixel_y = V.mob_offset_y - 5
+				if(!V.riding_datum) // If it has a riding datum, the datum handles moving the pixel_ vars.
+					pixel_y = V.mob_offset_y - 5
 			else
-				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
+				if(buckled.buckle_lying != -1)
+					lying = buckled.buckle_lying
 				canmove = 1
-				pixel_y = V.mob_offset_y
+				if(!V.riding_datum) // If it has a riding datum, the datum handles moving the pixel_ vars.
+					pixel_y = V.mob_offset_y
 		else if(buckled)
 			anchored = 1
 			canmove = 0

@@ -5,8 +5,11 @@
 	set category = "OOC"
 	if(config.wikiurl)
 		if(query)
-			var/output = config.wikiurl + "/doku.php?do=search&id=" + query
-			src << link(output)
+			if(config.wikisearchurl)
+				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))	
+				src << link(output)
+			else
+				src << "<span class='warning'> The wiki search URL is not set in the server configuration.</span>"
 		else
 			src << link(config.wikiurl)
 	else

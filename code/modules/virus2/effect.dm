@@ -157,7 +157,7 @@
 				H << "<span class='notice'>You can't feel your [E.name] anymore...</span>"
 				for (var/obj/item/organ/external/C in E.children)
 					C.status |= ORGAN_DEAD
-			H.update_body(1)
+			H.update_icons_body()
 		mob.adjustToxLoss(15*multiplier)
 
 	deactivate(var/mob/living/carbon/mob,var/multiplier)
@@ -167,7 +167,7 @@
 				E.status &= ~ORGAN_DEAD
 				for (var/obj/item/organ/external/C in E.children)
 					C.status &= ~ORGAN_DEAD
-			H.update_body(1)
+			H.update_icons_body()
 
 /datum/disease2/effect/immortal
 	name = "Longevity Syndrome"

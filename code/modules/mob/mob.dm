@@ -13,6 +13,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
+	qdel_null(plane_holder)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -78,24 +79,24 @@
 // message is the message output to anyone who can see e.g. "[src] does something!"
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-
 /mob/visible_message(var/message, var/self_message, var/blind_message)
-	var/list/see = get_mobs_or_objects_in_view(world.view,src) | viewers(world.view,src)
 
-	for(var/I in see)
-		if(isobj(I))
-			//spawn(0)
-			//if(I) //It's possible that it could be deleted in the meantime.
-			var/obj/O = I
-			O.show_message( message, 1, blind_message, 2)
-		else if(ismob(I))
-			var/mob/M = I
-			if(self_message && M==src)
-				M.show_message( self_message, 1, blind_message, 2)
-			else if(M.see_invisible >= invisibility) // Cannot view the invisible
-				M.show_message( message, 1, blind_message, 2)
-			else if (blind_message)
-				M.show_message(blind_message, 2)
+	var/list/see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+
+	var/list/seeing_mobs = see["mobs"]
+	var/list/seeing_objs = see["objs"]
+
+	for(var/obj in seeing_objs)
+		var/obj/O = obj
+		O.show_message(message, 1, blind_message, 2)
+	for(var/mob in seeing_mobs)
+		var/mob/M = mob
+		if(self_message && M == src)
+			M.show_message( self_message, 1, blind_message, 2)
+		else if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
+			M.show_message(message, 1, blind_message, 2)
+		else if(blind_message)
+			M.show_message(blind_message, 2)
 
 // Returns an amount of power drawn from the object (-1 if it's not viable).
 // If drain_check is set it will not actually drain power, just return a value.
@@ -112,24 +113,22 @@
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
 /mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message)
 
-	var/range = world.view
-	if(hearing_distance)
-		range = hearing_distance
-	var/list/hear = get_mobs_or_objects_in_view(range,src)
+	var/range = hearing_distance || world.view
+	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
 
-	for(var/I in hear)
-		if(isobj(I))
-			spawn(0)
-				if(I) //It's possible that it could be deleted in the meantime.
-					var/obj/O = I
-					O.show_message( message, 2, deaf_message, 1)
-		else if(ismob(I))
-			var/mob/M = I
-			var/msg = message
-			if(self_message && M==src)
-				msg = self_message
-			M.show_message( msg, 2, deaf_message, 1)
+	var/list/hearing_mobs = hear["mobs"]
+	var/list/hearing_objs = hear["objs"]
 
+	for(var/obj in hearing_objs)
+		var/obj/O = obj
+		O.show_message(message, 2, deaf_message, 1)
+
+	for(var/mob in hearing_mobs)
+		var/mob/M = mob
+		var/msg = message
+		if(self_message && M==src)
+			msg = self_message
+		M.show_message(msg, 2, deaf_message, 1)
 
 /mob/proc/findname(msg)
 	for(var/mob/M in mob_list)
@@ -242,6 +241,7 @@
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
+	P.plane = plane
 	spawn (20)
 		if(P)
 			qdel(P)	// qdel

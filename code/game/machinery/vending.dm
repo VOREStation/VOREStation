@@ -710,6 +710,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/applejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/milk = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cream = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cola = 5,
@@ -986,7 +987,7 @@
 	products = list(
 	/obj/item/weapon/tray = 8,
 	/obj/item/weapon/material/kitchen/utensil/fork = 6,
-	/obj/item/weapon/material/kitchen/utensil/knife = 6,
+	/obj/item/weapon/material/knife = 6,
 	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 	/obj/item/weapon/material/knife = 3,
 	/obj/item/weapon/material/kitchen/rollingpin = 2,

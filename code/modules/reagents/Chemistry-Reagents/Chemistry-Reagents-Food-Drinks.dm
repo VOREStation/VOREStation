@@ -521,6 +521,17 @@
 	glass_name = "lemon juice"
 	glass_desc = "Sour..."
 
+/datum/reagent/drink/juice/apple
+	name = "Apple Juice"
+	id = "applejuice"
+	description = "The most basic juice."
+	taste_description = "crispness"
+	taste_mult = 1.1
+	color = "#E2A55F"
+
+	glass_name = "apple juice"
+	glass_desc = "An earth favorite."
+
 /datum/reagent/drink/juice/lime
 	name = "Lime Juice"
 	id = "limejuice"
@@ -1007,7 +1018,7 @@
 
 /datum/reagent/drink/milkshake/berryshake
 	name = "Berry Milkshake"
-	id = "Berryshake"
+	id = "berryshake"
 	description = "A refreshing berry milkshake."
 	taste_description = "cold refreshing berries and cream"
 	color = "#ffb2b2" // rgb(255, 178, 178)
@@ -1324,7 +1335,7 @@
 
 	glass_name = "Ent's Draught"
 	glass_desc = "You can almost smell the tranquility emanating from this."
-	
+
 /datum/reagent/drink/lovepotion
 	name = "Love Potion"
 	id = "lovepotion"
@@ -1593,6 +1604,18 @@
 
 	glass_name = "wine"
 	glass_desc = "A very classy looking drink."
+
+
+/datum/reagent/ethanol/cider
+	name = "Cider"
+	id = "cider"
+	description = "Hard? Soft? No-one knows but it'll get you drunk."
+	taste_description = "tartness"
+	color = "#CE9C00" // rgb: 206, 156, 0
+	strength = 10
+
+	glass_name = "cider"
+	glass_desc = "The second most Irish drink."
 
 // Cocktails
 
@@ -2475,13 +2498,13 @@
 /datum/reagent/ethanol/euphoria
 	name = "Euphoria"
 	id = "euphoria"
-	description = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existance."
+	description = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existence."
 	taste_description = "impossibly rich alcohol"
 	color = "#614126"
 	strength = 9
 
 	glass_name = "Euphoria"
-	glass_desc = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existance."
+	glass_desc = "Invented by a Eutopian marketing team, this is one of the most expensive cocktails in existence."
 
 /datum/reagent/ethanol/xanaducannon
 	name = "Xanadu Cannon"
@@ -2569,7 +2592,7 @@
 /datum/reagent/ethanol/winebrandy
 	name = "Wine Brandy"
 	id = "winebrandy"
-	description = "An premium spirit made from distilled wine."
+	description = "A premium spirit made from distilled wine."
 	taste_description = "very sweet dried fruit with many elegant notes"
 	color = "#4C130B" // rgb(76,19,11)
 	strength = 20
@@ -2721,7 +2744,7 @@
 	color = "#a0692e" // rgb(160, 105, 46)
 	strength = 20
 
-	glass_name = "Whisker Sour"
+	glass_name = "Whiskey Sour"
 	glass_desc = "A smokey, refreshing lemoned whiskey."
 
 /datum/reagent/ethanol/oldfashioned
@@ -2780,7 +2803,7 @@
 
 	glass_name = "Pisco Sour"
 	glass_desc = "South American bliss, served ice cold."
-	
+
 /datum/reagent/ethanol/coldfront
 	name = "Cold Front"
 	id = "coldfront"
@@ -2790,10 +2813,10 @@
 	strength = 30
 	adj_temp = -20
 	targ_temp = 220 //Dangerous to certain races. Drink in moderation.
-	
+
 	glass_name = "Cold Front"
 	glass_desc = "Minty, rich, and painfully cold. It's a blizzard in a cup."
-	
+
 /datum/reagent/ethanol/mintjulep
 	name = "Mint Julep"
 	id = "mintjulep"
@@ -2802,6 +2825,6 @@
 	color = "#bbfc8a" // rgb(187, 252, 138)
 	strength = 25
 	adj_temp = -5
-	
+
 	glass_name = "Mint Julep"
 	glass_desc = "Minty and refreshing, perfect for a hot day."

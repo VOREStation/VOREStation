@@ -90,7 +90,7 @@
 		else
 			if (M.ear_damage >= 5)
 				M << "<span class='danger'>Your ears start to ring!</span>"
-		M.update_icons()
+		M.update_icons() //Forces matrix transform to proc if they are now laying, I guess?
 
 /obj/item/weapon/grenade/flashbang/Destroy()
 	walk(src, 0) // Because we might have called walk_away, we must stop the walk loop or BYOND keeps an internal reference to us forever.

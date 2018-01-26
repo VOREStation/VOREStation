@@ -214,6 +214,17 @@
 	var/seal_target = !canremove
 	var/failed_to_seal
 
+	var/obj/screen/rig_booting/booting_L = new
+	var/obj/screen/rig_booting/booting_R = new
+
+	if(!seal_target)
+		booting_L.icon_state = "boot_left"
+		booting_R.icon_state = "boot_load"
+		animate(booting_L, alpha=230, time=30, easing=SINE_EASING)
+		animate(booting_R, alpha=200, time=20, easing=SINE_EASING)
+		M.client.screen += booting_L
+		M.client.screen += booting_R
+
 	canremove = 0 // No removing the suit while unsealing.
 	sealing = 1
 
@@ -228,7 +239,6 @@
 			if(seal_delay && !do_after(M,seal_delay))
 				if(M) M << "<span class='warning'>You must remain still while the suit is adjusting the components.</span>"
 				failed_to_seal = 1
-
 		if(!M)
 			failed_to_seal = 1
 		else
@@ -284,6 +294,10 @@
 	sealing = null
 
 	if(failed_to_seal)
+		M.client.screen -= booting_L
+		M.client.screen -= booting_R
+		qdel(booting_L)
+		qdel(booting_R)
 		for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 			if(!piece) continue
 			piece.icon_state = "[initial(icon_state)][!seal_target ? "" : "_sealed"]"
@@ -296,6 +310,12 @@
 	// Success!
 	canremove = seal_target
 	M << "<font color='blue'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></font>"
+	M.client.screen -= booting_L
+	qdel(booting_L)
+	booting_R.icon_state = "boot_done"
+	spawn(40)
+		M.client.screen -= booting_R
+		qdel(booting_R)
 
 	if(canremove)
 		for(var/obj/item/rig_module/module in installed_modules)
@@ -1002,6 +1022,16 @@
 
 /mob/living/carbon/human/get_rig()
 	return back
+
+//Boot animation screen objects
+/obj/screen/rig_booting
+	screen_loc = "1,1"
+	icon = 'icons/obj/rig_boot.dmi'
+	icon_state = ""
+	layer = SCREEN_LAYER
+	plane = PLANE_FULLSCREEN
+	mouse_opacity = 0
+	alpha = 20 //Animated up when loading
 
 #undef ONLY_DEPLOY
 #undef ONLY_RETRACT

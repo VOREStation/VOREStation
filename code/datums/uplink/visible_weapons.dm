@@ -7,12 +7,12 @@
 /datum/uplink_item/item/visible_weapons/tactknife
 	name = "Tactical Knife"
 	item_cost = 10
-	path = /obj/item/weapon/material/hatchet/tacknife
+	path = /obj/item/weapon/material/knife/tacknife
 
 /datum/uplink_item/item/visible_weapons/combatknife
 	name = "Combat Knife"
 	item_cost = 20
-	path = /obj/item/weapon/material/hatchet/tacknife/combatknife
+	path = /obj/item/weapon/material/knife/tacknife/combatknife
 
 /datum/uplink_item/item/visible_weapons/energy_sword
 	name = "Energy Sword, Random"
@@ -98,6 +98,16 @@
 	name = "Judge"
 	item_cost = 70
 	path = /obj/item/weapon/gun/projectile/revolver/judge
+
+/datum/uplink_item/item/visible_weapons/pistol_standard_capacity
+	name = "9mm Pistol"
+	item_cost = 40
+	path = /obj/item/weapon/gun/projectile/p92x
+
+/datum/uplink_item/item/visible_weapons/pistol_large_capacity
+	name = "9mm Pistol (with large capacity magazine)"
+	item_cost = 70
+	path = /obj/item/weapon/gun/projectile/p92x/large
 
 /datum/uplink_item/item/visible_weapons/lemat
 	name = "LeMat"

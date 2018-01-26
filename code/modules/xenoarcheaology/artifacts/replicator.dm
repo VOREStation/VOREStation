@@ -49,7 +49,7 @@
 	/obj/item/weapon/clipboard,
 	/obj/item/weapon/cell,
 	/obj/item/weapon/surgical/circular_saw,
-	/obj/item/weapon/material/hatchet,
+	/obj/item/weapon/material/knife/machete/hatchet,
 	/obj/item/weapon/handcuffs,
 	/obj/item/weapon/surgical/hemostat,
 	/obj/item/weapon/material/knife,
