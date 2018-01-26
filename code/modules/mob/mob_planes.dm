@@ -12,6 +12,7 @@
 
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
 	plane_masters[VIS_FULLBRIGHT] 	= new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
+	plane_masters[VIS_LIGHTING] 	= new /obj/screen/plane_master/lighting							//Lighting system (but different!)
 	plane_masters[VIS_GHOSTS] 		= new /obj/screen/plane_master/ghosts							//Ghosts!
 	plane_masters[VIS_AI_EYE]		= new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 
@@ -131,11 +132,16 @@
 //Lighting is weird and has matrix shenanigans. Think of this as turning on/off darkness.
 /obj/screen/plane_master/fullbright
 	plane = PLANE_LIGHTING
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_LAYER+1
 	color = null //To break lighting when visible (this is sorta backwards)
-	alpha = 255 //Starts full opaque
-	invisibility = 101 //But invisible
+	alpha = 0 //Starts full opaque
+	invisibility = 101
 	invis_toggle = TRUE
+
+/obj/screen/plane_master/lighting
+	plane = PLANE_LIGHTING
+	blend_mode = BLEND_MULTIPLY
+	alpha = 255
 
 /////////////////
 //Ghosts has a special alpha level

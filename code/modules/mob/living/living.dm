@@ -1,3 +1,20 @@
+/mob/living/New()
+	..()
+
+	//I'll just hang my coat up over here
+	dsoverlay = image('icons/mob/darksight.dmi',global_hud.darksight) //This is a secret overlay! Go look at the file, you'll see.
+	var/mutable_appearance/dsma = new(dsoverlay) //Changing like ten things, might as well.
+	dsma.alpha = 0
+	dsma.plane = PLANE_LIGHTING
+	dsma.layer = LIGHTING_LAYER + 0.1
+	dsma.blend_mode = BLEND_ADD
+	dsoverlay.appearance = dsma
+
+/mob/living/Destroy()
+	dsoverlay.loc = null //I'll take my coat with me
+	dsoverlay = null
+	return ..()
+
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"

@@ -27,6 +27,7 @@ var/list/global_huds = list(
 	var/obj/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
+	var/obj/screen/darksight
 	var/obj/screen/nvg
 	var/obj/screen/thermal
 	var/obj/screen/meson
@@ -63,6 +64,13 @@ var/list/global_huds = list(
 	whitense = new /obj/screen/global_screen()
 	whitense.icon = 'icons/effects/static.dmi'
 	whitense.icon_state = "1 light"
+
+	//darksight 'hanger' for attached icons
+	darksight = new /obj/screen()
+	darksight.icon = null
+	darksight.screen_loc = "1,1"
+	darksight.plane = PLANE_LIGHTING
+	darksight.plane = LIGHTING_LAYER + 0.1
 
 	nvg = setup_overlay("nvg_hud")
 	thermal = setup_overlay("thermal_hud")
