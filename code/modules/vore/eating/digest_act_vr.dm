@@ -5,10 +5,18 @@
 // Ye default implementation.
 /obj/item/proc/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	for(var/obj/item/O in contents)
-		if(internal_contents)
-			internal_contents |= O
-		if(item_storage)
-			O.forceMove(item_storage)
+		if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
+			for(var/obj/item/SO in O)
+				if(internal_contents)
+					internal_contents |= SO
+				if(item_storage)
+					SO.forceMove(item_storage)
+				qdel(O)
+		else
+			if(internal_contents)
+				internal_contents |= O
+			if(item_storage)
+				O.forceMove(item_storage)
 
 	qdel(src)
 	return w_class
@@ -71,6 +79,11 @@
 	. = ..()
 
 /obj/item/weapon/holder/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	for(var/mob/living/M in contents)
+		if(internal_contents)
+			internal_contents |= M
+		if(item_storage)
+			M.forceMove(item_storage)
 	held_mob = null
 
 	. = ..()
@@ -78,7 +91,6 @@
 /obj/item/organ/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
 	if((. = ..()))
 		. += 70 //Organs give a little more
-
 
 /////////////
 // Some more complicated stuff
