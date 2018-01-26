@@ -94,3 +94,18 @@
 	desc = "Allows you to dispose of the snack wrappings on the go instead of having to look for a bin or littering like an animal."
 	cost = 0
 	var_changes = list("trashcan" = 1)
+
+/datum/trait/glowing_eyes
+	name = "Glowing Eyes"
+	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."
+	cost = 0
+	var_changes = list("has_glowing_eyes" = 1)
+
+/datum/trait/glowing_body
+	name = "Glowing Body"
+	desc = "Your body glows about as much as a PDA light! Settable color and toggle in Abilities tab ingame."
+	cost = 0
+/datum/trait/glowing_body/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/glow_toggle
+	H.verbs |= /mob/living/proc/glow_color
