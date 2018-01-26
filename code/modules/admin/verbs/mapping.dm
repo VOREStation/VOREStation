@@ -274,14 +274,7 @@ var/list/debug_verbs = list (
 	set name = "Reboot ZAS"
 
 	if(alert("This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
-		var/datum/controller/air_system/old_air = air_master
-		for(var/zone/zone in old_air.zones)
-			zone.c_invalidate()
-		qdel(old_air)
-		air_master = new
-		air_master.Setup()
-		spawn air_master.Start()
-
+		SSair.RebootZAS()
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
