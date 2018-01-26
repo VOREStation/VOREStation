@@ -1599,6 +1599,7 @@
 #include "code\modules\lore_codex\lore_data\orgs.dm"
 #include "code\modules\lore_codex\lore_data\political_parties.dm"
 #include "code\modules\lore_codex\lore_data\species.dm"
+#include "code\modules\lore_codex\news_data\main.dm"
 #include "code\modules\maps\tg\dmm_suite.dm"
 #include "code\modules\maps\tg\map_template.dm"
 #include "code\modules\maps\tg\reader.dm"

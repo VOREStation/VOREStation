@@ -29,6 +29,11 @@
 	display_name = "the traveler's guide to vir"
 	path = /obj/item/weapon/book/codex/lore/vir
 	cost = 0
+	
+/datum/gear/utility/news
+	display_name = "daedalus pocket newscaster"
+	path = /obj/item/weapon/book/codex/lore/news
+	cost = 0
 
 /datum/gear/utility/corp_regs
 	display_name = "corporate regulations and legal code"

@@ -28,5 +28,5 @@
 	to an immigrant from another system or even from outside human space, and anyone inbetween.  The publisher wishes to note that any opinions expressed \
 	in this text does not reflect the opinions of the publisher, and are instead the author's.\
 	<br><br>\
-	Eshi Tache has also written other <i>The Traveler's Guide</i> books, including <i>Sol Edition</i>, <i>Tau Ceti Edition</i>, <i>Sirius Edition</i>, and more, \
+	Eshi Tache has also written other <i>The Traveler's Guide</i> books, including <i>Sol Edition</i>, <i>Tau Ceti Edition</i>, <i>Alpha Centauri Edition</i>, and more, \
 	which you can find in your local book store, library, or e-reader device."
