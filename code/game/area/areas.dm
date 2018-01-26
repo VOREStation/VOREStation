@@ -27,6 +27,9 @@
 
 /area/initialize()
 	. = ..()
+	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
+
+/area/LateInitialize()
 	if(!requires_power || !apc)
 		power_light = 0
 		power_equip = 0

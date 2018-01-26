@@ -1210,6 +1210,7 @@ About the new airlock wires panel:
 				src.closeOther = A
 				break
 	name = "\improper [name]"
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

@@ -81,7 +81,7 @@
 	ks1type = /obj/item/device/encryptionkey/raider
 
 /obj/item/device/radio/headset/raider/initialize()
-	..()
+	. = ..()
 	set_frequency(RAID_FREQ)
 
 /obj/item/device/radio/headset/binary

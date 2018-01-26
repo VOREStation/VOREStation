@@ -13,6 +13,7 @@
 	phoron = 0
 
 /turf/simulated/sky/initialize()
+	. = ..()
 	outdoor_turfs.Add(src)
 	set_light(2, 2, "#FFFFFF")
 

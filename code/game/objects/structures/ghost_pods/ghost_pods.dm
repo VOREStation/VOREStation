@@ -55,7 +55,7 @@
 	var/delay_to_try_again = 20 MINUTES // How long to wait if first attempt fails.  Set to 0 to never try again.
 
 /obj/structure/ghost_pod/automatic/initialize()
-	..()
+	. = ..()
 	spawn(delay_to_self_open)
 		if(src)
 			trigger()

@@ -129,8 +129,9 @@
 	return 1
 
 /obj/machinery/atmospherics/trinary/atmos_filter/initialize()
-	set_frequency(frequency)
-	..()
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/atmos_filter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!istype(W, /obj/item/weapon/wrench))

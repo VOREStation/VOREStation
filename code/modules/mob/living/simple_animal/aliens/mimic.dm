@@ -63,7 +63,7 @@
 
 // Pickup loot
 /mob/living/simple_animal/hostile/mimic/crate/initialize()
-	..()
+	. = ..()
 	for(var/obj/item/I in loc)
 		I.forceMove(src)
 

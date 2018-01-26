@@ -18,7 +18,7 @@
 	else return ..()
 
 /obj/structure/shuttle/window/initialize()
-	..()
+	. = ..()
 	auto_join()
 
 /obj/structure/shuttle/window/proc/auto_join()

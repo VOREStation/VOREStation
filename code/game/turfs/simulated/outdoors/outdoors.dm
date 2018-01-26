@@ -22,7 +22,7 @@ var/list/outdoor_turfs = list()
 
 /turf/simulated/floor/outdoors/initialize()
 	update_icon()
-	..()
+	. = ..()
 
 /turf/simulated/floor/New()
 	if(outdoors)

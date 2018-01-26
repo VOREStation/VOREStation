@@ -81,7 +81,7 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/dont_init = FALSE)
+/datum/map_template/proc/load_new_z(var/centered = FALSE)
 	var/x = 1
 	var/y = 1
 
@@ -96,13 +96,12 @@ var/list/global/map_templates = list()
 //	repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
-	if(!dont_init)
-		initTemplateBounds(bounds)
+	initTemplateBounds(bounds)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 	on_map_loaded(world.maxz) //VOREStation Edit
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, dont_init = FALSE)
+/datum/map_template/proc/load(turf/T, centered = FALSE)
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
@@ -124,8 +123,7 @@ var/list/global/map_templates = list()
 //		repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
-	if(!dont_init)
-		initTemplateBounds(bounds)
+	initTemplateBounds(bounds)
 
 	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
 	loaded++
@@ -240,7 +238,7 @@ var/list/global/map_templates = list()
 			admin_notice("Submap \"[chosen_template.name]\" placed at ([T.x], [T.y], [T.z])", R_DEBUG)
 
 			// Do loading here.
-			chosen_template.load(T, centered = TRUE, dont_init = TRUE) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
+			chosen_template.load(T, centered = TRUE) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
 
 			CHECK_TICK
 

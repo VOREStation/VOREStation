@@ -31,13 +31,13 @@ FLOOR SAFES
 
 
 /obj/structure/safe/initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			I.loc = src
-
+			I.forceMove(src)
 
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
 	if(user && canhear)
@@ -175,7 +175,7 @@ obj/structure/safe/ex_act(severity)
 	layer = 2.5
 
 /obj/structure/safe/floor/initialize()
-	..()
+	. = ..()
 	var/turf/T = loc
 	if(istype(T) && !T.is_plating())
 		hide(1)

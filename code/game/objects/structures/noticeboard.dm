@@ -26,6 +26,7 @@
 			I.loc = src
 			notices++
 	icon_state = "nboard0[notices]"
+	. = ..()
 
 //attaching papers!!
 /obj/structure/noticeboard/attackby(var/obj/item/weapon/O as obj, var/mob/user as mob)

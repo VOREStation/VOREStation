@@ -24,6 +24,7 @@
 	RefreshParts()
 
 /obj/machinery/vr_sleeper/initialize()
+	. = ..()
 	update_icon()
 
 /obj/machinery/vr_sleeper/process()
@@ -223,3 +224,4 @@
 
 	else
 		occupant.enter_vr(avatar)
+
