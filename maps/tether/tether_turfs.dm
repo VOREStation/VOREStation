@@ -108,6 +108,15 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
 	..()
 	icon_state = "bluespace"
 
+// Desert jump turf!
+/turf/space/sandyscroll
+	name = "sand transit"
+	icon = 'icons/turf/transit_vr.dmi'
+	icon_state = "desert_ns"
+/turf/space/sandyscroll/New()
+	..()
+	icon_state = "desert_ns"
+
 //Sky stuff!
 // A simple turf to fake the appearance of flying.
 /turf/simulated/sky/virgo3b
