@@ -2761,6 +2761,7 @@
 #include "maps\southern_cross\items\headset_sc.dm"
 #include "maps\southern_cross\items\clothing\sc_suit.dm"
 #include "maps\southern_cross\job\outfits.dm"
+#include "maps\southern_cross\structures\closets\misc.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
