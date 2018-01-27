@@ -48,10 +48,10 @@
 	make_plating(defer_icon_update = 1)
 	flooring = newflooring
 	footstep_sounds = newflooring.footstep_sounds
-	// VOREStation Edit - Remember decals from before we were pried up
-	if(islist(old_decals))
-		decals = old_decals
-		old_decals = null
+	// VOREStation Edit - We are plating switching to flooring, swap out old_decals for decals
+	var/tmp/list/overfloor_decals = old_decals
+	old_decals = decals
+	decals = overfloor_decals
 	// VOREStation Edit End
 	update_icon(1)
 	levelupdate()
@@ -61,12 +61,12 @@
 /turf/simulated/floor/proc/make_plating(var/place_product, var/defer_icon_update)
 
 	overlays.Cut()
-	if(islist(decals))
-		// VOREStation Edit - Don't forget decals when pried up
-		if(flooring)
-			old_decals = decals
-		// VOREStation Edit End
-		decals = null
+	// VOREStation Edit - We are flooring switching to plating, swap out old_decals for decals.
+	if(flooring)
+		var/tmp/list/underfloor_decals = old_decals
+		old_decals = decals
+		decals = underfloor_decals
+	// VOREStation Edit End
 
 	name = base_name
 	desc = base_desc

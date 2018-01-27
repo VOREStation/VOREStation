@@ -28,3 +28,11 @@
 		. = B.failures - A.failures
 	if (!.)
 		. = B.qdels - A.qdels
+
+// Sorts jobs by department, and then by flag within department
+/proc/cmp_job_datums(var/datum/job/a, var/datum/job/b)
+	. = sorttext(b.department, a.department)
+	if (. == 0) //Same department, push up if they're a head
+		. = b.head_position - a.head_position
+	if (. == 0) //Already in head/nothead spot, sort by name
+		. = sorttext(b.title, a.title)

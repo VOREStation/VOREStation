@@ -95,6 +95,9 @@ obj/machinery/gateway/centerstation/process()
 	if(world.time < wait)
 		user << "<span class='notice'>Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes.</span>"
 		return
+	if(!awaygate.calibrated && LAZYLEN(awaydestinations))
+		user << "<span class='notice'>Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update.</span>"
+		return
 
 	for(var/obj/machinery/gateway/G in linked)
 		G.active = 1
