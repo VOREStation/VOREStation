@@ -163,6 +163,7 @@ var/list/debug_verbs = list (
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
 		,/client/proc/debug_process_scheduler
+		,/client/proc/take_picture
 	)
 
 

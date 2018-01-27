@@ -156,10 +156,7 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 
 /obj/effect/step_trigger/teleporter/planetary_fall
 	var/datum/planet/planet = null
-/* //VOREStation Removal
-/obj/effect/step_trigger/teleporter/planetary_fall/sif/initialize()
-	planet = planet_sif
-*/ //VOREStation Removal end
+
 /obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
 	if(planet)
 		if(!planet.planet_floors.len)
@@ -169,7 +166,10 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 		var/safety = 100 // Infinite loop protection.
 		while(!T && safety)
 			var/turf/simulated/candidate = pick(planet.planet_floors)
-			if(!istype(candidate) || istype(candidate, /turf/simulated/sky) || !T.outdoors)
+			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
+				safety--
+				continue
+			else if(candidate && !candidate.outdoors)
 				safety--
 				continue
 			else

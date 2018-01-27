@@ -12,6 +12,7 @@
 	var/turf/turf_type
 	var/turf/simulated/shuttle/my_turf
 	var/image/turf_image
+	var/list/decals
 
 	New(var/location = null, var/turf/simulated/shuttle/turf)
 		my_turf = turf
@@ -24,6 +25,7 @@
 	var/old_dest_icon = T.icon
 	var/list/old_dest_overlays = T.overlays.Copy()
 	var/list/old_dest_underlays = T.underlays.Copy()
+	var/list/old_dest_decals = T.decals ? T.decals.Copy() : null
 
 	//Set the destination to be like us
 	T.Destroy()
@@ -33,12 +35,16 @@
 	new_dest.icon = my_turf.icon
 	new_dest.overlays = my_turf.overlays
 	new_dest.underlays = my_turf.underlays
-		//Shuttle specific stuff
+	new_dest.decals = my_turf.decals
+	//Shuttle specific stuff
 	new_dest.interior_corner = my_turf.interior_corner
 	new_dest.takes_underlays = my_turf.takes_underlays
 	new_dest.under_turf = my_turf.under_turf
 	new_dest.join_flags = my_turf.join_flags
 	new_dest.join_group = my_turf.join_group
+
+	if(new_dest.decals)
+		new_dest.apply_decals()
 
 	//Tell the new turf about what was there before
 	new_dest.landed_holder = new(turf = new_dest)
@@ -48,6 +54,7 @@
 	new_dest.landed_holder.icon_state = old_dest_icon_state
 	new_dest.landed_holder.overlays = old_dest_overlays
 	new_dest.landed_holder.underlays = old_dest_underlays
+	new_dest.landed_holder.decals = old_dest_decals
 
 	//Update underlays if necessary (interior corners won't have changed).
 	if(new_dest.takes_underlays && !new_dest.interior_corner)
@@ -65,6 +72,9 @@
 		new_source.icon = icon
 		new_source.overlays = overlays
 		new_source.underlays = underlays
+		new_source.decals = decals
+		if(new_source.decals)
+			new_source.apply_decals()
 	else
 		new_source = my_turf.ChangeTurf(get_base_turf_by_area(my_turf),,1)
 
@@ -93,6 +103,8 @@
 		return 0
 
 	var/turf/under //May be a path or a turf
+	var/mutable_appearance/us = new(src) //We'll use this for changes later
+	us.underlays.Cut()
 
 	//Mapper wanted something specific
 	if(under_turf)
@@ -100,8 +112,10 @@
 
 	//Well if this isn't our first rodeo, we know EXACTLY what we landed on, and it looks like this.
 	if(landed_holder && !interior_corner)
-		underlays.Cut()
-		underlays += image(landed_holder,layer=FLOAT_LAYER)
+		var/mutable_appearance/landed_on = new(landed_holder)
+		landed_on.layer = FLOAT_LAYER //Not turf
+		us.underlays = list(landed_on)
+		appearance = us
 		return
 
 	if(!under)
@@ -122,20 +136,26 @@
 		else
 			under = get_base_turf_by_area(src)
 
-	var/use_icon = ispath(under) ? initial(under.icon) : under.icon
-	var/use_icon_state
-
 	if(istype(under,/turf/simulated/shuttle))
 		interior_corner = 1 //Prevents us from 'landing on grass' and having interior corners update.
 
-	if(ispath(under,/turf/space))
-		use_icon_state = "[rand(1,25)]" //Space turfs should be random.
-	else
-		use_icon_state = ispath(under) ? initial(under.icon_state) : under.icon_state
+	var/mutable_appearance/under_ma
 
-	var/image/under_image = new(use_icon,icon_state = use_icon_state)
-	underlays.Cut()
-	underlays |= under_image
+	if(ispath(under)) //It's just a mapper-specified path
+		under_ma = new()
+		under_ma.icon = initial(under.icon)
+		under_ma.icon_state = initial(under.icon_state)
+		under_ma.color = initial(under.color)
+
+	else //It's a real turf
+		under_ma = new(under)
+
+	if(under_ma)
+		if(ispath(under,/turf/space)) //Scramble space turfs
+			under_ma.icon_state = "[rand(1,25)]"
+		us.underlays = list(under_ma)
+
+	appearance = us
 
 	return under
 

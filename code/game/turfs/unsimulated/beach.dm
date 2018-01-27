@@ -28,7 +28,13 @@
 	icon_state = "sand"
 
 /turf/simulated/floor/beach/sand/desert
+	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
+
+/turf/simulated/floor/beach/sand/desert/initialize()
+	..()
+	if(prob(5))
+		icon_state = "desert[rand(0,4)]"
 
 /turf/simulated/floor/beach/coastline
 	name = "Coastline"

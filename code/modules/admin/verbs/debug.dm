@@ -378,10 +378,15 @@
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/take_picture(var/atom/A in world)
+	set name = "Save PNG"
+	set category = "Debug"
+	set desc = "Opens a dialog to save a PNG of any object in the game."
 
+	if(!check_rights(R_DEBUG))
+		return
 
-
-
+	downloadImage(A)
 
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"

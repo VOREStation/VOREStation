@@ -817,6 +817,11 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 	qdel(west)
 	return full
 
+/proc/downloadImage(atom/A, dir)
+	var/icon/this_icon = getFlatIcon(A,defdir=dir||A.dir,always_use_defdir=1)
+
+	usr << ftp(this_icon,"[A.name].png")
+
 /mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
 	var/icon/opacity_icon = new(A.icon, A.icon_state)//Don't really care for overlays/underlays.
 	//Now we need to culculate overlays+underlays and add them together to form an image for a mask.

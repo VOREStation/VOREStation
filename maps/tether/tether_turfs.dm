@@ -38,6 +38,30 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 	..()
 	outdoor_turfs.Add(src)
 
+// Overriding these for the sake of submaps that use them on other planets.
+// This means that mining on tether base and space is oxygen-generating, but solars and mining should use the virgo3b subtype
+/turf/simulated/mineral
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature	= T20C
+/turf/simulated/floor/outdoors
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature	= T20C
+/turf/simulated/floor/water
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature	= T20C
+
+/turf/simulated/mineral/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB
+/turf/simulated/mineral/floor/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB
+
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/wall/dark/hard_corner)
@@ -99,3 +123,49 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
 /obj/effect/transit/light
 	icon = 'icons/turf/transit_128.dmi'
 	icon_state = "tube1-2"
+
+// Bluespace jump turf!
+/turf/space/bluespace
+	name = "bluespace"
+	icon_state = "bluespace"
+/turf/space/bluespace/New()
+	..()
+	icon_state = "bluespace"
+
+// Desert jump turf!
+/turf/space/sandyscroll
+	name = "sand transit"
+	icon = 'icons/turf/transit_vr.dmi'
+	icon_state = "desert_ns"
+/turf/space/sandyscroll/New()
+	..()
+	icon_state = "desert_ns"
+
+//Sky stuff!
+// A simple turf to fake the appearance of flying.
+/turf/simulated/sky/virgo3b
+	color = "#FFBBBB"
+
+/turf/simulated/sky/virgo3b/initialize()
+	outdoor_turfs.Add(src)
+	set_light(2, 2, "#FFBBBB")
+
+/turf/simulated/sky/virgo3b/north
+	dir = NORTH
+/turf/simulated/sky/virgo3b/south
+	dir = SOUTH
+/turf/simulated/sky/virgo3b/east
+	dir = EAST
+/turf/simulated/sky/virgo3b/west
+	dir = WEST
+
+/turf/simulated/sky/virgo3b/moving
+	icon_state = "sky_fast"
+/turf/simulated/sky/virgo3b/moving/north
+	dir = NORTH
+/turf/simulated/sky/virgo3b/moving/south
+	dir = SOUTH
+/turf/simulated/sky/virgo3b/moving/east
+	dir = EAST
+/turf/simulated/sky/virgo3b/moving/west
+	dir = WEST
