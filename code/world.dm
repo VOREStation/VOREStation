@@ -40,6 +40,7 @@ var/global/datum/global_init/init = new ()
 
 #define RECOMMENDED_VERSION 501
 /world/New()
+	world.log << "Map Loading Complete"
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
