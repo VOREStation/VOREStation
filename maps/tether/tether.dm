@@ -19,16 +19,12 @@
 	#include "tether-06-colony.dmm"
 	#include "tether-07-misc.dmm"
 
+	#include "submaps/_tether_submaps.dm"
+
 	#define USING_MAP_DATUM /datum/map/tether
 
 #elif !defined(MAP_OVERRIDE)
 
 	#warn A map has already been included, ignoring Tether
 
-#endif
-
-//Away missions defined here for testing
-#if AWAY_MISSION_TEST
-#include ../submaps/tether_submaps/beach/beach.dmm
-#include ../submaps/tether_submaps/beach/cave.dmm
 #endif
