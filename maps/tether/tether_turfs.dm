@@ -53,6 +53,15 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 	nitrogen = MOLES_N2STANDARD
 	temperature	= T20C
 
+/turf/simulated/mineral/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB
+/turf/simulated/mineral/floor/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB
+
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/wall/dark/hard_corner)

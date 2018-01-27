@@ -1,10 +1,7 @@
 // This causes tether submap maps to get 'checked' and compiled, when undergoing a unit test.
 // This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 //Away missions defined here for testing
-#if AWAY_MISSION_TEST
-#include "submaps/beach/beach.dmm"
-#include "submaps/beach/cave.dmm"
-#endif
+
 
 /datum/map_template/tether_lateload
 	allow_duplicates = FALSE
@@ -18,6 +15,11 @@
 
 
 /// Away Missions
+#if AWAY_MISSION_TEST
+#include "beach/beach.dmm"
+#include "beach/cave.dmm"
+#endif
+
 #include "beach/beach.dm"
 /datum/map_template/tether_lateload/away_beach
 	name = "Desert Planet - Z1 Beach"
