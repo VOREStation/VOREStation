@@ -59,7 +59,8 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
-	to_world_log("Initializing Floor Decals") // VOREStation Edit
+/*
+	to_world_log("Initializing Floor Decals")
 	admin_notice("<span class='danger'>Initializing Floor Decals</span>", R_DEBUG)
 	var/list/turfs_with_decals = list()
 	for(var/obj/effect/floor_decal/D in world)
@@ -118,3 +119,4 @@ datum/controller/game_controller/proc/setup_objects()
 		if(!QDELETED(lift))
 			lift.initialize()
 			CHECK_SLEEP_MASTER
+	*/

@@ -44,62 +44,40 @@ var/list/global/map_templates = list()
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(var/list/bounds)
-	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
+		return // let proper initialisation handle it later
+
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
-//	var/list/turf/turfs = list()
-
-	for(var/L in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
-	                   locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
+	var/list/obj/structure/cable/cables = list()
+	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	var/list/turf/turfs = block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
+	                   			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
+	for(var/L in turfs)
 		var/turf/B = L
 		atoms += B
+		areas |= B.loc
 		for(var/A in B)
 			atoms += A
-//			turfs += B
-			areas |= get_area(B)
-			if(istype(A, /obj/machinery/atmospherics))
+			if(istype(A, /obj/structure/cable))
+				cables += A
+			else if(istype(A, /obj/machinery/atmospherics))
 				atmos_machines += A
+	atoms |= areas
 
-	var/i = 0
-
-// Apparently when areas get initialize()'d they initialize their turfs as well.
-// If this is ever changed, uncomment the block of code below.
-
-//	admin_notice("<span class='danger'>Initializing newly created simulated turfs in submap.</span>", R_DEBUG)
-//	for(var/turf/simulated/T in turfs)
-//		T.initialize()
-//		i++
-//	admin_notice("<span class='danger'>[i] turf\s initialized.</span>", R_DEBUG)
-//	i = 0
-
-	SScreation.initialize_late_atoms()
-
-	admin_notice("<span class='danger'>Initializing newly created area(s) in submap.</span>", R_DEBUG)
-	for(var/area/A in areas)
-		A.initialize()
-		i++
-	admin_notice("<span class='danger'>[i] area\s initialized.</span>", R_DEBUG)
-	i = 0
-
+	admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
+	SSatoms.InitializeAtoms(atoms)
+	
 	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
-	for(var/obj/machinery/atmospherics/machine in atmos_machines)
-		machine.atmos_init()
-		i++
-
-	for(var/obj/machinery/atmospherics/machine in atmos_machines)
-		machine.build_network()
-
-	for(var/obj/machinery/atmospherics/unary/U in machines)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
-			T.broadcast_status()
-	admin_notice("<span class='danger'>[i] pipe\s initialized.</span>", R_DEBUG)
+	SSmachines.setup_atmos_machinery(atmos_machines)
 
 	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
-	SSmachines.makepowernets()
+	SSmachines.setup_powernets_for_cables(cables)
+
+	// Ensure all machines in loaded areas get notified of power status
+	for(var/I in areas)
+		var/area/A = I
+		A.power_change()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 

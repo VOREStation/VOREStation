@@ -25,11 +25,15 @@
 
 	..()
 
-/area/proc/initialize()
+/area/initialize()
+	. = ..()
 	if(!requires_power || !apc)
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
+	return INITIALIZE_HINT_LATELOAD
+
+/area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates lighting icon
 
 /area/proc/get_contents()
