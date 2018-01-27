@@ -36,7 +36,7 @@
 
 	if(istype(get_turf(src), /turf/simulated/floor))
 		src:target_z = z
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
 	if(!src:target_z)

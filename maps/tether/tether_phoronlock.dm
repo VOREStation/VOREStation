@@ -51,7 +51,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/initialize()
-	..()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
@@ -98,7 +98,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 	var/tag_scrubber
 
 /obj/machinery/embedded_controller/radio/airlock/phoron/initialize()
-	..()
+	. = ..()
 	program = new/datum/computer/file/embedded_program/airlock/phoron(src)
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks

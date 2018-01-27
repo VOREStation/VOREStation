@@ -64,8 +64,8 @@ SUBSYSTEM_DEF(mapping)
 		if(!istype(MT))
 			error("Lateload Z level \"[mapname]\" is not a valid map!")
 			continue
-		MT.load_new_z(centered = FALSE, dont_init = TRUE)
-		//CHECK_TICK //Can't deal with this until SSAtoms
+		MT.load_new_z(centered = FALSE)
+		CHECK_TICK
 
 	if(LAZYLEN(maybe_load))
 		var/picked = pick(maybe_load)
@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
-				MT.load_new_z(centered = FALSE, dont_init = TRUE)
+				MT.load_new_z(centered = FALSE)
 
 /datum/controller/subsystem/mapping/stat_entry(msg)
 	if (!Debug2)

@@ -78,6 +78,7 @@
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
 	planet = planet_virgo3b
+	. = ..()
 
 /obj/effect/step_trigger/lost_in_space
 	var/deathmessage = "You drift off into space, floating alone in the void until your life support runs out."
@@ -131,7 +132,7 @@
 	var/area/shock_area = /area/tether/surfacebase/tram
 
 /turf/simulated/floor/maglev/initialize()
-	..()
+	. = ..()
 	shock_area = locate(shock_area)
 
 // Walking on maglev tracks will shock you! Horray!
