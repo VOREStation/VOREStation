@@ -173,6 +173,7 @@
 #include "code\controllers\ProcessScheduler\core\process.dm"
 #include "code\controllers\ProcessScheduler\core\processScheduler.dm"
 #include "code\controllers\subsystems\air.dm"
+#include "code\controllers\subsystems\airflow.dm"
 #include "code\controllers\subsystems\creation.dm"
 #include "code\controllers\subsystems\garbage.dm"
 #include "code\controllers\subsystems\lighting.dm"
