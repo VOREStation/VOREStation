@@ -76,7 +76,8 @@ turf/c_airblock(turf/other)
 			return AIR_BLOCKED
 
 	var/result = 0
-	for(var/atom/movable/M in contents)
+	for(var/mm in contents)
+		var/atom/movable/M = mm
 		result |= M.c_airblock(other)
 		if(result == BLOCKED) return BLOCKED
 	return result
