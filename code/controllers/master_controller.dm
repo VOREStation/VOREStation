@@ -11,7 +11,6 @@ var/global/datum/controller/game_controller/master_controller //Set in world.New
 var/global/controller_iteration = 0
 var/global/last_tick_duration = 0
 
-var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
 datum/controller/game_controller

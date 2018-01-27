@@ -573,14 +573,11 @@ var/datum/controller/master/Master = new()
 		var/datum/controller/subsystem/SS = S
 		SS.StartLoadingMap()
 
-	// ZAS might displace objects as the map loads if an air tick is processed mid-load.
-	air_processing_killed = TRUE
 	map_loading = TRUE
 
 /datum/controller/master/StopLoadingMap(var/quiet = TRUE)
 	if(!quiet)
 		admin_notice("<span class='danger'>Map is finished.  Unlocking.</span>", R_DEBUG)
-	air_processing_killed = FALSE
 	map_loading = FALSE
 	for(var/S in subsystems)
 		var/datum/controller/subsystem/SS = S

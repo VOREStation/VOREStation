@@ -18,3 +18,4 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_MAPPING	20  // VOREStation Edit
 #define INIT_ORDER_MACHINES 10
 #define INIT_ORDER_LIGHTING 0
+#define INIT_ORDER_AIR -1

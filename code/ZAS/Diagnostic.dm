@@ -1,6 +1,12 @@
 client/proc/ZoneTick()
 	set category = "Debug"
 	set name = "Process Atmos"
+	set desc = "Manually run a single tick of the air subsystem"
+
+	// TODO - This might be a useful diagnostic tool.  However its complicated to do with StonedMC
+	// Therefore it is left unimplemented for now until its use actually becomes required. ~Leshana
+	/*
+	if(!check_rights(R_DEBUG)) return
 
 	var/result = air_master.Tick()
 	if(result)
@@ -8,7 +14,7 @@ client/proc/ZoneTick()
 
 	else
 		src << "Failed to process! ([air_master.tick_progress])"
-
+	*/
 
 client/proc/Zone_Info(turf/T as null|turf)
 	set category = "Debug"

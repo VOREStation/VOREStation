@@ -88,6 +88,10 @@
 /proc/log_unit_test(text)
 	world.log << "## UNIT_TEST: [text]"
 
+/proc/report_progress(var/progress_message)
+	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
+	to_world_log(progress_message)
+
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
