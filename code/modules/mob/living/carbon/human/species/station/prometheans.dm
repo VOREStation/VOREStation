@@ -44,6 +44,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	burn_mod =		2
 	oxy_mod =		0
 
+	cloning_modifier = /datum/modifier/cloning_sickness/promethean
+
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120

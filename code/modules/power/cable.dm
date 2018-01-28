@@ -900,6 +900,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = null
+	toolspeed = 0.25
 
 /obj/item/stack/cable_coil/alien/New(loc, length = MAXCOIL, var/param_color = null)		//There has to be a better way to do this.
 	if(embed_chance == -1)		//From /obj/item, don't want to do what the normal cable_coil does
@@ -912,14 +913,17 @@ obj/structure/cable/proc/cableColor(var/colorC)
 /obj/item/stack/cable_coil/alien/update_icon()
 	icon_state = initial(icon_state)
 
+/obj/item/stack/cable_coil/alien/can_use(var/used)
+	return 1
+
 /obj/item/stack/cable_coil/alien/use()	//It's endless
-	return
+	return 1
 
 /obj/item/stack/cable_coil/alien/add()	//Still endless
-	return
+	return 0
 
 /obj/item/stack/cable_coil/alien/update_wclass()
-	return
+	return 0
 
 /obj/item/stack/cable_coil/alien/examine(mob/user)
 	var/msg = "A spool of cable."

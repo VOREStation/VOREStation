@@ -8,6 +8,11 @@
 	icon_state = "com_cypherkey"
 	channels = list("Explorer" = 1)
 
+/obj/item/device/encryptionkey/sar
+	name = "sar's encryption key"
+	icon_state = "med_cypherkey"
+	channels = list("Medical" = 1, "Explorer" = 1)
+
 /obj/item/device/encryptionkey/heads/hop
 	name = "head of personnel's encryption key"
 	icon_state = "hop_cypherkey"

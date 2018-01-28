@@ -70,7 +70,7 @@ BLIND     // can't see anything
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	toggleable = 1
 	vision_flags = SEE_TURFS
-	enables_planes = (VIS_FULLBRIGHT)
+	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
 
 /obj/item/clothing/glasses/meson/New()
 	..()

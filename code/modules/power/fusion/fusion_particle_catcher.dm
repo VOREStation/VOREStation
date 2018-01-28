@@ -38,4 +38,8 @@
 	return 0
 
 /obj/effect/fusion_particle_catcher/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
-	return ismob(mover)
+	if(istype(mover, /obj/item/projectile/beam))
+		return 0
+	if(istype(mover, /obj/effect/accelerated_particle))
+		return 0
+	return 1

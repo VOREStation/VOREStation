@@ -8,6 +8,7 @@
 #include "house1.dmm"
 #include "beacons.dmm"
 #include "Epod.dmm"
+#include "PascalB.dmm"
 #endif
 
 // The 'plains' is the area outside the immediate perimeter of the big outpost.
@@ -60,4 +61,10 @@
 	desc = "More rocks."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Rocky2.dmm'
 	allow_duplicates = TRUE
+	cost = 5
+
+/datum/map_template/surface/plains/PascalB
+	name = "Irradiated Manhole Cover"
+	desc = "How did this old thing get all the way out here?"
+	mappath = 'maps/submaps/surface_submaps/plains/PascalB.dmm'
 	cost = 5

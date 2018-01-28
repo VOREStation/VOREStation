@@ -64,13 +64,13 @@
 	name = "Larger"
 	desc = "Your body is larger than average."
 
-	icon_scale_percent = 1.2
+	icon_scale_percent = 1.1
 
 /datum/modifier/trait/large
 	name = "Large"
 	desc = "Your body is a bit larger than average."
 
-	icon_scale_percent = 1.1
+	icon_scale_percent = 1.05
 
 /datum/modifier/trait/small
 	name = "Small"

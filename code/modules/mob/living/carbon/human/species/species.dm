@@ -15,6 +15,7 @@
 
 	var/speech_bubble_appearance = "normal"              // Part of icon_state to use for speech bubbles when talking.  See talk.dmi for available icons.
 	var/fire_icon_state = "humanoid"                     // The icon_state used inside OnFire.dmi for when on fire.
+	var/suit_storage_icon = 'icons/mob/belt_mirror.dmi'  // Icons used for worn items in suit storage slot.
 
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'
@@ -90,6 +91,7 @@
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 	var/knockout_message = "has been knocked unconscious!"
+	var/cloning_modifier = /datum/modifier/cloning_sickness
 
 	// Environment tolerance/life processes vars.
 	var/reagent_tag                                   //Used for metabolizing reagents.
