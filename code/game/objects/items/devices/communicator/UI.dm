@@ -14,7 +14,6 @@
 	var/im_list_ui[0]				//List of messages.
 
 	var/weather[0]
-	var/injection = null
 	var/modules_ui[0]				//Home screen info.
 
 	//First we add other 'local' communicators.
@@ -82,8 +81,6 @@
 				)
 			weather[++weather.len] = W
 
-	injection = "<div>Test</div>"
-
 	//Modules for homescreen.
 	for(var/list/R in modules)
 		modules_ui[++modules_ui.len] = R
@@ -111,7 +108,6 @@
 	data["weather"] = weather
 	data["aircontents"] = src.analyze_air()
 	data["flashlight"] = fon
-	data["injection"] = injection
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -245,7 +241,14 @@
 		else
 			note = ""
 			notehtml = note
-
+	if(href_list["switch_template"])
+		var/datum/nanoui/ui = nanomanager.get_open_ui(usr, src, "main")
+		if(ui)
+			switch(href_list["switch_template"])
+				if("1")
+					ui.reinitialise("communicator.tmpl")
+				if("2")
+					ui.reinitialise("comm2.tmpl")
 	if(href_list["Light"])
 		fon = !fon
 		set_light(fon * flum)

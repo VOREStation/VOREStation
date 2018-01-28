@@ -11,17 +11,87 @@
 			var/co2_level = environment.gas["carbon_dioxide"]/total_moles
 			var/phoron_level = environment.gas["phoron"]/total_moles
 			var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+
+			// Label is what the entry is describing
+			// Type identifies which unit or other special characters to use
+			// Val is the information reported
+			// Bad_high/_low are the values outside of which the entry reports as dangerous
+			// Poor_high/_low are the values outside of which the entry reports as unideal
+			// Values were extracted from the template itself
 			results = list(
-						"pressure" = "[round(pressure,0.1)]",
-						"nitrogen" = "[round(n2_level*100,0.1)]",
-						"oxygen" = "[round(o2_level*100,0.1)]",
-						"carbon_dioxide" = "[round(co2_level*100,0.1)]",
-						"phoron" = "[round(phoron_level*100,0.01)]",
-						"other" = "[round(unknown_level, 0.01)]",
-						"temp" = "[round(environment.temperature-T0C,0.1)]",
-						"reading" = 1
+						list("entry" = "Pressure", "type" = "pressure", "val" = "[round(pressure,0.1)]", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80),
+						list("entry" = "Temperature", "type" = "temp", "val" = "[round(environment.temperature-T0C,0.1)]", "bad_high" = 35, "poor_high" = 25, "poor_low" = 15, "bad_low" = 5),
+						list("entry" = "Oxygen", "type" = "pressure", "val" = "[round(o2_level*100,0.1)]", "bad_high" = 140, "poor_high" = 135, "poor_low" = 19, "bad_low" = 17),
+						list("entry" = "Nitrogen", "type" = "pressure", "val" = "[round(n2_level*100,0.1)]", "bad_high" = 105, "poor_high" = 85, "poor_low" = 50, "bad_low" = 40),
+						list("entry" = "Carbon Dioxide", "type" = "pressure", "val" = "[round(co2_level*100,0.1)]", "bad_high" = 10, "poor_high" = 5, "poor_low" = 0, "bad_low" = 0),
+						list("entry" = "Phoron", "type" = "pressure", "val" = "[round(phoron_level*100,0.01)]", "bad_high" = 0.5, "poor_high" = 0, "poor_low" = 0, "bad_low" = 0),
+						list("entry" = "Other", "type" = "pressure", "val" = "[round(unknown_level, 0.01)]", "bad_high" = 1, "poor_high" = 0.5, "poor_low" = 0, "bad_low" = 0)
 						)
 
 	if(isnull(results))
-		results = list("reading" = 0)
+		results = list(list("entry" = "pressure", "val" = "0"))
 	return results
+
+
+// Proc - compile_news()
+// Parameters - none
+// Description - Returns the list of newsfeeds, compiled for template processing
+/obj/item/device/communicator/proc/compile_news()
+	var/list/feeds = list()
+	for(var/datum/feed_channel/channel in news_network.network_channels)
+		var/list/messages = list()
+		if(!channel.censored)
+			var/index = 0
+			for(var/datum/feed_message/FM in channel.messages)
+				index++
+				if(FM.img)
+					usr << browse_rsc(FM.img, "pda_news_tmp_photo_[feeds["channel"]]_[index].png")
+					// News stories are HTML-stripped but require newline replacement to be properly displayed in NanoUI
+					var/body = replacetext(FM.body, "\n", "<br>")
+					messages[++messages.len] = list(
+								"author" = FM.author,
+								"body" = body,
+								"message_type" = FM.message_type,
+								"time_stamp" = FM.time_stamp,
+								"has_image" = (FM.img != null),
+								"caption" = FM.caption,
+								"index" = index
+								)
+
+		feeds[++feeds.len] = list(
+					"name" = channel.channel_name,
+					"censored" = channel.censored,
+					"author" = channel.author,
+					"messages" = messages
+					)
+	return feeds
+
+// Proc - get_recent_news()
+// Parameters - none
+// Description - Returns the latest three newscasts, compiled for template processing
+/obj/item/device/communicator/proc/get_recent_news()
+	var/list/news = list()
+
+	// Compile all the newscasts
+	for(var/datum/feed_channel/channel in news_network.network_channels)
+		if(!channel.censored)
+			for(var/datum/feed_message/FM in channel.messages)
+				var/body = replacetext(FM.body, "\n", "<br>")
+				news[++news.len] = list(
+							"channel" = channel.channel_name,
+							"author" = FM.author,
+							"body" = body,
+							"message_type" = FM.message_type,
+							"time_stamp" = FM.time_stamp,
+							"has_image" = (FM.img != null),
+							"caption" = FM.caption,
+							)
+
+	// Cut out all but the youngest three
+	while(news.len > 3)
+		var/oldest = min(news[0]["time_stamp"], news[1]["time_stamp"], news[2]["time_stamp"], news[3]["time_stamp"])
+		for(var/i = 0, i < 4, i++)
+			if(news[i]["time_stamp"] == oldest)
+				news.Remove(news[i])
+
+	return news

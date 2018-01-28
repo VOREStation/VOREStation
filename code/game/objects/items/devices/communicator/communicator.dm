@@ -31,7 +31,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/note = "Thank you for choosing the T-14.2 Communicator, this is your notepad!" //Current note in the notepad function
 	var/notehtml = ""
 
-	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
+	var/obj/item/weapon/commcard/cartridge = null //current cartridge
 	var/fon = 0 // Internal light
 	var/flum = 2 // Brightness
 
@@ -39,9 +39,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 							list("module" = "Phone", "icon" = "phone64", "number" = 2),
 							list("module" = "Contacts", "icon" = "person64", "number" = 3),
 							list("module" = "Messaging", "icon" = "comment64", "number" = 4),
-							list("module" = "Note", "icon" = "note64", "number" = 5),
-							list("module" = "Weather", "icon" = "sun64", "number" = 6),
-							list("module" = "Settings", "icon" = "gear64", "number" = 7)
+							list("module" = "News", "icon" = "note64", "number" = 5), // Need a different icon,
+							list("module" = "Note", "icon" = "note64", "number" = 6),
+							list("module" = "Weather", "icon" = "sun64", "number" = 7),
+							list("module" = "Crew Manifest", "icon" = "note64", "number" = 8), // Need a different icon,
+							list("module" = "Settings", "icon" = "gear64", "number" = 9),
+							list("module" = "External Device", "icon" = "external64", "number" = 10)
 							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
 
 	var/selected_tab = 1
@@ -188,10 +191,24 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!get_connection_to_tcomms())
 			close_connection(reason = "Connection timed out")
 
+// Proc: attack()
+// Parameters: 2 (M - what is being attacked. user - the mob that has the communicator)
+// Description: When the communicator has an attached commcard with internal devices, relay the attack() through to those devices.
+// 		Contents of the for loop are copied from gripper code, because that does approximately what we want to do.
+/obj/item/device/communicator/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(cartridge && cartridge.internal_devices)
+		for(var/obj/item/wrapped in cartridge.internal_devices)
+			if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
+				user << "<span class='warning'>Attempting to use [wrapped.name]</span>"
+				wrapped.attack(M,user)
+				M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
+	return 0
+
 // Proc: attackby()
 // Parameters: 2 (C - what is used on the communicator. user - the mob that has the communicator)
 // Description: When an ID is swiped on the communicator, the communicator reads the job and checks it against the Owner name, if success, the occupation is added.
 /obj/item/device/communicator/attackby(obj/item/C as obj, mob/user as mob)
+	..()
 	if(istype(C, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/idcard = C
 		if(!idcard.registered_name || !idcard.assignment)
@@ -201,12 +218,14 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		else if(owner == idcard.registered_name)
 			occupation = idcard.assignment
 			to_chat(user, "<span class='notice'>Occupation updated.</span>")
-//	else if(istype(C, /obj/item/weapon/cartridge))
-//		if(cartridge)
-//			to_chat(user, "<span class='notice'>\The [src] already has an external device attached!</span>")
-//		else
-//			modules.Add(list("module" = "External Device", "icon = external64", "number" = 8))
-//			cartridge = C
+
+	if(istype(C, /obj/item/weapon/commcard) && !cartridge)
+		cartridge = C
+		user.drop_item()
+		cartridge.loc = src
+		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
+		modules.Add(list("module" = "External Device", "icon" = "external64", "number" = 8))
+		nanomanager.update_uis(src) // update all UIs attached to src
 	return
 
 // Proc: attack_self()
@@ -329,6 +348,30 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	..()
 	client_huds |= global_hud.whitense
 	client_huds |= global_hud.darkMask
+
+/obj/item/device/communicator/verb/verb_remove_cartridge()
+	set category = "Object"
+	set name = "Remove commcard"
+	set src in usr
+
+	if(issilicon(usr))
+		return
+	if(!cartridge)
+		to_chat(usr, "<span class='notice'>There isn't a commcard to remove!</span>")
+		return
+
+	if(!(usr.stat || usr.restrained() || usr.paralysis || usr.stunned || usr.weakened))
+		var/turf/T = get_turf(src)
+		cartridge.loc = T
+		if (ismob(loc))
+			var/mob/M = loc
+			M.put_in_hands(cartridge)
+		else
+			cartridge.loc = get_turf(src)
+		cartridge = null
+		to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
+	else
+		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
 //It's the 26th century. We should have smart watches by now.
 /obj/item/device/communicator/watch

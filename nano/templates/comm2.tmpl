@@ -1,0 +1,28 @@
+<!--
+Title: Communicator UI
+Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
+ -->
+ 
+ <div class="statusDisplayComm">
+	<div class="item">
+		<div class="itemContent" style="width: 100%; text-align: center;">
+			<span class="average">{{:data.time}} | </span>
+			{{if data.connectionStatus == 1}}
+				<img class='uiIcon16 icon-signal-green' style='float: none; vertical-align: top'></img>
+			{{else}}
+				<img class='uiIcon16 icon-alert-red' style='float: none; vertical-align: top'></img>
+			{{/if}}
+			<span class="average"> | {{:data.owner}} | {{:data.occupation}}</span>
+		</div>
+	</div>
+</div>
+
+
+<div>{{:helper.link('Home', 'home', {'switch_template' : 1})}}</div>
+<div class='homeContainer'>
+	<div class='homeScreen'>
+		{{for data.homeScreen}}
+			{{:helper.link(value.module, value.icon, {'switch_tab' : value.number}, null, 'link64')}}
+		{{/for}}
+	</div>
+</div>
