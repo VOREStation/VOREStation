@@ -413,6 +413,9 @@
 /area/tether/station/excursion_dock
 	name = "\improper Excursion Shuttle Dock"
 
+/area/tether/station/explorer_prep
+	name = "\improper Explorer Prep Room"
+
 /area/shuttle/excursion
 	name = "\improper Excursion Shuttle"
 	icon_state = "shuttle2"
