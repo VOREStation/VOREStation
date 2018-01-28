@@ -965,6 +965,16 @@ I said no!
 	)
 	result = /obj/item/weapon/ruinedvirusdish
 
+/datum/recipe/onionrings
+	fruit = list("onion" = 1)
+	reagents = list("flour" = 5)
+	result = /obj/item/weapon/reagent_containers/food/snacks/onionrings
+
+/datum/recipe/onionsoup
+	fruit = list("onion" = 1)
+	reagents = list("water" = 10)
+	result = /obj/item/weapon/reagent_containers/food/snacks/onionsoup
+
 //////////////////////////////////////////
 // bs12 food port stuff
 //////////////////////////////////////////
@@ -1010,6 +1020,146 @@ I said no!
 /datum/recipe/mint
 	reagents = list("sugar" = 5, "frostoil" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mint
+
+////////////////////////
+// TGstation food ports
+////////////////////////
+
+/datum/recipe/meatbun
+	fruit = list("cabbage" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meatball,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/meatbun
+
+/datum/recipe/sashimi
+	reagents = list("soysauce" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sashimi
+
+/datum/recipe/benedict
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
+		/obj/item/weapon/reagent_containers/food/snacks/friedegg,
+		/obj/item/weapon/reagent_containers/food/snacks/slice/bread
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/benedict
+
+/datum/recipe/bakedbeans
+	fruit = list("soybeans" = 2)
+	reagents = list("ketchup" = 5)
+	result = /obj/item/weapon/reagent_containers/food/snacks/beans
+
+/datum/recipe/sugarcookie
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	reagents = list("sugar" = 5, "egg" = 3)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sugarcookie
+
+/datum/recipe/berrymuffin
+	reagents = list("milk" = 5, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	fruit = list("berries" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/berrymuffin
+
+/datum/recipe/ghostmuffin
+	reagents = list("milk" = 5, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough,
+		/obj/item/weapon/ectoplasm
+	)
+	fruit = list("berries" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin
+
+/datum/recipe/eggroll
+	reagents = list("soysauce" = 10)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/friedegg
+	)
+	fruit = list("cabbage" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/eggroll
+
+/datum/recipe/fruitsalad
+	fruit = list("orange" = 1, "apple" = 1, "grapes" = 1, "watermelon" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/fruitsalad
+
+/datum/recipe/eggbowl
+	reagents = list("water" = 5, "rice" = 10, "egg" = 3)
+	result = /obj/item/weapon/reagent_containers/food/snacks/eggbowl
+
+/datum/recipe/porkbowl
+	reagents = list("water" = 5, "rice" = 10)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
+
+/datum/recipe/tortilla
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/tortilla
+
+/datum/recipe/meatburrito
+	fruit = list("soybeans" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tortilla,
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/meatburrito
+
+/datum/recipe/cheeseburrito
+	fruit = list("soybeans" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tortilla,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cheeseburrito
+
+/datum/recipe/fuegoburrito
+	fruit = list("soybeans" = 1, "chili" = 2)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tortilla
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/fuegoburrito
+
+/datum/recipe/nachos
+	reagents = list("sodiumchloride" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tortilla
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/nachos
+
+/datum/recipe/cheesenachos
+	reagents = list("sodiumchloride" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tortilla,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cheesenachos
+
+/datum/recipe/cubannachos
+	fruit = list("chili" = 1)
+	reagents = list("ketchup" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tortilla
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cubannachos
+
+/datum/recipe/piginblanket
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
+		/obj/item/weapon/reagent_containers/food/snacks/sausage
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/piginblanket
 
 
 // Cakes.
