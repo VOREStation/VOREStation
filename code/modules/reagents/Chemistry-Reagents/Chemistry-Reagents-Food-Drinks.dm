@@ -578,7 +578,7 @@
 
 /datum/reagent/drink/juice/potato
 	name = "Potato Juice"
-	id = "potato"
+	id = "potatojuice"
 	description = "Juice of the potato. Bleh."
 	taste_description = "potatoes"
 	nutrition = 2

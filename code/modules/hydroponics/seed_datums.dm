@@ -691,7 +691,7 @@
 	name = "potato"
 	seed_name = "potato"
 	display_name = "potatoes"
-	chems = list("nutriment" = list(1,10), "potato" = list(10,10))
+	chems = list("nutriment" = list(1,10), "potatojuice" = list(10,10))
 	kitchen_tag = "potato"
 
 /datum/seed/potato/New()
