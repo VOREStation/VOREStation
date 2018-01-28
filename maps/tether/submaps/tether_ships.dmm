@@ -288,7 +288,7 @@
 "fB" = (/obj/structure/railing{icon_state = "railing0"; dir = 4},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
 "fC" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/table/steel_reinforced,/obj/machinery/recharger,/turf/simulated/floor/plating,/area/houseboat)
 "fD" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/table/steel_reinforced,/obj/item/weapon/storage/toolbox/syndicate,/turf/simulated/floor/plating,/area/houseboat)
-"fE" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/telecomms/relay/preset/houseboat{on = 0},/turf/simulated/floor/plating,/area/houseboat)
+"fE" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/telecomms/relay/preset/houseboat{broadcasting = 0; on = 0; receiving = 0; toggled = 0},/turf/simulated/floor/plating,/area/houseboat)
 "fF" = (/obj/structure/catwalk,/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/portable_atmospherics/powered/pump,/turf/simulated/floor/plating,/area/houseboat)
 "fG" = (/obj/structure/railing{dir = 8},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/houseboat)
 "fH" = (/turf/simulated/floor/plating,/area/houseboat)
