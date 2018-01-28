@@ -12,7 +12,7 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	if(!gurgled)
 		gurgled = TRUE
 		overlays += gurgled_overlay
-		var/gurgleflavor = pick("soggy","soaked","dirty","nasty","slimy","drenched","sloppy")
+		var/gurgleflavor = pick("soggy","soaked","dirty","nasty","slimy","drenched","sloppy","grimy","sludgy","stinky","mucky","stained","soiled","filthy","saucy","foul","icky","tarnished","unsanitary","messy","begrimed","cruddy","funky","disgusting","repulsive","noxious","gruesome","gross","putrid","yucky","tainted","feculent","putrescent","unsavory","smelly","fetid","smutty","acrid","pungent","unclean","contaminated","gunky","gooey","sticky","drippy","oozing","sloshed","digested","sopping","damp","gloppy","begraggled","churned")
 		cleanname = src.name
 		cleandesc = src.desc
 		name = "[gurgleflavor] [cleanname]"
