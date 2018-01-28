@@ -62,3 +62,6 @@
 
 /area/submap/GovPatrol
 	name = "GovPatrol"
+
+/area/submap/DecoupledEngine
+	name = "DecoupledEngine"

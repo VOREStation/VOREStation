@@ -425,3 +425,13 @@
 /obj/structure/sign/atmos/air
 	name = "\improper AIR"
 	icon_state = "atmos_air"
+
+/obj/structure/sign/poi/engineleft
+	name = "I.C.V."
+	desc = "The charred name of a cargo ship of some description."
+	icon_state = "poi_engine1"
+
+/obj/structure/sign/poi/engineright
+	name = "I.C.V."
+	desc = "The charred name of a cargo ship of some description."
+	icon_state = "poi_engine2"
