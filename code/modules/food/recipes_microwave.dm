@@ -965,6 +965,16 @@ I said no!
 	)
 	result = /obj/item/weapon/ruinedvirusdish
 
+/datum/recipe/onionrings
+	fruit = list("onion" = 1)
+	reagents = list("flour" = 5)
+	result = /obj/item/weapon/reagent_containers/food/snacks/onionrings
+
+/datum/recipe/onionsoup
+	fruit = list("onion" = 1)
+	reagents = list("water" = 10)
+	result = /obj/item/weapon/reagent_containers/food/snacks/onionsoup
+
 //////////////////////////////////////////
 // bs12 food port stuff
 //////////////////////////////////////////
