@@ -1,5 +1,5 @@
 @echo off
-set MAPROOT=../../_maps/
+set MAPROOT=../../maps/tether
 set TGM=0
 python convert.py
 pause
