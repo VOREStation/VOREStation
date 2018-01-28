@@ -87,7 +87,7 @@
 /datum/design/item/translocator
 	name = "Personal translocator"
 	id = "translocator"
-	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 6)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "uranium" = 4000, "diamond" = 2000)
 	build_path = /obj/item/device/perfect_tele
 	sort_string = "HABAF"
@@ -188,3 +188,68 @@
 	req_tech = list(TECH_PHORON = 3, TECH_DATA = 2, TECH_MAGNET = 2)
 	build_path = /obj/item/weapon/circuitboard/bomb_tester
 	sort_string = "HABAG"
+
+////// RIGSuit Stuff
+/*
+/datum/design/item/rig
+	req_tech = list(TECH_MATERIAL = 5, TECH_POWER = 5, TECH_MAGNET = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 6000, "silver" = 6000, "uranium" = 4000)
+
+/datum/design/item/rig/eva
+	name = "eva hardsuit (empty)"
+	id = "eva_hardsuit"
+	build_path = /obj/item/weapon/rig/eva
+	sort_string = "HCAAA"
+
+/datum/design/item/rig/mining
+	name = "industrial hardsuit (empty)"
+	id = "ind_hardsuit"
+	build_path = /obj/item/weapon/rig/industrial
+	sort_string = "HCAAB"
+
+/datum/design/item/rig/research
+	name = "ami hardsuit (empty)"
+	id = "ami_hardsuit"
+	build_path = /obj/item/weapon/rig/hazmat
+	sort_string = "HCAAC"
+
+/datum/design/item/rig/medical
+	name = "medical hardsuit (empty)"
+	id = "med_hardsuit"
+	build_path = /obj/item/weapon/rig/medical
+	sort_string = "HCAAD"
+*/
+
+/datum/design/item/rig_module
+	req_tech = list(TECH_MATERIAL = 5, TECH_POWER = 5, TECH_MAGNET = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 6000, "silver" = 4000, "uranium" = 2000)
+
+/datum/design/item/rig_module/plasma_cutter
+	name = "rig module - plasma cutter"
+	id = "rigmod_plasmacutter"
+	build_path = /obj/item/rig_module/device/plasmacutter
+	sort_string = "HCAAE"
+
+/datum/design/item/rig_module/diamond_drill
+	name = "rig module - diamond drill"
+	id = "rigmod_diamonddrill"
+	build_path = /obj/item/rig_module/device/drill
+	sort_string = "HCAAF"
+
+/datum/design/item/rig_module/maneuvering_jets
+	name = "rig module - maneuvering jets"
+	id = "rigmod_maneuveringjets"
+	build_path = /obj/item/rig_module/maneuvering_jets
+	sort_string = "HCAAG"
+
+/datum/design/item/rig_module/anomaly_scanner
+	name = "rig module - anomaly scanner"
+	id = "rigmod_anomalyscanner"
+	build_path = /obj/item/rig_module/device/anomaly_scanner
+	sort_string = "HCAAH"
+
+/datum/design/item/rig_module/orescanner
+	name = "rig module - ore scanner"
+	id = "rigmod_orescanner"
+	build_path = /obj/item/rig_module/device/orescanner
+	sort_string = "HCAAI"
