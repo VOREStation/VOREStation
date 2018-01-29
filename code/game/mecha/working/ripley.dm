@@ -3,7 +3,8 @@
 	name = "APLU \"Ripley\""
 	icon_state = "ripley"
 	initial_icon = "ripley"
-	step_in = 6
+	step_in = 5 // vorestation edit, was 6 but that's PAINFULLY slow
+	step_energy_drain = 5 // vorestation edit because 10 drained a significant chunk of its cell before you even got out the airlock
 	max_temperature = 20000
 	health = 200
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
@@ -66,4 +67,51 @@
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)//Deletes the beacon so it can't be found easily
 		qdel (B)
 
+// VORESTATION EDIT BEGIN
 
+/obj/mecha/working/ripley/verb/detect_ore()
+	set category = "Exosuit Interface"
+	set name = "Detect Ores"
+	set src = usr.loc
+	set popup_menu = 0
+
+	usr << "You start scanning for metal deposits."
+
+	sleep(50)
+	if(usr.loc == src) // just to make sure you've not ejected in the meantime or w/e
+		var/list/metals = list(
+			"surface minerals" = 0,
+			"precious metals" = 0,
+			"nuclear fuel" = 0,
+			"exotic matter" = 0
+			)
+
+		for(var/turf/simulated/T in range(2, get_turf(src)))
+
+			if(!T.has_resources)
+				continue
+
+			for(var/metal in T.resources)
+				var/ore_type
+
+				switch(metal)
+					if("silicates", "carbon", "hematite")	ore_type = "surface minerals"
+					if("gold", "silver", "diamond")					ore_type = "precious metals"
+					if("uranium")									ore_type = "nuclear fuel"
+					if("phoron", "osmium", "hydrogen")				ore_type = "exotic matter"
+
+				if(ore_type) metals[ore_type] += T.resources[metal]
+
+		usr << "\icon[src] <span class='notice'>The scanner beeps and displays a readout.</span>"
+
+		for(var/ore_type in metals)
+			var/result = "no sign"
+
+			switch(metals[ore_type])
+				if(1 to 25) result = "trace amounts"
+				if(26 to 75) result = "significant amounts"
+				if(76 to INFINITY) result = "huge quantities"
+
+			usr << "- [result] of [ore_type]."
+
+// VORESTATION EDIT END
