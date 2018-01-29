@@ -14,6 +14,7 @@
 	var/global/damage_overlays[16]
 	var/active
 	var/can_open = 0
+	var/material/girder_material
 	var/material/material
 	var/material/reinf_material
 	var/last_state
@@ -26,12 +27,15 @@
 	for(var/obj/O in src)
 		O.hide(1)
 
-/turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
+/turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype, var/girdertype)
 	..(newloc)
 	icon_state = "blank"
 	if(!materialtype)
 		materialtype = DEFAULT_WALL_MATERIAL
 	material = get_material_by_name(materialtype)
+	if(!girdertype)
+		girdertype = DEFAULT_WALL_MATERIAL
+	girder_material = get_material_by_name(girdertype)
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
 	update_material()
@@ -120,18 +124,18 @@
 	. = ..(user)
 
 	if(!damage)
-		user << "<span class='notice'>It looks fully intact.</span>"
+		to_chat(user, "<span class='notice'>It looks fully intact.</span>")
 	else
 		var/dam = damage / material.integrity
 		if(dam <= 0.3)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
+			to_chat(user, "<span class='warning'>It looks slightly damaged.</span>")
 		else if(dam <= 0.6)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
+			to_chat(user, "<span class='warning'>It looks moderately damaged.</span>")
 		else
-			user << "<span class='danger'>It looks heavily damaged.</span>"
+			to_chat(user, "<span class='danger'>It looks heavily damaged.</span>")
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		user << "<span class='warning'>There is fungus growing on [src].</span>"
+		to_chat(user, "<span class='warning'>There is fungus growing on [src].</span>")
 
 //Damage
 
@@ -186,9 +190,9 @@
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		if(reinf_material)
-			reinf_material.place_dismantled_girder(src, reinf_material)
+			reinf_material.place_dismantled_girder(src, reinf_material, girder_material)
 		else
-			material.place_dismantled_girder(src)
+			material.place_dismantled_girder(src, null, girder_material)
 		if(!devastated)
 			material.place_dismantled_product(src)
 			if (!reinf_material)
@@ -204,6 +208,7 @@
 	clear_plants()
 	material = get_material_by_name("placeholder")
 	reinf_material = null
+	girder_material = null
 	update_connections(1)
 
 	ChangeTurf(/turf/simulated/floor/plating)
@@ -211,6 +216,8 @@
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
+			if(girder_material.explosion_resistance >= 25 && prob(girder_material.explosion_resistance))
+				new /obj/structure/girder/displaced(src, girder_material.name)
 			src.ChangeTurf(get_base_turf_by_area(src))
 		if(2.0)
 			if(prob(75))
@@ -247,12 +254,15 @@
 	O.density = 1
 	O.layer = 5
 
-	src.ChangeTurf(/turf/simulated/floor/plating)
+	if(girder_material.integrity >= 150 && !girder_material.is_brittle()) //Strong girders will remain in place when a wall is melted.
+		dismantle_wall(1,1)
+	else
+		src.ChangeTurf(/turf/simulated/floor/plating)
 
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
-	F.icon_state = "wall_thermite"
-	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
+	F.icon_state = "dmg[rand(1,4)]"
+	to_chat(user, "<span class='warning'>The thermite starts melting through the wall.</span>")
 
 	spawn(100)
 		if(O)
@@ -261,7 +271,7 @@
 	return
 
 /turf/simulated/wall/proc/radiate()
-	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
+	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0) + (girder_material ? girder_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return
 
@@ -271,7 +281,7 @@
 /turf/simulated/wall/proc/burn(temperature)
 	if(material.combustion_effect(src, temperature, 0.7))
 		spawn(2)
-			new /obj/structure/girder(src)
+			new /obj/structure/girder(src, girder_material.name)
 			src.ChangeTurf(/turf/simulated/floor)
 			for(var/turf/simulated/wall/W in range(3,src))
 				W.burn((temperature/4))
