@@ -254,3 +254,7 @@
 			sound_to_play = 'sound/effects/shuttles/hyperspace_end.ogg'
 	for(var/obj/machinery/door/E in A)	//dumb, I know, but playing it on the engines doesn't do it justice
 		playsound(E, sound_to_play, 50, FALSE)
+
+/datum/shuttle/proc/message_passengers(area/A, var/message)
+	for(var/mob/M in A)
+		M.show_message(message, 2)
