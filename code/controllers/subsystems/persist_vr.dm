@@ -16,6 +16,9 @@ SUBSYSTEM_DEF(persist)
 
 // Do PTO Accruals
 /datum/controller/subsystem/persist/proc/update_department_hours(var/resumed = FALSE)
+	if(!config.time_off)
+		return
+
 	establish_db_connection()
 	if(!dbcon.IsConnected())
 		src.currentrun.Cut()
