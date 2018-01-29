@@ -369,6 +369,18 @@
 
 	//character.apply_traits() //VOREStation Removal
 
+	if(character.name == "Aronai Kadigan")
+		var/mob/living/carbon/human/chargae
+		for(var/mob/living/carbon/human/H in human_mob_list)
+			if(H.name in list("Vivian Greyson","Crop Brightquill"))
+				chargae = H
+				break
+		if(chargae)
+			character.forceMove(chargae)
+			var/datum/belly/B = pick(chargae.vore_organs)
+			B.internal_contents += character
+			to_chat(chargae,"<span class='notice'>You feel something appear inside you!</span>")
+
 	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
