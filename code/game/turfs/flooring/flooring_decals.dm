@@ -5,8 +5,8 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal
 	name = "floor decal"
-	icon = 'icons/turf/flooring/decals_vr.dmi'
-	layer = TURF_LAYER + 0.01
+	icon = 'icons/turf/flooring/decals_vr.dmi' // VOREStation Edit
+	layer = DECALS_LAYER
 	var/supplied_dir
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)

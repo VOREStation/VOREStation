@@ -1,0 +1,11 @@
+
+author: Mechoid
+
+delete-after: True
+
+changes: 
+  - rscadd: "Brains can be set to be a source of genetic information."
+  - rscadd: "Promethean cores can be inserted into a cloning scanner to be cloned. This gives them a worse modifier upon completion."
+  - rscadd: "Promethean cores can now have chemicals added or removed from them. Base for future slime cloner."
+  - rscadd: "Species-based cloning sicknesses possible."
+  - spellcheck: "Cyboernetic - > Cybernetic"

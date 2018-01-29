@@ -21,8 +21,6 @@
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
-	var/glow_toggle = 0					// If they're glowing!
-	var/glow_color = "#FFFFFF"			// The color they're glowing!
 
 //
 // Hook for generic creation of stuff on new creatures

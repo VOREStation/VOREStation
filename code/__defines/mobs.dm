@@ -253,4 +253,6 @@
 #define VIS_ADMIN2			18
 #define VIS_ADMIN3			19
 
-#define VIS_COUNT			19 //Must be highest number from above.
+#define VIS_MESONS			20
+
+#define VIS_COUNT			20 //Must be highest number from above.

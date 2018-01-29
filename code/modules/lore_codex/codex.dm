@@ -24,6 +24,13 @@
 	has the words 'Don't Panic' in small, friendly letters on the cover."
 	icon_state = "codex"
 	root_type = /datum/lore/codex/category/main_vir_lore
+
+/obj/item/weapon/book/codex/lore/news
+	name = "Daedalus Pocket Newscaster"
+	desc = "A regularly-updating compendium of articles on current events. Essential for new arrivals in the Vir system and anyone interested in politics."
+	icon_state = "newscodex"
+	root_type = /datum/lore/codex/category/main_news
+
 /* //VORESTATION REMOVAL
 // Combines SOP/Regs/Law
 /obj/item/weapon/book/codex/corp_regs
