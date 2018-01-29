@@ -12,6 +12,7 @@
 	var/turf/turf_type
 	var/turf/simulated/shuttle/my_turf
 	var/image/turf_image
+	var/list/decals
 
 	New(var/location = null, var/turf/simulated/shuttle/turf)
 		my_turf = turf
@@ -24,6 +25,7 @@
 	var/old_dest_icon = T.icon
 	var/list/old_dest_overlays = T.overlays.Copy()
 	var/list/old_dest_underlays = T.underlays.Copy()
+	var/list/old_dest_decals = T.decals ? T.decals.Copy() : null
 
 	//Set the destination to be like us
 	T.Destroy()
@@ -33,12 +35,16 @@
 	new_dest.icon = my_turf.icon
 	new_dest.overlays = my_turf.overlays
 	new_dest.underlays = my_turf.underlays
-		//Shuttle specific stuff
+	new_dest.decals = my_turf.decals
+	//Shuttle specific stuff
 	new_dest.interior_corner = my_turf.interior_corner
 	new_dest.takes_underlays = my_turf.takes_underlays
 	new_dest.under_turf = my_turf.under_turf
 	new_dest.join_flags = my_turf.join_flags
 	new_dest.join_group = my_turf.join_group
+
+	if(new_dest.decals)
+		new_dest.apply_decals()
 
 	//Tell the new turf about what was there before
 	new_dest.landed_holder = new(turf = new_dest)
@@ -48,6 +54,7 @@
 	new_dest.landed_holder.icon_state = old_dest_icon_state
 	new_dest.landed_holder.overlays = old_dest_overlays
 	new_dest.landed_holder.underlays = old_dest_underlays
+	new_dest.landed_holder.decals = old_dest_decals
 
 	//Update underlays if necessary (interior corners won't have changed).
 	if(new_dest.takes_underlays && !new_dest.interior_corner)
@@ -65,6 +72,9 @@
 		new_source.icon = icon
 		new_source.overlays = overlays
 		new_source.underlays = underlays
+		new_source.decals = decals
+		if(new_source.decals)
+			new_source.apply_decals()
 	else
 		new_source = my_turf.ChangeTurf(get_base_turf_by_area(my_turf),,1)
 
