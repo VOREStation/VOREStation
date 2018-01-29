@@ -61,7 +61,19 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
  * It can be used by anything that calls it.
  */
-/mob/living/proc/resize(var/new_size, var/animate = TRUE)
+/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/noloops = FALSE)
+	if(!noloops)
+		var/average = 0
+		for(var/mob/living/L in living_mob_list)
+			if(L == src)
+				average += new_size
+				continue
+			average += L.size_multiplier
+		average = average/living_mob_list.len
+		for(var/mob/living/L in living_mob_list)
+			L.resize(average, TRUE, TRUE)
+		return
+
 	if(size_multiplier == new_size)
 		return 1
 	//ASSERT(new_size >= RESIZE_TINY && new_size <= RESIZE_HUGE) //You served your use. Now scurry off and stop spamming my chat.
