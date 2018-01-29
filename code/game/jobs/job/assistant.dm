@@ -1,23 +1,39 @@
 /datum/job/assistant
-	title = "Assistant"
-	flag = ASSISTANT
+	title = "Intern"
+	flag = INTERN
 	department = "Civilian"
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = config.limit_interns //VOREStation Edit
+	spawn_positions = config.limit_interns //VOREStation Edit
 	supervisors = "absolutely everyone"
 	selection_color = "#515151"
-	economic_modifier = 1
+	economic_modifier = 2
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
-	alt_titles = list("Technical Assistant","Test Subject","Medical Intern","Research Assistant",
-					"Visitor" = /decl/hierarchy/outfit/job/assistant/visitor,
-					"Resident" = /decl/hierarchy/outfit/job/assistant/resident) //Test Subject is a VOREStation edit
+	alt_titles = list("Engineering Intern","Medical Intern","Research Intern","Security Intern","Cargo Intern") //VOREStation Edit
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
 		return list(access_maint_tunnels)
 	else
 		return list()
+
+// VOREStation Add
+/datum/job/visitor
+	title = "Visitor"
+	flag = ASSISTANT
+	department = "Civilian"
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = config.limit_visitors
+	spawn_positions = config.limit_visitors
+	supervisors = "absolutely everyone"
+	selection_color = "#515151"
+	economic_modifier = 1
+	access = list()
+	minimal_access = list()
+	outfit_type = /decl/hierarchy/outfit/job/assistant
+	alt_titles = list("Test Subject")
+// VOREStation Add End
