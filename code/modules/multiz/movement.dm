@@ -392,6 +392,9 @@
 /mob/observer/dead/check_impact()
 	return FALSE
 
+/obj/structure/bed/check_impact(var/atom/movable/falling_atom)
+	return FALSE
+
 
 // Called by CheckFall when we actually hit something. Various Vars will be described below
 // hit_atom is the thing we fall on
