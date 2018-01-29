@@ -72,9 +72,11 @@
 		if(check_mentioned(message) && is_preference_enabled(/datum/client_preference/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
-		if(size_multiplier < 1)
-			message_to_send += "<b> AND THEY SAID IT REALLY LOUD, TOO</b>"
-			on_hear_say(message_to_send)
+		if(isliving(src))
+			var/mob/living/L = src
+			if(L.size_multiplier < 1)
+				message_to_send += "<b> AND THEY SAID IT REALLY LOUD, TOO</b>"
+				on_hear_say(message_to_send)
 
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
