@@ -103,6 +103,8 @@
 		return 0
 
 	var/turf/under //May be a path or a turf
+	var/mutable_appearance/us = new(src) //We'll use this for changes later
+	us.underlays.Cut()
 
 	//Mapper wanted something specific
 	if(under_turf)
@@ -110,8 +112,10 @@
 
 	//Well if this isn't our first rodeo, we know EXACTLY what we landed on, and it looks like this.
 	if(landed_holder && !interior_corner)
-		underlays.Cut()
-		underlays += image(landed_holder,layer=FLOAT_LAYER)
+		var/mutable_appearance/landed_on = new(landed_holder)
+		landed_on.layer = FLOAT_LAYER //Not turf
+		us.underlays = list(landed_on)
+		appearance = us
 		return
 
 	if(!under)
@@ -132,20 +136,26 @@
 		else
 			under = get_base_turf_by_area(src)
 
-	var/use_icon = ispath(under) ? initial(under.icon) : under.icon
-	var/use_icon_state
-
 	if(istype(under,/turf/simulated/shuttle))
 		interior_corner = 1 //Prevents us from 'landing on grass' and having interior corners update.
 
-	if(ispath(under,/turf/space))
-		use_icon_state = "[rand(1,25)]" //Space turfs should be random.
-	else
-		use_icon_state = ispath(under) ? initial(under.icon_state) : under.icon_state
+	var/mutable_appearance/under_ma
 
-	var/image/under_image = new(use_icon,icon_state = use_icon_state)
-	underlays.Cut()
-	underlays |= under_image
+	if(ispath(under)) //It's just a mapper-specified path
+		under_ma = new()
+		under_ma.icon = initial(under.icon)
+		under_ma.icon_state = initial(under.icon_state)
+		under_ma.color = initial(under.color)
+
+	else //It's a real turf
+		under_ma = new(under)
+
+	if(under_ma)
+		if(ispath(under,/turf/space)) //Scramble space turfs
+			under_ma.icon_state = "[rand(1,25)]"
+		us.underlays = list(under_ma)
+
+	appearance = us
 
 	return under
 
