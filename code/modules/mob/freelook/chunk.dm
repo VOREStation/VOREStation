@@ -101,7 +101,9 @@
 		var/turf/t = turf
 		if(obscuredTurfs[t])
 			if(!t.obfuscations[obfuscation.type])
-				t.obfuscations[obfuscation.type] = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
+				var/image/ob_image = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
+				ob_image.plane = PLANE_FULLSCREEN
+				t.obfuscations[obfuscation.type] = ob_image
 
 			obscured += t.obfuscations[obfuscation.type]
 			for(var/eye in seenby)
@@ -140,7 +142,9 @@
 	for(var/turf in obscuredTurfs)
 		var/turf/t = turf
 		if(!t.obfuscations[obfuscation.type])
-			t.obfuscations[obfuscation.type] = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
+			var/image/ob_image = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
+			ob_image.plane = PLANE_FULLSCREEN
+			t.obfuscations[obfuscation.type] = ob_image
 		obscured += t.obfuscations[obfuscation.type]
 
 #undef UPDATE_BUFFER
