@@ -20,7 +20,7 @@
 	//Mob icon/appearance settings
 	var/icon_living = ""			// The iconstate if we're alive, required
 	var/icon_dead = ""				// The iconstate if we're dead, required
-	var/icon_gib = null				// The iconstate for being gibbed, optional
+	var/icon_gib = "generic_gib"	// The iconstate for being gibbed, optional. Defaults to a generic gib animation.
 	var/icon_rest = null			// The iconstate for resting, optional
 	var/image/modifier_overlay = null // Holds overlays from modifiers.
 
@@ -483,7 +483,7 @@
 		purge -= 1
 
 /mob/living/simple_animal/gib()
-	..(icon_gib,1)
+	..(icon_gib,1,icon) // we need to specify where the gib animation is stored
 
 /mob/living/simple_animal/emote(var/act, var/type, var/desc)
 	if(act)
