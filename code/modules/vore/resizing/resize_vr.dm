@@ -62,6 +62,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * It can be used by anything that calls it.
  */
 /mob/living/proc/resize(var/new_size, var/animate = TRUE)
+	if(new_size < 1)
+		to_chat(src,"<span class='warning'>You are a bad person.</span>")
+		src.death(gib = TRUE)
+		return
 	if(size_multiplier == new_size)
 		return 1
 	//ASSERT(new_size >= RESIZE_TINY && new_size <= RESIZE_HUGE) //You served your use. Now scurry off and stop spamming my chat.
