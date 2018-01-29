@@ -4,8 +4,8 @@
 	department = "Civilian"
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = config.limit_interns //VOREStation Edit
-	spawn_positions = config.limit_interns //VOREStation Edit
+	total_positions = -1
+	spawn_positions = -1
 	supervisors = "absolutely everyone"
 	selection_color = "#515151"
 	economic_modifier = 2
@@ -13,6 +13,12 @@
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 	alt_titles = list("Engineering Intern","Medical Intern","Research Intern","Security Intern","Cargo Intern") //VOREStation Edit
+//VOREStation Add
+/datum/job/assistant/New()
+	..()
+	total_positions = config.limit_interns
+	spawn_positions = config.limit_interns
+//VOREStation Add End
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
@@ -27,8 +33,8 @@
 	department = "Civilian"
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = config.limit_visitors
-	spawn_positions = config.limit_visitors
+	total_positions = -1
+	spawn_positions = -1
 	supervisors = "absolutely everyone"
 	selection_color = "#515151"
 	economic_modifier = 1
@@ -36,4 +42,11 @@
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 	alt_titles = list("Test Subject")
+//VOREStation Add
+/datum/job/visitor/New()
+	..()
+	total_positions = config.limit_visitors
+	spawn_positions = config.limit_visitors
+//VOREStation Add End
+
 // VOREStation Add End
