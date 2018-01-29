@@ -76,46 +76,6 @@
 	else
 		teleport_y = src.y
 
-// Here we would activate the target wilderness z-level.
-// /obj/effect/step_trigger/teleporter/wild/Trigger(var/atom/movable/A)
-// 	..()
-
-/obj/effect/step_trigger/teleporter/wild/from_wild
-	..()
-	teleport_z = Z_LEVEL_SURFACE_LOW
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_1
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_1
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_2/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_2
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_3/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_3
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_4/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_4
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_5/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_5
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_6/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_6
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_crash/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_CRASH
-
-/obj/effect/step_trigger/teleporter/wild/to_wild_ruins/New()
-	..()
-	teleport_z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
-
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
 	planet = planet_virgo3b
 

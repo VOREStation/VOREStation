@@ -34,19 +34,6 @@
 #define Z_LEVEL_CENTCOM						10
 #define Z_LEVEL_MISC						11
 #define Z_LEVEL_SHIPS						12
-#define Z_LEVEL_EMPTY_SURFACE				13
-#define Z_LEVEL_EMPTY_SPACE					14
-
-#define Z_LEVEL_SURFACE_WILDERNESS_1		15
-#define Z_LEVEL_SURFACE_WILDERNESS_2		16
-#define Z_LEVEL_SURFACE_WILDERNESS_3		17
-#define Z_LEVEL_SURFACE_WILDERNESS_4		18
-#define Z_LEVEL_SURFACE_WILDERNESS_5		19
-#define Z_LEVEL_SURFACE_WILDERNESS_6		20
-
-#define Z_LEVEL_SURFACE_WILDERNESS_CRASH	21
-#define Z_LEVEL_SURFACE_WILDERNESS_RUINS	22
-
 
 /datum/map/tether
 	name = "Virgo"
@@ -202,7 +189,7 @@
 	z = Z_LEVEL_SPACE_LOW
 	name = "Asteroid 1"
 	base_turf = /turf/space
-	transit_chance = 6
+	transit_chance = 33
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
 
@@ -210,7 +197,7 @@
 	z = Z_LEVEL_SPACE_MID
 	name = "Asteroid 2"
 	base_turf = /turf/simulated/open
-	transit_chance = 6
+	transit_chance = 33
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
 
@@ -218,7 +205,7 @@
 	z = Z_LEVEL_SPACE_HIGH
 	name = "Asteroid 3"
 	base_turf = /turf/simulated/open
-	transit_chance = 6
+	transit_chance = 33
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
 
@@ -248,18 +235,6 @@
 	z = Z_LEVEL_SHIPS
 	name = "Ships"
 	flags = 0
-
-/datum/map_z_level/tether/empty_surface
-	z = Z_LEVEL_EMPTY_SURFACE
-	name = "Empty"
-	flags = MAP_LEVEL_PLAYER
-	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
-
-/datum/map_z_level/tether/empty_space
-	z = Z_LEVEL_EMPTY_SPACE
-	name = "Empty"
-	flags = MAP_LEVEL_PLAYER
-	transit_chance = 82
 
 /*
 /datum/map_z_level/tether/wilderness

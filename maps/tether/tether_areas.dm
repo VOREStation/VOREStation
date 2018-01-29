@@ -38,6 +38,7 @@
 	lift_floor_label = "Surface 1"
 	lift_floor_name = "Tram, Dorms, Mining, Surf. EVA"
 	lift_announce_str = "Arriving at Base Level 1."
+	base_turf = /turf/simulated/floor/plating
 
 /area/turbolift/t_surface/level2
 	name = "surface (level 2)"
