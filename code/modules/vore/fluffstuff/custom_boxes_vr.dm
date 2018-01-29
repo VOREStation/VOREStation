@@ -68,7 +68,7 @@
 // joey4298:Emoticon
 /obj/item/weapon/storage/box/fluff/emoticon
 	name = "Emoticon's Mime Kit"
-	desc = "Specially packaged for the hungry catgirl mime with a taste for clown."
+	desc = "Specially packaged for the hungry girl with cat ear headband and a motorized tail mime with a taste for clown."
 	has_items = list(
 		/obj/item/device/fluff/id_kit_mime,
 		/obj/item/clothing/gloves/white,
