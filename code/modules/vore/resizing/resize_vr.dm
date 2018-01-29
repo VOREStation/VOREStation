@@ -288,3 +288,11 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob << "[src] steps down and squishes you with their foot, forcing you down to the ground!"
 				tmob.resting = 1
 			return 1
+
+/mob/Move()
+	. = ..()
+	if(size_multiplier > 1)
+		var/turf/below = GetBelow(src)
+		if(!below.density)
+			var/turf/here = get_turf(src)
+			here.ChangeTurf(/turf/simulated/open)
