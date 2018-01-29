@@ -39,12 +39,12 @@
 
 /obj/structure/largecrate/animal/pred
 	name = "Predator carrier"
-	held_type = /mob/living/simple_animal/catgirl
+	held_type = /mob/living/simple_animal/girl with cat ear headband and a motorized tail
 
 /obj/structure/largecrate/animal/pred/New() //This is nessesary to get a random one each time.
 
 	held_type = pick(/mob/living/simple_animal/retaliate/bee,
-						/mob/living/simple_animal/catgirl;3,
+						/mob/living/simple_animal/girl with cat ear headband and a motorized tail;3,
 						/mob/living/simple_animal/hostile/frog,
 						/mob/living/simple_animal/horse,
 						/mob/living/simple_animal/hostile/panther,

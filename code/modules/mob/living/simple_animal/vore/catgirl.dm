@@ -1,8 +1,8 @@
-/mob/living/simple_animal/catgirl
-	name = "catgirl"
+/mob/living/simple_animal/girl with cat ear headband and a motorized tail
+	name = "girl with cat ear headband and a motorized tail"
 	desc = "Her hobbies are catnaps, knocking things over, and headpats."
 	icon = 'icons/mob/vore.dmi'
-	icon_state = "catgirl"
+	icon_state = "girl with cat ear headband and a motorized tail"
 
 	speed = 5
 
@@ -24,20 +24,20 @@
 
 	var/random_skin = 1
 	var/list/skins = list(
-		"catgirlnude",
-		"catgirlbikini",
-		"catgirlrednude",
-		"catgirlredbikini",
-		"catgirlblacknude",
-		"catgirlblackbikini",
-		"catgirlbrownnude",
-		"catgirlbrownbikini",
-		"catgirlred",
-		"catgirlblack",
-		"catgirlbrown"
+		"girl with cat ear headband and a motorized tailnude",
+		"girl with cat ear headband and a motorized tailbikini",
+		"girl with cat ear headband and a motorized tailrednude",
+		"girl with cat ear headband and a motorized tailredbikini",
+		"girl with cat ear headband and a motorized tailblacknude",
+		"girl with cat ear headband and a motorized tailblackbikini",
+		"girl with cat ear headband and a motorized tailbrownnude",
+		"girl with cat ear headband and a motorized tailbrownbikini",
+		"girl with cat ear headband and a motorized tailred",
+		"girl with cat ear headband and a motorized tailblack",
+		"girl with cat ear headband and a motorized tailbrown"
 	)
 
-/mob/living/simple_animal/catgirl/New()
+/mob/living/simple_animal/girl with cat ear headband and a motorized tail/New()
 	..()
 	if(random_skin)
 		icon_living = pick(skins)
@@ -46,15 +46,15 @@
 		update_icon()
 
 // Activate Noms!
-/mob/living/simple_animal/catgirl
+/mob/living/simple_animal/girl with cat ear headband and a motorized tail
 	vore_active = 1
 	vore_bump_chance = 5
 	vore_pounce_chance = 50
 	vore_standing_too = 1
 	vore_ignores_undigestable = 0 // Catgirls just want to eat yoouuu
-	vore_default_mode = DM_HOLD // Chance that catgirls just wanna bellycuddle yoouuuu!
+	vore_default_mode = DM_HOLD // Chance that girl with cat ear headband and a motorized tails just wanna bellycuddle yoouuuu!
 	vore_digest_chance = 25 // But squirming might make them gurgle...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/catgirl/retaliate
+/mob/living/simple_animal/girl with cat ear headband and a motorized tail/retaliate
 	retaliate = 1
