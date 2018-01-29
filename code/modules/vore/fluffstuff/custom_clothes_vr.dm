@@ -1709,3 +1709,18 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/gloves/fluff/vietsi/proc/change_name(var/signet_name = "Unknown")
 	name = "[signet_name]'s Bone Signet Ring"
 	desc = "A signet ring belonging to [signet_name], carved from the bones of something long extinct, as a ward against bad luck."
+
+//KotetsuRedwood:Latex Maid Dresses, for everyone to 'enjoy'. :3c
+/obj/item/clothing/under/fluff/latexmaid
+	name = "latex maid dress"
+	desc = "Squeak! A shiny outfit for cleaning, made by people with dirty minds."
+
+	item_icons = list(slot_w_uniform_str = 'icons/vore/custom_clothes_vr.dmi')
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "latexmaid"
+	item_state = "latexmaid_mob"
+
+	sprite_sheets = list(
+			"Teshari" = 'icons/vore/custom_clothes_tesh_vr.dmi'
+			)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
