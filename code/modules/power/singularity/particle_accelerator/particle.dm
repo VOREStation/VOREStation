@@ -4,7 +4,7 @@
 	name = "Accelerated Particles"
 	desc = "Small things moving very fast."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
-	icon_state = "particle"//Need a new icon for this
+	icon_state = "particle1"//Need a new icon for this
 	anchored = 1
 	density = 1
 	var/movement_range = 10
@@ -19,22 +19,25 @@
 	var/movetotarget = 1
 
 /obj/effect/accelerated_particle/weak
+	icon_state = "particle0"
 	movement_range = 8
 	energy = 5
 
 /obj/effect/accelerated_particle/strong
+	icon_state = "particle2"
 	movement_range = 15
 	energy = 15
 
+/obj/effect/accelerated_particle/powerful
+	icon_state = "particle3"
+	movement_range = 25
+	energy = 50
 
 /obj/effect/accelerated_particle/New(loc, dir = 2)
 	src.loc = loc
 	src.set_dir(dir)
-	if(movement_range > 20)
-		movement_range = 20
 	spawn(0)
 		move(1)
-	return
 
 
 /obj/effect/accelerated_particle/Bump(atom/A)
@@ -58,18 +61,15 @@
 					PC.parent.plasma_temperature += mega_energy
 					PC.parent.energy += energy
 					loc = null
-	return
 
 
 /obj/effect/accelerated_particle/Bumped(atom/A)
 	if(ismob(A))
 		Bump(A)
-	return
 
 
 /obj/effect/accelerated_particle/ex_act(severity)
 	qdel(src)
-	return
 
 /obj/effect/accelerated_particle/singularity_act()
 	return
@@ -79,7 +79,6 @@
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
 	//M << "<font color='red'>You feel odd.</font>"
-	return
 
 
 /obj/effect/accelerated_particle/proc/move(var/lag)
