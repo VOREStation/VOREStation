@@ -11,15 +11,17 @@ var/list/fuel_injectors = list()
 	idle_power_usage = 10
 	active_power_usage = 500
 
+	circuit = /obj/item/weapon/circuitboard/fusion_injector
+
 	var/fuel_usage = 0.0001
 	var/id_tag
 	var/injecting = 0
 	var/obj/item/weapon/fuel_assembly/cur_assembly
 
-/obj/machinery/fusion_fuel_injector/New()
-	..()
+/obj/machinery/fusion_fuel_injector/initialize()
+	. = ..()
 	fuel_injectors += src
-	tag = null
+	default_apply_parts()
 
 /obj/machinery/fusion_fuel_injector/Destroy()
 	if(cur_assembly)
@@ -66,17 +68,18 @@ var/list/fuel_injectors = list()
 		cur_assembly = W
 		return
 
-	if(iswrench(W))
+	if(iswrench(W) || isscrewdriver(W) || iscrowbar(W) || istype(W, /obj/item/weapon/storage/part_replacer))
 		if(injecting)
 			to_chat(user, "<span class='warning'>Shut \the [src] off first!</span>")
 			return
-		anchored = !anchored
-		playsound(src, W.usesound, 75, 1)
-		if(anchored)
-			user.visible_message("\The [user] secures \the [src] to the floor.")
-		else
-			user.visible_message("\The [user] unsecures \the [src] from the floor.")
-		return
+		if(default_unfasten_wrench(user, W))
+			return
+		if(default_deconstruction_screwdriver(user, W))
+			return
+		if(default_deconstruction_crowbar(user, W))
+			return
+		if(default_part_replacement(user, W))
+			return
 
 	return ..()
 
