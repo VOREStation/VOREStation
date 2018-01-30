@@ -388,9 +388,6 @@
 	name = "flower dress"
 	desc = "A beautiful dress with a skirt of flowers."
 	icon_state = "flower_dress"
-	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/uniform.dmi'
-		)
 
 /obj/item/clothing/under/dress/red_swept_dress
 	name = "red swept dress"
