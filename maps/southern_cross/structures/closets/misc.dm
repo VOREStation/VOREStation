@@ -30,6 +30,15 @@
 
 /obj/structure/closet/secure_closet/explorer
 	name = "explorer locker"
+	//VOREStation Add begin
+	icon = 'icons/obj/closet_vr.dmi' //VOREStation Add
+	icon_state = "secureexp1"
+	icon_closed = "secureexp"
+	icon_locked = "secureexp1"
+	icon_opened = "secureexpopen"
+	icon_broken = "secureexpbroken"
+	icon_off = "secureexpoff"
+	//VOREStation Add end
 	req_access = list(access_explorer)
 
 /obj/structure/closet/secure_closet/explorer/New()
@@ -51,6 +60,8 @@
 	new /obj/item/device/flashlight(src)
 	new /obj/item/device/gps/explorer(src)
 	new /obj/item/weapon/storage/box/flare(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src) //VOREStation Add
+	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src) //VOREStation Add
 	new /obj/item/device/geiger(src)
 	new /obj/item/weapon/cell/device(src)
 	new /obj/item/device/radio(src)
