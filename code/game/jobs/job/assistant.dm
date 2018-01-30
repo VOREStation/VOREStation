@@ -1,4 +1,5 @@
-/datum/job/assistant
+//VOREStation Edit - Basically this whole file
+/datum/job/intern
 	title = "Intern"
 	flag = INTERN
 	department = "Civilian"
@@ -6,28 +7,22 @@
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "absolutely everyone"
-	selection_color = "#515151"
+	supervisors = "the staff from the departmen you're interning in"
+	selection_color = "#555555"
 	economic_modifier = 2
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
-	alt_titles = list("Engineering Intern","Medical Intern","Research Intern","Security Intern","Cargo Intern") //VOREStation Edit
+	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech") //VOREStation Edit
 //VOREStation Add
-/datum/job/assistant/New()
+/datum/job/intern/New()
 	..()
 	total_positions = config.limit_interns
 	spawn_positions = config.limit_interns
 //VOREStation Add End
 
-/datum/job/assistant/get_access()
-	if(config.assistant_maint)
-		return list(access_maint_tunnels)
-	else
-		return list()
-
 // VOREStation Add
-/datum/job/visitor
+/datum/job/assistant
 	title = "Visitor"
 	flag = ASSISTANT
 	department = "Civilian"
@@ -35,18 +30,19 @@
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "absolutely everyone"
+	supervisors = "nobody! You don't work here"
 	selection_color = "#515151"
 	economic_modifier = 1
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
-	alt_titles = list("Test Subject")
-//VOREStation Add
-/datum/job/visitor/New()
+/datum/job/assistant/New()
 	..()
 	total_positions = config.limit_visitors
 	spawn_positions = config.limit_visitors
+/datum/job/assistant/get_access()
+	if(config.assistant_maint)
+		return list(access_maint_tunnels)
+	else
+		return list()
 //VOREStation Add End
-
-// VOREStation Add End
