@@ -897,6 +897,18 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/weapon/beartrap,
 				prob(2);/obj/item/weapon/handcuffs,)
 
+/obj/random/sfr
+	name = "random SFR headset"
+	desc = "This is a headset spawn."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "rup"
+
+/obj/random/sfr/item_to_spawn()
+	return pick(prob(25);/obj/item/device/radio/headset/heads/captain/sfr,
+				prob(25);/obj/item/device/radio/headset/headset_cargo/alt,
+				prob(25);/obj/item/device/radio/headset/headset_com/alt,
+				prob(25);/obj/item/device/radio/headset)
+
 /obj/random/rigsuit
 	name = "Random rigsuit"
 	desc = "This is a random rigsuit."
@@ -1002,6 +1014,11 @@ var/list/multi_point_spawns
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
 	item_path = /obj/item/weapon/card/id/gold/captain/spare
+
+/obj/random_multi/single_item/sfr_headset
+	name = "Multi Point - headset"
+	id = "SFR headset"
+	item_path = /obj/random/sfr
 
 //Multiple Object Spawn
 
