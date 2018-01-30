@@ -117,3 +117,8 @@
 	icon_base = "taurvest"
 	max_storage_space = INVENTORY_STANDARD_SPACE
 	slowdown = 0
+
+/obj/item/weapon/storage/backpack/dufflebag/fluff //Black dufflebag without syndie buffs.
+	name = "plain black dufflebag"
+	desc = "A large dufflebag for holding extra tactical supplies."
+	icon_state = "duffle_syndie"
