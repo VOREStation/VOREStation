@@ -1493,6 +1493,10 @@
 		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
 		return
 
+	if(uT.block_tele || dT.block_tele)
+		to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
+		return
+
 	//Bzzt.
 	ready = 0
 	power_source.use(charge_cost)
