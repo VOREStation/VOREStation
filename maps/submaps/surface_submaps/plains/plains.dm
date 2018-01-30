@@ -10,6 +10,8 @@
 #include "Epod.dmm"
 #include "PascalB.dmm"
 #include "bonfire.dmm"
+#include "Rocky5.dmm"
+#include "Field1.dmm"
 #endif
 
 // The 'plains' is the area outside the immediate perimeter of the big outpost.
@@ -75,3 +77,21 @@
 	desc = "Someone seems to enjoy orange juice a bit too much."
 	mappath = 'maps/submaps/surface_submaps/plains/bonfire.dmm'
 	cost = 5
+
+/datum/map_template/surface/plains/Rocky5
+	name = "Rocky 5"
+	desc = "More rocks, Less Stalone"
+	mappath = 'maps/submaps/surface_submaps/plains/Rocky5.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/Shakden
+	name = "Shakden"
+	desc = "Not to be confused with Shaq Den"
+	mappath = 'maps/submaps/surface_submaps/plains/Shakden.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/Field1
+	name = "Field 1"
+	desc = "A regular field with a tug on it"
+	mappath = 'maps/submaps/surface_submaps/plains/Field1.dmm'
+	cost = 20

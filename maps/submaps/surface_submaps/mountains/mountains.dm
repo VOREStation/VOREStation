@@ -14,6 +14,7 @@
 #include "lost_explorer.dmm"
 #include "CaveTrench.dmm"
 #include "Cavelake.dmm"
+#include "Rockb1.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -87,6 +88,12 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/lost_explorer.dmm'
 	cost = 5
 	allow_duplicates = TRUE
+
+/datum/map_template/surface/mountains/normal/Rockb1
+	name = "Rocky Base 1"
+	desc = "Someones underground hidey hole"
+	mappath = 'maps/submaps/surface_submaps/mountains/Rockb1.dmm'
+	cost = 15
 
 /**************
  * Deep Caves *
