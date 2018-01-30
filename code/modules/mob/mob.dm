@@ -50,7 +50,7 @@
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
-	if(!client)	return
+	if(!client && !teleop)	return
 
 	if (type)
 		if((type & 1) && (is_blind() || paralysis) )//Vision related
@@ -69,9 +69,11 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		src << "<I>... You can almost hear someone talking ...</I>"
+		to_chat(src,"<I>... You can almost hear someone talking ...</I>")
 	else
-		src << msg
+		to_chat(src,msg)
+		if(teleop)
+			to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[msg]")
 	return
 
 // Show a message to all mobs and objects in sight of this one

@@ -84,7 +84,7 @@
 	sparks.start()
 
 /mob/living/simple_animal/hostile/mecha/death()
-	..(0,"is explodes!")
+	..(0,"explodes!")
 	sparks.start()
 	explosion(get_turf(src), 0, 0, 1, 3)
 	qdel(src)
@@ -93,3 +93,26 @@
 /mob/living/simple_animal/hostile/mecha/Move()
 	..()
 	playsound(src,'sound/mecha/mechstep.ogg',40,1)
+
+
+/mob/living/simple_animal/hostile/mecha/malf_drone
+	intelligence_level = SA_ROBOTIC
+	faction = "malf_drone"
+	speak_chance = 1
+	speak = list(
+		"Resuming task: Protect area.",
+		"No threats found.",
+		"Error: No targets found."
+		)
+	emote_hear = list("humms ominously", "whirrs softly", "grinds a gear")
+	emote_see = list("looks around the area", "turns from side to side")
+	say_understood = list("Affirmative.", "Positive.")
+	say_cannot = list("Denied.", "Negative.")
+	say_maybe_target = list("Possible threat detected. Investigating.", "Motion detected.", "Investigating.")
+	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
+
+/mob/living/simple_animal/hostile/mecha/malf_drone/isSynthetic()
+	return TRUE
+
+/mob/living/simple_animal/hostile/mecha/malf_drone/speech_bubble_appearance()
+	return "synthetic_evil"

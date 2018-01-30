@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/syndicate
-	name = "syndicate operative"
+	name = "mercenary"
 	desc = "Death to the Company."
 	icon_state = "syndicate"
 	icon_living = "syndicate"

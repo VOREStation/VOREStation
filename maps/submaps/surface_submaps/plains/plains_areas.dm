@@ -24,3 +24,6 @@
 
 /area/submap/PascalB
 	name = "PascalB"
+
+/area/submap/bonfire
+	name = "abandoned bonfire"

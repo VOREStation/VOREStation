@@ -104,6 +104,7 @@
 	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet it still seems to be running..."
 	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
 	cost = 40
+	discard_prob = 50
 
 /datum/map_template/surface/mountains/deep/Scave1
 	name = "Spider Cave 1"
@@ -113,7 +114,7 @@
 
 /datum/map_template/surface/mountains/deep/CaveTrench
 	name = "Cave River"
-	desc = "A strange underground river"
+	desc = "A strange underground river."
 	mappath = 'maps/submaps/surface_submaps/mountains/CaveTrench.dmm'
 	cost = 20
 

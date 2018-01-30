@@ -1,0 +1,24 @@
+"a" = (/turf/template_noop,/area/space)
+"b" = (/obj/item/stack/material/log/sif,/turf/template_noop,/area/space)
+"c" = (/turf/simulated/floor/outdoors/dirt,/area/space)
+"d" = (/obj/item/weapon/flame/lighter/random,/turf/template_noop,/area/space)
+"e" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,/turf/template_noop,/area/space)
+"f" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,/turf/simulated/floor/outdoors/dirt,/area/space)
+"g" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/outdoors/dirt,/area/space)
+"h" = (/obj/structure/bonfire/sifwood,/turf/simulated/floor/outdoors/dirt,/area/space)
+"i" = (/obj/item/weapon/material/knife/machete,/turf/simulated/floor/outdoors/dirt,/area/space)
+"j" = (/obj/item/clothing/head/helmet/material/makeshift,/turf/simulated/floor/outdoors/dirt,/area/space)
+"k" = (/obj/item/stack/material/log/sif,/turf/simulated/floor/outdoors/dirt,/area/space)
+
+(1,1,1) = {"
+aaaaaaaaaa
+aaaaaaaaaa
+aabaaaaaaa
+aaaacdeaaa
+aaafgcaaaa
+aafchiaaaa
+aaajckcaaa
+aabceaaaaa
+aaaaaaaaaa
+aaaaaaaaaa
+"}

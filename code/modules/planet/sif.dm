@@ -251,7 +251,7 @@ datum/weather/sif
 		WEATHER_OVERCAST = 5
 		)
 
-/datum/weather/sif/rain/process_effects()
+/datum/weather/sif/storm/process_effects()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)

@@ -3,9 +3,14 @@ language: c
 sudo: false
 
 env:
-  BYOND_MAJOR="511"
-  BYOND_MINOR="1381"
-  MACRO_COUNT=4
+  global:
+    - BYOND_MAJOR="511"
+    - BYOND_MINOR="1381"
+    - MACRO_COUNT=4
+  matrix:
+    - TEST_DEFINE="MAP_TEST" TEST_FILE="code/_map_tests.dm" RUN="0"
+    - TEST_DEFINE="AWAY_MISSION_TEST" TEST_FILE="code/_away_mission_tests.dm" RUN="0"
+    - TEST_DEFINE="UNIT_TEST" TEST_FILE="code/_unit_tests.dm" RUN="1"
 
 cache:
   directories:
@@ -36,14 +41,10 @@ script:
   - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
   - python tools/TagMatcher/tag-matcher.py ../..
-  #First compile is to ensure maps are valid.
-  - echo "#define MAP_TEST 1" > code/_map_tests.dm
+  # Run our test
   - cp config/example/* config/
+  - echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
   - DreamMaker polaris.dme
-  - echo "#define MAP_TEST 0" > code/_map_tests.dm
-  #Second compile is for the unit tests. Compiling a second time to exclude the validated maps is actually faster than waiting for startup with them compiled.
-  - echo "#define UNIT_TEST 1" > code/_unit_tests.dm
-  - DreamMaker polaris.dme
-  - DreamDaemon polaris.dmb -invisible -trusted -core 2>&1 | tee log.txt
-  - grep "All Unit Tests Passed" log.txt
+  - if [ $RUN -eq 1 ]; then DreamDaemon polaris.dmb -invisible -trusted -core 2>&1 | tee log.txt; fi
+  - if [ $RUN -eq 1 ]; then grep "All Unit Tests Passed" log.txt; fi
 

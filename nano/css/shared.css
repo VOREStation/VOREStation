@@ -654,6 +654,11 @@ th.Miscellaneous {
     color: #ffffff;
 }
 
+th.Silicon {
+	background: #222222;
+	font-weight: bold;
+	color: #ffffff;
+}
 /* Damage colors for crew monitoring computer */
 
 .burn {

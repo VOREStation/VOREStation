@@ -9,6 +9,8 @@ var/list/gyrotrons = list()
 	use_power = 1
 	active_power_usage = 50000
 
+	circuit = /obj/item/weapon/circuitboard/gyrotron
+
 	var/id_tag
 	var/rate = 3
 	var/mega_energy = 1
@@ -21,6 +23,7 @@ var/list/gyrotrons = list()
 /obj/machinery/power/emitter/gyrotron/initialize()
 	gyrotrons += src
 	active_power_usage = mega_energy * 50000
+	default_apply_parts()
 	. = ..()
 
 /obj/machinery/power/emitter/gyrotron/Destroy()
@@ -54,4 +57,12 @@ var/list/gyrotrons = list()
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return
+
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
+
 	return ..()
