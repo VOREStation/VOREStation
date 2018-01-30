@@ -25,6 +25,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			if(job.faction != faction)	continue
 			occupations += job
+		sortTim(occupations, /proc/cmp_job_datums)
 
 
 		return 1
