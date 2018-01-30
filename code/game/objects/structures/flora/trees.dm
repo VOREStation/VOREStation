@@ -73,6 +73,7 @@
 		return
 
 	is_stump = TRUE
+	density = FALSE
 	icon_state = "[base_state]_stump"
 	overlays.Cut() // For the Sif tree and other future glowy trees.
 	set_light(0)

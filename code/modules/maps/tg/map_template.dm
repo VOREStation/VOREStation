@@ -23,6 +23,7 @@ var/list/global/map_templates = list()
 	it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc. \
 	Set to -1 to force the submap to always be made.
 	var/allow_duplicates = FALSE // If false, only one map template will be spawned by the game. Doesn't affect admins spawning then manually.
+	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
 
 	var/static/dmm_suite/maploader = new
 
@@ -196,6 +197,8 @@ var/list/global/map_templates = list()
 		if(!MT.allow_duplicates && MT.loaded > 0) // This probably won't be an issue but we might as well.
 			continue
 		if(!istype(MT, desired_map_template_type)) // Not the type wanted.
+			continue
+		if(MT.discard_prob && prob(MT.discard_prob))
 			continue
 		if(MT.cost && MT.cost < 0) // Negative costs always get spawned.
 			priority_submaps += MT
