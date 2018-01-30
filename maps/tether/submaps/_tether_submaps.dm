@@ -29,3 +29,9 @@
 	name = "Desert Planet - Z2 Cave"
 	desc = "The beach away mission's cave."
 	mappath = 'beach/cave.dmm'
+
+#include "alienship/alienship.dm"
+/datum/map_template/tether_lateload/away_alienship
+	name = "Alien Ship - Z1 Ship"
+	desc = "The alien ship away mission."
+	mappath = 'alienship/alienship.dmm'
