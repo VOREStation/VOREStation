@@ -163,6 +163,7 @@
 	var/obj/effect/decal/cleanable/blood/tracks/move_trail = /obj/effect/decal/cleanable/blood/tracks/footprints // What marks are left when walking
 	var/list/skin_overlays = list()
 	var/has_floating_eyes = 0     // Whether the eyes can be shown above other icons
+	var/has_glowing_eyes = 0      // Whether the eyes are shown above all lighting
 	var/water_movement = 0		  // How much faster or slower the species is in water
 	var/snow_movement = 0		  // How much faster or slower the species is on snow
 

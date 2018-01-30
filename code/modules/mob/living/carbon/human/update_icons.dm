@@ -125,18 +125,19 @@ Please contact me on #coderbus IRC. ~Carn x
 #define BACK_LAYER				17
 #define HAIR_LAYER				18		//TODO: make part of head layer?
 #define EARS_LAYER				19
-#define FACEMASK_LAYER			20
-#define HEAD_LAYER				21
-#define COLLAR_LAYER			22
-#define HANDCUFF_LAYER			23
-#define LEGCUFF_LAYER			24
-#define L_HAND_LAYER			25
-#define R_HAND_LAYER			26
-#define MODIFIER_EFFECTS_LAYER	27
-#define FIRE_LAYER				28		//If you're on fire
-#define WATER_LAYER				29		//If you're submerged in water.
-#define TARGETED_LAYER			30		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			30
+#define EYES_LAYER				20
+#define FACEMASK_LAYER			21
+#define HEAD_LAYER				22
+#define COLLAR_LAYER			23
+#define HANDCUFF_LAYER			24
+#define LEGCUFF_LAYER			25
+#define L_HAND_LAYER			26
+#define R_HAND_LAYER			27
+#define MODIFIER_EFFECTS_LAYER	28
+#define FIRE_LAYER				29		//If you're on fire
+#define WATER_LAYER				30		//If you're submerged in water.
+#define TARGETED_LAYER			31		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			31
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -472,6 +473,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Reset our hair
 	overlays_standing[HAIR_LAYER]	= null
+	update_eyes(0) //Pirated out of here, for glowing eyes.
 
 	var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
 	if(!head_organ || head_organ.is_stump() )
@@ -510,8 +512,49 @@ var/global/list/damage_icon_parts = list()
 		face_standing += rgb(,,,120)
 
 	overlays_standing[HAIR_LAYER]	= image(face_standing)
-
 	if(update_icons)   update_icons_layers()
+
+/mob/living/carbon/human/update_eyes(var/update_icons=1)
+	if(QDESTROYING(src))
+		return
+
+	//Reset our eyes
+	overlays_standing[EYES_LAYER]	= null
+
+	//This is ONLY for glowing eyes for now. Boring flat eyes are done by the head's own proc.
+	if(!species.has_glowing_eyes)
+		if(update_icons) update_icons_layers()
+		return
+
+	//Our glowy eyes should be hidden if some equipment hides them.
+	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
+		if(update_icons) update_icons_layers()
+		return
+
+	//Get the head, we'll need it later.
+	var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
+	if(!head_organ || head_organ.is_stump() )
+		if(update_icons)   update_icons_layers()
+		return
+
+	//The eyes store the color themselves, funny enough.
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES]
+	if(!head_organ.eye_icon)
+		if(update_icons) update_icons_layers()
+		return
+
+	var/icon/eyes_icon = new/icon(head_organ.eye_icon_location, head_organ.eye_icon)
+	if(eyes)
+		eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+	else
+		eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+
+	var/image/eyes_image = image(eyes_icon)
+	eyes_image.plane = PLANE_LIGHTING_ABOVE
+
+	overlays_standing[EYES_LAYER]	= eyes_image
+
+	if(update_icons) update_icons_layers()
 
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
 	if(QDESTROYING(src))
