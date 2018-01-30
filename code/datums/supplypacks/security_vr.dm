@@ -7,6 +7,15 @@
 			access_security,
 			access_xenobiology)
 
+/datum/supply_packs/security/guardmutant
+	name = "VARMAcorp autoNOMous security solution for hostile environments"
+	cost = 250
+	containertype = /obj/structure/largecrate/animal/guardmutant
+	containername = "VARMAcorp autoNOMous security phoron-proof solution crate"
+	access = list(
+			access_security,
+			access_xenobiology)
+
 /datum/supply_packs/security/biosuit
 	contains = list(
 			/obj/item/clothing/head/bio_hood/security = 3,
