@@ -318,6 +318,7 @@
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
 	if(!is_job_whitelisted(src,rank))	return 0 //VOREStation Code
+	if(!job.player_has_enough_pto(src.client)) return 0 //VOREStation Code
 	return 1
 
 
