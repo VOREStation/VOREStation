@@ -9,7 +9,7 @@
 	health = 200
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	cargo_capacity = 10
-	var/obj/item/weapon/mining_scanner/orescanner
+	var/obj/item/weapon/mining_scanner/orescanner // vorestation addition
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
