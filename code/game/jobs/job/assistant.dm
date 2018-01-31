@@ -3,7 +3,7 @@
 	title = "Intern"
 	flag = INTERN
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = ENGSEC // VOREStation Edit - Ran out of bits
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
