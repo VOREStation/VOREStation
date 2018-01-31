@@ -466,7 +466,7 @@
 			digest_mode = DM_ABSORB
 			return
 		
-		else if(prob(digestchance) && digest_mode != (DM_ITEMWEAK | DM_DIGEST)) //Finally, let's see if it should run the digest chance.
+		else if(prob(digestchance) && digest_mode != DM_ITEMWEAK && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
 			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
 			digest_mode = DM_ITEMWEAK
