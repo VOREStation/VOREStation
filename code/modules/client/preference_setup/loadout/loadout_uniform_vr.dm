@@ -159,3 +159,8 @@ Swimsuits
 /datum/gear/uniform/suit/gnshorts
 	display_name = "GN shorts"
 	path = /obj/item/clothing/under/fluff/gnshorts
+
+//Latex maid dress
+/datum/gear/uniform/latexmaid
+	display_name = "latex maid dress"
+	path = /obj/item/clothing/under/fluff/latexmaid

@@ -1373,7 +1373,7 @@ var/global/list/damage_icon_parts = list()
 	overlays_standing[TAIL_LAYER] = get_tail_image()
 	if(overlays_standing[TAIL_LAYER])
 		if(update_icons)
-			update_icons()
+			update_icons_layers()
 		return
 	// VOREStation Edit - END
 

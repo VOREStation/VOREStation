@@ -118,3 +118,10 @@ CREATE TABLE `erro_privacy` (
   `option` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+CREATE TABLE `vr_player_hours` (
+  `ckey` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `department` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `hours` double NOT NULL,
+  PRIMARY KEY (`ckey`,`department`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

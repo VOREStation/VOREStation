@@ -190,6 +190,7 @@
 					prob(2);/obj/item/weapon/reagent_containers/glass/rag,
 					prob(2);/obj/item/weapon/storage/box/sinpockets,
 					prob(2);/obj/item/weapon/storage/secure/briefcase,
+					prob(2);/obj/item/clothing/under/fluff/latexmaid,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(1);/obj/item/clothing/gloves/yellow,

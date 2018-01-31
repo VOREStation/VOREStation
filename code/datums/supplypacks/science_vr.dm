@@ -66,3 +66,10 @@
 	containertype = /obj/structure/largecrate/animal/otie
 	containername = "VARMAcorp adoptable reject (Dangerous!)"
 	access = access_xenobiology
+
+/datum/supply_packs/sci/phoronotie
+	name = "VARMAcorp adaptive beta subject (Experimental)"
+	cost = 200
+	containertype = /obj/structure/largecrate/animal/otie/phoron
+	containername = "VARMAcorp adaptive beta subject (Experimental)"
+	access = access_xenobiology

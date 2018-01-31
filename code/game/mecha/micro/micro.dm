@@ -35,7 +35,6 @@
 					var/update = 0
 					switch(damtype)
 						if("brute")
-							H.Paralyse(1)
 							update |= temp.take_damage(rand(force/2, force), 0)
 						if("fire")
 							update |= temp.take_damage(0, rand(force/2, force))
@@ -86,10 +85,7 @@
 					src.visible_message("<font color='red'><b>[src.name] hits [target]</b></font>")
 					if(!istype(target, /turf/simulated/wall))
 						target:attackby(src,src.occupant)
-					else if(prob(5))
-						target:dismantle_wall(1)
-						src.occupant_message("<span class='notice'>You smash through the wall.</span>")
-						src.visible_message("<b>[src.name] smashes through the wall</b>")
+					else
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
 					if(do_after(melee_cooldown))

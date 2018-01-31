@@ -35,26 +35,6 @@
 /datum/gear/accessory/white_vest
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
 
-/datum/gear/accessory/saddlebag
-    display_name = "Saddle Bag, Horse"
-    path = /obj/item/weapon/storage/backpack/saddlebag
-    slot = slot_back
-
-/datum/gear/accessory/saddlebag_common
-    display_name = "Saddle Bag, Common"
-    path = /obj/item/weapon/storage/backpack/saddlebag_common
-    slot = slot_back
-
-/datum/gear/accessory/saddlebag_common/robust
-    display_name = "Saddle Bag, Robust"
-    path = /obj/item/weapon/storage/backpack/saddlebag_common/robust
-    slot = slot_back
-
-/datum/gear/accessory/saddlebag_common/vest
-    display_name = "Taur Duty Vest (backpack)"
-    path = /obj/item/weapon/storage/backpack/saddlebag_common/vest
-    slot = slot_back
-
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"
 	path = /obj/item/weapon/storage/box/khcrystal
