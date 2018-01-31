@@ -117,7 +117,8 @@
 		"Tether - Ships")
 
 	lateload_single_pick = list(
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave")
+		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
+		"Alien Ship - Z1 Ship"
 		)
 
 /datum/map/tether/perform_map_generation()

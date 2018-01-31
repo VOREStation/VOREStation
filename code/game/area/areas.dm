@@ -322,3 +322,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if(A && A.has_gravity())
 		return 1
 	return 0
+
+/area/proc/shuttle_arrived()
+	return TRUE
+
+/area/proc/shuttle_departed()
+	return TRUE
