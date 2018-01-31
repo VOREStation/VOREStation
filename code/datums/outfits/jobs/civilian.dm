@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/assistant
-	name = OUTFIT_JOB_NAME("Assistant")
+	name = OUTFIT_JOB_NAME(USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 	id_type = /obj/item/weapon/card/id/assistant
 
 /decl/hierarchy/outfit/job/assistant/visitor
@@ -11,7 +11,11 @@
 	name = OUTFIT_JOB_NAME("Resident")
 	id_pda_assignment = "Resident"
 	uniform = /obj/item/clothing/under/color/white
-
+//VOREStation Add - Interns
+/decl/hierarchy/outfit/job/assistant/intern
+	name = OUTFIT_JOB_NAME("Intern")
+	id_type = /obj/item/weapon/card/id/civilian
+//VOREStation Add End - Interns
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
 	hierarchy_type = /decl/hierarchy/outfit/job/service

@@ -353,8 +353,8 @@
 	job_access_type = /datum/job/qm
 
 /obj/item/weapon/card/id/assistant
-	assignment = "Assistant"
-	rank = "Assistant"
+	assignment = USELESS_JOB //VOREStation Edit - Visitor not Assistant
+	rank = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	job_access_type = /datum/job/assistant
 
 /obj/item/weapon/card/id/civilian

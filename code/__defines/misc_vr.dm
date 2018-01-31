@@ -29,3 +29,6 @@
 #define SHUTTLE_CRASHED 3 // Yup that can happen now
 
 #define BLUE_SHIELDED 2 // Shield from bluespace teleportation (telescience)
+
+//Assistant/Visitor/Whatever
+#define USELESS_JOB "Visitor"

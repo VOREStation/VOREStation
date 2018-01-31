@@ -104,7 +104,8 @@ var/list/civilian_positions = list(
 	"Lawyer",
 	"Chaplain",
 	"Pilot",  // VOREStation Edit - Moved Pilot from planetary -> civ
-	"Assistant"
+	USELESS_JOB, //VOREStation Edit - Visitor not Assistant
+	"Intern" //VOREStation Edit - Intern
 )
 
 
