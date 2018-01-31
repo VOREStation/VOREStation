@@ -4,6 +4,7 @@ var/image/no_ceiling_image = null
 
 /hook/startup/proc/setup_no_ceiling_image()
 	cache_no_ceiling_image()
+	return TRUE
 
 /proc/cache_no_ceiling_image()
 	no_ceiling_image = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling", layer = OVERTURF_LAYER)
