@@ -504,9 +504,11 @@ var/list/admin_verbs_event_manager = list(
 
 	if(choice == "Show 'em!" && mob.plane_holder)
 		mob.plane_holder.set_vis(VIS_GHOSTS,TRUE)
+		usr.see_invisible = SEE_INVISIBLE_CULT
 		to_chat(src,"<span class='notice'>Ghosts are now visible (while in this mob).</span>")
 	else if(mob.plane_holder)
 		mob.plane_holder.set_vis(VIS_GHOSTS,FALSE)
+		usr.see_invisible = initial(mob.see_invisible)
 		to_chat(src,"<span class='notice'>Ghosts are now hidden (while in this mob).</span>")
 
 /client/proc/invisimin()
