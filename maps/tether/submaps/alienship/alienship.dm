@@ -1,7 +1,7 @@
 // -- Datums -- //
 
 /datum/shuttle_destination/excursion/alienship1
-	name = "Virgo 2 Orbit"
+	name = "Virgo 4 Orbit"
 	my_area = /area/shuttle/excursion/space
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 	skip_me = TRUE
@@ -11,7 +11,7 @@
 	)
 
 /datum/shuttle_destination/excursion/alienship2
-	name = "Virgo 2 Orbit...?"
+	name = "Virgo 4 Orbit...?"
 	my_area = /area/shuttle/excursion/space
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 	skip_me = TRUE
@@ -21,7 +21,7 @@
 	)
 
 /datum/shuttle_destination/excursion/alienship3
-	name = "Virgo-2 Orbit????"
+	name = "Virgo 4 Orbit????"
 	my_area = /area/shuttle/excursion/space
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 	skip_me = TRUE

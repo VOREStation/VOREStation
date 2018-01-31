@@ -1,8 +1,8 @@
 // -- Datums -- //
 
 //We're including two new shuttle destinations. One is in orbit of our 'desert planet'
-/datum/shuttle_destination/excursion/virgo2orbit //Must be a unique path
-	name = "Virgo 2 Orbit" //The name of the destination
+/datum/shuttle_destination/excursion/virgo4orbit //Must be a unique path
+	name = "Virgo 4 Orbit" //The name of the destination
 	my_area = /area/shuttle/excursion/space //The area the shuttle goes when it's settled at this destination
 	preferred_interim_area = /area/shuttle/excursion/space_moving //The area the shuttle goes while it's moving there
 	skip_me = TRUE //Must be TRUE on all away-mission destinations for reasons
@@ -19,7 +19,7 @@
 	skip_me = TRUE
 
 	routes_to_make = list(
-		/datum/shuttle_destination/excursion/virgo2orbit = 30 SECONDS //This is the above one
+		/datum/shuttle_destination/excursion/virgo4orbit = 30 SECONDS //This is the above one
 	)
 
 //This is a special subtype of the thing that generates ores on a map
@@ -64,7 +64,7 @@
 	name = "shuttle connector - beach"
 	shuttle_name = "Excursion Shuttle"
 	//This list needs to be in the correct order, and start with the one that connects to the rest of the shuttle 'network'
-	destinations = list(/datum/shuttle_destination/excursion/virgo2orbit, /datum/shuttle_destination/excursion/beach)
+	destinations = list(/datum/shuttle_destination/excursion/virgo4orbit, /datum/shuttle_destination/excursion/beach)
 
 //This object simply performs any map setup that needs to happen on our map if it loads.
 //As with the above, you do need to place this object on the map somewhere.
