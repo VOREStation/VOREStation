@@ -12,7 +12,7 @@
 	economic_modifier = 2
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
 	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech") //VOREStation Edit
 //VOREStation Add
 /datum/job/intern/New()
@@ -24,7 +24,7 @@
 
 // VOREStation Add
 /datum/job/assistant
-	title = "Visitor"
+	title = USELESS_JOB
 	flag = ASSISTANT
 	department = "Civilian"
 	department_flag = CIVILIAN
