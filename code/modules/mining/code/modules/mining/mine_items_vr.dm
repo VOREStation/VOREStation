@@ -2,7 +2,7 @@
 //Vorestation edit, upgrades the speed of all drills and pickaxes.
 
 /obj/item/weapon/pickaxe
-	var/digspeed = 36 
+	digspeed = 36 
 
 /obj/item/weapon/pickaxe/silver
 	digspeed = 27
