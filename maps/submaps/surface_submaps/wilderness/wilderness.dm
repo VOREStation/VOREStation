@@ -4,7 +4,6 @@
 #if MAP_TEST
 #include "spider1.dmm"
 #include "Flake.dmm"
-#include "Field1.dmm"
 #include "MCamp1.dmm"
 #include "Rocky1.dmm"
 #include "Rocky2.dmm"
@@ -22,6 +21,8 @@
 #include "MHR.dmm"
 #include "GovPatrol.dmm"
 #include "DecoupledEngine.dmm"
+#include "DoomP.dmm"
+#include "CaveS.dmm"
 
 #endif
 
@@ -166,3 +167,15 @@
 	desc = "A damaged fission engine jettisoned from a starship long ago."
 	mappath = 'maps/submaps/surface_submaps/wilderness/DecoupledEngine.dmm'
 	cost = 15
+
+/datum/map_template/surface/wilderness/deep/DoomP
+	name = "DoomP"
+	desc = "Witty description here."
+	mappath = 'maps/submaps/surface_submaps/wilderness/DoomP.dmm'
+	cost = 30
+
+/datum/map_template/surface/wilderness/deep/Cave
+	name = "CaveS"
+	desc = "Chitter chitter!"
+	mappath = 'maps/submaps/surface_submaps/wilderness/CaveS.dmm'
+	cost = 20

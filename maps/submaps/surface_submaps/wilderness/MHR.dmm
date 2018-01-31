@@ -11,11 +11,13 @@
 "k" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "l" = (/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "m" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"n" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"o" = (/obj/effect/decal/cleanable/spiderling_remains,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"p" = (/obj/effect/decal/remains/robot,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"q" = (/obj/effect/decal/remains,/obj/item/clothing/mask/gas/explorer,/obj/item/weapon/material/twohanded/fireaxe,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"r" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"n" = (/obj/effect/decal/cleanable/cobweb2,/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"o" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"p" = (/obj/effect/decal/cleanable/spiderling_remains,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"q" = (/obj/effect/decal/remains/robot,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"r" = (/obj/effect/decal/remains,/obj/item/clothing/mask/gas/explorer,/obj/item/weapon/material/twohanded/fireaxe,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"s" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"t" = (/obj/effect/decal/cleanable/spiderling_remains,/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -24,15 +26,15 @@ abbbbbbbbbbdddfeeeea
 abbbbbbbbbbdfddgeeea
 abbbbbhijeeeedddeeea
 abbbbeeeeeeeeeddeeea
-abbbeeeeeeeeeeedeeea
-acbeeeeeeeeeeeedeeea
-abeeeeeeeeeeeeedkeea
-abeeeeelmkeenddddeea
-abeeeoldddpfdddddeea
-abeeeldldlddddddqeea
+abbbeeeeeeeeeeddeeea
+acbeeeeeeeeeeeddeeea
+abeeeeeeeeeeedddkeea
+abeeeeelmneeoddddeea
+abeeepllldqfdddddeea
+abeeeldldlddddddreea
 abeeedldfdddddddeeea
-abbeellllddrddpeeeea
-abbeeefeerldddeeeeba
+abbeellllddsddqeeeea
+abbeeeteesldddeeeeba
 abbeeeeeeeeeeeeeebba
 abbbeeeeeeeeeeeeebba
 acbbbeeeeeeeebbbbbba
