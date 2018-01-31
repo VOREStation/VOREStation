@@ -156,6 +156,9 @@
 
 /obj/structure/sign/warning/docking_area
 	name = "\improper KEEP CLEAR: DOCKING AREA"
+
+/obj/structure/sign/warning/evac
+	name = "\improper KEEP CLEAR: EVAC DOCKING AREA"
 	icon_state = "evac"
 
 /obj/structure/sign/warning/engineering_access
