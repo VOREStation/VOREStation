@@ -1,4 +1,3 @@
-
 //Vorestation edit, upgrades the speed of all drills and pickaxes.
 
 /obj/item/weapon/pickaxe
