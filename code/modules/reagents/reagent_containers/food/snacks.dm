@@ -1974,7 +1974,7 @@
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/onionrings
-	name = "Onion Soup"
+	name = "Onion Rings"
 	desc = "Crispy rings."
 	icon_state = "onionrings"
 	trash = /obj/item/trash/plate
