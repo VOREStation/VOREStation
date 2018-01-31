@@ -17,8 +17,9 @@
 //VOREStation Add
 /datum/job/intern/New()
 	..()
-	total_positions = config.limit_interns
-	spawn_positions = config.limit_interns
+	if(config)
+		total_positions = config.limit_interns
+		spawn_positions = config.limit_interns
 //VOREStation Add End
 
 // VOREStation Add
@@ -38,8 +39,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 /datum/job/assistant/New()
 	..()
-	total_positions = config.limit_visitors
-	spawn_positions = config.limit_visitors
+	if(config)
+		total_positions = config.limit_visitors
+		spawn_positions = config.limit_visitors
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
 		return list(access_maint_tunnels)
