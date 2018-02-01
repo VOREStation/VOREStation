@@ -145,7 +145,7 @@ Swimsuits
 */
 
 /datum/gear/uniform/swimsuits
-	display_name = "Swimsuits selection"
+	display_name = "swimsuits selection"
 	path = /obj/item/weapon/storage/box/fluff/swimsuit
 
 /datum/gear/uniform/swimsuits/New()
