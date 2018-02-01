@@ -80,6 +80,7 @@
 	icon_state = "fitnesslifter" //Sprites ripped from goon.
 	messages = list("You lift some weights")
 	weightloss_power = 2
+	cooldown = 40
 
 /obj/machinery/scale
 	name = "scale"
@@ -92,9 +93,9 @@
 	active_power_usage = 0
 
 /obj/machinery/scale/attack_hand(var/mob/living/user)
-	if(user.loc != src.loc)
+	if(user.loc != loc)
 		user << "<span class='notice'>You need to be standing on top of the scale for it to work!</span>"
 		return
 	if(user.weight) //Just in case.
 		var/kilograms = round(text2num(user.weight),4) / 2.20463
-		src.visible_message("<span class='notice'>[src] displays a reading of [user.weight]lb / [kilograms]kg when [user] stands on it.</span>")
+		visible_message("<span class='notice'>[src] displays a reading of [user.weight]lb / [kilograms]kg when [user] stands on it.</span>")
