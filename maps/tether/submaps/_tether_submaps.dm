@@ -12,6 +12,41 @@
 	desc = "Ship transit map and whatnot."
 	mappath = 'tether_ships.dmm'
 
+/obj/effect/step_trigger/zlevel_fall/initialize()
+	. = ..()
+
+	if(istype(get_turf(src), /turf/simulated/floor))
+		src:target_z = z
+		qdel(src)
+
+/obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
+	var/attempts = 100
+	var/turf/simulated/T
+	while(attempts && !T)
+		var/turf/simulated/candidate = locate(rand(5,world.maxx-5),rand(5,world.maxy-5),src:target_z)
+		if(candidate.density)
+			attempts--
+			continue
+
+		T = candidate
+		break
+
+	if(!T)
+		message_admins("ERROR: planetary_fall step trigger could not find a suitable landing turf.")
+		return
+
+	if(isobserver(A))
+		A.forceMove(T) // Harmlessly move ghosts.
+		return
+
+	if(isliving(A)) // Someday, implement parachutes.  For now, just turbomurder whoever falls.
+		var/mob/living/L = A
+		L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
+	message_admins("\The [A] fell out of the sky.")
+	A.forceMove(T)
+
+/obj/effect/step_trigger/zlevel_fall/beach
+	var/static/target_z
 
 
 /// Away Missions
