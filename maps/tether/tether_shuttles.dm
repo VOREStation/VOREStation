@@ -200,10 +200,10 @@
 	)
 
 /datum/shuttle_destination/excursion/tether/get_arrival_message()
-	return "Attention, [master.my_shuttle.visible_name] has arrived to Excursion Hangar."
+	return "Attention, [master.my_shuttle.visible_name] has arrived at the Excursion Hangar."
 
 /datum/shuttle_destination/excursion/tether/get_departure_message()
-	return "Attention, [master.my_shuttle.visible_name] has departed Excursion Hangar."
+	return "Attention, [master.my_shuttle.visible_name] has departed from the Excursion Hangar."
 
 
 /datum/shuttle_destination/excursion/outside_tether
@@ -229,7 +229,7 @@
 	return "Attention, [master.my_shuttle.visible_name] has arrived at Docking Arm One."
 
 /datum/shuttle_destination/excursion/docked_tether/get_departure_message()
-	return "Attention, [master.my_shuttle.visible_name] has departed Docking Arm One."
+	return "Attention, [master.my_shuttle.visible_name] has departed from Docking Arm One."
 
 
 /datum/shuttle_destination/excursion/virgo3b_orbit
