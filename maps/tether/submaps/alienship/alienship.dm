@@ -125,6 +125,11 @@
 				D.name = "Unknown Vessel"
 				break
 
+		//No talky!
+		for(var/obj/machinery/telecomms/relay/R in contents)
+			R.toggled = FALSE
+			R.update_power()
+
 		//Teleport time!
 		for(var/mob in player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
 			try
