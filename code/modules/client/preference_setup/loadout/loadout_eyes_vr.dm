@@ -7,9 +7,9 @@
 	path = /obj/item/clothing/glasses/omnihud/prescription
 
 /datum/gear/eyes/spiffygogs
-	display_name = "Slick orange goggles"
+	display_name = "slick orange goggles"
 	path = /obj/item/clothing/glasses/fluff/spiffygogs
 
 /datum/gear/eyes/science_proper
-	display_name = "Science goggles (no overlay)"
+	display_name = "science goggles (no overlay)"
 	path = /obj/item/clothing/glasses/fluff/science_proper
