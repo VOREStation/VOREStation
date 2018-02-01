@@ -90,7 +90,7 @@
 			make_sounds(origin, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
-		on_shuttle_departure()
+		on_shuttle_departure(origin)
 
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		move(origin, destination)
