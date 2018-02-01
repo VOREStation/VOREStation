@@ -43,9 +43,11 @@
 	last_move = world.time
 
 /datum/shuttle/web_shuttle/on_shuttle_departure()
+	..()
 	web_master.on_shuttle_departure()
 
 /datum/shuttle/web_shuttle/on_shuttle_arrival()
+	..()
 	web_master.on_shuttle_arrival()
 
 /datum/shuttle/web_shuttle/proc/build_destinations()
