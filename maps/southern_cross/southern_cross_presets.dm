@@ -4,24 +4,6 @@ var/const/NETWORK_FIRST_DECK   = "First Deck"
 var/const/NETWORK_SUPPLY       = "Supply"
 var/const/NETWORK_MAIN_OUTPOST = "Main Outpost"
 
-/datum/map/southern_cross
-	// Networks that will show up as options in the camera monitor program
-	station_networks = list(
-		NETWORK_ENGINE,
-		NETWORK_THIRD_DECK,
-		NETWORK_SECOND_DECK,
-		NETWORK_FIRST_DECK,
-		NETWORK_ROBOTS,
-		NETWORK_SUPPLY,
-		NETWORK_COMMAND,
-		NETWORK_ENGINEERING,
-		NETWORK_MEDICAL,
-		NETWORK_MAIN_OUTPOST,
-		NETWORK_RESEARCH,
-		NETWORK_SECURITY,
-		NETWORK_THUNDER,
-	)
-
 //
 // Cameras
 //
