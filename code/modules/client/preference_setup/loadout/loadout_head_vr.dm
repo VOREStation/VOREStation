@@ -3,7 +3,7 @@
 	path = /obj/item/clothing/head/soft/sol*/
 
 /datum/gear/head/headbando
-	display_name = "Basic Headband"
+	display_name = "basic headband"
 	path = /obj/item/clothing/head/fluff/headbando
 
 /datum/gear/head/headbando/New()

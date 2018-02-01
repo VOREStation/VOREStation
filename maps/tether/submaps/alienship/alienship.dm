@@ -2,42 +2,11 @@
 
 /datum/shuttle_destination/excursion/alienship1
 	name = "Virgo 4 Orbit"
-	my_area = /area/shuttle/excursion/space
+	my_area = /area/shuttle/excursion/away_alienship // /area/shuttle/excursion/space
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 	skip_me = TRUE
 
 	routes_to_make = list(
-		/datum/shuttle_destination/excursion/bluespace = 30 SECONDS
-	)
-
-/datum/shuttle_destination/excursion/alienship2
-	name = "Virgo 4 Orbit...?"
-	my_area = /area/shuttle/excursion/space
-	preferred_interim_area = /area/shuttle/excursion/space_moving
-	skip_me = TRUE
-
-	routes_to_make = list(
-		/datum/shuttle_destination/excursion/alienship1 = 20 SECONDS
-	)
-
-/datum/shuttle_destination/excursion/alienship3
-	name = "Virgo 4 Orbit????"
-	my_area = /area/shuttle/excursion/space
-	preferred_interim_area = /area/shuttle/excursion/space_moving
-	skip_me = TRUE
-
-	routes_to_make = list(
-		/datum/shuttle_destination/excursion/alienship2 = 10 SECONDS
-	)
-
-/datum/shuttle_destination/excursion/alienship4
-	name = "Unknown Location"
-	my_area = /area/shuttle/excursion/away_alienship
-	preferred_interim_area = /area/shuttle/excursion/space_moving
-	skip_me = TRUE
-
-	routes_to_make = list(
-		/datum/shuttle_destination/excursion/alienship3 = 5 SECONDS,
 		/datum/shuttle_destination/excursion/bluespace = 30 SECONDS
 	)
 
@@ -46,44 +15,7 @@
 /obj/shuttle_connector/alienship
 	name = "shuttle connector - alienship"
 	shuttle_name = "Excursion Shuttle"
-	destinations = list(/datum/shuttle_destination/excursion/alienship1, /datum/shuttle_destination/excursion/alienship2, /datum/shuttle_destination/excursion/alienship3, /datum/shuttle_destination/excursion/alienship4)
-
-/obj/shuttle_connector/alienship/Destroy(var/force = FALSE)
-	remove_link()
-	return ..()
-
-//We scissor out the return path
-/obj/shuttle_connector/alienship/proc/remove_link()
-	if(shuttle_name)
-		var/datum/shuttle/web_shuttle/ES = shuttle_controller.shuttles[shuttle_name]
-		var/datum/shuttle_web_master/WM = ES.web_master
-
-		for(var/dest in WM.destinations)
-			var/datum/shuttle_destination/D = dest
-			if(istype(D,/datum/shuttle_destination/excursion/alienship1)) //Need to remove link back to bluespace from the first one
-				for(var/route in D.routes)
-					var/datum/shuttle_route/R = route
-					if(istype(R.start,/datum/shuttle_destination/excursion/bluespace) || istype(R.end,/datum/shuttle_destination/excursion/bluespace))
-						D.routes -= R
-						break
-			else if(istype(D,/datum/shuttle_destination/excursion/alienship2)) //Remove a backwards link
-				for(var/route in D.routes)
-					var/datum/shuttle_route/R = route
-					if(istype(R.start,/datum/shuttle_destination/excursion/alienship1) || istype(R.end,/datum/shuttle_destination/excursion/alienship1))
-						D.routes -= R
-						break
-			else if(istype(D,/datum/shuttle_destination/excursion/alienship3)) //Remove a backwards link
-				for(var/route in D.routes)
-					var/datum/shuttle_route/R = route
-					if(istype(R.start,/datum/shuttle_destination/excursion/alienship2) || istype(R.end,/datum/shuttle_destination/excursion/alienship2))
-						D.routes -= R
-						break
-			else if(istype(D,/datum/shuttle_destination/excursion/bluespace)) //Remove the link from bluespace to the endpoint
-				for(var/route in D.routes)
-					var/datum/shuttle_route/R = route
-					if(istype(R.start,/datum/shuttle_destination/excursion/alienship4) || istype(R.end,/datum/shuttle_destination/excursion/alienship4))
-						D.routes -= R
-						break
+	destinations = list(/datum/shuttle_destination/excursion/alienship1)
 
 /obj/away_mission_init/alienship
 	name = "away mission initializer - alienship"
@@ -180,35 +112,55 @@
 
 /area/shuttle/excursion/away_alienship/shuttle_arrived()
 	. = ..()
-	if(!did_entry)
-		var/area/dump_area = locate(/area/tether_away/alienship/equip_dump)
+	spawn(20)
+		if(did_entry)
+			return
+
+		//Rename this destination for return trips
+		var/datum/shuttle/web_shuttle/ES = shuttle_controller.shuttles["Excursion Shuttle"]
+		var/datum/shuttle_web_master/WM = ES.web_master
+		for(var/dest in WM.destinations)
+			var/datum/shuttle_destination/D = dest
+			if(istype(D,/datum/shuttle_destination/excursion/alienship1))
+				D.name = "Unknown Vessel"
+				break
+
+		//No talky!
+		for(var/obj/machinery/telecomms/relay/R in contents)
+			R.toggled = FALSE
+			R.update_power()
+
+		//Teleport time!
 		for(var/mob in player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
-			if(get_area(mob) == src && isliving(mob))
-				var/mob/living/L = mob
+			try
+				if(isliving(mob) && get_area(mob) == src)
+					var/mob/living/L = mob
 
-				//Situations to get the mob out of
-				if(L.buckled)
-					L.buckled.unbuckle_mob()
-				if(istype(L.loc,/obj/mecha))
-					var/obj/mecha/M = L.loc
-					M.go_out()
-				else if(istype(L.loc,/obj/machinery/sleeper))
-					var/obj/machinery/sleeper/SL = L.loc
-					SL.go_out()
-				else if(istype(L.loc,/obj/machinery/recharge_station))
-					var/obj/machinery/recharge_station/RS = L.loc
-					RS.go_out()
+					//Situations to get the mob out of
+					if(L.buckled)
+						L.buckled.unbuckle_mob()
+					if(istype(L.loc,/obj/mecha))
+						var/obj/mecha/M = L.loc
+						M.go_out()
+					else if(istype(L.loc,/obj/machinery/sleeper))
+						var/obj/machinery/sleeper/SL = L.loc
+						SL.go_out()
+					else if(istype(L.loc,/obj/machinery/recharge_station))
+						var/obj/machinery/recharge_station/RS = L.loc
+						RS.go_out()
 
-				L.forceMove(pick(get_area_turfs(dump_area)))
-				if(!issilicon(L)) //Don't drop borg modules...
-					for(var/obj/item/I in L)
-						if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
-							continue
-						L.drop_from_inventory(I, loc)
-				L.Paralyse(10)
-				L.forceMove(get_turf(pick(teleport_to)))
-				L << 'sound/effects/bamf.ogg'
-				to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+					L.forceMove(pick(get_area_turfs(dump_area)))
+					if(!issilicon(L)) //Don't drop borg modules...
+						for(var/obj/item/I in L)
+							if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
+								continue
+							L.drop_from_inventory(I, loc)
+					L.Paralyse(10)
+					L.forceMove(get_turf(pick(teleport_to)))
+					L << 'sound/effects/bamf.ogg'
+					to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+			catch
+				log_debug("Problem doing [mob] for Alienship arrival teleport!")
 
 		did_entry = TRUE
 
