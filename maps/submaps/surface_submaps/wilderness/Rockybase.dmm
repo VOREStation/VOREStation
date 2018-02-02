@@ -112,8 +112,8 @@
 "ch" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ci" = (/obj/structure/table/standard,/obj/item/mecha_parts/mecha_equipment/repair_droid,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cj" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ck" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cl" = (/obj/structure/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
+"ck" = (/obj/machinery/power/terminal{dir = 4},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cl" = (/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
 "cm" = (/obj/machinery/vending/medical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cn" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "co" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/Rockybase)
@@ -122,32 +122,33 @@
 "cr" = (/obj/item/mecha_parts/part/gygax_armour,/turf/simulated/floor,/area/submap/Rockybase)
 "cs" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ct" = (/obj/item/mecha_parts/chassis/gygax,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cu" = (/mob/living/simple_animal/hostile/mecha/malf_drone,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cu" = (/mob/living/simple_animal/hostile/mecha/malf_drone{name = "Autonomous Mechanized Drone"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cv" = (/obj/machinery/vending/robotics,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cw" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/light{dir = 8},/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "Unknown APC"; pixel_x = -24},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cx" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cy" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
-"cz" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/submap/Rockybase)
-"cA" = (/obj/item/mecha_parts/part/gygax_right_leg,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cB" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/item/mecha_parts/part/gygax_left_arm,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"cC" = (/obj/machinery/vending,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cD" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cE" = (/obj/machinery/light{dir = 8},/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cG" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cH" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cI" = (/obj/structure/table/standard,/obj/item/stack/material/plasteel,/obj/item/stack/material/glass/reinforced,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cJ" = (/obj/structure/table/standard,/obj/item/stack/material/glass,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cK" = (/obj/structure/table/standard,/obj/item/mecha_parts/part/gygax_head,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cL" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cM" = (/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cN" = (/obj/item/weapon/surgical/surgicaldrill,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cO" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cP" = (/obj/item/clothing/suit/space/void/medical,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cQ" = (/obj/effect/decal/cleanable/dirt,/mob/living/bot/medbot,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cR" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cS" = (/obj/structure/closet/crate/secure/hydrosec,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cT" = (/obj/effect/decal/remains,/turf/template_noop,/area/template_noop)
+"cx" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cy" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cz" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
+"cA" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/submap/Rockybase)
+"cB" = (/obj/item/mecha_parts/part/gygax_right_leg,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cC" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/item/mecha_parts/part/gygax_left_arm,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"cD" = (/obj/machinery/vending,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cE" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cF" = (/obj/machinery/light{dir = 8},/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cG" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cH" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cI" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cJ" = (/obj/structure/table/standard,/obj/item/stack/material/plasteel,/obj/item/stack/material/glass/reinforced,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cK" = (/obj/structure/table/standard,/obj/item/stack/material/glass,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cL" = (/obj/structure/table/standard,/obj/item/mecha_parts/part/gygax_head,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cM" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cN" = (/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cO" = (/obj/item/weapon/surgical/surgicaldrill,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cP" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cQ" = (/obj/item/clothing/suit/space/void/medical,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cR" = (/obj/effect/decal/cleanable/dirt,/mob/living/bot/medbot,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cS" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cT" = (/obj/structure/closet/crate/secure/hydrosec,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cU" = (/obj/effect/decal/remains,/turf/template_noop,/area/template_noop)
 
 (1,1,1) = {"
 aaabababababababababababababababababababaaababababababababababababababababababababababababababababaa
@@ -171,13 +172,13 @@ abadagamambxaqaqamamamamamamamamamamamahahamamamambyamamamamaDamamamamamamamamam
 abadagamambzbzaqambAbBbCbDbEbFbGbHbIboahbJbKambLbMaDbNbOambPaDaDbQbRbSbTaDaDaDbUamaDbjamamagagagadab
 abadagamambVbsbWamaDaDaDaDaDaDaDaDaDaDaDahbXamaDaDaDaDaDamboaDbTbTbYbZcacbccaDcdamaDbmamamagagagaeab
 abadagamambzbzceamaDcfaDaDcfaDaDcgaDchaDahciamaDaDcjckclamcmaDbTcncocpcqcocrahaDamaDbjamamagagadadab
-abadagamambVbsaqamcsaDaDctaDcuaDaDaDaDaDaDcvamcwckcxckcyamaDaDbTczcqcqcocbahbJaDamaDcAamamagagadadab
-abadagamambzbzcBamaDcfaDaDahahaDaDaDaDaDaDcCamaDaDcDckclamcEaDaDcFcocacacacaahbTamaDcGamamagadadadab
-abadagamambVbsaqamaDaDaDaDaDaDbhcHaDcHaDaDbMamcIcJcKcLaDamcMaDcNaDaDcOcccOcPbTcQamcRcSamamagagadadab
+abadagamambVbsaqamcsaDaDctaDcuaDaDaDaDaDaDcvamcwcxcyckczamaDaDbTcAcqcqcocbahbJaDamaDcBamamagagadadab
+abadagamambzbzcCamaDcfaDaDahahaDaDaDaDaDaDcDamaDaDcEckclamcFaDaDcGcocacacacaahbTamaDcHamamagadadadab
+abadagamambVbsaqamaDaDaDaDaDaDbhcIaDcIaDaDbMamcJcKcLcMaDamcNaDcOaDaDcPcccPcQbTcRamcScTamamagagadadab
 abadagagamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamagagadadafab
 abadagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagadadadab
 abadagagagagagagagagagagagagagagagagagagagagagagagagagagagagagadagagagadadadagagagagagagagadadadadab
 abadadagagagagagagagagagagagagafadadadagagagagagagadadadadadadadadadadadadadadadadadadadadadadadadab
 abadaeadadadadadadagagagagagadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadab
-aaabcTababababababababababababababababababaaababababababababababababababababakababababababcTabakabab
+aaabcUababababababababababababababababababaaababababababababababababababababakababababababcUabakabab
 "}
