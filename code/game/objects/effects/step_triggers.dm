@@ -184,11 +184,11 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			A.forceMove(T) // Harmlessly move ghosts.
 			return
 
+		A.forceMove(T)
 		if(isliving(A)) // Someday, implement parachutes.  For now, just turbomurder whoever falls.
+			message_admins("\The [A] fell out of the sky.")
 			var/mob/living/L = A
 			L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
-		message_admins("\The [A] fell out of the sky.")
-		A.forceMove(T)
 	else
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return
