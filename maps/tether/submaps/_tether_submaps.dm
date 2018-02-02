@@ -2,9 +2,6 @@
 // This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 //Away missions defined here for testing
 
-/datum/map_template/proc/on_map_loaded(z)
-	return
-
 /datum/map_template/tether_lateload
 	allow_duplicates = FALSE
 	var/associated_map_datum
