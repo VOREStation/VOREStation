@@ -97,6 +97,7 @@
 	new /obj/item/taperoll/medical(src)
 	new /obj/item/device/gps(src)
 	new /obj/item/device/geiger(src)
+	new /obj/item/bodybag/cryobag(src)
 	return
 
 //Pilot Locker
