@@ -4,6 +4,7 @@
 	icon_state = "pilot_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/pilot
+	adhoc_fallback = TRUE //VOREStation Edit
 
 /obj/item/device/radio/headset/pilot/alt
 	name = "pilot's bowman headset"
@@ -16,6 +17,7 @@
 	icon_state = "exp_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/explorer
+	adhoc_fallback = TRUE //VOREStation Edit
 
 /obj/item/device/radio/headset/explorer/alt
 	name = "explorer's bowman headset"
@@ -28,6 +30,7 @@
 	icon_state = "sar_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/sar
+	adhoc_fallback = TRUE //VOREStation Edit
 
 /obj/item/device/radio/headset/sar/alt
 	name = "sar radio bowman headset"
