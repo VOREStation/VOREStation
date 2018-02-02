@@ -1,0 +1,16 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Rocky5)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rocky5)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbccccccbbbbbbbbcba
+accccccccbbbbbbbbcba
+abcccccbbbbbbbbbccca
+abbcccbbbbbbbbbbccca
+abbbbbbbbccbbbbbccca
+abbbbbbbbccbbbbbbcca
+abbbbbbbbcccbbbbbcba
+abbbbbbbccccccbbbbba
+aaaaaaaaaaaaaaaaaaaa
+"}

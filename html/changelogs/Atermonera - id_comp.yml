@@ -1,0 +1,6 @@
+author: Atermonera
+
+delete-after: True
+changes:
+  - tweak: "ID computer can set command secretary and IAA access"
+  - tweak: "Command secretary has keycard auth. access"

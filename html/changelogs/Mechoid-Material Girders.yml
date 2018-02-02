@@ -1,0 +1,11 @@
+ 
+author: Mechoid
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds material girders."
+  - tweak: "Girder decon time is now partially dependant on material. Stronger girders take slightly longer."
+  - tweak: "Wall girders are now under the integrity-based construction listing. Material-Name Wall Girder."
+  - rscadd: "Explosive-resistant girders in walls have a chance to survive as an unanchored girder, if their wall is destroyed."
+  - rscadd: "Radioactive girders affect the completed wall's radioactivity."

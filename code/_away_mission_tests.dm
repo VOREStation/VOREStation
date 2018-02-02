@@ -7,4 +7,4 @@
  *   Should you wish to edit set AWAY_MISSION_TEST to 1 like so:
  *   #define AWAY_MISSION_TEST 1
  */
- #define AWAY_MISSION_TEST 0
+#define AWAY_MISSION_TEST 0

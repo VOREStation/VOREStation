@@ -1,0 +1,129 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/turf/template_noop,/area/submap/DoomP)
+"ac" = (/turf/simulated/floor/outdoors/rocks,/area/submap/DoomP)
+"ad" = (/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"ae" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/template_noop,/area/submap/DoomP)
+"af" = (/turf/template_noop,/area/space)
+"ag" = (/turf/simulated/floor/water,/area/submap/DoomP)
+"ah" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/DoomP)
+"ai" = (/obj/effect/mine,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"aj" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"ak" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"al" = (/turf/simulated/floor/water/deep,/area/submap/DoomP)
+"am" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"an" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"ao" = (/obj/machinery/light/small,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"ap" = (/obj/machinery/porta_turret/stationary,/turf/simulated/floor/plating,/area/submap/DoomP)
+"aq" = (/turf/simulated/wall/r_wall,/area/submap/DoomP)
+"ar" = (/turf/simulated/floor/plating,/area/submap/DoomP)
+"as" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/plating,/area/submap/DoomP)
+"at" = (/turf/simulated/floor/tiled,/area/submap/DoomP)
+"au" = (/obj/structure/bed/chair,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"av" = (/obj/structure/bed/chair,/mob/living/simple_animal/hostile/syndicate/ranged{desc = "Even less friendly than he looks."; speak = list("Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Anyone else smell that?")},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aw" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"ax" = (/obj/machinery/vending/cigarette,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"ay" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"az" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aA" = (/obj/machinery/power/apc{dir = 1; name = "PAPC"; pixel_x = 0; pixel_y = 24},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aB" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aC" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aD" = (/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aE" = (/obj/structure/closet/secure_closet/engineering_electrical,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aF" = (/obj/structure/lattice,/obj/machinery/porta_turret/stationary,/turf/simulated/floor/plating,/area/submap/DoomP)
+"aG" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/rocks,/area/submap/DoomP)
+"aH" = (/obj/structure/bed/chair{dir = 4},/mob/living/simple_animal/hostile/syndicate/ranged{desc = "Even less friendly than he looks."; speak = list("Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Anyone else smell that?")},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aI" = (/obj/structure/table/standard,/obj/item/pizzabox,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aJ" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aK" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aL" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light/small,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aM" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aN" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aO" = (/obj/machinery/light/small,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aP" = (/obj/structure/lattice,/turf/simulated/floor/water,/area/submap/DoomP)
+"aQ" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aR" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aS" = (/obj/machinery/door/airlock/engineering,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aT" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aU" = (/obj/machinery/door/airlock/highsecurity,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aV" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aW" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/syndie_kit/spy,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aX" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/smokes,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aY" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/handcuffs,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aZ" = (/obj/structure/table/rack,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"ba" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/laser/mounted,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bb" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/contender,/obj/item/ammo_magazine/s357,/obj/item/ammo_magazine/s357,/obj/item/ammo_magazine/s357,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bc" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/toy/plushie/spider,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bd" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"be" = (/obj/structure/table/standard,/obj/item/device/flashlight/lamp,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bf" = (/obj/structure/table/standard,/obj/structure/bedsheetbin,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bg" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bh" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bi" = (/obj/machinery/shower{dir = 1},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bj" = (/obj/structure/toilet{dir = 1},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"bk" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/submap/DoomP)
+"bl" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/submap/DoomP)
+"bm" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/submap/DoomP)
+"bn" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabababababababababababababababababababababababababababababababababababacacacacacacacacabababababababadadadabababaeabaf
+aaaeabababababababababababababababababababababababababababababababababacacagagagagagagacacacacababacadadadadadacacacabaf
+aaababacacacacacacacabababababababahababababacacacacacacacacababacacacacagagagagagagagagagagacacacacadadaiadacagagacabaf
+aaabacacagagagagagacacacacacacababaeabacacacacagagagagacacacacacagagagagagagagagagagagagagacacadadadadadacacacagagacabaf
+aaabacagagagagagagagagagagagacacacacacacagagagagagagagagagagagagagagagagagagagagagagagagacacadajadadakacacagagagagacacaf
+aaabacagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagacacacadadadadadadacagagagagagagacaf
+aaabacagagagagalalalalalalagagagagagagagagagagagagagalalalalalalalagagagagagagagagacacadakadadaiadadadacagagagagagagacaf
+aaabacagagagagagalalalalalagagagagagagagagagalalalalalalalalalalalalalalagagagagagacadaiadadadadadadacacagagagagagagacaf
+aaabacacagagagagagalalalalagagagagagagagagagalalalalalalalalalalalalalagagagagagacacamadadadadadaiacacagagagagagagagacaf
+aaababacagagagagagagalalalalalagagagalalalalalalalalalalalalalalalalalalalalalagagacacadadadadadacacagagagagagagagagacaf
+aaababacagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalagagagagagagacadadadajadacacagagagagagagagacacaf
+aaababacacagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalagagagagagacacadaiadadacacagagagagagagagagacabaf
+aaabababacagagagagagagagalalalalalalalalalalalalagagalalalalalalalalalagagagagagagacacadadadadacagagagagagagagagagacabaf
+aaabababacacagagagagagagagalalalalalalalalalalagagagagalalalalalalalalalagagagagagacacadadamacacagagagagagagagacacacabaf
+aaababababacagagagagagagalalalalalalalalalagagagagagagagagagagagagagagagagagagacacacadadadadacagagagagalagagagacacababaf
+aaababababacacagagagagagagalalalalalalagagagagagagagagagagagagagagagagagagagacacadadadadadacacagagagalalagagagagacababaf
+aaababababacacagagagagagalalalalalagagagagagagagagagagagagagagagagagagagagacacadadadadacacacagagagagalalalagagagacacabaf
+aaababababaeacagagagagalalalalalagagagagagagagagagagagagagagagagagagagagacacadadadacacacagagagagagagalalalagagagagacabaf
+aaababababacacagagalalalalalalalalagagagagagagagagagacacacacacacacagagacacadadacacacagagagagagagagagalalalagagagagacabaf
+aaababababacagagagalalalalalalalalalalagagagagagacacacadadadadadacacacacadadacacagagagagagagagalagalalalagagagagagacabaf
+aaabababacacagagagagalalalalalalalagagagagagagacacadadanadadadadadadadadadadacagagagagagagagagalalalalalagagagagagacabaf
+aaabababacagagagagagagalalalalalagagagagagagacacadadadadadadanadadadadadadadacagagagagagagagalalalalalalagagagagacacabaf
+aaabababacagagagagagagalalalalalagagagagagacacadadadadadadadadadadadadadadacacagagagagagagagalalalalalalalalagagacacabaf
+aaabababacagagagagagagagalalalalagagagagacacadadadadadadadadadadadadadadadadacacagagagagagagalalalalalalalalagagagacabaf
+aaabababacagagagagagagagalalalagagagagagacadadadadadadadadadadadadadadadadadadacacagagagagagagalalalalalalagagagagacabaf
+aaabababacagagagagagagagalalalalalagagagacadadadadadadadaoadadadadadaoadadadadadacacagagagagagagalalalalagagagagagacabaf
+aaabababacagagagagagagagalalalalalagagagacadadapadadapadaqaqarararaqaqadapadadapadacagagagagagagalalalalagagagagagacabaf
+aaabababacagagagagagagagalalalalalalagagacaqaqaqaqaqaqaqaqaqaqasaqaqaqaqaqaqaqaqaqaqaqagagagagagalalalalagagagagacacabaf
+aaabababacacagagagagagagalalalalalalagagacaqatauatavawavataxaqayaqazazazazaAaBaCaDaEaqagagagagagalalalalagagagagacacabaf
+aaabababacacacagagagagalalalalalalalagaFaGaqaHaDaIaDaDaDataJaqataqaKaLaMaMaNatataOataqaPaFagagagalalalagagagagagagacabaf
+aaabababababacacagagagalalalalalalalagagagaqayaDaDaDaDaDataQaqaRaqaqaqaqaqaqaSaqaqaqaqagagagagagalalalagagagagagagacabaf
+aaababababababacagagagalalalalalalalalagagaqatatataOatatatataTatatawatatatatatawatataqagagagagagalalalagagagagagagagacaf
+aaabababahabababacagagalalalalalalalalaFaPaqaUaqaqaqaqaqaqaqaqaqaqaqaqaqaqaVaqaqaqaqaqaPaFagagagalalalagagagagagagagacaf
+aaababababababacacagagagalalalalalalalalagaqataDaWaXaYaZbabbaqbcaDbdbebdbfataVawaVbgaqagagagagagalalalagagagagagagagacaf
+aaababababababacagagagagalalalalalalalalagaqatataOatataOatataqayatatatatatbhaqbiaqbjaqagagagagalalalalalagagagagagagacaf
+aaababababababacagagagagalalalalalalalalalaqaqaqaqaqaqaqaqaqaqaqaqbkblblblbmaqaqaqaqaqagagagagalalalalagagagagagagagacaf
+aaabababababacacagagagalalalalalalalalalalagagagagaGacacadadadadbnadadadadadbnacacagagagagagagalalalalagagagagagagagacaf
+aaabababababacagagagagalalalalalalalalalalalalagagaFagacacacacacaFadadadadadaFacagagagagagagalalalalalagagagagagagacacaf
+aaababababacacagagagagalalalalalalalalalalalalalagagagagagagagacacadadadadadacacagagagagagalalalalalalagagagagagagacabaf
+aaababababacagagagagagagalalalalalalalalalalalalagagagagagagagagacacacacacacacagagagagagagagalalalalalagagagagagacacabaf
+aaabababacacagagagagagagalalalalalalalalalalalalalagagagagagagagagagagagagagagagagagagagagagagalalalagagagagagagacababaf
+aaabababacacagagagagagalalalalalalalalalalalalalalagagagagagagagagagagagagagagagagagagagagagagalalalagagagagagagacababaf
+aaabababacacagagagagagalalalalalalalalalalalalalalalalalalagagagagagagagagagagagagagagagagagagalalalagagagagagacacababaf
+aaababacacagagagagagagagalalalalalalalalalalalalalalalalalalagagagagagagagagagagagagagagagagalalalalagagagagagacabababaf
+aaababacagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalagagalalalalalalagagagagagacacababaf
+aaababacagagagagagalalalalalalalalagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalalalalagagagagagacababaf
+aaabacacagagagagagalagalalalalalagagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalalalagagagagagacababaf
+aaabacagagagagagagagagalalalalalalalagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalalagagagagagacababaf
+aaabacagagagagagagagagagagagagalalalagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalalagagagagagacababaf
+aaabacagagagagagagagagagagagagagagagagagagagagagagalalalalalalalalalalalalalalalalalalalalalalalalalalagagagagacacababaf
+aaabacagagagagagagagagacacacacacacacacagagagagagagalalalalalalalalalalalalalalalagalalalalalalalalalalagagagagacabababaf
+aaabacagagagagagagacacacababababababacacacagagagagagagalalagagagagagagagagagalagagagagagalalalalalalagagagagagacabababaf
+aaabacacagagagagacacababababababababababacagagagagagagagagagagagagagagagagagagagagagagagagagagalalalalagagagacacababaeaf
+aaababacagagagacacababababababababababacacagagagagagagagagagagagagagagagagagagagagagagagagagagagagalalagagagacababahabaf
+aaababacagagacacabababababababababahabacagagagagagagagagagagagagagagacacacacacacagagagagagagagagagagagagagacacababababaf
+aaabacacagacacababababababababababababacagagagagagagagagagagacacacacacabacacacacacacagagagagagagagagagagacacabababababaf
+aaabacagacacababababaeabababababababacacagagagagagacacacacacacababababababababababacacacacacacacagagagacacacabababababaf
+aaabacacacababababababababababababacacacacacacacacacabababababababababababababababababababababacacacacacabababababababaf
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

@@ -4,7 +4,6 @@
 #if MAP_TEST
 #include "spider1.dmm"
 #include "Flake.dmm"
-#include "Field1.dmm"
 #include "MCamp1.dmm"
 #include "Rocky1.dmm"
 #include "Rocky2.dmm"
@@ -21,6 +20,9 @@
 #include "Rockybase.dmm"
 #include "MHR.dmm"
 #include "GovPatrol.dmm"
+#include "DecoupledEngine.dmm"
+#include "DoomP.dmm"
+#include "CaveS.dmm"
 
 #endif
 
@@ -154,7 +156,26 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/MHR.dmm'
 	cost = 15
 
-/datum/map_template/surface/GovPatrol
-	name = "GovPatrol"
+/datum/map_template/surface/wilderness/normal/GovPatrol
+	name = "Government Patrol"
 	desc = "A long lost SifGuard ground survey patrol. Now they have you guys!"
 	mappath = 'maps/submaps/surface_submaps/wilderness/GovPatrol.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/DecoupledEngine
+	name = "Decoupled Engine"
+	desc = "A damaged fission engine jettisoned from a starship long ago."
+	mappath = 'maps/submaps/surface_submaps/wilderness/DecoupledEngine.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/DoomP
+	name = "DoomP"
+	desc = "Witty description here."
+	mappath = 'maps/submaps/surface_submaps/wilderness/DoomP.dmm'
+	cost = 30
+
+/datum/map_template/surface/wilderness/deep/Cave
+	name = "CaveS"
+	desc = "Chitter chitter!"
+	mappath = 'maps/submaps/surface_submaps/wilderness/CaveS.dmm'
+	cost = 20

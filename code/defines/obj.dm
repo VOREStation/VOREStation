@@ -137,6 +137,18 @@ var/global/list/PDA_Manifest = list()
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
+	// Synthetics don't have actual records, so we will pull them from here.
+	// Synths don't have records, which is the means by which isactive is retrieved, so I'm hardcoding it to active, don't really have any better means
+	for(var/mob/living/silicon/ai/ai in mob_list)
+		bot[++bot.len] = list("name" = ai.real_name, "rank" = "Artificial Intelligence", "active" = "Active")
+
+	for(var/mob/living/silicon/robot/robot in mob_list)
+		// No combat/syndicate cyborgs, no drones.
+		if(robot.module && robot.module.hide_on_manifest)
+			continue
+
+		bot[++bot.len] = list("name" = robot.real_name, "rank" = "[robot.modtype] [robot.braintype]", "active" = "Active")
+
 
 	PDA_Manifest = list(
 		list("cat" = "Command", "elems" = heads),

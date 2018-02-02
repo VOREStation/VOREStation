@@ -24,3 +24,15 @@
 
 /area/submap/PascalB
 	name = "PascalB"
+
+/area/submap/bonfire
+	name = "abandoned bonfire"
+
+/area/submap/Rocky5
+	name = "Rocky5"
+
+/area/submap/Shakden
+	name = "Shakden"
+
+/area/submap/Field1
+	name = "Field 1"
