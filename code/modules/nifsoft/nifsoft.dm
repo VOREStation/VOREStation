@@ -176,7 +176,6 @@
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
 	var/datum/nifsoft/stored = null
-	var/laws = ""
 
 /obj/item/weapon/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
 	if(!in_range(user, A))
@@ -192,9 +191,13 @@
 		to_chat(user,"<span class='warning'>Either they don't have a NIF, or the disk can't connect.</span>")
 		return
 
-	Ht.visible_message("<span class='warning'>[Hu] begins uploading new NIFSoft into [Ht]!</span>","<span class='danger'>[Hu] is uploading new NIFSoft into you!</span>")
-	if(do_after(Hu,10 SECONDS,Ht))
-		var/extra = extra_params()
+	var/extra = extra_params()
+	if(A == user)
+		to_chat(user,"<span class='notice'>You upload [src] into your NIF.</span>")
+	else
+		Ht.visible_message("<span class='warning'>[Hu] begins uploading [src] into [Ht]!</span>","<span class='danger'>[Hu] is uploading [src] into you!</span>")
+
+	if(A == user || do_after(Hu,10 SECONDS,Ht))
 		new stored(Ht.nif,extra)
 		qdel(src)
 
@@ -208,8 +211,11 @@
 	name = "NIFSoft Disk (Compliance)"
 	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
 	stored = /datum/nifsoft/compliance
+	var/laws
 
 /obj/item/weapon/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
+	if(!ishuman(A))
+		return
 	if(!laws)
 		to_chat(user,"<span class='warning'>You haven't set any laws yet. Use the disk in-hand first.</span>")
 		return
