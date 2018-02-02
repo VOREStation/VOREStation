@@ -1771,6 +1771,7 @@
 #include "code\modules\lore_codex\news_data\main.dm"
 #include "code\modules\maps\tg\dmm_suite.dm"
 #include "code\modules\maps\tg\map_template.dm"
+#include "code\modules\maps\tg\map_template_vr.dm"
 #include "code\modules\maps\tg\reader.dm"
 #include "code\modules\materials\fifty_spawner_mats.dm"
 #include "code\modules\materials\material_recipes.dm"
