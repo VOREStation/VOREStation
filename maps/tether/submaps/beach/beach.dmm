@@ -63,7 +63,7 @@
 "bp" = (/turf/simulated/floor/beach/sand,/area/tether_away/beach/jungle)
 "bq" = (/turf/simulated/mineral/ignore_mapgen,/area/tether_away/beach/jungle)
 "br" = (/obj/effect/step_trigger/teleporter/away_beach_tocave,/turf/simulated/floor/beach/sand,/area/tether_away/beach/jungle)
-"bs" = (/obj/shuttle_connector/beach,/turf/simulated/floor/beach/sand/desert,/area/tether_away/beach/jungle)
+"bs" = (/obj/shuttle_connector/beach,/obj/effect/step_trigger/zlevel_fall/beach,/turf/simulated/floor/beach/sand/desert,/area/tether_away/beach/jungle)
 "bt" = (/mob/living/simple_animal/fennec,/turf/simulated/floor/beach/sand/desert,/area/tether_away/beach/jungle)
 "bu" = (/mob/living/simple_animal/fennec,/turf/simulated/floor/beach/sand,/area/tether_away/beach)
 "bv" = (/mob/living/simple_animal/fennec,/turf/simulated/floor/tiled/asteroid_steel,/area/tether_away/beach)
