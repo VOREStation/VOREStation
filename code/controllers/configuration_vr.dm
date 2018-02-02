@@ -7,6 +7,7 @@
 	var/time_off = FALSE
 	var/limit_interns = -1 //Unlimited by default
 	var/limit_visitors = -1 //Unlimited by default
+	var/pto_cap = 100 //Hours
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -47,6 +48,8 @@
 				config.limit_interns = text2num(value)
 			if ("limit_visitors")
 				config.limit_visitors = text2num(value)
+			if ("pto_cap")
+				config.pto_cap = text2num(value)
 			if ("time_off")
 				config.time_off = TRUE
 
