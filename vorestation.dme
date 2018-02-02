@@ -1797,6 +1797,7 @@
 #include "code\modules\mining\machine_stacking.dm"
 #include "code\modules\mining\machine_unloading.dm"
 #include "code\modules\mining\mine_items.dm"
+#include "code\modules\mining\mine_items_vr.dm"
 #include "code\modules\mining\mine_turfs.dm"
 #include "code\modules\mining\mineral_effect.dm"
 #include "code\modules\mining\mint.dm"
