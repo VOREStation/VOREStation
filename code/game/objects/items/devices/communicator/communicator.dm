@@ -173,13 +173,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
-		// VOREStation Edit Start - Lose connection if too far from our exonet node.
-		var/turf/T = get_turf(src)
-		if(!T || !is_on_same_plane_or_station(T.z, node.z))
-			return 0
-		// VOREStation Edit End
-		return 1
+	if(node && node.on && node.allow_external_communicators)
+		return can_telecomm(src,node)
 	return 0
 
 // Proc: process()
