@@ -61,6 +61,9 @@
 /mob/living/simple_animal/hostile/malf_drone/Process_Spacemove(var/check_drift = 0)
 	return 1
 
+/mob/living/simple_animal/hostile/malf_drone/isSynthetic()
+	return TRUE
+
 //self repair systems have a chance to bring the drone back to life
 /mob/living/simple_animal/hostile/malf_drone/Life()
 
@@ -150,6 +153,7 @@
 	disabled = rand(150, 600)
 	hostile = 0
 	walk(src,0)
+	..()
 
 /mob/living/simple_animal/hostile/malf_drone/death()
 	..(null,"suddenly breaks apart.")

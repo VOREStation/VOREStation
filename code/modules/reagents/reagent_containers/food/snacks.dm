@@ -1988,7 +1988,7 @@
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/onionrings
-	name = "Onion Soup"
+	name = "Onion Rings"
 	desc = "Crispy rings."
 	icon_state = "onionrings"
 	trash = /obj/item/trash/plate
@@ -3508,9 +3508,9 @@
 	..()
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/knife))
-		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
+/obj/item/weapon/reagent_containers/food/snacks/grown/attackby(obj/item/weapon/W, mob/user)
+	if(seed && seed.kitchen_tag && seed.kitchen_tag == "potato" && istype(W,/obj/item/weapon/material/knife))
+		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
 		user << "You cut the potato."
 		qdel(src)
 	else

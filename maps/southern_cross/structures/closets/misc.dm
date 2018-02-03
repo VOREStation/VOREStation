@@ -12,7 +12,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/rifle
 	name = "rifle cabinet"
-	req_access = list(access_explorer)
+	req_one_access = list(access_explorer,access_brig)
 
 /obj/structure/closet/secure_closet/guncabinet/rifle/New()
 	..()

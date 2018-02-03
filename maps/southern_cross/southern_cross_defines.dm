@@ -39,7 +39,27 @@
 	emergency_shuttle_called_message = "An emergency evacuation shuttle has been called. It will arrive at docks one and two in approximately %ETA%"
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled."
 
-	station_networks = list()
+	// Networks that will show up as options in the camera monitor program
+	station_networks = list(
+							NETWORK_CARGO,
+							NETWORK_CIVILIAN,
+							NETWORK_COMMAND,
+							NETWORK_ENGINE,
+							NETWORK_ENGINEERING,
+							NETWORK_ENGINEERING_OUTPOST,
+							NETWORK_FIRST_DECK,
+							NETWORK_SECOND_DECK,
+							NETWORK_THIRD_DECK,
+							NETWORK_MAIN_OUTPOST,
+							NETWORK_MEDICAL,
+							NETWORK_MINE,
+							NETWORK_RESEARCH,
+							NETWORK_RESEARCH_OUTPOST,
+							NETWORK_ROBOTS,
+							NETWORK_PRISON,
+							NETWORK_SECURITY,
+							NETWORK_TELECOM
+							)
 
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)

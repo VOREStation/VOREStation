@@ -7,6 +7,9 @@
 	worn_state = "pilot1"
 	item_icons = list(slot_w_uniform_str = 'maps/southern_cross/icons/mob/sc_under.dmi')
 	icon = 'maps/southern_cross/icons/obj/sc_uniforms.dmi'
+	sprite_sheets = list(
+			"Teshari" = 'maps/southern_cross/icons/mob/species/teshari/sc_uniform.dmi'
+			)
 	starting_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1)
 
 /obj/item/clothing/under/rank/pilot2

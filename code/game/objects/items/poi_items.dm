@@ -18,3 +18,37 @@
 /obj/item/poi/pascalb/Destroy()
 	processing_objects -= src
 	return ..()
+
+/obj/structure/closet/crate/oldreactor
+	name = "fission reactor rack"
+	desc = "Used in older models of nuclear reactors, essentially a cooling rack for high volumes of radioactive material."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "poireactor"
+	icon_opened = "poireactor_open"
+	icon_closed = "poireactor"
+	climbable = 0
+
+/obj/structure/closet/crate/oldreactor/New()
+	..()
+	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	new /obj/item/weapon/fuel_assembly/deuterium(src)
+
+/obj/item/poi/brokenoldreactor
+	icon_state = "poireactor_broken"
+	name = "ruptured fission reactor rack"
+	desc = "This broken hunk of machinery looks extremely dangerous."
+
+/obj/item/poi/brokenoldreactor/New()
+	processing_objects += src
+	return ..()
+
+/obj/item/poi/brokenoldreactor/process()
+	radiation_repository.radiate(src, 25)
+
+/obj/item/poi/brokenoldreactor/Destroy()
+	processing_objects -= src
+	return ..()
