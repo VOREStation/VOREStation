@@ -30,11 +30,11 @@ class DMM:
     def from_bytes(bytes):
         return _parse(bytes.decode(ENCODING))
 
-    def to_file(self, fname, tgm = False):
+    def to_file(self, fname, tgm = True):
         with open(fname, 'w', newline='\n', encoding=ENCODING) as f:
             (save_tgm if tgm else save_dmm)(self, f)
 
-    def to_bytes(self, tgm = False):
+    def to_bytes(self, tgm = True):
         bio = io.BytesIO()
         with io.TextIOWrapper(bio, newline='\n', encoding=ENCODING) as f:
             (save_tgm if tgm else save_dmm)(self, f)
