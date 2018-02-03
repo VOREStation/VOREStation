@@ -23,18 +23,6 @@
 		z = mapZ
 	return ..(map)
 
-/// Static - Always Loaded
-/datum/map_template/tether_lateload/tether_ships
-	name = "Tether - Ships"
-	desc = "Ship transit map and whatnot."
-	mappath = 'tether_ships.dmm'
-
-	associated_map_datum = /datum/map_z_level/tether_lateload/ships
-
-/datum/map_z_level/tether_lateload/ships
-	name = "Ships"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
-
 /turf/unsimulated/wall/seperator //to block vision between transit zones
 	name = ""
 	icon = 'icons/effects/effects.dmi'
@@ -81,7 +69,31 @@
 /obj/effect/step_trigger/zlevel_fall/beach
 	var/static/target_z
 
+//////////////////////////////////////////////////////////////////////////////
+/// Static Load
+/datum/map_template/tether_lateload/tether_misc
+	name = "Tether - Misc"
+	desc = "Misc areas, like some transit areas, holodecks, merc area."
+	mappath = 'tether_misc.dmm'
 
+	associated_map_datum = /datum/map_z_level/tether_lateload/ships
+
+/datum/map_z_level/tether_lateload/misc
+	name = "Misc"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
+
+/datum/map_template/tether_lateload/tether_ships
+	name = "Tether - Ships"
+	desc = "Ship transit map and whatnot."
+	mappath = 'tether_ships.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/ships
+
+/datum/map_z_level/tether_lateload/ships
+	name = "Ships"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
+
+//////////////////////////////////////////////////////////////////////////////
 /// Away Missions
 #if AWAY_MISSION_TEST
 #include "beach/beach.dmm"
