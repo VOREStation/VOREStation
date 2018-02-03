@@ -20,7 +20,8 @@ var/list/floor_decals = list()
 		return
 	add_to_turf_decals()
 	var/turf/T = get_turf(src)
-	T.apply_decals()
+	if(T) //VOREStation Edit
+		T.apply_decals()
 	qdel(src)
 	return
 
