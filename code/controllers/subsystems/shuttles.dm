@@ -16,10 +16,17 @@ SUBSYSTEM_DEF(shuttles)
 	var/list/shuttles = list()	// Maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles = list()	// Simple list of shuttles, for processing
 	var/list/current_run = list() // Shuttles remaining to process this fire() tick
+	var/list/docks_init_callbacks // List of callbacks to run when we finish setting up shuttle docks.
+	var/docks_initialized = FALSE
 
 /datum/controller/subsystem/shuttles/Initialize(timeofday)
 	global.shuttle_controller = src
 	setup_shuttle_docks()
+	for(var/I in docks_init_callbacks)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
+	LAZYCLEARLIST(docks_init_callbacks)
+	docks_init_callbacks = null
 	return ..()
 
 /datum/controller/subsystem/shuttles/fire(resumed = 0)
@@ -66,3 +73,11 @@ SUBSYSTEM_DEF(shuttles)
 	for(var/obj/machinery/embedded_controller/C in machines)
 		if(istype(C.program, /datum/computer/file/embedded_program/docking))
 			C.program.tag = null //clear the tags, 'cause we don't need 'em anymore
+	docks_initialized = TRUE
+
+// Register a callback that will be invoked once the shuttles have been initialized
+/datum/controller/subsystem/shuttles/proc/OnDocksInitialized(datum/callback/cb)
+	if(!docks_initialized)
+		LAZYADD(docks_init_callbacks, cb)
+	else
+		cb.InvokeAsync()
