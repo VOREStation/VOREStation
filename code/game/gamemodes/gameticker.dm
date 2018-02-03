@@ -132,8 +132,6 @@ var/global/datum/controller/gameticker/ticker
 
 	callHook("roundstart")
 
-	shuttle_controller.setup_shuttle_docks()
-
 	// TODO - Leshana - Dear God Fix This.  Fix all of this. Not just this line, this entire proc. This entire file!
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
