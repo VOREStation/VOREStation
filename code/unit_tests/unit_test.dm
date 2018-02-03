@@ -34,11 +34,11 @@ var/total_unit_tests = 0
 		world.Del()
 
 	var/said_msg = 0
-	while(ticker.pregame_timeleft && ticker.pregame_timeleft > 160)	// Make sure the initial startup is complete.
-		if(ticker.pregame_timeleft < 175 && !said_msg)
+	while(!Master.current_runlevel)	// Make sure the initial startup is complete.
+		if(!said_msg)
 			said_msg = 1
-			log_unit_test("Pregame Count down has started, giving it 20 seconds to finish.")
-		sleep(1)
+			log_unit_test("Waiting for subystems initilization to finish.")
+		stoplag(10)
 
 	world.save_mode("extended")
 
