@@ -1,5 +1,5 @@
-//These lists are populated in /datum/shuttle_controller/New()
-//Shuttle controller is instantiated in master_controller.dm.
+//These lists are populated in /datum/controller/subsystem/shuttles/proc/setup_shuttle_docks()
+//Shuttle subsystem is instantiated in shuttles.dm.
 
 //shuttle moving state defines are in setup.dm
 
