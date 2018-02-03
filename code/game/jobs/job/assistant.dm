@@ -14,6 +14,8 @@
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
 	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech") //VOREStation Edit
+	timeoff_factor = 0 //VOREStation Edit - Interns, noh
+
 //VOREStation Add
 /datum/job/intern/New()
 	..()
@@ -37,6 +39,7 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+	timeoff_factor = 0
 /datum/job/assistant/New()
 	..()
 	if(config)
