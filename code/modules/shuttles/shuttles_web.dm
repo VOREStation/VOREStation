@@ -16,6 +16,7 @@
 	var/autopilot_first_delay = null // If your want your shuttle to stay for a different amount of time for the first time, set this.
 	var/can_rename = TRUE // Lets the pilot rename the shuttle. Only available once.
 	category = /datum/shuttle/web_shuttle
+	var/list/obj/item/clothing/head/pilot/helmets
 
 /datum/shuttle/web_shuttle/New()
 	current_area = locate(current_area)
@@ -27,10 +28,12 @@
 			autopilot_delay = autopilot_first_delay
 	if(!visible_name)
 		visible_name = name
+	helmets = list()
 	..()
 
 /datum/shuttle/web_shuttle/Destroy()
 	qdel(web_master)
+	helmets.Cut()
 	return ..()
 
 
@@ -42,18 +45,30 @@
 	..()
 	last_move = world.time
 
+/datum/shuttle/web_shuttle/short_jump()
+	. = ..()
+	update_helmets()
+
+/datum/shuttle/web_shuttle/long_jump()
+	. = ..()
+	update_helmets()
+
 /datum/shuttle/web_shuttle/on_shuttle_departure()
-	..()
+	. = ..()
 	web_master.on_shuttle_departure()
+	update_helmets()
 
 /datum/shuttle/web_shuttle/on_shuttle_arrival()
-	..()
+	. = ..()
 	web_master.on_shuttle_arrival()
+	update_helmets()
 
 /datum/shuttle/web_shuttle/proc/build_destinations()
 	return
 
 /datum/shuttle/web_shuttle/process()
+	update_helmets()
+
 	if(moving_status == SHUTTLE_IDLE)
 		if(web_master.autopath) // We're currently flying a path.
 			autopilot_say("Continuing route.")
@@ -94,6 +109,20 @@
 				autopilot_say("Taking off.")
 				web_master.process_autopath()
 
+/datum/shuttle/web_shuttle/proc/update_helmets()
+	for(var/helm in helmets)
+		if(!helm)
+			helmets -= helm
+			continue
+		var/obj/item/clothing/head/pilot/H = helm
+		if(!H.shuttle_comp || get_area(H.shuttle_comp) != get_area(H))
+			H.shuttle_comp = null
+			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>")
+			H.update_hud("discon")
+			helmets -= H
+		else
+			H.update_hud(moving_status)
+
 /datum/shuttle/web_shuttle/proc/adjust_autopilot(on)
 	if(on)
 		if(autopilot)
@@ -130,6 +159,19 @@
 	icon_state = "flightcomp_center"
 	icon_keyboard = "flight_center_key"
 	icon_screen = "flight_center"
+
+/obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
+	var/datum/shuttle/web_shuttle/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	if(shuttle && istype(I,/obj/item/clothing/head/pilot))
+		var/obj/item/clothing/head/pilot/H = I
+		H.shuttle_comp = src
+		shuttle.helmets |= I
+		to_chat(user,"<span class='notice'>You register the helmet with the ship's console.</span>")
+		shuttle.update_helmets()
+		return
+
+	return ..()
+
 
 // Fairly copypasta-y.
 /obj/machinery/computer/shuttle_control/web/attack_hand(mob/user)
