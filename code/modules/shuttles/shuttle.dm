@@ -127,9 +127,9 @@
 
 		depart_time = world.time
 
-		on_shuttle_departure(departing)
-
 		moving_status = SHUTTLE_INTRANSIT
+
+		on_shuttle_departure(departing)
 
 		move(departing, interim, direction)
 		interim.shuttle_arrived()
