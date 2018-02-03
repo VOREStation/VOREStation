@@ -36,7 +36,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
-	l_ear = /obj/item/device/radio/headset/pilot
+	l_ear = /obj/item/device/radio/headset/pilot/alt
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
 	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
@@ -48,7 +48,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	uniform = /obj/item/clothing/under/utility/blue
 	suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
-	l_ear = /obj/item/device/radio/headset/headset_sar
+	l_ear = /obj/item/device/radio/headset/sar
 	l_hand = /obj/item/weapon/storage/firstaid/adv
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
