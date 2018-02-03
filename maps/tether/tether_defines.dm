@@ -115,7 +115,9 @@
 		/area/tether/surfacebase/emergency_storage/atrium)
 
 	lateload_z_levels = list(
-		"Tether - Ships")
+		"Tether - Misc",
+		"Tether - Ships"
+		)
 
 	lateload_single_pick = list(
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
