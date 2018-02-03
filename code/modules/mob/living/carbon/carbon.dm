@@ -168,8 +168,9 @@
 	if (src.health >= config.health_threshold_crit)
 		if(src == M && istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
+			var/datum/gender/T = gender_datums[H.get_visible_gender()]
 			src.visible_message( \
-				text("<font color='blue'>[src] examines [].</font>",src.gender==MALE?"himself":"herself"), \
+				"<font color='blue'>[src] examines [T.himself].</font>", \
 				"<font color='blue'>You check yourself for injuries.</font>" \
 				)
 
@@ -243,32 +244,29 @@
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
-			var/t_him = "it"
-			if (src.gender == MALE)
-				t_him = "him"
-			else if (src.gender == FEMALE)
-				t_him = "her"
 			if (istype(src,/mob/living/carbon/human) && src:w_uniform)
 				var/mob/living/carbon/human/H = src
 				H.w_uniform.add_fingerprint(M)
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
+			var/datum/gender/T = gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
-				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
-				"<span class='notice'>You shake [src], but they do not respond... Maybe they have S.S.D?</span>")
+				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [T.him] up!</span>", \
+				"<span class='notice'>You shake [src], but [T.he] [T.does] not respond... Maybe [T.he] [T.has] S.S.D?</span>")
 			else if(lying || src.sleeping)
 				src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
-				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
-									"<span class='notice'>You shake [src] trying to wake [t_him] up!</span>")
+				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [T.him] up!</span>", \
+									"<span class='notice'>You shake [src] trying to wake [T.him] up!</span>")
 			else
 				var/mob/living/carbon/human/hugger = M
+				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
 				if(M.resting == 1) //Are they resting on the ground?
-					M.visible_message("<span class='notice'>[M] grabs onto [src] and pulls \himself up</span>", \
-							"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>") //AHHH gender checks are hard, but this should work
+					M.visible_message("<span class='notice'>[M] grabs onto [src] and pulls [TM.himself] up</span>", \
+							"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>")
 					if(M.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
 						src.adjust_fire_stacks(1)
 						M.adjust_fire_stacks(-1)
@@ -279,8 +277,8 @@
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
-					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
-								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
+					M.visible_message("<span class='notice'>[M] hugs [src] to make [T.him] feel better!</span>", \
+								"<span class='notice'>You hug [src] to make [T.him] feel better!</span>")
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.adjust_fire_stacks(1)
 					M.adjust_fire_stacks(-1)

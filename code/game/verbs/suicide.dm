@@ -73,14 +73,16 @@
 				return
 
 		log_and_message_admins("[key_name(src)] commited suicide")
-
+		
+		var/datum/gender/T = gender_datums[get_visible_gender()]
+		
 		var/suicidemsg
-		suicidemsg = pick("<span class='danger'>[src] is attempting to bite \his tongue off! It looks like \he's trying to commit suicide.</span>", \
-		                     "<span class='danger'>[src] is jamming \his thumbs into \his eye sockets! It looks like \he's trying to commit suicide.</span>", \
-		                     "<span class='danger'>[src] is twisting \his own neck! It looks like \he's trying to commit suicide.</span>", \
-		                     "<span class='danger'>[src] is holding \his breath! It looks like \he's trying to commit suicide.</span>")
+		suicidemsg = pick("<span class='danger'>[src] is attempting to bite [T.his] tongue off! It looks like [T.he] [T.is] trying to commit suicide.</span>", \
+		                     "<span class='danger'>[src] is jamming [T.his] thumbs into [T.his] eye sockets! It looks like [T.he] [T.is] trying to commit suicide.</span>", \
+		                     "<span class='danger'>[src] is twisting [T.his] own neck! It looks like [T.he] [T.is] trying to commit suicide.</span>", \
+		                     "<span class='danger'>[src] is holding [T.his] breath! It looks like [T.he] [T.is] trying to commit suicide.</span>")
 		if(isSynthetic())
-			suicidemsg = "<span class='danger'>[src] is attempting to switch \his power off! It looks like \he's trying to commit suicide.</span>"
+			suicidemsg = "<span class='danger'>[src] is attempting to switch [T.his] power off! It looks like [T.he] [T.is] trying to commit suicide.</span>"
 		visible_message(suicidemsg)
 
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
@@ -125,7 +127,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << "<span class='danger'>[src] is powering down. It looks like \he's trying to commit suicide.</span>"
+		viewers(src) << "<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>"
 		//put em at -175
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
@@ -145,7 +147,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << "<span class='danger'>[src] is powering down. It looks like \he's trying to commit suicide.</span>"
+		viewers(src) << "<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>"
 		//put em at -175
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()

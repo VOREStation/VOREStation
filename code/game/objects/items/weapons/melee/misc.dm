@@ -11,5 +11,6 @@
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
 	suicide_act(mob/user)
-		viewers(user) << "<span class='danger'>\The [user] is strangling \himself with \the [src]! It looks like \he's trying to commit suicide.</span>"
+		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		user.visible_message(span("danger", "\The [user] [T.is] strangling [T.himself] with \the [src]! It looks like [T.he] [T.is] trying to commit suicide."), span("danger", "You start to strangle yourself with \the [src]!"), span("danger", "You hear the sound of someone choking!"))
 		return (OXYLOSS)
