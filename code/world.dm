@@ -116,10 +116,12 @@ var/global/datum/global_init/init = new ()
 
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
+
+	processScheduler.deferSetupFor(/datum/controller/process/ticker)
+	processScheduler.setup()
 	Master.Initialize(10, FALSE)
-	spawn(1)
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		processScheduler.setup()
+
+	spawn(1)		
 		master_controller.setup()
 #if UNIT_TEST
 		initialize_unit_tests()
