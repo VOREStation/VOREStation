@@ -98,6 +98,7 @@
 #if AWAY_MISSION_TEST
 #include "beach/beach.dmm"
 #include "beach/cave.dmm"
+#include "alienship/alienship.dmm"
 #endif
 
 #include "beach/beach.dm"
