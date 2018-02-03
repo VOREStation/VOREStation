@@ -9,6 +9,9 @@
 #include "beacons.dmm"
 #include "Epod.dmm"
 #include "PascalB.dmm"
+#include "bonfire.dmm"
+#include "Rocky5.dmm"
+#include "Field1.dmm"
 #endif
 
 // The 'plains' is the area outside the immediate perimeter of the big outpost.
@@ -56,7 +59,7 @@
 	mappath = 'maps/submaps/surface_submaps/plains/Epod.dmm'
 	cost = 5
 
-/datum/map_template/surface/wilderness/normal/Rocky2
+/datum/map_template/surface/plains/normal/Rocky2
 	name =  "Rocky2"
 	desc = "More rocks."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Rocky2.dmm'
@@ -68,3 +71,27 @@
 	desc = "How did this old thing get all the way out here?"
 	mappath = 'maps/submaps/surface_submaps/plains/PascalB.dmm'
 	cost = 5
+
+/datum/map_template/surface/plains/bonfire
+	name = "Abandoned Bonfire"
+	desc = "Someone seems to enjoy orange juice a bit too much."
+	mappath = 'maps/submaps/surface_submaps/plains/bonfire.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/Rocky5
+	name = "Rocky 5"
+	desc = "More rocks, Less Stalone"
+	mappath = 'maps/submaps/surface_submaps/plains/Rocky5.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/Shakden
+	name = "Shakden"
+	desc = "Not to be confused with Shaq Den"
+	mappath = 'maps/submaps/surface_submaps/plains/Shakden.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/Field1
+	name = "Field 1"
+	desc = "A regular field with a tug on it"
+	mappath = 'maps/submaps/surface_submaps/plains/Field1.dmm'
+	cost = 20

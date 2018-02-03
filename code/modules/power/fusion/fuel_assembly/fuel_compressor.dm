@@ -6,6 +6,12 @@
 	anchored = 1
 	layer = 4
 
+	circuit = /obj/item/weapon/circuitboard/fusion_fuel_compressor
+
+/obj/machinery/fusion_fuel_compressor/initialize()
+	. = ..()
+	default_apply_parts()
+
 /obj/machinery/fusion_fuel_compressor/MouseDrop_T(var/atom/movable/target, var/mob/user)
 	if(user.incapacitated() || !user.Adjacent(src))
 		return
@@ -34,6 +40,14 @@
 	return 0
 
 /obj/machinery/fusion_fuel_compressor/attackby(var/obj/item/thing, var/mob/user)
+
+	if(default_deconstruction_screwdriver(user, thing))
+		return
+	if(default_deconstruction_crowbar(user, thing))
+		return
+	if(default_part_replacement(user, thing))
+		return
+
 	if(istype(thing, /obj/item/stack/material))
 		var/obj/item/stack/material/M = thing
 		var/material/mat = M.get_material()

@@ -62,6 +62,7 @@
 	var/wrenching = 0
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
 	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
+	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
 
 /obj/machinery/porta_turret/crescent
 	enabled = 0
@@ -102,6 +103,7 @@
 	desc = "A very tough looking turret made by alien hands. This one looks destroyed, thankfully."
 	icon_state = "destroyed_target_prism"
 	stat = BROKEN
+	can_salvage = FALSE // So you need to actually kill a turret to get the alien gun.
 
 /obj/machinery/porta_turret/New()
 	..()
@@ -325,7 +327,7 @@ var/list/turret_icons
 			//try and salvage its components
 			user << "<span class='notice'>You begin prying the metal coverings off.</span>"
 			if(do_after(user, 20))
-				if(prob(70))
+				if(can_salvage && prob(70))
 					user << "<span class='notice'>You remove the turret and salvage some components.</span>"
 					if(installation)
 						var/obj/item/weapon/gun/energy/Gun = new installation(loc)

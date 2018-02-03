@@ -1,6 +1,6 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
-/mob/proc/gib(anim="gibbed-m",do_gibs)
+/mob/proc/gib(anim="gibbed-m", do_gibs, gib_file = 'icons/mob/mob.dmi')
 	death(1)
 	transforming = 1
 	canmove = 0
@@ -12,7 +12,7 @@
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
 	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
+	animation.icon = gib_file
 	animation.master = src
 
 	flick(anim, animation)

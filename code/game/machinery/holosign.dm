@@ -12,6 +12,7 @@
 	var/lit = 0
 	var/id = null
 	var/on_icon = "sign_on"
+	var/off_icon = "sign_off"
 
 /obj/machinery/holosign/proc/toggle()
 	if(stat & (BROKEN|NOPOWER))
@@ -22,7 +23,7 @@
 
 /obj/machinery/holosign/update_icon()
 	if(!lit)
-		icon_state = "sign_off"
+		icon_state = off_icon
 	else
 		icon_state = on_icon
 
@@ -40,7 +41,16 @@
 /obj/machinery/holosign/exit
 	name = "exit holosign"
 	desc = "Small wall-mounted holographic projector. This one reads EXIT."
-	on_icon = "exit"
+	on_icon = "emergencyexit"
+
+/obj/machinery/holosign/bar
+	name = "bar holosign"
+	desc = "Small wall-mounted holographic projector. This one reads OPEN."
+	icon_state = "barclosed"
+	on_icon = "baropen"
+	off_icon = "barclosed"
+
+
 ////////////////////SWITCH///////////////////////////////////////
 
 /obj/machinery/button/holosign

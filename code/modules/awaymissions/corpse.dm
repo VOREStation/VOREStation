@@ -87,7 +87,7 @@
 
 
 /obj/effect/landmark/corpse/syndicatesoldier
-	name = "Syndicate Operative"
+	name = "Mercenary"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/armor/vest
 	corpseshoes = /obj/item/clothing/shoes/boots/swat

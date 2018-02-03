@@ -4,7 +4,6 @@
 	icon_state = "goose"
 	icon_living = "goose"
 	icon_dead = "goose_dead"
-	icon_gib = "generic_gib"
 
 	faction = "geese"
 	intelligence_level = SA_ANIMAL

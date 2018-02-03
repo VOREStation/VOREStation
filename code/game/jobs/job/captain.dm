@@ -83,8 +83,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 5
 	economic_modifier = 7
 
-	access = list(access_heads)
-	minimal_access = list(access_heads)
+	access = list(access_heads, access_keycard_auth)
+	minimal_access = list(access_heads, access_keycard_auth)
 
 	outfit_type = /decl/hierarchy/outfit/job/secretary
 	alt_titles = list("Command Liaison", "Bridge Secretary")

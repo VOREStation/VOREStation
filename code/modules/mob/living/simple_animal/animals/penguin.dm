@@ -4,7 +4,6 @@
 	icon_state = "penguin"
 	icon_living = "penguin"
 	icon_dead = "penguin_dead"
-	icon_gib = "generic_gib"
 	intelligence_level = SA_ANIMAL
 
 	maxHealth = 20

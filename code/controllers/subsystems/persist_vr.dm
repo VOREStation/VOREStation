@@ -45,10 +45,15 @@ SUBSYSTEM_DEF(persist)
 		var/client/C = M.client
 		var/wait_in_hours = (wait / (1 HOUR)) * J.timeoff_factor
 		LAZYINITLIST(C.department_hours)
+		var/dept_hours = C.department_hours
 		if(isnum(C.department_hours[J.department]))
-			C.department_hours[J.department] += wait_in_hours
+			dept_hours[J.department] += wait_in_hours
 		else
-			C.department_hours[J.department] = wait_in_hours
+			dept_hours[J.department] = wait_in_hours
+
+		//Cap it
+		dept_hours[J.department] = min(config.pto_cap, dept_hours[J.department])
+
 
 		// Okay we figured it out, lets update database!
 		var/sql_ckey = sql_sanitize_text(C.ckey)
