@@ -1740,6 +1740,7 @@
 	base_icon = "riding_crop"
 	icon_state = "riding_crop0"
 	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
+	slot_flags = SLOT_BELT
 //1R1S: Malady Blanche
 /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
 	name = "Malady's riding crop"
