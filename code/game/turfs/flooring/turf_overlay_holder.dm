@@ -16,7 +16,12 @@ var/global/floor_decals_initialized = FALSE
 	icon = null
 	icon_state = null
 	mouse_opacity = 0
-	auto_init = 0
+	// auto_init = 0
+
+/atom/movable/turf_overlay_holder/initialize()
+	// doesn't need special init
+	initialized = TRUE
+	return INITIALIZE_HINT_NORMAL
 
 /atom/movable/turf_overlay_holder/New(var/atom/newloc)
 	..()

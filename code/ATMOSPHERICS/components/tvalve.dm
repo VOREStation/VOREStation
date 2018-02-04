@@ -318,7 +318,7 @@
 
 
 /obj/machinery/atmospherics/tvalve/digital/initialize()
-	..()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
@@ -458,7 +458,7 @@
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/tvalve/mirrored/digital/initialize()
-	..()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 

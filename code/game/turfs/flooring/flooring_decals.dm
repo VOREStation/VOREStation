@@ -22,8 +22,8 @@ var/list/floor_decals = list()
 	var/turf/T = get_turf(src)
 	if(T) //VOREStation Edit
 		T.apply_decals()
-	qdel(src)
-	return
+	initialized = TRUE
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/floor_decal/reset
 	name = "reset marker"
@@ -33,8 +33,8 @@ var/list/floor_decals = list()
 	if(T.decals && T.decals.len)
 		T.decals.Cut()
 		T.update_icon()
-	qdel(src)
-	return
+	initialized = TRUE
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/floor_decal/corner
 	icon_state = "corner_white"

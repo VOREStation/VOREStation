@@ -84,9 +84,9 @@
 	delete_me = 1
 
 /obj/effect/landmark/initialize()
-	..()
+	. = ..()
 	if(delete_me)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
 	if(delete_me || force)

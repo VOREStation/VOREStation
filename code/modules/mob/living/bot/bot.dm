@@ -51,7 +51,7 @@
 
 // Make sure mapped in units start turned on.
 /mob/living/bot/initialize()
-	..()
+	. = ..()
 	if(on)
 		turn_on() // Update lights and other stuff
 

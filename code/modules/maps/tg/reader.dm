@@ -304,7 +304,7 @@ var/global/use_preloader = FALSE
 		first_turf_index++
 
 	//turn off base new Initialization until the whole thing is loaded
-	SScreation.StartLoadingMap()
+	SSatoms.map_loader_begin()
 	//instanciate the first /turf
 	var/turf/T
 	if(members[first_turf_index] != /turf/template_noop)
@@ -323,7 +323,7 @@ var/global/use_preloader = FALSE
 	for(index in 1 to first_turf_index-1)
 		instance_atom(members[index],members_attributes[index],crds,no_changeturf)
 	//Restore initialization to the previous value
-	SScreation.StopLoadingMap()
+	SSatoms.map_loader_stop()
 
 ////////////////
 //Helpers procs
@@ -344,9 +344,9 @@ var/global/use_preloader = FALSE
 
 	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
 	if(TICK_CHECK)
-		SScreation.StopLoadingMap()
+		SSatoms.map_loader_stop()
 		stoplag()
-		SScreation.StartLoadingMap()
+		SSatoms.map_loader_begin()
 
 /dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE

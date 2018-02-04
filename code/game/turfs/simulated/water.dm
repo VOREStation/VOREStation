@@ -11,11 +11,8 @@
 	outdoors = TRUE
 	var/depth = 1 // Higher numbers indicates deeper water.
 
-/turf/simulated/floor/water/New()
-	update_icon()
-	..()
-
 /turf/simulated/floor/water/initialize()
+	. = ..()
 	update_icon()
 
 /turf/simulated/floor/water/update_icon()

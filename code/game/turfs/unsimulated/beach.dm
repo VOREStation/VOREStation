@@ -38,7 +38,7 @@
 	icon_state = "desert"
 
 /turf/simulated/floor/beach/sand/desert/initialize()
-	..()
+	. = ..()
 	if(prob(5))
 		icon_state = "desert[rand(0,4)]"
 

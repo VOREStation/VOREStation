@@ -131,6 +131,7 @@
 
 
 /obj/machinery/alarm/initialize()
+	. = ..()
 	set_frequency(frequency)
 	if(!master_is_operating())
 		elect_master()
@@ -991,6 +992,7 @@ FIRE ALARM
 		update_icon()
 
 /obj/machinery/firealarm/initialize()
+	. = ..()
 	if(z in using_map.contact_levels)
 		set_security_level(security_level? get_security_level() : "green")
 

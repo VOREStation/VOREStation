@@ -17,9 +17,6 @@
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = null
 	var/obj/item/weapon/disk/body_record/disk = null
 
-/obj/machinery/computer/transhuman/designer/initialize()
-	..()
-
 /obj/machinery/computer/transhuman/designer/Destroy()
 	active_br = null
 	preview_icon = null

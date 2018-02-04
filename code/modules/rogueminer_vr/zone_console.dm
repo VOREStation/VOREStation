@@ -24,7 +24,7 @@
 	var/obj/machinery/computer/shuttle_control/belter/shuttle_control
 
 /obj/machinery/computer/roguezones/initialize()
-	..()
+	. = ..()
 	shuttle_control = locate(/obj/machinery/computer/shuttle_control/belter)
 
 /obj/machinery/computer/roguezones/attack_ai(mob/user as mob)
