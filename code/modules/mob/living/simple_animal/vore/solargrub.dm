@@ -189,7 +189,7 @@ List of things solar grubs should be able to do:
 		set_light(2.5, 1, COLOR_YELLOW)
 		return 1
 
-/mob/living/hostile/solargrubknight
+/mob/living/simple_animal/hostile/solargrubknight
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0
