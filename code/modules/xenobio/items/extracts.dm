@@ -970,6 +970,7 @@
 
 	if(S)
 		new S(get_turf(holder.my_atom))
+	..()
 
 /datum/chemical_reaction/slime/rainbow_unity
 	name = "Slime Unity"
