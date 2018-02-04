@@ -270,6 +270,10 @@
 		return 0
 	else if(istype(card.loc,/mob))
 		var/mob/holder = card.loc
+		var/datum/belly/inside_belly = check_belly(card) //VOREStation edit.
+		if(inside_belly) //VOREStation edit.
+			to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
+			return 0 //VOREStation edit.
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder
 			for(var/obj/item/organ/external/affecting in H.organs)
