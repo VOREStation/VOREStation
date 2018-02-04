@@ -1372,7 +1372,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Debug"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
-
+	set popup_menu = FALSE //VOREStation Edit - Declutter.
 	var/crystals
 
 	if(check_rights(R_ADMIN))
@@ -1388,7 +1388,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Debug"
 	set name = "Add Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user by addition."
-
+	set popup_menu = FALSE //VOREStation Edit - Declutter.
 	var/crystals
 
 	if(check_rights(R_ADMIN))

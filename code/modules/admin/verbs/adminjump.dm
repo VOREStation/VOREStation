@@ -39,7 +39,7 @@
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
-
+	set popup_menu = FALSE //VOREStation Edit - Declutter.
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
