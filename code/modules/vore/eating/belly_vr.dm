@@ -314,6 +314,7 @@
 		var/mob/living/carbon/human/Pred = owner
 		if(ishuman(M))
 			var/mob/living/carbon/human/Prey = M
+			Prey.bloodstr.del_reagent("numbenzyme")
 			Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
 			Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
 			Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
@@ -465,7 +466,7 @@
 			owner << "<span class='warning'>You feel your [name] start to cling onto its contents...</span>"
 			digest_mode = DM_ABSORB
 			return
-		
+
 		else if(prob(digestchance) && digest_mode != DM_ITEMWEAK && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
 			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"

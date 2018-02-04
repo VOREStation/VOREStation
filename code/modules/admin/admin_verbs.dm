@@ -103,7 +103,8 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/fixatmos,
 	/datum/admins/proc/quick_nif, //VOREStation Add,
-	/datum/admins/proc/sendFax
+	/datum/admins/proc/sendFax,
+	/client/proc/despawn_player
 	)
 
 var/list/admin_verbs_ban = list(
@@ -731,6 +732,7 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Debug"
 	set name = "Give Modifier"
 	set desc = "Makes a mob weaker or stronger by adding a specific modifier to them."
+	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
 	if(!L)
 		to_chat(usr, "<span class='warning'>Looks like you didn't select a mob.</span>")
@@ -1051,6 +1053,7 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Fun"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
+	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
 	if(alert("Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
 
