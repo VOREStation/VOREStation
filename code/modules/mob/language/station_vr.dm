@@ -57,6 +57,7 @@
 	key = "n"
 	syllables = list("viepn","e","bag","docu","kar","xlaqf","raa","qwos","nen","ty","von","kytaf","xin","ty","ka","baak","hlafaifpyk","znu","agrith","na'ar","uah","plhu","six","fhler","bjel","scee","lleri",
 	"dttm","aggr","uujl","hjjifr","wwuthaav",)
+	machine_understands = FALSE
 
 /datum/language/angel
 	name = LANGUAGE_ENOCHIAN
@@ -68,6 +69,7 @@
 	key = "a"
 	syllables = list("salve","sum","loqui","operatur","iusta","et","permittit","facere","effercio","pluribus","enim","hoc",
 	"mihi","wan","six","salve","tartu")
+	machine_understands = FALSE
 
 
 /datum/language/unathi
@@ -82,3 +84,4 @@
 	flags = 0
 /datum/language/gutter
 	flags = WHITELISTED
+	machine_understands = FALSE

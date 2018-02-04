@@ -115,11 +115,11 @@
 	cost = 0 //VOREStation Edit. Changed cost to 0
 	slot = "implant"
 	exploitable = 1
-/*VOREStation Edit - Make language great again
+
 /datum/gear/utility/translator
 	display_name = "universal translator"
 	path = /obj/item/device/universal_translator
-	cost = 8*/
+	cost = 8
 
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
