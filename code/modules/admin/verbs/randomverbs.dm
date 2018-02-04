@@ -758,6 +758,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Check Contents"
+	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
 	var/list/L = M.get_contents()
 	for(var/t in L)
