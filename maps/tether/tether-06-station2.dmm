@@ -8,9 +8,6 @@
 "ac" = (
 /turf/simulated/mineral/vacuum,
 /area/mine/explored/upper_level)
-"ad" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "ae" = (
 /turf/simulated/wall/r_wall,
 /area/security/prison)
@@ -147,9 +144,6 @@
 "at" = (
 /turf/simulated/wall,
 /area/maintenance/station/sec_lower)
-"au" = (
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
 "av" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -27835,8 +27829,8 @@ aa
 aa
 aa
 aa
-ad
-ad
+ac
+ac
 ac
 ac
 ac
@@ -27958,7 +27952,7 @@ aa
 aa
 aa
 aa
-ad
+ac
 ac
 ac
 ac
@@ -28080,7 +28074,7 @@ aa
 aa
 aa
 aa
-ad
+ac
 ac
 ac
 ac
@@ -28203,7 +28197,7 @@ aa
 aa
 aa
 aa
-au
+aP
 ac
 aP
 aP
@@ -28325,7 +28319,7 @@ aa
 aa
 aa
 aa
-au
+aP
 aP
 aP
 aP
@@ -28447,9 +28441,9 @@ aa
 aa
 aa
 aa
-au
-au
-au
+aP
+aP
+aP
 aP
 aP
 aP
@@ -28571,8 +28565,8 @@ aa
 aa
 aa
 aa
-au
-au
+aP
+aP
 aP
 aP
 aP
@@ -28694,9 +28688,9 @@ aa
 aa
 aa
 aa
-au
-au
-au
+aP
+aP
+aP
 aP
 aP
 aP
@@ -28818,8 +28812,8 @@ aa
 aa
 aa
 aa
-au
-au
+aP
+aP
 aP
 aP
 aP
