@@ -2674,7 +2674,6 @@
 #include "code\modules\xenoarcheaology\manuals.dm"
 #include "code\modules\xenoarcheaology\master_controller.dm"
 #include "code\modules\xenoarcheaology\misc.dm"
-#include "code\modules\xenoarcheaology\misc_vr.dm"
 #include "code\modules\xenoarcheaology\sampling.dm"
 #include "code\modules\xenoarcheaology\artifacts\artifact.dm"
 #include "code\modules\xenoarcheaology\artifacts\artifact_find.dm"
