@@ -587,3 +587,66 @@
 	var/new_color = input(src,"Select a new color","Body Glow",glow_color) as color
 	if(new_color)
 		glow_color = new_color
+
+/mob/living/proc/eat_trash()
+	set name = "Eat Trash"
+	set category = "Abilities"
+	set desc = "Consume held garbage."
+
+	var/obj/item/I = get_active_hand()
+	if(!I)
+		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
+		return
+	if(is_type_in_list(I,edible_trash))
+		playsound(src.loc,'sound/vore/gulp.ogg', 20, 1)
+		drop_item()
+		var/belly = vore_selected
+		var/datum/belly/selected = vore_organs[belly]
+		I.forceMove(src)
+		selected.internal_contents |= I
+		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
+			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
+		else if(istype(I,/obj/item/device/flashlight/glowstick))
+			to_chat(src, "<span class='notice'>You found out the glowy juice only tastes like regret.</span>")
+		else if(istype(I,/obj/item/weapon/cigbutt))
+			to_chat(src, "<span class='notice'>You can taste the flavor of bitter ash. Classy.</span>")
+		else if(istype(I,/obj/item/clothing/mask/smokable))
+			var/obj/item/clothing/mask/smokable/C = I
+			if(C.lit)
+				to_chat(src, "<span class='notice'>You can taste the flavor of burning ash. Spicy!</span>")
+			else
+				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
+		else if(istype(I,/obj/item/weapon/paper))
+			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
+		else if(istype(I,/obj/item/weapon/dice))
+			to_chat(src, "<span class='notice'>You can taste the bitter flavor of cheating.</span>")
+		else if(istype(I,/obj/item/weapon/lipstick))
+			to_chat(src, "<span class='notice'>You can taste the flavor of couture and style. Toddler at the make-up bag style.</span>")
+		else if(istype(I,/obj/item/weapon/soap))
+			to_chat(src, "<span class='notice'>You can taste the bitter flavor of verbal purification.</span>")
+		else if(istype(I,/obj/item/weapon/spacecash) || istype(I,/obj/item/weapon/storage/wallet))
+			to_chat(src, "<span class='notice'>You can taste the flavor of wealth and reckless waste.</span>")
+		else if(istype(I,/obj/item/weapon/broken_bottle) || istype(I,/obj/item/weapon/material/shard))
+			to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
+		else if(istype(I,/obj/item/weapon/light))
+			var/obj/item/weapon/light/L = I
+			if(L.status == LIGHT_BROKEN)
+				to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
+			else
+				to_chat(src, "<span class='notice'>You can taste the flavor of really bad ideas.</span>")
+		else if(istype(I,/obj/item/toy/figure))
+			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
+		else if(istype(I,/obj/item/device/paicard) || istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
+			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
+			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship. Or maybe it is something else.</span>")
+		else if(istype(I,/obj/item/weapon/reagent_containers/food))
+			var/obj/item/weapon/reagent_containers/food/F = I
+			if(!F.reagents.total_volume)
+				to_chat(src, "<span class='notice'>You can taste the flavor of garbage and leftovers. Delicious?</span>")
+			else
+				to_chat(src, "<span class='notice'>You can taste the flavor of gluttonous waste of food.</span>")
+		else
+			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
+		return
+	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
+	return

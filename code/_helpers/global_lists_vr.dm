@@ -123,6 +123,42 @@ var/global/list/tf_egg_types = list(
 	"Xenochimera"	= /obj/structure/closet/secure_closet/egg/scree,
 	"Xenomorph"		= /obj/structure/closet/secure_closet/egg/xenomorph)
 
+var/global/list/edible_trash = list(/obj/item/trash,
+				/obj/item/device/flashlight,
+				/obj/item/toy/figure,
+				/obj/item/weapon/cigbutt,
+				/obj/item/weapon/bananapeel,
+				/obj/item/stack/material/cardboard,
+				/obj/item/weapon/light,
+				/obj/item/weapon/paper,
+				/obj/item/weapon/broken_bottle,
+				/obj/item/weapon/reagent_containers/food,
+				/obj/item/inflatable/torn,
+				/obj/item/weapon/flame/match,
+				/obj/item/clothing/mask/smokable,
+				/obj/item/weapon/storage/wallet,
+				/obj/item/weapon/spacecash,
+				/obj/item/broken_device,
+				/obj/item/weapon/corncob,
+				/obj/item/weapon/paperplane,
+				/obj/item/weapon/pen,
+				/obj/item/weapon/photo,
+				/obj/item/weapon/storage/box/wings,
+				/obj/item/weapon/storage/box/matches,
+				/obj/item/weapon/storage/fancy/cigarettes,
+				/obj/item/weapon/storage/fancy/egg_box,
+				/obj/item/weapon/storage/fancy/candle_box,
+				/obj/item/weapon/storage/fancy/crayons,
+				/obj/item/weapon/dice,
+				/obj/item/weapon/newspaper,
+				/obj/item/weapon/reagent_containers/glass/rag,
+				/obj/item/weapon/lipstick,
+				/obj/item/weapon/soap,
+				/obj/item/weapon/material/shard,
+				/obj/item/device/paicard,
+				/obj/item/device/mmi/digital/posibrain,
+				/obj/item/device/aicard)
+
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
 
