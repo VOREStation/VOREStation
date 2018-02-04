@@ -1115,9 +1115,6 @@
 "bY" = (
 /turf/simulated/wall/r_wall,
 /area/ai)
-"bZ" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "ca" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -33083,8 +33080,8 @@ aa
 aa
 aa
 aa
-bZ
-bZ
+ab
+ab
 ab
 ab
 ab
@@ -33206,7 +33203,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33328,7 +33325,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33451,7 +33448,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33573,7 +33570,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33695,9 +33692,9 @@ aa
 aa
 aa
 aa
-bZ
-bZ
-bZ
+ab
+ab
+ab
 ab
 ab
 ab
@@ -33819,8 +33816,8 @@ aa
 aa
 aa
 aa
-bZ
-bZ
+ab
+ab
 ab
 ab
 ab
@@ -33942,9 +33939,9 @@ aa
 aa
 aa
 aa
-bZ
-bZ
-bZ
+ab
+ab
+ab
 ab
 ab
 ab
@@ -34066,8 +34063,8 @@ aa
 aa
 aa
 aa
-bZ
-bZ
+ab
+ab
 ab
 ab
 ab
