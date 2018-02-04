@@ -40,10 +40,6 @@ What is the naming convention for planes or layers?
 
 */
 
-#define PLANE_ADMIN1			-92 //Purely for shenanigans
-#define PLANE_ADMIN2			-91 //And adminbuse
-#define PLANE_ADMIN3			-90 //And generating salt
-
 #define SPACE_PLANE     		-32	// Reserved for use in space/parallax
 #define PARALLAX_PLANE  		-30	// Reserved for use in space/parallax
 
@@ -74,6 +70,8 @@ What is the naming convention for planes or layers?
 	#define HUD_LAYER			20 //Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 	#define SCREEN_LAYER		22 //Mob HUD/effects layer
 
+#define PLANE_ADMIN1			3 //Purely for shenanigans (below lighting)
+
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
 #define PLANE_LIGHTING_ABOVE	6 //For glowy eyes etc. that shouldn't be affected by darkness
 
@@ -94,6 +92,8 @@ What is the naming convention for planes or layers?
 
 #define PLANE_MESONS			30 //Stuff seen with mesons, like open ceilings. This is 30 for downstreams.
 
+#define PLANE_ADMIN2			33 //Purely for shenanigans (above lighting)
+
 //Fullscreen overlays under inventory
 #define PLANE_FULLSCREEN		90 //Blindness, mesons, druggy, etc
 	#define OBFUSCATION_LAYER	5 //Where images covering the view for eyes are put
@@ -109,6 +109,8 @@ What is the naming convention for planes or layers?
 	#define LAYER_HUD_ITEM		3 //Things sitting on HUD items (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
 	#define LAYER_HUD_ABOVE		4 //Things that reside above items (highlights)
 #define PLANE_PLAYER_HUD_ITEMS	96 //Separate layer with which to apply colorblindness
+
+#define PLANE_ADMIN3			99 //Purely for shenanigans (above HUD)
 
 
 //////////////////////////

@@ -14,9 +14,8 @@
 	for(var/turf/unsimulated/floor/F in src)
 		valid_spawn_turfs |= F	
 
-/area/awaymission/initialize()
+/area/awaymission/LateInitialize()
 	..()
-	sleep(180)
 	EvalValidSpawnTurfs()
 		
 	if(!valid_spawn_turfs.len)

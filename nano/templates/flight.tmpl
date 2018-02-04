@@ -116,7 +116,6 @@
 
 {{if data.is_moving == 0}}
 	<h3>Available Destinations</h3>
-
 	<HR>
 	<div class="itemContent" style="width: 100%;"></div><BR>
 		{{for data.routes}}
@@ -127,9 +126,7 @@
 				<div class="itemContent">
 					<div style="float: left; width: 100%;">
 						{{:helper.link(value.travel_time, 'clock', {"traverse" : value.index})}}
-					
-					</div> 
-
+					</div>
 				</div>
 			</div>
 		{{/for}}
@@ -150,3 +147,95 @@
 		</div>
 	</div>
 {{/if}}
+
+{{if data.doors}}
+	<h3>Hatch Status</h3>
+	<HR>
+	<div class="item">
+		{{props data.doors}}
+			<div class="item">
+				<div class="itemLabel">{{:key}}</div>
+				<div class="itemContent">
+					{{if value.open}}
+						<span class="bad">OPN</span>
+					{{else}}
+						<span class="good">CLS</span>
+					{{/if}}
+					 - 
+					{{if value.bolted}}
+						<span class="good">BLT</span>
+					{{else}}
+						<span class="bad">UBLT</span>
+					{{/if}}
+				</div>
+			</div>
+		{{/props}}
+	</div>
+{{/if}}
+
+{{if data.sensors}}
+	<h3>Air Readout</h3>
+	<hr>
+	{{props data.sensors}}
+		<div class="item" style="position: relative; overflow: hidden;">
+			<div class="itemLabel" style="padding-right: 2px; height: 100%; position:absolute;">
+				<span style="position: relative;display: inline-block; top: 50%;left: 50%;transform: translate(-50%, -50%);">{{:key}}</span>
+			</div>
+			<div class="itemContentMedium statusDisplay floatRight" style="overflow: hidden;">
+				{{if value.reading == 1}}
+					<div class="itemLabelWide">
+						Pressure:
+					</div>
+					<div class = "itemContentSmall">
+						{{:helper.string('<span class="{0}">{1} kPa</span>', value.pressure < 80 || value.pressure > 120 ? 'bad' : value.pressure < 95 || value.pressure > 110 ? 'average' : 'good' , value.pressure)}}
+					</div>
+					<div class="itemLabelWide">
+						Temperature:
+					</div>
+					<div class = "itemContentSmall">
+						{{:helper.string('<span class="{0}">{1} &deg;C</span>', value.temp < 5 || value.temp > 35 ? 'bad' : value.temp < 15 || value.temp > 25 ? 'average' : 'good' , value.temp)}}
+					</div>
+					<br>
+					<div class="itemLabelWide">
+						Oxygen:
+					</div>
+					<div class = "itemContentSmall">
+						{{:helper.string('<span class="{0}">{1}%</span>', value.oxygen < 17 ? 'bad' : value.oxygen < 19 ? 'average' : 'good' , value.oxygen)}}
+					</div>
+					<div class="itemLabelWide">
+						Nitrogen:
+					</div>
+					<div class = "itemContentSmall">
+						{{:helper.string('<span class="{0}">{1}%</span>', value.nitrogen > 82 ? 'bad' : value.nitrogen > 80 ? 'average' : 'good' , value.nitrogen)}}
+					</div>
+					<div class="itemLabelWide">
+						Carbon&nbsp;Dioxide:
+					</div>
+					<div class = "itemContentSmall">
+						{{:helper.string('<span class="{0}">{1}%</span>', value.carbon_dioxide > 5 ? 'bad' : 'good' , value.carbon_dioxide)}}
+					</div>
+					<div class="itemLabelWide">
+						Phoron:
+					</div>
+					<div class = "itemContentSmall">
+						{{:helper.string('<span class="{0}">{1}%</span>', value.phoron  > 0 ? 'bad' : 'good' , value.phoron)}}
+
+					</div>
+					{{if value.other > 0}}
+						<div class="itemLabelWide">
+							Unknown:
+						</div>
+						<div class = "itemContentSmall">
+							<span class="bad">{{:value.other}}%</span>
+						</div>
+					{{/if}}
+				{{else}}
+					<div class="itemContent" style="width: 100%;">
+						<span class="average"><b>Unable to get air reading</b></span>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	{{/props}}
+{{/if}}
+

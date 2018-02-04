@@ -10,7 +10,7 @@ var/global/list/station_holomaps = list()
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 500
-	auto_init = 0 // We handle our own special initialization needs. // TODO - Make this not ~Leshana
+	//auto_init = 0 // We handle our own special initialization needs. // TODO - Make this not ~Leshana
 	circuit = /obj/item/weapon/circuitboard/station_map
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
@@ -36,17 +36,21 @@ var/global/list/station_holomaps = list()
 	original_zLevel = loc.z
 	station_holomaps += src
 	flags |= ON_BORDER // Why? It doesn't help if its not density
+
+/obj/machinery/station_map/initialize()
+	. = ..()
 	if(ticker && holomaps_initialized)
 		spawn(1) // Tragically we need to spawn this in order to give the frame construcing us time to set pixel_x/y
-			initialize()
+			setup_holomap()
 
 /obj/machinery/station_map/Destroy()
 	station_holomaps -= src
 	stopWatching()
 	holomap_datum = null
-	..()
+	. = ..()
 
-/obj/machinery/station_map/initialize()
+/obj/machinery/station_map/proc/setup_holomap()
+	. = ..()
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z

@@ -224,7 +224,7 @@
 	var/obj/item/device/radio/radio = null
 
 /obj/machinery/computer/security/telescreen/entertainment/initialize()
-	..()
+	. = ..()
 	radio = new(src)
 	radio.listening = TRUE
 	radio.broadcasting = FALSE

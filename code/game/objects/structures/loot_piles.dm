@@ -119,7 +119,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 /obj/structure/loot_pile/maint/initialize()
 	icon_state = pick(icon_states_to_use)
-	..()
+	. = ..()
 
 // Has large amounts of possible items, most of which may or may not be useful.
 /obj/structure/loot_pile/maint/junk

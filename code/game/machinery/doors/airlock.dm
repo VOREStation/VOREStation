@@ -470,6 +470,7 @@
 /obj/machinery/door/airlock/alien/public // Entry to UFO.
 	req_one_access = list()
 	normalspeed = FALSE // So it closes faster and hopefully keeps the warm air inside.
+	hackProof = TRUE //VOREStation Edit - No borgos
 
 /*
 About the new airlock wires panel:
@@ -1210,6 +1211,7 @@ About the new airlock wires panel:
 				src.closeOther = A
 				break
 	name = "\improper [name]"
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

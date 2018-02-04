@@ -54,7 +54,7 @@ var/global/list/extraMiniMaps = list()
 
 	// TODO - Check - They had a delayed init perhaps?
 	for (var/obj/machinery/station_map/S in station_holomaps)
-		S.initialize()
+		S.setup_holomap()
 
 // Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.
 /proc/generateHoloMinimap(var/zLevel = 1)

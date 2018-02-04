@@ -130,7 +130,9 @@
 /area/shuttle/excursion/tether)
 "aaw" = (
 /obj/machinery/computer/shuttle_control/web/excursion{
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/computer.dmi';
+	my_doors = list("expshuttle_door_L" = "Port Cargo", "expshuttle_door_Ro" = "Airlock Outer", "expshuttle_door_Ri" = "Airlock Inner", "expshuttle_door_cargo" = "Cargo Hatch");
+	my_sensors = list("shuttlesens_exp" = "Exterior Environment", "shuttlesens_exp_int" = "Cargo Area", "shuttlesens_exp_psg" = "Passenger Area")
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -178,7 +180,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/clothing/head/pilot/alt,
+/obj/item/clothing/head/pilot,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "aaC" = (
@@ -3141,6 +3143,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 10
 	},
+/obj/machinery/camera/network/northern_star,
 /turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)
 "ajj" = (
@@ -3174,13 +3177,6 @@
 /obj/item/weapon/storage/backpack/parachute{
 	pixel_x = 5;
 	pixel_y = -6
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/explorer_prep)
-"ajm" = (
-/obj/machinery/alarm{
-	frequency = 1441;
-	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_prep)
@@ -4188,6 +4184,7 @@
 	locked = 1
 	},
 /obj/machinery/button/remote/airlock{
+	desiredstate = 1;
 	dir = 1;
 	icon_state = "doorctrl0";
 	id = "expshuttle_door_L";
@@ -5064,14 +5061,6 @@
 /obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"apf" = (
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "expshuttle_cargo"
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
 "apg" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -5079,19 +5068,19 @@
 /turf/simulated/floor,
 /area/engineering/break_room)
 "aph" = (
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "expshuttle_cargo"
-	},
-/obj/machinery/button/remote/blast_door{
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
 	dir = 4;
-	id = "expshuttle_cargo";
-	name = "cargo bay doors";
-	pixel_x = -30;
-	pixel_y = 0;
-	req_access = list();
-	req_one_access = list(19,43,67)
+	icon_state = "doorctrl0";
+	id = "expshuttle_door_cargo";
+	name = "hatch bolt control";
+	pixel_x = -32;
+	specialfunctions = 4
+	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_cargo";
+	locked = 1
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -21547,6 +21536,69 @@
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
+"poz" = (
+/obj/machinery/camera/network/northern_star{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/explorer_prep)
+"rhA" = (
+/obj/effect/floor_decal/borderfloorblack,
+/obj/effect/floor_decal/industrial/danger,
+/obj/machinery/camera/network/northern_star,
+/turf/simulated/floor/tiled,
+/area/tether/station/excursion_dock)
+"soc" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/camera/network/northern_star,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/station/excursion_dock)
+"AyD" = (
+/obj/machinery/shuttle_sensor{
+	dir = 5;
+	id_tag = "shuttlesens_exp"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
+"CaJ" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/camera/network/northern_star,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/station/excursion_dock)
+"DHJ" = (
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/obj/structure/closet/secure_closet/pilot,
+/turf/simulated/floor/tiled,
+/area/tether/station/explorer_prep)
+"GVt" = (
+/obj/structure/closet/secure_closet/pilot,
+/turf/simulated/floor/tiled,
+/area/tether/station/explorer_prep)
+"KNg" = (
+/obj/machinery/shuttle_sensor{
+	dir = 6;
+	id_tag = "shuttlesens_exp_int"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
+"Mws" = (
+/obj/machinery/shuttle_sensor{
+	dir = 2;
+	id_tag = "shuttlesens_exp_psg"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
+"Vrx" = (
+/obj/machinery/camera/network/northern_star,
+/turf/simulated/floor/tiled,
+/area/tether/station/excursion_dock)
 
 (1,1,1) = {"
 aaa
@@ -29389,14 +29441,14 @@ aah
 aah
 aaP
 aad
-aah
+Vrx
 aah
 akC
 aah
 aah
 aah
 aad
-aaP
+CaJ
 aah
 aah
 aay
@@ -29749,7 +29801,7 @@ aat
 aat
 aat
 aad
-aal
+rhA
 aap
 aap
 aap
@@ -29880,7 +29932,7 @@ aap
 aap
 aap
 aaq
-aaq
+KNg
 amD
 aaq
 aaq
@@ -30371,7 +30423,7 @@ aaK
 alg
 amG
 avG
-apf
+aaD
 aap
 aap
 avK
@@ -30607,7 +30659,7 @@ aal
 aaq
 aau
 aaE
-aaq
+Mws
 aaM
 ajf
 ajP
@@ -30858,7 +30910,7 @@ aap
 aaq
 aaq
 amK
-aaq
+AyD
 aaq
 aau
 aaO
@@ -30969,7 +31021,7 @@ aat
 aat
 aat
 aad
-aal
+rhA
 aap
 aap
 aap
@@ -31348,7 +31400,7 @@ alm
 amP
 aah
 aad
-abc
+soc
 aah
 aah
 auR
@@ -31583,8 +31635,8 @@ aac
 aac
 aac
 aac
-aac
 aiv
+ajl
 ajj
 ajV
 akJ
@@ -31705,9 +31757,9 @@ aac
 aac
 aac
 aac
-aac
 aiv
-ajm
+ajn
+akL
 ajY
 akM
 akM
@@ -31825,11 +31877,11 @@ aaa
 aaa
 aaa
 aaa
-cbM
-cbM
+aac
 aac
 aiv
-ajl
+GVt
+akL
 ajX
 akL
 akL
@@ -31948,10 +32000,10 @@ aaa
 aaa
 aaa
 aaa
-cbM
 aac
 aiv
-ajn
+DHJ
+akL
 ajX
 akL
 akL
@@ -32070,10 +32122,10 @@ aaa
 aaa
 aaa
 aaa
-cbM
 aac
 aiv
 ajn
+akL
 ajZ
 akN
 akN
@@ -32193,9 +32245,9 @@ aaa
 aaa
 aaa
 aaa
-cbM
 aiv
 ajo
+poz
 aka
 bQH
 akL
@@ -32315,7 +32367,7 @@ aaa
 aaa
 aaa
 aaa
-cbM
+aiv
 aiv
 aiv
 aiv
@@ -32437,9 +32489,9 @@ aaa
 aaa
 aaa
 aaa
-cbM
-cbM
-cbM
+aac
+aac
+aac
 aac
 aiv
 bQK
@@ -32561,8 +32613,8 @@ aaa
 aaa
 aaa
 aaa
-cbM
-cbM
+aac
+aac
 aiv
 aiv
 aiv
@@ -32684,9 +32736,9 @@ aaa
 aaa
 aaa
 aaa
-cbM
-cbM
-cbM
+aac
+aac
+aac
 aac
 aac
 aac
@@ -32808,8 +32860,8 @@ aaa
 aaa
 aaa
 aaa
-cbM
-cbM
+aac
+aac
 aac
 aac
 aac

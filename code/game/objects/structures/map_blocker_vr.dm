@@ -9,10 +9,7 @@
 	density = 1
 	unacidable = 1
 
-/obj/effect/blocker/New()
-	icon = null // Make it disappear.
-	icon_state = null // Probably not nessicary.
-
 /obj/effect/blocker/initialize() // For non-gateway maps.
+	. = ..()
 	icon = null
 	icon_state = null

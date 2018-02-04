@@ -17,7 +17,7 @@
 
 
 /obj/machinery/computer/cloning/initialize()
-	..()
+	. = ..()
 	updatemodules()
 
 /obj/machinery/computer/cloning/Destroy()

@@ -110,11 +110,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
 		for(var/obj/machinery/r_n_d/server/centcom/S in machines)
-			S.initialize()
+			S.update_connections()
 			break
 
 /obj/machinery/computer/rdconsole/initialize()
 	SyncRDevices()
+	. = ..()
 
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 	//Loading a disk into it.

@@ -10,7 +10,7 @@
 
 /obj/item/weapon/book/codex/initialize()
 	tree = new(src, root_type)
-	..()
+	. = ..()
 
 /obj/item/weapon/book/codex/attack_self(mob/user)
 	if(!tree)

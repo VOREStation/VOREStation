@@ -17,7 +17,7 @@
 	var/obj/item/weapon/disk/transcore/disk
 
 /obj/machinery/computer/transhuman/resleeving/initialize()
-	..()
+	. = ..()
 	updatemodules()
 
 /obj/machinery/computer/transhuman/resleeving/Destroy()

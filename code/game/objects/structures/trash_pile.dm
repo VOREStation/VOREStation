@@ -29,7 +29,7 @@
 	var/global/list/allocated_gamma = list()
 
 /obj/structure/trash_pile/initialize()
-	..()
+	. = ..()
 	icon_state = pick(
 		"pile1",
 		"pile2",
