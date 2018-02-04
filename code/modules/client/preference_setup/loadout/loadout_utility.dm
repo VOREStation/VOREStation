@@ -101,13 +101,13 @@
 
 /datum/gear/utility/implant
 	exploitable = 1
-
+/* VOREStation Edit - Make languages great again
 /datum/gear/utility/implant/eal //This does nothing if you don't actually know EAL.
 	display_name = "implant, language, EAL"
 	path = /obj/item/weapon/implant/language/eal
 	cost = 2
 	slot = "implant"
-	exploitable = 1
+	exploitable = 1*/
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
@@ -115,11 +115,11 @@
 	cost = 0 //VOREStation Edit. Changed cost to 0
 	slot = "implant"
 	exploitable = 1
-
+/*VOREStation Edit - Make language great again
 /datum/gear/utility/translator
 	display_name = "universal translator"
 	path = /obj/item/device/universal_translator
-	cost = 8
+	cost = 8*/
 
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
