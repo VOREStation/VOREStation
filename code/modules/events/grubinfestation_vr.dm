@@ -15,7 +15,7 @@
 /datum/event/grub_infestation/start()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
-		if(istype(get_area(temp_vent), /area/crew_quarters/sleep, /area/crew_quarters/captain, /area/security/armory/red,
+		if(istype(get_area(temp_vent), /area/crew_quarters/sleep, /area/security/armory/red,
 		/area/teleporter, /area/ai/foyer, /area/medical/virology))
 			continue
 		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
