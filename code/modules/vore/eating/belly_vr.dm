@@ -465,10 +465,16 @@
 			owner << "<span class='warning'>You feel your [name] start to cling onto its contents...</span>"
 			digest_mode = DM_ABSORB
 			return
-
-		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
+		
+		else if(prob(digestchance) && digest_mode != DM_ITEMWEAK && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
 			R << "<span class='warning'>In response to your struggling, \the [name] begins to get more active...</span>"
 			owner << "<span class='warning'>You feel your [name] beginning to become active!</span>"
+			digest_mode = DM_ITEMWEAK
+			return
+
+		else if(prob(digestchance) && digest_mode == DM_ITEMWEAK) //Oh god it gets even worse if you fail twice!
+			R << "<span class='warning'>In response to your struggling, \the [name] begins to get even more active!</span>"
+			owner << "<span class='warning'>You feel your [name] beginning to become even more active!</span>"
 			digest_mode = DM_DIGEST
 			return
 		else //Nothing interesting happened.
