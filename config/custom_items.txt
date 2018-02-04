@@ -477,11 +477,11 @@ item_path: /obj/item/weapon/implanter/reagent_generator/rischi
 }
 
 # ######## L CKEYS
-{
-ckey: luminescentring
-character_name: Briana Moore
-item_path: /obj/item/weapon/storage/box/fluff/briana_moore
-}
+#{
+#ckey: luminescentring
+#character_name: Briana Moore
+#item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+#}
 {
 ckey: luminescentring
 character_name: Briana Moore
