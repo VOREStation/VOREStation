@@ -190,8 +190,8 @@
 	name = "Sebastian's Lumoco Arms P3 Box"
 	has_items = list(
 		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/ammo_magazine/m9mm/flash,
-		/obj/item/ammo_magazine/m9mm/flash,
+		/obj/item/ammo_magazine/m9mm/compact/flash,
+		/obj/item/ammo_magazine/m9mm/compact/flash,
 		/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji)
 
 /obj/item/weapon/storage/box/fluff/briana_moore
