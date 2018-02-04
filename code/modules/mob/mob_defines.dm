@@ -221,3 +221,4 @@
 	var/hovering = FALSE	// Is the mob floating or flying in some way? If so, don't fall normally.	//Not implemented yet, idea is to let them ignore terrain slowdown and falling down floors
 	var/softfall = FALSE	// Is the mob able to lessen their impact upon falling?
 	var/parachuting = FALSE	// Is the mob able to jump out of planes and survive? Don't check this directly outside of CanParachute().
+	var/get_rig_stats = 0 //Moved from computer.dm
