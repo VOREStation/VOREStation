@@ -63,10 +63,17 @@ List of things solar grubs should be able to do:
 	var/emp_chance = 20 // Beware synths
 
 /mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+	. = ..()
 	if(target_mob&& prob(emp_chance))
 		target_mob.emp_act(4) //The weakest strength of EMP
 		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
-	..()
+
+	if(ishuman(.))
+		var/mob/living/carbon/human/L = .
+		if(L.reagents)
+			if(prob(poison_chance))
+				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
+				L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_animal/retaliate/solargrub/Life()
 	. = ..()
@@ -105,15 +112,6 @@ List of things solar grubs should be able to do:
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_ITEMWEAK //item friendly digestions, they just want your chemical energy :3
-
-/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
-	. = ..()
-	if(isliving(.))
-		var/mob/living/L = .
-		if(L.reagents)
-			if(prob(poison_chance))
-				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
-				L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_animal/retaliate/solargrub/death()
 	src.anchored = 0
@@ -169,15 +167,13 @@ List of things solar grubs should be able to do:
 	var/emp_chance = 30
 
 /mob/living/simple_animal/hostile/solargrubknight/PunchTarget()
+	. = ..()
 	if(target_mob&& prob(emp_chance))
 		target_mob.emp_act(4) //The weakest strength of EMP
 		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
-	..()
 
-/mob/living/simple_animal/hostile/solargrubknight/PunchTarget()
-	. = ..()
-	if(isliving(.))
-		var/mob/living/L = .
+	if(ishuman(.))
+		var/mob/living/carbon/human/L = .
 		if(L.reagents)
 			if(prob(poison_chance))
 				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
