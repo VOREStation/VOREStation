@@ -214,6 +214,18 @@ item_name: theseus' diamond coin
 item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
 }
 
+{
+ckey: draycu
+character_name: Schae Yonra
+item_path: /obj/item/weapon/melee/fluff/holochain/mass
+}
+
+{
+ckey: draycu
+character_name: Schae Yonra
+item_path: /obj/item/weapon/implanter/reagent_generator/yonra
+}
+
 # ######## E CKEYS
 
 # Permit Expired
@@ -307,7 +319,7 @@ item_path: /obj/item/weapon/storage/box/fluff/morxaina
 {
 ckey: jacknoir413
 character_name: Areax Third
-item_path: /obj/item/weapon/storage/box/fluff/stunstaff
+item_path: /obj/item/weapon/storage/backpack/fluff/stunstaff
 req_titles: Security Officer, Warden, Head of Security
 }
 
@@ -458,12 +470,18 @@ character_name: Andy Gettemy
 item_path: /obj/item/device/pda_mod/fluff/kligor
 }
 
-# ######## L CKEYS
 {
-ckey: luminescentring
-character_name: Briana Moore
-item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+ckey: konabird
+character_name: Rischi
+item_path: /obj/item/weapon/implanter/reagent_generator/rischi
 }
+
+# ######## L CKEYS
+#{
+#ckey: luminescentring
+#character_name: Briana Moore
+#item_path: /obj/item/weapon/storage/box/fluff/briana_moore
+#}
 {
 ckey: luminescentring
 character_name: Briana Moore
@@ -477,6 +495,12 @@ item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 }
 
 # ######## M CKEYS
+{
+ckey: mewchild
+character_name: Phi Vietsi
+item_path: /obj/item/clothing/gloves/fluff/vietsi
+}
+
 {
 ckey: molenar
 character_name: Uya Kohakuren
@@ -645,26 +669,26 @@ character_name: Alfonso Oak Telanor
 item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 }
 
-{
-ckey: silencedmp5a5
-character_name: Serdykov Antoz
-item_path: /obj/item/clothing/head/helmet/serdy
-req_access = 1
-}
+#{
+#ckey: silencedmp5a5
+#character_name: Serdykov Antoz
+#item_path: /obj/item/clothing/head/helmet/serdy
+#req_access = 1
+#}
 
-{
-ckey: silencedmp5a5
-character_name: Serdykov Antoz
-item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
-req_access = 1
-}
+#{
+#ckey: silencedmp5a5
+#character_name: Serdykov Antoz
+#item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
+#req_access = 1
+#}
 
-{
-ckey: silencedmp5a5
-character_name: Serdykov Antoz
-item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
-req_access = 1
-}
+#{
+#ckey: silencedmp5a5
+#character_name: Serdykov Antoz
+#item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
+#req_access = 1
+#}
 
 {
 ckey: silvertalismen
@@ -849,7 +873,7 @@ item_path: /obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
 {
 ckey: wickedtemp
 character_name: Chakat Tempest
-item_path: /obj/item/weapon/reagent_containers/hypospray/vr/tempest
+item_path: /obj/item/weapon/reagent_containers/hypospray/vial/tempest
 }
 
 {

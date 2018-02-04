@@ -284,6 +284,9 @@
 
 	toggle(mob/living/silicon/infomorph/user)
 		user.arHUD = !user.arHUD
+		if(user.plane_holder)
+			user.plane_holder.set_vis(VIS_CH_ID,user.arHUD)
+			user.plane_holder.set_vis(VIS_CH_HEALTH_VR,user.arHUD)
 
 	is_active(mob/living/silicon/infomorph/user)
 		return user.arHUD

@@ -15,7 +15,7 @@ var/list/job_whitelist = list()
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job.whitelist_only)
 		return 1
-	if(rank == "assistant" || rank == "Assistant")
+	if(rank == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 		return 1
 	if(check_rights(R_ADMIN, 0))
 		return 1

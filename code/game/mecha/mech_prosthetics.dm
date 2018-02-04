@@ -13,7 +13,7 @@
 
 	var/speed = 1
 	var/mat_efficiency = 1
-	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "gold" = 0, "silver" = 0, "diamond" = 0, "phoron" = 0, "uranium" = 0, "plasteel" = 0)
+	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "plastic" = 0, "gold" = 0, "silver" = 0, "osmium" = 0, "diamond" = 0, "phoron" = 0, "uranium" = 0, "plasteel" = 0)
 	var/res_max_amount = 200000
 
 	var/datum/research/files
@@ -40,6 +40,7 @@
 	return
 
 /obj/machinery/pros_fabricator/initialize()
+	. = ..()
 	manufacturer = basic_robolimb.company
 	update_categories()
 

@@ -81,7 +81,7 @@
 	ks1type = /obj/item/device/encryptionkey/raider
 
 /obj/item/device/radio/headset/raider/initialize()
-	..()
+	. = ..()
 	set_frequency(RAID_FREQ)
 
 /obj/item/device/radio/headset/binary
@@ -176,6 +176,13 @@
 /obj/item/device/radio/headset/heads/captain/alt
 	name = "colony director's bowman headset"
 	desc = "The headset of the boss."
+	icon_state = "com_headset_alt"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/captain
+
+/obj/item/device/radio/headset/heads/captain/sfr
+	name = "SFR headset"
+	desc = "A headset belonging to a Sif Free Radio DJ. SFR, best tunes in the wilderness."
 	icon_state = "com_headset_alt"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain

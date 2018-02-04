@@ -32,6 +32,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/notehtml = ""
 
 	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
+	var/fon = 0 // Internal light
+	var/flum = 2 // Brightness
+
 	var/list/modules = list(
 							list("module" = "Phone", "icon" = "phone64", "number" = 2),
 							list("module" = "Contacts", "icon" = "person64", "number" = 3),
@@ -170,8 +173,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
-		return 1
+	if(node && node.on && node.allow_external_communicators)
+		return can_telecomm(src,node)
 	return 0
 
 // Proc: process()
@@ -323,3 +326,28 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	..()
 	client_huds |= global_hud.whitense
 	client_huds |= global_hud.darkMask
+
+//It's the 26th century. We should have smart watches by now.
+/obj/item/device/communicator/watch
+	name = "communicator watch"
+	desc = "A personal device used to enable long range dialog between two people, utilizing existing telecommunications infrastructure to allow \
+	communications across different stations, planets, or even star systems. You can wear this one on your wrist!"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "commwatch"
+	slot_flags = SLOT_GLOVES
+
+/obj/item/device/communicator/watch/update_icon()
+	if(video_source)
+		icon_state = "commwatch-video"
+		return
+
+	if(voice_mobs.len || communicating.len)
+		icon_state = "commwatch-active"
+		return
+
+	if(alert_called)
+		icon_state = "commwatch-called"
+		return
+
+	icon_state = initial(icon_state)
+

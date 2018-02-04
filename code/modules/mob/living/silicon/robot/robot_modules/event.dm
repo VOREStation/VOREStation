@@ -16,7 +16,6 @@
 	src.modules += new /obj/item/borg/combat/shield(src)
 
 	// Med
-	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/lost(src)
 
@@ -61,7 +60,7 @@
 
 	// For growing flowers
 	src.modules += new /obj/item/weapon/material/minihoe(src)
-	src.modules += new /obj/item/weapon/material/hatchet(src)
+	src.modules += new /obj/item/weapon/material/knife/machete/hatchet(src)
 	src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
 	src.modules += new /obj/item/weapon/storage/bag/plants(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)
@@ -75,4 +74,8 @@
 
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(25000)
 	synths += wood
+
+	var/obj/item/stack/material/cyborg/wood/W = new (src)
+	W.synths = list(wood)
+	src.modules += W
 

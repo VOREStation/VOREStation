@@ -279,7 +279,7 @@
 /obj/item/weapon/storage/fancy/vials/New()
 	..()
 	for(var/i=1 to 6)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial/vr(src) //VOREStation Edit - Better vials
+		new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
 	return
 
 /obj/item/weapon/storage/lockbox/vials

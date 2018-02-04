@@ -54,14 +54,15 @@
 		if(confirmTarget(H))
 			target = H
 			if(last_newpatient_speak + 30 SECONDS < world.time)
-				var/message_options = list(
-					"Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/mcoming.ogg',
-					"Wait [H.name]! I want to help!" = 'sound/voice/medbot/mhelp.ogg',
-					"[H.name], you appear to be injured!" = 'sound/voice/medbot/minjured.ogg'
-					)
-				var/message = pick(message_options)
-				say(message)
-				playsound(loc, message_options[message], 50, 0)
+				if(vocal)
+					var/message_options = list(
+						"Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/mcoming.ogg',
+						"Wait [H.name]! I want to help!" = 'sound/voice/medbot/mhelp.ogg',
+						"[H.name], you appear to be injured!" = 'sound/voice/medbot/minjured.ogg'
+						)
+					var/message = pick(message_options)
+					say(message)
+					playsound(loc, message_options[message], 50, 0)
 				custom_emote(1, "points at [H.name].")
 				last_newpatient_speak = world.time
 			break
@@ -86,7 +87,7 @@
 	visible_message("<span class='warning'>[src] is trying to inject [H]!</span>")
 	if(declare_treatment)
 		var/area/location = get_area(src)
-		broadcast_medical_hud_message("[src] is treating <b>[H]</b> in <b>[location]</b>", src)
+		global_announcer.autosay("[src] is treating <b>[H]</b> in <b>[location]</b>", "[src]", "Medical")
 	busy = 1
 	update_icons()
 	if(do_mob(src, H, 30))
@@ -97,29 +98,31 @@
 		visible_message("<span class='warning'>[src] injects [H] with the syringe!</span>")
 
 	if(H.stat == DEAD) // This is down here because this proc won't be called again due to losing a target because of parent AI loop.
-		var/death_messages = list(
-			"No! Stay with me!" = 'sound/voice/medbot/mno.ogg',
-			"Live, damnit! LIVE!" = 'sound/voice/medbot/mlive.ogg',
-			"I... I've never lost a patient before. Not today, I mean." = 'sound/voice/medbot/mlost.ogg'
-			)
-		var/message = pick(death_messages)
-		say(message)
-		playsound(loc, death_messages[message], 50, 0)
 		target = null
+		if(vocal)
+			var/death_messages = list(
+				"No! Stay with me!" = 'sound/voice/medbot/mno.ogg',
+				"Live, damnit! LIVE!" = 'sound/voice/medbot/mlive.ogg',
+				"I... I've never lost a patient before. Not today, I mean." = 'sound/voice/medbot/mlost.ogg'
+				)
+			var/message = pick(death_messages)
+			say(message)
+			playsound(loc, death_messages[message], 50, 0)
 
 	// This is down here for the same reason as above.
 	else
 		t = confirmTarget(H)
 		if(!t)
-			var/possible_messages = list(
-				"All patched up!" = 'sound/voice/medbot/mpatchedup.ogg',
-				"An apple a day keeps me away." = 'sound/voice/medbot/mapple.ogg',
-				"Feel better soon!" = 'sound/voice/medbot/mfeelbetter.ogg'
-				)
-			var/message = pick(possible_messages)
-			say(message)
-			playsound(loc, possible_messages[message], 50, 0)
 			target = null
+			if(vocal)
+				var/possible_messages = list(
+					"All patched up!" = 'sound/voice/medbot/mpatchedup.ogg',
+					"An apple a day keeps me away." = 'sound/voice/medbot/mapple.ogg',
+					"Feel better soon!" = 'sound/voice/medbot/mfeelbetter.ogg'
+					)
+				var/message = pick(possible_messages)
+				say(message)
+				playsound(loc, possible_messages[message], 50, 0)
 
 	busy = 0
 	update_icons()

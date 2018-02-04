@@ -10,8 +10,6 @@ var/global/list/machines                 = list()	// TODO - Move into SSmachines
 var/global/list/processing_objects       = list()
 var/global/list/processing_power_items   = list()	// TODO - Move into SSmachines
 var/global/list/active_diseases          = list()
-var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
-var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
 var/global/list/hud_icon_reference       = list()
 
 
@@ -40,17 +38,6 @@ var/changelog_hash		= ""
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544)
 var/round_progressing = 1
 
-	//On some maps, it does not make sense for space turf to appear when something blows up (e.g. on an asteroid colony, or planetside)
-	//The turf listed here is what is created after ex_act() and other tile-destroying procs are called on a turf that
-	//is not already in a blacklisted area.
-	//Set to 1 to enable it.
-var/destroy_floor_override = 1
-	//Below is the path of turf used in place of space tiles.
-var/destroy_floor_override_path = /turf/simulated/mineral/floor
-	//A list of z-levels to apply the override to.  This is so z-levels like tcomms work as they did before.
-var/list/destroy_floor_override_z_levels = list(1,4,5)
-	//Some areas you may want to not turn into the override path you made above, like space or the solars.
-var/list/destroy_floor_override_ignore_areas = list(/area/space,/area/solar,/area/shuttle)
 var/master_mode       = "extended" // "extended"
 var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
@@ -200,3 +187,7 @@ var/max_explosion_range = 14
 var/global/obj/item/device/radio/intercom/global_announcer = new /obj/item/device/radio/intercom{channels=list("Engineering")}(null)
 
 var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+
+//Icons for in-game HUD glasses. Why don't we just share these a little bit?
+var/static/icon/ingame_hud = icon('icons/mob/hud.dmi')
+var/static/icon/ingame_hud_med = icon('icons/mob/hud_med.dmi')

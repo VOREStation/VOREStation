@@ -16,7 +16,7 @@
 
 	see_in_dark = 7
 	status_flags = GODMODE
-	invisibility = INVISIBILITY_EYE
+	plane = PLANE_AI_EYE
 
 	var/mob/owner = null
 	var/list/visibleChunks = list()
@@ -24,20 +24,7 @@
 	var/ghostimage = null
 	var/datum/visualnet/visualnet
 
-/mob/observer/eye/New()
-	ghostimage = image(src.icon,src,src.icon_state)
-	ghost_darkness_images |= ghostimage //so ghosts can see the eye when they disable darkness
-	ghost_sightless_images |= ghostimage //so ghosts can see the eye when they disable ghost sight
-	updateallghostimages()
-	..()
-
-mob/observer/eye/Destroy()
-	if (ghostimage)
-		ghost_darkness_images -= ghostimage
-		ghost_sightless_images -= ghostimage
-		qdel(ghostimage)
-		ghostimage = null
-		updateallghostimages()
+/mob/observer/eye/Destroy()
 	if(owner)
 		if(owner.eyeobj == src)
 			owner.eyeobj = null

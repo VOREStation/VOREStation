@@ -76,7 +76,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if(..()) return 1
 	var/new_y_offset = 32 * (size_multiplier - 1)
 	for(var/I in hud_list)
-		var/image/hud_overlay/HI = I
+		var/image/HI = I
 		HI.pixel_y = new_y_offset
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.

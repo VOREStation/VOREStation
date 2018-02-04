@@ -192,11 +192,16 @@ var/list/name_to_material
 	name = "placeholder"
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material)
+/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material, var/material/girder_material)
 	var/obj/structure/girder/G = new(target)
 	if(reinf_material)
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
+	if(girder_material)
+		if(istype(girder_material, /material))
+			girder_material = girder_material.name
+		G.set_material(girder_material)
+
 
 // General wall debris product placement.
 // Not particularly necessary aside from snowflakey cult girders.
@@ -672,9 +677,9 @@ var/list/name_to_material
 
 
 /material/wood
-	name = "wood"
+	name = MAT_WOOD
 	stack_type = /obj/item/stack/material/wood
-	icon_colour = "#824B28"
+	icon_colour = "#9c5930"
 	integrity = 50
 	icon_base = "wood"
 	explosion_resistance = 2
@@ -694,16 +699,17 @@ var/list/name_to_material
 	sheet_plural_name = "planks"
 
 /material/wood/log
-	name = "log"
+	name = MAT_LOG
 	icon_base = "log"
 	stack_type = /obj/item/stack/material/log
-	sheet_singular_name = "log"
-	sheet_plural_name = "logs"
+	sheet_singular_name = null
+	sheet_plural_name = "pile"
 
 /material/wood/log/sif
-	name = "alien log"
+	name = MAT_SIFLOG
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+	stack_type = /obj/item/stack/material/log/sif
 
 /material/wood/holographic
 	name = "holowood"
@@ -712,7 +718,7 @@ var/list/name_to_material
 	shard_type = SHARD_NONE
 
 /material/wood/sif
-	name = "alien wood"
+	name = MAT_SIFWOOD
 //	stack_type = /obj/item/stack/material/wood/sif
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.

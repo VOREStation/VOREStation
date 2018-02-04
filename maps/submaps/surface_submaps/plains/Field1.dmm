@@ -1,0 +1,42 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Field1)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Field1)
+"d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"e" = (/obj/structure/ore_box,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"f" = (/obj/item/device/radio,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"g" = (/obj/vehicle/train/cargo/trolley,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"h" = (/obj/vehicle/train/cargo/engine,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"i" = (/obj/item/device/flashlight,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaabbbbbbbbbbbbbbba
+abbaaaaaaaaaabbbbbbbbbbbbbbbaa
+abbaaaaaabbbbbbcbbbbbbbbbcbbaa
+abbbaaabbbbbbbbbbbbbbbbbbbbaaa
+abbbbbbbbbbbbbbbbbbcbbbbbbbaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbbaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbaaaa
+abbbcbbbbbbbbbbbbbbbbbbbbbaaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbaaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbbaaa
+aaabbbbbbbbbbbdddbbbbbbbbbbaaa
+aaabbbbbbbbbddddddddddbbbbbbba
+aaaabbbbbbbddddddddddddbbbbbba
+aaaabbbbbbbddddddddddddbbbbcba
+aaaabbbbbbbdddedfddddbbbbbbbba
+aaabbbbbbbbbdegghdddbbbbbbbbba
+aaabbbbbbbbbbbdibdbbbbbbbbbbba
+aabbbbbbbbbbbbbbbbbbbbbbbcbbba
+abbbcbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbcbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbcbbbba
+aabbbbbbcbbbbaaaabaaabbbbbbcba
+aaaaaaabbbbbaaaaaaaaaabbbbbbba
+aaaaaaaaabbaaaaaaaaaaabbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

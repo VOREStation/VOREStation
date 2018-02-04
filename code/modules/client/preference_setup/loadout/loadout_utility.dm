@@ -9,9 +9,17 @@
 	path = /obj/item/weapon/clipboard
 
 /datum/gear/utility/communicator
-	display_name = "personal communicator"
+	display_name = "communicator selection"
 	path = /obj/item/device/communicator
 	cost = 0
+
+/datum/gear/utility/communicator/New()
+	..()
+	var/list/communicators = list()
+	for(var/communicator in typesof(/obj/item/device/communicator) - list(/obj/item/device/communicator/integrated,/obj/item/device/communicator/commlink)) //VOREStation Edit - Remove Commlink
+		var/obj/item/device/communicator_type = communicator
+		communicators[initial(communicator_type.name)] = communicator_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(communicators))
 
 /datum/gear/utility/camera
 	display_name = "camera"
@@ -21,6 +29,12 @@
 	display_name = "the traveler's guide to vir"
 	path = /obj/item/weapon/book/codex //VOREStation Edit
 	cost = 0
+
+/datum/gear/utility/news
+	display_name = "daedalus pocket newscaster"
+	path = /obj/item/weapon/book/codex/lore/news
+	cost = 0
+
 /* //VORESTATION REMOVAL
 /datum/gear/utility/corp_regs
 	display_name = "corporate regulations and legal code"

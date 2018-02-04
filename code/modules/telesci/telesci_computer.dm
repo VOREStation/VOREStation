@@ -45,7 +45,7 @@
 	user << "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots."
 
 /obj/machinery/computer/telescience/initialize()
-	..()
+	. = ..()
 	for(var/i = 1; i <= starting_crystals; i++)
 		crystals += new /obj/item/weapon/ore/bluespace_crystal/artificial(src) // starting crystals
 

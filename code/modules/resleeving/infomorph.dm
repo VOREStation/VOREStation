@@ -590,9 +590,6 @@ var/global/list/default_infomorph_software = list()
 	//Wipe all the huds, then readd them (of course...)
 	handle_regular_hud_updates()
 
-	if(src.arHUD == 1)
-		process_omni_hud(src, "civ")
-
 	//In response to EMPs, we can be silenced
 	if(silence_time)
 		if(world.timeofday >= silence_time)

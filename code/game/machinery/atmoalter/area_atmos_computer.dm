@@ -16,8 +16,10 @@
 
 /obj/machinery/computer/area_atmos/New()
 	..()
-	//So the scrubbers have time to spawn
 	desc += "[range] meters."
+
+/obj/machinery/computer/area_atmos/initialize()
+	. = ..()
 	scanscrubbers()
 
 /obj/machinery/computer/area_atmos/attack_ai(var/mob/user as mob)

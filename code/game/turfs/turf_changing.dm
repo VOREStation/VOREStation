@@ -12,20 +12,27 @@
 // Called after turf replaces old one
 /turf/proc/post_change()
 	levelupdate()
-	var/turf/simulated/open/T = GetAbove(src)
-	if(istype(T))
-		T.update_icon()
+
+	var/turf/simulated/open/above = GetAbove(src)
+	if(istype(above))
+		above.update_icon()
+
+	var/turf/simulated/below = GetBelow(src)
+	if(istype(below))
+		below.update_icon() // To add or remove the 'ceiling-less' overlay.
 
 //Creates a new turf
 /turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
 	if (!N)
 		return
 
+	/* VOREStation Edit Start - Say Nope To This.  Tether's Z info is setup fine, trust it.
 	// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
 		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)))
 			N = /turf/simulated/open
+	*/ // VOREStation Edit End
 
 	var/obj/fire/old_fire = fire
 	var/old_opacity = opacity

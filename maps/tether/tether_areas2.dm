@@ -57,6 +57,15 @@
 	name = "\improper North Stairwell Third Floor"
 	icon_state = "dk_yellow"
 
+// /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
+
+/area/tether/surfacebase/east_stairs_two
+	name = "\improper East Stairwell Second Floor"
+	icon_state = "dk_yellow"
+/area/vacant/vacant_site/east
+	name = "\improper East Base Vacant Site"
+
+// /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
 /area/tether/surfacebase/emergency_storage
 	icon_state = "emergencystorage"
@@ -245,7 +254,7 @@
 	name = "\improper Surface EVA Access"
 
 /area/tether/surfacebase/shuttle_pad
-	name = "\improper Teather Shuttle Pad"
+	name = "\improper Tether Shuttle Pad"
 /area/tether/surfacebase/reading_room
 	name = "\improper Reading Room"
 /area/tether/surfacebase/vacant_site
@@ -338,6 +347,15 @@
 /area/security/brig/bathroom
 	name = "\improper Brig Bathroom"
 	icon_state = "security"
+/area/security/armory/green
+	name = "\improper Armory - Green"
+	icon_state = "security_equip_storage"
+/area/security/armory/blue
+	name = "\improper Armory - Blue"
+	icon_state = "armory"
+/area/security/armory/red
+	name = "\improper Armory - Red"
+	icon_state = "red2"
 
 /area/engineering/atmos/backup
 	name = "\improper Backup Atmospherics"
@@ -348,6 +366,8 @@
 
 /area/hallway/station
 	icon_state = "hallC1"
+/area/hallway/station/atrium
+	name = "\improper Main Station Atrium"
 /area/hallway/station/port
 	name = "\improper Main Port Hallway"
 /area/hallway/station/starboard
@@ -388,6 +408,48 @@
 	name = "\improper Crash Site 2"
 	icon_state = "shuttle2"
 	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+
+// Exploration Shuttle stuff //
+/area/tether/station/excursion_dock
+	name = "\improper Excursion Shuttle Dock"
+
+/area/tether/station/explorer_prep
+	name = "\improper Explorer Prep Room"
+
+/area/shuttle/excursion
+	name = "\improper Excursion Shuttle"
+	icon_state = "shuttle2"
+	base_turf = /turf/space
+
+/area/shuttle/excursion/tether
+	name = "\improper Excursion Shuttle - Tether"
+	base_turf = /turf/simulated/floor/reinforced
+
+/area/shuttle/excursion/tether_nearby
+	name = "\improper Excursion Shuttle - Tether Near"
+
+/area/shuttle/excursion/tether_dockarm
+	name = "\improper Excursion Shuttle - Tether Arm"
+
+/area/shuttle/excursion/space
+	name = "\improper Excursion Shuttle - Space"
+
+/area/shuttle/excursion/space_moving
+	name = "\improper Excursion Shuttle - Space Moving"
+	base_turf = /turf/space/transit/north
+
+/area/shuttle/excursion/bluespace
+	name = "\improper Excursion Shuttle - Bluespace"
+	base_turf = /turf/space/bluespace
+
+/area/shuttle/excursion/sand_moving
+	name = "\improper Excursion Shuttle - Sand Transit"
+	base_turf = /turf/space/sandyscroll
+
+/area/shuttle/excursion/virgo3b_sky
+	name = "\improper Excursion Shuttle - Virgo3b Sky"
+	base_turf = /turf/simulated/sky
+//////////////////////////////////
 
 /area/antag/antag_base
 	name = "\improper Syndicate Outpost"

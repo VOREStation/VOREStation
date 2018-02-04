@@ -25,11 +25,18 @@
 
 	..()
 
-/area/proc/initialize()
+/area/initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
+
+/area/LateInitialize()
 	if(!requires_power || !apc)
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
+	return INITIALIZE_HINT_LATELOAD
+
+/area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates lighting icon
 
 /area/proc/get_contents()
@@ -309,7 +316,7 @@ var/list/mob/living/forced_ambiance_list = new
 		for(var/obj/machinery/door/window/temp_windoor in src)
 			temp_windoor.open()
 
-/area/proc/has_gravity()
+/area/has_gravity()
 	return has_gravity
 
 /area/space/has_gravity()
@@ -322,3 +329,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if(A && A.has_gravity())
 		return 1
 	return 0
+
+/area/proc/shuttle_arrived()
+	return TRUE
+
+/area/proc/shuttle_departed()
+	return TRUE

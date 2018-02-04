@@ -46,7 +46,7 @@
 
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/initialize()
-	..()
+	. = ..()
 	if(all_jukebox_tracks.len < 1)
 		stat |= BROKEN // No tracks configured this round!
 		return

@@ -1,4 +1,8 @@
-// This file actually has three seperate datums.
+// This file actually has four seperate datums.
+
+/**********
+ * Routes *
+ **********/
 
 // This is the first datum, and it connects shuttle_destinations together.
 /datum/shuttle_route
@@ -39,6 +43,10 @@
 
 	return target.name
 
+/****************
+ * Destinations *
+ ****************/
+
 // This is the second datum, and contains information on all the potential destinations for a specific shuttle.
 /datum/shuttle_destination
 	var/name = "a place"				// Name of the destination, used for the flight computer.
@@ -46,12 +54,14 @@
 	var/datum/shuttle_web_master/master = null // The datum that does the coordination with the actual shuttle datum.
 	var/list/routes = list()			// Routes that are connected to this destination.
 	var/preferred_interim_area = null	// When building a new route, use this interim area.
+	var/skip_me = FALSE					// We will not autocreate this one. Some map must be doing it.
 
 	var/dock_target = null				// The tag_id that the shuttle will use to try to dock to the destination, if able.
 
+	var/radio_announce = 0				// Whether it will make a station announcement (0) or a radio announcement (1).
 	var/announcer = null				// The name of the 'announcer' that will say the arrival/departure messages.  Defaults to the map's boss name if blank.
-	var/arrival_message = null			// Message said if the ship enters this destination.  Not announced if the ship is cloaked.
-	var/departure_message = null		// Message said if the ship exits this destination.  Not announced if the ship is cloaked.
+//	var/arrival_message = null			// Message said if the ship enters this destination.  Not announced if the ship is cloaked.
+//	var/departure_message = null		// Message said if the ship exits this destination.  Not announced if the ship is cloaked.
 
 	// When this destination is instantiated, it will go and instantiate other destinations in this assoc list and build routes between them.
 	// The list format is '/datum/shuttle_destination/subtype = 1 MINUTES'
@@ -101,18 +111,29 @@
 /datum/shuttle_destination/proc/exit(var/datum/shuttle_destination/new_destination)
 	announce_departure()
 
+/datum/shuttle_destination/proc/get_departure_message()
+	return null
 
 /datum/shuttle_destination/proc/announce_departure()
-	if(isnull(departure_message) || master.my_shuttle.cloaked)
+	if(isnull(get_departure_message()) || master.my_shuttle.cloaked)
 		return
 
-	command_announcement.Announce(departure_message,(announcer ? announcer : "[using_map.boss_name]"))
+	if(!radio_announce)
+		command_announcement.Announce(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
+	else
+		global_announcer.autosay(get_departure_message(),(announcer ? announcer : "[using_map.boss_name]"))
+
+/datum/shuttle_destination/proc/get_arrival_message()
+	return null
 
 /datum/shuttle_destination/proc/announce_arrival()
-	if(isnull(arrival_message) || master.my_shuttle.cloaked)
+	if(isnull(get_arrival_message()) || master.my_shuttle.cloaked)
 		return
 
-	command_announcement.Announce(arrival_message,(announcer ? announcer : "[using_map.boss_name]"))
+	if(!radio_announce)
+		command_announcement.Announce(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
+	else
+		global_announcer.autosay(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
 
 /datum/shuttle_destination/proc/link_destinations(var/datum/shuttle_destination/other_place, var/area/interim_area, var/travel_time = 0)
 	// First, check to make sure this doesn't cause a duplicate route.
@@ -131,6 +152,17 @@
 /datum/shuttle_destination/proc/flight_failure()
 	return
 
+// Returns a /datum/shuttle_route connecting this destination to origin, if one exists.
+/datum/shuttle_destination/proc/get_route_to(origin_type)
+	for(var/datum/shuttle_route/R in routes)
+		if(R.start.type == origin_type || R.end.type == origin_type)
+			return R
+	return null
+
+/***************
+ * Web Masters *
+ ***************/
+
 // This is the third and final datum, which coordinates with the shuttle datum to tell it where it is, where it can go, and how long it will take.
 // It is also responsible for instancing all the destinations it has control over, and linking them together.
 /datum/shuttle_web_master
@@ -141,12 +173,17 @@
 	var/list/destinations = list()								// List of currently instanced destinations.
 	var/destination_class = null								// Type to use in typesof(), to build destinations.
 
+	var/datum/shuttle_autopath/autopath = null					// Datum used to direct an autopilot.
+	var/list/autopaths = list()									// Potential autopaths the autopilot can use. The autopath's start var must equal current_destination to be viable.
+	var/autopath_class = null									// Similar to destination_class, used for typesof().
+
 /datum/shuttle_web_master/New(var/new_shuttle, var/new_destination_class = null)
 	my_shuttle = new_shuttle
 	if(new_destination_class)
 		destination_class = new_destination_class
 	build_destinations()
 	current_destination = get_destination_by_type(starting_destination)
+	build_autopaths()
 
 /datum/shuttle_web_master/Destroy()
 	my_shuttle = null
@@ -158,8 +195,10 @@
 	// First, instantiate all the destination subtypes relevant to this datum.
 	var/list/destination_types = typesof(destination_class) - destination_class
 	for(var/new_type in destination_types)
-		var/datum/shuttle_destination/D = new new_type(src)
-		destinations += D
+		var/datum/shuttle_destination/D = new_type
+		if(initial(D.skip_me))
+			continue
+		destinations += new new_type(src)
 
 	// Now start the process of connecting all of them.
 	for(var/datum/shuttle_destination/D in destinations)
@@ -190,3 +229,83 @@
 
 /datum/shuttle_web_master/proc/get_destination_by_type(var/type_to_get)
 	return locate(type_to_get) in destinations
+
+// Autopilot stuff.
+/datum/shuttle_web_master/proc/build_autopaths()
+	init_subtypes(autopath_class, autopaths)
+	for(var/datum/shuttle_autopath/P in autopaths)
+		P.master = src
+
+/datum/shuttle_web_master/proc/choose_path()
+	if(!autopaths.len)
+		return
+	for(var/datum/shuttle_autopath/path in autopaths)
+		if(path.start == current_destination.type)
+			autopath = path
+			break
+
+/datum/shuttle_web_master/proc/path_finished(datum/shuttle_autopath/path)
+	autopath = null
+
+/datum/shuttle_web_master/proc/walk_path(target_type)
+	var/datum/shuttle_route/R = current_destination.get_route_to(target_type)
+	if(!R)
+		return FALSE
+	future_destination = R.get_other_side(current_destination)
+
+	var/travel_time = R.travel_time * my_shuttle.flight_time_modifier * 2 // Autopilot is less efficent than having someone flying manually.
+	if(R.interim && R.travel_time > 0)
+		my_shuttle.long_jump(my_shuttle.current_area, future_destination.my_area, R.interim, travel_time / 10)
+	else
+		my_shuttle.short_jump(my_shuttle.current_area, future_destination.my_area)
+	return TRUE // Note this will return before the shuttle actually arrives.
+
+/datum/shuttle_web_master/proc/process_autopath()
+	if(!autopath) // If we don't have a path, get one.
+		if(!autopaths.len)
+			return
+		choose_path()
+
+	if(!autopath) // Still nothing, oh well.
+		return
+
+	var/datum/shuttle_destination/target = autopath.get_next_node()
+	if(walk_path(target))
+		autopath.walk_path()
+
+// Call this to reset everything related to autopiloting.
+/datum/shuttle_web_master/proc/reset_autopath()
+	autopath = null
+	my_shuttle.autopilot = FALSE
+
+
+/*************
+ * Autopaths *
+ *************/
+
+
+// Fourth datum, this one essentially acts as directions for an autopilot to go to the correct places.
+/datum/shuttle_autopath
+	var/datum/shuttle_web_master/master = null
+	var/datum/shuttle_destination/start = null
+	var/list/path_nodes = list()
+	var/index = 1
+
+/datum/shuttle_autopath/Destroy()
+	master = null
+	return ..()
+
+/datum/shuttle_autopath/proc/reset_path()
+	index = 1
+
+/datum/shuttle_autopath/proc/get_next_node()
+	return path_nodes[index]
+
+/datum/shuttle_autopath/proc/walk_path()
+	index++
+	if(index > path_nodes.len)
+		finish_path()
+
+/datum/shuttle_autopath/proc/finish_path()
+	reset_path()
+	master.path_finished(src)

@@ -1,5 +1,5 @@
-//These lists are populated in /datum/shuttle_controller/New()
-//Shuttle controller is instantiated in master_controller.dm.
+//These lists are populated in /datum/controller/subsystem/shuttles/proc/setup_shuttle_docks()
+//Shuttle subsystem is instantiated in shuttles.dm.
 
 //shuttle moving state defines are in setup.dm
 
@@ -37,11 +37,19 @@
 		supply_controller.shuttle = null
 	. = ..()
 
+/datum/shuttle/proc/process()
+	return
+
 /datum/shuttle/proc/init_docking_controllers()
 	if(docking_controller_tag)
 		docking_controller = locate(docking_controller_tag)
 		if(!istype(docking_controller))
 			world << "<span class='danger'>warning: shuttle with docking tag [docking_controller_tag] could not find it's controller!</span>"
+
+// This creates a graphical warning to where the shuttle is about to land, in approximately five seconds.
+/datum/shuttle/proc/create_warning_effect(area/landing_area)
+	for(var/turf/T in landing_area)
+		new /obj/effect/temporary_effect/shuttle_landing(T) // It'll delete itself when needed.
 
 // Return false to abort a jump, before the 'warmup' phase.
 /datum/shuttle/proc/pre_warmup_checks()
@@ -52,11 +60,13 @@
 	return TRUE
 
 // If you need an event to occur when the shuttle jumps in short or long jump, override this.
-/datum/shuttle/proc/on_shuttle_departure()
+/datum/shuttle/proc/on_shuttle_departure(var/area/origin)
+	origin.shuttle_departed()
 	return
 
 // Similar to above, but when it finishes moving to the target.  Short jump generally makes this occur immediately after the above proc.
-/datum/shuttle/proc/on_shuttle_arrival()
+/datum/shuttle/proc/on_shuttle_arrival(var/area/destination)
+	destination.shuttle_arrived()
 	return
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
@@ -70,6 +80,7 @@
 	spawn(warmup_time*10)
 
 		make_sounds(origin, HYPERSPACE_WARMUP)
+		create_warning_effect(destination)
 		sleep(5 SECONDS) // so the sound finishes.
 
 		if(!post_warmup_checks())
@@ -79,13 +90,13 @@
 			make_sounds(origin, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
-		on_shuttle_departure()
+		on_shuttle_departure(origin)
 
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		move(origin, destination)
 		moving_status = SHUTTLE_IDLE
 
-		on_shuttle_arrival()
+		on_shuttle_arrival(destination)
 
 		make_sounds(destination, HYPERSPACE_END)
 
@@ -102,6 +113,7 @@
 	spawn(warmup_time*10)
 
 		make_sounds(departing, HYPERSPACE_WARMUP)
+		create_warning_effect(interim) // Really doubt someone is gonna get crushed in the interim area but for completeness's sake we'll make the warning.
 		sleep(5 SECONDS) // so the sound finishes.
 
 		if(!post_warmup_checks())
@@ -115,29 +127,36 @@
 
 		depart_time = world.time
 
-		on_shuttle_departure()
-
 		moving_status = SHUTTLE_INTRANSIT
 
+		on_shuttle_departure(departing)
+
 		move(departing, interim, direction)
+		interim.shuttle_arrived()
 
 		if(process_longjump(departing, destination)) //VOREStation Edit - To hook custom shuttle code in
 			return //VOREStation Edit - It handled it for us (shuttle crash or such)
 
 		var/last_progress_sound = 0
+		var/made_warning = FALSE
 		while (world.time < arrive_time)
 			// Make the shuttle make sounds every four seconds, since the sound file is five seconds.
 			if(last_progress_sound + 4 SECONDS < world.time)
 				make_sounds(interim, HYPERSPACE_PROGRESS)
 				last_progress_sound = world.time
+
+			if(arrive_time - world.time <= 5 SECONDS && !made_warning)
+				made_warning = TRUE
+				create_warning_effect(destination)
 			sleep(5)
 
+		interim.shuttle_departed()
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
 
-		//on_shuttle_arrival()//VOREStation Edit.
+		on_shuttle_arrival(destination)
 
-		//make_sounds(destination, HYPERSPACE_END)//VOREStation Edit. See above comment.
+		make_sounds(destination, HYPERSPACE_END)
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
@@ -241,3 +260,7 @@
 			sound_to_play = 'sound/effects/shuttles/hyperspace_end.ogg'
 	for(var/obj/machinery/door/E in A)	//dumb, I know, but playing it on the engines doesn't do it justice
 		playsound(E, sound_to_play, 50, FALSE)
+
+/datum/shuttle/proc/message_passengers(area/A, var/message)
+	for(var/mob/M in A)
+		M.show_message(message, 2)

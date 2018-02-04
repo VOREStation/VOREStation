@@ -13,7 +13,7 @@
 	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
-	max_age = 110
+	max_age = 130
 	health_hud_intensity = 1.5
 
 	spawn_flags = SPECIES_CAN_JOIN

@@ -29,7 +29,7 @@
 	var/global/list/allocated_gamma = list()
 
 /obj/structure/trash_pile/initialize()
-	..()
+	. = ..()
 	icon_state = pick(
 		"pile1",
 		"pile2",
@@ -190,6 +190,7 @@
 					prob(2);/obj/item/weapon/reagent_containers/glass/rag,
 					prob(2);/obj/item/weapon/storage/box/sinpockets,
 					prob(2);/obj/item/weapon/storage/secure/briefcase,
+					prob(2);/obj/item/clothing/under/fluff/latexmaid,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(1);/obj/item/clothing/gloves/yellow,
@@ -237,7 +238,7 @@
 					prob(1);/obj/item/weapon/beartrap,
 					prob(1);/obj/item/weapon/cell/hyper/empty,
 					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
-					prob(1);/obj/item/weapon/material/hatchet/tacknife,
+					prob(1);/obj/item/weapon/material/knife/tacknife,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 	var/obj/item/I = new path()

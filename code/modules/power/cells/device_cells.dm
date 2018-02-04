@@ -21,7 +21,7 @@
 	charge_amount = 20
 
 /obj/item/weapon/cell/device/weapon/empty/initialize()
-	..()
+	. = ..()
 	charge = 0
 	update_icon()
 

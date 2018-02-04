@@ -17,7 +17,7 @@
 
 
 /obj/machinery/computer/cloning/initialize()
-	..()
+	. = ..()
 	updatemodules()
 
 /obj/machinery/computer/cloning/Destroy()
@@ -289,10 +289,13 @@
 	add_fingerprint(usr)
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
-	if ((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna))
+	var/brain_skip = 0
+	if (istype(subject, /mob/living/carbon/brain)) //Brain scans.
+		brain_skip = 1
+	if ((isnull(subject)) || (!(ishuman(subject)) && !brain_skip) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return
-	if (!subject.has_brain())
+	if (!subject.has_brain() && !brain_skip)
 		if(istype(subject, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = subject
 			if(H.should_have_organ("brain"))
@@ -313,7 +316,7 @@
 	if (NOCLONE in subject.mutations)
 		scantemp = "Error: Mental interface failure."
 		return
-	if (subject.species && subject.species.flags & NO_SCAN)
+	if (subject.species && subject.species.flags & NO_SCAN && !brain_skip)
 		scantemp = "Error: Mental interface failure."
 		return
 	for(var/modifier_type in subject.modifiers)	//Can't be cloned, even if they had a previous scan
@@ -333,7 +336,10 @@
 	R.name = R.dna.real_name
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = subject.languages
-	R.flavor = subject.flavor_texts.Copy()
+	if(!brain_skip) //Brains don't have flavor text.
+		R.flavor = subject.flavor_texts.Copy()
+	else
+		R.flavor = list()
 	for(var/datum/modifier/mod in subject.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
 			R.genetic_modifiers.Add(mod.type)

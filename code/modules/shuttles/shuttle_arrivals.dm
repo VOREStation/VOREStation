@@ -57,10 +57,6 @@
 
 	..() // Do everything else
 
-/datum/shuttle/ferry/arrivals/proc/message_passengers(area/A, var/message)
-	for(var/mob/M in A)
-		to_chat(M, message)
-
 /*
 /datum/shuttle/ferry/arrivals/current_dock_target()
 	if(location) // If we're off station.

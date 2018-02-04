@@ -36,7 +36,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = HOP
-	department = "Civilian"
+	department = "Command"
 	head_position = 1
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -71,7 +71,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/secretary
 	title = "Command Secretary"
 	flag = BRIDGE
-	department = "Civilian"
+	department = "Command"
 	head_position = 1
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -83,8 +83,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 5
 	economic_modifier = 7
 
-	access = list(access_heads)
-	minimal_access = list(access_heads)
+	access = list(access_heads, access_keycard_auth)
+	minimal_access = list(access_heads, access_keycard_auth)
 
 	outfit_type = /decl/hierarchy/outfit/job/secretary
 	alt_titles = list("Command Liaison", "Bridge Secretary")

@@ -48,16 +48,16 @@
 	..(newloc,"durasteel", "durasteel")
 
 /turf/simulated/wall/wood/New(var/newloc)
-	..(newloc,"wood")
+	..(newloc, MAT_WOOD)
 
 /turf/simulated/wall/sifwood/New(var/newloc)
-	..(newloc,"alien wood")
+	..(newloc, MAT_SIFWOOD)
 
 /turf/simulated/wall/log/New(var/newloc)
-	..(newloc,"log")
+	..(newloc, MAT_LOG)
 
 /turf/simulated/wall/log_sif/New(var/newloc)
-	..(newloc,"alien log")
+	..(newloc, MAT_SIFLOG)
 
 // Shuttle Walls
 /turf/simulated/shuttle/wall
@@ -132,7 +132,7 @@
 	name = true_name
 
 /turf/simulated/shuttle/wall/initialize()
-	..()
+	. = ..()
 
 	if(join_group)
 		src.auto_join()
@@ -213,7 +213,7 @@
 	stripe_color = "#00FF00"
 
 /turf/simulated/shuttle/wall/voidcraft/initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /turf/simulated/shuttle/wall/voidcraft/update_icon()

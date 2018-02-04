@@ -234,7 +234,9 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
-	if(zoom) zoom() //binoculars, scope, etc
+	if(zoom)
+		zoom() //binoculars, scope, etc
+	appearance_flags &= ~NO_CLIENT_COLOR
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -258,7 +260,7 @@
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
-	layer = 20
+	hud_layerise()
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
 	return
@@ -649,4 +651,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return TRUE // Already adjacent.
 	if(AStar(get_turf(us), get_turf(them), /turf/proc/AdjacentTurfsRangedSting, /turf/proc/Distance, max_nodes=25, max_node_depth=range))
 		return TRUE
+	return FALSE
+
+// Check if an object should ignite others, like a lit lighter or candle.
+/obj/item/proc/is_hot()
 	return FALSE

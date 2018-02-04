@@ -239,7 +239,7 @@ var/global/use_preloader = FALSE
 
 			if(variables_start)//if there's any variable
 				full_def = copytext(full_def,variables_start+1,length(full_def))//removing the last '}'
-				fields = readlist(full_def, ";")
+				fields = readlist(full_def, ";", TRUE)
 				if(fields.len)
 					if(!trim(fields[fields.len]))
 						--fields.len
@@ -304,7 +304,7 @@ var/global/use_preloader = FALSE
 		first_turf_index++
 
 	//turn off base new Initialization until the whole thing is loaded
-	SScreation.StartLoadingMap()
+	SSatoms.map_loader_begin()
 	//instanciate the first /turf
 	var/turf/T
 	if(members[first_turf_index] != /turf/template_noop)
@@ -323,7 +323,7 @@ var/global/use_preloader = FALSE
 	for(index in 1 to first_turf_index-1)
 		instance_atom(members[index],members_attributes[index],crds,no_changeturf)
 	//Restore initialization to the previous value
-	SScreation.StopLoadingMap()
+	SSatoms.map_loader_stop()
 
 ////////////////
 //Helpers procs
@@ -344,9 +344,9 @@ var/global/use_preloader = FALSE
 
 	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
 	if(TICK_CHECK)
-		SScreation.StopLoadingMap()
+		SSatoms.map_loader_stop()
 		stoplag()
-		SScreation.StartLoadingMap()
+		SSatoms.map_loader_begin()
 
 /dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE
@@ -377,8 +377,12 @@ var/global/use_preloader = FALSE
 
 
 //build a list from variables in text form (e.g {var1="derp"; var2; var3=7} => list(var1="derp", var2, var3=7))
+// text - variables in text form.  Not including surrounding {} or list()
+// delimiter - Delimiter between list entries
+// keys_only_string - If true, text that looks like an associative list has its keys treated as var names,
+//                    otherwise they are parsed as valid associative list keys.
 //return the filled list
-/dmm_suite/proc/readlist(text as text, delimiter=",")
+/dmm_suite/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
 
 	var/list/to_return = list()
 
@@ -392,40 +396,46 @@ var/global/use_preloader = FALSE
 		//check if this is a simple variable (as in list(var1, var2)) or an associative one (as in list(var1="foo",var2=7))
 		var/equal_position = findtext(text,"=",old_position, position)
 
-		var/trim_left = trim_text(copytext(text,old_position,(equal_position ? equal_position : position)),1)//the name of the variable, must trim quotes to build a BYOND compliant associatives list
+		// part to the left of = (the key/var name), or the entire value. If treating it as a var name, strip quotes at the same time.
+		var/trim_left = trim_text(copytext(text,old_position,(equal_position ? equal_position : position)), keys_only_string)
 		old_position = position + 1
 
+		var/trim_right = trim_left
 		if(equal_position)//associative var, so do the association
-			var/trim_right = trim_text(copytext(text,equal_position+1,position))//the content of the variable
+			trim_right = trim_text(copytext(text,equal_position+1,position))//the content of the variable
+			if(!keys_only_string) // We also need to evaluate the key for the types it is permitted to be
+				if(findtext(trim_left,"\"",1,2)) //Check for string
+					trim_left = copytext(trim_left,2,findtext(trim_left,"\"",3,0))
+				else if(isnum(text2num(trim_left))) //Check for number
+					trim_left = text2num(trim_left)
+				else if(ispath(text2path(trim_left))) //Check for path
+					trim_left = text2path(trim_left)
 
-			//Check for string
-			if(findtext(trim_right,"\"",1,2))
-				trim_right = copytext(trim_right,2,findtext(trim_right,"\"",3,0))
+		// Parse the value in trim_right
+		//Check for string
+		if(findtext(trim_right,"\"",1,2))
+			trim_right = copytext(trim_right,2,findtext(trim_right,"\"",3,0))
+		//Check for number
+		else if(isnum(text2num(trim_right)))
+			trim_right = text2num(trim_right)
+		//Check for null
+		else if(trim_right == "null")
+			trim_right = null
+		//Check for list
+		else if(copytext(trim_right,1,5) == "list")
+			trim_right = readlist(copytext(trim_right,6,length(trim_right)))
+		//Check for file
+		else if(copytext(trim_right,1,2) == "'")
+			trim_right = file(copytext(trim_right,2,length(trim_right)))
+		//Check for path
+		else if(ispath(text2path(trim_right)))
+			trim_right = text2path(trim_right)
 
-			//Check for number
-			else if(isnum(text2num(trim_right)))
-				trim_right = text2num(trim_right)
-
-			//Check for null
-			else if(trim_right == "null")
-				trim_right = null
-
-			//Check for list
-			else if(copytext(trim_right,1,5) == "list")
-				trim_right = readlist(copytext(trim_right,6,length(trim_right)))
-
-			//Check for file
-			else if(copytext(trim_right,1,2) == "'")
-				trim_right = file(copytext(trim_right,2,length(trim_right)))
-
-			//Check for path
-			else if(ispath(text2path(trim_right)))
-				trim_right = text2path(trim_right)
-
+		// Now put the trim_right into the result.  Method by which we do so varies on if its assoc or not
+		if(equal_position)
 			to_return[trim_left] = trim_right
-
-		else//simple var
-			to_return[trim_left] = null
+		else
+			to_return += trim_right
 
 	while(position != 0)
 

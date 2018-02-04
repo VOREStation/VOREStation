@@ -354,7 +354,8 @@
 */
 /turf/simulated/floor/airless/ceiling
 /turf/simulated/floor/plating
-
+/turf/simulated/floor/plating/external // To be overrided by the map files.
+/turf/simulated/floor/tiled/external
 
 //**** Here lives snow ****
 /turf/simulated/floor/snow

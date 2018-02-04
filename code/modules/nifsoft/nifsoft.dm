@@ -31,11 +31,15 @@
 	var/applies_to = (NIF_ORGANIC|NIF_SYNTHETIC) // Who this software is useful for
 
 	var/vision_flags = 0	// Various flags for fast lookups that are settable on the NIF
-	var/health_flags = 0	// These are added as soon as the implant is installed
-	var/combat_flags = 0	// Otherwise use set_flag on the nif in your activate/deactivate
+	var/health_flags = 0	// These are added as soon as the implant is activated
+	var/combat_flags = 0	// Otherwise use set_flag/clear_flag in one of your own procs for tricks
 	var/other_flags = 0
 
-	var/obj/effect/nif_stat/stat_line
+	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
+
+	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
+
+	var/obj/effect/nif_stat/stat_line // The stat line in the statpanel for this NIFSoft
 
 
 //Constructor accepts the NIF it's being loaded into
@@ -74,21 +78,53 @@
 	return TRUE
 
 //Called when attempting to activate an implant (could be a 'pulse' activation or toggling it on)
-/datum/nifsoft/proc/activate()
-	if(active)
+/datum/nifsoft/proc/activate(var/force = FALSE)
+	if(active && !force)
 		return
 	var/nif_result = nif.activate(src)
-	if(nif_result)
+
+	//If the NIF was fine with it, or we're forcing it
+	if(nif_result || force)
 		active = TRUE
+
+		//If we enable vision planes
+		if(planes_enabled)
+			nif.add_plane(planes_enabled)
+			nif.vis_update()
+
+		//If we have other NIFsoft we need to turn off
+		if(incompatible_with)
+			nif.deactivate_these(incompatible_with)
+
+		//Set all our activation flags
+		nif.set_flag(vision_flags,NIF_FLAGS_VISION)
+		nif.set_flag(health_flags,NIF_FLAGS_HEALTH)
+		nif.set_flag(combat_flags,NIF_FLAGS_COMBAT)
+		nif.set_flag(other_flags,NIF_FLAGS_OTHER)
+
 	return nif_result
 
 //Called when attempting to deactivate an implant
-/datum/nifsoft/proc/deactivate()
-	if(!active)
+/datum/nifsoft/proc/deactivate(var/force = FALSE)
+	if(!active && !force)
 		return
 	var/nif_result = nif.deactivate(src)
-	if(nif_result)
+
+	//If the NIF was fine with it or we're forcing it
+	if(nif_result || force)
 		active = FALSE
+
+		//If we enable vision planes, disable them
+		if(planes_enabled)
+			nif.del_plane(planes_enabled)
+			nif.vis_update()
+
+		//Clear all our activation flags
+		nif.clear_flag(vision_flags,NIF_FLAGS_VISION)
+		nif.clear_flag(health_flags,NIF_FLAGS_HEALTH)
+		nif.clear_flag(combat_flags,NIF_FLAGS_COMBAT)
+		nif.clear_flag(other_flags,NIF_FLAGS_OTHER)
+
 	return nif_result
 
 //Called when an implant expires
@@ -140,7 +176,6 @@
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
 	var/datum/nifsoft/stored = null
-	var/laws = ""
 
 /obj/item/weapon/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
 	if(!in_range(user, A))
@@ -156,9 +191,13 @@
 		to_chat(user,"<span class='warning'>Either they don't have a NIF, or the disk can't connect.</span>")
 		return
 
-	Ht.visible_message("<span class='warning'>[Hu] begins uploading new NIFSoft into [Ht]!</span>","<span class='danger'>[Hu] is uploading new NIFSoft into you!</span>")
-	if(do_after(Hu,10 SECONDS,Ht))
-		var/extra = extra_params()
+	var/extra = extra_params()
+	if(A == user)
+		to_chat(user,"<span class='notice'>You upload [src] into your NIF.</span>")
+	else
+		Ht.visible_message("<span class='warning'>[Hu] begins uploading [src] into [Ht]!</span>","<span class='danger'>[Hu] is uploading [src] into you!</span>")
+
+	if(A == user || do_after(Hu,10 SECONDS,Ht))
 		new stored(Ht.nif,extra)
 		qdel(src)
 
@@ -172,8 +211,11 @@
 	name = "NIFSoft Disk (Compliance)"
 	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
 	stored = /datum/nifsoft/compliance
+	var/laws
 
 /obj/item/weapon/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
+	if(!ishuman(A))
+		return
 	if(!laws)
 		to_chat(user,"<span class='warning'>You haven't set any laws yet. Use the disk in-hand first.</span>")
 		return

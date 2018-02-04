@@ -13,6 +13,7 @@
 	handle_actions()
 	handle_instability()
 	// For some reason borg Life() doesn't call ..()
+	handle_modifiers()
 	handle_light()
 
 	if(client)
@@ -191,16 +192,6 @@
 
 	..()
 
-	var/obj/item/borg/sight/hud/hud = (locate(/obj/item/borg/sight/hud) in src)
-	if(hud && hud.hud)
-		hud.hud.process_hud(src)
-	else
-		switch(src.sensor_mode)
-			if (SEC_HUD)
-				process_sec_hud(src,0)
-			if (MED_HUD)
-				process_med_hud(src,0)
-
 	if (src.healths)
 		if (src.stat != 2)
 			if(istype(src,/mob/living/silicon/robot/drone))
@@ -338,8 +329,9 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockdown || resting || !is_component_functioning("actuator")) canmove = 0 //VOREStation edit for resting.
-	else canmove = 1
+	..() // Let's not reinvent the wheel.
+	if(lockdown || !is_component_functioning("actuator"))
+		canmove = FALSE
 	return canmove
 
 /mob/living/silicon/robot/update_fire()

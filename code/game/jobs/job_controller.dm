@@ -25,6 +25,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			if(job.faction != faction)	continue
 			occupations += job
+		sortTim(occupations, /proc/cmp_job_datums)
 
 
 		return 1
@@ -116,7 +117,7 @@ var/global/datum/controller/occupations/job_master
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				continue
 
-			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+			if(istype(job, GetJob(USELESS_JOB))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
 				continue
 
 			if(job.title in command_positions) //If you want a command position, select it!
@@ -241,7 +242,7 @@ var/global/datum/controller/occupations/job_master
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
 			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, "Assistant")
+			AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			assistant_candidates -= player
 		Debug("DO, AC1 end")
 
@@ -322,7 +323,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == BE_ASSISTANT)
 				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, "Assistant")
+				AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
@@ -480,10 +481,9 @@ var/global/datum/controller/occupations/job_master
 				R = locate() in S.contents
 			if(!l_foot || !r_foot || R)
 				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
-				H.buckled = W
+				W.buckle_mob(H)
 				H.update_canmove()
 				W.set_dir(H.dir)
-				W.buckled_mob = H
 				W.add_fingerprint(H)
 				if(R)
 					W.color = R.color

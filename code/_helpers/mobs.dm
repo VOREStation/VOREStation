@@ -5,7 +5,7 @@
 	return occupant
 
 /obj/vehicle/train/get_mob()
-	return buckled_mob
+	return buckled_mobs
 
 /mob/get_mob()
 	return src
@@ -129,7 +129,7 @@ proc/age2agedescription(age)
 		else				return "unknown"
 
 /proc/RoundHealth(health)
-	var/list/icon_states = icon_states('icons/mob/hud_med.dmi')
+	var/list/icon_states = icon_states(ingame_hud_med)
 	for(var/icon_state in icon_states)
 		if(health >= text2num(icon_state))
 			return icon_state
@@ -248,3 +248,19 @@ Proc for attack log creation, because really why not
 
 	if (progbar)
 		qdel(progbar)
+
+/atom/proc/living_mobs(var/range = world.view)
+	var/list/viewers = oviewers(src,range)
+	var/list/living = list()
+	for(var/mob/living/L in viewers)
+		living += L
+
+	return living
+
+/atom/proc/human_mobs(var/range = world.view)
+	var/list/viewers = oviewers(src,range)
+	var/list/humans = list()
+	for(var/mob/living/carbon/human/H in viewers)
+		humans += H
+
+	return humans

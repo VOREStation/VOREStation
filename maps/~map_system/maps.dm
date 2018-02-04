@@ -38,6 +38,12 @@ var/list/all_maps = list()
 	//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 	var/list/accessible_z_levels = list()
 
+	//List of additional z-levels to load above the existing .dmm file z-levels using the maploader. Must be map template >>> NAMES <<<.
+	var/list/lateload_z_levels = list()
+
+	//Similar to above, but only pick ONE to load, useful for random away missions and whatnot
+	var/list/lateload_single_pick = list()
+
 	var/list/allowed_jobs = list() //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
 	                               //We don't have to C&P ones that are only common between two of them
@@ -52,6 +58,7 @@ var/list/all_maps = list()
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 	// VOREStation Edit End
+	var/list/meteor_strike_areas	// VOREStation Edit - Areas meteor strikes may choose to hit.
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -75,6 +82,12 @@ var/list/all_maps = list()
 
 	var/allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 
+	// VOREStation Edit - Persistence!
+	var/datum/spawnpoint/spawnpoint_died = /datum/spawnpoint/arrivals 	// Used if you end the round dead.
+	var/datum/spawnpoint/spawnpoint_left = /datum/spawnpoint/arrivals 	// Used of you end the round at centcom.
+	var/datum/spawnpoint/spawnpoint_stayed = /datum/spawnpoint/cryo 	// Used if you end the round on the station.
+	// VOREStation Edit End
+
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
 	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
 
@@ -86,6 +99,7 @@ var/list/all_maps = list()
 	var/list/unit_test_exempt_areas = list()
 	var/list/unit_test_exempt_from_atmos = list()
 	var/list/unit_test_exempt_from_apc = list()
+	var/list/unit_test_z_levels //To test more than Z1, set your z-levels to test here.
 
 /datum/map/New()
 	..()
@@ -180,7 +194,7 @@ var/list/all_maps = list()
 	if(transit_chance)
 		map.accessible_z_levels["[z]"] = transit_chance
 	// VOREStation Edit - Holomaps
-	// Auto-center the map if needed (Guess based on maxx/maxy) 
+	// Auto-center the map if needed (Guess based on maxx/maxy)
 	if (holomap_offset_x < 0)
 		holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
 	if (holomap_offset_x < 0)

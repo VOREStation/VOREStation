@@ -23,7 +23,6 @@
 
 /obj/machinery/atmospherics/unary/heater/New()
 	..()
-	initialize_directions = dir
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
@@ -32,7 +31,7 @@
 
 	RefreshParts()
 
-/obj/machinery/atmospherics/unary/heater/initialize()
+/obj/machinery/atmospherics/unary/heater/atmos_init()
 	if(node)
 		return
 

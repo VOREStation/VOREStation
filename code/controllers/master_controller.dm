@@ -11,7 +11,6 @@ var/global/datum/controller/game_controller/master_controller //Set in world.New
 var/global/controller_iteration = 0
 var/global/last_tick_duration = 0
 
-var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
 datum/controller/game_controller
@@ -43,16 +42,16 @@ datum/controller/game_controller/proc/setup()
 	transfer_controller = new
 	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 
-#if UNIT_TEST
-#define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
-#else
-#define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
-#endif
+// #if UNIT_TEST
+// #define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
+// #else
+// #define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
+// #endif
 
 datum/controller/game_controller/proc/setup_objects()
-	#if !UNIT_TEST
-	var/initialized_objects = 0
-	#endif
+	// #if !UNIT_TEST
+	// var/initialized_objects = 0
+	// #endif
 
 	// Set up antagonists.
 	populate_antag_type_list()
@@ -60,6 +59,8 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
+/*
+	to_world_log("Initializing Floor Decals")
 	admin_notice("<span class='danger'>Initializing Floor Decals</span>", R_DEBUG)
 	var/list/turfs_with_decals = list()
 	for(var/obj/effect/floor_decal/D in world)
@@ -73,6 +74,7 @@ datum/controller/game_controller/proc/setup_objects()
 	floor_decals_initialized = TRUE
 	sleep(1)
 
+	to_world_log("Initializing objects") // VOREStation Edit
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	for(var/atom/movable/object in world)
 		if(!QDELETED(object))
@@ -80,17 +82,26 @@ datum/controller/game_controller/proc/setup_objects()
 			CHECK_SLEEP_MASTER
 	sleep(1)
 
+	to_world_log("Initializing areas") // VOREStation Edit
 	admin_notice("<span class='danger'>Initializing areas</span>", R_DEBUG)
 	for(var/area/area in all_areas)
 		area.initialize()
 		CHECK_SLEEP_MASTER
 	sleep(1)
 
+	to_world_log("Initializing atmos machinery connections.") // VOREStation Edit
+	admin_notice("<span class='danger'>Initializing atmos machinery connections.</span>", R_DEBUG)
+	for(var/obj/machinery/atmospherics/machine in machines)
+		machine.atmos_init()
+		CHECK_SLEEP_MASTER
+
+	to_world_log("Initializing pipe networks") // VOREStation Edit
 	admin_notice("<span class='danger'>Initializing pipe networks</span>", R_DEBUG)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 		CHECK_SLEEP_MASTER
 
+	to_world_log("Initializing atmos machinery.") // VOREStation Edit
 	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
 	for(var/obj/machinery/atmospherics/unary/U in machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
@@ -101,9 +112,11 @@ datum/controller/game_controller/proc/setup_objects()
 			T.broadcast_status()
 		CHECK_SLEEP_MASTER
 
+	to_world_log("Initializing turbolifts") // VOREStation Edit
 	admin_notice("<span class='danger'>Initializing turbolifts</span>", R_DEBUG)
 	for(var/thing in turbolifts)
 		var/obj/turbolift_map_holder/lift = thing
 		if(!QDELETED(lift))
 			lift.initialize()
 			CHECK_SLEEP_MASTER
+	*/

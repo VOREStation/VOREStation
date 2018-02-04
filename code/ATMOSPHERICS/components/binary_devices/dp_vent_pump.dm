@@ -47,6 +47,10 @@
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	icon = null
 
+/obj/machinery/atmospherics/binary/dp_vent_pump/Destroy()
+	unregister_radio(src, frequency)
+	. = ..()
+
 /obj/machinery/atmospherics/binary/dp_vent_pump/high_volume
 	name = "Large Dual Port Air Vent"
 
@@ -190,7 +194,7 @@
 	return 1
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/initialize()
-	..()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 

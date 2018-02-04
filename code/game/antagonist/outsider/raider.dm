@@ -91,6 +91,7 @@ var/datum/antagonist/raider/raiders
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 		/obj/item/weapon/gun/projectile/colt/detective,
 		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/p92x,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/weapon/gun/projectile/revolver/judge,

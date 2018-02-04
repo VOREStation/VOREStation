@@ -186,8 +186,8 @@
 		if(percent_unstable < 0)
 			percent_unstable = 0
 		else
-			if(percent_unstable > 100)
-				percent_unstable = 100
+			if(percent_unstable > 1)
+				percent_unstable = 1
 			if(percent_unstable > 0)
 				percent_unstable = max(0, percent_unstable-rand(0.01,0.03))
 

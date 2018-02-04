@@ -1,0 +1,69 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Rockb1)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Rockb1)
+"d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rockb1)
+"e" = (/turf/simulated/wall/r_wall,/area/submap/Rockb1)
+"f" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/lino,/area/submap/Rockb1)
+"g" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/weapon/gun/projectile/pistol,/obj/item/ammo_magazine/m9mm/compact,/obj/item/ammo_magazine/m9mm/compact,/turf/simulated/floor/lino,/area/submap/Rockb1)
+"h" = (/obj/structure/bookcase,/turf/simulated/floor/lino,/area/submap/Rockb1)
+"i" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"j" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"k" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"l" = (/obj/item/seeds/ambrosiadeusseed,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"m" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"n" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/material/shard,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"o" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"p" = (/obj/structure/bed,/turf/simulated/floor/lino,/area/submap/Rockb1)
+"q" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/lino,/area/submap/Rockb1)
+"r" = (/turf/simulated/floor/lino,/area/submap/Rockb1)
+"s" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"t" = (/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"u" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/material/shard{icon_state = "medium"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"v" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/rods,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"w" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"x" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"y" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"z" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"A" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"B" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"C" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"D" = (/obj/machinery/power/apc{operating = 0; pixel_x = 31},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"E" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"F" = (/obj/machinery/door/airlock,/turf/space,/area/submap/Rockb1)
+"G" = (/obj/machinery/light/small{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
+"H" = (/obj/structure/toilet{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
+"I" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"J" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"K" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/excavation,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"L" = (/obj/structure/table/standard,/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"M" = (/obj/structure/table/standard,/obj/item/stack/material/cyborg/steel,/obj/item/stack/material/cyborg/glass,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"N" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"O" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"P" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"Q" = (/turf/simulated/floor/plating,/area/submap/Rockb1)
+"R" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/plating,/area/submap/Rockb1)
+"S" = (/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"T" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/plating,/area/submap/Rockb1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaa
+abbbcbbbbbbbbbbbbbbbbbbba
+abbcccccccddddddccccccbba
+abcccddddddddddddddccccba
+abccddddddddddddddddcccba
+abcddeeeeeeeeeeeeeedcccca
+abcddefgheijkelmnoedcccca
+abcddepqrestmetumvedcccba
+abcddeeewemtteweeeeecccba
+accddemtxmmtttttxyzycccba
+abdddeweeeeeeeweeeeecccba
+abdddeABCDetEmtFGHedcccba
+abdddeIJKLetMNOeeeedcccba
+abcddeeeeeePeeeeddddcccba
+abccddddddeQRSTedddccccba
+abccddddddeeeeeedccccccba
+abcccccccddddddddddccccba
+abbcccccccccccccccccccbba
+abbbbbbbbbbbbbccccbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaa
+"}

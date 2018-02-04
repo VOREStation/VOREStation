@@ -18,7 +18,7 @@
 	var/power_use = 1
 
 /obj/item/device/flashlight/initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/device/flashlight/New()
@@ -321,7 +321,7 @@
 	w_class = ITEMSIZE_SMALL
 	brightness_on = 8 // Pretty bright.
 	light_power = 3
-	light_color = "#e58775"
+	light_color = LIGHT_COLOR_FLARE
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.

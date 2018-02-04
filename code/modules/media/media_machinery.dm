@@ -65,10 +65,10 @@
 		update_music()
 
 /obj/machinery/media/initialize()
-	..()
+	. = ..()
 	update_media_source()
 
 /obj/machinery/media/Destroy()
 	disconnect_media_source()
-	..()
+	. = ..()
 

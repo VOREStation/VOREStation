@@ -202,7 +202,7 @@
 	if(equip_preview_mob)
 		// Determine what job is marked as 'High' priority, and dress them up as such.
 		if(job_civilian_low & ASSISTANT)
-			previewJob = job_master.GetJob("Assistant")
+			previewJob = job_master.GetJob(USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 		else
 			for(var/datum/job/job in job_master.occupations)
 				var/job_flag
@@ -252,7 +252,7 @@
 		update_icon = TRUE
 
 	if(update_icon)
-		mannequin.update_icons()
+		mannequin.update_icons_all()
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)

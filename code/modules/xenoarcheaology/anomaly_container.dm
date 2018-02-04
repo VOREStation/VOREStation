@@ -8,7 +8,7 @@
 	var/obj/machinery/artifact/contained
 
 /obj/structure/anomaly_container/initialize()
-	..()
+	. = ..()
 
 	var/obj/machinery/artifact/A = locate() in loc
 	if(A)

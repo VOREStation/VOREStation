@@ -11,17 +11,18 @@
 	#include "tether_telecomms.dm"
 	#include "tether_virgo3b.dm"
 
-	#include "tether-01-surface.dmm"
-	#include "tether-02-transit.dmm"
-	#include "tether-03-station.dmm"
-	#include "tether-04-mining.dmm"
-	#include "tether-05-solars.dmm"
-	#include "tether-06-colony.dmm"
-	#include "tether-07-misc.dmm"
-	#include "tether-08-ships.dmm"
-	#include "tether-09-empty-surface.dmm"
-	#include "tether-10-empty-space.dmm"
-//	#include "tether-11-wild-surface.dmm" // Wilderness stuff removed until mobs can be optimized better.
+	#include "tether-01-surface1.dmm"
+	#include "tether-02-surface2.dmm"
+	#include "tether-03-surface3.dmm"
+	#include "tether-04-transit.dmm"
+	#include "tether-05-station1.dmm"
+	#include "tether-06-station2.dmm"
+	#include "tether-07-station3.dmm"
+	#include "tether-08-mining.dmm"
+	#include "tether-09-solars.dmm"
+	#include "tether-10-colony.dmm"
+
+	#include "submaps/_tether_submaps.dm"
 
 	#define USING_MAP_DATUM /datum/map/tether
 

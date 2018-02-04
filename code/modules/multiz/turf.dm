@@ -34,7 +34,7 @@
 	update()
 
 /turf/simulated/open/initialize()
-	..()
+	. = ..()
 	ASSERT(HasBelow(z))
 	update()
 
@@ -52,6 +52,7 @@
 	below = GetBelow(src)
 	turf_changed_event.register(below, src, /turf/simulated/open/update_icon)
 	levelupdate()
+	below.update_icon() // So the 'ceiling-less' overlay gets added.
 	for(var/atom/movable/A in src)
 		A.fall()
 	OS_controller.add_turf(src, 1)

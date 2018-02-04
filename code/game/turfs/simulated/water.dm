@@ -11,11 +11,8 @@
 	outdoors = TRUE
 	var/depth = 1 // Higher numbers indicates deeper water.
 
-/turf/simulated/floor/water/New()
-	update_icon()
-	..()
-
 /turf/simulated/floor/water/initialize()
+	. = ..()
 	update_icon()
 
 /turf/simulated/floor/water/update_icon()
@@ -55,6 +52,8 @@
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_water()
+		if(L.check_submerged() <= 0)
+			return
 		if(!istype(oldloc, /turf/simulated/floor/water))
 			to_chat(L, "<span class='warning'>You get drenched in water from entering \the [src]!</span>")
 	AM.water_act(5)
@@ -64,6 +63,8 @@
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_water()
+		if(L.check_submerged() <= 0)
+			return
 		if(!istype(newloc, /turf/simulated/floor/water))
 			to_chat(L, "<span class='warning'>You climb out of \the [src].</span>")
 	..()
@@ -97,6 +98,8 @@
 	return ..()
 
 /mob/living/proc/check_submerged()
+	if(buckled)
+		return 0
 	var/turf/simulated/floor/water/T = loc
 	if(istype(T))
 		return T.depth

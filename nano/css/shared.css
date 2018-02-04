@@ -600,54 +600,65 @@ table.pmon td, table.pmon th {
 
 /* Table Stuffs for manifest*/
 
-th.command {
+th.Command {
     background: #3333FF;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.sec {
+th.Security {
     background: #8e0000;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.med {
+th.Medical {
     background: #006600;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.eng {
+th.Engineering {
     background: #b27300;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.sci {
+th.Science {
     background: #a65ba6;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.car {
+th.Cargo {
     background: #bb9040;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.civ {
+th.Planetside{
+	background: #555555;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+th.Civilian {
     background: #a32800;
     font-weight: bold;
     color: #ffffff;
 }
 
-th.misc {
+th.Miscellaneous {
     background: #666666;
     font-weight: bold;
     color: #ffffff;
 }
 
+th.Silicon {
+	background: #222222;
+	font-weight: bold;
+	color: #ffffff;
+}
 /* Damage colors for crew monitoring computer */
 
 .burn {

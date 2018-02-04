@@ -28,13 +28,11 @@
 /obj/effect/temporary_effect/pulsar
 	name = "pulsar"
 	desc = "Not a real pulsar, but still emits loads of EMP."
-	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	time_to_die = null
-	invisibility = 0
-	new_light_range = 4
-	new_light_power = 5
-	new_light_color = "#2ECCFA"
+	light_range = 4
+	light_power = 5
+	light_color = "#2ECCFA"
 	var/pulses_remaining = 3
 
 /obj/effect/temporary_effect/pulsar/New()

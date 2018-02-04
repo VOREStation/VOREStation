@@ -35,10 +35,10 @@
 	preferred_interim_area = /area/skipjack_station/transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/heist/outside_SC_1d = 1 MINUTE,
-		/datum/shuttle_destination/heist/outside_SC_2d = 1 MINUTE,
-		/datum/shuttle_destination/heist/outside_SC_3d = 1 MINUTE,
-		/datum/shuttle_destination/heist/sky = 1 MINUTE,
+		/datum/shuttle_destination/heist/outside_SC_1d = 30 SECONDS,
+		/datum/shuttle_destination/heist/outside_SC_2d = 30 SECONDS,
+		/datum/shuttle_destination/heist/outside_SC_3d = 30 SECONDS,
+		/datum/shuttle_destination/heist/sky = 30 SECONDS,
 	)
 
 /datum/shuttle_destination/heist/outside_SC_1d
@@ -82,8 +82,12 @@
 
 //	dock_target = "skipjack_shuttle_dock_airlock"
 	announcer = "Southern Cross Docking Computer"
-	arrival_message = "Attention, a shuttle has arrived to the Arrivals Dock."
-	departure_message = "Attention, a shuttle has departed the Arrivals Dock."
+
+/datum/shuttle_destination/heist/docked_SC/get_arrival_message()
+	return "Attention, [master.my_shuttle.visible_name] has arrived to the Arrivals Dock."
+
+/datum/shuttle_destination/heist/docked_SC/get_departure_message()
+	return "Attention, [master.my_shuttle.visible_name] has departed the Arrivals Dock."
 
 /datum/shuttle_destination/heist/sky
 	name = "Skies of Sif"
@@ -91,7 +95,7 @@
 	preferred_interim_area = /area/skipjack_station/sky_transit
 
 	routes_to_make = list(
-		/datum/shuttle_destination/heist/planet = 30 SECONDS
+		/datum/shuttle_destination/heist/planet = 15 SECONDS
 	)
 
 /datum/shuttle_destination/heist/planet

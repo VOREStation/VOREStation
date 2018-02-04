@@ -22,7 +22,6 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
-	initialize();
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
@@ -35,6 +34,7 @@
 	idle_power_usage /= max(1, tot_rating)
 
 /obj/machinery/r_n_d/server/initialize()
+	. = ..()
 	if(!files)
 		files = new /datum/research(src)
 	var/list/temp_list
@@ -123,8 +123,7 @@
 	name = "Central R&D Database"
 	server_id = -1
 
-/obj/machinery/r_n_d/server/centcom/initialize()
-	..()
+/obj/machinery/r_n_d/server/centcom/proc/update_connections()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
 	for(var/obj/machinery/r_n_d/server/S in machines)

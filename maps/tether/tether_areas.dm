@@ -10,7 +10,7 @@
 	name = "Tether Debug Space"
 	requires_power = 0
 
-// Teather Areas itself
+// Tether Areas itself
 /area/tether/surfacebase/tether
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "tether1"
@@ -25,6 +25,7 @@
 /area/turbolift
 	delay_time = 2 SECONDS
 	forced_ambience = list('sound/music/elevator.ogg')
+	dynamic_lighting = FALSE //Temporary fix for elevator lighting
 
 /area/turbolift/tether/transit
 	name = "tether (midway)"
@@ -36,8 +37,9 @@
 /area/turbolift/t_surface/level1
 	name = "surface (level 1)"
 	lift_floor_label = "Surface 1"
-	lift_floor_name = "Tram, Mining, Moon EVA"
+	lift_floor_name = "Tram, Dorms, Mining, Surf. EVA"
 	lift_announce_str = "Arriving at Base Level 1."
+	base_turf = /turf/simulated/floor/plating
 
 /area/turbolift/t_surface/level2
 	name = "surface (level 2)"
@@ -54,7 +56,7 @@
 /area/turbolift/t_station/level1
 	name = "asteroid (level 1)"
 	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Bridge, Dorms, Cryo"
+	lift_floor_name = "Eng, Bridge, Park, Cryo"
 	lift_announce_str = "Arriving at Station Level 1."
 
 /area/turbolift/t_station/level2
@@ -76,10 +78,6 @@
 /area/vacant/vacant_restaurant_lower
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
-
-/area/engineering/engine_gas
-	name = "\improper Engine Gas Storage"
-	icon_state = "engine_waste"
 
 /area/engineering/engineering_airlock
 	name = "\improper Engineering Airlock"

@@ -5,8 +5,6 @@
 	icon_state = "rup"
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 
-	var/spawned_thing //VOREStation Edit
-
 
 // creates a new object and deletes itself
 /obj/random/New()
@@ -30,13 +28,6 @@
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
 
-//VOREStation Edit
-	spawned_thing = A
-
-/obj/random/Destroy()
-	spawned_thing = null
-	return ..()
-//VOREStation Edit End
 
 /obj/random/single
 	name = "randomly spawned object"
@@ -226,7 +217,7 @@
 				//prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
 				prob(2);/obj/item/weapon/material/knuckledusters,
-				prob(1);/obj/item/weapon/material/hatchet/tacknife,
+				prob(1);/obj/item/weapon/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
 				prob(1);/obj/item/weapon/handcuffs/fuzzy,
@@ -303,7 +294,7 @@
 
 /obj/random/projectile
 	name = "Random Projectile Weapon"
-	desc = "This is a random security weapon."
+	desc = "This is a random projectile weapon."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "revolver"
 
@@ -324,6 +315,8 @@
 				prob(3);/obj/item/weapon/gun/projectile/luger/brown,
 				prob(4);/obj/item/weapon/gun/projectile/sec,
 				prob(3);/obj/item/weapon/gun/projectile/sec/wood,
+				prob(4);/obj/item/weapon/gun/projectile/p92x,
+				prob(3);/obj/item/weapon/gun/projectile/p92x/brown,
 				prob(4);/obj/item/weapon/gun/projectile/pistol,
 				prob(5);/obj/item/weapon/gun/projectile/pirate,
 				prob(2);/obj/item/weapon/gun/projectile/revolver,
@@ -359,13 +352,15 @@
 
 /obj/random/handgun/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/gun/projectile/sec,
-				prob(4);/obj/item/weapon/gun/projectile/luger,
+				prob(4);/obj/item/weapon/gun/projectile/p92x,
+				prob(3);/obj/item/weapon/gun/projectile/sec/wood,
+				prob(3);/obj/item/weapon/gun/projectile/p92x/brown,
+				prob(3);/obj/item/weapon/gun/projectile/colt,
+				prob(2);/obj/item/weapon/gun/projectile/luger,
 				prob(2);/obj/item/weapon/gun/energy/gun,
-				prob(2);/obj/item/weapon/gun/projectile/colt,
 				prob(2);/obj/item/weapon/gun/projectile/pistol,
 				prob(1);/obj/item/weapon/gun/energy/retro,
-				prob(1);/obj/item/weapon/gun/projectile/sec/wood,
-				prob(3);/obj/item/weapon/gun/projectile/luger/brown)
+				prob(1);/obj/item/weapon/gun/projectile/luger/brown)
 
 /obj/random/handgun/sec
 	name = "Random Security Handgun"
@@ -379,7 +374,7 @@
 
 /obj/random/ammo
 	name = "Random Ammunition"
-	desc = "This is random ammunition."
+	desc = "This is random security ammunition."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "45-10"
 
@@ -907,6 +902,32 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/weapon/beartrap,
 				prob(2);/obj/item/weapon/handcuffs,)
 
+/obj/random/sfr
+	name = "random SFR headset"
+	desc = "This is a headset spawn."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "rup"
+
+/obj/random/sfr/item_to_spawn()
+	return pick(prob(25);/obj/item/device/radio/headset/heads/captain/sfr,
+				prob(25);/obj/item/device/radio/headset/headset_cargo/alt,
+				prob(25);/obj/item/device/radio/headset/headset_com/alt,
+				prob(25);/obj/item/device/radio/headset)
+
+/obj/random/rigsuit
+	name = "Random rigsuit"
+	desc = "This is a random rigsuit."
+	icon = 'icons/obj/rig_modules.dmi'
+	icon_state = "generic"
+
+/obj/random/rigsuit/item_to_spawn()
+	return pick(prob(4);/obj/item/weapon/rig/light/hacker,
+				prob(5);/obj/item/weapon/rig/industrial,
+				prob(5);/obj/item/weapon/rig/eva,
+				prob(4);/obj/item/weapon/rig/light/stealth,
+				prob(3);/obj/item/weapon/rig/hazard,
+				prob(1);/obj/item/weapon/rig/merc/empty)
+
 var/list/random_junk_
 var/list/random_useful_
 /proc/get_random_useful_type()
@@ -958,7 +979,7 @@ var/list/multi_point_spawns
 	var/weight // Probability weight for this spawn point
 
 /obj/random_multi/initialize()
-	..()
+	. = ..()
 	weight = max(1, round(weight))
 
 	if(!multi_point_spawns)
@@ -1003,6 +1024,11 @@ var/list/multi_point_spawns
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
 	item_path = /obj/item/weapon/card/id/gold/captain/spare
+
+/obj/random_multi/single_item/sfr_headset
+	name = "Multi Point - headset"
+	id = "SFR headset"
+	item_path = /obj/random/sfr
 
 //Multiple Object Spawn
 

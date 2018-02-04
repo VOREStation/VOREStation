@@ -22,13 +22,25 @@
 /turf/simulated/floor/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/carpet1.ogg',
+		'sound/effects/footstep/carpet2.ogg',
+		'sound/effects/footstep/carpet3.ogg',
+		'sound/effects/footstep/carpet4.ogg',
+		'sound/effects/footstep/carpet5.ogg'))
 
 /turf/simulated/floor/beach/sand
 	name = "Sand"
 	icon_state = "sand"
 
 /turf/simulated/floor/beach/sand/desert
+	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
+
+/turf/simulated/floor/beach/sand/desert/initialize()
+	. = ..()
+	if(prob(5))
+		icon_state = "desert[rand(0,4)]"
 
 /turf/simulated/floor/beach/coastline
 	name = "Coastline"

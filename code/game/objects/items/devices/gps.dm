@@ -18,6 +18,7 @@ var/list/GPS_list = list()
 	var/can_hide_signal = FALSE	// If it can toggle the above var.
 
 /obj/item/device/gps/initialize()
+	. = ..()
 	GPS_list += src
 	name = "global positioning system ([gps_tag])"
 	update_icon()
@@ -195,7 +196,7 @@ var/list/GPS_list = list()
 	tracking = TRUE // On by default.
 
 /obj/item/device/gps/internal // Base type for immobile/internal GPS units.
-	icon_state = null
+	icon_state = "internal"
 	gps_tag = "Eerie Signal"
 	desc = "Report to a coder immediately."
 	invisibility = INVISIBILITY_MAXIMUM

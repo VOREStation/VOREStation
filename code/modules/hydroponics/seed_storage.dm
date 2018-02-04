@@ -27,7 +27,7 @@
 	use_power = 1
 	idle_power_usage = 100
 
-	var/initialized = 0 // Map-placed ones break if seeds are loaded right at the start of the round, so we do it on the first interaction
+	var/seeds_initialized = 0 // Map-placed ones break if seeds are loaded right at the start of the round, so we do it on the first interaction
 	var/list/datum/seed_pile/piles = list()
 	var/list/starting_seeds = list()
 	var/list/scanner = list() // What properties we can view
@@ -60,6 +60,7 @@
 		/obj/item/seeds/limeseed = 3,
 		/obj/item/seeds/mtearseed = 2,
 		/obj/item/seeds/orangeseed = 3,
+		/obj/item/seeds/onionseed = 3,
 		/obj/item/seeds/peanutseed = 3,
 		/obj/item/seeds/plumpmycelium = 3,
 		/obj/item/seeds/poppyseed = 3,
@@ -134,7 +135,7 @@
 	if (..())
 		return
 
-	if (!initialized)
+	if (!seeds_initialized)
 		for(var/typepath in starting_seeds)
 			var/amount = starting_seeds[typepath]
 			if(isnull(amount)) amount = 1
@@ -142,7 +143,7 @@
 			for (var/i = 1 to amount)
 				var/O = new typepath
 				add(O)
-		initialized = 1
+		seeds_initialized = 1
 
 	var/dat = "<center><h1>Seed storage contents</h1></center>"
 	if (piles.len == 0)

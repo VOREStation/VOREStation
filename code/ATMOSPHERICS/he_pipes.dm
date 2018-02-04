@@ -19,7 +19,6 @@
 	// BubbleWrap
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
 	..()
-	init_dir()
 // BubbleWrap END
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 
@@ -27,8 +26,7 @@
 	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
-	init_dir()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_init()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -41,12 +39,10 @@
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node1_dir))
-		target.init_dir()
 		if(target.initialize_directions_he & get_dir(target,src))
 			node1 = target
 			break
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node2_dir))
-		target.init_dir()
 		if(target.initialize_directions_he & get_dir(target,src))
 			node2 = target
 			break
@@ -75,20 +71,23 @@
 		else if(istype(loc, /turf/space/))
 			parent.radiate_heat_to_space(surface, 1)
 
-		if(buckled_mob)
-			var/hc = pipe_air.heat_capacity()
-			var/avg_temp = (pipe_air.temperature * hc + buckled_mob.bodytemperature * 3500) / (hc + 3500)
-			pipe_air.temperature = avg_temp
-			buckled_mob.bodytemperature = avg_temp
+		if(has_buckled_mobs())
+			for(var/M in buckled_mobs)
+				var/mob/living/L = M
 
-			var/heat_limit = 1000
+				var/hc = pipe_air.heat_capacity()
+				var/avg_temp = (pipe_air.temperature * hc + L.bodytemperature * 3500) / (hc + 3500)
+				pipe_air.temperature = avg_temp
+				L.bodytemperature = avg_temp
 
-			var/mob/living/carbon/human/H = buckled_mob
-			if(istype(H) && H.species)
-				heat_limit = H.species.heat_level_3
+				var/heat_limit = 1000
 
-			if(pipe_air.temperature > heat_limit + 1)
-				buckled_mob.apply_damage(4 * log(pipe_air.temperature - heat_limit), BURN, BP_TORSO, used_weapon = "Excessive Heat")
+				var/mob/living/carbon/human/H = L
+				if(istype(H) && H.species)
+					heat_limit = H.species.heat_level_3
+
+				if(pipe_air.temperature > heat_limit + 1)
+					L.apply_damage(4 * log(pipe_air.temperature - heat_limit), BURN, BP_TORSO, used_weapon = "Excessive Heat")
 
 		//fancy radiation glowing
 		if(pipe_air.temperature && (icon_temperature > 500 || pipe_air.temperature > 500)) //start glowing at 500K
@@ -136,15 +135,12 @@
 			initialize_directions_he = WEST
 
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/initialize()
-	init_dir()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))
-		target.init_dir()
 		if(target.initialize_directions & get_dir(target,src))
 			node1 = target
 			break
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,initialize_directions_he))
-		target.init_dir()
 		if(target.initialize_directions_he & get_dir(target,src))
 			node2 = target
 			break

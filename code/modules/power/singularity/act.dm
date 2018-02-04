@@ -19,7 +19,7 @@
 	if(mind)
 		if((mind.assigned_role == "Station Engineer") || (mind.assigned_role == "Chief Engineer"))
 			gain = 100
-		if(mind.assigned_role == "Assistant")
+		if(mind.assigned_role == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			gain = rand(0, 300)
 	investigate_log(I_SINGULO,"has been consumed by a singularity", I_SINGULO)
 	gib()
@@ -95,6 +95,9 @@
 /obj/item/projectile/beam/emitter/singularity_pull()
 	return
 
+/obj/effect/projectile/emitter/singularity_pull()
+	return
+
 /obj/item/weapon/storage/backpack/holding/singularity_act(S, current_size)
 	var/dist = max((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
@@ -126,6 +129,9 @@
 				dismantle_wall()
 
 /turf/space/singularity_act()
+	return
+
+/turf/simulated/open/singularity_act()
 	return
 
 /*******************

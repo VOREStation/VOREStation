@@ -26,8 +26,11 @@ obj/machinery/atmospherics/pipe/zpipe
 
 		level = 1
 
-obj/machinery/atmospherics/pipe/zpipe/New()
+/obj/machinery/atmospherics/pipe/zpipe/New()
 	..()
+	init_dir()
+
+/obj/machinery/atmospherics/pipe/zpipe/init_dir()
 	switch(dir)
 		if(SOUTH)
 			initialize_directions = SOUTH
@@ -122,7 +125,7 @@ obj/machinery/atmospherics/pipe/zpipe/up
 		name = "upwards pipe"
 		desc = "A pipe segment to connect upwards."
 
-obj/machinery/atmospherics/pipe/zpipe/up/initialize()
+obj/machinery/atmospherics/pipe/zpipe/up/atmos_init()
 	normalize_dir()
 	var/node1_dir
 
@@ -160,7 +163,7 @@ obj/machinery/atmospherics/pipe/zpipe/down
 		name = "downwards pipe"
 		desc = "A pipe segment to connect downwards."
 
-obj/machinery/atmospherics/pipe/zpipe/down/initialize()
+obj/machinery/atmospherics/pipe/zpipe/down/atmos_init()
 	normalize_dir()
 	var/node1_dir
 

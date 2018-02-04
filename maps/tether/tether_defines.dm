@@ -34,19 +34,6 @@
 #define Z_LEVEL_CENTCOM						10
 #define Z_LEVEL_MISC						11
 #define Z_LEVEL_SHIPS						12
-#define Z_LEVEL_EMPTY_SURFACE				13
-#define Z_LEVEL_EMPTY_SPACE					14
-
-// These are still defined here, but the levels have been removed. I could delete these but it will cause compile errors. Don't delete them unless you have to.
-#define Z_LEVEL_SURFACE_WILDERNESS_1		15
-#define Z_LEVEL_SURFACE_WILDERNESS_2		16
-#define Z_LEVEL_SURFACE_WILDERNESS_3		17
-#define Z_LEVEL_SURFACE_WILDERNESS_4		18
-#define Z_LEVEL_SURFACE_WILDERNESS_5		19
-#define Z_LEVEL_SURFACE_WILDERNESS_6		20
-#define Z_LEVEL_SURFACE_WILDERNESS_CRASH	21
-#define Z_LEVEL_SURFACE_WILDERNESS_RUINS	22
-
 
 /datum/map/tether
 	name = "Virgo"
@@ -57,6 +44,7 @@
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
 	lobby_screens = list("tether")
+	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
 		Z_LEVEL_SURFACE_LOW,
@@ -104,7 +92,37 @@
 							)
 
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
+	spawnpoint_died = /datum/spawnpoint/tram
+	spawnpoint_left = /datum/spawnpoint/tram
+	spawnpoint_stayed = /datum/spawnpoint/cryo
 
+	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+
+	unit_test_exempt_areas = list(
+		/area/tether/surfacebase/outside/outside1,
+		/area/vacant/vacant_site,
+		/area/vacant/vacant_site/east,
+		/area/crew_quarters/sleep/Dorm_1/holo,
+		/area/crew_quarters/sleep/Dorm_3/holo,
+		/area/crew_quarters/sleep/Dorm_5/holo,
+		/area/crew_quarters/sleep/Dorm_7/holo)
+	unit_test_exempt_from_atmos = list(
+		/area/engineering/atmos/intake, // Outside,
+		/area/rnd/external, //  Outside,
+		/area/tether/surfacebase/mining_main/external, // Outside,
+		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
+		/area/tether/surfacebase/emergency_storage/rnd,
+		/area/tether/surfacebase/emergency_storage/atrium)
+
+	lateload_z_levels = list(
+		"Tether - Misc",
+		"Tether - Ships"
+		)
+
+	lateload_single_pick = list(
+		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
+		"Alien Ship - Z1 Ship"
+		)
 
 /datum/map/tether/perform_map_generation()
 
@@ -148,6 +166,7 @@
 /datum/map_z_level/tether/station/surface_low
 	z = Z_LEVEL_SURFACE_LOW
 	name = "Surface 1"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
@@ -155,6 +174,7 @@
 /datum/map_z_level/tether/station/surface_mid
 	z = Z_LEVEL_SURFACE_MID
 	name = "Surface 2"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
@@ -162,6 +182,7 @@
 /datum/map_z_level/tether/station/surface_high
 	z = Z_LEVEL_SURFACE_HIGH
 	name = "Surface 3"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
@@ -175,7 +196,7 @@
 	z = Z_LEVEL_SPACE_LOW
 	name = "Asteroid 1"
 	base_turf = /turf/space
-	transit_chance = 6
+	transit_chance = 33
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
 
@@ -183,7 +204,7 @@
 	z = Z_LEVEL_SPACE_MID
 	name = "Asteroid 2"
 	base_turf = /turf/simulated/open
-	transit_chance = 6
+	transit_chance = 33
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
 
@@ -191,7 +212,7 @@
 	z = Z_LEVEL_SPACE_HIGH
 	name = "Asteroid 3"
 	base_turf = /turf/simulated/open
-	transit_chance = 6
+	transit_chance = 33
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
 
@@ -217,23 +238,7 @@
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN
 
-/datum/map_z_level/tether/ships
-	z = Z_LEVEL_SHIPS
-	name = "Ships"
-	flags = 0
-
-/datum/map_z_level/tether/empty_surface
-	z = Z_LEVEL_EMPTY_SURFACE
-	name = "Empty"
-	flags = MAP_LEVEL_PLAYER
-	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
-
-/datum/map_z_level/tether/empty_space
-	z = Z_LEVEL_EMPTY_SPACE
-	name = "Empty"
-	flags = MAP_LEVEL_PLAYER
-	transit_chance = 82
-
+/*
 /datum/map_z_level/tether/wilderness
 	name = "Wilderness"
 	flags = MAP_LEVEL_PLAYER
@@ -249,7 +254,6 @@
 		frozen_mobs -= M
 	frozen_mobs.Cut()
 
-/*
 /datum/map_z_level/tether/wilderness/wild_1
 	z = Z_LEVEL_SURFACE_WILDERNESS_1
 
@@ -273,10 +277,4 @@
 
 /datum/map_z_level/tether/wilderness/wild_ruins
 	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
-*/ // Wilderness stuff removed until mobs can be optimized better.
-
-/proc/get_z_level_datum(atom/A)
-	var/turf/T = get_turf(A)
-	var/datum/map_z_level/z_level = using_map.zlevels["[T.z]"]
-	if(z_level)
-		return z_level
+*/

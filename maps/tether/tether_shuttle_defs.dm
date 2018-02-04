@@ -26,6 +26,7 @@
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 
 //////////////////////////////////////////////////////////////
+/* Removed for the time being
 /datum/shuttle/ferry/escape_pod/large_escape_pod2
 	name = "Large Escape Pod 2"
 	location = 0
@@ -37,7 +38,7 @@
 	dock_target_station = "large_escape_pod_2_berth"
 	dock_target_offsite = "large_escape_pod_2_recovery"
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-
+*/
 //////////////////////////////////////////////////////////////
 // Supply shuttle
 /datum/shuttle/ferry/supply/cargo

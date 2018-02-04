@@ -27,7 +27,7 @@
 	to_chat(usr, "Audio feed is [radio.broadcasting ? "on" : "off"]")
 
 /obj/item/device/tvcamera/initialize()
-	..()
+	. = ..()
 	camera = new(src)
 	camera.c_tag = channel
 	camera.status = FALSE

@@ -93,11 +93,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(blood_volume >= BLOOD_VOLUME_SAFE)
 			if(pale)
 				pale = 0
-				update_body()
+				update_icons_body()
 		else if(blood_volume >= BLOOD_VOLUME_OKAY)
 			if(!pale)
 				pale = 1
-				update_body()
+				update_icons_body()
 				var/word = pick("dizzy","woosey","faint")
 				src << "<font color='red'>You feel [word]</font>"
 			if(prob(1))
@@ -108,7 +108,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		else if(blood_volume >= BLOOD_VOLUME_BAD)
 			if(!pale)
 				pale = 1
-				update_body()
+				update_icons_body()
 			eye_blurry = max(eye_blurry,6)
 			if(getOxyLoss() < 50 * threshold_coef)
 				adjustOxyLoss(10 * dmg_coef)
@@ -126,7 +126,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		else //Not enough blood to survive (usually)
 			if(!pale)
 				pale = 1
-				update_body()
+				update_icons_body()
 			eye_blurry = max(eye_blurry,6)
 			Paralyse(3)
 			adjustToxLoss(3 * dmg_coef)
@@ -141,7 +141,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 		//Bleeding out
 		var/blood_max = 0
-		var/blood_loss_divisor = 30	//lower factor = more blood loss
+		var/blood_loss_divisor = 30.01	//lower factor = more blood loss
 
 		// Some species bleed out differently
 		blood_loss_divisor /= species.bloodloss_rate

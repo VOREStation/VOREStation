@@ -96,7 +96,7 @@
 					/obj/item/clothing/glasses/thermal/syndi,
 					/obj/item/weapon/card/emag,
 					/obj/item/ammo_magazine/m45/ap,
-					/obj/item/weapon/material/hatchet/tacknife/combatknife,
+					/obj/item/weapon/material/knife/tacknife/combatknife,
 					/obj/item/clothing/mask/balaclava
 					)
 			)
