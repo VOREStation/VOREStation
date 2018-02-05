@@ -165,6 +165,11 @@ List of things solar grubs should be able to do:
 	var/poison_type = "shockchem"
 	var/poison_chance = 65
 	var/emp_chance = 30
+	
+	vore_active = 1
+	vore_capacity = 1
+	vore_pounce_chance = 0
+	vore_default_mode = DM_ITEMWEAK
 
 /mob/living/simple_animal/hostile/solargrubknight/PunchTarget()
 	. = ..()
@@ -184,9 +189,3 @@ List of things solar grubs should be able to do:
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)
 		return 1
-
-/mob/living/simple_animal/hostile/solargrubknight
-	vore_active = 1
-	vore_capacity = 1
-	vore_pounce_chance = 0
-	vore_default_mode = DM_ITEMWEAK
