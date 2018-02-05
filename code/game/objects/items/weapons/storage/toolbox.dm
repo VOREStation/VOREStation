@@ -68,26 +68,29 @@
 	item_state_slots = list(slot_r_hand_str = "toolbox_syndi", slot_l_hand_str = "toolbox_syndi")
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = 14
+	var/powertools = FALSE
+
+/obj/item/weapon/storage/toolbox/syndicate/powertools
+	powertools = TRUE
 
 /obj/item/weapon/storage/toolbox/syndicate/New() // This is found in maint, so it should have the basics, plus some gloves.
-	..()
-	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/device/multitool(src)
-
-/obj/item/weapon/storage/toolbox/syndicate/powertools/New() // Available in the uplink and is the 'real' syndie toolbox.
-	// ..() isn't called or else this box would contain the basic tools, power tools, and duplicate gloves.
-	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/weapon/screwdriver/power(src)
-	new /obj/item/weapon/weldingtool/experimental(src)
-	new /obj/item/weapon/crowbar/power(src)
-	new /obj/item/device/multitool(src)
-	new /obj/item/stack/cable_coil/random(src,30)
-	new /obj/item/device/analyzer(src)
+	..() //all storage items need this to work properly!
+	if(powertools)
+		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/weapon/screwdriver/power(src)
+		new /obj/item/weapon/weldingtool/experimental(src)
+		new /obj/item/weapon/crowbar/power(src)
+		new /obj/item/device/multitool(src)
+		new /obj/item/stack/cable_coil/random(src,30)
+		new /obj/item/device/analyzer(src)
+	else
+		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/weapon/screwdriver(src)
+		new /obj/item/weapon/wrench(src)
+		new /obj/item/weapon/weldingtool(src)
+		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/wirecutters(src)
+		new /obj/item/device/multitool(src)
 
 /obj/item/weapon/storage/toolbox/lunchbox
 	max_storage_space = ITEMSIZE_COST_SMALL * 4 //slightly smaller than a toolbox
