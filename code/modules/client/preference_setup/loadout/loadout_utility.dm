@@ -101,13 +101,13 @@
 
 /datum/gear/utility/implant
 	exploitable = 1
-
+/* VOREStation Edit - Make languages great again
 /datum/gear/utility/implant/eal //This does nothing if you don't actually know EAL.
 	display_name = "implant, language, EAL"
 	path = /obj/item/weapon/implant/language/eal
 	cost = 2
 	slot = "implant"
-	exploitable = 1
+	exploitable = 1*/
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"

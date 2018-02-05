@@ -8,8 +8,8 @@
 /datum/gear/ears/headphones
 	display_name = "headphones"
 	path = /obj/item/clothing/ears/earmuffs/headphones
-
+/* VOREStation Edit - Make languages great again
 /datum/gear/ears/translator
 	display_name = "universal translator, ear"
 	path = /obj/item/device/universal_translator/ear
-	cost = 8
+	cost = 8*/
