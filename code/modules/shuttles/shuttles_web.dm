@@ -128,6 +128,31 @@
 	icon_state = "flightcomp_center"
 	icon_keyboard = "flight_center_key"
 	icon_screen = "flight_center"
+	var/list/my_doors //Should be list("id_tag" = "Pretty Door Name", ...)
+	var/list/my_sensors //Should be list("id_tag" = "Pretty Sensor Name", ...)
+
+/obj/machinery/computer/shuttle_control/web/initialize()
+	. = ..()
+	var/area/my_area = get_area(src)
+	if(my_doors)
+		var/list/find_doors = my_doors
+		my_doors = list()
+		for(var/obj/machinery/door/airlock/A in my_area)
+			if(A.id_tag in find_doors)
+				my_doors[find_doors[A.id_tag]] = A
+				find_doors -= A.id_tag
+		for(var/lost in find_doors)
+			log_debug("[my_area] shuttle computer couldn't find [lost] door!")
+
+	if(my_sensors)
+		var/list/find_sensors = my_sensors
+		my_sensors = list()
+		for(var/obj/machinery/shuttle_sensor/S in my_area)
+			if(S.id_tag in find_sensors)
+				my_sensors[find_sensors[S.id_tag]] = S
+				find_sensors -= S.id_tag
+		for(var/lost in find_sensors)
+			log_debug("[my_area] shuttle computer couldn't find [lost] sensor!")
 
 // Fairly copypasta-y.
 /obj/machinery/computer/shuttle_control/web/attack_hand(mob/user)
@@ -244,6 +269,21 @@
 	if(total_time) // Need to check or we might divide by zero.
 		percent_finished = (elapsed_time / total_time) * 100
 
+
+	var/list/doors = list()
+	if(my_doors)
+		for(var/doorname in my_doors)
+			var/obj/machinery/door/airlock/A = my_doors[doorname]
+			if(A)
+				doors[doorname] = list("bolted" = A.locked, "open" = !A.density)
+
+	var/list/sensors = list()
+	if(my_sensors)
+		for(var/sensorname in my_sensors)
+			var/obj/machinery/shuttle_sensor/S = my_sensors[sensorname]
+			if(S)
+				sensors[sensorname] = S.air_list()
+
 	data = list(
 		"shuttle_location" = shuttle_location,
 		"future_location" = future_location,
@@ -261,13 +301,15 @@
 		"cloaked" = shuttle.cloaked ? 1 : 0,
 		"can_autopilot" = shuttle.can_autopilot ? 1 : 0,
 		"autopilot" = shuttle.autopilot ? 1 : 0,
-		"can_rename" = shuttle.can_rename ? 1 : 0
+		"can_rename" = shuttle.can_rename ? 1 : 0,
+		"doors" = doors,
+		"sensors" = sensors
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "flight.tmpl", "[shuttle.visible_name] Flight Computer", 470, 500)
+		ui = new(user, src, ui_key, "flight.tmpl", "[shuttle.visible_name] Flight Computer", 500, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -411,3 +453,45 @@
 	processing_objects -= src
 
 	qdel(src)
+
+//A sensor for detecting air outside shuttles! Handy, that.
+/obj/machinery/shuttle_sensor
+	name = "environment sensor"
+	icon = 'icons/obj/airlock_machines.dmi'
+	icon_state = "airlock_sensor_standby"
+	var/id_tag
+
+/obj/machinery/shuttle_sensor/process()
+	return PROCESS_KILL //nty
+
+/obj/machinery/shuttle_sensor/proc/air_list()
+	. = list("reading" = FALSE)
+	var/turf/T = get_step(src,dir)
+
+	if(isnull(T))
+		return
+
+	var/list/aircontents
+	var/datum/gas_mixture/environment = T.return_air()
+	var/pressure = environment.return_pressure()
+	var/total_moles = environment.total_moles
+
+	if(total_moles)
+		var/o2_level = environment.gas["oxygen"]/total_moles
+		var/n2_level = environment.gas["nitrogen"]/total_moles
+		var/co2_level = environment.gas["carbon_dioxide"]/total_moles
+		var/phoron_level = environment.gas["phoron"]/total_moles
+		var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+		aircontents = list(\
+			"pressure" = "[round(pressure,0.1)]",\
+			"nitrogen" = "[round(n2_level*100,0.1)]",\
+			"oxygen" = "[round(o2_level*100,0.1)]",\
+			"carbon_dioxide" = "[round(co2_level*100,0.1)]",\
+			"phoron" = "[round(phoron_level*100,0.01)]",\
+			"other" = "[round(unknown_level, 0.01)]",\
+			"temp" = "[round(environment.temperature-T0C,0.1)]",\
+			"reading" = TRUE\
+			)
+
+	if(aircontents)
+		return aircontents

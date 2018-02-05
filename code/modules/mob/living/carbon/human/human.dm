@@ -1347,9 +1347,9 @@
 	if(..(slipped_on,stun_duration))
 		return 1
 
-/mob/living/carbon/human/proc/undislocate()
+/mob/living/carbon/human/proc/relocate()
 	set category = "Object"
-	set name = "Undislocate Joint"
+	set name = "Relocate Joint"
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
 
@@ -1397,7 +1397,7 @@
 	else
 		U << "<span class='danger'>You pop [S]'s [current_limb.joint] back in!</span>"
 		S << "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>"
-	current_limb.undislocate()
+	current_limb.relocate()
 
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in organs)
