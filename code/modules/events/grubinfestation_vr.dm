@@ -13,8 +13,7 @@
 
 
 /datum/event/grub_infestation/start()
-	var/list/blacklist
-	blacklist = list(/area/crew_quarters/sleep, /area/security/armory/red, /area/teleporter
+	var/list/blacklist = list(/area/crew_quarters/sleep, /area/security/armory/red, /area/teleporter
 	, /area/ai/foyer, /area/ai_upload, /area/ai_upload_foyer, /area/ai_server_room, /area/medical/virology
 	, /area/medical/virologyaccess, /area/medical/virologyisolation, /area/tether/surfacebase/shuttle_pad)
 	var/list/vents = list()
