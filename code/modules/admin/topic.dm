@@ -1864,6 +1864,17 @@
 
 			show_player_panel(M)
 
+	else if(href_list["cryoplayer"])
+		if(!check_rights(R_ADMIN))	return
+
+		var/mob/M = locate(href_list["cryoplayer"])
+		if(!istype(M))
+			to_chat(usr,"<span class='warning'>Mob doesn't exist!</span>")
+			return
+
+		var/client/C = usr.client
+		C.despawn_player(M)
+
 	// player info stuff
 
 	if(href_list["add_player_info"])
