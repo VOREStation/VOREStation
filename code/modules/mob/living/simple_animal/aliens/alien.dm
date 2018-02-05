@@ -219,7 +219,7 @@
 
 	speak_chance = 5
 	speak = list("Shuhn","Shrunnph?","Shunpf")
-	emote_see = list("scratches the ground","shakes out it's mane","tinkles gently")
+	emote_see = list("scratches the ground","shakes out it's mane","clinks gently as it moves")
 
 /mob/living/simple_animal/yithian
 	name = "yithian"
