@@ -365,7 +365,7 @@
 		items_preserved |= item
 	else
 		internal_contents -= item
-		owner.nutrition += (digested)
+		owner.nutrition += (5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += (50 * digested)
