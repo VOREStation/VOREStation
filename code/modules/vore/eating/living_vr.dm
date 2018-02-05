@@ -272,9 +272,10 @@
 // Clearly super important. Obviously.
 //
 /mob/living/proc/lick(var/mob/living/tasted in living_mobs(1))
-	set name = "Lick Someone"
+	set name = "Lick"
 	set category = "IC"
 	set desc = "Lick someone nearby!"
+	set popup_menu = FALSE // Stop licking by accident!
 
 	if(!istype(tasted))
 		return
@@ -335,7 +336,7 @@
 	//You're in a PC!
 	else if(istype(src.loc,/mob/living))
 		var/mob/living/carbon/pred = src.loc
-		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If you are in more than one pred. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
+		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If you are in more than one pred. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
 		if(confirm == "Okay")
 			for(var/O in pred.vore_organs)
 				var/datum/belly/CB = pred.vore_organs[O]
@@ -348,7 +349,7 @@
 		var/mob/living/silicon/pred = src.loc.loc //Thing holding the belly!
 		var/obj/item/device/dogborg/sleeper/belly = src.loc //The belly!
 
-		var/confirm = alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking and if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
+		var/confirm = alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
 		if(confirm == "Okay")
 			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 			belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
