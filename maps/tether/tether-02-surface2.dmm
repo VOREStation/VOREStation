@@ -15952,7 +15952,7 @@
 /obj/machinery/turretid/lethal{
 	ailock = 1;
 	check_synth = 1;
-	control_area = "\improper Telecomms Central Compartment";
+	control_area = /area/tcommsat/chamber;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms lethal turret control";
 	pixel_x = 29;
@@ -15966,7 +15966,9 @@
 /obj/effect/decal/cleanable/cobweb2,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
-/area/tcommsat/chamber)
+/area/tcomsat{
+	name = "\improper Telecomms Lobby"
+	})
 "EZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
@@ -16057,7 +16059,7 @@
 /obj/machinery/turretid/stun{
 	ailock = 1;
 	check_synth = 1;
-	control_area = "\improper Telecoms Foyer";
+	control_area = /area/tcommsat;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms Foyer turret control";
 	pixel_x = 29;
@@ -16072,8 +16074,8 @@
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled,
-/area/tcomsat{
-	name = "\improper Telecomms Lobby"
+/area/tcommsat/entrance{
+	name = "\improper Telecomms Entrance"
 	})
 "Fj" = (
 /obj/machinery/alarm{
