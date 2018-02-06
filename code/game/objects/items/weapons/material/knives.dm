@@ -100,6 +100,7 @@
 	force_divisor = 0.3 // 18 when hardness 60 (steel)
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	var/should_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
+	slot_flags = SLOT_BELT
 
 // This cannot go into afterattack since some mobs delete themselves upon dying.
 /obj/item/weapon/material/knife/machete/pre_attack(var/mob/living/target, var/mob/living/user)
