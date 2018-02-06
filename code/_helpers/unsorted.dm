@@ -821,7 +821,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					for(var/mob/M in T)
 						if(istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
-						if(istype(M, /mob/living)
+						if(istype(M, /mob/living))
 							var/mob/living/LM = M
 							LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
 
