@@ -16,7 +16,6 @@
 	name = "forensic gloves"
 	icon_state = "forensic"
 	item_state = "black"
-	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
 
 	cold_protection = HANDS
@@ -81,14 +80,13 @@
 	icon_state = "leather"
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	permeability_coefficient = 0.05
-	siemens_coefficient = 0.50 //thick work gloves
+	siemens_coefficient = 0.75 //thick work gloves
 
 /obj/item/clothing/gloves/duty
 	desc = "These brown duty gloves are made from a durable synthetic."
 	name = "work gloves"
 	icon_state = "work"
 	item_state = "wgloves"
-	siemens_coefficient = 0.50
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 5, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/gloves/tactical
@@ -97,7 +95,7 @@
 	icon_state = "work"
 	item_state = "wgloves"
 	force = 5
-	siemens_coefficient = 0.50
+	siemens_coefficient = 0.75
 	permeability_coefficient = 0.05
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 
