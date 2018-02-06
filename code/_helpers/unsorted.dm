@@ -817,10 +817,11 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					for(var/obj/O in T)
 						O.loc = X
 
-					//Move the mobs unless it's an AI eye or other eye type.
+					//Move the mobs unless it's an AI eye or other eye type. Need to check their Z-shadow.
 					for(var/mob/M in T)
 						if(istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
+						M.check_shadow()
 
 					if(shuttlework)
 						var/turf/simulated/shuttle/SS = T
