@@ -25,6 +25,16 @@
 	charge_cost = 480
 	projectile_type = /obj/item/projectile/ion
 
+/obj/item/weapon/gun/energy/phasegun
+	name = "phase pistol"
+	desc = "The NT Mk26 EW Apollo is an energy handgun, specifically designed for use against wildlife."
+	icon_state = "phase"
+	item_state = "taser"	//I don't have an in-hand sprite, taser will be fine
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	charge_cost = 300
+	projectile_type = /obj/item/projectile/energy/phase
+
+
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
