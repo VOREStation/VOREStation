@@ -1,4 +1,4 @@
-#define TYPING_INDICATOR_LIFETIME 30 * 10	//grace period after which typing indicator disappears regardless of text in chatbar
+#define TYPING_INDICATOR_LIFETIME 30 * 1000	//grace period after which typing indicator disappears regardless of text in chatbar //VOREStation Edit. Changed so people can use it to show if they're typing a /me.
 
 mob/var/hud_typing = 0 //set when typing in an input window instead of chatline
 mob/var/typing
