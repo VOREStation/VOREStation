@@ -347,9 +347,12 @@
 /atom/movable/proc/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 10, var/silent = FALSE, var/planetary = FALSE)
 	if(!silent)
 		visible_message("\The [src] falls from above and slams into \the [hit_atom]!", "You hear something slam into \the [hit_atom].")
+	for(var/atom/movable/A in src.contents)
+		A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
 
 // Take damage from falling and hitting the ground
-/mob/living/fall_impact(var/turf/landing, var/damage_min = 0, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
+/mob/living/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 10, var/silent = FALSE, var/planetary = FALSE)
+	var/turf/landing = get_turf(hit_atom)
 	if(planetary && src.CanParachute())
 		if(!silent)
 			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
@@ -376,60 +379,32 @@
 					"You hear something slam into \the [landing].")
 			playsound(loc, "punch", 25, 1, -1)
 
-		if(planetary)	//Since the planetary fall damage is calibrated for humans, we need to up this a bit
-			damage_min *= 2
-			damage_max *= 2
-
-		adjustBruteLoss(rand(damage_min, damage_max))
-		return
-	return
-
-/mob/living/carbon/human/fall_impact(var/turf/landing, var/damage_min = 0, var/damage_max = 10, var/silent = FALSE, var/planetary = FALSE)
-	if(planetary && src.CanParachute())
-		if(!silent)
-			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
-				"<span class='danger'>You land on \the [landing]!</span>", \
-				"You hear something land \the [landing].")
-		return
-	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
-		if(!silent)
-			visible_message("<span class='warning'>\The [src] falls from above and lands on \the [landing]!</span>", \
-				"<span class='danger'>You land on \the [landing]!</span>", \
-				"You hear something land \the [landing].")
-		return
-	else
-		if(!silent)
-			if(planetary)
-				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
-					"<span class='danger'><font size='3'> You fall out of the skiy and crash into \the [landing]!</font></span>", \
-					"You hear something slam into \the [landing].")
-				var/turf/T = get_turf(landing)
-				explosion(T, 0, 1, 2)
-			else
-				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
-					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
-					"You hear something slam into \the [landing].")
-			playsound(loc, "punch", 25, 1, -1)
-
-		// Because wounds heal rather quickly, 10 should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_HEAD)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_TORSO)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_GROIN)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_L_LEG)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_R_LEG)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_L_FOOT)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_R_FOOT)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_L_ARM)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_R_ARM)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_L_HAND)
-		apply_damage(rand(damage_min, damage_max), BRUTE, BP_R_HAND)
+		// Because wounds heal rather quickly, 10 (the default for this proc) should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
+		// Hits 10 times, because apparently targeting individual limbs lets certain species survive the fall from atmosphere
+		for(var/i = 1 to 10)
+			adjustBruteLoss(rand(damage_min, damage_max))
 		Weaken(4)
 		updatehealth()
 		return
 	return
 
-//Checks if the mob is allowed to survive a fall from space
-/mob/living/proc/CanParachute()
+//Using /atom/movable instead of /obj/item because I'm not sure what all humans can pick up or wear
+/atom/movable
+	var/parachute = FALSE	// Is this thing a parachute itself?
+	var/hovering = FALSE	// Is the thing floating or flying in some way? If so, don't fall normally.	//Not implemented yet, idea is to let mobs/mechs ignore terrain slowdown and falling down floors
+	var/softfall = FALSE	// Is the thing able to lessen their impact upon falling?
+	var/parachuting = FALSE	// Is the thing able to jump out of planes and survive? Don't check this directly outside of CanParachute().
+
+/atom/movable/proc/isParachute()
+	return parachute
+
+//This is what makes the parachute items know they've been used.
+//I made it /atom/movable so it can be retooled for other things (mobs, mechs, etc), though it's only currently called in human/CanParachute().
+/atom/movable/proc/handleParachute()
+	return
+
+//Checks if the thing is allowed to survive a fall from space
+/atom/movable/proc/CanParachute()
 	return parachuting
 
 //For humans, this needs to be a wee bit more complicated
@@ -454,19 +429,6 @@
 	else
 		return parachuting
 
-//For human falling code
-//Using /obj instead of /obj/item because I'm not sure what all humans can pick up or wear
-/obj
-	var/parachute = FALSE
-
-/obj/proc/isParachute()
-	return parachute
-
-//This is what makes the parachute items know they've been used.
-//I made it /atom/movable so it can be retooled for other things (mobs, mechs, etc), though it's only currently called in human/CanParachute().
-/atom/movable/proc/handleParachute()
-	return
-
 //Mech Code
 /obj/mecha/handle_fall(var/turf/landing)
 	// First things first, break any lattice
@@ -480,18 +442,49 @@
 	return ..()
 
 /obj/mecha/fall_impact(var/atom/hit_atom, var/damage_min = 15, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
-	// Tell the pilot that they just dropped down with a superheavy mecha.
-	if(occupant)
-		to_chat(occupant, "<span class='warning'>\The [src] crashed down onto \the [hit_atom]!</span>")
-
 	// Anything on the same tile as the landing tile is gonna have a bad day.
 	for(var/mob/living/L in hit_atom.contents)
 		L.visible_message("<span class='danger'>\The [src] crushes \the [L] as it lands on them!</span>")
 		L.adjustBruteLoss(rand(70, 100))
 		L.Weaken(8)
 
-	// Now to hurt the mech.
-	take_damage(rand(damage_min, damage_max))
+	var/turf/landing = get_turf(hit_atom)
+
+	if(planetary && src.CanParachute())
+		if(!silent)
+			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
+				"<span class='danger'>You land on \the [landing]!</span>", \
+				"You hear something land \the [landing].")
+		return
+	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
+		if(!silent)
+			visible_message("<span class='warning'>\The [src] falls from above and lands on \the [landing]!</span>", \
+				"<span class='danger'>You land on \the [landing]!</span>", \
+				"You hear something land \the [landing].")
+		return
+	else
+		if(!silent)
+			if(planetary)
+				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
+					"<span class='danger'><font size='3'> You fall out of the skiy and crash into \the [landing]!</font></span>", \
+					"You hear something slam into \the [landing].")
+				var/turf/T = get_turf(landing)
+				explosion(T, 0, 1, 2)
+			else
+				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
+					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
+					"You hear something slam into \the [landing].")
+			playsound(loc, "punch", 25, 1, -1)
+
+	// Now to hurt everything in the mech (if the fall is planetary, the mech blows up, so we do this first)
+	for(var/atom/movable/A in src.contents)
+		A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
+	// And now the Mech
+
+	if(!planetary)
+		take_damage(rand(damage_min, damage_max))
+	else
+		qdel(src)
 
 	// And hurt the floor.
 	if(istype(hit_atom, /turf/simulated/floor))
