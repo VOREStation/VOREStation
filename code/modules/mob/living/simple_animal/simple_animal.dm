@@ -746,13 +746,13 @@
 	if(stat || M == target_mob) return //Not if we're dead or already hitting them
 	if(M in friends || M.faction == faction) return //I'll overlook it THIS time...
 	ai_log("react_to_attack([M])",1)
-	if(retaliate && set_target(M))
+	if(retaliate && set_target(M, 1))
 		handle_stance(STANCE_ATTACK)
 		return M
 
 	return 0
 
-/mob/living/simple_animal/proc/set_target(var/mob/M)
+/mob/living/simple_animal/proc/set_target(var/mob/M, forced = 0)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -766,7 +766,7 @@
 		annoyed += 14
 		sleep(1 SECOND) //For realism
 
-	if(M in ListTargets(view_range))
+	if(forced || (M in ListTargets(view_range)))
 		try_say_list(say_got_target)
 		target_mob = M
 		last_target_time = world.time
