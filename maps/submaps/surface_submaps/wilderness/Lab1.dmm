@@ -23,28 +23,29 @@
 "w" = (/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "x" = (/obj/structure/table/standard,/obj/item/weapon/paper{desc = "Gladstone for the last fucking time, We have crowbars for a REASON. Stop breaking in through the goddamn windows! We big red shiny doors for god's sakes!"},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "y" = (/obj/structure/table/standard,/obj/item/device/flashlight/lamp,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"z" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"A" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"B" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"C" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"D" = (/obj/structure/table/standard,/obj/fiftyspawner/steel,/obj/fiftyspawner/glass,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"E" = (/obj/structure/table/standard,/obj/item/device/multitool,/obj/item/clothing/glasses/welding,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"F" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"G" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"H" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"I" = (/obj/item/weapon/cell/super,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"J" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"K" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"L" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"M" = (/obj/item/weapon/storage/bag/circuits,/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"N" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"O" = (/obj/item/robot_parts/chest,/obj/item/robot_parts/l_arm,/obj/item/robot_parts/r_arm,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"P" = (/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"Q" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"R" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"S" = (/obj/machinery/vending/robotics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"T" = (/obj/structure/table/standard,/obj/machinery/cell_charger,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"U" = (/obj/machinery/optable,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"z" = (/turf/simulated/floor,/area/submap/Lab1)
+"A" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"B" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"C" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"D" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"E" = (/obj/structure/table/standard,/obj/fiftyspawner/steel,/obj/fiftyspawner/glass,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"F" = (/obj/structure/table/standard,/obj/item/device/multitool,/obj/item/clothing/glasses/welding,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"G" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"H" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"I" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"J" = (/obj/item/weapon/cell/super,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"K" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"L" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"M" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"N" = (/obj/item/weapon/storage/bag/circuits,/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"O" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"P" = (/obj/item/robot_parts/chest,/obj/item/robot_parts/l_arm,/obj/item/robot_parts/r_arm,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"Q" = (/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"R" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"S" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"T" = (/obj/machinery/vending/robotics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"U" = (/obj/structure/table/standard,/obj/machinery/cell_charger,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"V" = (/obj/machinery/optable,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -56,14 +57,14 @@ acmhncbbchhcbbcohpca
 acqhrcbbcshcbbcthtca
 acuvwcbbchhcbbcxhyca
 acdefcbbcllcbbcdefca
-abbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbba
+abbbbbbbbzzbbbbbbbba
+abbbbbbbbzzbbbbbbbba
 acdefcbbcllcbbcdefca
-achzAcbbchBcbbcCDEca
-acFhGcbbchhcbbcHIJca
-acKhLcdfcllcdfchhMca
-acFhhihhNhhNhhihhOca
-acPQRcdeeeeeefcSTUca
+achABcbbchCcbbcDEFca
+acGhHcbbchhcbbcIJKca
+acLhMcdfcllcdfchhNca
+acGhhihhOhhOhhihhPca
+acQRScdeeeeeefcTUVca
 acdefcbbbbbbbbcdefca
 abbbbbbbbbbbbbbbbbba
 aaaaaaaaaaaaaaaaaaaa
