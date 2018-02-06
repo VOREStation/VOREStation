@@ -200,7 +200,7 @@
 			throwy = T.y
 
 	for(var/turf/T in dstturfs)
-		var/turf/D = locate(T.x, throwy - 1, 1)
+		var/turf/D = locate(T.x, throwy - 1, T.z)
 		for(var/atom/movable/AM as mob|obj in T)
 			AM.Move(D)
 
