@@ -807,7 +807,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	flags_inv = HIDEEARS | BLOCKHAIR
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 50, bio = 100, rad = 50)
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35)
 
 /obj/item/clothing/suit/varsity
 	name = "black varsity jacket"
