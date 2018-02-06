@@ -974,7 +974,7 @@ var/list/multi_point_spawns
 	var/weight // Probability weight for this spawn point
 
 /obj/random_multi/initialize()
-	..()
+	. = ..()
 	weight = max(1, round(weight))
 
 	if(!multi_point_spawns)

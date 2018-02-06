@@ -118,9 +118,12 @@ Class Procs:
 	..(l)
 	if(d)
 		set_dir(d)
-	START_MACHINE_PROCESSING(src)
 	if(circuit)
 		circuit = new circuit(src)
+
+/obj/machinery/initialize()
+	. = ..()
+	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/Destroy()
 	STOP_MACHINE_PROCESSING(src)

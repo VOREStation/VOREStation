@@ -110,6 +110,7 @@
 			pixel_y = 0
 
 /obj/structure/sign/poster/initialize()
+	. = ..()
 	if (poster_type)
 		var/path = text2path(poster_type)
 		var/datum/poster/design = new path

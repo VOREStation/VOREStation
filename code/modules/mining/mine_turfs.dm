@@ -97,10 +97,16 @@ var/list/mining_overlay_cache = list()
 				return
 
 /turf/simulated/mineral/initialize()
+	. = ..()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 	update_icon(1)
-	return density && mineral
+	if(density && mineral)
+		. = INITIALIZE_HINT_LATELOAD
+
+/turf/simulated/mineral/LateInitialize()
+	if(density && mineral)
+		MineralSpread()
 
 /turf/simulated/mineral/update_icon(var/update_neighbors)
 

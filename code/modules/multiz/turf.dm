@@ -34,7 +34,7 @@
 	update()
 
 /turf/simulated/open/initialize()
-	..()
+	. = ..()
 	ASSERT(HasBelow(z))
 	update()
 

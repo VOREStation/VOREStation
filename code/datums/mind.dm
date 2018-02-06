@@ -503,53 +503,53 @@
 
 //slime
 /mob/living/simple_animal/slime/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "slime"
 
 /mob/living/carbon/alien/larva/mind_initialize()
-	..()
+	. = ..()
 	mind.special_role = "Larva"
 
 //AI
 /mob/living/silicon/ai/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "AI"
 
 //BORG
 /mob/living/silicon/robot/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Cyborg"
 
 //PAI
 /mob/living/silicon/pai/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "pAI"
 	mind.special_role = ""
 
 //Animals
 /mob/living/simple_animal/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Animal"
 
 /mob/living/simple_animal/corgi/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Corgi"
 
 /mob/living/simple_animal/shade/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Shade"
 
 /mob/living/simple_animal/construct/builder/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Artificer"
 	mind.special_role = "Cultist"
 
 /mob/living/simple_animal/construct/wraith/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Wraith"
 	mind.special_role = "Cultist"
 
 /mob/living/simple_animal/construct/armoured/mind_initialize()
-	..()
+	. = ..()
 	mind.assigned_role = "Juggernaut"
 	mind.special_role = "Cultist"

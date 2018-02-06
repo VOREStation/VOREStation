@@ -181,6 +181,7 @@
 	RefreshParts()
 
 /obj/machinery/sleeper/initialize()
+	. = ..()
 	update_icon()
 
 /obj/machinery/sleeper/process()

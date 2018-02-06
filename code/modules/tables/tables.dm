@@ -58,7 +58,7 @@
 	take_damage(100)
 
 /obj/structure/table/initialize()
-	..()
+	. = ..()
 
 	// One table per turf.
 	for(var/obj/structure/table/T in loc)

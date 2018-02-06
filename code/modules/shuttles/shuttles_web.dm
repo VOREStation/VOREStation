@@ -426,18 +426,13 @@
 /obj/shuttle_connector
 	name = "shuttle connector"
 	var/shuttle_name					//Text name of the shuttle to connect to
-	var/start_time = 60 SECONDS			//After round start (needs to be some time, to let other destinations set up)
 	var/list/destinations				//Make sure this STARTS with a destination that builds a route to one that always exists as an anchor.
 
 /obj/shuttle_connector/initialize()
 	. = ..()
+	SSshuttles.OnDocksInitialized(CALLBACK(src, .proc/setup_routes))
 
-	processing_objects += src
-
-/obj/shuttle_connector/process()
-	if(world.time < start_time)
-		return
-
+/obj/shuttle_connector/proc/setup_routes()
 	if(destinations && shuttle_name)
 		var/datum/shuttle/web_shuttle/ES = shuttle_controller.shuttles[shuttle_name]
 		var/datum/shuttle_web_master/WM = ES.web_master
@@ -449,8 +444,6 @@
 			for(var/type_to_link in D.routes_to_make)
 				var/travel_delay = D.routes_to_make[type_to_link]
 				D.link_destinations(WM.get_destination_by_type(type_to_link), D.preferred_interim_area, travel_delay)
-
-	processing_objects -= src
 
 	qdel(src)
 

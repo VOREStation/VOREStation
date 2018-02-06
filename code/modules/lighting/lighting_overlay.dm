@@ -10,7 +10,7 @@
 	//invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX
 	icon_state = "light1"
-	auto_init = 0 // doesn't need special init
+	//auto_init = 0 // doesn't need special init
 	blend_mode = BLEND_OVERLAY
 
 	var/lum_r = 0
@@ -18,6 +18,11 @@
 	var/lum_b = 0
 
 	var/needs_update = FALSE
+
+/atom/movable/lighting_overlay/initialize()
+	// doesn't need special init
+	initialized = TRUE
+	return INITIALIZE_HINT_NORMAL
 
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
 	. = ..()
