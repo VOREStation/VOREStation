@@ -44,7 +44,7 @@
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
 		new_overlays += "[initial(icon_state)]-paddles"
-	if(bcell)
+	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
 			if(paddles.combat)
 				new_overlays += "[initial(icon_state)]-combat"
