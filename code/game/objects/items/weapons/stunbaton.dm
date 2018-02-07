@@ -20,7 +20,8 @@
 	var/hitcost = 240
 
 /obj/item/weapon/melee/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>\The [user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	user.visible_message("<span class='suicide'>\The [user] is putting the live [name] in [TU.his] mouth! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return (FIRELOSS)
 
 /obj/item/weapon/melee/baton/New()

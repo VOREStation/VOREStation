@@ -269,7 +269,7 @@
 //Medical
 /obj/item/clothing/suit/armor/vest/ert/medical
 	name = "emergency response team medical armor"
-	desc = "A set of armor worn by medical members of the Emergency Response Team. Has red and white highlights."
+	desc = "A set of armor worn by medical members of the Emergency Response Team. Has blue and white highlights."
 	icon_state = "ertarmor_med"
 
 //New Vests

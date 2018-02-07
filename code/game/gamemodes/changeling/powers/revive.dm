@@ -38,7 +38,7 @@
 		for(var/limb in H.organs_by_name)
 			var/obj/item/organ/external/current_limb = H.organs_by_name[limb]
 			if(current_limb)
-				current_limb.undislocate()
+				current_limb.relocate()
 				current_limb.open = 0
 
 		BITSET(H.hud_updateflag, HEALTH_HUD)

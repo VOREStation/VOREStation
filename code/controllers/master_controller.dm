@@ -36,8 +36,8 @@ datum/controller/game_controller/New()
 datum/controller/game_controller/proc/setup()
 
 	setup_objects()
-	setupgenetics()
-	SetupXenoarch()
+	// setupgenetics() Moved to SSatoms
+	// SetupXenoarch() - Moved to SSxenoarch
 
 	transfer_controller = new
 	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)

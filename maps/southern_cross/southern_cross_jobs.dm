@@ -100,9 +100,11 @@ var/const/access_explorer = 43
 	access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
 	minimal_access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
+/*
 	alt_titles = list(
 		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
 		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
+*/
 
 /datum/job/sar
 	title = "Search and Rescue"
