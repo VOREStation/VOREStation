@@ -1,8 +1,8 @@
 // -- Datums -- //
 
-/datum/shuttle_destination/excursion/alienship1
-	name = "Virgo 4 Orbit"
-	my_area = /area/shuttle/excursion/away_alienship // /area/shuttle/excursion/space
+/datum/shuttle_destination/excursion/alienship
+	name = "Unknown Ship"
+	my_area = /area/shuttle/excursion/away_alienship
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 	skip_me = TRUE
 
@@ -15,7 +15,8 @@
 /obj/shuttle_connector/alienship
 	name = "shuttle connector - alienship"
 	shuttle_name = "Excursion Shuttle"
-	destinations = list(/datum/shuttle_destination/excursion/alienship1)
+	destinations = list(/datum/shuttle_destination/excursion/alienship)
+	initialized = TRUE //Just don't.
 
 /obj/away_mission_init/alienship
 	name = "away mission initializer - alienship"
@@ -106,6 +107,8 @@
 	var/did_entry = FALSE
 	var/list/teleport_to
 	var/area/dump_area
+	var/obj/shuttle_connector/shuttle_friend
+
 /area/shuttle/excursion/away_alienship/initialize()
 	. = ..()
 	dump_area = locate(/area/tether_away/alienship/equip_dump)
@@ -115,15 +118,6 @@
 	spawn(20)
 		if(did_entry)
 			return
-
-		//Rename this destination for return trips
-		var/datum/shuttle/web_shuttle/ES = shuttle_controller.shuttles["Excursion Shuttle"]
-		var/datum/shuttle_web_master/WM = ES.web_master
-		for(var/dest in WM.destinations)
-			var/datum/shuttle_destination/D = dest
-			if(istype(D,/datum/shuttle_destination/excursion/alienship1))
-				D.name = "Unknown Vessel"
-				break
 
 		//No talky!
 		for(var/obj/machinery/telecomms/relay/R in contents)
@@ -165,7 +159,7 @@
 		did_entry = TRUE
 
 /area/tether_away/alienship
-	name = "\improper Unknown"
+	name = "\improper Away Mission - Unknown Vessel"
 	icon_state = "away"
 	base_turf = /turf/space
 	requires_power = FALSE

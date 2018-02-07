@@ -101,10 +101,6 @@
 /obj/away_mission_init/alienship/start_n2s,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
-"ax" = (
-/obj/shuttle_connector/alienship,
-/turf/simulated/shuttle/floor/alienplating,
-/area/tether_away/alienship)
 "ay" = (
 /obj/structure/bed/alien,
 /obj/away_mission_init/alienship/start_n2s,
@@ -7830,7 +7826,7 @@ af
 af
 am
 af
-ax
+ae
 ah
 ah
 ah
