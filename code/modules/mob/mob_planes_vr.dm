@@ -5,7 +5,7 @@
 	plane_masters[VIS_CH_BACKUP] 		= new /obj/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
 	plane_masters[VIS_CH_VANTAG] 		= new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 
-	plane_masters[VIS_AUGMENTED]		= new /obj/screen/plane_master/augmented(my_mob)					//Augmented reality
+	plane_masters[VIS_AUGMENTED]		= new /obj/screen/plane_master/augmented(null,my_mob)				//Augmented reality
 
 /////////////////
 //AR planemaster does some special image handling
@@ -14,8 +14,8 @@
 	var/state = FALSE //Saves cost with the lists
 	var/mob/my_mob
 
-/obj/screen/plane_master/augmented/New(var/mob/M)
-	..()
+/obj/screen/plane_master/augmented/New(var/newloc, var/mob/M)
+	..(newloc)
 	my_mob = M
 	logged_in_event.register(my_mob,src,/obj/screen/plane_master/augmented/proc/apply)
 
