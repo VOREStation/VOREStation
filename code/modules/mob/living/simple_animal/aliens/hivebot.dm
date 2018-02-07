@@ -37,6 +37,7 @@
 	cooperative = TRUE
 	firing_lines = TRUE
 	investigates = TRUE
+	run_at_them = FALSE //VOREStation Edit
 
 	speak_chance = 1
 	speak = list(

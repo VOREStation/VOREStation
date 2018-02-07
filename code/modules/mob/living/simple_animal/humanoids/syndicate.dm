@@ -139,7 +139,7 @@
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space
-	name = "syndicate sommando"
+	name = "space mercenary" //VOREStation Edit
 	icon_state = "syndicaterangedpsace"
 	icon_living = "syndicaterangedpsace"
 
@@ -154,6 +154,7 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 900 //VOREStation edit - We'll pretend they have good suits
 
 	corpse = /obj/effect/landmark/mobcorpse/syndicatecommando
 
