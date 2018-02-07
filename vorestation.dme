@@ -1232,6 +1232,7 @@
 #include "code\game\turfs\unsimulated\floor.dm"
 #include "code\game\turfs\unsimulated\planetary.dm"
 #include "code\game\turfs\unsimulated\shuttle.dm"
+#include "code\game\turfs\unsimulated\sky_vr.dm"
 #include "code\game\turfs\unsimulated\walls.dm"
 #include "code\game\verbs\advanced_who.dm"
 #include "code\game\verbs\ignore.dm"
