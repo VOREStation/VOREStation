@@ -218,6 +218,13 @@ obj/machinery/airlock_sensor/airlock_interior
 obj/machinery/airlock_sensor/airlock_exterior
 	command = "cycle_exterior"
 
+// Return the air from the turf in "front" of us (Used in shuttles, so it can be in the shuttle area but sense outside it)
+obj/machinery/airlock_sensor/airlock_exterior/shuttle/return_air()
+	var/turf/T = get_step(src, dir)
+	if(isnull(T))
+		return ..()
+	return T.return_air()
+
 obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_button_standby"

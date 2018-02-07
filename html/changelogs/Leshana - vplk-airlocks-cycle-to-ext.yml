@@ -1,0 +1,4 @@
+author: Leshana and mustafakalash
+delete-after: True
+changes: 
+  - rscadd: "A new 'planetary' mode for airlocks which makes them purge the chamber contents to the exterior atmosphere before filling with clean air, and vice versa."
