@@ -56,7 +56,7 @@
 		teleport_friends += src
 
 	else //You are dismissed
-		return QDEL_HINT_DELETEME
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/porta_turret/alien/ion
 	name = "interior anti-boarding turret"
