@@ -4,6 +4,18 @@
 
 var/global/list/obj/item/device/communicator/all_communicators = list()
 
+// List of core tabs the communicator can switch to
+#define HOMETAB 1
+#define PHONTAB 2
+#define CONTTAB 3
+#define MESSTAB 4
+#define NEWSTAB 5
+#define NOTETAB 6
+#define WTHRTAB 7
+#define MANITAB 8
+#define SETTTAB 9
+#define EXTRTAB 10
+
 /obj/item/device/communicator
 	name = "communicator"
 	desc = "A personal device used to enable long range dialog between two people, utilizing existing telecommunications infrastructure to allow \
@@ -36,18 +48,18 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/flum = 2 // Brightness
 
 	var/list/modules = list(
-							list("module" = "Phone", "icon" = "phone64", "number" = 2),
-							list("module" = "Contacts", "icon" = "person64", "number" = 3),
-							list("module" = "Messaging", "icon" = "comment64", "number" = 4),
-							list("module" = "News", "icon" = "note64", "number" = 5), // Need a different icon,
-							list("module" = "Note", "icon" = "note64", "number" = 6),
-							list("module" = "Weather", "icon" = "sun64", "number" = 7),
-							list("module" = "Crew Manifest", "icon" = "note64", "number" = 8), // Need a different icon,
-							list("module" = "Settings", "icon" = "gear64", "number" = 9),
-							list("module" = "External Device", "icon" = "external64", "number" = 10)
+							list("module" = "Phone", "icon" = "phone64", "number" = PHONTAB),
+							list("module" = "Contacts", "icon" = "person64", "number" = CONTTAB),
+							list("module" = "Messaging", "icon" = "comment64", "number" = MESSTAB),
+							list("module" = "News", "icon" = "note64", "number" = NEWSTAB), // Need a different icon,
+							list("module" = "Note", "icon" = "note64", "number" = NOTETAB),
+							list("module" = "Weather", "icon" = "sun64", "number" = WTHRTAB),
+							list("module" = "Crew Manifest", "icon" = "note64", "number" = MANITAB), // Need a different icon,
+							list("module" = "Settings", "icon" = "gear64", "number" = SETTTAB),
+							list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
 							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
 
-	var/selected_tab = 1
+	var/selected_tab = HOMETAB
 	var/owner = ""
 	var/occupation = ""
 	var/alert_called = 0
@@ -224,7 +236,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		user.drop_item()
 		cartridge.loc = src
 		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
-		modules.Add(list("module" = "External Device", "icon" = "external64", "number" = 8))
+		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
 		nanomanager.update_uis(src) // update all UIs attached to src
 	return
 

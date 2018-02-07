@@ -81,6 +81,9 @@
 				)
 			weather[++weather.len] = W
 
+	// Update manifest
+	data_core.get_manifest_list()
+
 	//Modules for homescreen.
 	for(var/list/R in modules)
 		modules_ui[++modules_ui.len] = R
@@ -108,6 +111,9 @@
 	data["weather"] = weather
 	data["aircontents"] = src.analyze_air()
 	data["flashlight"] = fon
+	data["manifest"] = PDA_Manifest
+	data["feeds"] = compile_news()
+	data["latest_news"] = get_recent_news()
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
