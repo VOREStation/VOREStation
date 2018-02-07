@@ -1,3 +1,6 @@
+//This entire file is unticked for quality control and testing
+
+
 //True automagic gun modes. Dakka dakka.
 //A significant portion of this code was donated by Mport from SS:CM
 
@@ -35,7 +38,7 @@
 		autodel()
 		return
 	if(gun.shooting == 0)
-		del(src)
+		qdel(src)
 	else
 		autodel()//Yes in theory this could hit the inf loop
 	return
@@ -55,15 +58,15 @@
 	if(over_location != loc)//This updates the loc to our new location when we drag it to a new turf
 		loc = over_location
 	if((usr.get_active_hand() != gun))
-		del(src)
+		qdel(src)
 
 	//This gets rid of us when they let go of the click, but only after they actually drag the target to a new turf which is why the below also has to exist
 /obj/screen/auto_target/MouseDrop(over_object,src_location,over_location,src_control,over_control,params)
-	del(src)
+	qdel(src)
 	return
 	//This is needed so if they just MouseDown and then let go it will stop shooting, otherwise we stick around till they run out of bullets
 /obj/screen/auto_target/MouseUp(object,location,control,params)
-	del(src)
+	qdel(src)
 	return
 
 //This pseudo code is being left in place to serve as references to the modifications to gun.dm, the Fire() proc, and the afterattack() proc. -k22
