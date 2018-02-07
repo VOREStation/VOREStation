@@ -40,6 +40,7 @@
 
 /obj/machinery/mecha_part_fabricator/initialize()
 	update_categories()
+	. = ..()
 
 /obj/machinery/mecha_part_fabricator/process()
 	..()

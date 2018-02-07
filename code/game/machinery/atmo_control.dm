@@ -64,12 +64,14 @@
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/initialize()
-	set_frequency(frequency)
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
 
 obj/machinery/air_sensor/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
-	..()
+	. = ..()
 
 /obj/machinery/computer/general_air_control
 	icon_keyboard = "atmos_key"
@@ -128,7 +130,9 @@ obj/machinery/computer/general_air_control/Destroy()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/general_air_control/initialize()
-	set_frequency(frequency)
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'

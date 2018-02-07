@@ -26,7 +26,7 @@
 	return FALSE
 
 /obj/effect/wingrille_spawn/initialize()
-	..()
+	. = ..()
 	if(!win_path)
 		return
 	if(ticker && ticker.current_state < GAME_STATE_PLAYING)

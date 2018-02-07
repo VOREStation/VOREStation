@@ -1,4 +1,12 @@
 
+#define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
+#define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
+#define INITIALIZATION_INNEW_REGULAR 2	//New should call Initialize(FALSE)
+
+#define INITIALIZE_HINT_NORMAL   0  //Nothing happens
+#define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
+#define INITIALIZE_HINT_QDEL     2  //Call qdel on the atom
+
 // SS runlevels
 
 #define RUNLEVEL_INIT 0			// "Initialize Only" - Used for subsystems that should never be fired (Should also have SS_NO_FIRE set)
@@ -15,6 +23,10 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
+#define INIT_ORDER_DECALS	16
+#define INIT_ORDER_ATOMS	15
 #define INIT_ORDER_MACHINES 10
+#define INIT_ORDER_SHUTTLES 3
 #define INIT_ORDER_LIGHTING 0
 #define INIT_ORDER_AIR -1
+#define INIT_ORDER_XENOARCH	-20

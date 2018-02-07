@@ -36,22 +36,22 @@ datum/controller/game_controller/New()
 datum/controller/game_controller/proc/setup()
 
 	setup_objects()
-	setupgenetics()
-	SetupXenoarch()
+	// setupgenetics() Moved to SSatoms
+	// SetupXenoarch() - Moved to SSxenoarch
 
 	transfer_controller = new
 	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 
-#if UNIT_TEST
-#define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
-#else
-#define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
-#endif
+// #if UNIT_TEST
+// #define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
+// #else
+// #define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
+// #endif
 
 datum/controller/game_controller/proc/setup_objects()
-	#if !UNIT_TEST
-	var/initialized_objects = 0
-	#endif
+	// #if !UNIT_TEST
+	// var/initialized_objects = 0
+	// #endif
 
 	// Set up antagonists.
 	populate_antag_type_list()
@@ -59,6 +59,7 @@ datum/controller/game_controller/proc/setup_objects()
 	//Set up spawn points.
 	populate_spawn_points()
 
+/*
 	admin_notice("<span class='danger'>Initializing Floor Decals</span>", R_DEBUG)
 	var/list/turfs_with_decals = list()
 	for(var/obj/effect/floor_decal/D in world)
@@ -111,3 +112,4 @@ datum/controller/game_controller/proc/setup_objects()
 		if(!QDELETED(lift))
 			lift.initialize()
 			CHECK_SLEEP_MASTER
+	*/

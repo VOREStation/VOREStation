@@ -30,7 +30,7 @@
 	block_air_zones = 0
 
 /obj/machinery/door/blast/initialize()
-	..()
+	. = ..()
 	implicit_material = get_material_by_name("plasteel")
 
 /obj/machinery/door/blast/get_material()

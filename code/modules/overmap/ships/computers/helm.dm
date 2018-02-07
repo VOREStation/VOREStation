@@ -11,6 +11,7 @@
 	var/dy		//coordinates
 
 /obj/machinery/computer/helm/initialize()
+	. = ..()
 	linked = map_sectors["[z]"]
 	if (linked)
 		if(!linked.nav_control)

@@ -1177,6 +1177,7 @@ About the new airlock wires panel:
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

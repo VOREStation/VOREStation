@@ -18,7 +18,7 @@
 	var/power_use = 1
 
 /obj/item/device/flashlight/initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/device/flashlight/New()

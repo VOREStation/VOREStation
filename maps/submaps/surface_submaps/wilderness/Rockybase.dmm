@@ -3,8 +3,8 @@
 "ac" = (/obj/effect/decal/remains,/turf/template_noop,/area/submap/Rockybase)
 "ad" = (/turf/template_noop,/area/submap/Rockybase)
 "ae" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rockybase)
-"af" = (/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/template_noop,/area/submap/Rockybase)
-"ag" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rockybase)
+"af" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rockybase)
+"ag" = (/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/template_noop,/area/submap/Rockybase)
 "ah" = (/turf/simulated/floor,/area/submap/Rockybase)
 "ai" = (/obj/machinery/porta_turret/stationary,/turf/simulated/floor,/area/submap/Rockybase)
 "aj" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/submap/Rockybase)
@@ -16,102 +16,102 @@
 "ap" = (/obj/machinery/shower{dir = 4; icon_state = "shower"; pixel_x = 5; pixel_y = 0},/obj/structure/curtain/open/shower,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
 "aq" = (/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
 "ar" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/obj/item/weapon/soap,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"as" = (/obj/structure/table/woodentable,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"at" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"au" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"av" = (/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"aw" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"ax" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 1},/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"ay" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/toy/plushie/spider,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"az" = (/obj/structure/closet/l3closet/janitor,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aA" = (/mob/living/bot/cleanbot{faction = "malf_drone"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aB" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aC" = (/obj/item/weapon/storage/belt/janitor,/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aD" = (/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aE" = (/obj/structure/table/standard,/obj/item/device/laptop,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aF" = (/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aG" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/pistol,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aH" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/gun/taser,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aI" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aJ" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aK" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aL" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aM" = (/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aN" = (/obj/machinery/shower{dir = 4; icon_state = "shower"; pixel_x = 5; pixel_y = 0},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"aO" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"aP" = (/obj/structure/janitorialcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aQ" = (/obj/structure/table/standard,/obj/item/weapon/grenade/chem_grenade/cleaner,/obj/item/weapon/grenade/chem_grenade/cleaner,/obj/item/weapon/grenade/chem_grenade/cleaner,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aR" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aS" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "Carl's absolutly fucked in the head. He's trying to squeeze as much drone production out as he can since he's worried we're gonna get found out but he's getting sloppier with each batch. Now's he's telling us he can speed the time on the IFF encoding. I already have a hard enough time getting these damn things not to stare at walls and now he's gonna shortchange the only part of these tincans that tells em not to turn us into paste on a wall. I told Richter to get out while he can, We're counting days before either some Sif task force shows up at our door or these things decide we aren't there friends anymore."; name = "Note"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aT" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aU" = (/obj/machinery/vending/security,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aV" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/shotgunshells,/obj/item/weapon/storage/box/shotgunshells,/obj/item/weapon/storage/box/shotgunshells,/obj/item/ammo_magazine/m10mm,/obj/item/ammo_magazine/m10mm,/obj/item/ammo_magazine/m10mm,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aW" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aX" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"aY" = (/obj/item/mecha_parts/part/gygax_left_leg,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"aZ" = (/obj/machinery/light,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"ba" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/gun/projectile/pistol,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"bb" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bc" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bd" = (/obj/structure/table/standard,/obj/item/weapon/storage/bag/trash,/obj/item/weapon/storage/bag/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"be" = (/obj/structure/table/standard,/obj/item/weapon/paper_bin,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bf" = (/obj/machinery/light,/obj/structure/table/standard,/obj/item/weapon/pen,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bg" = (/obj/machinery/door/airlock/security{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bh" = (/obj/machinery/light,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bi" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/gun/projectile/automatic/c20r,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bj" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bk" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bl" = (/mob/living/bot/farmbot{faction = "malf_drone"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bm" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bn" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bo" = (/obj/structure/door_assembly,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bp" = (/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bq" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"br" = (/obj/effect/decal/remains,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bs" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"bt" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bu" = (/obj/item/stack/rods,/obj/structure/girder,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bv" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'HIGH VOLTAGE'"; icon_state = "shock"; name = "HIGH VOLTAGE"; pixel_y = -32},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bw" = (/obj/item/mecha_parts/part/gygax_right_arm,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bx" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"by" = (/obj/machinery/door/airlock/engineering,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bz" = (/turf/simulated/wall,/area/submap/Rockybase)
-"bA" = (/obj/structure/table/standard,/obj/item/device/kit/paint/gygax/darkgygax,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bB" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "I've decided to go forward and start some small scale tests of the Vicerator delivery grenades, Might as wall make sure they work like the real ones. There are a few Fauna areas nearbye and we're working to make sure the kinks in the code are worked out. Once we've made sure they stay flying we'll work on the IFF signals."; name = "V-Grenade Notice 2"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bC" = (/obj/structure/table/standard,/obj/random/toolbox,/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bD" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bE" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "We've finally been able to get the Vicerator delivery grenades working, Took awhile to make sure the latching mechanism didn't fail but we're sure we've got it this time. Vel'Shem's worried about the miners having there own drone fab now but I say it's a small price to pay to keep the metal flowing, Especially since there telling us NT's starting to monopolize the metal rich parts."; name = "V-Grenade Notice 1"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bF" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bG" = (/obj/structure/table/standard,/obj/item/weapon/grenade/spawnergrenade/manhacks,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bH" = (/obj/structure/table/standard,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bI" = (/obj/structure/table/standard,/obj/machinery/light{dir = 1},/obj/item/weapon/circuitboard/mecha/gygax/main,/obj/item/weapon/circuitboard/mecha/gygax/peripherals,/obj/item/weapon/circuitboard/mecha/gygax/targeting,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bJ" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Rockybase)
-"bK" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bL" = (/obj/machinery/vending/engivend,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bM" = (/obj/machinery/vending/tool,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bN" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bO" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bP" = (/obj/item/mecha_parts/part/gygax_torso,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bQ" = (/obj/machinery/light{dir = 1},/obj/structure/closet/crate/medical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bR" = (/obj/structure/table/standard,/obj/structure/table/standard,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bS" = (/obj/structure/table/standard,/obj/item/clothing/mask/breath/medical,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bT" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bU" = (/obj/structure/closet/secure_closet/medical2,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bV" = (/obj/structure/toilet{dir = 4},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"bW" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"bX" = (/obj/structure/table/standard,/obj/item/device/mmi/digital/robot,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bY" = (/obj/item/stack/rods,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"bZ" = (/obj/effect/decal/cleanable/dirt,/obj/structure/girder,/turf/simulated/floor,/area/submap/Rockybase)
-"ca" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/Rockybase)
-"cb" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table,/turf/simulated/floor,/area/submap/Rockybase)
-"cc" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/Rockybase)
-"cd" = (/obj/structure/closet/secure_closet/medical1,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ce" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"cf" = (/obj/machinery/drone_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cg" = (/obj/machinery/mecha_part_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ch" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ci" = (/obj/structure/table/standard,/obj/item/mecha_parts/mecha_equipment/repair_droid,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cj" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"as" = (/obj/structure/table/woodentable,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"at" = (/obj/structure/table/woodentable,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"au" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"av" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"aw" = (/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"ax" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"ay" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 1},/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"az" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/toy/plushie/spider,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"aA" = (/obj/structure/closet/l3closet/janitor,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aB" = (/mob/living/bot/cleanbot{faction = "malf_drone"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aC" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aD" = (/obj/item/weapon/storage/belt/janitor,/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aE" = (/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aF" = (/obj/structure/table/standard,/obj/item/device/laptop,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aG" = (/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aH" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/pistol,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aI" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/gun/taser,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aJ" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aK" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aL" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aM" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aN" = (/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aO" = (/obj/machinery/shower{dir = 4; icon_state = "shower"; pixel_x = 5; pixel_y = 0},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"aP" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"aQ" = (/obj/structure/janitorialcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aR" = (/obj/structure/table/standard,/obj/item/weapon/grenade/chem_grenade/cleaner,/obj/item/weapon/grenade/chem_grenade/cleaner,/obj/item/weapon/grenade/chem_grenade/cleaner,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aS" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aT" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "Carl's absolutly fucked in the head. He's trying to squeeze as much drone production out as he can since he's worried we're gonna get found out but he's getting sloppier with each batch. Now's he's telling us he can speed the time on the IFF encoding. I already have a hard enough time getting these damn things not to stare at walls and now he's gonna shortchange the only part of these tincans that tells em not to turn us into paste on a wall. I told Richter to get out while he can, We're counting days before either some Sif task force shows up at our door or these things decide we aren't there friends anymore."; name = "Note"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aU" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aV" = (/obj/machinery/vending/security,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aW" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/shotgunshells,/obj/item/weapon/storage/box/shotgunshells,/obj/item/weapon/storage/box/shotgunshells,/obj/item/ammo_magazine/m10mm,/obj/item/ammo_magazine/m10mm,/obj/item/ammo_magazine/m10mm,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aX" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aY" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"aZ" = (/obj/item/mecha_parts/part/gygax_left_leg,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"ba" = (/obj/machinery/light,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"bb" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/gun/projectile/pistol,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+"bc" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bd" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"be" = (/obj/structure/table/standard,/obj/item/weapon/storage/bag/trash,/obj/item/weapon/storage/bag/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bf" = (/obj/structure/table/standard,/obj/item/weapon/paper_bin,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bg" = (/obj/machinery/light,/obj/structure/table/standard,/obj/item/weapon/pen,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bh" = (/obj/machinery/door/airlock/security{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bi" = (/obj/machinery/light,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bj" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/gun/projectile/automatic/c20r,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bk" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bl" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bm" = (/mob/living/bot/farmbot{faction = "malf_drone"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bn" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bo" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bp" = (/obj/structure/door_assembly,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bq" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"br" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bs" = (/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bt" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bu" = (/obj/effect/decal/remains,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bv" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"bw" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bx" = (/obj/item/stack/rods,/obj/structure/girder,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"by" = (/obj/item/mecha_parts/part/gygax_right_arm,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bz" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"bA" = (/obj/machinery/door/airlock/engineering,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bB" = (/turf/simulated/wall,/area/submap/Rockybase)
+"bC" = (/obj/structure/table/standard,/obj/item/device/kit/paint/gygax/darkgygax,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bD" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "I've decided to go forward and start some small scale tests of the Vicerator delivery grenades, Might as wall make sure they work like the real ones. There are a few Fauna areas nearbye and we're working to make sure the kinks in the code are worked out. Once we've made sure they stay flying we'll work on the IFF signals."; name = "V-Grenade Notice 2"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bE" = (/obj/structure/table/standard,/obj/random/toolbox,/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bF" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bG" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "We've finally been able to get the Vicerator delivery grenades working, Took awhile to make sure the latching mechanism didn't fail but we're sure we've got it this time. Vel'Shem's worried about the miners having there own drone fab now but I say it's a small price to pay to keep the metal flowing, Especially since there telling us NT's starting to monopolize the metal rich parts."; name = "V-Grenade Notice 1"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bH" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bI" = (/obj/structure/table/standard,/obj/item/weapon/grenade/spawnergrenade/manhacks,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bJ" = (/obj/structure/table/standard,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bK" = (/obj/structure/table/standard,/obj/machinery/light{dir = 1},/obj/item/weapon/circuitboard/mecha/gygax/main,/obj/item/weapon/circuitboard/mecha/gygax/peripherals,/obj/item/weapon/circuitboard/mecha/gygax/targeting,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bL" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Rockybase)
+"bM" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bN" = (/obj/machinery/vending/engivend,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bO" = (/obj/machinery/vending/tool,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bP" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bQ" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bR" = (/obj/item/mecha_parts/part/gygax_torso,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bS" = (/obj/machinery/light{dir = 1},/obj/structure/closet/crate/medical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bT" = (/obj/structure/table/standard,/obj/structure/table/standard,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bU" = (/obj/structure/table/standard,/obj/item/clothing/mask/breath/medical,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bV" = (/obj/structure/closet/secure_closet/medical2,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bW" = (/obj/structure/toilet{dir = 4},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"bX" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"bY" = (/obj/structure/table/standard,/obj/item/device/mmi/digital/robot,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bZ" = (/obj/item/stack/rods,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"ca" = (/obj/effect/decal/cleanable/dirt,/obj/structure/girder,/turf/simulated/floor,/area/submap/Rockybase)
+"cb" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/Rockybase)
+"cc" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table,/turf/simulated/floor,/area/submap/Rockybase)
+"cd" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/Rockybase)
+"ce" = (/obj/structure/closet/secure_closet/medical1,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cf" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"cg" = (/obj/machinery/drone_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"ch" = (/obj/machinery/mecha_part_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"ci" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cj" = (/obj/structure/table/standard,/obj/item/mecha_parts/mecha_equipment/repair_droid,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ck" = (/obj/machinery/power/terminal{dir = 4},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cl" = (/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
 "cm" = (/obj/machinery/vending/medical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
@@ -126,59 +126,58 @@
 "cv" = (/obj/machinery/vending/robotics,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cw" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/light{dir = 8},/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "Unknown APC"; pixel_x = -24},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cx" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cy" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cz" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
-"cA" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/submap/Rockybase)
-"cB" = (/obj/item/mecha_parts/part/gygax_right_leg,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cC" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/item/mecha_parts/part/gygax_left_arm,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"cD" = (/obj/machinery/vending,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cE" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cF" = (/obj/machinery/light{dir = 8},/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cG" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cH" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cI" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cJ" = (/obj/structure/table/standard,/obj/item/stack/material/plasteel,/obj/item/stack/material/glass/reinforced,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cK" = (/obj/structure/table/standard,/obj/item/stack/material/glass,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cL" = (/obj/structure/table/standard,/obj/item/mecha_parts/part/gygax_head,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cM" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cN" = (/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cO" = (/obj/item/weapon/surgical/surgicaldrill,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cP" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cQ" = (/obj/item/clothing/suit/space/void/medical,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cR" = (/obj/effect/decal/cleanable/dirt,/mob/living/bot/medbot,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cS" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cT" = (/obj/structure/closet/crate/secure/hydrosec,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cU" = (/obj/effect/decal/remains,/turf/template_noop,/area/template_noop)
+"cy" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor,/area/submap/Rockybase)
+"cz" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/submap/Rockybase)
+"cA" = (/obj/item/mecha_parts/part/gygax_right_leg,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cB" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/item/mecha_parts/part/gygax_left_arm,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+"cC" = (/obj/machinery/vending,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cD" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cE" = (/obj/machinery/light{dir = 8},/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/malf_drone{desc = "An automated combat drone with an aged apperance."; returns_home = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cG" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cH" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cI" = (/obj/structure/table/standard,/obj/item/stack/material/plasteel,/obj/item/stack/material/glass/reinforced,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cJ" = (/obj/structure/table/standard,/obj/item/stack/material/glass,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cK" = (/obj/structure/table/standard,/obj/item/mecha_parts/part/gygax_head,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cL" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cM" = (/obj/structure/closet/secure_closet/medical3,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cN" = (/obj/item/weapon/surgical/surgicaldrill,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cO" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cP" = (/obj/item/clothing/suit/space/void/medical,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cQ" = (/obj/effect/decal/cleanable/dirt,/mob/living/bot/medbot,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cR" = (/obj/machinery/vending/hydroseeds,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cS" = (/obj/structure/closet/crate/secure/hydrosec,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cT" = (/obj/effect/decal/remains,/turf/template_noop,/area/template_noop)
 
 (1,1,1) = {"
 aaabababababababababababababababababababaaababababababababababababababababababababababababababababaa
 abacadadadaeadadadadaeadadadadadadadadadadadadadadadadadadadaeadadadadadadadadadadadadacadadadadadab
 abadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadab
-abadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadafadadadadab
-abadadadadadadadadadadafadadadadaeadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaeadab
-abadadagagagagagadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaeadadadadadadadadadadab
-abadadagagagagagagadadadadagagagagagadadadadadadadadahahahahahahadadadadadadadadadagagagadadadadadab
-abadagagagagagagagagagagagagagagagagagadadadadadaiahahajahahahahahaiadadadadadagagagagagagagagagadab
-akadagagagagagagagagagagagagagagagagagagagagagahahalahahahahahajalahahagagagagagagagagagagagagagadab
-abadagagamamamamamamamamamamamamamamamamamamamamamamamanaoaoanamamamamamamamamamamamamamagagagagadab
-abadagamamapaqaramasasatauavavasawaxawasayamamazaAaBaCamaDaDamaEaFaGaHaIaJamaDaKamaLaMamamagagagadab
-abagagamamaNaqaOamavavavavavavavavavavavavamamaPaDaDaQamaRaDamaSaTaDaDaDaUamaDaVamaDaWamamagagagadab
-abagagamamaNaqaXamavaYavavaZavasbaasawasawamambbaDbcbdamaDaDambebfaDaDaDaDbgbhbiamaDbjamamagagagadab
-abagagamamaqaqaqamamambkamamamamamamamamamamamambkamamamaoaoamamamamambkamamamamamblbmamamagagagadab
-abagagamamambkamambnaDaDaDaDaIaDaDaDaDboaDaIaDaDaDaDaDaDaDaDaDaDaIaDaDaDaDaDaIaDamaDbjamamagagagadab
-abagagamamaRaDaDaDaDaDaDbpaDaDaDbqbraDaDaDaDaDaDaDaDaDaDaDaDaDaDaDaDaDaDaDbpaDaDbkaDbjamamagagagadab
-abadagamamambsamambtaDaDbhaDaDaDaDaDbuaDahbrbhaDbqaDbvaDaDaDaDaDaDaDbhaDaDaDaDbwamaDbmamamagagagadab
-abadagamambxaqaqamamamamamamamamamamamahahamamamambyamamamamaDamamamamamamamamamamaDbjamamagagagadab
-abadagamambzbzaqambAbBbCbDbEbFbGbHbIboahbJbKambLbMaDbNbOambPaDaDbQbRbSbTaDaDaDbUamaDbjamamagagagadab
-abadagamambVbsbWamaDaDaDaDaDaDaDaDaDaDaDahbXamaDaDaDaDaDamboaDbTbTbYbZcacbccaDcdamaDbmamamagagagaeab
-abadagamambzbzceamaDcfaDaDcfaDaDcgaDchaDahciamaDaDcjckclamcmaDbTcncocpcqcocrahaDamaDbjamamagagadadab
-abadagamambVbsaqamcsaDaDctaDcuaDaDaDaDaDaDcvamcwcxcyckczamaDaDbTcAcqcqcocbahbJaDamaDcBamamagagadadab
-abadagamambzbzcCamaDcfaDaDahahaDaDaDaDaDaDcDamaDaDcEckclamcFaDaDcGcocacacacaahbTamaDcHamamagadadadab
-abadagamambVbsaqamaDaDaDaDaDaDbhcIaDcIaDaDbMamcJcKcLcMaDamcNaDcOaDaDcPcccPcQbTcRamcScTamamagagadadab
-abadagagamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamagagadadafab
-abadagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagagadadadab
-abadagagagagagagagagagagagagagagagagagagagagagagagagagagagagagadagagagadadadagagagagagagagadadadadab
-abadadagagagagagagagagagagagagafadadadagagagagagagadadadadadadadadadadadadadadadadadadadadadadadadab
-abadaeadadadadadadagagagagagadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadab
-aaabcUababababababababababababababababababaaababababababababababababababababakababababababcUabakabab
+abadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadab
+abadadadadadadadadadadadadadadadaeadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaeadab
+abadadafafafafafadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaeadadadadadadadadadadab
+abadadafafafafafafagadadadafafafafafadadadadadadadadahahahahahahadadadadadadadadadafafafagadadadadab
+abadafafafafafafafafafafafafafafafafafadadadadadaiahahajahahahahahaiadadadadadafafafafafafafafafadab
+akadafafafafafafafafafafafafafafafafafafafafafahahalahahahahahajalahahafafafafafafafafafafafafafadab
+abadafafamamamamamamamamamamamamamamamamamamamamamamamanaoaoanamamamamamamamamamamamamamafafafafadab
+abadafamamapaqaramasatauavawawataxayaxatazamamaAaBaCaDamaEaEamaFaGaHaIaJaKamaEaLamaMaNamamafafafadab
+abafafamamaOaqaPamawawawawawawawawawawawawamamaQaEaEaRamaSaEamaTaUaEaEaEaVamaEaWamaEaXamamafafafadab
+abafafamamaOaqaYamawaZawawbaawatbbataxataxamambcaEbdbeamaEaEambfbgaEaEaEaEbhbibjamaEbkamamafafafadab
+abafafamamaqaqaqamamamblamamamamamamamamamamamamblamamamaoaoamamamamamblamamamamambmbnamamafafafadab
+abafafamamamblamamboaEaEaEaEaJaEaEaEaEbpaEaJaEaEaEaEaEaEaEaEaEaEaJaEaEaEaEbqbqbramaEbkamamafafafadab
+abafafamamaSaEaEaEaEaEaEbsbqbqaEbtbuaEaEaEaEaEaEaEaEaEaEbqaEaEaEaEaEaEaEaEbsbqbqblaEbkamamafafafadab
+abadafamamambvamambwaEaEbqbqbqaEaEaEbxaEahbubiaEbtaEbqbqbqaEaEaEaEaEbiaEaEaEaEbyamaEbnamamafafafadab
+abadafamambzaqaqamamamamamamamamamamamahahamamamambAamamamamaEamamamamamamamamamamaEbkamamafafafadab
+abadafamambBbBaqambCbDbEbFbGbHbIbJbKbpahbLbMambNbOaEbPbQambRaEaEbSbTbUbqaEaEaEbVamaEbkamamafafafadab
+abadafamambWbvbXamaEaEaEaEaEaEaEaEaEaEaEahbYamaEaEaEaEaEambpaEbqbqbZcacbcccdaEceamaEbnamamafafafaeab
+abadafamambBbBcfamaEcgaEaEcgaEaEchaEciaEahcjamaEbqbqckclamcmaEbqcncocpcqcocrahaEamaEbkamamafafadadab
+abadafamambWbvaqamcsaEaEctaEcuaEbqbqaEaEaEcvamcwcxbqckcyamaEaEbqczcqcqcoccahbLaEamaEcAamamafafadadab
+abadafamambBbBcBamaEcgaEaEahahbqbqbqbqaEaEcCamaEaEcDckclamcEaEaEcFcocbcbcbcbahbqamaEcGamamafagadadab
+abadafamambWbvaqamaEaEaEaEaEaEbicHaEcHaEaEbOamcIcJcKcLaEamcMaEcNaEaEcOcdcOcPbqcQamcRcSamamafafadadab
+abadafafamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamafafadadadab
+abadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadadadab
+abadafafafafafafafafafafafafafafafafafafafafafafafafafafafafafadafafafadadadafafafafafafafadadadadab
+abadadafafafafafafafafafafafafagadadadafafafafafafadadadadadadadadadadadadadadadadadadadadadadadadab
+abadaeadadadadadadafafafafafadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadab
+aaabcTababababababababababababababababababaaababababababababababababababababakababababababcTabakabab
 "}

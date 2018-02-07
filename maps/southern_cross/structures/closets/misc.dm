@@ -26,6 +26,18 @@
 	new /obj/item/weapon/gun/projectile/shotgun/pump/rifle(src)
 	return
 
+/obj/structure/closet/secure_closet/guncabinet/phase
+	name = "phase pistol cabinet"
+	req_one_access = list(access_explorer,access_brig)
+
+/obj/structure/closet/secure_closet/guncabinet/phase/New()
+	..()
+	new /obj/item/weapon/gun/energy/phasegun(src)
+	new /obj/item/weapon/gun/energy/phasegun(src)
+	// One spare cell per gun
+	new /obj/item/weapon/cell/device/weapon(src)
+	new /obj/item/weapon/cell/device/weapon(src)
+
 //Explorer Lockers
 
 /obj/structure/closet/secure_closet/explorer

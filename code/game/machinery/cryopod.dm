@@ -299,7 +299,7 @@
 	return ..()
 
 /obj/machinery/cryopod/initialize()
-	..()
+	. = ..()
 
 	find_control_computer()
 
@@ -346,8 +346,8 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/robot/despawn_occupant()
-	var/mob/living/silicon/robot/R = occupant
+/obj/machinery/cryopod/robot/despawn_occupant(var/mob/to_despawn)
+	var/mob/living/silicon/robot/R = to_despawn
 	if(!istype(R)) return ..()
 
 	qdel(R.mmi)
