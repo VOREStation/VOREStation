@@ -778,3 +778,84 @@
 	name = "speedloader (.44 rubber)"
 	icon_state = "r357"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
+
+//Expedition pistol
+/obj/item/weapon/gun/energy/frontier
+	name = "frontier phaser"
+	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "phaser"
+	item_state = "phaser"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
+	item_state_slots = list(slot_r_hand_str = "phaser", slot_l_hand_str = "phaser", "slot_belt" = "phaser")
+	fire_sound = 'sound/weapons/laser2.ogg'
+	battery_lock = 1
+	unacidable = 1
+
+	var/recharging = 0
+
+	projectile_type = /obj/item/projectile/beam
+	firemodes = list(
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
+		)
+
+/obj/item/weapon/gun/energy/frontier/unload_ammo(var/mob/user)
+	if(recharging)
+		return
+	recharging = 1
+	update_icon()
+	user.visible_message("<span class='notice'>[user] opens \the [src] and starts pumping the handle.</span>", \
+						"<span class='notice'>You open \the [src] and start pumping the handle.</span>")
+	while(recharging)
+		if(!do_after(user, 10, src))
+			break
+		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
+		if(power_supply.give(60) < 60)
+			break
+
+	recharging = 0
+	update_icon()
+
+/obj/item/weapon/gun/energy/frontier/update_icon()
+	if(recharging)
+		icon_state = "[initial(icon_state)]_pump"
+		update_held_icon()
+		return
+	..()
+
+/obj/item/weapon/gun/energy/frontier/emp_act()
+	return
+
+/obj/item/weapon/gun/energy/frontier/ex_act(severity) //|rugged|
+	return ..(severity+2)
+
+/obj/item/weapon/gun/energy/frontier/locked
+	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	req_access = list(access_armory) //for toggling safety
+	var/locked = 1
+
+/obj/item/weapon/gun/energy/frontier/locked/attackby(obj/item/I, mob/user)
+	var/obj/item/weapon/card/id/id = I.GetID()
+	if(istype(id))
+		if(check_access(id))
+			locked = !locked
+			to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+		user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
+	else
+		return ..()
+
+/obj/item/weapon/gun/energy/frontier/locked/emag_act(var/remaining_charges,var/mob/user)
+	..()
+	locked = !locked
+	to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src]!</span>")
+
+/obj/item/weapon/gun/energy/frontier/locked/special_check(mob/user)
+	if(locked)
+		var/turf/T = get_turf(src)
+		if(T.z in using_map.map_levels)
+			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
+			return 0
+	return ..()
