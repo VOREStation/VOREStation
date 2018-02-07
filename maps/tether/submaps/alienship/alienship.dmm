@@ -576,6 +576,10 @@
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
+"YP" = (
+/obj/machinery/porta_turret/alien/ion,
+/turf/simulated/shuttle/floor/alienplating,
+/area/tether_away/alienship)
 
 (1,1,1) = {"
 aa
@@ -5374,7 +5378,7 @@ af
 ae
 ae
 ae
-ae
+YP
 ae
 ae
 ae
@@ -5414,7 +5418,7 @@ af
 ae
 ae
 ae
-ae
+YP
 ae
 ae
 ae
@@ -10254,7 +10258,7 @@ af
 ae
 ae
 ae
-ae
+YP
 ae
 ae
 ae
@@ -10294,7 +10298,7 @@ af
 ae
 ae
 ae
-ae
+YP
 ae
 ae
 ae

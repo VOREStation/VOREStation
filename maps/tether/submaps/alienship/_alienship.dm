@@ -56,7 +56,18 @@
 		teleport_friends += src
 
 	else //You are dismissed
-		qdel(src)
+		return QDEL_HINT_DELETEME
+
+/obj/machinery/porta_turret/alien/ion
+	name = "interior anti-boarding turret"
+	desc = "A very tough looking turret made by alien hands."
+	installation = /obj/item/weapon/gun/energy/ionrifle
+	enabled = TRUE
+	lethal = TRUE
+	ailock = TRUE
+	check_all = TRUE
+	health = 250
+	maxhealth = 250
 
 /obj/away_mission_init/alienship/door_n2s
 	icon_state = "n2s"
