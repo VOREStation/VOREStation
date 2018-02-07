@@ -362,6 +362,15 @@ var/global/list/latejoin_tram   = list()
 
 	return ..(user)
 
+/obj/structure/closet/secure_closet/guncabinet/excursion
+	name = "expedition weaponry cabinet"
+	req_one_access = list(access_explorer,access_brig)
+
+/obj/structure/closet/secure_closet/guncabinet/excursion/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/weapon/gun/energy/frontier/locked(src)
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
