@@ -209,5 +209,5 @@ obj/item/weapon/gun/energy/staff/focus
 	firemodes = list(
 		list(mode_name="single shot", burst = 1, burst_accuracy = list(5), dispersion = list(0), charge_cost = 24),
 		list(mode_name="five shot burst", burst = 5, burst_accuracy = list(5,5,5,5,5), dispersion = list(1,1,1,1,1)),
-		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(5,5,5,5,5,5,5,5,5,5), dispersion = list(2,2,2,2,2,2,2,2,2,2)),
+		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(5,5,5,5,5,5,5,5,5,5), dispersion = list(2,2,2,2,2,2,2,2,2,2))
 		)

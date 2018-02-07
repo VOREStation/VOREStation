@@ -51,6 +51,7 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 
+	var/automatic = 0
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -68,7 +69,8 @@
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
-
+	var/obj/screen/auto_target/auto_target
+	var/shooting = 0
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
@@ -87,7 +89,6 @@
 	var/obj/item/dnalockingchip/attached_lock
 
 	var/last_shot = 0			//records the last shot fired
-
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
@@ -177,8 +178,23 @@
 
 	if(user && user.a_intent == I_HELP && user.is_preference_enabled(/datum/client_preference/safefiring)) //regardless of what happens, refuse to shoot if help intent is on
 		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
-	else
-		Fire(A,user,params) //Otherwise, fire normally.
+		return
+
+	if(automatic == 1)//Are we are going to be using automatic shooting
+			//We check to make sure they can fire
+		if(!special_check(user))
+			return
+		if(auto_target)//If they already have one then update it
+			auto_target.loc = get_turf(A)
+			auto_target.delay_del = 1//And reset the del so its like they got a new one and doesnt instantly vanish
+			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
+		else//Otherwise just make a new one
+			auto_target = new/obj/screen/auto_target(get_turf(A), src)
+			visible_message("<span class='danger'>\[user] readies the [src]!</span>")
+			playsound(src, 'sound/weapons/TargetOn.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
+			return
+	Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
@@ -278,8 +294,8 @@
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
+	//user.setClickCooldown(shoot_time) //no clicking on things while shooting //These are currently disabled to allow for the automatic system to function without causing near-permanant paralysis.
+	//user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
 	var/held_acc_mod = 0
@@ -291,7 +307,23 @@
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
+	shooting = 1
+	if(automatic == 1 && auto_target && auto_target.active)//When we are going to shoot and have an auto_target AND its active meaning we clicked on it we tell it to burstfire 1000 rounds
+		burst = 1000//Yes its not EXACTLY full auto but when are we shooting more than 1000 normally and it can easily be made higher
+
 	for(var/i in 1 to burst)
+		if(!reflex && automatic)//If we are shooting automatic then check our target, however if we are shooting reflex we dont use automatic
+			//extra sanity checking.
+			if(user.paralysis >= 1)
+				return
+			if(user.get_active_hand() != src)
+				break
+			if(!auto_target) break//Stopped shooting
+			else if(auto_target.loc)
+				target = auto_target.loc
+			//Lastly just update our dir if needed
+			if(user.dir != get_dir(user, auto_target))
+				user.face_atom(auto_target)
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
@@ -316,7 +348,7 @@
 			pointblank = 0
 
 		last_shot = world.time
-
+	shooting = 0
 	// We do this down here, so we don't get the message if we fire an empty gun.
 	if(requires_two_hands)
 		if(user.item_is_in_hands(src) && user.hands_are_full())
