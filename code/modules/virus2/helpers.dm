@@ -85,7 +85,7 @@ proc/airborne_can_reach(turf/source, turf/target)
 		if(prob(disease.resistance))
 			var/datum/disease2/disease/D = disease.getcopy()
 			D.minormutate()
-			D.resistance += rand(1,10)
+			D.resistance += rand(1,9)
 //			log_debug("Adding virus")
 			M.virus2["[D.uniqueID]"] = D
 			BITSET(M.hud_updateflag, STATUS_HUD)

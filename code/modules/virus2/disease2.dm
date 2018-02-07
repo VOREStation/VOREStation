@@ -37,7 +37,7 @@
 	antigen = list(pick(ALL_ANTIGENS))
 	antigen |= pick(ALL_ANTIGENS)
 	spreadtype = prob(70) ? "Airborne" : "Contact"
-	resistance = rand(10,80)
+	resistance = rand(15,70)
 
 	if(all_species.len)
 		affected_species = get_infectable_species()
@@ -86,7 +86,12 @@
 		if(stage == 1 && prob(70-resistance))
 			src.cure(mob)
 		else
-			resistance += rand(1,10)
+			resistance += rand(1,9)
+
+	//Resistance is capped at 90 without being manually set to 100
+	if(resistance > 90 && resistance < 100)
+		resistance = 90
+
 
 	//Virus food speeds up disease progress
 	if(mob.reagents.has_reagent("virusfood"))
@@ -146,7 +151,9 @@
 	if (prob(5) && all_species.len)
 		affected_species = get_infectable_species()
 	if (prob(10))
-		resistance += rand(1,10)
+		resistance += rand(1,9)
+		if(resistance > 90 && resistance < 100)
+			resistance = 90
 
 /datum/disease2/disease/proc/getcopy()
 	var/datum/disease2/disease/disease = new /datum/disease2/disease
