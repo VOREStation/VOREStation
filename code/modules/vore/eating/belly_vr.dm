@@ -489,9 +489,6 @@
 		return
 	internal_contents -= content
 	target.internal_contents += content
-	if(content in items_preserved)
-		items_preserved -= content
-		target.items_preserved += content
 	if(isliving(content))
 		var/mob/living/M = content
 		if(target.inside_flavor)
