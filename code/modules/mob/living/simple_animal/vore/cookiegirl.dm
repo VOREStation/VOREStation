@@ -1,6 +1,6 @@
 /mob/living/simple_animal/cookiegirl
 	name = "cookiegirl"
-	desc = "A woman made with a combination of flour, egg, sugar, and choclate chip that sports hair made of black licorice that's in dreadlocks, choclate chips for nipples and a cute, red, gumdrop bellybutton. What were the chefs thinking?"
+	desc = "A woman made with a combination of flour, egg, sugar, and choclate chip that sports hair made of black licorice that's in dreadlocks and a cute, red, gumdrop bellybutton. What were the chefs thinking?"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "cookiegirl"
 	icon_living = "cookiegirl"
