@@ -47,3 +47,8 @@
 /datum/job/atmos
 	total_positions = 3
 	spawn_positions = 3
+
+/datum/job/explorer
+	alt_titles = list(
+ 		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
+		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
