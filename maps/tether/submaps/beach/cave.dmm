@@ -31,14 +31,14 @@
 "j" = (
 /turf/unsimulated/wall/planetary/normal,
 /area/tether_away/cave/explored/normal)
-"k" = (
-/mob/living/simple_animal/hostile/deathclaw,
-/turf/simulated/mineral/floor/ignore_mapgen/cave,
-/area/tether_away/cave/explored/deep)
-"l" = (
-/mob/living/simple_animal/hostile/deathclaw,
+"r" = (
+/obj/tether_away_spawner/beach_cave,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/tether_away/cave/explored/normal)
+"x" = (
+/obj/tether_away_spawner/beach_cave,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/tether_away/cave/explored/deep)
 
 (1,1,1) = {"
 g
@@ -1559,7 +1559,7 @@ a
 a
 a
 b
-k
+b
 b
 a
 a
@@ -1681,7 +1681,7 @@ a
 a
 a
 b
-b
+x
 b
 b
 a
@@ -3034,7 +3034,7 @@ a
 c
 d
 d
-d
+r
 d
 d
 d
@@ -3290,7 +3290,7 @@ c
 c
 d
 d
-d
+r
 d
 c
 c
@@ -3405,7 +3405,7 @@ d
 d
 d
 d
-l
+d
 d
 d
 d
@@ -5490,7 +5490,7 @@ c
 c
 c
 d
-d
+r
 d
 c
 c
@@ -7816,7 +7816,7 @@ d
 d
 d
 d
-l
+d
 d
 d
 c
@@ -8060,7 +8060,7 @@ d
 d
 d
 d
-d
+r
 d
 d
 c
@@ -8433,7 +8433,7 @@ c
 d
 d
 d
-d
+r
 d
 c
 c
@@ -9638,7 +9638,7 @@ c
 c
 d
 d
-d
+r
 d
 d
 c
@@ -9960,7 +9960,7 @@ b
 b
 b
 b
-k
+b
 b
 a
 b
@@ -10085,7 +10085,7 @@ b
 b
 b
 b
-b
+x
 b
 a
 a
@@ -10363,7 +10363,7 @@ c
 c
 d
 d
-d
+r
 d
 d
 c
@@ -10841,7 +10841,7 @@ a
 a
 c
 d
-d
+r
 d
 d
 d
@@ -11900,7 +11900,7 @@ a
 a
 a
 b
-b
+x
 b
 b
 a

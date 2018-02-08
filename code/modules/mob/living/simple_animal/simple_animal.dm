@@ -343,8 +343,21 @@
 				var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 				moving_to = pick(cardinal)
 				dir = moving_to			//How about we turn them the direction they are moving, yay.
-				Move(get_step(src,moving_to))
+				var/turf/T = get_step(src,moving_to)
+				if(avoid_turf(T))
+					return
+				Move(T)
 				lifes_since_move = 0
+
+// Checks to see if mob doesn't like this kind of turf
+/mob/living/simple_animal/proc/avoid_turf(var/turf/turf)
+	if(!turf)
+		return TRUE //Avoid the nothing, yes
+
+	if(istype(turf,/turf/simulated/sky))
+		return TRUE //Mobs aren't that stupid, probably
+
+	return FALSE //Override it on stuff to adjust
 
 // Handles random chatter, called from Life() when stance = STANCE_IDLE
 /mob/living/simple_animal/proc/handle_idle_speaking()
