@@ -84,6 +84,43 @@
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
 
+// Two mob spawners that are placed on the map that spawn some mobs!
+// They keep track of their mob, and when it's dead, spawn another (only if nobody is looking)
+/obj/tether_away_spawner/beach_outside
+	name = "Beach Outside Spawner" //Just a name
+	faction = "beach_out" //Sets all the mobs to this faction so they don't infight
+	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
+	prob_spawn = 50 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
+	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
+	guard = 40 //They'll stay within this range (not defining disables)
+	mobs_to_pick_from = list(
+		/mob/living/simple_animal/snake
+	)
+
+/obj/tether_away_spawner/beach_outside_friendly
+	name = "Fennec Spawner"
+	faction = "fennec"
+	atmos_comp = TRUE
+	prob_spawn = 100
+	prob_fall = 25
+	guard = 40
+	mobs_to_pick_from = list(
+		/mob/living/simple_animal/fennec
+	)
+
+/obj/tether_away_spawner/beach_cave
+	name = "Beach Cave Spawner"
+	faction = "beach_cave"
+	atmos_comp = TRUE
+	prob_spawn = 100
+	prob_fall = 10
+	guard = 20
+	mobs_to_pick_from = list(
+		/mob/living/simple_animal/hostile/deathclaw,
+		/mob/living/simple_animal/hostile/frog,
+		/mob/living/simple_animal/hostile/hivebot/range/ion
+	)
+
 // These are step-teleporters, for map edge transitions
 // This top one goes INTO the cave
 /obj/effect/step_trigger/teleporter/away_beach_tocave/New()
@@ -126,22 +163,22 @@
 	dynamic_lighting = 0
 
 /area/tether_away/beach/powershed
-	name = "\improper Desert Planet Coast"
+	name = "\improper Away Mission - Virgo 4 Coast PS"
 	icon_state = "blue2"
 	base_turf = /turf/simulated/floor/beach/sand
 
 /area/tether_away/beach/coast
-	name = "\improper Desert Planet Coast"
+	name = "\improper Away Mission - Virgo 4 Coast"
 	icon_state = "blue2"
 	base_turf = /turf/simulated/floor/beach/coastline
 
 /area/tether_away/beach/water
-	name = "\improper Desert Planet Water"
+	name = "\improper Away Mission - Virgo 4 Water"
 	icon_state = "bluenew"
 	base_turf = /turf/simulated/floor/beach/coastwater
 
 /area/tether_away/beach/jungle
-	name = "\improper Desert Planet Jungle"
+	name = "\improper Away Mission - Virgo 4 Desert"
 	icon_state = "green"
 	base_turf = /turf/simulated/floor/beach/sand/desert
 
@@ -151,17 +188,17 @@
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 
 /area/tether_away/cave/explored/normal
-	name = "Tunnels"
+	name = "\improper Away Mission - Virgo 4 Cave (E)"
 	icon_state = "explored"
 
 /area/tether_away/cave/unexplored/normal
-	name = "Tunnels"
+	name = "\improper Away Mission - Virgo 4 Cave (UE)"
 	icon_state = "unexplored"
 
 /area/tether_away/cave/explored/deep
-	name = "Depths"
+	name = "\improper Away Mission - Virgo 4 Cave Deep (E)"
 	icon_state = "explored_deep"
 
 /area/tether_away/cave/unexplored/deep
-	name = "Depths"
+	name = "\improper Away Mission - Virgo 4 Cave Deep (UE)"
 	icon_state = "unexplored_deep"

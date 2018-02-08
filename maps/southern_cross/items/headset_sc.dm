@@ -11,6 +11,11 @@
 	desc = "A bowman headset used by pilots, has access to supply and explorer channels."
 	icon_state = "pilot_headset_alt"
 
+/obj/item/device/radio/headset/pilot/alt
+	name = "pilot's bowman headset"
+	desc = "A bowman headset used by pilots, has access to supply and explorer channels."
+	icon_state = "pilot_headset_alt"
+
 /obj/item/device/radio/headset/explorer
 	name = "explorer's headset"
 	desc = "Headset used by explorers for exploring. Access to the explorer channel."

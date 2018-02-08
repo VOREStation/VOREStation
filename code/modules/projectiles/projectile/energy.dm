@@ -196,3 +196,9 @@
 
 	embed_chance = 0
 	muzzle_type = /obj/effect/projectile/pulse/muzzle
+
+/obj/item/projectile/energy/phase
+	kill_count = 4
+	damage = 5
+	SA_bonus_damage = 55 // 60 total on animals.
+	SA_vulnerability = SA_ANIMAL

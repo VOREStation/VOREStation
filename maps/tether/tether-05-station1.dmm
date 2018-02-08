@@ -3754,11 +3754,8 @@
 	icon_state = "warning";
 	dir = 9
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = "expshuttle_vent"
-	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
+	cycle_to_external_air = 1;
 	frequency = 1380;
 	id_tag = "expshuttle_docker";
 	pixel_y = 26;
@@ -3766,7 +3763,13 @@
 	tag_airpump = "expshuttle_vent";
 	tag_chamber_sensor = "expshuttle_sensor";
 	tag_exterior_door = "expshuttle_door_Ro";
+	tag_exterior_sensor = "expshuttle_exterior_sensor";
 	tag_interior_door = "expshuttle_door_Ri"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -3774,14 +3777,16 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = "expshuttle_vent"
-	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
 	id_tag = "expshuttle_sensor";
+	master_tag = "expshuttle_docker";
 	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -4218,8 +4223,11 @@
 	icon_state = "warning";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/visible,
-/obj/machinery/meter,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "amJ" = (
@@ -4227,15 +4235,14 @@
 	frequency = 1380;
 	id_tag = "expshuttle_door_Ri"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	icon_state = "intact";
-	dir = 6
-	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
 	master_tag = "expshuttle_docker";
 	pixel_y = -24
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -4244,11 +4251,16 @@
 	frequency = 1380;
 	id_tag = "expshuttle_door_Ro"
 	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
 	frequency = 1380;
+	id_tag = "expshuttle_exterior_sensor";
 	master_tag = "expshuttle_docker";
-	pixel_y = 24
+	pixel_x = 4;
+	pixel_y = 28
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -4257,9 +4269,10 @@
 	icon_state = "warning";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible{
-	icon_state = "map";
-	dir = 4
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -4691,9 +4704,9 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
+	dir = 8;
 	frequency = 1380;
-	id_tag = "expshuttle_vent"
+	id_tag = "expshuttle_docker_pump_out_internal"
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -4711,14 +4724,14 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = "expshuttle_vent"
-	},
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
@@ -5090,19 +5103,16 @@
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "apk" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 10
+	},
 /obj/machinery/atmospherics/pipe/tank/air{
-	dir = 8;
+	dir = 4;
 	icon_state = "air_map";
+	start_pressure = 300;
 	volume = 20000
 	},
 /turf/simulated/shuttle/floor/darkred,
-/area/shuttle/excursion/tether)
-"apl" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/simulated/shuttle/wall/voidcraft,
 /area/shuttle/excursion/tether)
 "apn" = (
 /obj/machinery/light{
@@ -7337,7 +7347,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/excursion_dock)
 "auV" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
+	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/shuttle/excursion/tether)
 "auW" = (
@@ -21536,6 +21548,25 @@
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
+"gcH" = (
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/tiled,
+/area/tether/station/excursion_dock)
+"oVP" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_external";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
 "poz" = (
 /obj/machinery/camera/network/northern_star{
 	dir = 8
@@ -21559,6 +21590,9 @@
 /obj/machinery/shuttle_sensor{
 	dir = 5;
 	id_tag = "shuttlesens_exp"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
 	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/shuttle/excursion/tether)
@@ -21609,6 +21643,33 @@
 /obj/structure/closet/secure_closet/guncabinet/excursion,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/explorer_prep)
+"PYd" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
+"Qua" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
+"TpR" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/excursion/tether)
+"UkI" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/excursion/tether)
 "Vrx" = (
 /obj/machinery/camera/network/northern_star,
 /turf/simulated/floor/tiled,
@@ -30556,11 +30617,11 @@ aaM
 aaD
 ajQ
 aaq
-aaJ
+TpR
 amJ
 auV
-apl
-aaq
+auV
+oVP
 aap
 avK
 auO
@@ -30682,9 +30743,9 @@ ali
 amI
 anX
 apk
-aaq
+oVP
 aap
-avK
+gcH
 auF
 aad
 axI
@@ -30803,7 +30864,7 @@ aaq
 alk
 amL
 aob
-adB
+UkI
 aaq
 aaO
 avK
@@ -30922,10 +30983,10 @@ aap
 aap
 aap
 aaq
-aaq
+PYd
 amK
 AyD
-aaq
+Qua
 aau
 aaO
 avK
