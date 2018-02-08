@@ -1912,3 +1912,109 @@
 /obj/item/weapon/storage/backpack/fluff/stunstaff/New()
 	..()
 	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)
+
+
+/*
+ * Awoo Sword
+ */
+/obj/item/weapon/melee/fluffstuff
+	var/active = 0
+	var/active_force
+	var/active_throwforce
+	var/active_w_class
+	var/active_embed_chance = 0
+	sharp = 0
+	edge = 0
+
+/obj/item/weapon/melee/fluffstuff/proc/activate(mob/living/user)
+	if(active)
+		return
+	active = 1
+	embed_chance = active_embed_chance
+	force = active_force
+	throwforce = active_throwforce
+	sharp = 1
+	edge = 1
+	w_class = active_w_class
+	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+
+/obj/item/weapon/melee/fluffstuff/proc/deactivate(mob/living/user)
+	if(!active)
+		return
+	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	active = 0
+	embed_chance = initial(embed_chance)
+	force = initial(force)
+	throwforce = initial(throwforce)
+	sharp = initial(sharp)
+	edge = initial(edge)
+	w_class = initial(w_class)
+
+/obj/item/weapon/melee/fluffstuff/attack_self(mob/living/user as mob)
+	if (active)
+		if ((CLUMSY in user.mutations) && prob(50))
+			user.visible_message("<span class='danger'>\The [user] accidentally cuts \himself with \the [src].</span>",\
+			"<span class='danger'>You accidentally cut yourself with \the [src].</span>")
+			user.take_organ_damage(5,5)
+		deactivate(user)
+	else
+		activate(user)
+
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		H.update_inv_l_hand()
+		H.update_inv_r_hand()
+
+	add_fingerprint(user)
+	return
+
+/obj/item/weapon/melee/fluffstuff/suicide_act(mob/user)
+	var/tempgender = "[user.gender == MALE ? "he's" : user.gender == FEMALE ? "she's" : "they are"]"
+	if(active)
+		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
+			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
+		return (BRUTELOSS|FIRELOSS)
+ 
+/obj/item/weapon/melee/fluffstuff/awoosword
+	name = "Wolfgirl Sword Replica"
+	desc = "A replica of a large, scimitar-like sword with a dull edge. Ceremonial... until it isn't."
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "awoosword"
+	slot_flags = SLOT_BACK | SLOT_OCLOTHING
+	active_force = 15
+	active_throwforce = 7
+	active_w_class = ITEMSIZE_LARGE
+	force = 1
+	throwforce = 1
+	throw_speed = 1
+	throw_range = 5
+	w_class = ITEMSIZE_SMALL
+	origin_tech = "materials=7"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
+	var/active_state = "awoosword"
+	allowed = list(/obj/item/weapon/shield/fluff/awooshield)
+	damtype = HALLOSS
+
+/obj/item/weapon/melee/fluffstuff/awoosword/dropped(var/mob/user)
+	..()
+	if(!istype(loc,/mob))
+		deactivate(user)
+
+/obj/item/weapon/melee/fluffstuff/awoosword/activate(mob/living/user)
+	if(!active)
+		to_chat(user, "<span class='notice'>The [src] is now sharpened. It will cut!</span>")
+
+	..()
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	sharp = 1
+	edge = 1
+	icon_state = "[active_state]_sharp"
+	damtype = BRUTE
+
+
+/obj/item/weapon/melee/fluffstuff/awoosword/deactivate(mob/living/user)
+	if(active)
+		user << "<span class='notice'>The [src] grows dull!</span>"
+	..()
+	attack_verb = list("bapped", "thwapped", "bonked", "whacked")
+	icon_state = initial(icon_state)
