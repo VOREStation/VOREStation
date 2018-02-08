@@ -21629,6 +21629,20 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/shuttle/excursion/tether)
+"RIb" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/guncabinet/excursion,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/station/explorer_prep)
 "PYd" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 10
@@ -32436,7 +32450,7 @@ aiv
 bQJ
 bQT
 bQJ
-aiv
+bQJ
 aiv
 aac
 aac
@@ -32558,8 +32572,8 @@ aiv
 bQK
 bQK
 bQK
+RIb
 aiv
-aac
 aac
 aac
 aac
@@ -32681,7 +32695,7 @@ aiv
 aiv
 aiv
 aiv
-aac
+aiv
 aac
 aac
 aac
