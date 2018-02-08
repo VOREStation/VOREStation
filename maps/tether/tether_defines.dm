@@ -115,14 +115,13 @@
 		/area/tether/surfacebase/emergency_storage/atrium)
 
 	lateload_z_levels = list(
-		"Tether - Misc",
-		"Tether - Ships"
+		list("Tether - Misc","Tether - Ships"), //Stock Tether lateload maps
+		list("Alien Ship - Z1 Ship"),
+		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
+		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface")
 		)
 
-	lateload_single_pick = list(
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		"Alien Ship - Z1 Ship"
-		)
+	lateload_single_pick = null //Nothing right now.
 
 /datum/map/tether/perform_map_generation()
 

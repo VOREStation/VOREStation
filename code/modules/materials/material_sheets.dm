@@ -94,6 +94,13 @@
 	apply_colour = 1
 	no_variants = FALSE
 
+/obj/item/stack/material/lead
+	name = "lead"
+	icon_state = "sheet-adamantine"
+	default_type = "lead"
+	apply_colour = 1
+	no_variants = TRUE
+
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"

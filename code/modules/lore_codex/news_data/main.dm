@@ -5,6 +5,7 @@
 	articles. You are encouraged to check back frequently."
 	children = list(
 		/datum/lore/codex/page/article1,
+		/datum/lore/codex/page/article2,
 		/datum/lore/codex/page/about_news,
 		)
 
@@ -32,3 +33,16 @@
 	The bill passed fairly quietly this afternoon, owing to the closed nature of the Bicamarial. A post-facto Occulum poll of voting-age\
 	VGA citizens suggest that fully 80% of them did not even know what a Promethean was prior to the most recent general election. A\
 	follow-up poll indicates that an appreciable number of Sivians do not support the framework's current implementation."
+
+/datum/lore/codex/page/article2
+	name = "2/3/62-- Corporate Coup on Aetolus"
+	data = "A recent incident aboard the NRS Prometheus issued in a major change in the leadership of the Promethean homeworld. During \
+	a late-night meeting of the Nanotrasen Board of Trustees, several high-ranking personnel, including Head of Research Naomi Harper,\
+	announced their intention to assume direct control of Nanotrasen facilities in the system. It is known that several dissenting \
+	members of the board were shot to death by Promethean test subjects. Our information comes from a survivor of the coup, who for \
+	reasons of security has chosen to remain annonymous. All outbound shipments affiliated with Nanotrasen have ceased.\
+	<br><br>\
+	While neither Grayson Manufacturies nor Nanotrasen have made an official statement, Nanotrasen CEO Albary Moravec has called the \
+	incident \"shocking, if the allegations are to be believed\" and has assured shareholders that Nanotrasen will respond to the \
+	incident with as much force as it warrents.<br><br>Requests for a statement directed to the Board of Trustees or Dr. Harper were \
+	not responded to. Free Traders are recommended to stay clear of the region until the situation resolves itself."

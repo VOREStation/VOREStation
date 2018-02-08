@@ -196,7 +196,8 @@
 	var/colourName = "red" //for updateIcon purposes
 
 	suicide_act(mob/user)
-		viewers(user) << "<font color='red'><b>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</b></font>"
+		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+		viewers(user) << "<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>"
 		return (BRUTELOSS|OXYLOSS)
 
 	New()

@@ -15,14 +15,24 @@ SUBSYSTEM_DEF(mobs)
 	var/list/currentrun = list()
 	var/log_extensively = FALSE
 	var/list/timelog = list()
+	var/list/busy_z_levels
+	var/slept_mobs = 0
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P: [global.mob_list.len]")
+	..("P: [global.mob_list.len] | S: [slept_mobs]")
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
+	var/list/busy_z_levels = src.busy_z_levels
+
 	if (!resumed)
+		slept_mobs = 0
 		src.currentrun = mob_list.Copy()
-		if(log_extensively) timelog = list("-Start- [TICK_USAGE]")
+		busy_z_levels = list()
+		for(var/played_mob in player_list)
+			if(!played_mob || isobserver(played_mob))
+				continue
+			var/mob/pm = played_mob
+			busy_z_levels |= pm.z
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -37,11 +47,10 @@ SUBSYSTEM_DEF(mobs)
 			// Right now mob.Life() is unstable enough I think we need to use a try catch.
 			// Obviously we should try and get rid of this for performance reasons when we can.
 			try
-				var/time_before = TICK_USAGE
+				if(M.low_priority && !(M.z in busy_z_levels))
+					slept_mobs++
+					continue
 				M.Life(times_fired)
-				var/time_after = TICK_USAGE
-				var/time_diff = time_after - time_before
-				if(log_extensively && (time_diff > 0.01)) timelog += list("[time_diff]% - [M] ([M.x],[M.y],[M.z])" = M)
 			catch(var/exception/e)
 				log_runtime(e, M, "Caught by [name] subsystem")
 

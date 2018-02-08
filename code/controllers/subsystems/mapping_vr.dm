@@ -59,22 +59,27 @@ SUBSYSTEM_DEF(mapping)
 	var/list/deffo_load = using_map.lateload_z_levels
 	var/list/maybe_load = using_map.lateload_single_pick
 
-	for(var/mapname in deffo_load)
-		var/datum/map_template/MT = map_templates[mapname]
-		if(!istype(MT))
-			error("Lateload Z level \"[mapname]\" is not a valid map!")
+	for(var/list/maplist in deffo_load)
+		if(!islist(maplist))
+			error("Lateload Z level [maplist] is not a list! Must be in a list!")
 			continue
-		MT.load_new_z(centered = FALSE)
-		CHECK_TICK
+		for(var/mapname in maplist)
+			var/datum/map_template/MT = map_templates[mapname]
+			if(!istype(MT))
+				error("Lateload Z level \"[mapname]\" is not a valid map!")
+				continue
+			MT.load_new_z(centered = FALSE)
+			CHECK_TICK
 
 	if(LAZYLEN(maybe_load))
-		var/picked = pick(maybe_load)
-		var/list/picklist
+		var/picklist = pick(maybe_load)
 
-		if(islist(picked)) //So you can have a 'chain' of z-levels that make up one away mission
-			picklist = picked
-		else
-			picklist = list(picked)
+		if(!picklist) //No lateload maps at all
+			return
+
+		if(!islist(picklist)) //So you can have a 'chain' of z-levels that make up one away mission
+			error("Randompick Z level [picklist] is not a list! Must be in a list!")
+			return
 
 		for(var/map in picklist)
 			var/datum/map_template/MT = map_templates[map]
