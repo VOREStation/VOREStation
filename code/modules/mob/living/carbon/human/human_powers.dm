@@ -265,3 +265,20 @@
 			organ_data["descriptor"] = O.name
 			to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
 	update_icons_all()
+
+/mob/living/carbon/human/proc/hide_humanoid()
+	set name = "Hide"
+	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
+	set category = "Abilities"
+
+	if(stat == DEAD || paralysis || weakened || stunned) // No hiding if you're stunned!
+		return
+
+	if (!hiding)
+		layer = 2.45 //Just above cables with their 2.44
+		hiding = 1
+		to_chat(src, "<font color='blue'>You are now hiding.</font>")
+	else
+		layer = MOB_LAYER
+		hiding = 0
+		to_chat(src, "<font color='blue'>You have stopped hiding.</font>")

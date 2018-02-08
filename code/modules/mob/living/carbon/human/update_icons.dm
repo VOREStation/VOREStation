@@ -178,6 +178,9 @@ Please contact me on #coderbus IRC. ~Carn x
 	//5: Set appearance once
 	appearance = ma_compiled
 
+	//6: Do any species specific layering updates, such as when hiding.
+	update_icon_special()
+
 /mob/living/carbon/human/update_transform(var/mutable_appearance/passed_ma)
 	if(QDESTROYING(src))
 		return
@@ -211,6 +214,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Translate(0, 16*(desired_scale-1))
 		ma.transform = M
 		ma.layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
+	update_icon_special() //Adjust their layer, like when they are hiding.
 
 	if(!passed_ma)
 		appearance = ma
