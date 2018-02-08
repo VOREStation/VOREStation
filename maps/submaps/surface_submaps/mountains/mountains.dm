@@ -15,6 +15,8 @@
 #include "CaveTrench.dmm"
 #include "Cavelake.dmm"
 #include "Rockb1.dmm"
+#include "ritual.dmm"
+#include "temple.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -94,6 +96,18 @@
 	desc = "Someones underground hidey hole"
 	mappath = 'maps/submaps/surface_submaps/mountains/Rockb1.dmm'
 	cost = 15
+
+/datum/map_template/surface/mountains/normal/corgiritual
+	name = "Dark Ritual"
+	desc = "Who put all these plushies here? What are they doing?"
+	mappath = 'maps/submaps/surface_submaps/mountains/ritual.dmm'
+	cost = 15
+
+/datum/map_template/surface/mountains/normal/abandonedtemple
+	name = "Abandoned Temple"
+	desc = "An ancient temple, long since abandoned. Perhaps alien in origin?"
+	mappath = 'maps/submaps/surface_submaps/mountains/temple.dmm'
+	cost = 20
 
 /**************
  * Deep Caves *

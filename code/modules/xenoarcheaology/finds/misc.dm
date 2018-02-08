@@ -10,9 +10,12 @@
 	anchored = TRUE
 
 /obj/machinery/crystal/New()
-	if(prob(50))
+	if(prob(30))
 		icon_state = "crystal2"
 		set_light(3, 3, "#CC00CC")
+	else if(prob(30))
+		icon_state = "crystal3"
+		set_light(3, 3, "#FF003B")
 	else
 		set_light(3, 3, "#33CC33")
 
