@@ -108,12 +108,12 @@
 		taped = 0
 	..()
 
-/obj/structure/largecrate/animal/mlem
+/obj/structure/largecrate/animal/catgirl
 	name = "Catgirl Crate"
-	desc = "A sketchy looking crate that seems to have had most marks and stickers removed. You can almost make out 'genetically-engineered subject'."
+	desc = "A sketchy looking crate with airholes that seems to have had most marks and stickers removed. You can almost make out 'genetically-engineered subject' written on it."
 	held_type = /mob/living/simple_animal/catgirl
 
-/obj/structure/largecrate/animal/awoo
+/obj/structure/largecrate/animal/wolfgirl
 	name = "Wolfgirl Crate"
-	desc = "A sketchy looking crate that shakes and thuds every now and then. Someone seems to be demanding they be let out."
+	desc = "A sketchy looking crate with airholes that shakes and thuds every now and then. Someone seems to be demanding they be let out."
 	held_type = /mob/living/simple_animal/retaliate/awoo
