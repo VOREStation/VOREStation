@@ -39,9 +39,10 @@
 	set_light(0,0)
 
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message("<span class='danger'>\The [user] accidentally cuts \himself with \the [src].</span>",\
+			user.visible_message("<span class='danger'>\The [user] accidentally cuts [TU.himself] with \the [src].</span>",\
 			"<span class='danger'>You accidentally cut yourself with \the [src].</span>")
 			user.take_organ_damage(5,5)
 		deactivate(user)
@@ -57,10 +58,10 @@
 	return
 
 /obj/item/weapon/melee/energy/suicide_act(mob/user)
-	var/tempgender = "[user.gender == MALE ? "he's" : user.gender == FEMALE ? "she's" : "they are"]"
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if(active)
-		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
-			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
+		user.visible_message(pick("<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.he] [TU.is] trying to commit seppuku.</span>",\
+			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"))
 		return (BRUTELOSS|FIRELOSS)
 
 /*
@@ -104,7 +105,8 @@
 	..()
 
 /obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
-	visible_message("<span class='warning'>\The [user] swings \the [src] towards \his head! It looks like \he's trying to commit suicide.</span>")
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	visible_message("<span class='warning'>\The [user] swings \the [src] towards [TU.his] head! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)
 
 /*

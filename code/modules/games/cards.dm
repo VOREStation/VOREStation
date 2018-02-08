@@ -173,7 +173,8 @@
 		H.concealed = 1
 		H.update_icon()
 	if(user==target)
-		user.visible_message("<span class = 'notice'>\The [user] deals [dcard] card(s) to \himself.</span>")
+		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+		user.visible_message("<span class = 'notice'>\The [user] deals [dcard] card(s) to [TU.himself].</span>")
 	else
 		user.visible_message("<span class = 'notice'>\The [user] deals [dcard] card(s) to \the [target].</span>")
 	H.throw_at(get_step(target,target.dir),10,1,H)
