@@ -5,3 +5,15 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Stolen crate"
 	contraband = 1
+
+/datum/supply_packs/supply/awoo
+	name = "Wolfgirl Crate"
+	cost = 200 //I mean, it's a whole wolfgirl
+	containertype = /obj/structure/largecrate/animal/awoo
+	containername = "Wolfgirl crate"
+
+/datum/supply_packs/supply/mlem
+	name = "Catgirl Crate"
+	cost = 200 //I mean, it's a whole catgirl
+	containertype = /obj/structure/largecrate/animal/mlem
+	containername = "Catgirl crate"
