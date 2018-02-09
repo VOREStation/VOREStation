@@ -111,6 +111,8 @@
 	..(S,H)
 	if(!H.plane_holder)
 		H.plane_holder = new(H)
+	if(!H.vis_enabled)
+		H.vis_enabled = list()
 	H.plane_holder.set_vis(VIS_D_COLORBLIND,TRUE) //The default is monocrhomia, no need to set values
 
 /datum/trait/colorblind/para_vulp
