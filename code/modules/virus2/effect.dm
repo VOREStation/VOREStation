@@ -296,11 +296,11 @@
 /datum/disease2/effect/hallucinations/activate(var/mob/living/carbon/mob,var/multiplier)
 	mob.hallucination += 25
 
-/datum/disease2/effect/deaf
+/datum/disease2/effect/minordeaf
 	name = "Hearing Loss"
 	stage = 3
 
-/datum/disease2/effect/deaf/activate(var/mob/living/carbon/mob,var/multiplier)
+/datum/disease2/effect/minordeaf/activate(var/mob/living/carbon/mob,var/multiplier)
 	mob.ear_deaf = 5
 
 /datum/disease2/effect/giggle
