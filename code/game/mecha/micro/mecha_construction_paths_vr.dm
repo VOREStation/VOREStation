@@ -241,7 +241,7 @@
 				else
 					user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
 					var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-					MS.amount = 5
+					MS.amount = 3
 					holder.icon_state = "polecat14"
 			if(4)
 				if(diff==FORWARD)
@@ -449,7 +449,7 @@
 				else
 					user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
 					var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-					MS.amount = 5
+					MS.amount = 3
 					holder.icon_state = "gopher8"
 			if(4)
 				if(diff==FORWARD)
@@ -489,10 +489,11 @@
 
 /datum/construction/mecha/weasel_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/micro/part/weasel_torso),//1
-					 list("key"=/obj/item/mecha_parts/micro/part/weasel_left_arm),//2
-					 list("key"=/obj/item/mecha_parts/micro/part/weasel_right_arm),//3
-					 list("key"=/obj/item/mecha_parts/micro/part/weasel_left_leg),//4
-					 list("key"=/obj/item/mecha_parts/micro/part/weasel_right_leg)//5
+					 list("key"=/obj/item/mecha_parts/micro/part/weasel_head),//2
+					 list("key"=/obj/item/mecha_parts/micro/part/weasel_left_arm),//3
+					 list("key"=/obj/item/mecha_parts/micro/part/weasel_right_arm),//4
+					 list("key"=/obj/item/mecha_parts/micro/part/weasel_left_leg),//5
+					 list("key"=/obj/item/mecha_parts/micro/part/weasel_right_leg)//6
 					)
 
 	custom_action(step, atom/used_atom, mob/user)
@@ -729,7 +730,7 @@
 				else
 					user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
 					var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-					MS.amount = 5
+					MS.amount = 3
 					holder.icon_state = "weasel14"
 			if(4)
 				if(diff==FORWARD)

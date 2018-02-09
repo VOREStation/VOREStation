@@ -180,3 +180,10 @@
 	build_path = /obj/item/mecha_parts/micro/part/weasel_right_leg
 	time = 10
 	materials = list(DEFAULT_WALL_MATERIAL = 22500)
+
+/datum/design/item/mechfab/weasel/head
+	name = "Weasel Head"
+	id = "weasel_head"
+	build_path = /obj/item/mecha_parts/micro/part/head
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 7500)
