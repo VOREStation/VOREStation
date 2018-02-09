@@ -268,7 +268,8 @@ var/global/list/robot_modules = list(
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
 					"Drone - Medical" = "drone-medical",
-					"Drone - Chemistry" = "drone-chemistry"
+					"Drone - Chemistry" = "drone-chemistry",
+					"Handy" = "handy-med"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/crisis/New()
@@ -537,7 +538,8 @@ var/global/list/robot_modules = list(
 					"Basic" = "JanBot2",
 					"Mopbot"  = "janitorrobot",
 					"Mop Gear Rex" = "mopgearrex",
-					"Drone" = "drone-janitor"
+					"Drone" = "drone-janitor",
+					"Handy" = "handy-janitor"
 					)
 
 /obj/item/weapon/robot_module/robot/janitor/New()
@@ -591,7 +593,9 @@ var/global/list/robot_modules = list(
 					"Bro" = "Brobot",
 					"Rich" = "maximillion",
 					"Drone - Service" = "drone-service",
-					"Drone - Hydro" = "drone-hydro"
+					"Drone - Hydro" = "drone-hydro",
+					"Handy - Service" = "handy-service",
+					"Handy - Hydro" = "handy-hydro"
 				  	)
 
 /obj/item/weapon/robot_module/robot/clerical/butler/New()
@@ -644,7 +648,8 @@ var/global/list/robot_modules = list(
 					"Bro" = "Brobot",
 					"Rich" = "maximillion",
 					"Default" = "Service2",
-					"Drone" = "drone-blu"
+					"Drone" = "drone-blu",
+					"Handy" = "handy-clerk"
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/general/New()
