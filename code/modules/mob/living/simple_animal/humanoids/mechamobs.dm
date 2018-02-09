@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/mecha
-	name = "syndicate gygax"
+	name = "mercenary gygax"
 	desc = "Well that's forboding."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "darkgygax"
@@ -96,6 +96,8 @@
 
 
 /mob/living/simple_animal/hostile/mecha/malf_drone
+	name = "autonomous mechanized drone"
+	desc = "It appears to be an exosuit, piloted by a drone intelligence. It looks scary."
 	intelligence_level = SA_ROBOTIC
 	faction = "malf_drone"
 	speak_chance = 1
@@ -110,6 +112,7 @@
 	say_cannot = list("Denied.", "Negative.")
 	say_maybe_target = list("Possible threat detected. Investigating.", "Motion detected.", "Investigating.")
 	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
+	returns_home = TRUE
 
 /mob/living/simple_animal/hostile/mecha/malf_drone/isSynthetic()
 	return TRUE
