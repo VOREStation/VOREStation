@@ -131,9 +131,6 @@
 		if(foodsupply < 100 && beaker.reagents.remove_reagent("virusfood",5))
 			if(foodsupply + 10 <= 100)
 				foodsupply += 10
-			else
-				beaker.reagents.add_reagent("virusfood",(100 - foodsupply)/2)
-				foodsupply = 100
 			nanomanager.update_uis(src)
 
 		if (locate(/datum/reagent/toxin) in beaker.reagents.reagent_list && toxins < 100)

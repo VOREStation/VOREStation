@@ -1,0 +1,14 @@
+ 
+author: Cerebulon
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds antibiotic resistance chance to viruses, capped at 90% without admin edits."
+  - rscadd: "Adds adminspawned non-transmittable viruses"
+  - rscadd: "Adds several new disease symptoms"
+  - tweak: "Vomit is now a disease vector"
+  - tweak: "Viruses have a lower chance of curing themselves without medical intervention"
+  - bugfix: "Virus food no longer infinitely generates in incubator beakers"
+  - bugfix: "Xenomorphs and supernatural begins can no longer catch the flu"
+  
