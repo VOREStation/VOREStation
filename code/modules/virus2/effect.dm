@@ -306,9 +306,13 @@
 /datum/disease2/effect/giggle
 	name = "Uncontrolled Laughter"
 	stage = 3
+	chance_maxm = 20
 
 /datum/disease2/effect/giggle/activate(var/mob/living/carbon/mob,var/multiplier)
-	mob.say("*giggle")
+	if(prob(66))
+		mob.say("*giggle")
+	else
+		to_chat(mob,"<span class='notice'>What's so funny?</span>")
 
 /datum/disease2/effect/confusion
 	name = "Topographical Cretinism"
@@ -328,10 +332,15 @@
 /datum/disease2/effect/groan
 	name = "Phantom Aches"
 	stage = 3
-	chance_maxm = 25
+	chance_maxm = 20
 
 /datum/disease2/effect/groan/activate(var/mob/living/carbon/mob,var/multiplier)
-	mob.say("*groan")
+	if(prob(66))
+		mob.say("*groan")
+	else if(istype(mob, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = mob
+		var/obj/item/organ/external/E = pick(H.organs)
+		to_chat(mob,"<span class='warning'>Your [E] aches.</span>")
 
 /datum/disease2/effect/chem_synthesis
 	name = "Chemical Synthesis"
@@ -370,10 +379,10 @@
 /datum/disease2/effect/scream
 	name = "Involuntary Vocalization"
 	stage = 2
-	chance_maxm = 25
+	chance_maxm = 10
 
 /datum/disease2/effect/scream/activate(var/mob/living/carbon/mob,var/multiplier)
-		mob.say("*scream")
+	mob.say("*scream")
 
 /datum/disease2/effect/drowsness
 	name = "Excessive Sleepiness"
@@ -400,11 +409,15 @@
 /datum/disease2/effect/cough
 	name = "Severe Cough"
 	stage = 2
+	chance_maxm = 20
 
 /datum/disease2/effect/cough/activate(var/mob/living/carbon/mob,var/multiplier)
-	mob.say("*cough")
-	for(var/mob/living/carbon/M in oview(2,mob))
-		mob.spread_disease_to(M)
+	if(prob(60))
+		mob.say("*cough")
+		for(var/mob/living/carbon/M in oview(2,mob))
+			mob.spread_disease_to(M)
+	else
+		to_chat(mob,"<span class='warning'>Something gets caught in your throat.</span>")
 
 /datum/disease2/effect/hungry
 	name = "Digestive Inefficiency"
@@ -459,7 +472,7 @@
 /datum/disease2/effect/vomiting
 	name = "Vomiting"
 	stage = 2
-	chance_maxm = 20
+	chance_maxm = 15
 
 /datum/disease2/effect/vomiting/activate(var/mob/living/carbon/mob,var/multiplier)
 	mob << "<span class='notice'>Your stomach churns!</span>"
@@ -471,17 +484,21 @@
 /datum/disease2/effect/sneeze
 	name = "Sneezing"
 	stage = 1
+	chance_maxm = 20
 
 /datum/disease2/effect/sneeze/activate(var/mob/living/carbon/mob,var/multiplier)
-	if (prob(30))
-		mob << "<span class='warning'>You feel like you are about to sneeze!</span>"
-	sleep(5)
-	mob.say("*sneeze")
-	for(var/mob/living/carbon/M in get_step(mob,mob.dir))
-		mob.spread_disease_to(M)
-	if (prob(50))
-		var/obj/effect/decal/cleanable/mucus/M = new(get_turf(mob))
-		M.virus2 = virus_copylist(mob.virus2)
+	if(prob(20))
+		to_chat(mob,"<span class='warning'>You go to sneeze, but it gets caught in your sinuses!</span>")
+	else if(prob(80))
+		if(prob(30))
+			to_chat(mob,"<span class='warning'>You feel like you are about to sneeze!</span>")
+		spawn(5) //Sleep may have been hanging Mob controller.
+			mob.say("*sneeze")
+			for(var/mob/living/carbon/M in get_step(mob,mob.dir))
+				mob.spread_disease_to(M)
+			if (prob(50))
+				var/obj/effect/decal/cleanable/mucus/M = new(get_turf(mob))
+				M.virus2 = virus_copylist(mob.virus2)
 
 /datum/disease2/effect/gunck
 	name = "Mucus Buildup"
@@ -493,7 +510,7 @@
 /datum/disease2/effect/drool
 	name = "Salivary Gland Stimulation"
 	stage = 1
-	chance_maxm = 25
+	chance_maxm = 15
 
 /datum/disease2/effect/drool/activate(var/mob/living/carbon/mob,var/multiplier)
 	mob.say("*drool")
@@ -504,7 +521,7 @@
 /datum/disease2/effect/twitch
 	name = "Involuntary Twitching"
 	stage = 1
-	chance_maxm = 25
+	chance_maxm = 15
 
 /datum/disease2/effect/twitch/activate(var/mob/living/carbon/mob,var/multiplier)
 		mob.say("*twitch")
