@@ -284,6 +284,106 @@
 		C.affecting -= src
 		effect_str -= C
 
+#define APPLY_CORNER_NO_FALLOFF(C)   \
+	. = 1;                           \
+	. *= light_power;                \
+                                     \
+	effect_str[C] = .;               \
+                                     \
+	C.update_lumcount                \
+	(                                \
+		. * applied_lum_r,           \
+		. * applied_lum_g,           \
+		. * applied_lum_b            \
+	);
+
+// Special snowflake subtype used to light the Surface.
+// The big differences is that this ignores FOV calculations (and as such doesn't use DVIEW) and instead applies it to all
+// 'outdoor' turfs within range.
+// Another difference is it has no falloff, meaning that it creates a big flat square instead of a circle that gets darker towards the edges.
+/datum/light_source/sun
+
+/datum/light_source/sun/recalc_corner(var/datum/lighting_corner/C)
+	if(effect_str.Find(C)) // Already have one.
+		REMOVE_CORNER(C)
+
+	APPLY_CORNER_NO_FALLOFF(C)
+
+/datum/light_source/sun/apply_lum()
+	var/static/update_gen = 1
+	applied = 1
+
+	// Keep track of the last applied lum values so that the lighting can be reversed
+	applied_lum_r = lum_r
+	applied_lum_g = lum_g
+	applied_lum_b = lum_b
+
+	for(var/thing in RANGE_TURFS(light_range, source_turf) )
+		var/turf/T = thing
+		if(!T.lighting_corners_initialised)
+			T.generate_missing_corners()
+
+		if(!T.outdoors)
+			continue
+
+		for(var/datum/lighting_corner/C in T.get_corners())
+			if(C.update_gen == update_gen)
+				continue
+
+			C.update_gen = update_gen
+			C.affecting += src
+
+			if(!C.active)
+				effect_str[C] = 0
+				continue
+
+			APPLY_CORNER_NO_FALLOFF(C)
+
+		if(!T.affecting_lights)
+			T.affecting_lights = list()
+
+		T.affecting_lights += src
+		affecting_turfs    += T
+
+	update_gen++
+
+/datum/light_source/sun/smart_vis_update()
+	var/list/datum/lighting_corner/corners = list()
+	var/list/turf/turfs                    = list()
+
+	for(var/thing in RANGE_TURFS(light_range, source_turf) )
+		var/turf/T = thing
+		if(!T.lighting_corners_initialised)
+			T.generate_missing_corners()
+		corners |= T.get_corners()
+		turfs   += T
+
+	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
+	affecting_turfs += L
+	for(var/turf/T in L)
+		if(!T.affecting_lights)
+			T.affecting_lights = list(src)
+		else
+			T.affecting_lights += src
+
+	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
+	affecting_turfs -= L
+	for(var/turf/T in L)
+		T.affecting_lights -= src
+
+	for(var/datum/lighting_corner/C in corners - effect_str) // New corners
+		C.affecting += src
+		if(!C.active)
+			effect_str[C] = 0
+			continue
+
+		APPLY_CORNER_NO_FALLOFF(C)
+
+	for(var/datum/lighting_corner/C in effect_str - corners) // Old, now gone, corners.
+		REMOVE_CORNER(C)
+		C.affecting -= src
+		effect_str -= C
+
 #undef effect_update
 #undef LUM_FALLOFF
 #undef REMOVE_CORNER

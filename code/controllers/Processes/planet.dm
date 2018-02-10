@@ -61,6 +61,13 @@ var/datum/controller/process/planet/planet_controller = null
 		if(P.needs_work & PLANET_PROCESS_SUN)
 			P.needs_work &= ~PLANET_PROCESS_SUN
 			//Redraw sun overlay
+			var/new_brightness = P.sun["brightness"]
+			var/new_color = P.sun["color"]
+			for(var/A in P.planet_suns)
+				var/obj/effect/sun/sun = A
+				sun.set_light(sun.light_range, new_brightness, new_color)
+				SCHECK
+			/*
 			var/new_range = P.sun["range"]
 			var/new_brightness = P.sun["brightness"]
 			var/new_color = P.sun["color"]
@@ -68,6 +75,7 @@ var/datum/controller/process/planet/planet_controller = null
 				var/turf/simulated/turf = T
 				turf.set_light(new_range, new_brightness, new_color)
 				SCHECK
+			*/
 
 		//Temperature needs updating
 		if(P.needs_work & PLANET_PROCESS_TEMP)
