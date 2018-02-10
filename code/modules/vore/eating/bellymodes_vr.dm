@@ -87,8 +87,11 @@
 		var/obj/item/T = pick(touchable_items)
 		if(istype(T))
 			if(digest_mode == DM_ITEMWEAK)
-				T.gurgle_contaminate(internal_contents, owner)
-				items_preserved |= T
+				if(istype(T,/obj/item/weapon/reagent_containers/food) || istype(T,/obj/item/weapon/holder) || istype(T,/obj/item/organ))
+					digest_item(T)
+				else
+					T.gurgle_contaminate(internal_contents, owner)
+					items_preserved |= T
 			else
 				digest_item(T)
 
