@@ -111,7 +111,7 @@ var/list/GPS_list = list()
 			direction = "CENTER"
 
 		if(istype(T, /obj/item/device/gps/internal/poi))
-			signals += "	Unidentified Signal: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
+			signals += "	[G.gps_tag]: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
 		else
 			signals += "     [G.gps_tag]: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
 
@@ -200,7 +200,7 @@ var/list/GPS_list = list()
 	desc = "A homing signal from NanoTrasen's outpost."
 
 /obj/item/device/gps/internal/poi
-	gps_tag = "Mysterious Signal"
+	gps_tag = "Unidentified Signal"
 	desc = "A signal that seems forboding."
 
 /obj/item/device/gps/syndie
@@ -257,7 +257,7 @@ var/list/GPS_list = list()
 			direction = "CENTER"
 			degrees = "N/A"
 
-		signals += "     [G.gps_tag]: [area_name] ([coord]) [local ? "Dist: [distance]m Dir: [degrees]° ([direction])":""]"
+		signals += "     [G.gps_tag]: [area_name] ([coord]) [local ? "Dist: [distance]m Dir: [degrees]Â° ([direction])":""]"
 
 	if(signals.len)
 		dat += "Detected signals;"
