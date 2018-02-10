@@ -26,20 +26,21 @@
 "z" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio/intercom/syndicate{desc = "Talk through this."; name = "station intercom (General)"},/obj/item/device/multitool,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "A" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio,/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/hyper; dir = 4; environ = 1; equipment = 1; lighting = 1; locked = 0; name = "Sif Free Radio APC"; operating = 0; pixel_x = 24},/obj/structure/cable/yellow,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "B" = (/obj/effect/overlay/snow/floor,/obj/machinery/power/port_gen/pacman,/obj/structure/cable/yellow,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
-"C" = (/obj/machinery/biogenerator,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"D" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/unajerky,/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"E" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/machinery/seed_extractor,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"F" = (/obj/structure/bed/chair/wood{tag = "icon-wooden_chair (NORTH)"; icon_state = "wooden_chair"; dir = 1},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"G" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"H" = (/obj/structure/table/woodentable,/obj/item/weapon/material/knife/machete/hatchet,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/material/minihoe,/obj/item/device/analyzer/plant_analyzer,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"I" = (/obj/structure/undies_wardrobe,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"J" = (/obj/structure/table/rack,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"K" = (/obj/machinery/light/flamp,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"L" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 15; tag = "icon-sink (EAST)"},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"M" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/clown,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"N" = (/obj/structure/table/rack,/obj/item/ammo_magazine/clip/c545/hunter,/obj/item/weapon/gun/projectile/shotgun/pump/rifle,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"O" = (/obj/structure/table/rack,/obj/item/device/gps/on{gps_tag = "Sif Free Radio"},/obj/item/device/flashlight/lantern,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"P" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"C" = (/obj/machinery/door/airlock/glass,/obj/item/device/gps/internal/poi,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"D" = (/obj/machinery/biogenerator,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"E" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/unajerky,/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"F" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/machinery/seed_extractor,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"G" = (/obj/structure/bed/chair/wood{tag = "icon-wooden_chair (NORTH)"; icon_state = "wooden_chair"; dir = 1},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"H" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"I" = (/obj/structure/table/woodentable,/obj/item/weapon/material/knife/machete/hatchet,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/material/minihoe,/obj/item/device/analyzer/plant_analyzer,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"J" = (/obj/structure/undies_wardrobe,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"K" = (/obj/structure/table/rack,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"L" = (/obj/machinery/light/flamp,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"M" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 15; tag = "icon-sink (EAST)"},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"N" = (/obj/structure/bed/padded,/obj/item/weapon/bedsheet/clown,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"O" = (/obj/structure/table/rack,/obj/item/ammo_magazine/clip/c545/hunter,/obj/item/weapon/gun/projectile/shotgun/pump/rifle,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"P" = (/obj/structure/table/rack,/obj/item/device/flashlight/lantern,/obj/item/device/gps{gps_tag = "Sif Free Radio"},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"Q" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaa
@@ -49,12 +50,12 @@ abbehebeeeeibbaa
 adehjekeeelemnoa
 abpeeqbeeelrsbta
 abuvewbeexyzAbBa
-abbbbbbkbbbbbbaa
-abpeeeeeeeeeCbaa
-abDeeeeeeeeeEbaa
-adFeebbGbbeeHdaa
-abbIebJeKbeLbbaa
-aabbMbNeObPbbaaa
-aaabdbbGbbdbaaaa
+abbbbbbCbbbbbbaa
+abpeeeeeeeeeDbaa
+abEeeeeeeeeeFbaa
+adGeebbHbbeeIdaa
+abbJebKeLbeMbbaa
+aabbNbOePbQbbaaa
+aaabdbbHbbdbaaaa
 aaaaaaaaaaaaaaaa
 "}
