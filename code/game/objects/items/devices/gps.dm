@@ -80,7 +80,7 @@ var/list/GPS_list = list()
 
 	var/turf/curr = get_turf(src)
 	var/area/my_area = get_area(src)
-	dat += "Current location: [my_area.name] <b>([curr.x], [curr.y], [curr.z])</b>"
+	dat += "Current location: [my_area.name] <b>([curr.x], [curr.y], [using_map.get_zlevel_name(curr.z)])</b>"
 	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='?src=\ref[src];tag=1'>\[Change Tag\]</a> \
 	<a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
 	[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
@@ -103,16 +103,17 @@ var/list/GPS_list = list()
 		var/area_name = their_area.name
 		if(istype(their_area, /area/submap))
 			area_name = "Unknown Area" // Avoid spoilers.
-		var/coord = "[T.x], [T.y], [T.z]"
-		var/degrees = round(Get_Angle(curr, T))
+		var/Z_name = using_map.get_zlevel_name(T.z)
 		var/direction = uppertext(dir2text(get_dir(curr, T)))
 		var/distance = get_dist(curr, T)
 		var/local = curr.z == T.z ? TRUE : FALSE
 		if(!direction)
 			direction = "CENTER"
-			degrees = "N/A"
 
-		signals += "     [G.gps_tag]: [area_name] ([coord]) [local ? "Dist: [distance]m Dir: [degrees]° ([direction])":""]"
+		if(istype(T, /obj/item/device/gps/internal/poi))
+			signals += "	Unidentified Signal: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
+		else
+			signals += "     [G.gps_tag]: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
 
 	if(signals.len)
 		dat += "Detected signals;"
@@ -179,15 +180,6 @@ var/list/GPS_list = list()
 /obj/item/device/gps/explorer/on
 	tracking = TRUE
 
-/obj/item/device/gps/syndie
-	icon_state = "gps-syndie"
-	gps_tag = "NULL"
-	desc = "A positioning system that has extended range and can detect other GPS device signals without revealing its own. How that works is best left a mystery. Alt+click to toggle power."
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
-	long_range = TRUE
-	hide_signal = TRUE
-	can_hide_signal = TRUE
-
 /obj/item/device/gps/robot
 	icon_state = "gps-b"
 	gps_tag = "SYNTH0"
@@ -207,6 +199,72 @@ var/list/GPS_list = list()
 	gps_tag = "NT_BASE"
 	desc = "A homing signal from NanoTrasen's outpost."
 
-/obj/item/device/gps/internal/alien_vessel
+/obj/item/device/gps/internal/poi
 	gps_tag = "Mysterious Signal"
 	desc = "A signal that seems forboding."
+
+/obj/item/device/gps/syndie
+	icon_state = "gps-syndie"
+	gps_tag = "NULL"
+	desc = "A positioning system that has extended range and can detect other GPS device signals without revealing its own. How that works is best left a mystery. Alt+click to toggle power."
+	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
+	long_range = TRUE
+	hide_signal = TRUE
+	can_hide_signal = TRUE
+
+/obj/item/device/gps/syndie/display(mob/user)
+	if(!tracking)
+		to_chat(user, "The device is off. Alt-click it to turn it on.")
+		return
+	if(emped)
+		to_chat(user, "It's busted!")
+		return
+
+	var/list/dat = list()
+
+	var/turf/curr = get_turf(src)
+	var/area/my_area = get_area(src)
+	dat += "Current location: [my_area.name] <b>([curr.x], [curr.y], [using_map.get_zlevel_name(curr.z)])</b>"
+	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='?src=\ref[src];tag=1'>\[Change Tag\]</a> \
+	<a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
+	[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
+
+	var/list/signals = list()
+
+	for(var/gps in GPS_list)
+		var/obj/item/device/gps/G = gps
+		if(G.emped || !G.tracking || G.hide_signal || G == src) // Their GPS isn't on or functional.
+			continue
+		var/turf/T = get_turf(G)
+		var/z_level_detection = using_map.get_map_levels(curr.z, long_range)
+
+		if(local_mode && T.z != curr.z) // Only care about the current z-level.
+			continue
+		else if(!(T.z in z_level_detection)) // Too far away.
+			continue
+
+		var/area/their_area = get_area(G)
+		var/area_name = their_area.name
+		if(istype(their_area, /area/submap))
+			area_name = "Unknown Area" // Avoid spoilers.
+		var/Z_name = using_map.get_zlevel_name(T.z)
+		var/coord = "[T.x], [T.y], [Z_name]"
+		var/degrees = round(Get_Angle(curr, T))
+		var/direction = uppertext(dir2text(get_dir(curr, T)))
+		var/distance = get_dist(curr, T)
+		var/local = curr.z == T.z ? TRUE : FALSE
+		if(!direction)
+			direction = "CENTER"
+			degrees = "N/A"
+
+		signals += "     [G.gps_tag]: [area_name] ([coord]) [local ? "Dist: [distance]m Dir: [degrees]° ([direction])":""]"
+
+	if(signals.len)
+		dat += "Detected signals;"
+		for(var/line in signals)
+			dat += line
+	else
+		dat += "No other signals detected."
+
+	var/result = dat.Join("<br>")
+	to_chat(user, result)
