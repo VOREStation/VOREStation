@@ -1,0 +1,7 @@
+ 
+author: Atermonera
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds EMP mines."

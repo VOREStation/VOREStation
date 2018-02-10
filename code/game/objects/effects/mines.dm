@@ -15,7 +15,7 @@
 	icon_state = "uglyminearmed"
 	wires = new(src)
 
-/obj/effect/mine/proc/explode()
+/obj/effect/mine/proc/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
@@ -41,7 +41,7 @@
 	if(triggered) return
 
 	if(istype(M, /mob/living/))
-		explode()
+		explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(isscrewdriver(W))
@@ -58,58 +58,93 @@
 /obj/effect/mine/interact(mob/living/user as mob)
 	if(!panel_open || istype(user, /mob/living/silicon/ai))
 		return
-
 	user.set_machine(src)
 	wires.Interact(user)
 
-/obj/effect/mine/dnascramble/explode(obj)
+/obj/effect/mine/dnascramble
+	name = "radiation mine"
+	desc = "A small explosive mine with a radiation symbol on the side."
+	mineitemtype = /obj/item/weapon/mine/dnascramble
+
+/obj/effect/mine/dnascramble/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	obj:radiation += 50
-	randmutb(obj)
-	domutcheck(obj,null)
-	qdel(s)
-	qdel(src)
+	M.radiation += 50
+	randmutb(M)
+	domutcheck(M,null)
+	spawn(0)
+		qdel(s)
+		qdel(src)
 
-/obj/effect/mine/stun/explode(obj)
+/obj/effect/mine/stun
+	name = "stun mine"
+	desc = "A small explosive mine with a lightning bolt symbol on the side."
+	mineitemtype = /obj/item/weapon/mine/stun
+
+/obj/effect/mine/stun/explode(var/mob/living/M)
 	triggered = 1
-	if(ismob(obj))
-		var/mob/M = obj
-		M.Stun(30)
+	M.Stun(30)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(s)
-	qdel(src)
+	spawn(0)
+		qdel(s)
+		qdel(src)
 
-/obj/effect/mine/n2o/explode()
+/obj/effect/mine/n2o
+	name = "nitrous oxide mine"
+	desc = "A small explosive mine with three Z's on the side."
+	mineitemtype = /obj/item/weapon/mine/n2o
+
+/obj/effect/mine/n2o/explode(var/mob/living/M)
 	triggered = 1
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
 			target.assume_gas("sleeping_agent", 30)
-	qdel(src)
+	spawn(0)
+		qdel(src)
 
-/obj/effect/mine/phoron/explode()
+/obj/effect/mine/phoron
+	name = "incendiary mine"
+	desc = "A small explosive mine with a fire symbol on the side."
+	mineitemtype = /obj/item/weapon/mine/phoron
+
+/obj/effect/mine/phoron/explode(var/mob/living/M)
 	triggered = 1
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
 			target.assume_gas("phoron", 30)
-
 			target.hotspot_expose(1000, CELL_VOLUME)
-	qdel(src)
+	spawn(0)
+		qdel(src)
 
-/obj/effect/mine/kick/explode(obj)
+/obj/effect/mine/kick
+	name = "kick mine"
+	desc = "Concentrated war crimes. Handle with care."
+	mineitemtype = /obj/item/weapon/mine/kick
+
+/obj/effect/mine/kick/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(obj:client)
-	qdel(s)
-	qdel(src)
+	qdel(M.client)
+	spawn(0)
+		qdel(s)
+		qdel(src)
 
-/obj/effect/mine/frag/explode()
+/obj/effect/mine/frag
+	name = "fragmentation mine"
+	desc = "A small explosive mine with 'FRAG' and a grenade symbol on the side."
+	mineitemtype = /obj/item/weapon/mine/frag
+	var/fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
+	var/num_fragments = 20  //total number of fragments produced by the grenade
+	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
+	var/spread_range = 7
+
+/obj/effect/mine/frag/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
@@ -118,60 +153,34 @@
 	if(!O)
 		return
 	src.fragmentate(O, 20, 7, list(/obj/item/projectile/bullet/pellet/fragment)) //only 20 weak fragments because you're stepping directly on it
-	qdel(s)
-	qdel(src)
-
-/obj/effect/mine/training/explode()
-	triggered = 1
-	visible_message("\The [src.name]'s light flashes rapidly as it 'explodes'.")
-	new src.mineitemtype(get_turf(src))
-	qdel(src)
-
-/obj/effect/mine/dnascramble
-	name = "radiation mine"
-	desc = "A small explosive mine with a radiation symbol on the side."
-	icon_state = "uglymine"
-	mineitemtype = /obj/item/weapon/mine/dnascramble
-
-/obj/effect/mine/phoron
-	name = "incendiary mine"
-	desc = "A small explosive mine with a fire symbol on the side."
-	icon_state = "uglymine"
-	mineitemtype = /obj/item/weapon/mine/phoron
-
-/obj/effect/mine/kick
-	name = "kick mine"
-	desc = "Concentrated war crimes. Handle with care."
-	icon_state = "uglymine"
-	mineitemtype = /obj/item/weapon/mine/kick
-
-/obj/effect/mine/n2o
-	name = "nitrous oxide mine"
-	desc = "A small explosive mine with three Z's on the side."
-	icon_state = "uglymine"
-	mineitemtype = /obj/item/weapon/mine/n2o
-
-/obj/effect/mine/stun
-	name = "stun mine"
-	desc = "A small explosive mine with a lightning bolt symbol on the side."
-	icon_state = "uglymine"
-	mineitemtype = /obj/item/weapon/mine/stun
-
-/obj/effect/mine/frag
-	name = "fragmentation mine"
-	desc = "A small explosive mine with 'FRAG' and a grenade symbol on the side."
-	icon_state = "uglymine"
-	mineitemtype = /obj/item/weapon/mine/frag
-	var/fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
-	var/num_fragments = 20  //total number of fragments produced by the grenade
-	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
-	var/spread_range = 7
+	spawn(0)
+		qdel(s)
+		qdel(src)
 
 /obj/effect/mine/training
 	name = "training mine"
 	desc = "A mine with its payload removed, for EOD training and demonstrations."
-	icon_state = "uglymine"
 	mineitemtype = /obj/item/weapon/mine/training
+
+/obj/effect/mine/training/explode(var/mob/living/M)
+	triggered = 1
+	visible_message("\The [src.name]'s light flashes rapidly as it 'explodes'.")
+	new src.mineitemtype(get_turf(src))
+	spawn(0)
+		qdel(src)
+
+/obj/effect/mine/emp
+	name = "EMP Mine"
+	desc = "A small explosive mine with a lightning bolt symbol on the side."
+	mineitemtype = /obj/item/weapon/mine/emp
+
+/obj/effect/mine/emp/explode(var/mob/living/M)
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	s.set_up(3, 1, src)
+	s.start()
+	empulse(loc, 2, 4, 7, 10, 1) // As strong as an EMP grenade
+	spawn(0)
+		qdel(src)
 
 /obj/item/weapon/mine
 	name = "mine"
@@ -217,41 +226,39 @@
 /obj/item/weapon/mine/dnascramble
 	name = "radiation mine"
 	desc = "A small explosive mine with a radiation symbol on the side."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/dnascramble
 
 /obj/item/weapon/mine/phoron
 	name = "incendiary mine"
 	desc = "A small explosive mine with a fire symbol on the side."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/phoron
 
 /obj/item/weapon/mine/kick
 	name = "kick mine"
 	desc = "Concentrated war crimes. Handle with care."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/kick
 
 /obj/item/weapon/mine/n2o
 	name = "nitrous oxide mine"
 	desc = "A small explosive mine with three Z's on the side."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/n2o
 
 /obj/item/weapon/mine/stun
 	name = "stun mine"
 	desc = "A small explosive mine with a lightning bolt symbol on the side."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/stun
 
 /obj/item/weapon/mine/frag
 	name = "fragmentation mine"
 	desc = "A small explosive mine with 'FRAG' and a grenade symbol on the side."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/frag
 
 /obj/item/weapon/mine/training
 	name = "training mine"
 	desc = "A mine with its payload removed, for EOD training and demonstrations."
-	icon_state = "uglymine"
 	minetype = /obj/effect/mine/training
+
+/obj/item/weapon/mine/emp
+	name = "emp mine"
+	desc = "A small explosive mine with a lightning bolt symbol on the side."
+	minetype = /obj/effect/mine/emp
