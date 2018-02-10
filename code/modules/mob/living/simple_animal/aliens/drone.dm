@@ -275,3 +275,10 @@
 
 /obj/item/projectile/beam/pulse/drone
 	damage = 10
+
+// A slightly easier drone, for POIs.
+// Difference is that it should not be faster than you.
+/mob/living/simple_animal/hostile/malf_drone/lesser
+	desc = "An automated combat drone with an aged apperance."
+	returns_home = TRUE
+	move_to_delay = 6
