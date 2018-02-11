@@ -8,15 +8,17 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
-	var/pulse_range = 1
+	//var/pulse_range = 1 vorestation removal
 
 
 /obj/item/projectile/ion/on_hit(var/atom/target, var/blocked = 0)
-		empulse(target, pulse_range, pulse_range, pulse_range, pulse_range)
+		empulse(target, sev1_range, sev2_range, sev3_range, sev4_range) // vorestation edit
 		return 1
 
+/* vorestation removal - moved to vr file
 /obj/item/projectile/ion/small
 	pulse_range = 0
+*/
 
 /obj/item/projectile/bullet/gyro
 	name ="explosive bolt"
