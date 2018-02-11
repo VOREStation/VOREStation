@@ -15,6 +15,7 @@
 	canmove = 0
 	blinded = 0
 	anchored = 1	//  don't get pushed around
+	invisibility = INVISIBILITY_OBSERVER
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
@@ -660,7 +661,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		src << "<span class='info'>You are now visible!</span>"
 
-	plane = PLANE_GHOSTS ? PLANE_WORLD : PLANE_GHOSTS
+	plane = (plane == PLANE_GHOSTS) ? PLANE_WORLD : PLANE_GHOSTS
+	invisibility = (plane == PLANE_WORLD) ? 0 : INVISIBILITY_OBSERVER
 
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
