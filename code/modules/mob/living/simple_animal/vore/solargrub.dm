@@ -3,9 +3,8 @@ A work in progress, lore will go here later.
 List of things solar grubs should be able to do:
 
 2. have three stages of growth depending on time. (Or energy drained altho that seems like a hard one to code)
-3. be capable of eating people that get knocked out. (also be able to shock attackers that don’t wear insulated gloves.)
+3. be capable of eating people that get knocked out. (also be able to shock attackers that donâ€™t wear insulated gloves.)
 5. ((potentially use digested people to reproduce))
-6. add glow?
 */
 
 #define SINK_POWER 1
@@ -64,10 +63,17 @@ List of things solar grubs should be able to do:
 	var/emp_chance = 20 // Beware synths
 
 /mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+	. = ..()
 	if(target_mob&& prob(emp_chance))
 		target_mob.emp_act(4) //The weakest strength of EMP
 		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
-	..()
+
+	if(ishuman(.))
+		var/mob/living/carbon/human/L = .
+		if(L.reagents)
+			if(prob(poison_chance))
+				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
+				L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_animal/retaliate/solargrub/Life()
 	. = ..()
@@ -107,21 +113,78 @@ List of things solar grubs should be able to do:
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_ITEMWEAK //item friendly digestions, they just want your chemical energy :3
 
-/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
-	. = ..()
-	if(isliving(.))
-		var/mob/living/L = .
-		if(L.reagents)
-			if(prob(poison_chance))
-				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
-				L.reagents.add_reagent(poison_type, poison_per_bite)
-
 /mob/living/simple_animal/retaliate/solargrub/death()
 	src.anchored = 0
 	set_light(0)
 	..()
 
 /mob/living/simple_animal/retaliate/solargrub/handle_light()
+	. = ..()
+	if(. == 0 && !is_dead())
+		set_light(2.5, 1, COLOR_YELLOW)
+		return 1
+
+/mob/living/simple_animal/hostile/solargrubknight //more robust grub, doesn't like anyone.
+	name = "solargrub knight"
+	desc = "A not so friendly looking solargrub"
+	icon = 'icons/mob/vore64x32.dmi'
+	icon_state = "grubknight"
+	icon_living = "grubknight"
+	icon_dead = "grubknight-dead"
+
+	faction = "grubs"
+	maxHealth = 140 //BEEG KNIGHT
+	health = 140
+	move_to_delay = 4
+
+	melee_damage_lower = 5
+	melee_damage_upper = 10 //main damage from chems.
+
+	speak_chance = 1
+	emote_see = list("squelches", "squishes")
+
+	speed = 1
+	
+	meat_amount = 5
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+
+	response_help = "pokes"
+	response_disarm = "pushes"
+	response_harm = "roughly pushes"
+
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	
+	var/poison_per_bite = 6
+	var/poison_type = "shockchem"
+	var/poison_chance = 65
+	var/emp_chance = 30
+	
+	vore_active = 1
+	vore_capacity = 1
+	vore_pounce_chance = 0
+	vore_default_mode = DM_ITEMWEAK
+
+/mob/living/simple_animal/hostile/solargrubknight/PunchTarget()
+	. = ..()
+	if(target_mob&& prob(emp_chance))
+		target_mob.emp_act(4) //The weakest strength of EMP
+		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
+
+	if(ishuman(.))
+		var/mob/living/carbon/human/L = .
+		if(L.reagents)
+			if(prob(poison_chance))
+				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
+				L.reagents.add_reagent(poison_type, poison_per_bite)
+
+/mob/living/simple_animal/hostile/solargrubknight/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)
