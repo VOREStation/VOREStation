@@ -186,6 +186,9 @@
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"
 
+	for(var/obj/item/weapon/storage/S in prey)
+		S.hide_from(owner)
+
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
 // but can easily make the message vary based on how many people are inside, etc.
