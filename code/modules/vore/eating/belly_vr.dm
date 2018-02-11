@@ -186,6 +186,9 @@
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"
 
+	for(var/obj/item/weapon/storage/S in prey)
+		S.hide_from(owner)
+
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
 // but can easily make the message vary based on how many people are inside, etc.
@@ -365,7 +368,7 @@
 		items_preserved |= item
 	else
 		internal_contents -= item
-		owner.nutrition += (digested)
+		owner.nutrition += (5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += (50 * digested)
@@ -489,9 +492,6 @@
 		return
 	internal_contents -= content
 	target.internal_contents += content
-	if(content in items_preserved)
-		items_preserved -= content
-		target.items_preserved += content
 	if(isliving(content))
 		var/mob/living/M = content
 		if(target.inside_flavor)

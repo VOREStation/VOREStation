@@ -6,3 +6,13 @@
 	id = "helium-3"
 	reagent_state = GAS
 	color = "#808080"
+
+/obj/structure/reagent_dispensers/he3
+	name = "fueltank"
+	desc = "A fueltank."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "weldtank"
+	amount_per_transfer_from_this = 10
+	New()
+		..()
+		reagents.add_reagent("helium-3",1000)

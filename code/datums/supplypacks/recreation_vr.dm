@@ -26,3 +26,16 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Restraints crate"
 	cost = 30
+
+/datum/supply_packs/recreation/wolfgirl_cosplay_crate
+	name = "Wolfgirl Cosplay Crate"
+	contains = list(
+			/obj/item/clothing/head/fluff/awoo = 1,
+			/obj/item/clothing/shoes/fluff/awoo = 1,
+			/obj/item/clothing/under/fluff/awoo = 1,
+			/obj/item/weapon/melee/fluffstuff/awoosword = 1,
+			/obj/item/weapon/shield/fluff/awooshield = 1
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate
+	containername = "wolfgirl cosplay crate"

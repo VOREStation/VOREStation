@@ -343,8 +343,21 @@
 				var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 				moving_to = pick(cardinal)
 				dir = moving_to			//How about we turn them the direction they are moving, yay.
-				Move(get_step(src,moving_to))
+				var/turf/T = get_step(src,moving_to)
+				if(avoid_turf(T))
+					return
+				Move(T)
 				lifes_since_move = 0
+
+// Checks to see if mob doesn't like this kind of turf
+/mob/living/simple_animal/proc/avoid_turf(var/turf/turf)
+	if(!turf)
+		return TRUE //Avoid the nothing, yes
+
+	if(istype(turf,/turf/simulated/sky))
+		return TRUE //Mobs aren't that stupid, probably
+
+	return FALSE //Override it on stuff to adjust
 
 // Handles random chatter, called from Life() when stance = STANCE_IDLE
 /mob/living/simple_animal/proc/handle_idle_speaking()
@@ -584,7 +597,8 @@
 						if ((M.client && !( M.blinded )))
 							M.show_message("<span class='notice'>[user] applies the [MED] on [src].</span>")
 		else
-			user << "<span class='notice'>\The [src] is dead, medical items won't bring \him back to life.</span>"
+			var/datum/gender/T = gender_datums[src.get_visible_gender()]
+			user << "<span class='notice'>\The [src] is dead, medical items won't bring [T.him] back to life.</span>" // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
@@ -752,13 +766,13 @@
 	if(stat || M == target_mob) return //Not if we're dead or already hitting them
 	if(M in friends || M.faction == faction) return //I'll overlook it THIS time...
 	ai_log("react_to_attack([M])",1)
-	if(retaliate && set_target(M))
+	if(retaliate && set_target(M, 1))
 		handle_stance(STANCE_ATTACK)
 		return M
 
 	return 0
 
-/mob/living/simple_animal/proc/set_target(var/mob/M)
+/mob/living/simple_animal/proc/set_target(var/mob/M, forced = 0)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -772,7 +786,7 @@
 		annoyed += 14
 		sleep(1 SECOND) //For realism
 
-	if(M in ListTargets(view_range))
+	if(forced || (M in ListTargets(view_range)))
 		try_say_list(say_got_target)
 		target_mob = M
 		last_target_time = world.time

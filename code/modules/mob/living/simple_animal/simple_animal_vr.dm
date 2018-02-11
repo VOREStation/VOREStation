@@ -198,3 +198,12 @@
 			update_icon()
 			stop_automated_movement = 0
 	..()
+
+// Checks to see if mob doesn't like this kind of turf
+/mob/living/simple_animal/avoid_turf(var/turf/turf)
+	//So we only check if the parent didn't find anything terrible
+	if((. = ..(turf)))
+		return .
+
+	if(istype(turf,/turf/unsimulated/floor/sky))
+		return TRUE //Mobs aren't that stupid, probably

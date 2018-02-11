@@ -77,7 +77,7 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				processing_objects.Add(src)
+				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 				update_patient()
@@ -127,7 +127,7 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				processing_objects.Add(src)
+				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 				update_patient()
@@ -154,7 +154,7 @@
 				H.forceMove(src)
 				H.reset_view(src)
 				update_patient()
-				processing_objects.Add(src)
+				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [H.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [H] slips into your [src]. Life support functions engaged.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
@@ -317,7 +317,7 @@
 				else
 					cleaning = 1
 					drain(startdrain)
-					processing_objects.Add(src)
+					processing_objects |= src
 					update_patient()
 					sleeperUI(usr)
 					if(patient)

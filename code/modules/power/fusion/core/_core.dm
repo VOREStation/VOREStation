@@ -77,7 +77,7 @@ var/list/fusion_cores = list()
 	if(owned_field)
 		icon_state = "core0"
 		if(force_rupture || owned_field.plasma_temperature > 1000)
-			owned_field.Rupture()
+			owned_field.MRC()
 		else
 			owned_field.RadiateAll()
 		qdel(owned_field)

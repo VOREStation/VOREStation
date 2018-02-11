@@ -153,10 +153,10 @@
 //Medical Streamlined Voidsuit
 /obj/item/clothing/head/helmet/space/void/medical/alt
 	name = "streamlined medical voidsuit helmet"
-	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a fetching green."
+	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a sleek blue."
 	icon_state = "rig0-medicalalt"
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 25, bio = 100, rad = 80)
-	light_overlay = "helmet_light_dual_green"
+	light_overlay = "helmet_light_dual_blue"
 
 /obj/item/clothing/suit/space/void/medical/alt
 	icon_state = "rig-medicalalt"

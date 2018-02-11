@@ -599,12 +599,13 @@
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
 	if(is_type_in_list(I,edible_trash))
-		playsound(src.loc,'sound/vore/gulp.ogg', 20, 1)
 		drop_item()
 		var/belly = vore_selected
 		var/datum/belly/selected = vore_organs[belly]
+		playsound(src.loc, selected.vore_sound, 20, 1)
 		I.forceMove(src)
 		selected.internal_contents |= I
+		updateVRPanel()
 		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
 			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
 		else if(istype(I,/obj/item/device/flashlight/glowstick))

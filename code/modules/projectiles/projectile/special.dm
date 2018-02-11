@@ -8,15 +8,17 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
-	var/pulse_range = 1
+	//var/pulse_range = 1 vorestation removal
 
 
 /obj/item/projectile/ion/on_hit(var/atom/target, var/blocked = 0)
-		empulse(target, pulse_range, pulse_range, pulse_range, pulse_range)
+		empulse(target, sev1_range, sev2_range, sev3_range, sev4_range) // vorestation edit
 		return 1
 
+/* vorestation removal - moved to vr file
 /obj/item/projectile/ion/small
 	pulse_range = 0
+*/
 
 /obj/item/projectile/bullet/gyro
 	name ="explosive bolt"
@@ -121,8 +123,9 @@
 			if(prob(15))
 				M.apply_effect((rand(30,80)),IRRADIATE)
 				M.Weaken(5)
+				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
 				for (var/mob/V in viewers(src))
-					V.show_message("<font color='red'>[M] writhes in pain as \his vacuoles boil.</font>", 3, "<font color='red'>You hear the crunching of leaves.</font>", 2)
+					V.show_message("<font color='red'>[M] writhes in pain as [TM.his] vacuoles boil.</font>", 3, "<font color='red'>You hear the crunching of leaves.</font>", 2)
 			if(prob(35))
 			//	for (var/mob/V in viewers(src)) //Public messages commented out to prevent possible metaish genetics experimentation and stuff. - Cheridan
 			//		V.show_message("<font color='red'>[M] is mutated by the radiation beam.</font>", 3, "<font color='red'> You hear the snapping of twigs.</font>", 2)

@@ -94,6 +94,22 @@
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
+// VOREStation Edit Start - Wall mounted vents
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted
+	name = "Wall Mounted Air Vent"
+
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted/can_unwrench()
+	return FALSE // No way to construct these, so don't let them be removed.
+
+// Return the air from the turf in "front" of us (opposite the way the pipe is facing)
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted/return_air()
+	var/turf/T = get_step(src, reverse_dir[dir])
+	if(isnull(T))
+		return ..()
+	return T.return_air()
+
+// VOREStation Edit End
+
 /obj/machinery/atmospherics/unary/vent_pump/engine
 	name = "Engine Core Vent"
 	power_channel = ENVIRON
@@ -165,7 +181,7 @@
 	if(!can_pump())
 		return 0
 
-	var/datum/gas_mixture/environment = loc.return_air()
+	var/datum/gas_mixture/environment = return_air() // VOREStation Edit - Use our own proc
 
 	var/power_draw = -1
 

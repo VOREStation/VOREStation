@@ -128,6 +128,7 @@
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting(src)
 	new /obj/item/stack/medical/splint(src)
+	new /obj/item/device/healthanalyzer/advanced(src)
 	return
 
 /obj/item/weapon/storage/firstaid/surgery
@@ -149,7 +150,7 @@
 	new /obj/item/weapon/surgical/bonegel(src)
 	new /obj/item/weapon/surgical/FixOVein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/device/healthanalyzer/advanced(src)
+	new /obj/item/device/healthanalyzer/enhanced(src)
 	return
 
 /obj/item/weapon/storage/firstaid/clotting
