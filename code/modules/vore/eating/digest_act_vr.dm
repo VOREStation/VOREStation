@@ -92,6 +92,11 @@
 	if((. = ..()))
 		. += 70 //Organs give a little more
 
+/obj/item/weapon/storage/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+	for(var/obj/item/I in contents)
+		I.screen_loc = null
+	.=..()
+
 /////////////
 // Some more complicated stuff
 /////////////
