@@ -476,14 +476,12 @@
 					"You hear something slam into \the [landing].")
 			playsound(loc, "punch", 25, 1, -1)
 
-	// Now to hurt everything in the mech (if the fall is planetary, the mech blows up, so we do this first)
-	for(var/atom/movable/A in src.contents)
-		A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
-	// And now the Mech
-
+	// And now to hurt the mech.
 	if(!planetary)
 		take_damage(rand(damage_min, damage_max))
 	else
+		for(var/atom/movable/A in src.contents)
+			A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
 		qdel(src)
 
 	// And hurt the floor.
