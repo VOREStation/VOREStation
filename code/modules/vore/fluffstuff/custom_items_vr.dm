@@ -2014,7 +2014,7 @@
 
 /obj/item/weapon/melee/fluffstuff/awoosword/deactivate(mob/living/user)
 	if(active)
-		user << "<span class='notice'>The [src] grows dull!</span>"
+		to_chat(user, "<span class='notice'>The [src] grows dull!</span>")
 	..()
 	attack_verb = list("bapped", "thwapped", "bonked", "whacked")
 	icon_state = initial(icon_state)
