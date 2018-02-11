@@ -1,6 +1,0 @@
-author: Atermonera
-
-delete-after: True
-changes:
-  - tweak: "GPS units won't report the exact location of other GPS units, just range and approximate direction"
-  - tweak: "POI gps units won't give any information about the POI, merely its location"
