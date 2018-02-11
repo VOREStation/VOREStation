@@ -71,7 +71,8 @@
 						/mob/living/simple_animal/hostile/alien/drone,
 						/mob/living/simple_animal/hostile/alien/sentinel,
 						/mob/living/simple_animal/hostile/alien/queen,
-						/mob/living/simple_animal/otie/feral)
+						/mob/living/simple_animal/otie/feral,
+						/mob/living/simple_animal/hostile/badboi)
 	..()
 
 /obj/structure/largecrate/animal/guardbeast
