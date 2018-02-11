@@ -174,6 +174,8 @@
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
 /datum/belly/proc/nom_mob(var/mob/prey, var/mob/user)
+	if(owner.stat == DEAD)
+		return
 	if (prey.buckled)
 		prey.buckled.unbuckle_mob()
 
