@@ -321,6 +321,13 @@
 /turf/simulated/open/check_impact(var/atom/movable/falling_atom)
 	return FALSE
 
+// Or actual space.
+/turf/space/CheckFall(var/atom/movable/falling_atom)
+	return FALSE
+
+/turf/space/check_impact(var/atom/movable/falling_atom)
+	return FALSE
+
 // We return 1 without calling fall_impact in order to provide a soft landing. So nice.
 // Note this really should never even get this far
 /obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
