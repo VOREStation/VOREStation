@@ -227,9 +227,11 @@
 		// Loop through every direction
 		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
 			bodyscannernew = locate(/obj/machinery/bodyscanner, get_step(src, dir)) // Try to find a scanner in that direction
-		if(bodyscannernew)
-			scanner = bodyscannernew
-			bodyscannernew.console = src
+			if(bodyscannernew)
+				scanner = bodyscannernew
+				bodyscannernew.console = src
+				set_dir(get_dir(src, bodyscannernew))
+				return
 		return
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
