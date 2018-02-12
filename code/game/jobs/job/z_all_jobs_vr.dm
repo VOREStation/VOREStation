@@ -47,3 +47,8 @@
 /datum/job/atmos
 	total_positions = 3
 	spawn_positions = 3
+	
+/datum/job/scientist
+	total_positions = 5
+	spawn_positions = 3
+	alt_titles = list("Xenoarcheologist", "Anomalist", "Phoron Researcher", "Circuit Designer")
