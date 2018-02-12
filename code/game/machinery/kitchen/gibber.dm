@@ -92,6 +92,9 @@
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
 	var/obj/item/weapon/grab/G = W
 
+	if(default_unfasten_wrench(user, W, 40))
+		return
+
 	if(!istype(G))
 		return ..()
 

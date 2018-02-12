@@ -95,6 +95,8 @@
 		return
 	else if(default_deconstruction_crowbar(user, O))
 		return
+	else if(default_unfasten_wrench(user, O, 10))
+		return
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner) || istype(O, /obj/item/weapon/soap)) // If they're trying to clean it then let them

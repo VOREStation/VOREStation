@@ -15,6 +15,9 @@
 	if(istype(I, /obj/item/weapon/screwdriver))
 		return ..(I,user)
 
+	if(default_unfasten_wrench(user, I, 20))
+		return
+
 	if(istype(I,/obj/item/weapon/virusdish))
 		var/mob/living/carbon/c = user
 		if (dish)

@@ -46,6 +46,8 @@
 		return
 	if(default_part_replacement(user, O))
 		return
+	if(default_unfasten_wrench(user, O, 40))
+		return
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
 			user << "<span class='notice'>]The [src] is already loaded.</span>"
