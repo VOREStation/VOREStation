@@ -2445,9 +2445,9 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 	name = "meatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
+	desc = "The culinary base of every self-respecting eloquent gentleman."
 	icon_state = "meatbread"
-	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatbread
 	slices_num = 5
 	filling_color = "#FF7575"
 	center_of_mass = list("x"=19, "y"=9)
@@ -2459,7 +2459,7 @@
 	reagents.add_reagent("protein", 20)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread
 	name = "meatbread slice"
 	desc = "A slice of delicious meatbread."
 	icon_state = "meatbreadslice"
@@ -2469,14 +2469,14 @@
 	center_of_mass = list("x"=16, "y"=16)
 	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
 	filled = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 	name = "xenomeatbread loaf"
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
 	icon_state = "xenomeatbread"
-	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread
 	slices_num = 5
 	filling_color = "#8AFF75"
 	center_of_mass = list("x"=16, "y"=9)
@@ -2488,7 +2488,7 @@
 	reagents.add_reagent("protein", 20)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread
 	name = "xenomeatbread slice"
 	desc = "A slice of delicious meatbread. Extra Heretical."
 	icon_state = "xenobreadslice"
@@ -2499,7 +2499,7 @@
 	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled
 	filled = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
