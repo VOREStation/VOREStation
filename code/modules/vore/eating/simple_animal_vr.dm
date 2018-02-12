@@ -75,3 +75,7 @@ mob/living/simple_animal/custom_emote()
 mob/living/simple_animal/say()
 	if (away_from_players()) return
 	. = ..()
+
+/mob/living/simple_animal/attackby(/obj/item/I, var/mob/user)
+	if(attempt_vr(src,"vore_attackby",args)) return
+	.=..()
