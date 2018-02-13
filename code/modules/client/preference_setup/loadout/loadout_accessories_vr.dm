@@ -31,10 +31,10 @@
 	path = /obj/item/clothing/accessory/collar/holo
 
 /datum/gear/accessory/white_drop_pouches
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
+	allowed_roles = list("Paramedic","Search and Rescue","Chief Medical Officer","Medical Doctor","Chemist")
 
 /datum/gear/accessory/white_vest
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
+	allowed_roles = list("Paramedic","Search and Rescue","Chief Medical Officer","Medical Doctor","Chemist")
 
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"

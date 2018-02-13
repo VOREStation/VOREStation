@@ -57,7 +57,8 @@
 /datum/gear/eyes/medical
 	display_name = "Medical HUD (Medical)"
 	path = /obj/item/clothing/glasses/hud/health
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	//VOREStation Edit - Adds Search and Rescue to allowed roles
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Search and Rescue","Geneticist", "Psychiatrist")
 
 /datum/gear/eyes/medical/prescriptionmed
 	display_name = "Medical HUD, prescription (Medical)"
