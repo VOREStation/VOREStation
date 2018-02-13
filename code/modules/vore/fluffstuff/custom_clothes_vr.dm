@@ -1689,7 +1689,7 @@ Departamental Swimsuits, for general use
 	species_restricted = null
 
 //Mewchild: Phi Vietsi
-/obj/item/clothing/gloves/fluff/vietsi
+/obj/item/clothing/gloves/ring/seal/fluff/vietsi
 	name = "signet ring"
 	desc = "A signet ring carved from the bones of something long extinct, as a ward against bad luck."
 
@@ -1697,7 +1697,7 @@ Departamental Swimsuits, for general use
 	icon_state = "vietsi_ring"
 	var/nameset = 0
 
-/obj/item/clothing/gloves/fluff/vietsi/attack_self(mob/user)
+/obj/item/clothing/gloves/ring/seal/fluff/vietsi/attack_self(mob/user)
 	if(nameset)
 		to_chat(user, "<span class='notice'>The [src] has already been claimed!</span>")
 		return
@@ -1706,7 +1706,7 @@ Departamental Swimsuits, for general use
 	change_name(user)
 	nameset = 1
 
-/obj/item/clothing/gloves/fluff/vietsi/proc/change_name(var/signet_name = "Unknown")
+/obj/item/clothing/gloves/ring/seal/fluff/vietsi/proc/change_name(var/signet_name = "Unknown")
 	name = "[signet_name]'s Bone Signet Ring"
 	desc = "A signet ring belonging to [signet_name], carved from the bones of something long extinct, as a ward against bad luck."
 
