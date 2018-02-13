@@ -898,6 +898,7 @@
 #include "code\game\objects\items\stacks\tiles\tile_types.dm"
 #include "code\game\objects\items\weapons\AI_modules.dm"
 #include "code\game\objects\items\weapons\autopsy.dm"
+#include "code\game\objects\items\weapons\bones.dm"
 #include "code\game\objects\items\weapons\candle.dm"
 #include "code\game\objects\items\weapons\cigs_lighters.dm"
 #include "code\game\objects\items\weapons\clown_items.dm"
