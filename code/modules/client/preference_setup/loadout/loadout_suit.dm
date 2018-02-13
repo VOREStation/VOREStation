@@ -153,7 +153,8 @@
 /datum/gear/suit/labcoat/emt
 	display_name = "labcoat, EMT (Medical)"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	//VOREStation Edit - Adds Search and Rescue to allowed roles
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Search and Rescue","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/roles/surgical_apron
 	display_name = "surgical apron"
@@ -186,7 +187,8 @@
 /datum/gear/suit/roles/poncho/medical
 	display_name = "poncho, medical"
 	path = /obj/item/clothing/accessory/poncho/roles/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	//VOREStation Edit - Adds Search and Rescue to allowed roles
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Search and Rescue","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/roles/poncho/engineering
 	display_name = "poncho, engineering"
@@ -196,7 +198,8 @@
 /datum/gear/suit/roles/poncho/science
 	display_name = "poncho, science"
 	path = /obj/item/clothing/accessory/poncho/roles/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+	//VOREStation Edit - Adds Explorer to allowed roles
+	allowed_roles = list("Research Director","Scientist", "Explorer", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/roles/poncho/cargo
 	display_name = "poncho, cargo"
@@ -296,12 +299,14 @@
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	//VOREStation Edit - Adds Search and Rescue to allowed roles
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Search and Rescue","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+	//VOREStation Edit - Adds Explorer to allowed roles
+	allowed_roles = list("Research Director","Scientist", "Explorer", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
@@ -437,12 +442,14 @@
 /datum/gear/suit/snowsuit/medical
 	display_name = "snowsuit, medical"
 	path = /obj/item/clothing/suit/storage/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	//VOREStation Edit - Adds Search and Rescue to allowed roles
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Search and Rescue","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/snowsuit/science
 	display_name = "snowsuit, science"
 	path = /obj/item/clothing/suit/storage/snowsuit/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+	//VOREStation Edit - Adds Explorer to allowed roles
+	allowed_roles = list("Research Director","Scientist", "Explorer", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/snowsuit/engineering
 	display_name = "snowsuit, engineering"

@@ -183,7 +183,8 @@
 /datum/gear/shoes/boots/winter/science
 	display_name = "science winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+	//VOREStation Edit - Adds Explorer to allowed roles
+	allowed_roles = list("Research Director","Scientist", "Explorer", "Roboticist", "Xenobiologist")
 
 /datum/gear/shoes/boots/winter/command
 	display_name = "colony director's winter boots"
@@ -203,7 +204,8 @@
 /datum/gear/shoes/boots/winter/medical
 	display_name = "medical winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	//VOREStation Edit - Adds Search and Rescue to allowed roles
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Search and Rescue","Geneticist", "Psychiatrist")
 
 /datum/gear/shoes/boots/winter/mining
 	display_name = "mining winter boots"
