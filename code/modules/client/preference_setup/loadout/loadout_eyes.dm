@@ -75,7 +75,8 @@
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Engineering, Science)"
 	path = /obj/item/clothing/glasses/meson
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director")
+	//VOREStation Edit - Adds Explorer to allowed roles
+	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Explorer", "Research Director")
 
 /datum/gear/eyes/meson/prescription
 	display_name = "Optical Meson Scanners, prescription (Engineering, Science)"
