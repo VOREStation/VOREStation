@@ -155,6 +155,20 @@
 		return null
 	return ..()
 
+/mob/living/simple_animal/cat/fluff
+	vore_ignores_undigestable = 0
+	vore_pounce_chance = 100
+	vore_digest_chance = 0 // just use the toggle
+	vore_default_mode = DM_HOLD //can use the toggle if you wanna be catfood
+
+/mob/living/simple_animal/cat/fluff/EatTarget()
+	var/mob/living/TM = target_mob
+	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
+	spawn(3600) // but if they hang around and get comfortable, they might get ate again
+		if(src && TM)
+			prey_excludes -= TM
+	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
+
 /mob/living/simple_animal/fox
 	vore_active = 1
 	// NO VORE SPRITES
@@ -179,6 +193,20 @@
 	if (friend == found_atom)
 		return null
 	return ..()
+
+/mob/living/simple_animal/fox/fluff
+	vore_ignores_undigestable = 0
+	vore_pounce_chance = 100
+	vore_digest_chance = 0 // just use the toggle
+	vore_default_mode = DM_HOLD //can use the toggle if you wanna be foxfood
+
+/mob/living/simple_animal/fox/fluff/EatTarget()
+	var/mob/living/TM = target_mob
+	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
+	spawn(3600) // but if they hang around and get comfortable, they might get ate again
+		if(src && TM)
+			prey_excludes -= TM
+	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
 
 /mob/living/simple_animal/hostile/goose
 	vore_active = 1
