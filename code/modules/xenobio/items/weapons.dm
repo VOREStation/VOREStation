@@ -60,7 +60,7 @@
 	fire_sound = 'sound/weapons/taser2.ogg'
 	charge_cost = 120 // Twice as many shots.
 	projectile_type = /obj/item/projectile/beam/stun/xeno
-	accuracy = 2 // Make it a bit easier to hit the slimes.
+	accuracy = 30 // Make it a bit easier to hit the slimes.
 	description_info = "This gun will stun a slime or other lesser lifeform for about two seconds, if hit with the projectile it fires."
 	description_fluff = "An easy to use weapon designed by NanoTrasen, for NanoTrasen.  This weapon is designed to subdue lesser \
 	xeno lifeforms at a distance.  It is ineffective at stunning larger lifeforms such as humanoids."
