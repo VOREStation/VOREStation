@@ -11,7 +11,7 @@ var/global/list/sparring_attack_cache = list()
 	var/sharp = 0
 	var/edge = 0
 
-	var/deal_halloss
+	var/damage_type = BRUTE
 	var/sparring_variant_type = /datum/unarmed_attack/light_strike
 
 	var/eye_attack_text
@@ -131,7 +131,7 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
-	
+
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
 
@@ -258,10 +258,10 @@ var/global/list/sparring_attack_cache = list()
 		if(5)		user.visible_message("<span class='danger'>[pick("[user] landed a powerful stomp on", "[user] stomped down hard on", "[user] slammed [TU.his] [shoes ? copytext(shoes.name, 1, -1) : "foot"] down hard onto")] [target]'s [organ]!</span>") //Devastated lol. No. We want to say that the stomp was powerful or forceful, not that it /wrought devastation/
 
 /datum/unarmed_attack/light_strike
-	deal_halloss = 3
 	attack_noun = list("tap","light strike")
 	attack_verb = list("tapped", "lightly struck")
-	damage = 2
+	damage = 3
+	damage_type = AGONY
 	shredding = 0
 	damage = 0
 	sharp = 0

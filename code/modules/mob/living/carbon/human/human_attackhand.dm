@@ -241,7 +241,14 @@
 				return 0
 
 			var/real_damage = rand_damage
+			var/hit_dam_type = attack.damage_type
 			real_damage += attack.get_unarmed_damage(H)
+			if(H.gloves && istype(H.gloves, /obj/item/clothing/gloves))
+				var/obj/item/clothing/gloves/G = H.gloves
+				real_damage += G.punch_force
+				hit_dam_type = G.punch_damtype
+				if(H.pulling_punches)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN
+					hit_dam_type = AGONY
 			real_damage *= damage_multiplier
 			rand_damage *= damage_multiplier
 			if(HULK in H.mutations)
@@ -255,7 +262,7 @@
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 			// Finally, apply damage to target
-			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), hit_zone, armour, soaked, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(real_damage, hit_dam_type, hit_zone, armour, soaked, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
@@ -403,7 +410,7 @@
 		return 0
 
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	
+
 	if(user == src)
 		user.visible_message("\The [user] starts applying pressure to [TU.his] [organ.name]!", "You start applying pressure to your [organ.name]!")
 	else
