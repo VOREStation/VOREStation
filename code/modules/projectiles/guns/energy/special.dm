@@ -22,7 +22,7 @@
 	force = 5
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	charge_cost = 480
-	projectile_type = /obj/item/projectile/ion
+	projectile_type = /obj/item/projectile/ion/pistol
 
 /obj/item/weapon/gun/energy/phasegun
 	name = "phase pistol"

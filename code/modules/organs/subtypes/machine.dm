@@ -17,6 +17,9 @@
 		owner.stat = 0
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
+/obj/item/organ/internal/cell/emp_act(severity)
+	..()
+	owner.nutrition = max(0, owner.nutrition - rand(10/severity, 50/severity))
 
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/internal/mmi_holder
@@ -82,6 +85,10 @@
 	if(istype(holder_mob))
 		holder_mob.drop_from_inventory(src)
 	qdel(src)
+
+/obj/item/organ/internal/mmi_holder/emp_act(severity)
+	..()
+	owner.adjustToxLoss(rand(6/severity, 12/severity))
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
