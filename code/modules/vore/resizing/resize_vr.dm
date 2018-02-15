@@ -303,7 +303,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				else if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/cow))	//this is placeholder till someone gets better idea
 					src << "You pin [tmob] to the ground before scooping them up with your hooves!"
 					tmob << "[src] pins you to the ground before scooping you up with their hooves!"
-				else if istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents)
+				else if (istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
 					src << "You slide over [tmob] with your tentacles, smushing them against the ground before wrapping one up around them, trapping them within the tight confines of your tentacles!"
 					tmob << "[src] slides over you with their tentacles, smushing you against the ground before wrapping one up around you, trapping you within the tight confines of their tentacles!"
 				else
