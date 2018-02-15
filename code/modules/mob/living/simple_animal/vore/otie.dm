@@ -36,7 +36,7 @@
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
-	attacktext = "mauled"
+	attacktext = list("mauled")
 	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
 	meat_amount = 6
 	old_x = -16

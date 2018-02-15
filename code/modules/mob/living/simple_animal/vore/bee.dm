@@ -21,7 +21,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 15 // To do: Make it toxin damage.
 	melee_damage_upper = 15
-	attacktext = "stung"
+	attacktext = list("stung")
 
 	//Space bees aren't affected by atmos.
 	min_oxy = 0

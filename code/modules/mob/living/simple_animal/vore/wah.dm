@@ -18,7 +18,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 2
-	attacktext = "bapped"
+	attacktext = list("bapped")
 
 	speak_chance = 1
 	speak = list("Wah!",
