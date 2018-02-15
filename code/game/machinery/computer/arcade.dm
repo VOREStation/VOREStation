@@ -27,7 +27,8 @@
 							/obj/item/toy/waterflower						= 1,
 							/obj/random/action_figure						= 1,
 							/obj/random/plushie								= 1,
-							/obj/item/toy/cultsword							= 1
+							/obj/item/toy/cultsword							= 1,
+							/obj/item/toy/bouquet/fake						= 1
 							)
 
 /obj/machinery/computer/arcade/New()
