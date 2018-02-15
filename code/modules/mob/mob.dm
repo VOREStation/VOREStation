@@ -1130,3 +1130,10 @@ mob/proc/yank_out_object()
 	if(client && client.color)
 		animate(client, color = null, time = 10)
 	return
+
+/mob/proc/swap_hand()
+	return
+
+//Throwing stuff
+/mob/proc/throw_item(atom/target)
+	return
