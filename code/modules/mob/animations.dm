@@ -196,7 +196,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I = image(attack_icon, A, attack_icon_state, A.layer + 1)
 		I.dir = dir
 
-	flick_overlay_view(I, A, 5, TRUE) // 5 ticks/half a second
+	//Check for clients with pref enabled
+	var/list/viewing = list()
+	for(var/m in viewers(A))
+		var/mob/M = m
+		var/client/C = M.client
+		if(C && C.is_preference_enabled(/datum/client_preference/attack_icons))
+			viewing += M.client
+	flick_overlay(I, viewing, 5, TRUE) // 5 ticks/half a second
 
 	// Set the direction of the icon animation.
 	var/direction = get_dir(src, A)
