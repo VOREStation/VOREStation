@@ -23,6 +23,8 @@
 	var/icon_gib = "generic_gib"	// The iconstate for being gibbed, optional. Defaults to a generic gib animation.
 	var/icon_rest = null			// The iconstate for resting, optional
 	var/image/modifier_overlay = null // Holds overlays from modifiers.
+	attack_icon = 'icons/effects/effects.dmi' //Just the default, played like the weapon attack anim
+	attack_icon_state = "slash" //Just the default
 
 	//Mob talking settings
 	universal_speak = 0				// Can all mobs in the entire universe understand this one?
