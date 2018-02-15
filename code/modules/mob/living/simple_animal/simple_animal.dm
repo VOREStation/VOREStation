@@ -106,8 +106,8 @@
 	//Mob melee settings
 	var/melee_damage_lower = 2		// Lower bound of randomized melee damage
 	var/melee_damage_upper = 6		// Upper bound of randomized melee damage
-	var/attacktext = "attacked"		// "You are [attacktext] by the mob!"
-	var/friendly = "nuzzles"		// What mobs do to people when they aren't really hostile
+	var/list/attacktext = list("attacked") // "You are [attacktext] by the mob!"
+	var/list/friendly = list("nuzzles") // "The mob [friendly] the person."
 	var/attack_sound = null			// Sound to play when I attack
 	var/environment_smash = 0		// How much environment damage do I do when I hit stuff?
 	var/melee_miss_chance = 15		// percent chance to miss a melee attack.
@@ -1235,7 +1235,7 @@
 		if(H.check_shields(damage = damage_to_do, damage_source = src, attacker = src, def_zone = null, attack_text = "the attack"))
 			return FALSE
 
-	A.attack_generic(src, damage_to_do, attacktext)
+	A.attack_generic(src, damage_to_do, pick(attacktext))
 	return TRUE
 
 //The actual top-level ranged attack proc
@@ -1393,23 +1393,23 @@
 	for(var/obj/structure/window/obstacle in problem_turf)
 		if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
 			ai_log("DestroySurroundings() directional window hit",3)
-			obstacle.attack_generic(src, damage_to_do, attacktext)
+			obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 		else if(obstacle.is_fulltile())
 			ai_log("DestroySurroundings() full tile window hit",3)
-			obstacle.attack_generic(src, damage_to_do, attacktext)
+			obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 
 	var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
 	if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 		ai_log("DestroySurroundings() generic structure hit [obstacle]",3)
-		obstacle.attack_generic(src, damage_to_do ,attacktext)
+		obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 		return
 
 	for(var/obj/machinery/door/baddoor in problem_turf) //Required since firelocks take up the same turf
 		if(baddoor.density)
 			ai_log("DestroySurroundings() door hit [baddoor]",3)
-			baddoor.attack_generic(src, damage_to_do ,attacktext)
+			baddoor.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 
 //Check for shuttle bumrush

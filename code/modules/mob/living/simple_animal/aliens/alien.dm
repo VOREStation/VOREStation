@@ -25,7 +25,7 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 
-	attacktext = "slashed"
+	attacktext = list("slashed")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	a_intent = I_HURT
 
@@ -159,7 +159,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 15
 
-	attacktext = "mauled"
+	attacktext = list("mauled")
 	cold_damage_per_tick = 0
 
 	speak_chance = 5
@@ -187,7 +187,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 8
 
-	attacktext = "gouged"
+	attacktext = list("gouged")
 	cold_damage_per_tick = 0
 
 	speak_chance = 5
@@ -214,7 +214,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 12
 
-	attacktext = "gouged"
+	attacktext = list("gouged")
 	cold_damage_per_tick = 0
 
 	speak_chance = 5

@@ -100,7 +100,7 @@
 	harm_intent_damage = 0
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attacktext = "smashed their armoured gauntlet into"
+	attacktext = list("smashed their armoured gauntlet into")
 	mob_size = MOB_HUGE
 	speed = 3
 	environment_smash = 2
@@ -152,7 +152,7 @@
 	health = 75
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attacktext = "slashed"
+	attacktext = list("slashed")
 	speed = -1
 	environment_smash = 1
 	see_in_dark = 7
@@ -177,7 +177,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attacktext = "rammed"
+	attacktext = list("rammed")
 	speed = 0
 	environment_smash = 1
 	attack_sound = 'sound/weapons/rapidslice.ogg'
@@ -206,7 +206,7 @@
 	harm_intent_damage = 0
 	melee_damage_lower = 50
 	melee_damage_upper = 50
-	attacktext = "brutally crushed"
+	attacktext = list("brutally crushed")
 	speed = 5
 	environment_smash = 2
 	attack_sound = 'sound/weapons/heavysmash.ogg'
@@ -230,7 +230,7 @@
 	health = 150
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attacktext = "violently stabbed"
+	attacktext = list("violently stabbed")
 	speed = -1
 	environment_smash = 1
 	see_in_dark = 7

@@ -31,7 +31,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	environment_smash = 1
-	attacktext = "punched"
+	attacktext = list("punched")
 
 	min_oxy = 5
 	max_oxy = 0
@@ -75,7 +75,7 @@
 
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "slashed"
+	attacktext = list("slashed")
 
 	status_flags = 0
 
@@ -178,7 +178,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	attacktext = "cut"
+	attacktext = list("cut")
 
 	min_oxy = 0
 	max_oxy = 0
