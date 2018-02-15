@@ -218,7 +218,7 @@
 
 // The Casing //
 /obj/item/ammo_casing/nsfw_batt
-	name = "\'NSFW\' microbattery - LETHAL"
+	name = "\'NSFW\' microbattery - UNKNOWN"
 	desc = "A miniature battery for an energy weapon."
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "nsfw_batt"
@@ -230,8 +230,8 @@
 	leaves_residue = 0
 	caliber = "nsfw"
 	var/shots_left = 4
-	var/type_color = "#bf3d3d"
-	var/type_name = "<span style='color:#bf3d3d;font-weight:bold;'>LETHAL</span>"
+	var/type_color = null
+	var/type_name = null
 	projectile_type = /obj/item/projectile/beam
 
 /obj/item/ammo_casing/nsfw_batt/New()
@@ -253,6 +253,12 @@
 	shots_left--
 
 // Specific batteries //
+/obj/item/ammo_casing/nsfw_batt/lethal
+	name = "\'NSFW\' microbattery - LETHAL"
+	type_color = "#bf3d3d"
+	type_name = "<span style='color:#bf3d3d;font-weight:bold;'>LETHAL</span>"
+	projectile_type = /obj/item/projectile/beam
+
 /obj/item/ammo_casing/nsfw_batt/stun
 	name = "\'NSFW\' microbattery - STUN"
 	type_color = "#0f81bc"
@@ -377,7 +383,7 @@
 	..()
 	new /obj/item/weapon/gun/projectile/nsfw(src)
 	new /obj/item/ammo_magazine/nsfw_mag(src)
-	for(var/path in typesof(/obj/item/ammo_casing/nsfw_batt))
+	for(var/path in subtypesof(/obj/item/ammo_casing/nsfw_batt))
 		new path(src)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos
@@ -389,8 +395,8 @@
 	..()
 	new /obj/item/weapon/gun/projectile/nsfw(src)
 	new /obj/item/ammo_magazine/nsfw_mag(src)
-	new /obj/item/ammo_casing/nsfw_batt(src)
-	new /obj/item/ammo_casing/nsfw_batt(src)
+	new /obj/item/ammo_casing/nsfw_batt/lethal(src)
+	new /obj/item/ammo_casing/nsfw_batt/lethal(src)
 	new /obj/item/ammo_casing/nsfw_batt/stun(src)
 	new /obj/item/ammo_casing/nsfw_batt/stun(src)
 	new /obj/item/ammo_casing/nsfw_batt/net(src)
