@@ -545,7 +545,7 @@
 					stop_automated_movement = 0
 
 			//Search for targets while idle
-			if(hostile)
+			if(hostile || specific_targets)
 				FindTarget()
 		if(STANCE_FOLLOW)
 			annoyed = 15
@@ -553,7 +553,7 @@
 			if(follow_until_time && world.time > follow_until_time)
 				LoseFollow()
 				return
-			if(hostile)
+			if(hostile || specific_targets)
 				FindTarget()
 		if(STANCE_ATTACK)
 			annoyed = 50
