@@ -562,6 +562,12 @@
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
 	ai_log("bullet_act() I was shot by: [Proj.firer]",2)
 
+	//Projectiles with bonus SA damage
+	if(!Proj.nodamage)
+		var/true_damage = Proj.damage
+		if(!Proj.SA_vulnerability || Proj.SA_vulnerability == intelligence_level)
+			Proj.damage += Proj.SA_bonus_damage
+
 	. = ..()
 
 	if(Proj.firer)
