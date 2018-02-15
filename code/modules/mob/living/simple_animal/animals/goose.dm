@@ -21,7 +21,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5 //they're meant to be annoying, not threatening.
 	melee_damage_upper = 5 //unless there's like a dozen of them, then you're screwed.
-	attacktext = "pecked"
+	attacktext = list("pecked")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	//SPACE geese aren't affected by atmos.
