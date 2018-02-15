@@ -174,6 +174,8 @@
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
 /datum/belly/proc/nom_mob(var/mob/prey, var/mob/user)
+	if(owner.stat == DEAD)
+		return
 	if (prey.buckled)
 		prey.buckled.unbuckle_mob()
 
@@ -185,6 +187,9 @@
 
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"
+
+	for(var/obj/item/weapon/storage/S in prey)
+		S.hide_from(owner)
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
