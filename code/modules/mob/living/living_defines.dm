@@ -47,8 +47,10 @@
 
 	var/evasion = 0 // Makes attacks harder to land. Negative numbers increase hit chance.
 	var/force_max_speed = 0 // If 1, the mob runs extremely fast and cannot be slowed.
-  
+
 	var/image/dsoverlay = null //Overlay used for darksight eye adjustments
 
 	var/glow_toggle = 0					// If they're glowing!
+	var/glow_range = 2
+	var/glow_intensity = null
 	var/glow_color = "#FFFFFF"			// The color they're glowing!
