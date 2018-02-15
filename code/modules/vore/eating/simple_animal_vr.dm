@@ -6,7 +6,7 @@
 //
 // Simple nom proc for if you get ckey'd into a simple_animal mob! Avoids grabs.
 //
-/mob/living/proc/animal_nom(var/mob/living/T in living_mobs(1))
+/mob/living/simple_animal/proc/animal_nom(var/mob/living/T in living_mobs(1))
 	set name = "Animal Nom"
 	set category = "IC"
 	set desc = "Since you can't grab, you get a verb!"
@@ -15,7 +15,12 @@
 		return
 	if (istype(src,/mob/living/simple_animal/mouse) && T.ckey == null)
 		return
-	return feed_grabbed_to_self(src,T)
+	if (client && IsAdvancedToolUser())
+		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
+		return
+	feed_grabbed_to_self(src,T)
+	update_icon()
+	return
 
 //
 // Simple proc for animals to have their digestion toggled on/off externally
@@ -43,35 +48,3 @@
 		var/confirm = alert(user, "This mob is currently set to digest all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
 		if(confirm == "Disable")
 			B.digest_mode = "Hold"
-
-/mob/living/simple_animal/proc/away_from_players()
-	//Reduces the amount of logging spam by only allowing procs to continue if they have a player nearby to listen.
-	//A return of 0 means that it is not away from players.
-	// This is a stripped down version of the proc get_mobs_and_objs_in_view_fast()
-	var/turf/T = get_turf(src)
-	if(!T) return 1 // If the turf doesn't exist, we don't want the proc running regardless
-
-	// Quickly grabs the mob's hearing range to check from
-	var/list/hear = dview(world.view,T,INVISIBILITY_MAXIMUM)
-	var/list/hearturfs = list()
-	for(var/thing in hear)
-		if(istype(thing,/mob))
-			hearturfs += get_turf(thing)
-
-	//Check each player to see if they're inside said 'hearing range' turfs
-	for(var/mob in player_list)
-		if(!istype(mob, /mob))
-			crash_with("There is a null or non-mob reference inside player_list.")
-			continue
-		if(get_turf(mob) in hearturfs)
-			return 0
-	return 1
-
-
-mob/living/simple_animal/custom_emote()
-	if (away_from_players()) return
-	. = ..()
-
-mob/living/simple_animal/say()
-	if (away_from_players()) return
-	. = ..()
