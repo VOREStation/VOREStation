@@ -17,7 +17,7 @@
 			return u_attack
 	return null
 
-/mob/living/carbon/human/attack_hand(mob/living/carbon/M as mob)
+/mob/living/carbon/human/attack_hand(mob/living/M as mob)
 	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
@@ -27,7 +27,8 @@
 		if(!temp || !temp.is_usable())
 			H << "<font color='red'>You can't use your hand.</font>"
 			return
-	H.break_cloak()
+	M.break_cloak()
+
 	..()
 
 	// Should this all be in Touch()?
@@ -73,7 +74,8 @@
 			return
 
 	if(istype(M,/mob/living/carbon))
-		M.spread_disease_to(src, "Contact")
+		var/mob/living/carbon/C = M
+		C.spread_disease_to(src, "Contact")
 
 	switch(M.a_intent)
 		if(I_HELP)
@@ -419,7 +421,7 @@
 		return 0
 
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	
+
 	if(user == src)
 		user.visible_message("\The [user] starts applying pressure to [TU.his] [organ.name]!", "You start applying pressure to your [organ.name]!")
 	else

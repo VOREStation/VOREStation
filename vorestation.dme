@@ -2075,6 +2075,7 @@
 #include "code\modules\mob\living\simple_animal\corpse.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal_vr.dm"
+#include "code\modules\mob\living\simple_animal\simple_hud.dm"
 #include "code\modules\mob\living\simple_animal\aliens\alien.dm"
 #include "code\modules\mob\living\simple_animal\aliens\creature.dm"
 #include "code\modules\mob\living\simple_animal\aliens\drone.dm"
