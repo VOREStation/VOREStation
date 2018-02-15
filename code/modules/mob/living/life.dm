@@ -209,7 +209,7 @@
 		return TRUE
 
 	else if(glow_toggle)
-		set_light(2, l_color = glow_color) //2 is PDA brightness, so neutral in terms of balance
+		set_light(glow_range, glow_intensity, glow_color)
 
 	else
 		set_light(0)
