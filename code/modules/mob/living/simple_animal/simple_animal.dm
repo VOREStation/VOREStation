@@ -133,14 +133,14 @@
 
 	//Damage resistances
 	var/resistance = 0				// Damage reduction for all types
-	var/list/resistances = list(
-								HALLOSS = 0,
-								BRUTE = 1,
-								BURN = 1,
-								TOX = 1,
-								OXY = 0,
-								CLONE = 0
-								)
+	var/list/armor = list(			// Values for normal getarmor() checks
+				"melee" = 0,
+				"bullet" = 0,
+				"laser" = 0,
+				"energy" = 0,
+				"bomb" = 0,
+				"bio" = 100,
+				"rad" = 100)
 
 	//Scary debug things
 	var/debug_ai = 0				// Logging level for this mob (1,2,3)
@@ -627,7 +627,8 @@
 			react_to_attack(M)
 
 		if(I_HURT)
-			adjustBruteLoss(harm_intent_damage)
+			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
+			apply_damage(damage = harm_intent_damage, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 			M.visible_message("<span class='warning'>[M] [response_harm] \the [src]!</span>")
 			M.do_attack_animation(src)
 			ai_log("attack_hand() I was hit by: [M]",2)
@@ -751,18 +752,20 @@
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		flash_eyes()
+	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
+	var/bombdam = 500
 	switch (severity)
 		if (1.0)
-			adjustBruteLoss(500)
-			gib()
-			return
-
+			bombdam = 500
 		if (2.0)
-			adjustBruteLoss(60)
+			bombdam = 60
+		if (3.0)
+			bombdam = 30
 
+	apply_damage(damage = bombdam, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 
-		if(3.0)
-			adjustBruteLoss(30)
+	if(bombdam > maxHealth)
+		gib()
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
@@ -1510,7 +1513,7 @@
 	if (shock_damage < 1)
 		return 0
 
-	adjustFireLoss(shock_damage)
+	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 	playsound(loc, "sparks", 50, 1, -1)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -1522,14 +1525,15 @@
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0
+		var/armor = run_armor_check(def_zone = null, attack_flag = "energy")
 
 		if(stun_amount)
 			stunDam += stun_amount * 0.5
-			adjustFireLoss(stunDam)
+			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
 		if(agony_amount)
 			agonyDam += agony_amount * 0.5
-			adjustFireLoss(agonyDam)
+			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
 /mob/living/simple_animal/emp_act(severity)
 	if(!isSynthetic())
@@ -1543,6 +1547,13 @@
 			adjustFireLoss(rand(5, 12))
 		if(4)
 			adjustFireLoss(rand(1, 6))
+
+/mob/living/simple_animal/getarmor(def_zone, attack_flag)
+	var/armorval = armor[attack_flag]
+	if(!armorval)
+		return 0
+	else
+		return armorval
 
 // Force it to target something
 /mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)
