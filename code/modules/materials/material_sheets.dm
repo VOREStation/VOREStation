@@ -269,9 +269,15 @@
 
 /obj/item/stack/material/snow
 	name = "snow"
-	desc = "The temptation to build a snowfort rises."
+	desc = "The temptation to build a snowman rises."
 	icon_state = "sheet-snow"
 	default_type = "snow"
+
+/obj/item/stack/material/snowbrick
+	name = "snow brick"
+	desc = "For all of your igloo building needs."
+	icon_state = "sheet-snowbrick"
+	default_type = "packed snow"
 
 /obj/item/stack/material/leather
 	name = "leather"
