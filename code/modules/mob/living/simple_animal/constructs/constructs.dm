@@ -8,6 +8,7 @@
 	response_disarm = "flailed at"
 	response_harm   = "punched"
 	intelligence_level = SA_HUMANOID // Player controlled.
+	hovering = TRUE
 	icon_dead = "shade_dead"
 	speed = -1
 	a_intent = I_HURT

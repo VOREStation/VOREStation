@@ -1124,3 +1124,17 @@ var/list/multi_point_spawns
 				/obj/item/clothing/head/helmet/space/void/mining/alt
 			)
 		)
+
+/obj/random/landmine
+	name = "Random Land Mine"
+	desc = "This is a random land mine."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "uglymine"
+	spawn_nothing_percentage = 25
+
+/obj/random/landmine/item_to_spawn()
+	return pick(prob(30);/obj/effect/mine,
+				prob(25);/obj/effect/mine/frag,
+				prob(25);/obj/effect/mine/emp,
+				prob(10);/obj/effect/mine/stun,
+				prob(10);/obj/effect/mine/incendiary,)

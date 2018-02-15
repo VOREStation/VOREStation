@@ -167,6 +167,7 @@
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
 	intelligence_level = SA_ROBOTIC
+	hovering = TRUE
 
 	faction = "syndicate"
 	maxHealth = 15
