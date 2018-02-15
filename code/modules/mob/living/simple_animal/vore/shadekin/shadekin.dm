@@ -93,9 +93,9 @@
 
 		//I'm told by VerySoft these are the liklihood values
 		var/list/sk_types = list(
-			/mob/living/simple_animal/shadekin/red = 20,	//Actively seek people out to nom, so fairly common to see (relatively speaking)
-			/mob/living/simple_animal/shadekin/blue = 15,	//Explorers that like to interact with people, so still fairly common
-			/mob/living/simple_animal/shadekin/purple = 15,	//Also explorers that may or may not homf people
+			/mob/living/simple_animal/shadekin/red = 20,	//Actively seek people out to nom, so fairly common to see (relatively speaking),
+			/mob/living/simple_animal/shadekin/blue = 15,	//Explorers that like to interact with people, so still fairly common,
+			/mob/living/simple_animal/shadekin/purple = 15,	//Also explorers that may or may not homf people,
 			/mob/living/simple_animal/shadekin/yellow = 1	//Very rare, usually never leaves their home
 		)
 		var/new_type = pickweight(sk_types)
