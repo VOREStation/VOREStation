@@ -52,37 +52,47 @@
 	new foldable(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/storage/box/survival //VOREStation Add for Tether Size boxes
-	max_w_class = ITEMSIZE_NORMAL
-	max_storage_space = 6 //This is just the right number, there's no constant.
-
+/obj/item/weapon/storage/box/survival
+	name = "crew survival kit"
+	desc = "A box decorated in warning colors that contains a limited supply of survival tools. The panel and white stripe indicate this one contains oxygen."
+	icon_state = "survival"
 /obj/item/weapon/storage/box/survival/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/oxygen(src)
-	new /obj/item/clothing/glasses/goggles(src)
+	new /obj/item/clothing/glasses/goggles(src) //VOREStation Add - Goggles for Virgo 3B atmosphere.
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/device/flashlight/glowstick(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(src)
 
-/obj/item/weapon/storage/box/synth //VOREStation Add for Tether Size boxes
-	max_w_class = ITEMSIZE_NORMAL
-	max_storage_space = 6 //This is just the right number, there's no constant.
-
-/obj/item/weapon/storage/box/synth/New()
-	..()
-	new /obj/item/clothing/glasses/goggles(src)
-
-//VOREStation Edit
+/obj/item/weapon/storage/box/vox
+	name = "vox survival kit"
+	desc = "A box decorated in warning colors that contains a limited supply of survival tools. The panel and black stripe indicate this one contains phoron."
+	icon_state = "survivalvox"
 /obj/item/weapon/storage/box/vox/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/weapon/tank/emergency/phoron_double(src)
-	new /obj/item/clothing/glasses/goggles(src)
+	new /obj/item/weapon/tank/emergency/phoron(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/device/flashlight/glowstick(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(src)
 
+/obj/item/weapon/storage/box/engineer
+	name = "engineer survival kit"
+	desc = "A box decorated in warning colors that contains a limited supply of survival tools. The panel and orange stripe indicate this one as the engineering variant."
+	icon_state = "survivaleng"
 /obj/item/weapon/storage/box/engineer/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
-	new /obj/item/clothing/glasses/goggles(src)
-//VOREStation Edit End
+	new /obj/item/clothing/glasses/goggles(src) //VOREStation Add - Goggles for Virgo 3B atmosphere.
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/detox(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/device/flashlight/glowstick(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(src)
+
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
