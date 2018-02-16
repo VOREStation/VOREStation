@@ -9,10 +9,11 @@
 	desc = "These gloves are cheap copies of proper insulated gloves. No way this can end badly."
 	name = "budget insulated gloves"
 	icon_state = "yellow"
-	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
+	siemens_coefficient = 1			//Set to a default of 1, gets overridden in initialize()
 	permeability_coefficient = 0.05
 
-/obj/item/clothing/gloves/fyellow/New()
+/obj/item/clothing/gloves/fyellow/initialize()
+	. = ..()
 	//Picks a value between 0 and 1, in 5% increments
 	var/shock_pick = rand(0,20)
 	siemens_coefficient = shock_pick * 0.05
