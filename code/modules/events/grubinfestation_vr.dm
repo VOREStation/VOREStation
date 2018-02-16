@@ -13,9 +13,12 @@
 
 
 /datum/event/grub_infestation/start()
+	var/list/blacklist = list(/area/crew_quarters/sleep, /area/security/armory/red, /area/teleporter
+	, /area/ai/foyer, /area/ai_upload, /area/ai_upload_foyer, /area/ai_server_room, /area/medical/virology
+	, /area/medical/virologyaccess, /area/medical/virologyisolation, /area/tether/surfacebase/shuttle_pad)
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
-		if(istype(get_area(temp_vent), /area/crew_quarters/sleep))
+		if(istype(get_area(temp_vent), blacklist))
 			continue
 		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
 			if(temp_vent.network.normal_members.len > 50)
