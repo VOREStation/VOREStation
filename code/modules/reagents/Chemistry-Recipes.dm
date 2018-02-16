@@ -2210,9 +2210,8 @@
 	name = "Deuterium"
 	id = "deuterium"
 	result = null
-	required_reagents = list("water" = 10)
-	catalysts = list("hydrophoron" = 5)
-	result_amount = 1
+	required_reagents = list("hydrophoron" = 5, "water" = 10)
+	result_amount = 15
 
 /datum/chemical_reaction/deuterium/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/T = get_turf(holder.my_atom)
