@@ -68,13 +68,12 @@
 
 /obj/item/weapon/storage/box/vox
 	name = "vox survival kit"
-	desc = "A box decorated in warning colors that contains a limited supply of survival tools. The panel and black stripe indicate this one contains nitrogen."
+	desc = "A box decorated in warning colors that contains a limited supply of survival tools. The panel and black stripe indicate this one contains phoron."
 	icon_state = "survivalvox"
 /obj/item/weapon/storage/box/vox/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency/phoron(src)
-	new /obj/item/clothing/glasses/goggles(src) //VOREStation Add - Goggles for Virgo 3B atmosphere.
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/device/flashlight/glowstick(src)
 	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(src)
