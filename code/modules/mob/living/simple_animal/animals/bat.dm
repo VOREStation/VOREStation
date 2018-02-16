@@ -24,7 +24,7 @@
 	melee_damage_upper = 3
 	environment_smash = 1
 
-	attacktext = "bites"
+	attacktext = list("bites")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	min_oxy = 0
