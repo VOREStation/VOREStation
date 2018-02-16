@@ -1085,3 +1085,80 @@ default behaviour is:
 
 	else // No colors, so remove the client's color.
 		animate(client, color = null, time = 10)
+
+/mob/living/swap_hand()
+	src.hand = !( src.hand )
+	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		if(hand)	//This being 1 means the left hand is in use
+			hud_used.l_hand_hud_object.icon_state = "l_hand_active"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_inactive"
+		else
+			hud_used.l_hand_hud_object.icon_state = "l_hand_inactive"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
+	return
+
+/mob/living/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+
+	if(istext(selhand))
+		selhand = lowertext(selhand)
+
+		if(selhand == "right" || selhand == "r")
+			selhand = 0
+		if(selhand == "left" || selhand == "l")
+			selhand = 1
+
+	if(selhand != src.hand)
+		swap_hand()
+
+/mob/living/throw_item(atom/target)
+	src.throw_mode_off()
+	if(usr.stat || !target)
+		return
+	if(target.type == /obj/screen) return
+
+	var/atom/movable/item = src.get_active_hand()
+
+	if(!item) return
+
+	var/throw_range = item.throw_range
+	if (istype(item, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = item
+		item = G.throw_held() //throw the person instead of the grab
+		if(ismob(item))
+			var/mob/M = item
+
+			//limit throw range by relative mob size
+			throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
+
+			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+			var/turf/end_T = get_turf(target)
+			if(start_T && end_T)
+				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
+				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]</font>"
+
+				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
+				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
+				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+
+	src.drop_from_inventory(item)
+	if(!item || !isturf(item.loc))
+		return
+
+	//actually throw it!
+	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
+
+	if(!src.lastarea)
+		src.lastarea = get_area(src.loc)
+	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+		src.inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+
+
+/*
+	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
+		src.inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+*/
+
+
+	item.throw_at(target, throw_range, item.throw_speed, src)

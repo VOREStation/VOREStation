@@ -5,6 +5,7 @@
 	return
 
 /mob/proc/update_icons()
+	update_icon() //Ugh.
 	return
 
 /mob/proc/update_icons_layers(var/update_icons = TRUE)
