@@ -110,8 +110,8 @@
 	//Mob melee settings
 	var/melee_damage_lower = 2		// Lower bound of randomized melee damage
 	var/melee_damage_upper = 6		// Upper bound of randomized melee damage
-	var/attacktext = "attacked"		// "You are [attacktext] by the mob!"
-	var/friendly = "nuzzles"		// What mobs do to people when they aren't really hostile
+	var/list/attacktext = list("attacked") // "You are [attacktext] by the mob!"
+	var/list/friendly = list("nuzzles") // "The mob [friendly] the person."
 	var/attack_sound = null			// Sound to play when I attack
 	var/environment_smash = 0		// How much environment damage do I do when I hit stuff?
 	var/melee_miss_chance = 15		// percent chance to miss a melee attack.
@@ -131,14 +131,14 @@
 
 	//Damage resistances
 	var/resistance = 0				// Damage reduction for all types
-	var/list/resistances = list(
-								HALLOSS = 0,
-								BRUTE = 1,
-								BURN = 1,
-								TOX = 1,
-								OXY = 0,
-								CLONE = 0
-								)
+	var/list/armor = list(			// Values for normal getarmor() checks
+				"melee" = 0,
+				"bullet" = 0,
+				"laser" = 0,
+				"energy" = 0,
+				"bomb" = 0,
+				"bio" = 100,
+				"rad" = 100)
 
 	//Scary debug things
 	var/debug_ai = 0				// Logging level for this mob (1,2,3)
@@ -523,7 +523,7 @@
 					stop_automated_movement = 0
 
 			//Search for targets while idle
-			if(hostile)
+			if(hostile || specific_targets)
 				FindTarget()
 		if(STANCE_FOLLOW)
 			annoyed = 15
@@ -531,7 +531,7 @@
 			if(follow_until_time && world.time > follow_until_time)
 				LoseFollow()
 				return
-			if(hostile)
+			if(hostile || specific_targets)
 				FindTarget()
 		if(STANCE_ATTACK)
 			annoyed = 50
@@ -611,7 +611,8 @@
 			react_to_attack(M)
 
 		if(I_HURT)
-			adjustBruteLoss(harm_intent_damage)
+			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
+			apply_damage(damage = harm_intent_damage, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 			M.visible_message("<span class='warning'>[M] [response_harm] \the [src]!</span>")
 			M.do_attack_animation(src)
 			ai_log("attack_hand() I was hit by: [M]",2)
@@ -735,18 +736,20 @@
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		flash_eyes()
+	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
+	var/bombdam = 500
 	switch (severity)
 		if (1.0)
-			adjustBruteLoss(500)
-			gib()
-			return
-
+			bombdam = 500
 		if (2.0)
-			adjustBruteLoss(60)
+			bombdam = 60
+		if (3.0)
+			bombdam = 30
 
+	apply_damage(damage = bombdam, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 
-		if(3.0)
-			adjustBruteLoss(30)
+	if(bombdam > maxHealth)
+		gib()
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
@@ -1273,6 +1276,7 @@
 
 	if(A.attack_generic(src, damage_to_do, pick(attacktext)) && attack_sound)
 		playsound(src, attack_sound, 75, 1)
+
 	return TRUE
 
 //The actual top-level ranged attack proc
@@ -1430,23 +1434,23 @@
 	for(var/obj/structure/window/obstacle in problem_turf)
 		if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
 			ai_log("DestroySurroundings() directional window hit",3)
-			obstacle.attack_generic(src, damage_to_do, attacktext)
+			obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 		else if(obstacle.is_fulltile())
 			ai_log("DestroySurroundings() full tile window hit",3)
-			obstacle.attack_generic(src, damage_to_do, attacktext)
+			obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 
 	var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
 	if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 		ai_log("DestroySurroundings() generic structure hit [obstacle]",3)
-		obstacle.attack_generic(src, damage_to_do ,attacktext)
+		obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 		return
 
 	for(var/obj/machinery/door/baddoor in problem_turf) //Required since firelocks take up the same turf
 		if(baddoor.density)
 			ai_log("DestroySurroundings() door hit [baddoor]",3)
-			baddoor.attack_generic(src, damage_to_do ,attacktext)
+			baddoor.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 
 //Check for shuttle bumrush
@@ -1494,7 +1498,7 @@
 	if (shock_damage < 1)
 		return 0
 
-	adjustFireLoss(shock_damage)
+	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 	playsound(loc, "sparks", 50, 1, -1)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -1506,14 +1510,15 @@
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0
+		var/armor = run_armor_check(def_zone = null, attack_flag = "energy")
 
 		if(stun_amount)
 			stunDam += stun_amount * 0.5
-			adjustFireLoss(stunDam)
+			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
 		if(agony_amount)
 			agonyDam += agony_amount * 0.5
-			adjustFireLoss(agonyDam)
+			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
 /mob/living/simple_animal/emp_act(severity)
 	if(!isSynthetic())
@@ -1527,6 +1532,13 @@
 			adjustFireLoss(rand(5, 12))
 		if(4)
 			adjustFireLoss(rand(1, 6))
+
+/mob/living/simple_animal/getarmor(def_zone, attack_flag)
+	var/armorval = armor[attack_flag]
+	if(!armorval)
+		return 0
+	else
+		return armorval
 
 // Force it to target something
 /mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)

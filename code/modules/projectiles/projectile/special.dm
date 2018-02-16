@@ -9,15 +9,26 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
-	var/pulse_range = 1
-
+	var/sev1_range = 0
+	var/sev2_range = 1
+	var/sev3_range = 1
+	var/sev4_range = 2
 
 /obj/item/projectile/ion/on_hit(var/atom/target, var/blocked = 0)
-		empulse(target, pulse_range, pulse_range, pulse_range, pulse_range)
+		empulse(target, sev1_range, sev2_range, sev3_range, sev4_range)
 		return 1
 
 /obj/item/projectile/ion/small
-	pulse_range = 0
+	sev1_range = -1
+	sev2_range = 0
+	sev3_range = 0
+	sev4_range = 1
+
+/obj/item/projectile/ion/pistol
+	sev1_range = 0
+	sev2_range = 0
+	sev3_range = 0
+	sev4_range = 0
 
 /obj/item/projectile/bullet/gyro
 	name ="explosive bolt"

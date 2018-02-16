@@ -30,7 +30,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attacktext = "punched"
+	attacktext = list("punched")
 
 	min_oxy = 5
 	max_oxy = 0

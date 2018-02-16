@@ -3,35 +3,39 @@
 "c" = (/obj/item/ammo_casing/a45,/turf/template_noop,/area/submap/CaveS)
 "d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/CaveS)
 "e" = (/obj/item/ammo_casing/a45,/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/template_noop,/area/submap/CaveS)
-"f" = (/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"g" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"h" = (/obj/item/ammo_casing/a45,/obj/item/ammo_casing/a45,/turf/template_noop,/area/submap/CaveS)
-"i" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/template_noop,/area/submap/CaveS)
-"j" = (/obj/item/clothing/accessory/storage/webbing,/obj/item/weapon/material/knife/tacknife/combatknife,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"k" = (/mob/living/simple_animal/hostile/giant_spider,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"l" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"m" = (/mob/living/simple_animal/hostile/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"n" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"o" = (/obj/effect/mine,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"p" = (/mob/living/simple_animal/hostile/giant_spider/webslinger,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"q" = (/obj/effect/decal/cleanable/cobweb2,/mob/living/simple_animal/hostile/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"r" = (/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
-"s" = (/mob/living/simple_animal/hostile/giant_spider/hunter,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"t" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
-"u" = (/turf/simulated/floor,/area/submap/CaveS)
-"v" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/item/weapon/storage/toolbox,/obj/random/toolbox,/turf/simulated/floor,/area/submap/CaveS)
-"w" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor,/area/submap/CaveS)
-"x" = (/obj/structure/table/woodentable,/turf/simulated/floor,/area/submap/CaveS)
-"y" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor,/area/submap/CaveS)
-"z" = (/turf/simulated/wall,/area/submap/CaveS)
-"A" = (/obj/structure/closet/crate,/obj/item/weapon/reagent_containers/hypospray,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/paracetamol,/obj/random/firstaid,/turf/simulated/floor,/area/submap/CaveS)
-"B" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor,/area/submap/CaveS)
-"C" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/turf/simulated/floor,/area/submap/CaveS)
-"D" = (/obj/effect/spider/stickyweb,/mob/living/simple_animal/hostile/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
-"E" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor,/area/submap/CaveS)
-"F" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor,/area/submap/CaveS)
-"G" = (/obj/machinery/computer/communications,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/submap/CaveS)
-"H" = (/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor,/area/submap/CaveS)
+"f" = (/obj/random/landmine,/turf/template_noop,/area/submap/CaveS)
+"g" = (/obj/item/ammo_casing/a45,/obj/random/landmine,/turf/template_noop,/area/submap/CaveS)
+"h" = (/obj/random/landmine,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"i" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"j" = (/obj/item/ammo_casing/a45,/obj/item/ammo_casing/a45,/turf/template_noop,/area/submap/CaveS)
+"k" = (/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"l" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/template_noop,/area/submap/CaveS)
+"m" = (/obj/item/clothing/accessory/storage/webbing,/obj/item/weapon/material/knife/tacknife/combatknife,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"n" = (/mob/living/simple_animal/hostile/giant_spider,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"o" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"p" = (/mob/living/simple_animal/hostile/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"q" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"r" = (/mob/living/simple_animal/hostile/giant_spider/webslinger,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"s" = (/obj/effect/decal/cleanable/cobweb2,/mob/living/simple_animal/hostile/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"t" = (/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
+"u" = (/mob/living/simple_animal/hostile/giant_spider/hunter,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"v" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
+"w" = (/obj/random/landmine,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
+"x" = (/turf/simulated/floor,/area/submap/CaveS)
+"y" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/item/weapon/storage/toolbox,/obj/random/toolbox,/turf/simulated/floor,/area/submap/CaveS)
+"z" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor,/area/submap/CaveS)
+"A" = (/obj/structure/table/woodentable,/turf/simulated/floor,/area/submap/CaveS)
+"B" = (/obj/random/landmine,/turf/simulated/floor,/area/submap/CaveS)
+"C" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor,/area/submap/CaveS)
+"D" = (/turf/simulated/wall,/area/submap/CaveS)
+"E" = (/obj/structure/closet/crate,/obj/item/weapon/reagent_containers/hypospray,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/paracetamol,/obj/random/firstaid,/obj/random/landmine,/turf/simulated/floor,/area/submap/CaveS)
+"F" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor,/area/submap/CaveS)
+"G" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/turf/simulated/floor,/area/submap/CaveS)
+"H" = (/obj/effect/spider/stickyweb,/mob/living/simple_animal/hostile/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt,/area/submap/CaveS)
+"I" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor,/area/submap/CaveS)
+"J" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor,/area/submap/CaveS)
+"K" = (/obj/machinery/computer/communications,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/submap/CaveS)
+"L" = (/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor,/area/submap/CaveS)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -42,34 +46,34 @@ abbbbbbbbbbbbbbbbbbbbbcbbbbbbbbbbbbbbbba
 abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
 abbbbbbbbbbbbbbbcbbbbbbcccdddddbbbbbbbba
 abbbbbbbbbbbbbbbbbbbbbbbeddddddddbbddbba
-abbbbbbbbbbbbbbbbbbbbbbbdddddddddddddbba
-abbbbdddddbbbbcbbbbcbbbfgddddddddddddbba
-abbbbddddddddbbbbbhbbbbffddddddddddddbba
-abbbddddddddddbbbbcbibdgfggdddddddddbbba
-abbbdddddddddddbbbbbbdddgfffdddddddbbbba
-abbbddddddddddddbbbbddddddffgddddddbbbba
-abbdddddjdffgdddbbddddddddffffffddddbbba
-abbdddkffffffdddbbdddddddlffffffkdddbbba
-abbdddgfffffmddbbddddddddfffffffdddddbba
-abbddddfffffdddbdddddddddffddddfnddddbba
-abdddddddffffddddddddddddofddddffdddddba
-abdddddddffffndddddlfkffffddddlfddddddba
-abddddddddffffffffffffffffddddofddddddda
-abdddddddddpfffffffffffffffqddffddddddda
-abdddddrrdddddffdddmdddddgffffffddddddba
-abdddrrrrdddddffddddddddddofffsddddddbba
-abddrtrrrdddddffmdddddddddddddddddddbbba
-abddrrrrrrdddddfffffddddddddmfddddddbbba
-abdddrrrtrgddddfffofffogdddfffffdddbbbba
-abdddrrrrrfffffffdfffffgddffuuvfffddbbba
-abddrrrrrrrffffgdddgffffffffuuuwfdddbbba
-abddrrrrrrffddddddddfofffffuxxuuffddbbba
-abdddrrrrrffmddddddfffgdffuyzzAfffdddbba
-abdddddtrffddddddgffffddffuBzzCffddddbba
-abdddddddrgddddddDffffddffuEFGuuddddbbba
-abbddddddddddddddfffffdddffuuuudddddbbba
-abbdddddddddddddddfgdddddfffuHdddddbbbba
-abbdddddddddddddddddddddddmffddddbbbbbba
+abbbbbbbbbbbbbbbbbbbbbfbdddddddddddddbba
+abbbbdddddbbbbcbbbbgbbbhiddddddddddddbba
+abbbbddddddddbbbbbjbbfbkkddddddddddddbba
+abbbddddddddddbbbbcblbdikiidddddddddbbba
+abbbdddddddddddbbbbbbdddikkkdddddddbbbba
+abbbddddddddddddbbbbddddddhkiddddddbbbba
+abbdddddmdkkidddbbddddddddkkkkkkddddbbba
+abbdddnkkkkkkdddbbdddddddokkkkkkndddbbba
+abbdddikkkkkpddbbddddddddkkkkkkkdddddbba
+abbddddkkkkkdddbdddddddddkkddddkqddddbba
+abdddddddkkkkddddddddddddhkddddkkdddddba
+abdddddddkkkkqdddddoknkkkkddddokddddddba
+abddddddddkkkkkkkkkkkkkkkkddddhkddddddda
+abdddddddddrkkkkkkkkkkkkkkksddkkddddddda
+abdddddttdddddkkdddpdddddikkkkkkddddddba
+abdddttttdddddkkddddddddddkkkkuddddddbba
+abddtvtttdddddkkpdddddddddddddddddddbbba
+abddttwtttdddddkkkkkddddddddpkddddddbbba
+abdddtttvtiddddkkkkkkkhidddkkkkkdddbbbba
+abdddtttwtkkkkkkkdkkkkkiddkkxxykkkddbbba
+abddtttttttkkkkidddikkkhkkkkxxxzkdddbbba
+abddttttttkkddddddddkhkkkkkxAABxkkddbbba
+abdddtttttkkpddddddkkkidkkxCDDEkkkdddbba
+abdddddvtkkddddddikkkkddkkxFDDGkkddddbba
+abdddddddtiddddddHkkkkddkkxIJKBxddddbbba
+abbddddddddddddddkkkkkdddkkxxxxdddddbbba
+abbdddddddddddddddkidddddkkkxLdddddbbbba
+abbdddddddddddddddddddddddpkkddddbbbbbba
 abbbdddddddddddddddddddddddddddbbbbbbbba
 abbbddddbbbbdddddddbbdddddddddbbbbbbbbba
 abbbddbbbbbbbddddbbbbdbbdddddbbbbbbbbbba

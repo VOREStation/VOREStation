@@ -20,7 +20,7 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15
-	attacktext = "drained the life from"
+	attacktext = list("drained the life from")
 
 	minbodytemp = 0
 	maxbodytemp = 4000

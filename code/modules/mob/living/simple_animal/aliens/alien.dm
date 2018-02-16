@@ -25,7 +25,7 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 
-	attacktext = "slashed"
+	attacktext = list("slashed")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	a_intent = I_HURT
 
