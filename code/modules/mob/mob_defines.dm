@@ -219,6 +219,15 @@
 
 	var/get_rig_stats = 0 //Moved from computer.dm
 
+
 	var/hud_typing = 0 //Typing indicator stuff.
 	var/typing //Simple mobs use this variable.
 	var/obj/effect/decal/typing_indicator
+
+	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level
+
+	var/default_pixel_x = 0 //For offsetting mobs
+	var/default_pixel_y = 0
+
+	var/attack_icon //Icon to use when attacking w/o anything in-hand
+	var/attack_icon_state //State for above
