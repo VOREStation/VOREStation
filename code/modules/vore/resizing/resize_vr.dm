@@ -146,7 +146,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			var/mob/living/carbon/human/H = src
 			if(H.flying)
 				return 1 //Silently pass without a message.
-			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
 				src << "You carefully slither around [tmob]."
 				tmob << "[src]'s huge tail slithers past beside you!"
 			else
@@ -154,9 +154,12 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob << "[src] steps over you carefully!"
 		if(tmob.get_effective_size() > src.get_effective_size())
 			var/mob/living/carbon/human/H = tmob
-			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
 				src << "You jump over [tmob]'s thick tail."
 				tmob << "[src] bounds over your tail."
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
+				src << "You run between [tmob]'s tentacles."
+				tmob << "[src] runs between your tentacles."
 			else
 				src << "You run between [tmob]'s legs."
 				tmob << "[src] runs between your legs."
@@ -188,9 +191,18 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			if(src.m_intent == "run") //Running down the hallway with disarm intent?
 				tmob.resting = 1 //Force them down to the ground.
 				var/mob/living/carbon/human/H = src
-				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
 					src << "Your tail slides over [tmob], pushing them down to the ground!"
 					tmob << "[src]'s tail slides over you, forcing you down to the ground!"
+				else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/spider) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/centipede) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/alraune)))
+					src << "You quickly push [tmob] to the ground with your leg!"
+					tmob << "[src] pushes you down to the ground with their leg!"
+				else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/cow)))
+					src << "You quickly push [tmob] to the ground with your hoof!"
+					tmob << "[src] pushes you down to the ground with their hoof!"
+				else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
+					src << "You quickly push [tmob] to the ground with some of your tentacles!"
+					tmob << "[src] pushes you down to the ground with some of their tentacles!"
 				else
 					src << "You quickly push [tmob] to the ground with your foot!"
 					tmob << "[src] pushes you down to the ground with their foot!"
@@ -203,12 +215,21 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob.resting = 1
 				var/mob/living/carbon/human/H = src
 				admin_attack_log(src, tmob, "Pinned [tmob.name] under foot for [damage] HALLOSS.", "Was pinned under foot by [src.name] for [damage] HALLOSS.", "Pinned [tmob.name] under foot for [damage] HALLOSS.")
-				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
 					src << "You push down on [tmob] with your tail, pinning them down under you!"
 					tmob << "[src] pushes down on you with their tail, pinning you down below them!"
+				else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/spider) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/centipede) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/alraune)))
+					src << "You firmly push your leg down on [tmob], painfully but harmlessly pinning them to the ground!"
+					tmob << "[src] firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
+				else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/cow)))
+					src << "You firmly push your hoof down on [tmob], painfully but harmlessly pinning them to the ground!"
+					tmob << "[src] firmly pushes their hoof down on you, quite painfully but harmlessly pinning you to the ground!"
+				else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
+					src << "You push down on [tmob] with some of your tentacles, pinning them down firmly under you!"
+					tmob << "[src] pushes down on you with some of their tentacles, pinning you down firmly below them!"
 				else
 					src << "You firmly push your foot down on [tmob], painfully but harmlessly pinning them to the ground!"
-					tmob << "[src] firmly pushes their foot down on you, quite painfully but harmlessly pinning you do to the ground!"
+					tmob << "[src] firmly pushes their foot down on you, quite painfully but harmlessly pinning you to the ground!"
 
 
 	if(src.a_intent == I_HURT && src.canmove && !src.buckled)
@@ -221,47 +242,47 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 			if(src.m_intent == "run")
 				var/mob/living/carbon/human/H = src
-				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
-					src << "Your heavy tail carelessly slides past [tmob],  crushing them!"
+				if(istype(tmob,/mob/living/carbon/human))
+					var/mob/living/carbon/human/M = tmob
+					for(var/obj/item/organ/external/I in M.organs)
+						I.take_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will heal over time.
+					M.drip(0.1)
+					admin_attack_log(src, M, "crushed [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
+				if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
+					src << "Your heavy tail carelessly slides past [tmob], crushing them!"
 					tmob << "[src] quickly goes over your body, carelessly crushing you with their heavy tail!"
-					if(istype(tmob,/mob/living/carbon/human))
-						var/mob/living/carbon/human/M = tmob
-						M.drip(0.1)
-						for(var/obj/item/organ/I in M.organs)
-							tmob.take_overall_damage(calculated_damage, 0) //Due to the fact that this deals damage across random body parts, this should heal quite fast.
-						admin_attack_log(src, M, "trampled [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
+				else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
+					src << "Your tentacles carelessly slide past [tmob], crushing them!"
+					tmob << "[src] quickly goes over your body, carelessly crushing you with their tentacles!"
 				else
-					src << "You carelessly step down onto [tmob], crushing them!!"
+					src << "You carelessly step down onto [tmob], crushing them!"
 					tmob << "[src] steps carelessly on your body, crushing you!"
-					if(istype(tmob,/mob/living/carbon/human))
-						var/mob/living/carbon/human/M = tmob
-						for(var/obj/item/organ/I in M.organs)
-							tmob.take_overall_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will heal over time.
-						M.drip(0.1)
-						admin_attack_log(src, M, "Crushed [tmob.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				return 1
 
 			if(src.m_intent == "walk") //Oh my.
 				damage = calculated_damage * 3.5 //Multiplies the above damage by 3.5. This means a min of 1.75 damage, or a max of 9.1875. damage to each limb, depending on size and RNG.
 				var/mob/living/carbon/human/H = src
-				if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				if(istype(tmob,/mob/living/carbon/human))
+					var/mob/living/carbon/human/M = tmob
+					for(var/obj/item/organ/I in M.organs)
+						I.take_damage(calculated_damage, 0)
+					M.drip(3)
+					admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
+				if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
 					src << "Your heavy tail slowly and methodically slides down upon [tmob], crushing against the floor below!"
-					tmob << "[src]'s thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below."
-					if(istype(tmob,/mob/living/carbon/human))
-						var/mob/living/carbon/human/M = tmob
-						for(var/obj/item/organ/I in M.organs)
-							tmob.take_overall_damage(damage, 0) //17.5 damage min, 91.875 damage max. If they're only stepped on once, the damage will heal over time.
-						M.drip(3) //The least of your problems, honestly.
-						admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
+					tmob << "[src]'s thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below!"
+				else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/spider) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/centipede) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/alraune)))
+					src << "You methodically place your leg down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
+					tmob << "[src] methodically places their leg upon your body, slowly applying pressure, crushing you against the floor below!"
+				else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/cow)))
+					src << "You methodically place your hoof down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
+					tmob << "[src] methodically places their hoof upon your body, slowly applying pressure, crushing you against the floor below!"
+				else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
+					src << "Your tentacles methodically apply pressure on [tmob]'s body, crushing them against the floor below!"
+					tmob << "[src]'s thick tentacles methodically apply pressure on your body, crushing you into the floor below!"
 				else
 					src << "You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!"
 					tmob << "[src] methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!"
-					if(istype(tmob,/mob/living/carbon/human))
-						var/mob/living/carbon/human/M = tmob
-						for(var/obj/item/organ/I in M.organs)
-							tmob.take_overall_damage(damage, 0)
-						M.drip(3)
-						admin_attack_log(src, M, "Crushed [M.name] under foot for [damage * 10] damage.", "Was crushed under foot by [H.name] for [damage * 10] damage.", "Crushed [M.name] for [damage * 10] damage.")
 				return 1
 
 	if(src.a_intent == I_GRAB && src.canmove && !src.buckled)
@@ -273,15 +294,36 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			if(istype(H) && !H.shoes)
 				// User is a human (capable of scooping) and not wearing shoes! Scoop into foot slot!
 				equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
-				if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+				if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug))
 					src << "You slither over [tmob] with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight confines of your tail!"
 					tmob << "[src] slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight confines of their tail!"
+				else if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/spider) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/centipede) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/alraune))
+					src << "You pin [tmob] down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
+					tmob << "[src] pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
+				else if(istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/cow))	//this is placeholder till someone gets better idea
+					src << "You pin [tmob] to the ground before scooping them up with your hooves!"
+					tmob << "[src] pins you to the ground before scooping you up with their hooves!"
+				else if (istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
+					src << "You slide over [tmob] with your tentacles, smushing them against the ground before wrapping one up around them, trapping them within the tight confines of your tentacles!"
+					tmob << "[src] slides over you with their tentacles, smushing you against the ground before wrapping one up around you, trapping you within the tight confines of their tentacles!"
 				else
 					src << "You pin [tmob] down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!"
 					tmob << "[src] pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!"
-			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga))
+			else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/naga) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/slug)))
 				src << "You squish [tmob] under your large, thick tail, forcing them onto the ground!"
-				tmob << "[src] pins you under their large, thick tail, forcing you onto the ground!!"
+				tmob << "[src] pins you under their large, thick tail, forcing you onto the ground!"
+				tmob.resting = 1
+			else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/spider) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/centipede) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/alraune)))
+				src << "You step down onto [tmob], squishing them and forcing them down to the ground!"
+				tmob << "[src] steps down and squishes you with their leg, forcing you down to the ground!"
+				tmob.resting = 1
+			else if(istype(H) && (istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse) || istype(H.tail_style, /datum/sprite_accessory/tail/taur/cow)))
+				src << "You step down onto [tmob], squishing them and forcing them down to the ground!"
+				tmob << "[src] steps down and squishes you with their hoof, forcing you down to the ground!"
+				tmob.resting = 1
+			else if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/tents))
+				src << "You step down onto [tmob] with one of your tentacles, forcing them onto the ground!"
+				tmob << "[src] steps down onto you with one of your tentacles, squishing you and forcing you onto the ground!"
 				tmob.resting = 1
 			else
 				src << "You step down onto [tmob], squishing them and forcing them down to the ground!"
