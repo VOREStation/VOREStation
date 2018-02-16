@@ -86,12 +86,16 @@ mob/living/simple_animal/say()
 				animal_nom(user)
 				update_icon()
 				stop_automated_movement = 0
+			else if (!target_mob) // no using this to clear a retaliate mob's target
+				target_mob = user //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
+				AttackTarget()
+				LoseTarget() // only make one attempt at an attack rather than going into full rage mode
 		else
 			user.visible_message("<span class='info'>\the [user] swats \the [src] with \the [O]!</span>!")
 			for(var/I in vore_organs)
 				var/datum/belly/B = vore_organs[I]
 				B.release_all_contents(include_absorbed = TRUE) // Until we can get a mob version of unsorbitol or whatever, release absorbed too
-			for(var/mob/living/L in range(1)) //add everyone on the tile to the do-not-eat list for a while
+			for(var/mob/living/L in living_mobs(0)) //add everyone on the tile to the do-not-eat list for a while
 				if(!(L in prey_excludes)) // Unless they're already on it, just to avoid fuckery.
 					prey_excludes += L
 					spawn(3600)
