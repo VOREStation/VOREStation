@@ -103,17 +103,26 @@
 	icon_state = "beret_corporate_warden"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
-/obj/item/clothing/head/helmet/warden //should these be helmets?
+/obj/item/clothing/head/helmet/warden
+	name = "warden's helmet"
+	desc = "Standard Warden gear. Protects the head from impacts."
+
+/obj/item/clothing/head/helmet/warden/hat //should these be helmets?
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/helmet/HoS
+	name = "Head of Security helmet"
+	desc = "Standard Head of Security gear. Protects the head from impacts."
+
+/obj/item/clothing/head/helmet/HoS/hat
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	body_parts_covered = 0
+
 
 /obj/item/clothing/head/helmet/HoS/dermal
 	name = "Dermal Armour Patch"

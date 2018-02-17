@@ -30,6 +30,7 @@
 	desc = "This finger appears to be an organic datajack."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
+	show_examine = 0
 
 /obj/item/weapon/finger_lockpick/New()
 	if(ismob(loc))

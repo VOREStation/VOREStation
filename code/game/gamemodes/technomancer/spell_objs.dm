@@ -31,6 +31,7 @@
 		)
 	throwforce = 0
 	force = 0
+	show_examine = 0
 //	var/mob/living/carbon/human/owner = null
 	var/mob/living/owner = null
 	var/obj/item/weapon/technomancer_core/core = null
