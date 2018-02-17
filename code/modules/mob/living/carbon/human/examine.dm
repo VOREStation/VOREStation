@@ -155,6 +155,7 @@
 
 	//head
 	if(head && head.show_examine)
+		world << "[head.show_examine]"
 		if(head.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[head] [head.gender==PLURAL?"some":"a"] [(head.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [head.name] on [T.his] head!</span>\n"
 		else
