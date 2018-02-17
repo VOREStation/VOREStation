@@ -59,7 +59,6 @@
 
 //when user attached an accessory to S
 /obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
-	world << "on_attached"
 	if(!istype(S))
 		return
 	has_suit = S

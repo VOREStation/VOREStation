@@ -18,15 +18,12 @@
 
 		if(!valid_accessory_slots || !valid_accessory_slots.len)
 			usr << "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>"
-			world << "clothing/attackby !valid"
-			user.drop_item()
 			return
 
 		var/obj/item/clothing/accessory/A = I
 		if(can_attach_accessory(A))
 			user.drop_item()
 			attach_accessory(user, A)
-			world << "clothing/attackby success"
 			return
 		else
 			user << "<span class='warning'>You cannot attach more accessories of this type to [src].</span>"
