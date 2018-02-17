@@ -1564,11 +1564,14 @@
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
 
-/mob/living/carbon/human/proc/update_icon_special() //For things such as teshari hiding and whatnot.
+/mob/living/carbon/human/proc/update_icon_special(var/mutable_appearance/ma, var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
 	if(hiding) // Hiding? Carry on.
 		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
-			hiding = 0 //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
+			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
 		else
-			layer = 2.45
-	else //Replace this else with other variables if added in the future. Alternatively, could make other things effect this hiding variable.
-		return
+			ma.layer = HIDING_LAYER
+
+	//Can put special species icon update proc calls here, if any are ever invented.
+
+	if(update_icons)
+		update_icons()
