@@ -9,7 +9,8 @@
 		spawn(emoteTime)
 			var/list/EL = emote_lists[digest_mode]
 			for(var/mob/living/M in internal_contents)
-				M << "<span class='notice'>[pick(EL)]</span>"
+				if(M.digestable || !(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)) // don't give digesty messages to indigestible people
+					M << "<span class='notice'>[pick(EL)]</span>"
 			src.emotePend = FALSE
 
 //////////////////////// Absorbed Handling ////////////////////////
