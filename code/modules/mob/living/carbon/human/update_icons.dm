@@ -265,7 +265,7 @@ Please contact me on #coderbus IRC. ~Carn x
 
 		else if(!typing_indicator && hud_typing) //Are they in their body, NOT dead, have hud_typing, do NOT have a typing indicator. and have it enabled?
 			typing_indicator = new
-			typing_indicator.icon = 'icons/mob/talk.dmi'
+			typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 			typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
 			overlays += typing_indicator
 			list_huds += typing_indicator

@@ -18,7 +18,7 @@
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
 /obj/item/organ/internal/cell/emp_act(severity)
-	..()
+	// ..() // VOREStation Edit - Don't take damage
 	owner.nutrition = max(0, owner.nutrition - rand(10/severity, 50/severity))
 
 // Used for an MMI or posibrain being installed into a human.
@@ -88,7 +88,7 @@
 	qdel(src)
 
 /obj/item/organ/internal/mmi_holder/emp_act(severity)
-	..()
+	// ..() // VOREStation Edit - Don't take damage
 	owner.adjustToxLoss(rand(6/severity, 12/severity))
 
 /obj/item/organ/internal/mmi_holder/posibrain
