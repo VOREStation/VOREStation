@@ -7405,7 +7405,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/open,
+/turf/simulated/floor,
 /area/engineering/foyer_mezzenine)
 "mN" = (
 /obj/structure/catwalk,
@@ -7426,7 +7426,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/open,
+/turf/simulated/floor,
 /area/engineering/foyer_mezzenine)
 "mO" = (
 /obj/structure/catwalk,
@@ -8015,7 +8015,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/open,
+/turf/simulated/floor,
 /area/engineering/foyer_mezzenine)
 "nB" = (
 /obj/structure/disposalpipe/junction/yjunction,
