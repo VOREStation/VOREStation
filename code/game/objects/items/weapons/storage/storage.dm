@@ -52,7 +52,7 @@
 	if(!canremove)
 		return
 
-	if (ishuman(usr) || issmall(usr) || isanimal(usr) || isobserver(usr)) //so monkeys can take off their backpacks -- Urist
+	if (isliving(usr) || isobserver(usr))
 
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return

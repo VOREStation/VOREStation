@@ -27,3 +27,8 @@
 	display_name = "drop pouches, white"
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Search and Rescue","Explorer","Shaft Miner")
+
+/datum/gear/accessory/holster
+	display_name = "holster selection (Security, CD, HoP)"
+	path = /obj/item/clothing/accessory/holster
+	allowed_roles = list("Colony Director","Head of Personnel","Security Officer","Warden","Head of Security","Detective","Explorer")

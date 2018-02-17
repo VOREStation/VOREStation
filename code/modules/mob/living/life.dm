@@ -207,13 +207,17 @@
 		return TRUE
 
 	else if(glow_toggle)
-		set_light(2, l_color = glow_color) //2 is PDA brightness, so neutral in terms of balance
+		set_light(glow_range, glow_intensity, glow_color)
 
 	else
 		set_light(0)
 		return FALSE
 
 /mob/living/proc/handle_darksight()
+	if(!seedarkness) //Cheap 'always darksight' var
+		dsoverlay.alpha = 255
+		return
+
 	var/darksightedness = min(see_in_dark/world.view,1.0)	//A ratio of how good your darksight is, from 'nada' to 'really darn good'
 	var/current = dsoverlay.alpha/255						//Our current adjustedness
 

@@ -752,6 +752,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
+	radiation_resistance = 1
 
 /material/snow
 	name = MAT_SNOW
@@ -769,6 +770,25 @@ var/list/name_to_material
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
 	sheet_plural_name = "pile" //Just a bigger pile
+	radiation_resistance = 1
+
+/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
+	name = "packed snow"
+	flags = MATERIAL_BRITTLE
+	stack_type = /obj/item/stack/material/snowbrick
+	icon_base = "stone"
+	icon_reinf = "reinf_stone"
+	icon_colour = "#D8FDFF"
+	integrity = 50
+	weight = 2
+	hardness = 2
+	protectiveness = 0 // 0%
+	stack_origin_tech = list(TECH_MATERIAL = 1)
+	melting_point = T0C+1
+	destruction_desc = "crumbles"
+	sheet_singular_name = "brick"
+	sheet_plural_name = "bricks"
+	radiation_resistance = 1
 
 /material/cloth //todo
 	name = "cloth"

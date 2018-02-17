@@ -25,6 +25,7 @@
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
 	destroy_surroundings = 0
+	hovering = TRUE
 
 	//Drones aren't affected by atmos.
 	min_oxy = 0

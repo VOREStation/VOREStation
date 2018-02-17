@@ -1,6 +1,6 @@
 /obj/effect/mine
-	name = "mine"
-	desc = "A small explosive mine with 'HE' and a grenade symbol on the side."
+	name = "land mine"	//The name and description are deliberately NOT modified, so you can't game the mines you find.
+	desc = "A small explosive land mine."
 	density = 0
 	anchored = 1
 	icon = 'icons/obj/weapons.dmi'
@@ -21,6 +21,7 @@
 	s.set_up(3, 1, src)
 	s.start()
 	explosion(loc, 0, 2, 3, 4) //land mines are dangerous, folks.
+	visible_message("\The [src.name] detonates!")
 	qdel(s)
 	qdel(src)
 
@@ -38,10 +39,12 @@
 
 /obj/effect/mine/Bumped(mob/M as mob|obj)
 
-	if(triggered) return
+	if(triggered)
+		return
 
 	if(istype(M, /mob/living/))
-		explode(M)
+		if(!M.hovering)
+			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(isscrewdriver(W))
@@ -62,8 +65,6 @@
 	wires.Interact(user)
 
 /obj/effect/mine/dnascramble
-	name = "radiation mine"
-	desc = "A small explosive mine with a radiation symbol on the side."
 	mineitemtype = /obj/item/weapon/mine/dnascramble
 
 /obj/effect/mine/dnascramble/explode(var/mob/living/M)
@@ -71,31 +72,31 @@
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	M.radiation += 50
-	randmutb(M)
-	domutcheck(M,null)
+	if(M)
+		M.radiation += 50
+		randmutb(M)
+		domutcheck(M,null)
+	visible_message("\The [src.name] flashes violently before disintegrating!")
 	spawn(0)
 		qdel(s)
 		qdel(src)
 
 /obj/effect/mine/stun
-	name = "stun mine"
-	desc = "A small explosive mine with a lightning bolt symbol on the side."
 	mineitemtype = /obj/item/weapon/mine/stun
 
 /obj/effect/mine/stun/explode(var/mob/living/M)
 	triggered = 1
-	M.Stun(30)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
+	if(M)
+		M.Stun(30)
+	visible_message("\The [src.name] flashes violently before disintegrating!")
 	spawn(0)
 		qdel(s)
 		qdel(src)
 
 /obj/effect/mine/n2o
-	name = "nitrous oxide mine"
-	desc = "A small explosive mine with three Z's on the side."
 	mineitemtype = /obj/item/weapon/mine/n2o
 
 /obj/effect/mine/n2o/explode(var/mob/living/M)
@@ -103,12 +104,11 @@
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
 			target.assume_gas("sleeping_agent", 30)
+	visible_message("\The [src.name] detonates!")
 	spawn(0)
 		qdel(src)
 
 /obj/effect/mine/phoron
-	name = "incendiary mine"
-	desc = "A small explosive mine with a fire symbol on the side."
 	mineitemtype = /obj/item/weapon/mine/phoron
 
 /obj/effect/mine/phoron/explode(var/mob/living/M)
@@ -117,12 +117,11 @@
 		if(!target.blocks_air)
 			target.assume_gas("phoron", 30)
 			target.hotspot_expose(1000, CELL_VOLUME)
+	visible_message("\The [src.name] detonates!")
 	spawn(0)
 		qdel(src)
 
 /obj/effect/mine/kick
-	name = "kick mine"
-	desc = "Concentrated war crimes. Handle with care."
 	mineitemtype = /obj/item/weapon/mine/kick
 
 /obj/effect/mine/kick/explode(var/mob/living/M)
@@ -130,14 +129,13 @@
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(M.client)
+	if(M)
+		qdel(M.client)
 	spawn(0)
 		qdel(s)
 		qdel(src)
 
 /obj/effect/mine/frag
-	name = "fragmentation mine"
-	desc = "A small explosive mine with 'FRAG' and a grenade symbol on the side."
 	mineitemtype = /obj/item/weapon/mine/frag
 	var/fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
 	var/num_fragments = 20  //total number of fragments produced by the grenade
@@ -153,13 +151,14 @@
 	if(!O)
 		return
 	src.fragmentate(O, 20, 7, list(/obj/item/projectile/bullet/pellet/fragment)) //only 20 weak fragments because you're stepping directly on it
+	visible_message("\The [src.name] detonates!")
 	spawn(0)
 		qdel(s)
 		qdel(src)
 
-/obj/effect/mine/training
-	name = "training mine"
-	desc = "A mine with its payload removed, for EOD training and demonstrations."
+/obj/effect/mine/training	//Name and Desc commented out so it's possible to trick people with the training mines
+//	name = "training mine"
+//	desc = "A mine with its payload removed, for EOD training and demonstrations."
 	mineitemtype = /obj/item/weapon/mine/training
 
 /obj/effect/mine/training/explode(var/mob/living/M)
@@ -170,56 +169,62 @@
 		qdel(src)
 
 /obj/effect/mine/emp
-	name = "EMP Mine"
-	desc = "A small explosive mine with a lightning bolt symbol on the side."
 	mineitemtype = /obj/item/weapon/mine/emp
 
 /obj/effect/mine/emp/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
+	visible_message("\The [src.name] flashes violently before disintegrating!")
 	empulse(loc, 2, 4, 7, 10, 1) // As strong as an EMP grenade
 	spawn(0)
 		qdel(src)
 
+/obj/effect/mine/incendiary
+	mineitemtype = /obj/item/weapon/mine/incendiary
+
+/obj/effect/mine/incendiary/explode(var/mob/living/M)
+	triggered = 1
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	s.set_up(3, 1, src)
+	s.start()
+	if(M)
+		M.adjust_fire_stacks(5)
+		M.fire_act()
+	visible_message("\The [src.name] bursts into flames!")
+	spawn(0)
+		qdel(src)
+
+/////////////////////////////////////////////
+// The held item version of the above mines
+/////////////////////////////////////////////
 /obj/item/weapon/mine
 	name = "mine"
 	desc = "A small explosive mine with 'HE' and a grenade symbol on the side."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "uglymine"
-	var/arming = 0
 	var/countdown = 10
-	var/minetype = /obj/effect/mine
+	var/minetype = /obj/effect/mine		//This MUST be an /obj/effect/mine type, or it'll runtime.
 
-/obj/item/weapon/mine/attack_self(mob/user as mob)
-	if(!arming)
-		to_chat(user, "<span class='warning'>You prime \the [name]! [countdown] seconds!</span>")
-		icon_state = initial(icon_state) + "armed"
-		arming = 1
+/obj/item/weapon/mine/attack_self(mob/user as mob)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
+	add_fingerprint(user)
+	msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	user.visible_message("[user] starts priming \the [src.name].", "You start priming \the [src.name]. Hold still!")
+	if(do_after(user, 10 SECONDS))
 		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-		add_fingerprint(user)
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			C.throw_mode_on()
-		spawn(countdown*10)
-			if(arming)
-				prime()
-				if(user)
-					msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-				return
+		prime(user)
 	else
-		to_chat(user, "You cancel \the [name]'s priming sequence.")
-		arming = 0
-		countdown = initial(countdown)
-		icon_state = initial(icon_state)
-		add_fingerprint(user)
+		visible_message("[user] triggers \the [src.name]!", "You accidentally trigger \the [src.name]!")
+		prime(user, TRUE)
 	return
 
-/obj/item/weapon/mine/proc/prime(mob/user as mob)
+/obj/item/weapon/mine/proc/prime(mob/user as mob, var/explode_now = FALSE)
 	visible_message("\The [src.name] beeps as the priming sequence completes.")
-	var/atom/R = new minetype(get_turf(src))
+	var/obj/effect/mine/R = new minetype(get_turf(src))
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
+	if(explode_now)
+		R.explode(user)
 	spawn(0)
 		qdel(src)
 
@@ -262,3 +267,8 @@
 	name = "emp mine"
 	desc = "A small explosive mine with a lightning bolt symbol on the side."
 	minetype = /obj/effect/mine/emp
+
+/obj/item/weapon/mine/incendiary
+	name = "incendiary mine"
+	desc = "A small explosive mine with a fire symbol on the side."
+	minetype = /obj/effect/mine/incendiary
