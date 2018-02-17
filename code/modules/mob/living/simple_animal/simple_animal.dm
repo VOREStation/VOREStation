@@ -566,7 +566,6 @@
 
 	//Projectiles with bonus SA damage
 	if(!Proj.nodamage)
-		var/true_damage = Proj.damage
 		if(!Proj.SA_vulnerability || Proj.SA_vulnerability == intelligence_level)
 			Proj.damage += Proj.SA_bonus_damage
 
