@@ -330,6 +330,12 @@
 	icon_state = "alurane-ears"
 	ckeys_allowed = list("natje")
 
+/datum/sprite_accessory/ears/leafeon
+ name = "leafeon ears"
+ desc = ""
+ icon_state = "leafeon"
+ ckeys_allowed = list("Alex123890")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -1039,6 +1045,12 @@
 	name = "Zeng-Hu Tajaran Synth tail"
 	desc = ""
 	icon_state = "zenghu_taj"
+
+/datum/sprite_accessory/tail/leafeon
+ name = "leafeon tail"
+ desc = ""
+ icon_state = "leafeon"
+ ckeys_allowed = list("Alex123890")
 
 /*
 ////////////////////////////
