@@ -28,6 +28,7 @@
 	name = "Daedalus Pocket Newscaster"
 	desc = "A regularly-updating compendium of articles on current events. Essential for new arrivals in the Vir system and anyone interested in politics."
 	icon_state = "newscodex"
+	w_class = ITEMSIZE_SMALL
 	root_type = /datum/lore/codex/category/main_news
 
 // Combines SOP/Regs/Law

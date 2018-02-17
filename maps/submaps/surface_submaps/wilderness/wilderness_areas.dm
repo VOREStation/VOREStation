@@ -71,3 +71,7 @@
 
 /area/submap/CaveS
 	name = "CaveS"
+
+/area/submap/Drugd
+	name = "DrugDen"
+

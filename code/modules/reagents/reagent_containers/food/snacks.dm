@@ -376,6 +376,29 @@
 	reagents.add_reagent("coco", 2)
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece
+	name = "chocolate piece"
+	desc = "A luscious milk chocolate piece filled with gooey caramel."
+	icon_state =  "chocolatepiece"
+	filling_color = "#7D5F46"
+	center_of_mass = list("x"=15, "y"=15)
+	nutriment_amt = 1
+	nutriment_desc = list("chocolate" = 3, "caramel" = 2, "lusciousness" = 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/white
+	name = "white chocolate piece"
+	desc = "A creamy white chocolate piece drizzled in milk chocolate."
+	icon_state = "chocolatepiece_white"
+	filling_color = "#E2DAD3"
+	nutriment_desc = list("white chocolate" = 3, "creaminess" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/truffle
+	name = "chocolate truffle"
+	desc = "A bite-sized milk chocolate truffle that could buy anyone's love."
+	icon_state = "chocolatepiece_truffle"
+	nutriment_desc = list("chocolate" = 3, "undying devotion" = 3)
+
 /obj/item/weapon/reagent_containers/food/snacks/chocolateegg
 	name = "Chocolate Egg"
 	desc = "Such sweet, fattening food."
