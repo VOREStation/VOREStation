@@ -44,6 +44,8 @@
 		return
 	if(default_part_replacement(user, O))
 		return
+	if(default_unfasten_wrench(user, O, 20))
+		return
 	return ..()
 
 /obj/machinery/organ_printer/update_icon()

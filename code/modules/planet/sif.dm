@@ -174,7 +174,7 @@ datum/weather/sif
 	temp_high = T0C		// 0c
 	temp_low = 243.15	// -30c
 	light_modifier = 0.5
-	flight_falure_modifier = 5
+	flight_failure_modifier = 5
 	transition_chances = list(
 		WEATHER_LIGHT_SNOW = 20,
 		WEATHER_SNOW = 50,
@@ -198,7 +198,7 @@ datum/weather/sif
 	temp_high = 243.15 // -30c
 	temp_low = 233.15  // -40c
 	light_modifier = 0.3
-	flight_falure_modifier = 10
+	flight_failure_modifier = 10
 	transition_chances = list(
 		WEATHER_SNOW = 45,
 		WEATHER_BLIZZARD = 40,
@@ -232,7 +232,7 @@ datum/weather/sif
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
-				return // They're indoors, so no need to rain on them.
+				continue // They're indoors, so no need to rain on them.
 
 			L.water_act(1)
 			to_chat(L, "<span class='warning'>Rain falls on you.</span>")
@@ -243,7 +243,7 @@ datum/weather/sif
 	temp_high = 243.15 // -30c
 	temp_low = 233.15  // -40c
 	light_modifier = 0.3
-	flight_falure_modifier = 10
+	flight_failure_modifier = 10
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 40,
@@ -256,7 +256,7 @@ datum/weather/sif
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
-				return // They're indoors, so no need to rain on them.
+				continue // They're indoors, so no need to rain on them.
 
 			L.water_act(2)
 			to_chat(L, "<span class='warning'>Rain falls on you, drenching you in water.</span>")
@@ -267,7 +267,7 @@ datum/weather/sif
 	temp_high = T0C		// 0c
 	temp_low = 243.15	// -30c
 	light_modifier = 0.3
-	flight_falure_modifier = 15
+	flight_failure_modifier = 15
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 10,
@@ -280,17 +280,17 @@ datum/weather/sif
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
-				return // They're indoors, so no need to pelt them with ice.
+				continue // They're indoors, so no need to pelt them with ice.
 
 			var/target_zone = pick(BP_ALL)
 			var/amount_blocked = L.run_armor_check(target_zone, "melee")
 			var/amount_soaked = L.get_armor_soak(target_zone, "melee")
 
 			if(amount_blocked >= 100)
-				return // No need to apply damage.
+				continue // No need to apply damage.
 
 			if(amount_soaked >= 10)
-				return // No need to apply damage.
+				continue // No need to apply damage.
 
 			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
 			to_chat(L, "<span class='warning'>The hail raining down on you [L.can_feel_pain() ? "hurts" : "damages you"]!</span>")
@@ -299,7 +299,7 @@ datum/weather/sif
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
-	flight_falure_modifier = 25
+	flight_failure_modifier = 25
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100
 		)

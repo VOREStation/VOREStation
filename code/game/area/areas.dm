@@ -52,7 +52,11 @@
 	if (danger_level == 0)
 		atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
-		atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
+		var/obj/machinery/alarm/atmosalarm = alarm_source //maybe other things can trigger these, who knows
+		if(istype(atmosalarm))
+			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
+		else
+			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	for (var/obj/machinery/alarm/AA in src)

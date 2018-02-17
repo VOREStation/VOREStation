@@ -109,9 +109,9 @@
 				suit.icon_override = new_icon_override_file
 				S.icon_override = new_icon_override_file
 			to_chat(user, "You set about modifying the suit into [suit].")
-			var/mob/living/carbon/human/H = user
-			if(istype(H))
-				suit.species_restricted = list(H.species.get_bodytype(H))
+//			var/mob/living/carbon/human/H = user
+//			if(istype(H))
+//				suit.species_restricted = list(H.species.get_bodytype(H)) Does not quite make sense for something usually very pliable.
 		else
 			var/obj/item/clothing/suit/space/void/suit = I
 			suit.name = "[new_name] voidsuit"

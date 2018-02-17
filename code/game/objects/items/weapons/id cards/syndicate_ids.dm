@@ -6,12 +6,12 @@
 	var/electronic_warfare = 1
 	var/mob/registered_user = null
 
-/obj/item/weapon/card/id/syndicate/New(mob/user as mob)
-	..()
+/obj/item/weapon/card/id/syndicate/initialize()
+	. = ..()
 	access = syndicate_access.Copy()
 
-/obj/item/weapon/card/id/syndicate/station_access/New()
-	..() // Same as the normal Syndicate id, only already has all station access
+/obj/item/weapon/card/id/syndicate/station_access/initialize()
+	. = ..() // Same as the normal Syndicate id, only already has all station access
 	access |= get_all_station_access()
 
 /obj/item/weapon/card/id/syndicate/Destroy()

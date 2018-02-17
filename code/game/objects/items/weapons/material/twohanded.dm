@@ -29,7 +29,7 @@
 
 /obj/item/weapon/material/twohanded/update_held_icon()
 	var/mob/living/M = loc
-	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
+	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
 		wielded = 1
 		force = force_wielded
 		name = "[base_name] (wielded)"

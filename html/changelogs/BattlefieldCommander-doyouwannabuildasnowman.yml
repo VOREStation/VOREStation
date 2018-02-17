@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Anewbe
+author: battlefieldCommander
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,4 +33,6 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Hyposprays and autoinjectors now have a delay on use when the target is conscious and not in Help Intent."
+  - rscadd: "Added packed snow brick material. Craft it using snow piles."
+  - recadd: "Added snow girders and igloo walls. Craft them using snow bricks."
+  - rscadd: "Added various snowmen. Craft them using snow piles. Punch 'em to destroy."

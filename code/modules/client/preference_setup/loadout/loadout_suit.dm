@@ -181,27 +181,22 @@
 /datum/gear/suit/roles/poncho/security
 	display_name = "poncho, security"
 	path = /obj/item/clothing/accessory/poncho/roles/security
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
 
 /datum/gear/suit/roles/poncho/medical
 	display_name = "poncho, medical"
 	path = /obj/item/clothing/accessory/poncho/roles/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/roles/poncho/engineering
 	display_name = "poncho, engineering"
 	path = /obj/item/clothing/accessory/poncho/roles/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
 
 /datum/gear/suit/roles/poncho/science
 	display_name = "poncho, science"
 	path = /obj/item/clothing/accessory/poncho/roles/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
 
 /datum/gear/suit/roles/poncho/cargo
 	display_name = "poncho, cargo"
 	path = /obj/item/clothing/accessory/poncho/roles/cargo
-	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/suit/roles/poncho/cloak/hos
 	display_name = "cloak, head of security"

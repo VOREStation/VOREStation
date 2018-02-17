@@ -29,6 +29,9 @@
 /obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/item/weapon/card/id/I = W.GetID()
 
+	if(default_unfasten_wrench(user, W, 20))
+		return
+
 	if(vendmode == 1 && I)
 		scan_id(I, W)
 		vendmode = 0

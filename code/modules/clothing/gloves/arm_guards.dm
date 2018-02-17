@@ -3,6 +3,7 @@
 	desc = "These arm guards will protect your hands and arms."
 	body_parts_covered = HANDS|ARMS
 	overgloves = 1
+	punch_force = 3
 	w_class = ITEMSIZE_NORMAL
 
 /obj/item/clothing/gloves/arm_guard/mob_can_equip(var/mob/living/carbon/human/H, slot)

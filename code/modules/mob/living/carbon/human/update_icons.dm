@@ -179,6 +179,9 @@ Please contact me on #coderbus IRC. ~Carn x
 	//5: Set appearance once
 	appearance = ma_compiled
 
+	//6: Do any species specific layering updates, such as when hiding.
+	update_icon_special()
+
 /mob/living/carbon/human/update_transform(var/mutable_appearance/passed_ma)
 	if(QDESTROYING(src))
 		return
@@ -216,6 +219,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Translate(0, 16*(desired_scale-1))
 		ma.transform = M
 		ma.layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
+	update_icon_special() //Adjust their layer, like when they are hiding.
 
 	if(!passed_ma)
 		appearance = ma
@@ -251,6 +255,25 @@ Please contact me on #coderbus IRC. ~Carn x
 	if(has_huds)
 		list_huds = hud_list.Copy()
 		list_huds += backplane // Required to mask HUDs in context menus: http://www.byond.com/forum/?post=2336679
+
+//TYPING INDICATOR CODE.
+	if(client && !stat) //They have a client & aren't dead/KO'd? Continue on!
+		if(typing_indicator && hud_typing) //They already have the indicator and are still typing
+			overlays += typing_indicator //This might not be needed? It works, so I'm leaving it.
+			list_huds += typing_indicator
+			typing_indicator.invisibility = invisibility
+
+		else if(!typing_indicator && hud_typing) //Are they in their body, NOT dead, have hud_typing, do NOT have a typing indicator. and have it enabled?
+			typing_indicator = new
+			typing_indicator.icon = 'icons/mob/talk.dmi'
+			typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
+			overlays += typing_indicator
+			list_huds += typing_indicator
+
+		else if(typing_indicator && !hud_typing) //Did they stop typing?
+			overlays -= typing_indicator
+			typing = 0
+			hud_typing = 0
 
 	if(update_icons)
 		update_icons()

@@ -4,7 +4,7 @@
 	icon_state = "coilgun"
 	item_state = "coilgun"
 	icon = 'icons/obj/railgun.dmi'
-//	one_handed_penalty = 1
+//	one_handed_penalty = 15
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 
@@ -15,7 +15,7 @@
 
 	var/obj/item/loaded                                        // Currently loaded object, for retrieval/unloading.
 	var/load_type = /obj/item/stack/rods                       // Type of stack to load with.
-	var/projectile_type = /obj/item/projectile/bullet/magnetic // Actual fire type, since this isn't throw_at rod launcher.
+	projectile_type = /obj/item/projectile/bullet/magnetic 	   // Actual fire type, since this isn't throw_at rod launcher.
 
 	var/power_cost = 950                                       // Cost per fire, should consume almost an entire basic cell.
 	var/power_per_tick                                         // Capacitor charge per process(). Updated based on capacitor rating.

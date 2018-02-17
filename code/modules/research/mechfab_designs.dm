@@ -259,6 +259,7 @@
 	name = "Cable Layer"
 	id = "mech_cable_layer"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/cable_layer
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "plastic" = 1000)
 
 /datum/design/item/mecha/flaregun
 	name = "Flare Launcher"
@@ -305,6 +306,7 @@
 
 /datum/design/item/mecha/weapon
 	req_tech = list(TECH_COMBAT = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "glass" = 2000)
 
 // *** Weapon modules
 /datum/design/item/mecha/weapon/scattershot
@@ -312,12 +314,14 @@
 	id = "mech_scattershot"
 	req_tech = list(TECH_COMBAT = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "glass" = 3000, "plastic" = 2000, "silver" = 2500)
 
 /datum/design/item/mecha/weapon/laser
 	name = "CH-PS \"Immolator\" Laser"
 	id = "mech_laser"
 	req_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "glass" = 3000, "plastic" = 2000)
 
 /datum/design/item/mecha/weapon/laser_rigged
 	name = "Jury-Rigged Welder-Laser"
@@ -331,18 +335,21 @@
 	id = "mech_laser_heavy"
 	req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 3000, "diamond" = 2000, "osmium" = 5000, "plastic" = 2000)
 
 /datum/design/item/mecha/weapon/ion
 	name = "MK-IV Ion Heavy Cannon"
 	id = "mech_ion"
 	req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
+	materials = list(DEFAULT_WALL_MATERIAL = 15000, "uranium" = 2000, "silver" = 2000, "osmium" = 4500, "plastic" = 2000)
 
 /datum/design/item/mecha/weapon/grenade_launcher
 	name = "SGL-6 Grenade Launcher"
 	id = "mech_grenade_launcher"
 	req_tech = list(TECH_COMBAT = 3)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
+	materials = list(DEFAULT_WALL_MATERIAL = 7000, "gold" = 2000, "plastic" = 3000)
 
 /datum/design/item/mecha/weapon/clusterbang_launcher
 	name = "SOP-6 Grenade Launcher"
@@ -396,7 +403,7 @@
 	desc = "An exosuit-mounted rapid construction device."
 	id = "mech_rcd"
 	time = 120
-	materials = list(DEFAULT_WALL_MATERIAL = 22500, "phoron" = 18750, "silver" = 15000, "gold" = 15000)
+	materials = list(DEFAULT_WALL_MATERIAL = 20000, "plastic" = 10000, "phoron" = 18750, "silver" = 15000, "gold" = 15000)
 	req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/rcd
 

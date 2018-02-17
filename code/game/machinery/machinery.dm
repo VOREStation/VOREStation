@@ -112,7 +112,7 @@ Class Procs:
 	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/circuit = null
+	var/obj/item/weapon/circuitboard/circuit = null
 
 /obj/machinery/New(l, d=0)
 	..(l)
@@ -402,7 +402,7 @@ Class Procs:
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
-	if(A.frame_type.frame_class == "machine")
+	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
 			D.forceMove(src.loc)
 		if(A.components)
@@ -412,15 +412,15 @@ Class Procs:
 		component_parts = list()
 		A.check_components()
 
-	if(A.frame_type.frame_class == "alarm")
-		A.state = 2
-	else if(A.frame_type.frame_class == "computer" || A.frame_type.frame_class == "display")
+	if(A.frame_type.frame_class == FRAME_CLASS_ALARM)
+		A.state = FRAME_FASTENED
+	else if(A.frame_type.frame_class == FRAME_CLASS_COMPUTER || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
 		if(stat & BROKEN)
-			A.state = 3
+			A.state = FRAME_WIRED
 		else
-			A.state = 4
+			A.state = FRAME_PANELED
 	else
-		A.state = 3
+		A.state = FRAME_WIRED
 
 	A.set_dir(dir)
 	A.pixel_x = pixel_x

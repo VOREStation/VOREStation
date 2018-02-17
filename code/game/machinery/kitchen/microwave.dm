@@ -87,13 +87,15 @@
 				src.icon_state = "mw"
 				src.broken = 0 // Fix it!
 				src.dirty = 0 // just to be sure
-				src.flags = OPENCONTAINER
+				src.flags = OPENCONTAINER | NOREACT
 		else
 			user << "<span class='warning'>It's broken!</span>"
 			return 1
 	else if(default_deconstruction_screwdriver(user, O))
 		return
 	else if(default_deconstruction_crowbar(user, O))
+		return
+	else if(default_unfasten_wrench(user, O, 10))
 		return
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
@@ -110,7 +112,7 @@
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
 				src.icon_state = "mw"
-				src.flags = OPENCONTAINER
+				src.flags = OPENCONTAINER | NOREACT
 		else //Otherwise bad luck!!
 			user << "<span class='warning'>It's dirty!</span>"
 			return 1

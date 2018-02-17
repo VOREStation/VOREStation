@@ -33,4 +33,8 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - bugfix: "You need a parachute to survive atmospheric reentry, closets, mechs, and other impromptu parachutes will not longer prevent splatting."
+  - rscadd: "Added a random mine spawner, for use in PoIs. Replaces mines in PoIs with the random spawner."
+  - rscadd: "Mines now give a visible message when they go off."
+  - tweak: "Land mines on the ground can no longer be told apart from one another, to prevent gaming the system."
+  - bugfix: "Hovering mobs (viscerators, drones, Poly, carp) no longer set off land mines."
+  - tweak: "Arming a land mine now takes concentration. If you move, it will boom."

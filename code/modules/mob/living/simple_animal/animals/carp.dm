@@ -8,6 +8,7 @@
 
 	faction = "carp"
 	intelligence_level = SA_ANIMAL
+	hovering = TRUE
 	maxHealth = 25
 	health = 25
 	speed = 4

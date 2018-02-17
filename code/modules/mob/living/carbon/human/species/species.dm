@@ -42,6 +42,7 @@
 	var/blood_volume = 560                               // Initial blood volume.
 	var/bloodloss_rate = 1								 // Multiplier for how fast a species bleeds out. Higher = Faster
 	var/hunger_factor = 0.05                             // Multiplier for hunger.
+	var/active_regen_mult = 1							 // Multiplier for 'Regenerate' power speed, in human_powers.dm
 
 	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
 

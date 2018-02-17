@@ -15,6 +15,9 @@
 	var/toxins = 0
 
 /obj/machinery/disease2/incubator/attackby(var/obj/O as obj, var/mob/user as mob)
+	if(default_unfasten_wrench(user, O, 20))
+		return
+
 	if(istype(O, /obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/syringe))
 
 		if(beaker)
@@ -131,9 +134,6 @@
 		if(foodsupply < 100 && beaker.reagents.remove_reagent("virusfood",5))
 			if(foodsupply + 10 <= 100)
 				foodsupply += 10
-			else
-				beaker.reagents.add_reagent("virusfood",(100 - foodsupply)/2)
-				foodsupply = 100
 			nanomanager.update_uis(src)
 
 		if (locate(/datum/reagent/toxin) in beaker.reagents.reagent_list && toxins < 100)

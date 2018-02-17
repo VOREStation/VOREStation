@@ -38,7 +38,7 @@
 	..()
 	new /obj/item/clothing/suit/bio_suit/security(src)
 	new /obj/item/clothing/head/bio_hood/security(src)
-
+	new /obj/item/weapon/gun/energy/taser/xeno/sec(src)
 
 /obj/structure/closet/l3closet/janitor
 	icon_state = "bio_janitor"
