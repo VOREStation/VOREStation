@@ -331,10 +331,10 @@
 	ckeys_allowed = list("natje")
 
 /datum/sprite_accessory/ears/leafeon
- name = "leafeon ears"
- desc = ""
- icon_state = "leafeon"
- ckeys_allowed = list("Alex123890")
+	name = "leafeon ears"
+	desc = ""
+	icon_state = "leafeon"
+	ckeys_allowed = list("Alex123890")
 
 /*
 ////////////////////////////
@@ -1047,10 +1047,10 @@
 	icon_state = "zenghu_taj"
 
 /datum/sprite_accessory/tail/leafeon
- name = "leafeon tail"
- desc = ""
- icon_state = "leafeon"
- ckeys_allowed = list("Alex123890")
+	name = "leafeon tail"
+	desc = ""
+	icon_state = "leafeon"
+	ckeys_allowed = list("Alex123890")
 
 /*
 ////////////////////////////
