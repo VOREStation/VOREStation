@@ -186,8 +186,8 @@
 	src.air_contents.adjust_gas("phoron", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/weapon/tank/emergency/phoron/double
-	name = "double emergency nitrogen tank"
-	icon_state = "emergency_double_nitrogen"
+	name = "double emergency phoron tank"
+	icon_state = "emergency_double_nitro"
 	gauge_icon = "indicator_emergency_double"
 	volume = 10
 
