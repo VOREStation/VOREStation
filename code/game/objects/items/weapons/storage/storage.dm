@@ -52,7 +52,7 @@
 	if(!canremove)
 		return
 
-	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
+	if (ishuman(usr) || issmall(usr) || isanimal(usr) || isobserver(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
@@ -139,7 +139,7 @@
 	is_seeing -= user
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
-	if (src.use_sound)
+	if (src.use_sound && !isobserver(user))
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
 	orient2hud(user)

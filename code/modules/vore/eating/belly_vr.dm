@@ -133,6 +133,7 @@
 	items_preserved.Cut()
 	checked_slots.Cut()
 	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
+	owner.update_icons()
 	return 1
 
 // Release a specific atom from the contents of this belly into the owning mob's location.

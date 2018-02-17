@@ -21,7 +21,7 @@
 
 	melee_damage_lower = 1
 	melee_damage_upper = 3
-	attacktext = "shocked"
+	attacktext = list("shocked")
 
 	min_oxy = 0
 	max_tox = 0

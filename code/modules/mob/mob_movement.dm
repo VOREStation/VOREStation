@@ -51,14 +51,14 @@
 			attack_self()
 			return
 		if(SOUTHWEST)
-			if(iscarbon(usr))
+			if(isliving(usr))
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
 				usr << "<font color='red'>This mob type cannot throw items.</font>"
 			return
 		if(NORTHWEST)
-			if(iscarbon(usr))
+			if(isliving(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.get_active_hand())
 					usr << "<font color='red'>You have nothing to drop in your hand.</font>"
@@ -79,8 +79,9 @@
 
 /client/verb/swap_hand()
 	set hidden = 1
-	if(istype(mob, /mob/living/carbon))
-		mob:swap_hand()
+	if(istype(mob, /mob/living))
+		var/mob/living/L = mob
+		L.swap_hand()
 	if(istype(mob,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = mob
 		R.cycle_modules()

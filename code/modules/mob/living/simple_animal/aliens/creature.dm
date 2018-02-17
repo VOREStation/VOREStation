@@ -16,7 +16,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 
-	attacktext = "chomped"
+	attacktext = list("chomped")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	speak_emote = list("gibbers")

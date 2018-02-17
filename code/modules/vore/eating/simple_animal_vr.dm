@@ -6,7 +6,7 @@
 //
 // Simple nom proc for if you get ckey'd into a simple_animal mob! Avoids grabs.
 //
-/mob/living/proc/animal_nom(var/mob/living/T in living_mobs(1))
+/mob/living/simple_animal/proc/animal_nom(var/mob/living/T in living_mobs(1))
 	set name = "Animal Nom"
 	set category = "IC"
 	set desc = "Since you can't grab, you get a verb!"
@@ -15,7 +15,12 @@
 		return
 	if (istype(src,/mob/living/simple_animal/mouse) && T.ckey == null)
 		return
-	return feed_grabbed_to_self(src,T)
+	if (client && IsAdvancedToolUser())
+		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
+		return
+	feed_grabbed_to_self(src,T)
+	update_icon()
+	return
 
 //
 // Simple proc for animals to have their digestion toggled on/off externally
@@ -103,3 +108,4 @@ mob/living/simple_animal/say()
 							prey_excludes -= L
 	else
 		..()
+

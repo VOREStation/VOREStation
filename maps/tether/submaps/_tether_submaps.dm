@@ -168,17 +168,22 @@
 	density = 0
 	anchored = 1
 
+	//Weighted with values (not %chance, but relative weight)
+	//Can be left value-less for all equally likely
 	var/list/mobs_to_pick_from
-	var/mob/living/simple_animal/my_mob
-	var/depleted = FALSE
 
 	//When the below chance fails, the spawner is marked as depleted and stops spawning
 	var/prob_spawn = 100	//Chance of spawning a mob whenever they don't have one
 	var/prob_fall = 5		//Above decreases by this much each time one spawns
 
+	//Settings to help mappers/coders have their mobs do what they want in this case
 	var/faction				//To prevent infighting if it spawns various mobs, set a faction
 	var/atmos_comp			//TRUE will set all their survivability to be within 20% of the current air
 	var/guard				//# will set the mobs to remain nearby their spawn point within this dist
+
+	//Internal use only
+	var/mob/living/simple_animal/my_mob
+	var/depleted = FALSE
 
 /obj/tether_away_spawner/initialize()
 	. = ..()
@@ -198,7 +203,7 @@
 
 	if(prob(prob_spawn))
 		prob_spawn -= prob_fall
-		var/picked_type = pick(mobs_to_pick_from)
+		var/picked_type = pickweight(mobs_to_pick_from)
 		my_mob = new picked_type(get_turf(src))
 		my_mob.low_priority = TRUE
 
@@ -231,3 +236,18 @@
 		processing_objects -= src
 		depleted = TRUE
 		return
+
+//Shadekin spawner. Could have them show up on any mission, so it's here.
+//Make sure to put them away from others, so they don't get demolished by rude mobs.
+/obj/tether_away_spawner/shadekin
+	name = "Shadekin Spawner"
+	icon = 'icons/mob/vore_shadekin.dmi'
+	icon_state = "spawner"
+
+	faction = "shadekin"
+	prob_spawn = 1
+	prob_fall = 1
+	guard = 10 //Don't wander too far, to stay alive.
+	mobs_to_pick_from = list(
+		/mob/living/simple_animal/shadekin
+	)

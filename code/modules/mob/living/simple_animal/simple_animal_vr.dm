@@ -30,7 +30,8 @@
 	..()
 	if(vore_active)
 		init_belly()
-	verbs |= /mob/living/proc/animal_nom
+	if(!IsAdvancedToolUser())
+		verbs |= /mob/living/simple_animal/proc/animal_nom
 
 // Release belly contents beforey being gc'd!
 /mob/living/simple_animal/Destroy()
@@ -56,11 +57,11 @@
 	vore_fullness = min(vore_capacity, new_fullness)
 
 /mob/living/simple_animal/update_icon()
-	..() // Call sideways "parent" to decide state
+	. = ..() // Call sideways "parent" to decide state
 	if(vore_active)
 		update_fullness()
 		if(!vore_fullness)
-			// Nothing
+			return
 		else if(icon_state == icon_living && (vore_icons & SA_ICON_LIVING))
 			icon_state = "[icon_state]-[vore_fullness]"
 		else if(icon_state == icon_dead && (vore_icons & SA_ICON_DEAD))
@@ -69,8 +70,14 @@
 			icon_state = "[icon_state]-[vore_fullness]"
 
 /mob/living/simple_animal/proc/will_eat(var/mob/living/M)
+	if(client) //You do this yourself, dick!
+		ai_log("vr/wont eat [M] because we're player-controlled", 3)
+		return 0
 	if(!istype(M)) //Can't eat 'em if they ain't /mob/living
 		ai_log("vr/wont eat [M] because they are not /mob/living", 3)
+		return 0
+	if(src == M) //Don't eat YOURSELF dork
+		ai_log("vr/won't eat [M] because it's me!", 3)
 		return 0
 	if(vore_ignores_undigestable && !M.digestable) //Don't eat people with nogurgle prefs
 		ai_log("vr/wont eat [M] because I am picky", 3)
@@ -91,6 +98,7 @@
 
 /mob/living/simple_animal/PunchTarget()
 	ai_log("vr/PunchTarget() [target_mob]", 3)
+
 	// For things we don't want to eat, call the sideways "parent" to do normal punching
 	if(!vore_active || !will_eat(target_mob))
 		return ..()
@@ -110,7 +118,8 @@
 // TODO - Review this.  Could be some issues here
 /mob/living/simple_animal/proc/EatTarget()
 	ai_log("vr/EatTarget() [target_mob]",2)
-	init_belly()
+	if(!LAZYLEN(vore_organs))
+		init_belly()
 	stop_automated_movement = 1
 	var/old_target = target_mob
 	handle_stance(STANCE_BUSY)
@@ -207,3 +216,10 @@
 
 	if(istype(turf,/turf/unsimulated/floor/sky))
 		return TRUE //Mobs aren't that stupid, probably
+
+//Grab = Nomf
+/mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
+	. = ..()
+
+	if(a_intent == I_GRAB && isliving(A) && !has_hands)
+		animal_nom(A)

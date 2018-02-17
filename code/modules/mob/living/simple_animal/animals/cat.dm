@@ -9,7 +9,6 @@
 	icon_dead = "cat2_dead"
 	icon_rest = "cat2_rest"
 
-	hostile = 1 //To mice, anyway.
 	investigates = 1
 	specific_targets = 1 //Only targets with Found()
 	run_at_them = 0 //DOMESTICATED

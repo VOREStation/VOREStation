@@ -28,7 +28,7 @@
 	reactions = list("Can I eat you?" = "Do you really wanna eat someone as sweet as me~?",
 					"You look tasty." = "Awww, thank you~!",
 					"Can I serve you to the crew?" = "If I have a backup, sure!",)
-	attacktext = "smacked"
+	attacktext = list("smacked")
 
 	// Activate Noms!
 /mob/living/simple_animal/cookiegirl
