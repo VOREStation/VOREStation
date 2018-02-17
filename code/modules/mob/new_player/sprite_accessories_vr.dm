@@ -872,3 +872,10 @@
 		icon_state = "catwomanleft"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG)
+
+	leafeon_stuff
+		name = "Leafeon Leaves"
+		icon_state = "leafeon"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO)
+		ckeys_allowed = list("Alex123890")
