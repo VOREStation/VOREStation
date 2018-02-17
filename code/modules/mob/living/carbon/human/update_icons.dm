@@ -949,12 +949,10 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/update_inv_head(var/update_icons=1)
-	world << "update_inv_head"
 	if(QDESTROYING(src))
 		return
 
 	if(head)
-		world << "Has head"
 		head.screen_loc = ui_head		//TODO
 
 		//Determine the icon to use
@@ -1011,7 +1009,6 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/clothing/head/hat = head
 		if(istype(hat) && hat.accessories.len)
 			for(var/obj/item/clothing/accessory/A in hat.accessories)
-				world << "[A.name]"
 				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[HEAD_LAYER] = standing

@@ -112,6 +112,7 @@
 	desc = "It's a special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
 	body_parts_covered = 0
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security helmet"
@@ -122,7 +123,7 @@
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	body_parts_covered = 0
-
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/HoS/dermal
 	name = "Dermal Armour Patch"
@@ -138,6 +139,8 @@
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
+	valid_accessory_slots = null
+	show_examine = FALSE
 
 /obj/item/clothing/head/det/grey
 	icon_state = "detective2"
