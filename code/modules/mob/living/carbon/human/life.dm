@@ -616,11 +616,11 @@
 		var/temp_adj = 0
 		if(loc_temp < bodytemperature)			//Place is colder than we are
 			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
+			if(thermal_protection < 0.99)	//For some reason, < 1 returns false if the value is 1.
 				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 		else if (loc_temp > bodytemperature)			//Place is hotter than we are
 			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
+			if(thermal_protection < 0.99)	//For some reason, < 1 returns false if the value is 1.
 				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
 		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
