@@ -260,11 +260,13 @@
 	ResetPDAManifest()
 	var/icon/front
 	var/icon/side
-	var/icon/charicon = cached_character_icon(H)
-	front = icon(charicon, dir = SOUTH)
-	side = icon(charicon, dir = WEST)
+	if(H)
+		var/icon/charicon = cached_character_icon(H)
+		front = icon(charicon, dir = SOUTH)
+		side = icon(charicon, dir = WEST)
 
-	if(!id) id = text("[]", add_zero(num2hex(rand(1, 65536)), 4))
+	if(!id)
+		id = text("[]", add_zero(num2hex(rand(1, 65536)), 4))
 	var/datum/data/record/G = new /datum/data/record()
 	G.name = "Employee Record #[id]"
 	G.fields["name"] = "New Record"

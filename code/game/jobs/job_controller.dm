@@ -507,7 +507,8 @@ var/global/datum/controller/occupations/job_master
 
 	proc/spawnId(var/mob/living/carbon/human/H, rank, title)
 		if(!H)	return 0
-		var/obj/item/weapon/card/id/C = null
+		var/obj/item/weapon/card/id/C = H.get_equipped_item(slot_wear_id)
+		if(istype(C))  return 0
 
 		var/datum/job/job = null
 		for(var/datum/job/J in occupations)
