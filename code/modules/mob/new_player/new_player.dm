@@ -456,7 +456,7 @@
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
-		client.prefs.copy_to(new_character)
+		client.prefs.copy_to(new_character, icon_updates = TRUE)
 
 	if(client && client.media)
 		client.media.stop_music() // MAD JAMS cant last forever yo
@@ -493,8 +493,6 @@
 
 	// Do the initial caching of the player's body icons.
 	//new_character.force_update_limbs()
-	new_character.update_eyes()
-	new_character.regenerate_icons()
 
 	new_character.key = key		//Manually transfer the key to log them in
 

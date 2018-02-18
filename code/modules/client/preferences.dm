@@ -274,7 +274,7 @@ datum/preferences
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = TRUE)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 
@@ -286,15 +286,16 @@ datum/preferences
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
-	
+
 	// VOREStation Edit - Sync up all their organs and species one final time
 	character.force_update_organs()
-	
+
 	if(icon_updates)
 		character.force_update_limbs()
 		character.update_mutations(0)
 		character.update_underwear(0)
 		character.update_hair(0)
+		character.update_eyes(0)
 		character.update_icons_all()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
