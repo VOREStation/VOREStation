@@ -9,3 +9,5 @@
 #define LANGUAGE_NEAERA "Neaera"
 #define LANGUAGE_STOK "Stok"
 #define LANGUAGE_FARWA "Farwa"
+
+#define LANGUAGE_SHADEKIN "Shadekin Empathy"

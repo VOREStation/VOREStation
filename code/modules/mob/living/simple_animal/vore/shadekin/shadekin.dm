@@ -13,11 +13,10 @@
 	move_to_delay = 2
 	speed = -1
 	see_in_dark = 10 //SHADEkin
-	universal_speak = TRUE
-	universal_understand = TRUE
 	has_hands = TRUE //Pawbs
 	seedarkness = FALSE //SHAAAADEkin
 	attack_sound = 'sound/weapons/bladeslice.ogg'
+	has_langs = list(LANGUAGE_GALCOM,LANGUAGE_SHADEKIN)
 
 	investigates = TRUE
 	reacts = TRUE
@@ -433,3 +432,14 @@
 	. = ..()
 	if(M.a_intent == I_HELP)
 		shy_approach = FALSE //ACCLIMATED
+
+/datum/language/shadekin
+	name = "Shadekin Empathy"
+	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
+	colour = "changeling"
+	speech_verb = "states"
+	ask_verb = "queries"
+	exclaim_verb = "declares"
+	key = "s"
+	machine_understands = 0
+	flags = RESTRICTED | HIVEMIND
