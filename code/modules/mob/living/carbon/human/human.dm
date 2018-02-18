@@ -1095,7 +1095,7 @@
 	var/self = 0
 
 	if(usr.stat || usr.restrained() || !isliving(usr)) return
-	
+
 	var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
 	var/datum/gender/T = gender_datums[get_visible_gender()]
 
@@ -1120,7 +1120,7 @@
 	else
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
+/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE)
 
 	if(!dna)
 		if(!new_species)
@@ -1180,7 +1180,7 @@
 	maxHealth = species.total_health
 
 	spawn(0)
-		regenerate_icons()
+		if(regen_icons) regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
