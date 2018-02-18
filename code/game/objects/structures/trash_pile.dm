@@ -169,7 +169,6 @@
 					prob(3);/obj/item/weapon/spacecash/c20,
 					prob(3);/obj/item/weapon/storage/backpack/dufflebag,
 					prob(3);/obj/item/weapon/storage/box/donkpockets,
-					prob(3);/obj/item/weapon/storage/box/engineer,
 					prob(3);/obj/item/weapon/storage/box/mousetraps,
 					prob(3);/obj/item/weapon/storage/wallet,
 					prob(2);/obj/item/clothing/glasses/meson/prescription,
