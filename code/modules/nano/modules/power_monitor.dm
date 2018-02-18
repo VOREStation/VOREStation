@@ -46,7 +46,6 @@
 	var/list/levels = list()
 	if(T)
 		levels += using_map.get_map_levels(T.z, FALSE)
-		world << "levels"
 	for(var/obj/machinery/power/sensor/S in machines)
 		if(T && (S.loc.z == T.z) || (S.loc.z in levels) || (S.long_range)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
 			if(S.name_tag == "#UNKN#") // Default name. Shouldn't happen!
