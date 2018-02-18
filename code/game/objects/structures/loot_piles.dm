@@ -278,7 +278,6 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/storage/box/donut,
 		/obj/item/weapon/storage/box/donut/empty,
 		/obj/item/weapon/storage/box/evidence,
-		/obj/item/weapon/storage/box/engineer,
 		/obj/item/weapon/storage/box/lights/mixed,
 		/obj/item/weapon/storage/box/lights/tubes,
 		/obj/item/weapon/storage/box/lights/bulbs,

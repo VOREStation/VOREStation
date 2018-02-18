@@ -52,37 +52,26 @@
 	new foldable(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/storage/box/survival //VOREStation Add for Tether Size boxes
-	max_w_class = ITEMSIZE_NORMAL
-	max_storage_space = 6 //This is just the right number, there's no constant.
+/obj/item/weapon/storage/box/survival
+	name = "emergency supply box"
+	desc = "A survival box issued to crew members for use in emergency situations."
+	starts_with = list(
+		/obj/item/clothing/glasses/goggles, //VOREStation Add - Goggles for the phoron atmosphere.
+		/obj/item/clothing/mask/breath
+	)
 
-/obj/item/weapon/storage/box/survival/New()
-	..()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/weapon/tank/emergency/oxygen(src)
-	new /obj/item/clothing/glasses/goggles(src)
+/obj/item/weapon/storage/box/survival/comp
+	name = "emergency supply box"
+	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."
+	icon_state = "survival"
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/device/flashlight/glowstick,
+		/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
+		/obj/item/clothing/mask/breath
+	)
 
-/obj/item/weapon/storage/box/synth //VOREStation Add for Tether Size boxes
-	max_w_class = ITEMSIZE_NORMAL
-	max_storage_space = 6 //This is just the right number, there's no constant.
-
-/obj/item/weapon/storage/box/synth/New()
-	..()
-	new /obj/item/clothing/glasses/goggles(src)
-
-//VOREStation Edit
-/obj/item/weapon/storage/box/vox/New()
-	..()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/weapon/tank/emergency/phoron_double(src)
-	new /obj/item/clothing/glasses/goggles(src)
-
-/obj/item/weapon/storage/box/engineer/New()
-	..()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
-	new /obj/item/clothing/glasses/goggles(src)
-//VOREStation Edit End
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains white gloves."

@@ -16,6 +16,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
 	id_type = /obj/item/weapon/card/id/civilian/explorer
 	id_pda_assignment = "Explorer"
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/explorer2/technician
 	name = OUTFIT_JOB_NAME("Explorer Technician")
@@ -42,6 +43,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
 	id_type = /obj/item/weapon/card/id/civilian/pilot
 	id_pda_assignment = "Pilot"
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/sar
 	name = OUTFIT_JOB_NAME("Search and Rescue")
@@ -54,4 +56,4 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	pda_slot = slot_l_store
 	id_type = /obj/item/weapon/card/id/medical/sar
 	id_pda_assignment = "Search and Rescue"
-	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
