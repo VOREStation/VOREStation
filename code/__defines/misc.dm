@@ -237,3 +237,7 @@
 #define USE_FAIL_INCAPACITATED 5
 #define USE_FAIL_NOT_IN_USER 6
 #define USE_FAIL_IS_SILICON 7
+
+//Useful for building semicolon-delimited time readouts when trying to find slowdowns in procs
+var/world_time_test = 0
+#define TIMETEST ;world << "<b>TIME DBG</b>;[__FILE__];[__LINE__];  [round(world.tick_usage)]% ([round(world.tick_usage - world_time_test)]%)";world_time_test = world.tick_usage

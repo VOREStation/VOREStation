@@ -1090,7 +1090,7 @@
 	else
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
+/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE)
 
 	if(!dna)
 		if(!new_species)
@@ -1153,6 +1153,7 @@
 	maxHealth = species.total_health
 
 	spawn(0)
+		if(regen_icons) regenerate_icons()
 		make_blood()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume

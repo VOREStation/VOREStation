@@ -277,6 +277,15 @@ Proc for attack log creation, because really why not
 
 	return humans
 
+/proc/cached_character_icon(var/mob/desired)
+	var/cachekey = "\ref[desired][desired.real_name]"
+
+	if(cached_character_icons[cachekey])
+		. = cached_character_icons[cachekey]
+	else
+		. = getCompoundIcon(desired)
+		cached_character_icons[cachekey] = .
+
 /proc/getviewsize(view)
 	var/viewX
 	var/viewY
