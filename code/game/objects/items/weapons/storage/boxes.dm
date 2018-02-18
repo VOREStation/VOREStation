@@ -56,7 +56,7 @@
 	name = "emergency supply box"
 	desc = "A survival box issued to crew members for use in emergency situations."
 	starts_with = list(
-		/obj/item/clothing/glasses/goggles, //VOREStation Add - Goggles for the phoron atmosphere.
+		/obj/item/clothing/glasses/goggles, //VOREStation Add - Goggles for the phoron atmosphere,
 		/obj/item/clothing/mask/breath
 	)
 
