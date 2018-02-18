@@ -11,7 +11,7 @@
 		usr << "Effects:"
 		for(var/datum/disease2/effectholder/E in effects)
 			usr << "[E.stage]: [E.effect.name]; chance=[E.chance]; multiplier=[E.multiplier]"
-		usr << "Antigens: [antigens2string(antigen)]"
+		usr << "Antigens: [antigens2string(antigen)]; Resistance: [resistance]"
 
 		return 1
 
@@ -46,6 +46,7 @@
 	var/spreadtype = "Contact"
 	var/list/antigens = list()
 	var/speed = 1
+	var/resistance = 10
 	var/mob/living/carbon/infectee = null
 
 	// this holds spawned viruses so that the "Info" links work after the proc exits
@@ -98,6 +99,7 @@
 		<b>Infection Chance:</b> <a href="?src=\ref[src];what=ichance">[infectionchance]</a><br />
 		<b>Spread Type:</b> <a href="?src=\ref[src];what=stype">[spreadtype]</a><br />
 		<b>Speed:</b> <a href="?src=\ref[src];what=speed">[speed]</a><br />
+		<b>Resistance:</b> <a href="?src=\ref[src];what=resistance">[resistance]</a><br />
 		<br />
 		"}
 		f = 1
@@ -153,8 +155,8 @@
 				if(!I) return
 				infectionchance = I
 			if("stype")
-				var/S = alert("Which spread type?", "Spread Type", "Cancel", "Contact", "Airborne")
-				if(!S || S == "Cancel") return
+				var/S = alert("Which spread type?", "Spread Type", "Contact", "Airborne", "Blood")
+				if(!S) return
 				spreadtype = S
 			if("speed")
 				var/S = input("Input speed", "Speed", speed) as null|num
@@ -170,6 +172,10 @@
 						antigens |= T
 				else if(href_list["reset"])
 					antigens = list()
+			if("resistance")
+				var/S = input("Input % resistance to antibiotics", "Resistance", resistance) as null|num
+				if(!S) return
+				resistance = S
 			if("infectee")
 				var/list/candidates = list()
 				for(var/mob/living/carbon/G in living_mob_list)
@@ -195,6 +201,7 @@
 				D.antigen = antigens
 				D.affected_species = species
 				D.speed = speed
+				D.resistance = resistance
 				for(var/i in 1 to 4)
 					var/datum/disease2/effectholder/E = new
 					var/Etype = s[i]

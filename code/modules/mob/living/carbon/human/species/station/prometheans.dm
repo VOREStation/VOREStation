@@ -39,7 +39,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	virus_immune =	1
 	blood_volume =	560
 	min_age =		1
-	max_age =		5
+	max_age =		10
 	brute_mod =		0.75
 	burn_mod =		2
 	oxy_mod =		0
@@ -56,7 +56,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	body_temperature =      310.15
 
-	siemens_coefficient =   0.3
+	siemens_coefficient =   0.4
 	rarity_value =          5
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)

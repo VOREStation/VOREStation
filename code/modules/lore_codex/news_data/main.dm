@@ -6,6 +6,7 @@
 	children = list(
 		/datum/lore/codex/page/article1,
 		/datum/lore/codex/page/article2,
+		/datum/lore/codex/page/article3,
 		/datum/lore/codex/page/about_news,
 		)
 
@@ -46,3 +47,11 @@
 	incident \"shocking, if the allegations are to be believed\" and has assured shareholders that Nanotrasen will respond to the \
 	incident with as much force as it warrents.<br><br>Requests for a statement directed to the Board of Trustees or Dr. Harper were \
 	not responded to. Free Traders are recommended to stay clear of the region until the situation resolves itself."
+
+/datum/lore/codex/page/article3
+	name = "2/10/62-- Aetolian Partisans Declare Independence"
+	data = "Breaking their week-long silence, the leaders of the Aetolian Coup, and their spokesperson and presumed leader Naomi Harper issued an address earlier today, delivered to the Oculum Broadcast office on Pearl by drone courier. Quote Dr. Harper: \"Our previous silence was a necessity, while we consolidated our forces and dealt with corporatists both internally and in Vounna's former Grayson outposts.\". In Harper's hour-long address, she berates the failure of SolGov to provide adequate protections for Prometheans. \"We will not let the Promethean be another positronic brain; they will not labor under a century of slavery, deprived of a state to call their own. The Luddites of the Friends and of the Icarus Front will not be permitted to decide the fate of a nascent race before it begins.\"\
+	<br><br>\
+	Harper proceeded to unilaterally declare Vounna's independence from SolGov, claiming sovereignty over the system as the first Chairperson of the \"Aetolian Council\". Speaker of the Shadow Coalition ISA-5 has urged their government to treat the developing situation with caution but decried Harper's rhetoric, stating in a press release, \"While I know well the injustices visited on myself and my people by misguided forbearers, it is important to treat any emerging technology with respect. Current policies regarding the Prometheans are designed to limit risk during sociological trials on Aetolus and beyond. As for myself, I doubt the sincerity of this human who claims to speak for the Prometheans, when the Prometheans are perfectly equipped to speak for themselves.\"\
+	<br><br>\
+	NanoTrasen is expected to redouble their Promethean research programs in the Vir system until stability is restored to Vounna."

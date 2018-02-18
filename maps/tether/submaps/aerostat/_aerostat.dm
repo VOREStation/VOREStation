@@ -64,9 +64,10 @@
 	prob_fall = 10
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/hivebot/range,
-		/mob/living/simple_animal/hostile/hivebot/range/ion,
-		/mob/living/simple_animal/hostile/hivebot/range/laser
+		/mob/living/simple_animal/hostile/hivebot/range = 3,
+		/mob/living/simple_animal/hostile/hivebot/range/ion = 3,
+		/mob/living/simple_animal/hostile/hivebot/range/laser = 3,
+		/mob/living/simple_animal/hostile/badboi = 1
 	)
 
 /obj/tether_away_spawner/aerostat_surface
@@ -77,8 +78,9 @@
 	prob_fall = 10
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/jelly,
-		/mob/living/simple_animal/hostile/viscerator
+		/mob/living/simple_animal/hostile/jelly = 3,
+		/mob/living/simple_animal/hostile/viscerator = 2,
+		/mob/living/simple_animal/hostile/badboi = 1
 	)
 
 /obj/structure/old_roboprinter

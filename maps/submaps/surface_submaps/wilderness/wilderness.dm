@@ -23,6 +23,7 @@
 #include "DecoupledEngine.dmm"
 #include "DoomP.dmm"
 #include "CaveS.dmm"
+#include "Drugden.dmm"
 
 #endif
 
@@ -178,4 +179,10 @@
 	name = "CaveS"
 	desc = "Chitter chitter!"
 	mappath = 'maps/submaps/surface_submaps/wilderness/CaveS.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/normal/Drugden
+	name = "Drugden"
+	desc = "The remains of ill thought out whims."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Drugden.dmm'
 	cost = 20

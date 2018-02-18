@@ -216,7 +216,7 @@
 				//prob(6);/obj/item/weapon/material/butterflyhandle,
 				//prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
-				prob(2);/obj/item/weapon/material/knuckledusters,
+				prob(2);/obj/item/clothing/gloves/knuckledusters,
 				prob(1);/obj/item/weapon/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
@@ -646,7 +646,6 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/weapon/storage/box/sinpockets,
 				prob(1);/obj/item/weapon/storage/box/cups,
 				prob(3);/obj/item/weapon/storage/box/mousetraps,
-				prob(3);/obj/item/weapon/storage/box/engineer,
 				prob(3);/obj/item/weapon/storage/wallet,
 				prob(1);/obj/item/device/paicard,
 				prob(2);/obj/item/clothing/shoes/galoshes,
@@ -816,7 +815,6 @@ something, make sure it's not in one of the other lists.*/
 				prob(5);/obj/item/weapon/storage/backpack/messenger/engi,
 				prob(3);/obj/item/weapon/storage/backpack/dufflebag/eng,
 				prob(5);/obj/item/weapon/storage/box,
-				prob(3);/obj/item/weapon/storage/box/engineer,
 				prob(2);/obj/item/weapon/storage/belt/utility/full,
 				prob(3);/obj/item/weapon/storage/belt/utility,
 				prob(3);/obj/item/clothing/head/beret/engineering,
@@ -1134,3 +1132,17 @@ var/list/multi_point_spawns
 				/obj/item/clothing/head/helmet/space/void/mining/alt
 			)
 		)
+
+/obj/random/landmine
+	name = "Random Land Mine"
+	desc = "This is a random land mine."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "uglymine"
+	spawn_nothing_percentage = 25
+
+/obj/random/landmine/item_to_spawn()
+	return pick(prob(30);/obj/effect/mine,
+				prob(25);/obj/effect/mine/frag,
+				prob(25);/obj/effect/mine/emp,
+				prob(10);/obj/effect/mine/stun,
+				prob(10);/obj/effect/mine/incendiary,)

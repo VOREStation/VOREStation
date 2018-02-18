@@ -15,7 +15,7 @@
 	outgoing_melee_damage_percent = 0.7		// 30% less melee damage.
 	disable_duration_percent = 1.25			// Stuns last 25% longer.
 	slowdown = 1							// Slower.
-	evasion = -1							// 15% easier to hit.
+	evasion = -15							// 15% easier to hit.
 
 // Tracks number of deaths, one modifier added per cloning
 /datum/modifier/cloned

@@ -54,8 +54,8 @@
 			expired = 1
 	return ..()
 
-/obj/item/weapon/card/id/guest/New()
-	..()
+/obj/item/weapon/card/id/guest/initialize()
+	. = ..() 
 	processing_objects.Add(src)
 	update_icon()
 

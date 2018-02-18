@@ -5088,6 +5088,7 @@
 	id = "expshuttle_door_cargo";
 	name = "hatch bolt control";
 	pixel_x = -32;
+	req_one_access = list(19,43,67);
 	specialfunctions = 4
 	},
 /obj/machinery/door/airlock/multi_tile/metal{
@@ -21629,6 +21630,18 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/shuttle/excursion/tether)
+"PYd" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
+"Qua" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/shuttle/excursion/tether)
 "RIb" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
@@ -21643,18 +21656,6 @@
 /obj/structure/closet/secure_closet/guncabinet/excursion,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/explorer_prep)
-"PYd" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
-	},
-/turf/simulated/shuttle/wall/voidcraft,
-/area/shuttle/excursion/tether)
-"Qua" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 9
-	},
-/turf/simulated/shuttle/wall/voidcraft,
-/area/shuttle/excursion/tether)
 "TpR" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,

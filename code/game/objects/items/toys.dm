@@ -16,6 +16,7 @@
  *		Action figures
  *		Plushies
  *		Toy cult sword
+ *		Bouquets
  */
 
 
@@ -871,6 +872,19 @@
 		)
 	w_class = ITEMSIZE_LARGE
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
+
+//Flowers fake & real
+
+/obj/item/toy/bouquet
+	name = "bouquet"
+	desc = "A lovely bouquet of flowers. Smells nice!"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "bouquet"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/toy/bouquet/fake
+	name = "plastic bouquet"
+	desc = "A cheap plastic bouquet of flowers. Smells like cheap, toxic plastic."
 
 /* NYET.
 /obj/item/weapon/toddler

@@ -54,8 +54,7 @@
 	fire_sound = 'sound/weapons/battlerifle.ogg'
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
-	//requires_two_hands = 1
-	one_handed_penalty = 4 // The weapon itself is heavy
+	one_handed_penalty = 60 // The weapon itself is heavy
 
 // For general use
 /obj/item/weapon/gun/projectile/shotgun/pump/USDF
@@ -86,7 +85,7 @@
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15,-30), dispersion=list(0.0, 0.6, 0.6))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
@@ -386,8 +385,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 3)
 	modifystate = "g44estun"
 
-//	requires_two_hands = 1
-	one_handed_penalty = 4
+	one_handed_penalty = 60
 
 	firemodes = list(
 		list(mode_name="stun", burst=1, projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg', charge_cost = 100),
@@ -487,7 +485,7 @@
 	icon_state = "olivawcivil"
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-1),       dispersion=list(1.2, 1.8)),
+		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-15),       dispersion=list(1.2, 1.8)),
 		)
 
 /obj/item/weapon/gun/projectile/giskard/olivaw/update_icon()
@@ -537,7 +535,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15),       dispersion=list(0.0, 0.6, 1.0)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()

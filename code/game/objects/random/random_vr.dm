@@ -152,7 +152,7 @@
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,\
 				prob(4);/obj/item/weapon/material/butterfly,\
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,\
-				prob(2);/obj/item/weapon/material/knuckledusters,\
+				prob(2);/obj/item/clothing/gloves/knuckledusters,\
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,\
 				prob(1);/obj/item/weapon/material/knife/tacknife,\
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,\

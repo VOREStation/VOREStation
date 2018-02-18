@@ -93,3 +93,9 @@
 
 /obj/item/organ/internal/eyes/proc/additional_flash_effects(var/intensity)
 	return -1
+
+/obj/item/organ/internal/eyes/emp_act(severity)
+	// ..()	//Returns if the organ isn't robotic // VOREStation Edit - Don't take damage
+	if(!(robotic >= ORGAN_ASSISTED))
+		return
+	owner.eye_blurry += (4/severity)

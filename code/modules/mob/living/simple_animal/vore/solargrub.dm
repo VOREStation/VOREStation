@@ -47,15 +47,6 @@ List of things solar grubs should be able to do:
 	min_n2 = 0
 	max_n2 = 0
 
-	resistances = list(
-		HALLOSS = 0,
-		BRUTE = 1,
-		BURN = 0.1,
-		TOX = 0,
-		OXY = 0,
-		CLONE = 0
-		)
-
 	var/poison_per_bite = 5 //grubs cause a shock when they bite someone
 	var/poison_type = "shockchem"
 	var/poison_chance = 50
@@ -101,7 +92,7 @@ List of things solar grubs should be able to do:
 
 /mob/living/simple_animal/retaliate/solargrub //active noms
 	vore_bump_chance = 50
-	vore_bump_emote = "applies minimal effort to try and slurp up"	
+	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets

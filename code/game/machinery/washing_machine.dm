@@ -88,6 +88,8 @@
 			return
 		if(default_deconstruction_crowbar(user, W))
 			return
+		if(default_unfasten_wrench(user, W, 40))
+			return
 	/*if(istype(W,/obj/item/weapon/screwdriver))
 		panel = !panel
 		user << "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>"*/

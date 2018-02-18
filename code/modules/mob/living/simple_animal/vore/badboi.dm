@@ -7,10 +7,16 @@
 	icon_dead = "badboi-dead"
 	icon_rest = "badboi_rest"
 	faction = "corrupt"
+
 	maxHealth = 200
 	health = 200
-	minbodytemp = 150
+
 	investigates = TRUE
+
+	melee_damage_lower = 15
+	melee_damage_upper = 30
+	grab_resist = 100
+
 	speak_chance = 4
 	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")
 	speak_emote = list("growls", "declares", "groans", "distorts")
@@ -18,14 +24,13 @@
 	emote_see = list("stares ferociously.", "snarls.", "jitters and snaps.", "convulses.", "suddenly attacks something unseen.", "appears to howl unaudibly.", "shakes violently.", "dissociates for a moment.", "twitches.")
 	say_maybe_target = list("MEAT?", "N0w YOU DNE FcukED UP b0YO!", "WHAT!", "Not again. NOT AGAIN!")
 	say_got_target = list("D##FIN1Tly DNE FcukED UP nOW b0YO!", "YOU G1T D#V0VRED nOW!", "FUEL ME bOYO!", "I*M SO SORRY?!", "D1E Meat. DIG#ST!", "G1T DVNKED DWN The HaaTCH!", "Not again. NOT AGAIN!")
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
-	attacktext = "ravaged"
+	attacktext = list("ravaged")
 	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
-	grab_resist = 100
+
 	old_x = -16
 	old_y = 0
 	pixel_x = -16
@@ -39,6 +44,8 @@
 	max_co2 = 0
 	min_n2 = 0
 	max_n2 = 0
+	minbodytemp = 150
+	maxbodytemp = 900
 
 	vore_active = TRUE
 	vore_capacity = 1

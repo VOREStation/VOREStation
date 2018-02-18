@@ -70,3 +70,41 @@
 		lit = 0
 		update_icon()
 		set_light(0)
+
+/obj/item/weapon/flame/candle/candelabra
+	name = "candelabra"
+	desc = "a small gold candelabra. The cups that hold the candles save some of the wax from dripping off, allowing the candles to burn longer."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "candelabra"
+	w_class = ITEMSIZE_SMALL
+	wax = 20000
+
+/obj/item/weapon/flame/candle/candelabra/update_icon()
+	if(wax == 0)
+		icon_state = "candelabra_melted"
+	else
+		icon_state = "candelabra[lit ? "_lit" : ""]"
+
+/obj/item/weapon/flame/candle/everburn
+	wax = 99999
+
+/obj/item/weapon/flame/candle/everburn/New()
+	if(!src.lit)
+		src.lit = 1
+		//src.damtype = "fire"
+		for(var/mob/O in viewers(usr, null))
+			O.show_message("<span class='notice'>\The [name] mysteriously lights itself!.</span>", 1)
+		set_light(CANDLE_LUM)
+		processing_objects.Add(src)
+
+/obj/item/weapon/flame/candle/candelabra/everburn
+	wax = 99999
+
+/obj/item/weapon/flame/candle/candelabra/everburn/New()
+	if(!src.lit)
+		src.lit = 1
+		//src.damtype = "fire"
+		for(var/mob/O in viewers(usr, null))
+			O.show_message("<span class='notice'>\The [name] mysteriously lights itself!.</span>", 1)
+		set_light(CANDLE_LUM)
+		processing_objects.Add(src)

@@ -15,8 +15,6 @@
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	preserve_item = 1
-	var/reusable = 1
-	var/used = 0
 	var/filled = 0
 	var/list/filled_reagents = list()
 
@@ -63,9 +61,6 @@
 		var/trans = reagents.trans_to_mob(M, amount_per_transfer_from_this, CHEM_BLOOD)
 		admin_inject_log(user, M, src, contained, trans)
 		to_chat(user, "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in \the [src].</span>")
-
-	if(!reusable && !used)
-		used = !used
 
 	return
 //A vial-loaded hypospray. Cartridge-based!
@@ -122,11 +117,10 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
+	icon_state = "blue"
+	item_state = "blue"
 	amount_per_transfer_from_this = 5
 	volume = 5
-	reusable = 0
 	filled = 1
 	filled_reagents = list("inaprovaline" = 5)
 	preserve_item = 0
@@ -139,33 +133,35 @@
 	filled = 0
 	filled_reagents = list()
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/used
-	used = 1
-	filled_reagents = list()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/used/New()
+	..()
+	flags &= ~OPENCONTAINER
+	icon_state = "[initial(icon_state)]0"
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	..()
-	if(used) //Prevents autoinjectors to be refilled.
+	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
 		flags &= ~OPENCONTAINER
 	update_icon()
 	return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
-	if(!used && reagents.reagent_list.len)
+	if(reagents.total_volume > 0)
 		icon_state = "[initial(icon_state)]1"
-	else if(used)
-		icon_state = "[initial(icon_state)]0"
 	else
-		icon_state = "[initial(icon_state)]2"
+		icon_state = "[initial(icon_state)]0"
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
-	..(user)
+	. = ..(user)
 	if(reagents && reagents.reagent_list.len)
-		user << "<span class='notice'>It is currently loaded.</span>"
-	else if(used)
-		user << "<span class='notice'>It is spent.</span>"
+		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
 	else
-		user << "<span class='notice'>It is currently unloaded.</span>"
+		to_chat(user, "<span class='notice'>It is spent.</span>")
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox
+	name = "autoinjector (antitox)"
+	icon_state = "green"
+	filled_reagents = list("anti_toxin" = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting
 	name = "clotting agent"

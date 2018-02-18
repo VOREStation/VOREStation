@@ -36,3 +36,40 @@
 
 /area/submap/Field1
 	name = "Field 1"
+
+/area/submap/Theifc
+	name = "Theif Cave"
+
+/area/submap/smol2
+	name = "Small 2"
+
+/area/submap/Mechpt
+	name = "Mech Pit"
+
+/area/submap/Boathouse
+	name = "Boathouse"
+
+/area/submap/Smol3
+	name = "Small 3"
+
+/area/submap/PooledR
+	name = "Pooled Rocks"
+
+/area/submap/Diner
+	name = "Diner"
+
+/area/submap/snow1
+	name = "Snow1"
+
+/area/submap/snow2
+	name = "Snow2"
+
+/area/submap/snow3
+	name = "Snow3"
+
+/area/submap/snow4
+	name = "Snow4"
+
+/area/submap/snow5
+	name = "Snow5"
+

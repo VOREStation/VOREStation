@@ -9,8 +9,14 @@
 		spawn(emoteTime)
 			var/list/EL = emote_lists[digest_mode]
 			for(var/mob/living/M in internal_contents)
-				M << "<span class='notice'>[pick(EL)]</span>"
+				if(M.digestable || !(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)) // don't give digesty messages to indigestible people
+					M << "<span class='notice'>[pick(EL)]</span>"
 			src.emotePend = FALSE
+
+/////////////////////////// Exit Early ////////////////////////////
+	var/list/touchable_items = internal_contents - items_preserved
+	if(!length(touchable_items))
+		return
 
 //////////////////////// Absorbed Handling ////////////////////////
 	for(var/mob/living/M in internal_contents)
@@ -22,10 +28,7 @@
 		return //Pretty boring, huh
 
 //////////////////////////// DM_DIGEST ////////////////////////////
-	if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
-		var/list/touchable_items = internal_contents - items_preserved
-		if(!length(touchable_items))
-			return
+	else if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			var/churnsound = pick(digestion_sounds)
@@ -99,10 +102,7 @@
 		return
 
 //////////////////////////// DM_STRIPDIGEST ////////////////////////////
-	if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
-		var/list/touchable_items = internal_contents - items_preserved
-		if(!length(touchable_items))
-			return
+	else if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
 
 		if(prob(50))
 			var/churnsound = pick(digestion_sounds)
@@ -130,7 +130,7 @@
 		return
 
 //////////////////////////// DM_ABSORB ////////////////////////////
-	if(digest_mode == DM_ABSORB)
+	else if(digest_mode == DM_ABSORB)
 
 		for (var/mob/living/M in internal_contents)
 
@@ -154,7 +154,7 @@
 
 
 //////////////////////////// DM_UNABSORB ////////////////////////////
-	if(digest_mode == DM_UNABSORB)
+	else if(digest_mode == DM_UNABSORB)
 
 		for (var/mob/living/M in internal_contents)
 			if(M.absorbed && owner.nutrition >= 100)
@@ -166,7 +166,7 @@
 
 
 //////////////////////////// DM_DRAIN ////////////////////////////
-	if(digest_mode == DM_DRAIN)
+	else if(digest_mode == DM_DRAIN)
 
 		for (var/mob/living/M in internal_contents)
 
@@ -183,7 +183,7 @@
 		return
 
 //////////////////////////// DM_SHRINK ////////////////////////////
-	if(digest_mode == DM_SHRINK)
+	else if(digest_mode == DM_SHRINK)
 
 		for (var/mob/living/M in internal_contents)
 
@@ -202,7 +202,7 @@
 		return
 
 //////////////////////////// DM_GROW ////////////////////////////
-	if(digest_mode == DM_GROW)
+	else if(digest_mode == DM_GROW)
 
 		for (var/mob/living/M in internal_contents)
 
@@ -218,7 +218,7 @@
 		return
 
 //////////////////////////// DM_SIZE_STEAL ////////////////////////////
-	if(digest_mode == DM_SIZE_STEAL)
+	else if(digest_mode == DM_SIZE_STEAL)
 
 		for (var/mob/living/M in internal_contents)
 
@@ -237,7 +237,7 @@
 		return
 
 ///////////////////////////// DM_HEAL /////////////////////////////
-	if(digest_mode == DM_HEAL)
+	else if(digest_mode == DM_HEAL)
 		if(prob(50)) //Wet heals!
 			var/healsound = pick(digestion_sounds)
 			for(var/mob/hearer in range(1,owner))
@@ -257,7 +257,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_HAIR_AND_EYES /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_HAIR_AND_EYES && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_HAIR_AND_EYES && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -274,7 +274,7 @@
 
 		return
 ///////////////////////////// DM_TRANSFORM_MALE /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_MALE && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_MALE && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -301,7 +301,7 @@
 
 
 ///////////////////////////// DM_TRANSFORM_FEMALE /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_FEMALE && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_FEMALE && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -327,7 +327,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER  /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_KEEP_GENDER && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_KEEP_GENDER && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -349,7 +349,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR  /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -369,7 +369,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_REPLICA /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_REPLICA && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_REPLICA && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -398,7 +398,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -416,7 +416,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER_EGG  /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_KEEP_GENDER_EGG && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_KEEP_GENDER_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -436,7 +436,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_REPLICA_EGG /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_REPLICA_EGG && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_REPLICA_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -463,7 +463,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_MALE_EGG /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_MALE_EGG && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_MALE_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -487,7 +487,7 @@
 		return
 
 ///////////////////////////// DM_TRANSFORM_FEMALE_EGG /////////////////////////////
-	if(digest_mode == DM_TRANSFORM_FEMALE_EGG && ishuman(owner))
+	else if(digest_mode == DM_TRANSFORM_FEMALE_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.stat == DEAD)
 				continue
@@ -511,7 +511,7 @@
 		return
 
 ///////////////////////////// DM_EGG /////////////////////////////
-	if(digest_mode == DM_EGG && ishuman(owner))
+	else if(digest_mode == DM_EGG && ishuman(owner))
 		for (var/mob/living/carbon/human/P in internal_contents)
 			if(P.absorbed || P.stat == DEAD)
 				continue
