@@ -134,25 +134,22 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /**
  * Handle bumping into someone with helping intent.
  * Called from /mob/living/Bump() in the 'brohugs all around' section.
- * @return false if normal code should continue, 1 to prevent normal code.
- * // TODO - can the now_pushing = 0 be moved up? What does it do anyway?
+ * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(var/mob/living/tmob)
 
 	//Both small! Go ahead and go.
 	if(src.get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
-		now_pushing = 0
-		return 1
+		return TRUE
 
 	//Worthy of doing messages at all
 	if(abs(get_effective_size() - tmob.get_effective_size()) >= 0.50)
-		now_pushing = 0
 
 		//Smaller person being stepped onto
 		if(get_effective_size() > tmob.get_effective_size() && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			if(H.flying)
-				return 1 //Silently pass without a message.
+				return TRUE //Silently pass without a message.
 			if(isTaurTail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
 				to_chat(src,STEP_TEXT_OWNER(tail.msg_owner_help_run))
@@ -171,7 +168,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			else
 				to_chat(src,"You run between [tmob]'s legs.")
 				to_chat(tmob,"[src] runs between your legs.")
-	return 1
+		return TRUE
+	return FALSE
 
 /**
  * Handle bumping into someone without mutual help intent.

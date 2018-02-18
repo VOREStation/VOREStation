@@ -119,7 +119,9 @@ default behaviour is:
 					return
 
 				// In case of micros, we don't swap positions; instead occupying the same square!
-				if (handle_micro_bump_helping(tmob)) return
+				if (handle_micro_bump_helping(tmob))
+					now_pushing = 0
+					return
 				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
 				// VOREStation Edit - End
 
