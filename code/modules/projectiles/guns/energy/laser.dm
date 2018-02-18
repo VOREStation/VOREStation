@@ -99,7 +99,7 @@
 	fire_delay = 20
 	w_class = ITEMSIZE_LARGE
 //	one_handed_penalty = 90 // The thing's heavy and huge.
-	accuracy = 3
+	accuracy = 45
 	charge_cost = 600
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
