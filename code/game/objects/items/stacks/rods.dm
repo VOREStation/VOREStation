@@ -61,8 +61,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		return
 
 	if (istype(W, /obj/item/weapon/tape_roll))
-		var/obj/item/stack/medical/splint/ghetto/new_splint = new(user.loc)
-		new_splint.loc = src.loc
+		var/obj/item/stack/medical/splint/ghetto/new_splint = new(get_turf(user))
 		new_splint.add_fingerprint(user)
 
 		user.visible_message("<span class='notice'>\The [user] constructs \a [new_splint] out of a [singular_name].</span>", \
