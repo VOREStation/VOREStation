@@ -235,33 +235,64 @@
 
 /mob/living/carbon/human/proc/regenerate()
 	set name = "Regenerate"
-	set desc = "Allows you to regrow limbs and heal organs."
+	set desc = "Allows you to regrow limbs and heal organs after a period of rest."
 	set category = "Abilities"
 
 	if(nutrition < 250)
-		to_chat(src, "<span class='warning'>You lack the biomass regrow anything!</span>")
+		to_chat(src, "<span class='warning'>You lack the biomass to begin regeneration!</span>")
 		return
 
-	nutrition -= 200
+	if(active_regen)
+		to_chat(src, "<span class='warning'>You are already regenerating tissue!</span>")
+		return
+	else
+		active_regen = TRUE
+		src.visible_message("<B>[src]</B>'s flesh begins to mend...")
 
-	for(var/obj/item/organ/I in internal_organs)
-		if(I.damage > 0)
-			I.damage = 0
-			to_chat(src, "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>")
+	var/delay_length = round(active_regen_delay * species.active_regen_mult)
+	if(do_after(src,delay_length))
+		nutrition -= 200
 
-	// Replace completely missing limbs.
-	for(var/limb_type in src.species.has_limbs)
-		var/obj/item/organ/external/E = src.organs_by_name[limb_type]
-		if(E && E.disfigured)
-			E.disfigured = 0
-		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
-			E.removed()
-			qdel(E)
-			E = null
-		if(!E)
-			var/list/organ_data = src.species.has_limbs[limb_type]
-			var/limb_path = organ_data["path"]
-			var/obj/item/organ/O = new limb_path(src)
-			organ_data["descriptor"] = O.name
-			to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
-	update_icons_all()
+		for(var/obj/item/organ/I in internal_organs)
+			if(I.damage > 0)
+				I.damage = max(I.damage - 30, 0) //Repair functionally half of a dead internal organ.
+				to_chat(src, "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>")
+
+		// Replace completely missing limbs.
+		for(var/limb_type in src.species.has_limbs)
+			var/obj/item/organ/external/E = src.organs_by_name[limb_type]
+			if(E && E.disfigured)
+				E.disfigured = 0
+			if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
+				E.removed()
+				qdel(E)
+				E = null
+			if(!E)
+				var/list/organ_data = src.species.has_limbs[limb_type]
+				var/limb_path = organ_data["path"]
+				var/obj/item/organ/O = new limb_path(src)
+				organ_data["descriptor"] = O.name
+				to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
+		update_icons_all()
+		active_regen = FALSE
+	else
+		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
+		nutrition -= 75
+		active_regen = FALSE
+
+/mob/living/carbon/human/proc/hide_humanoid()
+	set name = "Hide"
+	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
+	set category = "Abilities"
+
+	if(stat == DEAD || paralysis || weakened || stunned) // No hiding if you're stunned!
+		return
+
+	if (!hiding)
+		layer = 2.45 //Just above cables with their 2.44
+		hiding = 1
+		to_chat(src, "<font color='blue'>You are now hiding.</font>")
+	else
+		layer = MOB_LAYER
+		hiding = 0
+		to_chat(src, "<font color='blue'>You have stopped hiding.</font>")

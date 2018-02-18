@@ -155,15 +155,15 @@
 	name = "streamlined medical voidsuit helmet"
 	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a sleek blue."
 	icon_state = "rig0-medicalalt"
-	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 25, bio = 100, rad = 80)
+	armor = list(melee = 20, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 30)
 	light_overlay = "helmet_light_dual_blue"
 
 /obj/item/clothing/suit/space/void/medical/alt
 	icon_state = "rig-medicalalt"
 	name = "streamlined medical voidsuit"
-	desc = "A more recent model of Vey-Med voidsuit, featuring the latest in radiation shielding technology, without sacrificing comfort or style."
+	desc = "A more recent model of Vey-Med voidsuit, exchanging physical protection for fully unencumbered movement and a complete range of motion."
 	slowdown = 0
-	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 25, bio = 100, rad = 80)
+	armor = list(melee = 20, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 30)
 
 //Security
 /obj/item/clothing/head/helmet/space/void/security

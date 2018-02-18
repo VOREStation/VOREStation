@@ -584,6 +584,12 @@
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
 	ai_log("bullet_act() I was shot by: [Proj.firer]",2)
 
+	/* VOREStation Edit - Ace doesn't like bonus SA damage.
+	//Projectiles with bonus SA damage
+	if(!Proj.nodamage)
+		if(!Proj.SA_vulnerability || Proj.SA_vulnerability == intelligence_level)
+			Proj.damage += Proj.SA_bonus_damage
+	*/ // VOREStation Edit End
 	. = ..()
 
 	if(Proj.firer)
@@ -1292,6 +1298,7 @@
 
 	if(A.attack_generic(src, damage_to_do, pick(attacktext)) && attack_sound)
 		playsound(src, attack_sound, 75, 1)
+
 	return TRUE
 
 //The actual top-level ranged attack proc

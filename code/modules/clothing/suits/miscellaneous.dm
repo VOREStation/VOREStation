@@ -798,9 +798,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "explorer hood"
 	desc = "An armoured hood for exploring harsh environments."
 	icon_state = "explorer"
-	brightness_on = 3
-	light_overlay = "hood_light"
-	action_button_name = "Toggle Head-light"
+	brightness_on = 3 // VOREStation Edit - Keep hood light for now - TODO Drain power
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	flags = THICKMATERIAL

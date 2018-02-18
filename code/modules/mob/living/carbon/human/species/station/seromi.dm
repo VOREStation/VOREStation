@@ -114,7 +114,7 @@
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/proc/hide
+		/mob/living/carbon/human/proc/hide_humanoid
 		)
 
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)

@@ -1,0 +1,4 @@
+author: PrismaticGynoid
+delete-after: True
+changes: 
+  - rscadd: "A lot more machines can now be moved with a wrench, mostly kitchen, hydroponics, and virology machines."

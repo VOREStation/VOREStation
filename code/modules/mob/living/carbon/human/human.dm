@@ -2,20 +2,23 @@
 	name = "unknown"
 	real_name = "unknown"
 	voice_name = "unknown"
-	icon = 'icons/effects/effects.dmi' //We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
+	icon = 'icons/effects/effects.dmi'	//We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
 	icon_state = "nothing"
 
 	var/list/hud_list[TOTAL_HUDS]
-	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
+	var/embedded_flag					//To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
-	var/last_push_time	//For human_attackhand.dm, keeps track of the last use of disarm
+	var/last_push_time					//For human_attackhand.dm, keeps track of the last use of disarm
 
-	var/spitting = 0 //Spitting and spitting related things. Any human based ranged attacks, be it innate or added abilities.
-	var/spit_projectile = null //Projectile type.
-	var/spit_name = null //String
-	var/last_spit = 0 //Timestamp.
+	var/spitting = 0 					//Spitting and spitting related things. Any human based ranged attacks, be it innate or added abilities.
+	var/spit_projectile = null			//Projectile type.
+	var/spit_name = null 				//String
+	var/last_spit = 0 					//Timestamp.
 
-	var/can_defib = 1	//Horrible damage (like beheadings) will prevent defibbing organics.
+	var/can_defib = 1					//Horrible damage (like beheadings) will prevent defibbing organics.
+	var/hiding = 0						// If the mob is hiding or not. Makes them appear under tables and the like.
+	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
+	var/active_regen_delay = 300
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
@@ -1095,7 +1098,7 @@
 	var/self = 0
 
 	if(usr.stat || usr.restrained() || !isliving(usr)) return
-	
+
 	var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
 	var/datum/gender/T = gender_datums[get_visible_gender()]
 
@@ -1358,7 +1361,13 @@
 	return 0
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
-	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
+	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
+	var/footcoverage_check = FALSE
+	for(var/obj/item/clothing/C in equipment)
+		if(C.body_parts_covered & FEET)
+			footcoverage_check = TRUE
+			break
+	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
 		return 0
 	if(..(slipped_on,stun_duration))
 		return 1
@@ -1554,3 +1563,15 @@
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
+
+/mob/living/carbon/human/proc/update_icon_special(var/mutable_appearance/ma, var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
+	if(hiding) // Hiding? Carry on.
+		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
+			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
+		else
+			ma.layer = HIDING_LAYER
+
+	//Can put special species icon update proc calls here, if any are ever invented.
+
+	if(update_icons)
+		update_icons()

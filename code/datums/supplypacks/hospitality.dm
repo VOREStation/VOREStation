@@ -61,3 +61,17 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Pizza crate"
+
+/datum/supply_packs/hospitality/gifts
+	name = "Gift crate"
+	contains = list(
+		/obj/item/toy/bouquet = 3,
+		/obj/item/weapon/storage/fancy/heartbox = 2,
+		/obj/item/weapon/paper/card/smile,
+		/obj/item/weapon/paper/card/heart,
+		/obj/item/weapon/paper/card/cat,
+		/obj/item/weapon/paper/card/flower
+		)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+	containername = "crate of gifts"

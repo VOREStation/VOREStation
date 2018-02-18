@@ -224,7 +224,7 @@
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
-					prob(3);/obj/item/weapon/material/knuckledusters,
+					prob(3);/obj/item/clothing/gloves/knuckledusters,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
 				//	prob(2);/obj/item/weapon/legcuffs,

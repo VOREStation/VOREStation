@@ -1,0 +1,9 @@
+author: Schnayy
+
+delete-after: True
+
+changes:
+  - rscadd: "Adds bouquets. Can be ordered via 'gift crate' in cargo."
+  - rscadd: "Adds fake bouquets for the cheap. Can currently be won from arcade machines."
+  - rscadd: "Adds chocolate heart-shaped boxes. Can be ordered via 'gift crate' in cargo."
+  - rscadd: "Adds gift cards with four cover variations. Function like paper. Can be ordered via 'gift crate' in cargo."

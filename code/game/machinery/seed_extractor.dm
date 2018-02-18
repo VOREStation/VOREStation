@@ -40,4 +40,7 @@ obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob
 			user << "<span class='notice'>You extract some seeds from the grass tile.</span>"
 			new /obj/item/seeds/grassseed(loc)
 
+	else if(default_unfasten_wrench(user, O, 20))
+		return
+
 	return

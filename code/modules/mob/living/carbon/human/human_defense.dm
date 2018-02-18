@@ -197,12 +197,6 @@ emp_act
 		if(.) return
 	return 0
 
-/mob/living/carbon/human/emp_act(severity)
-	for(var/obj/O in src)
-		if(!O)	continue
-		O.emp_act(severity)
-	..()
-
 /mob/living/carbon/human/proc/get_accuracy_penalty(mob/living/user)
 	// Certain statuses make it harder to score a hit.  These are the same as gun accuracy, however melee doesn't use multiples of 15.
 	var/accuracy_penalty = 0

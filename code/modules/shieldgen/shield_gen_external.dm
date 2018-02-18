@@ -11,7 +11,7 @@
 /obj/machinery/shield_gen/external/advanced
 	name = "advanced hull shield generator"
 	desc = "A machine that generates a field of energy optimized for blocking meteorites when activated.  This version comes with a more efficent shield matrix."
-	energy_conversion_rate = 0.0004
+	energy_conversion_rate = 0.0012
 
 //Search for space turfs within range that are adjacent to a simulated turf.
 /obj/machinery/shield_gen/external/get_shielded_turfs_on_z_level(var/turf/gen_turf)

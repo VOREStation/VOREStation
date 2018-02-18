@@ -216,7 +216,7 @@
 				//prob(6);/obj/item/weapon/material/butterflyhandle,
 				//prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
-				prob(2);/obj/item/weapon/material/knuckledusters,
+				prob(2);/obj/item/clothing/gloves/knuckledusters,
 				prob(1);/obj/item/weapon/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
@@ -1134,3 +1134,17 @@ var/list/multi_point_spawns
 				/obj/item/clothing/head/helmet/space/void/mining/alt
 			)
 		)
+
+/obj/random/landmine
+	name = "Random Land Mine"
+	desc = "This is a random land mine."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "uglymine"
+	spawn_nothing_percentage = 25
+
+/obj/random/landmine/item_to_spawn()
+	return pick(prob(30);/obj/effect/mine,
+				prob(25);/obj/effect/mine/frag,
+				prob(25);/obj/effect/mine/emp,
+				prob(10);/obj/effect/mine/stun,
+				prob(10);/obj/effect/mine/incendiary,)

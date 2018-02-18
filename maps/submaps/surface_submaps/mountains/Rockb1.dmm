@@ -24,26 +24,25 @@
 "x" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/tiled,/area/submap/Rockb1)
 "y" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/submap/Rockb1)
 "z" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"A" = (/obj/machinery/power/terminal,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"B" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"C" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"D" = (/obj/machinery/power/apc{operating = 0; pixel_x = 31},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"A" = (/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"B" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"C" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"D" = (/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc{dir = 4; name = "east bump"; operating = 0; pixel_x = 24},/turf/simulated/floor/tiled,/area/submap/Rockb1)
 "E" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"F" = (/obj/machinery/door/airlock,/turf/space,/area/submap/Rockb1)
-"G" = (/obj/machinery/light/small{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
-"H" = (/obj/structure/toilet{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
-"I" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"J" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"K" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/excavation,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"L" = (/obj/structure/table/standard,/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"M" = (/obj/structure/table/standard,/obj/item/stack/material/cyborg/steel,/obj/item/stack/material/cyborg/glass,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"N" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"O" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"P" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"Q" = (/turf/simulated/floor/plating,/area/submap/Rockb1)
-"R" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/plating,/area/submap/Rockb1)
-"S" = (/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/submap/Rockb1)
-"T" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"F" = (/obj/machinery/light/small{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
+"G" = (/obj/structure/toilet{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
+"H" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable/green,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"I" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/terminal{dir = 8},/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"J" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/excavation,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"K" = (/obj/structure/table/standard,/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"L" = (/obj/structure/table/standard,/obj/item/stack/material/cyborg/steel,/obj/item/stack/material/cyborg/glass,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"M" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"N" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"O" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"P" = (/turf/simulated/floor/plating,/area/submap/Rockb1)
+"Q" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/plating,/area/submap/Rockb1)
+"R" = (/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"S" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/plating,/area/submap/Rockb1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa
@@ -57,10 +56,10 @@ abcddepqrestmetumvedcccba
 abcddeeewemtteweeeeecccba
 accddemtxmmtttttxyzycccba
 abdddeweeeeeeeweeeeecccba
-abdddeABCDetEmtFGHedcccba
-abdddeIJKLetMNOeeeedcccba
-abcddeeeeeePeeeeddddcccba
-abccddddddeQRSTedddccccba
+abdddeABCDetEmtwFGedcccba
+abdddeHIJKetLMNeeeedcccba
+abcddeeeeeeOeeeeddddcccba
+abccddddddePQRSedddccccba
 abccddddddeeeeeedccccccba
 abcccccccddddddddddccccba
 abbcccccccccccccccccccbba
