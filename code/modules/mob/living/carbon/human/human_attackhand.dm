@@ -245,12 +245,13 @@
 			var/real_damage = rand_damage
 			var/hit_dam_type = attack.damage_type
 			real_damage += attack.get_unarmed_damage(H)
-			if(H.gloves && istype(H.gloves, /obj/item/clothing/gloves))
-				var/obj/item/clothing/gloves/G = H.gloves
-				real_damage += G.punch_force
-				hit_dam_type = G.punch_damtype
-				if(H.pulling_punches)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN
-					hit_dam_type = AGONY
+			if(H.gloves)
+				if(istype(H.gloves, /obj/item/clothing/gloves))
+					var/obj/item/clothing/gloves/G = H.gloves
+					real_damage += G.punch_force
+					hit_dam_type = G.punch_damtype
+					if(H.pulling_punches)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN
+						hit_dam_type = AGONY
 			real_damage *= damage_multiplier
 			rand_damage *= damage_multiplier
 			if(HULK in H.mutations)
