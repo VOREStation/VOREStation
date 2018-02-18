@@ -896,7 +896,7 @@
 	on_expired_text = "<span class='notice'>The spores of goo have faded, and you feel your agility returning to what it was before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-	evasion = 2
+	evasion = 30
 	slowdown = -1
 	attack_speed_percent = 0.75
 

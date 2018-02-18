@@ -8,17 +8,6 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/weapon/material/knuckledusters
-	name = "knuckle dusters"
-	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
-	icon_state = "knuckledusters"
-	gender = PLURAL
-	w_class = ITEMSIZE_SMALL
-	force_divisor = 0.63
-	dulled_divisor = 0.75	//It's a heavy bit of metal
-	attack_verb = list("punched", "beaten", "struck")
-	applies_material_colour = 0
-
 /obj/item/weapon/material/knife/machete/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."

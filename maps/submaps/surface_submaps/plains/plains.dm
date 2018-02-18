@@ -12,7 +12,21 @@
 #include "bonfire.dmm"
 #include "Rocky5.dmm"
 #include "Field1.dmm"
+#include "Theifc.dmm"
+#include "smol2.dmm"
+#include "Mechpt.dmm"
+#include "Boathouse.dmm"
+#include "PooledR.dmm"
+#include "Smol3.dmm"
+#include "Diner.dmm"
+#include "Snow1.dmm"
+#include "Snow2.dmm"
+#include "Snow3.dmm"
+#include "Snow4.dmm"
+#include "Snow5.dmm"
+
 #endif
+
 
 // The 'plains' is the area outside the immediate perimeter of the big outpost.
 // POIs here should not be dangerous, be mundane, and be somewhat conversative on the loot. Some of the loot can be useful, but it shouldn't trivialize the Wilderness.
@@ -95,3 +109,75 @@
 	desc = "A regular field with a tug on it"
 	mappath = 'maps/submaps/surface_submaps/plains/Field1.dmm'
 	cost = 20
+
+/datum/map_template/surface/plains/Theifc
+	name = "Theif Cave"
+	desc = "A theives stash"
+	mappath = 'maps/submaps/surface_submaps/plains/Theifc.dmm'
+	cost = 20
+
+/datum/map_template/surface/plains/smol2
+	name = "Small 2"
+	desc = "A small formation of mishaped surgery"
+	mappath = 'maps/submaps/surface_submaps/plains/smol2.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/Mechpt
+	name = "Mechpit"
+	desc = "A illmade Mech brawling ring"
+	mappath = 'maps/submaps/surface_submaps/plains/Mechpt.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/Boathouse
+	name = "Boathouse"
+	desc = "A fance house on a lake."
+	mappath = 'maps/submaps/surface_submaps/plains/Boathouse.dmm'
+	cost = 30
+
+/datum/map_template/surface/plains/PooledR
+	name = "Pooled Rocks"
+	desc = "An intresting rocky location"
+	mappath = 'maps/submaps/surface_submaps/plains/PooledR.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/Smol3
+	name = "Small 3"
+	desc = "A small stand"
+	mappath = 'maps/submaps/surface_submaps/plains/Smol3.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/Diner
+	name = "Diner"
+	desc = "Old Timey Tasty"
+	mappath = 'maps/submaps/surface_submaps/plains/Diner.dmm'
+	cost = 25
+
+/datum/map_template/surface/plains/snow1
+	name = "Snow1"
+	desc = "Snow"
+	mappath = 'maps/submaps/surface_submaps/plains/snow1.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/snow2
+	name = "Snow2"
+	desc = "More snow"
+	mappath = 'maps/submaps/surface_submaps/plains/snow2.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/snow3
+	name = "Snow3"
+	desc = "Snow Snow Snow"
+	mappath = 'maps/submaps/surface_submaps/plains/snow3.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/snow4
+	name = "Snow4"
+	desc = "Too much snow"
+	mappath = 'maps/submaps/surface_submaps/plains/snow4.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/snow5
+	name = "Snow5"
+	desc = "Please stop the snow"
+	mappath = 'maps/submaps/surface_submaps/plains/snow5.dmm'
+	cost = 5

@@ -599,10 +599,10 @@
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
 	if(is_type_in_list(I,edible_trash))
-		playsound(src.loc,'sound/vore/gulp.ogg', 20, 1)
 		drop_item()
 		var/belly = vore_selected
 		var/datum/belly/selected = vore_organs[belly]
+		playsound(src.loc, selected.vore_sound, 20, 1)
 		I.forceMove(src)
 		selected.internal_contents |= I
 		updateVRPanel()

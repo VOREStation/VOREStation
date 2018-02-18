@@ -86,15 +86,17 @@
 
 // Two mob spawners that are placed on the map that spawn some mobs!
 // They keep track of their mob, and when it's dead, spawn another (only if nobody is looking)
+// Note that if your map has step teleports, mobs may wander through them accidentally and not know how to get back
 /obj/tether_away_spawner/beach_outside
 	name = "Beach Outside Spawner" //Just a name
 	faction = "beach_out" //Sets all the mobs to this faction so they don't infight
 	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
 	prob_spawn = 50 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
-	guard = 40 //They'll stay within this range (not defining disables)
+	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/snake
+		/mob/living/simple_animal/snake = 3, //Snakes are 3x more likely to spawn than,
+		/mob/living/simple_animal/hostile/frog = 1 //these frogs are, with these values
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly

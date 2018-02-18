@@ -11,6 +11,8 @@
 	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BELT
 	loaded = /obj/item/weapon/rcd_ammo/large
+	slowdown = 1	// Slowdown equals slowdown_worn, until we decide to import the system to differentiate between held and worn items
+	fire_delay = 1
 
 	var/initial_cell_type = /obj/item/weapon/cell/hyper
 	var/initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
@@ -59,7 +61,9 @@
 
 	initial_cell_type = /obj/item/weapon/cell/infinite
 	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/super
+	fire_delay = 0
 
+	slowdown = 2
 	slowdown_held = 3
 	slowdown_worn = 2
 
@@ -67,9 +71,9 @@
 	w_class = ITEMSIZE_NO_CONTAINER
 
 	firemodes = list(
-		list(mode_name="semiauto",    burst=1, fire_delay=0,    move_delay=null, one_handed_penalty=1, burst_accuracy=null, dispersion=null),
-		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5,    one_handed_penalty=2, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="long bursts",  burst=6, fire_delay=null, move_delay=10,    one_handed_penalty=2, burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
+		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="long bursts", burst=6, fire_delay=null, move_delay=10, one_handed_penalty=30, burst_accuracy=list(0,-15,-15,-15,-30), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
 		)
 
 /obj/item/weapon/gun/magnetic/railgun/automatic/examine(var/mob/user)
@@ -82,11 +86,18 @@
 	desc = "The MI-12 Skadi is a burst fire capable railgun that fires flechette rounds at high velocity. Deadly against armour, but much less effective against soft targets."
 	icon_state = "flechette_gun"
 	item_state = "z8carbine"
+
 	initial_cell_type = /obj/item/weapon/cell/hyper
 	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
+
+	fire_delay = 0
+
 	slot_flags = SLOT_BACK
+
+	slowdown = 0
 	slowdown_held = 0
 	slowdown_worn = 0
+
 	power_cost = 100
 	load_type = /obj/item/weapon/magnetic_ammo
 	projectile_type = /obj/item/projectile/bullet/magnetic/flechette
@@ -95,6 +106,6 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto",    burst=1, fire_delay=0,    move_delay=null, one_handed_penalty=1, burst_accuracy=null, dispersion=null),
-		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5,    one_handed_penalty=2, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)

@@ -15,7 +15,7 @@
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
 
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 

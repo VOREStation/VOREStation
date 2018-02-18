@@ -19,7 +19,7 @@
 
 	melee_damage_lower = 1
 	melee_damage_upper = 5
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	speak_chance = 1
 	speak = list("NEHEHEHEHEH","Neh?")

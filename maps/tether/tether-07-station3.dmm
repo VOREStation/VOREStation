@@ -6885,7 +6885,7 @@
 	dir = 1;
 	id = "packageSort1"
 	},
-/obj/structure/plasticflaps/mining,
+/obj/structure/plasticflaps,
 /turf/simulated/floor,
 /area/quartermaster/delivery)
 "lR" = (
@@ -9328,7 +9328,7 @@
 	dir = 1;
 	id = "packageSort1"
 	},
-/obj/structure/plasticflaps/mining,
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/quartermaster/delivery)
 "pG" = (

@@ -522,3 +522,50 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/suit/armor/alien/tank,
 		/obj/item/clothing/head/helmet/alien/tank,
 	)
+
+/obj/structure/loot_pile/surface/bones
+    name = "bone pile"
+    desc = "A pile of various dusty bones. Your graverobbing instincts tell you there might be valuables here."
+    icon = 'icons/obj/bones.dmi'
+    icon_state = "bonepile"
+    delete_on_depletion = TRUE
+
+    common_loot = list(
+        /obj/item/weapon/bone,
+        /obj/item/weapon/bone/skull,
+        /obj/item/weapon/bone/skull/tajaran,
+        /obj/item/weapon/bone/skull/unathi,
+        /obj/item/weapon/bone/skull/unknown,
+        /obj/item/weapon/bone/leg,
+        /obj/item/weapon/bone/arm,
+        /obj/item/weapon/bone/ribs,
+    )
+    uncommon_loot = list(
+        /obj/item/weapon/coin/gold,
+        /obj/item/weapon/coin/silver,
+        /obj/item/weapon/deck/tarot,
+        /obj/item/weapon/flame/lighter/zippo/gold,
+        /obj/item/weapon/flame/lighter/zippo/black,
+        /obj/item/weapon/material/knife/tacknife/survival,
+        /obj/item/weapon/material/knife/tacknife/combatknife,
+        /obj/item/weapon/material/knife/machete/hatchet,
+        /obj/item/weapon/material/knife/butch,
+        /obj/item/weapon/storage/wallet/random,
+        /obj/item/clothing/accessory/bracelet/material/gold,
+        /obj/item/clothing/accessory/bracelet/material/silver,
+        /obj/item/clothing/accessory/locket,
+        /obj/item/clothing/accessory/poncho/blue,
+        /obj/item/clothing/shoes/boots/cowboy,
+        /obj/item/clothing/suit/storage/toggle/bomber,
+        /obj/item/clothing/under/frontier,
+        /obj/item/clothing/under/overalls,
+        /obj/item/clothing/under/pants/classicjeans/ripped,
+        /obj/item/clothing/under/sl_suit
+    )
+    rare_loot = list(
+        /obj/item/weapon/storage/belt/utility/alien/full,
+        /obj/item/weapon/gun/projectile/revolver,
+        /obj/item/weapon/gun/projectile/sec,
+        /obj/item/weapon/gun/launcher/crossbow
+    )
+

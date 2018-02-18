@@ -14,7 +14,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 25
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 	minbodytemp = 200
 	maxbodytemp = 370

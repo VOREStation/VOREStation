@@ -133,6 +133,7 @@
 	items_preserved.Cut()
 	checked_slots.Cut()
 	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
+	owner.update_icons()
 	return 1
 
 // Release a specific atom from the contents of this belly into the owning mob's location.
@@ -174,6 +175,8 @@
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
 /datum/belly/proc/nom_mob(var/mob/prey, var/mob/user)
+	if(owner.stat == DEAD)
+		return
 	if (prey.buckled)
 		prey.buckled.unbuckle_mob()
 
@@ -185,6 +188,9 @@
 
 	if(inside_flavor)
 		prey << "<span class='notice'><B>[inside_flavor]</B></span>"
+
+	for(var/obj/item/weapon/storage/S in prey)
+		S.hide_from(owner)
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,

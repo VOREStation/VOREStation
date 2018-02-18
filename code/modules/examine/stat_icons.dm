@@ -16,6 +16,7 @@ var/global/list/description_icons = list(
 	"wrench" = image(icon='icons/obj/tools.dmi',icon_state="wrench"),
 	"crowbar" = image(icon='icons/obj/tools.dmi',icon_state="crowbar"),
 	"multitool" = image(icon='icons/obj/device.dmi',icon_state="multitool"),
+	"cable coil" = image(icon='icons/obj/power.dmi',icon_state="coil"), // VOREStation Edit
 
 	"metal sheet" = image(icon='icons/obj/items.dmi',icon_state="sheet-metal"),
 	"plasteel sheet" = image(icon='icons/obj/items.dmi',icon_state="sheet-plasteel"),

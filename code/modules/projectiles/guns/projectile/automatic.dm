@@ -9,16 +9,16 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/a9mm
+	projectile_type = /obj/item/projectile/bullet/pistol
 	multi_aim = 1
 	burst_delay = 2
 
-//	requires_two_hands = 1
-	one_handed_penalty = 1
+//	one_handed_penalty = 15
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0))
-//		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1,-2,-2), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
+//		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15,-30,-30), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/c20r
@@ -35,11 +35,11 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m10mm
 	allowed_magazines = list(/obj/item/ammo_magazine/m10mm)
+	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
-//	requires_two_hands = 1
-	one_handed_penalty = 2
+//	one_handed_penalty = 15
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
@@ -62,13 +62,14 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m545
 	allowed_magazines = list(/obj/item/ammo_magazine/m545)
+	projectile_type = /obj/item/projectile/bullet/rifle/a545
 
-	one_handed_penalty = 4
+//	one_handed_penalty = 30
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2), dispersion=list(0.0, 0.6, 0.6))
-//		list(mode_name="short bursts", 	burst=5, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1,-2,-2,-3), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15,-30), dispersion=list(0.0, 0.6, 0.6))
+//		list(mode_name="short bursts", 	burst=5, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15,-30,-30,-45), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
@@ -93,6 +94,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mmt/rubber
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mmt)
+	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
 /obj/item/weapon/gun/projectile/automatic/wt550/update_icon()
 	..()
@@ -116,15 +118,16 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m762
 	allowed_magazines = list(/obj/item/ammo_magazine/m762)
+	projectile_type = /obj/item/projectile/bullet/rifle/a762
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
-	one_handed_penalty = 4
+//	one_handed_penalty = 60
 
 	burst_delay = 4
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1,    fire_delay=0,    move_delay=null, use_launcher=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="2-round bursts", burst=2,    fire_delay=null, move_delay=6,    use_launcher=null, burst_accuracy=list(0,-1), dispersion=list(0.0, 0.6)),
+		list(mode_name="2-round bursts", burst=2,    fire_delay=null, move_delay=6,    use_launcher=null, burst_accuracy=list(0,-15), dispersion=list(0.0, 0.6)),
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null, use_launcher=1,    burst_accuracy=null, dispersion=null)
 		)
 
@@ -187,8 +190,9 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m545saw
 	allowed_magazines = list(/obj/item/ammo_magazine/m545saw, /obj/item/ammo_magazine/m545)
+	projectile_type = /obj/item/projectile/bullet/rifle/a545
 
-	one_handed_penalty = 6
+//	one_handed_penalty = 90
 
 	var/cover_open = 0
 
@@ -203,8 +207,8 @@
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="short bursts",	burst=5, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="short bursts",	burst=5, move_delay=6, burst_accuracy = list(0,-15,-15,-30,-30), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/special_check(mob/user)
@@ -260,19 +264,19 @@
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "12g"
-	fire_sound = 'sound/weapons/shotgun.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m12gdrum
 	allowed_magazines = list(/obj/item/ammo_magazine/m12gdrum)
+	projectile_type = /obj/item/projectile/bullet/shotgun
 
-	one_handed_penalty = 4
+//	one_handed_penalty = 60
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
-		list(mode_name="3-round bursts", burst=3, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.0, 0.6, 0.6))
-//		list(mode_name="6-round bursts", burst=6, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2, 1.2)),
+		list(mode_name="3-round bursts", burst=3, move_delay=6, burst_accuracy = list(0,-15,-15,-30,-30), dispersion = list(0.0, 0.6, 0.6))
+//		list(mode_name="6-round bursts", burst=6, move_delay=6, burst_accuracy = list(0,-15,-15,-30,-30, -30), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2, 1.2)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/as24/update_icon()
@@ -296,7 +300,7 @@
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
-		list(mode_name="3-round bursts", burst=3, burst_delay=1, fire_delay=4, move_delay=4, burst_accuracy = list(0,-1,-1,-2,-2), dispersion = list(0.6, 1.0, 1.0))
+		list(mode_name="3-round bursts", burst=3, burst_delay=1, fire_delay=4, move_delay=4, burst_accuracy = list(0,-15,-15,-30,-30), dispersion = list(0.6, 1.0, 1.0))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi/update_icon()
@@ -322,7 +326,7 @@
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0))
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/p90/update_icon()
@@ -342,7 +346,7 @@
 
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 0.6, 1.0))
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/tommygun/update_icon()
@@ -363,12 +367,13 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m762
 	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762m)
+	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
-	one_handed_penalty = 4
+//	one_handed_penalty = 45
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="2-round bursts", burst=2, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-1), dispersion=list(0.0, 0.6))
+		list(mode_name="2-round bursts", burst=2, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15), dispersion=list(0.0, 0.6))
 		)
 
 /obj/item/weapon/gun/projectile/automatic/bullpup/update_icon(var/ignore_inhands)
@@ -379,4 +384,5 @@
 		icon_state = "bullpup"
 	else
 		item_state = "bullpup-empty"
-	if(!ignore_inhands) update_held_icon()
+	if(!ignore_inhands)
+		update_held_icon()

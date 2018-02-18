@@ -37,7 +37,7 @@
 "aK" = (/obj/item/weapon/crowbar/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
 "aL" = (/obj/item/stack/cable_coil/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
 "aM" = (/obj/structure/table/alien,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aN" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/obj/item/device/gps/internal/alien_vessel,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
+"aN" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/obj/item/device/gps/internal/poi,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
 "aO" = (/obj/structure/prop/alien/computer{tag = "icon-console-c (EAST)"; icon_state = "console-c"; dir = 4},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
 "aP" = (/obj/structure/table/alien,/obj/item/clothing/accessory/medal/dungeon/alien_ufo,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
 "aQ" = (/obj/structure/table/alien,/obj/item/weapon/weldingtool/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)

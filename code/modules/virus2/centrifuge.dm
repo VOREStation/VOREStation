@@ -13,6 +13,9 @@
 	if(istype(O, /obj/item/weapon/screwdriver))
 		return ..(O,user)
 
+	if(default_unfasten_wrench(user, O, 20))
+		return
+
 	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial))
 		if(sample)
 			user << "\The [src] is already loaded."

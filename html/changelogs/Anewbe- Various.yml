@@ -33,5 +33,6 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Gloves are generally less protective from shocks."
-  - tweak: "Budget Insulated Gloves will almost always be better than any other non-insulated glove."
+  - rscadd: "Cyborg Chargers now decrease radiation on FBPs."
+  - tweak: "Falling one floor now does a lot less damage, on average."
+  - bugfix: "Falling one floor in a Mech no longer hurts the occupant."

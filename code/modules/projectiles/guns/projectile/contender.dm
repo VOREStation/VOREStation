@@ -8,6 +8,7 @@
 	handle_casings = HOLD_CASINGS
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/a357
+	projectile_type = /obj/item/projectile/bullet/pistol/strong
 	var/retracted_bolt = 0
 	load_method = SINGLE_CASING
 

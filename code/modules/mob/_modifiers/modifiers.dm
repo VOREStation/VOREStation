@@ -37,9 +37,9 @@
 	var/outgoing_melee_damage_percent	// Adjusts melee damage inflicted by holder by a percentage.  Affects attacks by melee weapons and hand-to-hand.
 	var/slowdown						// Negative numbers speed up, positive numbers slow down movement.
 	var/haste							// If set to 1, the mob will be 'hasted', which makes it ignore slowdown and go really fast.
-	var/evasion							// Positive numbers reduce the odds of being hit by 15% each.  Negative numbers increase the odds.
+	var/evasion							// Positive numbers reduce the odds of being hit. Negative numbers increase the odds.
 	var/bleeding_rate_percent			// Adjusts amount of blood lost when bleeding.
-	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder.  Each point makes it 15% easier or harder, just like evasion.
+	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder. Every 15% is equal to one tile easier or harder, just like evasion.
 	var/accuracy_dispersion				// Positive numbers make gun firing cover a wider tile range, and therefore more inaccurate.  Negatives help negate dispersion penalties.
 	var/metabolism_percent				// Adjusts the mob's metabolic rate, which affects reagent processing.  Won't affect mobs without reagent processing.
 	var/icon_scale_percent				// Makes the holder's icon get scaled up or down.

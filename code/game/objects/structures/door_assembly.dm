@@ -320,3 +320,10 @@
 		if(2)
 			name = "near finished "
 	name += "[glass == 1 ? "window " : ""][istext(glass) ? "[glass] airlock" : base_name] assembly ([created_name])"
+
+// Airlock frames are indestructable, so bullets hitting them would always be stopped.
+// To fix this, airlock assemblies will sometimes let bullets pass through, since generally the sprite shows them partially open.
+/obj/structure/door_assembly/bullet_act(var/obj/item/projectile/P)
+	if(prob(40)) // Chance for the frame to let the bullet keep going.
+		return PROJECTILE_CONTINUE
+	return ..()

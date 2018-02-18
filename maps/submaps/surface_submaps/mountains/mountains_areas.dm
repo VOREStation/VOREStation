@@ -41,3 +41,9 @@
 
 /area/submap/CaveTrench
 	name = "Cave River"
+
+/area/submap/CorgiRitual
+	name = "Dark Ritual"
+
+/area/submap/AbandonedTemple
+	name = "Abandoned Temple"
