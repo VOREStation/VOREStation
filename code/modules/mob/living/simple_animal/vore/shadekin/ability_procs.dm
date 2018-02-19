@@ -19,7 +19,7 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
-		name = real_name = initial(name)
+		name = real_name
 		for(var/belly in vore_organs)
 			var/datum/belly/B = vore_organs[belly]
 			B.escapable = initial(B.escapable)
@@ -60,7 +60,7 @@
 	else
 		ability_flags |= AB_PHASE_SHIFTED
 		custom_emote(1,"phases out!")
-		name = real_name = "Something"
+		name = "Something"
 
 		for(var/belly in vore_organs)
 			var/datum/belly/B = vore_organs[belly]
