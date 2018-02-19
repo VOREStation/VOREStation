@@ -158,7 +158,7 @@
 	if(handling_hal) return //avoid conflict with actual hallucinations
 	handling_hal = 1
 
-	if(client && feral) // largely a copy of handle_hallucinations() without the fake attackers. Unlike hallucinations, only fires once - if they're still feral they'll get hit again anyway.
+	if(client && feral >= 10) // largely a copy of handle_hallucinations() without the fake attackers. Unlike hallucinations, only fires once - if they're still feral they'll get hit again anyway.
 		sleep(rand(200,500)/(feral/10))
 		var/halpick = rand(1,100)
 		switch(halpick)
