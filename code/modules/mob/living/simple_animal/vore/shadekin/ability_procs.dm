@@ -36,8 +36,23 @@
 		flick("tp_in",src)
 		custom_emote(1,"phases in!")
 		sleep(5) //The duration of the TP animation
-		update_icon()
 		canmove = original_canmove
+
+		//Potential phase-in vore
+		if(can_be_drop_pred) //Toggleable in vore panel
+			var/list/potentials = living_mobs(0)
+			if(potentials.len)
+				var/mob/living/target = pick(potentials)
+				var/datum/belly/B = vore_organs[vore_selected]
+				if(istype(target) && istype(B))
+					target.forceMove(src)
+					B.internal_contents |= target
+					playsound(src, B.vore_sound, 100, 1)
+					to_chat(target,"<span class='warning'>\The [src] phases in around you, [B.vore_verb]ing you into their [B.name]!</span>")
+					to_chat(src,"<span class='warning'>Your [B.name] has a new occupant!</span>")
+
+		// Do this after the potential vore, so we get the belly
+		update_icon()
 
 		//Affect nearby lights
 		var/destroy_lights = 0
