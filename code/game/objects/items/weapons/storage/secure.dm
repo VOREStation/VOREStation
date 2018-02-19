@@ -184,15 +184,10 @@
 	anchored = 1.0
 	density = 0
 	cant_hold = list(/obj/item/weapon/storage/secure/briefcase)
+	starts_with = list(
+		/obj/item/weapon/paper,
+		/obj/item/weapon/pen
+	)
 
-	New()
-		..()
-		new /obj/item/weapon/paper(src)
-		new /obj/item/weapon/pen(src)
-
-	attack_hand(mob/user as mob)
-		return attack_self(user)
-
-/obj/item/weapon/storage/secure/safe/HoS/New()
-	..()
-	//new /obj/item/weapon/storage/lockbox/clusterbang(src) This item is currently broken... and probably shouldnt exist to begin with (even though it's cool)
+/obj/item/weapon/storage/secure/safe/attack_hand(mob/user as mob)
+	return attack_self(user)
