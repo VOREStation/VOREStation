@@ -47,3 +47,6 @@
 
 /area/submap/AbandonedTemple
 	name = "Abandoned Temple"
+
+/area/submap/CrashedMedShuttle
+	name = "Crashed Med Shuttle"
