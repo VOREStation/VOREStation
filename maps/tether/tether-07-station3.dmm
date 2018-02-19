@@ -16437,6 +16437,10 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 5
 	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "By" = (
@@ -18305,6 +18309,10 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 6
 	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Eu" = (
@@ -19018,6 +19026,10 @@
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 5
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
@@ -20366,6 +20378,10 @@
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 6
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
