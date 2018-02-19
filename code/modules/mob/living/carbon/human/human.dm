@@ -1024,10 +1024,10 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/clean_feet)
+/mob/living/carbon/human/clean_blood(var/washshoes)
 	.=..()
 	gunshot_residue = null
-	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
+	if(washshoes && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
 		feet_blood_DNA.Cut()
 		feet_blood_DNA = null
