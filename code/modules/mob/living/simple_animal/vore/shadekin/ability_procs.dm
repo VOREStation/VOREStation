@@ -60,6 +60,7 @@
 	else
 		ability_flags |= AB_PHASE_SHIFTED
 		custom_emote(1,"phases out!")
+		real_name = name
 		name = "Something"
 
 		for(var/belly in vore_organs)
