@@ -1714,3 +1714,34 @@ Departamental Swimsuits, for general use
 			"Teshari" = 'icons/vore/custom_clothes_tesh_vr.dmi'
 			)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+//Aztectornado:Tron inspired Siren outfit
+/obj/item/clothing/under/fluff/siren
+	name = "Siren Jumpsuit"
+	desc = "An advanced jumpsuit with inlaid neon highlighting, and a port on the back."
+	description_fluff = "Unlike other competitor suits, the Ward Takahashi Siren jumpsuit features a whole host of extra sensors for augmented reality use, and features a non-invasive neural sensor/stimulator for a fully immersive experience. Outside the home, this suit sees usage with mecha and ship pilots."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tronsiren"
+	item_state = "tronsiren_mob"
+
+/obj/item/clothing/gloves/latex/fluff/siren
+	name = "Siren Gloves"
+	desc = "A set of white and neon blue gloves."
+	description_fluff = "Like its jumpsuit companion, the Ward Takahashi Siren gloves feature multiple sensors for usage in augmented reality. With or without a paired jumpsuit, the gloves alone grant access to the Touch-based Reality Overlay and Network, a form of digital organizer for personal schedules and notes. (Provided you have a way to see AR!)"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tronsiren_gloves"
+	item_state = "tronsiren_gloves_mob"
+
+/obj/item/clothing/shoes/boots/fluff/siren
+	name = "Siren Boots"
+	desc = "A set of white boots with neon lighting."
+	description_fluff = "Unlike the rest of the Ward Takahashi Siren lineup, the boots are simply boots. However, they go great with the rest of the outfit, and are quite comfortable."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tronsiren_shoes_mob" //For some reason, this is used for item and worn icons both??
+	item_state = "tronsiren_shoes_mob" //I don't think it even checks this variable. why.
