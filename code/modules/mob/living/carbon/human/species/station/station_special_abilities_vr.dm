@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/begin_reconstitute_form() //Scree's race ability.in exchange for: No cloning.
-	set name = "Begin Reconstitute Form"
+	set name = "Reconstitute Form"
 	set category = "Abilities"
 
 	if(world.time < last_special)
@@ -9,41 +9,18 @@
 
 	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
-		var/mob/living/carbon/human/C = src
-		var/nutrition_used = C.nutrition/2
+		chimera_regenerate()
 
-		if(C.reviving == 1) //If they're already unable to
-			C << "You are already reconstructing, or your body is currently recovering from the intense process of your previous reconstitution."
-			return
+/mob/living/carbon/human/proc/chimera_regenerate()
+	var/mob/living/carbon/human/C = src
+	var/nutrition_used = C.nutrition/2
 
-		if(C.stat == DEAD) //Uh oh, you died!
-			if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
-				var/time = (240+960/(1 + nutrition_used/75))
-				C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
-				C.reviving = 1
-				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
-				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-				C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
+	if(C.reviving == 1) //If they're already unable to
+		C << "You are already reconstructing, or your body is currently recovering from the intense process of your previous reconstitution."
+		return
 
-				for(var/obj/item/organ/E in C.bad_external_organs)
-					var/obj/item/organ/external/affected = E
-					for(var/datum/wound/W in affected.wounds) // Fix internal bleeds at the start of the rejuv process.
-						if(istype(W, /datum/wound/internal_bleeding))
-							affected.wounds -= W
-							affected.update_damages()
-
-				spawn(time SECONDS)
-					if(C) //Runtime prevention.
-						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
-						C.verbs += /mob/living/carbon/human/proc/hatch
-						return
-					else
-						return //Something went wrong.
-			else //Dead until nutrition injected.
-				C << "Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain."
-				return
-
-		else if(C.stat != DEAD) //If they're alive at the time of reviving.
+	if(C.stat == DEAD) //Uh oh, you died!
+		if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
 			var/time = (240+960/(1 + nutrition_used/75))
 			C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
 			C.reviving = 1
@@ -51,77 +28,49 @@
 			C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
 			C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
+			for(var/obj/item/organ/E in C.bad_external_organs)
+				var/obj/item/organ/external/affected = E
+				for(var/datum/wound/W in affected.wounds) // Fix internal bleeds at the start of the rejuv process.
+					if(istype(W, /datum/wound/internal_bleeding))
+						affected.wounds -= W
+						affected.update_damages()
+
 			spawn(time SECONDS)
-				if(C.stat != DEAD) //If they're still alive after regenning.
+				if(C) //Runtime prevention.
 					C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
 					C.verbs += /mob/living/carbon/human/proc/hatch
 					return
-				else if(C.stat == DEAD)
-					if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
-						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
-						C.verbs += /mob/living/carbon/human/proc/hatch
-					else //Dead until nutrition injected.
-						C << "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process."
-						C.reviving = 0 // so they can try again when they're given a kickstart
-						return
 				else
-					return //Something went wrong
-		else
-			return //Something went wrong
+					return //Something went wrong.
+		else //Dead until nutrition injected.
+			C << "Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain."
+			return
 
-/mob/living/carbon/human/proc/purge_impurities() //a lesser regeneration that just purges toxin/infections without healing. Does NOT clear reagents.
-	set name = "Purge Impurities"
-	set category = "Abilities"
+	else if(C.stat != DEAD) //If they're alive at the time of reviving.
+		var/time = (240+960/(1 + nutrition_used/75))
+		C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
+		C.reviving = 1
+		C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
+		C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
+		C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
 
-	if(world.time < last_special)
-		return
-
-	last_special = world.time + 50 //To prevent button spam.
-
-	var/mob/living/carbon/human/C = src
-
-	if(C.reviving == 1) //If they're already unable to
-		C << "Your body is currently still recovering from the last time you healed."
-		return
-
-	C.reviving = 1 // apply cooldown, this also locks out their main regen.
-	C << "<span class='notice'>You start to purge your body of poisons and intruders...</span>"
-
-	var/grossness = min(100, toxloss*5)
-
-	for(var/i = 0, i<10,i++) // tick some tox down. This'll clear 20 toxloss in total.
-		if(C)
-			C.adjustToxLoss(-2)
-			sleep(10)
-
-	for(var/obj/item/organ/external/E in C.organs) //half the germ_level of everything. If they're anything short of outright necrotic they'll be fine.
-		var/obj/item/organ/external/G = E
-		if(G.germ_level)
-			grossness += G.germ_level/10
-			G.germ_level = min(0, (G.germ_level/2) - 100)
-
-	for(var/obj/item/organ/internal/I in C.internal_organs)
-		var/obj/item/organ/internal/G = I
-		if(G.germ_level)
-			grossness += G.germ_level/5
-			G.germ_level = min(0, (G.germ_level/2) - 100)
-
-	//and now comes the fun part because they're gross
-	for (var/i = 0, i< grossness/10,i++)
-		if (prob(min(100, grossness)))
-			C << "<span class='warning'>You feel nauseous...</span>"
-			sleep(30)
-			if(prob(min(100, grossness/2))) // relatively small chance unless they really let themselves go to shit
-				C << "<span class='warning'>You double over, gagging!</span>"
-				C.Stun(3)
-			C.vomit()
-		sleep(50)
-
-	C << "<span class='notice'>You have finished purging your body of impurities.</span>"
-
-	spawn(300 SECONDS) //5 minute wait until you can purge or regenerate again.
-		C.reviving = 0
-
+		spawn(time SECONDS)
+			if(C.stat != DEAD) //If they're still alive after regenning.
+				C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
+				C.verbs += /mob/living/carbon/human/proc/hatch
+				return
+			else if(C.stat == DEAD)
+				if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
+					C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
+					C.verbs += /mob/living/carbon/human/proc/hatch
+				else //Dead until nutrition injected.
+					C << "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process."
+					C.reviving = 0 // so they can try again when they're given a kickstart
+					return
+			else
+				return //Something went wrong
+	else
+		return //Something went wrong
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (src.bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
