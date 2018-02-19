@@ -22811,97 +22811,6 @@
 /obj/effect/landmark/map_data/virgo3b,
 /turf/space,
 /area/space)
-"KV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"LG" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 10
-	},
-/obj/structure/sink{
-	dir = 8;
-	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"LL" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 10
-	},
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"LS" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/structure/window/basic{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Mo" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 8
-	},
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"MJ" = (
-/turf/simulated/wall,
-/area/space)
-"No" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 5
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
-/turf/simulated/floor/tiled/white,
-/area/space)
 "Nw" = (
 /obj/structure/table/standard,
 /obj/item/device/healthanalyzer,
@@ -22936,109 +22845,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
-"NK" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"NR" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 9
-	},
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"NY" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/structure/window/basic{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Ow" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Oy" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Ph" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/window/basic{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Pr" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Qx" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 8
-	},
-/obj/structure/sink{
-	dir = 8;
-	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
 "RB" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 10
@@ -23054,257 +22860,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
-"SL" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 10
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	dir = 2;
-	pixel_y = -24
-	},
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"TJ" = (
-/obj/machinery/iv_drip,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
 "Uc" = (
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
-"Ue" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/machinery/computer/operating{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Uh" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 6
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/medical2,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Um" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/door/window/eastright{
-	req_one_access = list(5)
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Uy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"UM" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"UW" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/machinery/optable,
-/obj/machinery/oxygen_pump/anesthetic{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Vi" = (
-/turf/simulated/floor/tiled/white,
-/area/space)
-"VK" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 6
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Wk" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"WE" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/structure/window/basic{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"WU" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"XJ" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"YM" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 10
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	dir = 2;
-	pixel_y = -24
-	},
-/obj/machinery/iv_drip,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"YU" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/machinery/button/windowtint{
-	id = "surgeryobs2";
-	pixel_y = -26
-	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Zm" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 26
-	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Zq" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
-"Zw" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 5
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/medical2,
-/turf/simulated/floor/tiled/white,
-/area/space)
 
 (1,1,1) = {"
 aa
@@ -36296,17 +35855,17 @@ aa
 aa
 aa
 aa
-NR
-LL
-XJ
-Qx
-YM
-MJ
-TJ
-LG
-XJ
-Mo
-SL
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -36418,17 +35977,17 @@ aa
 aa
 aa
 aa
-NY
-WE
-Um
-Ph
-LS
-MJ
-NY
-WE
-Um
-Ph
-LS
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -36540,17 +36099,17 @@ aa
 aa
 aa
 aa
-Zm
-Vi
-Uy
-Vi
-YU
-MJ
-Zm
-Vi
-Uy
-Vi
-YU
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -36662,17 +36221,17 @@ aa
 aa
 aa
 aa
-UM
-NK
-KV
-Zq
-Wk
-MJ
-Pr
-NK
-KV
-Zq
-Oy
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -36784,17 +36343,17 @@ aa
 aa
 aa
 aa
-No
-WU
-UW
-Ue
-Uh
-MJ
-Zw
-Ue
-UW
-Ow
-VK
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
