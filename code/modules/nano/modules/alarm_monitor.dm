@@ -26,7 +26,7 @@
 /datum/nano_module/alarm_monitor/proc/all_alarms()
 	var/list/all_alarms = new()
 	for(var/datum/alarm_handler/AH in alarm_handlers)
-		all_alarms += AH.alarms
+		all_alarms += AH.visible_alarms()
 
 	return all_alarms
 

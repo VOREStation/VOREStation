@@ -151,7 +151,7 @@
 	return 1
 
 /mob/living/silicon/robot/handle_regular_hud_updates()
-
+	var/fullbright = FALSE
 	if (src.stat == 2 || (XRAY in mutations) || (src.sight_mode & BORGXRAY))
 		src.sight |= SEE_TURFS
 		src.sight |= SEE_MOBS
@@ -163,18 +163,22 @@
 		src.sight |= SEE_MOBS
 		src.see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_MINIMUM
+		fullbright = TRUE
 	else if (src.sight_mode & BORGMESON)
 		src.sight |= SEE_TURFS
 		src.see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_MINIMUM
+		fullbright = TRUE
 	else if (src.sight_mode & BORGMATERIAL)
 		src.sight |= SEE_OBJS
 		src.see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_MINIMUM
+		fullbright = TRUE
 	else if (src.sight_mode & BORGTHERM)
 		src.sight |= SEE_MOBS
 		src.see_in_dark = 8
 		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
+		fullbright = TRUE
 	else if (!seedarkness)
 		src.sight &= ~SEE_MOBS
 		src.sight &= ~SEE_TURFS
@@ -188,7 +192,7 @@
 		src.see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so, tajaran have it at 8
 		src.see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
 							 // has a "invisible" value of 15
-
+	plane_holder.set_vis(VIS_FULLBRIGHT,fullbright)
 	..()
 
 	if (src.healths)

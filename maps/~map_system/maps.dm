@@ -142,6 +142,10 @@ var/list/all_maps = list()
 	else
 		return list()
 
+/datum/map/proc/get_zlevel_name(var/index)
+	var/datum/map_z_level/Z = zlevels["[index]"]
+	return Z.name
+
 // Another way to setup the map datum that can be convenient.  Just declare all your zlevels as subtypes of a common
 // subtype of /datum/map_z_level and set zlevel_datum_type on /datum/map to have the lists auto-initialized.
 

@@ -8,7 +8,7 @@
 //MAGNETIC COILS - These things actually store and transmit power within the SMES. Different types have different
 /obj/item/weapon/smes_coil
 	name = "superconductive magnetic coil"
-	desc = "Standard superconductive magnetic coil with average capacity and I/O rating."
+	desc = "The standard superconductive magnetic coil, with average capacity and I/O rating."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
 	w_class = ITEMSIZE_LARGE 						// It's LARGE (backpack size)
@@ -18,21 +18,21 @@
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
 /obj/item/weapon/smes_coil/weak
 	name = "basic superconductive magnetic coil"
-	desc = "Cheaper model of standard superconductive magnetic coil. It's capacity and I/O rating are considerably lower."
+	desc = "A cheaper model of superconductive magnetic coil. Its capacity and I/O rating are considerably lower."
 	ChargeCapacity = 1200000			// 20 kWh
 	IOCapacity = 150000					// 150 kW
 
 // 1000% Charge Capacity, 20% I/O Capacity
 /obj/item/weapon/smes_coil/super_capacity
 	name = "superconductive capacitance coil"
-	desc = "Specialised version of standard superconductive magnetic coil. This one has significantly stronger containment field, allowing for significantly larger power storage. It's IO rating is much lower, however."
+	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	ChargeCapacity = 60000000			// 1000 kWh
 	IOCapacity = 50000					// 50 kW
 
 // 10% Charge Capacity, 400% I/O Capacity. Technically turns SMES into large super capacitor.Ideal for shields.
 /obj/item/weapon/smes_coil/super_io
 	name = "superconductive transmission coil"
-	desc = "Specialised version of standard superconductive magnetic coil. While this one won't store almost any power, it rapidly transfers power, making it useful in systems which require large throughput."
+	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	ChargeCapacity = 600000				// 10 kWh
 	IOCapacity = 1000000				// 1000 kW
 
@@ -110,7 +110,7 @@
 	if(RCon)
 		..()
 	else // RCON wire cut
-		usr << "<span class='warning'>Connection error: Destination Unreachable.</span>"
+		to_chat(usr, "<span class='warning'>Connection error: Destination Unreachable.</span>")
 
 	// Cyborgs standing next to the SMES can play with the wiring.
 	if(istype(usr, /mob/living/silicon/robot) && Adjacent(usr) && open_hatch)
@@ -122,7 +122,7 @@
 /obj/machinery/power/smes/buildable/New(var/install_coils = 1)
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
-	src.wires = new /datum/wires/smes(src)
+	wires = new /datum/wires/smes(src)
 
 	// Allows for mapped-in SMESs with larger capacity/IO
 	if(install_coils)
@@ -153,13 +153,12 @@
 			output_level_max += C.IOCapacity
 		charge = between(0, charge, capacity)
 		return 1
-	else
-		return 0
+	return 0
 
 // Proc: total_system_failure()
 // Parameters: 2 (intensity - how strong the failure is, user - person which caused the failure)
 // Description: Checks the sensors for alerts. If change (alerts cleared or detected) occurs, calls for icon update.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user)
 	// SMESs store very large amount of power. If someone screws up (ie: Disables safeties and attempts to modify the SMES) very bad things happen.
 	// Bad things are based on charge percentage.
 	// Possible effects:
@@ -173,11 +172,9 @@
 	if (!intensity)
 		return
 
-	var/mob/living/carbon/human/h_user = null
-	if (!istype(user, /mob/living/carbon/human))
+	var/mob/living/carbon/human/h_user = user
+	if (!istype(h_user))
 		return
-	else
-		h_user = user
 
 
 	// Preparations
@@ -191,86 +188,81 @@
 	log_game("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100")
 	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100 - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>")
 
+	var/used_hand = h_user.hand?"l_hand":"r_hand"
 
 	switch (intensity)
 		if (0 to 15)
 			// Small overcharge
 			// Sparks, Weak shock
 			s.set_up(2, 1, src)
-			s.start()
 			if (user_protected && prob(80))
-				h_user << "Small electrical arc almost burns your hand. Luckily you had your gloves on!"
+				to_chat(h_user, "A small electrical arc almost burns your hand. Luckily you had your gloves on!")
 			else
-				h_user << "Small electrical arc sparks and burns your hand as you touch the [src]!"
-				h_user.adjustFireLoss(rand(5,10))
-				h_user.Paralyse(2)
-			charge = 0
+				to_chat(h_user, "A small electrical arc sparks and burns your hand as you touch the [src]!")
+				h_user.adjustFireLossByPart(rand(5,10), used_hand)
+				h_user.Weaken(2)
 
 		if (16 to 35)
 			// Medium overcharge
 			// Sparks, Medium shock, Weak EMP
 			s.set_up(4,1,src)
-			s.start()
 			if (user_protected && prob(25))
-				h_user << "Medium electrical arc sparks and almost burns your hand. Luckily you had your gloves on!"
+				to_chat(h_user, "A medium electrical arc sparks and almost burns your hand. Luckily you had your gloves on!")
 			else
-				h_user << "Medium electrical sparks as you touch the [src], severely burning your hand!"
-				h_user.adjustFireLoss(rand(10,25))
-				h_user.Paralyse(5)
-			spawn(0)
-				empulse(src.loc, 1, 2, 3, 4)
-			charge = 0
+				to_chat(h_user, "A medium electrical arc sparks as you touch the [src], severely burning your hand!")
+				h_user.adjustFireLossByPart(rand(10,25), used_hand)
+				h_user.Weaken(5)
+			spawn()
+				empulse(get_turf(src), 1, 2, 3, 4)
 
 		if (36 to 60)
 			// Strong overcharge
 			// Sparks, Strong shock, Strong EMP, 10% light overload. 1% APC failure
 			s.set_up(7,1,src)
-			s.start()
 			if (user_protected)
-				h_user << "Strong electrical arc sparks between you and [src], ignoring your gloves and burning your hand!"
-				h_user.adjustFireLoss(rand(25,60))
-				h_user.Paralyse(8)
+				to_chat(h_user, "A strong electrical arc sparks between you and [src], ignoring your gloves and burning your hand!")
+				h_user.adjustFireLossByPart(rand(25,60), used_hand)
+				h_user.Weaken(8)
 			else
-				h_user << "Strong electrical arc sparks between you and [src], knocking you out for a while!"
-				h_user.adjustFireLoss(rand(35,75))
-				h_user.Paralyse(12)
-			spawn(0)
-				empulse(src.loc, 6, 8, 12, 16)
-			charge = 0
+				to_chat(h_user, "A strong electrical arc sparks between you and [src], knocking you out for a while!")
+				h_user.electrocute_act(rand(35,75), src, def_zone = BP_TORSO)
+			spawn()
+				empulse(get_turf(src), 6, 8, 12, 16)
 			apcs_overload(1, 10)
-			src.ping("Caution. Output regulators malfunction. Uncontrolled discharge detected.")
+			ping("Caution. Output regulator malfunction. Uncontrolled discharge detected.")
 
 		if (61 to INFINITY)
 			// Massive overcharge
 			// Sparks, Near - instantkill shock, Strong EMP, 25% light overload, 5% APC failure. 50% of SMES explosion. This is bad.
 			s.set_up(10,1,src)
-			s.start()
-			h_user << "Massive electrical arc sparks between you and [src]. Last thing you can think about is \"Oh shit...\""
+			to_chat(h_user, "A massive electrical arc sparks between you and [src]. The last thing you can think about is \"Oh shit...\"")
 			// Remember, we have few gigajoules of electricity here.. Turn them into crispy toast.
-			h_user.adjustFireLoss(rand(150,195))
-			h_user.Paralyse(25)
-			spawn(0)
-				empulse(src.loc, 32, 64)
-			charge = 0
+			h_user.electrocute_act(rand(150,195), src, def_zone = BP_TORSO)
+			spawn()
+				empulse(get_turf(src), 32, 64)
 			apcs_overload(5, 25)
-			src.ping("Caution. Output regulators malfunction. Significant uncontrolled discharge detected.")
+			ping("Caution. Output regulator malfunction. Significant uncontrolled discharge detected.")
 
 			if (prob(50))
 				// Added admin-notifications so they can stop it when griffed.
 				log_game("SMES explosion imminent.")
 				message_admins("SMES explosion imminent.")
-				src.ping("DANGER! Magnetic containment field unstable! Containment field failure imminent!")
+				ping("DANGER! Magnetic containment field unstable! Containment field failure imminent!")
 				failing = 1
+				update_icon()
 				// 30 - 60 seconds and then BAM!
 				spawn(rand(300,600))
 					if(!failing) // Admin can manually set this var back to 0 to stop overload, for use when griffed.
 						update_icon()
-						src.ping("Magnetic containment stabilised.")
+						ping("Magnetic containment stabilised.")
 						return
-					src.ping("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
-					explosion(src.loc,1,2,4,8)
+					ping("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
+					explosion(get_turf(src),1,2,4,8)
 					// Not sure if this is necessary, but just in case the SMES *somehow* survived..
 					qdel(src)
+
+	s.start()
+	charge = 0
 
 
 
@@ -278,10 +270,10 @@
 // Parameters: 2 (failure_chance - chance to actually break the APC, overload_chance - Chance of breaking lights)
 // Description: Damages output powernet by power surge. Destroys few APCs and lights, depending on parameters.
 /obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance)
-	if (!src.powernet)
+	if (!powernet)
 		return
 
-	for(var/obj/machinery/power/terminal/T in src.powernet.nodes)
+	for(var/obj/machinery/power/terminal/T in powernet.nodes)
 		if(istype(T.master, /obj/machinery/power/apc))
 			var/obj/machinery/power/apc/A = T.master
 			if (prob(overload_chance))
@@ -305,7 +297,7 @@
 /obj/machinery/power/smes/buildable/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if (failing)
-		user << "<span class='warning'>The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea.</span>"
+		to_chat(user, "<span class='warning'>The [src]'s indicator lights are flashing wildly. It seems to be overloaded! Touching it now is probably not a good idea.</span>")
 		return
 	// If parent returned 1:
 	// - Hatch is open, so we can modify the SMES
@@ -317,15 +309,15 @@
 			var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 			if(newtag)
 				RCon_tag = newtag
-				user << "<span class='notice'>You changed the RCON tag to: [newtag]</span>"
+				to_chat(user, "<span class='notice'>You changed the RCON tag to: [newtag]</span>")
 			return
 		// Charged above 1% and safeties are enabled.
 		if((charge > (capacity/100)) && safeties_enabled)
-			user << "<span class='warning'>Safety circuit of [src] is preventing modifications while it's charged!</span>"
+			to_chat(user, "<span class='warning'>The safety circuit of [src] is preventing modifications while there is charge stored!</span>")
 			return
 
 		if (output_attempt || input_attempt)
-			user << "<span class='warning'>Turn off the [src] first!</span>"
+			to_chat(user, "<span class='warning'>Turn off the [src] first!</span>")
 			return
 
 		// Probability of failure if safety circuit is disabled (in %)
@@ -338,29 +330,19 @@
 		// Crowbar - Disassemble the SMES.
 		if(istype(W, /obj/item/weapon/crowbar))
 			if (terminal)
-				user << "<span class='warning'>You have to disassemble the terminal first!</span>"
+				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return
 
 			playsound(get_turf(src), W.usesound, 50, 1)
-			user << "<span class='warning'>You begin to disassemble the [src]!</span>"
+			to_chat(user, "<span class='warning'>You begin to disassemble the [src]!</span>")
 			if (do_after(usr, (100 * cur_coils) * W.toolspeed)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s with a normal crowbar
 
 				if (failure_probability && prob(failure_probability))
 					total_system_failure(failure_probability, user)
 					return
 
-				usr << "<font color='red'>You have disassembled the SMES cell!</font>"
-				var/obj/structure/frame/M = new /obj/structure/frame(src.loc)
-				M.frame_type = new /datum/frame/frame_types/machine
-				M.anchored = 1
-				var/obj/item/weapon/circuitboard/C = new /obj/item/weapon/circuitboard/smes
-				M.circuit = C
-				M.state = 2
-				M.icon_state = "machine_1"
-				for(var/obj/I in component_parts)
-					I.loc = src.loc
-					component_parts -= I
-				qdel(src)
+				to_chat(user, "<font color='red'>You have disassembled the SMES cell!</font>")
+				dismantle()
 				return
 
 		// Superconducting Magnetic Coil - Upgrade the SMES
@@ -371,14 +353,14 @@
 					total_system_failure(failure_probability, user)
 					return
 
-				usr << "You install the coil into the SMES unit!"
+				to_chat(user, "You install the coil into the SMES unit!")
 				user.drop_item()
 				cur_coils ++
 				component_parts += W
 				W.loc = src
 				recalc_coils()
 			else
-				usr << "<font color='red'>You can't insert more coils to this SMES unit!</font>"
+				to_chat(user, "<font color='red'>You can't insert more coils into this SMES unit!</font>")
 
 // Proc: toggle_input()
 // Parameters: None

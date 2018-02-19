@@ -67,3 +67,34 @@
 		new /obj/item/clothing/suit/storage/hooded/wintercoat/cargo(src)
 		new /obj/item/clothing/shoes/boots/winter/supply(src)
 		return
+
+/obj/structure/closet/secure_closet/miner
+	name = "miner's equipment"
+	icon_state = "miningsec1"
+	icon_closed = "miningsec"
+	icon_locked = "miningsec1"
+	icon_opened = "miningsecopen"
+	icon_broken = "miningsecbroken"
+	icon_off = "miningsecoff"
+	req_access = list(access_mining)
+
+/obj/structure/closet/secure_closet/miner/New()
+	..()
+	sleep(2)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/industrial(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/eng(src)
+	new /obj/item/device/radio/headset/headset_cargo(src)
+	new /obj/item/clothing/under/rank/miner(src)
+	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/device/analyzer(src)
+	new /obj/item/weapon/storage/bag/ore(src)
+	new /obj/item/device/flashlight/lantern(src)
+	new /obj/item/weapon/shovel(src)
+	new /obj/item/weapon/pickaxe(src)
+	new /obj/item/clothing/glasses/material(src)
+	new /obj/item/clothing/suit/storage/hooded/wintercoat/miner(src)
+	new /obj/item/clothing/shoes/boots/winter/mining(src)
+	new /obj/item/stack/marker_beacon/thirty(src)

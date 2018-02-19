@@ -10,6 +10,7 @@
 /obj/item/projectile/energy/flash
 	name = "chemical shell"
 	icon_state = "bullet"
+	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg'
 	damage = 5
 	kill_count = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	var/flash_range = 0
@@ -47,6 +48,7 @@
 
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
+	fire_sound = 'sound/weapons/gunshot/shotgun.ogg'
 	damage = 10
 	flash_range = 1
 	brightness = 15
@@ -63,6 +65,7 @@
 /obj/item/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"
+	fire_sound = 'sound/weapons/Gunshot.ogg'
 	taser_effect = 1
 	agony = 40
 	light_range = 2
@@ -81,6 +84,7 @@
 /obj/item/projectile/energy/declone
 	name = "declone"
 	icon_state = "declone"
+	fire_sound = 'sound/weapons/pulse3.ogg'
 	nodamage = 1
 	damage_type = CLONE
 	irradiate = 40
@@ -105,7 +109,6 @@
 	damage_type = TOX
 	agony = 40
 	stutter = 10
-
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
@@ -138,6 +141,7 @@
 /obj/item/projectile/energy/phoron
 	name = "phoron bolt"
 	icon_state = "energy"
+	fire_sound = 'sound/effects/stealthoff.ogg'
 	damage = 20
 	damage_type = TOX
 	irradiate = 20
@@ -148,6 +152,7 @@
 /obj/item/projectile/energy/plasmastun
 	name = "plasma pulse"
 	icon_state = "plasma_stun"
+	fire_sound = 'sound/weapons/blaster.ogg'
 	armor_penetration = 10
 	kill_count = 4
 	damage = 5
@@ -187,6 +192,7 @@
 /obj/item/projectile/energy/blue_pellet
 	name = "suppressive pellet"
 	icon_state = "blue_pellet"
+	fire_sound = 'sound/weapons/Laser.ogg'
 	damage = 5
 	armor_penetration = 75
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE

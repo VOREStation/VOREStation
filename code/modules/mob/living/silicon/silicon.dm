@@ -322,6 +322,8 @@
 /mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)
 		next_alarm_notice = world.time + SecondsToTicks(10)
+	if(alarm.hidden)
+		return
 
 	var/list/alarms = queued_alarms[alarm_handler]
 	if(was_raised)

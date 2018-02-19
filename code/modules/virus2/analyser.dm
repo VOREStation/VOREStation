@@ -11,7 +11,10 @@
 	var/obj/item/weapon/virusdish/dish = null
 
 /obj/machinery/disease2/diseaseanalyser/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(!istype(O,/obj/item/weapon/virusdish)) return
+	if(default_unfasten_wrench(user, O, 20))
+		return
+
+	else if(!istype(O,/obj/item/weapon/virusdish)) return
 
 	if(dish)
 		user << "\The [src] is already loaded."

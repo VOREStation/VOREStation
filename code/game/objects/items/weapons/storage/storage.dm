@@ -35,6 +35,7 @@
 	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
+	var/list/starts_with //Things to spawn on the box on spawn
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
@@ -52,7 +53,7 @@
 	if(!canremove)
 		return
 
-	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
+	if (isliving(usr) || isobserver(usr))
 
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
@@ -139,7 +140,7 @@
 	is_seeing -= user
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
-	if (src.use_sound)
+	if (src.use_sound && !isobserver(user))
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
 	orient2hud(user)
@@ -523,7 +524,8 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/weapon/storage/New()
+/obj/item/weapon/storage/initialize()
+	. = ..()
 
 	if(allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
@@ -534,12 +536,6 @@
 		verbs += /obj/item/weapon/storage/verb/toggle_gathering_mode
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
-
-	spawn(5)
-		var/total_storage_space = 0
-		for(var/obj/item/I in contents)
-			total_storage_space += I.get_storage_cost()
-		max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
 	src.boxes = new /obj/screen/storage(  )
 	src.boxes.name = "storage"
@@ -579,7 +575,21 @@
 	src.closer.icon_state = "storage_close"
 	src.closer.hud_layerise()
 	orient2hud()
-	return
+
+	if(LAZYLEN(starts_with))
+		for(var/newtype in starts_with)
+			var/count = starts_with[newtype] || 1 //Could have left it blank.
+			while(count)
+				count--
+				new newtype(src)
+
+	calibrate_size()
+
+/obj/item/weapon/storage/proc/calibrate_size()
+	var/total_storage_space = 0
+	for(var/obj/item/I in contents)
+		total_storage_space += I.get_storage_cost()
+	max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
 /obj/item/weapon/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))

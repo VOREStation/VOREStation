@@ -164,12 +164,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else if (W == r_hand)
 		r_hand = null
 		if(l_hand)
+			l_hand.update_twohanding()
 			l_hand.update_held_icon()
 			update_inv_l_hand()
 		update_inv_r_hand()
 	else if (W == l_hand)
 		l_hand = null
 		if(r_hand)
+			r_hand.update_twohanding()
 			r_hand.update_held_icon()
 			update_inv_l_hand()
 		update_inv_l_hand()

@@ -43,8 +43,8 @@
 		/mob/living/simple_animal/hostile/malf_drone,
 		/mob/living/simple_animal/hostile/giant_spider,
 		/mob/living/simple_animal/hostile/hivebot,
-		/mob/living/simple_animal/hostile/diyaab, //Doubt these will get used but might as well,
-		/mob/living/simple_animal/hostile/samak,
+		/mob/living/simple_animal/retaliate/diyaab, //Doubt these will get used but might as well,
+		/mob/living/simple_animal/hostile/savik,
 		/mob/living/simple_animal/hostile/shantak
 		)
 

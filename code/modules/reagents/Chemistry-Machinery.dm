@@ -68,6 +68,10 @@
 		user.drop_item()
 		B.loc = src
 		user << "You add \the [loaded_pill_bottle] into the dispenser slot!"
+
+	else if(default_unfasten_wrench(user, B, 20))
+		return
+
 	return
 
 /obj/machinery/chem_master/attack_hand(mob/user as mob)

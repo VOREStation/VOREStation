@@ -140,38 +140,85 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/do_attack_animation(mob/M)
+/atom/movable/proc/do_attack_animation(atom/A)
 
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
-	var/direction = get_dir(src, M)
-	switch(direction)
-		if(NORTH)
-			pixel_y_diff = 8
-		if(SOUTH)
-			pixel_y_diff = -8
-		if(EAST)
-			pixel_x_diff = 8
-		if(WEST)
-			pixel_x_diff = -8
-		if(NORTHEAST)
-			pixel_x_diff = 8
-			pixel_y_diff = 8
-		if(NORTHWEST)
-			pixel_x_diff = -8
-			pixel_y_diff = 8
-		if(SOUTHEAST)
-			pixel_x_diff = 8
-			pixel_y_diff = -8
-		if(SOUTHWEST)
-			pixel_x_diff = -8
-			pixel_y_diff = -8
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(pixel_x = old_x, pixel_y = old_y, time = 2)
+	var/direction = get_dir(src, A)
+	if(direction & NORTH)
+		pixel_y_diff = 8
+	else if(direction & SOUTH)
+		pixel_y_diff = -8
 
-/mob/do_attack_animation(atom/A)
+	if(direction & EAST)
+		pixel_x_diff = 8
+	else if(direction & WEST)
+		pixel_x_diff = -8
+
+	var/default_pixel_x = initial(pixel_x)
+	var/default_pixel_y = initial(pixel_y)
+	var/mob/mob = src
+	if(istype(mob))
+		default_pixel_x = mob.default_pixel_x
+		default_pixel_y = mob.default_pixel_y
+
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
+	animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2)
+
+/mob/living/do_attack_animation(atom/A)
 	..()
 	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+
+	// What icon do we use for the attack?
+	var/obj/used_item
+	if(hand && l_hand) // Attacked with item in left hand.
+		used_item = l_hand
+	else if (!hand && r_hand) // Attacked with item in right hand.
+		used_item = r_hand
+
+	//Couldn't find an item, do they have a sprite specified (like animal claw stuff?)
+	if(!used_item && !(attack_icon && attack_icon_state))
+		return FALSE //Didn't find an item, not doing animation.
+
+	var/image/I
+
+	if(used_item) //Found an in-hand item to animate
+		I = image(used_item.icon, A, used_item.icon_state, A.layer + 1)
+		//Color the icon
+		I.color = used_item.color
+		// Scale the icon.
+		I.transform *= 0.75
+	else //They had a hardcoded one specified
+		I = image(attack_icon, A, attack_icon_state, A.layer + 1)
+		I.dir = dir
+
+	//Check for clients with pref enabled
+	var/list/viewing = list()
+	for(var/m in viewers(A))
+		var/mob/M = m
+		var/client/C = M.client
+		if(C && C.is_preference_enabled(/datum/client_preference/attack_icons))
+			viewing += M.client
+	flick_overlay(I, viewing, 5, TRUE) // 5 ticks/half a second
+
+	// Set the direction of the icon animation.
+	var/direction = get_dir(src, A)
+	if(direction & NORTH)
+		I.pixel_y = -16
+	else if(direction & SOUTH)
+		I.pixel_y = 16
+
+	if(direction & EAST)
+		I.pixel_x = -16
+	else if(direction & WEST)
+		I.pixel_x = 16
+
+	if(!direction) // Attacked self?!
+		I.pixel_z = 16
+
+	// And animate the attack!
+	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	return TRUE //Found an item, doing item attack animation.
 
 /mob/proc/spin(spintime, speed)
 	spawn()

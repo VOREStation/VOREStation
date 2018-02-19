@@ -442,4 +442,5 @@ SUBSYSTEM_DEF(garbage)
 
 /image/Destroy()
 	..()
-	return QDEL_HINT_HARDDEL_NOW
+	loc = null
+	return QDEL_HINT_QUEUE

@@ -23,6 +23,10 @@
 	..(newloc,"gold")
 /turf/simulated/wall/silver/New(var/newloc)
 	..(newloc,"silver")
+/turf/simulated/wall/lead/New(var/newloc)
+	..(newloc,"lead")
+/turf/simulated/wall/r_lead/New(var/newloc)
+	..(newloc,"lead", "lead")
 /turf/simulated/wall/phoron/New(var/newloc)
 	..(newloc,"phoron")
 /turf/simulated/wall/sandstone/New(var/newloc)
@@ -35,6 +39,8 @@
 	..(newloc,"silver","gold")
 /turf/simulated/wall/sandstonediamond/New(var/newloc)
 	..(newloc,"sandstone","diamond")
+/turf/simulated/wall/snowbrick/New(var/newloc)
+	..(newloc,"packed snow")
 
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/New(var/newloc)

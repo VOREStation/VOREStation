@@ -60,6 +60,7 @@ What is the naming convention for planes or layers?
 	//#define TURF_LAYER		2 //For easy recordkeeping; this is a byond define
 	#define DECALS_LAYER		2.01
 	#define OVERTURF_LAYER		2.1
+	#define HIDING_LAYER		2.45 //Layer at which mobs hide to be under things like tables
 	#define DOOR_OPEN_LAYER		2.7 //Under all objects if opened. 2.7 due to tables being at 2.6
 	//#define OBJ_LAYER			3 //For easy recordkeeping; this is a byond define
 	#define DOOR_CLOSED_LAYER	3.1 //Above most items if closed

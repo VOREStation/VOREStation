@@ -1,0 +1,16 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/snow1)
+"c" = (/turf/simulated/floor/outdoors/snow,/area/submap/snow1)
+
+(1,1,1) = {"
+aaaaaaaaaa
+abbbcccbba
+abbcccccba
+abccccccba
+abccccccca
+acccccccba
+accccccbba
+abcccccbba
+abbbbbbbba
+aaaaaaaaaa
+"}

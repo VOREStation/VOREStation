@@ -66,10 +66,10 @@
 
 		if(H.species)
 			if(exclusive)
-				if(!(H.species.get_bodytype() in species_restricted))
+				if(!(H.species.get_bodytype(H) in species_restricted))
 					wearable = 1
 			else
-				if(H.species.get_bodytype() in species_restricted)
+				if(H.species.get_bodytype(H) in species_restricted)
 					wearable = 1
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
@@ -202,8 +202,10 @@
 	var/fingerprint_chance = 0	//How likely the glove is to let fingerprints through
 	var/obj/item/clothing/gloves/ring = null		//Covered ring
 	var/mob/living/carbon/human/wearer = null	//Used for covered rings when dropping
-	var/glove_level = 2	//What "layer" the glove is on
-	var/overgloves = 0	//Used by gauntlets and arm_guards
+	var/glove_level = 2			//What "layer" the glove is on
+	var/overgloves = 0			//Used by gauntlets and arm_guards
+	var/punch_force = 0			//How much damage do these gloves add to a punch?
+	var/punch_damtype = BRUTE	//What type of damage does this make fists be?
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
@@ -251,7 +253,7 @@
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
-		if(istype(H.gloves, /obj/item/clothing/gloves/ring))
+		if(H.gloves)
 			ring = H.gloves
 			if(ring.glove_level >= src.glove_level)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
@@ -261,6 +263,8 @@
 				H.drop_from_inventory(ring)	//Remove the ring (or other under-glove item in the hand slot?) so you can put on the gloves.
 				ring.forceMove(src)
 				to_chat(user, "You slip \the [src] on over \the [src.ring].")
+				if(!(flags & THICKMATERIAL))
+					punch_force += ring.punch_force
 		else
 			ring = null
 
@@ -268,6 +272,7 @@
 		if(ring) //Put the ring back on if the check fails.
 			if(H.equip_to_slot_if_possible(ring, slot_gloves))
 				src.ring = null
+		punch_force = initial(punch_force)
 		return 0
 
 	wearer = H //TODO clean this when magboots are cleaned
@@ -284,6 +289,7 @@
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
 			ring.forceMove(get_turf(src))
 		src.ring = null
+	punch_force = initial(punch_force)
 	wearer = null
 
 /////////////////////////////////////////////////////////////////////
@@ -298,6 +304,7 @@
 	siemens_coefficient = 1
 	glove_level = 1
 	fingerprint_chance = 100
+	punch_force = 2
 
 ///////////////////////////////////////////////////////////////////////
 //Head
