@@ -36,6 +36,7 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/list/starts_with //Things to spawn on the box on spawn
+	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
@@ -576,12 +577,13 @@
 	src.closer.hud_layerise()
 	orient2hud()
 
-	if(LAZYLEN(starts_with))
+	if(LAZYLEN(starts_with) && !empty)
 		for(var/newtype in starts_with)
 			var/count = starts_with[newtype] || 1 //Could have left it blank.
 			while(count)
 				count--
 				new newtype(src)
+		starts_with = null //Reduce list count.
 
 	calibrate_size()
 
