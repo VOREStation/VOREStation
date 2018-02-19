@@ -60,6 +60,7 @@
 	else
 		ability_flags |= AB_PHASE_SHIFTED
 		custom_emote(1,"phases out!")
+		real_name = name
 		name = "Something"
 
 		for(var/belly in vore_organs)
@@ -69,8 +70,8 @@
 		overlays.Cut()
 		flick("tp_out",src)
 		sleep(5)
-		invisibility = INVISIBILITY_LEVEL_ONE
-		see_invisible = INVISIBILITY_LEVEL_ONE
+		invisibility = INVISIBILITY_LEVEL_TWO
+		see_invisible = INVISIBILITY_LEVEL_TWO
 		update_icon()
 		alpha = 127
 
