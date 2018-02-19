@@ -165,6 +165,83 @@
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
+/mob/living/simple_animal/shadekin/green
+	name = "green-eyed shadekin"
+	eye_state = GREEN_EYES
+	health = 125
+	hostile = FALSE
+	retaliate = TRUE
+	stop_when_pulled = FALSE
+	destroy_surroundings = TRUE
+	vore_default_mode = DM_DRAIN
+	vore_digest_chance = 0
+	vore_ignores_undigestable = FALSE
+	armor = list(
+		"melee" = 5,
+		"bullet" = 5,
+		"laser" = 5,
+		"energy" = 5,
+		"bomb" = 0,
+		"bio" = 100,
+		"rad" = 100)
+
+	eye_desc = "green eyes"
+	stalker = TRUE
+	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, slippery gullet \
+	of the creature. It's warm, and the air is thick. You can hear its body squelch and shift around you \
+	as you settle into its stomach! The doughy walls within cling to you heavily, churning down on you, wearing \
+	you out!! There doesn’t appear to be any actual danger here, harmless slime clings to you, but it’s getting \
+	harder and harder to move as those walls press in on you insistently!"
+
+	player_msg = "Your kind rarely ventures into realspace. Being in any well-lit area is very taxing on you, but you \
+	have more experience than your yellow-eyed cousins. You gain energy decently fast in any very dark area. You're weaker than other \
+	shadekin, but your slight energy generation constnatly, and especially in the dark allows for a good mix of uses."
+
+/mob/living/simple_animal/shadekin/green/white
+	icon_state = "white"
+/mob/living/simple_animal/shadekin/green/dark
+	icon_state = "dark"
+/mob/living/simple_animal/shadekin/green/brown
+	icon_state = "brown"
+
+/////////////////////////////////////////////////////////////////
+/mob/living/simple_animal/shadekin/orange
+	name = "orange-eyed shadekin"
+	eye_state = ORANGE_EYES
+	health = 175
+	hostile = TRUE
+	retaliate = TRUE
+	stop_when_pulled = FALSE
+	destroy_surroundings = TRUE
+	armor = list(
+			"melee" = 20,
+			"bullet" = 15,
+			"laser" = 15,
+			"energy" = 25,
+			"bomb" = 10,
+			"bio" = 100,
+			"rad" = 100)
+
+	eye_desc = "orange eyes"
+
+	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, \
+	slippery gullet of the creature. It's warm, and the air is thick. You can hear \
+	its body squelch and shift around you as you settle into its stomach! Thick digestive \
+	enzymes cling to you within that dark space, tingling and stinging immediately! The weight of \
+	the doughy walls press in around you instantly, churning you up as you begin to digest!"
+
+	player_msg = "You usually hunt for energy to fuel yourself, though not as often as your red-eyed cousins. \
+	You're stronger than most shadekin, faster, and more capable in a brawl, but you don't generate much of your own energy. \
+	You can stand in a dark spot to gather some energy, but otherwise need to take it, by force if necessary."
+
+/mob/living/simple_animal/shadekin/orange/white
+	icon_state = "white"
+/mob/living/simple_animal/shadekin/orange/dark
+	icon_state = "dark"
+/mob/living/simple_animal/shadekin/orange/brown
+	icon_state = "brown"
+
+/////////////////////////////////////////////////////////////////
 //Fluffy specific fluffer
 /mob/living/simple_animal/shadekin/blue/rivyr
 	name = "Rivyr"

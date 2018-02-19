@@ -45,3 +45,17 @@
 	icon_state = "medical"
 	item_state_slots = list(slot_r_hand_str = "medical", slot_l_hand_str = "medical")
 	permeability_coefficient = 0.01
+
+/obj/item/clothing/mask/breath/emergency
+	desc = "A close-fitting  mask that is used by the wallmounted emergency oxygen pump."
+	name = "emergency mask"
+	icon_state = "breath"
+	item_state = "breath"
+	permeability_coefficient = 0.50
+
+/obj/item/clothing/mask/breath/anesthetic
+	desc = "A close-fitting sterile mask that is used by the anesthetic wallmounted pump."
+	name = "anesthetic mask"
+	icon_state = "medical"
+	item_state = "medical"
+	permeability_coefficient = 0.01
