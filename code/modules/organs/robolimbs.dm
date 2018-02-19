@@ -21,7 +21,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	scroll=ipc_scroll;\
 	console=ipc_console;\
 	glider=ipc_gol_glider;\
-	rainnbow=ipc_rainbow;\
+	rainbow=ipc_rainbow;\
 	smiley=ipc_smiley;\
 	database=ipc_database"
 
