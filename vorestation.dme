@@ -735,6 +735,7 @@
 #include "code\game\machinery\computer\station_alert.dm"
 #include "code\game\machinery\computer\supply.dm"
 #include "code\game\machinery\computer\syndicate_specops_shuttle.dm"
+#include "code\game\machinery\computer\timeclock_vr.dm"
 #include "code\game\machinery\computer\~computer_vr.dm"
 #include "code\game\machinery\computer3\bios.dm"
 #include "code\game\machinery\computer3\buildandrepair.dm"
