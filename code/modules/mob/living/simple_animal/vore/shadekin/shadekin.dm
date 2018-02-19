@@ -218,6 +218,10 @@
 				eye_icon_state = "e_purple"
 			if(YELLOW_EYES)
 				eye_icon_state = "e_yellow"
+			if(GREEN_EYES)
+				eye_icon_state = "e_green"
+			if(ORANGE_EYES)
+				eye_icon_state = "e_orange"
 	eyeimage = image(icon,null,eye_icon_state)
 
 	var/mutable_appearance/ma = new(src)
@@ -297,6 +301,14 @@
 			//Yellow has extreme gains in darkness and loss in light.
 			if(YELLOW_EYES)
 				dark_gains = round((darkness - 0.5) * 4, 0.1)
+			//Similar to blues, but passive is less, and affected by dark
+			if(GREEN_EYES)
+				dark_gains = 0.25
+				dark_gains += round((darkness - 0.5), 0.1)
+			//More able to get energy out of the dark, worse attack gains tho
+			if(ORANGE_EYES)
+				if(darkness >= 0.65)
+					dark_gains = 0.30
 
 	energy = max(0,min(initial(energy),energy + dark_gains))
 
@@ -404,6 +416,10 @@
 					gains = 4
 				if(YELLOW_EYES)
 					gains = 3
+				if(GREEN_EYES)
+					gains = 1
+				if(ORANGE_EYES)
+					gains = 5
 
 			energy += gains
 

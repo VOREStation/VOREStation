@@ -19,48 +19,50 @@
 	name = "emergency toolbox"
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
-
-/obj/item/weapon/storage/toolbox/emergency/New()
-	..()
-	new /obj/item/weapon/crowbar/red(src)
-	new /obj/item/weapon/extinguisher/mini(src)
+	starts_with = list(
+		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/device/radio
+	)
+/obj/item/weapon/storage/toolbox/emergency/initialize()
 	if(prob(50))
 		new /obj/item/device/flashlight(src)
 	else
 		new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/radio(src)
+	. = ..()
 
 /obj/item/weapon/storage/toolbox/mechanical
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state_slots = list(slot_r_hand_str = "toolbox_blue", slot_l_hand_str = "toolbox_blue")
-
-/obj/item/weapon/storage/toolbox/mechanical/New()
-	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/device/analyzer(src)
-	new /obj/item/weapon/wirecutters(src)
+	starts_with = list(
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/crowbar,
+		/obj/item/device/analyzer,
+		/obj/item/weapon/wirecutters
+	)
 
 /obj/item/weapon/storage/toolbox/electrical
 	name = "electrical toolbox"
 	icon_state = "yellow"
 	item_state_slots = list(slot_r_hand_str = "toolbox_yellow", slot_l_hand_str = "toolbox_yellow")
-
-/obj/item/weapon/storage/toolbox/electrical/New()
-	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/stack/cable_coil/random(src,30)
-	new /obj/item/stack/cable_coil/random(src,30)
+	starts_with = list(
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/wirecutters,
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/crowbar,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/stack/cable_coil/random_belt
+	)
+/obj/item/weapon/storage/toolbox/electrical/initialize()
+	. = ..()
 	if(prob(5))
 		new /obj/item/clothing/gloves/yellow(src)
 	else
 		new /obj/item/stack/cable_coil/random(src,30)
+	calibrate_size()
 
 /obj/item/weapon/storage/toolbox/syndicate
 	name = "black and red toolbox"
@@ -68,29 +70,26 @@
 	item_state_slots = list(slot_r_hand_str = "toolbox_syndi", slot_l_hand_str = "toolbox_syndi")
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = 14
-	var/powertools = FALSE
+	starts_with = list(
+		/obj/item/clothing/gloves/yellow,
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/crowbar,
+		/obj/item/weapon/wirecutters,
+		/obj/item/device/multitool
+	)
 
 /obj/item/weapon/storage/toolbox/syndicate/powertools
-	powertools = TRUE
-
-/obj/item/weapon/storage/toolbox/syndicate/New() // This is found in maint, so it should have the basics, plus some gloves.
-	..() //all storage items need this to work properly!
-	if(powertools)
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/weapon/screwdriver/power(src)
-		new /obj/item/weapon/weldingtool/experimental(src)
-		new /obj/item/weapon/crowbar/power(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/stack/cable_coil/random(src,30)
-		new /obj/item/device/analyzer(src)
-	else
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/weapon/screwdriver(src)
-		new /obj/item/weapon/wrench(src)
-		new /obj/item/weapon/weldingtool(src)
-		new /obj/item/weapon/crowbar(src)
-		new /obj/item/weapon/wirecutters(src)
-		new /obj/item/device/multitool(src)
+	starts_with = list(
+		/obj/item/clothing/gloves/yellow,
+		/obj/item/weapon/screwdriver/power,
+		/obj/item/weapon/weldingtool/experimental,
+		/obj/item/weapon/crowbar/power,
+		/obj/item/device/multitool,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/device/analyzer
+	)
 
 /obj/item/weapon/storage/toolbox/lunchbox
 	max_storage_space = ITEMSIZE_COST_SMALL * 4 //slightly smaller than a toolbox
@@ -103,8 +102,7 @@
 	var/filled = FALSE
 	attack_verb = list("lunched")
 
-/obj/item/weapon/storage/toolbox/lunchbox/New()
-	..()
+/obj/item/weapon/storage/toolbox/lunchbox/initialize()
 	if(filled)
 		var/list/lunches = lunchables_lunches()
 		var/lunch = lunches[pick(lunches)]
@@ -117,6 +115,7 @@
 		var/list/drinks = lunchables_drinks()
 		var/drink = drinks[pick(drinks)]
 		new drink(src)
+	. = ..()
 
 /obj/item/weapon/storage/toolbox/lunchbox/filled
 	filled = TRUE
