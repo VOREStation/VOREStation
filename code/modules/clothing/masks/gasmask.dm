@@ -73,7 +73,6 @@
 	icon_state = "explorer"
 	item_state_slots = list(slot_r_hand_str = "gas", slot_l_hand_str = "gas")
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 0, bio = 50, rad = 0)
-	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/mask/gas/clown_hat
