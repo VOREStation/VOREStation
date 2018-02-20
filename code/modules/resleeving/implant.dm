@@ -9,8 +9,6 @@
 	desc = "A mindstate backup implant that occasionally stores a copy of one's mind on a central server for backup purposes."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "backup_implant"
-	var/last_attempt
-	var/attempt_delay = 5 MINUTES
 
 /obj/item/weapon/implant/backup/get_data()
 	var/dat = {"
@@ -25,6 +23,10 @@
 <b>Integrity:</b> Generally very survivable. Susceptible to being destroyed by acid."}
 	return dat
 
+/obj/item/weapon/implant/backup/Destroy()
+	SStranscore.implants -= src
+	return ..()
+
 /obj/item/weapon/implant/backup/implanted(var/mob/living/carbon/human/H)
 	..()
 	if(istype(H))
@@ -32,28 +34,9 @@
 		if(other_imp && other_imp.imp_in == H)
 			qdel(other_imp) //implant fight
 
-		if(H.mind && H.stat < DEAD) //One right now, on implanting.
-			SStranscore.m_backup(H.mind)
-			last_attempt = world.time
-
-		backup()
+		SStranscore.implants |= src
 
 		return 1
-
-/obj/item/weapon/implant/backup/proc/backup()
-	last_attempt = world.time
-	var/mob/living/carbon/human/H = loc
-
-	//We're in a human, at least.
-	if(istype(H))
-		BITSET(H.hud_updateflag, BACKUP_HUD)
-		//Okay we've got a mind at least
-		if(H == imp_in && H.mind && H.stat < DEAD)
-			SStranscore.m_backup(H.mind,H.nif)
-			persist_nif_data(H)
-
-	spawn(attempt_delay)
-		backup()
 
 //New, modern implanter instead of old style implanter.
 /obj/item/weapon/backup_implanter
