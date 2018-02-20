@@ -122,7 +122,7 @@
 /obj/item/weapon/storage/bag/ore/examine(mob/user)
 	..()
 
-	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
+	if(!Adjacent(user)) //Can only check the contents of ore bags if you can physically reach them.
 		return
 
 	if(istype(user, /mob/living))
