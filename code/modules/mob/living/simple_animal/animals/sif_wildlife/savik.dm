@@ -17,7 +17,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 
-	attacktext = "mauled"
+	attacktext = list("mauled")
 	cold_damage_per_tick = 0
 
 	speak_chance = 5
