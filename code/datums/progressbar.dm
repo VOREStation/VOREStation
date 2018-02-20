@@ -22,8 +22,10 @@
 /datum/progressbar/Destroy()
 	if (client)
 		client.images -= bar
-	qdel(bar)
-	. = ..()
+	qdel_null(bar)
+	user = null
+	client = null
+	return ..()
 
 /datum/progressbar/proc/update(progress)
 	//world << "Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]"
