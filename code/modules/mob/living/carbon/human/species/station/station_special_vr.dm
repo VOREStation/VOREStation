@@ -144,11 +144,9 @@
 						H << "<span class='danger'> Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>"
 					if(H.stat == CONSCIOUS)
 						H.emote("twitch")
-					spawn(0)
-						H.handle_feral()
-			else // nobody around
-				spawn(0)
 					H.handle_feral()
+			else // nobody around
+				H.handle_feral()
 				if(prob(2)) //periodic nagmessages
 					if(H.nutrition <= 100) //If hungry, nag them to go and find someone or something to eat.
 						H << "<span class='danger'> Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>"
