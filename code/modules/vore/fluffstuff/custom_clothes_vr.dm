@@ -1726,7 +1726,7 @@ Departamental Swimsuits, for general use
 	icon_state = "tronsiren"
 	item_state = "tronsiren_mob"
 
-/obj/item/clothing/gloves/latex/fluff/siren
+/obj/item/clothing/gloves/fluff/siren
 	name = "Siren Gloves"
 	desc = "A set of white and neon blue gloves."
 	description_fluff = "Like its jumpsuit companion, the Ward Takahashi Siren gloves feature multiple sensors for usage in augmented reality. With or without a paired jumpsuit, the gloves alone grant access to the Touch-based Reality Overlay and Network, a form of digital organizer for personal schedules and notes. (Provided you have a way to see AR!)"

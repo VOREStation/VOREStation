@@ -25,4 +25,4 @@
 
 /datum/gear/gloves/siren
 	display_name = "Siren gloves"
-	path = /obj/item/clothing/gloves/latex/fluff/siren
+	path = /obj/item/clothing/gloves/fluff/siren
