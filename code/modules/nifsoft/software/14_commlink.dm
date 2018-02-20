@@ -13,6 +13,10 @@
 		if((. = ..()))
 			nif.comm = new(nif,src)
 
+	uninstall()
+		if((. = ..()))
+			qdel_null(nif.comm)
+
 	activate()
 		if((. = ..()))
 			nif.comm.initialize_exonet(nif.human)
