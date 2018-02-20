@@ -48,8 +48,8 @@
 	holder.clear_reagents()
 
 /datum/chemical_reaction/xenolazarus
-	name = "Discount Lazarus Injector"
-	id = "discountlazarusinjector"
+	name = "Discount Lazarus"
+	id = "discountlazarus"
 	result = null
 	required_reagents = list("monstertamer" = 5, "clonexadone" = 5)
 
@@ -105,7 +105,7 @@
 	result = "grubshake"
 	required_reagents = list("shockchem" = 5, "water" = 25)
 	result_amount = 30
-	
+
 /datum/chemical_reaction/drinks/deathbell
 	name = "Deathbell"
 	id = "deathbell"
