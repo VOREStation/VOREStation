@@ -312,6 +312,7 @@
 #include "code\datums\supplypacks\misc.dm"
 #include "code\datums\supplypacks\misc_vr.dm"
 #include "code\datums\supplypacks\munitions.dm"
+#include "code\datums\supplypacks\munitions_vr.dm"
 #include "code\datums\supplypacks\recreation.dm"
 #include "code\datums\supplypacks\recreation_vr.dm"
 #include "code\datums\supplypacks\robotics.dm"
