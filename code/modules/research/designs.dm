@@ -491,8 +491,8 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/roller/adv
 	sort_string = "MBBAF"
 
-/datum/design/item/medical/enhanced_analyzer
-	name = "enhanced health analyzer"
+/datum/design/item/medical/advanced_analyzer
+	name = "advanced health analyzer"
 	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
 	id = "advanced_analyzer"
 	req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
