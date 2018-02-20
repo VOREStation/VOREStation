@@ -885,6 +885,18 @@
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
 							cleaned_human << "<font color='red'>[src] cleans your face!</font>"
+
+		if((module_state_1 && istype(module_state_1, /obj/item/weapon/storage/bag/ore)) || (module_state_2 && istype(module_state_2, /obj/item/weapon/storage/bag/ore)) || (module_state_3 && istype(module_state_3, /obj/item/weapon/storage/bag/ore))) //Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
+			var/obj/item/weapon/storage/bag/ore/B = null
+			if(istype(module_state_1, /obj/item/weapon/storage/bag/ore)) //First orebag has priority, if they for some reason have multiple.
+				B = module_state_1
+			else if(istype(module_state_2, /obj/item/weapon/storage/bag/ore))
+				B = module_state_2
+			else if(istype(module_state_3, /obj/item/weapon/storage/bag/ore))
+				B = module_state_3
+			var/turf/tile = loc
+			if(isturf(tile))
+				B.gather_all(tile, src, 1) //Shhh, unless the bag fills, don't spam the borg's chat with stuff that's going on every time they move!
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()
