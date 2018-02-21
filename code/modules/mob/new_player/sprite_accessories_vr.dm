@@ -511,6 +511,7 @@
 	desc = ""
 	icon = 'icons/mob/human_face_vr.dmi'
 	icon_state = "inkling-colorable"
+	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
 
 //VOREStation Body Markings and Overrides
