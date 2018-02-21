@@ -47,7 +47,7 @@
 /obj/item/clothing/under/bluespace/verb/toggle_fibers()
 		set category = "Object"
 		set name = "Adjust fibers"
-		set desc = "Adjust your suit fibers. This makes it so your stomach(s) will show or not.
+		set desc = "Adjust your suit fibers. This makes it so your stomach(s) will show or not."
 		set src in usr
 
 		adjust_fibers(usr)
