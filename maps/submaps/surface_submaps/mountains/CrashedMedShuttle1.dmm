@@ -106,7 +106,7 @@
 "cb" = (/obj/machinery/iv_drip,/obj/item/weapon/reagent_containers/blood/OMinus,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "cc" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/masks,/obj/item/weapon/storage/box/gloves,/obj/random/medical,/obj/random/medical,/obj/random/medical,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "cd" = (/obj/effect/spider/stickyweb,/obj/structure/door_assembly/door_assembly_ext,/turf/simulated/shuttle/plating,/area/submap/CrashedMedShuttle)
-"ce" = (/obj/structure/table/standard,/obj/item/device/healthanalyzer/enhanced,/obj/random/firstaid,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
+"ce" = (/obj/structure/table/standard,/obj/item/device/healthanalyzer/advanced,/obj/random/firstaid,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "cf" = (/obj/structure/table/standard,/obj/item/weapon/storage/backpack/medic,/obj/random/medical/lite,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "cg" = (/obj/structure/table/standard,/obj/effect/spider/stickyweb,/obj/random/medical,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "ch" = (/obj/structure/girder,/turf/simulated/shuttle/plating,/area/submap/CrashedMedShuttle)
