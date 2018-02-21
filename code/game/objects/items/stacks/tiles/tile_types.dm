@@ -55,7 +55,22 @@
 	flags = 0
 	no_variants = FALSE
 
+/obj/item/stack/tile/sifwood
+	name = "alien wood tile"
+	singular_name = "alien wood tile"
+	desc = "An easy to fit wooden floor tile. It's blue!"
+	icon_state = "tile-sifwood"
+	force = 1.0
+	throwforce = 1.0
+	throw_speed = 5
+	throw_range = 20
+	flags = 0
+	no_variants = FALSE
+
 /obj/item/stack/tile/wood/fifty
+	amount = 50
+
+/obj/item/stack/tile/sifwood/fifty
 	amount = 50
 
 /obj/item/stack/tile/wood/cyborg
@@ -81,11 +96,11 @@
 	flags = 0
 	no_variants = FALSE
 
-/obj/item/stack/tile/carpet/blue
-	name = "blue carpet"
-	singular_name = "blue carpet"
-	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
-	icon_state = "tile-bluecarpet"
+/obj/item/stack/tile/carpet/teal
+	name = "teal carpet"
+	singular_name = "teal carpet"
+	desc = "A piece of teal carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-tealcarpet"
 	no_variants = FALSE
 
 // TODO - Add descriptions to these
@@ -107,7 +122,7 @@
 /obj/item/stack/tile/floor
 	name = "floor tile"
 	singular_name = "floor tile"
-	desc = "Those could work as a pretty decent throwing weapon" //why?
+	desc = "A metal tile fit for covering a section of floor."
 	icon_state = "tile"
 	force = 6.0
 	matter = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 4)

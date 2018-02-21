@@ -14,6 +14,11 @@
 	icon_state = "blucarpet"
 	initial_flooring = /decl/flooring/carpet/blucarpet
 
+/turf/simulated/floor/carpet/tealcarpet
+	name = "teal carpet"
+	icon_state = "tealcarpet"
+	initial_flooring = /decl/flooring/carpet/tealcarpet
+
 // Legacy support for existing paths for blue carpet
 /turf/simulated/floor/carpet/blue
 	name = "blue carpet"
@@ -62,6 +67,12 @@
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
+
+/turf/simulated/floor/sifwood
+	name = "alien wooden floor"
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_state = "sifwood"
+	initial_flooring = /decl/flooring/sifwood
 
 /turf/simulated/floor/grass
 	name = "grass patch"
