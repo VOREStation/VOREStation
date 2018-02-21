@@ -287,17 +287,20 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		to_chat(voice, "<span class='danger'>\icon[src] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
+
+	//Clean up all references we might have to others
 	communicating.Cut()
 	voice_requests.Cut()
 	voice_invites.Cut()
+	node = null
+
+	//Clean up references that might point at us
 	all_communicators -= src
 	processing_objects -= src
 	listening_objects.Remove(src)
-	qdel(camera)
-	camera = null
-	if(exonet)
-		exonet.remove_address()
-		exonet = null
+	qdel_null(camera)
+	qdel_null(exonet)
+
 	return ..()
 
 // Proc: update_icon()
