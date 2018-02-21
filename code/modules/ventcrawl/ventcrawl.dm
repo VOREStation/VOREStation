@@ -10,6 +10,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
 	/mob/living/simple_animal/borer,
+	/obj/screen
 	)
 
 /mob/living/var/list/icon/pipes_shown = list()
@@ -41,18 +42,21 @@ var/list/ventcrawl_machinery = list(
 		return FALSE
 	. = ..()
 
-/mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/proc/is_allowed_vent_crawl_item(var/obj/carried_item)
+	//Ability master easy test for allowed (cheaper than istype)
 	if(carried_item == ability_master)
 		return 1
 
-	var/list/allowed = list()
-	for(var/type in can_enter_vent_with)
-		var/list/types = typesof(type)
-		allowed += types
+	//Try to find it in our allowed list (istype includes subtypes)
+	var/listed = FALSE
+	for(var/test_type in can_enter_vent_with)
+		if(istype(carried_item,test_type))
+			listed = TRUE
+			break
 
-	if(carried_item.type in allowed)
-		if(get_inventory_slot(carried_item) == 0)
-			return 1
+	//Only allow it if it's "IN" the mob, not equipped on/being held
+	if(listed && !get_inventory_slot(carried_item))
+		return 1
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in internal_organs)
