@@ -642,7 +642,6 @@
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		O.attack(src, user, user.zone_sel.selecting)
 		ai_log("attackby() I was weapon'd by: [user]",2)
 		if(O.force)
 			react_to_attack(user)
