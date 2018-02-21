@@ -1,0 +1,4 @@
+author: PrismaticGynoid
+delete-after: True
+changes: 
+  - bugfix: "The succumb verb will now work on species that can't take oxyloss damage."
