@@ -40,6 +40,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/unavailable_at_chargen                           // If set, not available at chargen.
 	var/unavailable_to_build							 // If set, can't be constructed.
 	var/lifelike										 // If set, appears organic.
+	var/skin_tone										 // If set, applies skin tone rather than part color
 	var/blood_color = "#030303"
 	var/list/species_cannot_use = list("Teshari")
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
@@ -100,7 +101,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt2.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
-	
+
 /datum/robolimb/cybersolutions_alt1
 	company = "Cyber Solutions - Wight"
 	desc = "This limb has cheap plastic panels mounted on grey metal."
@@ -198,6 +199,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/veymed/veymed_main.dmi'
 	unavailable_to_build = 1
 	lifelike = 1
+	skin_tone = 1
 	blood_color = "#CCCCCC"
 	speech_bubble_appearance = "normal"
 
@@ -219,7 +221,6 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This limb has white and purple features, with a heavier casing."
 	icon = 'icons/mob/human_races/cyberlimbs/wardtakahashi/wardtakahashi_alt2.dmi'
 	unavailable_to_build = 1
-
 
 /datum/robolimb/wardtakahashi_monitor
 	company = "Ward-Takahashi Monitor"
@@ -278,6 +279,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This limb has a rubbery fleshtone covering with visible seams."
 	icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_main.dmi'
 	unavailable_to_build = 1
+	skin_tone = 1
 
 /obj/item/weapon/disk/limb
 	name = "Limb Blueprints"
