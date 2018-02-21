@@ -907,6 +907,21 @@ something, make sure it's not in one of the other lists.*/
 				prob(25);/obj/item/device/radio/headset/headset_com/alt,
 				prob(25);/obj/item/device/radio/headset)
 
+/obj/random/coin
+	name = "random coin"
+	desc = "This is a coin spawn."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "rup"
+
+/obj/random/coin/item_to_spawn()
+	return pick(prob(5);/obj/item/weapon/coin/silver,
+				prob(3);/obj/item/weapon/coin/iron,
+				prob(4);/obj/item/weapon/coin/gold,
+				prob(3);/obj/item/weapon/coin/phoron,
+				prob(1);/obj/item/weapon/coin/uranium,
+				prob(2);/obj/item/weapon/coin/platinum,
+				prob(1);/obj/item/weapon/coin/diamond)
+
 /obj/random/rigsuit
 	name = "Random rigsuit"
 	desc = "This is a random rigsuit."
@@ -920,6 +935,20 @@ something, make sure it's not in one of the other lists.*/
 				prob(4);/obj/item/weapon/rig/light/stealth,
 				prob(3);/obj/item/weapon/rig/hazard,
 				prob(1);/obj/item/weapon/rig/merc/empty)
+
+/obj/random/landmine
+	name = "Random Land Mine"
+	desc = "This is a random land mine."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "uglymine"
+	spawn_nothing_percentage = 25
+
+/obj/random/landmine/item_to_spawn()
+	return pick(prob(30);/obj/effect/mine,
+				prob(25);/obj/effect/mine/frag,
+				prob(25);/obj/effect/mine/emp,
+				prob(10);/obj/effect/mine/stun,
+				prob(10);/obj/effect/mine/incendiary,)
 
 var/list/random_junk_
 var/list/random_useful_
@@ -1123,16 +1152,307 @@ var/list/multi_point_spawns
 			)
 		)
 
-/obj/random/landmine
-	name = "Random Land Mine"
-	desc = "This is a random land mine."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "uglymine"
-	spawn_nothing_percentage = 25
+/obj/random/multiple/minevault
+	name = "random vault loot"
+	desc = "Loot for mine vaults."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "rup"
 
-/obj/random/landmine/item_to_spawn()
-	return pick(prob(30);/obj/effect/mine,
-				prob(25);/obj/effect/mine/frag,
-				prob(25);/obj/effect/mine/emp,
-				prob(10);/obj/effect/mine/stun,
-				prob(10);/obj/effect/mine/incendiary,)
+/obj/random/multiple/minevault/item_to_spawn()
+	return pick(
+			prob(5);list(
+				/obj/item/clothing/mask/smokable/pipe,
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
+				/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
+				/obj/item/weapon/flame/lighter/zippo,
+				/obj/structure/closet/crate/hydroponics
+			),
+			prob(5);list(
+				/obj/item/weapon/pickaxe/drill,
+				/obj/item/clothing/suit/space/void/mining,
+				/obj/item/clothing/head/helmet/space/void/mining,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(5);list(
+				/obj/item/weapon/pickaxe/drill,
+				/obj/item/clothing/suit/space/void/mining/alt,
+				/obj/item/clothing/head/helmet/space/void/mining/alt,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(5);list(
+				/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
+				/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
+				/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
+				/obj/structure/closet/crate/science
+			),
+			prob(5);list(
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(5);list(
+				/obj/item/weapon/pickaxe/drill,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/ore_box,
+				/obj/structure/closet/crate
+			),
+			prob(5);list(
+				/obj/item/weapon/reagent_containers/glass/beaker/noreact,
+				/obj/item/weapon/reagent_containers/glass/beaker/noreact,
+				/obj/item/weapon/reagent_containers/glass/beaker/noreact,
+				/obj/structure/closet/crate/science
+			),
+			prob(5);list(
+				/obj/item/weapon/storage/secure/briefcase/money,
+				/obj/structure/closet/crate/freezer/rations
+			),
+			prob(5);list(
+				/obj/item/clothing/accessory/tie/horrible,
+				/obj/item/clothing/accessory/tie/horrible,
+				/obj/item/clothing/accessory/tie/horrible,
+				/obj/item/clothing/accessory/tie/horrible,
+				/obj/item/clothing/accessory/tie/horrible,
+				/obj/item/clothing/accessory/tie/horrible,
+				/obj/structure/closet/crate
+			),
+			prob(5);list(
+				/obj/item/weapon/melee/baton,
+				/obj/item/weapon/melee/baton,
+				/obj/item/weapon/melee/baton,
+				/obj/item/weapon/melee/baton,
+				/obj/structure/closet/crate
+			),
+			prob(5);list(
+				/obj/item/clothing/under/shorts/red,
+				/obj/item/clothing/under/shorts/blue,
+				/obj/structure/closet/crate
+			),
+			prob(2);list(
+				/obj/item/weapon/melee/baton/cattleprod,
+				/obj/item/weapon/melee/baton/cattleprod,
+				/obj/item/weapon/cell/high,
+				/obj/item/weapon/cell/high,
+				/obj/structure/closet/crate
+			),
+			prob(2);list(
+				/obj/item/latexballon,
+				/obj/item/latexballon,
+				/obj/structure/closet/crate
+			),
+			prob(2);list(
+				/obj/item/toy/syndicateballoon,
+				/obj/item/toy/syndicateballoon,
+				/obj/structure/closet/crate
+			),
+			prob(2);list(
+				/obj/item/weapon/rig/industrial/equipped,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/clothing/head/kitty,
+				/obj/item/clothing/head/kitty,
+				/obj/item/clothing/head/kitty,
+				/obj/item/clothing/head/kitty,
+				/obj/structure/closet/crate
+			),
+			prob(2);list(
+				/obj/random/coin,
+				/obj/random/coin,
+				/obj/random/coin,
+				/obj/random/coin,
+				/obj/random/coin,
+				/obj/structure/closet/crate/plastic
+			),
+			prob(2);list(
+				/obj/random/multiple/voidsuit,
+				/obj/random/multiple/voidsuit,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/space/syndicate/black/red,
+				/obj/item/clothing/head/helmet/space/syndicate/black/red,
+				/obj/item/clothing/suit/space/syndicate/black/red,
+				/obj/item/clothing/head/helmet/space/syndicate/black/red,
+				/obj/item/weapon/gun/projectile/automatic/mini_uzi,
+				/obj/item/weapon/gun/projectile/automatic/mini_uzi,
+				/obj/item/ammo_magazine/m45uzi,
+				/obj/item/ammo_magazine/m45uzi,
+				/obj/item/ammo_magazine/m45uzi/empty,
+				/obj/item/ammo_magazine/m45uzi/empty,
+				/obj/structure/closet/crate/plastic
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/ianshirt,
+				/obj/item/clothing/suit/ianshirt,
+				/obj/item/weapon/bedsheet/ian,
+				/obj/structure/closet/crate/plastic
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/armor/vest,
+				/obj/item/clothing/suit/armor/vest,
+				/obj/item/weapon/gun/projectile/garand,
+				/obj/item/weapon/gun/projectile/garand,
+				/obj/item/ammo_magazine/m762garand,
+				/obj/item/ammo_magazine/m762garand,
+				/obj/structure/closet/crate/plastic
+			),
+			prob(2);list(
+				/obj/mecha/working/ripley/mining
+			),
+			prob(2);list(
+				/obj/mecha/working/hoverpod/combatpod
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/silver,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/jackhammer,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/diamond,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/diamonddrill,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/gold,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/pickaxe/plasmacutter,
+				/obj/item/weapon/storage/bag/ore,
+				/obj/item/clothing/glasses/material,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(2);list(
+				/obj/item/weapon/material/sword/katana,
+				/obj/item/weapon/material/sword/katana,
+				/obj/structure/closet/crate
+			),
+			prob(2);list(
+				/obj/item/weapon/material/sword,
+				/obj/item/weapon/material/sword,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/clothing/mask/balaclava,
+				/obj/item/weapon/material/star,
+				/obj/item/weapon/material/star,
+				/obj/item/weapon/material/star,
+				/obj/item/weapon/material/star,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/weed_extract,
+				/obj/item/xenos_claw,
+				/obj/structure/closet/crate/science
+			),
+			prob(1);list(
+				/obj/item/clothing/head/bearpelt,
+				/obj/item/clothing/under/soviet,
+				/obj/item/clothing/under/soviet,
+				/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial,
+				/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/weapon/gun/projectile/revolver/detective,
+				/obj/item/weapon/gun/projectile/contender,
+				/obj/item/weapon/gun/projectile/p92x,
+				/obj/item/weapon/gun/projectile/derringer,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/weapon/melee/cultblade,
+				/obj/item/clothing/suit/cultrobes,
+				/obj/item/clothing/head/culthood,
+				/obj/item/device/soulstone,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/weapon/vampiric,
+				/obj/item/weapon/vampiric,
+				/obj/structure/closet/crate/science
+			),
+			prob(1);list(
+				/obj/item/weapon/archaeological_find
+			),
+			prob(1);list(
+				/obj/item/weapon/melee/energy/sword,
+				/obj/item/weapon/melee/energy/sword,
+				/obj/item/weapon/melee/energy/sword,
+				/obj/item/weapon/shield/energy,
+				/obj/item/weapon/shield/energy,
+				/obj/structure/closet/crate/science
+			),
+			prob(1);list(
+				/obj/item/weapon/storage/backpack/clown,
+				/obj/item/clothing/under/rank/clown,
+				/obj/item/clothing/shoes/clown_shoes,
+				/obj/item/device/pda/clown,
+				/obj/item/clothing/mask/gas/clown_hat,
+				/obj/item/weapon/bikehorn,
+				/obj/item/toy/waterflower,
+				/obj/item/weapon/pen/crayon/rainbow,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/clothing/under/mime,
+				/obj/item/clothing/shoes/black,
+				/obj/item/device/pda/mime,
+				/obj/item/clothing/gloves/white,
+				/obj/item/clothing/mask/gas/mime,
+				/obj/item/clothing/head/beret,
+				/obj/item/clothing/suit/suspenders,
+				/obj/item/weapon/pen/crayon/mime,
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing,
+				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/item/weapon/storage/belt/champion,
+				/obj/item/clothing/mask/luchador,
+				/obj/item/clothing/mask/luchador/rudos,
+				/obj/item/clothing/mask/luchador/tecnicos,
+				/obj/structure/closet/crate
+			)
+		)

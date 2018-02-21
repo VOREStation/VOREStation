@@ -50,3 +50,21 @@
 
 /area/submap/CrashedMedShuttle
 	name = "Crashed Med Shuttle"
+
+/area/submap/cave/digsite
+	name = "Dig Site"
+
+/area/submap/cave/vault1
+	name = "Mine Vault"
+
+/area/submap/cave/vault2
+	name = "Mine Vault"
+
+/area/submap/cave/vault3
+	name = "Mine Vault"
+
+/area/submap/cave/vault4
+	name = "Mine Vault"
+
+/area/submap/cave/vault5
+	name = "Mine Vault"
