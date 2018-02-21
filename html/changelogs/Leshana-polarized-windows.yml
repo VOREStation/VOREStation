@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - rscadd: "Makes electrochromatic glass buildable and programmable in game.  Use cable and multitool."

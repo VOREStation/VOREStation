@@ -294,6 +294,21 @@
 			if(is_fulltile())
 				mats.amount = 4
 			qdel(src)
+	else if(iscoil(W) && reinf && state == 0 && !istype(src, /obj/structure/window/reinforced/polarized))
+		var/obj/item/stack/cable_coil/C = W
+		if (C.use(1))
+			playsound(src.loc, 'sound/effects/sparks1.ogg', 75, 1)
+			user.visible_message( \
+				"<span class='notice'>\The [user] begins to wire \the [src] for electrochromic tinting.</span>", \
+				"<span class='notice'>You begin to wire \the [src] for electrochromic tinting.</span>", \
+				"You hear sparks.")
+			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				var/obj/structure/window/reinforced/polarized/P = new(loc, dir)
+				P.health = health
+				P.state = state
+				P.anchored = anchored
+				qdel(src)
 	else if(istype(W,/obj/item/frame) && anchored)
 		var/obj/item/frame/F = W
 		F.try_build(src)
@@ -551,6 +566,28 @@
 	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
 	var/id
 
+/obj/structure/window/reinforced/polarized/full
+	dir = SOUTHWEST
+	icon_state = "fwindow"
+	maxhealth = 80
+
+/obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
+	if(ismultitool(W) && !anchored) // Only allow programming if unanchored!
+		var/obj/item/device/multitool/MT = W
+		// First check if they have a windowtint button buffered
+		if(istype(MT.connectable, /obj/machinery/button/windowtint))
+			var/obj/machinery/button/windowtint/buffered_button = MT.connectable
+			src.id = buffered_button.id
+			to_chat(user, "<span class='notice'>\The [src] is linked to \the [buffered_button].</span>")
+			return TRUE
+		// Otherwise fall back to asking them
+		var/t = sanitizeSafe(input(user, "Enter the ID for the window.", src.name, null), MAX_NAME_LEN)
+		if (!t && user.get_active_hand() != W && in_range(src, user))
+			src.id = t
+			to_chat(user, "<span class='notice'>The new ID of \the [src] is [id]</span>")
+			return TRUE
+	. = ..()
+
 /obj/structure/window/reinforced/polarized/proc/toggle()
 	if(opacity)
 		animate(src, color="#FFFFFF", time=5)
@@ -593,3 +630,20 @@
 
 /obj/machinery/button/windowtint/update_icon()
 	icon_state = "light[active]"
+
+/obj/machinery/button/windowtint/attackby(obj/item/W as obj, mob/user as mob)
+	if(ismultitool(W))
+		var/obj/item/device/multitool/MT = W
+		if(!id)
+			// If no ID is set yet (newly built button?) let them select an ID for first-time use!
+			var/t = sanitizeSafe(input(user, "Enter an ID for \the [src].", src.name, null), MAX_NAME_LEN)
+			if (t && user.get_active_hand() != W && in_range(src, user))
+				src.id = t
+				to_chat(user, "<span class='notice'>The new ID of \the [src] is [id]</span>")
+		if(id)
+			// It already has an ID (or they just set one), buffer it for copying to windows.
+			to_chat(user, "<span class='notice'>You store \the [src] in \the [MT]'s buffer!</span>")
+			MT.connectable = src
+			MT.update_icon()
+		return TRUE
+	. = ..()
