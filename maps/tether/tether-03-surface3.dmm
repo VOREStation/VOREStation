@@ -16022,7 +16022,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "BZ" = (
-/obj/machinery/atmospherics/tvalve/mirrored/digital/bypass{
+/obj/machinery/atmospherics/tvalve/digital/mirrored/bypass{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
