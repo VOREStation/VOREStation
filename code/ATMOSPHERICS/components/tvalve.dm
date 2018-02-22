@@ -11,6 +11,8 @@
 
 	var/state = 0 // 0 = go straight, 1 = go to side
 
+	var/mirrored = FALSE
+
 	// like a trinary component, node1 is input, node2 is side output, node3 is straight output
 	var/obj/machinery/atmospherics/node3
 
@@ -24,9 +26,9 @@
 
 /obj/machinery/atmospherics/tvalve/update_icon(animation)
 	if(animation)
-		flick("tvalve[src.state][!src.state]",src)
+		flick("tvalve[mirrored ? "m" : ""][src.state][!src.state]",src)
 	else
-		icon_state = "tvalve[state]"
+		icon_state = "tvalve[mirrored ? "m" : ""][state]"
 
 /obj/machinery/atmospherics/tvalve/update_underlays()
 	if(..())
@@ -43,15 +45,7 @@
 	update_underlays()
 
 /obj/machinery/atmospherics/tvalve/init_dir()
-	switch(dir)
-		if(NORTH)
-			initialize_directions = SOUTH|NORTH|EAST
-		if(SOUTH)
-			initialize_directions = NORTH|SOUTH|WEST
-		if(EAST)
-			initialize_directions = WEST|EAST|SOUTH
-		if(WEST)
-			initialize_directions = EAST|WEST|NORTH
+	initialize_directions = get_initialize_directions_trinary(dir, mirrored)
 
 /obj/machinery/atmospherics/tvalve/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
@@ -176,10 +170,7 @@
 	return
 
 /obj/machinery/atmospherics/tvalve/get_node_connect_dirs()
-	var/node1_connect = turn(dir, 180)
-	var/node2_connect = turn(dir, -90)
-	var/node3_connect = dir
-	return list(node1_connect, node2_connect, node3_connect)
+	return get_node_connect_dirs_trinary(dir, mirrored)
 
 /obj/machinery/atmospherics/tvalve/atmos_init()
 	if(node1 && node2 && node3)
@@ -293,7 +284,7 @@
 /obj/machinery/atmospherics/tvalve/digital/update_icon()
 	..()
 	if(!powered())
-		icon_state = "tvalvenopower"
+		icon_state = "tvalve[mirrored ? "m" : ""]nopower"
 
 /obj/machinery/atmospherics/tvalve/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -362,33 +353,11 @@
 
 /obj/machinery/atmospherics/tvalve/mirrored
 	icon_state = "map_tvalvem0"
+	mirrored = TRUE
 
 /obj/machinery/atmospherics/tvalve/mirrored/bypass
 	icon_state = "map_tvalvem1"
 	state = 1
-
-/obj/machinery/atmospherics/tvalve/mirrored/init_dir()
-	switch(dir)
-		if(NORTH)
-			initialize_directions = SOUTH|NORTH|WEST
-		if(SOUTH)
-			initialize_directions = NORTH|SOUTH|EAST
-		if(EAST)
-			initialize_directions = WEST|EAST|NORTH
-		if(WEST)
-			initialize_directions = EAST|WEST|SOUTH
-
-/obj/machinery/atmospherics/tvalve/mirrored/get_node_connect_dirs()
-	var/node1_connect = turn(dir, 180)
-	var/node2_connect = turn(dir, 90)
-	var/node3_connect = dir
-	return list(node1_connect, node2_connect, node3_connect)
-
-/obj/machinery/atmospherics/tvalve/mirrored/update_icon(animation)
-	if(animation)
-		flick("tvalvem[src.state][!src.state]",src)
-	else
-		icon_state = "tvalvem[state]"
 
 /obj/machinery/atmospherics/tvalve/mirrored/digital		// can be controlled by AI
 	name = "digital switching valve"
