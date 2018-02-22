@@ -359,73 +359,10 @@
 	icon_state = "map_tvalvem1"
 	state = 1
 
-/obj/machinery/atmospherics/tvalve/mirrored/digital		// can be controlled by AI
-	name = "digital switching valve"
-	desc = "A digitally controlled valve."
-	icon = 'icons/atmos/digital_tvalve.dmi'
+/obj/machinery/atmospherics/tvalve/digital/mirrored
+	icon_state = "map_tvalvem0"
+	mirrored = TRUE
 
-	var/frequency = 0
-	var/id = null
-	var/datum/radio_frequency/radio_connection
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/Destroy()
-	unregister_radio(src, frequency)
-	. = ..()
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/bypass
+/obj/machinery/atmospherics/tvalve/digital/mirrored/bypass
 	icon_state = "map_tvalvem1"
 	state = 1
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/power_change()
-	var/old_stat = stat
-	..()
-	if(old_stat != stat)
-		update_icon()
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/update_icon()
-	..()
-	if(!powered())
-		icon_state = "tvalvemnopower"
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/attack_hand(mob/user as mob)
-	if(!powered())
-		return
-	if(!src.allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
-		return
-	..()
-
-//Radio remote control -eh?
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
-/obj/machinery/atmospherics/tvalve/mirrored/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id))
-		return 0
-
-	switch(signal.data["command"])
-		if("valve_open")
-			if(!state)
-				go_to_side()
-
-		if("valve_close")
-			if(state)
-				go_straight()
-
-		if("valve_toggle")
-			if(state)
-				go_straight()
-			else
-				go_to_side()
