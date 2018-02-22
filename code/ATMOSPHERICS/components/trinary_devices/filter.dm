@@ -72,31 +72,6 @@
 		icon_state += "off"
 		use_power = 0
 
-/obj/machinery/atmospherics/trinary/atmos_filter/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-
-		add_underlay(T, node1, turn(dir, -180))
-
-		if(istype(src, /obj/machinery/atmospherics/trinary/atmos_filter/m_filter))
-			add_underlay(T, node2, turn(dir, 90))
-		else
-			add_underlay(T, node2, turn(dir, -90))
-
-		add_underlay(T, node3, dir)
-
-/obj/machinery/atmospherics/trinary/atmos_filter/hide(var/i)
-	update_underlays()
-
-/obj/machinery/atmospherics/trinary/atmos_filter/power_change()
-	var/old_stat = stat
-	..()
-	if(old_stat != stat)
-		update_icon()
-
 /obj/machinery/atmospherics/trinary/atmos_filter/process()
 	..()
 
@@ -241,7 +216,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|EAST
 
-obj/machinery/atmospherics/trinary/atmos_filter/m_filter/init_dir()
+/obj/machinery/atmospherics/trinary/atmos_filter/m_filter/init_dir()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = WEST|NORTH|SOUTH
@@ -252,27 +227,8 @@ obj/machinery/atmospherics/trinary/atmos_filter/m_filter/init_dir()
 		if(WEST)
 			initialize_directions = WEST|SOUTH|EAST
 
-/obj/machinery/atmospherics/trinary/atmos_filter/m_filter/atmos_init()
-	if(node1 && node2 && node3) return
-
+/obj/machinery/atmospherics/trinary/atmos_filter/m_filter/get_node_connect_dirs()
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node1 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node2 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node3 = target
-			break
-
-	update_icon()
-	update_underlays()
+	return list(node1_connect, node2_connect, node3_connect)

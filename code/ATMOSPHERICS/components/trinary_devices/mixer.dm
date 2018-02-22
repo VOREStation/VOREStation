@@ -35,34 +35,6 @@
 		icon_state += "off"
 		use_power = 0
 
-/obj/machinery/atmospherics/trinary/mixer/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-
-		if(istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			add_underlay(T, node1, turn(dir, -90))
-		else
-			add_underlay(T, node1, turn(dir, -180))
-
-		if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer) || istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			add_underlay(T, node2, turn(dir, 90))
-		else
-			add_underlay(T, node2, turn(dir, -90))
-
-		add_underlay(T, node3, dir)
-
-/obj/machinery/atmospherics/trinary/mixer/hide(var/i)
-	update_underlays()
-
-/obj/machinery/atmospherics/trinary/mixer/power_change()
-	var/old_stat = stat
-	..()
-	if(old_stat != stat)
-		update_icon()
-
 /obj/machinery/atmospherics/trinary/mixer/New()
 	..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_MIXER
@@ -173,6 +145,9 @@
 	src.updateUsrDialog()
 	return
 
+//
+// "T" Orientation - Inputs are on oposite sides instead of adjacent
+//
 obj/machinery/atmospherics/trinary/mixer/t_mixer
 	icon_state = "tmap"
 
@@ -181,7 +156,7 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
-obj/machinery/atmospherics/trinary/mixer/t_mixer/init_dir()
+/obj/machinery/atmospherics/trinary/mixer/t_mixer/init_dir()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = EAST|NORTH|WEST
@@ -192,33 +167,16 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer/init_dir()
 		if(WEST)
 			initialize_directions = WEST|NORTH|SOUTH
 
-obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
-	..()
-	if(node1 && node2 && node3) return
-
+/obj/machinery/atmospherics/trinary/mixer/t_mixer/get_node_connect_dirs()
 	var/node1_connect = turn(dir, -90)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
+	return list(node1_connect, node2_connect, node3_connect)
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node1 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node2 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node3 = target
-			break
-
-	update_icon()
-	update_underlays()
-
-obj/machinery/atmospherics/trinary/mixer/m_mixer
+//
+// Mirrored Orientation - Flips the output dir to opposite side from normal.
+//
+/obj/machinery/atmospherics/trinary/mixer/m_mixer
 	icon_state = "mmap"
 
 	dir = SOUTH
@@ -226,7 +184,7 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
-obj/machinery/atmospherics/trinary/mixer/m_mixer/init_dir()
+/obj/machinery/atmospherics/trinary/mixer/m_mixer/init_dir()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = WEST|NORTH|SOUTH
@@ -237,28 +195,8 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer/init_dir()
 		if(WEST)
 			initialize_directions = WEST|SOUTH|EAST
 
-obj/machinery/atmospherics/trinary/mixer/m_mixer/atmos_init()
-	..()
-	if(node1 && node2 && node3) return
-
+/obj/machinery/atmospherics/trinary/mixer/m_mixer/get_node_connect_dirs()
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node1 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node2 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node3 = target
-			break
-
-	update_icon()
-	update_underlays()
+	return list(node1_connect, node2_connect, node3_connect)
