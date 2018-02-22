@@ -258,7 +258,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									qdel(S)
 									linked_destroy.icon_state = "d_analyzer"
 							else
-								if(!(I in linked_destroy.component_parts))
+								if(I != linked_destroy.circuit && !(I in linked_destroy.component_parts))
 									qdel(I)
 									linked_destroy.icon_state = "d_analyzer"
 

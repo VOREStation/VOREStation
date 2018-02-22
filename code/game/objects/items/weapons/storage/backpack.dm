@@ -47,22 +47,18 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14 // 56
 	storage_cost = INVENTORY_STANDARD_SPACE + 1
 
-	New()
-		..()
+/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/storage/backpack/holding))
+		user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
+		qdel(W)
 		return
+	. = ..()
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
-			qdel(W)
-			return
-		..()
-
-	//Please don't clutter the parent storage item with stupid hacks.
-	can_be_inserted(obj/item/W as obj, stop_messages = 0)
-		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			return 1
-		return ..()
+//Please don't clutter the parent storage item with stupid hacks.
+/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	if(istype(W, /obj/item/weapon/storage/backpack/holding))
+		return 1
+	return ..()
 
 /obj/item/weapon/storage/backpack/santabag
 	name = "\improper Santa's gift bag"
@@ -197,9 +193,7 @@
 	item_state_slots = list(slot_r_hand_str = "briefcase", slot_l_hand_str = "briefcase")
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
-	New()
-		..()
-		new /obj/item/weapon/storage/wallet/random( src )
+	starts_with = list(/obj/item/weapon/storage/wallet/random)
 
 /obj/item/weapon/storage/backpack/satchel/norm
 	name = "satchel"

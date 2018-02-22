@@ -2,7 +2,6 @@
 	name = "pilot's headset"
 	desc = "A headset used by pilots, has access to supply and explorer channels."
 	icon_state = "pilot_headset"
-	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/pilot
 
 /obj/item/device/radio/headset/pilot/alt
@@ -14,7 +13,7 @@
 	name = "explorer's headset"
 	desc = "Headset used by explorers for exploring. Access to the explorer channel."
 	icon_state = "exp_headset"
-	item_state = "headset"
+	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/explorer
 
 /obj/item/device/radio/headset/explorer/alt
@@ -26,7 +25,7 @@
 	name = "sar radio headset"
 	desc = "A headset for search and rescue."
 	icon_state = "sar_headset"
-	item_state = "headset"
+	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/sar
 
 /obj/item/device/radio/headset/sar/alt

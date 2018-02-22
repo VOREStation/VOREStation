@@ -26,15 +26,18 @@
 
 	if(!ishuman(src)) //If they're a mob, use the old code.
 		set_typing_indicator(1)
-	if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
+	else if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 1
 		update_icons_huds()
+
 	var/message = input("","say (text)") as text
-	if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
-		hud_typing = 0
-		update_icons_huds()
+
 	if(!ishuman(src)) //If they're a mob, use the old code.
 		set_typing_indicator(0)
+	else if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
+		hud_typing = 0
+		update_icons_huds()
+
 	if(message)
 		say_verb(message)
 
@@ -44,14 +47,17 @@
 
 	if(!ishuman(src)) //If they're a mob, use the old code.
 		set_typing_indicator(1)
-	if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
+	else if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 1
 		update_icons_huds()
+
 	var/message = input("","me (text)") as text
+
 	if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 0
 		update_icons_huds()
-	if(!ishuman(src)) //If they're a mob, use the old code.
+	else if(!ishuman(src)) //If they're a mob, use the old code.
 		set_typing_indicator(0)
+
 	if(message)
 		me_verb(message)

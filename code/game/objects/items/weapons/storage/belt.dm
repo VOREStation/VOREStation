@@ -59,23 +59,25 @@
 		/obj/item/device/integrated_electronics/wirer,
 		)
 
-/obj/item/weapon/storage/belt/utility/full/New()
-	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+/obj/item/weapon/storage/belt/utility/full
+	starts_with = list(
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/crowbar,
+		/obj/item/weapon/wirecutters,
+		/obj/item/stack/cable_coil/random_belt
+	)
 
-/obj/item/weapon/storage/belt/utility/atmostech/New()
-	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
+/obj/item/weapon/storage/belt/utility/atmostech
+	starts_with = list(
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/crowbar,
+		/obj/item/weapon/wirecutters,
+		/obj/item/device/t_scanner
+	)
 
 /obj/item/weapon/storage/belt/utility/chief
 	name = "chief engineer's toolbelt"
@@ -83,15 +85,16 @@
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
 
-/obj/item/weapon/storage/belt/utility/chief/full/New()
-	..()
-	new /obj/item/weapon/screwdriver/power(src)
-	new /obj/item/weapon/crowbar/power(src)
-	new /obj/item/weapon/weldingtool/experimental(src)
-	new /obj/item/device/multitool(src)
-	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
-	new /obj/item/weapon/extinguisher/mini(src)
-	new /obj/item/device/analyzer(src)
+/obj/item/weapon/storage/belt/utility/chief/full
+	starts_with = list(
+		/obj/item/weapon/screwdriver/power,
+		/obj/item/weapon/crowbar/power,
+		/obj/item/weapon/weldingtool/experimental,
+		/obj/item/device/multitool,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/device/analyzer
+	)
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -216,14 +219,8 @@
 		/obj/item/device/soulstone
 		)
 
-/obj/item/weapon/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
+/obj/item/weapon/storage/belt/soulstone/full
+	starts_with = list(/obj/item/device/soulstone = 6)
 
 /obj/item/weapon/storage/belt/utility/alien
 	name = "alien belt"
@@ -232,15 +229,16 @@
 	icon_state = "belt"
 	item_state = "security"
 
-/obj/item/weapon/storage/belt/utility/alien/full/New()
-	..()
-	new /obj/item/weapon/screwdriver/alien(src)
-	new /obj/item/weapon/wrench/alien(src)
-	new /obj/item/weapon/weldingtool/alien(src)
-	new /obj/item/weapon/crowbar/alien(src)
-	new /obj/item/weapon/wirecutters/alien(src)
-	new /obj/item/device/multitool/alien(src)
-	new /obj/item/stack/cable_coil/alien(src)
+/obj/item/weapon/storage/belt/utility/alien/full
+	starts_with = list(
+		/obj/item/weapon/screwdriver/alien,
+		/obj/item/weapon/wrench/alien,
+		/obj/item/weapon/weldingtool/alien,
+		/obj/item/weapon/crowbar/alien,
+		/obj/item/weapon/wirecutters/alien,
+		/obj/item/device/multitool/alien,
+		/obj/item/stack/cable_coil/alien
+	)
 
 /obj/item/weapon/storage/belt/medical/alien
 	name = "alien belt"
@@ -277,16 +275,17 @@
 		/obj/item/weapon/surgical
 		)
 
-/obj/item/weapon/storage/belt/medical/alien/New()
-	..()
-	new /obj/item/weapon/surgical/scalpel/alien(src)
-	new /obj/item/weapon/surgical/hemostat/alien(src)
-	new /obj/item/weapon/surgical/retractor/alien(src)
-	new /obj/item/weapon/surgical/circular_saw/alien(src)
-	new /obj/item/weapon/surgical/FixOVein/alien(src)
-	new /obj/item/weapon/surgical/bone_clamp/alien(src)
-	new /obj/item/weapon/surgical/cautery/alien(src)
-	new /obj/item/weapon/surgical/surgicaldrill/alien(src)
+/obj/item/weapon/storage/belt/medical/alien
+	starts_with = list(
+		/obj/item/weapon/surgical/scalpel/alien,
+		/obj/item/weapon/surgical/hemostat/alien,
+		/obj/item/weapon/surgical/retractor/alien,
+		/obj/item/weapon/surgical/circular_saw/alien,
+		/obj/item/weapon/surgical/FixOVein/alien,
+		/obj/item/weapon/surgical/bone_clamp/alien,
+		/obj/item/weapon/surgical/cautery/alien,
+		/obj/item/weapon/surgical/surgicaldrill/alien
+	)
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

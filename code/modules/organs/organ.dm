@@ -83,10 +83,9 @@ var/list/organ_cache = list()
 			blood_DNA[dna.unique_enzymes] = dna.b_type
 
 /obj/item/organ/proc/die()
-	if(robotic >= ORGAN_ROBOT)
-		return
+	if(robotic < ORGAN_ROBOT)
+		status |= ORGAN_DEAD
 	damage = max_damage
-	status |= ORGAN_DEAD
 	processing_objects -= src
 	if(owner && vital)
 		owner.death()
@@ -107,6 +106,11 @@ var/list/organ_cache = list()
 		return
 	if(preserved)
 		return
+
+	//check if we've hit max_damage
+	if(damage >= max_damage)
+		die()
+
 	//Process infections
 	if(robotic >= ORGAN_ROBOT || (owner && owner.species && (owner.species.flags & IS_PLANT || (owner.species.flags & NO_INFECT))))
 		germ_level = 0
@@ -131,10 +135,6 @@ var/list/organ_cache = list()
 		handle_antibiotics()
 		handle_rejection()
 		handle_germ_effects()
-
-	//check if we've hit max_damage
-	if(damage >= max_damage)
-		die()
 
 /obj/item/organ/examine(mob/user)
 	..(user)

@@ -94,6 +94,9 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
+/obj/screen/plane_master/New()
+	..(null) //Never be in anything ever.
+
 /obj/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
 		desired_alpha = new_alpha

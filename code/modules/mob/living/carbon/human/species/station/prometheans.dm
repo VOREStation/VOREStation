@@ -149,11 +149,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.nutrition += rand(15, 45)
 
 	// Heal remaining damage.
-	if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-		H.adjustBruteLoss(-heal_rate)
-		H.adjustFireLoss(-heal_rate)
-		H.adjustOxyLoss(-heal_rate)
-		H.adjustToxLoss(-heal_rate)
+	if(H.fire_stacks >= 0)
+		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
+			H.adjustBruteLoss(-heal_rate)
+			H.adjustFireLoss(-heal_rate)
+			H.adjustOxyLoss(-heal_rate)
+			H.adjustToxLoss(-heal_rate)
+	else
+		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
