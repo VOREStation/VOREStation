@@ -34,14 +34,10 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		add_underlay(T, node1, turn(dir, -180))
-
-		if(istype(src, /obj/machinery/atmospherics/tvalve/mirrored))
-			add_underlay(T, node2, turn(dir, 90))
-		else
-			add_underlay(T, node2, turn(dir, -90))
-
-		add_underlay(T, node3, dir)
+		var/list/node_connects = get_node_connect_dirs()
+		add_underlay(T, node1, node_connects[1])
+		add_underlay(T, node2, node_connects[2])
+		add_underlay(T, node3, node_connects[3])
 
 /obj/machinery/atmospherics/tvalve/hide(var/i)
 	update_underlays()
@@ -179,26 +175,29 @@
 
 	return
 
+/obj/machinery/atmospherics/tvalve/get_node_connect_dirs()
+	var/node1_connect = turn(dir, 180)
+	var/node2_connect = turn(dir, -90)
+	var/node3_connect = dir
+	return list(node1_connect, node2_connect, node3_connect)
+
 /obj/machinery/atmospherics/tvalve/atmos_init()
-	var/node1_dir
-	var/node2_dir
-	var/node3_dir
+	if(node1 && node2 && node3)
+		return
 
-	node1_dir = turn(dir, 180)
-	node2_dir = turn(dir, -90)
-	node3_dir = dir
+	var/list/node_connects = get_node_connect_dirs()
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[1]))
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
 				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[2]))
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node2 = target
 				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[3]))
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node3 = target
@@ -379,30 +378,11 @@
 		if(WEST)
 			initialize_directions = EAST|WEST|SOUTH
 
-/obj/machinery/atmospherics/tvalve/mirrored/atmos_init()
-	var/node1_dir
-	var/node2_dir
-	var/node3_dir
-
-	node1_dir = turn(dir, 180)
-	node2_dir = turn(dir, 90)
-	node3_dir = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			node1 = target
-			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			node2 = target
-			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			node3 = target
-			break
-
-	update_icon()
-	update_underlays()
+/obj/machinery/atmospherics/tvalve/mirrored/get_node_connect_dirs()
+	var/node1_connect = turn(dir, 180)
+	var/node2_connect = turn(dir, 90)
+	var/node3_connect = dir
+	return list(node1_connect, node2_connect, node3_connect)
 
 /obj/machinery/atmospherics/tvalve/mirrored/update_icon(animation)
 	if(animation)
