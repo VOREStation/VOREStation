@@ -59,7 +59,7 @@
 	. = ..()
 
 /obj/machinery/atmospherics/trinary/atmos_filter/update_icon()
-	if(istype(src, /obj/machinery/atmospherics/trinary/atmos_filter/m_filter))
+	if(mirrored)
 		icon_state = "m"
 	else
 		icon_state = ""
@@ -107,24 +107,6 @@
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
-
-/obj/machinery/atmospherics/trinary/atmos_filter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
-		return ..()
-	if(!can_unwrench())
-		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
-		add_fingerprint(user)
-		return 1
-	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-	if (do_after(user, 40 * W.toolspeed))
-		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
-			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
-
 
 /obj/machinery/atmospherics/trinary/atmos_filter/attack_hand(user as mob) // -- TLE
 	if(..())
@@ -210,25 +192,11 @@
 */
 	return
 
+//
+// Mirrored Orientation - Flips the output dir to opposite side from normal.
+//
 /obj/machinery/atmospherics/trinary/atmos_filter/m_filter
 	icon_state = "mmap"
-
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|EAST
-
-/obj/machinery/atmospherics/trinary/atmos_filter/m_filter/init_dir()
-	switch(dir)
-		if(NORTH)
-			initialize_directions = WEST|NORTH|SOUTH
-		if(SOUTH)
-			initialize_directions = SOUTH|EAST|NORTH
-		if(EAST)
-			initialize_directions = EAST|WEST|NORTH
-		if(WEST)
-			initialize_directions = WEST|SOUTH|EAST
-
-/obj/machinery/atmospherics/trinary/atmos_filter/m_filter/get_node_connect_dirs()
-	var/node1_connect = turn(dir, -180)
-	var/node2_connect = turn(dir, 90)
-	var/node3_connect = dir
-	return list(node1_connect, node2_connect, node3_connect)
+	mirrored = TRUE
