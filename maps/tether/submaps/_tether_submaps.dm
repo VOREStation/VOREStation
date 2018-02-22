@@ -31,8 +31,8 @@
 #include "beach/beach.dmm"
 #include "beach/cave.dmm"
 #include "alienship/alienship.dmm"
-//#include "aerostat/aerostat.dmm"
-//#include "aerostat/surface.dmm"
+#include "aerostat/aerostat.dmm"
+#include "aerostat/surface.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -89,8 +89,23 @@
 	name = "Away Mission - Aerostat Surface"
 
 
+//////////////////////////////////////////////////////////////////////////////////////
+// Admin-use z-levels for loading whenever an admin feels like
+#if AWAY_MISSION_TEST
+#include "admin_use/spa.dmm"
+#endif
 
+#include "admin_use/fun.dm"
+/datum/map_template/tether_lateload/fun/spa
+	name = "Space Spa"
+	desc = "A pleasant spa located in a spaceship."
+	mappath = 'admin_use/spa.dmm'
 
+	associated_map_datum = /datum/map_z_level/tether_lateload/fun/spa
+
+/datum/map_z_level/tether_lateload/fun/spa
+	name = "Spa"
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Code Shenanigans for Tether lateload maps
