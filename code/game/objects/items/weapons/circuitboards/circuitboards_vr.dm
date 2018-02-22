@@ -46,3 +46,10 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/matter_bin/adv = 1,
 							/obj/item/weapon/stock_parts/scanning_module = 5)
+
+// Board for the timeclock terminal in timeclock_vr.dm
+/obj/item/weapon/circuitboard/timeclock
+	name = T_BOARD("timeclock")
+	build_path = /obj/machinery/computer/timeclock
+	board_type = new /datum/frame/frame_types/timeclock_terminal
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
