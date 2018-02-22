@@ -164,3 +164,8 @@ Swimsuits
 /datum/gear/uniform/latexmaid
 	display_name = "latex maid dress"
 	path = /obj/item/clothing/under/fluff/latexmaid
+
+//Tron Siren outfit
+/datum/gear/uniform/siren
+	display_name = "jumpsuit, Siren"
+	path = /obj/item/clothing/under/fluff/siren

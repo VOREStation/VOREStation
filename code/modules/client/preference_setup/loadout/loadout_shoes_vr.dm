@@ -9,3 +9,7 @@
 /datum/gear/shoes/black/cuffs/red
 	display_name = "legwraps, red"
 	path = /obj/item/clothing/shoes/black/cuffs/red
+
+/datum/gear/shoes/siren
+	display_name = "boots, Siren"
+	path = /obj/item/clothing/shoes/boots/fluff/siren
