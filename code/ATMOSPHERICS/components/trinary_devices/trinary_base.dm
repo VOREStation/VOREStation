@@ -35,6 +35,26 @@
 		if(WEST)
 			initialize_directions = WEST|NORTH|EAST
 
+/obj/machinery/atmospherics/trinary/update_underlays()
+	if(..())
+		underlays.Cut()
+		var/turf/T = get_turf(src)
+		if(!istype(T))
+			return
+		var/list/node_connects = get_node_connect_dirs()
+		add_underlay(T, node1, node_connects[1])
+		add_underlay(T, node2, node_connects[2])
+		add_underlay(T, node3, node_connects[3])
+
+/obj/machinery/atmospherics/trinary/hide(var/i)
+	update_underlays()
+
+/obj/machinery/atmospherics/trinary/power_change()
+	var/old_stat = stat
+	. = ..()
+	if(old_stat != stat)
+		update_icon()
+
 // Housekeeping and pipe network stuff below
 /obj/machinery/atmospherics/trinary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
@@ -70,26 +90,31 @@
 	node2 = null
 	node3 = null
 
+// Get the direction each node is facing to connect.
+// It now returns as a list so it can be fetched nicely, each entry corresponds to node of same number.
+/obj/machinery/atmospherics/trinary/get_node_connect_dirs()
+	var/node1_connect = turn(dir, 180)
+	var/node2_connect = turn(dir, -90)
+	var/node3_connect = dir
+	return list(node1_connect, node2_connect, node3_connect)
+
 /obj/machinery/atmospherics/trinary/atmos_init()
 	if(node1 && node2 && node3)
 		return
 
-	var/node1_connect = turn(dir, -180)
-	var/node2_connect = turn(dir, -90)
-	var/node3_connect = dir
+	var/list/node_connects = get_node_connect_dirs()
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[1]))
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node1 = target
 				break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[2]))
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node2 = target
 				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[3]))
 		if(target.initialize_directions & get_dir(target,src))
 			if (check_connect_types(target,src))
 				node3 = target
