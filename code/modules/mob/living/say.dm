@@ -298,11 +298,14 @@ proc/get_radio_key_from_channel(var/channel)
 	else
 		return 1 //If we're in nullspace, then forget it.
 
+	//Remember the speech images so we can remove them later and they can get GC'd
+	var/list/images_to_clients = list()
+
 	//The 'post-say' static speech bubble
 	var/speech_bubble_test = say_test(message)
 	var/speech_type = speech_bubble_appearance()
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"[speech_type][speech_bubble_test]")
-	spawn(30) qdel(speech_bubble)
+	images_to_clients[speech_bubble] = list()
 
 	// Attempt Multi-Z Talking
 	var/mob/above = src.shadow
@@ -311,7 +314,7 @@ proc/get_radio_key_from_channel(var/channel)
 		if(ST)
 			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
 			var/image/z_speech_bubble = image('icons/mob/talk.dmi', above, "h[speech_bubble_test]")
-			spawn(30) qdel(z_speech_bubble)
+			images_to_clients[z_speech_bubble] = list()
 			for(var/item in results["mobs"])
 				if(item != above && !(item in listening))
 					listening[item] = z_speech_bubble
@@ -326,12 +329,17 @@ proc/get_radio_key_from_channel(var/channel)
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
-					M << (listening[M] || speech_bubble) // Send the image attached to shadow mob if available
+					if(M.client)
+						var/image/I1 = listening[M] || speech_bubble
+						images_to_clients[I1] |= M.client
+						M << I1
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
-
 				if(whispering) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
-						M << (listening[M] || speech_bubble) // Send the image attached to shadow mob if available
+						if(M.client)
+							var/image/I2 = listening[M] || speech_bubble
+							images_to_clients[I2] |= M.client
+							M << I2
 						M.hear_say(stars(message), verb, speaking, alt_name, italics, src, speech_sound, sound_vol*0.2)
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
 						M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
@@ -343,6 +351,16 @@ proc/get_radio_key_from_channel(var/channel)
 				var/dst = get_dist(get_turf(O),get_turf(src))
 				if(dst <= message_range)
 					O.hear_talk(src, message, verb, speaking)
+
+	//Remove all those images. At least it's just ONE spawn this time.
+	spawn(30)
+		for(var/img in images_to_clients)
+			var/image/I = img
+			var/list/clients_from_image = images_to_clients[I]
+			for(var/client in clients_from_image)
+				var/client/C = client
+				C.images -= I
+			qdel(I)
 
 	//Log the message to file
 	if(whispering)
