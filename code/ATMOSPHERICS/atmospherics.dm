@@ -46,6 +46,11 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/init_dir()
 	return
 
+// Get the direction each node is facing to connect.
+// It now returns as a list so it can be fetched nicely, each entry corresponds to node of same number.
+/obj/machinery/atmospherics/proc/get_node_connect_dirs()
+	return
+
 // Initializes nodes by looking at neighboring atmospherics machinery to connect to.
 // When we're being constructed at runtime, atmos_init() is called by the construction code.
 // When dynamically loading a map atmos_init is called by the maploader (initTemplateBounds proc)
