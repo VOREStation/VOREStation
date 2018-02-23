@@ -126,3 +126,9 @@
 	question = "A person suspended in cryosleep has been discovered by a crewmember \
 	and they are attempting to open the cryopod.  Would you like to play as the occupant?"
 	cutoff_number = 1
+
+/datum/ghost_query/corgi_rune
+	role_name = "Dark Creature"
+	question = "A curious explorer has touched a mysterious rune. \
+	Would you like to play as the creature it summons?"
+	cutoff_number = 1
