@@ -145,7 +145,7 @@ Buildable meters
 			src.pipe_type = PIPE_PASSIVE_GATE
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/heat_exchanger))
 			src.pipe_type = PIPE_HEAT_EXCHANGE
-		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/mirrored/digital))
+		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/digital/mirrored))
 			src.pipe_type = PIPE_DTVALVEM
 		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/mirrored))
 			src.pipe_type = PIPE_MTVALVEM
@@ -1105,7 +1105,7 @@ Buildable meters
 				V.node3.build_network()
 
 		if(PIPE_DTVALVEM)		//mirrored digital t-valve
-			var/obj/machinery/atmospherics/tvalve/mirrored/digital/V = new(src.loc)
+			var/obj/machinery/atmospherics/tvalve/digital/mirrored/V = new(src.loc)
 			if(src.req_access)
 				V.req_access = src.req_access
 			if(src.req_one_access)
