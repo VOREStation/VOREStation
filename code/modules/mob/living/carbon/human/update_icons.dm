@@ -1006,6 +1006,13 @@ var/global/list/damage_icon_parts = list()
 			standing = image(base)
 		else
 			standing.color = head.color
+
+		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
+		var/obj/item/clothing/head/hat = head
+		if(istype(hat) && hat.accessories.len)
+			for(var/obj/item/clothing/accessory/A in hat.accessories)
+				standing.overlays |= A.get_mob_overlay()
+
 		overlays_standing[HEAD_LAYER] = standing
 
 	else

@@ -1,12 +1,17 @@
 /obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
 	if(valid_accessory_slots && istype(A) && (A.slot in valid_accessory_slots))
-		.=1
-	else
-		return 0
+		if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
+			for(var/obj/item/clothing/accessory/AC in accessories)
+				if (AC.slot == A.slot)
+					return 0
+		return 1
+	return 0
+
 	if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
 		for(var/obj/item/clothing/accessory/AC in accessories)
 			if (AC.slot == A.slot)
 				return 0
+	return 1
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
@@ -22,7 +27,7 @@
 			return
 		else
 			user << "<span class='warning'>You cannot attach more accessories of this type to [src].</span>"
-		return
+			return
 
 	if(accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -37,6 +42,10 @@
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attack_hand(user)
 		return
+	if (ishuman(user) && src.loc == user)
+		var/mob/living/carbon/human/H = user
+		if(src != H.l_store && src != H.r_store && src != H.s_store)
+			return
 	return ..()
 
 /obj/item/clothing/MouseDrop(var/obj/over_object)
@@ -70,10 +79,16 @@
  *  user is the user doing the attaching. Can be null, such as when attaching
  *  items on spawn
  */
+/obj/item/clothing/proc/update_accessory_slowdown()
+	slowdown = initial(slowdown)
+	for(var/obj/item/clothing/accessory/A in accessories)
+		slowdown += A.slowdown
+
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
 	A.on_attached(src, user)
 	src.verbs |= /obj/item/clothing/proc/removetie_verb
+	update_accessory_slowdown()
 	update_clothing_icon()
 
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
@@ -82,6 +97,7 @@
 
 	A.on_removed(user)
 	accessories -= A
+	update_accessory_slowdown()
 	update_clothing_icon()
 
 /obj/item/clothing/proc/removetie_verb()

@@ -28,7 +28,7 @@
 	icon_state = "arm_guards_bullet"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	siemens_coefficient = 0.7
-	armor = list(melee = 10, bullet = 80, laser = 10, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/gloves/arm_guard/riot
 	name = "riot arm guards"
@@ -36,7 +36,7 @@
 	icon_state = "arm_guards_riot"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	siemens_coefficient = 0.5
-	armor = list(melee = 80, bullet = 10, laser = 10, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/gloves/arm_guard/combat
 	name = "combat arm guards"

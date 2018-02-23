@@ -102,6 +102,8 @@
 	desc = "You could probably shock someone badly if you touched them, or recharge something."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
+	show_examine = FALSE
+
 	var/shock_cost = 10
 	var/agony_amount = 60
 	var/electrocute_amount = 10
