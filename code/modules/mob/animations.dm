@@ -171,7 +171,17 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /mob/living/do_attack_animation(atom/A)
 	..()
-	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+	//Check for clients with pref enabled
+	var/list/viewing = list()
+	for(var/m in viewers(A))
+		var/mob/M = m
+		var/client/C = M.client
+		if(C && C.is_preference_enabled(/datum/client_preference/attack_icons))
+			viewing += M.client
+
+	//Animals attacking each other in the distance, probably. Forgeddaboutit.
+	if(!viewing.len)
+		return FALSE
 
 	// What icon do we use for the attack?
 	var/obj/used_item
@@ -183,6 +193,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//Couldn't find an item, do they have a sprite specified (like animal claw stuff?)
 	if(!used_item && !(attack_icon && attack_icon_state))
 		return FALSE //Didn't find an item, not doing animation.
+
+	// If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+	is_floating = 0
 
 	var/image/I
 
@@ -196,13 +209,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I = image(attack_icon, A, attack_icon_state, A.layer + 1)
 		I.dir = dir
 
-	//Check for clients with pref enabled
-	var/list/viewing = list()
-	for(var/m in viewers(A))
-		var/mob/M = m
-		var/client/C = M.client
-		if(C && C.is_preference_enabled(/datum/client_preference/attack_icons))
-			viewing += M.client
+	// Show the overlay to the clients
 	flick_overlay(I, viewing, 5, TRUE) // 5 ticks/half a second
 
 	// Set the direction of the icon animation.
