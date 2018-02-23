@@ -218,7 +218,8 @@
 			continue //no need checking these other things
 
 		else if(istype(A, /obj/machinery/power/grounding_rod))
-			var/dist = get_dist(source, A)-2
+			var/obj/machinery/power/grounding_rod/G = A
+			var/dist = get_dist(source, A) - (G.anchored ? 2 : 0)
 			if(dist <= zap_range && (dist < closest_dist || !closest_grounding_rod))
 				closest_grounding_rod = A
 				closest_atom = A
