@@ -359,7 +359,8 @@ proc/get_radio_key_from_channel(var/channel)
 			var/list/clients_from_image = images_to_clients[I]
 			for(var/client in clients_from_image)
 				var/client/C = client
-				C.images -= I
+				if(C) //Could have disconnected after message sent, before removing bubble.
+					C.images -= I
 			qdel(I)
 
 	//Log the message to file
