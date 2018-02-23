@@ -65,6 +65,7 @@
 	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."
 	icon_state = "survival"
 	starts_with = list(
+		/obj/item/clothing/glasses/goggles, //VOREStation Add - Goggles for the phoron atmosphere,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/device/flashlight/glowstick,

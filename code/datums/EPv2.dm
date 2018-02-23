@@ -40,6 +40,10 @@ var/global/list/all_exonet_connections = list()
 	src.holder = holder
 	..()
 
+/datum/exonet_protocol/Destroy()
+	remove_address()
+	holder = null
+	return ..()
 
 // Proc: make_address()
 // Parameters: 1 (string - used to make into a hash that will be part of the new address)

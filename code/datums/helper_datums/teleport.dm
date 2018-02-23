@@ -175,7 +175,7 @@
 		else
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 		return 0
-
+	/* VOREStation Removal
 	if(destination.z in using_map.admin_levels) //CentCom z-level
 		if(istype(teleatom, /obj/mecha))
 			var/obj/mecha/MM = teleatom
@@ -184,8 +184,11 @@
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 			return 0
-
-
-	if(destination.z > max_default_z_level()) //Away mission z-levels
-		return 0
-	return 1
+	*/ //VOREStation Removal End
+	//VOREStation Edit Start
+	if(destination.z in using_map.player_levels)
+		return 1
+	if(istype(teleatom, /mob/living))
+		to_chat(teleatom, "<span class='warning'>The portal refuses to carry you that far away!</span>")
+	return 0
+	//VOREStation Edit End

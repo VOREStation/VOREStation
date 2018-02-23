@@ -47,6 +47,22 @@
 	s.start()
 	holder.clear_reagents()
 
+/datum/chemical_reaction/xenolazarus
+	name = "Discount Lazarus"
+	id = "discountlazarus"
+	result = null
+	required_reagents = list("monstertamer" = 5, "clonexadone" = 5)
+
+/datum/chemical_reaction/xenolazarus/on_reaction(var/datum/reagents/holder, var/created_volume) //literally all this does is mash the regenerate button
+	if(ishuman(holder.my_atom))
+		var/mob/living/carbon/human/H = holder.my_atom
+		if(H.stat == DEAD && (/mob/living/carbon/human/proc/begin_reconstitute_form in H.verbs)) //no magical regen for non-regenners, and can't force the reaction on live ones
+			if(H.hasnutriment() && !H.reviving) // make sure it actually has the conditions to revive
+				H.visible_message("<span class='info'>[H] shudders briefly, then relaxes, faint movements stirring within.</span>")
+				H.chimera_regenerate()
+			else
+				H.visible_message("<span class='info'>[H] twitches for a moment, but remains still.</span>")
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs
 
@@ -89,13 +105,20 @@
 	result = "grubshake"
 	required_reagents = list("shockchem" = 5, "water" = 25)
 	result_amount = 30
-	
+
 /datum/chemical_reaction/drinks/deathbell
 	name = "Deathbell"
 	id = "deathbell"
 	result = "deathbell"
 	required_reagents = list("antifreeze" = 1, "gargleblaster" = 1, "syndicatebomb" =1)
 	result_amount = 3
+
+/datum/chemical_reaction/drinks/monstertamer
+	name = "Monster Tamer"
+	id = "monstertamer"
+	result = "monstertamer"
+	required_reagents = list("whiskey" = 1, "protein" = 1)
+	result_amount = 2
 
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////
