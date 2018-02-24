@@ -171,9 +171,9 @@
 
 	var/list/modes
 
-/obj/item/ammo_magazine/nsfw_mag/New()
+/obj/item/ammo_magazine/nsfw_mag/initialize()
 	..()
-	modes = list()
+	LAZYINITLIST(modes)
 
 /obj/item/ammo_magazine/nsfw_mag/update_icon()
 	var/mutable_appearance/ma = new(src)
@@ -230,14 +230,14 @@
 	var/type_name = null
 	projectile_type = /obj/item/projectile/beam
 
-/obj/item/ammo_casing/nsfw_batt/New()
+/obj/item/ammo_casing/nsfw_batt/initialize()
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	update_icon()
 
 /obj/item/ammo_casing/nsfw_batt/update_icon()
 	var/mutable_appearance/ma = new(src)
-	ma.overlays.Cut()
+	ma.overlays = list()
 
 	var/mutable_appearance/ends = mutable_appearance(icon,"[initial(icon_state)]_ends")
 	ends.color = type_color
