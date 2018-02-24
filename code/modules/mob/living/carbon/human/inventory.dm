@@ -32,7 +32,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 		qdel(W)
 	return null
 
-
 /mob/living/carbon/human/proc/has_organ(name)
 	var/obj/item/organ/external/O = organs_by_name[name]
 	return (O && !O.is_stump())
@@ -318,9 +317,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 			W.loc = src.back
 		if(slot_tie)
 			for(var/obj/item/clothing/C in worn_clothing)
-				C.attackby(W, usr)
+				if(istype(W, /obj/item/clothing/accessory))
+					var/obj/item/clothing/accessory/A = W
+					if(C.attempt_attach_accessory(usr, A))
+						return
 		else
-			src << "<font color='red'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"
+			src << "<font color='red'>You are trying to equip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"
 			return
 
 	if((W == src.l_hand) && (slot != slot_l_hand))

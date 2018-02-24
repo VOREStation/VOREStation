@@ -236,29 +236,33 @@
 /datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 0,var/comprehensive = 0)
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
 
-	if(H.isSynthetic())
-		boxtype = /obj/item/weapon/storage/box //Empty box for synths
+	var/synth = H.isSynthetic()
 
-	//Special box for engineers
-	if(comprehensive)
+	//Empty box for synths
+	if(synth)
+		boxtype = /obj/item/weapon/storage/box/survival/synth
+
+	//Special box with extra equipment
+	else if(comprehensive)
 		boxtype = /obj/item/weapon/storage/box/survival/comp
 
 	//Create the box
 	var/obj/item/weapon/storage/box/box = new boxtype(H)
 
-	//Create a tank (if such a thing exists for this species)
-	var/tanktext = "/obj/item/weapon/tank/emergency/" + "[breath_type]"
-	var/obj/item/weapon/tank/emergency/tankpath //Will force someone to come look here if they ever alter this path.
-	if(extendedtank)
-		tankpath = text2path(tanktext + "/engi")
-		if(!tankpath) //Is it just that there's no /engi?
-			tankpath = text2path(tanktext + "/double")
+	if(!synth)
+		//Create a tank (if such a thing exists for this species)
+		var/tanktext = "/obj/item/weapon/tank/emergency/" + "[breath_type]"
+		var/obj/item/weapon/tank/emergency/tankpath //Will force someone to come look here if they ever alter this path.
+		if(extendedtank)
+			tankpath = text2path(tanktext + "/engi")
+			if(!tankpath) //Is it just that there's no /engi?
+				tankpath = text2path(tanktext + "/double")
 
-	if(!tankpath)
-		tankpath = text2path(tanktext)
+		if(!tankpath)
+			tankpath = text2path(tanktext)
 
-	if(tankpath)
-		new tankpath(box)
+		if(tankpath)
+			new tankpath(box)
 
 	box.calibrate_size()
 

@@ -60,6 +60,11 @@
 		/obj/item/clothing/mask/breath
 	)
 
+/obj/item/weapon/storage/box/survival/synth
+	name = "synthetic supply box"
+	desc = "A survival box issued to synthetic crew members for use in emergency situations."
+	starts_with = list()
+
 /obj/item/weapon/storage/box/survival/comp
 	name = "emergency supply box"
 	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."

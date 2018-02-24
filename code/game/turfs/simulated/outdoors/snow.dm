@@ -41,3 +41,16 @@
 		user.put_in_hands(S)
 		visible_message("[user] scoops up a pile of snow.", "You scoop up a pile of snow.")
 	return
+
+/turf/simulated/floor/outdoors/ice
+	name = "ice"
+	icon_state = "ice"
+	desc = "Looks slippery."
+
+/turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
+	sleep(1 * world.tick_lag)
+	if(istype(M, /mob/living))
+		if(M.stunned == 0)
+			to_chat(M, "<span class='warning'>You slide across the ice!</span>")
+		M.SetStunned(2)
+		step(M,M.dir)
