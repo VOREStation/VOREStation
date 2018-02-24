@@ -307,7 +307,8 @@
 /obj/item/weapon/storage/fancy/heartbox
 	icon_state = "heartbox"
 	name = "box of chocolates"
-	icon_type = "chocolates"
+	icon_type = "chocolate"
+
 	var/startswith = 6
 	max_storage_space = ITEMSIZE_COST_SMALL * 6
 	can_hold = list(

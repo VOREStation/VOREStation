@@ -1605,6 +1605,16 @@
 	glass_name = "wine"
 	glass_desc = "A very classy looking drink."
 
+/datum/reagent/ethanol/wine/champagne
+	name = "Champagne"
+	id = "champagne"
+	description = "A sparkling wine made with Pinot Noir, Pinot Meunier, and Chardonnay."
+	taste_description = "fizzy bitter sweetness"
+	color = "#D1B166"
+
+	glass_name = "champagne"
+	glass_desc = "An even classier looking drink."
+
 
 /datum/reagent/ethanol/cider
 	name = "Cider"

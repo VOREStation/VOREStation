@@ -540,3 +540,12 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/sake/New()
 	..()
 	reagents.add_reagent("sake", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne
+	name = "Gilthari Luxury Champagne"
+	desc = "For those special occassions."
+	icon_state = "champagne"
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne/New()
+	..()
+	reagents.add_reagent("champagne", 100)

@@ -670,3 +670,59 @@
 		can_hold[I.type]++
 		max_w_class = max(I.w_class, max_w_class)
 		max_storage_space += I.get_storage_cost()
+
+/*
+ * Trinket Box - READDING SOON
+ */
+/*
+/obj/item/weapon/storage/trinketbox
+	name = "trinket box"
+	desc = "A box that can hold small trinkets, such as a ring."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "trinketbox"
+	var/open = 0
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/clothing/gloves/ring,
+		/obj/item/weapon/coin,
+		/obj/item/clothing/accessory/medal
+		)
+	var/open_state
+	var/closed_state
+
+/obj/item/weapon/storage/trinketbox/update_icon()
+	overlays.Cut()
+	if(open)
+		icon_state = open_state
+
+		if(contents.len >= 1)
+			var/contained_image = null
+			if(istype(contents[1],  /obj/item/clothing/gloves/ring))
+				contained_image = "ring_trinket"
+			else if(istype(contents[1], /obj/item/weapon/coin))
+				contained_image = "coin_trinket"
+			else if(istype(contents[1], /obj/item/clothing/accessory/medal))
+				contained_image = "medal_trinket"
+			if(contained_image)
+				overlays += contained_image
+	else
+		icon_state = closed_state
+
+/obj/item/weapon/storage/trinketbox/New()
+	if(!open_state)
+		open_state = "[initial(icon_state)]_open"
+	if(!closed_state)
+		closed_state = "[initial(icon_state)]"
+	..()
+
+/obj/item/weapon/storage/trinketbox/attack_self()
+	open = !open
+	update_icon()
+	..()
+
+/obj/item/weapon/storage/trinketbox/examine(mob/user)
+	..()
+	if(open && contents.len)
+		var/display_item = contents[1]
+		to_chat(user, "<span class='notice'>\The [src] contains \the [display_item]!</span>")
+		*/
