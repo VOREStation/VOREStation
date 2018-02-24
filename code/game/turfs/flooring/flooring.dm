@@ -80,6 +80,11 @@ var/list/flooring_types
 	icon_base = "snowyplating"
 	flags = null
 
+/decl/flooring/snow/ice
+	name = "ice"
+	desc = "Looks slippery."
+	icon_base = "ice"
+
 /decl/flooring/snow/plating/drift
 	icon_base = "snowyplayingdrift"
 
