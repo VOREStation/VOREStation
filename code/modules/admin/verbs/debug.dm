@@ -327,6 +327,14 @@
 
 	usr << browse(dellog.Join(), "window=dellog")
 
+/client/proc/cmd_display_init_log()
+	set category = "Debug"
+	set name = "Display Initialize() Log"
+	set desc = "Displays a list of things that didn't handle Initialize() properly"
+
+	if(!check_rights(R_DEBUG))	return
+	src << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+
 /client/proc/cmd_admin_grantfullaccess(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
