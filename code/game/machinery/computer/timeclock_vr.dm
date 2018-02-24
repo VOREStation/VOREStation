@@ -125,3 +125,22 @@
 
 /datum/frame/frame_types/timeclock_terminal/get_icon_state(var/state)
 	return "timeclock_b[state]"
+
+//
+// Easy mapping
+//
+/obj/machinery/computer/timeclock/premade/north
+	dir = 2
+	pixel_y = 26
+
+/obj/machinery/computer/timeclock/premade/south
+	dir = 1
+	pixel_y = -26
+
+/obj/machinery/computer/timeclock/premade/east
+	dir = 8
+	pixel_x = 26
+
+/obj/machinery/computer/timeclock/premade/west
+	dir = 4
+	pixel_x = -26
