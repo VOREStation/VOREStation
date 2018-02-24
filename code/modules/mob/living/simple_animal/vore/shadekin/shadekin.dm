@@ -225,8 +225,6 @@
 	eyeimage = image(icon,null,eye_icon_state)
 
 	var/mutable_appearance/ma = new(src)
-	ma.plane = plane
-	ma.layer = layer
 	ma.overlays += tailimage
 	ma.overlays += eyeimage
 	appearance = ma

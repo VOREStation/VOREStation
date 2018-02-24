@@ -160,8 +160,6 @@ Please contact me on #coderbus IRC. ~Carn x
 
 	//0: We start with their existing appearance (this contains their verbs, important to keep those!)
 	var/mutable_appearance/ma_compiled = new(src)
-	ma_compiled.plane = plane //Required because of an override on mutable_appearance/New() that sets it to FLOAT_PLANE...for some reason.
-	ma_compiled.layer = layer
 
 	//1: HUDs because these are hidden behind a backplane. See update_icons_huds()
 	ma_compiled.overlays = list_huds //The first one can set instead of add
@@ -190,8 +188,6 @@ Please contact me on #coderbus IRC. ~Carn x
 		ma = passed_ma
 	else
 		ma = new(src)
-		ma.plane = plane //Required because of an override on mutable_appearance/New() that sets it to FLOAT_PLANE...for some reason.
-		ma.layer = layer
 
 	/* VOREStation Edit START - TODO - Consider switching to icon_scale
 	// First, get the correct size.
@@ -427,20 +423,24 @@ var/global/list/damage_icon_parts = list()
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
-			if(part.icon_position & (LEFT | RIGHT))
+			if(part.icon_position == RIGHT)
 				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
+				var/icon/temp3 = new('icons/mob/human.dmi',"blank")
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
-				if(!(part.icon_position & LEFT))
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(!(part.icon_position & RIGHT))
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
 				base_icon.Blend(temp2, ICON_OVERLAY)
-				if(part.icon_position & LEFT)
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(part.icon_position & RIGHT)
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp2, ICON_UNDERLAY)
+				temp3.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				base_icon.Blend(temp3, ICON_UNDERLAY)
+			else if(part.icon_position == LEFT)
+				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
+				var/icon/temp3 = new('icons/mob/human.dmi',"blank")
+				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
+				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
+				temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				base_icon.Blend(temp2, ICON_OVERLAY)
+				temp3.Insert(new/icon(temp,dir=EAST),dir=EAST)
+				base_icon.Blend(temp3, ICON_UNDERLAY)
 			else if(part.icon_position & UNDER)
 				base_icon.Blend(temp, ICON_UNDERLAY)
 			else
@@ -671,7 +671,7 @@ var/global/list/damage_icon_parts = list()
 	update_fire(0)
 	update_water(0)
 	update_surgery(0)
-	UpdateDamageIcon()
+	UpdateDamageIcon(0)
 	update_icons_layers(0)
 	update_icons_huds(0)
 	update_icons()
@@ -1019,6 +1019,13 @@ var/global/list/damage_icon_parts = list()
 			standing = image(base)
 		else
 			standing.color = head.color
+
+		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
+		var/obj/item/clothing/head/hat = head
+		if(istype(hat) && hat.accessories.len)
+			for(var/obj/item/clothing/accessory/A in hat.accessories)
+				standing.overlays |= A.get_mob_overlay()
+
 		overlays_standing[HEAD_LAYER] = standing
 
 	else

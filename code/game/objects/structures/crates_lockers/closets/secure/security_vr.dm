@@ -82,7 +82,7 @@
 		new /obj/item/clothing/under/rank/head_of_security/jensen(src)
 		new /obj/item/clothing/suit/storage/vest/hoscoat/jensen(src)
 		new /obj/item/clothing/suit/storage/vest/hoscoat(src)
-		new /obj/item/clothing/head/helmet/HoS/dermal(src)
+		new /obj/item/clothing/head/helmet/dermal(src)
 		new /obj/item/weapon/cartridge/hos(src)
 		new /obj/item/device/radio/headset/heads/hos(src)
 		new /obj/item/device/radio/headset/heads/hos/alt(src)

@@ -12,7 +12,7 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 4
 	layer = MOB_LAYER + 0.2 // Over the blob.
-	attacktext = "slams into"
+	attacktext = list("slams into")
 	attack_sound = 'sound/effects/slime_squish.ogg'
 	emote_see = list("sways", "inflates briefly")
 	var/mob/living/carbon/human/infested = null // The human this thing is totally not making into a zombie.
@@ -97,7 +97,7 @@
 	melee_damage_lower += 8  // 10 total.
 	melee_damage_upper += 11 // 15 total.
 	emote_see = list("shambles around", "twitches", "stares")
-	attacktext = "claws"
+	attacktext = list("claws")
 
 	H.forceMove(src)
 	infested = H

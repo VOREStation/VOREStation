@@ -5662,6 +5662,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
+/obj/machinery/computer/timeclock/premade/south,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "aqh" = (
@@ -8582,6 +8583,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/random/tech_supply,
 /obj/random/tech_supply,
+/obj/machinery/computer/timeclock/premade/east,
 /turf/simulated/floor/tiled,
 /area/storage/tools)
 "azj" = (

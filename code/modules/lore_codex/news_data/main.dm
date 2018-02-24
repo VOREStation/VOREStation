@@ -7,6 +7,8 @@
 		/datum/lore/codex/page/article1,
 		/datum/lore/codex/page/article2,
 		/datum/lore/codex/page/article3,
+		/datum/lore/codex/page/article4,
+		/datum/lore/codex/page/article5,
 		/datum/lore/codex/page/about_news,
 		)
 
@@ -55,3 +57,21 @@
 	Harper proceeded to unilaterally declare Vounna's independence from SolGov, claiming sovereignty over the system as the first Chairperson of the \"Aetolian Council\". Speaker of the Shadow Coalition ISA-5 has urged their government to treat the developing situation with caution but decried Harper's rhetoric, stating in a press release, \"While I know well the injustices visited on myself and my people by misguided forbearers, it is important to treat any emerging technology with respect. Current policies regarding the Prometheans are designed to limit risk during sociological trials on Aetolus and beyond. As for myself, I doubt the sincerity of this human who claims to speak for the Prometheans, when the Prometheans are perfectly equipped to speak for themselves.\"\
 	<br><br>\
 	NanoTrasen is expected to redouble their Promethean research programs in the Vir system until stability is restored to Vounna."
+
+/datum/lore/codex/page/article4
+	name = "2/14/62-- SCG Denounces Aetolian Coup; Mobilizes Fleet"
+	data = "Dismissing claims of inaction, a spokesperson for the Solar Confederate Government today confirmed that the Colonial Assembly has voted overwhelmingly in favor of swift military action in response to the coup on Aetolus earlier this month. Icarus Front Chairperson Mackenzie West was quick to make a damning official statement: \"Dr. Harper and her radical agitators cannot be excused for their violent, despicable attempts to destabilize the flourishing economy of the Almach Rim. The ruthless murder of innocents, and illegal seizure of private property are crimes that cannot merely be met with strong words and gentle slaps to the wrist\"...\"I am proud to announce that two units of brave Solar marines have been assigned to the SCG-R Song Shi rapid response cruiser, with the full backing of the Icarus Front - and I hope with my heart, the backing of all patriotic Solar citizens.\"\
+	<br><br>\
+	The decision faced resistance from more laissez faire Assembly member states, including prominent SEO governor Bruno Ofako, delaying an earlier consensus. Supporters of the action hope that this decisive display of military strength will encourage the rebels to stand down without further bloodshed, and submit to prosecution by the Lunar High Courts.\
+	<br><br>\
+	The Icarus Front has also proposed a temporary ban on continued Promethean research, though this motion has yet to gain any traction."
+
+/datum/lore/codex/page/article5
+	name = "2/23/62-- \"Almach Association\" Shocks Nation"
+	data = "Shocking the nation, in the wee hours UTC a number of governments in the Almach Rim announced their intent to secede from the Confederacy as a unified political organization they refer to as the Almach Association, joining the already-declared Aetolian Council. Among the half-dozen affected systems is Angessa's Pearl, through which the Song Shi was passing en route to Aetolus. The Association has already issued a political manifesto and a foundational charter, leading political scientists across the galaxy to suspect back-doors collusion and possible Shelfican interference, a hypothesis made more likely by Morpheus Cyberkinetics' exonet site voicing support for the Association. Others suspect a moment of political crystallization, not unlike that in the Golden Hour three centuries ago. These researchers are already referring to this morning's events as the Gray Hour.\
+	<br><br>\
+	The Association's official manifesto repudiates the Five Points, calling them \"an archaic and distinctly human invention\". Experts agree that this bold declaration puts the Movement more in line with the Golden Hour than with the Age of Secession, and many fear that nothing short of a miracle like the discovery of the positronics will spare humanity from a bloody civil war.\
+	<br><br>\
+	While the Association currently lists only a handful of Almach Rim systems as \"Constituent Organizations\", it has named Shelf, the Free Relan Federation, and the Eutopian Foreign Relations Board as \"observers\". The implications of this status are yet to be identified.\
+	<br><br>\
+	The fate of the SCG-R Song Shi and her crew remain unknown."

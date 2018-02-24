@@ -39,7 +39,7 @@
 	var/haste							// If set to 1, the mob will be 'hasted', which makes it ignore slowdown and go really fast.
 	var/evasion							// Positive numbers reduce the odds of being hit. Negative numbers increase the odds.
 	var/bleeding_rate_percent			// Adjusts amount of blood lost when bleeding.
-	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder. Every 15% is equal to one tile easier or harder, just like evasion.
+	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder.
 	var/accuracy_dispersion				// Positive numbers make gun firing cover a wider tile range, and therefore more inaccurate.  Negatives help negate dispersion penalties.
 	var/metabolism_percent				// Adjusts the mob's metabolic rate, which affects reagent processing.  Won't affect mobs without reagent processing.
 	var/icon_scale_percent				// Makes the holder's icon get scaled up or down.
@@ -208,13 +208,13 @@
 		effects += "You move at maximum speed, and cannot be slowed by any means."
 
 	if(!isnull(evasion))
-		effects += "You are [abs(evasion * 15)]% [evasion > 0 ? "harder" : "easier"] to hit with weapons."
+		effects += "You are [abs(evasion)]% [evasion > 0 ? "harder" : "easier"] to hit with weapons."
 
 	if(!isnull(bleeding_rate_percent))
 		effects += "You bleed [multipler_to_percentage(bleeding_rate_percent, TRUE)] [bleeding_rate_percent > 1.0 ? "faster" : "slower"]."
 
 	if(!isnull(accuracy))
-		effects += "It is [abs(accuracy * 15)]% [accuracy > 0 ? "easier" : "harder"] for you to hit someone with a ranged weapon."
+		effects += "It is [abs(accuracy)]% [accuracy > 0 ? "easier" : "harder"] for you to hit someone with a ranged weapon."
 
 	if(!isnull(accuracy_dispersion))
 		effects += "Projectiles you fire are [accuracy_dispersion > 0 ? "more" : "less"] likely to stray from your intended target."
