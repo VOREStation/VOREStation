@@ -113,45 +113,33 @@
 	return ..()
 
 /obj/item/weapon/gun/projectile/nsfw/update_icon()
-	var/mutable_appearance/ma = new(src)
 	update_charge()
 
+	cut_overlays()
 	if(!chambered)
-		ma.overlays = list()
-		appearance = ma
 		return
 
 	var/obj/item/ammo_casing/nsfw_batt/batt = chambered
 	var/batt_color = batt.type_color //Used many times
-	var/list/newverlays = list()
 
 	//Mode bar
-	var/mutable_appearance/mode_bar = mutable_appearance(icon, "[initial(icon_state)]_type")
+	var/image/mode_bar = image(icon, icon_state = "[initial(icon_state)]_type")
 	mode_bar.color = batt_color
-	newverlays += mode_bar
+	add_overlay(mode_bar)
 
 	//Barrel color
-	var/mutable_appearance/barrel_color = mutable_appearance(icon, "[initial(icon_state)]_barrel")
+	var/image/barrel_color = image(icon, icon_state = "[initial(icon_state)]_barrel")
 	barrel_color.alpha = 150
 	barrel_color.color = batt_color
-	newverlays += barrel_color
+	add_overlay(barrel_color)
 
 	//Charge bar
 	var/ratio = Ceiling((charge_left / max_charge) * charge_sections)
 	for(var/i = 0, i < ratio, i++)
-		var/mutable_appearance/charge_bar = mutable_appearance(icon, "[initial(icon_state)]_charge")
+		var/image/charge_bar = image(icon, icon_state = "[initial(icon_state)]_charge")
 		charge_bar.pixel_x = i
 		charge_bar.color = batt_color
-		newverlays += charge_bar
-
-	ma.overlays = newverlays
-	if(ma.overlays.len != newverlays.len) //PANIC!
-		del(ma)
-		spawn(5)
-			update_icon()
-		return
-
-	appearance = ma
+		add_overlay(charge_bar)
 
 // The Magazine //
 /obj/item/ammo_magazine/nsfw_mag
@@ -169,48 +157,30 @@
 	max_ammo = 3
 	mag_type = MAGAZINE
 
-	var/list/modes
-
-/obj/item/ammo_magazine/nsfw_mag/New()
-	..()
-	modes = list()
+	var/list/modes = list()
 
 /obj/item/ammo_magazine/nsfw_mag/update_icon()
-	var/mutable_appearance/ma = new(src)
-
+	cut_overlays()
 	if(!stored_ammo.len)
-		ma.overlays = list()
-		appearance = ma
 		return //Why bother
 
 	var/x_offset = 5
-	var/list/newverlays = list()
-
 	var/current = 0
 	for(var/B in stored_ammo)
 		var/obj/item/ammo_casing/nsfw_batt/batt = B
-		var/mutable_appearance/cap = mutable_appearance(icon,"[initial(icon_state)]_cap")
+		var/image/cap = image(icon, icon_state = "[initial(icon_state)]_cap")
 		cap.color = batt.type_color
 		cap.pixel_x = current * x_offset //Caps don't need a pixel_y offset
-		newverlays += cap
+		add_overlay(cap)
 
 		if(batt.shots_left)
 			var/ratio = Ceiling((batt.shots_left / initial(batt.shots_left)) * 4) //4 is how many lights we have a sprite for
-			var/mutable_appearance/charge = mutable_appearance(icon,"[initial(icon_state)]_charge-[ratio]")
+			var/image/charge = image(icon, icon_state = "[initial(icon_state)]_charge-[ratio]")
 			charge.color = "#29EAF4" //Could use battery color but eh.
 			charge.pixel_x = current * x_offset
-			newverlays += charge
+			add_overlay(charge)
 
 		current++ //Increment for offsets
-
-	ma.overlays = newverlays
-	if(ma.overlays.len != newverlays.len) //PANIC!
-		del(ma)
-		spawn(5)
-			update_icon()
-		return
-
-	appearance = ma
 
 // The Casing //
 /obj/item/ammo_casing/nsfw_batt
@@ -230,20 +200,18 @@
 	var/type_name = null
 	projectile_type = /obj/item/projectile/beam
 
-/obj/item/ammo_casing/nsfw_batt/New()
+/obj/item/ammo_casing/nsfw_batt/initialize()
+	. = ..()
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	update_icon()
 
 /obj/item/ammo_casing/nsfw_batt/update_icon()
-	var/mutable_appearance/ma = new(src)
-	ma.overlays.Cut()
+	cut_overlays()
 
-	var/mutable_appearance/ends = mutable_appearance(icon,"[initial(icon_state)]_ends")
+	var/image/ends = image(icon, icon_state = "[initial(icon_state)]_ends")
 	ends.color = type_color
-	ma.overlays += ends
-
-	appearance = ma
+	add_overlay(ends)
 
 /obj/item/ammo_casing/nsfw_batt/expend()
 	shots_left--
