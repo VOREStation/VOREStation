@@ -1688,6 +1688,27 @@ Departamental Swimsuits, for general use
 	item_state = "kilanogloves_mob"
 	species_restricted = null
 
+//BeyondMyLife: Cassandra Selones
+/obj/item/clothing/shoes/boots/fluff/kilano/purple //Child of kilano items to cut down on lines needed.
+	name = "purple and silver winter boots"
+	desc = "Some fur lined boots, purple and silver."
+	icon_state = "winterboots_cap_p_mob" //Just like last time, icon_state decides BOTH the item_state and icon_state. I have no idea why this occurs, but it does.
+	item_state = "winterboots_cap_p_mob"
+
+//BeyondMyLife: Cassandra Selones
+/obj/item/clothing/gloves/fluff/kilano/purple
+	name = "purple and silver gloves"
+	desc = "A purple pair of gloves, replicating the usual captains gloves, with odd oriental, and foriegn patterns in it, and silver lining replacing the usual gold."
+	icon_state = "kilanogloves_p"
+	item_state = "kilanogloves_p_mob"
+
+//BeyondMyLife: Cassandra Selones
+/obj/item/clothing/under/fluff/kilanosuit/purple
+	name = "purple and silver dress uniform"
+	desc = "A royal purple dress, replicating the usual captains dress, made of the same glossy/silky material, with odd oriental and foriegn patterns on it, silver lined too!"
+	icon_state = "kilanosuit_p"
+	item_state = "kilanosuit_p"
+
 //Mewchild: Phi Vietsi
 /obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi
 	name = "signet ring"
