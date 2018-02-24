@@ -15,19 +15,7 @@
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
-
-		if(!valid_accessory_slots || !valid_accessory_slots.len)
-			usr << "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>"
-			return
-
-		var/obj/item/clothing/accessory/A = I
-		if(can_attach_accessory(A))
-			user.drop_item()
-			attach_accessory(user, A)
-			return
-		else
-			user << "<span class='warning'>You cannot attach more accessories of this type to [src].</span>"
-			return
+		attempt_attach_accessory(I, user)
 
 	if(accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -79,10 +67,19 @@
  *  user is the user doing the attaching. Can be null, such as when attaching
  *  items on spawn
  */
-/obj/item/clothing/proc/update_accessory_slowdown()
-	slowdown = initial(slowdown)
-	for(var/obj/item/clothing/accessory/A in accessories)
-		slowdown += A.slowdown
+/obj/item/clothing/proc/attempt_attach_accessory(mob/user, obj/item/clothing/accessory/A)
+	if(!valid_accessory_slots || !valid_accessory_slots.len)
+		to_chat(user, "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>")
+		return FALSE
+
+	var/obj/item/clothing/accessory/acc = A
+	if(can_attach_accessory(acc))
+		user.drop_item()
+		attach_accessory(user, acc)
+		return TRUE
+	else
+		to_chat(user, "<span class='warning'>You cannot attach more accessories of this type to [src].</span>")
+		return FALSE
 
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
@@ -99,6 +96,11 @@
 	accessories -= A
 	update_accessory_slowdown()
 	update_clothing_icon()
+
+/obj/item/clothing/proc/update_accessory_slowdown()
+	slowdown = initial(slowdown)
+	for(var/obj/item/clothing/accessory/A in accessories)
+		slowdown += A.slowdown
 
 /obj/item/clothing/proc/removetie_verb()
 	set name = "Remove Accessory"
