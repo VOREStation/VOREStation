@@ -114,8 +114,6 @@
 
 /obj/item/weapon/gun/projectile/nsfw/update_icon()
 	var/mutable_appearance/ma = new(src)
-	ma.plane = plane //This is especially weird as new(src) should take these, but it doens't?
-	ma.layer = layer //Instead it ends up on FLOAT_PLANE
 	update_charge()
 
 	if(!chambered)
@@ -179,8 +177,6 @@
 
 /obj/item/ammo_magazine/nsfw_mag/update_icon()
 	var/mutable_appearance/ma = new(src)
-	ma.plane = plane //This is especially weird as new(src) should take these, but it doens't?
-	ma.layer = layer //Instead it ends up on FLOAT_PLANE
 
 	if(!stored_ammo.len)
 		ma.overlays = list()
