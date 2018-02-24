@@ -15,6 +15,8 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = HEAVY
 
+	used_weapon = /obj/item/weapon/gun/energy/taser
+
 	var/shot_delay = 4
 	var/last_shot = 0
 
@@ -30,7 +32,7 @@
 
 	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
 
-	var/obj/item/weapon/gun/energy/taser/G = new /obj/item/weapon/gun/energy/taser(Tsec)
+	var/obj/item/weapon/gun/energy/taser/G = new used_weapon(Tsec)
 	G.power_supply.charge = 0
 	if(prob(50))
 		new /obj/item/robot_parts/l_leg(Tsec)
