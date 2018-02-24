@@ -398,7 +398,7 @@
 		user << "<span class='notice'>Nothing to fix!</span>"
 		return 0
 
-	if(damage_amount >= ROBOLIMB_REPAIR_CAP)
+	if(brute_dam + burn_dam >= ROBOLIMB_REPAIR_CAP)
 		user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 		return 0
 
@@ -1131,7 +1131,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/is_malfunctioning()
-	return ((robotic >= ORGAN_ROBOT) && (brute_dam + burn_dam) >= 25 && prob(brute_dam + burn_dam))
+	return ((robotic >= ORGAN_ROBOT) && (brute_dam + burn_dam) >= ROBOLIMB_REPAIR_CAP && prob(brute_dam + burn_dam))
 
 /obj/item/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
 	if(!owner || loc != owner)
