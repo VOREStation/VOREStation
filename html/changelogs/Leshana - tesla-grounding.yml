@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - tweak: "Grounding rods act intuitively, only having an expanded lighting catch area when anchored."

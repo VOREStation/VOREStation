@@ -104,7 +104,7 @@
 
 	//see if we can connect to a power net.
 	var/datum/powernet/PN
-	var/turf/T = src.loc
+	var/turf/T = get_turf(src)
 	var/obj/structure/cable/C = T.get_cable_node()
 	if (C)
 		PN = C.powernet

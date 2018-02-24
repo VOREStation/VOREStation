@@ -133,6 +133,11 @@ var/list/flooring_types
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
+/decl/flooring/carpet/tealcarpet
+	name = "teal carpet"
+	icon_base = "tealcarpet"
+	build_type = /obj/item/stack/tile/carpet/teal
+
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
@@ -267,6 +272,23 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
+	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/wood1.ogg',
+		'sound/effects/footstep/wood2.ogg',
+		'sound/effects/footstep/wood3.ogg',
+		'sound/effects/footstep/wood4.ogg',
+		'sound/effects/footstep/wood5.ogg'))
+
+/decl/flooring/sifwood
+	name = "alien wooden floor"
+	desc = "Polished alien wood planks."
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_base = "sifwood"
+	has_damage_range = 6
+	damage_temperature = T0C+200
+	descriptor = "planks"
+	build_type = /obj/item/stack/tile/sifwood
 	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/wood1.ogg',

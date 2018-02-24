@@ -18,7 +18,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 8
 
-	attacktext = "gouged"
+	attacktext = list("gouged")
 	cold_damage_per_tick = 0
 
 	speak_chance = 5

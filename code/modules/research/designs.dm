@@ -491,13 +491,13 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/roller/adv
 	sort_string = "MBBAF"
 
-/datum/design/item/medical/enhanced_analyzer
-	name = "enhanced health analyzer"
+/datum/design/item/medical/improved_analyzer
+	name = "improved health analyzer"
 	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
-	id = "advanced_analyzer"
+	id = "improved_analyzer"
 	req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 1500)
-	build_path = /obj/item/device/healthanalyzer/advanced
+	build_path = /obj/item/device/healthanalyzer/improved
 	sort_string = "MBBAG"
 
 /datum/design/item/implant

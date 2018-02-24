@@ -104,16 +104,16 @@ var/list/GPS_list = list()
 		if(istype(their_area, /area/submap))
 			area_name = "Unknown Area" // Avoid spoilers.
 		var/Z_name = using_map.get_zlevel_name(T.z)
-		var/direction = uppertext(dir2text(get_dir(curr, T)))
+		var/direction = get_adir(curr, T)
+		var/distX = T.x - curr.x
+		var/distY = T.y - curr.y
 		var/distance = get_dist(curr, T)
 		var/local = curr.z == T.z ? TRUE : FALSE
-		if(!direction)
-			direction = "CENTER"
 
-		if(istype(T, /obj/item/device/gps/internal/poi))
-			signals += "	[G.gps_tag]: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
+		if(istype(gps, /obj/item/device/gps/internal/poi))
+			signals += "    [G.gps_tag]: [area_name] - [local ? "[direction] Dist: [round(distance, 10)]m" : "in \the [Z_name]"]"
 		else
-			signals += "     [G.gps_tag]: [area_name] [local ? "Dist: [round(distance, 10)]m [direction])" : "in \the [Z_name]"]"
+			signals += "    [G.gps_tag]: [area_name], ([T.x], [T.y]) - [local ? "[direction] Dist: [distX ? "[abs(round(distX, 1))]m [(distX > 0) ? "E" : "W"], " : ""][distY ? "[abs(round(distY, 1))]m [(distY > 0) ? "N" : "S"]" : ""]" : "in \the [Z_name]"]"
 
 	if(signals.len)
 		dat += "Detected signals;"
@@ -250,12 +250,9 @@ var/list/GPS_list = list()
 		var/Z_name = using_map.get_zlevel_name(T.z)
 		var/coord = "[T.x], [T.y], [Z_name]"
 		var/degrees = round(Get_Angle(curr, T))
-		var/direction = uppertext(dir2text(get_dir(curr, T)))
+		var/direction = get_adir(curr, T)
 		var/distance = get_dist(curr, T)
 		var/local = curr.z == T.z ? TRUE : FALSE
-		if(!direction)
-			direction = "CENTER"
-			degrees = "N/A"
 
 		signals += "     [G.gps_tag]: [area_name] ([coord]) [local ? "Dist: [distance]m Dir: [degrees]° ([direction])":""]"
 

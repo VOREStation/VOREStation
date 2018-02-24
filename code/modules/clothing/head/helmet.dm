@@ -2,6 +2,8 @@
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
+	valid_accessory_slots = list(ACCESSORY_SLOT_HELM_C)
+	restricted_accessory_slots = list(ACCESSORY_SLOT_HELM_C)
 	flags = THICKMATERIAL
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	flags_inv = HIDEEARS|HIDEEYES
@@ -18,6 +20,7 @@
 	desc = "A helmet painted in Peacekeeper blue. Stands out like a sore thumb."
 	icon_state = "helmet_sol"
 	armor = list(melee = 50, bullet = 50, laser = 50,energy = 25, bomb = 30, bio = 0, rad = 0)
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/solgov/command
 	name = "command helmet"
@@ -61,6 +64,7 @@
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
+	valid_accessory_slots = null
 	action_button_name = "Toggle Visor"
 
 /obj/item/clothing/head/helmet/riot/attack_self(mob/user as mob)
@@ -80,6 +84,7 @@
 	armor = list(melee = 10, bullet = 10, laser = 80 ,energy = 50, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.1
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/bulletproof
 	name = "bullet-resistant helmet"
@@ -89,6 +94,7 @@
 	armor = list(melee = 10, bullet = 80, laser = 10 ,energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/combat
 	name = "combat helmet"
@@ -98,6 +104,7 @@
 	armor = list(melee = 50, bullet = 50, laser = 50 ,energy = 30, bomb = 30, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.6
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -115,6 +122,7 @@
 	icon_state = "alienhelmet"
 	siemens_coefficient = 0.4
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 50, bomb = 50, bio = 0, rad = 40)
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/alien/tank
 	name = "alien warhelm"
@@ -137,6 +145,7 @@
 	flags = BLOCKHAIR
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES
 	siemens_coefficient = 1
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/tactical
 	name = "tactical helmet"
@@ -151,6 +160,7 @@
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/augment
 	name = "Augment Array"
@@ -162,6 +172,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+	valid_accessory_slots = null
 
 //Non-hardsuit ERT helmets.
 /obj/item/clothing/head/helmet/ert
@@ -170,6 +181,7 @@
 	icon_state = "erthelmet_cmd"
 	item_state_slots = list(slot_r_hand_str = "syndicate-helm-green", slot_l_hand_str = "syndicate-helm-green")
 	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
+	valid_accessory_slots = null
 
 //Commander
 /obj/item/clothing/head/helmet/ert/command

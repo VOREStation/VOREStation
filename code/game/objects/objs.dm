@@ -14,6 +14,8 @@
 	var/show_messages
 	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
 
+	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
+
 /obj/Destroy()
 	processing_objects -= src
 	return ..()
