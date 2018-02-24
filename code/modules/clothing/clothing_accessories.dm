@@ -1,21 +1,20 @@
 /obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
-	if(valid_accessory_slots && istype(A) && (A.slot in valid_accessory_slots))
-		if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
+	var/obj/item/clothing/accessory/attach = A
+	if(src.valid_accessory_slots && (attach.slot in src.valid_accessory_slots))
+		if(accessories.len && restricted_accessory_slots && (attach.slot in restricted_accessory_slots))
 			for(var/obj/item/clothing/accessory/AC in accessories)
-				if (AC.slot == A.slot)
-					return 0
-		return 1
-	return 0
-
-	if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
-		for(var/obj/item/clothing/accessory/AC in accessories)
-			if (AC.slot == A.slot)
-				return 0
-	return 1
+				if (AC.slot == attach.slot)
+					return FALSE
+			return TRUE
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
-		attempt_attach_accessory(I, user)
+		var/obj/item/clothing/accessory/A = I
+		if(attempt_attach_accessory(user, A))
+			return
 
 	if(accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -80,6 +79,7 @@
 	else
 		to_chat(user, "<span class='warning'>You cannot attach more accessories of this type to [src].</span>")
 		return FALSE
+
 
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
