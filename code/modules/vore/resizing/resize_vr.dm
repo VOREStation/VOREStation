@@ -64,12 +64,21 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/resize(var/new_size, var/animate = TRUE)
 	if(size_multiplier == new_size)
 		return 1
-	//ASSERT(new_size >= RESIZE_TINY && new_size <= RESIZE_HUGE) //You served your use. Now scurry off and stop spamming my chat.
 	if(animate)
+		var/change = new_size - size_multiplier
+		var/duration = (abs(change)+0.25) SECONDS
 		var/matrix/resize = matrix() // Defines the matrix to change the player's size
 		resize.Scale(new_size) //Change the size of the matrix
 		resize.Translate(0, 16 * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
-		animate(src, transform = resize, time = 5) //Animate the player resizing
+		animate(src, transform = resize, time = duration) //Animate the player resizing
+
+		var/aura_grow_to = change > 0 ? 2 : 0.5
+		var/aura_anim_duration = 5
+		var/aura_offset = change > 0 ? 0 : 10
+		var/aura_color = size_multiplier > new_size ? "#FF2222" : "#2222FF"
+		var/aura_loops = round((duration)/aura_anim_duration)
+
+		animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
 	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
 
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
