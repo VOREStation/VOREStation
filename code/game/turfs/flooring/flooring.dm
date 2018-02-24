@@ -1,5 +1,10 @@
 var/list/flooring_types
 
+/proc/populate_flooring_types()
+	flooring_types = list()
+	for (var/flooring_path in typesof(/decl/flooring))
+		flooring_types["[flooring_path]"] = new flooring_path
+
 /proc/get_flooring_data(var/flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
@@ -270,7 +275,7 @@ var/list/flooring_types
 
 /decl/flooring/wood
 	name = "wooden floor"
-	desc = "Polished redwood planks."
+	desc = "Polished wooden planks."
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "wood"
 	has_damage_range = 6
@@ -285,22 +290,12 @@ var/list/flooring_types
 		'sound/effects/footstep/wood4.ogg',
 		'sound/effects/footstep/wood5.ogg'))
 
-/decl/flooring/sifwood
+/decl/flooring/wood/sif
 	name = "alien wooden floor"
 	desc = "Polished alien wood planks."
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "sifwood"
-	has_damage_range = 6
-	damage_temperature = T0C+200
-	descriptor = "planks"
-	build_type = /obj/item/stack/tile/sifwood
-	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/wood1.ogg',
-		'sound/effects/footstep/wood2.ogg',
-		'sound/effects/footstep/wood3.ogg',
-		'sound/effects/footstep/wood4.ogg',
-		'sound/effects/footstep/wood5.ogg'))
+	build_type = /obj/item/stack/tile/wood/sif
 
 /decl/flooring/reinforced
 	name = "reinforced floor"
