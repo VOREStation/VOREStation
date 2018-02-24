@@ -160,8 +160,6 @@ Please contact me on #coderbus IRC. ~Carn x
 
 	//0: We start with their existing appearance (this contains their verbs, important to keep those!)
 	var/mutable_appearance/ma_compiled = new(src)
-	ma_compiled.plane = plane //Required because of an override on mutable_appearance/New() that sets it to FLOAT_PLANE...for some reason.
-	ma_compiled.layer = layer
 
 	//1: HUDs because these are hidden behind a backplane. See update_icons_huds()
 	ma_compiled.overlays = list_huds //The first one can set instead of add
@@ -190,8 +188,6 @@ Please contact me on #coderbus IRC. ~Carn x
 		ma = passed_ma
 	else
 		ma = new(src)
-		ma.plane = plane //Required because of an override on mutable_appearance/New() that sets it to FLOAT_PLANE...for some reason.
-		ma.layer = layer
 
 	/* VOREStation Edit START - TODO - Consider switching to icon_scale
 	// First, get the correct size.
