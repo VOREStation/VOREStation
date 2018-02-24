@@ -32,14 +32,12 @@
 		breather.internal = null
 		if(breather.internals)
 			breather.internals.icon_state = "internal0"
-	if(tank)
-		qdel(tank)
-	if(breather)
 		breather.remove_from_mob(contained)
-		src.visible_message("<span class='notice'>The mask rapidly retracts just before /the [src] is destroyed!</span>")
-	qdel(contained)
-	contained = null
-	breather = null
+		visible_message("<span class='notice'>The mask rapidly retracts just before /the [src] is destroyed!</span>")
+		breather = null
+
+	qdel_null(tank)
+	qdel_null(contained)
 	return ..()
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)

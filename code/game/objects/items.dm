@@ -382,14 +382,14 @@ var/list/global/slot_flags_enumeration = list(
 			if(!allow)
 				return 0
 		if(slot_tie)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
+			var/allow = 0
+			for(var/obj/item/clothing/C in H.worn_clothing)	//Runs through everything you're wearing, returns if you can't attach the thing
+				if(C.can_attach_accessory(src))
+					allow = 1
+					break
+			if(!allow)
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
-				return 0
-			var/obj/item/clothing/under/uniform = H.w_uniform
-			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
-				if (!disable_warning)
-					H << "<span class='warning'>You already have an accessory of this type attached to your [uniform].</span>"
+					H << "<span class='warning'>You're not wearing anything you can attach this [name] to.</span>"
 				return 0
 	return 1
 

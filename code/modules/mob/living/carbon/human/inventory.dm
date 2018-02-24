@@ -3,6 +3,9 @@ Add fingerprints to items when we put them in our hands.
 This saves us from having to call add_fingerprint() any time something is put in a human's hands programmatically.
 */
 
+/mob/living/carbon/human
+	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
+
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = 1
@@ -86,6 +89,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
+		worn_clothing -= wear_suit
 		wear_suit = null
 		update_inv_wear_suit()
 	else if (W == w_uniform)
@@ -96,16 +100,21 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if (wear_id)
 			drop_from_inventory(wear_id)
 		if (belt)
+			worn_clothing -= belt
 			drop_from_inventory(belt)
+		worn_clothing -= w_uniform
 		w_uniform = null
 		update_inv_w_uniform()
 	else if (W == gloves)
+		worn_clothing -= gloves
 		gloves = null
 		update_inv_gloves()
 	else if (W == glasses)
+		worn_clothing -= glasses
 		glasses = null
 		update_inv_glasses()
 	else if (W == head)
+		worn_clothing -= head
 		head = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
@@ -121,12 +130,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 		r_ear = null
 		update_inv_ears()
 	else if (W == shoes)
+		worn_clothing -= shoes
 		shoes = null
 		update_inv_shoes()
 	else if (W == belt)
+		worn_clothing -= belt
 		belt = null
 		update_inv_belt()
 	else if (W == wear_mask)
+		worn_clothing -= wear_mask
 		wear_mask = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
@@ -187,15 +199,21 @@ This saves us from having to call add_fingerprint() any time something is put in
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
 
-	if(!slot) return
-	if(!istype(W)) return
-	if(!has_organ_for_slot(slot)) return
-	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
+	if(!slot)
+		return
+	if(!istype(W))
+		return
+	if(!has_organ_for_slot(slot))
+		return
+	if(!species || !species.hud || !(slot in species.hud.equip_slots))
+		return
+
 	W.loc = src
 	switch(slot)
 		if(slot_back)
 			src.back = W
 			W.equipped(src, slot)
+			worn_clothing += back
 			update_inv_back(redraw_mob)
 		if(slot_wear_mask)
 			src.wear_mask = W
@@ -203,6 +221,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
+			worn_clothing += wear_mask
 			update_inv_wear_mask(redraw_mob)
 		if(slot_handcuffed)
 			src.handcuffed = W
@@ -222,6 +241,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_belt)
 			src.belt = W
 			W.equipped(src, slot)
+			worn_clothing += belt
 			update_inv_belt(redraw_mob)
 		if(slot_wear_id)
 			src.wear_id = W
@@ -252,6 +272,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_gloves)
 			src.gloves = W
 			W.equipped(src, slot)
+			worn_clothing += glasses
 			update_inv_gloves(redraw_mob)
 		if(slot_head)
 			src.head = W
@@ -262,18 +283,22 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(istype(W,/obj/item/clothing/head/kitty))
 				W.update_icon(src)
 			W.equipped(src, slot)
+			worn_clothing += head
 			update_inv_head(redraw_mob)
 		if(slot_shoes)
 			src.shoes = W
 			W.equipped(src, slot)
+			worn_clothing += shoes
 			update_inv_shoes(redraw_mob)
 		if(slot_wear_suit)
 			src.wear_suit = W
 			W.equipped(src, slot)
+			worn_clothing += wear_suit
 			update_inv_wear_suit(redraw_mob)
 		if(slot_w_uniform)
 			src.w_uniform = W
 			W.equipped(src, slot)
+			worn_clothing += w_uniform
 			update_inv_w_uniform(redraw_mob)
 		if(slot_l_store)
 			src.l_store = W
@@ -292,8 +317,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.remove_from_mob(W)
 			W.loc = src.back
 		if(slot_tie)
-			var/obj/item/clothing/under/uniform = src.w_uniform
-			uniform.attackby(W,src)
+			for(var/obj/item/clothing/C in worn_clothing)
+				C.attackby(W, usr)
 		else
 			src << "<font color='red'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"
 			return

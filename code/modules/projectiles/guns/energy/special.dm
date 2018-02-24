@@ -3,6 +3,7 @@
 	desc = "The NT Mk60 EW Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. Not the best of its type."
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
+	wielded_item_state = "ionrifle-wielded"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 	force = 10
@@ -32,7 +33,6 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	charge_cost = 300
 	projectile_type = /obj/item/projectile/energy/phase
-
 
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"

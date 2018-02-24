@@ -53,6 +53,8 @@
 	name = "assault rifle"
 	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds."
 	icon_state = "arifle"
+	item_state = "arifle"
+	wielded_item_state = "arifle-wielded"
 	item_state = null
 	w_class = ITEMSIZE_LARGE
 	force = 10
@@ -109,6 +111,7 @@
 	desc = "The Z8 Bulldog is an older model designated marksman rifle, made by the now defunct Zendai Foundries. Makes you feel like a space marine when you hold it, even though it can only hold 10 round magazines. Uses 7.62mm rounds and has an under barrel grenade launcher."
 	icon_state = "carbine" // This isn't a carbine. :T
 	item_state = "z8carbine"
+	wielded_item_state = "z8carbine-wielded"
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "7.62mm"

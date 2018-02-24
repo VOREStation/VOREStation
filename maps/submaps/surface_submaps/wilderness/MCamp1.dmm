@@ -17,7 +17,7 @@
 "q" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "r" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "s" = (/obj/machinery/computer/communications,/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"t" = (/obj/structure/table/standard,/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"t" = (/obj/structure/table/standard,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/item/weapon/gun/energy/gun,/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "u" = (/obj/effect/mine,/obj/random/landmine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "v" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "w" = (/obj/machinery/computer/security,/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/simulated/floor,/area/submap/MilitaryCamp1)
@@ -28,12 +28,12 @@
 "B" = (/mob/living/simple_animal/hostile/viscerator{returns_home = 1},/turf/template_noop,/area/submap/MilitaryCamp1)
 "C" = (/obj/structure/table,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "D" = (/obj/structure/table/standard,/obj/random/firstaid,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"E" = (/obj/machinery/door/airlock,/obj/effect/mine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"F" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/MilitaryCamp1)
-"G" = (/obj/random/landmine,/turf/template_noop,/area/template_noop)
-"H" = (/obj/effect/decal/cleanable/dirt,/obj/random/landmine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"I" = (/obj/structure/table/standard,/obj/item/weapon/gun/projectile/automatic/c20r,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"J" = (/obj/structure/table/standard,/obj/item/weapon/gun/energy/gun,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"E" = (/obj/effect/decal/cleanable/dirt,/obj/random/landmine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"F" = (/obj/machinery/door/airlock,/obj/effect/mine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"G" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/MilitaryCamp1)
+"H" = (/obj/random/landmine,/turf/template_noop,/area/template_noop)
+"I" = (/obj/structure/table/standard,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"J" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "K" = (/obj/effect/decal/cleanable/blood,/obj/random/landmine,/turf/template_noop,/area/submap/MilitaryCamp1)
 
 (1,1,1) = {"
@@ -47,10 +47,10 @@ abbdmmqoormstqmmbeba
 abbbmmqruvmwxxmmbbda
 abbymmzmmAmmmzmrBdba
 abbbomqoovoqAvmmbbba
-afdbomqooCDqvvmmbida
-abbbrmzEmmmmzzmrbFba
-GbbBmmqorvHvqqmmbbba
-aFbbmmIJmooqqqmmpbKa
+afdbomqooCDqEvmmbida
+abbbrmzFmmmmzzmrbGba
+HbbBmmqorvEvqqmmbbba
+aGbbmmIJmooqqqmmpbKa
 abbebmmmmzommmmbibba
 abddbbmmmvommmbcciba
 abcbbdbmmbymmbgcbbba

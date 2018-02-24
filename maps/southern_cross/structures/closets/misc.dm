@@ -37,6 +37,8 @@
 	// One spare cell per gun
 	new /obj/item/weapon/cell/device/weapon(src)
 	new /obj/item/weapon/cell/device/weapon(src)
+	// One spare gun permit per locker
+	new /obj/item/clothing/accessory/permit/gun/planetside(src)
 
 //Explorer Lockers
 

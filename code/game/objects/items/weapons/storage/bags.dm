@@ -68,6 +68,9 @@
 // -----------------------------
 //        Mining Satchel
 // -----------------------------
+/*
+ * Mechoid - Orebags are the most common quick-gathering thing, and also have tons of lag associated with it. Their checks are going to be hyper-simplified due to this, and their INCREDIBLY singular target contents.
+ */
 
 /obj/item/weapon/storage/bag/ore
 	name = "mining satchel"
@@ -79,7 +82,80 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/weapon/ore)
+	var/stored_ore = list()
+	var/last_update = 0
 
+/obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
+	if(!istype(W)) return 0
+
+	if(new_location)
+		if(ismob(loc))
+			W.dropped(usr)
+		if(ismob(new_location))
+			W.hud_layerise()
+		else
+			W.reset_plane_and_layer()
+		W.forceMove(new_location)
+	else
+		W.forceMove(get_turf(src))
+
+	W.on_exit_storage(src)
+	update_icon()
+	return 1
+
+/obj/item/weapon/storage/bag/ore/gather_all(turf/T as turf, mob/user as mob, var/silent = 0)
+	var/success = 0
+	var/failure = 0
+	for(var/obj/item/weapon/ore/I in T) //Only ever grabs ores. Doesn't do any extraneous checks, as all ore is the same size. Tons of checks means it causes hanging for up to three seconds.
+		if(contents.len >= max_storage_space)
+			failure = 1
+			break
+		I.forceMove(src)
+		success = 1
+	if(success && !failure && !silent)
+		to_chat(user, "<span class='notice'>You put everything in [src].</span>")
+	else if(success && (!silent || (silent && contents.len >= max_storage_space)))
+		to_chat(user, "<span class='notice'>You fill the [src].</span>")
+	else if(!silent)
+		to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
+
+/obj/item/weapon/storage/bag/ore/examine(mob/user)
+	..()
+
+	if(!Adjacent(user)) //Can only check the contents of ore bags if you can physically reach them.
+		return
+
+	if(istype(user, /mob/living))
+		add_fingerprint(user)
+
+	if(!contents.len)
+		to_chat(user, "It is empty.")
+		return
+
+	if(world.time > last_update + 10)
+		update_ore_count()
+		last_update = world.time
+
+	to_chat(user, "<span class='notice'>It holds:</span>")
+	for(var/ore in stored_ore)
+		to_chat(user, "<span class='notice'>- [stored_ore[ore]] [ore]</span>")
+	return
+
+/obj/item/weapon/storage/bag/ore/open(mob/user as mob) //No opening it for the weird UI of having shit-tons of ore inside it.
+	if(world.time > last_update + 10)
+		update_ore_count()
+		last_update = world.time
+		examine(user)
+
+/obj/item/weapon/storage/bag/ore/proc/update_ore_count() //Stolen from ore boxes.
+
+	stored_ore = list()
+
+	for(var/obj/item/weapon/ore/O in contents)
+		if(stored_ore[O.name])
+			stored_ore[O.name]++
+		else
+			stored_ore[O.name] = 1
 
 // -----------------------------
 //          Plant bag
