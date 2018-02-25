@@ -73,7 +73,7 @@
 	return
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
-	if(findtext(src.icon_state, "vr-", 1, 4))
+	if(findtext(src.icon_state, "vr-", 1, 4) && (src.icon == 'icons/mob/robots.dmi'))
 		src.icon = 'icons/mob/robots_vr.dmi'
-	else
+	else if(src.icon == 'icons/mob/robots_vr.dmi')
 		src.icon = 'icons/mob/robots.dmi'
