@@ -13,7 +13,7 @@
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
-		if(attempt_attach_accessory(user, A))
+		if(attempt_attach_accessory(A, user))
 			return
 
 	if(accessories.len)
@@ -66,18 +66,21 @@
  *  user is the user doing the attaching. Can be null, such as when attaching
  *  items on spawn
  */
-/obj/item/clothing/proc/attempt_attach_accessory(mob/user, obj/item/clothing/accessory/A)
+/obj/item/clothing/proc/attempt_attach_accessory(obj/item/clothing/accessory/A, mob/user)
 	if(!valid_accessory_slots || !valid_accessory_slots.len)
-		to_chat(user, "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>")
+		if(user)
+			to_chat(user, "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>")
 		return FALSE
 
 	var/obj/item/clothing/accessory/acc = A
 	if(can_attach_accessory(acc))
-		user.drop_item()
+		if(user)
+			user.drop_item()
 		attach_accessory(user, acc)
 		return TRUE
 	else
-		to_chat(user, "<span class='warning'>You cannot attach more accessories of this type to [src].</span>")
+		if(user)
+			to_chat(user, "<span class='warning'>You cannot attach more accessories of this type to [src].</span>")
 		return FALSE
 
 
