@@ -98,8 +98,6 @@
 
 /obj/item/weapon/storage/fancy/crayons/update_icon()
 	var/mutable_appearance/ma = new(src)
-	ma.plane = plane
-	ma.layer = layer
 	ma.overlays = list()
 	for(var/obj/item/weapon/pen/crayon/crayon in contents)
 		ma.overlays += image('icons/obj/crayons.dmi',crayon.colourName)
@@ -307,6 +305,8 @@
 /obj/item/weapon/storage/fancy/heartbox
 	icon_state = "heartbox"
 	name = "box of chocolates"
+	icon_type = "chocolate"
+
 	var/startswith = 6
 	max_storage_space = ITEMSIZE_COST_SMALL * 6
 	can_hold = list(

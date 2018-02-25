@@ -180,7 +180,7 @@
 				var/damage_to_do = rand(melee_damage_lower, melee_damage_upper)
 				var/armor_modifier = abs((L.getarmor(null, "bio") / 100) - 1)
 
-				L.attack_generic(src, damage_to_do, attacktext)
+				L.attack_generic(src, damage_to_do, pick(attacktext))
 				playsound(src, 'sound/weapons/bite.ogg', 75, 1)
 
 				// Give the slime some nutrition, if applicable.
@@ -199,7 +199,7 @@
 
 	if(istype(L,/obj/mecha))
 		var/obj/mecha/M = L
-		M.attack_generic(src, rand(melee_damage_lower, melee_damage_upper), attacktext)
+		M.attack_generic(src, rand(melee_damage_lower, melee_damage_upper), pick(attacktext))
 
 /mob/living/simple_animal/slime/proc/post_attack(var/mob/living/L, var/intent = I_HURT)
 	if(intent != I_HELP)

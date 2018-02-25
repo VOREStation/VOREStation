@@ -1,0 +1,5 @@
+author: Leshana
+delete-after: True
+changes: 
+  - rscadd: "Added a client preference setting for wether Hotkeys Mode should be enabled or disabled by default."
+  - bugfix: "CTRL+NUMPAD8 while playing a robot won't runtime anymore."

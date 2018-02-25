@@ -18,7 +18,7 @@
 "r" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/template_noop,/area/submap/Mechpt)
 "s" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/structure/reagent_dispensers/beerkeg,/turf/template_noop,/area/submap/Mechpt)
 "t" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c50,/turf/template_noop,/area/submap/Mechpt)
-"u" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/turf/template_noop,/area/submap/Mechpt)
+"u" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/cell/high,/obj/item/weapon/cell/device/weapon,/turf/template_noop,/area/submap/Mechpt)
 "v" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/template_noop,/area/submap/Mechpt)
 
 (1,1,1) = {"

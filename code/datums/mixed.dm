@@ -34,8 +34,7 @@
 	data_core.medical -= src
 	data_core.general -= src
 	data_core.security -= src
-	..()
-	return QDEL_HINT_FINDREFERENCE // If we must, we can resort to QDEL_HINT_HARDDEL.  But lets see how this works in practice ~Leshana
+	. = ..()
 
 /datum/data/text
 	name = "text"

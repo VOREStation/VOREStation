@@ -169,7 +169,12 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
-				testing("GC: -- \ref[D] | [type] was unable to be GC'd --")
+				var/extrainfo = "--"
+				if(istype(D,/image))
+					var/image/img = D
+					var/icon/ico = img.icon
+					extrainfo = "L:[img.loc] -- I:[ico] -- IS:[img.icon_state] --"
+				testing("GC: -- \ref[D] | [type] was unable to be GC'd [extrainfo]")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)

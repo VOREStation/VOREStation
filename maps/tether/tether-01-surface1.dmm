@@ -7339,6 +7339,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/machinery/computer/timeclock/premade/south,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "asD" = (
@@ -20921,6 +20922,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/computer/timeclock/premade/west,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
 "byo" = (

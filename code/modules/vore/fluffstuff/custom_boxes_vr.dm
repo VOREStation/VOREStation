@@ -28,6 +28,14 @@
 		/obj/item/clothing/under/thing4)
 */
 
+// BeyondMyLife:Cassandra Selones Spawn Kit
+/obj/item/weapon/storage/box/fluff/cassandra
+	name = "Cassandra Selone's Spawn Kit"
+	desc = "A spawn Kit, holding Cassandra Selone's Item's"
+	has_items = list(
+		/obj/item/clothing/gloves/fluff/kilano/purple,
+		/obj/item/clothing/under/fluff/kilanosuit/purple,
+		/obj/item/clothing/shoes/boots/fluff/kilano/purple)
 
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald

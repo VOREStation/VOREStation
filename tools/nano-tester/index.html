@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<script type='text/javascript'>
+			function receiveUpdateData(jsonString)
+			{
+				// We need both jQuery and NanoStateManager to be able to recieve data
+				// At the moment any data received before those libraries are loaded will be lost
+				if (typeof NanoStateManager != 'undefined' && typeof jQuery != 'undefined')
+				{
+					NanoStateManager.receiveUpdateData(jsonString);
+				}
+				//else
+				//{
+				//	alert('browser.recieveUpdateData failed due to jQuery or NanoStateManager being unavailiable.');
+				//}
+			}
+		</script>
+
+		<script type='text/javascript' src='libraries.min.js'></script>
+		<script type='text/javascript' src='nano_utility.js'></script>
+		<script type='text/javascript' src='nano_template.js'></script>
+		<script type='text/javascript' src='nano_state_manager.js'></script>
+		<script type='text/javascript' src='nano_state.js'></script>
+		<script type='text/javascript' src='nano_state_default.js'></script>
+		<script type='text/javascript' src='nano_base_callbacks.js'></script>
+		<script type='text/javascript' src='nano_base_helpers.js'></script>
+		<link rel='stylesheet' type='text/css' href='shared.css'>
+		<link rel='stylesheet' type='text/css' href='icons.css'>
+		<link rel='stylesheet' type='text/css' href='layout_default.css'>
+	</head>
+	<body scroll=auto data-template-data='{{!it.templateDataJson}}' data-url-parameters='' data-initial-data='{{!it.initialDataJson}}'>
+		<div id='uiLayout'>
+		</div>
+		<noscript>
+			<div id='uiNoScript'>
+				<h2>JAVASCRIPT REQUIRED</h2>
+				<p>Your Internet Explorer's Javascript is disabled (or broken).<br/>
+				Enable Javascript and then open this UI again.</p>
+			</div>
+		</noscript>
+	</body>
+</html>

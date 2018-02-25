@@ -96,6 +96,12 @@ item_path: /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
 
 {
 ckey: beyondmylife
+character_name: Cassandra Selone
+item_path: /obj/item/weapon/storage/box/fluff/cassandra
+}
+
+{
+ckey: beyondmylife
 character_name: Kilano Soryu
 item_path: /obj/item/clothing/under/dress/fluff/kilano
 }
