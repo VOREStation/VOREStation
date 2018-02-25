@@ -111,6 +111,9 @@ var/global/datum/global_init/init = new ()
 	// Create frame types.
 	populate_frame_types()
 
+	// Create floor types.
+	populate_flooring_types()
+
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
@@ -121,7 +124,7 @@ var/global/datum/global_init/init = new ()
 	processScheduler.setup()
 	Master.Initialize(10, FALSE)
 
-	spawn(1)		
+	spawn(1)
 		master_controller.setup()
 #if UNIT_TEST
 		initialize_unit_tests()
