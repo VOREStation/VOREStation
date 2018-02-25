@@ -96,6 +96,17 @@
 	cost = -1
 	var_changes = list("flash_mod" = 2.0)
 
+/datum/trait/hollow
+	name = "Hollow Bones/Aluminum Alloy"
+	desc = "Your bones and robot limbs are much easier to break."
+	cost = -2 //I feel like this should be higher, but let's see where it goes
+
+/datum/trait/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	for(var/obj/item/organ/external/O in H.organs)
+		O.min_broken_damage *= 0.5
+		O.min_bruised_damage *= 0.5
+
 /datum/trait/lightweight
 	name = "Lightweight"
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
