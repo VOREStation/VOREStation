@@ -14,6 +14,7 @@
 					LANGUAGE_DAEMON		= 0,
 					LANGUAGE_ENOCHIAN	= 0
 					)
+	var/vr_sprites = list()
 
 /obj/item/weapon/robot_module/robot/clerical
 	languages = list(
@@ -47,6 +48,10 @@
 /obj/item/weapon/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
 	return
 
+/obj/item/weapon/robot_module/proc/vr_add_sprites() // Adds sprites from this file into list of avialible ones for global modules
+	src.sprites += vr_sprites
+	return
+
 /obj/item/weapon/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
@@ -54,6 +59,27 @@
 /obj/item/weapon/robot_module/robot/medical/crisis/vr_new() //Crisis Bot
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
+
+/obj/item/weapon/robot_module/robot/medical/crisis //Allows Crisis module to use Handy sprite
+	vr_sprites = list(
+						"Handy" = "handy-med"
+					 )
+
+/obj/item/weapon/robot_module/robot/clerical/butler //VR Handy sprites
+	vr_sprites = list(
+						"Handy - Service" = "vr-handy-service",
+						"Handy - Hydro" = "vr-handy-hydro"
+					 )
+
+/obj/item/weapon/robot_module/robot/clerical/general //VR Handy sprites
+	vr_sprites = list(
+						"Handy" = "vr-handy-clerk"
+					 )
+
+/obj/item/weapon/robot_module/robot/janitor //VR Handy sprites
+	vr_sprites = list(
+						"Handy" = "vr-handy-janitor"
+					 )
 
 /obj/item/weapon/robot_module/robot/knine
 	name = "k9 robot module"

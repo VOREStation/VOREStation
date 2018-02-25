@@ -17,6 +17,7 @@
 	return feed_grabbed_to_self(src,T)
 
 /mob/living/silicon/robot/updateicon()
+	vr_sprite_check()
 	..()
 	if(dogborg == TRUE && stat == CONSCIOUS)
 		if(sleeper_g == TRUE)
@@ -70,3 +71,9 @@
 							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
 		return
 	return
+
+/mob/living/silicon/robot/proc/vr_sprite_check()
+	if(findtext(src.icon_state, "vr-", 1, 4))
+		src.icon = 'icons/mob/robots_vr.dmi'
+	else
+		src.icon = 'icons/mob/robots.dmi'
