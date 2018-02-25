@@ -319,7 +319,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			for(var/obj/item/clothing/C in worn_clothing)
 				if(istype(W, /obj/item/clothing/accessory))
 					var/obj/item/clothing/accessory/A = W
-					if(C.attempt_attach_accessory(usr, A))
+					if(C.attempt_attach_accessory(A))
 						return
 		else
 			src << "<font color='red'>You are trying to equip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"

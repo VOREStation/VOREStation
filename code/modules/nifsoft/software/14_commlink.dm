@@ -14,8 +14,9 @@
 			nif.comm = new(nif,src)
 
 	uninstall()
-		if((. = ..()))
-			qdel_null(nif.comm)
+		var/obj/item/device/nif/lnif = nif //Awkward. Parent clears it in an attempt to clean up.
+		if((. = ..()) && lnif)
+			qdel_null(lnif.comm)
 
 	activate()
 		if((. = ..()))
