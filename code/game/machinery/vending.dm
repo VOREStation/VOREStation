@@ -862,7 +862,8 @@
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
 					/obj/item/device/healthanalyzer = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
+					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2,
+					/obj/item/weapon/storage/pill_bottle/carbon = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	req_log_access = access_cmo
@@ -1085,3 +1086,46 @@
 	//everything after the power cell had no amounts, I improvised.  -Sayu
 	req_log_access = access_rd
 	has_logs = 1
+
+/obj/machinery/vending/giftvendor
+	name = "AlliCo Baubles and Confectionaries"
+	desc = "For that special someone!"
+	icon_state = "giftvendor"
+	vend_delay = 15
+	products = list(/obj/item/weapon/storage/fancy/heartbox = 5,
+					/obj/item/toy/bouquet = 5,
+					/obj/item/toy/bouquet/fake = 4,
+					/obj/item/weapon/paper/card/smile = 3,
+					/obj/item/weapon/paper/card/heart = 3,
+					/obj/item/weapon/paper/card/cat = 3,
+					/obj/item/weapon/paper/card/flower = 3,
+					/obj/item/clothing/accessory/bracelet/friendship = 5,
+					/obj/item/toy/plushie/therapy/red = 2,
+					/obj/item/toy/plushie/therapy/purple = 2,
+					/obj/item/toy/plushie/therapy/blue = 2,
+					/obj/item/toy/plushie/therapy/yellow = 2,
+					/obj/item/toy/plushie/therapy/orange = 2,
+					/obj/item/toy/plushie/therapy/green = 2)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1
+	/* Handbuzzer to be added later */)
+	premium = list(/obj/item/toy/plushie/nymph = 2,
+					/obj/item/toy/plushie/mouse = 2,
+					/obj/item/toy/plushie/kitten = 2,
+					/obj/item/toy/plushie/lizard = 2,
+					/obj/item/toy/plushie/spider = 2,
+					/obj/item/toy/plushie/farwa = 2)
+					// /obj/item/weapon/storage/trinketbox = 2 (readding later due to conflict)
+	prices = list(/obj/item/weapon/storage/fancy/heartbox = 15,
+					/obj/item/toy/bouquet = 10,
+					/obj/item/toy/bouquet/fake = 3,
+					/obj/item/weapon/paper/card/smile = 1,
+					/obj/item/weapon/paper/card/heart = 1,
+					/obj/item/weapon/paper/card/cat = 1,
+					/obj/item/weapon/paper/card/flower = 1,
+					/obj/item/clothing/accessory/bracelet/friendship = 5,
+					/obj/item/toy/plushie/therapy/red = 20,
+					/obj/item/toy/plushie/therapy/purple = 20,
+					/obj/item/toy/plushie/therapy/blue = 20,
+					/obj/item/toy/plushie/therapy/yellow = 20,
+					/obj/item/toy/plushie/therapy/orange = 20,
+					/obj/item/toy/plushie/therapy/green = 20)

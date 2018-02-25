@@ -134,7 +134,7 @@
 	return 1
 
 /obj/item/borg/upgrade/jetpack
-	name = "mining robot jetpack"
+	name = "robot jetpack"
 	desc = "A carbon dioxide jetpack suitable for low-gravity operations."
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
@@ -149,7 +149,7 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide
+		R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide(R.module)
 		for(var/obj/item/weapon/tank/jetpack/carbondioxide in R.module.modules)
 			R.internals = src
 		return 1
@@ -174,7 +174,7 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/device/healthanalyzer/advanced
+		R.module.modules += new/obj/item/device/healthanalyzer/advanced(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")

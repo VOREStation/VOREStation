@@ -52,7 +52,9 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
+	listening_objects.Remove(src)
 	part = null
+	imp_in = null
 	return ..()
 
 /obj/item/weapon/implant/attackby(obj/item/I, mob/user)
@@ -82,7 +84,6 @@
 
 /obj/item/weapon/implant/tracking/implanted(var/mob/source)
 	processing_objects.Add(src)
-	listening_objects |= src
 	return 1
 
 /obj/item/weapon/implant/tracking/Destroy()

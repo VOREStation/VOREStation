@@ -119,6 +119,10 @@
 	var/melee_miss_chance = 15		// percent chance to miss a melee attack.
 	var/melee_attack_minDelay = 5		// How long between attacks at least
 	var/melee_attack_maxDelay = 10		// How long between attacks at most
+	var/attack_armor_type = "melee"		// What armor does this check?
+	var/attack_armor_pen = 0			// How much armor pen this attack has.
+	var/attack_sharp = 0				// Is the attack sharp?
+	var/attack_edge = 0					// Does the attack have an edge?
 
 	//Special attacks
 	var/spattack_prob = 0			// Chance of the mob doing a special attack (0 for never)
@@ -642,7 +646,6 @@
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		O.attack(src, user, user.zone_sel.selecting)
 		ai_log("attackby() I was weapon'd by: [user]",2)
 		if(O.force)
 			react_to_attack(user)
@@ -1275,7 +1278,7 @@
 		if(H.check_shields(damage = damage_to_do, damage_source = src, attacker = src, def_zone = null, attack_text = "the attack"))
 			return FALSE
 
-	if(A.attack_generic(src, damage_to_do, pick(attacktext)) && attack_sound)
+	if(A.attack_generic(src, damage_to_do, pick(attacktext), attack_armor_type, attack_armor_pen, attack_sharp, attack_edge) && attack_sound)
 		playsound(src, attack_sound, 75, 1)
 
 	return TRUE

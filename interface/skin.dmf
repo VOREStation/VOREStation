@@ -991,7 +991,7 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "CTRL+NUMPAD8"
-		command = "body-head-toggle"
+		command = "body-toggle-head"
 		is-disabled = false
 	elem 
 		name = "F1"

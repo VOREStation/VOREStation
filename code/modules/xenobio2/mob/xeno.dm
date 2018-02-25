@@ -12,7 +12,7 @@ Also includes Life and New
 	desc = "Something's broken, yell at someone."
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	attacktext = "hit"
+	attacktext = list("hit")
 	attack_sound = null
 	friendly = "touches"
 	environment_smash = 0

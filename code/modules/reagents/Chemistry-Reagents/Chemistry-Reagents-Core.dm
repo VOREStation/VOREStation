@@ -160,6 +160,18 @@
 		L.adjust_fire_stacks(-(amount / 5))
 		remove_self(needed)
 
+/datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(6 * removed)
+	else
+		..()
+
+/datum/reagent/fuel/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(6 * removed)
+	else
+		..()
+
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"

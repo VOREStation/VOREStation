@@ -36,6 +36,7 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/list/starts_with //Things to spawn on the box on spawn
+	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
@@ -576,12 +577,13 @@
 	src.closer.hud_layerise()
 	orient2hud()
 
-	if(LAZYLEN(starts_with))
+	if(LAZYLEN(starts_with) && !empty)
 		for(var/newtype in starts_with)
 			var/count = starts_with[newtype] || 1 //Could have left it blank.
 			while(count)
 				count--
 				new newtype(src)
+		starts_with = null //Reduce list count.
 
 	calibrate_size()
 
@@ -668,3 +670,59 @@
 		can_hold[I.type]++
 		max_w_class = max(I.w_class, max_w_class)
 		max_storage_space += I.get_storage_cost()
+
+/*
+ * Trinket Box - READDING SOON
+ */
+/*
+/obj/item/weapon/storage/trinketbox
+	name = "trinket box"
+	desc = "A box that can hold small trinkets, such as a ring."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "trinketbox"
+	var/open = 0
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/clothing/gloves/ring,
+		/obj/item/weapon/coin,
+		/obj/item/clothing/accessory/medal
+		)
+	var/open_state
+	var/closed_state
+
+/obj/item/weapon/storage/trinketbox/update_icon()
+	overlays.Cut()
+	if(open)
+		icon_state = open_state
+
+		if(contents.len >= 1)
+			var/contained_image = null
+			if(istype(contents[1],  /obj/item/clothing/gloves/ring))
+				contained_image = "ring_trinket"
+			else if(istype(contents[1], /obj/item/weapon/coin))
+				contained_image = "coin_trinket"
+			else if(istype(contents[1], /obj/item/clothing/accessory/medal))
+				contained_image = "medal_trinket"
+			if(contained_image)
+				overlays += contained_image
+	else
+		icon_state = closed_state
+
+/obj/item/weapon/storage/trinketbox/New()
+	if(!open_state)
+		open_state = "[initial(icon_state)]_open"
+	if(!closed_state)
+		closed_state = "[initial(icon_state)]"
+	..()
+
+/obj/item/weapon/storage/trinketbox/attack_self()
+	open = !open
+	update_icon()
+	..()
+
+/obj/item/weapon/storage/trinketbox/examine(mob/user)
+	..()
+	if(open && contents.len)
+		var/display_item = contents[1]
+		to_chat(user, "<span class='notice'>\The [src] contains \the [display_item]!</span>")
+		*/

@@ -326,13 +326,23 @@
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0
+	if(!client)
+		return 0
+
+	//Find our spawning point.
+	var/list/join_props = job_master.LateSpawn(client, rank)
+	var/turf/T = join_props["turf"]
+	var/join_message = join_props["msg"]
+
+	if(!T || !join_message)
+		return 0
 
 	spawning = 1
 	close_spawn_windows()
 
 	job_master.AssignRole(src, rank, 1)
 
-	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
+	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
 
@@ -354,14 +364,11 @@
 		qdel(src)
 		return
 
-	//Find our spawning point.
-	var/join_message = job_master.LateSpawn(character, rank)
 	// Equip our custom items only AFTER deploying to spawn points eh?
 	equip_custom_items(character)
 
 	character.apply_traits()
 
-	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
@@ -419,7 +426,7 @@
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
 
 
-/mob/new_player/proc/create_character()
+/mob/new_player/proc/create_character(var/turf/T)
 	spawning = 1
 	close_spawn_windows()
 
@@ -434,12 +441,12 @@
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 		if(is_alien_whitelisted(chosen_species))
-			new_character = new(loc, use_species_name)
+			new_character = new(T, use_species_name)
 
 	if(!new_character)
-		new_character = new(loc)
+		new_character = new(T)
 
-	new_character.lastarea = get_area(loc)
+	new_character.lastarea = get_area(T)
 
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)

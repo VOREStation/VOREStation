@@ -8,7 +8,7 @@
 	var/wax = 2000
 
 /obj/item/weapon/flame/candle/New()
-	wax = rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
+	wax -= rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
 	..()
 
 /obj/item/weapon/flame/candle/update_icon()
@@ -26,7 +26,7 @@
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
-			light("<span class='notice'>\The [user] casually lights the [name] with [W].</span>")
+			light("<span class='notice'>\The [user] casually lights the [src] with [W].</span>")
 	else if(istype(W, /obj/item/weapon/flame/lighter))
 		var/obj/item/weapon/flame/lighter/L = W
 		if(L.lit)
@@ -41,15 +41,12 @@
 			light()
 
 
-/obj/item/weapon/flame/candle/proc/light(var/flavor_text = "<span class='notice'>\The [usr] lights the [name].</span>")
-	if(!src.lit)
-		src.lit = 1
-		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+/obj/item/weapon/flame/candle/proc/light(var/flavor_text = "<span class='notice'>\The [usr] lights the [src].</span>")
+	if(!lit)
+		lit = TRUE
+		visible_message(flavor_text)
 		set_light(CANDLE_LUM)
 		processing_objects.Add(src)
-
 
 /obj/item/weapon/flame/candle/process()
 	if(!lit)
@@ -88,23 +85,13 @@
 /obj/item/weapon/flame/candle/everburn
 	wax = 99999
 
-/obj/item/weapon/flame/candle/everburn/New()
-	if(!src.lit)
-		src.lit = 1
-		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message("<span class='notice'>\The [name] mysteriously lights itself!.</span>", 1)
-		set_light(CANDLE_LUM)
-		processing_objects.Add(src)
+/obj/item/weapon/flame/candle/everburn/initialize()
+	. = ..()
+	light("<span class='notice'>\The [src] mysteriously lights itself!.</span>")
 
 /obj/item/weapon/flame/candle/candelabra/everburn
 	wax = 99999
 
-/obj/item/weapon/flame/candle/candelabra/everburn/New()
-	if(!src.lit)
-		src.lit = 1
-		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message("<span class='notice'>\The [name] mysteriously lights itself!.</span>", 1)
-		set_light(CANDLE_LUM)
-		processing_objects.Add(src)
+/obj/item/weapon/flame/candle/candelabra/everburn/initialize()
+	. = ..()
+	light("<span class='notice'>\The [src] mysteriously lights itself!.</span>")

@@ -10,6 +10,7 @@
 	density = TRUE
 	ghost_query_type = /datum/ghost_query/lost_drone
 	confirm_before_open = TRUE
+	needscharger = TRUE
 
 /obj/structure/ghost_pod/manual/lost_drone/trigger()
 	..()
@@ -45,6 +46,7 @@
 	icon_state_opened = "borg_pod_opened"
 	density = TRUE
 	ghost_query_type = /datum/ghost_query/gravekeeper_drone
+	needscharger = TRUE
 
 /obj/structure/ghost_pod/automatic/gravekeeper_drone/create_occupant(var/mob/M)
 	density = FALSE
@@ -58,4 +60,30 @@
 	R.ckey = M.ckey
 	visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
 	R.Namepick()
+	..()
+
+/obj/structure/ghost_pod/manual/corgi
+	name = "glowing rune"
+	desc = "This rune slowly lights up and goes dim in a repeating pattern, like a slow heartbeat. It's almost as if it's calling out to you to touch it..."
+	description_info = "This will summon some manner of creature through quite dubious means. The creature will be controlled by a player."
+	icon_state = "corgirune"
+	icon_state_opened = "corgirune-inert"
+	density = TRUE
+	ghost_query_type = /datum/ghost_query/corgi_rune
+	confirm_before_open = TRUE
+
+/obj/structure/ghost_pod/manual/corgi/trigger()
+	..()
+	visible_message("<span class='warning'>\The [usr] places their hand on the rune!</span>")
+	log_and_message_admins("is attempting to summon a corgi.")
+
+/obj/structure/ghost_pod/manual/corgi/create_occupant(var/mob/M)
+	density = FALSE
+	var/mob/living/simple_animal/corgi/R = new(get_turf(src))
+	if(M.mind)
+		M.mind.transfer_to(R)
+	to_chat(M, "<span class='notice'>You are a <b>Corgi</b>! Woof!</span>")
+	R.ckey = M.ckey
+	visible_message("<span class='warning'>With a bright flash of light, \the [src] disappears, and in its place stands a small corgi.</span>")
+	log_and_message_admins("successfully touched \a [src] and summoned a corgi.")
 	..()

@@ -26,12 +26,12 @@
 /datum/poster/pol_6
 	icon_state="polposter6"
 	name = "Walk!"
-	desc = "This poster depicts a man walking, presumably to encourage you to not run in the halls."
+	desc = "This poster depicts a man walking, presumably to encourage you not to run in the halls."
 
 /datum/poster/pol_7
 	icon_state="polposter7"
 	name = "Place your signs!"
-	desc = "A safety poster reminding custodial stuff to place wet floor signs where needed.  This reminder's rarely heeded."
+	desc = "A safety poster reminding custodial staff to place wet floor signs where needed.  This reminder's rarely heeded."
 
 /datum/poster/pol_8
 	icon_state="polposter8"

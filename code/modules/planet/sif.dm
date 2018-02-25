@@ -234,6 +234,18 @@ datum/weather/sif
 			if(!T.outdoors)
 				continue // They're indoors, so no need to rain on them.
 
+			// If they have an open umbrella, it'll guard from rain
+			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+				if(U.open)
+					to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella</span>")
+					continue
+			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
+				if(U.open)
+					to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella</span>")
+					continue
+
 			L.water_act(1)
 			to_chat(L, "<span class='warning'>Rain falls on you.</span>")
 
@@ -258,6 +270,20 @@ datum/weather/sif
 			if(!T.outdoors)
 				continue // They're indoors, so no need to rain on them.
 
+			// If they have an open umbrella, it'll get stolen by the wind
+			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+				if(U.open)
+					to_chat(L, "<span class='warning'>A gust of wind yanks the umbrella from your hand!</span>")
+					L.drop_from_inventory(U)
+					U.throw_at(get_edge_target_turf(U, pick(alldirs)), 8, 1, L)
+			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
+				if(U.open)
+					to_chat(L, "<span class='warning'>A gust of wind yanks the umbrella from your hand!</span>")
+					L.drop_from_inventory(U)
+					U.throw_at(get_edge_target_turf(U, pick(alldirs)), 8, 1, L)
+
 			L.water_act(2)
 			to_chat(L, "<span class='warning'>Rain falls on you, drenching you in water.</span>")
 
@@ -281,6 +307,18 @@ datum/weather/sif
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
 				continue // They're indoors, so no need to pelt them with ice.
+
+			// If they have an open umbrella, it'll guard from rain
+			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+				if(U.open)
+					to_chat(L, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
+					continue
+			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
+				if(U.open)
+					to_chat(L, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
+					continue
 
 			var/target_zone = pick(BP_ALL)
 			var/amount_blocked = L.run_armor_check(target_zone, "melee")

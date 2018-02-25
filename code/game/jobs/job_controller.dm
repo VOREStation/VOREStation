@@ -607,32 +607,30 @@ var/global/datum/controller/occupations/job_master
 			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 			feedback_add_details("job_preferences",tmp_str)
 
-/datum/controller/occupations/proc/LateSpawn(var/mob/living/carbon/human/H, var/rank)
-	//spawn at one of the latespawn locations
+/datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank)
 
 	var/datum/spawnpoint/spawnpos
 
-//	if(H.client.prefs.spawnpoint)
-//		spawnpos = spawntypes[H.client.prefs.spawnpoint]
-
-	if(H.client.prefs.spawnpoint)
-		if(!(H.client.prefs.spawnpoint in using_map.allowed_spawns))
-			if(H) // This seems redundant...
-				to_chat(H, "<span class='warning'>Your chosen spawnpoint ([H.client.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
+	//Spawn them at their preferred one
+	if(C.prefs.spawnpoint)
+		if(!(C.prefs.spawnpoint in using_map.allowed_spawns))
+			to_chat(C, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
 			spawnpos = null
 		else
-			spawnpos = spawntypes[H.client.prefs.spawnpoint]
+			spawnpos = spawntypes[C.prefs.spawnpoint]
 
+	//We will return a list key'd by "turf" and "msg"
+	. = list("turf","msg")
 	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
 		if(spawnpos.check_job_spawning(rank))
-			H.forceMove(spawnpos.get_spawn_position())
-			. = spawnpos.msg
+			.["turf"] = spawnpos.get_spawn_position()
+			.["msg"] = spawnpos.msg
 		else
-			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
+			to_chat(C,"Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
 			var/spawning = pick(latejoin)
-			H.forceMove(get_turf(spawning))
-			. = "will arrive to the station shortly by shuttle"
+			.["turf"] = get_turf(spawning)
+			.["msg"] = "will arrive to the station shortly by shuttle"
 	else
 		var/spawning = pick(latejoin)
-		H.forceMove(get_turf(spawning))
-		. = "has arrived on the station"
+		.["turf"] = get_turf(spawning)
+		.["msg"] = "has arrived on the station"

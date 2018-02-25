@@ -13,20 +13,29 @@
 	desc = "A small wrapped package."
 	w_class = ITEMSIZE_NORMAL
 
-	var/power = 1  /*Size of the explosion.*/
+	var/devastate = 0
+	var/heavy_impact = 1
+	var/light_impact = 2
+	var/flash_range = 5
 	var/size = "small"  /*Used for the icon, this one will make c-4small_0 for the off state.*/
 
 /obj/item/weapon/syndie/c4explosive/heavy
 	icon_state = "c-4large_0"
 	item_state = "radio"
 	desc = "A mysterious package, it's quite heavy."
-	power = 2
+	devastate = 1
+	heavy_impact = 2
+	light_impact = 5
+	flash_range = 7
 	size = "large"
 
 /obj/item/weapon/syndie/c4explosive/heavy/super_heavy
 	name = "large-sized package"
 	desc = "A mysterious package, it's quite exceptionally heavy."
-	power = 3
+	devastate = 2
+	heavy_impact = 5
+	light_impact = 7
+	flash_range = 7
 
 /obj/item/weapon/syndie/c4explosive/New()
 	var/K = rand(1,2000)
@@ -43,7 +52,7 @@
 	for(var/mob/O in hearers(src, null))
 		O.show_message("\icon[src] <span class = 'warning'> The [src.name] beeps! </span>")
 	sleep(50)
-	explosion(get_turf(src), power, power*2, power*3, power*4, power*5)
+	explosion(get_turf(src), devastate, heavy_impact, light_impact, flash_range)
 	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
 		var/turf/simulated/wall/T = get_step(src,dirn)
 		if(locate(/obj/machinery/door/airlock) in T)
