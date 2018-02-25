@@ -168,19 +168,19 @@
 			L.ExtinguishMob()
 		L.adjust_fire_stacks(-(amount / 5))
 		remove_self(needed)
-
+/*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	/*if(alien == IS_SLIME) //VOREStation Edit Start. Stops slimes from dying from water.
+	if(alien == IS_SLIME) //VOREStation Edit Start. Stops slimes from dying from water.
 		M.adjustToxLoss(6 * removed)
-	else*/
-	..() //VOREStation Edit End.
+	else
+		..()
 
 /datum/reagent/fuel/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
 	else
 		..()
-
+/*  //VOREStation Edit End.
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"
