@@ -170,10 +170,10 @@
 		remove_self(needed)
 
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_SLIME)
+	/*if(alien == IS_SLIME) //VOREStation Edit Start. Stops slimes from dying from water.
 		M.adjustToxLoss(6 * removed)
-	else
-		..()
+	else*/
+	..() //VOREStation Edit End.
 
 /datum/reagent/fuel/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)
