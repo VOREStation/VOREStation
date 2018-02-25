@@ -1,11 +1,9 @@
 /obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
-	var/obj/item/clothing/accessory/attach = A
-	if(src.valid_accessory_slots && (attach.slot in src.valid_accessory_slots))
-		if(accessories.len && restricted_accessory_slots && (attach.slot in restricted_accessory_slots))
+	if(src.valid_accessory_slots && (A.slot in src.valid_accessory_slots))
+		if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
 			for(var/obj/item/clothing/accessory/AC in accessories)
-				if (AC.slot == attach.slot)
+				if (AC.slot == A.slot)
 					return FALSE
-			return TRUE
 		return TRUE
 	else
 		return FALSE
