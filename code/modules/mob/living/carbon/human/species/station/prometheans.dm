@@ -156,9 +156,9 @@ VOREStation Removal End */
 			H.adjustFireLoss(-heal_rate)
 			H.adjustOxyLoss(-heal_rate)
 			H.adjustToxLoss(-heal_rate)
-/*	else
+/*	else //VOREStation Edit Start.
 		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
-*/
+*/ //VOREStation Edit End
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
