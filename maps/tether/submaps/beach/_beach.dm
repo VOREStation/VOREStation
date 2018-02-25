@@ -147,7 +147,7 @@
 
 /turf/simulated/floor/beach/coastwater/New()
 	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1))
 
 // -- Areas -- //
 
