@@ -28,4 +28,4 @@
 	reagents.add_reagent("nutriment", 30)
 	reagents.add_reagent("iron", 10)
 	reagents.add_reagent("protein", 35)
-	reagents.add_reagent("water", 25)
+//	reagents.add_reagent("water", 25) //VOREStation Removal - No water in protein shakes, for slimeperson convenience
