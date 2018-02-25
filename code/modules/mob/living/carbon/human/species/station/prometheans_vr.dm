@@ -9,6 +9,7 @@
 	mob_size = MOB_MEDIUM
 	num_alternate_languages = 1 //Let's at least give them one
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
+	trashcan = 1 //They have goopy bodies. They can just dissolve things within them.
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
