@@ -6,6 +6,7 @@
 	var/pounce_cooldown_time = 40
 	var/leap_at
 	var/dogborg = FALSE
+	var/original_icon = 'icons/mob/robots.dmi'
 
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in living_mobs(1))
 	set name = "Robot Nom"
@@ -74,6 +75,7 @@
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
 	if(findtext(src.icon_state, "vr-", 1, 4) && (src.icon == 'icons/mob/robots.dmi'))
+		src.original_icon = src.icon
 		src.icon = 'icons/mob/robots_vr.dmi'
-	else if(!findtext(src.icon_state, "vr-", 1, 4) && (src.icon == 'icons/mob/robots_vr.dmi'))
-		src.icon = 'icons/mob/robots.dmi'
+	else if(!findtext(src.icon_state, "vr-", 1, 4))
+		src.icon = src.original_icon
