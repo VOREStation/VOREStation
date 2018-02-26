@@ -81,6 +81,21 @@
 						"Handy" = "vr-handy-janitor"
 					 )
 
+/obj/item/weapon/robot_module/robot/security/general //VR Handy sprites
+	vr_sprites = list(
+						"Handy" = "vr-handy-sec"
+					 )
+
+/obj/item/weapon/robot_module/robot/miner //VR Handy sprites
+	vr_sprites = list(
+						"Handy" = "vr-handy-miner"
+					 )
+
+/obj/item/weapon/robot_module/robot/standard //VR Handy sprites
+	vr_sprites = list(
+						"Handy" = "vr-handy-standard"
+					 )
+
 /obj/item/weapon/robot_module/robot/knine
 	name = "k9 robot module"
 	sprites = list(
