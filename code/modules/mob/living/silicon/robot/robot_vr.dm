@@ -7,6 +7,16 @@
 	var/leap_at
 	var/dogborg = FALSE
 	var/original_icon = 'icons/mob/robots.dmi'
+	var/vr_icons = list(
+					   "handy-hydro",
+					   "handy-service",
+					   "handy-clerk",
+					   "handy-janitor",
+					   "handy-miner",
+					   "handy-standard",
+					   "handy-sec"
+					   )					//List of all used sprites that are in robots_vr.dmi
+
 
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in living_mobs(1))
 	set name = "Robot Nom"
@@ -74,8 +84,8 @@
 	return
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
-	if(findtext(src.icon_state, "vr-", 1, 4) && (src.icon == 'icons/mob/robots.dmi'))
-		src.original_icon = src.icon
-		src.icon = 'icons/mob/robots_vr.dmi'
-	else if(!findtext(src.icon_state, "vr-", 1, 4))
-		src.icon = src.original_icon
+	if((icon_state in vr_icons) && (icon == 'icons/mob/robots.dmi'))
+		original_icon = icon
+		icon = 'icons/mob/robots_vr.dmi'
+	else if(!(icon_state in vr_icons))
+		icon = original_icon

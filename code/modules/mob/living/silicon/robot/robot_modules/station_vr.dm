@@ -49,7 +49,7 @@
 	return
 
 /obj/item/weapon/robot_module/proc/vr_add_sprites() // Adds sprites from this file into list of avialible ones for global modules
-	src.sprites += vr_sprites
+	sprites += vr_sprites
 	return
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
@@ -67,33 +67,33 @@
 
 /obj/item/weapon/robot_module/robot/clerical/butler //VR Handy sprites
 	vr_sprites = list(
-						"Handy - Service" = "vr-handy-service",
-						"Handy - Hydro" = "vr-handy-hydro"
+						"Handy - Service" = "handy-service",
+						"Handy - Hydro" = "handy-hydro"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/general //VR Handy sprites
 	vr_sprites = list(
-						"Handy" = "vr-handy-clerk"
+						"Handy" = "handy-clerk"
 					 )
 
 /obj/item/weapon/robot_module/robot/janitor //VR Handy sprites
 	vr_sprites = list(
-						"Handy" = "vr-handy-janitor"
+						"Handy" = "handy-janitor"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/general //VR Handy sprites
 	vr_sprites = list(
-						"Handy" = "vr-handy-sec"
+						"Handy" = "handy-sec"
 					 )
 
 /obj/item/weapon/robot_module/robot/miner //VR Handy sprites
 	vr_sprites = list(
-						"Handy" = "vr-handy-miner"
+						"Handy" = "handy-miner"
 					 )
 
 /obj/item/weapon/robot_module/robot/standard //VR Handy sprites
 	vr_sprites = list(
-						"Handy" = "vr-handy-standard"
+						"Handy" = "handy-standard"
 					 )
 
 /obj/item/weapon/robot_module/robot/knine
