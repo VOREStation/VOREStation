@@ -225,13 +225,12 @@
 
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
-		for (var/obj/thing in contents)
-			// Todo: unify limbs and internal organs
+		for (var/obj/item/thing in contents)
 			// There's a chance that the gibber will fail to destroy some evidence.
-			if((istype(thing,/obj/item/organ) || istype(thing,/obj/item/organ)) && prob(80))
+			if(istype(thing,/obj/item/organ) && prob(80))
 				qdel(thing)
 				continue
-			thing.loc = get_turf(thing) // Drop it onto the turf for throwing.
+			thing.forceMove(get_turf(thing)) // Drop it onto the turf for throwing.
 			thing.throw_at(get_edge_target_turf(src,gib_throw_dir),rand(0,3),emagged ? 100 : 50) // Being pelted with bits of meat and bone would hurt.
 
 		update_icon()
