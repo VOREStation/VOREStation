@@ -627,3 +627,11 @@ var/global/image/backplane
 	backplane.mouse_opacity = 0
 
 	return TRUE
+
+/mob/proc/get_sound_env(var/pressure_factor)
+	if (pressure_factor < 0.5)
+		return SPACE
+	else
+		var/area/A = get_area(src)
+		return A.sound_env
+		
