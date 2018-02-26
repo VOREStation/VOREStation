@@ -74,16 +74,10 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 //
 //	Belly searching for simplifying other procs
+//  Mostly redundant now with belly-objects and isbelly(loc)
 //
 /proc/check_belly(atom/movable/A)
-	if(istype(A.loc,/mob/living))
-		var/mob/living/M = A.loc
-		for(var/I in M.vore_organs)
-			var/datum/belly/B = M.vore_organs[I]
-			if(A in B.internal_contents)
-				return(B)
-
-	return 0
+	return isbelly(A.loc)
 
 //
 // Save/Load Vore Preferences

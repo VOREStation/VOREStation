@@ -1509,34 +1509,25 @@
 		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
 
 	//Destination beacon vore checking
-	var/datum/belly/target_belly
-	var/atom/real_dest = get_turf(destination)
+	var/atom/real_dest = dT
+	var/televored = FALSE //UR GONNA GET VORED
 
-	//Destination beacon is held/eaten
-	if(isliving(destination.loc) && (target != destination.loc)) //We should definitely get televored unless we're teleporting ourselves into ourselves
-		var/mob/living/L = destination.loc
-
-		//Is the beacon IN a belly?
-		target_belly = check_belly(destination)
-
-		//No? Well do they have vore organs at all?
-		if(!target_belly && L.vore_organs.len)
-
-			//If they do, use their picked one.
-			if(L.vore_selected)
-				target_belly = L.vore_organs[L.vore_selected]
-			else
-				//Else just use the first one.
-				var/I = L.vore_organs[1] //We're just going to use 1
-				target_belly = L.vore_organs[I]
-
+	var/atom/real_loc = destination.loc
+	if(isbelly(real_loc))
+		real_dest = real_loc
+		televored = TRUE
+	if(isliving(real_loc))
+		var/mob/living/L = real_loc
+		if(L.vore_selected)
+			real_dest = L.vore_selected
+			televored = TRUE
+		else if(L.vore_organs.len)
+			real_dest = pick(L.vore_organs)
+			televored = TRUE
+			
 	//Televore fluff stuff
-	if(target_belly)
-		real_dest = destination.loc
-		target_belly.internal_contents |= target
-		playsound(target_belly.owner, target_belly.vore_sound, 100, 1)
-		to_chat(target,"<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>")
-		to_chat(target_belly.owner,"<span class='warning'>Your [target_belly.name] suddenly has a new occupant!</span>")
+	if(televored)
+		to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -1556,20 +1547,18 @@
 
 			//Move them, and televore if necessary
 			G.affecting.forceMove(real_dest)
-			if(target_belly)
-				target_belly.internal_contents |= G.affecting
-				to_chat(G.affecting,"<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>")
+			if(televored)
+				to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
 
 			//Phase-in effect for grabbed person
 			phase_in(G.affecting,get_turf(G.affecting))
 
 	update_icon()
 	spawn(30 SECONDS)
-		if(src) //If we still exist, anyway.
-			ready = 1
-			update_icon()
+		ready = 1
+		update_icon()
 
-	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [target_belly ? "(Belly: [target_belly.name])" : null]"
+	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_loc.name)])" : null]"
 
 /obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
 
@@ -1632,16 +1621,13 @@
 	var/mob/living/L = user
 	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
 	if(confirm == "Eat it!")
-		var/bellychoice = input("Which belly?","Select A Belly") in L.vore_organs|null
+		var/obj/belly/bellychoice = input("Which belly?","Select A Belly") as null|anything in L.vore_organs
 		if(bellychoice)
-			var/datum/belly/B = L.vore_organs[bellychoice]
 			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
 			if(do_after(user,5 SECONDS,src))
 				user.unEquip(src)
-				forceMove(user)
-				B.internal_contents |= src
+				forceMove(bellychoice)
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
-				playsound(user, B.vore_sound, 70, 1)
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
