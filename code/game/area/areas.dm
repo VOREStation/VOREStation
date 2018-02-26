@@ -248,23 +248,26 @@ var/list/mob/living/forced_ambiance_list = new
 
 	// If we previously were in an area with force-played ambiance, stop it.
 	if(L in forced_ambiance_list)
-		L << sound(null, channel = 1)
+		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 		forced_ambiance_list -= L
 
 	if(!L.client.ambience_playing)
 		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = 2)
+		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = CHANNEL_AMBIENCE)
 
 	if(forced_ambience)
 		if(forced_ambience.len)
 			forced_ambiance_list |= L
-			L << sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 25, channel = 1)
+			var/sound/chosen_ambiance = pick(forced_ambience)
+			if(!istype(chosen_ambiance))
+				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE_FORCED)
+			L << chosen_ambiance
 		else
-			L << sound(null, channel = 1)
+			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 	else if(src.ambience.len && prob(35))
 		if((world.time >= L.client.played + 600))
 			var/sound = pick(ambience)
-			L << sound(sound, repeat = 0, wait = 0, volume = 25, channel = 1)
+			L << sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE)
 			L.client.played = world.time
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)

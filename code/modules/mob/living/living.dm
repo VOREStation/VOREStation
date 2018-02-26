@@ -1169,6 +1169,20 @@ default behaviour is:
 
 	item.throw_at(target, throw_range, item.throw_speed, src)
 
+/mob/living/get_sound_env(var/pressure_factor)
+	if (hallucination)
+		return PSYCHOTIC
+	else if (druggy)
+		return DRUGGED
+	else if (drowsyness)
+		return DIZZY
+	else if (confused)
+		return DIZZY
+	else if (sleeping)
+		return UNDERWATER
+	else
+		return ..()
+
 //Add an entry to overlays, assuming it exists
 /mob/living/proc/apply_hud(cache_index, var/image/I)
 	hud_list[cache_index] = I
