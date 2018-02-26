@@ -166,7 +166,7 @@
 	else
 		..()
 
-/datum/reagent/fuel/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
 	else
