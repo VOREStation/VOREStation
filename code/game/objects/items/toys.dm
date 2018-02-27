@@ -17,6 +17,7 @@
  *		Plushies
  *		Toy cult sword
  *		Bouquets
+ 		Stick Horse
  */
 
 
@@ -885,6 +886,13 @@
 /obj/item/toy/bouquet/fake
 	name = "plastic bouquet"
 	desc = "A cheap plastic bouquet of flowers. Smells like cheap, toxic plastic."
+
+/obj/item/toy/stickhorse
+	name = "stick horse"
+	desc = "A pretend horse on a stick for any aspiring little cowboy to ride."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "stickhorse"
+	w_class = ITEMSIZE_LARGE
 
 /* NYET.
 /obj/item/weapon/toddler

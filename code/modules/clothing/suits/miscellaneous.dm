@@ -348,6 +348,14 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	addblends = "peacoat_a"
 	item_state_slots = list(slot_r_hand_str = "peacoat", slot_l_hand_str = "peacoat")
 	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/duster
+	name = "cowboy duster"
+	desc = "A duster commonly seen on cowboys from Earth's late 1800's."
+	icon_state = "duster"
+	blood_overlay_type = "coat"
+	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter)
+	flags_inv = HIDEHOLSTER
 /*
  * stripper
  */

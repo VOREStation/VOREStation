@@ -394,6 +394,16 @@
 	desc = "A red dress that sweeps to the side."
 	icon_state = "red_swept_dress"
 
+/obj/item/clothing/under/dress/flamenco
+	name = "flamenco dress"
+	desc = "A Mexican flamenco dress."
+	icon_state = "flamenco"
+
+/obj/item/clothing/under/dress/westernbustle
+	name = "western bustle"
+	desc = "A western bustle dress from Earth's late 1800's."
+	icon_state = "westernbustle"
+
 /*
  * wedding stuff
  */
