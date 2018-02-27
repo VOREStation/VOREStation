@@ -70,7 +70,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	//Put loaded data here if we loaded any
 	save_data = islist(load_data) ? load_data.Copy() : list()
-	examine_msg = save_data["examine_msg"] || "There's a certain spark to their eyes."
+	var/saved_examine_msg = save_data["examine_msg"]
+	
+	//If it's an empty string, they want it blank. If null, it's never been saved, give default.
+	if(isnull(saved_examine_msg)) 
+		saved_examine_msg = "There's a certain spark to their eyes."
+	examine_msg = saved_examine_msg
 
 	//If given a human on spawn (probably from persistence)
 	if(ishuman(newloc))
@@ -591,10 +596,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//They clicked cancel or meanwhile lost their NIF
 	if(!nif || isnull(new_flavor))
 		return //No changes
-	//Sanitize or they cleaned it entirely
+	//Sanitize or user cleaned it entirely
 	if(!new_flavor)
-		nif.examine_msg = null
-		nif.save_data -= "examine_msg"
+		nif.examine_msg = ""
+		nif.save_data["examine_msg"] = ""
 	else
 		nif.examine_msg = new_flavor
 		nif.save_data["examine_msg"] = new_flavor
