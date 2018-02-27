@@ -27,7 +27,7 @@
 		name = "Hairmaw (Liquidfirefly)"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "maw_hair"
-		ckeys_allowed = list("Liquidfirefly")
+		ckeys_allowed = list("liquidfirefly")
 		do_colouration = 0
 
 	citheronia_colorable
