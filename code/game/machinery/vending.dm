@@ -1112,8 +1112,8 @@
 					/obj/item/toy/plushie/kitten = 2,
 					/obj/item/toy/plushie/lizard = 2,
 					/obj/item/toy/plushie/spider = 2,
-					/obj/item/toy/plushie/farwa = 2)
-					// /obj/item/weapon/storage/trinketbox = 2 (readding later due to conflict)
+					/obj/item/toy/plushie/farwa = 2,
+					/obj/item/weapon/storage/trinketbox = 2)
 	prices = list(/obj/item/weapon/storage/fancy/heartbox = 15,
 					/obj/item/toy/bouquet = 10,
 					/obj/item/toy/bouquet/fake = 3,

@@ -148,3 +148,16 @@
 	path = /obj/item/clothing/shoes/footwraps
 	sort_category = "Xenowear"
 	cost = 1
+
+/datum/gear/uniform/cohesionsuits
+	display_name = "cohesion suit selection (Promethean)"
+	path = /obj/item/clothing/under/cohesion
+	sort_category = "Xenowear"
+
+/datum/gear/uniform/cohesionsuits/New()
+	..()
+	var/list/cohesionsuits = list()
+	for(var/cohesionsuit in (typesof(/obj/item/clothing/under/cohesion)))
+		var/obj/item/clothing/under/cohesion/cohesion_type = cohesionsuit
+		cohesionsuits[initial(cohesion_type.name)] = cohesion_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cohesionsuits))

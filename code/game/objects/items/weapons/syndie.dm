@@ -13,9 +13,9 @@
 	desc = "A small wrapped package."
 	w_class = ITEMSIZE_NORMAL
 
-	var/devastate = 0
-	var/heavy_impact = 1
-	var/light_impact = 2
+	var/devastate = 1
+	var/heavy_impact = 2
+	var/light_impact = 4
 	var/flash_range = 5
 	var/size = "small"  /*Used for the icon, this one will make c-4small_0 for the off state.*/
 
@@ -24,7 +24,7 @@
 	item_state = "radio"
 	desc = "A mysterious package, it's quite heavy."
 	devastate = 1
-	heavy_impact = 2
+	heavy_impact = 3
 	light_impact = 5
 	flash_range = 7
 	size = "large"

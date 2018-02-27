@@ -9,11 +9,13 @@
 					LANGUAGE_UNATHI = 0,
 					LANGUAGE_SIIK	= 0,
 					LANGUAGE_SKRELLIAN = 0,
+					LANGUAGE_SKRELLIANFAR = 0,
 					LANGUAGE_ROOTLOCAL = 0,
 					LANGUAGE_GUTTER = 1,
 					LANGUAGE_SCHECHI = 0,
 					LANGUAGE_EAL	 = 1,
-					LANGUAGE_SIGN	 = 0
+					LANGUAGE_SIGN	 = 0,
+					LANGUAGE_TERMINUS = 1
 					)
 	sprites = list(
 					"Cerberus" = "syndie_bloodhound",
