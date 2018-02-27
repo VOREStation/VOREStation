@@ -622,7 +622,7 @@
 	name = "Engineer action figure"
 	desc = "A \"Space Life\" brand Engineer action figure."
 	icon_state = "engineer"
-	toysay = "Oh god, the tesla is loose!"
+	toysay = "Oh god, the engine is gonna go!"
 
 /obj/item/toy/figure/geneticist
 	name = "Geneticist action figure"
@@ -1163,8 +1163,8 @@
 	name = "wizard miniature"
 	desc = "MAGIC!"
 	icon_state = "wizardcharacter"
-/obj/item/toy/character/cthulhu
-	name = "cthulhu miniature"
+/obj/item/toy/character/voidone
+	name = "void one miniature"
 	desc = "The dark lord has risen!"
 	icon_state = "darkmastercharacter"
 /obj/item/toy/character/lich
@@ -1181,7 +1181,7 @@
 	/obj/item/toy/character/warrior,
 	/obj/item/toy/character/thief,
 	/obj/item/toy/character/wizard,
-	/obj/item/toy/character/cthulhu,
+	/obj/item/toy/character/voidone,
 	/obj/item/toy/character/lich
 	)
 
