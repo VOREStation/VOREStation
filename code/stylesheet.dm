@@ -92,13 +92,14 @@ h1.alert, h2.alert		{color: #000000;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
 .skrell					{color: #00B0B3;}
+.skrellfar				{color: #70FCFF;}
 .soghun					{color: #228B22;}
 .solcom					{color: #22228B;}
 .changeling				{color: #800080;}
 .vox					{color: #AA00AA;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
-
+.terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
