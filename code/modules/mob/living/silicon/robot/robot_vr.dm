@@ -6,6 +6,17 @@
 	var/pounce_cooldown_time = 40
 	var/leap_at
 	var/dogborg = FALSE
+	var/original_icon = 'icons/mob/robots.dmi'
+	var/vr_icons = list(
+					   "handy-hydro",
+					   "handy-service",
+					   "handy-clerk",
+					   "handy-janitor",
+					   "handy-miner",
+					   "handy-standard",
+					   "handy-sec"
+					   )					//List of all used sprites that are in robots_vr.dmi
+
 
 /mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in living_mobs(1))
 	set name = "Robot Nom"
@@ -17,6 +28,7 @@
 	return feed_grabbed_to_self(src,T)
 
 /mob/living/silicon/robot/updateicon()
+	vr_sprite_check()
 	..()
 	if(dogborg == TRUE && stat == CONSCIOUS)
 		if(sleeper_g == TRUE)
@@ -70,3 +82,10 @@
 							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
 		return
 	return
+
+/mob/living/silicon/robot/proc/vr_sprite_check()
+	if((icon_state in vr_icons) && (icon == 'icons/mob/robots.dmi'))
+		original_icon = icon
+		icon = 'icons/mob/robots_vr.dmi'
+	else if(!(icon_state in vr_icons))
+		icon = original_icon
