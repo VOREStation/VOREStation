@@ -32,7 +32,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/list/nifsofts[TOTAL_NIF_SOFTWARE]	// All our nifsofts
 	var/tmp/list/nifsofts_life = list()			// Ones that want to be talked to on life()
 	var/owner									// Owner character name
-
+	var/examine_msg								//Message shown on examine.
+	
 	var/tmp/vision_flags = 0		// Flags implants set for faster lookups
 	var/tmp/health_flags = 0
 	var/tmp/combat_flags = 0
@@ -69,6 +70,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	//Put loaded data here if we loaded any
 	save_data = islist(load_data) ? load_data.Copy() : list()
+	examine_msg = save_data["examine_msg"] || "There's a certain spark to their eyes."
 
 	//If given a human on spawn (probably from persistence)
 	if(ishuman(newloc))
@@ -110,6 +112,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human = H
 		human.nif = src
 		stat = NIF_INSTALLING
+		H.verbs |= /mob/living/carbon/human/proc/set_nif_examine
 		return TRUE
 
 	return FALSE
@@ -138,6 +141,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
+	H.verbs |= /mob/living/carbon/human/proc/set_nif_examine
 	H.nif = null
 	human = null
 	install_done = null
@@ -572,3 +576,25 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			playsound(T,'sound/effects/slime_squish.ogg',50,1)
 	else
 		return ..()
+
+/mob/living/carbon/human/proc/set_nif_examine()
+	set name = "NIF Appearance"
+	set desc = "If your NIF alters your appearance in some way, describe it here."
+	set category = "OOC"
+
+	if(!nif)
+		verbs -= /mob/living/carbon/human/proc/set_nif_examine
+		to_chat(src,"<span class='warning'>You don't have a NIF, not sure why this was here.</span>")
+		return
+
+	var/new_flavor = sanitize(input(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg) as null|text, max_length = 128)
+	//They clicked cancel or meanwhile lost their NIF
+	if(!nif || isnull(new_flavor))
+		return //No changes
+	//Sanitize or they cleaned it entirely
+	if(!new_flavor)
+		nif.examine_msg = null
+		nif.save_data -= "examine_msg"
+	else
+		nif.examine_msg = new_flavor
+		nif.save_data["examine_msg"] = new_flavor
