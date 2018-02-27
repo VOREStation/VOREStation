@@ -249,7 +249,8 @@
 	//Create the box
 	var/obj/item/weapon/storage/box/box = new boxtype(H)
 
-	if(!synth)
+	//If not synth, they get an air tank (if they breathe)
+	if(!synth && breath_type)
 		//Create a tank (if such a thing exists for this species)
 		var/tanktext = "/obj/item/weapon/tank/emergency/" + "[breath_type]"
 		var/obj/item/weapon/tank/emergency/tankpath //Will force someone to come look here if they ever alter this path.
@@ -263,6 +264,10 @@
 
 		if(tankpath)
 			new tankpath(box)
+
+	//If they are synth, they get a smol battery
+	else if(synth)
+		new /obj/item/device/fbp_backup_cell(box)
 
 	box.calibrate_size()
 

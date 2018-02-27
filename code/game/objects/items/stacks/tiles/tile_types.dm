@@ -37,9 +37,6 @@
 	flags = 0
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
-
-/obj/item/stack/tile/grass/fifty
-	amount = 50
 /*
  * Wood
  */
@@ -55,23 +52,11 @@
 	flags = 0
 	no_variants = FALSE
 
-/obj/item/stack/tile/sifwood
+/obj/item/stack/tile/wood/sif
 	name = "alien wood tile"
 	singular_name = "alien wood tile"
 	desc = "An easy to fit wooden floor tile. It's blue!"
 	icon_state = "tile-sifwood"
-	force = 1.0
-	throwforce = 1.0
-	throw_speed = 5
-	throw_range = 20
-	flags = 0
-	no_variants = FALSE
-
-/obj/item/stack/tile/wood/fifty
-	amount = 50
-
-/obj/item/stack/tile/sifwood/fifty
-	amount = 50
 
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
