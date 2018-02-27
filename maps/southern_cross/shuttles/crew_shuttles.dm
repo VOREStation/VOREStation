@@ -248,7 +248,7 @@
 
 
 /datum/shuttle_destination/shuttle1/mining_base
-	name = "Mining Outpost"
+	name = "Wilderness Landing Site"
 	my_area = /area/shuttle/shuttle1/mining
 	preferred_interim_area = /area/shuttle/shuttle1/sky_transit
 
@@ -257,13 +257,13 @@
 	announcer = "Outpost Automated ATC"
 
 /datum/shuttle_destination/shuttle1/mining_base/get_arrival_message()
-	return "Attention, [master.my_shuttle.visible_name] has arrived to the Mining Outpost."
+	return "Attention, [master.my_shuttle.visible_name] has arrived to the Wilderness Area."
 
 /datum/shuttle_destination/shuttle1/mining_base/get_departure_message()
-	return "Attention, [master.my_shuttle.visible_name] has departed the Mining Outpost."
+	return "Attention, [master.my_shuttle.visible_name] has departed the Wilderness Area."
 
 /datum/shuttle_destination/shuttle2/mining_base
-	name = "Mining Outpost"
+	name = "Wilderness Landing Site "
 	my_area = /area/shuttle/shuttle2/mining
 	preferred_interim_area = /area/shuttle/shuttle2/sky_transit
 
@@ -272,7 +272,7 @@
 	announcer = "Outpost Automated ATC"
 
 /datum/shuttle_destination/shuttle2/mining_base/get_arrival_message()
-	return "Attention, [master.my_shuttle.visible_name] has arrived to the Mining Outpost."
+	return "Attention, [master.my_shuttle.visible_name] has arrived to the Wilderness Area."
 
 /datum/shuttle_destination/shuttle2/mining_base/get_departure_message()
-	return "Attention, [master.my_shuttle.visible_name] has departed the Mining Outpost."
+	return "Attention, [master.my_shuttle.visible_name] has departed the Wilderness Area."
