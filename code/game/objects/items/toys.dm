@@ -727,6 +727,7 @@
 		user.visible_message("<span class='notice'><b>\The [user]</b> pokes the [src].</span>","<span class='notice'>You poke the [src].</span>")
 		visible_message("[src] says, \"[phrase]\"")
 
+
 /obj/structure/plushie/ian
 	name = "plush corgi"
 	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Ian\"?"
@@ -787,6 +788,12 @@
 		name = input
 		to_chat(M, "You name the plushie [input], giving it a hug for good luck.")
 		return 1
+
+/obj/item/toy/plushie/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/toy/plushie) || istype(I, /obj/item/organ/external/head))
+		user.visible_message("<span class='notice'>[user] makes \the [I] kiss \the [src]!.</span>", \
+		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
+	return ..()
 
 /obj/item/toy/plushie/nymph
 	name = "diona nymph plush"
