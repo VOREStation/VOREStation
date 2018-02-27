@@ -1713,6 +1713,7 @@
 #include "code\modules\mob\living\bot\bot.dm"
 #include "code\modules\mob\living\bot\cleanbot.dm"
 #include "code\modules\mob\living\bot\ed209bot.dm"
+#include "code\modules\mob\living\bot\edCLNbot.dm"
 #include "code\modules\mob\living\bot\farmbot.dm"
 #include "code\modules\mob\living\bot\floorbot.dm"
 #include "code\modules\mob\living\bot\medbot.dm"

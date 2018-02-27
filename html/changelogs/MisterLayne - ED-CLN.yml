@@ -1,0 +1,6 @@
+author: MisterLayne
+
+delete-after: True
+
+changes: 
+  - rscadd "Added a version of the ED-209 called the ED-CLN. It is a more efficient Cleanbot."
