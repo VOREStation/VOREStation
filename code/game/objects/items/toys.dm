@@ -544,7 +544,7 @@
 	name = "Bartender action figure"
 	desc = "A \"Space Life\" brand Bartender action figure."
 	icon_state = "bartender"
-	toysay = "Wheres my monkey?"
+	toysay = "Where's my monkey?"
 
 /obj/item/toy/figure/borg
 	name = "Drone action figure"
@@ -562,7 +562,7 @@
 	name = "Colony Director action figure"
 	desc = "A \"Space Life\" brand Colony Director action figure."
 	icon_state = "captain"
-	toysay = "Crew, the Nuke Disk is safely up my ass."
+	toysay = "How do I open this display case?"
 
 /obj/item/toy/figure/cargotech
 	name = "Cargo Technician action figure"
@@ -598,7 +598,7 @@
 	name = "Clown action figure"
 	desc = "A \"Space Life\" brand Clown action figure."
 	icon_state = "clown"
-	toysay = "Honk!"
+	toysay = "<font face='comic sans ms'><b>Honk!</b></font>"
 
 /obj/item/toy/figure/corgi
 	name = "Corgi action figure"
@@ -682,7 +682,7 @@
 	name = "Shaft Miner action figure"
 	desc = "A \"Space Life\" brand Shaft Miner action figure."
 	icon_state = "miner"
-	toysay = "Oh god it's eating my intestines!"
+	toysay = "Oh god, it's eating my intestines!"
 
 /obj/item/toy/figure/ninja
 	name = "Space Ninja action figure"
@@ -764,21 +764,21 @@
  * Carp plushie
  */
 
-/obj/item/toy/carpplushie
+/obj/item/toy/plushie/carp
 	name = "space carp plushie"
 	desc = "An adorable stuffed toy that resembles a space carp."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "carpplushie"
+	icon_state = "plushie/carp"
 	attack_verb = list("bitten", "eaten", "fin slapped")
 	var/bitesound = 'sound/weapons/bite.ogg'
 
 // Attack mob
-/obj/item/toy/carpplushie/attack(mob/M as mob, mob/user as mob)
+/obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
 	playsound(loc, bitesound, 20, 1)	// Play bite sound in local area
 	return ..()
 
 // Attack self
-/obj/item/toy/carpplushie/attack_self(mob/user as mob)
+/obj/item/toy/plushie/carp/attack_self(mob/user as mob)
 	playsound(src.loc, bitesound, 20, 1)
 	return ..()
 
@@ -787,39 +787,39 @@
 	name = "Random Carp Plushie"
 	desc = "This is a random plushie"
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "carpplushie"
+	icon_state = "plushie/carp"
 
 /obj/random/carp_plushie/item_to_spawn()
-	return pick(typesof(/obj/item/toy/carpplushie)) //can pick any carp plushie, even the original.
+	return pick(typesof(/obj/item/toy/plushie/carp)) //can pick any carp plushie, even the original.
 
-/obj/item/toy/carpplushie/ice
+/obj/item/toy/plushie/carp/ice
 	icon_state = "icecarp"
 
-/obj/item/toy/carpplushie/silent
+/obj/item/toy/plushie/carp/silent
 	icon_state = "silentcarp"
 
-/obj/item/toy/carpplushie/electric
+/obj/item/toy/plushie/carp/electric
 	icon_state = "electriccarp"
 
-/obj/item/toy/carpplushie/gold
+/obj/item/toy/plushie/carp/gold
 	icon_state = "goldcarp"
 
-/obj/item/toy/carpplushie/toxin
+/obj/item/toy/plushie/carp/toxin
 	icon_state = "toxincarp"
 
-/obj/item/toy/carpplushie/dragon
+/obj/item/toy/plushie/carp/dragon
 	icon_state = "dragoncarp"
 
-/obj/item/toy/carpplushie/pink
+/obj/item/toy/plushie/carp/pink
 	icon_state = "pinkcarp"
 
-/obj/item/toy/carpplushie/candy
+/obj/item/toy/plushie/carp/candy
 	icon_state = "candycarp"
 
-/obj/item/toy/carpplushie/nebula
+/obj/item/toy/plushie/carp/nebula
 	icon_state = "nebulacarp"
 
-/obj/item/toy/carpplushie/void
+/obj/item/toy/plushie/carp/void
 	icon_state = "voidcarp"
 
 //Large plushies.
@@ -860,7 +860,7 @@
 /obj/structure/plushie/carp
 	name = "plush carp"
 	desc = "A plushie of an elated carp! Straight from the wilds of the Vir frontier, now right here in your hands."
-	icon_state = "carpplushie"
+	icon_state = "plushie/carp"
 	phrase = "Glorf!"
 
 /obj/structure/plushie/beepsky
@@ -1113,13 +1113,13 @@
 //////////////////////////////////////////////////////
 
 /obj/item/toy/eight_ball
-	name = "Magic 8-Ball"
+	name = "\improper Magic 8-Ball"
 	desc = "Mystical! Magical! Ages 8+!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "eight-ball"
 	var/use_action = "shakes the ball"
 	var/cooldown = 0
-	var/list/possible_answers = list("Definitely", "All signs point to yes.", "Most likely.", "Yes.", "Ask again later.", "Better not tell you now.", "Future Unclear.", "Maybe.", "Doubtful.", "No.", "Don't count on it.", "Never.")
+	var/list/possible_answers = list("Definitely.", "All signs point to yes.", "Most likely.", "Yes.", "Ask again later.", "Better not tell you now.", "Future unclear.", "Maybe.", "Doubtful.", "No.", "Don't count on it.", "Never.")
 
 /obj/item/toy/eight_ball/attack_self(mob/user as mob)
 	if(!cooldown)
@@ -1131,7 +1131,7 @@
 		return
 
 /obj/item/toy/eight_ball/conch
-	name = "Magic Conch Shell"
+	name = "Magic Conch shell"
 	desc = "All hail the Magic Conch!"
 	icon_state = "conch"
 	use_action = "pulls the string"
@@ -1144,39 +1144,39 @@
 	pixel_z = 5
 
 /obj/item/toy/character/alien
-	name = "Xenomorph Miniature"
+	name = "xenomorph xiniature"
 	desc = "A miniature xenomorph. Scary!"
 	icon_state = "aliencharacter"
 /obj/item/toy/character/cleric
-	name = "Cleric Miniature"
+	name = "cleric miniature"
 	desc = "A wee little cleric, with his wee little staff."
 	icon_state = "clericcharacter"
 /obj/item/toy/character/warrior
-	name = "Warrior Miniature"
+	name = "warrior miniature"
 	desc = "That sword would make a decent toothpick."
 	icon_state = "warriorcharacter"
 /obj/item/toy/character/thief
-	name = "Thief Miniature"
+	name = "thief miniature"
 	desc = "Hey, where did my wallet go!?"
 	icon_state = "thiefcharacter"
 /obj/item/toy/character/wizard
-	name = "Wizard Miniature"
+	name = "wizard miniature"
 	desc = "MAGIC!"
 	icon_state = "wizardcharacter"
 /obj/item/toy/character/cthulhu
-	name = "Cthulhu Miniature"
+	name = "cthulhu miniature"
 	desc = "The dark lord has risen!"
 	icon_state = "darkmastercharacter"
 /obj/item/toy/character/lich
-	name = "Lich Miniature"
+	name = "lich miniature"
 	desc = "Murderboner extraordinaire."
 	icon_state = "lichcharacter"
 /obj/item/weapon/storage/box/characters
-	name = "Box of Miniatures"
+	name = "box of miniatures"
 	desc = "The nerd's best friends."
 	icon_state = "box"
 /obj/item/weapon/storage/box/characters/starts_with = list(
-	/obj/item/toy/character/alien,
+//	/obj/item/toy/character/alien,
 	/obj/item/toy/character/cleric,
 	/obj/item/toy/character/warrior,
 	/obj/item/toy/character/thief,
