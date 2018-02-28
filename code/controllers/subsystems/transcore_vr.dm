@@ -152,9 +152,7 @@ SUBSYSTEM_DEF(transcore)
 // Send a past-due notification to the medical radio channel.
 /datum/controller/subsystem/transcore/proc/notify(var/name)
 	ASSERT(name)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
-	qdel(a)
+	global_announcer.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
 
 // Called from mind_record to add itself to the transcore.
 /datum/controller/subsystem/transcore/proc/add_backup(var/datum/transhuman/mind_record/MR)
@@ -187,10 +185,8 @@ SUBSYSTEM_DEF(transcore)
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
 /datum/controller/subsystem/transcore/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
 	ASSERT(disk)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
-	qdel(a)
+	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
+	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
 
 	disk.stored += backed_up
 	backed_up.Cut()
