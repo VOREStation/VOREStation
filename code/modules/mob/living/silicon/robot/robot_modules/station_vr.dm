@@ -119,6 +119,7 @@
 	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.original_icon 	= 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "k9"
 	R.pixel_x 	 = -16
@@ -170,6 +171,7 @@
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.original_icon 	= 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "medihound"
 	R.pixel_x 	 = -16
@@ -197,6 +199,7 @@
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
 	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
 	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
+	R.original_icon 	= 'icons/mob/64x64robot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
@@ -219,6 +222,7 @@
 	src.modules += new /obj/item/device/dogborg/sleeper/compactor(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.original_icon 	= 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "scrubpup"
 	R.pixel_x 	 = -16
@@ -251,6 +255,7 @@
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.original_icon 	= 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	//R.icon_state = "science"
 	R.pixel_x 	 = -16
