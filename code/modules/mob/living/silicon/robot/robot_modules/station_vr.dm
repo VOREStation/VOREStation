@@ -124,6 +124,7 @@
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -175,6 +176,7 @@
 	R.pixel_x 	 = -16
 	R.old_x  	 = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/ert
@@ -201,6 +203,7 @@
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup
@@ -224,6 +227,7 @@
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -256,5 +260,6 @@
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 

@@ -28,6 +28,8 @@
 	if(..()) return 0
 	R.pixel_x = initial(pixel_x) //VOREStation Edit
 	R.pixel_y = initial(pixel_y) //VOREStation Edit
+	R.dogborg = FALSE //VOREStation Edit
+	R.wideborg = FALSE //VOREStation Edit
 	R.uneq_all()
 	R.modtype = initial(R.modtype)
 	R.hands.icon_state = initial(R.hands.icon_state)
