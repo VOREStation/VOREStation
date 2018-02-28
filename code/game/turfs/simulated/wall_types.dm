@@ -224,15 +224,7 @@
 
 /turf/simulated/shuttle/wall/voidcraft/update_icon()
 	if(stripe_color)
-		overlays = list() //VOREStation Edit - Another place with overlay nonsense.
+		cut_overlays()
 		var/image/I = image(icon = src.icon, icon_state = "o_[icon_state]")
 		I.color = stripe_color
-		//VOREStation Add - Shenanigans around this because of the bullshit byond bug
-		var/pre_overlays = overlays.len
-		overlays.Add(I)
-		var/post_overlays = overlays.len
-		if(post_overlays != (pre_overlays + 1))
-			world.log << "Corrupted overlays on [x],[y],[z] voidcraft wall"
-			new type(src)
-			return
-		//VOREStation Add End
+		add_overlay(I)

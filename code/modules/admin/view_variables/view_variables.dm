@@ -143,7 +143,12 @@
 		vtext = "<a href='?_src_=vars;Vars=\ref[C]'>\ref[C]</a> - [C] ([C.type])"
 	else if(islist(value))
 		var/list/L = value
-		vtext = "/list ([L.len])"
+		var/removed = 0
+		if(varname == "contents")
+			var/list/original = value
+			L = original.Copy() //We'll take a copy to manipulate
+			removed = D.view_variables_filter_contents(L)
+		vtext = "/list ([L.len]+[removed]H)"
 		if(!(varname in view_variables_dont_expand) && L.len > 0 && L.len < 100)
 			extra = "<ul>"
 			var/index = 1
@@ -158,3 +163,21 @@
 		vtext = "[value]"
 
 	return "<li>[ecm][varname] = <span class='value'>[vtext]</span>[extra]</li>"
+
+//Allows us to mask out some contents when it's not necessary to show them
+//For example, organs on humans, as the organs are stored in other lists which will also be present
+//So there's really no need to list them twice.
+/datum/proc/view_variables_filter_contents(list/L)
+	return 0 //Return how many items you removed.
+
+/mob/living/carbon/human/view_variables_filter_contents(list/L)
+	. = ..()
+	L -= ability_master
+	.++
+
+/mob/living/carbon/human/view_variables_filter_contents(list/L)
+	. = ..()
+	var/len_before = L.len
+	L -= organs
+	L -= internal_organs
+	. += len_before - L.len

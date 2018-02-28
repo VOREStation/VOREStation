@@ -427,6 +427,14 @@
 		return
 	if(istype(A, /obj/structure/foamedmetal)) //Turrets can detect through foamed metal, but will have to blast through it. Similar to windows, if someone runs behind it, a person should probably just not shoot.
 		return
+	if(istype(A, /obj/structure/girder)) //They see you there.
+		return
+	if(istype(A, /obj/structure/door_assembly)) //And through there.
+		return
+	if(istype(A, /obj/structure)) //Unanchored things you can shove around will still keep the turret or other firing at your position. Aim intent still functions.
+		var/obj/structure/S = A
+		if(!S.anchored)
+			return
 	if(istype(A, /mob/living) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return 1!
 		return

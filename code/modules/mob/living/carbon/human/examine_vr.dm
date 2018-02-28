@@ -107,17 +107,6 @@
 			message = "<span class='warning'>[t_He] [t_is] so absolutely stuffed that you aren't sure how it's possible to move. [t_He] can't seem to swell any bigger. The surface of [t_his] belly looks sorely strained!</span>\n"
 	return message
 
-/mob/living/carbon/human/proc/examine_bellies()
-	if(!show_pudge()) //Some clothing or equipment can hide this.
-		return ""
-
-	var/message = ""
-	for (var/I in src.vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		message += B.get_examine_msg()
-
-	return message
-
 //For OmniHUD records access for appropriate models
 /proc/hasHUD_vr(mob/living/carbon/human/H, hudtype)
 	if(H.nif)
@@ -141,23 +130,18 @@
 
 	return FALSE
 
-/mob/living/carbon/human/proc/examine_pickup_size(mob/living/carbon/human/H)
+/mob/living/carbon/human/proc/examine_pickup_size(mob/living/H)
 	var/message = ""
-	if(isliving(src) && (H.get_effective_size() - src.get_effective_size()) >= 0.50)
+	if(istype(H) && (H.get_effective_size() - src.get_effective_size()) >= 0.50)
 		message = "<font color='blue'>They are small enough that you could easily pick them up!</font>\n"
 	return message
 
-
-/mob/living/carbon/human/proc/examine_step_size(mob/living/carbon/human/H)
+/mob/living/carbon/human/proc/examine_step_size(mob/living/H)
 	var/message = ""
-	if(isliving(src) && (H.get_effective_size() - src.get_effective_size()) >= 0.75)
+	if(istype(H) && (H.get_effective_size() - src.get_effective_size()) >= 0.75)
 		message = "<font color='red'>They are small enough that you could easily trample them!</font>\n"
 	return message
 
-/mob/living/carbon/human/proc/nif_examine(mob/living/carbon/human/H)
-	var/message = ""
-	if(!src.nif || src.conceal_nif || !src.nif_examine) //Do they have a nif, do they have the NIF concealed, and do they have a NIF examine message?
-		return "" //If so, no message.
-	else
-		message += "[src.nif_examine]\n"
-		return message
+/mob/living/carbon/human/proc/examine_nif(mob/living/carbon/human/H)
+	if(nif && nif.examine_msg) //If you have one set, anyway.
+		return "<span class='notice'>[nif.examine_msg]</span>\n"

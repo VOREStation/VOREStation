@@ -35,14 +35,16 @@
 	kill_count = 5 //Scary name, but just deletes the projectile after this range
 
 /obj/item/projectile/sickshot/on_hit(var/atom/movable/target, var/blocked = 0)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.vomit()
-		H.Confuse(2)
+	if(isliving(target))
+		var/mob/living/L = target
 		if(prob(20))
-			for(var/X in H.vore_organs)
-				var/datum/belly/B = H.vore_organs[X]
-				B.release_all_contents()
+			L.release_vore_contents()
+
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.vomit()
+			H.Confuse(2)
+			
 		return 1
 
 //R&D Design

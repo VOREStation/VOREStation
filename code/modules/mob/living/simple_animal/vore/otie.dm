@@ -184,27 +184,20 @@
 		if(ai_inactive)//No autobarf on player control.
 			return
 		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_animal/otie/security))
-			user << "<span class='notice'>The guard pup accepts your offer for their catch.</span>"
-			for(var/I in vore_organs)
-				var/datum/belly/B = vore_organs[I]
-				B.release_all_contents()
-			return
-		if(prob(2)) //Small chance to get prey out from non-sec oties.
-			for(var/I in vore_organs)
-				var/datum/belly/B = vore_organs[I]
-				B.release_all_contents()
-			return
+			to_chat(user,"<span class='notice'>The guard pup accepts your offer for their catch.</span>")
+			release_vore_contents()
+		else if(prob(2)) //Small chance to get prey out from non-sec oties.
+			to_chat(user,"<span class='notice'>The pup accepts your offer for their catch.</span>")
+			release_vore_contents()
 		return
-	..()
+	. = ..()
 
 /mob/living/simple_animal/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
-	var/datum/belly/B = user.vore_selected
-	var/datum/belly/belly_target = user.vore_organs[B]
 	if(ishuman(target_mob))
-		belly_target.digest_mode = DM_HOLD
+		vore_selected.digest_mode = DM_HOLD
 	if(istype(prey,/mob/living/simple_animal/mouse))
-		belly_target.digest_mode = DM_DIGEST
-	..()
+		vore_selected.digest_mode = DM_DIGEST
+	. = ..()
 
 /mob/living/simple_animal/otie/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)

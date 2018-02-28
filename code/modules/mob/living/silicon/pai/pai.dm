@@ -99,6 +99,7 @@
 	add_language(LANGUAGE_TRADEBAND, 1)
 	add_language(LANGUAGE_GUTTER, 1)
 	add_language(LANGUAGE_EAL, 1)
+	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_SIGN, 0)
 
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
@@ -298,7 +299,7 @@
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
 	verbs += /mob/living/proc/set_size //VOREStation edit
-	verbs += /mob/living/silicon/pai/proc/shred_limb //VORREStation edit
+	verbs += /mob/living/proc/shred_limb //VORREStation edit
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
@@ -389,9 +390,7 @@
 	if(src.loc == card)
 		return
 
-	for(var/I in vore_organs) //VOREStation edit. Release all their stomach contents. Don't want them to be in the PAI when they fold or weird things might happen.
-		var/datum/belly/B = vore_organs[I] //VOREStation edit
-		B.release_all_contents() //VOREStation edit
+	release_vore_contents() //VOREStation Add
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")

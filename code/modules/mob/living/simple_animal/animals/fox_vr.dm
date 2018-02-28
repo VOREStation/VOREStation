@@ -40,9 +40,9 @@
 
 /mob/living/simple_animal/fox/init_belly()
 	..()
-	var/datum/belly/B = vore_organs[vore_selected]
+	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
-	B.inside_flavor = "Slick foxguts. Cute on the outside, slimy on the inside!"
+	B.desc = "Slick foxguts. Cute on the outside, slimy on the inside!"
 
 	B.emote_lists[DM_HOLD] = list(
 		"The foxguts knead and churn around you harmlessly.",
@@ -187,9 +187,9 @@
 
 /mob/living/simple_animal/fox/fluff/Renault/init_belly()
 	..()
-	var/datum/belly/B = vore_organs[vore_selected]
+	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
-	B.inside_flavor = "Slick foxguts. They seem somehow more regal than perhaps other foxes!"
+	B.desc = "Slick foxguts. They seem somehow more regal than perhaps other foxes!"
 
 	B.emote_lists[DM_HOLD] = list(
 		"Renault's stomach walls squeeze around you more tightly for a moment, before relaxing, as if testing you a bit.",

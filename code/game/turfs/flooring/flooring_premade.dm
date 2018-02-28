@@ -68,11 +68,11 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-/turf/simulated/floor/sifwood
+/turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "sifwood"
-	initial_flooring = /decl/flooring/sifwood
+	initial_flooring = /decl/flooring/wood/sif
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -230,9 +230,8 @@
 	oxygen = 0
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/n20/New()
-	..()
-	sleep(-1)
+/turf/simulated/floor/reinforced/n20/initialize()
+	. = ..()
 	if(!air) make_air()
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 
@@ -411,11 +410,11 @@
     . = ..()
 
 /turf/snow/update_icon()
-    overlays.Cut()
+    cut_overlays()
     for(var/d in crossed_dirs)
         var/amt = crossed_dirs[d]
 
         for(var/i in 1 to amt)
-            overlays += icon(icon, "footprint[i]", text2num(d))
+            add_overlay(image(icon, "footprint[i]", text2num(d)))
 
 //**** Here ends snow ****
