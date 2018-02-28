@@ -199,3 +199,11 @@
 			T = get_step_rand(this_mob) || T
 		if(T)
 			this_mob.forceMove(T)
+
+//Just overriding this here, no more super medkit so those can be reserved for PoIs and such
+/obj/random/firstaid/item_to_spawn()
+	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
+				prob(3);/obj/item/weapon/storage/firstaid/toxin,
+				prob(3);/obj/item/weapon/storage/firstaid/o2,
+				prob(2);/obj/item/weapon/storage/firstaid/adv,
+				prob(3);/obj/item/weapon/storage/firstaid/fire)
