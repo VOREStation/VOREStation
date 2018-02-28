@@ -68,11 +68,11 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-/turf/simulated/floor/sifwood
+/turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "sifwood"
-	initial_flooring = /decl/flooring/sifwood
+	initial_flooring = /decl/flooring/wood/sif
 
 /turf/simulated/floor/grass
 	name = "grass patch"

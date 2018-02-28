@@ -319,6 +319,8 @@
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		if(alien == IS_SLIME)
+			M.adjustToxLoss(rand(5, 10))
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
@@ -335,6 +337,14 @@
 			H.clean_blood(1)
 			return
 	M.clean_blood()
+
+/datum/reagent/space_cleaner/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(6 * removed)
+	else
+		M.adjustToxLoss(3 * removed)
+		if(prob(5))
+			M.vomit()
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"

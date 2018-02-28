@@ -10,7 +10,7 @@
 
 /obj/fiftyspawner/wood/sif
 	name = "stack of alien wood"
-	type_to_spawn = /obj/item/stack/tile/sifwood
+	type_to_spawn = /obj/item/stack/tile/wood/sif
 
 /obj/fiftyspawner/carpet
 	name = "stack of carpet"
