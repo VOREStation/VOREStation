@@ -1,21 +1,5 @@
 /obj/item/clothing/var/hides_bulges = FALSE // OwO wats this?
 
-/mob/living/carbon/human/proc/show_pudge()
-	//A uniform could hide it.
-	if(istype(w_uniform,/obj/item/clothing))
-		var/obj/item/clothing/under = w_uniform
-		if(under.hides_bulges)
-			return FALSE
-
-	//We return as soon as we find one, no need for 'else' really.
-	if(istype(wear_suit,/obj/item/clothing))
-		var/obj/item/clothing/suit = wear_suit
-		if(suit.hides_bulges)
-			return FALSE
-
-
-	return TRUE
-
 /obj/item/clothing/under/permit
 	name = "public nudity permit"
 	desc = "This permit entitles the bearer to conduct their duties without a uniform. Normally issued to furred crewmembers or those with nothing to hide."

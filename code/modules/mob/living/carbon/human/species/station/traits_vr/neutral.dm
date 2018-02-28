@@ -87,7 +87,7 @@
 
 /datum/trait/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.verbs |= /mob/living/carbon/human/proc/shred_limb
+	H.verbs |= /mob/living/proc/shred_limb
 
 /datum/trait/trashcan
 	name = "Trash Can"

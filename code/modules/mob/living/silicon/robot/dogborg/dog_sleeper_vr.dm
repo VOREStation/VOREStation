@@ -527,15 +527,12 @@
 					hearer << deathsound
 				T << deathsound
 				if(is_vore_predator(T))
-					for (var/bellytype in T.vore_organs)
-						var/datum/belly/belly = T.vore_organs[bellytype]
-						for (var/obj/thing in belly.internal_contents)
-							thing.loc = src
-							belly.internal_contents -= thing
-						for (var/mob/subprey in belly.internal_contents)
-							subprey.loc = src
-							belly.internal_contents -= subprey
-							to_chat(subprey, "As [T] melts away around you, you find yourself in [hound]'s [name]")
+					for(var/belly in T.vore_organs)
+						var/obj/belly/B = belly
+						for(var/atom/movable/thing in B)
+							thing.forceMove(src)
+							if(ismob(thing))
+								to_chat(thing, "As [T] melts away around you, you find yourself in [hound]'s [name]")
 				for(var/obj/item/I in T)
 					if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
 						var/obj/item/organ/internal/mmi_holder/MMI = I

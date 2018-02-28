@@ -66,7 +66,8 @@
 	list_body = null
 	LAZYCLEARLIST(list_huds)
 	list_huds = null
-	if(nif) qdel_null(nif)	//VOREStation Add
+	qdel_null(nif)	//VOREStation Add
+	qdel_null_list(vore_organs) //VOREStation Add
 	return ..()
 
 /mob/living/carbon/human/Stat()

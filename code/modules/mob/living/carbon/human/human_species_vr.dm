@@ -1,3 +1,6 @@
+/mob/living/carbon/human/dummy
+	no_vore = TRUE //Dummies don't need bellies.
+
 /mob/living/carbon/human/sergal/New(var/new_loc)
 	h_style = "Sergal Plain"
 	..(new_loc, "Sergal")

@@ -130,10 +130,11 @@
 	if(no_vore) //If it can't vore, let's not give it a stomach.
 		return
 
-	var/datum/belly/B = new /datum/belly(src)
+	var/obj/belly/B = new /obj/belly(src)
+	vore_selected = B
 	B.immutable = 1
 	B.name = vore_stomach_name ? vore_stomach_name : "stomach"
-	B.inside_flavor = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
+	B.desc = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
 	B.digest_mode = vore_default_mode
 	B.escapable = vore_escape_chance > 0
 	B.escapechance = vore_escape_chance
@@ -185,14 +186,6 @@
 		"The stinging and aching gives way to numbness as you’re slowly smothered out. Your body is steadily reduced to nutrients and energy for the creature to continue on its way.",
 		"The chaos of being digested fades as you’re snuffed out by a harsh clench! You’re steadily broken down into a thick paste, processed and absorbed by the predator!"
 		)
-
-	src.vore_organs[B.name] = B
-	src.vore_selected = B.name
-
-
-
-
-
 
 /mob/living/simple_animal/shadekin/Life()
 	. = ..()

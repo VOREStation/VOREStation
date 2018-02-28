@@ -1,8 +1,8 @@
 /mob/living/simple_animal/cat/fluff/Runtime/init_belly()
 	..()
-	var/datum/belly/B = vore_organs[vore_selected]
+	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
-	B.inside_flavor = "The slimy wet insides of Runtime! Not quite as clean as the cat on the outside."
+	B.desc = "The slimy wet insides of Runtime! Not quite as clean as the cat on the outside."
 
 	B.emote_lists[DM_HOLD] = list(
 		"Runtime's stomach kneads gently on you and you're fairly sure you can hear her start purring.",

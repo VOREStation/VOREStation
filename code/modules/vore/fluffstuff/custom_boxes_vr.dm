@@ -190,7 +190,7 @@
 		new /obj/item/ammo_casing/nsfw_batt/net(src)
 		new /obj/item/clothing/accessory/holster(src)
 
-/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(var/datum/belly/belly = null)
+/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(...)
 	return FALSE //I get eaten a lot, okay
 
 //Aerowing:Sebastian Aji

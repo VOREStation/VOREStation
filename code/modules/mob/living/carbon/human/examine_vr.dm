@@ -107,17 +107,6 @@
 			message = "<span class='warning'>[t_He] [t_is] so absolutely stuffed that you aren't sure how it's possible to move. [t_He] can't seem to swell any bigger. The surface of [t_his] belly looks sorely strained!</span>\n"
 	return message
 
-/mob/living/carbon/human/proc/examine_bellies()
-	if(!show_pudge()) //Some clothing or equipment can hide this.
-		return ""
-
-	var/message = ""
-	for (var/I in src.vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		message += B.get_examine_msg()
-
-	return message
-
 //For OmniHUD records access for appropriate models
 /proc/hasHUD_vr(mob/living/carbon/human/H, hudtype)
 	if(H.nif)

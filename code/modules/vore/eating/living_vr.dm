@@ -2,7 +2,7 @@
 /mob/living
 	var/digestable = 1					// Can the mob be digested inside a belly?
 	var/allowmobvore = 1				// Will simplemobs attempt to eat the mob?
-	var/vore_selected					// Default to no vore capability.
+	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = 0					// If a mob is absorbed into another
 	var/weight = 137					// Weight for mobs for weightgain system
@@ -26,12 +26,9 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
-	if(M.no_vore) //If the mob isn's supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
-		M << "<span class='warning'>The creature that you are can not eat others.</span>"
+	if(M.no_vore) //If the mob isn't supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
 		return 1
 	M.verbs += /mob/living/proc/insidePanel
-
-	//M.appearance_flags |= PIXEL_SCALE // Moved to 02_size.dm
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	if(!M.vore_organs || !M.vore_organs.len)
@@ -40,7 +37,7 @@
 
 			if(M.client && M.client.prefs_vr)
 				if(!M.copy_from_prefs_vr())
-					M << "<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>"
+					to_chat(M,"<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>")
 					return 0
 				if(M.vore_organs && M.vore_organs.len)
 					M.vore_selected = M.vore_organs[1]
@@ -48,34 +45,24 @@
 			if(!M.vore_organs || !M.vore_organs.len)
 				if(!M.vore_organs)
 					M.vore_organs = list()
-				var/datum/belly/B = new /datum/belly(M)
+				var/obj/belly/B = new /obj/belly(M)
+				M.vore_selected = B
 				B.immutable = 1
 				B.name = "Stomach"
-				B.inside_flavor = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
+				B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
 				B.can_taste = 1
-				M.vore_organs[B.name] = B
-				M.vore_selected = B.name
-
-				//Simple_animal gets emotes. move this to that hook instead?
-				if(istype(src,/mob/living/simple_animal))
-					B.emote_lists[DM_HOLD] = list(
-						"The insides knead at you gently for a moment.",
-						"The guts glorp wetly around you as some air shifts.",
-						"Your predator takes a deep breath and sighs, shifting you somewhat.",
-						"The stomach squeezes you tight for a moment, then relaxes.",
-						"During a moment of quiet, breathing becomes the most audible thing.",
-						"The warm slickness surrounds and kneads on you.")
-
-					B.emote_lists[DM_DIGEST] = list(
-						"The caustic acids eat away at your form.",
-						"The acrid air burns at your lungs.",
-						"Without a thought for you, the stomach grinds inwards painfully.",
-						"The guts treat you like food, squeezing to press more acids against you.",
-						"The onslaught against your body doesn't seem to be letting up; you're food now.",
-						"The insides work on you like they would any other food.")
-
+				
 	//Return 1 to hook-caller
 	return 1
+
+//
+// Hide vore organs in contents
+//
+/mob/living/view_variables_filter_contents(list/L)
+	. = ..()
+	var/len_before = L.len
+	L -= vore_organs
+	. += len_before - L.len
 
 //
 // Handle being clicked, perhaps with something to devour
@@ -137,15 +124,13 @@
 	else if(istype(I,/obj/item/device/radio/beacon))
 		var/confirm = alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", "Yes!", "Cancel")
 		if(confirm == "Yes!")
-			var/bellychoice = input("Which belly?","Select A Belly") in src.vore_organs
-			var/datum/belly/B = src.vore_organs[bellychoice]
-			src.visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [bellychoice]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
+			var/obj/belly/B = input("Which belly?","Select A Belly") as null|anything in vore_organs
+			if(!istype(B))
+				return 1
+			visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [lowertext(B.name)]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
 			if(do_after(user,30,src))
 				user.drop_item()
-				I.loc = src
-				B.internal_contents |= I
-				src.visible_message("<span class='warning'>[src] is fed the beacon!</span>","You're fed the beacon!")
-				playsound(src, B.vore_sound, 100, 1)
+				I.forceMove(B)
 				return 1
 			else
 				return 1 //You don't get to hit someone 'later'
@@ -158,47 +143,14 @@
 /mob/living/proc/vore_process_resist()
 
 	//Are we resisting from inside a belly?
-	var/datum/belly/B = check_belly(src)
-	if(B)
-		spawn()	B.relay_resist(src)
+	if(isbelly(loc))
+		var/obj/belly/B = loc
+		B.relay_resist(src)
 		return TRUE //resist() on living does this TRUE thing.
-
+	
 	//Other overridden resists go here
 
-
 	return 0
-
-
-//
-//	Proc for updating vore organs and digestion/healing/absorbing
-//
-/mob/living/proc/handle_internal_contents()
-	if(air_master.current_cycle%3 != 1)
-		return //The accursed timer
-
-	for (var/I in vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		if(B.internal_contents.len)
-			B.process_Life() //AKA 'do bellymodes_vr.dm'
-
-	if(noisy > 0 && nutrition < 100 && prob(10))
-		var/growlsound = pick(hunger_sounds)
-		if(nutrition < 50)
-			for(var/mob/hearer in range(1,src))
-				hearer << sound(growlsound,volume=80)
-		else
-			for(var/mob/hearer in range(1,src))
-				hearer << sound(growlsound,volume=35)
-
-	if(air_master.current_cycle%90 != 1) return //Occasionally do supercleanups.
-	for (var/I in vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		if(B.internal_contents.len)
-			listclearnulls(B.internal_contents)
-			for(var/atom/movable/M in B.internal_contents)
-				if(M.loc != src)
-					B.internal_contents -= M
-					log_debug("Had to remove [M] from belly [B] in [src]")
 
 //
 //	Verb for saving vore preferences to save file
@@ -225,7 +177,7 @@
 
 /mob/living/proc/copy_to_prefs_vr()
 	if(!client || !client.prefs_vr)
-		src << "<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>"
+		to_chat(src,"<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>")
 		return 0
 
 	var/datum/vore_preferences/P = client.prefs_vr
@@ -244,23 +196,78 @@
 //
 /mob/living/proc/copy_from_prefs_vr()
 	if(!client || !client.prefs_vr)
-		src << "<span class='warning'>You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>"
+		to_chat(src,"<span class='warning'>You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>")
 		return 0
 
 	var/datum/vore_preferences/P = client.prefs_vr
 
-	src.digestable = P.digestable
-	src.allowmobvore = P.allowmobvore
-	src.vore_organs = list()
-	src.vore_taste = P.vore_taste
-	src.can_be_drop_prey = P.can_be_drop_prey
-	src.can_be_drop_pred = P.can_be_drop_pred
+	vore_organs = list()
+	digestable = P.digestable
+	allowmobvore = P.allowmobvore
+	vore_taste = P.vore_taste
+	can_be_drop_prey = P.can_be_drop_prey
+	can_be_drop_pred = P.can_be_drop_pred
 
+	var/force_save = FALSE
 	for(var/I in P.belly_prefs)
-		var/datum/belly/Bp = P.belly_prefs[I]
-		src.vore_organs[Bp.name] = Bp.copy(src)
+		if(isbelly(I)) //Belly system 2.0
+			var/obj/belly/saved = I
+			saved.copy(src)
+		else if(istext(I)) //Belly name for old datum system
+			force_save = TRUE
+			log_debug("[src] had legacy belly [I], converting.")
+			var/datum/belly/Bp = P.belly_prefs[I]
+			var/obj/belly/new_belly = new(src)
+			Bp.copy(new_belly) //Rewritten to convert to a 2.0 belly
+
+	if(force_save)
+		save_vore_prefs()
 
 	return 1
+
+//
+// Release everything in every vore organ
+//
+/mob/living/proc/release_vore_contents(var/include_absorbed = TRUE)
+	for(var/belly in vore_organs)
+		var/obj/belly/B = belly
+		B.release_all_contents(include_absorbed)
+
+//
+// Returns examine messages for bellies
+//
+/mob/living/proc/examine_bellies()
+	if(!show_pudge()) //Some clothing or equipment can hide this.
+		return ""
+
+	var/message = ""
+	for (var/belly in vore_organs)
+		var/obj/belly/B = belly
+		message += B.get_examine_msg()
+
+	return message
+
+//
+// Whether or not people can see our belly messages
+//
+/mob/living/proc/show_pudge()
+	return TRUE //Can override if you want.
+
+/mob/living/carbon/human/show_pudge()
+	//A uniform could hide it.
+	if(istype(w_uniform,/obj/item/clothing))
+		var/obj/item/clothing/under = w_uniform
+		if(under.hides_bulges)
+			return FALSE
+
+	//We return as soon as we find one, no need for 'else' really.
+	if(istype(wear_suit,/obj/item/clothing))
+		var/obj/item/clothing/suit = wear_suit
+		if(suit.hides_bulges)
+			return FALSE
+
+
+	return ..()
 
 //
 // Clearly super important. Obviously.
@@ -309,48 +316,35 @@
 	set name = "OOC Escape"
 	set category = "OOC"
 
-	//You're in an animal!
-	if(istype(src.loc,/mob/living/simple_animal))
-		var/mob/living/simple_animal/pred = src.loc
-		var/confirm = alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo. If you are in more than one pred, use this more than once.", "Confirmation", "Okay", "Cancel")
-		if(confirm == "Okay")
-			for(var/I in pred.vore_organs)
-				var/datum/belly/B = pred.vore_organs[I]
-				B.release_specific_contents(src)
-
-			for(var/mob/living/simple_animal/SA in range(10))
-				SA.prey_excludes += src
-				spawn(18000)
-					if(src && SA)
-						SA.prey_excludes -= src
-
-			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (MOB) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
-			pred.update_icons()
-
-	//You're in a PC!
-	else if(istype(src.loc,/mob/living))
-		var/mob/living/carbon/pred = src.loc
-		var/confirm = alert(src, "You're in a player-character. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If you are in more than one pred. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
-		if(confirm == "Okay")
-			for(var/O in pred.vore_organs)
-				var/datum/belly/CB = pred.vore_organs[O]
-				CB.internal_contents -= src //Clean them if we can, otherwise it will get GC'd by the vore code later.
-			src.forceMove(get_turf(loc))
-			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (PC) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+	//You're in a belly!
+	if(isbelly(loc))
+		var/obj/belly/B = loc
+		var/confirm = alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", "Okay", "Cancel")
+		if(!confirm == "Okay" || loc != B)
+			return
+		//Actual escaping
+		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
+		for(var/mob/living/simple_animal/SA in range(10))
+			SA.prey_excludes[src] = world.time
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
+		
+		if(isanimal(B.owner))
+			var/mob/living/simple_animal/SA = B.owner
+			SA.update_icons()
 
 	//You're in a dogborg!
-	else if(istype(src.loc, /obj/item/device/dogborg/sleeper))
-		var/mob/living/silicon/pred = src.loc.loc //Thing holding the belly!
-		var/obj/item/device/dogborg/sleeper/belly = src.loc //The belly!
+	else if(istype(loc, /obj/item/device/dogborg/sleeper))
+		var/mob/living/silicon/pred = loc.loc //Thing holding the belly!
+		var/obj/item/device/dogborg/sleeper/belly = loc //The belly!
 
 		var/confirm = alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
-		if(confirm == "Okay")
-			message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
-			belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
-
-
+		if(!confirm == "Okay" || loc != belly)
+			return
+		//Actual escaping
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 	else
-		src << "<span class='alert'>You aren't inside anyone, you clod.</span>"
+		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
 
 //
 // Eating procs depending on who clicked what
@@ -378,14 +372,13 @@
 //
 // Master vore proc that actually does vore procedures
 //
-/mob/living/proc/perform_the_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/belly)
+/mob/living/proc/perform_the_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/obj/belly/belly, var/delay)
 	//Sanity
-	if(!user || !prey || !pred || !belly || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [belly] but it went wrong.")
+	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
+		log_debug("[user] attempted to feed [prey] to [pred], via [lowertext(belly.name)] but it went wrong.")
 		return
 
 	// The belly selected at the time of noms
-	var/datum/belly/belly_target = pred.vore_organs[belly]
 	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (at)"
 	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
 
@@ -398,17 +391,17 @@
 
 	// Prepare messages
 	if(user == pred) //Feeding someone to yourself
-		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
-		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
+		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
+		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
 	else //Feeding someone to another person
-		attempt_msg = text("<span class='warning'>[] is attempting to make [] [] [] into their []!</span>",user,pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
-		success_msg = text("<span class='warning'>[] manages to make [] [] [] into their []!</span>",user,pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
+		attempt_msg = text("<span class='warning'>[] is attempting to make [] [] [] into their []!</span>",user,pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
+		success_msg = text("<span class='warning'>[] manages to make [] [] [] into their []!</span>",user,pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
 
 	// Announce that we start the attempt!
 	user.visible_message(attempt_msg)
 
 	// Now give the prey time to escape... return if they did
-	var/swallow_time = istype(prey, /mob/living/carbon/human) ? belly_target.human_prey_swallow_time : belly_target.nonhuman_prey_swallow_time
+	var/swallow_time = delay || istype(prey, /mob/living/carbon/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
 	//Timer and progress bar
 	if(!do_after(user, swallow_time, prey))
@@ -416,16 +409,14 @@
 
 	// If we got this far, nom successful! Announce it!
 	user.visible_message(success_msg)
-	if(belly_target.vore_sound)
-		playsound(user, belly_target.vore_sound, 100, 1)
 
 	// Actually shove prey into the belly.
-	belly_target.nom_mob(prey, user)
+	belly.nom_mob(prey, user)
 	user.update_icons()
 
 	// Flavor handling
-	if(belly_target.can_taste && prey.get_taste_message(0))
-		to_chat(belly_target.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(0)].</span>")
+	if(belly.can_taste && prey.get_taste_message(FALSE))
+		to_chat(belly.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(FALSE)].</span>")
 
 	// Inform Admins
 	if (pred == user)
@@ -438,10 +429,10 @@
 // Magical pred-air breathing for inside preds
 // overrides a proc defined on atom called by breathe.dm
 //
-/mob/living/return_air()
+/obj/belly/return_air()
 	return return_air_for_internal_lifeform()
 
-/mob/living/return_air_for_internal_lifeform()
+/obj/belly/return_air_for_internal_lifeform()
 	//Free air until someone wants to code processing it for reals from predbreaths
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
@@ -458,108 +449,54 @@
         "oxygen" = 21,
         "nitrogen" = 79)
 
+// Procs for micros stuffed into boots and the like to escape from them
 /mob/living/proc/escape_clothes(obj/item/clothing/C)
-	ASSERT(src.loc == C)
+	ASSERT(loc == C)
 
 	if(ishuman(C.loc)) //In a /mob/living/carbon/human
 		var/mob/living/carbon/human/H = C.loc
 		if(H.shoes == C) //Being worn
-			src << "<font color='blue'> You start to climb around the larger creature's feet and ankles!</font>"
-			H << "<font color='red'>Something is trying to climb out of your [C]!</font>"
+			to_chat(src,"<font color='blue'> You start to climb around the larger creature's feet and ankles!</font>")
+			to_chat(H,"<font color='red'>Something is trying to climb out of your [C]!</font>")
 			var/original_loc = H.loc
 			for(var/escape_time = 100,escape_time > 0,escape_time--)
 				if(H.loc != original_loc)
-					src << "<font color='red'>You're pinned back underfoot!</font>"
-					H << "<font color='blue'>You pin the escapee back underfoot!</font>"
+					to_chat(src,"<font color='red'>You're pinned back underfoot!</font>")
+					to_chat(H,"<font color='blue'>You pin the escapee back underfoot!</font>")
 					return
 				if(src.loc != C)
 					return
 				sleep(1)
 
-			src << "<font color='blue'>You manage to escape \the [C]!</font>"
-			H << "<font color='red'>Somone has climbed out of your [C]!</font>"
-			src.loc = H.loc
-			var/datum/belly/B = check_belly(H)
-			if(B)
-				B.internal_contents |= src
-			return
+			to_chat(src,"<font color='blue'>You manage to escape \the [C]!</font>")
+			to_chat(H,"<font color='red'>Somone has climbed out of your [C]!</font>")
+			forceMove(H.loc)
+			
 		else //Being held by a human
-			src << "<font color='blue'>You start to climb out of \the [C]!</font>"
-			H << "<font color='red'>Something is trying to climb out of your [C]!</font>"
+			to_chat(src,"<font color='blue'>You start to climb out of \the [C]!</font>")
+			to_chat(H,"<font color='red'>Something is trying to climb out of your [C]!</font>")
 			for(var/escape_time = 60,escape_time > 0,escape_time--)
 				if(H.shoes == C)
-					src << "<font color='red'>You're pinned underfoot!</font>"
-					H << "<font color='blue'>You pin the escapee underfoot!</font>"
+					to_chat(src,"<font color='red'>You're pinned underfoot!</font>")
+					to_chat(H,"<font color='blue'>You pin the escapee underfoot!</font>")
 					return
 				if(src.loc != C)
 					return
 				sleep(1)
-			src << "<font color='blue'>You manage to escape \the [C]!</font>"
-			H << "<font color='red'>Somone has climbed out of your [C]!</font>"
-			src.loc = H.loc
-			var/datum/belly/B = check_belly(H)
-			if(B)
-				B.internal_contents |= src
-			return
+			to_chat(src,"<font color='blue'>You manage to escape \the [C]!</font>")
+			to_chat(H,"<font color='red'>Somone has climbed out of your [C]!</font>")
+			forceMove(H.loc)
 
-	src << "<font color='blue'>You start to climb out of \the [C]!</font>"
+	to_chat(src,"<font color='blue'>You start to climb out of \the [C]!</font>")
 	sleep(50)
-	if(src.loc == C)
-		src << "<font color='blue'>You climb out of \the [C]!</font>"
-		src.loc = C.loc
-		var/datum/belly/B
-		if(check_belly(C)) B = check_belly(C)
-		if(check_belly(C.loc)) B = check_belly(C.loc)
-		if(B)
-			B.internal_contents |= src
-		return
+	if(loc == C)
+		to_chat(src,"<font color='blue'>You climb out of \the [C]!</font>")
+		forceMove(C.loc)
 	return
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	var/belly = user.vore_selected
-	return perform_the_falling_nom(user, prey, user, belly)
-
-/mob/living/proc/perform_the_falling_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/belly) //For dropnoms and slime feeding. This is so a nom can be performed instantly.
-	//Sanity
-	belly = pred.vore_selected
-	if(!user || !prey || !pred || !belly || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [belly] but it went wrong.")
-		return
-
-	// The belly selected at the time of noms
-	var/datum/belly/belly_target = pred.vore_organs[belly]
-	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
-
-	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
-	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
-	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
-
-	if(user_to_pred > 1 || user_to_prey > 1)
-		return 0
-
-	// Prepare messages
-	if(user == pred) //Feeding someone to yourself
-		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
-	else //Feeding someone to another person. This shouldn't happen.
-		success_msg = text("<span class='warning'>[] manages to make [] [] [] into their []!</span>",user,pred,lowertext(belly_target.vore_verb),prey,lowertext(belly_target.name))
-
-	user.visible_message(success_msg)
-	if(belly_target.vore_sound)
-		playsound(user, belly_target.vore_sound, 100, 1)
-
-	// Actually shove prey into the belly.
-	belly_target.nom_mob(prey, user)
-	user.update_icons()
-
-	// Flavor handling
-	if(belly_target.can_taste && prey.get_taste_message(0))
-		to_chat(belly_target.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(0)].</span>")
-
-	// Inform Admins
-	if (pred == user)
-		msg_admin_attack("[key_name(pred)] ate [key_name(prey)] via dropnom/slime feeding!. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
-	else
-		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)] via dropnoms/slime feeding!! ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
@@ -588,18 +525,20 @@
 	set category = "Abilities"
 	set desc = "Consume held garbage."
 
+	if(!vore_selected)
+		to_chat(src,"<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
+		return
+	
 	var/obj/item/I = get_active_hand()
 	if(!I)
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
+		
 	if(is_type_in_list(I,edible_trash))
 		drop_item()
-		var/belly = vore_selected
-		var/datum/belly/selected = vore_organs[belly]
-		playsound(src.loc, selected.vore_sound, 20, 1)
-		I.forceMove(src)
-		selected.internal_contents |= I
+		I.forceMove(vore_selected)
 		updateVRPanel()
+		
 		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
 			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
 		else if(istype(I,/obj/item/device/flashlight/glowstick))

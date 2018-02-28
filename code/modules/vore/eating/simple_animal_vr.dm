@@ -34,20 +34,19 @@
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat) return
 
-	var/datum/belly/B = vore_organs[vore_selected]
 	if(retaliate || (hostile && faction != user.faction))
 		user << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
 		return
-	if(B.digest_mode == "Hold")
+	if(vore_selected.digest_mode == DM_HOLD)
 		var/confirm = alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")
 		if(confirm == "Enable")
-			B.digest_mode = "Digest"
+			vore_selected.digest_mode = DM_DIGEST
 			spawn(12000) //12000=20 minutes
-				if(src)	B.digest_mode = vore_default_mode
+				if(src)	vore_selected.digest_mode = vore_default_mode
 	else
 		var/confirm = alert(user, "This mob is currently set to process all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
 		if(confirm == "Disable")
-			B.digest_mode = "Hold"
+			vore_selected.digest_mode = DM_HOLD
 
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (hostile && faction != user.faction)) && isturf(user.loc))
@@ -65,9 +64,7 @@
 				LoseTarget() // only make one attempt at an attack rather than going into full rage mode
 		else
 			user.visible_message("<span class='info'>\the [user] swats \the [src] with \the [O]!</span>!")
-			for(var/I in vore_organs)
-				var/datum/belly/B = vore_organs[I]
-				B.release_all_contents(include_absorbed = TRUE) // Until we can get a mob version of unsorbitol or whatever, release absorbed too
+			release_vore_contents()
 			for(var/mob/living/L in living_mobs(0)) //add everyone on the tile to the do-not-eat list for a while
 				if(!(L in prey_excludes)) // Unless they're already on it, just to avoid fuckery.
 					prey_excludes += L
