@@ -15,8 +15,6 @@
 	var/vore_taste = null				// What the character tastes like
 	var/no_vore = 0 					// If the character/mob can vore.
 	var/openpanel = 0					// Is the vore panel open?
-	var/conceal_nif = 0					// Do they wish to conceal their NIF from examine?
-	var/nif_examine = "There's a certain spark to their eyes" //The examine text of their NIF. This is the default placeholder.
 	var/noisy = 0						// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
@@ -188,8 +186,6 @@
 	P.allowmobvore = src.allowmobvore
 	P.belly_prefs = src.vore_organs
 	P.vore_taste = src.vore_taste
-	P.nif_examine = src.nif_examine
-	P.conceal_nif = src.conceal_nif
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
 
@@ -209,8 +205,6 @@
 	digestable = P.digestable
 	allowmobvore = P.allowmobvore
 	vore_taste = P.vore_taste
-	nif_examine = P.nif_examine
-	conceal_nif = P.conceal_nif
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
 

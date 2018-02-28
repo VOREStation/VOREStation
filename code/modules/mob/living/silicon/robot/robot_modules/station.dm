@@ -51,6 +51,8 @@ var/global/list/robot_modules = list(
 	if(R.radio)
 		R.radio.recalculateChannels()
 
+	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
+
 	R.set_module_sprites(sprites)
 	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
 

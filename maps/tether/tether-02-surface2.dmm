@@ -287,7 +287,7 @@
 "aR" = (
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "PubPrep";
+	id = "GateShut";
 	layer = 3.3;
 	name = "Gateway Shutter"
 	},
