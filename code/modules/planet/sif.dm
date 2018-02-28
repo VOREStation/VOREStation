@@ -331,7 +331,7 @@ datum/weather/sif
 				continue // No need to apply damage.
 
 			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
-			to_chat(L, "<span class='warning'>The hail raining down on you [L.can_feel_pain() ? "hurts" : "damages you"]!</span>")
+			to_chat(L, "<span class='warning'>The hail smacks into you!</span>")
 
 /datum/weather/sif/blood_moon
 	name = "blood moon"
