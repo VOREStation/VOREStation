@@ -49,6 +49,12 @@
 	name = "entertainment intercom"
 	frequency = ENT_FREQ
 
+/obj/item/device/radio/intercom/omni
+	name = "global announcer"
+/obj/item/device/radio/intercom/omni/initialize()
+	channels = radiochannels.Copy()
+	return ..()
+
 /obj/item/device/radio/intercom/New()
 	..()
 	processing_objects += src
