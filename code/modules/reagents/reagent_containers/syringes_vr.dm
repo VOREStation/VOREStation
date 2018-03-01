@@ -24,6 +24,8 @@
 	return 1
 
 /obj/item/weapon/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
+	if(!ishuman(loc))
+		return //Avoid borg syringe problems.
 	LAZYINITLIST(targets)
 
 	//We can't keep a mob reference, that's a bad idea, so instead name+ref should suffice.
