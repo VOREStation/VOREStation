@@ -160,8 +160,9 @@
 				return
 
 			var/mob/living/carbon/human/H = target
+			var/obj/item/organ/external/affected //VOREStation Edit - Moved this outside this if
 			if(istype(H))
-				var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+				affected = H.get_organ(user.zone_sel.selecting) //VOREStation Edit - See above comment.
 				if(!affected)
 					to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
 					return
@@ -202,6 +203,7 @@
 			if(ismob(target))
 				var/contained = reagentlist()
 				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
+				dirty(target,affected) //VOREStation Add
 				admin_inject_log(user, target, src, contained, trans)
 			else
 				trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
@@ -214,7 +216,7 @@
 				update_icon()
 
 	return
-
+/* VOREStation Edit - See syringes_vr.dm
 /obj/item/weapon/reagent_containers/syringe/update_icon()
 	overlays.Cut()
 
@@ -241,7 +243,7 @@
 
 		filling.color = reagents.get_color()
 		overlays += filling
-
+*/
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if(istype(target, /mob/living/carbon/human))
 
