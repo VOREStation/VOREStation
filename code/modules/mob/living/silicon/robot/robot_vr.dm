@@ -87,8 +87,9 @@
 /mob/living/silicon/robot/proc/vr_sprite_check()
 	if(wideborg == TRUE)
 		return
-	if((icon_state in vr_icons) && (icon == 'icons/mob/robots.dmi'))
+	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
 		original_icon = icon
+	if((icon_state in vr_icons) && (icon == 'icons/mob/robots.dmi'))
 		icon = 'icons/mob/robots_vr.dmi'
 	else if(!(icon_state in vr_icons))
 		icon = original_icon
