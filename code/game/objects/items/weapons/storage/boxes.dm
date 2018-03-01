@@ -96,7 +96,8 @@
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	icon_state = "syringe"
-	starts_with = list(/obj/item/weapon/reagent_containers/syringe = 7)
+	can_hold = list(/obj/item/weapon/reagent_containers/syringe) //VOREStation Edit
+	starts_with = list(/obj/item/weapon/reagent_containers/syringe = 20) //VOREStation Edit
 
 /obj/item/weapon/storage/box/syringegun
 	name = "box of syringe gun cartridges"
