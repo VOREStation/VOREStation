@@ -296,33 +296,33 @@ datum/weather/sif
 	flight_failure_modifier = 15
 	transition_chances = list(
 		WEATHER_RAIN = 45,
-		WEATHER_STORM = 10,
-		WEATHER_HAIL = 40,
+		WEATHER_STORM = 40,
+		WEATHER_HAIL = 10,
 		WEATHER_OVERCAST = 5
 		)
 
 /datum/weather/sif/hail/process_effects()
-	for(var/mob/living/L in living_mob_list)
-		if(L.z in holder.our_planet.expected_z_levels)
-			var/turf/T = get_turf(L)
+	for(var/mob/living/carbon/human/H in living_mob_list)
+		if(H.z in holder.our_planet.expected_z_levels)
+			var/turf/T = get_turf(H)
 			if(!T.outdoors)
 				continue // They're indoors, so no need to pelt them with ice.
 
 			// If they have an open umbrella, it'll guard from rain
-			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+			if(istype(H.get_active_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = H.get_active_hand()
 				if(U.open)
-					to_chat(L, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
+					to_chat(H, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
 					continue
-			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
+			else if(istype(H.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
+				var/obj/item/weapon/melee/umbrella/U = H.get_inactive_hand()
 				if(U.open)
-					to_chat(L, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
+					to_chat(H, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
 					continue
 
 			var/target_zone = pick(BP_ALL)
-			var/amount_blocked = L.run_armor_check(target_zone, "melee")
-			var/amount_soaked = L.get_armor_soak(target_zone, "melee")
+			var/amount_blocked = H.run_armor_check(target_zone, "melee")
+			var/amount_soaked = H.get_armor_soak(target_zone, "melee")
 
 			if(amount_blocked >= 100)
 				continue // No need to apply damage.
@@ -330,8 +330,8 @@ datum/weather/sif
 			if(amount_soaked >= 10)
 				continue // No need to apply damage.
 
-			L.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
-			to_chat(L, "<span class='warning'>The hail smacks into you!</span>")
+			H.apply_damage(rand(5, 10), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+			to_chat(H, "<span class='warning'>The hail smacks into you!</span>")
 
 /datum/weather/sif/blood_moon
 	name = "blood moon"
