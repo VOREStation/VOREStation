@@ -1790,9 +1790,17 @@ CIRCUITS BELOW
 	name = "handheld translator"
 	id = "translator"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 3000)
 	build_path = /obj/item/device/universal_translator
-	sort_string = "HABBA"
+	sort_string = "HABQA"
+
+/datum/design/item/ear_translator
+	name = "earpiece translator"
+	id = "ear_translator"
+	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5)	//It's been hella miniaturized.
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "gold" = 1000)
+	build_path = /obj/item/device/universal_translator/ear
+	sort_string = "HABQB"
 
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert
