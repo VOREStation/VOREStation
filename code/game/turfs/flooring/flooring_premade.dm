@@ -230,8 +230,9 @@
 	oxygen = 0
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/n20/initialize()
-	. = ..()
+/turf/simulated/floor/reinforced/n20/New()
+	..()
+	sleep(-1)
 	if(!air) make_air()
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 
@@ -410,11 +411,11 @@
     . = ..()
 
 /turf/snow/update_icon()
-    cut_overlays()
+    overlays.Cut()
     for(var/d in crossed_dirs)
         var/amt = crossed_dirs[d]
 
         for(var/i in 1 to amt)
-            add_overlay(image(icon, "footprint[i]", text2num(d)))
+            overlays += icon(icon, "footprint[i]", text2num(d))
 
 //**** Here ends snow ****

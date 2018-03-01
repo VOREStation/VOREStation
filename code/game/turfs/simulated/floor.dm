@@ -60,7 +60,7 @@
 //This proc auto corrects the grass tiles' siding.
 /turf/simulated/floor/proc/make_plating(var/place_product, var/defer_icon_update)
 
-	cut_overlays()
+	overlays.Cut()
 	// VOREStation Edit - We are flooring switching to plating, swap out old_decals for decals.
 	if(flooring)
 		var/tmp/list/underfloor_decals = old_decals
