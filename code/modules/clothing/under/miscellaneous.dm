@@ -817,3 +817,29 @@
 	desc = "A green uniform for operating in hazardous environments."
 	name = "explorer's jumpsuit"
 	icon_state = "explorer"
+
+/obj/item/clothing/under/cohesion
+	name = "black cohesion suit"
+	desc = "A plain black cohesion suit intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit"
+	rolled_sleeves = -1 // defeats the purpose!!!
+
+/obj/item/clothing/under/cohesion/striped
+	name = "red striped cohesion suit"
+	desc = "A black cohesion suit with red stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_striped"
+
+/obj/item/clothing/under/cohesion/decal
+	name = "purple decaled cohesion suit"
+	desc = "A white cohesion suit with purple decals intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_decal"
+
+/obj/item/clothing/under/cohesion/pattern
+	name = "blue patterned cohesion suit"
+	desc = "A white cohesion suit with blue patterns intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_pattern"
+
+/obj/item/clothing/under/cohesion/hazard
+	name = "hazard cohesion suit"
+	desc = "An orange cohesion suit with yellow hazard stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_hazard"

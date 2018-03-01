@@ -824,7 +824,7 @@ FIRE ALARM
 	alarms_hidden = TRUE
 
 /obj/machinery/firealarm/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		set_light(0)
@@ -847,8 +847,7 @@ FIRE ALARM
 				if("blue")	set_light(l_range = 2, l_power = 0.5, l_color = "#1024A9")
 				if("red")	set_light(l_range = 4, l_power = 2, l_color = "#ff0000")
 				if("delta")	set_light(l_range = 4, l_power = 2, l_color = "#FF6633")
-
-		overlays += image('icons/obj/monitors.dmi', "overlay_[seclevel]")
+		add_overlay("overlay_[seclevel]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(detecting)

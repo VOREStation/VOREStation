@@ -4,39 +4,14 @@
 		return 0
 
 	if(flooring)
-		if(istype(C, /obj/item/weapon/crowbar))
-			if(broken || burnt)
-				to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
-				make_plating()
-			else if(flooring.flags & TURF_IS_FRAGILE)
-				to_chat(user, "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>")
-				make_plating()
-			else if(flooring.flags & TURF_REMOVE_CROWBAR)
-				to_chat(user, "<span class='notice'>You lever off the [flooring.descriptor].</span>")
-				make_plating(1)
-			else
-				return
-			playsound(src, C.usesound, 80, 1)
-			return
-		else if(istype(C, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
-			if(broken || burnt)
-				return
-			to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
-			make_plating(1)
-			playsound(src, C.usesound, 80, 1)
-			return
-		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
-			to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
-			make_plating(1)
-			playsound(src, C.usesound, 80, 1)
-			return
-		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
-			to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
-			make_plating(1)
-			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
+		if(istype(C, /obj/item/weapon))
+			try_deconstruct_tile(C, user)
 			return
 		else if(istype(C, /obj/item/stack/cable_coil))
 			to_chat(user, "<span class='warning'>You must remove the [flooring.descriptor] first.</span>")
+			return
+		else if(istype(C, /obj/item/stack/tile))
+			try_replace_tile(C, user)
 			return
 	else
 
@@ -88,3 +63,47 @@
 						broken = null
 					else
 						to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+
+/turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/crowbar))
+		if(broken || burnt)
+			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
+			make_plating()
+		else if(flooring.flags & TURF_IS_FRAGILE)
+			to_chat(user, "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>")
+			make_plating()
+		else if(flooring.flags & TURF_REMOVE_CROWBAR)
+			to_chat(user, "<span class='notice'>You lever off the [flooring.descriptor].</span>")
+			make_plating(1)
+		else
+			return 0
+		playsound(src, W.usesound, 80, 1)
+		return 1
+	else if(istype(W, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+		if(broken || burnt)
+			return 0
+		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
+		make_plating(1)
+		playsound(src, W.usesound, 80, 1)
+		return 1
+	else if(istype(W, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
+		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
+		make_plating(1)
+		playsound(src, W.usesound, 80, 1)
+		return 1
+	else if(istype(W, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
+		to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
+		make_plating(1)
+		playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
+		return 1
+	return 0
+
+/turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)
+	if(T.type == flooring.build_type)
+		return
+	var/obj/item/weapon/W = user.is_holding_item_of_type(/obj/item/weapon)
+	if(!try_deconstruct_tile(W, user))
+		return
+	if(flooring)
+		return
+	attackby(T, user)

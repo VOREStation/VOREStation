@@ -21,7 +21,7 @@
 		ability_flags &= ~AB_PHASE_SHIFTED
 		name = real_name
 		for(var/belly in vore_organs)
-			var/datum/belly/B = vore_organs[belly]
+			var/obj/belly/B = belly
 			B.escapable = initial(B.escapable)
 
 		overlays.Cut()
@@ -43,13 +43,9 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				var/datum/belly/B = vore_organs[vore_selected]
-				if(istype(target) && istype(B))
-					target.forceMove(src)
-					B.internal_contents |= target
-					playsound(src, B.vore_sound, 100, 1)
-					to_chat(target,"<span class='warning'>\The [src] phases in around you, [B.vore_verb]ing you into their [B.name]!</span>")
-					to_chat(src,"<span class='warning'>Your [B.name] has a new occupant!</span>")
+				if(istype(target) && vore_selected)
+					target.forceMove(vore_selected)
+					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
 		// Do this after the potential vore, so we get the belly
 		update_icon()
@@ -79,7 +75,7 @@
 		name = "Something"
 
 		for(var/belly in vore_organs)
-			var/datum/belly/B = vore_organs[belly]
+			var/obj/belly/B = belly
 			B.escapable = FALSE
 
 		overlays.Cut()

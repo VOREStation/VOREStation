@@ -33,11 +33,9 @@
 	if(!IsAdvancedToolUser())
 		verbs |= /mob/living/simple_animal/proc/animal_nom
 
-// Release belly contents beforey being gc'd!
+// Release belly contents before being gc'd!
 /mob/living/simple_animal/Destroy()
-	for(var/I in vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		B.release_all_contents(include_absorbed = TRUE) // When your stomach is empty
+	release_vore_contents()
 	prey_excludes.Cut()
 	. = ..()
 
@@ -49,9 +47,9 @@
 // Update fullness based on size & quantity of belly contents
 /mob/living/simple_animal/proc/update_fullness()
 	var/new_fullness = 0
-	for(var/I in vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		for(var/mob/living/M in B.internal_contents)
+	for(var/belly in vore_organs)
+		var/obj/belly/B = belly
+		for(var/mob/living/M in B)
 			new_fullness += M.size_multiplier
 		new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
@@ -137,10 +135,8 @@
 	stop_automated_movement = 0
 
 /mob/living/simple_animal/death()
-	for(var/I in vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		B.release_all_contents(include_absorbed = TRUE) // When your stomach is empty
-	..() // then you have my permission to die.
+	release_vore_contents()
+	. = ..()
 
 // Simple animals have only one belly.  This creates it (if it isn't already set up)
 /mob/living/simple_animal/proc/init_belly()
@@ -149,10 +145,11 @@
 	if(no_vore) //If it can't vore, let's not give it a stomach.
 		return
 
-	var/datum/belly/B = new /datum/belly(src)
+	var/obj/belly/B = new /obj/belly(src)
+	vore_selected = B
 	B.immutable = 1
 	B.name = vore_stomach_name ? vore_stomach_name : "stomach"
-	B.inside_flavor = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
+	B.desc = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
 	B.digest_mode = vore_default_mode
 	B.escapable = vore_escape_chance > 0
 	B.escapechance = vore_escape_chance
@@ -161,7 +158,6 @@
 	B.human_prey_swallow_time = swallowTime
 	B.nonhuman_prey_swallow_time = swallowTime
 	B.vore_verb = "swallow"
-	// TODO - Customizable per mob
 	B.emote_lists[DM_HOLD] = list( // We need more that aren't repetitive. I suck at endo. -Ace
 		"The insides knead at you gently for a moment.",
 		"The guts glorp wetly around you as some air shifts.",
@@ -192,9 +188,7 @@
 		"The juices pooling beneath you sizzle against your sore skin.",
 		"The churning walls slowly pulverize you into meaty nutrients.",
 		"The stomach glorps and gurgles as it tries to work you into slop.")
-	src.vore_organs[B.name] = B
-	src.vore_selected = B.name
-
+	
 /mob/living/simple_animal/Bumped(var/atom/movable/AM, yes)
 	if(ismob(AM))
 		var/mob/tmob = AM

@@ -32,7 +32,7 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
@@ -76,7 +76,7 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	min_age = 18
 	max_age = 80
@@ -120,7 +120,7 @@
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb,/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
+	inherent_verbs = list(/mob/living/proc/shred_limb,/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
 
 	min_age = 18
 	max_age = 80
@@ -183,7 +183,7 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/fl_zorren
 	name = "Flatland Zorren"
@@ -215,7 +215,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 	color_mult = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -241,7 +241,7 @@
 //	gluttonous = 1
 	num_alternate_languages = 3
 	color_mult = 1
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
@@ -295,7 +295,7 @@
 		"You feel uncomfortably warm.",
 		"Your chitin feels hot."
 		)
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
@@ -304,7 +304,7 @@
 	tail_animation = 'icons/mob/species/unathi/tail_vr.dmi'
 	color_mult = 1
 	min_age = 18
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -314,7 +314,7 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -340,7 +340,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/proc/hide,
-		/mob/living/carbon/human/proc/shred_limb,
+		/mob/living/proc/shred_limb,
 		/mob/living/proc/toggle_pass_table
 		)
 
@@ -361,7 +361,7 @@
 	min_age = 18
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
-	inherent_verbs = list(/mob/living/carbon/human/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 datum/species/harpy
 	name = "Rapala"

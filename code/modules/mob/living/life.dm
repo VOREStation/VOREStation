@@ -29,8 +29,6 @@
 		//Random events (vomiting etc)
 		handle_random_events()
 
-		attempt_vr(src,"handle_internal_contents",args) //VOREStation Code
-
 		. = 1
 
 	//Chemicals in the body, this is moved over here so that blood can be added after death

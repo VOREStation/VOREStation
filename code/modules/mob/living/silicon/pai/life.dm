@@ -21,7 +21,6 @@
 			src << "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>"
 
 	handle_statuses()
-	handle_internal_contents() //VOREStation edit
 
 	if(health <= 0)
 		death(null,"gives one shrill beep before falling lifeless.")

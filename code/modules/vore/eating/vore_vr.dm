@@ -45,8 +45,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/allowmobvore = 1
 	var/list/belly_prefs = list()
 	var/vore_taste
-	var/conceal_nif
-	var/nif_examine
 	var/can_be_drop_prey
 	var/can_be_drop_pred
 
@@ -74,16 +72,10 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 //
 //	Belly searching for simplifying other procs
+//  Mostly redundant now with belly-objects and isbelly(loc)
 //
 /proc/check_belly(atom/movable/A)
-	if(istype(A.loc,/mob/living))
-		var/mob/living/M = A.loc
-		for(var/I in M.vore_organs)
-			var/datum/belly/B = M.vore_organs[I]
-			if(A in B.internal_contents)
-				return(B)
-
-	return 0
+	return isbelly(A.loc)
 
 //
 // Save/Load Vore Preferences
@@ -109,8 +101,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	S["allowmobvore"] >> allowmobvore
 	S["belly_prefs"] >> belly_prefs
 	S["vore_taste"] >> vore_taste
-	S["conceal_nif"] >> conceal_nif
-	S["nif_examine"] >> nif_examine
 	S["can_be_drop_prey"] >> can_be_drop_prey
 	S["can_be_drop_pred"] >> can_be_drop_pred
 
@@ -134,8 +124,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	S["allowmobvore"] << allowmobvore
 	S["belly_prefs"] << belly_prefs
 	S["vore_taste"] << vore_taste
-	S["conceal_nif"] << conceal_nif
-	S["nif_examine"] << nif_examine
 	S["can_be_drop_prey"] << can_be_drop_prey
 	S["can_be_drop_pred"] << can_be_drop_pred
 
