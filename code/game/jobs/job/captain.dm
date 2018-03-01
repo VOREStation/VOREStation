@@ -87,4 +87,3 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list(access_heads, access_keycard_auth)
 
 	outfit_type = /decl/hierarchy/outfit/job/secretary
-	alt_titles = list("Command Liaison", "Bridge Secretary")
