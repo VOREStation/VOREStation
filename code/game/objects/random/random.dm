@@ -1581,8 +1581,7 @@ var/list/multi_point_spawns
 	icon_state = "phoron"
 
 /obj/random/mob/spider/mutant/item_to_spawn()
-	return pick(prob(1);/obj/random/mob/spider,
-				prob(5);/mob/living/simple_animal/hostile/giant_spider/nurse/medical,
+	return pick(prob(5);/obj/random/mob/spider,
 				prob(10);/mob/living/simple_animal/hostile/giant_spider/webslinger,
 				prob(10);/mob/living/simple_animal/hostile/giant_spider/carrier,
 				prob(33);/mob/living/simple_animal/hostile/giant_spider/lurker,
