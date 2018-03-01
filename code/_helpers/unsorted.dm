@@ -800,6 +800,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 						var/old_dir1 = T.dir
 						var/old_icon_state1 = T.icon_state
 						var/old_icon1 = T.icon
+						var/old_overlays = T.overlays.Copy()
 						var/old_underlays = T.underlays.Copy()
 						var/old_decals = T.decals ? T.decals.Copy() : null
 
@@ -807,9 +808,11 @@ proc/GaussRandRound(var/sigma,var/roundto)
 						X.set_dir(old_dir1)
 						X.icon_state = old_icon_state1
 						X.icon = old_icon1
-						X.copy_overlays(T, TRUE)
+						X.overlays = old_overlays
 						X.underlays = old_underlays
 						X.decals = old_decals
+						if(old_decals)
+							X.apply_decals()
 
 					//Move the air from source to dest
 					var/turf/simulated/ST = T
@@ -835,10 +838,14 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					if(shuttlework)
 						var/turf/simulated/shuttle/SS = T
 						SS.landed_holder.leave_turf()
+
 					else if(turftoleave)
 						T.ChangeTurf(turftoleave)
+						T.apply_decals()
+
 					else
 						T.ChangeTurf(get_base_turf_by_area(T))
+						T.apply_decals()
 
 					refined_src -= T
 					refined_trg -= B

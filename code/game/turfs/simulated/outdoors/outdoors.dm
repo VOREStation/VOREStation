@@ -44,9 +44,7 @@ var/list/outdoor_turfs = list()
 		planet_controller.unallocateTurf(src)
 	else // This is happening during map gen, if there's no planet_controller (hopefully).
 		outdoor_turfs -= src
-	if(weather_overlay)
-		cut_overlay(weather_overlay)
-		qdel_null(weather_overlay)
+	qdel(weather_overlay)
 	update_icon()
 
 /turf/simulated/post_change()
@@ -69,14 +67,15 @@ var/list/outdoor_turfs = list()
 					var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir)
 					I.plane = 0
 					turf_edge_cache[cache_key] = I
-				add_overlay(turf_edge_cache[cache_key])
+				overlays += turf_edge_cache[cache_key]
 
 /turf/simulated/proc/get_edge_icon_state()
 	return icon_state
 
 /turf/simulated/floor/outdoors/update_icon()
-	..()
+	overlays.Cut()
 	update_icon_edge()
+	..()
 
 /turf/simulated/floor/outdoors/mud
 	name = "mud"

@@ -17,9 +17,10 @@
 	. = ..()
 
 /turf/simulated/floor/outdoors/snow/update_icon()
+	overlays.Cut()
 	..()
 	for(var/d in crossed_dirs)
-		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
+		overlays += image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d))
 
 /turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/weapon/shovel))
