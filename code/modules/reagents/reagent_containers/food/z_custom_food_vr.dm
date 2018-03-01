@@ -48,8 +48,10 @@ var/global/ingredientLimit = 20
 			return*/
 		user.drop_item()
 		I.forceMove(src)
-
-		S.reagents.trans_to(src,S.reagents.total_volume)
+		
+		if(S.reagents)
+			S.reagents.trans_to(src,S.reagents.total_volume)
+		
 		ingredients += S
 
 		if(src.addTop)
