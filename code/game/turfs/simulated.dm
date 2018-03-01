@@ -21,16 +21,15 @@
 	spawn(0)
 		wet = wet_val
 		if(wet_overlay)
-			overlays -= wet_overlay
-			wet_overlay = null
-		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
-		overlays += wet_overlay
+			cut_overlay(wet_overlay)
+		wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
+		add_overlay(wet_overlay)
 		sleep(800)
 		if(wet == 2)
 			sleep(3200)
 		wet = 0
 		if(wet_overlay)
-			overlays -= wet_overlay
+			cut_overlay(wet_overlay)
 			wet_overlay = null
 
 /turf/simulated/proc/freeze_floor()
@@ -38,14 +37,14 @@
 		return
 	wet = 3 // icy
 	if(wet_overlay)
-		overlays -= wet_overlay
+		cut_overlay(wet_overlay)
 		wet_overlay = null
 	wet_overlay = image('icons/turf/overlays.dmi',src,"snowfloor")
-	overlays += wet_overlay
+	add_overlay(wet_overlay)
 	spawn(5 MINUTES)
 		wet = 0
 		if(wet_overlay)
-			overlays -= wet_overlay
+			cut_overlay(wet_overlay)
 			wet_overlay = null
 
 /turf/simulated/clean_blood()
