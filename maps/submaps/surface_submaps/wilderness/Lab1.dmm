@@ -42,7 +42,7 @@
 "P" = (/obj/item/robot_parts/chest,/obj/item/robot_parts/l_arm,/obj/item/robot_parts/r_arm,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "Q" = (/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "R" = (/obj/structure/closet/secure_closet/hydroponics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
-"S" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
+"S" = (/obj/structure/table/standard,/obj/item/seeds/ambrosiavulgarisseed,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "T" = (/obj/machinery/vending/robotics,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "U" = (/obj/structure/table/standard,/obj/machinery/cell_charger,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)
 "V" = (/obj/machinery/optable,/turf/simulated/floor/tiled/steel_dirty,/area/submap/Lab1)

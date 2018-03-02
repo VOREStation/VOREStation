@@ -1795,10 +1795,18 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
-	user << "You unwrap the cube."
+	to_chat(user, "You unwrap the cube.")
 	wrapped = 0
 	flags |= OPENCONTAINER
 	return
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
+		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
+		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
+	Expand()
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent("water"))

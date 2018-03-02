@@ -32,26 +32,25 @@
 "aF" = (/obj/structure/window/reinforced/full,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "aG" = (/obj/structure/table/woodentable,/obj/item/weapon/oar,/obj/item/weapon/oar,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "aH" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/water,/area/submap/Boathouse)
-"aI" = (/obj/structure/table/woodentable,/obj/item/weapon/cell/device/weapon,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aI" = (/obj/structure/table/woodentable,/obj/random/powercell,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "aJ" = (/turf/simulated/floor/wood{tag = "icon-wood_broken4"; icon_state = "wood_broken4"},/area/submap/Boathouse)
 "aK" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/simulated/floor/water,/area/submap/Boathouse)
 "aL" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "aM" = (/obj/structure/closet/secure_closet/freezer/fridge,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/fruitsalad,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "aN" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "aO" = (/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
-"aP" = (/obj/structure/window/reinforced/full,/turf/simulated/wall/wood,/area/submap/Boathouse)
-"aQ" = (/obj/structure/table/woodentable,/obj/item/weapon/material/knife,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aR" = (/obj/structure/bookcase,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
-"aS" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/bag/trash,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aT" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/lighter,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aU" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
-"aV" = (/obj/structure/table/rack,/obj/item/clothing/accessory/poncho/blue,/obj/item/clothing/accessory/poncho/blue,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aW" = (/obj/structure/coatrack,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aX" = (/obj/structure/table/rack,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/hood/winter,/obj/item/clothing/shoes/boots/winter,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aY" = (/obj/structure/table/rack,/obj/item/clothing/accessory/storage,/obj/item/clothing/accessory/storage,/turf/simulated/floor/wood,/area/submap/Boathouse)
-"aZ" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
-"ba" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
-"bb" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Boathouse)
+"aP" = (/obj/structure/table/woodentable,/obj/item/weapon/material/knife,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aQ" = (/obj/structure/bookcase,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aR" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/bag/trash,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aS" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/lighter,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aT" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aU" = (/obj/structure/table/rack,/obj/item/clothing/accessory/poncho/blue,/obj/item/clothing/accessory/poncho/blue,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aV" = (/obj/structure/coatrack,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aW" = (/obj/structure/table/rack,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/hood/winter,/obj/item/clothing/shoes/boots/winter,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aX" = (/obj/structure/table/rack,/obj/item/clothing/accessory/storage,/obj/item/clothing/accessory/storage,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aY" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aZ" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"ba" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Boathouse)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -104,14 +103,14 @@ aaabaFakamamakaiakakakakaKaDaDaDadadadadadadadadaeaeaeaeaeaeaeaeadadadadadacabaa
 aaabaFakamamakaiaiaLaiakaHadadadadadadadadadadadaeaeaeaeadaeaeaeadadadadadacabaa
 aaaiaiakamamakaiaiakaiakaHadadadadadadadadadadadaeaeaeaeadadadaeaeadadadadacabaa
 aaaiaiaMamamakaiaiaLaiaiaiaiaiaiadadadadadadadadaeaeaeadadadadadadadadadacacabaa
-aaaiaiaNamamakakakakakakaLaOaOaPadadadadadadadadaeaeadadadadadadadadadadacababaa
-aaaiaiaQamamamamamamamakaiaRaOaPadadadadadadadaeaeaeadadadadadadadadadadacababaa
-aaaiaiaSaTakakamamamamakaiaRaUaPadadadadadadadaeaeaeadadadadadadadadadadacababaa
-aaaiaiaiaiaiaVaWakakaXaYaiaZbaaPadadadadadadadaeaeaeadadadadadadadadadacacababaa
+aaaiaiaNamamakakakakakakaLaOaOaFadadadadadadadadaeaeadadadadadadadadadadacababaa
+aaaiaiaPamamamamamamamakaiaQaOaFadadadadadadadaeaeaeadadadadadadadadadadacababaa
+aaaiaiaRaSakakamamamamakaiaQaTaFadadadadadadadaeaeaeadadadadadadadadadadacababaa
+aaaiaiaiaiaiaUaVakakaWaXaiaYaZaFadadadadadadadaeaeaeadadadadadadadadadacacababaa
 aaabaiaiaiaiaiaiaLaLaiaiaiaiaiaiadadadadadadadadadadadadadadadadadadadacabababaa
 aaababaiaiaiabaiakakaiabaiaiaiacacacadadadadadadadadadadadadadadadadadacabababaa
 aaababababababaiaLaLaiababababababacacacacadadadadadacacadadadadadacacacabababaa
-aaababbbbbbbbbbbbbbbbbbbbbbbbbababababacacacadadacacacacacacacacacacabababababaa
-aaabababababbbbbbbbbbbbbbbbbbbbbbbbbabababacacacacababababababababababababababaa
+aaababbabababababababababababaababababacacacadadacacacacacacacacacacabababababaa
+aaabababababbabababababababababababaabababacacacacababababababababababababababaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

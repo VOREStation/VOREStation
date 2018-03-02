@@ -7,9 +7,10 @@
 "g" = (/obj/structure/flora/ausbushes/grassybush,/turf/template_noop,/area/submap/Rocky2)
 "h" = (/obj/structure/flora/ausbushes/fullgrass,/turf/template_noop,/area/submap/Rocky2)
 "i" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/template_noop,/area/submap/Rocky2)
-"j" = (/obj/structure/flora/ausbushes/sunnybush,/turf/template_noop,/area/submap/Rocky2)
-"k" = (/obj/structure/flora/ausbushes/stalkybush,/turf/template_noop,/area/submap/Rocky2)
-"l" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Rocky2)
+"j" = (/obj/item/weapon/shovel,/turf/template_noop,/area/submap/Rocky2)
+"k" = (/obj/structure/flora/ausbushes/sunnybush,/turf/template_noop,/area/submap/Rocky2)
+"l" = (/obj/structure/flora/ausbushes/stalkybush,/turf/template_noop,/area/submap/Rocky2)
+"m" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Rocky2)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa
@@ -25,16 +26,16 @@ abbbbbbcccbbbbbbicccceeea
 abbbbbbcccbdbbhbbcccceeea
 abdbbbccccbbbbbbbbccceeea
 abbbbccccbbhbbbbbbcceeeea
-abbbccccccfbbbdbbbcccceea
+abbbccccccfjbbdbbbcccceea
 abbeccccccbbbbbbficccceea
 abbeccccccbgbhbbbbccccbba
 abbeecccccbbbbbbbbcccccba
-abbeecccccjbdbbbhbcccccba
+abbeeccccckbdbbbhbcccccba
 abbbecccccbbbbbbbccccccba
-abbbeccceebbkbbbbccccccba
+abbbeccceebblbbbbccccccba
 abbbbccceeccbbfbcccccbbba
 abbbbccceeeccccccccccbbba
-ablbbcccbeccccccbbbcbblba
+abmbbcccbeccccccbbbcbbmba
 abbbbbbbbbbbcccbbbbbbbbba
 aaaaaaaaaaaaaaaaaaaaaaaaa
 "}

@@ -95,7 +95,7 @@ HALOGEN COUNTER	- Radcount on mobs
 				else
 					dat += "<span class='notice'>     [capitalize(org.name)]: [(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0]"
 					dat += "[(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":""] - "
-					dat += "[(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0]</span><brr>"
+					dat += "[(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0]</span><br>"
 		else
 			dat += "<span class='notice'>    Limbs are OK.</span><br>"
 

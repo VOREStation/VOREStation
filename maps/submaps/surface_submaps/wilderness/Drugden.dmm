@@ -25,7 +25,7 @@
 "y" = (/obj/structure/bed/chair/comfy/beige,/obj/item/weapon/reagent_containers/pill/citalopram,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "z" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/floor,/area/submap/Drugd)
 "A" = (/obj/item/weapon/reagent_containers/pill/citalopram,/obj/item/weapon/reagent_containers/pill/citalopram,/turf/simulated/floor/carpet,/area/submap/Drugd)
-"B" = (/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/Drugd)
+"B" = (/obj/structure/table/standard,/obj/item/weapon/storage/pill_bottle/happy,/turf/simulated/floor/tiled,/area/submap/Drugd)
 "C" = (/obj/structure/table/standard,/obj/item/stack/medical/splint,/turf/simulated/floor/tiled,/area/submap/Drugd)
 "D" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/pill/citalopram,/obj/item/weapon/reagent_containers/pill/citalopram,/turf/simulated/floor/tiled,/area/submap/Drugd)
 "E" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/pill/tramadol,/obj/item/weapon/reagent_containers/pill/tramadol,/turf/simulated/floor/tiled,/area/submap/Drugd)
@@ -38,12 +38,13 @@
 "L" = (/obj/structure/table/standard,/obj/random/firstaid,/turf/simulated/floor,/area/submap/Drugd)
 "M" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/floor/tiled,/area/submap/Drugd)
 "N" = (/obj/effect/floor_decal/rust,/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/Drugd)
-"O" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/pill/tramadol,/turf/simulated/floor/carpet,/area/submap/Drugd)
-"P" = (/mob/living/simple_animal/hostile/hivebot/range/guard,/turf/simulated/floor,/area/submap/Drugd)
-"Q" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/Drugd)
-"R" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Drugd)
-"S" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/carpet,/area/submap/Drugd)
-"T" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/submap/Drugd)
+"O" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/pill/zoom,/obj/item/weapon/reagent_containers/pill/zoom,/turf/simulated/floor,/area/submap/Drugd)
+"P" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/pill/tramadol,/turf/simulated/floor/carpet,/area/submap/Drugd)
+"Q" = (/mob/living/simple_animal/hostile/hivebot/range/guard,/turf/simulated/floor,/area/submap/Drugd)
+"R" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/Drugd)
+"S" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Drugd)
+"T" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/carpet,/area/submap/Drugd)
+"U" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/syringe/drugs,/turf/simulated/floor/carpet,/area/submap/Drugd)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa
@@ -63,9 +64,9 @@ abcccccccccdllldvwxydccba
 acccccddddddzlgmoooAdccba
 acccccdBCDEdllfdFGHIdccba
 acccccdJKgLdlfMddddddccba
-abccccdNllLdhlgdqOwwdccca
-abbcccdlPllelllmoooodccca
-abbcccdQlRldllhdqSTndccca
+abccccdNllOdhlgdqPwwdccca
+abbcccdlQllelllmoooodccca
+abbcccdRlSldllhdqTUndccca
 abbcccddddddludddddddccca
 abbccccccccccccccccccccba
 abbbcccccccccccccccccccba

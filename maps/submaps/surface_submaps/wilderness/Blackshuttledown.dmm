@@ -33,7 +33,7 @@
 "aG" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"; tag = "icon-dark9"},/area/submap/Blackshuttledown)
 "aH" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"; tag = "icon-dark6"},/area/submap/Blackshuttledown)
 "aI" = (/mob/living/simple_animal/hostile/viscerator,/mob/living/simple_animal/hostile/viscerator,/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
-"aJ" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/automatic/c20r,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"aJ" = (/obj/structure/table/steel,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "aK" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aL" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aM" = (/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -41,7 +41,7 @@
 "aO" = (/mob/living/simple_animal/hostile/syndicate/ranged{desc = "Dosen't look friendly in the slightest."; name = "Unknown Individual"; say_got_target = list("Looks like trouble!","Contact!","We've got company!","Perimeter Breached!!"); speak = list("One day the'll fix that damn engine..","Next time, We're hidding on the tropical beach planet.","Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Hate this blocky ass ship.")},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aP" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/corner/green/border{tag = "icon-bordercolor (EAST)"; icon_state = "bordercolor"; dir = 4},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aQ" = (/obj/structure/table/steel,/obj/effect/floor_decal/borderfloor/full,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"aR" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"aR" = (/obj/structure/table/steel,/obj/item/weapon/grenade/smokebomb,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "aS" = (/obj/effect/floor_decal/borderfloor/corner,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aT" = (/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aU" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -71,7 +71,7 @@
 "bs" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bt" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bu" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"bv" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bv" = (/obj/structure/table/steel,/obj/random/projectile,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bw" = (/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bx" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
 "by" = (/obj/machinery/door/airlock/glass,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -97,7 +97,7 @@
 "bS" = (/obj/machinery/atmospherics/pipe/tank/oxygen,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bT" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bU" = (/obj/structure/bed/chair/office/dark,/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"bV" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/automatic/c20r,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"bV" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "bW" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bX" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bY" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -109,15 +109,16 @@
 "ce" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cf" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "cg" = (/mob/living/simple_animal/hostile/viscerator,/mob/living/simple_animal/hostile/viscerator,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
-"ch" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/pistol,/obj/item/weapon/gun/projectile/shotgun/pump,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"ch" = (/obj/structure/table/steel,/obj/random/energy,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "ci" = (/obj/structure/toilet{dir = 1},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "cj" = (/obj/machinery/light,/obj/structure/table/rack,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "ck" = (/obj/structure/dispenser/oxygen,/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"cl" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cl" = (/obj/structure/table/woodentable,/obj/random/projectile,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cm" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"cn" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/toy/plushie/spider,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"co" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"; tag = "icon-dark5"},/area/submap/Blackshuttledown)
-"cp" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"; tag = "icon-dark9"},/area/submap/Blackshuttledown)
+"cn" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"co" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/toy/plushie/spider,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cp" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"; tag = "icon-dark5"},/area/submap/Blackshuttledown)
+"cq" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"; tag = "icon-dark9"},/area/submap/Blackshuttledown)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -144,9 +145,9 @@ aaabababababavajbTbUajbdajajayazajajajajajajbAajajajajajaGabababababaa
 aaababababababavajaQajawbVajaybWaLaLbXajbYblblblblbZcaajababababababaa
 aaabafabababababavajajcbccajayaSaTaTcdajceblbYblbYajcfajbfabafabababaa
 aaabababababababaHajajcgchajaybKajaAaAajbYblbYblbYajciajajbfababababaa
-aaabababababababajajajajajajcjckajapapajbYclcmclcnajajajajalamabababaa
+aaabababababababajajajajajajcjckajapapajbYclcmcncoajajajajalamabababaa
 aaabababababababajajajajajajajajajababajajajajajajajajajajalamabababaa
-aaababafababababcoajajajcpababagahabababagabababcoajajajajcpababababaa
+aaababafababababcpajajajcqababagahabababagabababcpajajajajcqababababaa
 aaabababadabababababafababababagabababahagababafabafabababadadadababaa
 aaababadadabacababababafabababagagagagagagababababacababadadadadababaa
 aaabadadadabababababababaeababababababababababadadabababadadadadababaa

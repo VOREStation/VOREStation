@@ -120,11 +120,6 @@
 	slot = "implant"
 	exploitable = 1
 
-/datum/gear/utility/translator
-	display_name = "universal translator"
-	path = /obj/item/device/universal_translator
-	cost = 8
-
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
 	path = /obj/item/weapon/pen/fountain

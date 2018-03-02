@@ -1,0 +1,37 @@
+"a" = (/turf/simulated/wall/dungeon/rock{block_tele = 0},/area/submap/cave/IceCave1)
+"b" = (/turf/template_noop,/area/submap/cave/IceCave1)
+"c" = (/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/IceCave1)
+"d" = (/obj/machinery/crystal/ice,/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/IceCave1)
+"e" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1)
+"f" = (/obj/machinery/crystal/ice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaabbbbbbbbbbaaaaaaaaaa
+aacccccdccccccccddaabbbbbbbbbbaaaeeffaaa
+aaccccccccccccccddaaabbbbbbbbaaaeeeefeaa
+aaccccccccccccccaaaaaaaaaaaaaaaaeeeeeeaa
+aaccccccccccdcccaaaaaaaaaaaaaaaeeeeeeeaa
+aadccccccccccccdaaaaaaccccdccffeeeeeeaaa
+aaccccccccccccccaaaaaaccccccceeeeeeefaaa
+aacccccccccccccceeeeeedccccccfffaaaaaaaa
+aacccccccccdcccceeeeeeccdcccdfffaaaaaaab
+aaccdcccccccccccaaaaaaddaaaaaaaaaaabbbbb
+aaccccdccccccccdaaaaaaddafeeeeeaaaabbbbb
+aaccccccdcccccccaaffeefdafeeeeeaabbbbbbb
+aaccccccccccccccaaeeeeefaaaeaefaabbbbbbb
+aaaaaadddddddddeeeeefeeeeeeeaeeaabbbbbbb
+aaaaaafffeeeeddddffffffeefeeaeeaabbbbbbb
+aafffeeeeeeeeeccaaaaaaaaeeefafeaabbbbbbb
+aafeeeeeeeeeeeccaaaaaaaaffffaeeaabbbbbbb
+aaaffeaaaaaaaaccaaaaaaaeeeeeeeeaabbbbbbb
+aaaaeeaaaaaaaaccaaaaaaaeeeeeeaaaabbbbbbb
+aaaaeefaaaaaaaccccccddaeeeeeeaaaabbbbbbb
+aaaaaeefaaaaaaccccccddaafeaaaaabbbbbbbbb
+aaaafeeeaaaaaaaaddcceeeeeeaaaaabbbbbbbbb
+aaaffaeeeaaaaaaaddcceeeeeeaabbbbbbbbbbbb
+eaaaaaeeefaaaaaaaaaaaaeeefaabbbbbbbbbbbb
+eeaaaafeeaaaaaaaaaaaaaffffaabbbbbbbbbbbb
+eeeeeeeeeaaaaaaaaaaaaaaaaaaabbbbbbbbbbbb
+eeeeeeeeaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbb
+"}

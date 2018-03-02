@@ -9,9 +9,13 @@
 // creates a new object and deletes itself
 /obj/random/New()
 	..()
-	if (!prob(spawn_nothing_percentage))
-		spawn_item()
-	qdel(src)
+	spawn()
+		if(istype(src.loc, /obj/structure/loot_pile)) //Spawning from a lootpile is weird, need to wait until we're out of it to do our work.
+			while(istype(src.loc, /obj/structure/loot_pile))
+				sleep(1)
+		if (!prob(spawn_nothing_percentage))
+			spawn_item()
+		qdel(src)
 
 
 // this function should return a specific item to spawn
@@ -42,7 +46,7 @@
 /obj/random/tool
 	name = "random tool"
 	desc = "This is a random tool"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 
 /obj/random/tool/item_to_spawn()
@@ -54,6 +58,32 @@
 				/obj/item/weapon/wrench,
 				/obj/item/device/flashlight,
 				/obj/item/device/multitool)
+
+/obj/random/tool/power
+	name = "random powertool"
+	desc = "This is a random powertool"
+	icon_state = "jaws_pry"
+
+/obj/random/tool/power/item_to_spawn()
+	return pick(/obj/item/weapon/screwdriver/power,
+				/obj/item/weapon/wirecutters/power,
+				/obj/item/weapon/weldingtool/electric,
+				/obj/item/weapon/weldingtool/experimental)
+
+/obj/random/tool/alien
+	name = "random alien tool"
+	desc = "This is a random tool"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "welder"
+
+/obj/random/tool/alien/item_to_spawn()
+	return pick(/obj/item/weapon/screwdriver/alien,
+				/obj/item/weapon/wirecutters/alien,
+				/obj/item/weapon/weldingtool/alien,
+				/obj/item/weapon/crowbar/alien,
+				/obj/item/weapon/wrench/alien,
+				/obj/item/stack/cable_coil/alien,
+				/obj/item/device/multitool/alien)
 
 /obj/random/technology_scanner
 	name = "random scanner"
@@ -130,6 +160,29 @@
 				prob(2);/obj/item/taperoll/engineering,
 				prob(1);/obj/item/taperoll/atmos,
 				prob(1);/obj/item/device/flashlight/maglight)
+
+/obj/random/tech_supply/component
+	name = "random tech component"
+	desc = "This is a random machine component."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "portable_analyzer"
+
+/obj/random/tech_supply/component/item_to_spawn()
+	return pick(prob(3);/obj/item/weapon/stock_parts/gear,
+		prob(2);/obj/item/weapon/stock_parts/console_screen,
+		prob(1);/obj/item/weapon/stock_parts/spring,
+		prob(3);/obj/item/weapon/stock_parts/capacitor,
+		prob(2);/obj/item/weapon/stock_parts/capacitor/adv,
+		prob(1);/obj/item/weapon/stock_parts/capacitor/super,
+		prob(3);/obj/item/weapon/stock_parts/manipulator,
+		prob(2);/obj/item/weapon/stock_parts/manipulator/nano,
+		prob(1);/obj/item/weapon/stock_parts/manipulator/pico,
+		prob(3);/obj/item/weapon/stock_parts/matter_bin,
+		prob(2);/obj/item/weapon/stock_parts/matter_bin/adv,
+		prob(1);/obj/item/weapon/stock_parts/matter_bin/super,
+		prob(3);/obj/item/weapon/stock_parts/scanning_module,
+		prob(2);/obj/item/weapon/stock_parts/scanning_module/adv,
+		prob(1);/obj/item/weapon/stock_parts/scanning_module/phasic)
 
 /obj/random/medical
 	name = "Random Medicine"
@@ -1528,8 +1581,7 @@ var/list/multi_point_spawns
 	icon_state = "phoron"
 
 /obj/random/mob/spider/mutant/item_to_spawn()
-	return pick(prob(1);/obj/random/mob/spider,
-				prob(5);/mob/living/simple_animal/hostile/giant_spider/nurse/medical,
+	return pick(prob(5);/obj/random/mob/spider,
 				prob(10);/mob/living/simple_animal/hostile/giant_spider/webslinger,
 				prob(10);/mob/living/simple_animal/hostile/giant_spider/carrier,
 				prob(33);/mob/living/simple_animal/hostile/giant_spider/lurker,

@@ -33,7 +33,7 @@
 "G" = (/obj/structure/table/steel,/obj/item/robot_parts/l_leg,/obj/item/robot_parts/head,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "H" = (/obj/effect/decal/cleanable/blood/gibs/robot,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "I" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/shuttle/plating,/area/submap/CaveTrench)
-"J" = (/obj/machinery/drone_fabricator,/turf/simulated/shuttle/plating,/area/submap/CaveTrench)
+"J" = (/obj/machinery/drone_fabricator{fabricator_tag = "Unknown"},/turf/simulated/shuttle/plating,/area/submap/CaveTrench)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

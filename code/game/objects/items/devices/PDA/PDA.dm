@@ -1247,20 +1247,17 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(issilicon(usr))
 		return
 
-	if (can_use(usr) && !isnull(cartridge))
-		var/turf/T = get_turf(src)
-		cartridge.loc = T
-		if (ismob(loc))
+	if(can_use(usr) && !isnull(cartridge))
+		cartridge.forceMove(get_turf(src))
+		if(ismob(loc))
 			var/mob/M = loc
 			M.put_in_hands(cartridge)
-		else
-			cartridge.loc = get_turf(src)
 		mode = 0
 		scanmode = 0
 		if (cartridge.radio)
 			cartridge.radio.hostpda = null
-		cartridge = null
 		to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
+		cartridge = null
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
