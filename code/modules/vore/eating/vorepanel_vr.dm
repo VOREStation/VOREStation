@@ -525,12 +525,11 @@
 			"Struggle Message (outside)",
 			"Struggle Message (inside)",
 			"Examine Message (when full)",
-			"Reset All To Default",
-			"Cancel - No Changes"
+			"Reset All To Default"
 		)
 
 		alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-		var/choice = input(user,"Select a type to modify. Messages from each topic are pulled at random when needed.","Pick Type") in messages
+		var/choice = input(user,"Select a type to modify. Messages from each topic are pulled at random when needed.","Pick Type") as null|anything in messages
 		var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
 
 		switch(choice)
@@ -567,9 +566,6 @@
 					selected.struggle_messages_outside = initial(selected.struggle_messages_outside)
 					selected.struggle_messages_inside = initial(selected.struggle_messages_inside)
 
-			if("Cancel - No Changes")
-				return 0
-
 	if(href_list["b_verb"])
 		var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
 
@@ -580,15 +576,16 @@
 		selected.vore_verb = new_verb
 
 	if(href_list["b_sound"])
-		var/choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") in vore_sounds + "Cancel - No Changes"
-
-		if(choice == "Cancel")
+		var/choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") as null|anything in vore_sounds
+		if(!choice)
 			return 0
 
-		selected.vore_sound = vore_sounds[choice]
+		selected.vore_sound = choice
 
 	if(href_list["b_soundtest"])
-		user << selected.vore_sound
+		var/soundfile = vore_sounds[selected.vore_sound]
+		if(soundfile)
+			user << soundfile
 
 	if(href_list["b_tastes"])
 		selected.can_taste = !selected.can_taste

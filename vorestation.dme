@@ -2295,6 +2295,7 @@
 #include "code\modules\paperwork\photography.dm"
 #include "code\modules\paperwork\silicon_photography.dm"
 #include "code\modules\paperwork\stamps.dm"
+#include "code\modules\persistence\persistence.dm"
 #include "code\modules\planet\planet.dm"
 #include "code\modules\planet\time.dm"
 #include "code\modules\planet\weather.dm"
