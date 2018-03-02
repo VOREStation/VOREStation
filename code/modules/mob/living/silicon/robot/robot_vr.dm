@@ -23,7 +23,8 @@
 					   "mechoid-Miner",
 					   "mechoid-Service",
 					   "mechoid-Janitor",
-					   "mechoid-Combat"
+					   "mechoid-Combat",
+					   "mechoid-Combat-roll"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
