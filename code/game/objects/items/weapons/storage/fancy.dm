@@ -253,17 +253,15 @@
 	reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	..()
 
-/obj/item/weapon/storage/fancy/rollingpapers
+/obj/item/weapon/storage/rollingpapers
 	name = "rolling paper pack"
 	desc = "A small cardboard pack containing several folded rolling papers."
 	icon_state = "paperbox"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY
-	throwforce = 2
-	slot_flags = SLOT_BELT
+	throwforce = 1
 	storage_slots = 14
 	can_hold = list(/obj/item/weapon/rollingpaper)
-	icon_type = "paper"
 	starts_with = list(/obj/item/weapon/rollingpaper = 14)
 
 /*
