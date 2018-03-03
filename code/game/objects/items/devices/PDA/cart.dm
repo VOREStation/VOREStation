@@ -265,8 +265,6 @@ var/list/civilian_cartridges = list(
 			if(loc)
 				var/obj/item/PDA = loc
 				var/mob/user = PDA.fingerprintslast
-				if(istype(PDA.loc,/mob/living))
-					name = PDA.loc
 				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 

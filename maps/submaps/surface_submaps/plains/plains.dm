@@ -12,7 +12,7 @@
 #include "bonfire.dmm"
 #include "Rocky5.dmm"
 #include "Field1.dmm"
-#include "Theifc.dmm"
+#include "Thiefc.dmm"
 #include "smol2.dmm"
 #include "Mechpt.dmm"
 #include "Boathouse.dmm"
@@ -110,10 +110,10 @@
 	mappath = 'maps/submaps/surface_submaps/plains/Field1.dmm'
 	cost = 20
 
-/datum/map_template/surface/plains/Theifc
-	name = "Theif Cave"
-	desc = "A theives stash"
-	mappath = 'maps/submaps/surface_submaps/plains/Theifc.dmm'
+/datum/map_template/surface/plains/Thiefc
+	name = "Thieves Cave"
+	desc = "A thieves stash"
+	mappath = 'maps/submaps/surface_submaps/plains/Thiefc.dmm'
 	cost = 20
 
 /datum/map_template/surface/plains/smol2
