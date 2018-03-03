@@ -237,6 +237,8 @@ var/list/mechtoys = list(
     proc/buy()
         if(!shoppinglist.len) return
 
+        var/orderedamount = shoppinglist.len
+
         var/area/area_shuttle = shuttle.get_location_area()
         if(!area_shuttle)   return
 
@@ -275,7 +277,7 @@ var/list/mechtoys = list(
                 slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
                 slip.info +="Order #[SO.ordernum]<br>"
                 slip.info +="Destination: [station_name()]<br>"
-                slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+                slip.info +="[orderedamount] PACKAGES IN THIS SHIPMENT<br>"
                 slip.info +="CONTENTS:<br><ul>"
 
             //spawn the stuff, finish generating the manifest while you're at it
