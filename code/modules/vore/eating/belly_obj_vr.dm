@@ -130,10 +130,10 @@
 		"emote_lists"
 		)
 
-/obj/belly/initialize()
-	. = ..()
+/obj/belly/New(var/newloc)
+	..(newloc)
 	//If not, we're probably just in a prefs list or something.
-	if(isliving(loc))
+	if(isliving(newloc))
 		owner = loc
 		owner.vore_organs |= src
 		SSbellies.belly_list += src
