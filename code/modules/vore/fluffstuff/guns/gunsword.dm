@@ -56,7 +56,6 @@
 	var/lrange = 2
 	var/lpower = 2
 	var/lcolor = "#800080"
-	var/active_state = "gsaber"
 
 
 /obj/item/weapon/cell/device/weapon/gunsword/proc/activate(mob/living/user)
