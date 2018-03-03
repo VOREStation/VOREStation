@@ -9,7 +9,7 @@
 /datum/belly
 	var/name								// Name of this location
 	var/inside_flavor						// Flavor text description of inside sight/sound/smells/feels.
-	var/vore_sound = 'sound/vore/gulp.ogg'	// Sound when ingesting someone
+	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
@@ -107,7 +107,6 @@
 	new_belly.emote_time = emoteTime
 	new_belly.digest_brute = digest_brute
 	new_belly.digest_burn = digest_burn
-	new_belly.digest_tickrate = digest_tickrate
 	new_belly.immutable = immutable
 	new_belly.can_taste = can_taste
 	new_belly.escapable = escapable
