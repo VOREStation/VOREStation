@@ -2,6 +2,7 @@
 	name = "microphone"
 	desc = "Useful for spying on people or for voice activated machines."
 	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
+	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
 	is only triggered if it hears someone speaking a language other than Galactic Common."
 	icon_state = "recorder"
 	complexity = 8
