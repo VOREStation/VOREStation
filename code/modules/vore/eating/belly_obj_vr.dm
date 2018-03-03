@@ -13,14 +13,13 @@
 /obj/belly
 	name = "belly"							// Name of this location
 	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
-	var/vore_sound = 'sound/vore/gulp.ogg'	// Sound when ingesting someone
+	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
 	var/digest_burn = 2						// Burn damage per tick in digestion mode
-	var/digest_tickrate = 3					// Modulus this of air controller tick number to iterate gurgles on
 	var/immutable = 0						// Prevents this belly from being deleted
 	var/escapable = 0						// Belly can be resisted out of at any time
 	var/escapetime = 60 SECONDS				// Deciseconds, how long to escape this belly
@@ -100,6 +99,37 @@
 	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
 	var/tmp/list/emote_lists = list()
 
+//For serialization, keep this updated, required for bellies to save correctly.
+/obj/belly/vars_to_save()
+	return ..() + list(
+		"name",
+		"desc",
+		"vore_sound",
+		"vore_verb",
+		"human_prey_swallow_time",
+		"nonhuman_prey_swallow_time",
+		"emote_time",
+		"digest_brute",
+		"digest_burn",
+		"immutable",
+		"can_taste",
+		"escapable",
+		"escapetime",
+		"digestchance",
+		"absorbchance",
+		"escapechance",
+		"transferchance",
+		"transferlocation",
+		"bulge_size",
+		"shrink_grow_size",
+		"struggle_messages_outside",
+		"struggle_messages_inside",
+		"digest_messages_owner",
+		"digest_messages_prey",
+		"examine_messages",
+		"emote_lists"
+		)
+
 /obj/belly/initialize()
 	. = ..()
 	//If not, we're probably just in a prefs list or something.
@@ -125,8 +155,10 @@
 	
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound)
-		playsound(src, vore_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
-		recent_sound = TRUE
+		var/soundfile = vore_sounds[vore_sound]
+		if(soundfile)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+			recent_sound = TRUE
 	
 	//Messages if it's a mob
 	if(isliving(thing))
@@ -503,8 +535,10 @@
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
-	if(!silent)
-		playsound(src, target.vore_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+	if(!silent && target.vore_sound && !recent_sound)
+		var/soundfile = vore_sounds[target.vore_sound]
+		if(soundfile)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
@@ -524,7 +558,6 @@
 	dupe.emote_time = emote_time
 	dupe.digest_brute = digest_brute
 	dupe.digest_burn = digest_burn
-	dupe.digest_tickrate = digest_tickrate
 	dupe.immutable = immutable
 	dupe.can_taste = can_taste
 	dupe.escapable = escapable
