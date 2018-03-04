@@ -437,7 +437,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 // Base type for alien piles.
 /obj/structure/loot_pile/surface/alien
 	name = "alien pod"
-	desc = "A pod which looks bigger on the inside. Something quiet shiny might be inside?"
+	desc = "A pod which looks bigger on the inside. Something quite shiny might be inside?"
 	icon_state = "alien_pile1"
 
 /obj/structure/loot_pile/surface/alien
