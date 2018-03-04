@@ -1031,7 +1031,7 @@
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
 		return
 
-	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
+	var/obj/item/weapon/implant/reagent_generator/rischi/rimplant
 	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
