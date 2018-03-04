@@ -406,6 +406,8 @@ var/global/list/damage_icon_parts = list()
 				icon_key += "3"
 			else
 				icon_key += "1"
+			if(part.transparent) //VOREStation Edit. For better slime limbs.
+				icon_key += "_t" //VOREStation Edit. For better slime limbs.
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
@@ -546,7 +548,7 @@ var/global/list/damage_icon_parts = list()
 	if (ears_s)
 		face_standing.Blend(ears_s, ICON_OVERLAY)
 	// VOREStation Edit - END
-	if(head_organ.nonsolid)
+	if(head_organ.transparent) //VOREStation Edit. For better slime limbs.
 		face_standing += rgb(,,,120)
 
 	overlays_standing[HAIR_LAYER]	= image(face_standing)
