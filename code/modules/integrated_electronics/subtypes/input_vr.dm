@@ -187,31 +187,69 @@ obj/item/integrated_circuit/input/integrated_radio/attackby(obj/item/weapon/card
 	var/engiset = 0
 	var/sciset = 0
 	var/servset = 0
+	var/channels_added = list()
+	var/amount_added = 0
 	for(var/req in access_list)
 		switch(req)
 			if(access_synth)
 				allowed_channels += list("AI Private" = 0)
+				channels_added += "AI Private"
+				amount_added++
 			if(access_cent_specops)
 				allowed_channels += list("Response Team" = 0,
 										 "Special Ops" = 0)
+				channels_added += "Response Team"
+				channels_added += "Special Ops"
+				amount_added += 2
 			if(access_heads)
 				allowed_channels += list("Command" = 0)
+				channels_added += "Command"
+				amount_added++
 			if(access_engine_equip || access_atmospherics)
 				if(!engiset)
 					allowed_channels += list("Engineering" = 0)
 					engiset++
+					channels_added += "Engineering"
+					amount_added++
 			if(access_medical_equip)
 				allowed_channels += list("Medical" = 0)
+				channels_added += "Medical"
+				amount_added++
 			if(access_security)
 				allowed_channels += list("Security" = 0)
+				channels_added += "Security"
+				amount_added++
 			if(access_tox || access_robotics || access_xenobiology)
 				if(!sciset)
 					allowed_channels += list("Science" = 0)
+					channels_added += "Science"
+					amount_added++
 			if(access_cargo)
-				allowed_channels += list("Cargo" = 0)
+				allowed_channels += list("Supply" = 0)
+				channels_added += "Supply"
+				amount_added++
 			if(access_janitor || access_hydroponics)
 				if(!servset)
 					allowed_channels += list("Service" = 0)
+					channels_added += "Service"
+					amount_added++
 			if(access_explorer)
 				allowed_channels += list("Explorer" = 0)
+				channels_added += "Explorer"
+				amount_added++
 	radio.config(allowed_channels)
+	var/usrmessage
+	switch(channels_added)
+		if(0)
+			usrmessage = "There is no access to any special channels on that ID"
+		if(1)
+			usrmessage = "You set "
+			usrmessage = addtext(usrmessage, channels_added[1], " channel to the list of available channels on ", src.name)
+		else
+			usrmessage = "You set "
+			var/counterprobs = 1
+			while(counterprobs < (length(channels_added) - 1))
+				usrmessage = addtext(usrmessage, channels_added[counterprobs], ", ")
+				counterprobs++
+			usrmessage = addtext(usrmessage, channels_added[length(channels_added) - 1], " and ", channels_added[length(channels_added)], " channels to the list of available channels on ", src.name)
+	user << usrmessage
