@@ -14,6 +14,9 @@
 
 	dir = SOUTH
 	initialize_directions = SOUTH
+	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "passive vent"
 
 	var/build_killswitch = 1
 
@@ -58,10 +61,9 @@
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
+		if (can_be_node(target, 1))
+			node1 = target
+			break
 
 	update_icon()
 

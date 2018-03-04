@@ -139,6 +139,9 @@
 		src.set_dir(turn(src.dir, 90))
 
 //Goddamn copypaste from binary base class because atmospherics machinery API is not damn flexible
+	get_neighbor_nodes_for_init()
+		return list(node1, node2)
+
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 		if(reference == node1)
 			network1 = new_network

@@ -10,6 +10,7 @@
 /obj/machinery/atmospherics/unary/vent_pump
 	icon = 'icons/atmos/vent_pump.dmi'
 	icon_state = "map_vent"
+	pipe_state = "uvent"
 
 	name = "Air Vent"
 	desc = "Has a valve and pump attached to it"
@@ -426,8 +427,7 @@
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()
 
 #undef DEFAULT_PRESSURE_DELTA
 

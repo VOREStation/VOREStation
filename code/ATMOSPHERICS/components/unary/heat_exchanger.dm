@@ -2,6 +2,7 @@
 
 	icon = 'icons/obj/atmospherics/heat_exchanger.dmi'
 	icon_state = "intact"
+	pipe_state = "heunary"
 	density = 1
 
 	name = "Heat Exchanger"
@@ -83,5 +84,4 @@
 				"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 				"<span class='notice'>You have unfastened \the [src].</span>", \
 				"You hear a ratchet.")
-			new /obj/item/pipe(loc, make_from=src)
-			qdel(src)
+			deconstruct()
