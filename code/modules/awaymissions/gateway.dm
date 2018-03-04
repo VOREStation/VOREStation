@@ -1,6 +1,6 @@
 /obj/machinery/gateway
 	name = "gateway"
-	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	desc = "A state-of-the-art Nanotrasen gateway, used to teleport rich commuters anywhere in the same planetary system."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
 	density = 1
