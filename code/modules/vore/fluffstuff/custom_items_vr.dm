@@ -1103,7 +1103,7 @@
 			rimplant = I
 			break
 	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+		if(rimplant.reagents.total_volume < rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
 			return
 
