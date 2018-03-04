@@ -214,13 +214,13 @@
 				mode = SYRINGE_DRAW
 				update_icon()
 
-				dirty(target,affected) //VOREStation Add
 			if(trans)
 				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
 				admin_inject_log(user, target, src, contained, trans)
 			else
 				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
 
+			dirty(target,affected) //VOREStation Add
 
 	return
 /* VOREStation Edit - See syringes_vr.dm
