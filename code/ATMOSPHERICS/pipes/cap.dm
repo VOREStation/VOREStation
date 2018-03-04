@@ -14,6 +14,9 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "cap"
+
 	var/obj/machinery/atmospherics/node
 
 /obj/machinery/atmospherics/pipe/cap/init_dir()
@@ -56,10 +59,9 @@
 
 /obj/machinery/atmospherics/pipe/cap/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node = target
-				break
+		if (can_be_node(target, 1))
+			node = target
+			break
 
 	var/turf/T = src.loc			// hide if turf is not intact
 	if(level == 1 && !T.is_plating()) hide(1)

@@ -13,6 +13,9 @@ obj/machinery/atmospherics/pipe/zpipe
 		dir = SOUTH
 		initialize_directions = SOUTH
 
+		construction_type = /obj/item/pipe/directional
+		pipe_state = "cap"
+
 		// node1 is the connection on the same Z
 		// node2 is the connection on the other Z
 
@@ -135,16 +138,15 @@ obj/machinery/atmospherics/pipe/zpipe/up/atmos_init()
 				node1_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
+		if(can_be_node(target, 1))
+			node1 = target
+			break
 
 	var/turf/above = GetAbove(src)
 	if(above)
 		for(var/obj/machinery/atmospherics/target in above)
-			if(target.initialize_directions && istype(target, /obj/machinery/atmospherics/pipe/zpipe/down))
-				if (check_connect_types(target,src))
+			if(istype(target, /obj/machinery/atmospherics/pipe/zpipe/down))
+				if (check_connectable(target) && target.check_connectable(src))
 					node2 = target
 					break
 
@@ -173,16 +175,15 @@ obj/machinery/atmospherics/pipe/zpipe/down/atmos_init()
 				node1_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
+		if(can_be_node(target, 1))
+			node1 = target
+			break
 
 	var/turf/below = GetBelow(src)
 	if(below)
 		for(var/obj/machinery/atmospherics/target in below)
-			if(target.initialize_directions && istype(target, /obj/machinery/atmospherics/pipe/zpipe/up))
-				if (check_connect_types(target,src))
+			if(istype(target, /obj/machinery/atmospherics/pipe/zpipe/up))
+				if (check_connectable(target) && target.check_connectable(src))
 					node2 = target
 					break
 

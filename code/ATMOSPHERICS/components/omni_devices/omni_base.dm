@@ -7,6 +7,7 @@
 	icon_state = "base"
 	use_power = 1
 	initialize_directions = 0
+	construction_type = /obj/item/pipe/quaternary
 	level = 1
 
 	var/configuring = 0
@@ -93,8 +94,7 @@
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()
 
 /obj/machinery/atmospherics/omni/can_unwrench()
 	var/int_pressure = 0
@@ -222,6 +222,11 @@
 
 
 // Housekeeping and pipe network stuff below
+/obj/machinery/atmospherics/omni/get_neighbor_nodes_for_init()
+	var/list/neighbor_nodes = list()
+	for(var/datum/omni_port/P in ports)
+		neighbor_nodes += P.node
+	return neighbor_nodes
 
 /obj/machinery/atmospherics/omni/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	for(var/datum/omni_port/P in ports)
@@ -252,10 +257,9 @@
 		if(P.node || P.mode == 0)
 			continue
 		for(var/obj/machinery/atmospherics/target in get_step(src, P.dir))
-			if(target.initialize_directions & get_dir(target,src))
-				if (check_connect_types(target,src))
-					P.node = target
-					break
+			if(can_be_node(target, 1))
+				P.node = target
+				break
 
 	for(var/datum/omni_port/P in ports)
 		P.update = 1

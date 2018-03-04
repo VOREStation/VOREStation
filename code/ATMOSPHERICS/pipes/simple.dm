@@ -13,6 +13,10 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 
+	pipe_flags = PIPING_CARDINAL_AUTONORMALIZE
+	construction_type = /obj/item/pipe/binary/bendable
+	pipe_state = "simple"
+
 	var/minimum_temperature_difference = 300
 	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
@@ -47,9 +51,13 @@
 
 /obj/machinery/atmospherics/pipe/simple/init_dir()
 	switch(dir)
-		if(SOUTH || NORTH)
+		if(SOUTH)
 			initialize_directions = SOUTH|NORTH
-		if(EAST || WEST)
+		if(NORTH)
+			initialize_directions = SOUTH|NORTH
+		if(EAST)
+			initialize_directions = EAST|WEST
+		if(WEST)
 			initialize_directions = EAST|WEST
 		if(NORTHEAST)
 			initialize_directions = NORTH|EAST
@@ -124,15 +132,13 @@
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
+		if(can_be_node(target, 1))
+			node1 = target
+			break
 	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node2 = target
-				break
+		if(can_be_node(target, 2))
+			node2 = target
+			break
 
 	if(!node1 && !node2)
 		qdel(src)
@@ -247,6 +253,9 @@
 /obj/machinery/atmospherics/pipe/simple/insulated
 	icon = 'icons/obj/atmospherics/red_pipe.dmi'
 	icon_state = "intact"
+
+	construction_type = /obj/item/pipe/binary/bendable
+	pipe_state = "insulated"
 
 	minimum_temperature_difference = 10000
 	thermal_conductivity = 0

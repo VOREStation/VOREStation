@@ -5,6 +5,8 @@
 /obj/machinery/atmospherics/binary/passive_gate
 	icon = 'icons/atmos/passive_gate.dmi'
 	icon_state = "map"
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "passivegate"
 	level = 1
 
 	name = "pressure regulator"
@@ -257,8 +259,7 @@
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()
 
 #undef REGULATE_NONE
 #undef REGULATE_INPUT
