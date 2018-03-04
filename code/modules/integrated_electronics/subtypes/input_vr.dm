@@ -1,47 +1,3 @@
-/obj/item/integrated_circuit/input/microphone
-	name = "microphone"
-	desc = "Useful for spying on people or for voice activated machines."
-	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
-	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
-	is only triggered if it hears someone speaking a language other than Galactic Common."
-	icon_state = "recorder"
-	complexity = 8
-	inputs = list()
-	outputs = list(
-	"speaker" = IC_PINTYPE_STRING,
-	"message" = IC_PINTYPE_STRING
-	)
-	activators = list("on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	power_draw_per_use = 15
-
-/obj/item/integrated_circuit/input/microphone/New()
-	..()
-	listening_objects |= src
-
-/obj/item/integrated_circuit/input/microphone/Destroy()
-	listening_objects -= src
-	return ..()
-
-/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
-	var/translated = FALSE
-	if(M && msg)
-		if(speaking)
-			if(!speaking.machine_understands)
-				msg = speaking.scramble(msg)
-			if(!istype(speaking, /datum/language/common))
-				translated = TRUE
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
-
-	push_data()
-	activate_pin(1)
-	if(translated)
-		activate_pin(2)
-
-
-
-
 obj/item/device/radio/integrated/
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "signal"
@@ -49,10 +5,9 @@ obj/item/device/radio/integrated/
 	var/obj/item/integrated_circuit/input/integrated_radio/circuit = null
 
 
-/obj/item/device/radio/integrated/receive_range(freq, level)
-	// check if this radio can receive on the given frequency, and if so,
-	// what the range is in which mobs will hear the radio
-	// returns: -1 if can't receive, range otherwise
+/obj/item/device/radio/integrated/receive_range(freq, level)  //same as regular recieve_range, but ignores
+															  //the limitations of range being -1 and having to be
+															  //tuned in for specific channel
 
 	if (wires.IsIndexCut(WIRE_RECEIVE))
 		return -2
@@ -65,26 +20,16 @@ obj/item/device/radio/integrated/
 		if(!position || !(position.z in level))
 			return -2
 	if(freq in ANTAG_FREQS)
-		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+		if(!(src.syndie))
 			return -2
 	if(freq in CENT_FREQS)
-		if(!(src.centComm))//Checks to see if it's allowed on that frequency, based on the encryption keys
+		if(!(src.centComm))
 			return -2
 	if (!on)
 		return -2
-	if (!freq) //recieved on main frequency
+	if (!freq)
 		if (!listening)
-			return -2/*
-	else
-		var/accept = (freq==frequency && listening)
-		if (!accept)
-			for (var/ch_name in channels)
-				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
-					accept = 1
-					break
-		if (!accept)
-			return -2*/
+			return -2
 	return canhear_range
 
 /obj/item/device/radio/integrated/recieve_broadcast(var/mob/M, var/vmask,
@@ -92,7 +37,7 @@ obj/item/device/radio/integrated/
 						var/data, var/compression, var/freq,
 						var/datum/language/speaking = null)
 
-	var/firstletter = copytext(message, 1, 2)
+	var/firstletter = copytext(message, 1, 2)	//capitalize first letter, as its not done in normal reception code
 	var/restoftext = copytext(message, 2, 0)
 	var/bigfirstletter = uppertext(firstletter)
 	var/msg = addtext(bigfirstletter, restoftext)
@@ -102,25 +47,27 @@ obj/item/device/radio/integrated/
 
 	channel = get_frequency_name(freq)
 
-	if(findtextEx(realname, "(electronic "))
+	if(findtextEx(realname, "(electronic "))	//no hearing other machines
 		return
 
-	if(data == 1 || data == 3)
+	if(data == 1 || data == 3)		//no hearing antag and intercom-only broadcast
 		return
 
-	if(compression)
+	if(compression)		//doesn't find compressed transmissions legible
 		return
 
-	if(!(!M || !ishuman(M) || vmask))
+	if(!(!M || !ishuman(M) || vmask))	//disguise the voice...
 		heard_name = realname
 
 
 	var/translated = FALSE
 	if(heard_name && msg && channel)
-		if(speaking)
+		if(speaking)			//translation stuff
 			if(!speaking.machine_understands)
 				msg = speaking.scramble(msg)
-			if(!istype(speaking, /datum/language/common))
+			if(speaking == all_languages["Noise"]) //dont hear radio me's
+				return
+			if(!istype(speaking, /datum/language/common) && speaking.machine_understands) //if translation failed or not needed, do not ping the pin
 				translated = TRUE
 		circuit.set_pin_data(IC_OUTPUT, 1, channel)
 		circuit.set_pin_data(IC_OUTPUT, 2, heard_name)
@@ -134,7 +81,7 @@ obj/item/device/radio/integrated/
 
 /obj/item/integrated_circuit/input/integrated_radio
 	name = "integrated radio"
-	desc = "Useful for interacting with radio channels"
+	desc = "Allows for interactions with radio channels"
 	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
 	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
 	is only triggered if it hears someone speaking a language other than Galactic Common."
