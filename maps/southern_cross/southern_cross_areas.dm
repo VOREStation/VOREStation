@@ -990,11 +990,11 @@ area/crew_quarters/heads/sc/hop/quarters
 	icon_state = "SolarcontrolS"
 
 /area/maintenance/solars/foreportsolar
-	name = "Solar Maintenance - Fore Starboard"
-	icon_state = "SolarcontrolS"
+	name = "Solar Maintenance - Fore Port"
+	icon_state = "SolarcontrolP"
 
 /area/maintenance/solars/forestarboardsolar
-	name = "Solar Maintenance - Fore Port"
+	name = "Solar Maintenance - Fore Starboard"
 	icon_state = "SolarcontrolS"
 
 /area/solar
