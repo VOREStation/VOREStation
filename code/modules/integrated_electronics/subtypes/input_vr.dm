@@ -45,10 +45,91 @@
 obj/item/device/radio/integrated/
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "signal"
-	canhear_range = 0
-	listening = 0
+	canhear_range = -1
 	var/obj/item/integrated_circuit/input/integrated_radio/circuit = null
 
+
+/obj/item/device/radio/integrated/receive_range(freq, level)
+	// check if this radio can receive on the given frequency, and if so,
+	// what the range is in which mobs will hear the radio
+	// returns: -1 if can't receive, range otherwise
+
+	if (wires.IsIndexCut(WIRE_RECEIVE))
+		return -2
+	if(!listening)
+		return -2
+	if(is_jammed(src))
+		return -2
+	if(!(0 in level))
+		var/turf/position = get_turf(src)
+		if(!position || !(position.z in level))
+			return -2
+	if(freq in ANTAG_FREQS)
+		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+			return -2
+	if(freq in CENT_FREQS)
+		if(!(src.centComm))//Checks to see if it's allowed on that frequency, based on the encryption keys
+			return -2
+	if (!on)
+		return -2
+	if (!freq) //recieved on main frequency
+		if (!listening)
+			return -2/*
+	else
+		var/accept = (freq==frequency && listening)
+		if (!accept)
+			for (var/ch_name in channels)
+				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
+				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
+					accept = 1
+					break
+		if (!accept)
+			return -2*/
+	return canhear_range
+
+/obj/item/device/radio/integrated/recieve_broadcast(var/mob/M, var/vmask,
+						var/message, var/name, var/job, var/realname,
+						var/data, var/compression, var/freq,
+						var/datum/language/speaking = null)
+
+	var/firstletter = copytext(message, 1, 2)
+	var/restoftext = copytext(message, 2, 0)
+	var/bigfirstletter = uppertext(firstletter)
+	var/msg = addtext(bigfirstletter, restoftext)
+
+	var/heard_name = name
+	var/channel = null
+
+	channel = get_frequency_name(freq)
+
+	if(findtextEx(realname, "(electronic "))
+		return
+
+	if(data == 1 || data == 3)
+		return
+
+	if(compression)
+		return
+
+	if(!(!M || !ishuman(M) || vmask))
+		heard_name = realname
+
+
+	var/translated = FALSE
+	if(heard_name && msg && channel)
+		if(speaking)
+			if(!speaking.machine_understands)
+				msg = speaking.scramble(msg)
+			if(!istype(speaking, /datum/language/common))
+				translated = TRUE
+		circuit.set_pin_data(IC_OUTPUT, 1, channel)
+		circuit.set_pin_data(IC_OUTPUT, 2, heard_name)
+		circuit.set_pin_data(IC_OUTPUT, 3, msg)
+
+	circuit.push_data()
+	circuit.activate_pin(2)
+	if(translated)
+		circuit.activate_pin(3)
 
 
 /obj/item/integrated_circuit/input/integrated_radio
@@ -75,15 +156,7 @@ obj/item/device/radio/integrated/
 
 	var/allowed_channels = list(
 	"Common" = 0,
-	"Entertainment" = 0,
-	"Science" = 0,
-	"Explorer" = 0,
-	"Medical" = 0,
-	"Engineering" = 0,
-	"Security" = 0,
-	"Supply" = 0,
-	"Service" = 0,
-	"Command" = 0
+	"Entertainment" = 0
 	)
 	var/obj/item/device/radio/integrated/radio = null
 
@@ -103,26 +176,42 @@ obj/item/device/radio/integrated/
 	var/message = get_pin_data(IC_INPUT, 2)
 	if(!isnull(message))
 		var/obj/O = assembly ? loc : assembly
-		radio.autosay(message, O.name, target_channel)
+		radio.autosay(message, "[O.name] ([initial(O.name)])", target_channel)
 
-	//if(target_channel in allowed_channels)
-		//global_announcer.autosay
+obj/item/integrated_circuit/input/integrated_radio/attackby(obj/item/weapon/card/id/id, mob/user)
+	..()
+	var/access_list = id.GetAccess()
+	allowed_channels = list("Common" = 0,
+							"Entertainment" = 0)
 
-
-/obj/item/integrated_circuit/input/integrated_radio/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
-	var/translated = FALSE
-	if(M && msg)
-		if(speaking)
-			if(!speaking.machine_understands)
-				msg = speaking.scramble(msg)
-			if(!istype(speaking, /datum/language/common))
-				translated = TRUE
-		set_pin_data(IC_OUTPUT, 2, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 3, msg)
-
-	push_data()
-	activate_pin(1)
-	if(translated)
-		activate_pin(2)
-
-
+	var/engiset = 0
+	var/sciset = 0
+	var/servset = 0
+	for(var/req in access_list)
+		switch(req)
+			if(access_synth)
+				allowed_channels += list("AI Private" = 0)
+			if(access_cent_specops)
+				allowed_channels += list("Response Team" = 0,
+										 "Special Ops" = 0)
+			if(access_heads)
+				allowed_channels += list("Command" = 0)
+			if(access_engine_equip || access_atmospherics)
+				if(!engiset)
+					allowed_channels += list("Engineering" = 0)
+					engiset++
+			if(access_medical_equip)
+				allowed_channels += list("Medical" = 0)
+			if(access_security)
+				allowed_channels += list("Security" = 0)
+			if(access_tox || access_robotics || access_xenobiology)
+				if(!sciset)
+					allowed_channels += list("Science" = 0)
+			if(access_cargo)
+				allowed_channels += list("Cargo" = 0)
+			if(access_janitor || access_hydroponics)
+				if(!servset)
+					allowed_channels += list("Service" = 0)
+			if(access_explorer)
+				allowed_channels += list("Explorer" = 0)
+	radio.config(allowed_channels)
