@@ -909,7 +909,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			overlays_standing[SHOES_LAYER] = null
 			overlays_standing[SHOES_LAYER_ALT] = null
-	if(update_icons)   update_icons()
+	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
 	if(QDESTROYING(src))
