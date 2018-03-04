@@ -67,8 +67,11 @@
 
 	minbodytemp = 175
 
-	melee_damage_lower = 15
+	melee_damage_lower = 22
 	melee_damage_upper = 35
+	attack_armor_pen = 35
+	attack_sharp = 1
+	attack_edge = 1
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	response_help  = "pets"

@@ -28,8 +28,11 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "punches"
 
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 18
+	melee_damage_upper = 30
+	attack_sharp = 1
+	attack_edge = 1
+
 	heat_damage_per_tick = 20
 	cold_damage_per_tick = 20
 
@@ -69,8 +72,8 @@ Nurse Family
 	maxHealth = 40
 	health = 40
 
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 8
+	melee_damage_upper = 15
 	poison_per_bite = 7
 	poison_type = "stoxin"
 
@@ -88,10 +91,11 @@ Nurse Family
 	maxHealth = 320
 	health = 320
 
-	melee_damage_lower = 15
-	melee_damage_upper = 25
-	poison_per_bite = 10
+	melee_damage_lower = 20
+	melee_damage_upper = 30
+	attack_armor_pen = 25
 
+	poison_per_bite = 10
 	egg_inject_chance = 10
 
 	pixel_x = -16
@@ -115,8 +119,8 @@ Nurse Family
 	cooperative = 1
 	shoot_range = 5
 
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 8
+	melee_damage_upper = 15
 	poison_per_bite = 2
 	poison_type = "psilocybin"
 
@@ -148,8 +152,8 @@ Nurse Family
 	maxHealth = 100
 	health = 100
 
-	melee_damage_lower = 5
-	melee_damage_upper = 20
+	melee_damage_lower = 8
+	melee_damage_upper = 25
 
 	poison_per_bite = 3
 	poison_type = "chloralhydrate"
@@ -208,9 +212,6 @@ Hunter Family
 	health = 120
 	move_to_delay = 4
 
-	melee_damage_lower = 10
-	melee_damage_upper = 20
-
 	poison_per_bite = 5
 
 /mob/living/simple_animal/hostile/giant_spider/lurker
@@ -224,7 +225,7 @@ Hunter Family
 	health = 100
 	move_to_delay = 4
 
-	melee_damage_lower = 5
+	melee_damage_lower = 8
 	melee_damage_upper = 20
 
 
@@ -275,8 +276,8 @@ Guard Family
 	maxHealth = 210
 	health = 210
 
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 8
+	melee_damage_upper = 15
 
 	poison_chance = 20
 	poison_per_bite = 5
@@ -295,8 +296,8 @@ Guard Family
 	maxHealth = 175
 	health = 175
 
-	melee_damage_lower = 5
-	melee_damage_upper = 15
+	melee_damage_lower = 10
+	melee_damage_upper = 25
 
 	poison_chance = 30
 	poison_per_bite = 1
@@ -312,8 +313,8 @@ Guard Family
 	health = 210
 	taser_kill = 0 //It -is- the taser.
 
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 10
+	melee_damage_upper = 25
 
 	ranged = 1
 	projectilesound = 'sound/weapons/taser2.ogg'
@@ -335,8 +336,9 @@ Guard Family
 	health = 225
 	taser_kill = 0 //You will need more than a peashooter to kill the juggernaut.
 
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 25
+	melee_damage_upper = 40
+	attack_armor_pen = 15
 
 	poison_chance = 30
 	poison_per_bite = 0.5
@@ -365,9 +367,6 @@ Guard Family
 
 	maxHealth = 175
 	health = 175
-
-	melee_damage_lower = 15
-	melee_damage_upper = 20
 
 	poison_per_bite = 5
 	poison_type = "cryotoxin"
