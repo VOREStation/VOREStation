@@ -1,6 +1,6 @@
 # polaris
 
-[Forums](http://ss13polaris.com/forums/) - [Wiki](http://ss13polaris.com/wiki/doku.php)
+[Forums](https://forum.ss13polaris.com/) - [Wiki](http://wiki.ss13polaris.com/)
 
 Polaris is a fork of the Baystation12 code branch for the game Spacestation13.
 
