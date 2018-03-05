@@ -1,25 +1,21 @@
-/obj/item/robot_module/proc/do_transform_animation()
-	var/mob/living/silicon/robot/R = loc
-	R.notransform = TRUE
-	var/obj/effect/temp_visual/decoy/fading/fivesecond/ANM = new /obj/effect/temp_visual/decoy/fading/fivesecond(R.loc, R)
-	ANM.layer = R.layer - 0.01
-	new /obj/effect/temp_visual/small_smoke(R.loc)
-	/*
-	if(R.hat)
-		R.hat.forceMove(get_turf(R))
-		R.hat = null
-	*/
-	//R.update_headlamp()
-	R.alpha = 0
-	animate(R, alpha = 255, time = 50)
-	var/prev_lockcharge = R.lockcharge
-	R.SetLockdown(1)
-	R.anchored = TRUE
+/mob/living/silicon/robot/proc/transform_with_anim()
+	INVOKE_ASYNC(src, .proc/do_transform_animation)
+
+/mob/living/silicon/robot/proc/do_transform_animation()
+	notransform = TRUE
+	var/obj/effect/temp_visual/decoy/fading/fivesecond/ANM = new /obj/effect/temp_visual/decoy/fading/fivesecond(loc, src)
+	ANM.layer = layer - 0.01
+	new /obj/effect/temp_visual/small_smoke(loc)
+	alpha = 0
+	animate(src, alpha = 255, time = 50)
+	var/prev_lockcharge = lockcharge
+	SetLockdown(1)
+	anchored = TRUE
 	sleep(2)
 	for(var/i in 1 to 4)
-		playsound(R, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/Welder.ogg', 'sound/items/Ratchet.ogg'), 80, 1, -1)
+		playsound(src, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/Welder.ogg', 'sound/items/Ratchet.ogg'), 80, 1, -1)
 		sleep(12)
 	if(!prev_lockcharge)
-		R.SetLockdown(0)
-	R.anchored = FALSE
-	R.notransform = FALSE
+		SetLockdown(0)
+	anchored = FALSE
+	notransform = FALSE

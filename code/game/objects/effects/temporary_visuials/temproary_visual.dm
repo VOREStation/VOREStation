@@ -1,5 +1,6 @@
 //temporary visual effects
 /obj/effect/temp_visual
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -32,7 +33,7 @@
 	if(set_dir)
 		setDir(set_dir)
 	. = ..()
-*/
+*/		//More tg stuff that might be useful later
 
 /obj/effect/temp_visual/proc/setDir(var/newdir)
 	dir = newdir

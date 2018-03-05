@@ -267,6 +267,7 @@
 		return
 
 	var/module_type = robot_modules[modtype]
+	transform_with_anim()	//VOREStation edit: sprite animation
 	new module_type(src)
 
 	hands.icon_state = lowertext(modtype)
@@ -964,14 +965,19 @@
 		return
 
 	icon_selected = 0
+	var/transform = 0 //VOREStation edit: sprite animation
 	src.icon_selection_tries = triesleft
 	if(module_sprites.len == 1 || !client)
 		if(!(icontype in module_sprites))
 			icontype = module_sprites[1]
 	else
 		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
+		transform_with_anim() //VOREStation edit: sprite animation
+		transform++ 		  //VOREStation edit: sprite animation
 	icon_state = module_sprites[icontype]
 	updateicon()
+	if(transform) //VOREStation edit: sprite animation
+		sleep(50) //VOREStation edit: sprite animation
 
 	if (module_sprites.len > 1 && triesleft >= 1 && client)
 		icon_selection_tries--
