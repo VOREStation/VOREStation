@@ -185,14 +185,14 @@
 /obj/effect/step_trigger/teleporter/wild/to_wild/New()
 	..()
 	teleport_x = src.x
-	teleport_y = world.maxy - 1
+	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_WILD
 
 /obj/effect/step_trigger/teleporter/wild/from_wild/New()
 	..()
 	teleport_x = src.x
-	teleport_y = 2
-	teleport_z = Z_LEVEL_SURFACE
+	teleport_y = world.maxy - 1
+	teleport_z = Z_LEVEL_SURFACE_MINE
 
 
 /obj/effect/step_trigger/teleporter/bridge/east_to_west/New()

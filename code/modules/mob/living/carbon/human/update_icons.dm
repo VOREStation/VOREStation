@@ -17,31 +17,23 @@ core parts. The key difference is that when we generate overlays we do not gener
 versions. Instead, we generate both and store them in two fixed-length lists, both using the same list-index
 (The indexes are in update_icons.dm): Each list for humans is (at the time of writing) of length 19.
 This will hopefully be reduced as the system is refined.
-
 	var/overlays_lying[19]			//For the lying down stance
 	var/overlays_standing[19]		//For the standing stance
-
 When we call update_icons, the 'lying' variable is checked and then the appropriate list is assigned to our overlays!
 That in itself uses a tiny bit more memory (no more than all the ridiculous lists the game has already mind you).
-
 On the other-hand, it should be very CPU cheap in comparison to the old system.
 In the old system, we updated all our overlays every life() call, even if we were standing still inside a crate!
 or dead!. 25ish overlays, all generated from scratch every second for every xeno/human/monkey and then applied.
 More often than not update_clothing was being called a few times in addition to that! CPU was not the only issue,
 all those icons had to be sent to every client. So really the cost was extremely cumulative. To the point where
 update_clothing would frequently appear in the top 10 most CPU intensive procs during profiling.
-
 Another feature of this new system is that our lists are indexed. This means we can update specific overlays!
 So we only regenerate icons when we need them to be updated! This is the main saving for this system.
-
 In practice this means that:
 	everytime you fall over, we just switch between precompiled lists. Which is fast and cheap.
 	Everytime you do something minor like take a pen out of your pocket, we only update the in-hand overlay
 	etc...
-
-
 There are several things that need to be remembered:
-
 >	Whenever we do something that should cause an overlay to update (which doesn't use standard procs
 	( i.e. you do something like l_hand = /obj/item/something new(src) )
 	You will need to call the relevant update_inv_* proc:
@@ -61,12 +53,9 @@ There are several things that need to be remembered:
 		update_inv_back()
 		update_inv_handcuffed()
 		update_inv_wear_mask()
-
 	All of these are named after the variable they update from. They are defined at the mob/ level like
 	update_clothing was, so you won't cause undefined proc runtimes with usr.update_inv_wear_id() if the usr is a
 	slime etc. Instead, it'll just return without doing any work. So no harm in calling it for slimes and such.
-
-
 >	There are also these special cases:
 		update_mutations()	//handles updating your appearance for certain mutations.  e.g TK head-glows
 		UpdateDamageIcon()	//handles damage overlays for brute/burn damage //(will rename this when I geta round to it)
@@ -74,7 +63,6 @@ There are several things that need to be remembered:
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
 																			...eyes were merged into update_body)
 		update_targeted() // Updates the target overlay when someone points a gun at you
-
 >	All of these procs update our overlays_lying and overlays_standing, and then call update_icons() by default.
 	If you wish to update several overlays at once, you can set the argument to 0 to disable the update and call
 	it manually:
@@ -82,25 +70,20 @@ There are several things that need to be remembered:
 		update_inv_head(0)
 		update_inv_l_hand(0)
 		update_inv_r_hand()		//<---calls update_icons()
-
 	or equivillantly:
 		update_inv_head(0)
 		update_inv_l_hand(0)
 		update_inv_r_hand(0)
 		update_icons()
-
 >	If you need to update all overlays you can use regenerate_icons(). it works exactly like update_clothing used to.
-
 >	I reimplimented an old unused variable which was in the code called (coincidentally) var/update_icon
 	It can be used as another method of triggering regenerate_icons(). It's basically a flag that when set to non-zero
 	will call regenerate_icons() at the next life() call and then reset itself to 0.
 	The idea behind it is icons are regenerated only once, even if multiple events requested it.
-
 This system is confusing and is still a WIP. It's primary goal is speeding up the controls of the game whilst
 reducing processing costs. So please bear with me while I iron out the kinks. It will be worth it, I promise.
 If I can eventually free var/lying stuff from the life() process altogether, stuns/death/status stuff
 will become less affected by lag-spikes and will be instantaneous! :3
-
 If you have any questions/constructive-comments/bugs-to-report/or have a massivly devestated butt...
 Please contact me on #coderbus IRC. ~Carn x
 */
@@ -423,24 +406,20 @@ var/global/list/damage_icon_parts = list()
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
-			if(part.icon_position == RIGHT)
+			if(part.icon_position & (LEFT | RIGHT))
 				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
-				var/icon/temp3 = new('icons/mob/human.dmi',"blank")
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
-				temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+				if(!(part.icon_position & LEFT))
+					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+				if(!(part.icon_position & RIGHT))
+					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
 				base_icon.Blend(temp2, ICON_OVERLAY)
-				temp3.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp3, ICON_UNDERLAY)
-			else if(part.icon_position == LEFT)
-				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
-				var/icon/temp3 = new('icons/mob/human.dmi',"blank")
-				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
-				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
-				temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp2, ICON_OVERLAY)
-				temp3.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				base_icon.Blend(temp3, ICON_UNDERLAY)
+				if(part.icon_position & LEFT)
+					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+				if(part.icon_position & RIGHT)
+					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				base_icon.Blend(temp2, ICON_UNDERLAY)
 			else if(part.icon_position & UNDER)
 				base_icon.Blend(temp, ICON_UNDERLAY)
 			else
@@ -947,7 +926,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			overlays_standing[SHOES_LAYER] = null
 			overlays_standing[SHOES_LAYER_ALT] = null
-	if(update_icons)   update_icons()
+	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
 	if(QDESTROYING(src))

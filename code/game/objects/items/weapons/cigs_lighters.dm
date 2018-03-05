@@ -6,6 +6,7 @@ MATCHES
 CIGARETTES
 CIGARS
 SMOKING PIPES
+CUSTOM CIGS
 CHEAP LIGHTERS
 ZIPPO
 
@@ -453,6 +454,41 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cobpipe"
 	item_state = "cobpipe"
 	chem_volume = 35
+
+///////////////
+//CUSTOM CIGS//
+///////////////
+//and by custom cigs i mean craftable joints. smoke weed every day
+
+/obj/item/clothing/mask/smokable/cigarette/joint
+	name = "joint"
+	desc = "This probably shouldn't ever show up."
+	icon_state = "joint"
+	max_smoketime = 500
+	smoketime = 500
+	nicotine_amt = 0
+
+/obj/item/weapon/rollingpaper
+	name = "rolling paper"
+	desc = "A small, thin piece of easily flammable paper, commonly used for rolling and smoking various dried plants."
+	icon = 'icons/obj/cigarettes.dmi'
+	icon_state = "cig paper"
+
+/obj/item/weapon/rollingpaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/reagent_containers/food/snacks))
+		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = W
+		if (!G.dry)
+			user << "<span class='notice'>[G] must be dried before you roll it into [src].</span>"
+			return
+		var/obj/item/clothing/mask/smokable/cigarette/joint/J = new /obj/item/clothing/mask/smokable/cigarette/joint(user.loc)
+		to_chat(usr,"<span class='notice'>You roll the [G.name] into a joint!</span>")
+		J.add_fingerprint(user)
+		if(G.reagents)
+			G.reagents.trans_to_obj(J, G.reagents.total_volume)
+		J.name = "[G.name] joint"
+		J.desc = "A joint lovingly rolled and filled with [G.name]. Blaze it."
+		qdel(G)
+		qdel(src)
 
 /////////
 //ZIPPO//
