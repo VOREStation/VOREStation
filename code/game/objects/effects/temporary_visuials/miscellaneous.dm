@@ -2,7 +2,7 @@
 	desc = "It's a decoy!"
 	duration = 15
 
-/obj/effect/temp_visual/decoy/initialize(mapload, atom/mimiced_atom)
+/obj/effect/temp_visual/decoy/initialize(mapload, atom/mimiced_atom, var/customappearance)
 	. = ..()
 	alpha = initial(alpha)
 	if(mimiced_atom)
@@ -10,6 +10,8 @@
 		appearance = mimiced_atom.appearance
 		setDir(mimiced_atom.dir)
 		mouse_opacity = 0
+	if(customappearance)
+		appearance = customappearance
 
 /obj/effect/temp_visual/decoy/fading/initialize(mapload, atom/mimiced_atom)
 	. = ..()

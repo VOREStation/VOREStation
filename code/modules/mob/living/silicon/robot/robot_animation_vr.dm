@@ -1,9 +1,12 @@
 /mob/living/silicon/robot/proc/transform_with_anim()
+	//animiconsaved = appearance
 	INVOKE_ASYNC(src, .proc/do_transform_animation)
 
 /mob/living/silicon/robot/proc/do_transform_animation()
 	notransform = TRUE
+	dir = SOUTH
 	var/obj/effect/temp_visual/decoy/fading/fivesecond/ANM = new /obj/effect/temp_visual/decoy/fading/fivesecond(loc, src)
+	//ANM.appearance = animiconsaved
 	ANM.layer = layer - 0.01
 	new /obj/effect/temp_visual/small_smoke(loc)
 	alpha = 0
