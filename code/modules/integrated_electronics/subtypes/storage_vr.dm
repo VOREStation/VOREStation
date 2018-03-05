@@ -16,8 +16,8 @@
 */
 
 
-/obj/item/integrated_circuit/manipulation/grabber
-	name = "grabber"
+/obj/item/integrated_circuit/storage/manipulator
+	name = "manipulator"
 	desc = "A circuit with it's own inventory for items, used to grab and store things."
 	icon_state = "grabber"
 	extended_desc = "The circuit accepts a reference to an object to be grabbed and can store up to 10 objects. Modes: 1 to grab, 0 to eject the first object, and -1 to eject all objects."
@@ -25,12 +25,12 @@
 	size = 3
 
 	complexity = 10
-	inputs = list("target" = IC_PINTYPE_REF,"mode" = IC_PINTYPE_NUMBER)
-	outputs = list("first" = IC_PINTYPE_REF, "last" = IC_PINTYPE_REF, "amount" = IC_PINTYPE_NUMBER,"contents" = IC_PINTYPE_LIST)
+	inputs = list("target" = IC_PINTYPE_REF,"mode" = IC_PINTYPE_NUMBER,"direction" = IC_PINTYPE_DIR)
+	outputs = list("item" = IC_PINTYPE_REF,"last" = IC_PINTYPE_REF, "amount" = IC_PINTYPE_NUMBER,"contents" = IC_PINTYPE_LIST)
 	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 50
-	var/max_items = 10
+	var/max_items = 1
 
 /obj/item/integrated_circuit/manipulation/grabber/do_work()
 	var/max_w_class = assembly.w_class
