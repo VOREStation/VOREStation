@@ -23,7 +23,7 @@
 		ckeys_allowed = list("Kira72")
 		do_colouration = 0
 
-	Taramaw
+	taramaw
 		name = "Hairmaw (Liquidfirefly)"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_state = "maw_hair"

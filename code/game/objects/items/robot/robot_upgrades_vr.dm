@@ -6,3 +6,6 @@
 		R.add_language(LANGUAGE_ECUREUILIAN,	1)
 		R.add_language(LANGUAGE_DAEMON,			1)
 		R.add_language(LANGUAGE_ENOCHIAN,		1)
+		return 1
+	else
+		return 0
