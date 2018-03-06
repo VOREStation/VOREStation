@@ -73,7 +73,7 @@
 * Update icon and overlays of open space to be that of the turf below, plus any visible objects on that turf.
 */
 /turf/simulated/open/update_icon()
-	overlays = list() // Edit - Overlays are being crashy when modified.
+	cut_overlays() // Edit - Overlays are being crashy when modified.
 	update_icon_edge()// Add - Get grass into open spaces and whatnot.
 	var/turf/below = GetBelow(src)
 	if(below)
@@ -86,12 +86,7 @@
 			bottom_turf.plane = src.plane
 			bottom_turf.color = below.color
 			underlays = list(bottom_turf)
-		// Hack workaround to byond crash bug - Include the magic overlay holder object.
-		overlays += below.overlays
-		// if(below.overlay_holder)
-		// 	overlays += (below.overlays + below.overlay_holder.overlays)
-		// else
-		// 	overlays += below.overlays
+		copy_overlays(below)
 
 		// get objects (not mobs, they are handled by /obj/zshadow)
 		var/list/o_img = list()
@@ -104,16 +99,10 @@
 			temp2.overlays += O.overlays
 			// TODO Is pixelx/y needed?
 			o_img += temp2
-		var/overlays_pre = overlays.len
-		overlays += o_img
-		var/overlays_post = overlays.len
-		if(overlays_post != (overlays_pre + o_img.len)) //Here we go!
-			world.log << "Corrupted openspace turf at [x],[y],[z] being replaced. Pre: [overlays_pre], Post: [overlays_post]"
-			new /turf/simulated/open(src)
-			return //Let's get out of here.
+		add_overlay(o_img)
 
 		if(!below_is_open)
-			overlays += over_OS_darkness
+			add_overlay(over_OS_darkness)
 
 		return 0
 	return PROCESS_KILL

@@ -1,0 +1,8 @@
+
+author: Mechoid
+
+delete-after: True
+
+changes: 
+  - rscadd: "Add a surgical operation for repairing the brainstem of a decapitated individual."
+  - rscadd: "Add a permanent modifier for frankensteining individuals."

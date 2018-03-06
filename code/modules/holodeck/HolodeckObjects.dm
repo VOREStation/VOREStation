@@ -107,7 +107,7 @@
 /turf/simulated/floor/holofloor/desert/New()
 	..()
 	if(prob(10))
-		overlays += "asteroid[rand(0,9)]"
+		add_overlay("asteroid[rand(0,9)]")
 
 /obj/structure/holostool
 	name = "stool"

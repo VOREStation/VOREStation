@@ -147,7 +147,7 @@
 	job_access_type = /datum/job/captain
 
 /obj/item/weapon/card/id/gold/captain/spare
-	name = "colony director's spare ID"
+	name = "\improper Colony Director's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	registered_name = "Colony Director"
 	job_access_type = /datum/job/captain

@@ -224,7 +224,7 @@
 
 /turf/simulated/shuttle/wall/voidcraft/update_icon()
 	if(stripe_color)
-		overlays.Cut()
+		cut_overlays()
 		var/image/I = image(icon = src.icon, icon_state = "o_[icon_state]")
 		I.color = stripe_color
-		overlays.Add(I)
+		add_overlay(I)

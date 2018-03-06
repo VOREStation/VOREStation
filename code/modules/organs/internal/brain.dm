@@ -136,7 +136,7 @@
 	parent_organ = BP_TORSO
 	clone_source = TRUE
 
-/obj/item/orgam/internal/brain/slime/is_open_container()
+/obj/item/organ/internal/brain/slime/is_open_container()
 	return 1
 
 /obj/item/organ/internal/brain/golem
