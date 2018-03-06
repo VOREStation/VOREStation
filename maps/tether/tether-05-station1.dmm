@@ -21590,7 +21590,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
->>>>>>> a52b81b7ad9c108fc7fadeef9e2b0219aef0135c/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/station/excursion_dock)
 "cNq" = (
 /obj/structure/bed/chair/office/dark{
@@ -21860,7 +21860,7 @@
 /area/tether/station/excursion_dock)
 "sSn" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
-	>>>>>>> a52b81b7ad9c108fc7fadeef9e2b0219aef0135cdir = 4
+	dir = 4
 	},
 /obj/machinery/shower{
 	tag = "icon-shower (EAST)";
@@ -21934,8 +21934,8 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-<<<<<<< HEAD/obj/machinery/door/firedoor/glass,
-=======>>>>>>> a52b81b7ad9c108fc7fadeef9e2b0219aef0135c/turf/simulated/floor/tiled,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "AmC" = (
 /turf/simulated/floor/tiled,
@@ -22120,7 +22120,7 @@
 /area/shuttle/excursion/tether)
 "NuW" = (
 /obj/machinery/camera/network/northern_star{
-	dir = 8<<<<<<< HEAD
+	dir = 8
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
