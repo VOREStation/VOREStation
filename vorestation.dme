@@ -207,6 +207,7 @@
 #include "code\controllers\subsystems\atoms.dm"
 #include "code\controllers\subsystems\bellies_vr.dm"
 #include "code\controllers\subsystems\garbage.dm"
+#include "code\controllers\subsystems\holomaps_vr.dm"
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
 #include "code\controllers\subsystems\mapping_vr.dm"

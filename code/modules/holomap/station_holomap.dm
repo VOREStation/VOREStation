@@ -1,5 +1,6 @@
-var/global/list/station_holomaps = list()
-
+//
+// Wall mounted holomap of the station
+//
 /obj/machinery/station_map
 	name = "station holomap"
 	desc = "A virtual map of the surrounding station."
@@ -10,7 +11,6 @@ var/global/list/station_holomaps = list()
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 500
-	//auto_init = 0 // We handle our own special initialization needs. // TODO - Make this not ~Leshana
 	circuit = /obj/item/weapon/circuitboard/station_map
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
@@ -34,17 +34,17 @@ var/global/list/station_holomaps = list()
 	..()
 	holomap_datum = new()
 	original_zLevel = loc.z
-	station_holomaps += src
+	SSholomaps.station_holomaps += src
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 
 /obj/machinery/station_map/initialize()
 	. = ..()
-	if(ticker && holomaps_initialized)
+	if(SSholomaps.holomaps_initialized)
 		spawn(1) // Tragically we need to spawn this in order to give the frame construcing us time to set pixel_x/y
 			setup_holomap()
 
 /obj/machinery/station_map/Destroy()
-	station_holomaps -= src
+	SSholomaps.station_holomaps -= src
 	stopWatching()
 	holomap_datum = null
 	. = ..()
@@ -54,7 +54,7 @@ var/global/list/station_holomaps = list()
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
-	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[original_zLevel]" in extraMiniMaps))
+	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[original_zLevel]" in SSholomaps.extraMiniMaps))
 		bogus = TRUE
 		holomap_datum.initialize_holomap_bogus()
 		update_icon()
@@ -62,7 +62,7 @@ var/global/list/station_holomaps = list()
 
 	holomap_datum.initialize_holomap(T, reinit = TRUE)
 
-	small_station_map = image(extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
+	small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
 	// small_station_map.plane = LIGHTING_PLANE // Not until we do planes ~Leshana
 	// small_station_map.layer = LIGHTING_LAYER+1 // Weird things will happen!
 
@@ -182,7 +182,7 @@ var/global/list/station_holomaps = list()
 		if(bogus)
 			holomap_datum.initialize_holomap_bogus()
 		else
-			small_station_map.icon = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
+			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
 			overlays |= small_station_map
 			holomap_datum.initialize_holomap(get_turf(src))
 

@@ -23,23 +23,13 @@
 					/*|| istype(tile, /turf/simulated/shuttle/floor)*/ \
 					|| (locate(/obj/structure/catwalk) in tile))
 
-
-// WARNING - TOTAL HACK - HOOKING INIT
-/datum/controller/game_controller/setup_objects()
-	..()
-	generateHoloMinimaps()
-
 /// Generates all the holo minimaps, initializing it all nicely, probably.
-// TODO - This should be a subsystem ~Leshana
-var/global/holomaps_initialized = FALSE
-var/global/list/holoMiniMaps = list()
-var/global/list/extraMiniMaps = list()
-/proc/generateHoloMinimaps()
+/datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
 	// Build the base map for each z level
 	for (var/z = 1 to world.maxz)
-		global.holoMiniMaps |= z // hack, todo fix
-		global.holoMiniMaps[z] = generateHoloMinimap(z)
+		holoMiniMaps |= z // hack, todo fix
+		holoMiniMaps[z] = generateHoloMinimap(z)
 
 	// Generate the area overlays, small maps, etc for the station levels.
 	for (var/z in using_map.station_levels)
@@ -49,7 +39,7 @@ var/global/list/extraMiniMaps = list()
 		for(var/smoosh_list in using_map.holomap_smoosh)
 			smooshTetherHolomaps(smoosh_list)
 
-	global.holomaps_initialized = TRUE
+	holomaps_initialized = TRUE
 	admin_notice("<span class='notice'>Holomaps initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>", R_DEBUG)
 
 	// TODO - Check - They had a delayed init perhaps?
@@ -57,7 +47,7 @@ var/global/list/extraMiniMaps = list()
 		S.setup_holomap()
 
 // Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.
-/proc/generateHoloMinimap(var/zLevel = 1)
+/datum/controller/subsystem/holomaps/proc/generateHoloMinimap(var/zLevel = 1)
 	// Save these values now to avoid a bazillion array lookups
 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
@@ -87,7 +77,7 @@ var/global/list/extraMiniMaps = list()
 // This seems to do the drawing thing, but draws only the areas, having nothing to do with the tiles.
 // Leshana: I'm guessing this map will get overlayed on top of the base map at runtime? We'll see.
 // Wait, seems we actually blend the area map on top of it right now! Huh.
-/proc/generateStationMinimap(var/zLevel)
+/datum/controller/subsystem/holomaps/proc/generateStationMinimap(var/zLevel)
 	// Save these values now to avoid a bazillion array lookups
 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
@@ -134,7 +124,7 @@ var/global/list/extraMiniMaps = list()
 	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
 
 // For tiny multi-z maps like the tether, we want to smoosh em together into a nice big one!
-/proc/smooshTetherHolomaps(var/list/zlevels)
+/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(var/list/zlevels)
 	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
 	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
 	// For each zlevel in turn, overlay them on top of each other
