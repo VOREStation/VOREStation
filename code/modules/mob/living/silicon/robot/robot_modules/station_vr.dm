@@ -123,6 +123,7 @@
 	//R.icon_state = "k9"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	..()
@@ -175,6 +176,7 @@
 	//R.icon_state = "medihound"
 	R.pixel_x 	 = -16
 	R.old_x  	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	..()
@@ -202,6 +204,7 @@
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	..()
@@ -226,6 +229,7 @@
 	//R.icon_state = "scrubpup"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	..()
@@ -259,6 +263,7 @@
 	//R.icon_state = "science"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	..()
