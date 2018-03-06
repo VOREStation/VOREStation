@@ -1,0 +1,4 @@
+author: Nerezza
+delete-after: True
+changes: 
+  - rscadd: "Package bomb detonators can be re-bound by hitting the new package bomb with them."
