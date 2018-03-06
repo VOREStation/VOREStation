@@ -6,6 +6,8 @@
 	var/pounce_cooldown_time = 40
 	var/leap_at
 	var/dogborg = FALSE
+	var/notransform
+	//var/animiconsaved
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/vr_icons = list(
 					   "handy-hydro",
