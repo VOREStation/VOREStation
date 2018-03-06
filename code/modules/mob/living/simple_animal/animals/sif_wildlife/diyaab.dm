@@ -15,8 +15,9 @@
 	speed = 1
 	move_to_delay = 1
 
-	melee_damage_lower = 1
-	melee_damage_upper = 8
+	melee_damage_lower = 4
+	melee_damage_upper = 12
+	attack_sharp = 1		//Bleeds, but it shouldn't rip off a limb?
 
 	attacktext = list("gouged")
 	cold_damage_per_tick = 0
