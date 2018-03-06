@@ -22,6 +22,7 @@
 	*/
 	var/list/sprite_sheets_refit = null
 	var/ear_protection = 0
+	var/blood_sprite_state
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -197,6 +198,7 @@
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.9
+	blood_sprite_state = "bloodyhands"
 	var/wired = 0
 	var/obj/item/weapon/cell/cell = 0
 	var/fingerprint_chance = 0	//How likely the glove is to let fingerprints through
@@ -318,6 +320,7 @@
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEMSIZE_SMALL
+	blood_sprite_state = "helmetblood"
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
@@ -427,6 +430,7 @@
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
+	blood_sprite_state = "maskblood"
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
 		"Vox" = 'icons/mob/species/vox/masks.dmi',
@@ -460,6 +464,7 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = FEET
 	slot_flags = SLOT_FEET
+	blood_sprite_state = "shoeblood"
 
 	var/can_hold_knife = 0
 	var/obj/item/holding
@@ -574,6 +579,7 @@
 	w_class = ITEMSIZE_NORMAL
 	preserve_item = 1
 
+
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi',
 		"Vox" = 'icons/mob/species/vox/suit.dmi'
@@ -602,6 +608,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = ITEMSIZE_NORMAL
 	show_messages = 1
+	blood_sprite_state = "uniformblood"
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0

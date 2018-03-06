@@ -179,6 +179,12 @@
 	spark_system = null
 	return ..()
 
+/obj/item/weapon/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon)
+	if(slot_name == slot_back_str)
+		return icon_override || mob_icon //That's just all this does.
+
+	return ..()
+
 /obj/item/weapon/rig/proc/suit_is_deployed()
 	if(!istype(wearer) || src.loc != wearer || wearer.back != src)
 		return 0

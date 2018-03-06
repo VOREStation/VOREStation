@@ -457,6 +457,10 @@
 
 		update_icon()
 
+/obj/item/weapon/paper/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_head_str)
+		return "paper" //Gross, but required for now.
+	return ..()
 
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()

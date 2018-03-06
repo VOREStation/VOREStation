@@ -20,6 +20,12 @@
 	var/use_time = 30
 	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
 
+/obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_handcuffed_str)
+		return "handcuff1" //Simple
+
+	return ..()
+
 /obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 
 	if(!user.IsAdvancedToolUser())
@@ -209,6 +215,12 @@ var/last_chew = 0
 	use_time = 0
 	breakouttime = 30
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
+
+/obj/item/weapon/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_legcuffed_str)
+		return "legcuff1"
+
+	return ..()
 
 /obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.

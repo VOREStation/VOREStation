@@ -112,6 +112,12 @@
 	usr << "The fingerprint hash on the card is [fingerprint_hash]."
 	return
 
+/obj/item/weapon/card/id/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_wear_id_str)
+		return "id" //Legacy, just how it is. There's only one sprite.
+
+	return ..()
+
 /obj/item/weapon/card/id/initialize()
 	. = ..()
 	var/datum/job/J = job_master.GetJob(rank)
