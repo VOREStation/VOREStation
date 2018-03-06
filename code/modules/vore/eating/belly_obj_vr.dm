@@ -173,6 +173,8 @@
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
 /obj/belly/proc/release_all_contents(var/include_absorbed = FALSE)
+	if(!contents.len)
+		return 0
 	var/atom/destination = drop_location()
 	var/count = 0
 	for(var/thing in contents)

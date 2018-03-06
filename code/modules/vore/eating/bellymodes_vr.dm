@@ -472,7 +472,5 @@
 			put_in_egg(P,1)
 
 	if(play_sound)
-		for (var/mob/living/M in contents)
-			M << sound(play_sound)
-		playsound(src, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, ignore_walls = FALSE, preference = /datum/client_preference/digestion_noises)
+		playsound(src, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 	return SSBELLIES_PROCESSED
