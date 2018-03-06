@@ -9,6 +9,8 @@
 #define REALTIMEOFDAY (world.timeofday + (MIDNIGHT_ROLLOVER * MIDNIGHT_ROLLOVER_CHECK))
 #define MIDNIGHT_ROLLOVER_CHECK ( rollovercheck_last_timeofday != world.timeofday ? update_midnight_rollover() : midnight_rollovers )
 
+#define SHORT_REAL_LIMIT 16777216	// 2^24 - Maximum integer that can be exactly represented in a float (BYOND num var)
+
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 // round() acts like floor(x, 1) by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )

@@ -16,7 +16,6 @@
 	update_icon()
 
 /turf/simulated/floor/water/update_icon()
-	overlays.Cut()
 	..() // To get the edges.
 	icon_state = water_state
 	var/image/floorbed_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = under_state)
@@ -129,16 +128,16 @@ var/list/shoreline_icon_cache = list()
 // Water sprites are really annoying, so let BYOND sort it out.
 /turf/simulated/floor/water/shoreline/update_icon()
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 	..() // Get the underlay first.
 	var/cache_string = "[initial(icon_state)]_[water_state]_[dir]"
 	if(cache_string in shoreline_icon_cache) // Check to see if an icon already exists.
-		overlays += shoreline_icon_cache[cache_string]
+		add_overlay(shoreline_icon_cache[cache_string])
 	else // If not, make one, but only once.
 		var/icon/shoreline_water = icon(src.icon, "shoreline_water", src.dir)
 		var/icon/shoreline_subtract = icon(src.icon, "[initial(icon_state)]_subtract", src.dir)
 		shoreline_water.Blend(shoreline_subtract,ICON_SUBTRACT)
 
 		shoreline_icon_cache[cache_string] = shoreline_water
-		overlays += shoreline_icon_cache[cache_string]
+		add_overlay(shoreline_icon_cache[cache_string])
 
