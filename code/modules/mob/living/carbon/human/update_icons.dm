@@ -407,7 +407,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				icon_key += "1"
 			if(part.transparent) //VOREStation Edit. For better slime limbs.
-				icon_key += "_t" //VOREStation Edit. For better slime limbs.
+				icon_key += "_t" //VOREStation Edit.
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
