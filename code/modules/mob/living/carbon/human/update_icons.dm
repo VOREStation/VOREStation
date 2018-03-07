@@ -8,11 +8,11 @@ var/global/list/human_icon_cache = list()
 var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_skin][b_skin]
 var/global/list/light_overlay_cache = list()
 
-/mob/living/carbon/human/proc/apply_overlay(cache_index)
+/mob/living/carbon/human/proc/apply_worn(cache_index)
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)
 
-/mob/living/carbon/human/proc/remove_overlay(cache_index)
+/mob/living/carbon/human/proc/remove_worn(cache_index)
 	var/I = overlays_standing[cache_index]
 	if(I)
 		cut_overlay(I)
@@ -292,9 +292,7 @@ var/global/list/damage_icon_parts = list()
 
 	previous_damage_appearance = damage_appearance
 
-	var/icon/standing = new /icon(species.damage_overlays, "00")
-
-	var/image/standing_image = new /image("icon" = standing,layer = BODY_LAYER+DAMAGE_LAYER)
+	var/image/standing_image = image(icon = species.damage_overlays, icon_state = "00", layer = BODY_LAYER+DAMAGE_LAYER)
 
 	// blend the individual damage states with our icons
 	for(var/obj/item/organ/external/O in organs)
@@ -306,8 +304,8 @@ var/global/list/damage_icon_parts = list()
 		var/icon/DI
 		var/cache_index = "[O.damage_state]/[O.icon_name]/[species.get_blood_colour(src)]/[species.get_bodytype(src)]"
 		if(damage_icon_parts[cache_index] == null)
-			DI = new /icon(species.get_damage_overlays(src), O.damage_state)			// the damage icon for whole human
-			DI.Blend(new /icon(species.get_damage_mask(src), O.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
+			DI = icon(species.get_damage_overlays(src), O.damage_state)			// the damage icon for whole human
+			DI.Blend(icon(species.get_damage_mask(src), O.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
 			DI.Blend(species.get_blood_colour(src), ICON_MULTIPLY)
 			damage_icon_parts[cache_index] = DI
 		else
@@ -340,7 +338,7 @@ var/global/list/damage_icon_parts = list()
 	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
 
 	//Create a new, blank icon for our mob to use.
-	var/icon/stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
+	var/icon/stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
 
 	//Clean old list_body
 	list_body.Cut()
@@ -656,11 +654,14 @@ var/global/list/damage_icon_parts = list()
 
 	overlays_standing[UNIFORM_LAYER] = null
 
-	if(!(w_uniform && istype(w_uniform, /obj/item/clothing/under)))
+	//Shoes can be affected by uniform being drawn onto them
+	update_inv_shoes(FALSE)
+	
+	if(!w_uniform)
 		if(update_icons) update_icons_layers()
-		return //Not wearing a uniform (dumb check)
-	 
-	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/space) && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
+		return
+
+	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
 		if(update_icons) update_icons_layers()
 		return //Wearing a suit that prevents uniform rendering
 
@@ -670,9 +671,6 @@ var/global/list/damage_icon_parts = list()
 	//Build a uniform sprite
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER)
 
-	//Shoes can be affected by uniform being drawn onto them
-	update_inv_shoes(FALSE)
-
 	//TODO: Remove this
 	if(update_icons) update_icons_layers()
 
@@ -681,6 +679,11 @@ var/global/list/damage_icon_parts = list()
 		return
 
 	overlays_standing[ID_LAYER]	= null
+
+	//Set the bits to update the ID hud since they put something in this slot (or removed it)
+	//TODO: Move elsewhere, update icons is not the place.
+	BITSET(hud_updateflag, ID_HUD)
+	BITSET(hud_updateflag, WANTED_HUD)
 
 	if(!wear_id)
 		if(update_icons) update_icons_layers()
@@ -694,11 +697,6 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/clothing/under/U = w_uniform
 		if(U.displays_id)
 			overlays_standing[ID_LAYER] = wear_id.make_worn_icon(body_type = species.get_bodytype(), slot_name = slot_wear_id_str, default_icon = INV_WEAR_ID_DEF_ICON, default_layer = ID_LAYER)
-
-	//Set the bits to update the ID hud since they put something in this slot (or removed it)
-	//TODO: Move elsewhere, update icons is not the place.
-	BITSET(hud_updateflag, ID_HUD)
-	BITSET(hud_updateflag, WANTED_HUD)
 
 	//TODO: Remove this
 	if(update_icons) update_icons_layers()
@@ -720,12 +718,11 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.get_bodytype(), slot_name = slot_gloves_str, default_icon = INV_GLOVES_DEF_ICON, default_layer = GLOVES_LAYER)
 	
 	else if(blood_DNA) //TODO: Make this proc generic
-		var/image/bloodsies	= image("icon" = species.get_blood_mask(src), "icon_state" = "bloodyhands")
+		var/image/bloodsies	= image(icon = species.get_blood_mask(src), icon_state = "bloodyhands")
 		bloodsies.color = hand_blood_color
 		overlays_standing[GLOVES_LAYER]	= bloodsies
 	
-	if(update_icons)
-		update_icons_layers()
+	if(update_icons) update_icons_layers()
 
 /mob/living/carbon/human/update_inv_glasses(var/update_icons=1)
 	if(QDESTROYING(src))
@@ -794,7 +791,7 @@ var/global/list/damage_icon_parts = list()
 
 	//Bloody feet, but not wearing shoes TODO
 	else if(feet_blood_DNA)
-		var/image/bloodsies = image("icon" = species.get_blood_mask(src), "icon_state" = "shoeblood")
+		var/image/bloodsies = image(icon = species.get_blood_mask(src), icon_state = "shoeblood")
 		bloodsies.color = feet_blood_color
 		overlays_standing[SHOES_LAYER] = bloodsies
 			
@@ -868,6 +865,11 @@ var/global/list/damage_icon_parts = list()
 
 	overlays_standing[SUIT_LAYER] = null
 
+	//Hide/show other layers if necessary (AAAAA) TODO
+	update_inv_w_uniform(FALSE)
+	update_inv_shoes(FALSE)
+	update_tail_showing(FALSE)
+
 	if(!wear_suit)
 		if(update_icons) update_icons_layers()
 		return //No point, no suit.
@@ -881,11 +883,6 @@ var/global/list/damage_icon_parts = list()
 		drop_from_inventory(handcuffed)
 		drop_l_hand()
 		drop_r_hand()
-
-	//Hide/show other layers if necessary (AAAAA) TODO
-	update_inv_w_uniform(0)
-	update_inv_shoes(0)
-	update_tail_showing(0)
 
 	if(update_icons) update_icons_layers()
 
