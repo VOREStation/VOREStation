@@ -53,7 +53,6 @@
 		dna.ready_dna(src)
 		dna.real_name = real_name
 		sync_organ_dna()
-	make_blood()
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
@@ -1168,7 +1167,7 @@
 	maxHealth = species.total_health
 
 	spawn(0)
-		regenerate_icons()
+		make_blood()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
@@ -1538,22 +1537,17 @@
 	return species.fire_icon_state
 
 // Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
-/mob/living/carbon/human/equip_post_job()
+/mob/living/carbon/human/equip_post_job()	//Drone Permit moved to equip_survival_gear()
 	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
-		equip_to_slot_or_del(permit, slot_in_backpack)
+		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
 
-/mob/living/carbon/human/proc/update_icon_special(var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
+/mob/living/carbon/human/proc/update_icon_special() //For things such as teshari hiding and whatnot.
 	if(hiding) // Hiding? Carry on.
 		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
 			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
 		else
 			layer = HIDING_LAYER
-
-	//Can put special species icon update proc calls here, if any are ever invented.
-
-	if(update_icons)
-		update_icons()

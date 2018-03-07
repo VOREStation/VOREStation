@@ -684,7 +684,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	icon = 'icons/obj/device.dmi'
 
 //Worn icon generation for on-mob sprites
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer)
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
@@ -765,14 +765,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 //Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative)
-/obj/item/proc/get_worn_layer(var/default_layer)
+/obj/item/proc/get_worn_layer(var/default_layer = 0)
 
 	//1: worn_layer variable
 	if(!isnull(worn_layer)) //Can be zero, so...
-		return -100+worn_layer
+		return BODY_LAYER+worn_layer
 
 	//2: your default
-	return -100+default_layer
+	return BODY_LAYER+default_layer
 
 //Apply the addblend blends onto the icon
 /obj/item/proc/apply_addblends(var/source_icon, var/icon/standing_icon)
