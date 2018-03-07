@@ -823,6 +823,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/newtailmaw
+	name = "new tailmaw (vwag)"
+	desc = ""
+	icon_state = "newtailmaw"
+	ani_state = "newtailmaw_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/ztail
 	name = "jagged flufftail"
 	desc = ""
