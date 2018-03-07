@@ -55,8 +55,8 @@
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
 /obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
-	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
-	side = getFlatIcon(M, WEST, always_use_defdir = 1)
+	front = getFlatIcon(M, SOUTH)
+	side = getFlatIcon(M, WEST)
 
 /mob/proc/set_id_info(var/obj/item/weapon/card/id/id_card)
 	id_card.age = 0

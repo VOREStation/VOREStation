@@ -1127,8 +1127,9 @@ var/global/list/damage_icon_parts = list()
 			var/image/I = image(icon = 'icons/mob/surgery.dmi',  icon_state = "[E.icon_name][round(E.open)]", layer = -SURGERY_LEVEL)
 			total.overlays += I //TODO: This compositing is annoying
 
-	overlays_standing[SURGERY_LEVEL] = total
-	apply_layer(SURGERY_LEVEL)
+	if(total.overlays.len)
+		overlays_standing[SURGERY_LEVEL] = total
+		apply_layer(SURGERY_LEVEL)
 
 //Human Overlays Indexes/////////
 #undef MUTATIONS_LAYER

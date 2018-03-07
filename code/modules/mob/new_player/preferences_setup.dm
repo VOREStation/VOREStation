@@ -194,29 +194,28 @@
 	b_skin = blue
 
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
-	var/update_icon = FALSE
 	copy_to(mannequin, TRUE)
 
-	var/datum/job/previewJob
-	if(equip_preview_mob)
-		// Determine what job is marked as 'High' priority, and dress them up as such.
-		if(job_civilian_low & ASSISTANT)
-			previewJob = job_master.GetJob("Assistant")
-		else
-			for(var/datum/job/job in job_master.occupations)
-				var/job_flag
-				switch(job.department_flag)
-					if(CIVILIAN)
-						job_flag = job_civilian_high
-					if(MEDSCI)
-						job_flag = job_medsci_high
-					if(ENGSEC)
-						job_flag = job_engsec_high
-				if(job.flag == job_flag)
-					previewJob = job
-					break
-	else
+	if(!equip_preview_mob)
 		return
+
+	var/datum/job/previewJob
+	// Determine what job is marked as 'High' priority, and dress them up as such.
+	if(job_civilian_low & ASSISTANT)
+		previewJob = job_master.GetJob("Assistant")
+	else
+		for(var/datum/job/job in job_master.occupations)
+			var/job_flag
+			switch(job.department_flag)
+				if(CIVILIAN)
+					job_flag = job_civilian_high
+				if(MEDSCI)
+					job_flag = job_medsci_high
+				if(ENGSEC)
+					job_flag = job_engsec_high
+			if(job.flag == job_flag)
+				previewJob = job
+				break
 
 	if((equip_preview_mob & EQUIP_PREVIEW_LOADOUT) && !(previewJob && (equip_preview_mob & EQUIP_PREVIEW_JOB) && (previewJob.type == /datum/job/ai || previewJob.type == /datum/job/cyborg)))
 		var/list/equipped_slots = list() //If more than one item takes the same slot only spawn the first
@@ -243,37 +242,28 @@
 					var/metadata = gear[G.display_name]
 					if(mannequin.equip_to_slot_or_del(G.spawn_item(mannequin, metadata), G.slot))
 						equipped_slots += G.slot
-						update_icon = TRUE
 
 	if((equip_preview_mob & EQUIP_PREVIEW_JOB) && previewJob)
 		mannequin.job = previewJob.title
 		previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
-		update_icon = TRUE
 
-	if(update_icon)
-		mannequin.update_icons_all()
+	mannequin.regenerate_icons()
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
-	
-	//Let any late overlays get applied.
-	sleep(5)
 
 	preview_icon = icon('icons/effects/128x48.dmi', bgstate)
 	preview_icon.Scale(48+32, 16+32)
 
-	mannequin.dir = NORTH
-	var/icon/stamp = getFlatIcon(mannequin)
+	var/icon/stamp = getFlatIcon(mannequin, defdir=NORTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
 
-	mannequin.dir = WEST
-	stamp = getFlatIcon(mannequin)
+	stamp = getFlatIcon(mannequin, defdir=WEST)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
 
-	mannequin.dir = SOUTH
-	stamp = getFlatIcon(mannequin)
+	stamp = getFlatIcon(mannequin, defdir=SOUTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
 
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
