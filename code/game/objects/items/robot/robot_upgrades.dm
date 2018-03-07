@@ -26,14 +26,10 @@
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
-	R.pixel_x = initial(pixel_x) //VOREStation Edit
-	R.pixel_y = initial(pixel_y) //VOREStation Edit
-	R.dogborg = FALSE //VOREStation Edit
-	R.wideborg = FALSE //VOREStation Edit
 	R.uneq_all()
 	R.modtype = initial(R.modtype)
 	R.hands.icon_state = initial(R.hands.icon_state)
-	R.icon = initial(R.icon) //VOREStation Edit - Dogborg reset tweak since separate file.
+
 	R.notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, R.module.name)
 	R.module.Reset(R)
 	qdel(R.module)
