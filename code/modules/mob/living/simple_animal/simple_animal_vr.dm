@@ -89,7 +89,7 @@
 	if(M.size_multiplier < vore_min_size || M.size_multiplier > vore_max_size)
 		ai_log("vr/wont eat [M] because they too small or too big", 3)
 		return 0
-	if(vore_capacity != 0 && (vore_fullness + M.size_multiplier > vore_capacity)) // We're too full to fit them
+	if(vore_capacity != 0 && (vore_fullness >= vore_capacity)) // We're too full to fit them
 		ai_log("vr/wont eat [M] because I am too full", 3)
 		return 0
 	return 1
@@ -188,7 +188,7 @@
 		"The juices pooling beneath you sizzle against your sore skin.",
 		"The churning walls slowly pulverize you into meaty nutrients.",
 		"The stomach glorps and gurgles as it tries to work you into slop.")
-	
+
 /mob/living/simple_animal/Bumped(var/atom/movable/AM, yes)
 	if(ismob(AM))
 		var/mob/tmob = AM

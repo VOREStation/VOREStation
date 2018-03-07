@@ -24,6 +24,7 @@
 #include "DoomP.dmm"
 #include "CaveS.dmm"
 #include "Drugden.dmm"
+#include "Musk.dmm"
 
 #endif
 
@@ -186,3 +187,9 @@
 	desc = "The remains of ill thought out whims."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Drugden.dmm'
 	cost = 20
+
+/datum/map_template/surface/wilderness/normal/Musk
+	name = "Musk"
+	desc = "0 to 60 in 1.9 seconds."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Musk.dmm'
+	cost = 10

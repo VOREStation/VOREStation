@@ -90,6 +90,14 @@
 	display_name = "trenchcoat, grey"
 	path = /obj/item/clothing/suit/storage/trench/grey
 
+datum/gear/suit/duster
+	display_name = "cowboy duster"
+	path = /obj/item/clothing/suit/storage/duster
+
+/datum/gear/suit/duster/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest selection"
 	path = /obj/item/clothing/suit/storage/hazardvest

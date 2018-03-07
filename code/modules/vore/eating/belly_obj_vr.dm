@@ -1,4 +1,4 @@
-#define VORE_SOUND_FALLOFF 0.05
+#define VORE_SOUND_FALLOFF 0.1
 
 //
 //  Belly system 2.0, now using objects instead of datums because EH at datums.
@@ -44,7 +44,7 @@
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a belly controller tick #
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
-	
+
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
 		"%pred's %belly wobbles with a squirming meal.",
@@ -152,14 +152,14 @@
 
 	//Generic entered message
 	to_chat(owner,"<span class='notice'>[thing] slides into your [lowertext(name)].</span>")
-	
+
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound)
 		var/soundfile = vore_sounds[vore_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
 			recent_sound = TRUE
-	
+
 	//Messages if it's a mob
 	if(isliving(thing))
 		var/mob/living/M = thing
@@ -168,11 +168,13 @@
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
-	
+
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
 /obj/belly/proc/release_all_contents(var/include_absorbed = FALSE)
+	if(!contents.len)
+		return 0
 	var/atom/destination = drop_location()
 	var/count = 0
 	for(var/thing in contents)

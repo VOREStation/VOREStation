@@ -20,7 +20,7 @@
 
 /datum/shuttle_destination/heist/root
 	name = "Raider Outpost"
-	my_area = /area/skipjack_station/arrivals_dock
+	my_area = /area/skipjack_station/start
 	preferred_interim_area = /area/skipjack_station/transit
 
 //	dock_target = "skipjack_base"
