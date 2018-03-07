@@ -2340,9 +2340,6 @@
 	icon_state = "comfychair_preview";
 	dir = 1
 	},
-/obj/effect/landmark/start{
-	name = "Pilot"
-	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "agE" = (
@@ -33087,7 +33084,7 @@ SzY
 Tiu
 hJg
 mtd
-rRn
+tEu
 wmC
 alA
 amg
