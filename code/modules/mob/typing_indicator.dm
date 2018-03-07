@@ -8,15 +8,15 @@
 	if(client && !stat)
 		typing_indicator.invisibility = invisibility
 		if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
-			overlays -= typing_indicator
+			add_overlay(typing_indicator)
 		else
 			if(state)
 				if(!typing)
-					overlays += typing_indicator
+					add_overlay(typing_indicator)
 					typing = 1
 			else
 				if(typing)
-					overlays -= typing_indicator
+					cut_overlay(typing_indicator)
 					typing = 0
 			return state
 

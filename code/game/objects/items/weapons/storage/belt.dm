@@ -23,7 +23,7 @@
 	update_icon()
 
 //Some belts have sprites to show icons
-/obj/item/weapon/storage/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+/obj/item/weapon/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
 	var/image/standing = ..()
 	if(contents.len)
 		for(var/obj/item/i in contents)

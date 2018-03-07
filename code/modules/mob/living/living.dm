@@ -1002,14 +1002,9 @@ default behaviour is:
 			canmove = 0
 			break
 
-	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
-	if( update_icon )	//forces a full overlay update
-		update_icon = 0
-		regenerate_icons()
-	else if( lying != lying_prev )
-		update_icons()
+	if(lying != lying_prev)
+		update_transform()
+		
 	return canmove
 
 // Adds overlays for specific modifiers.

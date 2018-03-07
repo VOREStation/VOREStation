@@ -686,7 +686,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //Worn icon generation for on-mob sprites
 /obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon)
+	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
 	var/layer2use = get_worn_layer(default_layer = default_layer)
 
@@ -703,8 +703,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Generate the base onmob icon
 	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
 
-	apply_custom(standing_icon)		//Pre-image overridable proc to customize the thing
-	apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
+	if(!inhands)
+		apply_custom(standing_icon)		//Pre-image overridable proc to customize the thing
+		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
 
 	var/image/standing = image(standing_icon)
 	standing.alpha = alpha
@@ -712,22 +713,23 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.layer = layer2use
 
 	//Apply any special features
-	apply_blood(standing)			//Some items show blood when bloodied
-	apply_accessories(standing)		//Some items sport accessories like webbing
+	if(!inhands)
+		apply_blood(standing)			//Some items show blood when bloodied
+		apply_accessories(standing)		//Some items sport accessories like webbing
 
 	//Return our icon
 	return standing
 
 //Returns the icon object that should be used for the worn icon
-/obj/item/proc/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon)
+/obj/item/proc/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
 	
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
 	
-	//2: species-specific sprite sheets
+	//2: species-specific sprite sheets (skipped for inhands)
 	var/sheet = sprite_sheets[body_type]
-	if(sheet)
+	if(sheet && !inhands)
 		return sheet
 
 	//3: slot-specific sprite sheets

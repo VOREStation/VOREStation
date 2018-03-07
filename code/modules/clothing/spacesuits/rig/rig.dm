@@ -179,8 +179,8 @@
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon)
-	if(slot_name == slot_back_str)
+/obj/item/weapon/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
+	if(!inhands && slot_name == slot_back_str)
 		return icon_override || mob_icon //That's just all this does.
 
 	return ..()

@@ -1546,12 +1546,12 @@
 		permit.set_name(real_name)
 		equip_to_slot_or_del(permit, slot_in_backpack)
 
-/mob/living/carbon/human/proc/update_icon_special(var/mutable_appearance/ma, var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
+/mob/living/carbon/human/proc/update_icon_special(var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
 	if(hiding) // Hiding? Carry on.
 		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
 			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
 		else
-			ma.layer = HIDING_LAYER
+			layer = HIDING_LAYER
 
 	//Can put special species icon update proc calls here, if any are ever invented.
 
