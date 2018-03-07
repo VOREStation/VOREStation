@@ -482,6 +482,7 @@
 	dir = 9
 	},
 /obj/item/weapon/storage/box/evidence,
+/obj/item/weapon/storage/lockbox,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/green)
 "aU" = (
@@ -642,7 +643,6 @@
 /area/security/armory/red)
 "bg" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/lockbox,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
 	},
@@ -650,6 +650,7 @@
 	icon_state = "bordercolor";
 	dir = 8
 	},
+/obj/item/weapon/hand_labeler,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/green)
 "bh" = (
@@ -703,6 +704,9 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/storage/box/chemimp,
+/obj/item/weapon/storage/box/trackimp,
+/obj/item/weapon/implantpad,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "bo" = (
@@ -5560,7 +5564,7 @@
 	},
 /obj/effect/floor_decal/corner/red/bordercee,
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "Implant Storage"
 	},
 /obj/item/weapon/storage/box/gloves,
 /obj/item/weapon/storage/box/evidence,
@@ -6160,7 +6164,7 @@
 	dir = 8
 	},
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "Implant Storage"
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
@@ -6518,7 +6522,7 @@
 	dir = 8
 	},
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "Implant Storage"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7314,7 +7318,7 @@
 	dir = 10
 	},
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "Implant Storage"
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
@@ -7333,7 +7337,7 @@
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/red/border,
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "Implant Storage"
 	},
 /obj/machinery/alarm{
 	dir = 1;
@@ -7346,7 +7350,7 @@
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/red/border,
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "Implant Storage"
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
