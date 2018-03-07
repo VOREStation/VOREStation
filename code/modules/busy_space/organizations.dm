@@ -104,8 +104,8 @@
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
-		//"NCS Northern Star in Vir",
-		"NLS Southern Cross in Vir",
+		"NCS Northern Star in Vir",
+		//"NLS Southern Cross in Vir",
 		"NAS Vir Central Command",
 		"a dockyard orbiting Sif",
 		"an asteroid orbiting Kara",
@@ -235,6 +235,19 @@
 	motto = ""
 
 	ship_prefixes = list("WTV" = "freight")
+	ship_names = list(
+		"Comet",
+		"Aurora",
+		"Supernova",
+		"Nebula",
+		"Galaxy",
+		"Starburst",
+		"Constellation",
+		"Pulsar",
+		"Quark",
+		"Void",
+		"Asteroid"
+		)
 	destination_names = list()
 
 /datum/lore/organization/tsc/bishop
