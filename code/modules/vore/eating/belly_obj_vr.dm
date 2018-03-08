@@ -172,45 +172,54 @@
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
-/obj/belly/proc/release_all_contents(var/include_absorbed = FALSE)
+/obj/belly/proc/release_all_contents(var/include_absorbed = FALSE, var/silent = FALSE)
+	
+	//Don't bother if we don't have contents
 	if(!contents.len)
 		return 0
-	var/atom/destination = drop_location()
+	
+	//Find where we should drop things into (certainly not the owner)
 	var/count = 0
+	
+	//Iterate over contents and move them all
 	for(var/thing in contents)
 		var/atom/movable/AM = thing
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.absorbed && !include_absorbed)
 				continue
-			L.absorbed = FALSE
-
-		AM.forceMove(destination)  // Move the belly contents into the same location as belly's owner.
-		count++
+		count += release_specific_contents(AM, silent = TRUE)
+	
+	//Clean up our own business
 	items_preserved.Cut()
-	owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
-	owner.update_icons()
-	if(release_sound)
-		playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+	if(isanimal(owner))
+		owner.update_icons()
+	
+	//Print notifications/sound if necessary
+	if(!silent)
+		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")	
+		if(release_sound)
+			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+	
 	return count
 
 // Release a specific atom from the contents of this belly into the owning mob's location.
 // If that location is another mob, the atom is transferred into whichever of its bellies the owning mob is in.
 // Returns the number of atoms so released.
-/obj/belly/proc/release_specific_contents(var/atom/movable/M)
+/obj/belly/proc/release_specific_contents(var/atom/movable/M, var/silent = FALSE)
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
-	M.forceMove(drop_location())  // Move the belly contents into the same location as belly's owner.
+	//Place them into our drop_location
+	M.forceMove(drop_location())
 	items_preserved -= M
-	if(release_sound)
-		playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
-
+	
+	//Special treatment for absorbed prey
 	if(istype(M,/mob/living))
 		var/mob/living/ML = M
 		var/mob/living/OW = owner
 		if(ML.absorbed)
-			ML.absorbed = 0
+			ML.absorbed = FALSE
 			if(ishuman(M) && ishuman(OW))
 				var/mob/living/carbon/human/Prey = M
 				var/mob/living/carbon/human/Pred = OW
@@ -220,8 +229,16 @@
 						absorbed_count++
 				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
-	owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
-	owner.update_icons()
+	//Clean up our own business
+	if(isanimal(owner))
+		owner.update_icons()
+	
+	//Print notifications/sound if necessary
+	if(!silent)
+		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
+		if(release_sound)
+			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+	
 	return 1
 
 // Actually perform the mechanics of devouring the tasty prey.
@@ -329,13 +346,7 @@
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
-		for(var/belly in M.vore_organs)
-			var/obj/belly/B = belly
-			for(var/thing in B)
-				var/atom/movable/AM = thing
-				AM.forceMove(owner.loc)
-				if(isliving(AM))
-					to_chat(AM,"As [M] melts away around you, you find yourself in [owner]'s [lowertext(name)]")
+		M.release_vore_contents(include_absorbed = TRUE, silent = TRUE)
 
 	//Drop all items into the belly.
 	if(config.items_survive_digestion)
@@ -351,7 +362,6 @@
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
 				if(thingy)
 					M.unEquip(thingy,force = TRUE)
-					thingy.forceMove(src)
 
 	//Reagent transfer
 	if(ishuman(owner))
