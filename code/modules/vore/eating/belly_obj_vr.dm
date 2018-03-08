@@ -333,7 +333,7 @@
 			var/obj/belly/B = belly
 			for(var/thing in B)
 				var/atom/movable/AM = thing
-				AM.forceMove(owner.loc)
+				AM.forceMove(src)
 				if(isliving(AM))
 					to_chat(AM,"As [M] melts away around you, you find yourself in [owner]'s [lowertext(name)]")
 
