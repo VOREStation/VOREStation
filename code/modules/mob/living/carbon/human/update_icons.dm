@@ -775,13 +775,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(TAIL_LAYER)
-
 	var/species_tail = species.get_tail(src)
 
 	//This one is actually not that bad I guess.
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
-		overlays_standing[TAIL_LAYER] = image(tail_s, icon_state = "[species_tail]_s")
+		overlays_standing[TAIL_LAYER] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+TAIL_LAYER)
 		animate_tail_reset()
 
 	apply_layer(TAIL_LAYER)
@@ -808,12 +807,16 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
+	
 	remove_layer(TAIL_LAYER)
-	if(tail_overlay && species.get_tail_animation(src))
-		tail_overlay.icon_state = t_state
-		apply_layer(TAIL_LAYER)
-		return tail_overlay
-	return null
+	
+	if(tail_overlay)
+		overlays_standing[TAIL_LAYER] = tail_overlay
+		if(species.get_tail_animation(src))
+			tail_overlay.icon_state = t_state
+			. = tail_overlay
+	
+	apply_layer(TAIL_LAYER)
 
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
@@ -827,7 +830,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
 	if(tail_overlay && tail_overlay.icon_state == t_state)
 		return //let the existing animation finish
+
 	remove_layer(TAIL_LAYER)
+
 	tail_overlay = set_tail_state(t_state)
 	if(tail_overlay)
 		spawn(20)
