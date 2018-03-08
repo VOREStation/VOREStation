@@ -108,7 +108,7 @@
 
 	return FBP_NONE
 
-/mob/living/carbon/human/proc/make_hud_overlays()
+/mob/living/carbon/human/make_hud_overlays()
 	hud_list[HEALTH_HUD]      = gen_hud_image(ingame_hud_med, src, "100", plane = PLANE_CH_HEALTH)
 	if(isSynthetic())
 		hud_list[STATUS_HUD]  = gen_hud_image(ingame_hud, src, "hudrobo", plane = PLANE_CH_STATUS)

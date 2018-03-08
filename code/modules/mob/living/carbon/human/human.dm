@@ -5,7 +5,8 @@
 	icon = 'icons/effects/effects.dmi'	//We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
 	icon_state = "nothing"
 
-	var/list/hud_list[TOTAL_HUDS]
+	has_huds = TRUE 					//We do have HUDs (like health, wanted, status, not inventory slots)
+
 	var/embedded_flag					//To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 	var/last_push_time					//For human_attackhand.dm, keeps track of the last use of disarm
@@ -40,9 +41,8 @@
 
 	nutrition = rand(200,400)
 
-	make_hud_overlays()
-
 	human_mob_list |= src
+	
 	..()
 
 	hide_underwear.Cut()
@@ -58,13 +58,6 @@
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
-
-	LAZYCLEARLIST(list_layers)
-	list_layers = null //Be free!
-	LAZYCLEARLIST(list_body)
-	list_body = null
-	LAZYCLEARLIST(list_huds)
-	list_huds = null
 
 	return ..()
 

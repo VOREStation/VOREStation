@@ -922,8 +922,8 @@ proc/sort_atoms_by_layer(var/list/atoms)
 /proc/gen_hud_image(var/file, var/person, var/state, var/plane)
 	var/image/img = image(file, person, state)
 	img.plane = plane //Thanks Byond.
-	img.layer = HUD_LAYER
-	img.appearance_flags = APPEARANCE_UI|KEEP_APART
+	img.layer = MOB_LAYER-0.02
+	img.appearance_flags = APPEARANCE_UI
 	return img
 
 /**

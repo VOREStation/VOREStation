@@ -1001,11 +1001,6 @@
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
 			M.drop_from_inventory(I, locker)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			H.update_icons_layers() //Cheaper
-		else
-			M.update_icons()
 
 		//so they black out before warping
 		M.Paralyse(5)
@@ -1188,10 +1183,8 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 		var/block=text2num(href_list["block"])
-		//testing("togmutate([href_list["block"]] -> [block])")
 		usr.client.cmd_admin_toggle_block(H,block)
 		show_player_panel(H)
-		//H.regenerate_icons()
 
 	else if(href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])

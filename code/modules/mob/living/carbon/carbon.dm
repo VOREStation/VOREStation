@@ -290,9 +290,7 @@
 				H.bloody_hands = 0
 				H.update_inv_gloves(0)
 			H.germ_level = 0
-	update_icons_layers(FALSE)	//apply the now updated overlays to the mob
 	update_icons_body()
-
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()

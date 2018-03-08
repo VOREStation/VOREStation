@@ -83,8 +83,6 @@ var/list/holder_mob_icon_cache = list()
 			H.update_inv_l_hand()
 		else if(H.r_hand == src)
 			H.update_inv_r_hand()
-		//else
-			//H.regenerate_icons() //Basically just too expensive. Probably also not necessary.
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona

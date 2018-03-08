@@ -267,5 +267,3 @@
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
-#define BACKPLANE_LAYER	-101
-#define HUD_LAYER		-105
