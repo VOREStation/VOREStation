@@ -415,3 +415,6 @@
 
 /obj/structure/closet/onDropInto(var/atom/movable/AM)
 	return
+
+/obj/structure/closet/AllowDrop()
+	return TRUE
