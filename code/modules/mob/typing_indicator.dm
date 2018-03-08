@@ -28,7 +28,6 @@
 		set_typing_indicator(1)
 	else if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 1
-		update_icons_huds()
 
 	var/message = input("","say (text)") as text
 
@@ -36,7 +35,6 @@
 		set_typing_indicator(0)
 	else if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 0
-		update_icons_huds()
 
 	if(message)
 		say_verb(message)
@@ -49,13 +47,11 @@
 		set_typing_indicator(1)
 	else if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 1
-		update_icons_huds()
 
 	var/message = input("","me (text)") as text
 
 	if(is_preference_enabled(/datum/client_preference/show_typing_indicator))
 		hud_typing = 0
-		update_icons_huds()
 	else if(!ishuman(src)) //If they're a mob, use the old code.
 		set_typing_indicator(0)
 
