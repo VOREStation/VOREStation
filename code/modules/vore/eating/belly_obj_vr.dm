@@ -149,7 +149,6 @@
 /obj/belly/Entered(var/atom/movable/thing,var/atom/OldLoc)
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
-
 	//Generic entered message
 	to_chat(owner,"<span class='notice'>[thing] slides into your [lowertext(name)].</span>")
 
@@ -333,7 +332,7 @@
 			var/obj/belly/B = belly
 			for(var/thing in B)
 				var/atom/movable/AM = thing
-				AM.forceMove(owner.loc)
+				AM.forceMove(src)
 				if(isliving(AM))
 					to_chat(AM,"As [M] melts away around you, you find yourself in [owner]'s [lowertext(name)]")
 
@@ -350,7 +349,7 @@
 			for(var/slot in slots)
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
 				if(thingy)
-					M.unEquip(thingy,force = TRUE)
+					M.u_equip(thingy)
 					thingy.forceMove(src)
 
 	//Reagent transfer
