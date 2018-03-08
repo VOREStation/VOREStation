@@ -94,6 +94,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	// Regular stuff again.
 	var/matrix/M = matrix()
+	var/anim_time = 3
+	
+	//Due to some involuntary means, you're laying now
+	if(lying && !resting && !sleeping)
+		anim_time = 1 //Thud
+	
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		M.Turn(90)
 		M.Scale(desired_scale)
@@ -104,7 +110,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		M.Translate(0, 16*(desired_scale-1))
 		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
-	animate(src, transform = M, time = 3)
+	animate(src, transform = M, time = anim_time)
 	update_icon_special() //May contain transform-altering things
 
 //DAMAGE OVERLAYS

@@ -354,12 +354,10 @@
 //such as when picking up all the items on a tile with one click.
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
+	
 	if(usr)
-		usr.remove_from_mob(W)
-		usr.update_icons()	//update our overlays
-	W.forceMove(src)
-	W.on_enter_storage(src)
-	if(usr)
+		usr.remove_from_mob(W,target = src) //If given a target, handles forceMove()
+		W.on_enter_storage(src)
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= W
 		W.dropped(usr)
@@ -377,6 +375,10 @@
 		src.orient2hud(usr)
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
+	else
+		W.forceMove(src)
+		W.on_enter_storage(src)
+
 	update_icon()
 	return 1
 
