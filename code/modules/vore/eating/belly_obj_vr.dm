@@ -149,6 +149,7 @@
 /obj/belly/Entered(var/atom/movable/thing,var/atom/OldLoc)
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
+
 	//Generic entered message
 	to_chat(owner,"<span class='notice'>[thing] slides into your [lowertext(name)].</span>")
 
@@ -349,8 +350,7 @@
 			for(var/slot in slots)
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
 				if(thingy)
-					M.u_equip(thingy)
-					thingy.forceMove(src)
+					M.remove_from_mob(thingy, M.drop_location())
 
 	//Reagent transfer
 	if(ishuman(owner))

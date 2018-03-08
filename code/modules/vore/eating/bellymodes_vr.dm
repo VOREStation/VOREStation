@@ -120,19 +120,14 @@
 				continue
 			for(var/slot in slots)
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
-				if(thingy)
-					if(!M.canUnEquip(thingy))
-						continue
-					if(thingy == M.get_equipped_item(slot_w_uniform))
+				if(thingy && M.canUnEquip(thingy))
+					if(slot == slot_w_uniform)
 						var/list/stash = list(slot_r_store,slot_l_store,slot_wear_id,slot_belt)
 						for(var/stashslot in stash)
 							var/obj/item/SL = M.get_equipped_item(stashslot)
 							if(SL)
-								SL.forceMove(src)
-								contents |= SL
-					M.u_equip(thingy)
-					thingy.forceMove(src)
-					contents |= thingy
+								M.remove_from_mob(SL, M.drop_location())
+					M.remove_from_mob(thingy, M.drop_location())
 					digest_item(thingy)
 					break
 
