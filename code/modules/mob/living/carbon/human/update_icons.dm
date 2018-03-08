@@ -835,16 +835,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(tail_overlay && tail_overlay.icon_state == t_state)
 		return //let the existing animation finish
 
-	remove_layer(TAIL_LAYER)
-
-	tail_overlay = set_tail_state(t_state)
+	tail_overlay = set_tail_state(t_state) // Calls remove_layer & apply_layer
 	if(tail_overlay)
 		spawn(20)
 			//check that the animation hasn't changed in the meantime
 			if(overlays_standing[TAIL_LAYER] == tail_overlay && tail_overlay.icon_state == t_state)
-				animate_tail_stop()
-	
-	apply_layer(TAIL_LAYER)
+				animate_tail_stop()	
 
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src))
