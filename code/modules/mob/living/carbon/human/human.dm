@@ -1007,7 +1007,7 @@
 		if(!blood_DNA[M.dna.unique_enzymes])
 			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	hand_blood_color = blood_color
-	src.update_inv_gloves()	//handles bloody hands overlays and updating
+	update_bloodied()
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
@@ -1017,14 +1017,33 @@
 	return md5(dna.uni_identity)
 
 /mob/living/carbon/human/clean_blood(var/washshoes)
-	.=..()
+	. = ..()
 	gunshot_residue = null
-	if(washshoes && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
+	//Always do hands (or whatever's on our hands)
+	if(gloves)
+		if(gloves.clean_blood())
+			update_inv_gloves()
+			. = 1
+		gloves.germ_level = 0
+	else
+		if(bloody_hands)
+			. = 1
+			bloody_hands = 0
+		germ_level = 0
+	
+	//Sometimes do shoes if asked
+	if(washshoes && shoes)
+		if(shoes.clean_blood())
+			update_inv_shoes()
+			. = 1
+		shoes.germ_level = 0
+	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
 		feet_blood_color = null
-		feet_blood_DNA.Cut()
+		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
-		update_inv_shoes(1)
-		return 1
+		. = 1
+	
+	update_bloodied()
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
 

@@ -7,7 +7,7 @@ var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_s
 var/global/list/light_overlay_cache = list() //see make_worn_icon() on helmets
 var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
-//Add an entry to overlays, assuming it exists
+//Add an entry to overlays, assuming it existsup
 /mob/living/carbon/human/proc/apply_layer(cache_index)
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)

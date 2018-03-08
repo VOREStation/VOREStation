@@ -181,7 +181,10 @@
 
 /obj/item/weapon/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
 	if(!inhands && slot_name == slot_back_str)
-		return icon_override || mob_icon //That's just all this does.
+		if(icon_override)
+			return icon_override
+		else if(mob_icon)
+			return mob_icon
 
 	return ..()
 
@@ -604,7 +607,7 @@
 		// update_inv_wear_suit(), handle species checks here.
 		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
 			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
-		mob_icon = image("icon" = species_icon, "icon_state" = "[icon_state]")
+		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)

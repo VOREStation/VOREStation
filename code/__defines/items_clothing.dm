@@ -107,6 +107,7 @@
 #define slot_handcuffed  20
 #define slot_legcuffed   21
 #define slot_in_backpack 22
+#define SLOT_TOTAL       22
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.

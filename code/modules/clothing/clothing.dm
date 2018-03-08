@@ -322,6 +322,7 @@
 	var/light_applied
 	var/brightness_on
 	var/on = 0
+	var/image/helmet_light
 
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/head.dmi',
@@ -385,18 +386,16 @@
 	return 1
 
 /obj/item/clothing/head/update_icon(var/mob/user)
-
-	overlays.Cut()
 	var/mob/living/carbon/human/H
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		H = user
 
 	if(on)
-
 		// Generate object icon.
 		if(!light_overlay_cache["[light_overlay]_icon"])
 			light_overlay_cache["[light_overlay]_icon"] = image("icon" = 'icons/obj/light_overlays.dmi', "icon_state" = "[light_overlay]")
-		overlays |= light_overlay_cache["[light_overlay]_icon"]
+		helmet_light = light_overlay_cache["[light_overlay]_icon"]
+		add_overlay(helmet_light)
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype(H)]" : ""]"
@@ -405,9 +404,11 @@
 			if(H && sprite_sheets[H.species.get_bodytype(H)])
 				use_icon = sprite_sheets[H.species.get_bodytype(H)]
 			light_overlay_cache[cache_key] = image("icon" = use_icon, "icon_state" = "[light_overlay]")
+	else if(helmet_light)
+		cut_overlay(helmet_light)
+		helmet_light = null
 
-	if(H)
-		H.update_inv_head()
+	user.update_inv_head() //Will redraw the helmet with the light on the mob
 
 /obj/item/clothing/head/update_clothing_icon()
 	if (ismob(src.loc))
