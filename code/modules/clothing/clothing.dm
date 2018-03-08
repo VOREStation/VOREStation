@@ -91,10 +91,8 @@
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
-
+		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
+		
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
 	else
@@ -114,9 +112,7 @@
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
+		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]

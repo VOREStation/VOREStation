@@ -1176,6 +1176,9 @@
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
 
+	//A slew of bits that may be affected by our species change
+	regenerate_icons()
+
 	if(species)
 		if(mind)
 			apply_traits()

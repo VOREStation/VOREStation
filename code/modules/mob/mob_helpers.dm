@@ -624,7 +624,7 @@ var/global/image/backplane
 	backplane = image('icons/misc/win32.dmi')
 	backplane.alpha = 0
 	backplane.plane = -100
-	backplane.layer = MOB_LAYER-0.01
+	backplane.layer = MOB_LAYER-0.1
 	backplane.mouse_opacity = 0
 
 	return TRUE

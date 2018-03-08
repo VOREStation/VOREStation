@@ -104,7 +104,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		M.Translate(0, 16*(desired_scale-1))
 		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
-	animate(src, transform = M, time = 0.5 SECONDS)
+	animate(src, transform = M, time = 3)
 	update_icon_special() //May contain transform-altering things
 
 //DAMAGE OVERLAYS
@@ -775,15 +775,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(TAIL_LAYER)
-	var/species_tail = species.get_tail(src)
+	var/species_tail = species.get_tail(src) // Species tail icon_state prefix.
 
 	//This one is actually not that bad I guess.
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
 		overlays_standing[TAIL_LAYER] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+TAIL_LAYER)
 		animate_tail_reset()
-
-	apply_layer(TAIL_LAYER)
 
 //TODO: Is this the appropriate place for this, and not on species...?
 /mob/living/carbon/human/proc/get_tail_icon()

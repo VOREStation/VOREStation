@@ -982,7 +982,9 @@
 			if(suit)
 				suit.name = "engineering voidsuit"
 				suit.icon_state = "rig-engineering"
-				suit.item_state = "eng_voidsuit"
+				suit.item_state = "rig-engineering"
+				suit.item_state_slots[slot_r_hand_str] = "eng_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "eng_voidsuit"
 		if("Mining")
 			if(helmet)
 				helmet.name = "mining voidsuit helmet"
@@ -991,7 +993,9 @@
 			if(suit)
 				suit.name = "mining voidsuit"
 				suit.icon_state = "rig-mining"
-				suit.item_state = "mining_voidsuit"
+				suit.item_state = "rig-mining"
+				suit.item_state_slots[slot_r_hand_str] = "mining_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "mining_voidsuit"
 		if("Medical")
 			if(helmet)
 				helmet.name = "medical voidsuit helmet"
@@ -1000,7 +1004,9 @@
 			if(suit)
 				suit.name = "medical voidsuit"
 				suit.icon_state = "rig-medical"
-				suit.item_state = "medical_voidsuit"
+				suit.item_state = "rig-medical"
+				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit"
 		if("Security")
 			if(helmet)
 				helmet.name = "security voidsuit helmet"
@@ -1009,7 +1015,9 @@
 			if(suit)
 				suit.name = "security voidsuit"
 				suit.icon_state = "rig-sec"
-				suit.item_state = "sec_voidsuit"
+				suit.item_state = "rig-sec"
+				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuit"
 		if("Crowd Control")
 			if(helmet)
 				helmet.name = "crowd control voidsuit helmet"
@@ -1018,7 +1026,9 @@
 			if(suit)
 				suit.name = "crowd control voidsuit"
 				suit.icon_state = "rig-sec_riot"
-				suit.item_state = "sec_voidsuit_riot"
+				suit.item_state = "rig-sec_riot"
+				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuit_riot"
+				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuit_riot"
 		if("Atmos")
 			if(helmet)
 				helmet.name = "atmospherics voidsuit helmet"
@@ -1027,7 +1037,9 @@
 			if(suit)
 				suit.name = "atmospherics voidsuit"
 				suit.icon_state = "rig-atmos"
-				suit.item_state = "atmos_voidsuit"
+				suit.item_state = "rig-atmos"
+				suit.item_state_slots[slot_r_hand_str] = "atmos_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "atmos_voidsuit"
 		if("HAZMAT")
 			if(helmet)
 				helmet.name = "HAZMAT voidsuit helmet"
@@ -1036,7 +1048,9 @@
 			if(suit)
 				suit.name = "HAZMAT voidsuit"
 				suit.icon_state = "rig-engineering_rad"
-				suit.item_state = "eng_voidsuit_rad"
+				suit.item_state = "rig-engineering_rad"
+				suit.item_state_slots[slot_r_hand_str] = "eng_voidsuit_rad"
+				suit.item_state_slots[slot_l_hand_str] = "eng_voidsuit_rad"
 		if("Construction")
 			if(helmet)
 				helmet.name = "Construction voidsuit helmet"
@@ -1045,7 +1059,9 @@
 			if(suit)
 				suit.name = "Construction voidsuit"
 				suit.icon_state = "rig-engineering_con"
-				suit.item_state = "eng_voidsuit_con"
+				suit.item_state = "rig-engineering_con"
+				suit.item_state_slots[slot_r_hand_str] = "eng_voidsuit_con"
+				suit.item_state_slots[slot_l_hand_str] = "eng_voidsuit_con"
 		if("Biohazard")
 			if(helmet)
 				helmet.name = "Biohazard voidsuit helmet"
@@ -1054,7 +1070,9 @@
 			if(suit)
 				suit.name = "Biohazard voidsuit"
 				suit.icon_state = "rig-medical_bio"
-				suit.item_state = "medical_voidsuit_bio"
+				suit.item_state = "rig-medical_bio"
+				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit_bio"
+				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit_bio"
 		if("Emergency Medical Response")
 			if(helmet)
 				helmet.name = "emergency medical response voidsuit helmet"
@@ -1063,7 +1081,9 @@
 			if(suit)
 				suit.name = "emergency medical response voidsuit"
 				suit.icon_state = "rig-medical_emt"
-				suit.item_state = "medical_voidsuit_emt"
+				suit.item_state = "rig-medical_emt"
+				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit_emt"
+				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit_emt"
 		if("^%###^%$" || "Mercenary")
 			if(helmet)
 				helmet.name = "blood-red voidsuit helmet"
@@ -1071,8 +1091,10 @@
 				helmet.item_state = "rig0-syndie"
 			if(suit)
 				suit.name = "blood-red voidsuit"
-				suit.item_state = "syndie_voidsuit"
+				suit.item_state = "rig-syndie"
 				suit.icon_state = "rig-syndie"
+				suit.item_state_slots[slot_r_hand_str] = "syndie_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "syndie_voidsuit"
 		if("Charring")
 			if(helmet)
 				helmet.name = "soot-covered voidsuit helmet"
@@ -1082,6 +1104,8 @@
 				suit.name = "soot-covered voidsuit"
 				suit.item_state = "rig-firebug"
 				suit.icon_state = "rig-firebug"
+				suit.item_state_slots[slot_r_hand_str] = "rig-firebug"
+				suit.item_state_slots[slot_l_hand_str] = "rig-firebug"
 
 	if(helmet) helmet.name = "refitted [helmet.name]"
 	if(suit) suit.name = "refitted [suit.name]"
