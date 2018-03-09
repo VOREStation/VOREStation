@@ -393,17 +393,17 @@
 	if(on)
 		// Generate object icon.
 		if(!light_overlay_cache["[light_overlay]_icon"])
-			light_overlay_cache["[light_overlay]_icon"] = image("icon" = 'icons/obj/light_overlays.dmi', "icon_state" = "[light_overlay]")
+			light_overlay_cache["[light_overlay]_icon"] = image(icon = 'icons/obj/light_overlays.dmi', icon_state = "[light_overlay]")
 		helmet_light = light_overlay_cache["[light_overlay]_icon"]
 		add_overlay(helmet_light)
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
-		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype(H)]" : ""]"
+		var/body_type = (H && H.species.get_bodytype(H))
+		var/cache_key = "[light_overlay][body_type && sprite_sheets[body_type] ? "_[body_type]" : ""]"
 		if(!light_overlay_cache[cache_key])
-			var/use_icon = 'icons/mob/light_overlays.dmi'
-			if(H && sprite_sheets[H.species.get_bodytype(H)])
-				use_icon = sprite_sheets[H.species.get_bodytype(H)]
-			light_overlay_cache[cache_key] = image("icon" = use_icon, "icon_state" = "[light_overlay]")
+			var/use_icon = LAZYACCESS(sprite_sheets,body_type) || 'icons/mob/light_overlays.dmi'
+			light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
+	
 	else if(helmet_light)
 		cut_overlay(helmet_light)
 		helmet_light = null

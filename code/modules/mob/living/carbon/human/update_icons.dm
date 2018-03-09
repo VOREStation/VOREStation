@@ -7,7 +7,44 @@ var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_s
 var/global/list/light_overlay_cache = list() //see make_worn_icon() on helmets
 var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
-//Add an entry to overlays, assuming it existsup
+////////////////////////////////////////////////////////////////////////////////////////////////
+// # Human Icon Updating System
+//
+// This system takes care of the "icon" for human mobs.  Of course humans don't just have a single 
+// icon+icon_state, but a combination of dozens of little sprites including including the body, 
+// clothing, equipment, in-universe HUD images, etc.
+// 
+// # Basic Operation
+// Whenever you do something that should update the on-mob appearance of a worn or held item, You
+// will need to call the relevant update_inv_* proc. All of these are named after the variable they
+// update from. They are defined at the /mob level so you don't even need to cast to carbon/human.
+//
+// The new system leverages SSoverlays to actually add/remove the overlays from mob.overlays
+// Since SSoverlays already manages batching updates to reduce apperance churn etc, we don't need
+// to worry about that.  (In short, you can call add/cut overlay as many times as you want, it will
+// only get assigned to the mob once per tick.)
+// As a corrolary, this means users of this system do NOT need to tell the system when you're done
+// making changes.
+// 
+// There are also these special cases:
+//  update_icons_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
+//  UpdateDamageIcon()	//Handles damage overlays for brute/burn damage //(will rename this when I geta round to it) ~Carn
+//  update_skin()		//Handles updating skin for species that have a skin overlay.
+//  update_bloodied()	//Handles adding/clearing the blood overlays for hands & feet.  Call when bloodied or cleaned.
+//  update_underwear()	//Handles updating the sprite for underwear.
+//  update_hair()		//Handles updating your hair and eyes overlay 
+//  update_mutations()	//Handles updating your appearance for certain mutations.  e.g TK head-glows
+//  update_fire()		//Handles overlay from being on fire.
+//  update_water()		//Handles overlay from being submerged.
+//  update_surgery()	//Handles overlays from open external organs.
+//
+// # History (i.e. I'm used to the old way, what is different?)
+// You used to have to call update_icons(FALSE) if you planned to make more changes, and call update_icons(TRUE)
+// on the final update.  All that is gone, just call update_inv_whatever() and it handles the rest.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Add an entry to overlays, assuming it exists
 /mob/living/carbon/human/proc/apply_layer(cache_index)
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)

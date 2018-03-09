@@ -1018,30 +1018,27 @@
 
 /mob/living/carbon/human/clean_blood(var/washshoes)
 	. = ..()
+
 	gunshot_residue = null
+
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
-		if(gloves.clean_blood())
-			update_inv_gloves()
-			. = 1
+		gloves.clean_blood()
+		update_inv_gloves()
 		gloves.germ_level = 0
 	else
-		if(bloody_hands)
-			. = 1
-			bloody_hands = 0
+		bloody_hands = 0
 		germ_level = 0
 	
-	//Sometimes do shoes if asked
+	//Sometimes do shoes if asked (or feet if no shoes)
 	if(washshoes && shoes)
-		if(shoes.clean_blood())
-			update_inv_shoes()
-			. = 1
+		shoes.clean_blood()
+		update_inv_shoes()
 		shoes.germ_level = 0
 	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
-		feet_blood_color = null
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
-		. = 1
+		feet_blood_color = null
 	
 	update_bloodied()
 

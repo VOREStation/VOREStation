@@ -339,7 +339,6 @@
 			piece.item_flags &= ~(STOPPRESSUREDAMAGE|AIRTIGHT)
 		else
 			piece.item_flags |=  (STOPPRESSUREDAMAGE|AIRTIGHT)
-	update_icon(1)
 
 /obj/item/weapon/rig/ui_action_click()
 	toggle_cooling(usr)
