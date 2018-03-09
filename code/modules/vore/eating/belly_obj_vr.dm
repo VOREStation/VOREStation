@@ -430,12 +430,16 @@
 /obj/belly/drop_location()
 	//Should be the case 99.99% of the time
 	if(owner)
-		return owner.loc
+		return owner.drop_location()
 	//Sketchy fallback for safety, put them somewhere safe.
 	else
 		log_debug("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
 		var/fallback = pick(latejoin)
 		return get_turf(fallback)
+
+//Yes, it's ""safe"" to drop items here
+/obj/belly/AllowDrop()
+	return TRUE
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
