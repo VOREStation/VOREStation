@@ -98,7 +98,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/micro
 	w_class = ITEMSIZE_LARGE
-	name = "drill"
+	name = "Miniature Drill"
 	desc = "This is the drill that'll sorta poke holes in the heavens!"
 	icon = 'icons/mecha/mecha_equipment_vr.dmi'
 	icon_state = "microdrill"
