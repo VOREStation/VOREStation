@@ -456,9 +456,10 @@
 /hook/death/proc/nif_soulcatcher(var/mob/living/carbon/human/H)
 	if(!istype(H) || !H.mind) return TRUE //Hooks must return TRUE
 
-	if(ishuman(H.loc)) //Died in someone
-		var/mob/living/carbon/human/HP = H.loc
-		if(HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
+	if(isbelly(H.loc)) //Died in someone
+		var/obj/belly/B = H.loc
+		var/mob/living/carbon/human/HP = B.owner
+		if(istype(HP) && HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
 	else if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
