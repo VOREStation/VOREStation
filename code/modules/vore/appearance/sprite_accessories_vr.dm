@@ -201,13 +201,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/ears/otie
-	name = "otie, colorable"
+/datum/sprite_accessory/ears/antlers_e
+	name = "antlers with ears"
 	desc = ""
-	icon_state = "otie"
+	icon_state = "cow-nohorns"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "otie-inner"
+	extra_overlay = "antlers_mark"
 
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
@@ -220,6 +220,21 @@
 	icon_state = "cow-c"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/cow_nohorns
+	name = "cow, no horns"
+	desc = ""
+	icon_state = "cow-nohorns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/otie
+	name = "otie, colorable"
+	desc = ""
+	icon_state = "otie"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "otie-inner"
 
 /datum/sprite_accessory/ears/zears
 	name = "jagged ears"
@@ -852,6 +867,22 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sergal_mark"
+
+/datum/sprite_accessory/tail/skunktail
+	name = "skunk, dual-color"
+	desc = ""
+	icon_state = "skunktail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "skunktail_mark"
+
+/datum/sprite_accessory/tail/deertail
+	name = "deer, dual-color"
+	desc = ""
+	icon_state = "deertail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "deertail_mark"
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
