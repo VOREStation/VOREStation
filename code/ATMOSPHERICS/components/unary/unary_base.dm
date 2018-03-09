@@ -104,6 +104,7 @@
 // Returns TRUE if something is blocking, FALSE if its okay to continue.
 /obj/machinery/atmospherics/unary/proc/check_for_obstacles()
 	for(var/obj/machinery/atmospherics/M in loc)
+		if(M == src) continue
 		if((M.pipe_flags & pipe_flags & PIPING_ONE_PER_TURF))	//Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
 			visible_message("<span class='warning'>\The [src]'s cannot be connected, something is hogging the tile!</span>")
 			return TRUE

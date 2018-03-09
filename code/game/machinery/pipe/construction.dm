@@ -223,7 +223,7 @@ Buildable meters
 		pipe_init_dirs_cache[type] = list()
 
 	if(!pipe_init_dirs_cache[type]["[dir]"])
-		var/obj/machinery/atmospherics/temp = new type(null, FALSE, dir)
+		var/obj/machinery/atmospherics/temp = new type(null, dir)
 		pipe_init_dirs_cache[type]["[dir]"] = temp.get_init_dirs()
 		qdel(temp)
 
