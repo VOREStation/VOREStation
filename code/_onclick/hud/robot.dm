@@ -276,8 +276,6 @@ var/obj/screen/robot_inventory
 		r.client.screen -= r.robot_modules_background
 
 /mob/living/silicon/robot/update_hud()
-	if(ui_style_vr) //VOREStation Edit
-		hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	..()
 	if(modtype)
 		hands.icon_state = lowertext(modtype)
-	..()
