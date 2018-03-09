@@ -222,10 +222,10 @@
 //
 // Release everything in every vore organ
 //
-/mob/living/proc/release_vore_contents(var/include_absorbed = TRUE)
+/mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
-		B.release_all_contents(include_absorbed)
+		B.release_all_contents(include_absorbed, silent)
 
 //
 // Returns examine messages for bellies
