@@ -414,9 +414,9 @@
 
 	// Inform Admins
 	if (pred == user)
-		msg_admin_attack("[key_name(pred)] ate [key_name(prey)]. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		add_attack_logs(pred,prey,"Eaten via [belly.name]")
 	else
-		msg_admin_attack("[key_name(user)] forced [key_name(pred)] to eat [key_name(prey)]. ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		add_attack_logs(user,pred,"Forced to eat [key_name(prey)]")
 	return 1
 
 //

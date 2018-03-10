@@ -112,7 +112,7 @@
 					imps -= imp
 					imp.imp_in = M
 					imp.implanted = 1
-					admin_attack_log(user, M, "Implanted using \the [src.name] ([imp.name])", "Implanted with \the [src.name] ([imp.name])", "used an implanter, [src.name] ([imp.name]), on")
+					add_attack_logs(user,M,"Implanted backup implant")
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
