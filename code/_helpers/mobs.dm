@@ -213,6 +213,8 @@ Proc for attack log creation, because really why not
 /proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if(!user)
 		return 0
+	if(!delay)
+		return 1 //Okay. Done.
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
