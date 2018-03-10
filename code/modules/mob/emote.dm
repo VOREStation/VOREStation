@@ -15,14 +15,13 @@
 	else
 		input = message
 	if(input)
+		log_emote(message,src) //Log before we add junk
 		message = "<B>[src]</B> [input]"
 	else
 		return
 
 
 	if (message)
-		log_emote("[name]/[key] : [message]")
-
 		message = say_emphasis(message)
 
  // Hearing gasp and such every five seconds is not good emotes were not global for a reason.
@@ -78,7 +77,7 @@
 	input = say_emphasis(input)
 
 	if(input)
-		log_emote("Ghost/[src.key] : [input]")
+		log_ghostemote(input, src)
 		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
 			visible_message("<span class='deadsay'><B>[src]</B> [input]</span>")
 		else

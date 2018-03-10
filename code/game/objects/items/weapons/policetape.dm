@@ -17,9 +17,9 @@
 		var/turf/T = get_turf(src)
 		if(!T)
 			return
-		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in T
-		if(airlock)
-			afterattack(airlock, null, TRUE)
+		var/obj/machinery/door/door = locate(/obj/machinery/door) in T
+		if((door == /obj/machinery/door/airlock) || (door == /obj/machinery/door/firedoor))
+			afterattack(door, null, TRUE)
 		return INITIALIZE_HINT_QDEL
 
 
@@ -250,7 +250,7 @@ var/list/tape_roll_applications = list()
 	if(!proximity)
 		return
 
-	if (istype(A, /obj/machinery/door/airlock))
+	if (istype(A, /obj/machinery/door))
 		var/turf/T = get_turf(A)
 		if(locate(/obj/item/tape, A.loc))
 			user << "There's already tape over that door!"

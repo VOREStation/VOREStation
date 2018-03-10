@@ -29,9 +29,7 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 
 
 /datum/controller/subsystem/overlays/Shutdown()
-	//text2file(render_stats(stats), "[GLOB.log_directory]/overlay.log")
-	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	text2file(render_stats(stats), "data/logs/[date_string]-overlay.log")
+	text2file(render_stats(stats), "[log_path]-overlay.log")
 
 /datum/controller/subsystem/overlays/Recover()
 	overlay_icon_state_caches = SSoverlays.overlay_icon_state_caches

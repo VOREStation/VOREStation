@@ -15,7 +15,7 @@
 		message = sanitize(message)
 		if (!message)
 			return
-		log_say("[key_name(src)] : [message]")
+		log_say(message,src)
 		if (stat == 2)
 			return say_dead(message)
 

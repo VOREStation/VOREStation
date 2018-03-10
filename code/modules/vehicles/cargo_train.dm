@@ -164,8 +164,8 @@
 		var/mob/living/carbon/human/D = load
 		D << "<font color='red'><B>You ran over [H]!</B></font>"
 		visible_message("<B><font color='red'>\The [src] ran over [H]!</B></font>")
+		add_attack_logs(D,H,"Ran over with [src.name]")
 		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey]), driven by [D.name] ([D.ckey])</font>")
-		msg_admin_attack("[D.name] ([D.ckey]) ran over [H.name] ([H.ckey]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
 	else
 		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
 

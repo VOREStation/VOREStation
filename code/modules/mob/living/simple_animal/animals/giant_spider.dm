@@ -78,6 +78,7 @@ Nurse Family
 	var/atom/cocoon_target
 	var/egg_inject_chance = 5
 
+// VOREStation Edit - Keep Nurse Hat Spiders
 /mob/living/simple_animal/hostile/giant_spider/nurse/medical
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes and a tiny nurse hat."
 	icon_state = "nursemed"
@@ -88,7 +89,7 @@ Nurse Family
 	melee_damage_upper = 16
 	poison_type = "tramadol"
 	poison_chance = 15
-
+// VOREStation Edit End
 
 /mob/living/simple_animal/hostile/giant_spider/nurse/queen
 	desc = "Absolutely gigantic, this creature is horror itself."

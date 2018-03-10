@@ -16,7 +16,7 @@ proc/log_and_message_admins_many(var/list/mob/users, var/message)
 
 	log_admin("[english_list(user_keys)] [message]")
 	message_admins("[english_list(user_keys)] [message]")
-
+/* Old procs
 proc/admin_attack_log(var/mob/attacker, var/mob/victim, var/attacker_message, var/victim_message, var/admin_message)
 	if(victim)
 		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>[key_name(attacker)] - [victim_message]</font>")
@@ -42,3 +42,4 @@ proc/admin_inject_log(mob/attacker, mob/victim, obj/item/weapon, reagents, amoun
 	                 "used \the [weapon] to [violent]inject - [reagents] - [amount_transferred]u transferred",
 	                 "was [violent]injected with \the [weapon] - [reagents] - [amount_transferred]u transferred",
 	                 "used \the [weapon] to [violent]inject [reagents] ([amount_transferred]u transferred) into")
+*/

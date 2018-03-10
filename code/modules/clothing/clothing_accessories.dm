@@ -29,7 +29,7 @@
 		return
 	if (ishuman(user) && src.loc == user)
 		var/mob/living/carbon/human/H = user
-		if(src != H.l_store && src != H.r_store && src != H.s_store)
+		if(src == H.w_uniform) // VOREStation Edit - Un-equip on single click, but not on uniform.
 			return
 	return ..()
 

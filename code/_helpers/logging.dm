@@ -27,7 +27,7 @@
 
 /proc/log_debug(text)
 	if (config.log_debug)
-		diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
+		debug_log << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
 	for(var/client/C in admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
@@ -41,46 +41,80 @@
 	if (config.log_vote)
 		diary << "\[[time_stamp()]]VOTE: [text][log_end]"
 
-/proc/log_access(text)
+/proc/log_access_in(client/new_client)
 	if (config.log_access)
-		diary << "\[[time_stamp()]]ACCESS: [text][log_end]"
+		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"			
+		diary << "\[[time_stamp()]]ACCESS IN: [message][log_end]"
 
-/proc/log_say(text)
+/proc/log_access_out(mob/last_mob)
+	if (config.log_access)
+		var/message = "[key_name(last_mob)] - IP:[last_mob.lastKnownIP] - CID:Logged Out - BYOND Logged Out"
+		diary << "\[[time_stamp()]]ACCESS OUT: [message][log_end]"
+
+/proc/log_say(text, mob/speaker)
 	if (config.log_say)
-		diary << "\[[time_stamp()]]SAY: [text][log_end]"
+		diary << "\[[time_stamp()]]SAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
 
-/proc/log_ooc(text)
+/proc/log_ooc(text, client/user)
 	if (config.log_ooc)
-		diary << "\[[time_stamp()]]OOC: [text][log_end]"
+		diary << "\[[time_stamp()]]OOC: [user.simple_info_line()]: [html_decode(text)][log_end]"
 
-/proc/log_whisper(text)
+/proc/log_aooc(text, client/user)
+	if (config.log_ooc)
+		diary << "\[[time_stamp()]]AOOC: [user.simple_info_line()]: [html_decode(text)][log_end]"
+
+/proc/log_looc(text, client/user)
+	if (config.log_ooc)
+		diary << "\[[time_stamp()]]LOOC: [user.simple_info_line()]: [html_decode(text)][log_end]"
+
+/proc/log_whisper(text, mob/speaker)
 	if (config.log_whisper)
-		diary << "\[[time_stamp()]]WHISPER: [text][log_end]"
+		diary << "\[[time_stamp()]]WHISPER: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
 
-/proc/log_emote(text)
+/proc/log_emote(text, mob/speaker)
 	if (config.log_emote)
-		diary << "\[[time_stamp()]]EMOTE: [text][log_end]"
+		diary << "\[[time_stamp()]]EMOTE: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
 
-/proc/log_attack(text)
+/proc/log_attack(attacker, defender, message)
 	if (config.log_attack)
-		diary << "\[[time_stamp()]]ATTACK: [text][log_end]" //Seperate attack logs? Why?  FOR THE GLORY OF SATAN!
+		diary << "\[[time_stamp()]]ATTACK: [attacker] against [defender]: [message][log_end]"
 
-/proc/log_adminsay(text)
+/proc/log_adminsay(text, mob/speaker)
 	if (config.log_adminchat)
-		diary << "\[[time_stamp()]]ADMINSAY: [text][log_end]"
+		diary << "\[[time_stamp()]]ADMINSAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+
+/proc/log_modsay(text, mob/speaker)
+	if (config.log_adminchat)
+		diary << "\[[time_stamp()]]MODSAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+
+/proc/log_eventsay(text, mob/speaker)
+	if (config.log_adminchat)
+		diary << "\[[time_stamp()]]EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+
+/proc/log_ghostsay(text, mob/speaker)
+	if (config.log_say)
+		diary << "\[[time_stamp()]]DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+
+/proc/log_ghostemote(text, mob/speaker)
+	if (config.log_emote)
+		diary << "\[[time_stamp()]]DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
 
 /proc/log_adminwarn(text)
 	if (config.log_adminwarn)
-		diary << "\[[time_stamp()]]ADMINWARN: [text][log_end]"
+		diary << "\[[time_stamp()]]ADMINWARN: [html_decode(text)][log_end]"
 
-/proc/log_pda(text)
+/proc/log_pda(text, mob/speaker)
 	if (config.log_pda)
-		diary << "\[[time_stamp()]]PDA: [text][log_end]"
+		diary << "\[[time_stamp()]]PDA: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
 	if(config.log_world_output)
 		diary << "\[[time_stamp()]]DD_OUTPUT: [text][log_end]"
+
+/proc/log_error(text)
+	world.log << text
+	error_log << "\[[time_stamp()]]RUNTIME: [text][log_end]"
 
 /proc/log_misc(text)
 	diary << "\[[time_stamp()]]MISC: [text][log_end]"
@@ -105,12 +139,14 @@
 	return english_list(comps, nothing_text="0", and_text="|", comma_text="|")
 
 //more or less a logging utility
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
+//Always return "Something/(Something)", even if it's an error message.
+/proc/key_name(var/whom, var/include_link = null, var/highlight_special_characters = 1)
 	var/mob/M
 	var/client/C
 	var/key
 
-	if(!whom)	return "*null*"
+	if(!whom)
+		return "INVALID/INVALID"
 	if(istype(whom, /client))
 		C = whom
 		M = C.mob
@@ -127,9 +163,11 @@
 			C = D.current.client
 	else if(istype(whom, /datum))
 		var/datum/D = whom
-		return "*invalid:[D.type]*"
+		return "INVALID/([D.type])"
+	else if(istext(whom))
+		return "AUTOMATED/[whom]" //Just give them the text back
 	else
-		return "*invalid*"
+		return "INVALID/INVALID"
 
 	. = ""
 
@@ -137,7 +175,7 @@
 		if(include_link && C)
 			. += "<a href='?priv_msg=\ref[C]'>"
 
-		if(C && C.holder && C.holder.fakekey && !include_name)
+		if(C && C.holder && C.holder.fakekey)
 			. += "Administrator"
 		else
 			. += key
@@ -146,21 +184,19 @@
 			if(C)	. += "</a>"
 			else	. += " (DC)"
 	else
-		. += "*no key*"
+		. += "INVALID"
 
-	if(include_name && M)
-		var/name
-
+	var/name = "INVALID"
+	if(M)
 		if(M.real_name)
 			name = M.real_name
 		else if(M.name)
 			name = M.name
 
-
 		if(include_link && is_special_character(M) && highlight_special_characters)
-			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
-		else
-			. += "/([name])"
+			name = "<font color='#FFA500'>[name]</font>" //Orange
+	
+	. += "/([name])"
 
 	return .
 
@@ -189,3 +225,9 @@
 	if(!istype(d))
 		return json_encode(d)
 	return d.log_info_line()
+
+/mob/proc/simple_info_line()
+	return "[key_name(src)] ([x],[y],[z])"
+
+/client/proc/simple_info_line()
+	return "[key_name(src)] ([mob.x],[mob.y],[mob.z])"

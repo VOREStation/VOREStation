@@ -5,8 +5,10 @@
 	var/pounce_cooldown = 0
 	var/pounce_cooldown_time = 40
 	var/leap_at
-	var/dogborg = FALSE
+	var/dogborg = FALSE //Dogborg special features (overlays etc.)
+	var/wideborg = FALSE //When the borg simply doesn't use standard 32p size.
 	var/original_icon = 'icons/mob/robots.dmi'
+	var/ui_style_vr = FALSE //Do we use our hud icons?
 	var/vr_icons = list(
 					   "handy-hydro",
 					   "handy-service",
@@ -84,6 +86,8 @@
 	return
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
+	if(wideborg == TRUE)
+		return
 	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
 		original_icon = icon
 	if((icon_state in vr_icons) && (icon == 'icons/mob/robots.dmi'))

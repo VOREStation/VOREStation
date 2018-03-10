@@ -68,6 +68,18 @@
 	name = "stack of wood"
 	type_to_spawn = /obj/item/stack/material/wood
 
+/obj/fiftyspawner/sifwood
+	name = "stack of alien wood"
+	type_to_spawn = /obj/item/stack/material/wood/sif
+
+/obj/fiftyspawner/log
+	name = "stack of logs"
+	type_to_spawn = /obj/item/stack/material/log
+
+/obj/fiftyspawner/log
+	name = "stack of alien logs"
+	type_to_spawn = /obj/item/stack/material/log/sif
+
 /obj/fiftyspawner/cloth
 	name = "stack of cloth"
 	type_to_spawn = /obj/item/stack/material/cloth

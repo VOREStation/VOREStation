@@ -475,7 +475,7 @@
 	if(burn_damage > 15 && H.can_feel_pain())
 		H.emote("scream")
 
-	admin_attack_log(user, H, "Electrocuted using \a [src]", "Was electrocuted with \a [src]", "used \a [src] to electrocute")
+	add_attack_logs(user,H,"Shocked using [name]")
 
 /obj/item/weapon/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
 	var/deadtime = world.time - M.timeofdeath
