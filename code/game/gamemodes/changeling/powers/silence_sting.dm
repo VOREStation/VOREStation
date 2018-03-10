@@ -15,9 +15,7 @@
 
 	var/mob/living/carbon/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
 	if(!T)	return 0
-	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was silence stung by [key_name(src)]</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used silence sting on [key_name(T)]</font>")
-	msg_admin_attack("[key_name(T)] was silence stung by [key_name(src)]")
+	add_attack_logs(src,T,"Silence sting (changeling)")
 	var/duration = 30
 	if(src.mind.changeling.recursive_enhancement)
 		duration = duration + 10

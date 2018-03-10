@@ -66,7 +66,6 @@
 							log_and_message_admins("broke their [breaking] with *flip, ahahah.", src)
 
 	if (message)
-		log_emote("[name]/[key] : [message]")
 		custom_emote(m_type,message)
 		return 1
 

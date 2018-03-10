@@ -200,17 +200,8 @@
 
 	//admin logs
 	if(!no_attack_log)
-		if(istype(firer, /mob))
-
-			var/attacker_message = "shot with \a [src.type]"
-			var/victim_message = "shot with \a [src.type]"
-			var/admin_message = "shot (\a [src.type])"
-
-			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
-		else
-			if(target_mob) // Sometimes the target_mob gets gibbed or something.
-				target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
-				msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
+		if(istype(firer, /mob) && istype(target_mob))
+			add_attack_logs(firer,target_mob,"Shot with \a [src.type] projectile")
 
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)

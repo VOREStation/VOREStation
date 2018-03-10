@@ -729,9 +729,7 @@
 			src << "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>"
 
 	if (message)
-		log_emote("[name]/[key] : [message]")
 		custom_emote(m_type,message)
-
 
 /mob/living/carbon/human/verb/pose()
 	set name = "Set Pose"

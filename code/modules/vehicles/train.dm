@@ -56,7 +56,7 @@
 			if(istype(load, /mob/living/carbon/human))
 				var/mob/living/D = load
 				D << "<font color='red'>You hit [M]!</font>"
-				msg_admin_attack("[D.name] ([D.ckey]) hit [M.name] ([M.ckey]) with [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+				add_attack_logs(D,M,"Ran over with [src.name]")
 
 
 //-------------------------------------------
