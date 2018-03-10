@@ -189,7 +189,7 @@
 		if(text)
 			exonet.send_message(their_address, "text", text)
 			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
-			log_pda("[usr] (COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]")
+			log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", usr)
 			for(var/mob/M in player_list)
 				if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 					if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)

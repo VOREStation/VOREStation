@@ -59,7 +59,7 @@
 	if(M.reagents)
 		var/contained = reagentlist()
 		var/trans = reagents.trans_to_mob(M, amount_per_transfer_from_this, CHEM_BLOOD)
-		admin_inject_log(user, M, src, contained, trans)
+		add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
 		to_chat(user, "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in \the [src].</span>")
 
 	return

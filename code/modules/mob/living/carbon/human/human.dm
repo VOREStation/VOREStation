@@ -877,7 +877,7 @@
 	else
 		target.show_message("<font color='blue'> You hear a voice that seems to echo around the room: [say]</font>")
 	usr.show_message("<font color='blue'> You project your mind into [target.real_name]: [say]</font>")
-	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
+	log_say("(TPATH to [key_name(target)]) [say]",src)
 	for(var/mob/observer/dead/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 

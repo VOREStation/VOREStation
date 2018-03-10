@@ -35,9 +35,7 @@
 		src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
 		return 0
 
-	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Had DNA extracted via sting by [key_name(src)]</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used DNA extraction sting on [key_name(T)]</font>")
-	msg_admin_attack("[key_name(T)] was DNA extraction stung by [key_name(src)]")
+	add_attack_logs(src,T,"DNA extraction sting (changeling)")
 
 	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages)
 	absorbDNA(newDNA)

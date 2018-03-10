@@ -35,7 +35,7 @@
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
-	log_ooc("[mob.name]/[key] : [msg]")
+	log_ooc(msg, src)
 
 	if(msg)
 		handle_spam_prevention(MUTE_OOC)
@@ -108,7 +108,7 @@
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
-	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
+	log_looc(msg,src)
 
 	if(msg)
 		handle_spam_prevention(MUTE_OOC)
