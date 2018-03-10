@@ -68,7 +68,6 @@ var/global/list/robot_modules = list(
 
 	if(R.radio)
 		R.radio.recalculateChannels()
-	R.transform_with_anim() //VOREStation edit: sprite animation
 	R.choose_icon(0, R.set_module_sprites(list("Default" = "robot")))
 
 /obj/item/weapon/robot_module/Destroy()
