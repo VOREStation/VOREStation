@@ -437,9 +437,7 @@
 				C.absorbing_prey = 0
 				to_chat(C, "<span class='notice'>You have completely drained [T], causing them to pass out.</span>")
 				to_chat(T, "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+				add_attack_logs(C,T,"Succubus drained")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
@@ -516,9 +514,7 @@
 					absorbing_prey = 0
 					to_chat(src, "<span class='notice'>You have completely drained [T], killing them.</span>")
 					to_chat(T, "<span class='danger'size='5'>You feel... So... Weak...</span>")
-					T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(src)]</font>")
-					src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(src)]")
+					add_attack_logs(src,T,"Succubus drained (almost lethal)")
 					return
 				if(drain_finalized == 1 || T.getBrainLoss() < 55) //Let's not kill them with this unless the drain is finalized. This will still stack up to 55, since 60 is lethal.
 					T.adjustBrainLoss(5) //Will kill them after a short bit!
@@ -533,9 +529,7 @@
 				to_chat(src, "<span class='notice'>You have completely drained [T], killing them in the process.</span>")
 				to_chat(T, "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>")
 				visible_message("<span class='danger'>[src] seems to finish whatever they were doing to [T].</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(src)]</font>")
-				src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(src)]")
+				add_attack_logs(src,T,"Succubus drained (lethal)")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
@@ -595,9 +589,7 @@
 				C.absorbing_prey = 0
 				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
 				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was fed via slime feed  by [key_name(C)]</font>")
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Fed via slime feed [key_name(T)]</font>")
-				msg_admin_attack("[key_name(C)] fed [key_name(T)] via slime feed, resulting in them being eaten!")
+				add_attack_logs(C,T,"Slime fed")
 				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
 				return
 
@@ -740,9 +732,7 @@
 			T.apply_damage(25, BRUTE, T_ext)
 			visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
 		
-		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Shred_limb'd [T.real_name] ([T.ckey])</font>")
-		T.attack_log += text("\[[time_stamp()]\] <font color='red'>[src.real_name] ([src.ckey]) shred_limb'd me</font>")
-		msg_admin_attack("[src.real_name] ([src.ckey]) shredded (shred_limb) [T.real_name] ([T.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+		add_attack_logs(src,T,"Shredded (hardvore)")
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"

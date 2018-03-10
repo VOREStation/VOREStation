@@ -233,7 +233,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					tmob.resting = 1 //Force them down to the ground.
 
 					//Log it for admins (as opposed to walk which logs damage)
-					admin_attack_log(src, tmob, "Pinned [tmob.name] under foot.", "Was pinned under foot by [src.name].", "Pinned [tmob.name] under foot.")
+					add_attack_logs(src,tmob,"Pinned underfoot")
 
 					//Not a human, or not a taur, generic message only
 					if(!H || !isTaurTail(H.tail_style))
@@ -255,7 +255,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					tmob.resting = 1
 
 					//Log it for admins (as opposed to run which logs no damage)
-					admin_attack_log(src, tmob, "Pinned [tmob.name] under foot for [damage] HALLOSS.", "Was pinned under foot by [src.name] for [damage] HALLOSS.", "Pinned [tmob.name] under foot for [damage] HALLOSS.")
+					add_attack_logs(src,tmob,"Pinned underfoot (+HALLOSS)")
 
 					//Not a human, or not a taur, generic message only
 					if(!H || !isTaurTail(H.tail_style))
@@ -306,7 +306,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/external/I in Ht.organs)
 							I.take_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will (probably not...) heal over time.
 						Ht.drip(0.1)
-						admin_attack_log(src, Ht, "crushed [Ht] under foot for [calculated_damage * 11] damage.", "Was crushed under foot by [Ht] for [calculated_damage * 11] damage.", "Crushed [Ht] for [damage * 10] damage.")
+						add_attack_logs(src,tmob,"Crushed underfoot")
 
 				//Walking on I_HURT
 				else
@@ -318,7 +318,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in Ht.organs)
 							I.take_damage(calculated_damage, 0)
 						Ht.drip(3)
-						admin_attack_log(src, Ht, "Crushed [Ht] under foot for [calculated_damage * 11] damage.", "Was crushed under foot by [Ht] for [calculated_damage * 11] damage.", "Crushed [Ht] for [calculated_damage * 11] damage.")
+						add_attack_logs(src,tmob,"Crushed underfoot")
 
 					//Not a human, or not a taur, generic message only
 					if(!H || !isTaurTail(H.tail_style))
@@ -347,7 +347,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				forceMove(tmob.loc)
 
 				//Log it for admins (still a mechanical attack due to the pin)
-				admin_attack_log(src, tmob, "Pinned (grab w/ shoes) [tmob.name] under foot.", "Was pinned (grab w/ shoes) under foot by [src.name].", "Pinned (grab w/ shoes) [tmob.name] under foot.")
+				add_attack_logs(src,tmob,"Pinned (grab w/ shoes) underfoot")
 
 				//Not a human, or not a taur while wearing shoes = no grab
 				if(!H || (!isTaurTail(H.tail_style) && H.shoes))
