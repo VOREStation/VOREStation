@@ -81,7 +81,8 @@ SUBSYSTEM_DEF(garbage)
 			dellog += "\tIgnored force: [I.no_respect_force] times"
 		if (I.no_hint)
 			dellog += "\tNo hint: [I.no_hint] times"
-		log_misc(dellog.Join())
+	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
+	text2file(dellog.Join(), "data/logs/[date_string]-qdel.log")
 
 /datum/controller/subsystem/garbage/fire()
 	//the fact that this resets its processing each fire (rather then resume where it left off) is intentional.
