@@ -1031,7 +1031,7 @@
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
 		return
 
-	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
+	var/obj/item/weapon/implant/reagent_generator/rischi/rimplant
 	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
@@ -1103,7 +1103,7 @@
 			rimplant = I
 			break
 	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+		if(rimplant.reagents.total_volume < rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
 			return
 

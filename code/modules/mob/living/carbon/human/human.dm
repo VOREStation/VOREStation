@@ -1557,13 +1557,13 @@
 	return species.fire_icon_state
 
 // Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
-/mob/living/carbon/human/equip_post_job()	//Drone Permit moved to equip_survival_gear()
+/mob/living/carbon/human/equip_post_job()
 	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
-		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
+		equip_to_slot_or_del(permit, slot_in_backpack)
 
 /mob/living/carbon/human/proc/update_icon_special(var/mutable_appearance/ma, var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
 	if(hiding) // Hiding? Carry on.

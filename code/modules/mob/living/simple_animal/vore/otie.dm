@@ -41,6 +41,7 @@
 	meat_amount = 6
 	old_x = -16
 	old_y = 0
+	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
 
@@ -193,7 +194,7 @@
 	. = ..()
 
 /mob/living/simple_animal/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
-	if(ishuman(target_mob))
+	if(ishuman(prey))
 		vore_selected.digest_mode = DM_HOLD
 	if(istype(prey,/mob/living/simple_animal/mouse))
 		vore_selected.digest_mode = DM_DIGEST

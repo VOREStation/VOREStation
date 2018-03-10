@@ -67,6 +67,7 @@
 		syringestab(target, user)
 		return
 
+	var/injtime = time // Calculated 'true' injection time (as added to by hardsuits and whatnot), 66% of this goes to warmup, then every 33% after injects 5u
 	switch(mode)
 		if(SYRINGE_DRAW)
 			if(!reagents.get_free_space())
@@ -170,9 +171,10 @@
 					to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 					return
 
+			var/warmup_time = 0 //None if we're using this on ourselves.
+			var/cycle_time = injtime*0.33 //33% of the time slept between 5u doses
 			if(ismob(target) && target != user)
-
-				var/injtime = time //Injecting through a hardsuit takes longer due to needing to find a port.
+				warmup_time = injtime*0.66 //66% of the time is warmup
 
 				if(istype(H))
 					if(H.wear_suit)
@@ -188,32 +190,37 @@
 						return
 
 				if(injtime == time)
-					user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>")
+					user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>","<span class='notice'>You begin injecting [target] with [visible_name].</span>")
 				else
-					user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>")
+					user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>","<span class='notice'>You begin hunting for an injection port on [target]'s suit!</span>")
 
-				user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+			//The warmup
+			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+			if(!do_after(user,warmup_time,target))
+				return
 
-				if(!do_mob(user, target, injtime))
-					return
-
-				user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>")
-
-			var/trans
-			if(ismob(target))
-				var/contained = reagentlist()
-				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
-				dirty(target,affected) //VOREStation Add
-				admin_inject_log(user, target, src, contained, trans)
-			else
-				trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
-			if(trans)
-				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
-			else
-				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
+			var/trans = 0
+			var/contained = reagentlist()
+			while(reagents.total_volume)
+				if(ismob(target))
+					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)	
+				else
+					trans += reagents.trans_to_obj(target, amount_per_transfer_from_this)
+				update_icon()
+				if(!reagents.total_volume || !do_after(user,cycle_time,target))
+					break
+			
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
+
+			if(trans)
+				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
+				admin_inject_log(user, target, src, contained, trans)
+			else
+				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
+
+			dirty(target,affected) //VOREStation Add
 
 	return
 /* VOREStation Edit - See syringes_vr.dm

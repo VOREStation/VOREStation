@@ -203,6 +203,12 @@ var/global/list/PDA_Manifest = list()
 	anchored = 1
 	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
 
+/obj/structure/showcase/sign
+	name = "WARNING: WILDERNESS"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "wilderness1"
+	desc = "This appears to be a sign warning people that the other side is dangerous. It also says that NanoTrasen cannot guarantee your safety beyond this point."
+
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
 /obj/item/weapon/beach_ball

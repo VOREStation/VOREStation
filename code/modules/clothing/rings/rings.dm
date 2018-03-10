@@ -61,7 +61,7 @@
 	icon_state = "seal-secgen"
 
 /obj/item/clothing/gloves/ring/seal/mason
-	name = "masonic ring"
+	name = "\improper Masonic ring"
 	desc = "The Square and Compasses feature prominently on this Masonic ring."
 	icon_state = "seal-masonic"
 

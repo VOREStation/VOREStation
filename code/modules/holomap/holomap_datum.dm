@@ -6,7 +6,7 @@
 
 /datum/station_holomap/proc/initialize_holomap(var/turf/T, var/isAI = null, var/mob/user = null, var/reinit = FALSE)
 	if(!station_map || reinit)
-		station_map = image(extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[T.z]"])
+		station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[T.z]"])
 	if(!cursor || reinit)
 		cursor = image('icons/holomap_markers_vr.dmi', "you")
 	if(!legend || reinit)
@@ -33,7 +33,7 @@
 // TODO - Strategic Holomap support
 // /datum/station_holomap/strategic/initialize_holomap(var/turf/T, var/isAI=null, var/mob/user=null)
 // 	..()
-// 	station_map = image(extraMiniMaps[HOLOMAP_EXTRA_STATIONMAP_STRATEGIC])
+// 	station_map = image(SSholomaps.extraMiniMaps[HOLOMAP_EXTRA_STATIONMAP_STRATEGIC])
 // 	legend = image('icons/effects/64x64.dmi', "strategic")
 // 	legend.pixel_x = 3*WORLD_ICON_SIZE
 // 	legend.pixel_y = 3*WORLD_ICON_SIZE

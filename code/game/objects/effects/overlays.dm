@@ -71,6 +71,7 @@
 /obj/effect/overlay/snow/floor
 	icon_state = "snowfloor"
 	layer = 2.01 //Just above floor
+	mouse_opacity = 0 //Don't block underlying tile interactions
 
 /obj/effect/overlay/snow/floor/edges
 	icon_state = "snow_edges"

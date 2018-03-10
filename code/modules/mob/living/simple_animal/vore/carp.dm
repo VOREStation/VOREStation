@@ -5,7 +5,7 @@
 	icon_dead = "megacarp-dead"
 	icon_living = "megacarp"
 	icon_state = "megacarp"
-	
+
 	maxHealth = 600 // Boss
 	health = 600
 	speed = 3
@@ -16,6 +16,8 @@
 	melee_damage_upper = 25
 	old_x = -16
 	old_y = -16
+	default_pixel_x = -16
+	default_pixel_y = -16
 	pixel_x = -16
 	pixel_y = -16
 	vore_capacity = 2
