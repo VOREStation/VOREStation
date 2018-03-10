@@ -125,10 +125,3 @@
 
 /obj/item/weapon/cell/device/weapon/gunsword/update_icon()
 	overlays.Cut()
-
-	if(charge < 0.01)
-		return
-	else if(charge/maxcharge >=0.995)
-		overlays = null
-	else
-		overlays = null
