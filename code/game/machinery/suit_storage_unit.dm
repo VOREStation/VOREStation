@@ -588,7 +588,7 @@
 	//Departments that the cycler can paint suits to look like.
 	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control")
 	//Species that the suits can be configured to fit.
-	var/list/species = list("Human","Skrell","Unathi","Tajara", "Teshari")
+	var/list/species = list("Human","Skrell","Unathi","Tajaran", "Teshari")
 
 	var/target_department
 	var/target_species
@@ -753,7 +753,7 @@
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
 	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$", "Charring")
-	species = list("Human","Tajara","Skrell","Unathi", "Teshari")
+	species = list("Human","Tajaran","Skrell","Unathi", "Teshari")
 
 	emagged = 1
 	safeties = 0

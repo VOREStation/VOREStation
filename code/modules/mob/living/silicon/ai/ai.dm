@@ -150,6 +150,7 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_SOL_COMMON, 1)
 	add_language(LANGUAGE_UNATHI, 1)
 	add_language(LANGUAGE_SIIK, 1)
+	add_language(LANGUAGE_AKHANI, 1)
 	add_language(LANGUAGE_SKRELLIAN, 1)
 	add_language(LANGUAGE_SKRELLIANFAR, 0)
 	add_language(LANGUAGE_TRADEBAND, 1)
@@ -578,8 +579,8 @@ var/list/ai_verbs_default = list(
 				"female human",
 				"male unathi",
 				"female unathi",
-				"male tajara",
-				"female tajara",
+				"male tajaran",
+				"female tajaran",
 				"male tesharii",
 				"female tesharii",
 				"male skrell",
@@ -621,9 +622,9 @@ var/list/ai_verbs_default = list(
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
 					if("female unathi")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
-					if("male tajara")
+					if("male tajaran")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
-					if("female tajara")
+					if("female tajaran")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
 					if("male tesharii")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))

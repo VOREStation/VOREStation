@@ -665,7 +665,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Vatborn","Unathi","Tajara","Skrell", "Machine","Teshari", "Vox","Promethean")
+		species_allowed = list("Human","Vatborn","Unathi","Tajaran","Skrell", "Machine","Teshari", "Vox","Promethean")
 
 	watson
 		name = "Watson Mustache"
@@ -872,87 +872,87 @@
 	taj_ears
 		name = "Tajaran Ears"
 		icon_state = "ears_plain"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_clean
-		name = "Tajara Clean"
+		name = "Tajaran Clean"
 		icon_state = "hair_clean"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_bangs
-		name = "Tajara Bangs"
+		name = "Tajaran Bangs"
 		icon_state = "hair_bangs"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_braid
-		name = "Tajara Braid"
+		name = "Tajaran Braid"
 		icon_state = "hair_tbraid"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_shaggy
-		name = "Tajara Shaggy"
+		name = "Tajaran Shaggy"
 		icon_state = "hair_shaggy"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_mohawk
 		name = "Tajaran Mohawk"
 		icon_state = "hair_mohawk"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_plait
-		name = "Tajara Plait"
+		name = "Tajaran Plait"
 		icon_state = "hair_plait"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_straight
-		name = "Tajara Straight"
+		name = "Tajaran Straight"
 		icon_state = "hair_straight"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_long
-		name = "Tajara Long"
+		name = "Tajaran Long"
 		icon_state = "hair_long"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_rattail
-		name = "Tajara Rat Tail"
+		name = "Tajaran Rat Tail"
 		icon_state = "hair_rattail"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_spiky
-		name = "Tajara Spiky"
+		name = "Tajaran Spiky"
 		icon_state = "hair_tajspiky"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_messy
-		name = "Tajara Messy"
+		name = "Tajaran Messy"
 		icon_state = "hair_messy"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_curls
-		name = "Tajara Curly"
+		name = "Tajaran Curly"
 		icon_state = "hair_curly"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_wife
-		name = "Tajara Housewife"
+		name = "Tajaran Housewife"
 		icon_state = "hair_wife"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_victory
-		name = "Tajara Victory Curls"
+		name = "Tajaran Victory Curls"
 		icon_state = "hair_victory"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_bob
-		name = "Tajara Bob"
+		name = "Tajaran Bob"
 		icon_state = "hair_tbob"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_ears_fingercurl
-		name = "Tajara Finger Curls"
+		name = "Tajaran Finger Curls"
 		icon_state = "hair_fingerwave"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 //Teshari things
 	teshari
@@ -1054,34 +1054,34 @@
 /datum/sprite_accessory/facial_hair
 
 	taj_sideburns
-		name = "Tajara Sideburns"
+		name = "Tajaran Sideburns"
 		icon_state = "facial_sideburns"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_mutton
-		name = "Tajara Mutton"
+		name = "Tajaran Mutton"
 		icon_state = "facial_mutton"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_pencilstache
-		name = "Tajara Pencilstache"
+		name = "Tajaran Pencilstache"
 		icon_state = "facial_pencilstache"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_moustache
-		name = "Tajara Moustache"
+		name = "Tajaran Moustache"
 		icon_state = "facial_moustache"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_goatee
-		name = "Tajara Goatee"
+		name = "Tajaran Goatee"
 		icon_state = "facial_goatee"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_smallstache
-		name = "Tajara Smallsatche"
+		name = "Tajaran Smallsatche"
 		icon_state = "facial_smallstache"
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 //unathi horn beards and the like
 
@@ -1137,7 +1137,7 @@
 	do_colouration = 1 //Almost all of them have it, COLOR_ADD
 
 	//Empty list is unrestricted. Should only restrict the ones that make NO SENSE on other species,
-	//like Tajara inner-ear coloring overlay stuff.
+	//like Tajaran inner-ear coloring overlay stuff.
 	species_allowed = list()
 
 	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
@@ -1176,7 +1176,7 @@
 		name = "Socks Coloration (Taj)"
 		icon_state = "taj_pawsocks"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	una_paw_socks
 		name = "Socks Coloration (Una)"
@@ -1188,43 +1188,43 @@
 		name = "Socks Coloration (Generic)"
 		icon_state = "pawsocks"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-		species_allowed = list("Tajara", "Unathi")
+		species_allowed = list("Tajaran", "Unathi")
 
 	paw_socks_belly
 		name = "Socks,Belly Coloration (Generic)"
 		icon_state = "pawsocksbelly"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-		species_allowed = list("Tajara", "Unathi")
+		species_allowed = list("Tajaran", "Unathi")
 
 	belly_hands_feet
 		name = "Hands,Feet,Belly Color (Minor)"
 		icon_state = "bellyhandsfeetsmall"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-		species_allowed = list("Tajara", "Unathi")
+		species_allowed = list("Tajaran", "Unathi")
 
 	hands_feet_belly_full
 		name = "Hands,Feet,Belly Color (Major)"
 		icon_state = "bellyhandsfeet"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-		species_allowed = list("Tajara", "Unathi")
+		species_allowed = list("Tajaran", "Unathi")
 
 	hands_feet_belly_full_female
 		name = "Hands,Feet,Belly Color (Major, Female)"
 		icon_state = "bellyhandsfeet_female"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	patches
 		name = "Color Patches"
 		icon_state = "patches"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	patchesface
 		name = "Color Patches (Face)"
 		icon_state = "patchesface"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	bands
 		name = "Color Bands"
@@ -1240,7 +1240,7 @@
 		name = "Tiger Stripes"
 		icon_state = "tiger"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
-		species_allowed = list("Tajara") //There's a tattoo for non-cats
+		species_allowed = list("Tajaran") //There's a tattoo for non-cats
 
 	tigerhead
 		name = "Tiger Stripes (Head, Minor)"
@@ -1251,7 +1251,7 @@
 		name = "Tiger Stripes (Head, Major)"
 		icon_state = "tigerface"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara") //There's a tattoo for non-cats
+		species_allowed = list("Tajaran") //There's a tattoo for non-cats
 
 	backstripe
 		name = "Back Stripe"
@@ -1263,55 +1263,55 @@
 		name = "Belly Fur (Taj)"
 		icon_state = "taj_belly"
 		body_parts = list(BP_TORSO)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_bellyfull
 		name = "Belly Fur Wide (Taj)"
 		icon_state = "taj_bellyfull"
 		body_parts = list(BP_TORSO)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_earsout
 		name = "Outer Ear (Taj)"
 		icon_state = "taj_earsout"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_earsin
 		name = "Inner Ear (Taj)"
 		icon_state = "taj_earsin"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_nose
 		name = "Nose Color (Taj)"
 		icon_state = "taj_nose"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_crest
 		name = "Chest Fur Crest (Taj)"
 		icon_state = "taj_crest"
 		body_parts = list(BP_TORSO)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_muzzle
 		name = "Muzzle Color (Taj)"
 		icon_state = "taj_muzzle"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_face
 		name = "Cheeks Color (Taj)"
 		icon_state = "taj_face"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	taj_all
 		name = "All Taj Head (Taj)"
 		icon_state = "taj_all"
 		body_parts = list(BP_HEAD)
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	//Una specific stuff
 	una_face
@@ -1352,7 +1352,7 @@
 		name = "Default tajaran skin"
 		icon_state = "default"
 		icon = 'icons/mob/human_races/r_tajaran.dmi'
-		species_allowed = list("Tajara")
+		species_allowed = list("Tajaran")
 
 	unathi
 		name = "Default Unathi skin"

@@ -1,13 +1,13 @@
 // Alien clothing.
 /datum/gear/suit/zhan_furs
-	display_name = "Zhan-Khazan furs (Tajara)"
+	display_name = "Zhan-Khazan furs (Tajaran)"
 	path = /obj/item/clothing/suit/tajaran/furs
 	sort_category = "Xenowear"
 
 /datum/gear/head/zhan_scarf
 	display_name = "Zhan headscarf"
 	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = "Tajara"
+	whitelisted = "Tajaran"
 
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"

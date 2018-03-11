@@ -132,7 +132,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
 /datum/species/tajaran
-	name = "Tajara"
+	name = "Tajaran"
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
@@ -148,7 +148,7 @@
 	metabolic_rate = 1.1
 	gluttonous = 1
 	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_SIIK)
+	secondary_langs = list(LANGUAGE_SIIK, LANGUAGE_AKHANI)
 	name_language = LANGUAGE_SIIK
 	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5

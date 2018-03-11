@@ -11,7 +11,7 @@
 	cold_protection =    HEAD|FACE|EYES
 	brightness_on = 4
 	sprite_sheets = list(
-		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/helmet.dmi',
 		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
 		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
 		"Vox" = 'icons/mob/species/vox/head.dmi'
@@ -50,7 +50,7 @@
 	resilience = 0.2
 	can_breach = 1
 	sprite_sheets = list(
-		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/suit.dmi',
 		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
 		"Vox" = 'icons/mob/species/vox/suit.dmi'
 		)

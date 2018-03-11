@@ -153,7 +153,7 @@
 	icon_state = "swathelm"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	sprite_sheets = list(
-		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/helmet.dmi',
 		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
 		)
 

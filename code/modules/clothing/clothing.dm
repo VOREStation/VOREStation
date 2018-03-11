@@ -245,7 +245,7 @@
 		desc = "[desc]<br>They have had the fingertips cut off of them."
 		if("exclude" in species_restricted)
 			species_restricted -= "Unathi"
-			species_restricted -= "Tajara"
+			species_restricted -= "Tajaran"
 		return
 */
 
@@ -430,7 +430,7 @@
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
 		"Vox" = 'icons/mob/species/vox/masks.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
+		"Tajaran" = 'icons/mob/species/tajaran/mask.dmi',
 		"Unathi" = 'icons/mob/species/unathi/mask.dmi'
 		)
 
