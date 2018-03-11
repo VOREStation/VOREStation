@@ -39,7 +39,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	virus_immune =	1
 	blood_volume =	560
 	min_age =		1
-	max_age =		5
+	max_age =		10
 	brute_mod =		0.75
 	burn_mod =		2
 	oxy_mod =		0
@@ -56,7 +56,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	body_temperature =      310.15
 
-	siemens_coefficient =   0.3
+	siemens_coefficient =   0.4
 	rarity_value =          5
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
@@ -150,12 +150,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.nutrition += rand(15, 45)
 VOREStation Removal End */
 	// Heal remaining damage.
-	if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-		H.adjustBruteLoss(-heal_rate)
-		H.adjustFireLoss(-heal_rate)
-		H.adjustOxyLoss(-heal_rate)
-		H.adjustToxLoss(-heal_rate)
-
+	if(H.fire_stacks >= 0)
+		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
+			H.adjustBruteLoss(-heal_rate)
+			H.adjustFireLoss(-heal_rate)
+			H.adjustOxyLoss(-heal_rate)
+			H.adjustToxLoss(-heal_rate)
+/*	else //VOREStation Edit Start.
+		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+*/ //VOREStation Edit End
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 

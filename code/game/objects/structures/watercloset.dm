@@ -411,9 +411,10 @@
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
+				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 				user.visible_message( \
-					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
-					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
+					"<span class='danger'>[user] was stunned by [TU.his] wet [O]!</span>", \
+					"<span class='userdanger'>[user] was stunned by [TU.his] wet [O]!</span>")
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))
 		O.reagents.add_reagent("water", 5)

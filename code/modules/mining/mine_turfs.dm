@@ -5,6 +5,7 @@ var/list/mining_overlay_cache = list()
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
+	density = 1
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
@@ -97,10 +98,16 @@ var/list/mining_overlay_cache = list()
 				return
 
 /turf/simulated/mineral/initialize()
+	. = ..()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 	update_icon(1)
-	return density && mineral
+	if(density && mineral)
+		. = INITIALIZE_HINT_LATELOAD
+
+/turf/simulated/mineral/LateInitialize()
+	if(density && mineral)
+		MineralSpread()
 
 /turf/simulated/mineral/update_icon(var/update_neighbors)
 
@@ -482,7 +489,7 @@ var/list/mining_overlay_cache = list()
 				M.flash_eyes()
 				if(prob(50))
 					M.Stun(5)
-			radiation_repository.flat_radiate(src, 25, 200)
+			radiation_repository.flat_radiate(src, 25, 100)
 			if(prob(25))
 				excavate_find(prob(5), finds[1])
 	else if(rand(1,500) == 1)

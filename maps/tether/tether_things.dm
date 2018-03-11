@@ -78,6 +78,7 @@
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
 	planet = planet_virgo3b
+	. = ..()
 
 /obj/effect/step_trigger/lost_in_space
 	var/deathmessage = "You drift off into space, floating alone in the void until your life support runs out."
@@ -131,7 +132,7 @@
 	var/area/shock_area = /area/tether/surfacebase/tram
 
 /turf/simulated/floor/maglev/initialize()
-	..()
+	. = ..()
 	shock_area = locate(shock_area)
 
 // Walking on maglev tracks will shock you! Horray!
@@ -360,6 +361,15 @@ var/global/list/latejoin_tram   = list()
 		return FALSE
 
 	return ..(user)
+
+/obj/structure/closet/secure_closet/guncabinet/excursion
+	name = "expedition weaponry cabinet"
+	req_one_access = list(access_explorer,access_brig)
+
+/obj/structure/closet/secure_closet/guncabinet/excursion/New()
+	..()
+	for(var/i = 1 to 4)
+		new /obj/item/weapon/gun/energy/frontier/locked(src)
 
 //
 // ### Wall Machines On Full Windows ###

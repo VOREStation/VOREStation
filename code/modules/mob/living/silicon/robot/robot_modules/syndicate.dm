@@ -9,11 +9,13 @@
 					LANGUAGE_UNATHI = 0,
 					LANGUAGE_SIIK	= 0,
 					LANGUAGE_SKRELLIAN = 0,
+					LANGUAGE_SKRELLIANFAR = 0,
 					LANGUAGE_ROOTLOCAL = 0,
 					LANGUAGE_GUTTER = 1,
 					LANGUAGE_SCHECHI = 0,
 					LANGUAGE_EAL	 = 1,
-					LANGUAGE_SIGN	 = 0
+					LANGUAGE_SIGN	 = 0,
+					LANGUAGE_TERMINUS = 1
 					)
 	sprites = list(
 					"Cerberus" = "syndie_bloodhound",
@@ -182,3 +184,13 @@
 	src.modules += O
 	src.modules += B
 	src.modules += S
+
+/obj/item/weapon/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+
+	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
+	if(S.mode == 2)
+		S.reagents.clear_reagents()
+		S.mode = initial(S.mode)
+		S.desc = initial(S.desc)
+		S.update_icon()
+	..()

@@ -52,7 +52,9 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
+	listening_objects.Remove(src)
 	part = null
+	imp_in = null
 	return ..()
 
 /obj/item/weapon/implant/attackby(obj/item/I, mob/user)
@@ -82,7 +84,6 @@
 
 /obj/item/weapon/implant/tracking/implanted(var/mob/source)
 	processing_objects.Add(src)
-	listening_objects |= src
 	return 1
 
 /obj/item/weapon/implant/tracking/Destroy()
@@ -451,6 +452,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/death_alarm
 	name = "death alarm implant"
 	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
+	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_DATA = 1)
 	var/mobname = "Will Robinson"
 
 /obj/item/weapon/implant/death_alarm/get_data()
@@ -534,6 +536,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	icon_state = "implant_evil"
 	var/activation_emote = "sigh"
 	var/obj/item/scanned = null
+	origin_tech = list(TECH_MATERIAL = 4, TECH_BIO = 2, TECH_ILLEGAL = 2)
 
 /obj/item/weapon/implant/compressed/get_data()
 	var/dat = {"

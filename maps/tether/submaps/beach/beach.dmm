@@ -242,10 +242,6 @@
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach)
-"aY" = (
-/mob/living/simple_animal/crab,
-/turf/simulated/floor/beach/sand/desert,
-/area/tether_away/beach/jungle)
 "aZ" = (
 /obj/effect/overlay/palmtree_l,
 /turf/simulated/floor/beach/sand,
@@ -282,14 +278,6 @@
 "bi" = (
 /turf/simulated/floor/water/shoreline,
 /area/tether_away/beach)
-"bj" = (
-/mob/living/simple_animal/hostile/snake,
-/turf/simulated/floor/beach/sand/desert,
-/area/tether_away/beach/jungle)
-"bk" = (
-/mob/living/carbon/human/monkey,
-/turf/simulated/floor/beach/sand/desert,
-/area/tether_away/beach/jungle)
 "bl" = (
 /turf/unsimulated/wall/planetary/normal,
 /area/tether_away/beach/jungle)
@@ -317,17 +305,17 @@
 /obj/effect/step_trigger/zlevel_fall/beach,
 /turf/simulated/floor/beach/sand/desert,
 /area/tether_away/beach/jungle)
-"bt" = (
-/mob/living/simple_animal/fennec,
+"xW" = (
+/obj/tether_away_spawner/beach_outside_friendly,
 /turf/simulated/floor/beach/sand/desert,
 /area/tether_away/beach/jungle)
-"bu" = (
-/mob/living/simple_animal/fennec,
+"TU" = (
+/obj/tether_away_spawner/beach_outside,
+/turf/simulated/floor/beach/sand/desert,
+/area/tether_away/beach/jungle)
+"UZ" = (
+/obj/tether_away_spawner/beach_outside_friendly,
 /turf/simulated/floor/beach/sand,
-/area/tether_away/beach)
-"bv" = (
-/mob/living/simple_animal/fennec,
-/turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach)
 
 (1,1,1) = {"
@@ -1387,7 +1375,7 @@ aa
 aa
 aa
 aa
-bk
+aa
 aa
 aa
 aa
@@ -1477,7 +1465,7 @@ aa
 aa
 aa
 aa
-bj
+aa
 aa
 aa
 aa
@@ -1958,7 +1946,7 @@ aa
 aa
 aa
 aa
-aa
+TU
 aa
 aa
 aa
@@ -2244,7 +2232,7 @@ aa
 aa
 aa
 aa
-aa
+xW
 aa
 aa
 aa
@@ -2343,7 +2331,7 @@ aa
 aa
 aa
 aa
-aa
+xW
 aa
 aa
 aa
@@ -2788,7 +2776,7 @@ aa
 aa
 aa
 aa
-bj
+aa
 aa
 aa
 aa
@@ -2831,7 +2819,7 @@ aa
 aa
 aa
 aa
-bt
+aa
 aa
 aa
 aa
@@ -3298,7 +3286,7 @@ aa
 aa
 aa
 aa
-bt
+aa
 aa
 aa
 aa
@@ -3530,7 +3518,7 @@ aa
 aa
 aa
 aa
-aa
+TU
 aa
 aa
 aa
@@ -3844,7 +3832,7 @@ aa
 aa
 aa
 aa
-aY
+aa
 aa
 aa
 ad
@@ -5787,7 +5775,7 @@ ad
 ad
 ad
 ad
-bu
+ad
 ad
 ad
 ad
@@ -5902,7 +5890,7 @@ ad
 ad
 ad
 ad
-ad
+UZ
 ad
 ad
 ad
@@ -7261,7 +7249,7 @@ aX
 al
 ad
 ad
-ad
+UZ
 ad
 bb
 ad
@@ -7607,7 +7595,7 @@ ad
 ar
 af
 al
-bv
+al
 al
 al
 ad
@@ -8338,7 +8326,7 @@ aa
 ad
 ad
 ad
-ad
+UZ
 ad
 ad
 ar
@@ -8891,7 +8879,7 @@ aa
 aa
 aa
 aa
-bj
+aa
 aa
 aa
 aa
@@ -8935,7 +8923,7 @@ aa
 aa
 aa
 aa
-bt
+aa
 aa
 aa
 aa
@@ -9134,7 +9122,7 @@ aa
 aa
 aa
 aa
-bk
+aa
 aa
 aa
 aa
@@ -9413,7 +9401,7 @@ aa
 aa
 aa
 aa
-aa
+xW
 aa
 aa
 aa
@@ -10039,7 +10027,7 @@ aa
 aa
 aa
 aa
-aa
+xW
 aa
 aa
 aa
@@ -10130,7 +10118,7 @@ aa
 aa
 aa
 bp
-aa
+xW
 aa
 aa
 aa
@@ -11408,7 +11396,7 @@ aa
 aa
 aa
 aa
-aY
+aa
 aa
 aa
 ad
@@ -11485,7 +11473,7 @@ aa
 aa
 aa
 aa
-aa
+TU
 aa
 aa
 aa
@@ -12005,7 +11993,7 @@ aa
 aa
 aa
 aa
-bt
+aa
 aa
 aa
 aa
@@ -12131,7 +12119,7 @@ aa
 aa
 aa
 aa
-aa
+xW
 aa
 aa
 aa
@@ -13162,7 +13150,7 @@ aa
 aa
 aa
 aa
-aa
+TU
 aa
 aa
 aa
@@ -13272,7 +13260,7 @@ bq
 aa
 aa
 aa
-bt
+aa
 aa
 aa
 aa
@@ -13326,7 +13314,7 @@ aa
 aa
 aa
 aa
-aa
+xW
 aa
 aa
 aa

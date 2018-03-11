@@ -31,7 +31,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	environment_smash = 1
-	attacktext = "punched"
+	attacktext = list("punched")
 
 	min_oxy = 5
 	max_oxy = 0
@@ -75,7 +75,7 @@
 
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "slashed"
+	attacktext = list("slashed")
 
 	status_flags = 0
 
@@ -133,13 +133,13 @@
 	ranged = 1
 	rapid = 1
 	projectiletype = /obj/item/projectile/bullet/pistol/medium
-	casingtype = /obj/item/ammo_casing/spent
+//	casingtype = /obj/item/ammo_casing/spent	//Makes infinite stacks of bullets when put in PoIs.
 	projectilesound = 'sound/weapons/Gunshot_light.ogg'
 
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space
-	name = "syndicate sommando"
+	name = "space mercenary" //VOREStation Edit
 	icon_state = "syndicaterangedpsace"
 	icon_living = "syndicaterangedpsace"
 
@@ -154,6 +154,7 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 900 //VOREStation edit - We'll pretend they have good suits
 
 	corpse = /obj/effect/landmark/mobcorpse/syndicatecommando
 
@@ -167,6 +168,7 @@
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
 	intelligence_level = SA_ROBOTIC
+	hovering = TRUE
 
 	faction = "syndicate"
 	maxHealth = 15
@@ -177,7 +179,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	attacktext = "cut"
+	attacktext = list("cut")
 
 	min_oxy = 0
 	max_oxy = 0

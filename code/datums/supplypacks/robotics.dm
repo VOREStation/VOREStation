@@ -116,14 +116,6 @@
 	containername = "Robolimb blueprints (Bishop)"
 	access = access_robotics
 
-/datum/supply_packs/robotics/robolimbs/veymed
-	name = "Vey-Med robolimb blueprints"
-	contains = list(/obj/item/weapon/disk/limb/veymed)
-	cost = 70
-	containertype = /obj/structure/closet/crate/secure/science
-	containername = "Robolimb blueprints (Vey-Med)"
-	access = access_robotics
-
 /datum/supply_packs/robotics/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
 	contains = list(

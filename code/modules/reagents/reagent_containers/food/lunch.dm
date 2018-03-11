@@ -59,7 +59,7 @@ var/list/lunchables_drink_reagents_ = list(/datum/reagent/drink/nothing,
                                            /datum/reagent/drink/hell_ramen,
                                            /datum/reagent/drink/hot_ramen,
                                            /datum/reagent/drink/soda/nuka_cola)
-										   
+
 
 // This default list is a bit different, it contains items we don't want
 var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,

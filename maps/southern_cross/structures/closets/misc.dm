@@ -26,6 +26,20 @@
 	new /obj/item/weapon/gun/projectile/shotgun/pump/rifle(src)
 	return
 
+/obj/structure/closet/secure_closet/guncabinet/phase
+	name = "phase pistol cabinet"
+	req_one_access = list(access_explorer,access_brig)
+
+/obj/structure/closet/secure_closet/guncabinet/phase/New()
+	..()
+	new /obj/item/weapon/gun/energy/phasegun(src)
+	new /obj/item/weapon/gun/energy/phasegun(src)
+	// One spare cell per gun
+	new /obj/item/weapon/cell/device/weapon(src)
+	new /obj/item/weapon/cell/device/weapon(src)
+	// One spare gun permit per locker
+	new /obj/item/clothing/accessory/permit/gun/planetside(src)
+
 //Explorer Lockers
 
 /obj/structure/closet/secure_closet/explorer
@@ -93,7 +107,7 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar(src)
 	new /obj/item/clothing/shoes/boots/winter/explorer(src)
-	new /obj/item/device/radio/headset/headset_sar(src)
+	new /obj/item/device/radio/headset/sar(src)
 	new /obj/item/weapon/cartridge/medical(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
@@ -108,6 +122,7 @@
 	new /obj/item/taperoll/medical(src)
 	new /obj/item/device/gps(src)
 	new /obj/item/device/geiger(src)
+	new /obj/item/bodybag/cryobag(src)
 	return
 
 //Pilot Locker
@@ -130,7 +145,7 @@
 	new	/obj/item/clothing/mask/gas/half(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/gloves/fingerless(src)
-	new /obj/item/device/radio/headset/pilot(src)
+	new /obj/item/device/radio/headset/pilot/alt(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
 	new /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle(src)

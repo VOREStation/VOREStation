@@ -20,7 +20,7 @@
 	speak_emote = list("purrs","meows")
 	emote_hear = list("meows","mews")
 	emote_see = list("shakes her head","shivers")
-	attacktext = "swatted"
+	attacktext = list("swatted")
 
 	var/random_skin = 1
 	var/list/skins = list(

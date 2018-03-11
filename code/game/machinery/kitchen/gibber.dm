@@ -92,6 +92,9 @@
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
 	var/obj/item/weapon/grab/G = W
 
+	if(default_unfasten_wrench(user, W, 40))
+		return
+
 	if(!istype(G))
 		return ..()
 
@@ -208,9 +211,7 @@
 			if(src.occupant.reagents)
 				src.occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/slab_count,1))
 
-	src.occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>" //One shall not simply gib a mob unnoticed!
-	user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[src.occupant.ckey]</b>"
-	msg_admin_attack("[user.name] ([user.ckey]) gibbed [src.occupant] ([src.occupant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	add_attack_logs(user,occupant,"Used [src] to gib")
 
 	src.occupant.ghostize()
 
@@ -222,13 +223,12 @@
 
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
-		for (var/obj/thing in contents)
-			// Todo: unify limbs and internal organs
+		for (var/obj/item/thing in contents)
 			// There's a chance that the gibber will fail to destroy some evidence.
-			if((istype(thing,/obj/item/organ) || istype(thing,/obj/item/organ)) && prob(80))
+			if(istype(thing,/obj/item/organ) && prob(80))
 				qdel(thing)
 				continue
-			thing.loc = get_turf(thing) // Drop it onto the turf for throwing.
+			thing.forceMove(get_turf(thing)) // Drop it onto the turf for throwing.
 			thing.throw_at(get_edge_target_turf(src,gib_throw_dir),rand(0,3),emagged ? 100 : 50) // Being pelted with bits of meat and bone would hurt.
 
 		update_icon()

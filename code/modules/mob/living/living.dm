@@ -119,7 +119,9 @@ default behaviour is:
 					return
 
 				// In case of micros, we don't swap positions; instead occupying the same square!
-				if (handle_micro_bump_helping(tmob)) return
+				if (handle_micro_bump_helping(tmob))
+					now_pushing = 0
+					return
 				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
 				// VOREStation Edit - End
 
@@ -1132,3 +1134,88 @@ default behaviour is:
 	else // No colors, so remove the client's color.
 		animate(client, color = null, time = 10)
 
+/mob/living/swap_hand()
+	src.hand = !( src.hand )
+	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		if(hand)	//This being 1 means the left hand is in use
+			hud_used.l_hand_hud_object.icon_state = "l_hand_active"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_inactive"
+		else
+			hud_used.l_hand_hud_object.icon_state = "l_hand_inactive"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
+	return
+
+/mob/living/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+
+	if(istext(selhand))
+		selhand = lowertext(selhand)
+
+		if(selhand == "right" || selhand == "r")
+			selhand = 0
+		if(selhand == "left" || selhand == "l")
+			selhand = 1
+
+	if(selhand != src.hand)
+		swap_hand()
+
+/mob/living/throw_item(atom/target)
+	src.throw_mode_off()
+	if(usr.stat || !target)
+		return
+	if(target.type == /obj/screen) return
+
+	var/atom/movable/item = src.get_active_hand()
+
+	if(!item) return
+
+	var/throw_range = item.throw_range
+	if (istype(item, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = item
+		item = G.throw_held() //throw the person instead of the grab
+		if(ismob(item))
+			var/mob/M = item
+
+			//limit throw range by relative mob size
+			throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
+
+			var/turf/end_T = get_turf(target)
+			if(end_T)
+				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+
+	src.drop_from_inventory(item)
+	if(!item || !isturf(item.loc))
+		return
+
+	//actually throw it!
+	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
+
+	if(!src.lastarea)
+		src.lastarea = get_area(src.loc)
+	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+		src.inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+
+
+/*
+	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
+		src.inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+*/
+
+
+	item.throw_at(target, throw_range, item.throw_speed, src)
+
+/mob/living/get_sound_env(var/pressure_factor)
+	if (hallucination)
+		return PSYCHOTIC
+	else if (druggy)
+		return DRUGGED
+	else if (drowsyness)
+		return DIZZY
+	else if (confused)
+		return DIZZY
+	else if (sleeping)
+		return UNDERWATER
+	else
+		return ..()
+		

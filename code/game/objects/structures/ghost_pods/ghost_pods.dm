@@ -7,6 +7,7 @@
 	var/icon_state_opened = null	// Icon to switch to when 'used'.
 	var/used = FALSE
 	var/busy = FALSE // Don't spam ghosts by spamclicking.
+	var/needscharger //For drone pods that want their pod to turn into a charger.
 
 // Call this to get a ghost volunteer.
 /obj/structure/ghost_pod/proc/trigger()
@@ -22,8 +23,10 @@
 	if(winner.len)
 		var/mob/observer/dead/D = winner[1]
 		create_occupant(D)
-		new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
-		del(src)
+		icon_state = icon_state_opened
+		if(needscharger)
+			new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
+			del(src)
 		return TRUE
 	else
 		return FALSE
@@ -55,7 +58,7 @@
 	var/delay_to_try_again = 20 MINUTES // How long to wait if first attempt fails.  Set to 0 to never try again.
 
 /obj/structure/ghost_pod/automatic/initialize()
-	..()
+	. = ..()
 	spawn(delay_to_self_open)
 		if(src)
 			trigger()

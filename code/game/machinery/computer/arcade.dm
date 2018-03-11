@@ -27,7 +27,11 @@
 							/obj/item/toy/waterflower						= 1,
 							/obj/random/action_figure						= 1,
 							/obj/random/plushie								= 1,
-							/obj/item/toy/cultsword							= 1
+							/obj/item/toy/cultsword							= 1,
+							/obj/item/toy/bouquet/fake						= 1,
+							/obj/item/clothing/accessory/badge/sheriff		= 2,
+							/obj/item/clothing/head/cowboy_hat/small		= 2,
+							/obj/item/toy/stickhorse						= 2
 							)
 
 /obj/machinery/computer/arcade/New()

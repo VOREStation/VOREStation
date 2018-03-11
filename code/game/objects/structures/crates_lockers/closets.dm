@@ -24,7 +24,7 @@
 	var/list/will_contain
 
 /obj/structure/closet/initialize()
-	..()
+	. = ..()
 	if(will_contain)
 		create_objects_in_loc(src, will_contain)
 
@@ -416,3 +416,6 @@
 
 /obj/structure/closet/onDropInto(var/atom/movable/AM)
 	return
+
+/obj/structure/closet/AllowDrop()
+	return TRUE

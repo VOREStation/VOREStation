@@ -73,4 +73,4 @@
 
 /datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 21 * removed) //more potent than keloderm
+		M.heal_organ_damage(0, 110 * removed) //Not as potent as Kelotane, but lasts LONG.

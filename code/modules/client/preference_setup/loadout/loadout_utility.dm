@@ -8,6 +8,11 @@
 	display_name = "clipboard"
 	path = /obj/item/weapon/clipboard
 
+/datum/gear/utility/tts_device
+	display_name = "text to speech device"
+	path = /obj/item/device/text_to_speech
+	cost = 3 //Not extremely expensive, but it's useful for mute chracters.
+
 /datum/gear/utility/communicator
 	display_name = "communicator selection"
 	path = /obj/item/device/communicator
@@ -101,13 +106,13 @@
 
 /datum/gear/utility/implant
 	exploitable = 1
-
+/* VOREStation Edit - Make languages great again
 /datum/gear/utility/implant/eal //This does nothing if you don't actually know EAL.
 	display_name = "implant, language, EAL"
 	path = /obj/item/weapon/implant/language/eal
 	cost = 2
 	slot = "implant"
-	exploitable = 1
+	exploitable = 1*/
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
@@ -115,11 +120,6 @@
 	cost = 0 //VOREStation Edit. Changed cost to 0
 	slot = "implant"
 	exploitable = 1
-
-/datum/gear/utility/translator
-	display_name = "universal translator"
-	path = /obj/item/device/universal_translator
-	cost = 8
 
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
@@ -131,5 +131,14 @@
 	cost = 4
 
 /datum/gear/utility/wheelchair/color/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/utility/umbrella
+	display_name = "Umbrella"
+	path = /obj/item/weapon/melee/umbrella
+	cost = 3
+
+/datum/gear/utility/umbrella/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)

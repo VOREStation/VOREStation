@@ -218,7 +218,8 @@
 			continue //no need checking these other things
 
 		else if(istype(A, /obj/machinery/power/grounding_rod))
-			var/dist = get_dist(source, A)-2
+			var/obj/machinery/power/grounding_rod/G = A
+			var/dist = get_dist(source, A) - (G.anchored ? 2 : 0)
 			if(dist <= zap_range && (dist < closest_dist || !closest_grounding_rod))
 				closest_grounding_rod = A
 				closest_atom = A
@@ -288,7 +289,7 @@
 
 	else if(closest_mob)
 		var/shock_damage = Clamp(round(power/400), 10, 90) + rand(-5, 5)
-		closest_mob.electrocute_act(shock_damage, source, 1/*, tesla_shock = 1, stun = stun_mobs*/)
+		closest_mob.electrocute_act(shock_damage, source, 1, ran_zone())
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if(stun_mobs)

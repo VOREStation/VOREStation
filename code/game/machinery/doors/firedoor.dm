@@ -218,6 +218,8 @@
 
 /obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	add_fingerprint(user)
+	if(istype(C, /obj/item/taperoll))
+		return //Don't open the door if we're putting tape on it to tell people 'don't open the door'.
 	if(operating)
 		return//Already doing something.
 	if(istype(C, /obj/item/weapon/weldingtool) && !repairing)

@@ -58,7 +58,8 @@
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/weapon/reagent_containers/pill,
-		/obj/item/weapon/reagent_containers/blood
+		/obj/item/weapon/reagent_containers/blood,
+		/obj/item/stack/material/phoron
 		)
 
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc

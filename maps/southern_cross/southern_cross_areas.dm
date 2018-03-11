@@ -346,6 +346,9 @@
 	icon_state = "red"
 	requires_power = FALSE
 
+/area/surface/outpost/wall/checkpoint
+	name = "Checkpoint"
+
 //Mining Station
 
 /area/outpost/mining_station
@@ -1102,7 +1105,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	icon_state = "south"
 
 /area/shuttle/shuttle1/mining
-	name = "mining site"
+	name = "wilderness site"
 	icon_state = "shuttlered"
 
 /area/shuttle/shuttle1/planet
@@ -1153,7 +1156,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	icon_state = "south"
 
 /area/shuttle/shuttle2/mining
-	name = "mining site"
+	name = "wilderness site"
 	icon_state = "shuttlered"
 
 /area/shuttle/shuttle2/planet
@@ -1300,6 +1303,7 @@ area/crew_quarters/heads/sc/hop/quarters
 /area/skipjack_station/planet
 	name = "planet"
 	icon_state = "shuttlered"
+	dynamic_lighting = 1
 	base_turf = /turf/simulated/floor/outdoors/grass/sif/planetuse
 
 /area/skipjack_station/orbit
@@ -1402,6 +1406,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod1/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/escape_pod1/centcom
 	icon_state = "shuttle"
@@ -1415,6 +1420,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod2/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/escape_pod2/centcom
 	icon_state = "shuttle"
@@ -1428,6 +1434,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod3/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/escape_pod3/centcom
 	icon_state = "shuttle"
@@ -1441,6 +1448,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod4/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/escape_pod4/centcom
 	icon_state = "shuttle"
@@ -1454,6 +1462,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod5/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/escape_pod5/centcom
 	icon_state = "shuttle"
@@ -1467,6 +1476,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod6/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/escape_pod6/centcom
 	icon_state = "shuttle"
@@ -1480,6 +1490,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod7/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/reinforced/airless
 
 /area/shuttle/escape_pod7/centcom
 	icon_state = "shuttle"
@@ -1493,6 +1504,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/escape_pod8/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/reinforced/airless
 
 /area/shuttle/escape_pod8/centcom
 	icon_state = "shuttle"
@@ -1508,6 +1520,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/large_escape_pod1/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/large_escape_pod1/centcom
 	icon_state = "shuttle"
@@ -1521,6 +1534,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/large_escape_pod2/station
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/large_escape_pod2/centcom
 	icon_state = "shuttle"
@@ -1533,7 +1547,7 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/cryo/station
 	icon_state = "shuttle2"
-	base_turf = /turf/simulated/mineral/floor/ignore_mapgen
+	base_turf = /turf/simulated/floor/airless
 
 /area/shuttle/cryo/centcom
 	icon_state = "shuttle"

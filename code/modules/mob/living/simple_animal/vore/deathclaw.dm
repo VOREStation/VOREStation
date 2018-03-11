@@ -6,7 +6,7 @@
 	icon_living = "deathclaw"
 	icon_state = "deathclaw"
 
-	attacktext = "mauled"
+	attacktext = list("mauled")
 
 	faction = "deathclaw"
 
@@ -18,6 +18,7 @@
 
 	old_x = -16
 	old_y = 0
+	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
 

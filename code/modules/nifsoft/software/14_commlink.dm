@@ -13,6 +13,11 @@
 		if((. = ..()))
 			nif.comm = new(nif,src)
 
+	uninstall()
+		var/obj/item/device/nif/lnif = nif //Awkward. Parent clears it in an attempt to clean up.
+		if((. = ..()) && lnif)
+			qdel_null(lnif.comm)
+
 	activate()
 		if((. = ..()))
 			nif.comm.initialize_exonet(nif.human)

@@ -33,8 +33,9 @@ SUBSYSTEM_DEF(machines)
 	var/list/current_run = list()
 
 /datum/controller/subsystem/machines/Initialize(timeofday)
-	SSmachines.makepowernets()
-	// TODO - Move world-creation time setup of atmos machinery and pipenets to here
+	makepowernets()
+	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	setup_atmos_machinery(global.machines)
 	fire()
 	..()
 
@@ -53,12 +54,32 @@ SUBSYSTEM_DEF(machines)
 	for(var/datum/powernet/PN in powernets)
 		qdel(PN)
 	powernets.Cut()
+	setup_powernets_for_cables(cable_list)
 
-	for(var/obj/structure/cable/PC in cable_list)
+/datum/controller/subsystem/machines/proc/setup_powernets_for_cables(list/cables)
+	for(var/obj/structure/cable/PC in cables)
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
+
+/datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/atmos_machines)
+	for(var/obj/machinery/atmospherics/machine in atmos_machines)
+		machine.atmos_init()
+		CHECK_TICK
+
+	for(var/obj/machinery/atmospherics/machine in atmos_machines)
+		machine.build_network()
+		CHECK_TICK
+
+	for(var/obj/machinery/atmospherics/unary/U in atmos_machines)
+		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
+			var/obj/machinery/atmospherics/unary/vent_pump/T = U
+			T.broadcast_status()
+		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
+			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
+			T.broadcast_status()
+		CHECK_TICK
 
 /datum/controller/subsystem/machines/stat_entry()
 	var/msg = list()

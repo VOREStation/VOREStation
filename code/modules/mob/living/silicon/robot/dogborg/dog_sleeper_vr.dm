@@ -11,7 +11,7 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/mob_energy = -250 //Energy gained from digesting dead mobs (including PCs)
+	var/mob_energy = -100 //Energy gained from digesting dead mobs (including PCs)
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
@@ -77,7 +77,7 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				processing_objects.Add(src)
+				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 				update_patient()
@@ -127,7 +127,7 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				processing_objects.Add(src)
+				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
 				update_patient()
@@ -154,7 +154,7 @@
 				H.forceMove(src)
 				H.reset_view(src)
 				update_patient()
-				processing_objects.Add(src)
+				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [H.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [H] slips into your [src]. Life support functions engaged.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
@@ -317,7 +317,7 @@
 				else
 					cleaning = 1
 					drain(startdrain)
-					processing_objects.Add(src)
+					processing_objects |= src
 					update_patient()
 					sleeperUI(usr)
 					if(patient)
@@ -527,15 +527,12 @@
 					hearer << deathsound
 				T << deathsound
 				if(is_vore_predator(T))
-					for (var/bellytype in T.vore_organs)
-						var/datum/belly/belly = T.vore_organs[bellytype]
-						for (var/obj/thing in belly.internal_contents)
-							thing.loc = src
-							belly.internal_contents -= thing
-						for (var/mob/subprey in belly.internal_contents)
-							subprey.loc = src
-							belly.internal_contents -= subprey
-							to_chat(subprey, "As [T] melts away around you, you find yourself in [hound]'s [name]")
+					for(var/belly in T.vore_organs)
+						var/obj/belly/B = belly
+						for(var/atom/movable/thing in B)
+							thing.forceMove(src)
+							if(ismob(thing))
+								to_chat(thing, "As [T] melts away around you, you find yourself in [hound]'s [name]")
 				for(var/obj/item/I in T)
 					if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
 						var/obj/item/organ/internal/mmi_holder/MMI = I

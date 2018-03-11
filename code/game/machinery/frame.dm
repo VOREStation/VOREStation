@@ -551,15 +551,15 @@
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(istype(P, /obj/item/stack/material/glass/reinforced))
-							var/obj/item/stack/material/glass/reinforced/CP = P
-							if(CP.get_amount() > 1)
-								var/camt = min(CP.amount, req_components[I]) // amount of glass to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/material/glass/reinforced/CC = new /obj/item/stack/material/glass/reinforced(src)
-								CC.amount = camt
-								CC.update_icon()
-								CP.use(camt)
-								components += CC
+						if(istype(P, /obj/item/stack))
+							var/obj/item/stack/ST = P
+							if(ST.get_amount() > 1)
+								var/camt = min(ST.amount, req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/NS = new ST.stacktype(src)
+								NS.amount = camt
+								NS.update_icon()
+								ST.use(camt)
+								components += NS
 								req_components[I] -= camt
 								update_desc()
 								break

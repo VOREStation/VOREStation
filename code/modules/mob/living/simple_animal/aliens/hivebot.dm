@@ -5,7 +5,7 @@
 // Default hivebot is melee, and a bit more meaty, so it can meatshield for their ranged friends.
 /mob/living/simple_animal/hostile/hivebot
 	name = "hivebot"
-	desc = "A robot.  It appears to be somewhat reslient, but lacking a true weapon."
+	desc = "A robot. It appears to be somewhat resilient, but lacks a true weapon."
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "basic"
 	icon_living = "basic"
@@ -20,7 +20,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 
-	attacktext = "clawed"
+	attacktext = list("clawed")
 	projectilesound = 'sound/weapons/Gunshot.ogg'
 	projectiletype = /obj/item/projectile/bullet/hivebot
 
@@ -37,6 +37,7 @@
 	cooperative = TRUE
 	firing_lines = TRUE
 	investigates = TRUE
+	run_at_them = FALSE //VOREStation Edit
 
 	speak_chance = 1
 	speak = list(
@@ -44,10 +45,10 @@
 		"No threats found.",
 		"Error: No targets found."
 		)
-	emote_hear = list("humms ominously", "whirrs softly", "grinds a gear")
+	emote_hear = list("hums ominously", "whirrs softly", "grinds a gear")
 	emote_see = list("looks around the area", "turns from side to side")
-	say_understood = list("Affirmative.", "Positive")
-	say_cannot = list("Denied.", "Negative")
+	say_understood = list("Affirmative.", "Positive.")
+	say_cannot = list("Denied.", "Negative.")
 	say_maybe_target = list("Possible threat detected.  Investigating.", "Motion detected.", "Investigating.")
 	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
 
@@ -59,7 +60,7 @@
 // Melee like the base type, but more fragile.
 /mob/living/simple_animal/hostile/hivebot/swarm
 	name = "swarm hivebot"
-	desc = "A robot.  It looks fragile and weak"
+	desc = "A robot. It looks fragile and weak"
 	maxHealth = 1 LASERS_TO_KILL
 	health = 1 LASERS_TO_KILL
 	melee_damage_lower = 3
@@ -85,8 +86,8 @@
 // Shoots EMPs, to screw over other robots.
 /mob/living/simple_animal/hostile/hivebot/range/ion
 	name = "engineering hivebot"
-	desc = "A robot.  It has a tool which emits focused electromagnetic pulses, which are deadly to other synthetic adverseries."
-	projectiletype = /obj/item/projectile/ion
+	desc = "A robot. It has a tool which emits focused electromagnetic pulses, which are deadly to synthetic adverseries."
+	projectiletype = /obj/item/projectile/ion/small //VOREStation Edit
 	projectilesound = 'sound/weapons/Laser.ogg'
 	icon_living = "engi"
 	ranged = TRUE
@@ -96,7 +97,7 @@
 // Shoots deadly lasers.
 /mob/living/simple_animal/hostile/hivebot/range/laser
 	name = "laser hivebot"
-	desc = "A robot.  It has an energy weapon."
+	desc = "A robot. It has an energy weapon."
 	projectiletype = /obj/item/projectile/beam/blue
 	projectilesound = 'sound/weapons/Laser.ogg'
 	maxHealth = 2 LASERS_TO_KILL

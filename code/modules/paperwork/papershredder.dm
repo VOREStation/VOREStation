@@ -167,12 +167,13 @@
 		..()
 
 /obj/item/weapon/shreddedp/proc/burnpaper(var/obj/item/weapon/flame/lighter/P, var/mob/user)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if(user.restrained())
 		return
 	if(!P.lit)
 		user << "<span class='warning'>\The [P] is not lit.</span>"
 		return
-	user.visible_message("<span class='warning'>\The [user] holds \the [P] up to \the [src]. It looks like \he's trying to burn it!</span>", \
+	user.visible_message("<span class='warning'>\The [user] holds \the [P] up to \the [src]. It looks like [TU.he] [TU.is] trying to burn it!</span>", \
 		"<span class='warning'>You hold \the [P] up to \the [src], burning it slowly.</span>")
 	if(!do_after(user,20))
 		user << "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>"

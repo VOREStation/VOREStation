@@ -60,9 +60,9 @@ the artifact triggers the rage.
 	pain_immunity = TRUE					// Avoid falling over from shock (at least until it expires).
 
 	// The less good stuff.
-	accuracy = -5							// Aiming requires focus.
+	accuracy = -75							// Aiming requires focus.
 	accuracy_dispersion = 3					// Ditto.
-	evasion = -3							// Too angry to dodge.
+	evasion = -45							// Too angry to dodge.
 
 	var/nutrition_cost = 150
 	var/exhaustion_duration = 2 MINUTES 	// How long the exhaustion modifier lasts after it expires. Set to 0 to not apply one.
@@ -157,7 +157,7 @@ the artifact triggers the rage.
 	attack_speed_percent = 1.5
 	outgoing_melee_damage_percent = 0.6
 	disable_duration_percent = 1.5
-	evasion = -2
+	evasion = -30
 
 /datum/modifier/berserk_exhaustion/on_applied()
 	holder.visible_message("<span class='warning'>\The [holder] looks exhausted.</span>")
@@ -177,6 +177,6 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_EXTEND
 
 	// Just being mad isn't gonna overclock your body when you're a beepboop.
-	accuracy = -5				// Aiming requires focus.
+	accuracy = -75				// Aiming requires focus.
 	accuracy_dispersion = 3		// Ditto.
-	evasion = -3				// Too angry to dodge.
+	evasion = -45				// Too angry to dodge.

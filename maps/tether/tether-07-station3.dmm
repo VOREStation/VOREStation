@@ -1115,9 +1115,6 @@
 "bY" = (
 /turf/simulated/wall/r_wall,
 /area/ai)
-"bZ" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "ca" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -6888,7 +6885,7 @@
 	dir = 1;
 	id = "packageSort1"
 	},
-/obj/structure/plasticflaps/mining,
+/obj/structure/plasticflaps,
 /turf/simulated/floor,
 /area/quartermaster/delivery)
 "lR" = (
@@ -9331,7 +9328,7 @@
 	dir = 1;
 	id = "packageSort1"
 	},
-/obj/structure/plasticflaps/mining,
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/quartermaster/delivery)
 "pG" = (
@@ -13768,6 +13765,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 9
 	},
+/obj/machinery/computer/timeclock/premade/west,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "wG" = (
@@ -16361,17 +16359,16 @@
 /turf/simulated/floor/plating,
 /area/medical/surgery)
 "Bt" = (
+/obj/machinery/iv_drip,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 9
 	},
-/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Bu" = (
-/obj/structure/closet/secure_closet/medical2,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -16388,12 +16385,14 @@
 	pixel_x = 0;
 	pixel_y = 28
 	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Bv" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/FixOVein,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -16406,32 +16405,42 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Bw" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/retractor,
-/obj/item/weapon/surgical/bonesetter,
+/obj/item/weapon/storage/firstaid/surgery,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 1
 	},
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 21
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Bx" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/hemostat,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 5
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -16963,20 +16972,36 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Cp" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Cq" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/circular_saw,
-/obj/item/weapon/surgical/surgicaldrill,
+/obj/item/device/healthanalyzer,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
+	dir = 6
 	},
 /obj/effect/floor_decal/corner/white/border{
-	dir = 4
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/effect/floor_decal/corner/white/bordercorner2,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -17313,38 +17338,36 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "CS" = (
 /obj/machinery/computer/operating{
 	dir = 8
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "CT" = (
 /obj/machinery/optable,
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "CU" = (
-/obj/item/stack/medical/advanced/bruise_pack{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/stack/medical/advanced/bruise_pack,
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/obj/item/weapon/surgical/bonegel,
-/obj/item/weapon/surgical/bonegel,
-/turf/simulated/floor/tiled/white,
+/obj/machinery/oxygen_pump/anesthetic,
+/turf/simulated/wall,
 /area/medical/surgery)
 "CV" = (
 /obj/machinery/power/breakerbox/activated{
@@ -17873,6 +17896,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "DH" = (
@@ -18234,10 +18261,42 @@
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
-	dir = 2;
+/obj/structure/closet/secure_closet/medical2,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"Eq" = (
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
 	pixel_y = -24
 	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"Er" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/button/windowtint{
+	id = "surgeryobs";
+	pixel_y = -26
+	},
+/obj/item/stack/nanopaste,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"Es" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/surgery,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"Et" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
@@ -18245,50 +18304,15 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"Eq" = (
-/obj/structure/table/standard,
-/obj/item/stack/nanopaste,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"Er" = (
-/obj/structure/table/standard,
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/FixOVein,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/machinery/button/windowtint{
-	id = "surgeryobs";
-	pixel_y = -26
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"Es" = (
-/obj/structure/table/standard,
-/obj/item/weapon/surgical/retractor,
-/obj/item/weapon/surgical/bonesetter,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"Et" = (
-/obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/hemostat,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 6
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -18930,13 +18954,13 @@
 /turf/simulated/floor/plating,
 /area/medical/surgery2)
 "Fx" = (
-/obj/machinery/iv_drip,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 9
 	},
+/obj/structure/closet/secure_closet/medical2,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Fy" = (
@@ -18960,8 +18984,6 @@
 /area/medical/surgery2)
 "Fz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/retractor,
-/obj/item/weapon/surgical/bonesetter,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -18978,28 +19000,37 @@
 /area/medical/surgery2)
 "FA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/hemostat,
+/obj/item/weapon/storage/firstaid/surgery,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 1
 	},
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 21
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "FB" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/circular_saw,
-/obj/item/weapon/surgical/surgicaldrill,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 5
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
@@ -19266,13 +19297,19 @@
 /area/medical/surgery2)
 "Gb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/FixOVein,
+/obj/item/device/healthanalyzer,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
+	dir = 6
 	},
 /obj/effect/floor_decal/corner/white/border{
-	dir = 4
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/effect/floor_decal/corner/white/bordercorner2,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
@@ -19530,34 +19567,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Gt" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
-"Gu" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery2)
 "Gv" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/obj/structure/table/standard,
-/obj/item/stack/medical/advanced/bruise_pack,
-/obj/item/stack/medical/advanced/bruise_pack,
-/obj/item/weapon/surgical/bonegel,
-/turf/simulated/floor/tiled/white,
+/obj/machinery/oxygen_pump/anesthetic,
+/turf/simulated/wall,
 /area/medical/surgery2)
 "Gw" = (
 /turf/simulated/open,
@@ -19775,11 +19797,19 @@
 /area/medical/surgery2)
 "GL" = (
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
+	dir = 5
 	},
 /obj/effect/floor_decal/corner/white/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 4
 	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	icon_state = "bordercolorcorner2";
+	dir = 4
+	},
+/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "GM" = (
@@ -20297,9 +20327,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "Hp" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 10
 	},
@@ -20309,24 +20336,26 @@
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
-	dir = 2;
-	pixel_y = -24
+/obj/structure/bed/chair{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Hq" = (
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Hr" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
 /obj/machinery/button/windowtint{
@@ -20337,29 +20366,23 @@
 /area/medical/surgery2)
 "Hs" = (
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 2;
-	pixel_y = 2
-	},
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Ht" = (
-/obj/structure/closet/secure_closet/medical2,
+/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 6
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
@@ -22805,6 +22828,59 @@
 /obj/effect/landmark/map_data/virgo3b,
 /turf/space,
 /area/space)
+"Nw" = (
+/obj/structure/table/standard,
+/obj/item/device/healthanalyzer,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	icon_state = "bordercolorcorner2";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"NC" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery2)
+"RB" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"RV" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"Uc" = (
+/obj/effect/floor_decal/industrial/loading,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
 
 (1,1,1) = {"
 aa
@@ -30443,12 +30519,12 @@ ua
 Bv
 Cp
 CS
-Cp
+RB
 Er
 EW
 Fz
 Ga
-Gt
+NC
 Ga
 Hr
 EW
@@ -30563,14 +30639,14 @@ zl
 Ab
 ua
 Bw
-Cp
+Uc
 CT
-Cp
+RV
 Es
 EW
 FA
 Ga
-Gu
+Gt
 Ga
 Hs
 EW
@@ -30687,7 +30763,7 @@ ua
 Bx
 Cq
 CU
-Cq
+Nw
 Et
 EW
 FB
@@ -33083,8 +33159,8 @@ aa
 aa
 aa
 aa
-bZ
-bZ
+ab
+ab
 ab
 ab
 ab
@@ -33206,7 +33282,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33328,7 +33404,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33451,7 +33527,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33573,7 +33649,7 @@ aa
 aa
 aa
 aa
-bZ
+ab
 ab
 ab
 ab
@@ -33695,9 +33771,9 @@ aa
 aa
 aa
 aa
-bZ
-bZ
-bZ
+ab
+ab
+ab
 ab
 ab
 ab
@@ -33819,8 +33895,8 @@ aa
 aa
 aa
 aa
-bZ
-bZ
+ab
+ab
 ab
 ab
 ab
@@ -33942,9 +34018,9 @@ aa
 aa
 aa
 aa
-bZ
-bZ
-bZ
+ab
+ab
+ab
 ab
 ab
 ab
@@ -34066,8 +34142,8 @@ aa
 aa
 aa
 aa
-bZ
-bZ
+ab
+ab
 ab
 ab
 ab

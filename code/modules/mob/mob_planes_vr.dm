@@ -17,10 +17,8 @@
 /obj/screen/plane_master/augmented/New(var/mob/M)
 	..()
 	my_mob = M
-	logged_in_event.register(my_mob,src,/obj/screen/plane_master/augmented/proc/apply)
 
 /obj/screen/plane_master/augmented/Destroy()
-	logged_in_event.unregister(my_mob,src)
 	my_mob = null
 	return ..()
 

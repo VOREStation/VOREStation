@@ -105,7 +105,7 @@
 	else
 		RemoveHood_roiz()
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
 //ketrai:Ketrai
@@ -679,7 +679,7 @@
 		else
 			return 1
 
-/obj/item/clothing/under/fluff/screesuit/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+/obj/item/clothing/under/fluff/screesuit/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
 //HOS Hardsuit
@@ -769,7 +769,7 @@
 
 	action_button_name = "Toggle pom-pom"
 
-/obj/item/clothing/head/fluff/pompom/digest_act(var/list/internal_contents = null, var/atom/movable/item_storage = null)
+/obj/item/clothing/head/fluff/pompom/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
@@ -1688,25 +1688,36 @@ Departamental Swimsuits, for general use
 	item_state = "kilanogloves_mob"
 	species_restricted = null
 
+//BeyondMyLife: Cassandra Selones
+/obj/item/clothing/shoes/boots/fluff/kilano/purple //Child of kilano items to cut down on lines needed.
+	name = "purple and silver winter boots"
+	desc = "Some fur lined boots, purple and silver."
+	icon_state = "winterboots_cap_p_mob" //Just like last time, icon_state decides BOTH the item_state and icon_state. I have no idea why this occurs, but it does.
+	item_state = "winterboots_cap_p_mob"
+
+//BeyondMyLife: Cassandra Selones
+/obj/item/clothing/gloves/fluff/kilano/purple
+	name = "purple and silver gloves"
+	desc = "A purple pair of gloves, replicating the usual captains gloves, with odd oriental, and foriegn patterns in it, and silver lining replacing the usual gold."
+	icon_state = "kilanogloves_p"
+	item_state = "kilanogloves_p_mob"
+
+//BeyondMyLife: Cassandra Selones
+/obj/item/clothing/under/fluff/kilanosuit/purple
+	name = "purple and silver dress uniform"
+	desc = "A royal purple dress, replicating the usual captains dress, made of the same glossy/silky material, with odd oriental and foriegn patterns on it, silver lined too!"
+	icon_state = "kilanosuit_p"
+	item_state = "kilanosuit_p"
+
 //Mewchild: Phi Vietsi
-/obj/item/clothing/gloves/fluff/vietsi
+/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi
 	name = "signet ring"
 	desc = "A signet ring carved from the bones of something long extinct, as a ward against bad luck."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "vietsi_ring"
-	var/nameset = 0
 
-/obj/item/clothing/gloves/fluff/vietsi/attack_self(mob/user)
-	if(nameset)
-		to_chat(user, "<span class='notice'>The [src] has already been claimed!</span>")
-		return
-
-	to_chat(user, "<span class='notice'>You claim the [src] as your own!</span>")
-	change_name(user)
-	nameset = 1
-
-/obj/item/clothing/gloves/fluff/vietsi/proc/change_name(var/signet_name = "Unknown")
+/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi/change_name(var/signet_name = "Unknown")
 	name = "[signet_name]'s Bone Signet Ring"
 	desc = "A signet ring belonging to [signet_name], carved from the bones of something long extinct, as a ward against bad luck."
 
@@ -1724,3 +1735,35 @@ Departamental Swimsuits, for general use
 			"Teshari" = 'icons/vore/custom_clothes_tesh_vr.dmi'
 			)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+//Aztectornado:Tron inspired Siren outfit
+/obj/item/clothing/under/fluff/siren
+	name = "Siren Jumpsuit"
+	desc = "An advanced jumpsuit with inlaid neon highlighting, and a port on the back."
+	description_fluff = "Unlike other competitor suits, the Ward Takahashi Siren jumpsuit features a whole host of extra sensors for augmented reality use, and features a non-invasive neural sensor/stimulator for a fully immersive experience."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tronsiren"
+	worn_state = "tronsiren_mob"
+	item_state = "tronsiren_mob"
+	rolled_sleeves = 0
+
+/obj/item/clothing/gloves/fluff/siren
+	name = "Siren Gloves"
+	desc = "A set of white and neon blue gloves."
+	description_fluff = "Like its jumpsuit companion, the Ward Takahashi Siren gloves feature multiple sensors for usage in augmented reality. The gloves operate fine even without a paired jumpsuit, offering optimal AR menu control and haptic feedback."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "tronsiren_gloves"
+	item_state = "tronsiren_gloves_mob"
+
+/obj/item/clothing/shoes/boots/fluff/siren
+	name = "Siren Boots"
+	desc = "A set of white boots with neon lighting."
+	description_fluff = "Unlike the rest of the Ward Takahashi Siren lineup, the boots are simply boots. However, they go great with the rest of the outfit, and are quite comfortable."
+
+	icon_state = "tronsiren_shoes"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'

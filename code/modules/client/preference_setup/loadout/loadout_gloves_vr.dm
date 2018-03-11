@@ -22,3 +22,7 @@
 /datum/gear/gloves/latex/colorable/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/gloves/siren
+	display_name = "gloves, Siren"
+	path = /obj/item/clothing/gloves/fluff/siren

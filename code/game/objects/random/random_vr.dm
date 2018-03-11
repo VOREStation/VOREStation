@@ -152,7 +152,7 @@
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,\
 				prob(4);/obj/item/weapon/material/butterfly,\
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,\
-				prob(2);/obj/item/weapon/material/knuckledusters,\
+				prob(2);/obj/item/clothing/gloves/knuckledusters,\
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,\
 				prob(1);/obj/item/weapon/material/knife/tacknife,\
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,\
@@ -199,3 +199,11 @@
 			T = get_step_rand(this_mob) || T
 		if(T)
 			this_mob.forceMove(T)
+
+//Just overriding this here, no more super medkit so those can be reserved for PoIs and such
+/obj/random/firstaid/item_to_spawn()
+	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
+				prob(3);/obj/item/weapon/storage/firstaid/toxin,
+				prob(3);/obj/item/weapon/storage/firstaid/o2,
+				prob(2);/obj/item/weapon/storage/firstaid/adv,
+				prob(3);/obj/item/weapon/storage/firstaid/fire)

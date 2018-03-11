@@ -87,13 +87,17 @@
 
 /datum/trait/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.verbs |= /mob/living/carbon/human/proc/shred_limb
+	H.verbs |= /mob/living/proc/shred_limb
 
 /datum/trait/trashcan
 	name = "Trash Can"
-	desc = "Allows you to dispose of the snack wrappings on the go instead of having to look for a bin or littering like an animal."
+	desc = "Allows you to dispose of some garbage on the go instead of having to look for a bin or littering like an animal."
 	cost = 0
 	var_changes = list("trashcan" = 1)
+
+/datum/trait/trashcan/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/eat_trash
 
 /datum/trait/glowing_eyes
 	name = "Glowing Eyes"

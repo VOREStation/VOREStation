@@ -17,31 +17,23 @@ core parts. The key difference is that when we generate overlays we do not gener
 versions. Instead, we generate both and store them in two fixed-length lists, both using the same list-index
 (The indexes are in update_icons.dm): Each list for humans is (at the time of writing) of length 19.
 This will hopefully be reduced as the system is refined.
-
 	var/overlays_lying[19]			//For the lying down stance
 	var/overlays_standing[19]		//For the standing stance
-
 When we call update_icons, the 'lying' variable is checked and then the appropriate list is assigned to our overlays!
 That in itself uses a tiny bit more memory (no more than all the ridiculous lists the game has already mind you).
-
 On the other-hand, it should be very CPU cheap in comparison to the old system.
 In the old system, we updated all our overlays every life() call, even if we were standing still inside a crate!
 or dead!. 25ish overlays, all generated from scratch every second for every xeno/human/monkey and then applied.
 More often than not update_clothing was being called a few times in addition to that! CPU was not the only issue,
 all those icons had to be sent to every client. So really the cost was extremely cumulative. To the point where
 update_clothing would frequently appear in the top 10 most CPU intensive procs during profiling.
-
 Another feature of this new system is that our lists are indexed. This means we can update specific overlays!
 So we only regenerate icons when we need them to be updated! This is the main saving for this system.
-
 In practice this means that:
 	everytime you fall over, we just switch between precompiled lists. Which is fast and cheap.
 	Everytime you do something minor like take a pen out of your pocket, we only update the in-hand overlay
 	etc...
-
-
 There are several things that need to be remembered:
-
 >	Whenever we do something that should cause an overlay to update (which doesn't use standard procs
 	( i.e. you do something like l_hand = /obj/item/something new(src) )
 	You will need to call the relevant update_inv_* proc:
@@ -61,12 +53,9 @@ There are several things that need to be remembered:
 		update_inv_back()
 		update_inv_handcuffed()
 		update_inv_wear_mask()
-
 	All of these are named after the variable they update from. They are defined at the mob/ level like
 	update_clothing was, so you won't cause undefined proc runtimes with usr.update_inv_wear_id() if the usr is a
 	slime etc. Instead, it'll just return without doing any work. So no harm in calling it for slimes and such.
-
-
 >	There are also these special cases:
 		update_mutations()	//handles updating your appearance for certain mutations.  e.g TK head-glows
 		UpdateDamageIcon()	//handles damage overlays for brute/burn damage //(will rename this when I geta round to it)
@@ -74,7 +63,6 @@ There are several things that need to be remembered:
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
 																			...eyes were merged into update_body)
 		update_targeted() // Updates the target overlay when someone points a gun at you
-
 >	All of these procs update our overlays_lying and overlays_standing, and then call update_icons() by default.
 	If you wish to update several overlays at once, you can set the argument to 0 to disable the update and call
 	it manually:
@@ -82,25 +70,20 @@ There are several things that need to be remembered:
 		update_inv_head(0)
 		update_inv_l_hand(0)
 		update_inv_r_hand()		//<---calls update_icons()
-
 	or equivillantly:
 		update_inv_head(0)
 		update_inv_l_hand(0)
 		update_inv_r_hand(0)
 		update_icons()
-
 >	If you need to update all overlays you can use regenerate_icons(). it works exactly like update_clothing used to.
-
 >	I reimplimented an old unused variable which was in the code called (coincidentally) var/update_icon
 	It can be used as another method of triggering regenerate_icons(). It's basically a flag that when set to non-zero
 	will call regenerate_icons() at the next life() call and then reset itself to 0.
 	The idea behind it is icons are regenerated only once, even if multiple events requested it.
-
 This system is confusing and is still a WIP. It's primary goal is speeding up the controls of the game whilst
 reducing processing costs. So please bear with me while I iron out the kinks. It will be worth it, I promise.
 If I can eventually free var/lying stuff from the life() process altogether, stuns/death/status stuff
 will become less affected by lag-spikes and will be instantaneous! :3
-
 If you have any questions/constructive-comments/bugs-to-report/or have a massivly devestated butt...
 Please contact me on #coderbus IRC. ~Carn x
 */
@@ -171,12 +154,12 @@ Please contact me on #coderbus IRC. ~Carn x
 	ma_compiled.overlays += list_layers
 
 	//4: Apply transforms based on situation
-	update_transform(ma_compiled, FALSE)
+	update_transform(ma_compiled)
 
-	//4.5 Set layer to PLANE_WORLD to make sure its not magically FLOAT_PLANE due to byond madness
-	ma_compiled.plane = PLANE_WORLD
+	//5: Do any species specific layering updates, such as when hiding.
+	update_icon_special(ma_compiled, FALSE)
 
-	//5: Set appearance once
+	//6: Set appearance once
 	appearance = ma_compiled
 
 /mob/living/carbon/human/update_transform(var/mutable_appearance/passed_ma)
@@ -218,6 +201,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		ma.layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
 	if(!passed_ma)
+		update_icon_special(ma)
 		appearance = ma
 
 //Update the layers from the defines above
@@ -251,6 +235,22 @@ Please contact me on #coderbus IRC. ~Carn x
 	if(has_huds)
 		list_huds = hud_list.Copy()
 		list_huds += backplane // Required to mask HUDs in context menus: http://www.byond.com/forum/?post=2336679
+
+	//Typing indicator code
+	if(client && !stat) //They have a client & aren't dead/KO'd? Continue on!
+		if(typing_indicator && hud_typing) //They already have the indicator and are still typing
+			list_huds += typing_indicator
+			typing_indicator.invisibility = invisibility
+
+		else if(!typing_indicator && hud_typing) //Are they in their body, NOT dead, have hud_typing, do NOT have a typing indicator. and have it enabled?
+			typing_indicator = new
+			typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+			typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
+			list_huds += typing_indicator
+
+		else if(typing_indicator && !hud_typing) //Did they stop typing?
+			typing = FALSE
+			hud_typing = FALSE
 
 	if(update_icons)
 		update_icons()
@@ -650,7 +650,7 @@ var/global/list/damage_icon_parts = list()
 	update_fire(0)
 	update_water(0)
 	update_surgery(0)
-	UpdateDamageIcon()
+	UpdateDamageIcon(0)
 	update_icons_layers(0)
 	update_icons_huds(0)
 	update_icons()
@@ -926,7 +926,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			overlays_standing[SHOES_LAYER] = null
 			overlays_standing[SHOES_LAYER_ALT] = null
-	if(update_icons)   update_icons()
+	if(update_icons)   update_icons_layers()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
 	if(QDESTROYING(src))
@@ -998,6 +998,13 @@ var/global/list/damage_icon_parts = list()
 			standing = image(base)
 		else
 			standing.color = head.color
+
+		// Accessories - copied from uniform, BOILERPLATE because fuck this system.
+		var/obj/item/clothing/head/hat = head
+		if(istype(hat) && hat.accessories.len)
+			for(var/obj/item/clothing/accessory/A in hat.accessories)
+				standing.overlays |= A.get_mob_overlay()
+
 		overlays_standing[HEAD_LAYER] = standing
 
 	else

@@ -1,5 +1,10 @@
 var/list/flooring_types
 
+/proc/populate_flooring_types()
+	flooring_types = list()
+	for (var/flooring_path in typesof(/decl/flooring))
+		flooring_types["[flooring_path]"] = new flooring_path
+
 /proc/get_flooring_data(var/flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
@@ -80,6 +85,11 @@ var/list/flooring_types
 	icon_base = "snowyplating"
 	flags = null
 
+/decl/flooring/snow/ice
+	name = "ice"
+	desc = "Looks slippery."
+	icon_base = "ice"
+
 /decl/flooring/snow/plating/drift
 	icon_base = "snowyplayingdrift"
 
@@ -132,6 +142,11 @@ var/list/flooring_types
 	name = "orange carpet"
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
+
+/decl/flooring/carpet/tealcarpet
+	name = "teal carpet"
+	icon_base = "tealcarpet"
+	build_type = /obj/item/stack/tile/carpet/teal
 
 /decl/flooring/tiling
 	name = "floor"
@@ -274,6 +289,13 @@ var/list/flooring_types
 		'sound/effects/footstep/wood3.ogg',
 		'sound/effects/footstep/wood4.ogg',
 		'sound/effects/footstep/wood5.ogg'))
+
+/decl/flooring/wood/sif
+	name = "alien wooden floor"
+	desc = "Polished alien wood planks."
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_base = "sifwood"
+	build_type = /obj/item/stack/tile/wood/sif
 
 /decl/flooring/reinforced
 	name = "reinforced floor"

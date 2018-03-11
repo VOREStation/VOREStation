@@ -36,6 +36,10 @@
 
 #define REAGENTS_PER_SHEET 20
 
+#define ANTIBIO_NORM	1
+#define ANTIBIO_OD		2
+#define ANTIBIO_SUPER	3
+
 // Chemistry lists.
 var/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
 var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")                 // Decrease heart rate.

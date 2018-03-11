@@ -19,7 +19,7 @@
 
 	melee_damage_lower = 1
 	melee_damage_upper = 5
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	speak_chance = 1
 	speak = list("EHEHEHEHEH","eh?")
@@ -98,7 +98,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	speak_chance = 1
 	speak = list("moo?","moo","MOOOOOO")
@@ -168,7 +168,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	has_langs = list("Bird")
 	speak_chance = 2
@@ -216,7 +216,7 @@ var/global/chicken_count = 0
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	has_langs = list("Bird")
 	speak_chance = 2

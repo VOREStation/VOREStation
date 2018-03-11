@@ -42,7 +42,7 @@
 		comm.visible_message("<span class='notice'>\icon[src] Connecting to [src].</span>")
 		to_chat(user, "<span class='notice'>\icon[src] Attempting to call [comm].</span>")
 		sleep(10)
-		to_chat(user, "<span class='notice'>\icon[src] Dialing internally from [station_name()], [system_name()].</span>") // Vorestation edit
+		to_chat(user, "<span class='notice'>\icon[src] Dialing internally from [station_name()], [system_name()].</span>")
 		sleep(20) //If they don't have an exonet something is very wrong and we want a runtime.
 		to_chat(user, "<span class='notice'>\icon[src] Connection re-routed to [comm] at [comm.exonet.address].</span>")
 		sleep(40)

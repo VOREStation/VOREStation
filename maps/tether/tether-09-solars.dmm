@@ -3858,7 +3858,7 @@
 /turf/simulated/floor,
 /area/rnd/outpost/atmos)
 "hf" = (
-/obj/machinery/atmospherics/tvalve/mirrored/digital{
+/obj/machinery/atmospherics/tvalve/digital/mirrored{
 	name = "Filter Bypass"
 	},
 /turf/simulated/floor,

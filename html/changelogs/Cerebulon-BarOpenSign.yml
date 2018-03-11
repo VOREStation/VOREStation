@@ -1,7 +1,0 @@
-
-author: Cerebulon
-
-delete-after: True
-
-changes: 
-  - rscadd: "Added toggleable 'Open' sign to bar hallway so you can tell if it's open without walking inside."

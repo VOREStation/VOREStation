@@ -28,6 +28,14 @@
 		/obj/item/clothing/under/thing4)
 */
 
+// BeyondMyLife:Cassandra Selones Spawn Kit
+/obj/item/weapon/storage/box/fluff/cassandra
+	name = "Cassandra Selone's Spawn Kit"
+	desc = "A spawn Kit, holding Cassandra Selone's Item's"
+	has_items = list(
+		/obj/item/clothing/gloves/fluff/kilano/purple,
+		/obj/item/clothing/under/fluff/kilanosuit/purple,
+		/obj/item/clothing/shoes/boots/fluff/kilano/purple)
 
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
@@ -182,7 +190,7 @@
 		new /obj/item/ammo_casing/nsfw_batt/net(src)
 		new /obj/item/clothing/accessory/holster(src)
 
-/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(var/datum/belly/belly = null)
+/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(...)
 	return FALSE //I get eaten a lot, okay
 
 //Aerowing:Sebastian Aji
@@ -190,8 +198,8 @@
 	name = "Sebastian's Lumoco Arms P3 Box"
 	has_items = list(
 		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/ammo_magazine/m9mm/flash,
-		/obj/item/ammo_magazine/m9mm/flash,
+		/obj/item/ammo_magazine/m9mm/compact/flash,
+		/obj/item/ammo_magazine/m9mm/compact/flash,
 		/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji)
 
 /obj/item/weapon/storage/box/fluff/briana_moore

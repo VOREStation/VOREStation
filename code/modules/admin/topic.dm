@@ -1228,7 +1228,7 @@
 		if(ismob(M))
 			var/take_msg = "<span class='notice'><b>ADMINHELP</b>: <b>[key_name(usr.client)]</b> is attending to <b>[key_name(M)]'s</b> adminhelp, please don't dogpile them.</span>"
 			for(var/client/X in admins)
-				if((R_ADMIN|R_MOD|R_EVENT) & X.holder.rights)
+				if((R_ADMIN|R_MOD|R_EVENT|R_SERVER) & X.holder.rights)
 					to_chat(X, take_msg)
 			to_chat(M, "<span class='notice'><b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b></span>")
 			// VoreStation Edit Start
@@ -1872,6 +1872,17 @@
 					usr << "Failed to add language '[lang2toggle]' from \the [M]!"
 
 			show_player_panel(M)
+
+	else if(href_list["cryoplayer"])
+		if(!check_rights(R_ADMIN))	return
+
+		var/mob/M = locate(href_list["cryoplayer"])
+		if(!istype(M))
+			to_chat(usr,"<span class='warning'>Mob doesn't exist!</span>")
+			return
+
+		var/client/C = usr.client
+		C.despawn_player(M)
 
 	// player info stuff
 

@@ -266,7 +266,7 @@
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/valve/digital/initialize()
-	..()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 

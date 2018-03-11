@@ -267,6 +267,7 @@
 		return
 
 	var/module_type = robot_modules[modtype]
+	transform_with_anim()	//VOREStation edit: sprite animation
 	new module_type(src)
 
 	hands.icon_state = lowertext(modtype)
@@ -892,6 +893,18 @@
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
 							cleaned_human << "<font color='red'>[src] cleans your face!</font>"
+
+		if((module_state_1 && istype(module_state_1, /obj/item/weapon/storage/bag/ore)) || (module_state_2 && istype(module_state_2, /obj/item/weapon/storage/bag/ore)) || (module_state_3 && istype(module_state_3, /obj/item/weapon/storage/bag/ore))) //Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
+			var/obj/item/weapon/storage/bag/ore/B = null
+			if(istype(module_state_1, /obj/item/weapon/storage/bag/ore)) //First orebag has priority, if they for some reason have multiple.
+				B = module_state_1
+			else if(istype(module_state_2, /obj/item/weapon/storage/bag/ore))
+				B = module_state_2
+			else if(istype(module_state_3, /obj/item/weapon/storage/bag/ore))
+				B = module_state_3
+			var/turf/tile = loc
+			if(isturf(tile))
+				B.gather_all(tile, src, 1) //Shhh, unless the bag fills, don't spam the borg's chat with stuff that's going on every time they move!
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()
@@ -958,6 +971,12 @@
 			icontype = module_sprites[1]
 	else
 		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
+		if(notransform)				//VOREStation edit start: sprite animation
+			src << "Your current transformation has not finished yet!"
+			choose_icon(icon_selection_tries, module_sprites)
+			return
+		else
+			transform_with_anim()	//VOREStation edit end: sprite animation
 	icon_state = module_sprites[icontype]
 	updateicon()
 
@@ -1071,7 +1090,8 @@
 				laws = new /datum/ai_laws/syndicate_override
 				var/time = time2text(world.realtime,"hh:mm:ss")
 				lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-				set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
+				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+				set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 				. = 1
 				spawn()
 					src << "<span class='danger'>ALERT: Foreign software detected.</span>"
@@ -1089,7 +1109,7 @@
 					src << "<span class='danger'>ERRORERRORERROR</span>"
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
-					src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>"
+					src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>"
 					updateicon()
 			else
 				user << "You fail to hack [src]'s interface."

@@ -8,9 +8,6 @@
 "ac" = (
 /turf/simulated/mineral/vacuum,
 /area/mine/explored/upper_level)
-"ad" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "ae" = (
 /turf/simulated/wall/r_wall,
 /area/security/prison)
@@ -147,9 +144,6 @@
 "at" = (
 /turf/simulated/wall,
 /area/maintenance/station/sec_lower)
-"au" = (
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
 "av" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -6994,11 +6988,6 @@
 	pixel_y = 3
 	},
 /obj/item/weapon/circuitboard/autolathe,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/item/weapon/circuitboard/scan_consolenew{
 	pixel_x = 6;
 	pixel_y = -3
@@ -8731,10 +8720,6 @@
 	},
 /obj/item/device/multitool,
 /obj/item/clothing/glasses/meson,
-/obj/machinery/ai_status_display{
-	pixel_x = 32;
-	pixel_y = 0
-	},
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/storage/tech)
@@ -8751,6 +8736,10 @@
 /obj/item/device/t_scanner,
 /obj/item/clothing/glasses/meson,
 /obj/item/device/multitool,
+/obj/machinery/ai_status_display{
+	pixel_x = 0;
+	pixel_y = -32
+	},
 /turf/simulated/floor/plating,
 /area/storage/tech)
 "oI" = (
@@ -27835,8 +27824,8 @@ aa
 aa
 aa
 aa
-ad
-ad
+ac
+ac
 ac
 ac
 ac
@@ -27958,7 +27947,7 @@ aa
 aa
 aa
 aa
-ad
+ac
 ac
 ac
 ac
@@ -28080,7 +28069,7 @@ aa
 aa
 aa
 aa
-ad
+ac
 ac
 ac
 ac
@@ -28203,7 +28192,7 @@ aa
 aa
 aa
 aa
-au
+aP
 ac
 aP
 aP
@@ -28325,7 +28314,7 @@ aa
 aa
 aa
 aa
-au
+aP
 aP
 aP
 aP
@@ -28447,9 +28436,9 @@ aa
 aa
 aa
 aa
-au
-au
-au
+aP
+aP
+aP
 aP
 aP
 aP
@@ -28571,8 +28560,8 @@ aa
 aa
 aa
 aa
-au
-au
+aP
+aP
 aP
 aP
 aP
@@ -28694,9 +28683,9 @@ aa
 aa
 aa
 aa
-au
-au
-au
+aP
+aP
+aP
 aP
 aP
 aP
@@ -28818,8 +28807,8 @@ aa
 aa
 aa
 aa
-au
-au
+aP
+aP
 aP
 aP
 aP

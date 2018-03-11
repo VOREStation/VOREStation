@@ -24,5 +24,5 @@
 
 	on_created_text = "<span class='notice'>You have a repulsion field around you, which will attempt to deflect projectiles.</span>"
 	on_expired_text = "<span class='warning'>Your repulsion field has expired.</span>"
-	evasion = 3
+	evasion = 45
 	stacks = MODIFIER_STACK_EXTEND

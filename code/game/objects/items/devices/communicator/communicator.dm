@@ -173,13 +173,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
-		// VOREStation Edit Start - Lose connection if too far from our exonet node.
-		var/turf/T = get_turf(src)
-		if(!T || !is_on_same_plane_or_station(T.z, node.z))
-			return 0
-		// VOREStation Edit End
-		return 1
+	if(node && node.on && node.allow_external_communicators)
+		return can_telecomm(src,node)
 	return 0
 
 // Proc: process()
@@ -292,17 +287,20 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		to_chat(voice, "<span class='danger'>\icon[src] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
+
+	//Clean up all references we might have to others
 	communicating.Cut()
 	voice_requests.Cut()
 	voice_invites.Cut()
+	node = null
+
+	//Clean up references that might point at us
 	all_communicators -= src
 	processing_objects -= src
 	listening_objects.Remove(src)
-	qdel(camera)
-	camera = null
-	if(exonet)
-		exonet.remove_address()
-		exonet = null
+	qdel_null(camera)
+	qdel_null(exonet)
+
 	return ..()
 
 // Proc: update_icon()

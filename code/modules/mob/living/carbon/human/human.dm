@@ -2,20 +2,23 @@
 	name = "unknown"
 	real_name = "unknown"
 	voice_name = "unknown"
-	icon = 'icons/effects/effects.dmi' //We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
+	icon = 'icons/effects/effects.dmi'	//We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
 	icon_state = "nothing"
 
 	var/list/hud_list[TOTAL_HUDS]
-	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
+	var/embedded_flag					//To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
-	var/last_push_time	//For human_attackhand.dm, keeps track of the last use of disarm
+	var/last_push_time					//For human_attackhand.dm, keeps track of the last use of disarm
 
-	var/spitting = 0 //Spitting and spitting related things. Any human based ranged attacks, be it innate or added abilities.
-	var/spit_projectile = null //Projectile type.
-	var/spit_name = null //String
-	var/last_spit = 0 //Timestamp.
+	var/spitting = 0 					//Spitting and spitting related things. Any human based ranged attacks, be it innate or added abilities.
+	var/spit_projectile = null			//Projectile type.
+	var/spit_name = null 				//String
+	var/last_spit = 0 					//Timestamp.
 
-	var/can_defib = 1	//Horrible damage (like beheadings) will prevent defibbing organics.
+	var/can_defib = 1					//Horrible damage (like beheadings) will prevent defibbing organics.
+	var/hiding = 0						// If the mob is hiding or not. Makes them appear under tables and the like.
+	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
+	var/active_regen_delay = 300
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
@@ -63,7 +66,8 @@
 	list_body = null
 	LAZYCLEARLIST(list_huds)
 	list_huds = null
-	if(nif) qdel_null(nif)	//VOREStation Add
+	qdel_null(nif)	//VOREStation Add
+	qdel_null_list(vore_organs) //VOREStation Add
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -773,7 +777,8 @@
 
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
-		visible_message("<font color='red'>\The [src] begins playing \his ribcage like a xylophone. It's quite spooky.</font>","<font color='blue'>You begin to play a spooky refrain on your ribcage.</font>","<font color='red'>You hear a spooky xylophone melody.</font>")
+		var/datum/gender/T = gender_datums[get_visible_gender()]
+		visible_message("<font color='red'>\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.</font>","<font color='blue'>You begin to play a spooky refrain on your ribcage.</font>","<font color='red'>You hear a spooky xylophone melody.</font>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 50, 1, -1)
 		xylophone = 1
@@ -863,8 +868,8 @@
 			gender = NEUTER
 	regenerate_icons()
 	check_dna()
-
-	visible_message("<font color='blue'>\The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!</font>", "<font color='blue'>You change your appearance!</font>", "<font color='red'>Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</font>")
+	var/datum/gender/T = gender_datums[get_visible_gender()]
+	visible_message("<font color='blue'>\The [src] morphs and changes [T.his] appearance!</font>", "<font color='blue'>You change your appearance!</font>", "<font color='red'>Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</font>")
 
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
@@ -891,7 +896,7 @@
 	else
 		target.show_message("<font color='blue'> You hear a voice that seems to echo around the room: [say]</font>")
 	usr.show_message("<font color='blue'> You project your mind into [target.real_name]: [say]</font>")
-	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
+	log_say("(TPATH to [key_name(target)]) [say]",src)
 	for(var/mob/observer/dead/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
@@ -932,10 +937,13 @@
 		remoteview_target = null
 		reset_view(0)
 
-/mob/living/carbon/human/proc/get_visible_gender()
+/mob/living/carbon/human/get_visible_gender()
 	if(wear_suit && wear_suit.flags_inv & HIDEJUMPSUIT && ((head && head.flags_inv & HIDEMASK) || wear_mask))
-		return NEUTER
-	return gender
+		return PLURAL //plural is the gender-neutral default
+	if(species)
+		if(species.ambiguous_genders)
+			return PLURAL // regardless of what you're wearing, your gender can't be figured out
+	return get_gender()
 
 /mob/living/carbon/human/proc/increase_germ_level(n)
 	if(gloves)
@@ -1035,10 +1043,10 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/clean_feet)
+/mob/living/carbon/human/clean_blood(var/washshoes)
 	.=..()
 	gunshot_residue = null
-	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
+	if(washshoes && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
 		feet_blood_DNA.Cut()
 		feet_blood_DNA = null
@@ -1092,13 +1100,16 @@
 
 	if(usr.stat || usr.restrained() || !isliving(usr)) return
 
+	var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
+	var/datum/gender/T = gender_datums[get_visible_gender()]
+
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("<span class='notice'>[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
+		usr.visible_message("<span class='notice'>[usr] kneels down, puts [TU.his] hand on [src]'s wrist and begins counting [T.his] pulse.</span>",\
 		"You begin counting [src]'s pulse")
 	else
-		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
+		usr.visible_message("<span class='notice'>[usr] begins counting [T.his] pulse.</span>",\
 		"You begin counting your pulse.")
 
 	if(src.pulse)
@@ -1113,7 +1124,7 @@
 	else
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
+/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE)
 
 	if(!dna)
 		if(!new_species)
@@ -1173,7 +1184,7 @@
 	maxHealth = species.total_health
 
 	spawn(0)
-		regenerate_icons()
+		if(regen_icons) regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
@@ -1351,14 +1362,20 @@
 	return 0
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
-	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
+	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
+	var/footcoverage_check = FALSE
+	for(var/obj/item/clothing/C in equipment)
+		if(C.body_parts_covered & FEET)
+			footcoverage_check = TRUE
+			break
+	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
 		return 0
 	if(..(slipped_on,stun_duration))
 		return 1
 
-/mob/living/carbon/human/proc/undislocate()
+/mob/living/carbon/human/proc/relocate()
 	set category = "Object"
-	set name = "Undislocate Joint"
+	set name = "Relocate Joint"
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
 
@@ -1406,7 +1423,7 @@
 	else
 		U << "<span class='danger'>You pop [S]'s [current_limb.joint] back in!</span>"
 		S << "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>"
-	current_limb.undislocate()
+	current_limb.relocate()
 
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in organs)
@@ -1540,10 +1557,22 @@
 	return species.fire_icon_state
 
 // Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
-/mob/living/carbon/human/equip_post_job()	//Drone Permit moved to equip_survival_gear()
+/mob/living/carbon/human/equip_post_job()
 	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
-		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
+		equip_to_slot_or_del(permit, slot_in_backpack)
+
+/mob/living/carbon/human/proc/update_icon_special(var/mutable_appearance/ma, var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
+	if(hiding) // Hiding? Carry on.
+		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
+			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
+		else
+			ma.layer = HIDING_LAYER
+
+	//Can put special species icon update proc calls here, if any are ever invented.
+
+	if(update_icons)
+		update_icons()

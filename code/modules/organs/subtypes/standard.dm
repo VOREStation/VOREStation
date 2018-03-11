@@ -281,8 +281,6 @@
 		spawn(1)
 			owner.update_hair()
 	get_icon()
-	if(vital)	//This is just in case we ever add something that both a) Doesn't need a head to live, and b) Can be defibbed
-		owner.can_defib = 0
 	..()
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
@@ -307,6 +305,12 @@
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 			owner.eye_blurry += 20 //Specific level 2 'feature
+
+/obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/toy/plushie) || istype(I, /obj/item/organ/external/head))
+		user.visible_message("<span class='notice'>[user] makes \the [I] kiss \the [src]!.</span>", \
+		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
+	return ..()
 
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"

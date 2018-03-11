@@ -163,3 +163,4 @@
 // Step trigger to fall down to planet Sif
 /obj/effect/step_trigger/teleporter/planetary_fall/sif/initialize()
 	planet = planet_sif
+	. = ..()

@@ -46,9 +46,9 @@
 	containername = "Experimental weapons crate"
 	access = access_armory
 
-/datum/supply_packs/munitions/energyweapons
+/datum/supply_packs/munitions/energyweapons 
 	name = "Laser carbine crate"
-	contains = list(/obj/item/weapon/gun/energy/laser = 3)
+	contains = list(/obj/item/weapon/gun/energy/laser = 2) //VOREStation Edit - Made to be consistent with the energy guns crate.
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "energy weapons crate"

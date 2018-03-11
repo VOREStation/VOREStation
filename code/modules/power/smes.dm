@@ -214,6 +214,7 @@
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.set_dir(tempDir)
 		terminal.master = src
+		terminal.connect_to_network()
 		return 0
 	return 1
 
@@ -265,7 +266,6 @@
 		user.visible_message(\
 				"<span class='notice'>[user.name] has added cables to the [src].</span>",\
 				"<span class='notice'>You added cables to the [src].</span>")
-		terminal.connect_to_network()
 		stat = 0
 		return 0
 

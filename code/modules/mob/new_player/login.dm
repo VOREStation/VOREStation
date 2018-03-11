@@ -19,6 +19,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 		icon_state = pick(using_map.lobby_screens)
 	else
 		icon_state = known_icon_states[1]
+	. = ..()
 
 /mob/new_player
 	var/client/my_client // Need to keep track of this ourselves, since by the time Logout() is called the client has already been nulled

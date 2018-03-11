@@ -15,9 +15,7 @@
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)
 		return 0
-	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was blind stung by [key_name(src)]</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used blind sting on [key_name(T)]</font>")
-	msg_admin_attack("[key_name(T)] was blind stung by [key_name(src)]")
+	add_attack_logs(src,T,"Blind sting (changeling)")
 	T << "<span class='danger'>Your eyes burn horrificly!</span>"
 	T.disabilities |= NEARSIGHTED
 	var/duration = 300

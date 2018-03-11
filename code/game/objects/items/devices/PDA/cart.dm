@@ -110,7 +110,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/security/initialize()
 	radio = new /obj/item/radio/integrated/beepsky(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
@@ -166,7 +166,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/signal/initialize()
     radio = new /obj/item/radio/integrated/signal(src)
-    ..()
+    . = ..()
 
 /obj/item/weapon/cartridge/quartermaster
 	name = "\improper Space Parts & Space Vendors cartridge"
@@ -200,7 +200,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/hos/initialize()
 	radio = new /obj/item/radio/integrated/beepsky(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/ce
 	name = "\improper Power-On DELUXE"
@@ -225,7 +225,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/rd/initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/captain
 	name = "\improper Value-PAK cartridge"
@@ -265,8 +265,6 @@ var/list/civilian_cartridges = list(
 			if(loc)
 				var/obj/item/PDA = loc
 				var/mob/user = PDA.fingerprintslast
-				if(istype(PDA.loc,/mob/living))
-					name = PDA.loc
 				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 

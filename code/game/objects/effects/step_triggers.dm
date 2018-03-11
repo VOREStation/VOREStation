@@ -129,6 +129,7 @@
 	var/landmark_id = null
 
 /obj/effect/step_trigger/teleporter/landmark/initialize()
+	. = ..()
 	for(var/obj/effect/landmark/teleport_mark/mark in tele_landmarks)
 		if(mark.landmark_id == landmark_id)
 			the_landmark = mark
@@ -184,11 +185,12 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			A.forceMove(T) // Harmlessly move ghosts.
 			return
 
-		if(isliving(A)) // Someday, implement parachutes.  For now, just turbomurder whoever falls.
-			var/mob/living/L = A
-			L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
-		message_admins("\The [A] fell out of the sky.")
 		A.forceMove(T)
+		// Living things should probably be logged when they fall...
+		if(isliving(A))
+			message_admins("\The [A] fell out of the sky.")
+		// ... because they're probably going to die from it.
+		A.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
 	else
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return

@@ -16022,7 +16022,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "BZ" = (
-/obj/machinery/atmospherics/tvalve/mirrored/digital/bypass{
+/obj/machinery/atmospherics/tvalve/digital/mirrored/bypass{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -17622,6 +17622,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/computer/timeclock/premade/north,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "EC" = (
@@ -21339,6 +21340,18 @@
 /obj/machinery/camera/network/northern_star,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside3)
+"RD" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/computer/timeclock/premade/south,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 
 (1,1,1) = {"
 aa
@@ -29197,7 +29210,7 @@ gw
 rE
 sb
 jR
-kx
+RD
 gw
 ts
 ts

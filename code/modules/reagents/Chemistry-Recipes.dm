@@ -417,6 +417,14 @@
 	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/corophizine
+	name = "Corophizine"
+	id = "corophizine"
+	result = "corophizine"
+	required_reagents = list("spaceacillin" = 1, "carbon" = 1, "phoron" = 0.1)
+	catalysts = list("phoron" = 5)
+	result_amount = 2
+
 /datum/chemical_reaction/imidazoline
 	name = "imidazoline"
 	id = "imidazoline"
@@ -2215,9 +2223,8 @@
 	name = "Deuterium"
 	id = "deuterium"
 	result = null
-	required_reagents = list("water" = 10)
-	catalysts = list("hydrophoron" = 5)
-	result_amount = 1
+	required_reagents = list("hydrophoron" = 5, "water" = 10)
+	result_amount = 15
 
 /datum/chemical_reaction/deuterium/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/T = get_turf(holder.my_atom)

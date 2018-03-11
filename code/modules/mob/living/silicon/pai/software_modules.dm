@@ -62,11 +62,12 @@
 				count++
 
 			// Check the carrier
+			var/datum/gender/TM = gender_datums[M.get_visible_gender()]
 			var/answer = input(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", "No") in list("Yes", "No")
 			if(answer == "Yes")
 				var/turf/T = get_turf_or_move(P.loc)
 				for (var/mob/v in viewers(T))
-					v.show_message("<span class='notice'>[M] presses \his thumb against [P].</span>", 3, "<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>", 2)
+					v.show_message("<span class='notice'>[M] presses [TM.his] thumb against [P].</span>", 3, "<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>", 2)
 				var/datum/dna/dna = M.dna
 				P << "<font color = red><h3>[M]'s UE string : [dna.unique_enzymes]</h3></font>"
 				if(dna.unique_enzymes == P.master_dna)
@@ -74,7 +75,7 @@
 				else
 					P << "<b>DNA does not match stored Master DNA.</b>"
 			else
-				P << "[M] does not seem like \he is going to provide a DNA sample willingly."
+				P << "[M] does not seem like [TM.he] is going to provide a DNA sample willingly."
 			return 1
 
 /datum/pai_software/radio_config
@@ -444,6 +445,11 @@
 
 	toggle(mob/living/silicon/pai/user)
 		user.secHUD = !user.secHUD
+		user.plane_holder.set_vis(VIS_CH_ID, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_WANTED, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_IMPTRACK, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_IMPLOYAL, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_IMPCHEM, user.secHUD)
 
 	is_active(mob/living/silicon/pai/user)
 		return user.secHUD
@@ -455,6 +461,8 @@
 
 	toggle(mob/living/silicon/pai/user)
 		user.medHUD = !user.medHUD
+		user.plane_holder.set_vis(VIS_CH_STATUS, user.medHUD)
+		user.plane_holder.set_vis(VIS_CH_HEALTH, user.medHUD)
 
 	is_active(mob/living/silicon/pai/user)
 		return user.medHUD

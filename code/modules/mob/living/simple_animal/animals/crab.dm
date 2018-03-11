@@ -49,7 +49,7 @@
 
 //Sif Crabs
 /mob/living/simple_animal/giant_crab
-	name = "Giant Crab"
+	name = "giant crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey."
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"

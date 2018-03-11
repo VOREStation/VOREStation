@@ -1031,7 +1031,7 @@
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
 		return
 
-	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
+	var/obj/item/weapon/implant/reagent_generator/rischi/rimplant
 	for(var/I in contents)
 		if(istype(I, /obj/item/weapon/implant/reagent_generator))
 			rimplant = I
@@ -1103,7 +1103,7 @@
 			rimplant = I
 			break
 	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
+		if(rimplant.reagents.total_volume < rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
 			return
 
@@ -1509,34 +1509,25 @@
 		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
 
 	//Destination beacon vore checking
-	var/datum/belly/target_belly
-	var/atom/real_dest = get_turf(destination)
+	var/atom/real_dest = dT
+	var/televored = FALSE //UR GONNA GET VORED
 
-	//Destination beacon is held/eaten
-	if(isliving(destination.loc) && (target != destination.loc)) //We should definitely get televored unless we're teleporting ourselves into ourselves
-		var/mob/living/L = destination.loc
-
-		//Is the beacon IN a belly?
-		target_belly = check_belly(destination)
-
-		//No? Well do they have vore organs at all?
-		if(!target_belly && L.vore_organs.len)
-
-			//If they do, use their picked one.
-			if(L.vore_selected)
-				target_belly = L.vore_organs[L.vore_selected]
-			else
-				//Else just use the first one.
-				var/I = L.vore_organs[1] //We're just going to use 1
-				target_belly = L.vore_organs[I]
-
+	var/atom/real_loc = destination.loc
+	if(isbelly(real_loc))
+		real_dest = real_loc
+		televored = TRUE
+	if(isliving(real_loc))
+		var/mob/living/L = real_loc
+		if(L.vore_selected)
+			real_dest = L.vore_selected
+			televored = TRUE
+		else if(L.vore_organs.len)
+			real_dest = pick(L.vore_organs)
+			televored = TRUE
+			
 	//Televore fluff stuff
-	if(target_belly)
-		real_dest = destination.loc
-		target_belly.internal_contents |= target
-		playsound(target_belly.owner, target_belly.vore_sound, 100, 1)
-		to_chat(target,"<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>")
-		to_chat(target_belly.owner,"<span class='warning'>Your [target_belly.name] suddenly has a new occupant!</span>")
+	if(televored)
+		to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -1556,20 +1547,18 @@
 
 			//Move them, and televore if necessary
 			G.affecting.forceMove(real_dest)
-			if(target_belly)
-				target_belly.internal_contents |= G.affecting
-				to_chat(G.affecting,"<span class='warning'>\The [src] teleports you right into [target_belly.owner]'s [target_belly.name]!</span>")
+			if(televored)
+				to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
 
 			//Phase-in effect for grabbed person
 			phase_in(G.affecting,get_turf(G.affecting))
 
 	update_icon()
 	spawn(30 SECONDS)
-		if(src) //If we still exist, anyway.
-			ready = 1
-			update_icon()
+		ready = 1
+		update_icon()
 
-	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [target_belly ? "(Belly: [target_belly.name])" : null]"
+	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_loc.name)])" : null]"
 
 /obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
 
@@ -1632,16 +1621,13 @@
 	var/mob/living/L = user
 	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
 	if(confirm == "Eat it!")
-		var/bellychoice = input("Which belly?","Select A Belly") in L.vore_organs|null
+		var/obj/belly/bellychoice = input("Which belly?","Select A Belly") as null|anything in L.vore_organs
 		if(bellychoice)
-			var/datum/belly/B = L.vore_organs[bellychoice]
 			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
 			if(do_after(user,5 SECONDS,src))
 				user.unEquip(src)
-				forceMove(user)
-				B.internal_contents |= src
+				forceMove(bellychoice)
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
-				playsound(user, B.vore_sound, 70, 1)
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
@@ -1912,3 +1898,109 @@
 /obj/item/weapon/storage/backpack/fluff/stunstaff/New()
 	..()
 	new /obj/item/weapon/melee/baton/fluff/stunstaff(src)
+
+
+/*
+ * Awoo Sword
+ */
+/obj/item/weapon/melee/fluffstuff
+	var/active = 0
+	var/active_force
+	var/active_throwforce
+	var/active_w_class
+	var/active_embed_chance = 0
+	sharp = 0
+	edge = 0
+
+/obj/item/weapon/melee/fluffstuff/proc/activate(mob/living/user)
+	if(active)
+		return
+	active = 1
+	embed_chance = active_embed_chance
+	force = active_force
+	throwforce = active_throwforce
+	sharp = 1
+	edge = 1
+	w_class = active_w_class
+	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+
+/obj/item/weapon/melee/fluffstuff/proc/deactivate(mob/living/user)
+	if(!active)
+		return
+	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	active = 0
+	embed_chance = initial(embed_chance)
+	force = initial(force)
+	throwforce = initial(throwforce)
+	sharp = initial(sharp)
+	edge = initial(edge)
+	w_class = initial(w_class)
+
+/obj/item/weapon/melee/fluffstuff/attack_self(mob/living/user as mob)
+	if (active)
+		if ((CLUMSY in user.mutations) && prob(50))
+			user.visible_message("<span class='danger'>\The [user] accidentally cuts \himself with \the [src].</span>",\
+			"<span class='danger'>You accidentally cut yourself with \the [src].</span>")
+			user.take_organ_damage(5,5)
+		deactivate(user)
+	else
+		activate(user)
+
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		H.update_inv_l_hand()
+		H.update_inv_r_hand()
+
+	add_fingerprint(user)
+	return
+
+/obj/item/weapon/melee/fluffstuff/suicide_act(mob/user)
+	var/tempgender = "[user.gender == MALE ? "he's" : user.gender == FEMALE ? "she's" : "they are"]"
+	if(active)
+		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
+			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
+		return (BRUTELOSS|FIRELOSS)
+ 
+/obj/item/weapon/melee/fluffstuff/awoosword
+	name = "Wolfgirl Sword Replica"
+	desc = "A replica of a large, scimitar-like sword with a dull edge. Ceremonial... until it isn't."
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "awoosword"
+	slot_flags = SLOT_BACK | SLOT_OCLOTHING
+	active_force = 15
+	active_throwforce = 7
+	active_w_class = ITEMSIZE_LARGE
+	force = 1
+	throwforce = 1
+	throw_speed = 1
+	throw_range = 5
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
+	var/active_state = "awoosword"
+	allowed = list(/obj/item/weapon/shield/fluff/awooshield)
+	damtype = HALLOSS
+
+/obj/item/weapon/melee/fluffstuff/awoosword/dropped(var/mob/user)
+	..()
+	if(!istype(loc,/mob))
+		deactivate(user)
+
+/obj/item/weapon/melee/fluffstuff/awoosword/activate(mob/living/user)
+	if(!active)
+		to_chat(user, "<span class='notice'>The [src] is now sharpened. It will cut!</span>")
+
+	..()
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	sharp = 1
+	edge = 1
+	icon_state = "[active_state]_sharp"
+	damtype = BRUTE
+
+
+/obj/item/weapon/melee/fluffstuff/awoosword/deactivate(mob/living/user)
+	if(active)
+		to_chat(user, "<span class='notice'>The [src] grows dull!</span>")
+	..()
+	attack_verb = list("bapped", "thwapped", "bonked", "whacked")
+	icon_state = initial(icon_state)

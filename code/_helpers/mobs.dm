@@ -145,13 +145,23 @@ Proc for attack log creation, because really why not
 6 is additional information, anything that needs to be added
 */
 
-/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object=null, var/addition=null)
-	if(user && ismob(user))
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
-	if(target && ismob(target))
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [what_done] by [user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
-	if(admin)
-		log_attack("<font color='red'>[user ? "[user.name][(ismob(user) && user.ckey) ? "([user.ckey])" : ""]" : "NON-EXISTANT SUBJECT"] [what_done] [target ? "[target.name][(ismob(target) && target.ckey)? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
+/proc/add_attack_logs(mob/user, mob/target, what_done, var/admin_notify = TRUE)
+	if(islist(target)) //Multi-victim adding
+		var/list/targets = target
+		for(var/mob/M in targets)
+			add_attack_logs(user,M,what_done,admin_notify)
+		return
+
+	var/user_str = key_name(user)
+	var/target_str = key_name(target)
+
+	if(ismob(user))
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attacked [target_str]: [what_done]</font>")
+	if(ismob(target))
+		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attacked by [user_str]: [what_done]</font>")
+	log_attack(user_str,target_str,what_done)
+	if(admin_notify)
+		msg_admin_attack("[key_name_admin(user)] vs [target_str]: [what_done]")
 
 //checks whether this item is a module of the robot it is located in.
 /proc/is_robot_module(var/obj/item/thing)
@@ -213,6 +223,8 @@ Proc for attack log creation, because really why not
 /proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if(!user)
 		return 0
+	if(!delay)
+		return 1 //Okay. Done.
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
@@ -264,3 +276,12 @@ Proc for attack log creation, because really why not
 		humans += H
 
 	return humans
+
+/proc/cached_character_icon(var/mob/desired)
+	var/cachekey = "\ref[desired][desired.real_name]"
+
+	if(cached_character_icons[cachekey])
+		. = cached_character_icons[cachekey]
+	else
+		. = getCompoundIcon(desired)
+		cached_character_icons[cachekey] = .

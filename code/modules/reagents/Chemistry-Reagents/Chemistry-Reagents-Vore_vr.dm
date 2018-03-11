@@ -80,9 +80,9 @@
 	M.make_dizzy(1)
 	M.adjustHalLoss(2)
 
-	for(var/I in M.vore_organs)
-		var/datum/belly/B = M.vore_organs[I]
-		for(var/atom/movable/A in B.internal_contents)
+	for(var/belly in M.vore_organs)
+		var/obj/belly/B = belly
+		for(var/atom/movable/A in B)
 			if(isliving(A))
 				var/mob/living/P = A
 				if(P.absorbed)
@@ -90,8 +90,6 @@
 			if(prob(5))
 				playsound(M, 'sound/effects/splat.ogg', 50, 1)
 				B.release_specific_contents(A)
-	return
-
 
 /datum/reagent/unsorbitol
 	name = "Unsorbitol"
@@ -109,13 +107,13 @@
 	M.confused = max(M.confused, 20)
 	M.hallucination += 15
 
-	for(var/I in M.vore_organs)
-		var/datum/belly/B = M.vore_organs[I]
+	for(var/belly in M.vore_organs)
+		var/obj/belly/B = belly
 
 		if(B.digest_mode == DM_ABSORB) //Turn off absorbing on bellies
 			B.digest_mode = DM_HOLD
 
-		for(var/mob/living/P in B.internal_contents)
+		for(var/mob/living/P in B)
 			if(!P.absorbed)
 				continue
 
@@ -123,7 +121,6 @@
 				playsound(M, 'sound/vore/schlorp.ogg', 50, 1)
 				P.absorbed = 0
 				M.visible_message("<font color='green'><b>Something spills into [M]'s [lowertext(B.name)]!</b></font>")
-	return
 
 //Special toxins for solargrubs
 

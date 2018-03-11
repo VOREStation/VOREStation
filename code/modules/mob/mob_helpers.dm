@@ -15,6 +15,11 @@
 /proc/mob_size_difference(var/mob_size_A, var/mob_size_B)
 	return round(log(2, mob_size_A/mob_size_B), 1)
 
+/mob/proc/can_wield_item(obj/item/W)
+	if(W.w_class >= ITEMSIZE_LARGE && issmall(src))
+		return FALSE //M is too small to wield this
+	return TRUE
+
 /proc/istiny(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
@@ -323,7 +328,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isslime(src))
+	if(isliving(src) && !isrobot(src))
 		switch(input)
 			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = input
@@ -622,3 +627,11 @@ var/global/image/backplane
 	backplane.mouse_opacity = 0
 
 	return TRUE
+
+/mob/proc/get_sound_env(var/pressure_factor)
+	if (pressure_factor < 0.5)
+		return SPACE
+	else
+		var/area/A = get_area(src)
+		return A.sound_env
+		

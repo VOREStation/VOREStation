@@ -108,8 +108,27 @@
 		src.loc = null
 	return ..()
 
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
+/obj/item/proc/update_twohanding()
+	update_held_icon()
+
+/obj/item/proc/is_held_twohanded(mob/living/M)
+	var/check_hand
+	if(M.l_hand == src && !M.r_hand)
+		check_hand = BP_R_HAND //item in left hand, check right hand
+	else if(M.r_hand == src && !M.l_hand)
+		check_hand = BP_L_HAND //item in right hand, check left hand
+	else
+		return FALSE
+
+	//would check is_broken() and is_malfunctioning() here too but is_malfunctioning()
+	//is probabilistic so we can't do that and it would be unfair to just check one.
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/hand = H.organs_by_name[check_hand]
+		if(istype(hand) && hand.is_usable())
+			return TRUE
+	return FALSE
+
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_held_icon()
@@ -363,14 +382,14 @@ var/list/global/slot_flags_enumeration = list(
 			if(!allow)
 				return 0
 		if(slot_tie)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
+			var/allow = 0
+			for(var/obj/item/clothing/C in H.worn_clothing)	//Runs through everything you're wearing, returns if you can't attach the thing
+				if(C.can_attach_accessory(src))
+					allow = 1
+					break
+			if(!allow)
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
-				return 0
-			var/obj/item/clothing/under/uniform = H.w_uniform
-			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
-				if (!disable_warning)
-					H << "<span class='warning'>You already have an accessory of this type attached to your [uniform].</span>"
+					H << "<span class='warning'>You're not wearing anything you can attach this [name] to.</span>"
 				return 0
 	return 1
 
@@ -457,9 +476,7 @@ var/list/global/slot_flags_enumeration = list(
 			visible_message("<font color='red'><B>[U] attempts to stab [M] in the eyes, but misses!</B></font>")
 			return
 
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
+	add_attack_logs(user,M,"Attack eyes with [name]")
 
 	user.setClickCooldown(user.get_attack_speed())
 	user.do_attack_animation(M)
@@ -656,3 +673,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // Check if an object should ignite others, like a lit lighter or candle.
 /obj/item/proc/is_hot()
 	return FALSE
+
+// My best guess as to why this is here would be that it does so little. Still, keep it under all the procs, for sanity's sake.
+/obj/item/device
+	icon = 'icons/obj/device.dmi'

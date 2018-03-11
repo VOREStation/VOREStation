@@ -41,3 +41,39 @@
 
 /area/submap/CaveTrench
 	name = "Cave River"
+
+/area/submap/CorgiRitual
+	name = "Dark Ritual"
+
+/area/submap/AbandonedTemple
+	name = "Abandoned Temple"
+
+/area/submap/CrashedMedShuttle
+	name = "Crashed Med Shuttle"
+
+/area/submap/cave/digsite
+	name = "Dig Site"
+
+/area/submap/cave/vault1
+	name = "Mine Vault"
+
+/area/submap/cave/vault2
+	name = "Mine Vault"
+
+/area/submap/cave/vault3
+	name = "Mine Vault"
+
+/area/submap/cave/vault4
+	name = "Mine Vault"
+
+/area/submap/cave/vault5
+	name = "Mine Vault"
+
+/area/submap/cave/IceCave1A
+	name = "Ice Cave 1A"
+
+/area/submap/cave/IceCave1B
+	name = "Ice Cave 1B"
+
+/area/submap/cave/IceCave1C
+	name = "Ice Cave 1C"
