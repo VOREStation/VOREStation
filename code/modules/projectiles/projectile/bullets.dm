@@ -191,6 +191,8 @@
 	sharp = 0
 	check_armour = "melee"
 
+	combustion = FALSE
+
 /obj/item/projectile/bullet/shotgun/ion/on_hit(var/atom/target, var/blocked = 0)
 	..()
 	empulse(target, 0, 0, 0, 0)	//Only affects what it hits
@@ -324,6 +326,8 @@
 	nodamage = 1
 	embed_chance = 0
 	sharp = 0
+
+	combustion = FALSE
 
 /obj/item/projectile/bullet/pistol/cap/process()
 	loc = null

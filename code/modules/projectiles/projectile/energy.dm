@@ -92,6 +92,7 @@
 	light_power = 0.5
 	light_color = "#33CC00"
 
+	combustion = FALSE
 
 /obj/item/projectile/energy/dart
 	name = "dart"
@@ -101,6 +102,7 @@
 	agony = 120
 	check_armour = "energy"
 
+	combustion = FALSE
 
 /obj/item/projectile/energy/bolt
 	name = "bolt"
@@ -122,6 +124,8 @@
 	agony = 10
 	check_armour = "bio"
 
+	combustion = FALSE
+
 /obj/item/projectile/energy/neurotoxin
 	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
@@ -129,6 +133,8 @@
 	damage_type = TOX
 	agony = 80
 	check_armour = "bio"
+
+	combustion = FALSE
 
 /obj/item/projectile/energy/neurotoxin/toxic //New alien mob projectile to match the player-variant's projectiles.
 	name = "neurotoxic spit"
@@ -148,6 +154,8 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+
+	combustion = FALSE
 
 /obj/item/projectile/energy/plasmastun
 	name = "plasma pulse"
