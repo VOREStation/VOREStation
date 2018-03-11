@@ -18,7 +18,7 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 		name = "[gurgleflavor] [cleanname]"
 		desc = "[cleandesc] It seems to be covered in ominously foul residue and needs a wash."
 		for(var/obj/item/O in contents)
-			gurgle_contaminate(item_storage)
+			O.gurgle_contaminate(item_storage)
 		return TRUE
 
 /obj/item/proc/can_gurgle()

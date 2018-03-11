@@ -2,7 +2,7 @@
 	return ..((sanitize ? sanitize(message) : message), whispering = whispering)
 
 /mob/living/silicon/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
-	log_say("[key_name(src)] : [message]")
+	log_say(message, src)
 
 /mob/living/silicon/robot/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	..()
@@ -64,7 +64,7 @@
 //For holopads only. Usable by AI.
 /mob/living/silicon/ai/proc/holopad_talk(var/message, verb, datum/language/speaking)
 
-	log_say("[key_name(src)] : [message]")
+	log_say("(HPAD) [message]",src)
 
 	message = trim(message)
 
@@ -111,8 +111,6 @@
 
 /mob/living/silicon/ai/proc/holopad_emote(var/message) //This is called when the AI uses the 'me' verb while using a holopad.
 
-	log_emote("[key_name(src)] : [message]")
-
 	message = trim(message)
 
 	if (!message)
@@ -140,6 +138,8 @@
 			spawn(0)
 				if(O)
 					O.see_emote(src, message)
+
+		log_emote("(HPAD) [message]", src)
 
 	else //This shouldn't occur, but better safe then sorry.
 		src << "No holopad connected."

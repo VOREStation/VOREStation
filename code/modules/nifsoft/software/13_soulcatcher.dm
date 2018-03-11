@@ -77,7 +77,6 @@
 
 	proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
 		var/sender_name = eyeobj ? eyeobj.name : sender.name
-		log_nsay("[sender_name]/[sender.key] : [message]",nif.human)
 
 		//AR Projecting
 		if(eyeobj)
@@ -85,15 +84,15 @@
 
 		//Not AR Projecting
 		else
-			log_nsay("[sender_name]/[sender.key] : [message]",nif.human)
 			to_chat(nif.human,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
 			for(var/brainmob in brainmobs)
 				var/mob/living/carbon/brain/caught_soul/CS = brainmob
 				to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
 
+		log_nsay(message,nif.human.real_name,src)
+
 	proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj)
 		var/sender_name = eyeobj ? eyeobj.name : sender.name
-		log_nme("[sender_name]/[sender.key] : [message]",nif.human)
 
 		//AR Projecting
 		if(eyeobj)
@@ -105,6 +104,8 @@
 			for(var/brainmob in brainmobs)
 				var/mob/living/carbon/brain/caught_soul/CS = brainmob
 				to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> [message]")
+
+		log_nme(message,nif.human.real_name,src)
 
 	proc/show_settings(var/mob/living/carbon/human/H)
 		set waitfor = FALSE
@@ -456,9 +457,10 @@
 /hook/death/proc/nif_soulcatcher(var/mob/living/carbon/human/H)
 	if(!istype(H) || !H.mind) return TRUE //Hooks must return TRUE
 
-	if(ishuman(H.loc)) //Died in someone
-		var/mob/living/carbon/human/HP = H.loc
-		if(HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
+	if(isbelly(H.loc)) //Died in someone
+		var/obj/belly/B = H.loc
+		var/mob/living/carbon/human/HP = B.owner
+		if(istype(HP) && HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
 	else if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF

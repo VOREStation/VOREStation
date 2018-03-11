@@ -724,3 +724,6 @@
 	if(open && contents.len)
 		var/display_item = contents[1]
 		to_chat(user, "<span class='notice'>\The [src] contains \the [display_item]!</span>")
+
+/obj/item/weapon/storage/AllowDrop()
+	return TRUE

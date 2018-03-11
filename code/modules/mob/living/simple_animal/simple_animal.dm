@@ -1269,8 +1269,7 @@
 		var/mob/living/L = target_mob
 
 		if(prob(melee_miss_chance))
-			src.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [L.name] ([L.ckey])</font>")
-			L.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [src.name] ([src.ckey])</font>")
+			add_attack_logs(src,L,"Animal-attacked (miss)", admin_notify = FALSE)
 			visible_message("<span class='danger'>[src] misses [L]!</span>")
 			do_attack_animation(src)
 			return L

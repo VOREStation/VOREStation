@@ -122,9 +122,8 @@
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
 				if(thingy)
 					M.unEquip(thingy,force = TRUE)
-					thingy.forceMove(owner)
-					contents |= thingy
-					digest_item(T)
+					digest_item(thingy)
+					break
 			M.updateVRPanel()
 
 		owner.updateVRPanel()

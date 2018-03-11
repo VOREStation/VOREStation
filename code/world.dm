@@ -42,10 +42,12 @@ var/global/datum/global_init/init = new ()
 /world/New()
 	world.log << "Map Loading Complete"
 	//logs
-	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
-	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
+	diary = file("[log_path].log")
+	href_logfile = file("[log_path]-hrefs.htm")
+	error_log = file("[log_path]-error.log")
+	debug_log = file("[log_path]-debug.log")
+	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
