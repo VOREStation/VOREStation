@@ -1,6 +1,7 @@
 /mob/living/simple_animal/old_slime
 	name = "pet slime"
 	desc = "A lovable, domesticated slime."
+	tt_desc = "Amorphidae proteus"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey baby slime"
 	icon_living = "grey baby slime"

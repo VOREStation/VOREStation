@@ -21,6 +21,7 @@ datum/preferences
 	var/UI_style = "Midnight"
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
+	var/tooltipstyle = "Midnight"		//Style for popup tooltips
 
 	//character preferences
 	var/real_name						//our character's name
