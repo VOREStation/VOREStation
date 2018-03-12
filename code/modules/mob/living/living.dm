@@ -137,8 +137,6 @@ default behaviour is:
 				return
 
 			// VOREStation Edit - Begin
-			// Handle grabbing, stomping, and such of micros!
-			if(handle_micro_bump_other(tmob)) return
 			// Plow that nerd.
 			if(ishuman(tmob))
 				var/mob/living/carbon/human/H = tmob
@@ -147,6 +145,8 @@ default behaviour is:
 					H.Weaken(20)
 					now_pushing = 0
 					return
+			// Handle grabbing, stomping, and such of micros!
+			if(handle_micro_bump_other(tmob)) return
 			// VOREStation Edit - End
 
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
