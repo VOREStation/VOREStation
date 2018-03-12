@@ -1562,3 +1562,53 @@
 			status_flags &= ~HIDING //No hiding for you. Mob layer should be updated naturally, but it actually isn't.
 		else
 			layer = HIDING_LAYER
+
+/mob/living/carbon/human/proc/get_display_species()
+	//Shows species in tooltip
+	//Beepboops get special text if obviously beepboop
+	if(looksSynthetic())
+		if(gender == MALE)
+			return "Android"
+		else if(gender == FEMALE)
+			return "Gynoid"
+		else
+			return "Synthetic"
+	//Else species name
+	if(species)
+		return species.get_examine_name()
+	//Else CRITICAL FAILURE!
+	return ""
+
+/mob/living/carbon/human/make_nametag_name(mob/user)
+	return name //Could do fancy stuff here?
+
+/mob/living/carbon/human/make_nametag_desc(mob/user)
+	var/msg = ""
+	if(hasHUD(user,"security"))
+		//Try to find their name
+		var/perpname
+		if(wear_id)
+			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			if(I)
+				perpname = I.registered_name
+			else
+				perpname = name
+		else
+			perpname = name
+		//Try to find their record
+		var/criminal = "None"
+		if(perpname)
+			var/datum/data/record/G = find_general_record("name", perpname)
+			if(G)
+				var/datum/data/record/S = find_security_record("id", G.fields["id"])
+				if(S)
+					criminal = S.fields["criminal"]
+		//If it's interesting, append
+		if(criminal != "None")
+			msg += "([criminal]) "
+
+	if(hasHUD(user,"medical"))
+		msg += "(Health: [round((health/getMaxHealth())*100)]%) "
+
+	msg += get_display_species()
+	return msg

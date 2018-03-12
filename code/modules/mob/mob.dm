@@ -1143,3 +1143,14 @@ mob/proc/yank_out_object()
 //Throwing stuff
 /mob/proc/throw_item(atom/target)
 	return
+
+/mob/MouseEntered(location, control, params)
+	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips))
+		openToolTip(user = usr, tip_src = src, params = params, title = make_nametag_name(usr), content = make_nametag_desc(usr))
+
+	..()
+
+/mob/MouseExited()
+	closeToolTip(usr) //No reason not to, really
+
+	..()
