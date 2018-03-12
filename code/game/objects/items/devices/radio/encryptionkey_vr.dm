@@ -13,3 +13,8 @@
 	name = "colony director's encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0, "Explorer" = 0)
+
+/obj/item/device/encryptionkey/heads/rd
+	name = "research director's encryption key"
+	icon_state = "rd_cypherkey"
+	channels = list("Command" = 1, "Science" = 1, "Explorer" = 1)
