@@ -14,7 +14,7 @@
 
 /obj/item/weapon/reagent_containers/syringe/Destroy()
 	qdel_null_list(viruses)
-	targets.Cut()
+	LAZYCLEARLIST(targets)
 	return ..()
 
 /obj/item/weapon/reagent_containers/syringe/process()
