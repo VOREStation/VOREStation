@@ -447,6 +447,6 @@
 	speech_verb = "mars"
 	ask_verb = "mars"
 	exclaim_verb = "mars"
-	key = "s"
+	key = "m"
 	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
