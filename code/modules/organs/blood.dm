@@ -27,8 +27,6 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		return
 
 	vessel.add_reagent("blood",species.blood_volume)
-	spawn(1)
-		fixblood()
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()

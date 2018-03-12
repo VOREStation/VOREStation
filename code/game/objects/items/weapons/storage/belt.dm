@@ -22,6 +22,16 @@
 	show_above_suit = !show_above_suit
 	update_icon()
 
+//Some belts have sprites to show icons
+/obj/item/weapon/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+	var/image/standing = ..()
+	if(!inhands && contents.len)
+		for(var/obj/item/i in contents)
+			var/i_state = i.item_state
+			if(!i_state) i_state = i.icon_state
+			standing.add_overlay(image(icon = INV_BELT_DEF_ICON, icon_state = i_state))
+	return standing
+
 /obj/item/weapon/storage/update_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc

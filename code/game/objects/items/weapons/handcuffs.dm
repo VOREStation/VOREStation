@@ -20,6 +20,12 @@
 	var/use_time = 30
 	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
 
+/obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_handcuffed_str)
+		return "handcuff1" //Simple
+
+	return ..()
+
 /obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 
 	if(!user.IsAdvancedToolUser())
@@ -96,6 +102,13 @@
 	target.handcuffed = cuffs
 	target.update_inv_handcuffed()
 	return 1
+
+/obj/item/weapon/handcuffs/equipped(var/mob/living/user,var/slot)
+	. = ..()
+	if(slot == slot_handcuffed)
+		user.drop_r_hand()
+		user.drop_l_hand()
+		user.stop_pulling()
 
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
@@ -210,6 +223,12 @@ var/last_chew = 0
 	breakouttime = 30
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
 
+/obj/item/weapon/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_legcuffed_str)
+		return "legcuff1"
+
+	return ..()
+
 /obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
@@ -303,3 +322,11 @@ var/last_chew = 0
 	target.legcuffed = lcuffs
 	target.update_inv_legcuffed()
 	return 1
+
+/obj/item/weapon/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
+	. = ..()
+	if(slot == slot_legcuffed)
+		if(user.m_intent != "walk")
+			user.m_intent = "walk"
+			if(user.hud_used && user.hud_used.move_intent)
+				user.hud_used.move_intent.icon_state = "walking"

@@ -7,7 +7,7 @@
 	var/list/stating_laws = list()// Channels laws are currently being stated on
 	var/obj/item/device/radio/common_radio
 
-	var/list/hud_list[10]
+	has_huds = TRUE
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
 
 	//Used in say.dm.

@@ -102,8 +102,6 @@
 
 	can_be_antagged = TRUE
 
-	var/has_huds = TRUE //Do they have all the fancy life huds? Not for mannequins.
-
 // Used by mobs in virtual reality to point back to the "real" mob the client belongs to.
 	var/mob/living/carbon/human/vr_holder = null
 	// Used by "real" mobs after they leave a VR session

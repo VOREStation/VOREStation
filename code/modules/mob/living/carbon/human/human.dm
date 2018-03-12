@@ -5,7 +5,8 @@
 	icon = 'icons/effects/effects.dmi'	//We have an ultra-complex update icons that overlays everything, don't load some stupid random male human
 	icon_state = "nothing"
 
-	var/list/hud_list[TOTAL_HUDS]
+	has_huds = TRUE 					//We do have HUDs (like health, wanted, status, not inventory slots)
+
 	var/embedded_flag					//To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 	var/last_push_time					//For human_attackhand.dm, keeps track of the last use of disarm
@@ -40,9 +41,8 @@
 
 	nutrition = rand(200,400)
 
-	make_hud_overlays()
-
 	human_mob_list |= src
+	
 	..()
 
 	hide_underwear.Cut()
@@ -53,19 +53,11 @@
 		dna.ready_dna(src)
 		dna.real_name = real_name
 		sync_organ_dna()
-	make_blood()
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
-
-	LAZYCLEARLIST(list_layers)
-	list_layers = null //Be free!
-	LAZYCLEARLIST(list_body)
-	list_body = null
-	LAZYCLEARLIST(list_huds)
-	list_huds = null
 
 	return ..()
 
@@ -1015,7 +1007,7 @@
 		if(!blood_DNA[M.dna.unique_enzymes])
 			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	hand_blood_color = blood_color
-	src.update_inv_gloves()	//handles bloody hands overlays and updating
+	update_bloodied()
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
@@ -1025,14 +1017,30 @@
 	return md5(dna.uni_identity)
 
 /mob/living/carbon/human/clean_blood(var/washshoes)
-	.=..()
+	. = ..()
+
 	gunshot_residue = null
-	if(washshoes && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
-		feet_blood_color = null
-		feet_blood_DNA.Cut()
+
+	//Always do hands (or whatever's on our hands)
+	if(gloves)
+		gloves.clean_blood()
+		update_inv_gloves()
+		gloves.germ_level = 0
+	else
+		bloody_hands = 0
+		germ_level = 0
+	
+	//Sometimes do shoes if asked (or feet if no shoes)
+	if(washshoes && shoes)
+		shoes.clean_blood()
+		update_inv_shoes()
+		shoes.germ_level = 0
+	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
+		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
-		update_inv_shoes(1)
-		return 1
+		feet_blood_color = null
+	
+	update_bloodied()
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
 
@@ -1168,7 +1176,7 @@
 	maxHealth = species.total_health
 
 	spawn(0)
-		regenerate_icons()
+		make_blood()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
@@ -1183,6 +1191,9 @@
 		if(hud_used)
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
+
+	//A slew of bits that may be affected by our species change
+	regenerate_icons()
 
 	if(species)
 		if(mind)
@@ -1538,22 +1549,17 @@
 	return species.fire_icon_state
 
 // Called by job_controller.  Makes drones start with a permit, might be useful for other people later too.
-/mob/living/carbon/human/equip_post_job()
+/mob/living/carbon/human/equip_post_job()	//Drone Permit moved to equip_survival_gear()
 	var/braintype = get_FBP_type()
 	if(braintype == FBP_DRONE)
 		var/turf/T = get_turf(src)
 		var/obj/item/clothing/accessory/permit/drone/permit = new(T)
 		permit.set_name(real_name)
-		equip_to_slot_or_del(permit, slot_in_backpack)
+		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
 
-/mob/living/carbon/human/proc/update_icon_special(var/mutable_appearance/ma, var/update_icons = TRUE) //For things such as teshari hiding and whatnot.
+/mob/living/carbon/human/proc/update_icon_special() //For things such as teshari hiding and whatnot.
 	if(hiding) // Hiding? Carry on.
 		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
 			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
 		else
-			ma.layer = HIDING_LAYER
-
-	//Can put special species icon update proc calls here, if any are ever invented.
-
-	if(update_icons)
-		update_icons()
+			layer = HIDING_LAYER

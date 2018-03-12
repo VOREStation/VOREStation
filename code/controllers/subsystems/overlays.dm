@@ -11,6 +11,8 @@ SUBSYSTEM_DEF(overlays)
 	var/list/overlay_icon_state_caches	// Cache thing
 	var/list/overlay_icon_cache			// Cache thing
 
+var/global/image/stringbro = new() // Temporarily super-global because of BYOND init order dumbness.
+var/global/image/iconbro = new() // Temporarily super-global because of BYOND init order dumbness.
 var/global/image/appearance_bro = new() // Temporarily super-global because of BYOND init order dumbness.
 
 /datum/controller/subsystem/overlays/PreInit()
@@ -66,7 +68,7 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 		count = 0
 
 /proc/iconstate2appearance(icon, iconstate)
-	var/static/image/stringbro = new()
+	// var/static/image/stringbro = new() // Moved to be superglobal due to BYOND insane init order stupidness.
 	var/list/icon_states_cache = SSoverlays.overlay_icon_state_caches
 	var/list/cached_icon = icon_states_cache[icon]
 	if (cached_icon)
@@ -83,7 +85,7 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 	return cached_appearance
 
 /proc/icon2appearance(icon)
-	var/static/image/iconbro = new()
+	// var/static/image/iconbro = new() // Moved to be superglobal due to BYOND insane init order stupidness.
 	var/list/icon_cache = SSoverlays.overlay_icon_cache
 	. = icon_cache[icon]
 	if (!.)

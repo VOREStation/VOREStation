@@ -1583,26 +1583,24 @@
 	we only set those statuses and icons upon changes.  Then those HUD items will simply add those pre-made images.
 	This proc below is only called when those HUD elements need to change as determined by the mobs hud_updateflag.
 */
-
-
 /mob/living/carbon/human/proc/handle_hud_list()
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
-		var/image/holder = hud_list[HEALTH_HUD]
+		var/image/holder = grab_hud(HEALTH_HUD)
 		if(stat == DEAD)
 			holder.icon_state = "-100" 	// X_X
 		else
 			holder.icon_state = RoundHealth((health-config.health_threshold_crit)/(getMaxHealth()-config.health_threshold_crit)*100)
-		hud_list[HEALTH_HUD] = holder
+		apply_hud(HEALTH_HUD, holder)
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))
-		var/image/holder = hud_list[LIFE_HUD]
+		var/image/holder = grab_hud(LIFE_HUD)
 		if(isSynthetic())
 			holder.icon_state = "hudrobo"
 		else if(stat == DEAD)
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
-		hud_list[LIFE_HUD] = holder
+		apply_hud(LIFE_HUD, holder)
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
@@ -1611,8 +1609,8 @@
 				foundVirus = 1
 				break
 
-		var/image/holder = hud_list[STATUS_HUD]
-		var/image/holder2 = hud_list[STATUS_HUD_OOC]
+		var/image/holder = grab_hud(STATUS_HUD)
+		var/image/holder2 = grab_hud(STATUS_HUD_OOC)
 		if (isSynthetic())
 			holder.icon_state = "hudrobo"
 		else if(stat == DEAD)
@@ -1634,11 +1632,11 @@
 			else
 				holder2.icon_state = "hudhealthy"
 
-		hud_list[STATUS_HUD] = holder
-		hud_list[STATUS_HUD_OOC] = holder2
+		apply_hud(STATUS_HUD, holder)
+		apply_hud(STATUS_HUD_OOC, holder2)
 
 	if (BITTEST(hud_updateflag, ID_HUD))
-		var/image/holder = hud_list[ID_HUD]
+		var/image/holder = grab_hud(ID_HUD)
 		if(wear_id)
 			var/obj/item/weapon/card/id/I = wear_id.GetID()
 			if(I)
@@ -1648,11 +1646,10 @@
 		else
 			holder.icon_state = "hudunknown"
 
-
-		hud_list[ID_HUD] = holder
+		apply_hud(ID_HUD, holder)
 
 	if (BITTEST(hud_updateflag, WANTED_HUD))
-		var/image/holder = hud_list[WANTED_HUD]
+		var/image/holder = grab_hud(WANTED_HUD)
 		holder.icon_state = "hudblank"
 		var/perpname = name
 		if(wear_id)
@@ -1675,15 +1672,16 @@
 					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
 						holder.icon_state = "hudreleased"
 						break
-		hud_list[WANTED_HUD] = holder
+		
+		apply_hud(WANTED_HUD, holder)
 
 	if (  BITTEST(hud_updateflag, IMPLOYAL_HUD) \
 	   || BITTEST(hud_updateflag,  IMPCHEM_HUD) \
 	   || BITTEST(hud_updateflag, IMPTRACK_HUD))
 
-		var/image/holder1 = hud_list[IMPTRACK_HUD]
-		var/image/holder2 = hud_list[IMPLOYAL_HUD]
-		var/image/holder3 = hud_list[IMPCHEM_HUD]
+		var/image/holder1 = grab_hud(IMPTRACK_HUD)
+		var/image/holder2 = grab_hud(IMPLOYAL_HUD)
+		var/image/holder3 = grab_hud(IMPCHEM_HUD)
 
 		holder1.icon_state = "hudblank"
 		holder2.icon_state = "hudblank"
@@ -1699,21 +1697,21 @@
 					if(istype(I,/obj/item/weapon/implant/chem))
 						holder3.icon_state = "hud_imp_chem"
 
-		hud_list[IMPTRACK_HUD] = holder1
-		hud_list[IMPLOYAL_HUD] = holder2
-		hud_list[IMPCHEM_HUD]  = holder3
+		apply_hud(IMPTRACK_HUD, holder1)
+		apply_hud(IMPLOYAL_HUD, holder2)
+		apply_hud(IMPCHEM_HUD, holder3)
 
 	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
-		var/image/holder = hud_list[SPECIALROLE_HUD]
+		var/image/holder = grab_hud(SPECIALROLE_HUD)
 		holder.icon_state = "hudblank"
 		if(mind && mind.special_role)
 			if(hud_icon_reference[mind.special_role])
 				holder.icon_state = hud_icon_reference[mind.special_role]
 			else
 				holder.icon_state = "hudsyndicate"
-			hud_list[SPECIALROLE_HUD] = holder
+		apply_hud(SPECIALROLE_HUD, holder)
+	
 	hud_updateflag = 0
-	update_icons_huds()
 
 /mob/living/carbon/human/handle_stunned()
 	if(!can_feel_pain())

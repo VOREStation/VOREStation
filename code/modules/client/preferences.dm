@@ -287,10 +287,10 @@ datum/preferences
 
 	if(icon_updates)
 		character.force_update_limbs()
-		character.update_mutations(0)
-		character.update_underwear(0)
-		character.update_hair(0)
-		character.update_icons_all()
+		character.update_icons_body()
+		character.update_mutations()
+		character.update_underwear()
+		character.update_hair()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

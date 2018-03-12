@@ -103,8 +103,7 @@
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.icon
-			LAZYCLEARLIST(H.list_huds)
-			H.update_icons()
+			underlays = H.underlays
 			overlays = H.overlays
 		else
 			icon = body.icon

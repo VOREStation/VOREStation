@@ -98,9 +98,17 @@
 #define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
 #define INV_W_UNIFORM_DEF_ICON 'icons/mob/uniform.dmi'
 #define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON 'icons/mob/ties.dmi'
+#define INV_TIE_DEF_ICON 'icons/mob/ties.dmi'
 #define INV_SUIT_DEF_ICON 'icons/mob/suit.dmi'
-#define MAX_SUPPLIED_LAW_NUMBER 50
+#define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
+#define INV_GLOVES_DEF_ICON 'icons/mob/hands.dmi'
+#define INV_EYES_DEF_ICON 'icons/mob/eyes.dmi'
+#define INV_EARS_DEF_ICON 'icons/mob/ears.dmi'
+#define INV_FEET_DEF_ICON 'icons/mob/feet.dmi'
+#define INV_BELT_DEF_ICON 'icons/mob/belt.dmi'
+#define INV_MASK_DEF_ICON 'icons/mob/mask.dmi'
+#define INV_HCUFF_DEF_ICON 'icons/mob/mob.dmi'
+#define INV_LCUFF_DEF_ICON 'icons/mob/mob.dmi'
 
 // Character's economic class
 #define CLASS_UPPER 		"Wealthy"
@@ -256,3 +264,6 @@
 #define VIS_MESONS			20
 
 #define VIS_COUNT			20 //Must be highest number from above.
+
+//Some mob icon layering defines
+#define BODY_LAYER		-100
