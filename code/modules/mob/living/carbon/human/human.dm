@@ -1579,6 +1579,8 @@
 
 /mob/living/carbon/human/proc/get_display_species()
 	//Shows species in tooltip
+	if(src.custom_species) //VOREStation Add
+		return custom_species //VOREStation Add
 	//Beepboops get special text if obviously beepboop
 	if(looksSynthetic())
 		if(gender == MALE)

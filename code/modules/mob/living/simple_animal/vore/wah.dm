@@ -1,6 +1,7 @@
 /mob/living/simple_animal/wah
 	name = "red panda"
 	desc = "It's a wah! Beware of doom pounce!"
+	tt_desc = "Ailurus fulgens"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "wah"
 	icon_living = "wah"
@@ -39,6 +40,7 @@
 /mob/living/simple_animal/wah/fae
 	name = "dark wah"
 	desc = "Ominous, but still cute!"
+	tt_desc = "Ailurus brattus"
 
 	icon_state = "wah_fae"
 	icon_living = "wah_fae"

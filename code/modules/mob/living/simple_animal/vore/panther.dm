@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/panther
 	name = "panther"
 	desc = "Runtime's larger, less cuddly cousin."
+	tt_desc = "Panthera pardus"
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "panther"
 	icon_living = "panther"
