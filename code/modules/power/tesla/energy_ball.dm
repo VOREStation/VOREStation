@@ -93,6 +93,7 @@
 
 /obj/singularity/energy_ball/proc/handle_energy()
 	if (energy <= 0)
+		log_game("TESLA([x],[y],[z]) Collapsed entirely.")
 		investigate_log("collapsed.", I_SINGULO)
 		qdel(src)
 		return TRUE
@@ -290,6 +291,8 @@
 	else if(closest_mob)
 		var/shock_damage = Clamp(round(power/400), 10, 90) + rand(-5, 5)
 		closest_mob.electrocute_act(shock_damage, source, 1, ran_zone())
+		log_game("TESLA([source.x],[source.y],[source.z]) Shocked [key_name(closest_mob)] for [shock_damage]dmg.")
+		message_admins("Tesla zapped [key_name_admin(closest_mob)]!")
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if(stun_mobs)
