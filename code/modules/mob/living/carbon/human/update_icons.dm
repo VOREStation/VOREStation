@@ -90,7 +90,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define FIRE_LAYER				29		//'Mob on fire' overlay layer
 #define WATER_LAYER				30		//'Mob submerged' overlay layer
 #define TARGETED_LAYER			31		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			32//<---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+#define TOTAL_LAYERS			31//<---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -111,7 +111,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	update_icon_special()
 
 /mob/living/carbon/human/update_icons_layers()
-	crash_with("CANARY: Old human update_icons was called.")
+	crash_with("CANARY: Old human update_icons_layers was called.")
 
 /mob/living/carbon/human/update_icons_all()
 	crash_with("CANARY: Old human update_icons_all was called.")
