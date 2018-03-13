@@ -5,6 +5,7 @@
 /obj/machinery/atmospherics/unary/outlet_injector
 	icon = 'icons/atmos/injector.dmi'
 	icon_state = "map_injector"
+	pipe_state = "injector"
 	layer = 3
 
 	name = "air injector"

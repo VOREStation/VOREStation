@@ -92,6 +92,9 @@ obj/machinery/atmospherics/mains_pipe
 
 		else return 1
 
+	get_neighbor_nodes_for_init()
+		return nodes
+
 	disconnect()
 		..()
 		for(var/obj/machinery/atmospherics/pipe/mains_component/node in nodes)
