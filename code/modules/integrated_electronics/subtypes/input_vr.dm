@@ -47,7 +47,7 @@ obj/item/device/radio/integrated/
 
 	channel = get_frequency_name(freq)
 
-	if(findtextEx(realname, "(electronic "))	//no hearing other machines
+	if(findtextEx(realname, "(electronic") || findtextEx(realname, "integrated radio"))	//no hearing other machines
 		return
 
 	if(data == 1 || data == 3)		//no hearing antag and intercom-only broadcast
@@ -86,7 +86,7 @@ obj/item/device/radio/integrated/
 	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
 	is only triggered if it hears someone speaking a language other than Galactic Common."
 	icon_state = "signal"
-	complexity = 18
+	complexity = 25
 	inputs = list(
 	"channel" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
@@ -99,6 +99,7 @@ obj/item/device/radio/integrated/
 	activators = list("send message" = IC_PINTYPE_PULSE_IN, "on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
+	var/lastchanger
 
 
 	var/allowed_channels = list(
@@ -122,8 +123,15 @@ obj/item/device/radio/integrated/
 	var/target_channel = get_pin_data(IC_INPUT, 1)
 	var/message = get_pin_data(IC_INPUT, 2)
 	if(!isnull(message))
-		var/obj/O = assembly ? loc : assembly
-		radio.autosay(message, "[O.name] ([initial(O.name)])", target_channel)
+		var/shown_name
+		if(assembly)
+			shown_name = addtext(assembly.name, " (", initial(assembly.name), ")")
+		else if(displayed_name)
+			shown_name = addtext(displayed_name, " (", name, ")")
+		else
+			shown_name = name
+		radio.autosay(message, shown_name, target_channel)
+		log_say("[shown_name] ([x],[y],[z]): [message] (Last Modified by [lastchanger])")
 
 obj/item/integrated_circuit/input/integrated_radio/attackby(obj/item/weapon/card/id/id, mob/user)
 	..()
@@ -200,3 +208,10 @@ obj/item/integrated_circuit/input/integrated_radio/attackby(obj/item/weapon/card
 				counterprobs++
 			usrmessage = addtext(usrmessage, channels_added[length(channels_added) - 1], " and ", channels_added[length(channels_added)], " channels to the list of available channels on ", src.name)
 	user << usrmessage
+
+/obj/item/integrated_circuit/input/integrated_radio/handle_wire(datum/integrated_io/pin, obj/item/device/integrated_electronics/tool)
+	if(..())
+		lastchanger = tool.loc
+		return 1
+	else
+		return 0
