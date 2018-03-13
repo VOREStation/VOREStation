@@ -173,14 +173,14 @@
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
 /obj/belly/proc/release_all_contents(var/include_absorbed = FALSE, var/silent = FALSE)
-	
+
 	//Don't bother if we don't have contents
 	if(!contents.len)
 		return 0
-	
+
 	//Find where we should drop things into (certainly not the owner)
 	var/count = 0
-	
+
 	//Iterate over contents and move them all
 	for(var/thing in contents)
 		var/atom/movable/AM = thing
@@ -189,18 +189,18 @@
 			if(L.absorbed && !include_absorbed)
 				continue
 		count += release_specific_contents(AM, silent = TRUE)
-	
+
 	//Clean up our own business
 	items_preserved.Cut()
 	if(isanimal(owner))
 		owner.update_icons()
-	
+
 	//Print notifications/sound if necessary
 	if(!silent)
-		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")	
+		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
 		if(release_sound)
 			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
-	
+
 	return count
 
 // Release a specific atom from the contents of this belly into the owning mob's location.
@@ -213,7 +213,7 @@
 	//Place them into our drop_location
 	M.forceMove(drop_location())
 	items_preserved -= M
-	
+
 	//Special treatment for absorbed prey
 	if(istype(M,/mob/living))
 		var/mob/living/ML = M
@@ -232,13 +232,13 @@
 	//Clean up our own business
 	if(isanimal(owner))
 		owner.update_icons()
-	
+
 	//Print notifications/sound if necessary
 	if(!silent)
 		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
 		if(release_sound)
 			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
-	
+
 	return 1
 
 // Actually perform the mechanics of devouring the tasty prey.
@@ -440,6 +440,9 @@
 //Yes, it's ""safe"" to drop items here
 /obj/belly/AllowDrop()
 	return TRUE
+
+/obj/belly/onDropInto(var/atom/movable/AM)
+	return src
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
