@@ -442,7 +442,7 @@
 	return TRUE
 
 /obj/belly/onDropInto(var/atom/movable/AM)
-	return src
+	return null
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
