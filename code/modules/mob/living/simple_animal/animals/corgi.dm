@@ -3,6 +3,7 @@
 	name = "corgi"
 	real_name = "corgi"
 	desc = "It's a corgi."
+	tt_desc = "Canis familiaris"
 	intelligence_level = SA_ANIMAL
 	icon_state = "corgi"
 	icon_living = "corgi"
@@ -37,6 +38,7 @@
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
 	desc = "It's a corgi."
+	tt_desc = "Canis commandus"
 	var/turns_since_scan = 0
 	var/obj/movement_target
 	response_help  = "pets"

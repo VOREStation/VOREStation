@@ -1,6 +1,7 @@
 /mob/living/simple_animal/fox
 	name = "fox"
 	desc = "It's a fox. I wonder what it says?"
+	tt_desc = "Vulpes vulpes"
 	icon = 'icons/mob/fox_vr.dmi'
 	icon_state = "fox2"
 	icon_living = "fox2"
@@ -183,6 +184,7 @@
 /mob/living/simple_animal/fox/fluff/Renault
 	name = "Renault"
 	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
+	tt_desc = "Vulpes nobilis"
 	befriend_job = "Colony Director"
 
 /mob/living/simple_animal/fox/fluff/Renault/init_belly()
@@ -218,6 +220,7 @@
 /mob/living/simple_animal/fox/syndicate
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
+	tt_desc = "Vulpes malus"
 	icon = 'icons/mob/fox_vr.dmi'
 	icon_state = "syndifox"
 	icon_living = "syndifox"

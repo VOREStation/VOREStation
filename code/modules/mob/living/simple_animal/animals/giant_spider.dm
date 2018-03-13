@@ -8,6 +8,7 @@
 /mob/living/simple_animal/hostile/giant_spider
 	name = "giant spider"
 	desc = "Furry and brown, it makes you shudder to look at it. This one has deep red eyes."
+	tt_desc = "Atrax robustus gigantus"
 	icon_state = "guard"
 	icon_living = "guard"
 	icon_dead = "guard_dead"

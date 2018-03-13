@@ -6,6 +6,7 @@
 /mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."
+	tt_desc = "Canis otis"
 	icon = 'icons/mob/vore64x32.dmi'
 	icon_state = "otie"
 	icon_living = "otie"

@@ -2648,6 +2648,7 @@
 #include "code\modules\telesci\telepad.dm"
 #include "code\modules\telesci\telesci_computer.dm"
 #include "code\modules\tension\tension.dm"
+#include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\turbolift\_turbolift.dm"
 #include "code\modules\turbolift\turbolift.dm"
 #include "code\modules\turbolift\turbolift_areas.dm"
