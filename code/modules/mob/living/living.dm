@@ -20,6 +20,8 @@
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
 	dsoverlay = null
+	if(buckled)
+		buckled.unbuckle_mob(src, TRUE)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
