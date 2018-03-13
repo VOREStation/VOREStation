@@ -1579,10 +1579,10 @@
 	//Else CRITICAL FAILURE!
 	return ""
 
-/mob/living/carbon/human/make_nametag_name(mob/user)
+/mob/living/carbon/human/get_nametag_name(mob/user)
 	return name //Could do fancy stuff here?
 
-/mob/living/carbon/human/make_nametag_desc(mob/user)
+/mob/living/carbon/human/get_nametag_desc(mob/user)
 	var/msg = ""
 	if(hasHUD(user,"security"))
 		//Try to find their name

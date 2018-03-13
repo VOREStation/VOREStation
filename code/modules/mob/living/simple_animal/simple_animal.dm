@@ -1701,5 +1701,5 @@
 	retaliate = 1
 	destroy_surroundings = 1
 
-/mob/living/simple_animal/make_nametag_desc(mob/user)
+/mob/living/simple_animal/get_nametag_desc(mob/user)
 	return "<i>tt_desc</i>"
