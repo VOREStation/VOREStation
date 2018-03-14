@@ -69,7 +69,7 @@
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
-		"Tajaran" = 'icons/cat/are/bad'
+		SPECIES_TAJ = 'icons/cat/are/bad'
 		)
 	If index term exists and icon_override is not set, this sprite sheet will be used.
 	*/
@@ -723,11 +723,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //Returns the icon object that should be used for the worn icon
 /obj/item/proc/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
-	
+
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
-	
+
 	//2: species-specific sprite sheets (skipped for inhands)
 	var/sheet = sprite_sheets[body_type]
 	if(sheet && !inhands)
@@ -777,7 +777,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //Apply the addblend blends onto the icon
 /obj/item/proc/apply_addblends(var/source_icon, var/icon/standing_icon)
-	
+
 	//If we have addblends, blend them onto the provided icon
 	if(addblends && standing_icon && source_icon)
 		var/addblend_icon = icon("icon" = source_icon, "icon_state" = addblends)

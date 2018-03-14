@@ -5,7 +5,7 @@
 	icon_override = 'icons/mob/species/seromi/teshari_cloak.dmi'
 	icon_state = "tesh_cloak_bo"
 	item_state = "tesh_cloak_bo"
-	species_restricted = list("Teshari")
+	species_restricted = list(SPECIES_TESHARI)
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/seromi/cloak/black_orange

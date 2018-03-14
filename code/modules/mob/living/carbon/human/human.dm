@@ -42,7 +42,7 @@
 	nutrition = rand(200,400)
 
 	human_mob_list |= src
-	
+
 	..()
 
 	hide_underwear.Cut()
@@ -1029,7 +1029,7 @@
 	else
 		bloody_hands = 0
 		germ_level = 0
-	
+
 	//Sometimes do shoes if asked (or feet if no shoes)
 	if(washshoes && shoes)
 		shoes.clean_blood()
@@ -1039,7 +1039,7 @@
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
 		feet_blood_color = null
-	
+
 	update_bloodied()
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
@@ -1117,7 +1117,7 @@
 
 	if(!dna)
 		if(!new_species)
-			new_species = "Human"
+			new_species = SPECIES_HUMAN
 	else
 		if(!new_species)
 			new_species = dna.species
@@ -1126,7 +1126,7 @@
 
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
-		new_species = "Human"
+		new_species = SPECIES_HUMAN
 
 	if(species)
 

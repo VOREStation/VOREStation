@@ -106,7 +106,7 @@ var/global/list/limb_icon_cache = list()
 	if(owner && owner.gender == MALE)
 		gender = "m"
 
-	icon_cache_key = "[icon_name]_[species ? species.name : "Human"]"
+	icon_cache_key = "[icon_name]_[species ? species.name : SPECIES_HUMAN]"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
@@ -162,7 +162,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
-		if(species && species.get_bodytype(owner) != "Human")
+		if(species && species.get_bodytype(owner) != SPECIES_HUMAN)
 			applying.SetIntensity(1.5) // Unathi, Taj and Skrell have -very- dark base icons.
 		else
 			applying.SetIntensity(0.7)

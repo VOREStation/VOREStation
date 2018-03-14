@@ -18,7 +18,7 @@
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 	var/use_time = 30
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/handcuffs.dmi')
 
 /obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_handcuffed_str)
@@ -126,7 +126,7 @@ var/last_chew = 0
 	if (!O) return
 
 	var/datum/gender/T = gender_datums[H.get_visible_gender()]
-	
+
 	var/s = "<span class='warning'>[H.name] chews on [T.his] [O.name]!</span>"
 	H.visible_message(s, "<span class='warning'>You chew on your [O.name]!</span>")
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")

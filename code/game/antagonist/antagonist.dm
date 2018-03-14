@@ -52,7 +52,7 @@
 	var/flags = 0                           // Various runtime options.
 
 	// Used for setting appearance.
-	var/list/valid_species =       list("Unathi","Tajaran","Skrell","Human","Diona","Teshari")
+	var/list/valid_species =       list(SPECIES_UNATHI,SPECIES_TAJ,SPECIES_SKRELL,SPECIES_HUMAN,SPECIES_DIONA,SPECIES_TESHARI)
 
 	// Runtime vars.
 	var/datum/mind/leader                   // Current leader, if any.

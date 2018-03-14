@@ -14,7 +14,7 @@
 	var/concealed_holster = 0
 	var/mob/living/carbon/human/wearer = null //To check if the wearer changes, so species spritesheets change properly.
 
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
 
 /obj/item/clothing/accessory/Destroy()
 	on_removed()

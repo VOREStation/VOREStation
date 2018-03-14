@@ -1,6 +1,6 @@
 /mob/living/carbon/alien/diona/confirm_evolution()
 
-	if(!is_alien_whitelisted(src, all_species["Diona"]))
+	if(!is_alien_whitelisted(src, all_species[SPECIES_DIONA]))
 		src << alert("You are currently not whitelisted to play as a full diona.")
 		return null
 
@@ -16,4 +16,4 @@
 		qdel(L)
 
 	src.visible_message("<font color='red'>[src] begins to shift and quiver, and erupts in a shower of shed bark as it splits into a tangle of nearly a dozen new dionaea.</font>","<font color='red'>You begin to shift and quiver, feeling your awareness splinter. All at once, we consume our stored nutrients to surge with growth, splitting into a tangle of at least a dozen new dionaea. We have attained our gestalt form.</font>")
-	return "Diona"
+	return SPECIES_DIONA

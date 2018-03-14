@@ -1,7 +1,7 @@
 /obj/item/clothing/under/seromi
 	icon = 'icons/obj/clothing/species/seromi/uniform.dmi'
 	icon_state = "seromi_grey"
-	species_restricted = list("Teshari")
+	species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/under/seromi/smock
 	name = "small grey smock"
