@@ -6,9 +6,9 @@
 	if(stat == DEAD || paralysis || weakened || stunned || restrained())
 		return
 
-	if(layer != HIDING_LAYER)
-		layer = HIDING_LAYER //Just above cables with their 2.44
-		src << text("<font color='blue'>You are now hiding.</font>")
-	else
+	if(layer == HIDING_LAYER)
 		layer = MOB_LAYER
 		src << text("<font color='blue'>You have stopped hiding.</font>")
+	else
+		layer = HIDING_LAYER //Just above cables with their 2.44
+		src << text("<font color='blue'>You are now hiding.</font>")
