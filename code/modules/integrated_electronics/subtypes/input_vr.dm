@@ -82,9 +82,10 @@ obj/item/device/radio/integrated/
 /obj/item/integrated_circuit/input/integrated_radio
 	name = "integrated radio"
 	desc = "Allows for interactions with radio channels"
-	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
-	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
-	is only triggered if it hears someone speaking a language other than Galactic Common."
+	extended_desc = "Can send and receive messages over radio. Upon hearing a transmission in one of the \
+	allowed channels the second activation pin will pulse whatever's connected to it. If message was not in common \
+	third pin will also pulse. Pulse first pin to send message. To set channels, swipe ID against circuit. Common and \
+	Entertainment are always availible."
 	icon_state = "signal"
 	complexity = 25
 	inputs = list(
