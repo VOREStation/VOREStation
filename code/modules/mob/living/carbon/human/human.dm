@@ -17,7 +17,6 @@
 	var/last_spit = 0 					//Timestamp.
 
 	var/can_defib = 1					//Horrible damage (like beheadings) will prevent defibbing organics.
-	var/hiding = 0						// If the mob is hiding or not. Makes them appear under tables and the like.
 	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
 	var/active_regen_delay = 300
 
@@ -42,7 +41,7 @@
 	nutrition = rand(200,400)
 
 	human_mob_list |= src
-	
+
 	..()
 
 	hide_underwear.Cut()
@@ -1029,7 +1028,7 @@
 	else
 		bloody_hands = 0
 		germ_level = 0
-	
+
 	//Sometimes do shoes if asked (or feet if no shoes)
 	if(washshoes && shoes)
 		shoes.clean_blood()
@@ -1039,7 +1038,7 @@
 		LAZYCLEARLIST(feet_blood_DNA)
 		feet_blood_DNA = null
 		feet_blood_color = null
-	
+
 	update_bloodied()
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
@@ -1558,8 +1557,8 @@
 		equip_to_appropriate_slot(permit) // If for some reason it can't find room, it'll still be on the floor.
 
 /mob/living/carbon/human/proc/update_icon_special() //For things such as teshari hiding and whatnot.
-	if(hiding) // Hiding? Carry on.
+	if(status_flags & HIDING) // Hiding? Carry on.
 		if(stat == DEAD || paralysis || weakened || stunned) //stunned/knocked down by something that isn't the rest verb? Note: This was tried with INCAPACITATION_STUNNED, but that refused to work.
-			hiding = FALSE //No hiding for you. Mob layer should be updated naturally, but it actually doesn't.
+			status_flags &= ~HIDING //No hiding for you. Mob layer should be updated naturally, but it actually isn't.
 		else
 			layer = HIDING_LAYER
