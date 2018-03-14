@@ -97,10 +97,9 @@ obj/item/device/radio/integrated/
 	"message" = IC_PINTYPE_STRING
 	)
 	activators = list("send message" = IC_PINTYPE_PULSE_IN, "on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
-	var/lastchanger
-
+	record_editors = 1
 
 	var/allowed_channels = list(
 	"Common" = 0,
@@ -131,7 +130,10 @@ obj/item/device/radio/integrated/
 		else
 			shown_name = name
 		radio.autosay(message, shown_name, target_channel)
-		log_say("[shown_name] ([x],[y],[z]): [message] (Last Modified by [lastchanger])")
+		if(last_editor)
+			log_say("[shown_name]: [message] (Last Modified by [last_editor.name])")
+		else
+			log_say("[shown_name]: [message] (Last Modified by NONE)")
 
 obj/item/integrated_circuit/input/integrated_radio/attackby(obj/item/weapon/card/id/id, mob/user)
 	..()
@@ -208,10 +210,3 @@ obj/item/integrated_circuit/input/integrated_radio/attackby(obj/item/weapon/card
 				counterprobs++
 			usrmessage = addtext(usrmessage, channels_added[length(channels_added) - 1], " and ", channels_added[length(channels_added)], " channels to the list of available channels on ", src.name)
 	user << usrmessage
-
-/obj/item/integrated_circuit/input/integrated_radio/handle_wire(datum/integrated_io/pin, obj/item/device/integrated_electronics/tool)
-	if(..())
-		lastchanger = tool.loc
-		return 1
-	else
-		return 0
