@@ -134,7 +134,8 @@
 		/obj/item/weapon/crowbar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
-		/obj/item/weapon/extinguisher/mini
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/storage/quickdraw/syringe_case
 		)
 
 /obj/item/weapon/storage/belt/medical/emt
