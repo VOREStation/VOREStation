@@ -1214,14 +1214,6 @@
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 		species_allowed = list(SPECIES_TAJ)
 
-	// VOREStation edit - Illegal Edit, This will fail - https://github.com/VOREStation/VOREStation/pull/2335
-	panda_eye_marks
-		name = "Panda Eye Markings"
-		icon_state = "eyes-panda"
-		body_parts = list(BP_HEAD)
-		species_allowed = list(SPECIES_HUMAN)
-	// VOREStation Edit End
-
 	patches
 		name = "Color Patches"
 		icon_state = "patches"
