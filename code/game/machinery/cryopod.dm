@@ -304,13 +304,18 @@
 	find_control_computer()
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
-	//control_computer = locate(/obj/machinery/computer/cryopod) in src.loc.loc // Broken due to http://www.byond.com/forum/?post=2007448
-	control_computer = locate(/obj/machinery/computer/cryopod) in range(6,src)
+	control_computer = null
+
+	var/area/my_area = get_area(src)
+	control_computer = locate(/obj/machinery/computer/cryopod) in my_area
+
+	if(!control_computer) //Fallback to old method.
+		control_computer = locate(/obj/machinery/computer/cryopod) in range(6,src)
 
 	// Don't send messages unless we *need* the computer, and less than five minutes have passed since last time we messaged
-	if(!control_computer && urgent && last_no_computer_message + 5*60*10 < world.time)
-		log_admin("Cryopod in [src.loc.loc] could not find control computer!")
-		message_admins("Cryopod in [src.loc.loc] could not find control computer!")
+	if(!control_computer && urgent && last_no_computer_message + 5 MINUTES < world.time)
+		log_admin("Cryopod in [my_area] could not find control computer!")
+		message_admins("Cryopod in [my_area] could not find control computer!")
 		last_no_computer_message = world.time
 
 	return control_computer != null
