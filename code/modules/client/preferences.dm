@@ -47,7 +47,7 @@ datum/preferences
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
-	var/species = "Human"               //Species datum to use.
+	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
@@ -293,11 +293,10 @@ datum/preferences
 
 	if(icon_updates)
 		character.force_update_limbs()
-		character.update_mutations(0)
-		character.update_underwear(0)
-		character.update_hair(0)
-		character.update_eyes(0)
-		character.update_icons_all()
+		character.update_icons_body()
+		character.update_mutations()
+		character.update_underwear()
+		character.update_hair()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

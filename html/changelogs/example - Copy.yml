@@ -1,0 +1,8 @@
+
+author: Cerebulon
+
+delete-after: True
+
+changes: 
+  - rscadd: "Added Akhani language for Tajaran."
+  - spellcheck: "Fixed incorrect singular form of Tajaran in several places."

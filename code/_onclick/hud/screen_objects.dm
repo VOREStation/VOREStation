@@ -278,7 +278,7 @@
 							// Rigs are a fucking pain since they keep an air tank in nullspace.
 							if(istype(C.back,/obj/item/weapon/rig))
 								var/obj/item/weapon/rig/rig = C.back
-								if(rig.air_supply)
+								if(rig.air_supply && !rig.offline)
 									from = "in"
 									nicename |= "hardsuit"
 									tankcheck |= rig.air_supply

@@ -33,6 +33,10 @@
 	. = ..()
 
 /mob/zshadow/examine(mob/user, distance, infix, suffix)
+	if(!owner)
+	 	// The only time we should have a null owner is if we are in nullspace. Help figure out why we were examined.
+		crash_with("[src] ([type]) @ [log_info_line()] was examined by [user] @ [global.log_info_line(user)]")
+		return
 	return owner.examine(user, distance, infix, suffix)
 
 // Relay some stuff they hear

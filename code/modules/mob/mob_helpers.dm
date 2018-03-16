@@ -517,7 +517,7 @@ proc/is_blind(A)
 		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if(species.name != SPECIES_HUMAN)
 			threatcount += 2
 
 	if(check_records || check_arrest)
@@ -624,6 +624,7 @@ var/global/image/backplane
 	backplane = image('icons/misc/win32.dmi')
 	backplane.alpha = 0
 	backplane.plane = -100
+	backplane.layer = MOB_LAYER-0.1
 	backplane.mouse_opacity = 0
 
 	return TRUE
@@ -635,3 +636,23 @@ var/global/image/backplane
 		var/area/A = get_area(src)
 		return A.sound_env
 		
+/mob/proc/position_hud_item(var/obj/item/item, var/slot)
+	if(!istype(hud_used) || !slot || !LAZYLEN(hud_used.slot_info))
+		return
+
+	//They may have hidden their entire hud but the hands
+	if(!hud_used.hud_shown && slot > slot_r_hand)
+		item.screen_loc = null
+		return
+
+	//They may have hidden the icons in the bottom left with the hide button
+	if(!hud_used.inventory_shown && slot > slot_r_store)
+		item.screen_loc = null
+		return
+
+	var/screen_place = hud_used.slot_info["[slot]"]
+	if(!screen_place)
+		item.screen_loc = null
+		return
+
+	item.screen_loc = screen_place

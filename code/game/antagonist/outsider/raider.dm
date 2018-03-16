@@ -205,7 +205,7 @@ var/datum/antagonist/raider/raiders
 	if(!..())
 		return 0
 
-	if(player.species && player.species.get_bodytype() == "Vox")
+	if(player.species && player.species.get_bodytype() == SPECIES_VOX)
 		equip_vox(player)
 	else
 		var/new_shoes =   pick(raider_shoes)

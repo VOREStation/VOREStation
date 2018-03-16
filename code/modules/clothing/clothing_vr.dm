@@ -98,3 +98,12 @@
 		"Xenochimera"	= 'icons/mob/species/tajaran/mask_vr.dmi'
 		)
 //"Spider" 		= 'icons/mob/species/spider/mask_vr.dmi' Add this later when they have custom mask sprites and everything.
+
+// Taur suits need to be shifted so its centered on their taur half.
+// TODO - Instead of just assuming this junk, shift some of the data onto the taur tail datum.
+/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+	var/image/standing = ..()
+	if(icon_override && icon_override == 'icons/mob/taursuits_vr.dmi')
+		standing.pixel_x = -16
+		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
+	return standing

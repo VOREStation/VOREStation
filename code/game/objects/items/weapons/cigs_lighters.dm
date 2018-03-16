@@ -89,6 +89,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/weldermes = "USER lights NAME with FLAME"
 	var/ignitermes = "USER lights NAME with FLAME"
 	var/brand
+	blood_sprite_state = null //Can't bloody these
 
 /obj/item/clothing/mask/smokable/New()
 	..()

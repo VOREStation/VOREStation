@@ -24,7 +24,8 @@
 #include "Snow3.dmm"
 #include "Snow4.dmm"
 #include "Snow5.dmm"
-
+#include "SupplyDrop2.dmm"
+#include "RationCache.dmm"
 #endif
 
 
@@ -181,3 +182,15 @@
 	desc = "Please stop the snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow5.dmm'
 	cost = 5
+
+/datum/map_template/surface/plains/RationCache
+	name = "Ration Cache"
+	desc = "A forgotten cache of emergency rations."
+	mappath = 'maps/submaps/surface_submaps/plains/RationCache.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/SupplyDrop2
+	name = "Supply Drop 2"
+	desc = "A drop pod that's clearly been here a while, most of the things inside are rusted and worthless."
+	mappath = 'maps/submaps/surface_submaps/plains/SupplyDrop2.dmm'
+	cost = 8

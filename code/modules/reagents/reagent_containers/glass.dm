@@ -266,6 +266,18 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
+	else if(istype(D, /obj/item/stack/material) && D.get_material_name() == DEFAULT_WALL_MATERIAL)
+		var/obj/item/stack/material/M = D
+		if (M.use(1))
+			var/obj/item/weapon/secbot_assembly/edCLN_assembly/B = new /obj/item/weapon/secbot_assembly/edCLN_assembly
+			B.loc = get_turf(src)
+			to_chat(user, "<span class='notice'>You armed the robot frame.</span>")
+			if (user.get_inactive_hand()==src)
+				user.remove_from_mob(src)
+				user.put_in_inactive_hand(B)
+			qdel(src)
+		else
+			to_chat(user, "<span class='warning'>You need one sheet of metal to arm the robot frame.</span>")
 	else if(istype(D, /obj/item/weapon/mop) || istype(D, /obj/item/weapon/soap) || istype(D, /obj/item/weapon/reagent_containers/glass/rag))  //VOREStation Edit - "Allows soap and rags to be used on buckets"
 		if(reagents.total_volume < 1)
 			to_chat(user, "<span class='warning'>\The [src] is empty!</span>")
@@ -273,7 +285,6 @@
 			reagents.trans_to_obj(D, 5)
 			to_chat(user, "<span class='notice'>You wet \the [D] in \the [src].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
 	else
 		return ..()
 
