@@ -9,9 +9,9 @@
 	var/randomdir = TRUE
 
 /obj/effect/temp_visual/initialize()
-	//. = ..()
-	//if(randomdir)
-	//	setDir(pick(GLOB.cardinals))       //tg stuff, readd when necessary
+	. = ..()
+	if(randomdir)
+		set_dir(pick(global.cardinal))
 
 	spawn(duration)
 		qdel(src)
