@@ -1702,4 +1702,4 @@
 	destroy_surroundings = 1
 
 /mob/living/simple_animal/get_nametag_desc(mob/user)
-	return "<i>tt_desc</i>"
+	return "<i>[tt_desc]</i>"
