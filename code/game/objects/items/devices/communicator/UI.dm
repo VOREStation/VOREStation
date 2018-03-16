@@ -133,11 +133,7 @@
 	if(href_list["rename"])
 		var/new_name = sanitizeSafe(input(usr,"Please enter your name.","Communicator",usr.name) )
 		if(new_name)
-			owner = new_name
-			name = "[owner]'s [initial(name)]"
-			if(camera)
-				camera.name = name
-				camera.c_tag = name
+			register_device(new_name)
 
 	if(href_list["toggle_visibility"])
 		switch(network_visibility)
