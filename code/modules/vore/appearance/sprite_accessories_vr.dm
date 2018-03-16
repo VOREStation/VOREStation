@@ -860,6 +860,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/vulpan_alt
+	name = "vulpkanin alt style, colorable"
+	desc = ""
+	icon_state = "vulptail_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/sergaltaildc
 	name = "sergal, dual-color"
 	desc = ""
@@ -1073,6 +1080,7 @@
 	icon_state = "vulptail_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
 
 /datum/sprite_accessory/tail/zenghu_taj
 	name = "Zeng-Hu Tajaran Synth tail"
