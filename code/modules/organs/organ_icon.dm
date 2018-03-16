@@ -55,14 +55,21 @@ var/global/list/limb_icon_cache = list()
 	overlays.Cut()
 	if(!owner || !owner.species)
 		return
-	if(owner.should_have_organ(O_EYES))
+	if(owner.species.appearance_flags & HAS_EYE_COLOR)
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
-			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+			//Should have eyes
+			if(owner.should_have_organ(O_EYES))
+				//And we have them
+				if(eyes)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				//They're gone!
+				else
+					eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+			//We have weird other-sorts of eyes
 			else
-				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+				eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
 			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
 			overlays |= eyes_icon
 
