@@ -10,6 +10,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
 	/mob/living/simple_animal/borer,
+	/obj/belly, //VOREStation Edit,
 	/obj/screen
 	)
 
@@ -154,6 +155,7 @@ var/list/ventcrawl_machinery = list(
 					if(HAZARD_HIGH_PRESSURE to INFINITY)
 						to_chat(src, "<span class='danger'>You feel a roaring wind pushing you away from the vent!</span>")
 
+			fade_towards(vent_found,45)
 			if(!do_after(src, 45, vent_found, 1, 1))
 				return
 			if(!can_ventcrawl())
