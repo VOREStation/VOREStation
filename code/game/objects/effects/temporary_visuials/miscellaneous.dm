@@ -8,7 +8,7 @@
 	if(mimiced_atom)
 		name = mimiced_atom.name
 		appearance = mimiced_atom.appearance
-		setDir(mimiced_atom.dir)
+		set_dir(mimiced_atom.dir)
 		mouse_opacity = 0
 	if(customappearance)
 		appearance = customappearance

@@ -34,6 +34,3 @@
 		setDir(set_dir)
 	. = ..()
 */		//More tg stuff that might be useful later
-
-/obj/effect/temp_visual/proc/setDir(var/newdir)
-	dir = newdir

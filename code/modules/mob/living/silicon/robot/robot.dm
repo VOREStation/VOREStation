@@ -972,7 +972,7 @@
 	else
 		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
 		if(notransform)				//VOREStation edit start: sprite animation
-			src << "Your current transformation has not finished yet!"
+			to_chat(src, "Your current transformation has not finished yet!")
 			choose_icon(icon_selection_tries, module_sprites)
 			return
 		else
