@@ -52,7 +52,7 @@ var/list/organ_cache = list()
 	if(istype(holder))
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
-		species = all_species["Human"]
+		species = all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = holder.species //VOREStation Edit - For custom species
@@ -294,15 +294,16 @@ var/list/organ_cache = list()
 /obj/item/organ/emp_act(severity)
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
-	switch (severity)
-		if (1)
-			take_damage(rand(6,12))
-		if (2)
-			take_damage(rand(4,8))
-		if (3)
-			take_damage(rand(3,6))
-		if (4)
-			take_damage(rand(1,4))
+	for(var/i = 1; i <= robotic; i++)
+		switch (severity)
+			if (1)
+				take_damage(rand(5,9))
+			if (2)
+				take_damage(rand(3,7))
+			if (3)
+				take_damage(rand(2,5))
+			if (4)
+				take_damage(rand(1,3))
 
 /obj/item/organ/proc/removed(var/mob/living/user)
 

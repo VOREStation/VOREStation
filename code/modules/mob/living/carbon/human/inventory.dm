@@ -152,12 +152,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else if (W == wear_id)
 		wear_id = null
 		update_inv_wear_id()
+		BITSET(hud_updateflag, ID_HUD)
+		BITSET(hud_updateflag, WANTED_HUD)
 	else if (W == r_store)
 		r_store = null
-		update_inv_pockets()
+		//update_inv_pockets() //Doesn't do anything.
 	else if (W == l_store)
 		l_store = null
-		update_inv_pockets()
+		//update_inv_pockets() //Doesn't do anything.
 	else if (W == s_store)
 		s_store = null
 		update_inv_s_store()
@@ -195,8 +197,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
-//set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
+/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
 
 	if(!slot)
 		return
@@ -213,39 +214,41 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.back = W
 			W.equipped(src, slot)
 			worn_clothing += back
-			update_inv_back(redraw_mob)
+			update_inv_back()
 		if(slot_wear_mask)
 			src.wear_mask = W
 			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
-				update_hair(redraw_mob)	//rebuild hair
-				update_inv_ears(0)
+				update_hair()	//rebuild hair
+				update_inv_ears()
 			W.equipped(src, slot)
 			worn_clothing += wear_mask
-			update_inv_wear_mask(redraw_mob)
+			update_inv_wear_mask()
 		if(slot_handcuffed)
 			src.handcuffed = W
-			update_inv_handcuffed(redraw_mob)
+			update_inv_handcuffed()
 		if(slot_legcuffed)
 			src.legcuffed = W
 			W.equipped(src, slot)
-			update_inv_legcuffed(redraw_mob)
+			update_inv_legcuffed()
 		if(slot_l_hand)
 			src.l_hand = W
 			W.equipped(src, slot)
-			update_inv_l_hand(redraw_mob)
+			update_inv_l_hand()
 		if(slot_r_hand)
 			src.r_hand = W
 			W.equipped(src, slot)
-			update_inv_r_hand(redraw_mob)
+			update_inv_r_hand()
 		if(slot_belt)
 			src.belt = W
 			W.equipped(src, slot)
 			worn_clothing += belt
-			update_inv_belt(redraw_mob)
+			update_inv_belt()
 		if(slot_wear_id)
 			src.wear_id = W
 			W.equipped(src, slot)
-			update_inv_wear_id(redraw_mob)
+			update_inv_wear_id()
+			BITSET(hud_updateflag, ID_HUD)
+			BITSET(hud_updateflag, WANTED_HUD)
 		if(slot_l_ear)
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
@@ -254,7 +257,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.r_ear = O
 				O.hud_layerise()
 			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
+			update_inv_ears()
 		if(slot_r_ear)
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
@@ -263,54 +266,54 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.l_ear = O
 				O.hud_layerise()
 			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
+			update_inv_ears()
 		if(slot_glasses)
 			src.glasses = W
 			W.equipped(src, slot)
-			update_inv_glasses(redraw_mob)
+			update_inv_glasses()
 		if(slot_gloves)
 			src.gloves = W
 			W.equipped(src, slot)
 			worn_clothing += glasses
-			update_inv_gloves(redraw_mob)
+			update_inv_gloves()
 		if(slot_head)
 			src.head = W
 			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
-				update_hair(redraw_mob)	//rebuild hair
+				update_hair()	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
 			if(istype(W,/obj/item/clothing/head/kitty))
 				W.update_icon(src)
 			W.equipped(src, slot)
 			worn_clothing += head
-			update_inv_head(redraw_mob)
+			update_inv_head()
 		if(slot_shoes)
 			src.shoes = W
 			W.equipped(src, slot)
 			worn_clothing += shoes
-			update_inv_shoes(redraw_mob)
+			update_inv_shoes()
 		if(slot_wear_suit)
 			src.wear_suit = W
 			W.equipped(src, slot)
 			worn_clothing += wear_suit
-			update_inv_wear_suit(redraw_mob)
+			update_inv_wear_suit()
 		if(slot_w_uniform)
 			src.w_uniform = W
 			W.equipped(src, slot)
 			worn_clothing += w_uniform
-			update_inv_w_uniform(redraw_mob)
+			update_inv_w_uniform()
 		if(slot_l_store)
 			src.l_store = W
 			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
+			//update_inv_pockets() //Doesn't do anything
 		if(slot_r_store)
 			src.r_store = W
 			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
+			//update_inv_pockets() //Doesn't do anything
 		if(slot_s_store)
 			src.s_store = W
 			W.equipped(src, slot)
-			update_inv_s_store(redraw_mob)
+			update_inv_s_store()
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)

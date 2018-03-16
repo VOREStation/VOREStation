@@ -1,6 +1,6 @@
 //Stand-in until this is made more lore-friendly.
 /datum/species/xenos
-	name = "Xenomorph"
+	name = SPECIES_XENO
 	name_plural = "Xenomorphs"
 
 	default_language = "Xenomorph"
@@ -77,7 +77,7 @@
 		)
 
 /datum/species/xenos/get_bodytype()
-	return "Xenomorph"
+	return SPECIES_XENO
 
 /datum/species/xenos/get_random_name()
 	return "alien [caste_name] ([alien_number])"
@@ -164,7 +164,7 @@
 */
 
 /datum/species/xenos/drone
-	name = "Xenomorph Drone"
+	name = SPECIES_XENO_DRONE
 	caste_name = "drone"
 	weeds_plasma_rate = 15
 	slowdown = 1
@@ -202,7 +202,7 @@
 	..()
 
 /datum/species/xenos/hunter
-	name = "Xenomorph Hunter"
+	name = SPECIES_XENO_HUNTER
 	weeds_plasma_rate = 5
 	caste_name = "hunter"
 	slowdown = -2
@@ -230,7 +230,7 @@
 		)
 
 /datum/species/xenos/sentinel
-	name = "Xenomorph Sentinel"
+	name = SPECIES_XENO_SENTINEL
 	weeds_plasma_rate = 10
 	caste_name = "sentinel"
 	slowdown = 0
@@ -261,7 +261,7 @@
 
 /datum/species/xenos/queen
 
-	name = "Xenomorph Queen"
+	name = SPECIES_XENO_QUEEN
 	total_health = 250
 	weeds_heal_rate = 5
 	weeds_plasma_rate = 20

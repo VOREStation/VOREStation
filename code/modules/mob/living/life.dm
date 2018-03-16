@@ -111,15 +111,11 @@
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
-		if(!stunned)
-			update_icons()
 	return stunned
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
 		weakened = max(weakened-1,0)
-		if(!weakened)
-			update_icons()
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -145,8 +141,6 @@
 /mob/living/proc/handle_paralysed()
 	if(paralysis)
 		AdjustParalysis(-1)
-		if(!paralysis)
-			update_icons()
 	return paralysis
 
 /mob/living/proc/handle_disabilities()

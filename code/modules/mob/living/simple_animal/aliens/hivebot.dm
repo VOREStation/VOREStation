@@ -63,8 +63,8 @@
 	desc = "A robot. It looks fragile and weak"
 	maxHealth = 1 LASERS_TO_KILL
 	health = 1 LASERS_TO_KILL
-	melee_damage_lower = 3
-	melee_damage_upper = 3
+	melee_damage_lower = 8
+	melee_damage_upper = 8
 
 // This one has a semi-weak ranged attack.
 /mob/living/simple_animal/hostile/hivebot/range
