@@ -92,7 +92,7 @@
 	if(humanform)
 		humanform.nano_outofblob(src)
 	else
-		to_chat(src,"<span class='warning'>Something's gone terribly wrong and we can't find your human body. Admin-help this.")
+		to_chat(src,"<span class='warning'>Something's gone terribly wrong and we can't find your human body. Admin-help this.</span>")
 		return
 
 /mob/living/simple_animal/protean_blob/update_icon()
