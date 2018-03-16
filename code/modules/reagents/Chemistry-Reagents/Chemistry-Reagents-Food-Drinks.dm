@@ -450,6 +450,9 @@
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
+/datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Added this is a failsafe, as coffee milkshakes were FUCKING KILLING PEOPLE
+	M.make_jittery(5)
+
 // Juices
 
 /datum/reagent/drink/juice/banana
