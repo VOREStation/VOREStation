@@ -183,6 +183,9 @@ var/list/wrapped_species_by_ref = list()
 	r_skin =   hex2num(copytext(new_skin, 2, 4))
 	g_skin =   hex2num(copytext(new_skin, 4, 6))
 	b_skin =   hex2num(copytext(new_skin, 6, 8))
+	r_synth = r_skin
+	g_synth = g_skin
+	b_synth = b_skin
 
 	var/datum/species/shapeshifter/S = species
 	if(S.monochromatic)
@@ -287,3 +290,35 @@ var/list/wrapped_species_by_ref = list()
 	if(species && mind)
 		apply_traits()
 	return
+
+/mob/living/carbon/human/proc/shapeshifter_select_eye_colour()
+
+	set name = "Select Eye Color"
+	set category = "Abilities"
+
+	if(stat || world.time < last_special)
+		return
+
+	last_special = world.time + 50
+
+	var/current_color = rgb(r_eyes,g_eyes,b_eyes)
+	var/new_eyes = input("Pick a new color for your eyes.","Eye Color", current_color) as null|color
+	if(!new_eyes)
+		return
+	
+	shapeshifter_set_eye_color(new_eyes)
+
+/mob/living/carbon/human/proc/shapeshifter_set_eye_color(var/new_eyes)
+	
+	var/list/new_color_rgb_list = hex2rgb(new_eyes)
+	// First, update mob vars.
+	r_eyes = new_color_rgb_list[1]
+	g_eyes = new_color_rgb_list[2]
+	b_eyes = new_color_rgb_list[3]
+	// Now sync the organ's eye_colour list, if possible
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES]
+	if(istype(eyes))
+		eyes.update_colour()
+
+	update_icons_body()
+	update_eyes()
