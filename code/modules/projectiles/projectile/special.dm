@@ -9,6 +9,9 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
+
+	combustion = FALSE
+
 	var/sev1_range = 0
 	var/sev2_range = 1
 	var/sev3_range = 1
@@ -56,6 +59,8 @@
 	light_power = 0.5
 	light_color = "#55AAFF"
 
+	combustion = FALSE
+
 /obj/item/projectile/temp/on_hit(atom/target, blocked = FALSE)
 	..()
 	if(isliving(target))
@@ -84,6 +89,8 @@
 /obj/item/projectile/temp/hot
 	name = "heat beam"
 	target_temperature = 1000
+
+	combustion = TRUE
 
 /obj/item/projectile/meteor
 	name = "meteor"
@@ -126,6 +133,8 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+
+	combustion = FALSE
 
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
@@ -196,6 +205,8 @@
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
 
+	combustion = FALSE
+
 /obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
@@ -218,6 +229,8 @@
 	damage_type = HALLOSS
 	muzzle_type = null
 
+	combustion = FALSE
+
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
@@ -234,6 +247,8 @@
 	embed_chance = 0 //Nada.
 	damage_type = BRUTE
 	muzzle_type = null
+
+	combustion = FALSE
 
 /obj/item/projectile/webball/on_hit(var/atom/target, var/blocked = 0)
 	if(isturf(target.loc))
