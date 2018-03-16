@@ -214,8 +214,6 @@
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
-	return
-
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
 	..(holder, 0)
@@ -776,6 +774,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(robotic >= ORGAN_ROBOT))
 		src.fracture()
 
+	update_health()
+
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)
 /obj/item/organ/external/update_icon()
@@ -810,6 +810,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		tbrute = 3
 	return "[tbrute][tburn]"
+
+/obj/item/organ/external/take_damage()
+	..()
+
+	if(!cannot_amputate)
+		if(nonsolid && damage >= max_damage)
+			droplimb(DROPLIMB_BLUNT)
 
 /****************************************************
 			   DISMEMBERMENT
@@ -1092,7 +1099,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	unmutate()
 
 	for(var/obj/item/organ/external/T in children)
-		T.robotize(company, 1)
+		T.robotize(company, keep_organs = keep_organs)
 
 	if(owner)
 
