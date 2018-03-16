@@ -1272,9 +1272,12 @@
 	if(!affecting)
 		. = 0
 		fail_msg = "They are missing that limb."
-	else if (affecting.robotic >= ORGAN_ROBOT)
+	else if (affecting.robotic == ORGAN_ROBOT)
 		. = 0
 		fail_msg = "That limb is robotic."
+	else if (affecting.robotic >= ORGAN_LIFELIKE)
+		. = 0
+		fail_msg = "Your needle refuses to penetrate more than a short distance..."
 	else
 		switch(target_zone)
 			if(BP_HEAD)

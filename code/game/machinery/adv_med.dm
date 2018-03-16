@@ -343,7 +343,7 @@
 					organStatus["destroyed"] = 1
 				if(E.status & ORGAN_BROKEN)
 					organStatus["broken"] = E.broken_description
-				if(E.status & ORGAN_ROBOT)
+				if(E.robotic >= ORGAN_ROBOT)
 					organStatus["robotic"] = 1
 				if(E.splinted)
 					organStatus["splinted"] = 1
@@ -512,7 +512,7 @@
 					bled = "Bleeding:"
 				if(e.status & ORGAN_BROKEN)
 					AN = "[e.broken_description]:"
-				if(e.status & ORGAN_ROBOT)
+				if(e.robotic >= ORGAN_ROBOT)
 					robot = "Prosthetic:"
 				if(e.status & ORGAN_DEAD)
 					o_dead = "Necrotic:"
