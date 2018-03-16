@@ -88,7 +88,7 @@
 	icon_state = "boots-vox"
 	item_flags = PHORONGUARD
 	phoronproof = 1
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 
 	action_button_name = "Toggle the magclaws"
 

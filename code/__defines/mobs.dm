@@ -226,6 +226,44 @@
 #define FBP_POSI	"Positronic"
 #define FBP_DRONE	"Drone"
 
+// 'Regular' species.
+#define SPECIES_HUMAN			"Human"
+#define SPECIES_HUMAN_VATBORN	"Vatborn"
+#define SPECIES_UNATHI			"Unathi"
+#define SPECIES_SKRELL			"Skrell"
+#define SPECIES_TESHARI			"Teshari"
+#define SPECIES_TAJ				"Tajara"
+#define SPECIES_PROMETHEAN		"Promethean"
+#define SPECIES_DIONA			"Diona"
+#define SPECIES_VOX				"Vox"
+
+// Monkey and alien monkeys.
+#define SPECIES_MONKEY			"Monkey"
+#define SPECIES_MONKEY_TAJ		"Farwa"
+#define SPECIES_MONKEY_SKRELL	"Neaera"
+#define SPECIES_MONKEY_UNATHI	"Stok"
+
+// Virtual Reality IDs.
+#define SPECIES_VR				"Virtual Reality Avatar"
+#define SPECIES_VR_HUMAN		"Virtual Reality Human"
+#define SPECIES_VR_UNATHI		"Virtual Reality Unathi"
+#define SPECIES_VR_TAJ			"Virtual Reality Tajara" // NO CHANGING.
+#define SPECIES_VR_SKRELL		"Virtual Reality Skrell"
+#define SPECIES_VR_TESHARI		"Virtual Reality Teshari"
+#define SPECIES_VR_DIONA		"Virtual Reality Diona"
+
+// Ayyy IDs.
+#define SPECIES_XENO			"Xenomorph"
+#define SPECIES_XENO_DRONE		"Xenomorph Drone"
+#define SPECIES_XENO_HUNTER		"Xenomorph Hunter"
+#define SPECIES_XENO_SENTINEL	"Xenomorph Sentinel"
+#define SPECIES_XENO_QUEEN		"Xenomorph Queen"
+
+// Misc species. Mostly unused but might as well be complete.
+#define SPECIES_SHADOW			"Shadow"
+#define SPECIES_SKELETON		"Skeleton"
+#define SPECIES_GOLEM			"Golem"
+
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1
 #define SA_ANIMAL	2

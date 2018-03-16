@@ -52,7 +52,7 @@ var/list/organ_cache = list()
 	if(istype(holder))
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
-		species = all_species["Human"]
+		species = all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = all_species[dna.species]

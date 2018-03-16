@@ -24,7 +24,7 @@
 	// Prometheans.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && H.species.name == "Promethean" && status)
+		if(H.species && H.species.name == SPECIES_PROMETHEAN && status)
 			var/agony_to_apply = 60 - agonyforce
 			H.apply_damage(agony_to_apply, HALLOSS)
 	..()
@@ -115,7 +115,7 @@
 		// Prometheans.
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			if(H.species && H.species.name == "Promethean")
+			if(H.species && H.species.name == SPECIES_PROMETHEAN)
 				if(agony == initial(agony))
 					agony = round((14 * agony) - agony) //60-4 = 56, 56 / 4 = 14. Prior was flat 60 - agony of the beam to equate to 60.
 	..()

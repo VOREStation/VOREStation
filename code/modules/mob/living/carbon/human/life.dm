@@ -267,7 +267,7 @@
 					Weaken(3)
 					if(!lying)
 						emote("collapse")
-				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
+				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
 					if((h_style != "Bald" || f_style != "Shaved" ))
 						src << "<span class='warning'>Your hair falls out.</span>"
 						h_style = "Bald"
@@ -1672,7 +1672,7 @@
 					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
 						holder.icon_state = "hudreleased"
 						break
-		
+
 		apply_hud(WANTED_HUD, holder)
 
 	if (  BITTEST(hud_updateflag, IMPLOYAL_HUD) \
@@ -1710,7 +1710,7 @@
 			else
 				holder.icon_state = "hudsyndicate"
 		apply_hud(SPECIALROLE_HUD, holder)
-	
+
 	hud_updateflag = 0
 
 /mob/living/carbon/human/handle_stunned()

@@ -9,8 +9,8 @@ var/list/holder_mob_icon_cache = list()
 	show_messages = 1
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/head.dmi',
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 
 	origin_tech = null
