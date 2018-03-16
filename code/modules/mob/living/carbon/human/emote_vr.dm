@@ -77,12 +77,10 @@
 			src << "<span class='warning'>You don't have a tail that supports this.</span>"
 		return 0
 
-	if(setting != null)
-		wagging = setting
-	else
-		wagging = !wagging
-
-	update_tail_showing()
+	var/new_wagging = isnull(setting) ? !wagging : setting
+	if(new_wagging != wagging)
+		wagging = new_wagging
+		update_tail_showing()
 	return 1
 
 /mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
@@ -91,12 +89,10 @@
 			src << "<span class='warning'>You don't have a tail that supports this.</span>"
 		return 0
 
-	if(setting != null)
+	var/new_flapping = isnull(setting) ? !flapping : setting
+	if(new_flapping != flapping)
 		flapping = setting
-	else
-		flapping = !flapping
-
-	update_wing_showing()
+		update_wing_showing()
 	return 1
 
 /mob/living/carbon/human/verb/toggle_gender_identity_vr()

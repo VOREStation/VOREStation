@@ -121,6 +121,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	crash_with("CANARY: Old human update_icons_huds was called.")
 
 /mob/living/carbon/human/update_transform()
+	/* VOREStation Edit START - TODO - Consider switching to icon_scale
 	// First, get the correct size.
 	var/desired_scale = icon_scale
 
@@ -129,6 +130,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.icon_scale_percent))
 			desired_scale *= M.icon_scale_percent
+	*/
+	var/desired_scale = size_multiplier
+	//VOREStation Edit End
 
 	// Regular stuff again.
 	var/matrix/M = matrix()
@@ -247,7 +251,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
-				icon_key += "[part.s_col_blend]"
+				//VOREStation Edit - Different way of tracking add/mult species
+				if(species.color_mult)
+					icon_key += "[ICON_MULTIPLY]"
+				else
+					icon_key += "[ICON_ADD]"
+				//VOREStation Edit End
 			else
 				icon_key += "#000000"
 			for(var/M in part.markings)
@@ -321,6 +330,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//tail
 	update_tail_showing()
+	update_wing_showing() // VOREStation Edit
 
 /mob/living/carbon/human/proc/update_skin()
 	if(QDESTROYING(src))
@@ -403,7 +413,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
-				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_MULTIPLY) //VOREStation edit
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
@@ -417,6 +427,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				hair_s.Blend(hair_s_add, ICON_ADD)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
+
+	// VOREStation Edit - START
+	var/icon/ears_s = get_ears_overlay()
+	if (ears_s)
+		face_standing.Blend(ears_s, ICON_OVERLAY)
+	// VOREStation Edit - END
 
 	if(head_organ.nonsolid)
 		face_standing += rgb(,,,120)
@@ -708,6 +724,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	update_inv_w_uniform()
 	update_inv_shoes()
 	update_tail_showing()
+	update_wing_showing() // VOREStation Edit
 
 	if(!wear_suit)
 		return //No point, no suit.
@@ -757,6 +774,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 //update whether handcuffs appears on our hud.
 /mob/living/carbon/proc/update_hud_handcuffed()
+	if(QDESTROYING(src))
+		return
+
 	if(hud_used && hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon()
 		hud_used.r_hand_hud_object.update_icon()
@@ -819,6 +839,16 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(TAIL_LAYER)
+
+	// VOREStation Edit - START
+	var/image/vr_tail_image = get_tail_image()
+	if(vr_tail_image)
+		vr_tail_image.layer = BODY_LAYER+TAIL_LAYER
+		overlays_standing[TAIL_LAYER] = vr_tail_image
+		apply_layer(TAIL_LAYER)
+		return
+	// VOREStation Edit - END
+
 	var/species_tail = species.get_tail(src) // Species tail icon_state prefix.
 
 	//This one is actually not that bad I guess.
@@ -834,9 +864,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!tail_icon)
 		//generate a new one
 		var/species_tail_anim = species.get_tail_animation(src)
+		if(!species_tail_anim && species.icobase_tail) species_tail_anim = species.icobase //VOREStation Code - Allow override of file for non-animated tails
 		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
 		tail_icon = new/icon(species_tail_anim)
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD) // VOREStation edit
 		// The following will not work with animated tails.
 		var/use_species_tail = species.get_tail_hair(src)
 		if(use_species_tail)
@@ -900,12 +931,27 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
 	else
 		set_tail_state("[species.get_tail(src)]_static")
+		toggle_tail_vr(FALSE) //VOREStation Add - So tails stop when someone dies. TODO - Fix this hack ~Leshana
 
 /mob/living/carbon/human/proc/animate_tail_stop()
 	if(QDESTROYING(src))
 		return
 
 	set_tail_state("[species.get_tail(src)]_static")
+
+// VOREStation Edit - Wings! See update_icons_vr.dm for more wing procs
+/mob/living/carbon/human/proc/update_wing_showing()
+	if(QDESTROYING(src))
+		return
+
+	remove_layer(SUIT_LAYER)
+
+	var/image/vr_wing_image = get_wing_image()
+	if(vr_wing_image)
+		vr_wing_image = BODY_LAYER+WING_LAYER
+		overlays_standing[WING_LAYER] = vr_wing_image
+		apply_layer(WING_LAYER)
+// VOREStation Edit end
 
 /mob/living/carbon/human/update_modifier_visuals()
 	if(QDESTROYING(src))
