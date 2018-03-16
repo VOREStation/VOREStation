@@ -54,7 +54,6 @@ var/global/list/robot_modules = list(
 	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
 
 	R.set_module_sprites(sprites)
-	sleep(50) //VOREStation edit: sprite animation
 	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
 
 	for(var/obj/item/I in modules)
