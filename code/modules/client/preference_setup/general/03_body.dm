@@ -741,7 +741,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "<b>Language:</b> [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
-		dat += "</br><b>Often present on human stations.</b>"
+		switch(current_species.rarity_value)
+			if(1 to 2)
+				dat += "</br><b>Often present on human stations.</b>"
+			if(3 to 4)
+				dat += "</br><b>Rarely present on human stations.</b>"
+			if(5)
+				dat += "</br><b>Unheard of on human stations.</b>"
+			else
+				dat += "</br><b>May be present on human stations.</b>"
 	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
 		dat += "</br><b>Whitelist restricted.</b>"
 	if(!current_species.has_organ[O_HEART])
