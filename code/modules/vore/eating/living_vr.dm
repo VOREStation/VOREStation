@@ -19,6 +19,8 @@
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
+	var/can_be_drop_prey = 0
+	var/can_be_drop_pred = 1	//Mobs are pred by default.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -51,7 +53,7 @@
 				B.name = "Stomach"
 				B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
 				B.can_taste = 1
-				
+
 	//Return 1 to hook-caller
 	return 1
 
@@ -147,7 +149,7 @@
 		var/obj/belly/B = loc
 		B.relay_resist(src)
 		return TRUE //resist() on living does this TRUE thing.
-	
+
 	//Other overridden resists go here
 
 	return 0
@@ -192,7 +194,7 @@
 	for(var/belly in src.vore_organs)
 		var/obj/belly/B = belly
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
-	
+
 	P.belly_prefs = serialized
 
 	return 1
@@ -213,6 +215,7 @@
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
 
+	release_vore_contents(silent = TRUE)
 	vore_organs.Cut()
 	for(var/entry in P.belly_prefs)
 		list_to_object(entry,src)
@@ -321,7 +324,7 @@
 		for(var/mob/living/simple_animal/SA in range(10))
 			SA.prey_excludes[src] = world.time
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
-		
+
 		if(isanimal(B.owner))
 			var/mob/living/simple_animal/SA = B.owner
 			SA.update_icons()
@@ -465,7 +468,7 @@
 			to_chat(src,"<font color='blue'>You manage to escape \the [C]!</font>")
 			to_chat(H,"<font color='red'>Somone has climbed out of your [C]!</font>")
 			forceMove(H.loc)
-			
+
 		else //Being held by a human
 			to_chat(src,"<font color='blue'>You start to climb out of \the [C]!</font>")
 			to_chat(H,"<font color='red'>Something is trying to climb out of your [C]!</font>")
@@ -522,17 +525,17 @@
 	if(!vore_selected)
 		to_chat(src,"<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
 		return
-	
+
 	var/obj/item/I = get_active_hand()
 	if(!I)
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
-		
+
 	if(is_type_in_list(I,edible_trash))
 		drop_item()
 		I.forceMove(vore_selected)
 		updateVRPanel()
-		
+
 		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
 			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
 		else if(istype(I,/obj/item/device/flashlight/glowstick))

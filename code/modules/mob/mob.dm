@@ -861,14 +861,17 @@
 /mob/proc/Resting(amount)
 	facing_dir = null
 	resting = max(max(resting,amount),0)
+	update_canmove()
 	return
 
 /mob/proc/SetResting(amount)
 	resting = max(amount,0)
+	update_canmove()
 	return
 
 /mob/proc/AdjustResting(amount)
 	resting = max(resting + amount,0)
+	update_canmove()
 	return
 
 /mob/proc/AdjustLosebreath(amount)
@@ -1143,3 +1146,14 @@ mob/proc/yank_out_object()
 //Throwing stuff
 /mob/proc/throw_item(atom/target)
 	return
+
+/mob/MouseEntered(location, control, params)
+	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips))
+		openToolTip(user = usr, tip_src = src, params = params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
+
+	..()
+
+/mob/MouseExited()
+	closeToolTip(usr) //No reason not to, really
+
+	..()

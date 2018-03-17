@@ -1,6 +1,13 @@
 /mob/living/New()
 	..()
 
+	//Prime this list if we need it.
+	if(has_huds)
+		add_overlay(backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
+		hud_list = list()
+		hud_list.len = TOTAL_HUDS
+		make_hud_overlays()
+
 	//I'll just hang my coat up over here
 	dsoverlay = image('icons/mob/darksight.dmi',global_hud.darksight) //This is a secret overlay! Go look at the file, you'll see.
 	var/mutable_appearance/dsma = new(dsoverlay) //Changing like ten things, might as well.
@@ -13,6 +20,8 @@
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
 	dsoverlay = null
+	if(buckled)
+		buckled.unbuckle_mob(src, TRUE)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -137,8 +146,6 @@ default behaviour is:
 				return
 
 			// VOREStation Edit - Begin
-			// Handle grabbing, stomping, and such of micros!
-			if(handle_micro_bump_other(tmob)) return
 			// Plow that nerd.
 			if(ishuman(tmob))
 				var/mob/living/carbon/human/H = tmob
@@ -147,6 +154,8 @@ default behaviour is:
 					H.Weaken(20)
 					now_pushing = 0
 					return
+			// Handle grabbing, stomping, and such of micros!
+			if(handle_micro_bump_other(tmob)) return
 			// VOREStation Edit - End
 
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
@@ -209,10 +218,10 @@ default behaviour is:
 /mob/living/verb/succumb()
 	set hidden = 1
 	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
-		src.adjustOxyLoss(src.health + src.getMaxHealth() * 2) // Deal 2x health in OxyLoss damage, as before but variable.
-		src.health = src.getMaxHealth() - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
+		src.death()
 		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
-
+	else
+		to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -282,7 +291,8 @@ default behaviour is:
 /mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
 	return getBruteLoss()
 
-/mob/living/proc/adjustBruteLoss(var/amount)
+//'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
+/mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -356,7 +366,8 @@ default behaviour is:
 /mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
 	return getFireLoss()
 
-/mob/living/proc/adjustFireLoss(var/amount)
+//'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
+/mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -900,6 +911,7 @@ default behaviour is:
 
 	resting = !resting
 	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+	update_canmove()
 
 /mob/living/proc/cannot_use_vents()
 	if(mob_size > MOB_SMALL)
@@ -1047,14 +1059,10 @@ default behaviour is:
 			canmove = 0
 			break
 
-	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
-	if( update_icon )	//forces a full overlay update
-		update_icon = 0
-		regenerate_icons()
-	else if( lying != lying_prev )
-		update_icons()
+	if(lying != lying_prev)
+		lying_prev = lying
+		update_transform()
+		
 	return canmove
 
 // Adds overlays for specific modifiers.
@@ -1219,3 +1227,21 @@ default behaviour is:
 	else
 		return ..()
 		
+//Add an entry to overlays, assuming it exists
+/mob/living/proc/apply_hud(cache_index, var/image/I)
+	hud_list[cache_index] = I
+	if((. = hud_list[cache_index]))
+		//underlays += .
+		add_overlay(.)
+
+//Remove an entry from overlays, and from the list
+/mob/living/proc/grab_hud(cache_index)
+	var/I = hud_list[cache_index]
+	if(I)
+		//underlays -= I
+		cut_overlay(I)
+		hud_list[cache_index] = null
+		return I
+
+/mob/living/proc/make_hud_overlays()
+	return

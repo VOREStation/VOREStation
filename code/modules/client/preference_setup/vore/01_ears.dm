@@ -186,8 +186,9 @@
 				pretty_ear_styles[instance.name] = path
 
 		// Present choice to user
-		var/selection = input(user, "Pick ears", "Character Preference") as null|anything in pretty_ear_styles
-		pref.ear_style = pretty_ear_styles[selection]
+		var/new_ear_style = input(user, "Pick ears", "Character Preference", pref.ear_style) as null|anything in pretty_ear_styles
+		if(new_ear_style)
+			pref.ear_style = pretty_ear_styles[new_ear_style]
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -218,8 +219,9 @@
 				pretty_tail_styles[instance.name] = path
 
 		// Present choice to user
-		var/selection = input(user, "Pick tails", "Character Preference") as null|anything in pretty_tail_styles
-		pref.tail_style = pretty_tail_styles[selection]
+		var/new_tail_style = input(user, "Pick tails", "Character Preference", pref.tail_style) as null|anything in pretty_tail_styles
+		if(new_tail_style)
+			pref.tail_style = pretty_tail_styles[new_tail_style]
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -250,8 +252,9 @@
 				pretty_wing_styles[instance.name] = path
 
 		// Present choice to user
-		var/selection = input(user, "Pick wings", "Character Preference") as null|anything in pretty_wing_styles
-		pref.wing_style = pretty_wing_styles[selection]
+		var/new_wing_style = input(user, "Pick wings", "Character Preference", pref.wing_style) as null|anything in pretty_wing_styles
+		if(new_wing_style)
+			pref.wing_style = pretty_wing_styles[new_wing_style]
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 

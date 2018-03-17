@@ -139,6 +139,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	..()
 	if(master && master.active)
 		master.toggle_power()
+		log_game("PACCEL([x],[y],[z]) Was moved while active and turned off.")
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.","singulo")
 
 /obj/structure/particle_accelerator/ex_act(severity)

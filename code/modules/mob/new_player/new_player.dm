@@ -354,6 +354,7 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
+	log_game("JOINED [key_name(character)] as \"[rank]\"")
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
@@ -499,7 +500,9 @@
 	//new_character.dna.UpdateSE()
 
 	// Do the initial caching of the player's body icons.
-	//new_character.force_update_limbs()
+	new_character.force_update_limbs()
+	new_character.update_icons_body()
+	new_character.update_eyes()
 
 	new_character.key = key		//Manually transfer the key to log them in
 
@@ -532,12 +535,12 @@
 		chosen_species = all_species[client.prefs.species]
 
 	if(!chosen_species)
-		return "Human"
+		return SPECIES_HUMAN
 
 	if(is_alien_whitelisted(chosen_species))
 		return chosen_species.name
 
-	return "Human"
+	return SPECIES_HUMAN
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()

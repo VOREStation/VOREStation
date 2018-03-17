@@ -2,6 +2,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST
 	use_power = 0
+	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/mirrored = FALSE
 	var/tee = FALSE
@@ -64,10 +65,12 @@
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()
 
 // Housekeeping and pipe network stuff below
+/obj/machinery/atmospherics/trinary/get_neighbor_nodes_for_init()
+	return list(node1, node2, node3)
+
 /obj/machinery/atmospherics/trinary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
 		network1 = new_network
@@ -113,21 +116,9 @@
 
 	var/list/node_connects = get_node_connect_dirs()
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[1]))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[2]))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node2 = target
-				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[3]))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node3 = target
-				break
+	STANDARD_ATMOS_CHOOSE_NODE(1, node_connects[1])
+	STANDARD_ATMOS_CHOOSE_NODE(2, node_connects[2])
+	STANDARD_ATMOS_CHOOSE_NODE(3, node_connects[3])
 
 	update_icon()
 	update_underlays()

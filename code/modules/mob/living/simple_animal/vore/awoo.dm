@@ -1,6 +1,7 @@
 /mob/living/simple_animal/retaliate/awoo
 	name = "wolfgirl"
 	desc = "AwooOOOOoooo!"
+	tt_desc = "Homo lupus"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "awoo"
 	icon_living = "awoo"

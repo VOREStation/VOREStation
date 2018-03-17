@@ -50,8 +50,6 @@ var/datum/antagonist/mercenary/mercs
 	var/obj/item/device/radio/uplink/U = new(player.loc, player.mind, DEFAULT_TELECRYSTAL_AMOUNT)
 	player.put_in_hands(U)
 
-	player.update_icons_layers()
-
 	create_id("Mercenary", player)
 	create_radio(SYND_FREQ, player)
 	return 1

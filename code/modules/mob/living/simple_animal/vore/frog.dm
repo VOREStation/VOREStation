@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/frog
 	name = "giant frog"
 	desc = "You've heard of having a frog in your throat, now get ready for the reverse."
+	tt_desc = "Anura gigantus"
 	icon = 'icons/mob/vore.dmi'
 	icon_dead = "frog-dead"
 	icon_living = "frog"

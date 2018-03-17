@@ -1,6 +1,7 @@
 /mob/living/simple_animal/fennec
 	name = "fennec"
 	desc = "It's a dusty big-eared sandfox! Adorable!"
+	tt_desc = "Vulpes zerda"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "fennec"
 	icon_living = "fennec"

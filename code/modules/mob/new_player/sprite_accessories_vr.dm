@@ -857,6 +857,12 @@
 		icon_state = "animeeyesouter"
 		body_parts = list(BP_HEAD)
 
+	panda_eye_marks
+		name = "Panda Eye Markings"
+		icon_state = "eyes_panda"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Human")
+
 	catwomantorso
 		name = "Catwoman chest stripes"
 		icon_state = "catwomanchest"

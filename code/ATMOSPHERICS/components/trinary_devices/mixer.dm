@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/trinary/mixer
 	icon = 'icons/atmos/mixer.dmi'
 	icon_state = "map"
+	construction_type = /obj/item/pipe/trinary/flippable
+	pipe_state = "mixer"
 	density = 0
 	level = 1
 
@@ -133,6 +135,8 @@
 //
 obj/machinery/atmospherics/trinary/mixer/t_mixer
 	icon_state = "tmap"
+	construction_type = /obj/item/pipe/trinary  // Can't flip a "T", its symmetrical
+	pipe_state = "t_mixer"
 	dir = SOUTH
 	initialize_directions = SOUTH|EAST|WEST
 	tee = TRUE

@@ -60,40 +60,67 @@
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
 
-/obj/item/weapon/robot_module/robot/medical/crisis //Allows Crisis module to use Handy sprite
+/obj/item/weapon/robot_module/robot/medical/surgeon //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-med"
+						"Acheron" = "mechoid-Medical"
 					 )
 
-/obj/item/weapon/robot_module/robot/clerical/butler //VR Handy sprites
+/obj/item/weapon/robot_module/robot/medical/crisis //VOREStation sprites
+	vr_sprites = list(
+						"Handy" = "handy-med",
+						"Acheron" = "mechoid-Medical"
+					 )
+
+/obj/item/weapon/robot_module/robot/clerical/butler //VOREStation sprites
 	vr_sprites = list(
 						"Handy - Service" = "handy-service",
-						"Handy - Hydro" = "handy-hydro"
+						"Handy - Hydro" = "handy-hydro",
+						"Acheron" = "mechoid-Service"
 					 )
 
-/obj/item/weapon/robot_module/robot/clerical/general //VR Handy sprites
+/obj/item/weapon/robot_module/robot/clerical/general //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-clerk"
+						"Handy" = "handy-clerk",
+						"Acheron" = "mechoid-Service"
 					 )
 
-/obj/item/weapon/robot_module/robot/janitor //VR Handy sprites
+/obj/item/weapon/robot_module/robot/janitor //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-janitor"
+						"Handy" = "handy-janitor",
+						"Acheron" = "mechoid-Janitor"
 					 )
 
-/obj/item/weapon/robot_module/robot/security/general //VR Handy sprites
+/obj/item/weapon/robot_module/robot/security/general //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-sec"
+						"Handy" = "handy-sec",
+						"Acheron" = "mechoid-Security"
 					 )
 
-/obj/item/weapon/robot_module/robot/miner //VR Handy sprites
+/obj/item/weapon/robot_module/robot/miner //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-miner"
+						"Handy" = "handy-miner",
+						"Acheron" = "mechoid-Miner"
 					 )
 
-/obj/item/weapon/robot_module/robot/standard //VR Handy sprites
+/obj/item/weapon/robot_module/robot/standard //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-standard"
+						"Handy" = "handy-standard",
+						"Acheron" = "mechoid-Standard"
+					 )
+
+/obj/item/weapon/robot_module/robot/engineering/general //VOREStation sprites
+	vr_sprites = list(
+						"Acheron" = "mechoid-Engineering"
+					 )
+
+/obj/item/weapon/robot_module/robot/research //VOREStation sprites
+	vr_sprites = list(
+						"Acheron" = "mechoid-Science"
+					 )
+
+/obj/item/weapon/robot_module/robot/security/combat //VOREStation sprites
+	vr_sprites = list(
+						"Acheron" = "mechoid-Combat"
 					 )
 
 /obj/item/weapon/robot_module/robot/knine

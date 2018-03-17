@@ -152,7 +152,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	if(pref.species)
 		S = all_species[pref.species]
 	else
-		S = all_species["Human"]
+		S = all_species[SPECIES_HUMAN]
 	var/list/possible_genders = S.genders
 	if(!pref.organ_data || pref.organ_data[BP_TORSO] != "cyborg")
 		return possible_genders

@@ -14,6 +14,7 @@
 	src.adding = list()
 	src.other = list()
 	src.hotkeybuttons = list() //These can be disabled for hotkey users
+	src.slot_info = list()
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
@@ -33,6 +34,7 @@
 		inv_box.screen_loc =  slot_data["loc"]
 		inv_box.slot_id =     slot_data["slot"]
 		inv_box.icon_state =  slot_data["state"]
+		slot_info["[inv_box.slot_id]"] = inv_box.screen_loc
 
 		if(slot_data["dir"])
 			inv_box.set_dir(slot_data["dir"])
@@ -164,9 +166,9 @@
 		inv_box.slot_id = slot_r_hand
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
-
 		src.r_hand_hud_object = inv_box
 		src.adding += inv_box
+		slot_info["[slot_r_hand]"] = inv_box.screen_loc
 
 		inv_box = new /obj/screen/inventory/hand()
 		inv_box.hud = src
@@ -181,6 +183,7 @@
 		inv_box.alpha = ui_alpha
 		src.l_hand_hud_object = inv_box
 		src.adding += inv_box
+		slot_info["[slot_l_hand]"] = inv_box.screen_loc
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"

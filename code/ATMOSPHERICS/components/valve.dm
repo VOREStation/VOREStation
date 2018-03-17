@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/valve
 	icon = 'icons/atmos/valve.dmi'
 	icon_state = "map_valve0"
+	construction_type = /obj/item/pipe/binary
+	pipe_state = "mvalve"
 
 	name = "manual valve"
 	desc = "A pipe valve"
@@ -44,6 +46,9 @@
 			initialize_directions = NORTH|SOUTH
 		if(EAST || WEST)
 			initialize_directions = EAST|WEST
+
+/obj/machinery/atmospherics/valve/get_neighbor_nodes_for_init()
+	return list(node1, node2)
 
 /obj/machinery/atmospherics/valve/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
@@ -153,16 +158,8 @@
 			else if (!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node2 = target
-				break
+	STANDARD_ATMOS_CHOOSE_NODE(1, node1_dir)
+	STANDARD_ATMOS_CHOOSE_NODE(2, node2_dir)
 
 	build_network()
 
@@ -224,6 +221,7 @@
 	name = "digital valve"
 	desc = "A digitally controlled valve."
 	icon = 'icons/atmos/digital_valve.dmi'
+	pipe_state = "dvalve"
 
 	var/frequency = 0
 	var/id = null
@@ -306,8 +304,7 @@
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
 	..()

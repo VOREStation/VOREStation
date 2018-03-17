@@ -14,8 +14,11 @@
 	speed = 1
 	move_to_delay = 1
 
-	melee_damage_lower = 3
-	melee_damage_upper = 12
+	melee_damage_lower = 12
+	melee_damage_upper = 28
+	attack_armor_pen = 5
+	attack_sharp = 1
+	attack_edge = 1
 
 	attacktext = list("gouged")
 	cold_damage_per_tick = 0

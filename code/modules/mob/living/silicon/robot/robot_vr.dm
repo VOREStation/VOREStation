@@ -7,6 +7,7 @@
 	var/leap_at
 	var/dogborg = FALSE //Dogborg special features (overlays etc.)
 	var/wideborg = FALSE //When the borg simply doesn't use standard 32p size.
+	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
 	var/vr_icons = list(
@@ -16,7 +17,17 @@
 					   "handy-janitor",
 					   "handy-miner",
 					   "handy-standard",
-					   "handy-sec"
+					   "handy-sec",
+					   "mechoid-Standard",
+					   "mechoid-Medical",
+					   "mechoid-Security",
+					   "mechoid-Science",
+					   "mechoid-Engineering",
+					   "mechoid-Miner",
+					   "mechoid-Service",
+					   "mechoid-Janitor",
+					   "mechoid-Combat",
+					   "mechoid-Combat-roll"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 

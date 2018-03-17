@@ -55,14 +55,21 @@ var/global/list/limb_icon_cache = list()
 	overlays.Cut()
 	if(!owner || !owner.species)
 		return
-	if(owner.should_have_organ(O_EYES))
+	if(owner.species.appearance_flags & HAS_EYE_COLOR)
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
-			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+			//Should have eyes
+			if(owner.should_have_organ(O_EYES))
+				//And we have them
+				if(eyes)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				//They're gone!
+				else
+					eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+			//We have weird other-sorts of eyes
 			else
-				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+				eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
 			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
 			overlays |= eyes_icon
 
@@ -106,7 +113,7 @@ var/global/list/limb_icon_cache = list()
 	if(owner && owner.gender == MALE)
 		gender = "m"
 
-	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : "Human"]" //VOREStation Edit
+	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
@@ -179,7 +186,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(nonsolid)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
-		if(species && species.get_bodytype(owner) != "Human")
+		if(species && species.get_bodytype(owner) != SPECIES_HUMAN)
 			applying.SetIntensity(1) // Unathi, Taj and Skrell have -very- dark base icons. VOREStation edit fixes this and brings the number back to 1
 		else
 			applying.SetIntensity(1) //VOREStation edit to make Prometheans not look like shit with mob coloring.

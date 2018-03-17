@@ -289,7 +289,7 @@
 	set name = "Eject Recharger"
 	set src in oview(1)
 
-	if(usr.incapacitated())
+	if(usr.incapacitated() || !isliving(usr))
 		return
 
 	go_out()
@@ -301,8 +301,9 @@
 	set name = "Enter Recharger"
 	set src in oview(1)
 
-	if(!usr.incapacitated())
+	if(usr.incapacitated() || !isliving(usr))
 		return
+	
 	go_in(usr)
 
 /obj/machinery/recharge_station/ghost_pod_recharger

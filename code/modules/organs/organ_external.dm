@@ -107,15 +107,16 @@
 	if(!(robotic >= ORGAN_ROBOT))
 		return
 	var/burn_damage = 0
-	switch (severity)
-		if (1)
-			burn_damage += rand(8, 13)
-		if (2)
-			burn_damage += rand(6, 9)
-		if(3)
-			burn_damage += rand(4, 7)
-		if(4)
-			burn_damage += rand(1, 5)
+	for(var/i = 1; i <= robotic; i++)
+		switch (severity)
+			if (1)
+				burn_damage += rand(5, 8)
+			if (2)
+				burn_damage += rand(4, 6)
+			if(3)
+				burn_damage += rand(2, 5)
+			if(4)
+				burn_damage += rand(1, 3)
 
 	if(burn_damage)
 		take_damage(0, burn_damage)
@@ -213,8 +214,6 @@
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
-	return
-
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
 	..(holder, 0)
@@ -400,7 +399,7 @@
 		user << "<span class='notice'>Nothing to fix!</span>"
 		return 0
 
-	if(damage_amount >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
+	if(brute_dam + burn_dam >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
 		user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 		return 0
 
@@ -775,6 +774,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(robotic >= ORGAN_ROBOT))
 		src.fracture()
 
+	update_health()
+
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)
 /obj/item/organ/external/update_icon()
@@ -810,6 +811,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 		tbrute = 3
 	return "[tbrute][tburn]"
 
+/obj/item/organ/external/take_damage()
+	..()
+
+	if(!cannot_amputate)
+		if(nonsolid && damage >= max_damage)
+			droplimb(TRUE, DROPLIMB_BLUNT)
+		//VOREStation Add Start
+		if(robotic >= ORGAN_NANOFORM && damage >= max_damage)
+			droplimb(TRUE, DROPLIMB_BURN)
+		//VOREStation Add End
+
 /****************************************************
 			   DISMEMBERMENT
 ****************************************************/
@@ -819,8 +831,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(cannot_amputate || !owner)
 		return
-
-	if(disintegrate == DROPLIMB_EDGE && nonsolid)
+	//VOREStation Add
+	if(robotic >= ORGAN_NANOFORM)
+		disintegrate = DROPLIMB_BURN //Ashes will be fine
+	else if(disintegrate == DROPLIMB_EDGE && nonsolid) //VOREStation Add End
 		disintegrate = DROPLIMB_BLUNT //splut
 
 	switch(disintegrate)
@@ -874,7 +888,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	spawn(1)
 		victim.updatehealth()
 		victim.UpdateDamageIcon()
-		victim.regenerate_icons()
+		victim.update_icons_body()
 		dir = 2
 
 	switch(disintegrate)
@@ -1091,7 +1105,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	unmutate()
 
 	for(var/obj/item/organ/external/T in children)
-		T.robotize(company, 1)
+		T.robotize(company, keep_organs = keep_organs)
 
 	if(owner)
 

@@ -470,11 +470,11 @@ character_name: Chakat Taiga
 item_path: /obj/item/clothing/under/fluff/taiga
 }
 
-{
-ckey: kligor
-character_name: Andy Gettemy
-item_path: /obj/item/device/pda_mod/fluff/kligor
-}
+#{
+#ckey: kligor
+#character_name: Andy Gettemy
+#item_path: /obj/item/device/pda_mod/fluff/kligor
+#}
 
 {
 ckey: konabird
@@ -858,11 +858,11 @@ item_path: /obj/item/clothing/mask/gas/sexymime
 }
 
 # ######## W CKEYS
-{
-ckey: warbrand2
-character_name: Brandy draca
-item_path: /obj/item/device/pda_mod/fluff/warbrand2
-}
+#{
+#ckey: warbrand2
+#character_name: Brandy draca
+#item_path: /obj/item/device/pda_mod/fluff/warbrand2
+#}
 
 {
 ckey: werebear
