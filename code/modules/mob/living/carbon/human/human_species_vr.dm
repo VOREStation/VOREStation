@@ -19,3 +19,9 @@
 
 /mob/living/carbon/human/spider/New(var/new_loc)
 	..(new_loc, "Vasilissan")
+
+/mob/living/carbon/human/vulpkanin/New(var/new_loc)
+	..(new_loc, "Vulpkanin")
+
+/mob/living/carbon/human/protean/New(var/new_loc)
+	..(new_loc, "Protean")

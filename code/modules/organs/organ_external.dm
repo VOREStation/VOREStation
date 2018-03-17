@@ -816,7 +816,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(!cannot_amputate)
 		if(nonsolid && damage >= max_damage)
-			droplimb(DROPLIMB_BLUNT)
+			droplimb(TRUE, DROPLIMB_BLUNT)
+		//VOREStation Add Start
+		if(robotic >= ORGAN_NANOFORM && damage >= max_damage)
+			droplimb(TRUE, DROPLIMB_BURN)
+		//VOREStation Add End
 
 /****************************************************
 			   DISMEMBERMENT
@@ -827,8 +831,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(cannot_amputate || !owner)
 		return
-
-	if(disintegrate == DROPLIMB_EDGE && nonsolid)
+	//VOREStation Add
+	if(robotic >= ORGAN_NANOFORM)
+		disintegrate = DROPLIMB_BURN //Ashes will be fine
+	else if(disintegrate == DROPLIMB_EDGE && nonsolid) //VOREStation Add End
 		disintegrate = DROPLIMB_BLUNT //splut
 
 	switch(disintegrate)
