@@ -289,7 +289,7 @@
 	//Record where they should go
 	var/atom/reform_spot = blob.drop_location()
 
-	//Mail them to nullspace
+	//Move them back where the blob was
 	forceMove(reform_spot)
 
 	//Put our owner in it (don't transfer var/mind)
