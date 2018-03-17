@@ -75,12 +75,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	//This is a pretty terrible way of doing this.
 	spawn(5 SECONDS) //Wait for our mob to finish spawning.
 		if(ismob(loc))
-			register_device(loc)
+			register_device(loc.name)
 			initialize_exonet(loc)
 		else if(istype(loc, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = loc
 			if(ismob(S.loc))
-				register_device(S.loc)
+				register_device(S.loc.name)
 				initialize_exonet(S.loc)
 
 // Proc: examine()
@@ -268,12 +268,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: register_device()
 // Parameters: 1 (user - the person to use their name for)
 // Description: Updates the owner's name and the device's name.
-/obj/item/device/communicator/proc/register_device(mob/user)
-	if(!user)
+/obj/item/device/communicator/proc/register_device(new_name)
+	if(!new_name)
 		return
-	owner = user.name
+	owner = new_name
 
-	name = "[owner]'s [initial(name)]"
+	name = "[new_name]'s [initial(name)]"
 	if(camera)
 		camera.name = name
 		camera.c_tag = name

@@ -264,7 +264,7 @@ var/list/ai_verbs_default = list(
 		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
 
 	if(aiCommunicator)
-		aiCommunicator.register_device(src)
+		aiCommunicator.register_device(src.name)
 
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.

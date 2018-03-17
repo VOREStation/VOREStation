@@ -43,7 +43,6 @@
 		..()
 		nif = newloc
 		nifsoft = soft
-		spawn(10) register_device(nif.human) //Need to outwait the other spawn in communicators, sigh.
 		qdel_null(camera) //Not supported on internal one.
 
 	Destroy()
@@ -52,6 +51,11 @@
 			nif = null
 		nifsoft = null
 		return ..()
+
+/obj/item/device/communicator/commlink/register_device(var/new_name)
+	owner = new_name
+	name = "[owner]'s [initial(name)]"
+	nif.save_data["commlink_name"] = owner
 
 //So that only the owner's chat is relayed to others.
 /obj/item/device/communicator/commlink/hear_talk(mob/living/M, text, verb, datum/language/speaking)
