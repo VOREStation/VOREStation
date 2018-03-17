@@ -291,7 +291,8 @@ default behaviour is:
 /mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
 	return getBruteLoss()
 
-/mob/living/proc/adjustBruteLoss(var/amount)
+//'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
+/mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -365,7 +366,8 @@ default behaviour is:
 /mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
 	return getFireLoss()
 
-/mob/living/proc/adjustFireLoss(var/amount)
+//'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
+/mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
