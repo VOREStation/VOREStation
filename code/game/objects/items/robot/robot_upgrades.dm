@@ -26,6 +26,7 @@
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
+	R.transform_with_anim() //VOREStation edit: sprite animation
 	R.uneq_all()
 	R.modtype = initial(R.modtype)
 	R.hands.icon_state = initial(R.hands.icon_state)
