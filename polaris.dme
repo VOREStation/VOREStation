@@ -44,6 +44,7 @@
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\qdel.dm"
 #include "code\__defines\research.dm"
+#include "code\__defines\sound.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\stat_tracking.dm"
 #include "code\__defines\subsystems.dm"

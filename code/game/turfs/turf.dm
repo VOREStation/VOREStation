@@ -283,3 +283,6 @@ var/const/enterloopsanity = 100
 		if(isliving(AM))
 			var/mob/living/M = AM
 			M.turf_collision(src, speed)
+
+/turf/AllowDrop()
+	return TRUE
