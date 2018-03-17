@@ -17,7 +17,17 @@
 					   "handy-janitor",
 					   "handy-miner",
 					   "handy-standard",
-					   "handy-sec"
+					   "handy-sec",
+					   "mechoid-Standard",
+					   "mechoid-Medical",
+					   "mechoid-Security",
+					   "mechoid-Science",
+					   "mechoid-Engineering",
+					   "mechoid-Miner",
+					   "mechoid-Service",
+					   "mechoid-Janitor",
+					   "mechoid-Combat",
+					   "mechoid-Combat-roll"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
