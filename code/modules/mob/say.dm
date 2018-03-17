@@ -11,7 +11,7 @@
 	set name = "Say"
 	set category = "IC"
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	usr.say(message)
 
 /mob/verb/me_verb(message as text)
@@ -24,7 +24,7 @@
 
 	message = sanitize(message)
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote("me",usr.emote_type,message)
 	else

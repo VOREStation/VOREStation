@@ -98,11 +98,11 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see the speech indicator."
+	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] have the speech indicator."
 
 	prefs.save_preferences()
 
-	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","TTIND") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ahelp_sound()
 	set name = "Toggle Admin Help Sound"

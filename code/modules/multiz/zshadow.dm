@@ -117,13 +117,6 @@
 	if(shadow)
 		shadow.visible_message(message, self_message, blind_message)
 
-// We should show the typing indicator so people above us can tell we're about to talk.
-/mob/set_typing_indicator(var/state)
-	var/old_typing = src.typing
-	. = ..()
-	if(shadow && old_typing != src.typing)
-		shadow.set_typing_indicator(state) // Okay the real proc changed something! That means we should handle things too
-
 /mob/zshadow/set_typing_indicator(var/state)
 	if(!typing_indicator)
 		typing_indicator = new
