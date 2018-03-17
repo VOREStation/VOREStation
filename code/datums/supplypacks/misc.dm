@@ -73,7 +73,7 @@
 
 /datum/supply_packs/misc/holoplant
 	name = "Holoplant Pot"
-	contains = list()
+	contains = list(/obj/machinery/holoplant/shipped)
 	cost = 15
-	containertype = /obj/machinery/holoplant/shipped
-	containername = "holoplant"
+	containertype = /obj/structure/closet/crate
+	containername = "Holoplant crate"

@@ -13,6 +13,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 /mob/living/simple_animal/retaliate/gaslamp
 	name = "gaslamp"
 	desc = "Some sort of floaty alien with a warm glow. This creature is endemic to Virgo-3B."
+	tt_desc = "Semaeostomeae virginus"
 	icon = 'icons/mob/vore32x64.dmi'
 	icon_state = "gaslamp"
 	icon_living = "gaslamp"

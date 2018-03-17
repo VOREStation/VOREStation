@@ -37,8 +37,8 @@
 /area/submap/Field1
 	name = "Field 1"
 
-/area/submap/Theifc
-	name = "Theif Cave"
+/area/submap/Thiefc
+	name = "Thieves Cave"
 
 /area/submap/smol2
 	name = "Small 2"
@@ -73,3 +73,8 @@
 /area/submap/snow5
 	name = "Snow5"
 
+/area/submap/SupplyDrop2
+	name = "Supply Drop 2"
+
+/area/submap/RationCache
+	name = "Ration Cache"

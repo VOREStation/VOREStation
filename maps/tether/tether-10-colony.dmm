@@ -11467,11 +11467,11 @@
 	dir = 2;
 	icon = 'icons/obj/doors/Door2x1glass.dmi';
 	icon_state = "door_closed";
-	name = "Elevator";
-	on_enter_occupant_message = "The elevator door closes slowly, You can now head for residential, comercial and several other floors.";
+	name = "elevator";
+	on_enter_occupant_message = "The elevator doors close slowly. You can now head off for the residential, commercial, and other floors.";
 	on_store_message = "has departed for one of the various colony floors";
-	on_store_name = "Colonial Oversight";
-	on_store_visible_message_2 = "to the colonial districts.";
+	on_store_name = "Colony Oversight";
+	on_store_visible_message_2 = "to the colony districts.";
 	time_till_despawn = 5
 	},
 /turf/unsimulated/floor/steel,

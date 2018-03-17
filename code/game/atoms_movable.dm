@@ -296,7 +296,3 @@
 /atom/movable/proc/adjust_scale(new_scale)
 	icon_scale = new_scale
 	update_transform()
-
-// Stub for now, override with better things.
-/atom/movable/proc/drop_location()
-	return loc

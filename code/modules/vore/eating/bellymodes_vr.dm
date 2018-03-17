@@ -3,7 +3,7 @@
 	if((times_fired < next_process) || !contents.len)
 		recent_sound = FALSE
 		return SSBELLIES_IGNORED
-	
+
 	if(loc != owner)
 		if(istype(owner))
 			loc = owner
@@ -41,7 +41,7 @@
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			play_sound = pick(digestion_sounds)
-			
+
 		for (var/mob/living/M in contents)
 			//Pref protection!
 			if (!M.digestable || M.absorbed)
@@ -122,9 +122,8 @@
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
 				if(thingy)
 					M.unEquip(thingy,force = TRUE)
-					thingy.forceMove(owner)
-					contents |= thingy
-					digest_item(T)
+					digest_item(thingy)
+					break
 			M.updateVRPanel()
 
 		owner.updateVRPanel()
@@ -472,5 +471,5 @@
 			put_in_egg(P,1)
 
 	if(play_sound)
-		playsound(src, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, ignore_walls = FALSE, preference = /datum/client_preference/digestion_noises)
+		playsound(src, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 	return SSBELLIES_PROCESSED

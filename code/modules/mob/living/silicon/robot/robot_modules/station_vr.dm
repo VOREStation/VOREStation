@@ -60,40 +60,67 @@
 	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
 
-/obj/item/weapon/robot_module/robot/medical/crisis //Allows Crisis module to use Handy sprite
+/obj/item/weapon/robot_module/robot/medical/surgeon //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-med"
+						"Acheron" = "mechoid-Medical"
 					 )
 
-/obj/item/weapon/robot_module/robot/clerical/butler //VR Handy sprites
+/obj/item/weapon/robot_module/robot/medical/crisis //VOREStation sprites
+	vr_sprites = list(
+						"Handy" = "handy-med",
+						"Acheron" = "mechoid-Medical"
+					 )
+
+/obj/item/weapon/robot_module/robot/clerical/butler //VOREStation sprites
 	vr_sprites = list(
 						"Handy - Service" = "handy-service",
-						"Handy - Hydro" = "handy-hydro"
+						"Handy - Hydro" = "handy-hydro",
+						"Acheron" = "mechoid-Service"
 					 )
 
-/obj/item/weapon/robot_module/robot/clerical/general //VR Handy sprites
+/obj/item/weapon/robot_module/robot/clerical/general //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-clerk"
+						"Handy" = "handy-clerk",
+						"Acheron" = "mechoid-Service"
 					 )
 
-/obj/item/weapon/robot_module/robot/janitor //VR Handy sprites
+/obj/item/weapon/robot_module/robot/janitor //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-janitor"
+						"Handy" = "handy-janitor",
+						"Acheron" = "mechoid-Janitor"
 					 )
 
-/obj/item/weapon/robot_module/robot/security/general //VR Handy sprites
+/obj/item/weapon/robot_module/robot/security/general //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-sec"
+						"Handy" = "handy-sec",
+						"Acheron" = "mechoid-Security"
 					 )
 
-/obj/item/weapon/robot_module/robot/miner //VR Handy sprites
+/obj/item/weapon/robot_module/robot/miner //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-miner"
+						"Handy" = "handy-miner",
+						"Acheron" = "mechoid-Miner"
 					 )
 
-/obj/item/weapon/robot_module/robot/standard //VR Handy sprites
+/obj/item/weapon/robot_module/robot/standard //VOREStation sprites
 	vr_sprites = list(
-						"Handy" = "handy-standard"
+						"Handy" = "handy-standard",
+						"Acheron" = "mechoid-Standard"
+					 )
+
+/obj/item/weapon/robot_module/robot/engineering/general //VOREStation sprites
+	vr_sprites = list(
+						"Acheron" = "mechoid-Engineering"
+					 )
+
+/obj/item/weapon/robot_module/robot/research //VOREStation sprites
+	vr_sprites = list(
+						"Acheron" = "mechoid-Science"
+					 )
+
+/obj/item/weapon/robot_module/robot/security/combat //VOREStation sprites
+	vr_sprites = list(
+						"Acheron" = "mechoid-Combat"
 					 )
 
 /obj/item/weapon/robot_module/robot/knine
@@ -120,10 +147,13 @@
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
 	//R.icon_state = "k9"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -171,10 +201,13 @@
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
 	//R.icon_state = "medihound"
 	R.pixel_x 	 = -16
 	R.old_x  	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/ert
@@ -198,9 +231,12 @@
 	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
 	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup
@@ -220,10 +256,13 @@
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
 	//R.icon_state = "scrubpup"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -252,9 +291,21 @@
 	src.emag = new /obj/item/weapon/hand_tele(src)
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
 	//R.icon_state = "science"
 	R.pixel_x 	 = -16
 	R.old_x 	 = -16
+	R.default_pixel_x = -16
 	R.dogborg = TRUE
+	R.wideborg = TRUE
 	..()
 
+/obj/item/weapon/robot_module/Reset(var/mob/living/silicon/robot/R)
+	R.pixel_x = initial(pixel_x)
+	R.pixel_y = initial(pixel_y)
+	R.icon = initial(R.icon)
+	R.dogborg = FALSE
+	R.wideborg = FALSE
+	R.ui_style_vr = FALSE
+	R.default_pixel_x = initial(pixel_x)
+	..()

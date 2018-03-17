@@ -63,7 +63,7 @@
 			src << "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>"
 
 	if (message)
-		log_emote("[name]/[key] : [message]")
+		log_emote(message, src)
 
 		for(var/mob/M in dead_mob_list)
 			if (!M.client || istype(M, /mob/new_player))

@@ -122,6 +122,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/mob_tooltips
+	description ="Mob tooltips"
+	key = "MOB_TOOLTIPS"
+	enabled_description = "Show"
+	disabled_description = "Hide"	
+
 /datum/client_preference/attack_icons
 	description ="Attack icons"
 	key = "ATTACK_ICONS"

@@ -23,7 +23,7 @@
 /mob/living/carbon/alien/diona/New()
 
 	..()
-	species = all_species["Diona"]
+	species = all_species[SPECIES_DIONA]
 	add_language(LANGUAGE_ROOTGLOBAL)
 	add_language(LANGUAGE_GALCOM)
 	verbs += /mob/living/carbon/alien/diona/proc/merge

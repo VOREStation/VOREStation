@@ -100,7 +100,7 @@
 		user.put_in_hands(S)
 	else
 		visible_message("[user] starts compacting the snowball.", "You start compacting the snowball.")
-		if(do_after(user, 2000))
+		if(do_after(user, 2 SECONDS))
 			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
 			del(src)
 			user.put_in_hands(S)
@@ -108,6 +108,6 @@
 /obj/item/weapon/material/snow/snowball/reinforced
 	name = "snowball"
 	desc = "A well-formed and fun snowball. It looks kind of dangerous."
-	icon_state = "snowball-reinf"
+	//icon_state = "reinf-snowball"
 	force_divisor = 0.20
 	thrown_force_divisor = 0.25

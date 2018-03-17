@@ -9,8 +9,8 @@ var/list/holder_mob_icon_cache = list()
 	show_messages = 1
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/head.dmi',
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 
 	origin_tech = null
@@ -83,8 +83,6 @@ var/list/holder_mob_icon_cache = list()
 			H.update_inv_l_hand()
 		else if(H.r_hand == src)
 			H.update_inv_r_hand()
-		else
-			H.regenerate_icons()
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona

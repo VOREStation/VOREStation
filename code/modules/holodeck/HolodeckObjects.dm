@@ -104,8 +104,8 @@
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	initial_flooring = null
 
-/turf/simulated/floor/holofloor/desert/New()
-	..()
+/turf/simulated/floor/holofloor/desert/initialize()
+	. = ..()
 	if(prob(10))
 		add_overlay("asteroid[rand(0,9)]")
 

@@ -80,29 +80,34 @@
 #define BLOCKHEADHAIR   0x20    // Hides the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR       0x40    // Hides the user's hair, facial and otherwise.
 
-// Slots.
-#define slot_back        1
-#define slot_wear_mask   2
-#define slot_handcuffed  3
-#define slot_l_hand      4
-#define slot_r_hand      5
-#define slot_belt        6
-#define slot_wear_id     7
-#define slot_l_ear       8
-#define slot_glasses     9
+// Slots as numbers //
+//Hands
+#define slot_l_hand      1
+#define slot_r_hand      2 //Some things may reference this, try to keep it here
+//Shown unless F12 pressed
+#define slot_back        3
+#define slot_belt        4
+#define slot_wear_id     5
+#define slot_l_store     6
+#define slot_r_store     7 //Some things may reference this, try to keep it here
+//Shown when inventory unhidden
+#define slot_glasses     8
+#define slot_wear_mask   9
 #define slot_gloves      10
 #define slot_head        11
 #define slot_shoes       12
 #define slot_wear_suit   13
 #define slot_w_uniform   14
-#define slot_l_store     15
-#define slot_r_store     16
-#define slot_s_store     17
-#define slot_in_backpack 18
-#define slot_legcuffed   19
-#define slot_r_ear       20
-#define slot_legs        21
-#define slot_tie         22
+#define slot_s_store     15
+#define slot_l_ear       16
+#define slot_r_ear       17
+//Secret slots
+#define slot_legs        18
+#define slot_tie         19
+#define slot_handcuffed  20
+#define slot_legcuffed   21
+#define slot_in_backpack 22
+#define SLOT_TOTAL       22
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.
@@ -120,7 +125,7 @@
 #define slot_head_str      	"slot_head"
 #define slot_wear_mask_str 	"slot_wear_mask"
 #define slot_handcuffed_str "slot_handcuffed"
-#define slot_legcuffed_str "slot_legcuffed"
+#define slot_legcuffed_str	"slot_legcuffed"
 #define slot_wear_mask_str 	"slot_wear_mask"
 #define slot_wear_id_str  	"slot_wear_id"
 #define slot_gloves_str  	"slot_gloves"

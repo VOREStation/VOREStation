@@ -12,7 +12,7 @@
 #include "bonfire.dmm"
 #include "Rocky5.dmm"
 #include "Field1.dmm"
-#include "Theifc.dmm"
+#include "Thiefc.dmm"
 #include "smol2.dmm"
 #include "Mechpt.dmm"
 #include "Boathouse.dmm"
@@ -24,7 +24,8 @@
 #include "Snow3.dmm"
 #include "Snow4.dmm"
 #include "Snow5.dmm"
-
+#include "SupplyDrop2.dmm"
+#include "RationCache.dmm"
 #endif
 
 
@@ -110,10 +111,10 @@
 	mappath = 'maps/submaps/surface_submaps/plains/Field1.dmm'
 	cost = 20
 
-/datum/map_template/surface/plains/Theifc
-	name = "Theif Cave"
-	desc = "A theives stash"
-	mappath = 'maps/submaps/surface_submaps/plains/Theifc.dmm'
+/datum/map_template/surface/plains/Thiefc
+	name = "Thieves Cave"
+	desc = "A thieves stash"
+	mappath = 'maps/submaps/surface_submaps/plains/Thiefc.dmm'
 	cost = 20
 
 /datum/map_template/surface/plains/smol2
@@ -181,3 +182,15 @@
 	desc = "Please stop the snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow5.dmm'
 	cost = 5
+
+/datum/map_template/surface/plains/RationCache
+	name = "Ration Cache"
+	desc = "A forgotten cache of emergency rations."
+	mappath = 'maps/submaps/surface_submaps/plains/RationCache.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/SupplyDrop2
+	name = "Supply Drop 2"
+	desc = "A drop pod that's clearly been here a while, most of the things inside are rusted and worthless."
+	mappath = 'maps/submaps/surface_submaps/plains/SupplyDrop2.dmm'
+	cost = 8

@@ -303,7 +303,7 @@
 	usr << "<span class='notice'>You install [C] in [src].</span>"
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
-	if(mechanical)
+	if(!mechanical)
 		return
 	if(!cell)
 		return

@@ -8,19 +8,21 @@
 
 /datum/controller/process/scheduler/setup()
 	name = "scheduler"
-	schedule_interval = 3 SECONDS
+	schedule_interval = 1 SECOND
 	scheduled_tasks = list()
 	scheduler = src
 
 /datum/controller/process/scheduler/doWork()
+	var/world_time = world.time
 	for(last_object in scheduled_tasks)
 		var/datum/scheduled_task/scheduled_task = last_object
+		if(world_time < scheduled_task.trigger_time)
+			break // Too early for this one, and therefore too early for all remaining.
 		try
-			if(world.time > scheduled_task.trigger_time)
-				unschedule(scheduled_task)
-				scheduled_task.pre_process()
-				scheduled_task.process()
-				scheduled_task.post_process()
+			unschedule(scheduled_task)
+			scheduled_task.pre_process()
+			scheduled_task.process()
+			scheduled_task.post_process()
 		catch(var/exception/e)
 			catchException(e, last_object)
 		SCHECK
@@ -45,7 +47,7 @@
 	stat(null, "[scheduled_tasks.len] task\s")
 
 /datum/controller/process/scheduler/proc/schedule(var/datum/scheduled_task/st)
-	scheduled_tasks += st
+	dd_insertObjectList(scheduled_tasks, st)
 
 /datum/controller/process/scheduler/proc/unschedule(var/datum/scheduled_task/st)
 	scheduled_tasks -= st
@@ -105,6 +107,9 @@
 	task_after_process = null
 	task_after_process_args.Cut()
 	return ..()
+
+/datum/scheduled_task/dd_SortValue()
+	return trigger_time
 
 /datum/scheduled_task/proc/pre_process()
 	task_triggered_event.raise_event(list(src))

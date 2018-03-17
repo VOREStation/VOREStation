@@ -292,6 +292,11 @@
 	desc = "Because justice isn't going to dispense itself."
 	icon_state = "cowboy_wide"
 
+/obj/item/clothing/head/cowboy_hat/small
+	name = "small cowboy hat"
+	desc = "For the tiniest of cowboys."
+	icon_state = "cowboy_small"
+
 /obj/item/clothing/head/witchwig
 	name = "witch costume wig"
 	desc = "Eeeee~heheheheheheh!"

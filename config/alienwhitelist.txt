@@ -1,4 +1,5 @@
 aether_elemental - Daemon
+aruis - Diona
 aruis - Xenochimera
 azmodan412 - Xenochimera
 azmodan412 - Xenomorph Hybrid

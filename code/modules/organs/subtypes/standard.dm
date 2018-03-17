@@ -23,7 +23,7 @@
 	organ_rel_size = 70
 	base_miss_chance = 10
 
-/obj/item/organ/external/chest/robotize()
+/obj/item/organ/external/chest/robotize(var/company, var/skip_prosthetics = 0, var/keep_organs = 0)
 	if(..())
 		// Give them a new cell.
 		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
@@ -305,6 +305,12 @@
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 			owner.eye_blurry += 20 //Specific level 2 'feature
+
+/obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/toy/plushie) || istype(I, /obj/item/organ/external/head))
+		user.visible_message("<span class='notice'>[user] makes \the [I] kiss \the [src]!.</span>", \
+		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
+	return ..()
 
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"

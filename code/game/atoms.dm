@@ -502,3 +502,18 @@
 	if(A && A.has_gravity())
 		return TRUE
 	return FALSE
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : get_turf(L)
+
+/atom/proc/AllowDrop()
+	return FALSE
+
+/atom/proc/get_nametag_name(mob/user)
+	return name
+
+/atom/proc/get_nametag_desc(mob/user)
+	return "" //Desc itself is often too long to use

@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/panther
 	name = "panther"
 	desc = "Runtime's larger, less cuddly cousin."
+	tt_desc = "Panthera pardus"
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "panther"
 	icon_living = "panther"
@@ -22,6 +23,7 @@
 
 	old_x = -16
 	old_y = 0
+	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
 

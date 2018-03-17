@@ -36,7 +36,7 @@
 		if(H.species.flags & NO_PAIN)
 			nopain = 2
 		E = H.get_organ(user.zone_sel.selecting)
-		if(E.status & ORGAN_ROBOT)
+		if(E.robotic >= ORGAN_ROBOT)
 			nopain = 1
 
 	user.visible_message("<span class='danger'>\The [user] shoves \the [victim][E ? "'s [E.name]" : ""] into \the [src]!</span>")
@@ -45,7 +45,7 @@
 		E.take_damage(0, rand(20,30))
 		if(E.children && E.children.len)
 			for(var/obj/item/organ/external/child in E.children)
-				if(nopain && nopain < 2 && !(child.status & ORGAN_ROBOT))
+				if(nopain && nopain < 2 && !(child.robotic >= ORGAN_ROBOT))
 					nopain = 0
 				child.take_damage(0, rand(20,30))
 	else
@@ -58,9 +58,7 @@
 		victim << "<span class='danger'>Searing hot oil scorches your [E ? E.name : "flesh"]!</span>"
 
 	if(victim.client)
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [cook_type] \the [victim] ([victim.ckey]) in \a [src]</font>")
-		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [cook_type] in \a [src] by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) [cook_type] \the [victim] ([victim.ckey]) in \a [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		add_attack_logs(user,victim,"[cook_type] in [src]")
 
 	icon_state = off_icon
 	cooking = 0

@@ -9,6 +9,7 @@
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "circ-off"
 	anchored = 0
+	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/kinetic_efficiency = 0.04 //combined kinetic and kinetic-to-electric efficiency
 	var/volume_ratio = 0.2

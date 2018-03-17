@@ -63,6 +63,12 @@
 			T.dismantle_wall(1)
 	qdel(src)
 
+/obj/item/weapon/syndie/c4explosive/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/weapon/flame/lighter/zippo/c4detonator))
+		var/obj/item/weapon/flame/lighter/zippo/c4detonator/D = W
+		D.bomb = src
+		return
+	..()
 
 /*Detonator, disguised as a lighter*/
 /*Click it when closed to open, when open to bring up a prompt asking you if you want to close it or press the button.*/

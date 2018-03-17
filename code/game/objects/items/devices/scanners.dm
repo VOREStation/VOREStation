@@ -95,7 +95,7 @@ HALOGEN COUNTER	- Radcount on mobs
 				else
 					dat += "<span class='notice'>     [capitalize(org.name)]: [(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0]"
 					dat += "[(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":""] - "
-					dat += "[(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0]</span><brr>"
+					dat += "[(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0]</span><br>"
 		else
 			dat += "<span class='notice'>    Limbs are OK.</span><br>"
 
@@ -105,7 +105,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		"<span class='warning'>Severe oxygen deprivation detected</span>" 	: 	"Subject bloodstream oxygen level normal"
-	dat += "[OX] | [TX] | [BU] | [BR]"
+	dat += "[OX] | [TX] | [BU] | [BR]<br>"
 	if(M.radiation)
 		if(advscan >= 2 && showadvscan == 1)
 			var/severity = ""

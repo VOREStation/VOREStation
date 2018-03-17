@@ -24,6 +24,11 @@
 #include "vault3.dmm"
 #include "vault4.dmm"
 #include "vault5.dmm"
+#include "IceCave1A.dmm"
+#include "IceCave1B.dmm"
+#include "IceCave1C.dmm"
+#include "SupplyDrop1.dmm"
+#include "BlastMine1.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -148,6 +153,31 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/vault3.dmm'
 	cost = 15
 
+/datum/map_template/surface/mountains/normal/IceCave1A
+	name = "Ice Cave 1A"
+	desc = "This cave's slippery ice makes it hard to navigate, but determined explorers will be rewarded."
+	mappath = 'maps/submaps/surface_submaps/mountains/IceCave1A.dmm'
+	cost = 10
+
+/datum/map_template/surface/mountains/normal/IceCave1B
+	name = "Ice Cave 1B"
+	desc = "This cave's slippery ice makes it hard to navigate, but determined explorers will be rewarded."
+	mappath = 'maps/submaps/surface_submaps/mountains/IceCave1B.dmm'
+	cost = 10
+
+/datum/map_template/surface/mountains/normal/IceCave1C
+	name = "Ice Cave 1C"
+	desc = "This cave's slippery ice makes it hard to navigate, but determined explorers will be rewarded."
+	mappath = 'maps/submaps/surface_submaps/mountains/IceCave1C.dmm'
+	cost = 10
+
+/datum/map_template/surface/mountains/normal/supplydrop1
+	name = "Supply Drop 1"
+	desc = "A drop pod that landed deep within the mountains."
+	mappath = 'maps/submaps/surface_submaps/mountains/SupplyDrop1.dmm'
+	cost = 10
+	allow_duplicates = TRUE
+
 /**************
  * Deep Caves *
  **************/
@@ -215,3 +245,9 @@
 	desc = "A small xeno vault with potential loot. Also major horrible suprises."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault5.dmm'
 	cost = 25
+
+/datum/map_template/surface/mountains/deep/BlastMine1
+	name = "Blast Mine 1"
+	desc = "An abandoned blast mining site, seems that local wildlife has moved in."
+	mappath = 'maps/submaps/surface_submaps/mountains/BlastMine1.dmm'
+	cost = 20

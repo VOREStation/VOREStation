@@ -197,7 +197,7 @@
 					return
 				CentCom_announce(input, usr)
 				usr << "Message transmitted."
-				log_say("[key_name(usr)] has made a [using_map.boss_short] announcement: [input]")
+				log_game("[key_name(usr)] has made a [using_map.boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(600)//10 minute cooldown
 					centcomm_message_cooldown = 0
@@ -214,7 +214,7 @@
 					return
 				Syndicate_announce(input, usr)
 				usr << "Message transmitted."
-				log_say("[key_name(usr)] has made an illegal announcement: [input]")
+				log_game("[key_name(usr)] has made an illegal announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(600)//10 minute cooldown
 					centcomm_message_cooldown = 0

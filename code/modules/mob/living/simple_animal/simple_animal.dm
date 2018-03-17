@@ -5,6 +5,7 @@
 
 /mob/living/simple_animal
 	name = "animal"
+	desc = ""
 	icon = 'icons/mob/animal.dmi'
 	health = 20
 	maxHealth = 20
@@ -12,6 +13,8 @@
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = MONKEY|SLIME|HUMAN
 	mob_push_flags = MONKEY|SLIME|HUMAN
+
+	var/tt_desc = "Uncataloged Life Form" //Tooltip description
 
 	//Settings for played mobs
 	var/show_stat_health = 1		// Does the percentage health show in the stat panel for the mob
@@ -1269,8 +1272,7 @@
 		var/mob/living/L = target_mob
 
 		if(prob(melee_miss_chance))
-			src.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [L.name] ([L.ckey])</font>")
-			L.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [src.name] ([src.ckey])</font>")
+			add_attack_logs(src,L,"Animal-attacked (miss)", admin_notify = FALSE)
 			visible_message("<span class='danger'>[src] misses [L]!</span>")
 			do_attack_animation(src)
 			return L
@@ -1719,3 +1721,6 @@
 /mob/living/simple_animal/retaliate
 	retaliate = 1
 	destroy_surroundings = 1
+
+/mob/living/simple_animal/get_nametag_desc(mob/user)
+	return "<i>[tt_desc]</i>"

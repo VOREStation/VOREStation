@@ -1,0 +1,6 @@
+author: MisterLayne
+
+delete-after: False
+
+changes: 
+  - bugfix "Reinforced snowballs can now actually be made in a reasonable time limit."

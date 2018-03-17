@@ -26,12 +26,11 @@
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
-	R.pixel_x = initial(pixel_x) //VOREStation Edit
-	R.pixel_y = initial(pixel_y) //VOREStation Edit
+	R.transform_with_anim() //VOREStation edit: sprite animation
 	R.uneq_all()
 	R.modtype = initial(R.modtype)
 	R.hands.icon_state = initial(R.hands.icon_state)
-	R.icon = initial(R.icon) //VOREStation Edit - Dogborg reset tweak since separate file.
+
 	R.notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, R.module.name)
 	R.module.Reset(R)
 	qdel(R.module)
@@ -212,6 +211,7 @@
 	R.add_language(LANGUAGE_TRADEBAND, 1)
 	R.add_language(LANGUAGE_UNATHI, 1)
 	R.add_language(LANGUAGE_SIIK, 1)
+	R.add_language(LANGUAGE_AKHANI, 1)
 	R.add_language(LANGUAGE_SKRELLIAN, 1)
 	R.add_language(LANGUAGE_SKRELLIANFAR, 0)
 	R.add_language(LANGUAGE_GUTTER, 1)

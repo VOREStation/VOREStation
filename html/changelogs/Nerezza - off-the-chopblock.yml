@@ -33,4 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "Added /tg/-style floor tile swapping. Equip crowbar/screwdriver in offhand and click the floor tiles you want to directly swap with a stack of new floor tiles (like teal carpet)."
+  - rscadd: "Tajaran now get to keep their tails when they wear the EVA, RD, or Industrial rigsuits/hardsuits. Unathi sprites to come soon!"

@@ -20,6 +20,7 @@
 	#include "loadout/loadout_suit.dm"
 	#include "loadout/loadout_uniform.dm"
 
+	#include "datums/supplypacks/munitions.dm"
 	#include "items/encryptionkey_sc.dm"
 	#include "items/headset_sc.dm"
 	#include "items/clothing/sc_suit.dm"

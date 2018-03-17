@@ -7,6 +7,7 @@
 	taste_mult = 4
 	reagent_state = SOLID
 	metabolism = REM * 4
+	ingest_met = REM * 4
 	var/nutriment_factor = 30 // Per unit
 	var/injectable = 0
 	color = "#664330"
@@ -255,6 +256,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
+	ingest_met = REM
 
 /datum/reagent/blackpepper
 	name = "Black Pepper"
@@ -262,6 +264,7 @@
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
 	taste_description = "pepper"
 	reagent_state = SOLID
+	ingest_met = REM
 	color = "#000000"
 
 /datum/reagent/enzyme
@@ -281,6 +284,7 @@
 	taste_description = "mint"
 	taste_mult = 1.5
 	reagent_state = LIQUID
+	ingest_met = REM
 	color = "#B31008"
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -308,6 +312,7 @@
 	taste_description = "hot peppers"
 	taste_mult = 1.5
 	reagent_state = LIQUID
+	ingest_met = REM
 	color = "#B31008"
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -341,6 +346,7 @@
 	taste_mult = 10
 	reagent_state = LIQUID
 	touch_met = 50 // Get rid of it quickly
+	ingest_met = REM
 	color = "#B31008"
 
 /datum/reagent/condensedcapsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -424,6 +430,7 @@
 	name = "Drink"
 	id = "drink"
 	description = "Uh, some kind of drink."
+	ingest_met = REM
 	reagent_state = LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per unit

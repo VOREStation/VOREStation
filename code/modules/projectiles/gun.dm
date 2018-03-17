@@ -410,10 +410,13 @@
 		if(one_handed_penalty >= 20)
 			to_chat(user, "<span class='warning'>You struggle to keep \the [src] pointed at the correct position with just one hand!</span>")
 
-	if(reflex)
-		admin_attack_log(user, target, attacker_message = "fired [src] by reflex.", victim_message = "triggered a reflex shot from [src].", admin_message = "shot [target], who triggered gunfire ([src]) by reflex)")
+	var/target_for_log
+	if(ismob(target))
+		target_for_log = target
 	else
-		admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+		target_for_log = "[target.name]"
+
+	add_attack_logs(user,target_for_log,"Fired gun [src.name] ([reflex ? "REFLEX" : "MANUAL"])")
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -489,10 +492,14 @@
 		if(!(target && target.loc))
 			target = targloc
 			//pointblank = 0
+	
+	var/target_for_log
+	if(ismob(target))
+		target_for_log = target
+	else
+		target_for_log = "[target.name]"
 
-	log_and_message_admins("Fired [src].")
-
-	//admin_attack_log(usr, attacker_message="Fired [src]", admin_message="fired a gun ([src]) (MODE: [src.mode_name]) [reflex ? "by reflex" : "manually"].")
+	add_attack_logs("Unmanned",target_for_log,"Fired [src.name]")
 
 	//update timing
 	next_fire_time = world.time + fire_delay
