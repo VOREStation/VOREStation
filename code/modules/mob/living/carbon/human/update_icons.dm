@@ -236,7 +236,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(eyes)
 		icon_key += "[rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3])]"
 	else
-		icon_key += "#000000"
+		icon_key += "[r_eyes], [g_eyes], [b_eyes]"
 
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
