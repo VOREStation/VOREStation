@@ -2261,6 +2261,7 @@
 #include "code\modules\organs\misc.dm"
 #include "code\modules\organs\organ.dm"
 #include "code\modules\organs\organ_external.dm"
+#include "code\modules\organs\organ_external_vr.dm"
 #include "code\modules\organs\organ_icon.dm"
 #include "code\modules\organs\organ_stump.dm"
 #include "code\modules\organs\pain.dm"
