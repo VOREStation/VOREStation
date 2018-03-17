@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/badboi
 	name = "corrupt hound"
-	desc = "Good boy machine broke. At least they haven't stripped the planet down to bare minerals yet."
+	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
 	icon = 'icons/mob/vore64x32.dmi'
 	icon_state = "badboi"
 	icon_living = "badboi"
@@ -56,6 +56,22 @@
 	vore_stomach_flavor = "You have ended up in the fuel processor of this corrupted machine. This place was definitely not designed with safety and comfort in mind. The heated and cramped surroundings oozing potent fluids all over your form, eager to do nothing less than breaking you apart to fuel its rampage for the next few days... hours... minutes? Oh dear..."
 
 	loot_list = list(/obj/item/borg/upgrade/syndicate = 6, /obj/item/borg/upgrade/vtec = 6, /obj/item/weapon/material/knife/ritual = 6, /obj/item/weapon/disk/nifsoft/compliance = 6)
+
+/mob/living/simple_animal/hostile/badboi/prettyboi
+	name = "corrupt corrupt hound"
+	desc = "Bad boy machine broke as well. Seems an attempt was made to achieve a less threatening look, and this one is definitely having some conflicting feelings about it."
+	icon_state = "prettyboi"
+	icon_living = "prettyboi"
+	icon_dead = "prettyboi-dead"
+	icon_rest = "prettyboi_rest"
+
+	speak = list("I FEEL SOFT.","FEED ME!","Feelin' fine... So fine!","F-F-F-F-darn.","Delicious!","Still craving meat...","PET ME!","I am become softness.","I AM BIG MEAN HUG MACHINE!","Honk...")
+	speak_emote = list("growls", "declares", "groans", "distorts")
+	emote_hear = list("jitters and snaps.", "lets out some awkwardly distorted kitten noises.", "awoos mechanically", "growls.", "emits some soft distorted melody.", "gurgles ferociously.", "lets out a distorted beep.", "borks.", "lets out a broken howl.")
+	emote_see = list("stares ferociously.", "snarls.", "jitters and snaps.", "convulses.", "suddenly hugs something unseen.", "appears to howl unaudibly.", "nuzzles at something unseen.", "dissociates for a moment.", "twitches.")
+	say_maybe_target = list("MEAT?", "NEW FRIEND?", "WHAT!", "Not again. NOT AGAIN!", "FRIEND?")
+	say_got_target = list("HERE COMES BIG MEAN HUG MACHINE!", "I'LL BE GENTLE!", "FUEL ME FRIEND!", "I*M SO SORRY!", "YUMMY TREAT DETECTED!", "LOVE ME!", "Not again. NOT AGAIN!")
+
 
 /mob/living/simple_animal/hostile/badboi/isSynthetic()
 	return TRUE
