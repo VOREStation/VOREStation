@@ -450,8 +450,8 @@
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
-/datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Added this is a failsafe, as coffee milkshakes were FUCKING KILLING PEOPLE
-	M.make_jittery(5)
+/datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Add special interactions here in the future if desired.
+	..()
 
 // Juices
 
@@ -1047,10 +1047,13 @@
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
-	overdose = 45
+	
 
 	glass_name = "Coffee Milkshake"
 	glass_desc = "An energizing coffee milkshake, perfect for hot days at work.."
+
+/datum/reagent/drink/milkshake/coffeeshake/overdose(var/mob/living/carbon/M, var/alien)
+	M.make_jittery(5) 
 
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
