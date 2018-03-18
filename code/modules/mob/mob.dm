@@ -1153,6 +1153,11 @@ mob/proc/yank_out_object()
 
 	..()
 
+/mob/MouseDown()
+	closeToolTip(usr) //No reason not to, really
+
+	..()
+
 /mob/MouseExited()
 	closeToolTip(usr) //No reason not to, really
 
