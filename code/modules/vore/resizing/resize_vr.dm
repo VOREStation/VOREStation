@@ -64,6 +64,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/resize(var/new_size, var/animate = TRUE)
 	if(size_multiplier == new_size)
 		return 1
+	
+	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
 	if(animate)
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS
@@ -79,7 +81,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		var/aura_loops = round((duration)/aura_anim_duration)
 
 		animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
-	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
+	else
+		update_transform() //Lame way
 
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
 	if(..()) return 1
@@ -90,7 +93,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size)
+/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
 	size_multiplier = new_size
 
 /**
