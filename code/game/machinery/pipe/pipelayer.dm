@@ -8,13 +8,18 @@
 	var/old_dir				// Last direction we were facing.
 	var/on = 0				// Pipelaying online?
 	var/a_dis = 0			// Auto-dismantling - If enabled it will remove floor tiles
-	var/P_type = 0			// Currently selected pipe type
+	var/P_type = null		// Currently selected pipe type
 	var/P_type_t = ""		// Name of currently selected pipe type
 	var/max_metal = 50		// Max capacity for internal metal storage
 	var/metal = 0			// Current amount in internal metal storage
 	var/pipe_cost = 0.25	// Cost in steel for each pipe.
 	var/obj/item/weapon/wrench/W // Internal wrench used for wrenching down the pipes
-	var/list/Pipes = list("regular pipes"=0,"scrubbers pipes"=31,"supply pipes"=29,"heat exchange pipes"=2)
+	var/list/Pipes = list(
+		"regular pipes" = /obj/machinery/atmospherics/pipe/simple,
+		"scrubbers pipes" = /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+		"supply pipes" = /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+		"heat exchange pipes" = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
+	)
 
 /obj/machinery/pipelayer/New()
 	W = new(src)
@@ -160,17 +165,17 @@
 	if(!use_metal(pipe_cost))
 		return reset()
 	var/fdirn = turn(M_Dir, 180)
-	var/p_type
+	var/obj/machinery/atmospherics/p_type = P_type
+	var/p_layer = initial(p_type.piping_layer)
 	var/p_dir
-
 	if (fdirn!=old_dir)
-		p_type=1+P_type
 		p_dir=old_dir+M_Dir
 	else
-		p_type=0+P_type
 		p_dir=M_Dir
 
-	var/obj/item/pipe/P = new (w_turf, pipe_type=p_type, dir=p_dir)
+	var/pi_type = initial(p_type.construction_type)
+	var/obj/item/pipe/P = new pi_type(w_turf, p_type, p_dir)
+	P.setPipingLayer(p_layer)
 	// We used metal to make these, so should be reclaimable!
 	P.matter = list(DEFAULT_WALL_MATERIAL = pipe_cost * SHEET_MATERIAL_AMOUNT)
 	P.attackby(W , src)
