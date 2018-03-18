@@ -330,7 +330,7 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = get_turf(owner)
+	loc = owner.drop_location()
 	processing_objects |= src
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
