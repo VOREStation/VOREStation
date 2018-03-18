@@ -944,13 +944,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
-	remove_layer(SUIT_LAYER)
+	remove_layer(WING_LAYER)
 
 	var/image/vr_wing_image = get_wing_image()
 	if(vr_wing_image)
-		vr_wing_image = BODY_LAYER+WING_LAYER
+		vr_wing_image.layer = BODY_LAYER+WING_LAYER
 		overlays_standing[WING_LAYER] = vr_wing_image
-		apply_layer(WING_LAYER)
+	
+	apply_layer(WING_LAYER)
 // VOREStation Edit end
 
 /mob/living/carbon/human/update_modifier_visuals()
