@@ -366,6 +366,8 @@ proc/get_radio_key_from_channel(var/channel)
 			qdel(I)
 
 	//Log the message to file
+	if(message_mode)
+		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
 	if(whispering)
 		log_whisper(message,src)
 	else

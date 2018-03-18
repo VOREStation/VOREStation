@@ -13314,6 +13314,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/command{
+	id_tag = "CEdoor";
 	name = "Chief Engineer";
 	req_access = list(56)
 	},
@@ -13829,6 +13830,12 @@
 	pixel_x = 38;
 	pixel_y = -12;
 	req_access = list(10)
+	},
+/obj/machinery/button/remote/airlock{
+	id = "CEdoor";
+	name = "CE Office Door Control";
+	pixel_x = 26;
+	
 	},
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
@@ -21718,6 +21725,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "mId" = (
