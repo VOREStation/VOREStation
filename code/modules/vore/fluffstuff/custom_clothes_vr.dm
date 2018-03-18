@@ -1031,32 +1031,26 @@
 	icon_state = "gildedcuffs"
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
-	item_state = "gildedcuffs_mob"
-	item_icons = null
+	item_icons = list()
 
 	body_parts_covered = 0
-	species_restricted = null
+	species_restricted = list()
 
 /obj/item/clothing/shoes/black/cuffs/red
 	name = "red leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Red!"
 	icon_state = "redcuffs"
-	item_state = "redcuffs_mob"
 
 /obj/item/clothing/shoes/black/cuffs/blue
 	name = "blue leg wraps"
 	desc = "Ankle coverings for digitigrade creatures. Blue!"
 	icon_state = "bluecuffs"
-	item_state = "bluecuffs_mob"
-
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/shoes/black/cuffs/octavious
 	name = "silvered leg wraps"
 	desc = "Dark leather leg wraps with sliver clasps on the sides. Stylish and functional."
 	icon_state = "silvergildedcuffs"
-	item_state = "silvergildedcuffs_mob"
-
 
 //jemli:Jemli
 /obj/item/clothing/head/fedora/fluff/jemli
