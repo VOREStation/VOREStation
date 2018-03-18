@@ -84,9 +84,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
 	if(..()) return 1
 	var/new_y_offset = 32 * (size_multiplier - 1)
-	for(var/I in hud_list)
-		var/image/HI = I
+	for(var/index = 1 to hud_list.len)
+		var/image/HI = grab_hud(index)
 		HI.pixel_y = new_y_offset
+		apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
 /mob/living/carbon/human/dummy/mannequin/resize(var/new_size)
