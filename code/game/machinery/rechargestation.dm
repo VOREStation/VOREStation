@@ -254,7 +254,7 @@
 
 	else if(istype(L,  /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
-		if(!isnull(H.internal_organs_by_name["cell"]))
+		if(H.isSynthetic())
 			add_fingerprint(H)
 			H.reset_view(src)
 			H.forceMove(src)

@@ -265,7 +265,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			if(part.robotic >= ORGAN_ROBOT)
 				icon_key += "2[part.model ? "-[part.model]": ""]"
 				robolimb_count++
-				if(part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)
+				if((part.robotic == ORGAN_ROBOT || part.robotic == ORGAN_LIFELIKE) && (part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)) //VOREStation Edit - Not for nanoform parts
 					robobody_count ++
 			else if(part.status & ORGAN_DEAD)
 				icon_key += "3"
@@ -946,13 +946,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
-	remove_layer(SUIT_LAYER)
+	remove_layer(WING_LAYER)
 
 	var/image/vr_wing_image = get_wing_image()
 	if(vr_wing_image)
-		vr_wing_image = BODY_LAYER+WING_LAYER
+		vr_wing_image.layer = BODY_LAYER+WING_LAYER
 		overlays_standing[WING_LAYER] = vr_wing_image
-		apply_layer(WING_LAYER)
+	
+	apply_layer(WING_LAYER)
 // VOREStation Edit end
 
 /mob/living/carbon/human/update_modifier_visuals()

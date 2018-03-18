@@ -8,3 +8,7 @@
 #define VIS_AUGMENTED		25
 
 #define VIS_COUNT			25
+
+//Protean organs
+#define O_ORCH		"orchestrator"
+#define O_FACT		"refactory"

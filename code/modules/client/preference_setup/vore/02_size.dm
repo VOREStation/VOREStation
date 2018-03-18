@@ -41,12 +41,13 @@
 		pref.size_multiplier = initial(pref.size_multiplier)
 
 /datum/category_item/player_setup_item/vore/size/copy_to_mob(var/mob/living/carbon/human/character)
-	character.resize(pref.size_multiplier, FALSE)
+	character.size_multiplier	= pref.size_multiplier
 	character.weight			= pref.weight_vr
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss
 	character.fuzzy				= pref.fuzzy
 	character.appearance_flags	-= pref.fuzzy*PIXEL_SCALE
+	character.update_transform()
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"

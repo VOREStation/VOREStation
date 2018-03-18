@@ -15,7 +15,7 @@
 	if(!message)
 		return
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote_vr("me",4,message)
 	else
