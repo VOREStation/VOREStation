@@ -18482,7 +18482,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/command{
-	id_tag = "researchdoor";
+	id_tag = "RDdoor";
 	name = "Research Director";
 	req_access = list(30)
 	},
@@ -19536,6 +19536,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
+/obj/machinery/papershredder,
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "HE" = (
@@ -19875,11 +19876,17 @@
 	dir = 1
 	},
 /obj/machinery/button/windowtint{
-	pixel_x = 32;
+	pixel_x = 24;
 	pixel_y = 16
 	},
 /obj/effect/landmark/start{
 	name = "Research Director"
+	},
+/obj/machinery/button/remote/airlock{
+	id = "RDdoor";
+	name = "RD Office Door Control";
+	pixel_x = 30;
+	pixel_y = 18
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
@@ -19900,6 +19907,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
 	},
+/obj/machinery/photocopier,
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "Ic" = (
