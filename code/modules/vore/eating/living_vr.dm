@@ -28,6 +28,7 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
+	M.verbs += /mob/living/proc/switch_scaling
 	if(M.no_vore) //If the mob isn't supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
 		return 1
 	M.verbs += /mob/living/proc/insidePanel
@@ -582,3 +583,9 @@
 		return
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
+
+/mob/living/proc/switch_scaling()
+	set name = "Switch scaling mode"
+	set category = "Preferences"
+	set desc = "Switch sharp/fuzzy scaling for current mob."
+	appearance_flags ^= PIXEL_SCALE
