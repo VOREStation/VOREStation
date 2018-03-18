@@ -115,7 +115,7 @@
 			H.adjustBrainLoss(-(rand(1,3)))
 
 		// Also recharge their internal battery.
-		if(!isnull(H.internal_organs_by_name["cell"]) && H.nutrition < 450)
+		if(H.isSynthetic() && H.nutrition < 450)
 			H.nutrition = min(H.nutrition+10, 450)
 			cell.use(7000/450*10)
 
@@ -263,17 +263,6 @@
 			return 1
 	else
 		return
-
-/obj/machinery/recharge_station/proc/hascell(var/mob/M)
-	if(isrobot(M))
-		var/mob/living/silicon/robot/R = M
-		if(R.cell)
-			return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!isnull(H.internal_organs_by_name["cell"]))
-			return 1
-	return 0
 
 /obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
