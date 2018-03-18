@@ -816,7 +816,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(!cannot_amputate)
 		if(nonsolid && damage >= max_damage)
-			droplimb(TRUE, DROPLIMB_BLUNT)
+			droplimb(TRUE, DROPLIMB_EDGE)
 		//VOREStation Add Start
 		if(robotic >= ORGAN_NANOFORM && damage >= max_damage)
 			droplimb(TRUE, DROPLIMB_BURN)
