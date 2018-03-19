@@ -124,10 +124,8 @@
 	qdel_null_list(shadekin_abilities)
 	. = ..()
 
-/mob/living/simple_animal/shadekin/init_belly()
-	if(vore_organs.len)
-		return
-	if(no_vore) //If it can't vore, let's not give it a stomach.
+/mob/living/simple_animal/shadekin/init_vore()
+	if(LAZYLEN(vore_organs))
 		return
 
 	var/obj/belly/B = new /obj/belly(src)

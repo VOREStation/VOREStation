@@ -26,13 +26,6 @@
 	var/vore_fullness = 0				// How "full" the belly is (controls icons)
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
 
-/mob/living/simple_animal/New()
-	..()
-	if(vore_active)
-		init_belly()
-	if(!IsAdvancedToolUser())
-		verbs |= /mob/living/simple_animal/proc/animal_nom
-
 // Release belly contents before being gc'd!
 /mob/living/simple_animal/Destroy()
 	release_vore_contents()
@@ -116,8 +109,6 @@
 // TODO - Review this.  Could be some issues here
 /mob/living/simple_animal/proc/EatTarget()
 	ai_log("vr/EatTarget() [target_mob]",2)
-	if(!LAZYLEN(vore_organs))
-		init_belly()
 	stop_automated_movement = 1
 	var/old_target = target_mob
 	handle_stance(STANCE_BUSY)
@@ -138,13 +129,18 @@
 	release_vore_contents()
 	. = ..()
 
-// Simple animals have only one belly.  This creates it (if it isn't already set up)
-/mob/living/simple_animal/proc/init_belly()
-	if(vore_organs.len)
-		return
-	if(no_vore) //If it can't vore, let's not give it a stomach.
+// Make sure you don't call ..() on this one, otherwise you duplicate work.
+/mob/living/simple_animal/init_vore()
+	if(!vore_active || no_vore)
 		return
 
+	if(!IsAdvancedToolUser())
+		verbs |= /mob/living/simple_animal/proc/animal_nom
+
+	if(LAZYLEN(vore_organs))
+		return
+
+	//A much more detailed version of the default /living implementation
 	var/obj/belly/B = new /obj/belly(src)
 	vore_selected = B
 	B.immutable = 1

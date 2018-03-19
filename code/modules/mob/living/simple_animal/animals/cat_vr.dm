@@ -1,4 +1,4 @@
-/mob/living/simple_animal/cat/fluff/Runtime/init_belly()
+/mob/living/simple_animal/cat/fluff/Runtime/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
