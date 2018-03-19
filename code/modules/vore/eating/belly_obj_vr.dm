@@ -549,6 +549,19 @@
 			to_chat(owner,"<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
 			return
 
+/obj/belly/proc/get_mobs_and_objs_in_belly()
+	var/list/see = list()
+	var/list/belly_mobs = list()
+	see["mobs"] = belly_mobs
+	var/list/belly_objs = list()
+	see["objs"] = belly_objs
+	for(var/mob/living/L in loc.contents)
+		belly_mobs |= L
+	for(var/obj/O in loc.contents)
+		belly_objs |= O
+
+	return see
+
 //Transfers contents from one belly to another
 /obj/belly/proc/transfer_contents(var/atom/movable/content, var/obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
