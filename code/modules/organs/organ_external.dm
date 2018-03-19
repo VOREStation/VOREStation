@@ -270,7 +270,7 @@
 
 	if(status & ORGAN_BROKEN && brute)
 		jostle_bone(brute)
-		if(organ_can_feel_pain() && prob(40))
+		if(organ_can_feel_pain() && prob(40) && !isbelly(owner.loc)) //VOREStation Edit
 			owner.emote("scream")	//getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
@@ -891,6 +891,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		victim.update_icons_body()
 		dir = 2
 
+	var/atom/droploc = victim.drop_location()
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			appearance_flags &= ~PIXEL_SCALE
@@ -905,17 +906,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
 				dir = 2
 		if(DROPLIMB_BURN)
-			new /obj/effect/decal/cleanable/ash(get_turf(victim))
+			new /obj/effect/decal/cleanable/ash(droploc)
 			for(var/obj/item/I in src)
 				if(I.w_class > ITEMSIZE_SMALL && !istype(I,/obj/item/organ))
-					I.loc = get_turf(src)
+					I.forceMove(droploc)
 			qdel(src)
 		if(DROPLIMB_BLUNT)
 			var/obj/effect/decal/cleanable/blood/gibs/gore
 			if(robotic >= ORGAN_ROBOT)
-				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(get_turf(victim))
+				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(droploc)
 			else
-				gore = new /obj/effect/decal/cleanable/blood/gibs(get_turf(victim))
+				gore = new /obj/effect/decal/cleanable/blood/gibs(droploc)
 				if(species)
 					gore.fleshcolor = use_flesh_colour
 					gore.basecolor =  use_blood_colour
@@ -932,7 +933,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if(I.w_class <= ITEMSIZE_SMALL)
 					qdel(I)
 					continue
-				I.loc = get_turf(src)
+				I.forceMove(droploc)
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
 
 			qdel(src)
@@ -1030,7 +1031,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
 			"<span class='danger'>You hear a sickening crack.</span>")
 		jostle_bone()
-		if(organ_can_feel_pain())
+		if(organ_can_feel_pain() && !isbelly(owner.loc))
 			owner.emote("scream")
 
 	playsound(src.loc, "fracture", 10, 1, -2)
