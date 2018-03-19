@@ -1,0 +1,8 @@
+
+author: Heroman3003
+
+delete-after: True
+
+changes: 
+  - bugfix: "Fixed a bug where same piece of exosuit equipment could be attached several times with exosuit gripper"
+  - bugfix: "Fixed a bug where frame parts could dupe frames with engineering gripper"
