@@ -34,29 +34,36 @@
 	M.verbs += /mob/living/proc/insidePanel
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
-	if(!M.vore_organs || !M.vore_organs.len)
-		spawn(20) //Wait a couple of seconds to make sure copy_to or whatever has gone
-			if(!M) return
-
-			if(M.client && M.client.prefs_vr)
-				if(!M.copy_from_prefs_vr())
-					to_chat(M,"<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>")
-					return 0
-				if(M.vore_organs && M.vore_organs.len)
-					M.vore_selected = M.vore_organs[1]
-
-			if(!M.vore_organs || !M.vore_organs.len)
-				if(!M.vore_organs)
-					M.vore_organs = list()
-				var/obj/belly/B = new /obj/belly(M)
-				M.vore_selected = B
-				B.immutable = 1
-				B.name = "Stomach"
-				B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
-				B.can_taste = 1
+	spawn(2 SECONDS)
+		M.init_vore()
 
 	//Return 1 to hook-caller
 	return 1
+
+/mob/living/proc/init_vore()
+	//Something else made organs, meanwhile.
+	if(LAZYLEN(vore_organs))
+		return TRUE
+
+	//We'll load our client's organs if we have one
+	if(client && client.prefs_vr)
+		if(!copy_from_prefs_vr())
+			to_chat(src,"<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>")
+			return FALSE
+		if(LAZYLEN(vore_organs))
+			vore_selected = vore_organs[1]
+			return TRUE
+
+	//Or, we can create a basic one for them
+	if(!LAZYLEN(vore_organs))
+		LAZYINITLIST(vore_organs)
+		var/obj/belly/B = new /obj/belly(src)
+		vore_selected = B
+		B.immutable = 1
+		B.name = "Stomach"
+		B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
+		B.can_taste = 1
+		return TRUE
 
 //
 // Hide vore organs in contents

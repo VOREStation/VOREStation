@@ -69,6 +69,9 @@
 		healing.expire()
 	return ..()
 
+/mob/living/simple_animal/protean_blob/init_vore()
+	return //Don't make a random belly, don't waste your time
+
 /mob/living/simple_animal/protean_blob/Stat()
 	..()
 	if(statpanel("Status"))
