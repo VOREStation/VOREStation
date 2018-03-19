@@ -260,6 +260,7 @@
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.forceMove(blob)
+		B.owner = blob
 
 	//Return our blob in case someone wants it
 	return blob
@@ -298,10 +299,12 @@
 	Life(1) //Fix my blindness right meow
 
 	//Transfer vore organs
-	for(var/belly in vore_organs)
+	vore_selected = blob.vore_selected
+	for(var/belly in blob.vore_organs)
 		var/obj/belly/B = belly
 		B.forceMove(src)
-
+		B.owner = src
+	
 	//Get rid of friend blob
 	qdel(blob)
 
