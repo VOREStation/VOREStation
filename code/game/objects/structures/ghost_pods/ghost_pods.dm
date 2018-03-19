@@ -10,12 +10,14 @@
 	var/needscharger //For drone pods that want their pod to turn into a charger.
 
 // Call this to get a ghost volunteer.
-/obj/structure/ghost_pod/proc/trigger()
+/obj/structure/ghost_pod/proc/trigger(var/alert, var/adminalert)
 	if(!ghost_query_type)
 		return FALSE
 	if(busy)
 		return FALSE
 
+	visible_message(alert)
+	log_and_message_admins(adminalert)
 	busy = TRUE
 	var/datum/ghost_query/Q = new ghost_query_type()
 	var/list/winner = Q.query()
@@ -44,7 +46,7 @@
 /obj/structure/ghost_pod/manual/attack_hand(var/mob/living/user)
 	if(!used)
 		if(confirm_before_open)
-			if(alert(user, "Are you sure you want to open \the [src]?", "Confirm", "No", "Yes") == "No")
+			if(alert(user, "Are you sure you want to touch \the [src]?", "Confirm", "No", "Yes") == "No")
 				return
 		trigger()
 
