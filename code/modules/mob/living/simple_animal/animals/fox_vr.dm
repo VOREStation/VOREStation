@@ -39,7 +39,7 @@
 	var/turns_since_scan = 0
 	var/mob/flee_target
 
-/mob/living/simple_animal/fox/init_belly()
+/mob/living/simple_animal/fox/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -187,7 +187,7 @@
 	tt_desc = "Vulpes nobilis"
 	befriend_job = "Colony Director"
 
-/mob/living/simple_animal/fox/fluff/Renault/init_belly()
+/mob/living/simple_animal/fox/fluff/Renault/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
