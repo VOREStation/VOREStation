@@ -116,7 +116,6 @@
 		if (is_vore_predator(src))
 			for (var/mob/living/M in H.contents)
 				if (attacker.eat_held_mob(attacker, M, src))
-					H.contents -= M
 					if (H.held_mob == M)
 						H.held_mob = null
 			return 1 //Return 1 to exit upper procs
