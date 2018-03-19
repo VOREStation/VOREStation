@@ -84,7 +84,14 @@
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 /mob/visible_message(var/message, var/self_message, var/blind_message)
 
-	var/list/see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+	//VOREStation Edit
+	var/list/see
+	if(isbelly(loc))
+		var/obj/belly/B = loc
+		see = B.get_mobs_and_objs_in_belly()
+	else
+		see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+	//VOREStation Edit End
 
 	var/list/seeing_mobs = see["mobs"]
 	var/list/seeing_objs = see["objs"]

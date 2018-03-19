@@ -442,14 +442,8 @@
 	//VOREStation Edit
 	var/list/see
 	if(isbelly(loc))
-		var/list/belly_mobs = list()
-		see["mobs"] = belly_mobs
-		var/list/belly_objs = list()
-		see["objs"] = belly_objs
-		for(var/mob/living/L in loc.contents)
-			belly_mobs |= L
-		for(var/obj/O in loc.contents)
-			belly_objs |= O
+		var/obj/belly/B = loc
+		see = B.get_mobs_and_objs_in_belly()
 	else
 		see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
 	//VOREStation Edit End
