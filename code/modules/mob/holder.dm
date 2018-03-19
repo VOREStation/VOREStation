@@ -39,10 +39,13 @@ var/list/holder_mob_icon_cache = list()
 		update_state()
 
 /obj/item/weapon/holder/proc/update_state()
-	if(istype(loc,/turf) || !(contents.len))
+	if(!(contents.len))
+		qdel(src)
+	else if(isturf(loc))
+		drop_items()
 		if(held_mob)
 			held_mob.forceMove(loc)
-		drop_items()
+			held_mob = null
 		qdel(src)
 
 /obj/item/weapon/holder/proc/drop_items()
