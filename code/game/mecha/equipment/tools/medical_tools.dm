@@ -662,11 +662,13 @@
 		return 0
 	occupant_message("Analyzing reagents...")
 	for(var/datum/reagent/R in A.reagents.reagent_list)
-		if(R.reagent_state == 2 && add_known_reagent(R.id,R.name))
+		if(R.id in known_reagents)
+			occupant_message("Reagent \"[R.name]\" already present in database, skipping.")
+		else if(R.reagent_state == 2 && add_known_reagent(R.id,R.name))
 			occupant_message("Reagent analyzed, identified as [R.name] and added to database.")
 			send_byjax(chassis.occupant,"msyringegun.browser","reagents_form",get_reagents_form())
 		else
-			occupant_message("Reagent \"[R.name]\" too complex to analyze, skipping.")
+			occupant_message("Reagent \"[R.name]\" unable to be scanned, skipping.")
 	occupant_message("Analyzis complete.")
 	return 1
 
