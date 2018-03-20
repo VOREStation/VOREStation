@@ -840,19 +840,16 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(TAIL_LAYER)
+	remove_layer(TAIL_LAYER_ALT) // VOREStation Edit - Alt Tail Layer
+
+	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - Alt Tail Layer
 
 	// VOREStation Edit - START
-	remove_layer(TAIL_LAYER_ALT)
 	var/image/vr_tail_image = get_tail_image()
 	if(vr_tail_image)
-		if(tail_alt)
-			vr_tail_image.layer = BODY_LAYER+TAIL_LAYER_ALT
-			overlays_standing[TAIL_LAYER_ALT] = vr_tail_image
-			apply_layer(TAIL_LAYER_ALT)
-		else
-			vr_tail_image.layer = BODY_LAYER+TAIL_LAYER
-			overlays_standing[TAIL_LAYER] = vr_tail_image
-			apply_layer(TAIL_LAYER)
+		vr_tail_image.layer = BODY_LAYER+used_tail_layer
+		overlays_standing[used_tail_layer] = vr_tail_image
+		apply_layer(used_tail_layer)
 		return
 	// VOREStation Edit - END
 
@@ -861,12 +858,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//This one is actually not that bad I guess.
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
-		if(tail_alt)// VOREStation Edit - START
-			overlays_standing[TAIL_LAYER_ALT] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+TAIL_LAYER_ALT)
-			animate_tail_reset()
-		else
-			overlays_standing[TAIL_LAYER] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+TAIL_LAYER)
-			animate_tail_reset()// VOREStation Edit - END
+		overlays_standing[used_tail_layer] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+used_tail_layer) // VOREStation Edit - Alt Tail Layer
+		animate_tail_reset()
 
 //TODO: Is this the appropriate place for this, and not on species...?
 /mob/living/carbon/human/proc/get_tail_icon()
@@ -890,32 +883,18 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	return tail_icon
 
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
-	// VOREStation Edit - START
-	if(tail_alt)
-		var/image/tail_overlay = overlays_standing[TAIL_LAYER_ALT]
-		remove_layer(TAIL_LAYER_ALT)
-
-		if(tail_overlay)
-			overlays_standing[TAIL_LAYER_ALT] = tail_overlay
-			if(species.get_tail_animation(src))
-				tail_overlay.icon_state = t_state
-				. = tail_overlay
-
-		apply_layer(TAIL_LAYER_ALT)
-
-	else
-		var/image/tail_overlay = overlays_standing[TAIL_LAYER]
-
-		remove_layer(TAIL_LAYER)
-
-		if(tail_overlay)
-			overlays_standing[TAIL_LAYER] = tail_overlay
-			if(species.get_tail_animation(src))
-				tail_overlay.icon_state = t_state
-				. = tail_overlay
-
-		apply_layer(TAIL_LAYER)
-	// VOREStation Edit - END
+	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - Alt Tail Layer
+	var/image/tail_overlay = overlays_standing[used_tail_layer] // VOREStation Edit - Alt Tail Layer
+	
+	remove_layer(used_tail_layer) // VOREStation Edit - Alt Tail Layer
+	
+	if(tail_overlay)
+		overlays_standing[used_tail_layer] = tail_overlay // VOREStation Edit - Alt Tail Layer
+		if(species.get_tail_animation(src))
+			tail_overlay.icon_state = t_state
+			. = tail_overlay
+	
+	apply_layer(used_tail_layer) // VOREStation Edit - Alt Tail Layer
 
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
@@ -925,31 +904,18 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	var/t_state = "[species.get_tail(src)]_once"
+	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - Alt Tail Layer
+	
+	var/image/tail_overlay = overlays_standing[used_tail_layer] // VOREStation Edit - Alt Tail Layer
+	if(tail_overlay && tail_overlay.icon_state == t_state)
+		return //let the existing animation finish
 
-	// VOREStation Edit - START
-	if(tail_alt)
-		var/image/tail_overlay = overlays_standing[TAIL_LAYER_ALT]
-		if(tail_overlay && tail_overlay.icon_state == t_state)
-			return //let the existing animation finish
-
-		tail_overlay = set_tail_state(t_state) // Calls remove_layer & apply_layer
-		if(tail_overlay)
-			spawn(20)
-				//check that the animation hasn't changed in the meantime
-				if(overlays_standing[TAIL_LAYER_ALT] == tail_overlay && tail_overlay.icon_state == t_state)
-					animate_tail_stop()
-	else
-		var/image/tail_overlay = overlays_standing[TAIL_LAYER]
-		if(tail_overlay && tail_overlay.icon_state == t_state)
-			return //let the existing animation finish
-
-		tail_overlay = set_tail_state(t_state) // Calls remove_layer & apply_layer
-		if(tail_overlay)
-			spawn(20)
-				//check that the animation hasn't changed in the meantime
-				if(overlays_standing[TAIL_LAYER] == tail_overlay && tail_overlay.icon_state == t_state)
-					animate_tail_stop()
-	// VOREStation Edit - END
+	tail_overlay = set_tail_state(t_state) // Calls remove_layer & apply_layer
+	if(tail_overlay)
+		spawn(20)
+			//check that the animation hasn't changed in the meantime
+			if(overlays_standing[used_tail_layer] == tail_overlay && tail_overlay.icon_state == t_state) // VOREStation Edit - Alt Tail Layer
+				animate_tail_stop()	
 
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src))
