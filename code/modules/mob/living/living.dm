@@ -151,7 +151,7 @@ default behaviour is:
 				var/mob/living/carbon/human/H = tmob
 				if(H.species.lightweight == 1 && prob(50))
 					H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
-					H.Weaken(20)
+					H.Weaken(5)
 					now_pushing = 0
 					return
 			// Handle grabbing, stomping, and such of micros!
