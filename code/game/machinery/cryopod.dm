@@ -381,13 +381,19 @@
 
 	// VOREStation
 	hook_vr("despawn", list(to_despawn, src))
-	if(ishuman(to_despawn))
-		var/mob/living/carbon/human/H = to_despawn
-		if(H.nif)
-			var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
-			if(SC)
-				for(var/bm in SC.brainmobs)
-					despawn_occupant(bm)
+	if(isliving(to_despawn))
+		var/mob/living/L = to_despawn
+		for(var/belly in L.vore_organs)
+			var/obj/belly/B = belly
+			for(var/mob/living/sub_L in B)
+				despawn_occupant(sub_L)
+		if(ishuman(to_despawn))
+			var/mob/living/carbon/human/H = to_despawn
+			if(H.nif)
+				var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
+				if(SC)
+					for(var/bm in SC.brainmobs)
+						despawn_occupant(bm)
 	// VOREStation
 
 	//Drop all items into the pod.
