@@ -167,7 +167,7 @@
 
 	var/toxDam = getToxLoss()
 	if(toxDam)
-		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>\n"
+		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
 	else
 		output += "System Instability: <span style='color:green;'>OK</span>\n"
 
