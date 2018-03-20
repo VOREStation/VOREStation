@@ -49,6 +49,8 @@
 	var/poison_type = "spidertoxin"
 	var/image/eye_layer = null
 
+	low_priority = TRUE //VOREStation Edit
+
 /mob/living/simple_animal/hostile/giant_spider/proc/add_eyes()
 	if(!eye_layer)
 		eye_layer = image(icon, "[icon_state]-eyes")
