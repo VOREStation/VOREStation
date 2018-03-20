@@ -9,6 +9,7 @@ var/list/global_huds = list(
 		global_hud.whitense,
 		global_hud.vimpaired,
 		global_hud.darkMask,
+		global_hud.centermarker,
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
@@ -28,6 +29,7 @@ var/list/global_huds = list(
 	var/obj/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
+	var/obj/screen/centermarker
 	var/obj/screen/darksight
 	var/obj/screen/nvg
 	var/obj/screen/thermal
@@ -73,6 +75,12 @@ var/list/global_huds = list(
 	darksight.screen_loc = "1,1"
 	darksight.plane = PLANE_LIGHTING
 	darksight.plane = LIGHTING_LAYER + 0.1
+
+	//Marks the center of the screen, for things like ventcrawl
+	centermarker = new /obj/screen()
+	centermarker.icon = 'icons/mob/screen1.dmi'
+	centermarker.icon_state = "centermarker"
+	centermarker.screen_loc = "CENTER,CENTER"
 
 	nvg = setup_overlay("nvg_hud")
 	thermal = setup_overlay("thermal_hud")

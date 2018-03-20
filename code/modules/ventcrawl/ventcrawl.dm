@@ -36,6 +36,7 @@ var/list/ventcrawl_machinery = list(
 	if(is_ventcrawling && istype(loc, /obj/machinery/atmospherics)) //attach us back into the pipes
 		remove_ventcrawl()
 		add_ventcrawl(loc)
+		client.screen += global_hud.centermarker
 
 /mob/living/simple_animal/slime/can_ventcrawl()
 	if(victim)
@@ -184,6 +185,8 @@ var/list/ventcrawl_machinery = list(
 				A.pipe_image = image(A, A.loc, layer = 20, dir = A.dir)
 			pipes_shown += A.pipe_image
 			client.images += A.pipe_image
+	if(client)
+		client.screen += global_hud.centermarker
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
@@ -191,6 +194,7 @@ var/list/ventcrawl_machinery = list(
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
+		client.screen -= global_hud.centermarker
 		client.eye = src
 
 	pipes_shown.len = 0
