@@ -7899,6 +7899,12 @@
 	dir = 4
 	},
 /obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
 "aue" = (
@@ -15245,8 +15251,12 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
 "aLk" = (
@@ -16900,15 +16910,15 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "aZK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
@@ -27245,6 +27255,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"sRi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_one)
 
 (1,1,1) = {"
 aaa
@@ -36205,7 +36227,7 @@ alm
 alm
 akD
 ajU
-aua
+sRi
 auK
 agM
 amw
@@ -36327,7 +36349,7 @@ alR
 arK
 akE
 ajU
-aua
+sRi
 bcA
 agM
 ahc
@@ -36449,7 +36471,7 @@ alS
 anm
 akE
 ajU
-aua
+sRi
 auM
 avP
 avP
@@ -36571,7 +36593,7 @@ alS
 anm
 akE
 ajU
-aua
+sRi
 auM
 avP
 awD
@@ -36693,7 +36715,7 @@ alS
 anm
 akE
 ajU
-aua
+sRi
 auN
 avP
 awE
@@ -36937,7 +36959,7 @@ alS
 anm
 akE
 ajU
-aua
+sRi
 bcC
 avP
 awG
@@ -37059,7 +37081,7 @@ alS
 anm
 akE
 ajU
-aua
+sRi
 bcB
 avP
 bzf
@@ -37181,7 +37203,7 @@ alS
 anm
 akE
 ajU
-aua
+sRi
 auM
 avQ
 awI
@@ -37303,7 +37325,7 @@ alT
 arL
 akE
 ajU
-aua
+sRi
 auM
 avP
 bfn
@@ -37425,7 +37447,7 @@ alm
 alm
 akD
 ajU
-aua
+sRi
 auM
 avP
 avP
@@ -37547,7 +37569,7 @@ ajU
 ajU
 ajU
 buh
-aua
+sRi
 auR
 aTi
 awK
