@@ -218,7 +218,6 @@
 ////
 //  Change fitting
 ////
-
 /mob/living/carbon/human/proc/nano_change_fitting()
 	set name = "Change Species Fit"
 	set desc = "Tweak your shape to change what suits you fit into (and their sprites!)."
@@ -232,6 +231,8 @@
 	if(new_species)
 		impersonate_bodytype = new_species
 		regenerate_icons()
+
+
 
 /// /// /// Ability objects for stat panel
 /obj/effect/protean_ability

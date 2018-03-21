@@ -10,8 +10,9 @@
 	knockout_message = "collapses inwards, forming a disordered puddle of gray goo."
 	remains_type = /obj/effect/decal/cleanable/ash
 
-	blood_color = "#000000"
-	flesh_color = "#000000"
+	blood_color = "#505050" //This is the same as the 80,80,80 below, but in hex
+	flesh_color = "#505050"
+	base_color = "#FFFFFF" //Color mult, start out with this
 
 	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_PAIN
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | HAS_UNDERWEAR | HAS_LIPS
@@ -19,6 +20,7 @@
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
+	color_mult = TRUE
 
 	breath_type = null
 	poison_type = null
