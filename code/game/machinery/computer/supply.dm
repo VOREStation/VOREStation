@@ -40,6 +40,7 @@
 		<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
+		\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR><BR>
 		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
@@ -198,6 +199,7 @@
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
+		\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR>\n<BR>
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 
@@ -365,6 +367,18 @@
 			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby] <A href='?src=\ref[src];confirmorder=[SO.ordernum]'>Approve</A> <A href='?src=\ref[src];rreq=[SO.ordernum]'>Remove</A><BR>"
 
 		temp += "<BR><A href='?src=\ref[src];clearreq=1'>Clear list</A>"
+		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+
+	else if (href_list["viewexport"])
+		temp = "Previous shuttle export report: <BR><BR>"
+		var/cratecount = 0
+		var/totalvalue = 0
+		for(var/S in supply_controller.exported_crates)
+			var/datum/exported_crate/EC = S
+			cratecount += 1
+			totalvalue += EC.value
+			temp += "[EC.name] exported for [EC.value] supply points<BR>"
+		temp += "<BR>Shipment of [cratecount] crates exported for [totalvalue] supply points.<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["rreq"])
