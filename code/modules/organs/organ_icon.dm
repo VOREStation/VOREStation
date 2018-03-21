@@ -50,51 +50,60 @@ var/global/list/limb_icon_cache = list()
 	if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/get_icon()
-
 	..()
-	overlays.Cut()
+	
+	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
+	cut_overlays()
+	
+	//Every 'addon' below requires information from species
 	if(!owner || !owner.species)
 		return
-	if(owner.species.appearance_flags & HAS_EYE_COLOR)
+	
+	//Eye color/icon
+	var/should_have_eyes = owner.should_have_organ(O_EYES)
+	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
+	if((should_have_eyes || has_eye_color) && eye_icon)
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
-		if(eye_icon)
-			var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
-			//Should have eyes
-			if(owner.should_have_organ(O_EYES))
-				//And we have them
-				if(eyes)
-					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
-				//They're gone!
-				else
-					eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
-			//We have weird other-sorts of eyes
+		var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
+		//Should have eyes
+		if(should_have_eyes)
+			//And we have them
+			if(eyes)
+				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+			//They're gone!
 			else
-				eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
-			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-			overlays |= eyes_icon
-
+				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+		//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
+		else
+			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
+		add_overlay(eyes_icon)
+		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
+		
+	//Lip color/icon
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
-		overlays |= lip_icon
+		add_overlay(lip_icon)
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
-	//Head markings.
+	//Head markings
 	for(var/M in markings)
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
-		overlays |= mark_s //So when it's not on your body, it has icons
+		add_overlay(mark_s) //So when it's not on your body, it has icons
 		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 		icon_cache_key += "[M][markings[M]["color"]]"
 
+	//Facial hair
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_MULTIPLY) // VOREStation edit
-			overlays |= facial_s
+			add_overlay(facial_s)
 
+	//Head hair
 	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[owner.h_style]
 		if(hair_style && (species.get_bodytype(owner) in hair_style.species_allowed))
@@ -103,7 +112,7 @@ var/global/list/limb_icon_cache = list()
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_MULTIPLY)
 				hair_s.Blend(hair_s_add, ICON_ADD)
-			overlays |= hair_s
+			add_overlay(hair_s)
 
 	return mob_icon
 

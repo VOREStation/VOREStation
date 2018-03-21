@@ -20,7 +20,7 @@
 	get_targets()
 
 /mob/living/bot/cleanbot/handleIdle()
-	if(!screwloose && !oddbutton && prob(5))
+	if(!screwloose && !oddbutton && prob(2))
 		custom_emote(2, "makes an excited booping sound!")
 		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
 
@@ -67,7 +67,8 @@
 		return
 
 	busy = 1
-	custom_emote(2, "begins to clean up \the [D]")
+	if(prob(20))
+		custom_emote(2, "begins to clean up \the [D]")
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime))
