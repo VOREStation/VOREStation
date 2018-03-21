@@ -747,7 +747,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 			return 0
 		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)
 		if(msg)
-			log_say("SpectralWhisper: [key_name(usr)]->[M.key] : [msg]")
+			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
 			M << "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>"
 			src << "<span class='warning'> You said: '[msg]' to [M].</span>"
 		else

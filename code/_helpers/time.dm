@@ -58,8 +58,11 @@ var/next_station_date_change = 1 DAY
 		station_date = num2text((text2num(time2text(timeofday, "YYYY"))+544)) + "-" + time2text(timeofday, "MM-DD")
 	return station_date
 
+//ISO 8601
 /proc/time_stamp()
-	return time2text(station_time_in_ticks, "hh:mm:ss")
+	var/date_portion = time2text(world.timeofday, "YYYY-MM-DD")
+	var/time_portion = time2text(world.timeofday, "hh:mm:ss")
+	return "[date_portion]T[time_portion]"
 
 /* Returns 1 if it is the selected month and day */
 proc/isDay(var/month, var/day)

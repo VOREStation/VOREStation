@@ -82,9 +82,7 @@
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
 		return 0
 
-	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [H.name] ([H.ckey])</font>")
-	msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
+	add_attack_logs(user,H,"Handcuffed (attempt)")
 	feedback_add_details("handcuffs","H")
 
 	user.setClickCooldown(user.get_attack_speed(src))
@@ -129,8 +127,7 @@ var/last_chew = 0
 
 	var/s = "<span class='warning'>[H.name] chews on [T.his] [O.name]!</span>"
 	H.visible_message(s, "<span class='warning'>You chew on your [O.name]!</span>")
-	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
-	log_attack("[s] ([H.ckey])")
+	add_attack_logs(H,H,"chewed own [O.name]")
 
 	if(O.take_damage(3,0,1,1,"teeth marks"))
 		H:UpdateDamageIcon()
@@ -302,9 +299,7 @@ var/last_chew = 0
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
 		return 0
 
-	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been legcuffed (attempt) by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to legcuff [H.name] ([H.ckey])</font>")
-	msg_admin_attack("[key_name(user)] attempted to legcuff [key_name(H)]")
+	add_attack_logs(user,H,"Legcuffed (attempt)")
 	feedback_add_details("legcuffs","H")
 
 	user.setClickCooldown(user.get_attack_speed(src))

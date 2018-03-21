@@ -74,7 +74,7 @@
 		src << "Not even a [src.species.name] can speak to the dead."
 		return
 
-	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
+	log_say("(COMMUNE to [key_name(M)]) [text]",src)
 
 	M << "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>"
 	if(istype(M,/mob/living/carbon/human))
@@ -104,7 +104,7 @@
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
-		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
+		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
 		M << "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>"
 		src << "<font color='green'>You said: \"[msg]\" to [M]</font>"
 	return
