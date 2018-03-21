@@ -103,12 +103,12 @@
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.icon
-			underlays = H.underlays
-			overlays = H.overlays
+			icon_state = H.icon_state
+			add_overlay(H.overlays_standing) //All our equipment sprites
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			overlays = body.overlays
+			add_overlay(body.overlays)
 
 		gender = body.gender
 		if(body.mind && body.mind.name)
@@ -794,3 +794,6 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 /mob/observer/dead/is_deaf()
 	return FALSE
+
+/mob/observer/dead/speech_bubble_appearance()
+	return "ghost"

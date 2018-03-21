@@ -1034,7 +1034,6 @@
 	item_icons = list()
 
 	body_parts_covered = 0
-	species_restricted = list()
 
 /obj/item/clothing/shoes/black/cuffs/red
 	name = "red leg wraps"
