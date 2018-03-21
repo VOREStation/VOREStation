@@ -35,7 +35,8 @@
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	spawn(2 SECONDS)
-		M.init_vore()
+		if(M)
+			M.init_vore()
 
 	//Return 1 to hook-caller
 	return 1
