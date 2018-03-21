@@ -4,11 +4,10 @@
 	name = "pilot helmet"
 	desc = "Standard pilot gear. Protects the head from impacts."
 	icon_state = "pilot_helmet1"
-	item_icons = list(slot_head_str = 'maps/southern_cross/icons/mob/sc_head.dmi')
-	icon = 'maps/southern_cross/icons/obj/sc_hats.dmi'
+	item_icons = list(slot_head_str = 'icons/mob/pilot_helmet.dmi')
 	sprite_sheets = list(
-			"Teshari" = 'maps/southern_cross/icons/mob/species/teshari/sc_head.dmi'
-			)
+		SPECIES_TESHARI = 'icons/mob/species/seromi/pilot_helmet.dmi'
+		)
 	flags = THICKMATERIAL
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 5, bomb = 10, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
@@ -190,9 +189,6 @@
 	name = "pilot helmet"
 	desc = "Standard pilot gear. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot_helmet2"
-	sprite_sheets = list(
-			"Teshari" = 'maps/southern_cross/icons/mob/species/teshari/sc_head.dmi'
-			)
 	action_button_name = "Toggle Visor"
 
 /obj/item/clothing/head/pilot/alt/attack_self(mob/user as mob)
