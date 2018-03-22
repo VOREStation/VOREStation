@@ -33,10 +33,13 @@ var/global/photo_count = 0
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
 	var/icon/tiny
+	var/cursed = 0
 	var/photo_size = 3
 
 /obj/item/weapon/photo/New()
 	id = photo_count++
+
+
 
 /obj/item/weapon/photo/attack_self(mob/user as mob)
 	user.examinate(src)
@@ -233,6 +236,11 @@ var/global/photo_count = 0
 			mob_detail = "You can see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]. "
 		else
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
+
+	for(var/mob/living/simple_animal/hostile/statue/S in the_turf)
+		if(S)
+		 mob_detail +=	"You can see a [S] on the photo. Its stare makes you feel uneasy." //"That which holds the image of an angel, becomes itself an angel."
+
 	return mob_detail
 
 /obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -274,7 +282,16 @@ var/global/photo_count = 0
 		y_c--
 		x_c = x_c - size
 
+
+
+
 	var/obj/item/weapon/photo/p = createpicture(target, user, turfs, mobs, flag)
+	if(findtext(mobs, "Its stare makes you feel uneasy"))
+		p.cursed = 1
+		visible_message("Something starts to slowly manifest from the picture!")
+		spawn(150)
+			new /mob/living/simple_animal/hostile/statue(usr.loc)
+
 	printpicture(user, p)
 
 /obj/item/device/camera/proc/createpicture(atom/target, mob/user, list/turfs, mobs, flag)
@@ -298,7 +315,6 @@ var/global/photo_count = 0
 	p.pixel_x = rand(-10, 10)
 	p.pixel_y = rand(-10, 10)
 	p.photo_size = size
-
 	return p
 
 /obj/item/device/camera/proc/printpicture(mob/user, obj/item/weapon/photo/p)
@@ -318,6 +334,11 @@ var/global/photo_count = 0
 	p.pixel_y = pixel_y
 	p.photo_size = photo_size
 	p.scribble = scribble
+	p.cursed = cursed
+	if(p.cursed)
+		visible_message("Something starts to slowly manifest from the picture!")
+		spawn(150)
+			new /mob/living/simple_animal/hostile/statue(usr.loc)
 
 	if(copy_id)
 		p.id = id
