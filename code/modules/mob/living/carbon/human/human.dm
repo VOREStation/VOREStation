@@ -1562,4 +1562,3 @@
 			status_flags &= ~HIDING //No hiding for you. Mob layer should be updated naturally, but it actually isn't.
 		else
 			layer = HIDING_LAYER
-
