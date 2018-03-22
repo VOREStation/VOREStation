@@ -417,6 +417,14 @@
 	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/corophizine
+	name = "Corophizine"
+	id = "corophizine"
+	result = "corophizine"
+	required_reagents = list("spaceacillin" = 1, "carbon" = 1, "phoron" = 0.1)
+	catalysts = list("phoron" = 5)
+	result_amount = 2
+
 /datum/chemical_reaction/imidazoline
 	name = "imidazoline"
 	id = "imidazoline"
