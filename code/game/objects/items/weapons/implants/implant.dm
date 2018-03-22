@@ -69,7 +69,7 @@
 
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
-	desc = "Track with this."
+	desc = "An implant normally given to dangerous criminals. Allows security to track your location."
 	var/id = 1
 	var/degrade_time = 10 MINUTES	//How long before the implant stops working outside of a living body.
 
