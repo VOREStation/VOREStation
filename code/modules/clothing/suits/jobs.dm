@@ -45,7 +45,7 @@
 	desc = "A long, flowing white robe. It looks comfortable, but not very warm."
 	icon_state = "whiteout_robe"
 	item_state_slots = list(slot_r_hand_str = "suit_white", slot_l_hand_str = "suit_white")
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDETIE|HIDEHOLSTER
 	hoodtype = /obj/item/clothing/head/chaplain_hood/whiteout
 
 //Chaplain
