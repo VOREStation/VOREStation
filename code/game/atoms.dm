@@ -511,3 +511,9 @@
 
 /atom/proc/AllowDrop()
 	return FALSE
+
+/atom/proc/get_nametag_name(mob/user)
+	return name
+
+/atom/proc/get_nametag_desc(mob/user)
+	return "" //Desc itself is often too long to use
