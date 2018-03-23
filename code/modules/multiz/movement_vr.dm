@@ -42,7 +42,7 @@
 			M.visible_message("<span class='danger'>\The [src] drops onto \the [M]! FALL IMPACT SHADOW WEAKEN 8</span>")
 			M.Weaken(8)
 	*/
-	if(isliving(hit_atom)) //THIS WEAKENS THE PERSON FALLING & NOMS THE PERSON FALLEN ONTO. SRC is person fallen onto.  hit_atom is the person falling. Confusing.
+/*	if(isliving(hit_atom)) //THIS WEAKENS THE PERSON FALLING & NOMS THE PERSON FALLEN ONTO. SRC is person fallen onto.  hit_atom is the person falling. Confusing.
 		var/mob/living/pred = hit_atom
 		pred.visible_message("<span class='danger'>\The [hit_atom] falls onto \the [src.owner]!</span>")
 		pred.Weaken(8) //Stun the person you're dropping onto! You /are/ suffering massive damage for a single stun.
@@ -53,8 +53,16 @@
 			else if(prey.can_be_drop_pred && pred.can_be_drop_prey) //Is person being fallen onto pred & person falling prey
 				pred.feed_grabbed_to_self_falling_nom(prey,pred) //oh, how the tables have turned.
 			else
+				playsound(loc, "punch", 25, 1, -1)
 				prey.Weaken(8) //Just fall onto them if neither of the above apply.
-
+				var/tdamage
+				for(var/i = 1 to 10)
+					tdamage = rand(0, 10)/2
+					pred.adjustBruteLoss(tdamage)
+					prey.adjustBruteLoss(tdamage)
+				pred.updatehealth()
+				prey.updatehealth()
+*/
 /mob/proc/dropped_onto(var/atom/hit_atom)
 	if(isliving(hit_atom) && isliving(src)) //THIS WEAKENS THE PERSON FALLING & NOMS THE PERSON FALLEN ONTO. SRC is person fallen onto.  hit_atom is the person falling. Confusing.
 		var/mob/living/pred = hit_atom
@@ -71,6 +79,14 @@
 		else
 			prey.Weaken(8) //Just fall onto them if neither of the above apply.
 			pred.loc = prey.loc
+			playsound(loc, "punch", 25, 1, -1)
+			var/tdamage
+			for(var/i = 1 to 10)
+				tdamage = rand(0, 10)/2
+				pred.adjustBruteLoss(tdamage)
+				prey.adjustBruteLoss(tdamage)
+			pred.updatehealth()
+			prey.updatehealth()
 
 /mob/observer/dead/CheckFall()
 	return
