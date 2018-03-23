@@ -100,7 +100,7 @@
 		src.lying = 1
 		src.blinded = 1
 	else
-		if (src.paralysis || src.stunned || src.weakened || (status_flags && FAKEDEATH)) //Stunned etc.
+		if (src.paralysis || src.stunned || src.weakened || (status_flags & FAKEDEATH)) //Stunned etc.
 			if (src.stunned > 0)
 				src.stat = 0
 			if (src.weakened > 0)

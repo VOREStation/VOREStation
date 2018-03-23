@@ -56,6 +56,7 @@
 	overlays = M.overlays
 	transform = M.transform
 	dir = M.dir
+	invisibility = M.invisibility
 	if(shadow)
 		shadow.sync_icon(src)
 

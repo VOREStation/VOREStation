@@ -1131,7 +1131,7 @@
 
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -1143,7 +1143,7 @@
 			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
 				see_invisible = SEE_INVISIBLE_CULT
 			else
-				see_invisible = SEE_INVISIBLE_LIVING
+				see_invisible = see_invisible_default
 				seer = 0
 
 		if(!seedarkness)
@@ -1154,7 +1154,7 @@
 		else
 			sight = species.get_vision_flags(src)
 			see_in_dark = species.darksight
-			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		var/tmp/glasses_processed = 0
 		var/obj/item/weapon/rig/rig = back
@@ -1175,7 +1175,7 @@
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
 		if(!seer && !glasses_processed && seedarkness)
-			see_invisible = SEE_INVISIBLE_LIVING
+			see_invisible = see_invisible_default
 
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)
@@ -1355,7 +1355,7 @@
 		if(G.see_invisible >= 0)
 			see_invisible = G.see_invisible
 		else if(!druggy && !seer)
-			see_invisible = SEE_INVISIBLE_LIVING
+			see_invisible = see_invisible_default
 
 /mob/living/carbon/human/handle_random_events()
 	if(inStasisNow())

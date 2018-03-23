@@ -422,3 +422,7 @@
 // Used to override normal fall behaviour. Use only when the species does fall down a level.
 /datum/species/proc/fall_impact_special(var/mob/living/carbon/human/H, var/atom/A)
 	return FALSE
+
+// Allow species to display interesting information in the human stat panels
+/datum/species/proc/Stat(var/mob/living/carbon/human/H)
+	return
