@@ -635,7 +635,7 @@ The _flatIcons list is a cache for generated icon files.
 */
 
  // Creates a single icon from a given /atom or /image.  Only the first argument is required.
-proc/getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0, picture_planes = list(PLANE_WORLD))
+/proc/getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0, picture_planes = list(PLANE_WORLD))
 	// We start with a blank canvas, otherwise some icon procs crash silently
 	var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
 	if(!A)
@@ -788,7 +788,7 @@ proc/getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DE
 
 	return icon(flat, "", SOUTH)
 
-proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
+/proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.
 	for(var/I in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
 		if(I:layer>A.layer)	continue//If layer is greater than what we need, skip it.
