@@ -25,7 +25,6 @@
 	#include "items/headset_sc.dm"
 	#include "items/clothing/sc_suit.dm"
 	#include "items/clothing/sc_under.dm"
-	#include "items/clothing/sc_head.dm"
 	#include "items/clothing/sc_accessory.dm"
 	#include "job/outfits.dm"
 	#include "structures/closets/engineering.dm"
