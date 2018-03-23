@@ -193,7 +193,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/apply_colouration(var/icon/applying)
 
-	if(nonsolid)
+	if(transparent) //VOREStation Edit
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
 		if(species && species.get_bodytype(owner) != SPECIES_HUMAN)
 			applying.SetIntensity(1) // Unathi, Taj and Skrell have -very- dark base icons. VOREStation edit fixes this and brings the number back to 1
@@ -215,14 +215,14 @@ var/global/list/limb_icon_cache = list()
 		//VOREStation Edit - Support for species.color_mult
 		if(species && species.color_mult)
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_MULTIPLY)
-			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_MULTIPLY]"
+			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[transparent]_[ICON_MULTIPLY]"
 		else
 			applying.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
-			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[ICON_ADD]"
+			icon_cache_key += "_color_[s_col[1]]_[s_col[2]]_[s_col[3]]_[transparent]_[ICON_ADD]"
 		//VOREStation Edit End
 
 	// Translucency.
-	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
+	if(transparent) applying += rgb(,,,180) // SO INTUITIVE TY BYOND //VOREStation Edit
 
 	return applying
 
