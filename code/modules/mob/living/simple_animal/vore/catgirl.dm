@@ -1,6 +1,7 @@
 /mob/living/simple_animal/catgirl
 	name = "catgirl"
 	desc = "Her hobbies are catnaps, knocking things over, and headpats."
+	tt_desc = "Homo felinus"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "catgirl"
 

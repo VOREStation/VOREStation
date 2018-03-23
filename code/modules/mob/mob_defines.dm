@@ -220,9 +220,7 @@
 
 	var/get_rig_stats = 0 //Moved from computer.dm
 
-
-	var/hud_typing = 0 //Typing indicator stuff.
-	var/typing //Simple mobs use this variable.
+	var/typing
 	var/obj/effect/decal/typing_indicator
 
 	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level

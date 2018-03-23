@@ -26,6 +26,7 @@
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
+	R.transform_with_anim() //VOREStation edit: sprite animation
 	R.uneq_all()
 	R.modtype = initial(R.modtype)
 	R.hands.icon_state = initial(R.hands.icon_state)
@@ -210,6 +211,7 @@
 	R.add_language(LANGUAGE_TRADEBAND, 1)
 	R.add_language(LANGUAGE_UNATHI, 1)
 	R.add_language(LANGUAGE_SIIK, 1)
+	R.add_language(LANGUAGE_AKHANI, 1)
 	R.add_language(LANGUAGE_SKRELLIAN, 1)
 	R.add_language(LANGUAGE_SKRELLIANFAR, 0)
 	R.add_language(LANGUAGE_GUTTER, 1)

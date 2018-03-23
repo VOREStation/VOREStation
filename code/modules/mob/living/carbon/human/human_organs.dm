@@ -2,7 +2,8 @@
 	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES]
 	if(eyes)
 		eyes.update_colour()
-		regenerate_icons()
+		update_icons_body() //Body handles eyes
+		update_eyes() //For floating eyes only
 
 /mob/living/carbon/var/list/internal_organs = list()
 /mob/living/carbon/human/var/list/organs = list()
@@ -113,7 +114,7 @@
 
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
-		if(!(lying || resting) && !isliving(loc))
+		if(!(lying || resting) && !isbelly(loc)) //VOREStation Edit
 			if(limb_pain)
 				emote("scream")
 			custom_emote(1, "collapses!")

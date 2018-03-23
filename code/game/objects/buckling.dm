@@ -46,7 +46,7 @@
 		return TRUE
 
 /atom/movable/Destroy()
-	unbuckle_mob()
+	unbuckle_all_mobs()
 	return ..()
 
 

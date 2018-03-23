@@ -4,6 +4,7 @@
 /obj/machinery/atmospherics/omni/atmos_filter
 	name = "omni gas filter"
 	icon_state = "map_filter"
+	pipe_state = "omni_filter"
 
 	var/list/atmos_filters = new()
 	var/datum/omni_port/input

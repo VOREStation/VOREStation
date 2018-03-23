@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/tvalve
 	icon = 'icons/atmos/tvalve.dmi'
 	icon_state = "map_tvalve0"
+	construction_type = /obj/item/pipe/trinary/flippable
+	pipe_state = "mtvalve"
 
 	name = "manual switching valve"
 	desc = "A pipe valve"
@@ -12,6 +14,7 @@
 	var/state = 0 // 0 = go straight, 1 = go to side
 
 	var/mirrored = FALSE
+	var/tee = FALSE // Note: Tee not actually supported for T-valves: no sprites
 
 	// like a trinary component, node1 is input, node2 is side output, node3 is straight output
 	var/obj/machinery/atmospherics/node3
@@ -46,6 +49,9 @@
 
 /obj/machinery/atmospherics/tvalve/init_dir()
 	initialize_directions = get_initialize_directions_trinary(dir, mirrored)
+
+/obj/machinery/atmospherics/tvalve/get_neighbor_nodes_for_init()
+	return list(node1, node2, node3)
 
 /obj/machinery/atmospherics/tvalve/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
@@ -178,21 +184,9 @@
 
 	var/list/node_connects = get_node_connect_dirs()
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[1]))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[2]))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node2 = target
-				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[3]))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node3 = target
-				break
+	STANDARD_ATMOS_CHOOSE_NODE(1, node_connects[1])
+	STANDARD_ATMOS_CHOOSE_NODE(2, node_connects[2])
+	STANDARD_ATMOS_CHOOSE_NODE(3, node_connects[3])
 
 	update_icon()
 	update_underlays()
@@ -262,6 +256,7 @@
 	name = "digital switching valve"
 	desc = "A digitally controlled valve."
 	icon = 'icons/atmos/digital_tvalve.dmi'
+	pipe_state = "dtvalve"
 
 	var/frequency = 0
 	var/id = null
@@ -348,8 +343,7 @@
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()
 
 /obj/machinery/atmospherics/tvalve/mirrored
 	icon_state = "map_tvalvem0"

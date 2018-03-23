@@ -190,7 +190,7 @@
 		var/mob/living/carbon/human/H = mob
 		var/organ = pick(list("heart","kidney","liver", "lungs"))
 		var/obj/item/organ/internal/O = H.organs_by_name[organ]
-		if (!(O.robotic = ORGAN_ROBOT))
+		if (O.robotic != ORGAN_ROBOT)
 			O.damage += (5*multiplier)
 			H << "<span class='notice'>You feel a cramp in your guts.</span>"
 
@@ -370,7 +370,7 @@
 		var/mob/living/carbon/human/H = mob
 		var/obj/item/organ/internal/O = H.organs_by_name
 		for (var/organ in H.organs_by_name)
-			if (!(O.robotic = ORGAN_ROBOT))
+			if (O.robotic != ORGAN_ROBOT)
 				O.rejecting = 0
 
 
@@ -441,7 +441,7 @@
 /datum/disease2/effect/hair/activate(var/mob/living/carbon/mob,var/multiplier)
 	if(istype(mob, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = mob
-		if(H.species.name == "Human" && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
+		if(H.species.name == SPECIES_HUMAN && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
 			H << "<span class='danger'>Your hair starts to fall out in clumps...</span>"
 			spawn(50)
 				H.h_style = "Balding Hair"

@@ -269,7 +269,7 @@
 					resource_field += mine_turf
 
 	if(!resource_field.len)
-		system_error("resources depleted")
+		system_error("Resources depleted.")
 
 /obj/machinery/mining/drill/proc/use_cell_power()
 	if(!cell) return 0

@@ -23,8 +23,8 @@
 	organ_rel_size = 70
 	base_miss_chance = 10
 
-/obj/item/organ/external/chest/robotize()
-	if(..())
+/obj/item/organ/external/chest/robotize(var/company, var/skip_prosthetics = 0, var/keep_organs = 0)
+	if(..() && robotic != ORGAN_NANOFORM) //VOREStation Edit
 		// Give them a new cell.
 		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
 

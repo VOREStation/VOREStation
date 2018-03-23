@@ -1,6 +1,7 @@
 /mob/living/simple_animal/lizard
 	name = "Lizard"
 	desc = "A cute tiny lizard."
+	tt_desc = "Gekko gecko"
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "lizard"
 	icon_living = "lizard"

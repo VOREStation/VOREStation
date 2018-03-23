@@ -607,6 +607,12 @@
 		icon_state = "eyes_sergal"
 		body_parts = list(BP_HEAD)
 
+	brows
+		name = "Eyebrows"
+		icon_state = "brows"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
 	nevrean_female
 		name = "Female Nevrean beak"
 		icon_state = "nevrean_f"
@@ -661,6 +667,12 @@
 	otie_nose
 		name = "Otie nose"
 		icon_state = "otie_nose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	otienose_lite
+		name = "Short otie nose"
+		icon_state = "otienose_lite"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
@@ -727,6 +739,12 @@
 	znose
 		name = "Jagged snout"
 		icon_state = "znose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	sharkface
+		name = "Akula snout"
+		icon_state = "sharkface"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
@@ -817,6 +835,12 @@
 		icon_state = "btone"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 
+	gloss
+		name = "Full body gloss"
+		icon_state = "gloss"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+
 	eboop_panels
 		name = "Eggnerd FBP panels"
 		icon_state = "eboop"
@@ -856,6 +880,12 @@
 		name = "Anime Eyes Outer"
 		icon_state = "animeeyesouter"
 		body_parts = list(BP_HEAD)
+
+	panda_eye_marks
+		name = "Panda Eye Markings"
+		icon_state = "eyes_panda"
+		body_parts = list(BP_HEAD)
+		species_allowed = list("Human")
 
 	catwomantorso
 		name = "Catwoman chest stripes"

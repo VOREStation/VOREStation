@@ -11,6 +11,7 @@ jemli - Gutter
 mewchild - Diona
 mewchild - Vox
 natje - Xenochimera
+paradoxspace - Xenochimera
 rapidvalj - Vox
 rikaru19xjenkins  - Xenomorph Hybrid
 rikaru19xjenkins - Xenochimera
@@ -28,7 +29,6 @@ verkister - Xenochimera
 xioen - Diona
 xioen - Xenochimera
 xioen - Xenomorph Hybrid
-yuliy - Vox
 zammyman215 - Vox
 zekesturm - Xenomorph Hybrid
 wtfismyname - Xenomorph Hybrid

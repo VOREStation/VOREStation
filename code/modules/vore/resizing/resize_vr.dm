@@ -64,6 +64,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/resize(var/new_size, var/animate = TRUE)
 	if(size_multiplier == new_size)
 		return 1
+	
+	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
 	if(animate)
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS
@@ -79,17 +81,20 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		var/aura_loops = round((duration)/aura_anim_duration)
 
 		animate_aura(src, color = aura_color, offset = aura_offset, anim_duration = aura_anim_duration, loops = aura_loops, grow_to = aura_grow_to)
-	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
+	else
+		update_transform() //Lame way
 
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
-	if(..()) return 1
-	var/new_y_offset = 32 * (size_multiplier - 1)
-	for(var/I in hud_list)
-		var/image/HI = I
-		HI.pixel_y = new_y_offset
+	. = ..()
+	if(LAZYLEN(hud_list) && has_huds)
+		var/new_y_offset = 32 * (size_multiplier - 1)
+		for(var/index = 1 to hud_list.len)
+			var/image/HI = grab_hud(index)
+			HI.pixel_y = new_y_offset
+			apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size)
+/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
 	size_multiplier = new_size
 
 /**
@@ -233,7 +238,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					tmob.resting = 1 //Force them down to the ground.
 
 					//Log it for admins (as opposed to walk which logs damage)
-					add_attack_logs(src,tmob,"Pinned underfoot")
+					add_attack_logs(src,tmob,"Pinned underfoot (run, no halloss)")
 
 					//Not a human, or not a taur, generic message only
 					if(!H || !isTaurTail(H.tail_style))
@@ -255,7 +260,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					tmob.resting = 1
 
 					//Log it for admins (as opposed to run which logs no damage)
-					add_attack_logs(src,tmob,"Pinned underfoot (+HALLOSS)")
+					add_attack_logs(src,tmob,"Pinned underfoot (walk, about [damage] halloss)")
 
 					//Not a human, or not a taur, generic message only
 					if(!H || !isTaurTail(H.tail_style))
@@ -306,7 +311,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/external/I in Ht.organs)
 							I.take_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will (probably not...) heal over time.
 						Ht.drip(0.1)
-						add_attack_logs(src,tmob,"Crushed underfoot")
+						add_attack_logs(src,tmob,"Crushed underfoot (run, about [calculated_damage] damage)")
 
 				//Walking on I_HURT
 				else
@@ -318,7 +323,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 						for(var/obj/item/organ/I in Ht.organs)
 							I.take_damage(calculated_damage, 0)
 						Ht.drip(3)
-						add_attack_logs(src,tmob,"Crushed underfoot")
+						add_attack_logs(src,tmob,"Crushed underfoot (walk, about [calculated_damage] damage)")
 
 					//Not a human, or not a taur, generic message only
 					if(!H || !isTaurTail(H.tail_style))
@@ -346,25 +351,25 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob.resting = 1
 				forceMove(tmob.loc)
 
-				//Log it for admins (still a mechanical attack due to the pin)
-				add_attack_logs(src,tmob,"Pinned (grab w/ shoes) underfoot")
-
 				//Not a human, or not a taur while wearing shoes = no grab
 				if(!H || (!isTaurTail(H.tail_style) && H.shoes))
 					to_chat(src,"You step down onto [tmob], squishing them and forcing them down to the ground!")
 					to_chat(tmob,"[src] steps down and squishes you with their foot, forcing you down to the ground!")
+					add_attack_logs(src,tmob,"Grabbed underfoot (nontaur, shoes)")
 
 				//Human, not a taur, but not wearing shoes = yes grab
 				else if(H && (!isTaurTail(H.tail_style) && !H.shoes))
 					to_chat(src,"You pin [tmob] down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!")
 					to_chat(tmob,"[src] pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!")
 					equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
+					add_attack_logs(src,tmob,"Grabbed underfoot (nontaur, no shoes)")
 
 				//Human, taur, shoes = no grab, special message
 				else if(H.shoes)
 					var/datum/sprite_accessory/tail/taur/tail = H.tail_style
 					to_chat(src,STEP_TEXT_OWNER(tail.msg_owner_grab_fail))
 					to_chat(tmob,STEP_TEXT_PREY(tail.msg_prey_grab_fail))
+					add_attack_logs(src,tmob,"Grabbed underfoot (taur, shoes)")
 
 				//Human, taur, no shoes = yes grab, special message
 				else
@@ -372,6 +377,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					to_chat(src,STEP_TEXT_OWNER(tail.msg_owner_grab_success))
 					to_chat(tmob,STEP_TEXT_PREY(tail.msg_prey_grab_success))
 					equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
+					add_attack_logs(src,tmob,"Grabbed underfoot (taur, no shoes)")
 
 				//Return true, the sizediff was enough that we handled it.
 				return TRUE

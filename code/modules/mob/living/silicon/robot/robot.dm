@@ -210,7 +210,7 @@
 /mob/living/silicon/robot/proc/setup_communicator()
 	if (!communicator)
 		communicator = new/obj/item/device/communicator/integrated(src)
-	communicator.register_device(src, "[modtype] [braintype]")
+	communicator.register_device(src.name, "[modtype] [braintype]")
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
@@ -267,6 +267,7 @@
 		return
 
 	var/module_type = robot_modules[modtype]
+	transform_with_anim()	//VOREStation edit: sprite animation
 	new module_type(src)
 
 	hands.icon_state = lowertext(modtype)
@@ -359,6 +360,7 @@
 	lights_on = !lights_on
 	usr << "You [lights_on ? "enable" : "disable"] your integrated light."
 	handle_light()
+	updateicon() //VOREStation Add - Since dogborgs have sprites for this
 
 /mob/living/silicon/robot/verb/self_diagnosis_verb()
 	set category = "Robot Commands"
@@ -711,34 +713,29 @@
 	return 0
 
 /mob/living/silicon/robot/updateicon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS)
-		overlays += "eyes-[module_sprites[icontype]]"
+		add_overlay("eyes-[module_sprites[icontype]]")
 
 	if(opened)
 		var/panelprefix = custom_sprite ? "[src.ckey]-[src.name]" : "ov"
 		if(wiresexposed)
-			overlays += "[panelprefix]-openpanel +w"
+			add_overlay("[panelprefix]-openpanel +w")
 		else if(cell)
-			overlays += "[panelprefix]-openpanel +c"
+			add_overlay("[panelprefix]-openpanel +c")
 		else
-			overlays += "[panelprefix]-openpanel -c"
+			add_overlay("[panelprefix]-openpanel -c")
 
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
 		if(shield && shield.active)
-			overlays += "[module_sprites[icontype]]-shield"
+			add_overlay("[module_sprites[icontype]]-shield")
 
 	if(modtype == "Combat")
 		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
 			icon_state = "[module_sprites[icontype]]-roll"
 		else
 			icon_state = module_sprites[icontype]
-		return
-
-	if(typing)
-		typing = FALSE
-		set_typing_indicator(1)
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
@@ -970,6 +967,12 @@
 			icontype = module_sprites[1]
 	else
 		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
+		if(notransform)				//VOREStation edit start: sprite animation
+			to_chat(src, "Your current transformation has not finished yet!")
+			choose_icon(icon_selection_tries, module_sprites)
+			return
+		else
+			transform_with_anim()	//VOREStation edit end: sprite animation
 	icon_state = module_sprites[icontype]
 	updateicon()
 

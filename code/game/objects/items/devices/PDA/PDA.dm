@@ -11,7 +11,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/id.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi')
 
 	//Main variables
 	var/pdachoice = 1

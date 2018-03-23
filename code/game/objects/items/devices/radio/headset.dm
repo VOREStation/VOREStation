@@ -3,11 +3,12 @@
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
 	var/radio_desc = ""
 	icon_state = "headset"
+	item_state = null //To remove the radio's state
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 	slot_flags = SLOT_EARS
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ears.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi')
 
 	var/translate_binary = 0
 	var/translate_hive = 0
@@ -62,6 +63,17 @@
 		if(H.l_ear == src || H.r_ear == src)
 			return ..(freq, level)
 	return -1
+
+/obj/item/device/radio/headset/get_worn_icon_state(var/slot_name)
+	var/append = ""
+	if(icon_override)
+		switch(slot_name)
+			if(slot_l_ear_str)
+				append = "_l"
+			if(slot_r_ear_str)
+				append = "_r"
+
+	return "[..()][append]"
 
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)

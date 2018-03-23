@@ -19,6 +19,8 @@
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
+	var/can_be_drop_prey = 0
+	var/can_be_drop_pred = 1	//Mobs are pred by default.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -26,34 +28,43 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	M.verbs += /mob/living/proc/escapeOOC
 	M.verbs += /mob/living/proc/lick
+	M.verbs += /mob/living/proc/switch_scaling
 	if(M.no_vore) //If the mob isn't supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
 		return 1
 	M.verbs += /mob/living/proc/insidePanel
 
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
-	if(!M.vore_organs || !M.vore_organs.len)
-		spawn(20) //Wait a couple of seconds to make sure copy_to or whatever has gone
-			if(!M) return
-
-			if(M.client && M.client.prefs_vr)
-				if(!M.copy_from_prefs_vr())
-					to_chat(M,"<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>")
-					return 0
-				if(M.vore_organs && M.vore_organs.len)
-					M.vore_selected = M.vore_organs[1]
-
-			if(!M.vore_organs || !M.vore_organs.len)
-				if(!M.vore_organs)
-					M.vore_organs = list()
-				var/obj/belly/B = new /obj/belly(M)
-				M.vore_selected = B
-				B.immutable = 1
-				B.name = "Stomach"
-				B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [M.name]."
-				B.can_taste = 1
+	spawn(2 SECONDS)
+		if(M)
+			M.init_vore()
 
 	//Return 1 to hook-caller
 	return 1
+
+/mob/living/proc/init_vore()
+	//Something else made organs, meanwhile.
+	if(LAZYLEN(vore_organs))
+		return TRUE
+
+	//We'll load our client's organs if we have one
+	if(client && client.prefs_vr)
+		if(!copy_from_prefs_vr())
+			to_chat(src,"<span class='warning'>ERROR: You seem to have saved VOREStation prefs, but they couldn't be loaded.</span>")
+			return FALSE
+		if(LAZYLEN(vore_organs))
+			vore_selected = vore_organs[1]
+			return TRUE
+
+	//Or, we can create a basic one for them
+	if(!LAZYLEN(vore_organs))
+		LAZYINITLIST(vore_organs)
+		var/obj/belly/B = new /obj/belly(src)
+		vore_selected = B
+		B.immutable = 1
+		B.name = "Stomach"
+		B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
+		B.can_taste = 1
+		return TRUE
 
 //
 // Hide vore organs in contents
@@ -113,7 +124,6 @@
 		if (is_vore_predator(src))
 			for (var/mob/living/M in H.contents)
 				if (attacker.eat_held_mob(attacker, M, src))
-					H.contents -= M
 					if (H.held_mob == M)
 						H.held_mob = null
 			return 1 //Return 1 to exit upper procs
@@ -213,6 +223,7 @@
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
 
+	release_vore_contents(silent = TRUE)
 	vore_organs.Cut()
 	for(var/entry in P.belly_prefs)
 		list_to_object(entry,src)
@@ -337,6 +348,14 @@
 		//Actual escaping
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
+
+	//You're in an AI hologram!
+	else if(istype(loc, /obj/effect/overlay/aiholo))
+		var/obj/effect/overlay/aiholo/holo = loc
+		holo.drop_prey() //Easiest way
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
+	
+	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
 
@@ -583,3 +602,9 @@
 		return
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
+
+/mob/living/proc/switch_scaling()
+	set name = "Switch scaling mode"
+	set category = "Preferences"
+	set desc = "Switch sharp/fuzzy scaling for current mob."
+	appearance_flags ^= PIXEL_SCALE

@@ -14,7 +14,7 @@
 
 /obj/item/weapon/reagent_containers/syringe/Destroy()
 	qdel_null_list(viruses)
-	targets.Cut()
+	LAZYCLEARLIST(targets)
 	return ..()
 
 /obj/item/weapon/reagent_containers/syringe/process()
@@ -29,7 +29,8 @@
 	LAZYINITLIST(targets)
 
 	//We can't keep a mob reference, that's a bad idea, so instead name+ref should suffice.
-	var/hash = md5(target.real_name + "\ref[target]")
+	var/name_to_use = ismob(target) ? target.real_name : target.name
+	var/hash = md5(name_to_use + "\ref[target]")
 
 	//Just once!
 	targets |= hash

@@ -7,6 +7,7 @@
 	var/leap_at
 	var/dogborg = FALSE //Dogborg special features (overlays etc.)
 	var/wideborg = FALSE //When the borg simply doesn't use standard 32p size.
+	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
 	var/vr_icons = list(
@@ -16,7 +17,17 @@
 					   "handy-janitor",
 					   "handy-miner",
 					   "handy-standard",
-					   "handy-sec"
+					   "handy-sec",
+					   "mechoid-Standard",
+					   "mechoid-Medical",
+					   "mechoid-Security",
+					   "mechoid-Science",
+					   "mechoid-Engineering",
+					   "mechoid-Miner",
+					   "mechoid-Service",
+					   "mechoid-Janitor",
+					   "mechoid-Combat",
+					   "mechoid-Combat-roll"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -34,21 +45,23 @@
 	..()
 	if(dogborg == TRUE && stat == CONSCIOUS)
 		if(sleeper_g == TRUE)
-			overlays += "[module_sprites[icontype]]-sleeper_g"
+			add_overlay("[module_sprites[icontype]]-sleeper_g")
 		if(sleeper_r == TRUE)
-			overlays += "[module_sprites[icontype]]-sleeper_r"
+			add_overlay("[module_sprites[icontype]]-sleeper_r")
 		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
-			overlays += "laser"
+			add_overlay("laser")
 		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
-			overlays += "taser"
+			add_overlay("taser")
+		if(lights_on)
+			add_overlay("eyes-[module_sprites[icontype]]-lights")
 		if(resting)
-			overlays.Cut() // Hide that gut for it has no ground sprite yo.
+			cut_overlays() // Hide that gut for it has no ground sprite yo.
 			icon_state = "[module_sprites[icontype]]-rest"
 		else
 			icon_state = "[module_sprites[icontype]]"
 	if(dogborg == TRUE && stat == DEAD)
 		icon_state = "[module_sprites[icontype]]-wreck"
-		overlays += "wreck-overlay"
+		add_overlay("wreck-overlay")
 
 /mob/living/silicon/robot/Move(a, b, flag)
 

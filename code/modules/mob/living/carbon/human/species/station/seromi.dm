@@ -1,5 +1,5 @@
 /datum/species/teshari
-	name = "Teshari"
+	name = SPECIES_TESHARI
 	name_plural = "Tesharii"
 	blurb = "A race of feathered raptors who developed alongside the Skrell, inhabiting \
 	the polar tundral regions outside of Skrell territory. Extremely fragile, they developed \
@@ -23,7 +23,7 @@
 	flesh_color = "#5F7BB0"
 	base_color = "#001144"
 	tail = "seromitail"
-	tail_hair = "feathers"
+	//tail_hair = "feathers" //TESHARI TEMPORARY REMOVAL
 	reagent_tag = IS_TESHARI
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
