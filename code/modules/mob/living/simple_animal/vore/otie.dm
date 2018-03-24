@@ -197,6 +197,8 @@
 /mob/living/simple_animal/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
 	if(ishuman(prey))
 		vore_selected.digest_mode = DM_HOLD
+		if(check_threat(prey) >= 4)
+			global_announcer.autosay("[src] has detained suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
 	if(istype(prey,/mob/living/simple_animal/mouse))
 		vore_selected.digest_mode = DM_DIGEST
 	. = ..()
@@ -224,9 +226,9 @@
 		try_say_list(say_got_target)
 		target_mob = M
 		last_target_time = world.time
-		return M
 		if(check_threat(M) >= 4)
-			global_announcer.autosay("[src] is attempting to 'detain' suspect <b>[target_name(M)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
+			global_announcer.autosay("[src] is attempting to detain suspect <b>[target_name(M)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
+		return M
 	else if(investigates)
 		spawn(1)
 			WanderTowards(seen)
