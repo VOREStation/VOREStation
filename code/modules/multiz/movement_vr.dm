@@ -14,8 +14,9 @@
 			return 1
 
 	if(drop_mob && !(drop_mob == src) && ismob(drop_mob) && isliving(drop_mob)) //Shitload of checks. This is because the game finds various ways to screw me over.
-		drop_mob.dropped_onto(src)
-		return
+		var/mob/living/drop_living = drop_mob
+		if(drop_living.dropped_onto(src))
+			return
 
 	// Then call parent to have us actually fall
 	return ..()
@@ -63,30 +64,32 @@
 				pred.updatehealth()
 				prey.updatehealth()
 */
-/mob/proc/dropped_onto(var/atom/hit_atom)
-	if(isliving(hit_atom) && isliving(src)) //THIS WEAKENS THE PERSON FALLING & NOMS THE PERSON FALLEN ONTO. SRC is person fallen onto.  hit_atom is the person falling. Confusing.
-		var/mob/living/pred = hit_atom
-		pred.visible_message("<span class='danger'>\The [hit_atom] falls onto \the [src]!</span>")
-		pred.Weaken(8) //Stun the person you're dropping onto! You /are/ suffering massive damage for a single stun.
-		var/mob/living/prey = src //The shadow's owner
-		var/fallloc = prey.loc
-		if(pred.can_be_drop_pred && prey.can_be_drop_prey) //Is person falling pred & person being fallen onto prey?
-			//pred.loc = fallloc
-			pred.feed_grabbed_to_self_falling_nom(pred,prey)
-			pred.loc = fallloc
-		else if(prey.can_be_drop_pred && pred.can_be_drop_prey) //Is person being fallen onto pred & person falling prey
-			prey.feed_grabbed_to_self_falling_nom(prey,pred) //oh, how the tables have turned.
-		else
-			prey.Weaken(8) //Just fall onto them if neither of the above apply.
-			pred.loc = prey.loc
-			playsound(loc, "punch", 25, 1, -1)
-			var/tdamage
-			for(var/i = 1 to 10)
-				tdamage = rand(0, 10)/2
-				pred.adjustBruteLoss(tdamage)
-				prey.adjustBruteLoss(tdamage)
-			pred.updatehealth()
-			prey.updatehealth()
+/mob/living/proc/dropped_onto(var/atom/hit_atom)
+	if(!isliving(hit_atom))
+		return 0
+
+	var/mob/living/pred = hit_atom
+	pred.visible_message("<span class='danger'>\The [hit_atom] falls onto \the [src]!</span>")
+	pred.Weaken(8)
+	var/mob/living/prey = src
+	var/fallloc = prey.loc
+	if(pred.can_be_drop_pred && prey.can_be_drop_prey)
+		pred.feed_grabbed_to_self_falling_nom(pred,prey)
+		pred.loc = fallloc
+	else if(prey.can_be_drop_pred && pred.can_be_drop_prey)
+		prey.feed_grabbed_to_self_falling_nom(prey,pred)
+	else
+		prey.Weaken(8)
+		pred.loc = prey.loc
+		playsound(loc, "punch", 25, 1, -1)
+		var/tdamage
+		for(var/i = 1 to 10)
+			tdamage = rand(0, 10)/2
+			pred.adjustBruteLoss(tdamage)
+			prey.adjustBruteLoss(tdamage)
+		pred.updatehealth()
+		prey.updatehealth()
+	return 1
 
 /mob/observer/dead/CheckFall()
 	return
