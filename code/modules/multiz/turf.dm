@@ -129,7 +129,7 @@
 			qdel(L)
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
+			ChangeTurf(/turf/simulated/floor) //VOREStation Edit
 			return
 		else
 			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
