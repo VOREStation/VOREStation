@@ -1,7 +1,1 @@
-# Job whitelist in format ckey - jobname
-# Like arokha - clown
-seiga - mime
-silvertalismen - clown
-suicidalpickles - mime
-whiskyrose - clown
-tinybear16 - clown
+
