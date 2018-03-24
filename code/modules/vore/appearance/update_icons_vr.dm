@@ -17,7 +17,8 @@ var/global/list/wing_icon_cache = list()
 
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
-	if(synthetic && synthetic.includes_tail && !tail_style)
+	var/datum/robolimb/model = isSynthetic()
+	if(istype(model) && model.includes_tail && !tail_style)
 		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
 		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		return image(tail_s)
