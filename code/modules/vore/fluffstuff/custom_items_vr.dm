@@ -1524,7 +1524,7 @@
 		else if(L.vore_organs.len)
 			real_dest = pick(L.vore_organs)
 			televored = TRUE
-			
+
 	//Televore fluff stuff
 	if(televored)
 		to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
@@ -1960,7 +1960,7 @@
 		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
 			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
 		return (BRUTELOSS|FIRELOSS)
- 
+
 /obj/item/weapon/melee/fluffstuff/awoosword
 	name = "Wolfgirl Sword Replica"
 	desc = "A replica of a large, scimitar-like sword with a dull edge. Ceremonial... until it isn't."

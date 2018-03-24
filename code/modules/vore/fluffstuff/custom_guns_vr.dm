@@ -413,31 +413,17 @@
 */
 
 //hzdonut:Jesse Soemmer
-obj/item/weapon/gun/projectile/revolver/lemat/fluff/jesselemat
+/obj/item/weapon/gun/projectile/revolver/fluff/JesseFluffLeMat
 	name = "LeMat Revolver"
 	desc = "The LeMat Revolver is a 9 shot revolver with a secondary firing barrel for loading shotgun shells. For when you really need something dead. Uses .38-Special and 12g rounds depending on the barrel. This one appears to have had it's secondary barrel sealed off, however, and looks to be in pristine condition. Either it's brand new, or its owner takes very good care of it."
 	icon_state = "lemat"
 	item_state = "revolver"
+	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
-	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	projectile_type = /obj/item/projectile/bullet/pistol
-
-/obj/item/weapon/gun/projectile/revolver/lemat/spin_cylinder()
-	set name = "Spin cylinder"
-	set desc = "Fun when you're bored out of your skull."
-	set category = "Object"
-
-	chamber_offset = 0
-	visible_message("<span class='warning'>\The [usr] spins the cylinder of \the [src]!</span>", \
-	"<span class='notice'>You hear something metallic spin and click.</span>")
-	playsound(src.loc, 'sound/weapons/revolver_spin.ogg', 100, 1)
-	loaded = shuffle(loaded)
-	if(rand(1,max_shells) > loaded.len)
-		chamber_offset = rand(0,max_shells - loaded.len)
-
 //////////////////// Energy Weapons ////////////////////
 
 // ------------ Energy Luger ------------
