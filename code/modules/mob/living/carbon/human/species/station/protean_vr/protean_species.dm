@@ -84,6 +84,7 @@
 		/mob/living/carbon/human/proc/nano_partswap,
 		/mob/living/carbon/human/proc/nano_metalnom,
 		/mob/living/carbon/human/proc/nano_blobform,
+		/mob/living/proc/nano_set_size,
 		/mob/living/carbon/human/proc/nano_change_fitting, //These verbs are displayed normally,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
@@ -183,7 +184,7 @@
 /datum/species/protean/Stat(var/mob/living/carbon/human/H)
 	..()
 	if(statpanel("Protean"))
-		var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
+		var/obj/item/organ/internal/nano/refactory/refactory = H.nano_get_refactory()
 		if(refactory && !(refactory.status & ORGAN_DEAD))
 			stat(null, "- -- --- Refactory Metal Storage --- -- -")
 			var/max = refactory.max_storage

@@ -54,7 +54,7 @@
 		humanform = H
 		updatehealth()
 		refactory = locate() in humanform.internal_organs
-		verbs |= /mob/living/simple_animal/protean_blob/proc/revert_form
+		verbs |= /mob/living/proc/nano_set_size
 		verbs |= /mob/living/proc/ventcrawl
 		verbs |= /mob/living/proc/hide
 	else
@@ -74,29 +74,8 @@
 
 /mob/living/simple_animal/protean_blob/Stat()
 	..()
-	if(statpanel("Status"))
-		stat(null, "- -- --- Protean Stats --- -- -")
-		stat(null, "Condition: [health]/[maxHealth]")
-		if(refactory)
-			var/max = refactory.max_storage
-			for(var/material in refactory.materials)
-				var/amount = refactory.get_stored_material(material)
-				stat(null, "[capitalize(material)]: [amount]/[max]")
-
-/mob/living/simple_animal/protean_blob/proc/revert_form()
-	set name = "Ref - Humanoid"
-	set desc = "Regain your humanoid form."
-	set category = "Abilities"
-
-	if(health < maxHealth*0.5)
-		to_chat(src,"<span class='warning'>You're too injured for that! Regenerate using steel first.</span>")
-		return
-	
 	if(humanform)
-		humanform.nano_outofblob(src)
-	else
-		to_chat(src,"<span class='warning'>Something's gone terribly wrong and we can't find your human body. Admin-help this.</span>")
-		return
+		humanform.species.Stat(humanform)
 
 /mob/living/simple_animal/protean_blob/update_icon()
 	if(humanform)
@@ -243,6 +222,10 @@
 	//Create our new blob
 	var/mob/living/simple_animal/protean_blob/blob = new(creation_spot,src)
 
+	//Size update
+	blob.transform = matrix()*size_multiplier
+	blob.size_multiplier = size_multiplier
+
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
 	temporary_form = blob
@@ -292,6 +275,10 @@
 
 	//Record where they should go
 	var/atom/reform_spot = blob.drop_location()
+
+	//Size update
+	transform = matrix()*blob.size_multiplier
+	size_multiplier = blob.size_multiplier
 
 	//Move them back where the blob was
 	forceMove(reform_spot)

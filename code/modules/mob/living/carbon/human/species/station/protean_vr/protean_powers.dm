@@ -12,10 +12,12 @@
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
 
-	var/obj/item/organ/internal/nano/refactory/refactory = locate() in internal_organs
-	if(!refactory || refactory.status & ORGAN_DEAD)
-		to_chat(src,"<span class='warning'>You don't have a refactory module!</span>")
+	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
+	//Missing the organ that does this
+	if(!istype(refactory))
+		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
+
 
 	var/choice = input(src,"Pick the bodypart to change:", "Refactor - One Bodypart") as null|anything in species.has_limbs
 	if(!choice)
@@ -70,7 +72,6 @@
 	eo.robotize(manu_choice)
 	visible_message("<B>[src]</B>'s ")
 	update_icons_body()
-#undef PER_LIMB_STEEL_COST
 
 ////
 //  Full Refactor
@@ -85,10 +86,10 @@
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
 
-	var/obj/item/organ/internal/nano/refactory/refactory = locate() in internal_organs
+	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 	//Missing the organ that does this
 	if(!istype(refactory))
-		to_chat(src,"<span class='warning'>You don't have a refactory module!</span>")
+		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
 
 	//Already regenerating
@@ -176,10 +177,10 @@
 	set category = "Abilities"
 	set hidden = TRUE
 
-	var/obj/item/organ/internal/nano/refactory/refactory = locate() in internal_organs
+	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 	//Missing the organ that does this
 	if(!istype(refactory))
-		to_chat(src,"<span class='warning'>You don't have a refactory module!</span>")
+		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
 
 	var/held = get_active_hand()
@@ -204,21 +205,31 @@
 //  Blob Form
 ////
 /mob/living/carbon/human/proc/nano_blobform()
-	set name = "Become Amorphous"
-	set desc = "Drop your shape and assume a more natural form."
+	set name = "Toggle Blobform"
+	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"
 	set hidden = TRUE
 
-	if(stat)
-		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
+	//Blob form
+	if(temporary_form)
+		if(health < maxHealth*0.5)
+			to_chat(temporary_form,"<span class='warning'>You need to regenerate more nanites first!</span>")
+		else if(temporary_form.stat)
+			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
+			return
+		else
+			nano_outofblob(temporary_form)
+	
+	//Human form
+	else if(stat)
+		to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
 		return
-
-	nano_intoblob()
+	else
+		nano_intoblob()
 
 ////
 //  Change fitting
 ////
-
 /mob/living/carbon/human/proc/nano_change_fitting()
 	set name = "Change Species Fit"
 	set desc = "Tweak your shape to change what suits you fit into (and their sprites!)."
@@ -231,7 +242,67 @@
 	var/new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in playable_species
 	if(new_species)
 		impersonate_bodytype = new_species
-		regenerate_icons()
+		regenerate_icons() //Expensive, but we need to recrunch all the icons we're wearing
+
+////
+//  Change size
+////
+/mob/living/proc/nano_set_size()
+	set name = "Adjust Volume"
+	set category = "Abilities"
+	set hidden = TRUE
+
+	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
+	//Missing the organ that does this
+	if(!istype(refactory))
+		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
+		return
+
+	var/nagmessage = "Adjust your mass to be a size between 25 to 200%. Up-sizing consumes metal, downsizing returns metal."
+	var/new_size = input(src, nagmessage, "Pick a Size", size_multiplier*100) as num|null
+	if(!new_size || !IsInRange(new_size,25,200))
+		return
+
+	var/size_factor = new_size/100
+	
+	//Will be: -1.75 for 200->25, and 1.75 for 25->200
+	var/sizediff = size_factor - size_multiplier
+
+	//Negative if shrinking, positive if growing
+	//Will be (PLSC*2)*-1.75 to 1.75
+	//For 2000 PLSC that's -7000 to 7000
+	var/cost = (PER_LIMB_STEEL_COST*2)*sizediff
+
+	//Sizing up
+	if(cost > 0)
+		if(refactory.use_stored_material("steel",cost))
+			resize(size_factor)
+		else
+			to_chat(src,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
+		return
+	//Sizing down (or not at all)
+	if(cost <= 0)
+		cost = abs(cost)
+		var/actually_added = refactory.add_stored_material("steel",cost)
+		resize(size_factor)
+		if(actually_added != cost)
+			to_chat(src,"<span class='warning'>Unfortunately, [cost-actually_added] steel was lost due to lack of storage space.</span>")
+
+/// /// /// A helper to reuse
+/mob/living/proc/nano_get_refactory(obj/item/organ/internal/nano/refactory/R)
+	if(istype(R))
+		if(!(R.status & ORGAN_DEAD))
+			return R
+	return
+
+/mob/living/simple_animal/protean_blob/nano_get_refactory()
+	if(refactory)
+		return ..(refactory)
+	if(humanform)
+		return humanform.nano_get_refactory()
+
+/mob/living/carbon/human/nano_get_refactory()
+	return ..(locate(/obj/item/organ/internal/nano/refactory) in internal_organs)
 
 /// /// /// Ability objects for stat panel
 /obj/effect/protean_ability
@@ -251,19 +322,33 @@
 	if(opts)
 		to_chat(usr,"<span class='notice'><b>[ability_name]</b> - [desc]</span>")
 	else
-		do_ability(usr)
+		//Humanform using it
+		if(ishuman(usr))
+			do_ability(usr)
+		//Blobform using it
+		else
+			var/mob/living/simple_animal/protean_blob/blob = usr
+			if(!blob.humanform)
+				return
+			do_ability(blob.humanform)
 
-/obj/effect/protean_ability/proc/do_ability(var/mob/living/carbon/human/H)
-	if(istype(H) && !H.stat)
-		call(H,to_call)()
+/obj/effect/protean_ability/proc/do_ability(var/mob/living/L)
+	if(istype(L) && !L.stat)
+		call(L,to_call)()
 	return FALSE
 
 /// The actual abilities
 /obj/effect/protean_ability/into_blob
-	ability_name = "Become Amorphous"
+	ability_name = "Toggle Blobform"
 	desc = "Discard your shape entirely, changing to a low-energy blob that can fit into small spaces. You'll consume steel to repair yourself in this form."
 	icon_state = "blob"
 	to_call = /mob/living/carbon/human/proc/nano_blobform
+
+/obj/effect/protean_ability/change_volume
+	ability_name = "Change Volume"
+	desc = "Alter your size by consuming steel to produce additional nanites, or regain steel by reducing your size and reclaiming them."
+	icon_state = "volume"
+	to_call = /mob/living/proc/nano_set_size
 
 /obj/effect/protean_ability/reform_limb
 	ability_name = "Ref - Single Limb"
@@ -282,3 +367,5 @@
 	desc = "Store the metal you're holding. Your refactory can only store steel, and all other metals will be converted into nanites ASAP for various effects."
 	icon_state = "metal"
 	to_call = /mob/living/carbon/human/proc/nano_metalnom
+
+#undef PER_LIMB_STEEL_COST
