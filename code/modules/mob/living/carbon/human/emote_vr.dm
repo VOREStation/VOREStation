@@ -104,3 +104,10 @@
 		return 0
 	change_gender_identity(new_gender_identity)
 	return 1
+
+/mob/living/carbon/human/verb/switch_tail_layer()
+	set name = "Switch tail layer"
+	set category = "IC"
+	set desc = "Switch tail layer on top."
+	tail_alt = !tail_alt
+	update_tail_showing()
