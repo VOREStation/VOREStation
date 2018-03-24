@@ -89,7 +89,7 @@
 				var/mob/living/carbon/brain/caught_soul/CS = brainmob
 				to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
 
-		log_nsay(message,nif.human.real_name,src)
+		log_nsay(message,nif.human.real_name,sender)
 
 	proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj)
 		var/sender_name = eyeobj ? eyeobj.name : sender.name
@@ -105,7 +105,7 @@
 				var/mob/living/carbon/brain/caught_soul/CS = brainmob
 				to_chat(CS,"<b>\[\icon[nif.big_icon]NIF\]</b> <b>[sender_name]</b> [message]")
 
-		log_nme(message,nif.human.real_name,src)
+		log_nme(message,nif.human.real_name,sender)
 
 	proc/show_settings(var/mob/living/carbon/human/H)
 		set waitfor = FALSE
