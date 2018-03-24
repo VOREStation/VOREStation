@@ -51,6 +51,11 @@
 	name = "Sorrel Cavalet's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on September 26th, 2562."
 
+// hzdonut:Jesse Soemmer
+/obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
+	name = "Jesse Soemmer's Sidearm Permit"
+	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on March 4, 2563."
+
 /* Legacy Permits
 // BEGIN - PROTOTYPE
 /obj/item/clothing/accessory/permit/gun/fluff
