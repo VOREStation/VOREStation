@@ -415,7 +415,11 @@
 	user.visible_message(attempt_msg)
 
 	// Now give the prey time to escape... return if they did
-	var/swallow_time = delay || istype(prey, /mob/living/carbon/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
+	var/swallow_time
+	if(delay)
+		swallow_time = delay
+	else
+		swallow_time = istype(prey, /mob/living/carbon/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
 	//Timer and progress bar
 	if(!do_after(user, swallow_time, prey))
