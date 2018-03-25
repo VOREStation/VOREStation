@@ -1,9 +1,7 @@
 /*
 	Hello and welcome to VOREStation sprite_accessories: For a more general overview
 	please read sprite_accessories.dm. This file is for ears, tails, and taur bodies!
-
 	This is intended to be friendly for people with little to no actual coding experience.
-
 	!!WARNING!!: changing existing accessory information can be VERY hazardous to savefiles,
 	to the point where you may completely corrupt a server's savefiles. Please refrain
 	from doing this unless you absolutely know what you are doing, and have defined a
@@ -264,6 +262,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp-inner"
+
+/datum/sprite_accessory/ears/bunny_floppy
+	name = "floopy bunny ears (colorable)"
+	desc = ""
+	icon_state = "floppy_bun"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 // Special snowflake ears go below here.
 
