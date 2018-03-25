@@ -1406,4 +1406,4 @@
 	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
