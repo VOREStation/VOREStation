@@ -1,9 +1,7 @@
 /*
 	Hello and welcome to VOREStation sprite_accessories: For a more general overview
 	please read sprite_accessories.dm. This file is for ears, tails, and taur bodies!
-
 	This is intended to be friendly for people with little to no actual coding experience.
-
 	!!WARNING!!: changing existing accessory information can be VERY hazardous to savefiles,
 	to the point where you may completely corrupt a server's savefiles. Please refrain
 	from doing this unless you absolutely know what you are doing, and have defined a
@@ -367,7 +365,7 @@
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
-	var/show_species_tail = 1 // Just so
+	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
 	var/desc = "You should not see this..."
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
@@ -867,6 +865,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/vulpan_alt
+	name = "vulpkanin alt style, colorable"
+	desc = ""
+	icon_state = "vulptail_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/sergaltaildc
 	name = "sergal, dual-color"
 	desc = ""
@@ -1080,6 +1085,7 @@
 	icon_state = "vulptail_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
 
 /datum/sprite_accessory/tail/zenghu_taj
 	name = "Zeng-Hu Tajaran Synth tail"
@@ -1345,22 +1351,6 @@
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
 
-/datum/sprite_accessory/tail/taur/wolf2
-	name = "Wolf2"
-	icon_state = "wolf2_s"
-
-/datum/sprite_accessory/tail/taur/wolf2f
-	name = "Wolf2 (fat)"
-	icon_state = "wolf2f_s"
-
-/datum/sprite_accessory/tail/taur/husky2
-	name = "Husky"
-	icon_state = "husky_s"
-
-/datum/sprite_accessory/tail/taur/husky2f
-	name = "Husky (fat)"
-	icon_state = "huskyf_s"
-
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
 	name = "Feline (wickedtemp) (Taur)"
@@ -1416,4 +1406,4 @@
 	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
