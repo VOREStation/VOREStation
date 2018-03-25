@@ -266,7 +266,7 @@
 /datum/sprite_accessory/ears/bunny_floppy
 	name = "floopy bunny ears (colorable)"
 	desc = ""
-	icon_state = "flopy_bun"
+	icon_state = "floppy_bun"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
