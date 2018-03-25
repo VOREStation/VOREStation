@@ -265,6 +265,13 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp-inner"
 
+/datum/sprite_accessory/ears/bunny_floppy
+	name = "floopy bunny ears (colorable)"
+	desc = ""
+	icon_state = "flopy_bun"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -360,7 +367,7 @@
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
-	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
+	var/show_species_tail = 1 // Just so
 	var/desc = "You should not see this..."
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
@@ -860,13 +867,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/vulpan_alt
-	name = "vulpkanin alt style, colorable"
-	desc = ""
-	icon_state = "vulptail_alt"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
 /datum/sprite_accessory/tail/sergaltaildc
 	name = "sergal, dual-color"
 	desc = ""
@@ -1080,7 +1080,6 @@
 	icon_state = "vulptail_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
 
 /datum/sprite_accessory/tail/zenghu_taj
 	name = "Zeng-Hu Tajaran Synth tail"
@@ -1345,6 +1344,22 @@
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
+
+/datum/sprite_accessory/tail/taur/wolf2
+	name = "Wolf2"
+	icon_state = "wolf2_s"
+
+/datum/sprite_accessory/tail/taur/wolf2f
+	name = "Wolf2 (fat)"
+	icon_state = "wolf2f_s"
+
+/datum/sprite_accessory/tail/taur/husky2
+	name = "Husky"
+	icon_state = "husky_s"
+
+/datum/sprite_accessory/tail/taur/husky2f
+	name = "Husky (fat)"
+	icon_state = "huskyf_s"
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
