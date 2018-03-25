@@ -1,5 +1,5 @@
 /datum/species/sergal
-	name = "Sergal"
+	name = SPECIES_SERGAL
 	name_plural = "Sergals"
 	icobase = 'icons/mob/human_races/r_sergal.dmi'
 	deform = 'icons/mob/human_races/r_def_sergal.dmi'
@@ -60,7 +60,7 @@
 		)
 
 /datum/species/akula
-	name = "Akula"
+	name = SPECIES_AKULA
 	name_plural = "Akula"
 	icobase = 'icons/mob/human_races/r_akula.dmi'
 	deform = 'icons/mob/human_races/r_def_akula.dmi'
@@ -104,7 +104,7 @@
 	return TRUE // Surprise, SHERKS.
 
 /datum/species/nevrean
-	name = "Nevrean"
+	name = SPECIES_NEVREAN
 	name_plural = "Nevreans"
 	icobase = 'icons/mob/human_races/r_nevrean.dmi'
 	deform = 'icons/mob/human_races/r_def_nevrean.dmi'
@@ -148,7 +148,7 @@
 		)
 
 /datum/species/hi_zoxxen
-	name = "Highlander Zorren"
+	name = SPECIES_ZORREN_HIGH
 	name_plural = "Zorren"
 	icobase = 'icons/mob/human_races/r_fox_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_fox.dmi'
@@ -186,7 +186,7 @@
 	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/fl_zorren
-	name = "Flatland Zorren"
+	name = SPECIES_ZORREN_FLAT
 	name_plural = "Zorren"
 	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_fennec.dmi'
@@ -225,7 +225,7 @@
 
 
 /datum/species/vulpkanin
-	name = "Vulpkanin"
+	name = SPECIES_VULPKANIN
 	name_plural = "Vulpkanin"
 	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
@@ -261,7 +261,7 @@
 	max_age = 80
 
 /datum/species/xenohybrid
-	name = "Xenomorph Hybrid"
+	name = SPECIES_XENOHYBRID
 	name_plural = "Xenomorphs"
 	icobase = 'icons/mob/human_races/r_xenomorph.dmi'
 	deform = 'icons/mob/human_races/r_def_xenomorph.dmi'
@@ -364,7 +364,7 @@
 	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 datum/species/harpy
-	name = "Rapala"
+	name = SPECIES_RAPALA
 	name_plural = "Rapalans"
 	icobase = 'icons/mob/human_races/r_harpy_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_harpy_vr.dmi'
