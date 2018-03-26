@@ -13834,8 +13834,7 @@
 /obj/machinery/button/remote/airlock{
 	id = "CEdoor";
 	name = "CE Office Door Control";
-	pixel_x = 26;
-	
+	pixel_x = 26
 	},
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
@@ -14667,6 +14666,9 @@
 "aZg" = (
 /obj/structure/table/reinforced,
 /obj/item/device/megaphone,
+/obj/machinery/keycard_auth{
+	pixel_w = 28
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aZn" = (
