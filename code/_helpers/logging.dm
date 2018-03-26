@@ -25,6 +25,11 @@
 	if (config.log_admin)
 		diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
 
+/proc/log_adminpm(text, client/source, client/dest)
+	admin_log.Add(text)
+	if (config.log_admin)
+		diary << "\[[time_stamp()]]ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)][log_end]"
+
 /proc/log_debug(text)
 	if (config.log_debug)
 		debug_log << "\[[time_stamp()]]DEBUG: [text][log_end]"
@@ -140,7 +145,7 @@
 
 //more or less a logging utility
 //Always return "Something/(Something)", even if it's an error message.
-/proc/key_name(var/whom, var/include_link = null, var/highlight_special_characters = 1)
+/proc/key_name(var/whom, var/include_link = FALSE, var/include_name = TRUE, var/highlight_special_characters = TRUE)
 	var/mob/M
 	var/client/C
 	var/key
@@ -186,17 +191,18 @@
 	else
 		. += "INVALID"
 
-	var/name = "INVALID"
-	if(M)
-		if(M.real_name)
-			name = M.real_name
-		else if(M.name)
-			name = M.name
+	if(include_name)
+		var/name = "INVALID"
+		if(M)
+			if(M.real_name)
+				name = M.real_name
+			else if(M.name)
+				name = M.name
 
-		if(include_link && is_special_character(M) && highlight_special_characters)
-			name = "<font color='#FFA500'>[name]</font>" //Orange
-	
-	. += "/([name])"
+			if(include_link && is_special_character(M) && highlight_special_characters)
+				name = "<font color='#FFA500'>[name]</font>" //Orange
+		
+		. += "/([name])"
 
 	return .
 

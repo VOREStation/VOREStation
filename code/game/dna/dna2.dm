@@ -109,7 +109,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	// VOREStation
 
 	// New stuff
-	var/species = "Human"
+	var/species = SPECIES_HUMAN
 	var/list/body_markings = list()
 
 // Make a copy of this strand.

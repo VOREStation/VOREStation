@@ -96,7 +96,7 @@ var/global/use_preloader = FALSE
 			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
 
 			var/zexpansion = zcrd > world.maxz
-			if(zexpansion)
+			if(zexpansion && !measureOnly)
 				if(cropMap)
 					continue
 				else
@@ -385,6 +385,8 @@ var/global/use_preloader = FALSE
 /dmm_suite/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
 
 	var/list/to_return = list()
+	if(text == "")
+		return to_return // Fast bail-out
 
 	var/position
 	var/old_position = 1

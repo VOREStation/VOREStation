@@ -124,10 +124,8 @@
 	qdel_null_list(shadekin_abilities)
 	. = ..()
 
-/mob/living/simple_animal/shadekin/init_belly()
-	if(vore_organs.len)
-		return
-	if(no_vore) //If it can't vore, let's not give it a stomach.
+/mob/living/simple_animal/shadekin/init_vore()
+	if(LAZYLEN(vore_organs))
 		return
 
 	var/obj/belly/B = new /obj/belly(src)
@@ -154,43 +152,48 @@
 		"The walls slop thick slime across your body! It tingles briefly before the sting and ache sets in!",
 		"The sound of your body slipping and sliding against the powerfully churning stomach fills the air!",
 		"The grip of that stomach is harsh. Eagerly mushing and rubbing that slime into your body in attempts to break you down!",
-		"The intense churning and grinding jostles your around within the thick slime as you’re slowly broken down!"
+		"The intense churning and grinding jostles your around within the thick slime as you're slowly broken down!"
 		)
 	B.emote_lists[DM_ITEMWEAK] = list(
 		"The walls slop thick slime across your body! It tingles briefly before the sting and ache sets in!",
 		"The sound of your body slipping and sliding against the powerfully churning stomach fills the air!",
 		"The grip of that stomach is harsh. Eagerly mushing and rubbing that slime into your body in attempts to break you down!",
-		"The intense churning and grinding jostles your around within the thick slime as you’re slowly broken down!"
+		"The intense churning and grinding jostles your around within the thick slime as you're slowly broken down!"
 		)
 	B.emote_lists[DM_ABSORB] = list(
-		"The walls cling to you awfully close... It’s almost like you’re sinking into them.",
+		"The walls cling to you awfully close... It's almost like you're sinking into them.",
 		"You can feel the walls press in tightly against you, clinging to you posessively!",
-		"It almost feels like you’re sinking into the soft, doughy flesh!",
+		"It almost feels like you're sinking into the soft, doughy flesh!",
 		"You can feel the walls press in around you. Almost molten, so squishy!!"
 		)
 	B.emote_lists[DM_DRAIN] = list(
-		"The walls churn down on you heavily!! It’s hard to move!",
+		"The walls churn down on you heavily!! It's hard to move!",
 		"You can feel yourself getting weaker with every moment! The doughy walls sap your strength!",
-		"You’re practically smothered in the oppressive heat of the creature’s stomach!",
-		"It’s hot, wet and tight!"
+		"You're practically smothered in the oppressive heat of the creature's stomach!",
+		"It's hot, wet and tight!"
 		)
 	B.emote_lists[DM_HEAL] = list(
 		"The walls pulse against you almost rhythmically. It feels nice, almost like a massage.",
-		"You’re gently squeezed in pleasant warmth, softly churned.",
+		"You're gently squeezed in pleasant warmth, softly churned.",
 		"The doughy feel of the heavy flesh clinging to you makes you feel a little stronger with every passing moment.",
-		"The flesh caresses across your body gently as you’re held."
+		"The flesh caresses across your body gently as you're held."
 		)
 	B.digest_messages_prey = list(
-		"Your body is steadily softened more and more over time! Eventually you pass out. The creature’s stomach rumbles powerfully as you are reduced to paste, processed for energy!",
-		"The creature’s slimy gut lets out a heavy groan as you’re slowly melted away. Gushing deeper through the creature.",
-		"The stinging and aching gives way to numbness as you’re slowly smothered out. Your body is steadily reduced to nutrients and energy for the creature to continue on its way.",
-		"The chaos of being digested fades as you’re snuffed out by a harsh clench! You’re steadily broken down into a thick paste, processed and absorbed by the predator!"
+		"Your body is steadily softened more and more over time! Eventually you pass out. The creature's stomach rumbles powerfully as you are reduced to paste, processed for energy!",
+		"The creature's slimy gut lets out a heavy groan as you're slowly melted away. Gushing deeper through the creature.",
+		"The stinging and aching gives way to numbness as you're slowly smothered out. Your body is steadily reduced to nutrients and energy for the creature to continue on its way.",
+		"The chaos of being digested fades as you're snuffed out by a harsh clench! You're steadily broken down into a thick paste, processed and absorbed by the predator!"
 		)
 
 /mob/living/simple_animal/shadekin/Life()
 	. = ..()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		density = FALSE
+	
+	//Convert spare nutrition into energy at a certain ratio
+	if(. && nutrition > initial(nutrition) && energy < 100)
+		nutrition = max(0, nutrition-5)
+		energy = min(100,energy+1)
 
 /mob/living/simple_animal/shadekin/update_icon()
 	. = ..()
@@ -447,6 +450,6 @@
 	speech_verb = "mars"
 	ask_verb = "mars"
 	exclaim_verb = "mars"
-	key = "s"
+	key = "m"
 	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND

@@ -31,8 +31,8 @@ var/global/list/turfs = list()						//list of all turfs
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
-var/global/list/playable_species = list("Custom Species","Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise. //VOREStation Edit - Making sure custom species is obvious.
+var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
+var/global/list/playable_species = list("Custom Species", SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise. //VOREStation Edit - Making sure custom species is obvious.
 
 var/list/mannequins_
 

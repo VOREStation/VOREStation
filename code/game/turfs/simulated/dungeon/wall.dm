@@ -24,7 +24,7 @@
 			var/place_dir = turn(direction, 180)
 			if(!mining_overlay_cache["rock_side_[place_dir]"])
 				mining_overlay_cache["rock_side_[place_dir]"] = image('icons/turf/walls.dmi', "rock_side", dir = place_dir)
-			T.overlays += mining_overlay_cache["rock_side_[place_dir]"]
+			T.add_overlay(mining_overlay_cache["rock_side_[place_dir]"])
 
 /turf/simulated/wall/solidrock/initialize()
 	icon_state = base_state

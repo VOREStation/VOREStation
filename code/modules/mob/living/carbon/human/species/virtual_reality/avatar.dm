@@ -5,7 +5,7 @@
 // Species definition follows.
 /datum/species/shapeshifter/promethean/avatar
 
-	name =             "Virtual Reality Avatar"
+	name =             SPECIES_VR
 	name_plural =      "Virtual Reality Avatars"
 	blurb =            "A 3-dimensional representation of some sort of animate object used to display the presence and actions of some-one or -thing using a virtual reality program."
 	show_ssd =         "eerily still"
@@ -57,7 +57,7 @@
 		shapeshifter_change_species("Virtual Reality [src.species.get_bodytype(src)]")
 	else
 		icon_state = "promethean"
-		shapeshifter_change_species("Virtual Reality Avatar")
+		shapeshifter_change_species(SPECIES_VR)
 
 
 // enter_vr is called on the original mob, and puts the mind into the supplied vr mob

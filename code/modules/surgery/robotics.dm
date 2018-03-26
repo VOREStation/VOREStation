@@ -18,7 +18,7 @@
 		return 0
 	if (affected.status & ORGAN_DESTROYED)
 		return 0
-	if (!(affected.robotic >= ORGAN_ROBOT))
+	if (!(affected.robotic == ORGAN_ROBOT || affected.robotic == ORGAN_LIFELIKE)) //VOREStation Edit - No good on ORGAN_NANOFORM
 		return 0
 	return 1
 
@@ -466,9 +466,9 @@
 		while(!new_name)
 			if(!target) return
 			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
-			var/clean_name = sanitizeName(try_name)
+			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
 			if(clean_name)
-				var/okay = alert(target,"New name will be '[clean_name]', ok?", "Cancel", "Ok")
+				var/okay = alert(target,"New name will be '[clean_name]', ok?", "Confirmation","Cancel","Ok")
 				if(okay == "Ok")
 					new_name = clean_name
 

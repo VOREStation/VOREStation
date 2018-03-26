@@ -1,6 +1,7 @@
 /mob/living/simple_animal/horse
 	name = "horse"
 	desc = "Don't look it in the mouth."
+	tt_desc = "Equus ferus caballus"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "horse"
 	icon_living = "horse"

@@ -8,7 +8,7 @@ var/list/global/tank_gauge_cache = list()
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi'
 		)
 
 	var/gauge_icon = "indicator_tank"

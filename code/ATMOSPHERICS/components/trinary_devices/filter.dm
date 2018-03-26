@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/trinary/atmos_filter
 	icon = 'icons/atmos/filter.dmi'
 	icon_state = "map"
+	construction_type = /obj/item/pipe/trinary/flippable
+	pipe_state = "filter"
 	density = 0
 	level = 1
 

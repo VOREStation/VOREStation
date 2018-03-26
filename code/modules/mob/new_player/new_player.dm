@@ -115,7 +115,13 @@
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait 1 minute before being able to respawn!","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
-			var/mob/observer/dead/observer = new()
+			
+			//Make a new mannequin quickly, and allow the observer to take the appearance
+			var/mob/living/carbon/human/dummy/mannequin = new()
+			client.prefs.dress_preview_mob(mannequin)
+			var/mob/observer/dead/observer = new(mannequin)
+			observer.forceMove(null) //Let's not stay in our doomed mannequin
+			qdel(mannequin)
 
 			spawning = 1
 			if(client.media)
@@ -125,20 +131,13 @@
 			close_spawn_windows()
 			var/obj/O = locate("landmark*Observer-Start")
 			if(istype(O))
-				src << "<span class='notice'>Now teleporting.</span>"
-				observer.loc = O.loc
+				to_chat(src,"<span class='notice'>Now teleporting.</span>")
+				observer.forceMove(O.loc)
 			else
-				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
+				to_chat(src,"<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
-			var/mob/living/carbon/human/dummy/mannequin = new()
-			client.prefs.dress_preview_mob(mannequin)
-			observer.appearance = mannequin
-			observer.alpha = 127
-			observer.layer = initial(observer.layer)
-			observer.invisibility = initial(observer.invisibility)
-			qdel(mannequin)
 
 			if(client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
@@ -354,6 +353,7 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
+	log_game("JOINED [key_name(character)] as \"[rank]\"")
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
@@ -499,7 +499,9 @@
 	//new_character.dna.UpdateSE()
 
 	// Do the initial caching of the player's body icons.
-	//new_character.force_update_limbs()
+	new_character.force_update_limbs()
+	new_character.update_icons_body()
+	new_character.update_eyes()
 
 	new_character.key = key		//Manually transfer the key to log them in
 
@@ -532,12 +534,12 @@
 		chosen_species = all_species[client.prefs.species]
 
 	if(!chosen_species)
-		return "Human"
+		return SPECIES_HUMAN
 
 	if(is_alien_whitelisted(chosen_species))
 		return chosen_species.name
 
-	return "Human"
+	return SPECIES_HUMAN
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()

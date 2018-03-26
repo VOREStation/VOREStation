@@ -11,18 +11,20 @@
 	//Right-side status hud updates with left side one.
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/image/other_status = hud_list[STATUS_HUD]
-		var/image/status_r = hud_list[STATUS_R_HUD]
+		var/image/status_r = grab_hud(STATUS_R_HUD)
 		status_r.icon_state = other_status.icon_state
+		apply_hud(STATUS_R_HUD, status_r)
 
 	//Our custom health bar HUD
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/other_health = hud_list[HEALTH_HUD]
-		var/image/health_us = hud_list[HEALTH_VR_HUD]
+		var/image/health_us = grab_hud(HEALTH_VR_HUD)
 		health_us.icon_state = other_health.icon_state
+		apply_hud(HEALTH_VR_HUD, health_us)
 
 	//Backup implant hud status
 	if (BITTEST(hud_updateflag, BACKUP_HUD))
-		var/image/holder = hud_list[BACKUP_HUD]
+		var/image/holder = grab_hud(BACKUP_HUD)
 
 		holder.icon_state = "hudblank"
 
@@ -36,13 +38,16 @@
 					else
 						holder.icon_state = "hud_backup_norm"
 
+		apply_hud(BACKUP_HUD, holder)
+
 	//VOREStation Antag Hud
 	if (BITTEST(hud_updateflag, VANTAG_HUD))
-		var/image/vantag = hud_list[VANTAG_HUD]
+		var/image/vantag = grab_hud(VANTAG_HUD)
 		if(vantag_pref)
 			vantag.icon_state = vantag_pref
 		else
 			vantag.icon_state = "hudblank"
+		apply_hud(VANTAG_HUD, vantag)
 
 //Our call for the NIF to do whatever
 /mob/living/carbon/human/proc/handle_nif()

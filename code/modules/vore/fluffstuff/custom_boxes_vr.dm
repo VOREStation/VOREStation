@@ -181,14 +181,14 @@
 		..() //Might look like a lot... but all small items.
 		//Centcom stuff and permit
 		new /obj/item/weapon/card/id/centcom/station/fluff/aronai(src)
-		new /obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan(src)
+		//new /obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan(src)
 		//Gun and holster
-		new /obj/item/weapon/gun/projectile/nsfw(src)
-		new /obj/item/ammo_magazine/nsfw_mag(src)
-		new /obj/item/ammo_casing/nsfw_batt/stun(src)
-		new /obj/item/ammo_casing/nsfw_batt/stun(src)
-		new /obj/item/ammo_casing/nsfw_batt/net(src)
-		new /obj/item/clothing/accessory/holster(src)
+		//new /obj/item/weapon/gun/projectile/nsfw(src)
+		//new /obj/item/ammo_magazine/nsfw_mag(src)
+		//new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		//new /obj/item/ammo_casing/nsfw_batt/stun(src)
+		//new /obj/item/ammo_casing/nsfw_batt/net(src)
+		//new /obj/item/clothing/accessory/holster(src)
 
 /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(...)
 	return FALSE //I get eaten a lot, okay

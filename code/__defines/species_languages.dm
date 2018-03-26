@@ -48,6 +48,7 @@
 #define LANGUAGE_TERMINUS "Terminus"
 #define LANGUAGE_SKRELLIANFAR "High Skrellian"
 #define LANGUAGE_MINBUS "Minbus"
+#define LANGUAGE_AKHANI "Akhani"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

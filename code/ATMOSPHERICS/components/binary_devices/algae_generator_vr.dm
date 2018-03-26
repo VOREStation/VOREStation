@@ -14,6 +14,7 @@
 	idle_power_usage = 100		// Minimal lights to keep algae alive
 	active_power_usage = 5000	// Powerful grow lights to stimulate oxygen production
 	//power_rating = 7500			//7500 W ~ 10 HP
+	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/list/stored_material =  list(MATERIAL_ALGAE = 0, MATERIAL_CARBON = 0)
 	// Capacity increases with matter bin quality

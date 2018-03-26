@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/unary
 	dir = SOUTH
 	initialize_directions = SOUTH
+	construction_type = /obj/item/pipe/directional
+	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 	//layer = TURF_LAYER+0.1
 
 	var/datum/gas_mixture/air_contents
@@ -21,6 +23,9 @@
 	initialize_directions = dir
 
 // Housekeeping and pipe network stuff below
+/obj/machinery/atmospherics/unary/get_neighbor_nodes_for_init()
+	return list(node)
+
 /obj/machinery/atmospherics/unary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node)
 		network = new_network
@@ -48,10 +53,9 @@
 	var/node_connect = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node = target
-				break
+		if(can_be_node(target, 1))
+			node = target
+			break
 
 	update_icon()
 	update_underlays()
@@ -94,3 +98,19 @@
 	update_underlays()
 
 	return null
+
+// Check if there are any other atmos machines in the same turf that will block this machine from initializing.
+// Intended for use when a frame-constructable machine (i.e. not made from pipe fittings) wants to wrench down and connect.
+// Returns TRUE if something is blocking, FALSE if its okay to continue.
+/obj/machinery/atmospherics/unary/proc/check_for_obstacles()
+	for(var/obj/machinery/atmospherics/M in loc)
+		if(M == src) continue
+		if((M.pipe_flags & pipe_flags & PIPING_ONE_PER_TURF))	//Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
+			visible_message("<span class='warning'>\The [src]'s cannot be connected, something is hogging the tile!</span>")
+			return TRUE
+		if((M.piping_layer != piping_layer) && !((M.pipe_flags | flags) & PIPING_ALL_LAYER)) // Pipes on different layers can't block each other unless they are ALL_LAYER
+			continue
+		if(M.get_init_dirs() & get_init_dirs())	// matches at least one direction on either type of pipe
+			visible_message("<span class='warning'>\The [src]'s connector can't be connected, there is already a pipe at that location!</span>")
+			return TRUE
+	return FALSE

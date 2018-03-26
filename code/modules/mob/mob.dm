@@ -84,7 +84,14 @@
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 /mob/visible_message(var/message, var/self_message, var/blind_message)
 
-	var/list/see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+	//VOREStation Edit
+	var/list/see
+	if(isbelly(loc))
+		var/obj/belly/B = loc
+		see = B.get_mobs_and_objs_in_belly()
+	else
+		see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+	//VOREStation Edit End
 
 	var/list/seeing_mobs = see["mobs"]
 	var/list/seeing_objs = see["objs"]
@@ -861,14 +868,17 @@
 /mob/proc/Resting(amount)
 	facing_dir = null
 	resting = max(max(resting,amount),0)
+	update_canmove()
 	return
 
 /mob/proc/SetResting(amount)
 	resting = max(amount,0)
+	update_canmove()
 	return
 
 /mob/proc/AdjustResting(amount)
 	resting = max(resting + amount,0)
+	update_canmove()
 	return
 
 /mob/proc/AdjustLosebreath(amount)
@@ -1143,3 +1153,19 @@ mob/proc/yank_out_object()
 //Throwing stuff
 /mob/proc/throw_item(atom/target)
 	return
+
+/mob/MouseEntered(location, control, params)
+	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips))
+		openToolTip(user = usr, tip_src = src, params = params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
+
+	..()
+
+/mob/MouseDown()
+	closeToolTip(usr) //No reason not to, really
+
+	..()
+
+/mob/MouseExited()
+	closeToolTip(usr) //No reason not to, really
+
+	..()

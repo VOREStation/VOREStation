@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/wolf
 	name = "grey wolf"
 	desc = "My, what big jaws it has!"
+	tt_desc = "Canis lupus"
 	icon = 'icons/mob/vore.dmi'
 	icon_dead = "wolf-dead"
 	icon_living = "wolf"

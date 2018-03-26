@@ -1,5 +1,5 @@
 /datum/species/golem
-	name = "Golem"
+	name = SPECIES_GOLEM
 	name_plural = "golems"
 
 	icobase = 'icons/mob/human_races/r_golem.dmi'

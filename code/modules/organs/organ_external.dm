@@ -107,15 +107,16 @@
 	if(!(robotic >= ORGAN_ROBOT))
 		return
 	var/burn_damage = 0
-	switch (severity)
-		if (1)
-			burn_damage += rand(8, 13)
-		if (2)
-			burn_damage += rand(6, 9)
-		if(3)
-			burn_damage += rand(4, 7)
-		if(4)
-			burn_damage += rand(1, 5)
+	for(var/i = 1; i <= robotic; i++)
+		switch (severity)
+			if (1)
+				burn_damage += rand(5, 8)
+			if (2)
+				burn_damage += rand(4, 6)
+			if(3)
+				burn_damage += rand(2, 5)
+			if(4)
+				burn_damage += rand(1, 3)
 
 	if(burn_damage)
 		take_damage(0, burn_damage)
@@ -213,8 +214,6 @@
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
-	return
-
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
 	..(holder, 0)
@@ -271,7 +270,7 @@
 
 	if(status & ORGAN_BROKEN && brute)
 		jostle_bone(brute)
-		if(organ_can_feel_pain() && prob(40))
+		if(organ_can_feel_pain() && prob(40) && !isbelly(owner.loc)) //VOREStation Edit
 			owner.emote("scream")	//getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
@@ -400,7 +399,7 @@
 		user << "<span class='notice'>Nothing to fix!</span>"
 		return 0
 
-	if(damage_amount >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
+	if(brute_dam + burn_dam >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
 		user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 		return 0
 
@@ -775,6 +774,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(robotic >= ORGAN_ROBOT))
 		src.fracture()
 
+	update_health()
+
 // new damage icon system
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)
 /obj/item/organ/external/update_icon()
@@ -810,6 +811,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 		tbrute = 3
 	return "[tbrute][tburn]"
 
+/obj/item/organ/external/take_damage()
+	..()
+
+	if(!cannot_amputate)
+		if(nonsolid && damage >= max_damage)
+			droplimb(TRUE, DROPLIMB_EDGE)
+		//VOREStation Add Start
+		if(robotic >= ORGAN_NANOFORM && damage >= max_damage)
+			droplimb(TRUE, DROPLIMB_BURN)
+		//VOREStation Add End
+
 /****************************************************
 			   DISMEMBERMENT
 ****************************************************/
@@ -819,8 +831,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(cannot_amputate || !owner)
 		return
-
-	if(disintegrate == DROPLIMB_EDGE && nonsolid)
+	//VOREStation Add
+	if(robotic >= ORGAN_NANOFORM)
+		disintegrate = DROPLIMB_BURN //Ashes will be fine
+	else if(disintegrate == DROPLIMB_EDGE && nonsolid) //VOREStation Add End
 		disintegrate = DROPLIMB_BLUNT //splut
 
 	switch(disintegrate)
@@ -874,9 +888,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	spawn(1)
 		victim.updatehealth()
 		victim.UpdateDamageIcon()
-		victim.regenerate_icons()
+		victim.update_icons_body()
 		dir = 2
 
+	var/atom/droploc = victim.drop_location()
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			appearance_flags &= ~PIXEL_SCALE
@@ -891,17 +906,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 					throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
 				dir = 2
 		if(DROPLIMB_BURN)
-			new /obj/effect/decal/cleanable/ash(get_turf(victim))
+			new /obj/effect/decal/cleanable/ash(droploc)
 			for(var/obj/item/I in src)
 				if(I.w_class > ITEMSIZE_SMALL && !istype(I,/obj/item/organ))
-					I.loc = get_turf(src)
+					I.forceMove(droploc)
 			qdel(src)
 		if(DROPLIMB_BLUNT)
 			var/obj/effect/decal/cleanable/blood/gibs/gore
 			if(robotic >= ORGAN_ROBOT)
-				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(get_turf(victim))
+				gore = new /obj/effect/decal/cleanable/blood/gibs/robot(droploc)
 			else
-				gore = new /obj/effect/decal/cleanable/blood/gibs(get_turf(victim))
+				gore = new /obj/effect/decal/cleanable/blood/gibs(droploc)
 				if(species)
 					gore.fleshcolor = use_flesh_colour
 					gore.basecolor =  use_blood_colour
@@ -918,7 +933,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if(I.w_class <= ITEMSIZE_SMALL)
 					qdel(I)
 					continue
-				I.loc = get_turf(src)
+				I.forceMove(droploc)
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
 
 			qdel(src)
@@ -1016,7 +1031,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
 			"<span class='danger'>You hear a sickening crack.</span>")
 		jostle_bone()
-		if(organ_can_feel_pain())
+		if(organ_can_feel_pain() && !isbelly(owner.loc))
 			owner.emote("scream")
 
 	playsound(src.loc, "fracture", 10, 1, -2)
@@ -1091,7 +1106,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	unmutate()
 
 	for(var/obj/item/organ/external/T in children)
-		T.robotize(company, 1)
+		T.robotize(company, keep_organs = keep_organs)
 
 	if(owner)
 

@@ -167,7 +167,7 @@
 
 	var/toxDam = getToxLoss()
 	if(toxDam)
-		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>\n"
+		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
 	else
 		output += "System Instability: <span style='color:green;'>OK</span>\n"
 
@@ -273,7 +273,7 @@
 				var/obj/item/organ/O = new limb_path(src)
 				organ_data["descriptor"] = O.name
 				to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
-		update_icons_all()
+		update_icons_body()
 		active_regen = FALSE
 	else
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
@@ -282,17 +282,17 @@
 
 /mob/living/carbon/human/proc/hide_humanoid()
 	set name = "Hide"
-	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
+	set desc = "Allows you to hide beneath tables or certain items. Toggled on or off."
 	set category = "Abilities"
 
-	if(stat == DEAD || paralysis || weakened || stunned) // No hiding if you're stunned!
+	if(stat == DEAD || paralysis || weakened || stunned || restrained()) // No hiding if you're stunned!
 		return
 
-	if (!hiding)
-		layer = 2.45 //Just above cables with their 2.44
-		hiding = 1
-		to_chat(src, "<font color='blue'>You are now hiding.</font>")
-	else
+	if(status_flags & HIDING)
 		layer = MOB_LAYER
-		hiding = 0
 		to_chat(src, "<font color='blue'>You have stopped hiding.</font>")
+	else
+		layer = HIDING_LAYER //Just above cables with their 2.44
+		to_chat(src, "<font color='blue'>You are now hiding.</font>")
+
+	status_flags ^= HIDING

@@ -94,7 +94,7 @@
 
 /obj/machinery/power/supermatter/proc/explode()
 	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-	log_game("Supermatter exploded at ([x],[y],[z])")
+	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
 	anchored = 1
 	grav_pulling = 1
 	exploded = 1
@@ -146,11 +146,13 @@
 		alert_msg = null
 	if(alert_msg)
 		global_announcer.autosay(alert_msg, "Supermatter Monitor", "Engineering")
+		log_game("SUPERMATTER([x],[y],[z]) Emergency engineering announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			global_announcer.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
 			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
 			public_alert = 1
+			log_game("SUPERMATTER([x],[y],[z]) Emergency PUBLIC announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
 		else if(safe_warned && public_alert)
 			global_announcer.autosay(alert_msg, "Supermatter Monitor")
 			public_alert = 0
@@ -272,12 +274,17 @@
 		return 0	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
-
+	var/added_energy
+	var/added_damage
 	var/proj_damage = Proj.get_structure_damage()
 	if(istype(Proj, /obj/item/projectile/beam))
-		power += proj_damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
+		added_energy = proj_damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
+		power += added_energy
 	else
-		damage += proj_damage * config_bullet_energy
+		added_damage = proj_damage * config_bullet_energy
+		damage += added_damage
+	if(added_energy || added_damage)
+		log_game("SUPERMATTER([x],[y],[z]) Hit by \"[Proj.name]\". +[added_energy] Energy, +[added_damage] Damage.")
 	return 0
 
 /obj/machinery/power/supermatter/attack_robot(mob/user as mob)
