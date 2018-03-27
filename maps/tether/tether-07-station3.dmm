@@ -17478,21 +17478,13 @@
 /turf/simulated/floor,
 /area/quartermaster/storage)
 "Df" = (
-/obj/structure/table/glass,
-/obj/item/device/flashlight/pen{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/device/flashlight/pen{
-	pixel_x = -3;
-	pixel_y = -3
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
+/obj/machinery/organ_printer/flesh,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "Dg" = (
@@ -17541,15 +17533,14 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/structure/table/glass,
+/obj/item/device/flashlight/pen{
+	pixel_x = -3;
+	pixel_y = -3
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
+/obj/item/device/flashlight/pen{
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
@@ -18019,11 +18010,6 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "DX" = (
@@ -18388,16 +18374,16 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "EB" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
@@ -19121,6 +19107,12 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable/green,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "FK" = (
@@ -22885,6 +22877,14 @@
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"ZX" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/resleeving)
 
 (1,1,1) = {"
 aa
@@ -27232,7 +27232,7 @@ CE
 Dj
 DW
 EB
-Fc
+ZX
 FJ
 Ge
 GC
