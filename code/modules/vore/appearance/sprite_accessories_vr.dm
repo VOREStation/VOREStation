@@ -976,7 +976,8 @@
 /datum/sprite_accessory/tail/special/seromitailfeathered
 	name = "seromi tail w/ feathers"
 	desc = ""
-	icon_state = "seromitail_feathers_s"
+	icon_state = "seromitail_s"
+	extra_overlay = "seromitail_feathers_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 

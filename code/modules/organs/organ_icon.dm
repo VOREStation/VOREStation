@@ -51,14 +51,14 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/get_icon()
 	..()
-	
+
 	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
 	cut_overlays()
-	
+
 	//Every 'addon' below requires information from species
 	if(!owner || !owner.species)
 		return
-	
+
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
 	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
@@ -78,7 +78,7 @@ var/global/list/limb_icon_cache = list()
 			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
 		add_overlay(eyes_icon)
 		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-		
+
 	//Lip color/icon
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
@@ -177,14 +177,6 @@ var/global/list/limb_icon_cache = list()
 			overlays |= mark_s //So when it's not on your body, it has icons
 			mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 			icon_cache_key += "[M][markings[M]["color"]]"
-
-		if(body_hair && islist(h_col) && h_col.len >= 3)
-			var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-			if(!limb_icon_cache[cache_key])
-				var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
-				I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY) //VOREStation edit
-				limb_icon_cache[cache_key] = I
-			mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
 		// VOREStation edit ends here
 
 	dir = EAST
