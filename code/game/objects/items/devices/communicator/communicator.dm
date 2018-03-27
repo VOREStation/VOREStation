@@ -56,7 +56,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 							list("module" = "Weather", "icon" = "sun64", "number" = WTHRTAB),
 							list("module" = "Crew Manifest", "icon" = "note64", "number" = MANITAB), // Need a different icon,
 							list("module" = "Settings", "icon" = "gear64", "number" = SETTTAB),
-							list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
 							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
 
 	var/selected_tab = HOMETAB
@@ -208,12 +207,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: When the communicator has an attached commcard with internal devices, relay the attack() through to those devices.
 // 		Contents of the for loop are copied from gripper code, because that does approximately what we want to do.
 /obj/item/device/communicator/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(cartridge && cartridge.internal_devices)
-		for(var/obj/item/wrapped in cartridge.internal_devices)
+	if(cartridge && cartridge.active_devices)
+		for(var/obj/item/wrapped in cartridge.active_devices)
 			if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-				user << "<span class='warning'>Attempting to use [wrapped.name]</span>"
 				wrapped.attack(M,user)
-				M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
 	return 0
 
 // Proc: attackby()
@@ -234,7 +231,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	if(istype(C, /obj/item/weapon/commcard) && !cartridge)
 		cartridge = C
 		user.drop_item()
-		cartridge.loc = src
+		cartridge.forceMove(src)
 		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
 		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
 		nanomanager.update_uis(src) // update all UIs attached to src
@@ -366,24 +363,32 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	set name = "Remove commcard"
 	set src in usr
 
-	if(issilicon(usr))
-		return
+	// Can't remove what isn't there
 	if(!cartridge)
 		to_chat(usr, "<span class='notice'>There isn't a commcard to remove!</span>")
 		return
 
-	if(!(usr.stat || usr.restrained() || usr.paralysis || usr.stunned || usr.weakened))
-		var/turf/T = get_turf(src)
-		cartridge.loc = T
-		if (ismob(loc))
-			var/mob/M = loc
-			M.put_in_hands(cartridge)
-		else
-			cartridge.loc = get_turf(src)
-		cartridge = null
-		to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
-	else
+	// Can't remove if you're physically unable to
+	if(usr.stat || usr.restrained() || usr.paralysis || usr.stunned || usr.weakened)
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
+		return
+
+	var/turf/T = get_turf(src)
+	cartridge.loc = T
+	// If it's in someone, put the cartridge in their hands
+	if (ismob(loc))
+		var/mob/M = loc
+		M.put_in_hands(cartridge)
+	// Else just set it on the ground
+	else
+		cartridge.loc = get_turf(src)
+	cartridge = null
+	// We have to iterate through the modules to find EXTRTAB, because list procs don't play nice with a list of lists
+	for(var/i = 1, i <= modules.len, i++)
+		if(modules[i]["number"] == EXTRTAB)
+			modules.Cut(i, i+1)
+			break
+	to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
 
 //It's the 26th century. We should have smart watches by now.
 /obj/item/device/communicator/watch

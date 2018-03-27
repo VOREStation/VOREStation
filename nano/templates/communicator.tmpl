@@ -420,5 +420,18 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<div class="itemContent">
 		{{:helper.link('External Device', 'gear', {'switch_template' : 2})}}
 	</div>
-
+	{{if data.cart_devices}}
+		<HR>
+		<h4>Internal Devices</h3>
+		{{for data.cart_devices}}
+			<div class="item">
+				<div class="itemLabel">
+					{{:value.name}}
+				</div>
+				<div class="itemContent">
+					<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-on', {'toggle_device' : value.index}, value.active ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_device' : value.index}, value.active ? null : 'selected')}}</div>
+				</div>
+			</div>
+		{{/for}}
+	{{/if}}
 {{/if}}

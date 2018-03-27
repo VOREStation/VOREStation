@@ -9,17 +9,29 @@
 	w_class = ITEMSIZE_TINY
 
 	var/list/internal_devices = list()
+	var/list/active_devices = list()
 	var/list/ui_templates = list()
+
+/obj/item/weapon/commcard/proc/get_device_status()
+	var/list/L = list()
+	var/i = 1
+	for(var/obj/I in internal_devices)
+		if(I in active_devices)
+			L[++L.len] = list("name" = "\proper[I.name]", "active" = 1, "index" = i++)
+		else
+			L[++L.len] = list("name" = I.name, "active" = 0, "index" = i++)
+	return L
 
 /obj/item/weapon/commcard/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
-	//Power monitor
+	//Power monitor template
 	//Halogen counter
 
 /obj/item/weapon/commcard/engineering/New()
 	..()
-	//Add power monitor to ui template
+	internal_devices |= new /obj/item/device/halogen_counter(src)
+	// Add power monitor template
 
 /obj/item/weapon/commcard/atmos
 	name = "\improper BreatheDeep cartridge"
@@ -28,21 +40,20 @@
 
 /obj/item/weapon/commcard/atmos/New()
 	..()
-	//var/obj/item/[Gas scanner]/S = new(src)
-	//internal_devices.Add(S)
+	internal_devices |= new /obj/item/device/analyzer(src)
 
 /obj/item/weapon/commcard/medical
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
-	//Med records
+	//Med records template
 	//Med scanner
 	//Halogen counter
 
 /obj/item/weapon/commcard/medical/New()
 	..()
-	var/obj/item/device/healthanalyzer/H = new(src)
-	internal_devices.Add(H)
-	//Add med records to ui template
+	internal_devices |= new /obj/item/device/healthanalyzer(src)
+	internal_devices |= new /obj/item/device/halogen_counter(src)
+	// Add med records template
 
 /obj/item/weapon/commcard/medical/chemistry
 	name = "\improper ChemWhiz cartridge"
@@ -51,13 +62,12 @@
 
 /obj/item/weapon/commcard/medical/chemistry/New()
 	..()
-	var/obj/item/device/reagent_scanner/R = new(src)
-	internal_devices.Add(R)
+	internal_devices |= new /obj/item/device/reagent_scanner(src)
 
 /obj/item/weapon/commcard/medical/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-s"
-	//Security records
+	//Security records template
 
 /obj/item/weapon/commcard/medical/detective/New()
 	..()
@@ -75,11 +85,11 @@
 /obj/item/weapon/commcard/int_aff/security
 	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-s"
-	//Sec bot access
+	//Sec bot access template
 
 /obj/item/weapon/commcard/int_aff/security/New()
 	..()
-	//Add sec bot access to ui template
+	//Add sec bot access template
 
 /obj/item/weapon/commcard/janitor
 	name = "\improper CustodiPRO cartridge"
@@ -88,7 +98,7 @@
 
 /obj/item/weapon/commcard/janitor/New()
 	..()
-	// Add janitoral locator to ui template
+	// Add janitoral locator template
 
 /obj/item/weapon/commcard/service
 	name = "\improper Serv-U Pro"
@@ -120,10 +130,8 @@
 
 /obj/item/weapon/commcard/signal/science/New()
 	..()
-	var/obj/item/device/reagent_scanner/R = new(src)
-	//var/obj/item/[Gas scanner]/S = new(src)
-	//internal_devices.Add(S)
-	internal_devices.Add(R)
+	internal_devices |= new /obj/item/device/reagent_scanner(src)
+	internal_devices |= new /obj/item/device/analyzer(src)
 
 /obj/item/weapon/commcard/quartermaster
 	name = "\improper Space Parts & Space Vendors cartridge"
@@ -194,12 +202,9 @@
 
 /obj/item/weapon/commcard/head/rd/New()
 	..()
-	// Add signaller to internal devices
-	// Add signaller access to ui template
-	var/obj/item/device/reagent_scanner/R = new(src)
-	//var/obj/item/[Gas scanner]/S = new(src)
-	//internal_devices.Add(S)
-	internal_devices.Add(R)
+	// Add signaller access template
+	internal_devices |= new /obj/item/device/analyzer(src)
+	internal_devices |= new /obj/item/device/reagent_scanner(src)
 
 
 /obj/item/weapon/commcard/head/cmo
@@ -207,15 +212,15 @@
 	icon_state = "cart-cmo"
 	//Med records
 	//Med scanner
+	//Health analyzer
 	//Reagent scanner
 	//Halogen counter
 
 /obj/item/weapon/commcard/head/cmo/New()
 	..()
-	var/obj/item/device/healthanalyzer/H = new(src)
-	var/obj/item/device/reagent_scanner/R = new(src)
-	internal_devices.Add(R)
-	internal_devices.Add(H)
+	internal_devices |= new /obj/item/device/healthanalyzer(src)
+	internal_devices |= new /obj/item/device/reagent_scanner(src)
+	internal_devices |= new /obj/item/device/halogen_counter(src)
 
 /obj/item/weapon/commcard/head/ce
 	name = "\improper Power-On DELUXE"
@@ -226,8 +231,9 @@
 
 /obj/item/weapon/commcard/head/ce/New()
 	..()
+	internal_devices |= new /obj.item/device/analyzer(src)
+	internal_devices |= new /obj/item/device/halogen_counter(src)
 	// Add power monitor to ui template
-	// Add gas scanner to internal devices
 
 /obj/item/weapon/commcard/head/captain
 	name = "\improper Value-PAK cartridge"
@@ -244,6 +250,10 @@
 	//Supply bot access
 	//Sec bot access
 	//Janitorial supply locator
+	//Gas analyzer
+	//Health analyzer
+	//Reagent scanner
+	//Halogen counter
 
 /obj/item/weapon/commcard/head/captain/New()
 	..()
@@ -255,11 +265,11 @@
 	// Add power monitor to ui template
 	// Add janitorial locator to ui template
 	// Add service menu to ui template
-	// Add gas scanner to internal devices
-	var/obj/item/device/healthanalyzer/H = new(src)
-	var/obj/item/device/reagent_scanner/R = new(src)
-	internal_devices.Add(R)
-	internal_devices.Add(H)
+	internal_devices |= new /obj.item/device/analyzer(src)
+	internal_devices |= new /obj/item/device/healthanalyzer(src)
+	internal_devices |= new /obj/item/device/reagent_scanner(src)
+	internal_devices |= new /obj/item/device/halogen_counter(src)
+
 
 /obj/item/weapon/commcard/mercenary
 	name = "\improper Detomatix cartridge"
@@ -277,6 +287,5 @@
 
 /obj/item/weapon/commcard/explorer/New()
 	..()
-	var/obj/item/device/gps/G = new(src)
-	internal_devices.Add(G)
+	internal_devices |= new /obj/item/device/gps(src)
 	// Add GPS access to ui template

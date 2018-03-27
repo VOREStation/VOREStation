@@ -114,6 +114,9 @@
 	data["manifest"] = PDA_Manifest
 	data["feeds"] = compile_news()
 	data["latest_news"] = get_recent_news()
+	if(cartridge) // If there's a cartridge, we need to grab the information from it
+		data["cart_devices"] = cartridge.get_device_status()
+		data["cart_templates"] = cartridge.ui_templates
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -247,6 +250,7 @@
 		else
 			note = ""
 			notehtml = note
+
 	if(href_list["switch_template"])
 		var/datum/nanoui/ui = nanomanager.get_open_ui(usr, src, "main")
 		if(ui)
@@ -255,9 +259,14 @@
 					ui.reinitialise("communicator.tmpl")
 				if("2")
 					ui.reinitialise("comm2.tmpl")
+
 	if(href_list["Light"])
 		fon = !fon
 		set_light(fon * flum)
+
+	if(href_list["toggle_device"])
+		var/obj/O = cartridge.internal_devices[text2num(href_list["toggle_device"])]
+		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
 
 	GLOB.nanomanager.update_uis(src)
 	add_fingerprint(usr)
