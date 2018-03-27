@@ -51,14 +51,14 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/get_icon()
 	..()
-
+	
 	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
 	cut_overlays()
-
+	
 	//Every 'addon' below requires information from species
 	if(!owner || !owner.species)
 		return
-
+	
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
 	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
@@ -78,7 +78,7 @@ var/global/list/limb_icon_cache = list()
 			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
 		add_overlay(eyes_icon)
 		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-
+		
 	//Lip color/icon
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
