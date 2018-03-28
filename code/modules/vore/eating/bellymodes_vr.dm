@@ -18,9 +18,10 @@
 	if(contents.len && next_emote <= times_fired)
 		next_emote = times_fired + round(emote_time/wait,1)
 		var/list/EL = emote_lists[digest_mode]
-		for(var/mob/living/M in contents)
-			if(M.digestable || !(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)) // don't give digesty messages to indigestible people
-				to_chat(M,"<span class='notice'>[pick(EL)]</span>")
+		if(LAZYLEN(EL))
+			for(var/mob/living/M in contents)
+				if(M.digestable || !(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)) // don't give digesty messages to indigestible people
+					to_chat(M,"<span class='notice'>[pick(EL)]</span>")
 
 /////////////////////////// Exit Early ////////////////////////////
 	var/list/touchable_items = contents - items_preserved
