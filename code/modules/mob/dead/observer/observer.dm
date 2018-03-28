@@ -8,7 +8,7 @@
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = 3.9	//Just below normal mobs
+	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
 	alpha = 127
 	stat = DEAD

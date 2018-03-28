@@ -131,7 +131,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape"
 	w_class = ITEMSIZE_TINY
-	layer = 4
+	plane = MOB_PLANE
 	anchored = 1 //it's sticky, no you cant move it
 
 	var/obj/item/weapon/stuck = null

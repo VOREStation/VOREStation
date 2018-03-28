@@ -3,7 +3,6 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
-	layer = 2.9
 	anchored = 1
 	density = 1
 	var/obj/machinery/computer3/laptop/vended/newlap = null

@@ -1,15 +1,49 @@
 // Areas.dm
 
-
-
-// ===
 /area
+	var/fire = null
+	var/atmos = 1
+	var/atmosalm = 0
+	var/poweralm = 1
+	var/party = null
+	level = null
+	name = "Unknown"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "unknown"
+	plane = PLANE_LIGHTING_ABOVE //In case we color them
+	luminosity = 0
+	mouse_opacity = 0
+	var/lightswitch = 1
+
+	var/eject = null
+
+	var/debug = 0
+	var/requires_power = 1
+	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
+
+	var/power_equip = 1
+	var/power_light = 1
+	var/power_environ = 1
+	var/music = null
+	var/used_equip = 0
+	var/used_light = 0
+	var/used_environ = 0
+
+	var/has_gravity = 1
+	var/obj/machinery/power/apc/apc = null
+	var/no_air = null
+//	var/list/lights				// list of all lights on this area
+	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/firedoors_closed = 0
+	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
+	var/list/forced_ambience = null
+	var/sound_env = STANDARD_STATION
+	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/global/global_uid = 0
 	var/uid
 
 /area/New()
 	icon_state = ""
-	layer = 10
 	uid = ++global_uid
 	all_areas += src
 
@@ -333,3 +367,37 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/drop_location()
 	CRASH("Bad op: area/drop_location() called")
+
+/*Adding a wizard area teleport list because motherfucking lag -- Urist*/
+/*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
+var/list/teleportlocs = list()
+
+/hook/startup/proc/setupTeleportLocs()
+	for(var/area/AR in world)
+		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
+		if(teleportlocs.Find(AR.name)) continue
+		var/turf/picked = pick(get_area_turfs(AR.type))
+		if (picked.z in using_map.station_levels)
+			teleportlocs += AR.name
+			teleportlocs[AR.name] = AR
+
+	teleportlocs = sortAssoc(teleportlocs)
+
+	return 1
+
+var/list/ghostteleportlocs = list()
+
+/hook/startup/proc/setupGhostTeleportLocs()
+	for(var/area/AR in world)
+		if(ghostteleportlocs.Find(AR.name)) continue
+		if(istype(AR, /area/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+		var/turf/picked = pick(get_area_turfs(AR.type))
+		if (picked.z in using_map.player_levels)
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+
+	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+
+	return 1

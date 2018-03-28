@@ -139,7 +139,6 @@ var/list/holder_mob_icon_cache = list()
 		grabber << "<span class='notice'>You scoop up \the [src]!</span>"
 		src << "<span class='notice'>\The [grabber] scoops you up!</span>"
 
-	grabber.status_flags |= PASSEMOTES
 	H.sync(src)
 	return H
 

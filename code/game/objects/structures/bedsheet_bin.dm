@@ -10,7 +10,8 @@ LINEN BINS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 	slot_flags = SLOT_BACK
-	layer = 4.0
+	plane = MOB_PLANE
+	layer = BELOW_MOB_LAYER
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
@@ -19,9 +20,9 @@ LINEN BINS
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))
-		layer = MOB_LAYER + 0.1
+		layer = ABOVE_MOB_LAYER
 	else
-		layer = initial(layer)
+		reset_plane_and_layer()
 	add_fingerprint(user)
 	return
 

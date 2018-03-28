@@ -1,5 +1,5 @@
 /atom/movable
-	layer = 3
+	layer = OBJ_LAYER
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/anchored = 0

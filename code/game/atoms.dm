@@ -1,5 +1,5 @@
 /atom
-	layer = 2
+	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints

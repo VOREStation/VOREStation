@@ -4,7 +4,6 @@
 	icon_state = "fuel_compressor1"
 	density = 1
 	anchored = 1
-	layer = 4
 
 	circuit = /obj/item/weapon/circuitboard/fusion_fuel_compressor
 

@@ -6,9 +6,12 @@
 	if(stat == DEAD || paralysis || weakened || stunned || restrained())
 		return
 
-	if(layer == HIDING_LAYER)
-		layer = MOB_LAYER
-		src << text("<font color='blue'>You have stopped hiding.</font>")
+	if(status_flags & HIDING)
+		status_flags &= ~HIDING
+		reset_plane_and_layer()
+		to_chat(src,"<span class='notice'>You have stopped hiding.</span>")
 	else
+		status_flags |= HIDING
 		layer = HIDING_LAYER //Just above cables with their 2.44
-		src << text("<font color='blue'>You are now hiding.</font>")
+		plane = OBJ_PLANE
+		to_chat(src,"<span class='notice'>You are now hiding.</span>")

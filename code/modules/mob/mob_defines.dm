@@ -1,6 +1,7 @@
 /mob
 	density = 1
-	layer = 4.0
+	layer = MOB_LAYER
+	plane = MOB_PLANE
 	animate_movement = 2
 	flags = PROXMOVE
 	var/datum/mind/mind

@@ -6,7 +6,6 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
-	layer = 2.9
 	anchored = 1
 	density = 1
 
