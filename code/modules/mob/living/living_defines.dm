@@ -55,5 +55,7 @@
 	var/glow_intensity = null
 	var/glow_color = "#FFFFFF"			// The color they're glowing!
 
+	var/see_invisible_default = SEE_INVISIBLE_LIVING
+
 	var/list/hud_list		//Holder for health hud, status hud, wanted hud, etc (not like inventory slots)
 	var/has_huds = FALSE	//Whether or not we should bother initializing the above list

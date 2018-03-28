@@ -148,7 +148,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
 	density = 1
-	layer = 2.0
+	plane = TURF_PLANE
 	var/obj/structure/morgue/connected = null
 	anchored = 1
 	throwpass = 1

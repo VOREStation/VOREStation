@@ -850,28 +850,6 @@
 	if(status_flags & GODMODE)
 		return 0	//godmode
 
-	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
-
-	if(!isSynthetic())
-		if(light_organ && !light_organ.is_broken())
-			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
-			if(isturf(loc)) //else, there's considered to be no light
-				var/turf/T = loc
-				light_amount = T.get_lumcount() * 10
-			nutrition += light_amount
-			traumatic_shock -= light_amount
-
-			if(species.flags & IS_PLANT)
-				if(nutrition > 450)
-					nutrition = 450
-
-				if(light_amount >= 3) //if there's enough light, heal
-					adjustBruteLoss(-(round(light_amount/2)))
-					adjustFireLoss(-(round(light_amount/2)))
-					adjustToxLoss(-(light_amount))
-					adjustOxyLoss(-(light_amount))
-					//TODO: heal wounds, heal broken limbs.
-
 	if(species.light_dam)
 		var/light_amount = 0
 		if(isturf(loc))
@@ -898,14 +876,6 @@
 	else
 		if(overeatduration > 1)
 			overeatduration -= 2 //doubled the unfat rate
-
-	if(!isSynthetic() && (species.flags & IS_PLANT) && (!light_organ || light_organ.is_broken()))
-		if(nutrition < 200)
-			take_overall_damage(2,0)
-
-			//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
-			//Not that it matters much for diona, who have NO_PAIN.
-			shock_stage++
 
 	// TODO: stomach and bloodstream organ.
 	if(!isSynthetic())
@@ -1161,7 +1131,7 @@
 
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -1173,7 +1143,7 @@
 			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
 				see_invisible = SEE_INVISIBLE_CULT
 			else
-				see_invisible = SEE_INVISIBLE_LIVING
+				see_invisible = see_invisible_default
 				seer = 0
 
 		if(!seedarkness)
@@ -1184,7 +1154,7 @@
 		else
 			sight = species.get_vision_flags(src)
 			see_in_dark = species.darksight
-			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		var/tmp/glasses_processed = 0
 		var/obj/item/weapon/rig/rig = back
@@ -1205,7 +1175,7 @@
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
 		if(!seer && !glasses_processed && seedarkness)
-			see_invisible = SEE_INVISIBLE_LIVING
+			see_invisible = see_invisible_default
 
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)
@@ -1385,7 +1355,7 @@
 		if(G.see_invisible >= 0)
 			see_invisible = G.see_invisible
 		else if(!druggy && !seer)
-			see_invisible = SEE_INVISIBLE_LIVING
+			see_invisible = see_invisible_default
 
 /mob/living/carbon/human/handle_random_events()
 	if(inStasisNow())

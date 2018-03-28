@@ -373,7 +373,9 @@
 		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
 		/obj/item/device/ano_scanner,
-		/obj/item/weapon/pickaxe/hand
+		/obj/item/weapon/pickaxe/hand,
+		/obj/item/device/xenoarch_multi_tool,
+		/obj/item/weapon/pickaxe/excavationdrill
 		)
 
 /obj/item/weapon/storage/belt/fannypack

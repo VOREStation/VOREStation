@@ -509,10 +509,45 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"
-	metabolism = REM * 0.05
+	metabolism = REM * 0.25
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+
+/datum/reagent/spaceacillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
+
+/datum/reagent/corophizine
+	name = "Corophizine"
+	id = "corophizine"
+	description = "A wide-spectrum antibiotic drug. Powerful and uncomfortable in equal doses."
+	taste_description = "burnt toast"
+	reagent_state = LIQUID
+	color = "#FFB0B0"
+	mrate_static = TRUE
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/corophizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
+
+	//Based roughly on Levofloxacin's rather severe side-effects
+	if(prob(20))
+		M.Confuse(5)
+	if(prob(20))
+		M.Weaken(5)
+	if(prob(20))
+		M.make_dizzy(5)
+	if(prob(20))
+		M.hallucination = max(M.hallucination, 10)
+
+	//One of the levofloxacin side effects is 'spontaneous tendon rupture', which I'll immitate here. 1:1000 chance, so, pretty darn rare.
+	if(ishuman(M) && rand(1,1000) == 1)
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/eo = pick(H.organs) //Misleading variable name, 'organs' is only external organs
+		eo.fracture()
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"

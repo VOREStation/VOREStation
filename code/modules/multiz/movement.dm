@@ -84,6 +84,16 @@
 /mob/proc/can_ztravel()
 	return 0
 
+/mob/living/zMove(direction)
+	//Sort of a lame hack to allow ztravel through zpipes. Should be improved.
+	if(is_ventcrawling && istype(loc,/obj/machinery/atmospherics/pipe/zpipe))
+		var/obj/machinery/atmospherics/pipe/zpipe/currentpipe = loc
+		if(istype(currentpipe.node1,/obj/machinery/atmospherics/pipe/zpipe))
+			currentpipe.ventcrawl_to(src, currentpipe.node1, direction)
+		else if(istype(currentpipe.node2,/obj/machinery/atmospherics/pipe/zpipe))
+			currentpipe.ventcrawl_to(src, currentpipe.node2, direction)
+	return ..()
+
 /mob/observer/can_ztravel()
 	return 1
 

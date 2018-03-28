@@ -7,7 +7,7 @@
 	anchored = 1
 	flags = CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	layer = 2.9
+	layer = UNDER_JUNK_LAYER
 	explosion_resistance = 1
 	var/health = 10
 	var/destroyed = 0

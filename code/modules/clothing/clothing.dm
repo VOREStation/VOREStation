@@ -57,7 +57,7 @@
 	if (!..())
 		return 0
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
+	if(LAZYLEN(species_restricted) && istype(M,/mob/living/carbon/human))
 		var/exclusive = null
 		var/wearable = null
 		var/mob/living/carbon/human/H = M

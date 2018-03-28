@@ -6,7 +6,7 @@
 	density = 1
 	throwpass = 1
 	climbable = 1
-	layer = 3.2 //Just above doors
+	layer = WINDOW_LAYER
 	anchored = 1
 	flags = ON_BORDER
 	icon_state = "railing0"

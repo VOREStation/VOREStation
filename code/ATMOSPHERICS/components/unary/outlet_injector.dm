@@ -6,7 +6,6 @@
 	icon = 'icons/atmos/injector.dmi'
 	icon_state = "map_injector"
 	pipe_state = "injector"
-	layer = 3
 
 	name = "air injector"
 	desc = "Passively injects air into its surroundings. Has a valve attached to it that can control flow rate."

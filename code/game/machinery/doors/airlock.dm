@@ -415,6 +415,8 @@
 	desc = "It's an extra resilient airlock intended for spacefaring vessels."
 	icon = 'icons/obj/doors/shuttledoors.dmi'
 	explosion_resistance = 20
+	opacity = 0
+	glass = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft
 
 // Airlock opens from top-bottom instead of left-right.

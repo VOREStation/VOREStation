@@ -51,7 +51,6 @@
 	density = 0
 	icon = 'icons/obj/hydroponics_growing.dmi'
 	icon_state = "bush4-1"
-	layer = 3
 	pass_flags = PASSTABLE
 	mouse_opacity = 2
 
@@ -192,12 +191,12 @@
 		icon_state = "[seed.get_trait(TRAIT_PLANT_ICON)]-[growth]"
 
 	if(growth>2 && growth == max_growth)
-		layer = 5
+		plane = ABOVE_PLANE
 		set_opacity(1)
 		if(!isnull(seed.chems["woodpulp"]))
 			density = 1
 	else
-		layer = 3
+		reset_plane_and_layer()
 		density = 0
 
 /obj/effect/plant/proc/calc_dir()

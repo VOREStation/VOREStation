@@ -30,7 +30,7 @@ var/list/tape_roll_applications = list()
 	name = "tape"
 	icon = 'icons/policetape.dmi'
 	anchored = 1
-	layer = 3.2
+	layer = WINDOW_LAYER
 	var/lifted = 0
 	var/crumpled = 0
 	var/tape_dir = 0
@@ -257,7 +257,7 @@ var/list/tape_roll_applications = list()
 		else
 			var/obj/item/tape/P = new tape_type(T)
 			P.update_icon()
-			P.layer = 3.2
+			P.layer = WINDOW_LAYER
 			user << "<span class='notice'>You finish placing \the [src].</span>"
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
@@ -307,10 +307,11 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape/proc/lift(time)
 	lifted = 1
-	layer = 8
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	spawn(time)
 		lifted = 0
-		layer = initial(layer)
+		reset_plane_and_layer()
 
 // Returns a list of all tape objects connected to src, including itself.
 /obj/item/tape/proc/gettapeline()

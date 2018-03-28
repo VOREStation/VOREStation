@@ -98,11 +98,11 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see the speech indicator."
+	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] have the speech indicator."
 
 	prefs.save_preferences()
 
-	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","TTIND") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ahelp_sound()
 	set name = "Toggle Admin Help Sound"
@@ -191,6 +191,19 @@
 	src << "You will now use [(is_preference_enabled(/datum/client_preference/safefiring)) ? "safe" : "dangerous"] firearms firing."
 
 	feedback_add_details("admin_verb","TFiringMode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_mob_tooltips()
+	set name = "Toggle Mob Tooltips"
+	set category = "Preferences"
+	set desc = "Toggles displaying name/species over mobs when moused over."
+
+	var/pref_path = /datum/client_preference/mob_tooltips
+	toggle_preference(pref_path)
+	prefs.save_preferences()
+
+	src << "You will now [(is_preference_enabled(/datum/client_preference/mob_tooltips)) ? "see" : "not see"] mob tooltips."
+
+	feedback_add_details("admin_verb","TMobTooltips") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Toggles for Staff
 //Developers

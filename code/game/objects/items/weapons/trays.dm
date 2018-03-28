@@ -188,7 +188,7 @@
 			carrying.Add(I)
 			Img.icon = I.icon
 			Img.icon_state = I.icon_state
-			Img.layer = 30 + I.layer
+			Img.layer = layer + I.layer*0.01
 			if(istype(I, /obj/item/weapon/material))
 				var/obj/item/weapon/material/O = I
 				if(O.applies_material_colour)

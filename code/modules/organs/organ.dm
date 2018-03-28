@@ -148,25 +148,25 @@ var/list/organ_cache = list()
 		germ_level = 0
 		return 0
 
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC] || 0
 
 	var/infection_damage = 0
 
-	if((status & ORGAN_DEAD) && antibiotics < 30) //Sepsis from 'dead' organs
+	if((status & ORGAN_DEAD) && antibiotics < ANTIBIO_OD) //Sepsis from 'dead' organs
 		infection_damage = min(1, 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25)) //1 Tox plus a little based on germ level
 
-	else if(germ_level > INFECTION_LEVEL_TWO && antibiotics < 30)
+	else if(germ_level > INFECTION_LEVEL_TWO && antibiotics < ANTIBIO_OD)
 		infection_damage = min(0.25, 0.25 + round((germ_level - INFECTION_LEVEL_TWO)/200,0.25))
 
 	if(infection_damage)
 		owner.adjustToxLoss(infection_damage)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
-		adjust_germ_level(-1)
+		adjust_germ_level(-antibiotics)
 
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
-		if(antibiotics < 5 && prob(round(germ_level/6)))
+		if(!antibiotics && prob(round(germ_level/6)))
 			adjust_germ_level(1)
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
@@ -181,7 +181,7 @@ var/list/organ_cache = list()
 		. = 2 //Organ qualifies for effect-specific processing
 		//No particular effect on the general 'organ' at 3
 
-	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)
+	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < ANTIBIO_OD)
 		. = 3 //Organ qualifies for effect-specific processing
 		adjust_germ_level(rand(5,10)) //Germ_level increases without overdose of antibiotics
 
@@ -234,19 +234,19 @@ var/list/organ_cache = list()
 
 //Germs
 /obj/item/organ/proc/handle_antibiotics()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC] || 0
 
-	if (!germ_level || antibiotics < 5)
+	if (!germ_level || antibiotics < ANTIBIO_NORM)
 		return
 
 	if (germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
 	else if (germ_level < INFECTION_LEVEL_TWO)
-		adjust_germ_level(-6)	//at germ_level < 500, this should cure the infection in a minute
+		adjust_germ_level(-antibiotics*4)	//at germ_level < 500, this should cure the infection in a minute
 	else if (germ_level < INFECTION_LEVEL_THREE)
-		adjust_germ_level(-2) //at germ_level < 1000, this will cure the infection in 5 minutes
+		adjust_germ_level(-antibiotics*2) //at germ_level < 1000, this will cure the infection in 5 minutes
 	else
-		adjust_germ_level(-1)	// You waited this long to get treated, you don't really deserve this organ
+		adjust_germ_level(-antibiotics)	// You waited this long to get treated, you don't really deserve this organ
 
 //Adds autopsy data for used_weapon.
 /obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)

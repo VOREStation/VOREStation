@@ -98,6 +98,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/mob_tooltips
+	description ="Mob tooltips"
+	key = "MOB_TOOLTIPS"
+	enabled_description = "Show"
+	disabled_description = "Hide"	
+
 /datum/client_preference/attack_icons
 	description ="Attack icons"
 	key = "ATTACK_ICONS"
@@ -119,7 +125,7 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/show_typing_indicator/toggled(var/mob/preference_mob, var/enabled)
 	if(!enabled)
-		preference_mob.set_typing_indicator(0)
+		preference_mob.set_typing_indicator(FALSE)
 
 /datum/client_preference/show_ooc
 	description ="OOC chat"

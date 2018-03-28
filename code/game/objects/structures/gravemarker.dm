@@ -8,7 +8,7 @@
 	throwpass = 1
 	climbable = 1
 
-	layer = 3.1	//Above dirt piles
+	layer = ABOVE_JUNK_LAYER
 
 	//Maybe make these calculate based on material?
 	var/health = 100
