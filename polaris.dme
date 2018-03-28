@@ -1457,6 +1457,7 @@
 #include "code\modules\economy\EFTPOS.dm"
 #include "code\modules\economy\Events.dm"
 #include "code\modules\economy\Events_Mundane.dm"
+#include "code\modules\economy\lorenews.dm"
 #include "code\modules\economy\price_list.dm"
 #include "code\modules\economy\retail_scanner.dm"
 #include "code\modules\economy\TradeDestinations.dm"
