@@ -23,6 +23,8 @@ var/list/admin_datums = list()
 	rank = initial_rank
 	rights = initial_rights
 	admin_datums[ckey] = src
+	if(rights & R_DEBUG) //grant profile access
+		world.SetConfig("APP/admin", ckey, "role=admin")
 
 /datum/admins/proc/associate(client/C)
 	if(istype(C))
