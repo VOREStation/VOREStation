@@ -184,11 +184,18 @@
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
 
-	suicide_act(mob/user)
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		viewers(user) << "<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>"
-		return (BRUTELOSS|OXYLOSS)
+/obj/item/weapon/pen/crayon/suicide_act(mob/user)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	viewers(user) << "<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>"
+	return (BRUTELOSS|OXYLOSS)
 
-	New()
-		name = "[colourName] crayon"
-		..()
+/obj/item/weapon/pen/crayon/New()
+	name = "[colourName] crayon"
+
+/obj/item/weapon/pen/crayon/marker
+	name = "marker"
+	desc = "A chisel-tip permanent marker. Hopefully non-toxic."
+	icon_state = "markerred"
+
+/obj/item/weapon/pen/crayon/marker/New()
+	name = "[colourName] marker"

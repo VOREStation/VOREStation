@@ -876,7 +876,7 @@
 	name = "Red paint"
 	id = "red_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_red" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_red" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/red_paint/send_data()
@@ -886,7 +886,7 @@
 	name = "Orange paint"
 	id = "orange_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_orange" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_orange" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/orange_paint/send_data()
@@ -896,7 +896,7 @@
 	name = "Yellow paint"
 	id = "yellow_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_yellow" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_yellow" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/yellow_paint/send_data()
@@ -906,7 +906,7 @@
 	name = "Green paint"
 	id = "green_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_green" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_green" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/green_paint/send_data()
@@ -916,7 +916,7 @@
 	name = "Blue paint"
 	id = "blue_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_blue" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_blue" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/blue_paint/send_data()
@@ -926,7 +926,7 @@
 	name = "Purple paint"
 	id = "purple_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_purple" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_purple" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/purple_paint/send_data()
@@ -936,7 +936,7 @@
 	name = "Grey paint"
 	id = "grey_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_grey" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_grey" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/grey_paint/send_data()
@@ -946,7 +946,7 @@
 	name = "Brown paint"
 	id = "brown_paint"
 	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "crayon_dust_brown" = 1)
+	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_brown" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/brown_paint/send_data()
