@@ -137,7 +137,7 @@
 /area/security/brig/visitation)
 "as" = (
 /obj/machinery/camera/network/security{
-	c_tag = "SEC - Warden's Office"
+	c_tag = "SEC - Brig Visitation"
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
@@ -1413,7 +1413,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/network/security{
-	c_tag = "SEC - Warden's Office"
+	c_tag = "SEC - Brig Central"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
@@ -9112,6 +9112,7 @@
 "pn" = (
 /obj/structure/bed/padded,
 /obj/machinery/camera/network/medbay{
+	c_tag = "MED - Virology Containment One";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -12716,7 +12717,7 @@
 	dir = 2
 	},
 /obj/machinery/camera/network/medbay{
-	c_tag = "MED - Examination Room"
+	c_tag = "MED - Morgue North"
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -14120,6 +14121,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/camera/network/command{
+	c_tag = "Command Meeting Room West";
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -14470,8 +14472,8 @@
 /area/bridge/meeting_room)
 "ys" = (
 /obj/machinery/camera/network/command{
-	dir = 9;
-	c_tag = "Gateway Access"
+	c_tag = "Head of Personnel Office";
+	dir = 9
 	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
@@ -16720,7 +16722,7 @@
 "BD" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/camera/network/medbay{
-	c_tag = "MED - Surgery Hallway";
+	c_tag = "MED - Break Room West";
 	dir = 4
 	},
 /obj/machinery/washing_machine,
@@ -16780,7 +16782,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/network/medbay{
-	c_tag = "MED - Virology Quarantine Airlock";
+	c_tag = "MED - Break Room East";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
@@ -17340,7 +17342,7 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/camera/network/medbay{
-	c_tag = "MED - Surgery Hallway";
+	c_tag = "MED - Break Room Southwest";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -17546,6 +17548,14 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/crew_quarters/medbreak)
+"FD" = (
+/obj/structure/bed/padded,
+/obj/machinery/camera/network/medbay{
+	c_tag = "MED - Virology Containment Two";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/virology)
 
 (1,1,1) = {"
 aa
@@ -25781,7 +25791,7 @@ mY
 nO
 os
 oW
-pn
+FD
 pV
 qH
 ru

@@ -13949,7 +13949,8 @@
 /area/rnd/external)
 "aHg" = (
 /obj/machinery/camera/network/research_outpost{
-	dir = 4
+	dir = 4;
+	network = list("Research")
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -14043,7 +14044,8 @@
 /area/rnd/anomaly_lab/containment_one)
 "aHt" = (
 /obj/machinery/camera/network/research_outpost{
-	dir = 4
+	dir = 4;
+	network = list("Research")
 	},
 /obj/structure/cable/green{
 	d1 = 1;
