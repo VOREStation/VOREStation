@@ -8,6 +8,10 @@
 	color = "#404040"
 	level = 2
 	connect_types = CONNECT_TYPE_HE
+	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
+	construction_type = /obj/item/pipe/binary/bendable
+	pipe_state = "he"
+
 	layer = 2.41
 	var/initialize_directions_he
 	var/surface = 2	//surface area in m^2
@@ -27,6 +31,16 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/init_dir()
 	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
+	initialize_directions = 0
+
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/get_init_dirs()
+	return ..() | initialize_directions_he
+
+// Use initialize_directions_he to connect to neighbors instead.
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/can_be_node(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target)
+	if(!istype(target))
+		return FALSE
+	return (target.initialize_directions_he & get_dir(target,src)) && check_connectable(target) && target.check_connectable(src)
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_init()
 	normalize_dir()
@@ -41,11 +55,11 @@
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node1_dir))
-		if(target.initialize_directions_he & get_dir(target,src))
+		if(can_be_node(target, 1))
 			node1 = target
 			break
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node2_dir))
-		if(target.initialize_directions_he & get_dir(target,src))
+		if(can_be_node(target, 2))
 			node2 = target
 			break
 	if(!node1 && !node2)
@@ -117,6 +131,8 @@
 	pipe_icon = "hejunction"
 	level = 2
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "junction"
 	minimum_temperature_difference = 300
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
@@ -136,6 +152,18 @@
 			initialize_directions = EAST
 			initialize_directions_he = WEST
 
+	// Allow ourselves to make connections to either HE or normal pipes depending on which node we are doing.
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/can_be_node(obj/machinery/atmospherics/target, node_num)
+	var/target_initialize_directions
+	switch(node_num)
+		if(1)
+			target_initialize_directions = target.initialize_directions // Node1 is towards normal pipes
+		if(2)
+			var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/H = target
+			if(!istype(H))
+				return FALSE
+			target_initialize_directions = H.initialize_directions_he  // Node2 is towards HE pies.
+	return (target_initialize_directions & get_dir(target,src)) && check_connectable(target) && target.check_connectable(src)
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))

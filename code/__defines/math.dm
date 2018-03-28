@@ -14,3 +14,5 @@
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 // round() acts like floor(x, 1) by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )
+// Check if a BYOND dir var is a cardinal direction (power of two)
+#define IS_CARDINAL(x) ((x & (x - 1)) == 0)
