@@ -27,6 +27,13 @@
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = 1
 
+/obj/machinery/computer/cryopod/update_icon()
+	..()
+	if((stat & NOPOWER) || (stat & BROKEN))
+		icon_state = "[initial(icon_state)]-p"
+	else
+		icon_state = initial(icon_state)
+
 /obj/machinery/computer/cryopod/robot
 	name = "robotic storage console"
 	desc = "An interface between crew and the robotic storage systems"
@@ -41,8 +48,6 @@
 /obj/machinery/computer/cryopod/dorms
 	name = "residential oversight console"
 	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
-	icon = 'icons/obj/robot_storage.dmi' //placeholder
-	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
@@ -52,8 +57,6 @@
 /obj/machinery/computer/cryopod/travel
 	name = "docking oversight console"
 	desc = "An interface between visitors and the docking oversight systems tasked with keeping track of all visitors who enter or exit from the docks."
-	icon = 'icons/obj/robot_storage.dmi' //placeholder
-	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
@@ -63,8 +66,6 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
-	icon = 'icons/obj/robot_storage.dmi' //placeholder
-	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"

@@ -52,22 +52,21 @@
 	if(charging.loc != src.loc) // Could be qdel or teleport or something
 		stop_charging()
 		return
-	var/done = 1
-	if(charging.cell)
+	var/done = FALSE
+	if(charging.cell)	
 		var/t = min(charge, charging.cell.maxcharge - charging.cell.charge)
 		if(t > 0)
 			charging.give_power(t)
 			use_power(t * 150)
-			done = 0
 		else
 			charging.occupant_message("<span class='notice'>Fully charged.</span>")
+			done = TRUE
 	if(repair && charging.health < initial(charging.health))
 		charging.health = min(charging.health + repair, initial(charging.health))
 		if(charging.health == initial(charging.health))
 			charging.occupant_message("<span class='notice'>Fully repaired.</span>")
-
 		else
-			done = 0
+			done = FALSE
 	if(done)
 		stop_charging()
 	return
