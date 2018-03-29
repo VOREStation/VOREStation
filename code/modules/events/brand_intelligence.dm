@@ -19,7 +19,7 @@
 
 /datum/event/brand_intelligence/announce()
 	command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
-	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert")
+	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert", new_sound = 'sound/AI/AI_vr/Vendormalware.ogg')	//VOREStation edit: Event announcements
 
 
 /datum/event/brand_intelligence/start()

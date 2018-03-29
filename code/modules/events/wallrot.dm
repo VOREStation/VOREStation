@@ -3,7 +3,7 @@ datum/event/wallrot/setup()
 	endWhen = announceWhen + 1
 
 datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected on the colony. Station structures may be contaminated.", "Biohazard Alert")
+	command_announcement.Announce("Harmful fungi detected on the colony. Station structures may be contaminated.", "Biohazard Alert", new_sound = 'sound/AI/AI_vr/Wallrot.ogg')	//VOREStation edit: Event announcements
 
 datum/event/wallrot/start()
 	spawn()

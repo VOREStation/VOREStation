@@ -19,7 +19,7 @@
 				vents += temp_vent
 
 /datum/event/grub_infestation/announce()
-	command_announcement.Announce("Solargrubs detected coming aboard [station_name()]. Please clear them out before this starts to affect productivity. All crew efforts are appreciated and encouraged.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
+	command_announcement.Announce("Solargrubs detected coming aboard [station_name()]. Please clear them out before this starts to affect productivity. All crew efforts are appreciated and encouraged.", "Lifesign Alert", new_sound = 'sound/AI/AI_vr/Solargrubs.ogg')
 
 /datum/event/grub_infestation/start()
 	while((spawncount >= 1) && vents.len)

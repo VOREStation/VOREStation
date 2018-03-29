@@ -12,7 +12,7 @@
 
 /datum/event/gravity/announce()
 	command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system \
-	reinitializes. Please stand by while the gravity system reinitializes.", "Gravity Failure")
+	reinitializes. Please stand by while the gravity system reinitializes.", "Gravity Failure", new_sound = 'sound/AI/AI_vr/Gravityfail-beginning.ogg')	//VOREStation edit: Event announcements
 
 /datum/event/gravity/start()
 	gravity_is_on = 0
@@ -28,4 +28,4 @@
 			if(A.z in zLevels)
 				A.gravitychange(gravity_is_on, A)
 
-		command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+		command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored", new_sound = 'sound/AI/AI_vr/Gravityfail-end.ogg')	//VOREStation edit: Event announcements

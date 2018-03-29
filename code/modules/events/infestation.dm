@@ -93,7 +93,7 @@
 
 
 /datum/event/infestation/announce()
-	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
+	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation", new_sound = 'sound/AI/AI_vr/Vermin.ogg')	//VOREStation edit: Event announcements
 
 #undef LOC_KITCHEN
 #undef LOC_ATMOS
