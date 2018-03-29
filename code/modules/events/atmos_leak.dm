@@ -75,7 +75,7 @@
 	return 0
 
 /datum/event/atmos_leak/announce()
-	command_announcement.Announce("Warning, hazardous [gas_data.name[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert")
+	command_announcement.Announce("Warning, hazardous [gas_data.name[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert", new_sound = 'sound/AI/AI_vr/Gasleak.ogg')	//VOREStation edit: Event announcements
 
 /datum/event/atmos_leak/start()
 	// Okay, time to actually put the gas in the room!

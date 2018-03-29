@@ -4,7 +4,7 @@
 
 
 /datum/event/electrical_storm/announce()
-	command_announcement.Announce("An electrical issue has been detected in your area, please repair potential electronic overloads.", "Electrical Alert")
+	command_announcement.Announce("An electrical issue has been detected in your area, please repair potential electronic overloads.", "Electrical Alert", new_sound = 'sound/AI/AI_vr/Electricstorm.ogg')	//VOREStation edit: Event announcements
 
 
 /datum/event/electrical_storm/start()

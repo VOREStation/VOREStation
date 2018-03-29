@@ -11,7 +11,7 @@
 		kill()
 
 /datum/event/meteor_strike/announce()
-	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring")
+	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring", new_sound = 'sound/AI/AI_vr/Meteoroid.ogg')
 
 /datum/event/meteor_strike/start()
 	new /obj/effect/meteor_falling(strike_target)
