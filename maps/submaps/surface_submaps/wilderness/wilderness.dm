@@ -17,6 +17,7 @@
 #include "Lab1.dmm"
 #include "Rocky4.dmm"
 #include "DJOutpost1.dmm"
+#include "DJOutpost2.dmm"
 #include "Rockybase.dmm"
 #include "MHR.dmm"
 #include "GovPatrol.dmm"
@@ -132,6 +133,14 @@
 	name = "DJOutpost1"
 	desc = "Home of Sif Free Radio, the best - and only - radio station for miles around."
 	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost1.dmm'
+	template_group = "Sif Free Radio"
+	cost = 5
+
+/datum/map_template/surface/wilderness/deep/DJOutpost2
+	name = "DJOutpost2"
+	desc = "The cratered remains of Sif Free Radio, the best - and only - radio station for miles around."
+	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost2.dmm'
+	template_group = "Sif Free Radio"
 	cost = 5
 
 /datum/map_template/surface/wilderness/deep/Boombase
