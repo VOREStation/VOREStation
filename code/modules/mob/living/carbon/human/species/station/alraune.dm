@@ -20,14 +20,17 @@
 	poison_type = "phoron"
 	exhale_type = null // as much as I'd like them to breathe in CO2 and breathe out O2, it'd take completely rewriting breath code
 
-	cold_level_1 = 200 //Default 260 - Lower is better
-	cold_level_2 = 140 //Default 200
-	cold_level_3 = 80 //Default 120
+	// Heat and cold resistances are 20 degrees broader on the level 1 range, level 2 is default, level 3 is much weaker, halfway between L2 and normal L3.
+	// Essentially, they can tolerate a broader range of comfortable temperatures, but suffer more at extremes.
+	cold_level_1 = 240 //Default 260 - Lower is better
+	cold_level_2 = 200 //Default 200
+	cold_level_3 = 160 //Default 120
 	cold_discomfort_level = 260	//they start feeling uncomfortable around the point where humans take damage
 
-	heat_level_1 = 330 //Default 360 - Higher is better
-	heat_level_2 = 380 //Default 400
-	heat_level_3 = 800 //Default 1000
+	heat_level_1 = 380 //Default 360 - Higher is better
+	heat_level_2 = 400 //Default 400
+	heat_level_3 = 700 //Default 1000
+	heat_discomfort_level = 360
 
 	breath_cold_level_1 = -1 //They don't have lungs, they breathe through their skin
 	breath_cold_level_2 = -1 //and we don't want messages about icicles in their nonexistent lungs
@@ -40,6 +43,12 @@
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED // whitelist only while WIP
 	flags = NO_SCAN | IS_PLANT | NO_MINOR_CUT
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/carbon/human/proc/succubus_drain_finalize,
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/bloodsuck) //Give them the voremodes related to wrapping people in vines and sapping their fluids
 
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
