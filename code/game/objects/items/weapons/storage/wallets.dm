@@ -13,7 +13,6 @@
 		/obj/item/device/tape,
 		/obj/item/weapon/cartridge,
 		/obj/item/device/encryptionkey,
-		/obj/item/weapon/reagent_containers/glass/beaker/vial,
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/weapon/coin,
