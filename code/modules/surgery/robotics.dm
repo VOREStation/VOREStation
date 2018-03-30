@@ -462,8 +462,8 @@
 		target.languages = M.brainmob.languages
 
 	spawn(0) //Name yourself on your own damn time
-		var/new_name = ""
-		while(!new_name)
+		var/new_name = target.name
+		while(!new_name && target.client)
 			if(!target) return
 			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
 			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
