@@ -27,7 +27,7 @@
 #define IS_SLIME   8
 
 #define CE_STABLE "stable" // Inaprovaline
-#define CE_ANTIBIOTIC "antibiotic" // Spaceacilin
+#define CE_ANTIBIOTIC "antibiotic" // Antibiotics
 #define CE_BLOODRESTORE "bloodrestore" // Iron/nutriment
 #define CE_PAINKILLER "painkiller"
 #define CE_ALCOHOL "alcohol" // Liver filtering
@@ -36,6 +36,7 @@
 
 #define REAGENTS_PER_SHEET 20
 
+// Attached to CE_ANTIBIOTIC
 #define ANTIBIO_NORM	1
 #define ANTIBIO_OD		2
 #define ANTIBIO_SUPER	3

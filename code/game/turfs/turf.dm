@@ -1,5 +1,7 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
+	layer = TURF_LAYER
+	plane = TURF_PLANE
 	level = 1
 	var/holy = 0
 

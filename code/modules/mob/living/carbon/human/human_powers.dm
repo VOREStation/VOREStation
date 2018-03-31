@@ -279,20 +279,3 @@
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
 		nutrition -= 75
 		active_regen = FALSE
-
-/mob/living/carbon/human/proc/hide_humanoid()
-	set name = "Hide"
-	set desc = "Allows you to hide beneath tables or certain items. Toggled on or off."
-	set category = "Abilities"
-
-	if(stat == DEAD || paralysis || weakened || stunned || restrained()) // No hiding if you're stunned!
-		return
-
-	if(status_flags & HIDING)
-		layer = MOB_LAYER
-		to_chat(src, "<font color='blue'>You have stopped hiding.</font>")
-	else
-		layer = HIDING_LAYER //Just above cables with their 2.44
-		to_chat(src, "<font color='blue'>You are now hiding.</font>")
-
-	status_flags ^= HIDING

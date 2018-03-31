@@ -8,7 +8,7 @@
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = 3.9	//Just below normal mobs
+	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
 	alpha = 127
 	stat = DEAD
@@ -794,6 +794,19 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 /mob/observer/dead/is_deaf()
 	return FALSE
+
+/mob/observer/dead/verb/paialert()
+	set category = "Ghost"
+	set name = "Blank pAI alert"
+	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
+	if(usr.client.prefs.be_special & BE_PAI)
+		for(var/obj/item/device/paicard/p in world)
+			var/obj/item/device/paicard/PP = p
+			if(PP.pai == null)
+				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
+				PP.overlays += "pai-ghostalert"
+				spawn(54)
+					PP.overlays.Cut()
 
 /mob/observer/dead/speech_bubble_appearance()
 	return "ghost"

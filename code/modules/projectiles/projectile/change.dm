@@ -6,6 +6,8 @@
 	nodamage = 1
 	check_armour = "energy"
 
+	combustion = FALSE
+
 /obj/item/projectile/change/on_hit(var/atom/change)
 	wabbajack(change)
 

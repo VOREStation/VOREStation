@@ -7,10 +7,10 @@
 		for(last_object in clients)
 			var/client/C = last_object
 			if(C.is_afk(config.kick_inactive MINUTES))
-				if(!istype(C.mob, /mob/observer/dead) && !istype(C.mob, /mob/new_player))
-					to_chat(C,"<span class='warning'>You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.</span>")
-					var/information
+				to_chat(C,"<span class='warning'>You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.</span>")
+				var/information
 
+				if(C.mob)
 					if(ishuman(C.mob))
 						var/job
 						var/mob/living/carbon/human/H = C.mob
@@ -27,10 +27,10 @@
 					else if(issilicon(C.mob))
 						information = " while a silicon."
 
-					var/adminlinks
-					adminlinks = " (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[C.mob.x];Y=[C.mob.y];Z=[C.mob.z]'>JMP</a>|<A HREF='?_src_=holder;cryoplayer=\ref[C.mob]'>CRYO</a>)"
+				var/adminlinks
+				adminlinks = " (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[C.mob.x];Y=[C.mob.y];Z=[C.mob.z]'>JMP</a>|<A HREF='?_src_=holder;cryoplayer=\ref[C.mob]'>CRYO</a>)"
 
-					log_and_message_admins("being kicked for AFK[information][adminlinks]", C.mob)
+				log_and_message_admins("being kicked for AFK[information][adminlinks]", C.mob)
 
-					qdel(C)
+				qdel(C)
 			SCHECK

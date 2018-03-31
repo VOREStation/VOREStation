@@ -27,6 +27,7 @@
 #include "IceCave1A.dmm"
 #include "IceCave1B.dmm"
 #include "IceCave1C.dmm"
+#include "SwordCave.dmm"
 #include "SupplyDrop1.dmm"
 #include "BlastMine1.dmm"
 #endif
@@ -170,6 +171,11 @@
 	desc = "This cave's slippery ice makes it hard to navigate, but determined explorers will be rewarded."
 	mappath = 'maps/submaps/surface_submaps/mountains/IceCave1C.dmm'
 	cost = 10
+
+/datum/map_template/surface/mountains/normal/SwordCave
+	name = "Cursed Sword Cave"
+	desc = "An underground lake. The sword on the lake's island holds a terrible secret."
+	mappath = 'maps/submaps/surface_submaps/mountains/SwordCave.dmm'
 
 /datum/map_template/surface/mountains/normal/supplydrop1
 	name = "Supply Drop 1"

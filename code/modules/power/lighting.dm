@@ -16,7 +16,8 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = 1
-	layer = 5
+	plane = MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -132,7 +133,8 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
 	anchored = 1
-	layer = 5
+	plane = MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	stage = 1
 	fixture_type = "bulb"
 	sheets_refunded = 1
@@ -143,7 +145,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp-construct-stage1"
 	anchored = 0
-	layer = OBJ_LAYER
 	stage = 1
 	fixture_type = "flamp"
 	sheets_refunded = 2
@@ -156,7 +157,8 @@
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1
-	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
+	plane = MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20

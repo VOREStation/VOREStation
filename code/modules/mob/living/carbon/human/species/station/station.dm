@@ -407,3 +407,33 @@
 			qdel(D)
 
 	H.visible_message("<span class='danger'>\The [H] splits apart with a wet slithering noise!</span>")
+
+/datum/species/diona/handle_environment_special(var/mob/living/carbon/human/H)
+	if(H.inStasisNow())
+		return
+
+	var/obj/item/organ/internal/diona/node/light_organ = locate() in H.internal_organs
+
+	if(light_organ && !light_organ.is_broken())
+		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
+		if(isturf(H.loc)) //else, there's considered to be no light
+			var/turf/T = H.loc
+			light_amount = T.get_lumcount() * 10
+		H.nutrition += light_amount
+		H.shock_stage -= light_amount
+
+		if(H.nutrition > 450)
+			H.nutrition = 450
+		if(light_amount >= 3) //if there's enough light, heal
+			H.adjustBruteLoss(-(round(light_amount/2)))
+			H.adjustFireLoss(-(round(light_amount/2)))
+			H.adjustToxLoss(-(light_amount))
+			H.adjustOxyLoss(-(light_amount))
+			//TODO: heal wounds, heal broken limbs.
+
+	else if(H.nutrition < 200)
+		H.take_overall_damage(2,0)
+
+		//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
+		//Not that it matters much for diona, who have NO_PAIN.
+		H.shock_stage++

@@ -17,7 +17,8 @@ Pipelines + Other Objects -> Pipe network
 	var/nodealert = 0
 	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
 
-	layer = 2.4 //under wires with their 2.44
+	layer = PIPES_LAYER
+	plane = PLATING_PLANE
 
 	var/pipe_flags = PIPING_DEFAULT_LAYER_ONLY // Allow other layers by exception basis.
 	var/connect_types = CONNECT_TYPE_REGULAR

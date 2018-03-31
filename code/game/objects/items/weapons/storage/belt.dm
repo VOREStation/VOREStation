@@ -135,7 +135,8 @@
 		/obj/item/weapon/crowbar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
-		/obj/item/weapon/extinguisher/mini
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/storage/quickdraw/syringe_case
 		)
 
 /obj/item/weapon/storage/belt/medical/emt
@@ -373,7 +374,9 @@
 		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
 		/obj/item/device/ano_scanner,
-		/obj/item/weapon/pickaxe/hand
+		/obj/item/weapon/pickaxe/hand,
+		/obj/item/device/xenoarch_multi_tool,
+		/obj/item/weapon/pickaxe/excavationdrill
 		)
 
 /obj/item/weapon/storage/belt/fannypack

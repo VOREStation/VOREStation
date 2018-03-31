@@ -1802,6 +1802,22 @@ CIRCUITS BELOW
 	build_path = /obj/item/device/universal_translator/ear
 	sort_string = "HABQB"
 
+/datum/design/obj/item/device/xenoarch_multi_tool
+	name = "xenoarcheology multitool"
+	id = "xenoarch_multitool"
+	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3)
+	build_path = /obj/item/device/xenoarch_multi_tool
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "uranium" = 500, "phoron" = 500)
+	sort_string = "HABQC"
+
+/datum/design/excavationdrill
+	name = "Excavation Drill"
+	id = "excavationdrill"
+	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
+	build_type = PROTOLATHE
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/weapon/pickaxe/excavationdrill
+
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert
 	name = "general alert console"

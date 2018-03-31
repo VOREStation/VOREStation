@@ -621,13 +621,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 		handle_germ_effects()
 
 /obj/item/organ/external/proc/handle_germ_sync()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
 		if (owner.germ_level > W.germ_level && W.infection_check())
 			W.germ_level++
 
-	if (antibiotics < 5)
+	if (antibiotics < ANTIBIO_NORM)
 		for(var/datum/wound/W in wounds)
 			//Infected wounds raise the organ's germ level
 			if (W.germ_level > germ_level)
@@ -638,9 +638,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..() //May be null or an infection level, if null then no specific processing needed here
 	if(!.) return
 
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 
-	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
+	if(. >= 2 && antibiotics < ANTIBIO_NORM) //INFECTION_LEVEL_TWO
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/obj/item/organ/I in internal_organs)
@@ -672,7 +672,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 
-	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
+	if(. >= 3 && antibiotics < ANTIBIO_OD)	//INFECTION_LEVEL_THREE
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"

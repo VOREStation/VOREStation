@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Nerezza
+author: Cameron653
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,7 +33,5 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscdel: "EVA rigsuit/hardsuit no longer holds toolboxes in suit storage since those have been a volume inventory for some time now. RIP ghetto satchel."
-  - rsctweak: "CE's rigsuit/hardsuit no longer holds pickaxes and ore satchels, but can now hold inflateables."
-  - bugfix: "Retracting rigsuit/hardsuit helmets with no valid mask equipped now disables internals."
-  - bugfix: "Offline rigsuits/hardsuits are no longer considered valid air supplies by the internals button. Before, your internals would instantly shut off before you could get a breath out of the rigsuit. Now, the internals button will look for a different tank instead."
+  - rscadd: "Adds a xenoarch excavation tool, craftable in R&D. Allows depth selection of 1-30"
+  - rscadd: "Adds a xenoarch multitool, craftable in R&D. Has xenoarch counter, measure tool, and depth scanner all in one."

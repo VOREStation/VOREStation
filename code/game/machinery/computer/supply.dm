@@ -40,8 +40,7 @@
 		<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
-		"} // VOREStation Edit - Export reports
-		dat += {"\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR><BR>
+		\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR><BR>
 		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
@@ -200,8 +199,7 @@
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
-		"} // VOREStation Edit - Export reports
-		dat += {"\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR>\n<BR>
+		\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR>\n<BR>
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 
@@ -371,7 +369,6 @@
 		temp += "<BR><A href='?src=\ref[src];clearreq=1'>Clear list</A>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
-	//VOREStation Edit - Export reports
 	else if (href_list["viewexport"])
 		temp = "Previous shuttle export report: <BR><BR>"
 		var/cratecount = 0
@@ -383,7 +380,6 @@
 			temp += "[EC.name] exported for [EC.value] supply points<BR>"
 		temp += "<BR>Shipment of [cratecount] crates exported for [totalvalue] supply points.<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-	//VOREStation Edit End
 
 	else if (href_list["rreq"])
 		var/ordernum = text2num(href_list["rreq"])

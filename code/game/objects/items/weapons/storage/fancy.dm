@@ -114,6 +114,48 @@
 				return
 	..()
 
+/obj/item/weapon/storage/fancy/markers
+	name = "box of markers"
+	desc = "A very professional looking box of permanent markers."
+	icon = 'icons/obj/crayons.dmi'
+	icon_state = "markerbox"
+	w_class = ITEMSIZE_SMALL
+	icon_type = "marker"
+	can_hold = list(
+		/obj/item/weapon/pen/crayon/marker
+	)
+	starts_with = list(
+		/obj/item/weapon/pen/crayon/marker/black,
+		/obj/item/weapon/pen/crayon/marker/red,
+		/obj/item/weapon/pen/crayon/marker/orange,
+		/obj/item/weapon/pen/crayon/marker/yellow,
+		/obj/item/weapon/pen/crayon/marker/green,
+		/obj/item/weapon/pen/crayon/marker/blue,
+		/obj/item/weapon/pen/crayon/marker/purple
+	)
+
+/obj/item/weapon/storage/fancy/markers/initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/weapon/storage/fancy/markers/update_icon()
+	var/mutable_appearance/ma = new(src)
+	ma.overlays = list()
+	for(var/obj/item/weapon/pen/crayon/marker/marker in contents)
+		ma.overlays += image('icons/obj/crayons.dmi',"m"+marker.colourName)
+	appearance = ma
+
+/obj/item/weapon/storage/fancy/markers/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/pen/crayon/marker))
+		switch(W:colourName)
+			if("mime")
+				to_chat(usr,"This marker is too depressing to be contained in this box.")
+				return
+			if("rainbow")
+				to_chat(usr,"This marker is too childish to be contained in this box.")
+				return
+	..()
+
 ////////////
 //CIG PACK//
 ////////////
@@ -259,7 +301,8 @@
 	icon_state = "paperbox"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY
-	throwforce = 1
+	throwforce = 2
+	slot_flags = SLOT_BELT
 	storage_slots = 14
 	can_hold = list(/obj/item/weapon/rollingpaper)
 	starts_with = list(/obj/item/weapon/rollingpaper = 14)
