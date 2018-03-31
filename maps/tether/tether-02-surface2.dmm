@@ -2939,7 +2939,10 @@
 "gy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/sortjunction/flipped,
+/obj/structure/disposalpipe/sortjunction/flipped{
+	name = "Trash";
+	sortType = "Trash"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "gz" = (
