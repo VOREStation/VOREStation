@@ -1168,7 +1168,7 @@
 	if(!(gender in species.genders))
 		gender = species.genders[1]
 
-	icon_state = lowertext(species.name)
+	//icon_state = lowertext(species.name) //Necessary?
 
 	species.create_organs(src)
 
