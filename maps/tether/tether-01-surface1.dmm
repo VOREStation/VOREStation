@@ -13948,7 +13948,7 @@
 /turf/simulated/wall/r_wall,
 /area/rnd/external)
 "aHg" = (
-/obj/machinery/camera/network/research_outpost{
+/obj/machinery/camera/network/research{
 	dir = 4;
 	network = list("Research")
 	},
@@ -14043,9 +14043,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/anomaly_lab/containment_one)
 "aHt" = (
-/obj/machinery/camera/network/research_outpost{
+/obj/machinery/camera/network/research{
 	dir = 4;
-	network = list("Research")
+	
 	},
 /obj/structure/cable/green{
 	d1 = 1;
