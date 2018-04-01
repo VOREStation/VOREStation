@@ -32,13 +32,13 @@
 	heat_level_3 = 700 //Default 1000
 	heat_discomfort_level = 360
 
-	breath_cold_level_1 = 220 //They don't have lungs, they breathe through their skin
-	breath_cold_level_2 = 180 //again, tolerant in the midrange but burn fast at extremes
-	breath_cold_level_3 = 140
+	breath_cold_level_1 = 240 //They don't have lungs, they breathe through their skin
+	breath_cold_level_2 = 180 //sadly for them, their breath tolerance is no better than anyone else's.
+	breath_cold_level_3 = 140 //mainly 'cause breath tolerance is more generous than body temp tolerance.
 
-	breath_heat_level_1 = 400
+	breath_heat_level_1 = 400 //slightly better heat tolerance in air though. Slightly.
 	breath_heat_level_2 = 450
-	breath_heat_level_3 = 800
+	breath_heat_level_3 = 800 //lower incineration threshold though
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED // whitelist only while WIP
 	flags = NO_SCAN | IS_PLANT | NO_MINOR_CUT
@@ -204,13 +204,12 @@
 	var/co2buff = 0
 	if(inhaling)
 		co2buff = (Clamp(inhale_pp, 0, minimum_breath_pressure))/minimum_breath_pressure //returns a value between 0 and 1.
-		H.adjustOxyLoss(-co2buff*2)
 
-	var/light_amount = fullysealed ? H.getlightlevel() : H.getlightlevel()/3 // if they're covered, they're not going to get much light on them.
+	var/light_amount = fullysealed ? H.getlightlevel() : H.getlightlevel()/5 // if they're covered, they're not going to get much light on them.
 
-	if(co2buff >= 0.2 && light_amount >= 0.4) //if there's enough light and CO2, heal. Note if you're wearing a sealed suit you'll never be able to do this no matter how much CO2 you cheese into your internals tank.
-		H.adjustBruteLoss(-(light_amount * co2buff * 2)) //even at a full partial pressure of CO2 and full light, you'll only heal half as fast as diona.
-		H.adjustFireLoss(-(light_amount * co2buff)) //this won't let you tank environmental damage from fire.
+	if(co2buff && !H.toxloss && light_amount >= 0.1) //if there's enough light and CO2 and you're not poisoned, heal. Note if you're wearing a sealed suit your heal rate will suck.
+		H.adjustBruteLoss(-(light_amount * co2buff * 2)) //at a full partial pressure of CO2 and full light, you'll only heal half as fast as diona.
+		H.adjustFireLoss(-(light_amount * co2buff)) //this won't let you tank environmental damage from fire. MAYBE cold until your body temp drops.
 
 	if(H.nutrition < (200 + 400*co2buff)) //if no CO2, a fully lit tile gives them 1/tick up to 200. With CO2, potentially up to 600.
 		H.nutrition += (light_amount*(1+co2buff*5))
@@ -261,7 +260,7 @@
 				to_chat(H, "<span class='danger'>You feel icicles forming on your skin!</span>")
 		else if(breath.temperature >= breath_heat_level_1)
 			if(prob(20))
-				src << "<span class='danger'>You feel yourself smouldering in the heat!</span>"
+				to_chat(H, "<span class='danger'>You feel yourself smouldering in the heat!</span>")
 
 		var/bodypart = pick(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 		if(breath.temperature >= breath_heat_level_1)
