@@ -112,6 +112,11 @@
 			if(!speaker.client)
 				return
 
+		//Are all slimes being referred to?
+		var/mass_order = 0
+		if(findtext(message, "slimes"))
+			mass_order = 1
+
 		// Say hello back.
 		if(findtext(message, "hello") || findtext(message, "hi") || findtext(message, "greetings"))
 			delayed_say(pick("Hello...", "Hi..."), speaker)
@@ -165,13 +170,14 @@
 				var/list/valid_names = splittext(L.name, " ") // Should output list("John", "Doe") as an example.
 				for(var/line in valid_names) // Check each part of someone's name.
 					if(findtext(message, lowertext(line))) // If part of someone's name is in the command, the slime targets them if allowed to.
-						if(special_target_check(L))
-							delayed_say("Okay... I attack \the [L]...", speaker)
-							LoseFollow()
-							set_target(L)
-							return
-						else
-							delayed_say("No... I won't attack \the [L].", speaker)
-						return
-				// If we're here, it couldn't find anyone with that name.
-				delayed_say("No... I don't know who to attack...", speaker)
+						if(!(mass_order && line == "slime"))	//don't think random other slimes are target
+							if(special_target_check(L))
+								delayed_say("Okay... I attack \the [L]...", speaker)
+								LoseFollow()
+								set_target(L, 1)
+								return
+							else
+								delayed_say("No... I won't attack \the [L].", speaker)
+								return
+			// If we're here, it couldn't find anyone with that name.
+			delayed_say("No... I don't know who to attack...", speaker)

@@ -356,10 +356,13 @@
 	baby.mutation_chance = mutation_chance
 	baby.power_charge = round(power_charge / 4)
 	baby.resentment = max(resentment - 1, 0)
-	baby.discipline = max(discipline - 1, 0)
-	baby.obedience = max(obedience - 1, 0)
-	baby.unity = unity
+	if(!istype(baby, /mob/living/simple_animal/slime/light_pink))
+		baby.discipline = max(discipline - 1, 0)
+		baby.obedience = max(obedience - 1, 0)
+	if(!istype(baby, /mob/living/simple_animal/slime/rainbow))
+		baby.unity = unity
 	baby.faction = faction
+	baby.attack_same = attack_same
 	baby.friends = friends.Copy()
 	if(rabid)
 		baby.enrage()
