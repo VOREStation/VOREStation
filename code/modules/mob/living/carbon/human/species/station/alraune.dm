@@ -16,9 +16,9 @@
 	health_hud_intensity = 1.5
 
 	body_temperature = T20C
-	breath_type = "oxygen"
+	breath_type = "carbon_dioxide"
 	poison_type = "phoron"
-	exhale_type = null // as much as I'd like them to breathe in CO2 and breathe out O2, it'd take completely rewriting breath code
+	exhale_type = "oxygen"
 
 	// Heat and cold resistances are 20 degrees broader on the level 1 range, level 2 is default, level 3 is much weaker, halfway between L2 and normal L3.
 	// Essentially, they can tolerate a broader range of comfortable temperatures, but suffer more at extremes.
@@ -32,13 +32,13 @@
 	heat_level_3 = 700 //Default 1000
 	heat_discomfort_level = 360
 
-	breath_cold_level_1 = -1 //They don't have lungs, they breathe through their skin
-	breath_cold_level_2 = -1 //and we don't want messages about icicles in their nonexistent lungs
-	breath_cold_level_3 = -1
+	breath_cold_level_1 = 220 //They don't have lungs, they breathe through their skin
+	breath_cold_level_2 = 180 //again, tolerant in the midrange but burn fast at extremes
+	breath_cold_level_3 = 140
 
-	breath_heat_level_1 = INFINITY
-	breath_heat_level_2 = INFINITY
-	breath_heat_level_3 = INFINITY
+	breath_heat_level_1 = 400
+	breath_heat_level_2 = 450
+	breath_heat_level_3 = 800
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED // whitelist only while WIP
 	flags = NO_SCAN | IS_PLANT | NO_MINOR_CUT
@@ -95,7 +95,13 @@
 	if(H.inStasisNow()) // if they're in stasis, they won't need this stuff.
 		return
 
+	//setting these here 'cause ugh the defines for life are in the wrong place to compile properly
+	//set them back to HUMAN_MAX_OXYLOSS if we move the life defines to the defines folder at any point
+	var/ALRAUNE_MAX_OXYLOSS = 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+	var/ALRAUNE_CRIT_MAX_OXYLOSS = ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
+
 	//They don't have lungs so breathe() will just return. Instead, they breathe through their skin.
+	//This is mostly normal breath code with some tweaks that apply to their particular biology.
 
 	var/datum/gas_mixture/breath = null
 	var/fullysealed = FALSE //if they're wearing a fully sealed suit, their internals take priority.
@@ -122,15 +128,82 @@
 			breath = environment2.remove_volume(BREATH_VOLUME)
 			H.handle_chemical_smoke(environment2) //handle chemical smoke while we're at it
 
-	H.handle_breath(breath) // everything that needs to be handled is handled in here
+	// NOW a crude copypasta of handle_breath. Leaving some things out that don't apply to plants.
+	if(H.does_not_breathe)
+		H.failed_last_breath = 0
+		H.adjustOxyLoss(-5)
+		return // if somehow they don't breathe, abort breathing.
 
-	// Now we've handled the usual breathing stuff, check for presence of CO2 in breath, and light levels
+	if(!breath || (breath.total_moles == 0))
+		H.failed_last_breath = 1
+		if(H.health > config.health_threshold_crit)
+			H.adjustOxyLoss(ALRAUNE_MAX_OXYLOSS)
+		else
+			H.adjustOxyLoss(ALRAUNE_CRIT_MAX_OXYLOSS)
+
+		H.oxygen_alert = max(H.oxygen_alert, 1)
+
+		return // skip air processing if there's no air
+
+	// now into the good stuff
+
+	//var/safe_pressure_min = species.minimum_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
+	//just replace safe_pressure_min with minimum_breath_pressure, no need to declare a new var
+
+	var/safe_exhaled_max = 10
+	var/safe_toxins_max = 0.2
+	var/SA_para_min = 1
+	var/SA_sleep_min = 5
+	var/inhaled_gas_used = 0
+
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+
+	var/inhaling
+	var/poison
+	var/exhaling
+
+	var/failed_inhale = 0
+	var/failed_exhale = 0
+
+	inhaling = breath.gas[breath_type]
+	poison = breath.gas[poison_type]
+	exhaling = breath.gas[exhale_type]
+
+	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
+	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
+	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
+
+	// Not enough to breathe
+	if((inhale_pp + exhaled_pp) < minimum_breath_pressure) //they can breathe either oxygen OR CO2
+		if(prob(20))
+			spawn(0) H.emote("gasp")
+
+		var/ratio = (inhale_pp + exhaled_pp)/minimum_breath_pressure
+		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS (1) after all!)
+		H.adjustOxyLoss(max(ALRAUNE_MAX_OXYLOSS*(1-ratio), 0))
+		failed_inhale = 1
+
+		H.oxygen_alert = max(H.oxygen_alert, 1)
+	else
+		// We're in safe limits
+		H.oxygen_alert = 0
+
+	inhaled_gas_used = inhaling/6
+	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
+	breath.adjust_gas_temp(exhale_type, inhaled_gas_used, H.bodytemperature, update = 0) //update afterwards
+
+	//Now we handle CO2.
+	if(inhale_pp > safe_exhaled_max * 0.7) // For a human, this would be too much exhaled gas in the air. But plants don't care.
+		H.co2_alert = 1 // Give them the alert on the HUD. They'll be aware when the good stuff is present.
+
+	else
+		H.co2_alert = 0
+
+	//do the CO2 buff stuff here
 
 	var/co2buff = 0
-	if(breath.gas["carbon_dioxide"])
-		var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
-		var/CO2_pp = (breath.gas["carbon_dioxide"] / breath.total_moles) * breath_pressure
-		co2buff = (Clamp(CO2_pp, 0, minimum_breath_pressure))/minimum_breath_pressure //returns a value between 0 and 1.
+	if(inhaling)
+		co2buff = (Clamp(inhale_pp, 0, minimum_breath_pressure))/minimum_breath_pressure //returns a value between 0 and 1.
 		H.adjustOxyLoss(-co2buff*2)
 
 	var/light_amount = fullysealed ? H.getlightlevel() : H.getlightlevel()/3 // if they're covered, they're not going to get much light on them.
@@ -141,3 +214,98 @@
 
 	if(H.nutrition < (200 + 400*co2buff)) //if no CO2, a fully lit tile gives them 1/tick up to 200. With CO2, potentially up to 600.
 		H.nutrition += (light_amount*(1+co2buff*5))
+
+	// Too much poison in the air.
+	if(toxins_pp > safe_toxins_max)
+		var/ratio = (poison/safe_toxins_max) * 10
+		if(H.reagents)
+			H.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
+		H.phoron_alert = max(H.phoron_alert, 1)
+	else
+		H.phoron_alert = 0
+
+	// If there's some other shit in the air lets deal with it here.
+	if(breath.gas["sleeping_agent"])
+		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
+
+		// Enough to make us paralysed for a bit
+		if(SA_pp > SA_para_min)
+
+			// 3 gives them one second to wake up and run away a bit!
+			H.Paralyse(3)
+
+			// Enough to make us sleep as well
+			if(SA_pp > SA_sleep_min)
+				H.Sleeping(5)
+
+		// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
+		else if(SA_pp > 0.15)
+			if(prob(20))
+				spawn(0) H.emote(pick("giggle", "laugh"))
+		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
+
+	// Were we able to breathe?
+	if (failed_inhale || failed_exhale)
+		H.failed_last_breath = 1
+	else
+		H.failed_last_breath = 0
+		H.adjustOxyLoss(-5)
+
+
+	// Hot air hurts :(
+	if((breath.temperature < breath_cold_level_1 || breath.temperature > breath_heat_level_1) && !(COLD_RESISTANCE in H.mutations))
+
+		if(breath.temperature <= breath_cold_level_1)
+			if(prob(20))
+				to_chat(H, "<span class='danger'>You feel icicles forming on your skin!</span>")
+		else if(breath.temperature >= breath_heat_level_1)
+			if(prob(20))
+				src << "<span class='danger'>You feel yourself smouldering in the heat!</span>"
+
+		var/bodypart = pick(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
+		if(breath.temperature >= breath_heat_level_1)
+			if(breath.temperature < breath_heat_level_2)
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.fire_alert = max(H.fire_alert, 2)
+			else if(breath.temperature < breath_heat_level_3)
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.fire_alert = max(H.fire_alert, 2)
+			else
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.fire_alert = max(H.fire_alert, 2)
+
+		else if(breath.temperature <= breath_cold_level_1)
+			if(breath.temperature > breath_cold_level_2)
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.fire_alert = max(H.fire_alert, 1)
+			else if(breath.temperature > breath_cold_level_3)
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.fire_alert = max(H.fire_alert, 1)
+			else
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.fire_alert = max(H.fire_alert, 1)
+
+
+		//breathing in hot/cold air also heats/cools you a bit
+		var/temp_adj = breath.temperature - H.bodytemperature
+		if (temp_adj < 0)
+			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+		else
+			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+
+		var/relative_density = breath.total_moles / (MOLES_CELLSTANDARD * BREATH_PERCENTAGE)
+		temp_adj *= relative_density
+
+		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
+		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
+		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
+		H.bodytemperature += temp_adj
+
+	else if(breath.temperature >= heat_discomfort_level)
+		get_environment_discomfort(src,"heat")
+	else if(breath.temperature <= cold_discomfort_level)
+		get_environment_discomfort(src,"cold")
+
+	breath.update_values()
+	return 1
