@@ -2,6 +2,7 @@
 	name = "pilot's headset"
 	desc = "A headset used by pilots, has access to supply and explorer channels."
 	icon_state = "pilot_headset"
+	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/pilot
 
 /obj/item/device/radio/headset/pilot/alt
