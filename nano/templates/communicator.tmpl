@@ -3,20 +3,6 @@ Title: Communicator UI
 Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
  -->
 
-<div class="statusDisplayComm">
-	<div class="item">
-		<div class="itemContent" style="width: 100%; text-align: center;">
-			<span class="average">{{:data.time}} | </span>
-			{{if data.connectionStatus == 1}}
-				<img class='uiIcon16 icon-signal-green' style='float: none; vertical-align: top'></img>
-			{{else}}
-				<img class='uiIcon16 icon-alert-red' style='float: none; vertical-align: top'></img>
-			{{/if}}
-			<span class="average"> | {{:data.owner}} | {{:data.occupation}}</span>
-		</div>
-	</div>
-</div>
-
 {{if data.currentTab == 1}}
 	
 	<div class='homeContainer'>
@@ -86,43 +72,43 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<h3>Connection Management</h3>
 	<HR>
 	<h3>External Connections</h3>
-		{{for data.voice_mobs}}
-			<div class='item'>
-				<div class="itemLabel">
-				{{:value.name}}
-				</div>
-				<div class="itemContent">
-					<div style="float: left; width: 200px;">{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}</div>
-				</div>
+	{{for data.voice_mobs}}
+		<div class='item'>
+			<div class="itemLabel">
+			{{:value.name}}
 			</div>
-		{{/for}}
+			<div class="itemContent">
+				<div style="float: left; width: 200px;">{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}</div>
+			</div>
+		</div>
+	{{/for}}
 	<h3>Internal Connections</h3>
-		{{for data.communicating}}
-			<div class='item'>
-				<div class="itemLabel">
-				{{:value.name}}
-				</div>
-				<div class="itemContent">
-					{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}
-					{{if data.video_comm == null}}
-						{{:helper.link('Start Video', 'signal-diag', {'startvideo' : value.ref})}}
-					{{else data.video_comm == value.ref}}
-						{{:helper.link('End Video', 'signal-diag', {'endvideo' : value.true_name}, null, 'redButton')}}
-					{{/if}}
-				</div>
+	{{for data.communicating}}
+		<div class='item'>
+			<div class="itemLabel">
+			{{:value.name}}
 			</div>
-		{{/for}}
+			<div class="itemContent">
+				{{:helper.link('Disconnect', 'close', {'disconnect' : value.true_name}, null, 'redButton')}}
+				{{if data.video_comm == null}}
+					{{:helper.link('Start Video', 'signal-diag', {'startvideo' : value.ref})}}
+				{{else data.video_comm == value.ref}}
+					{{:helper.link('End Video', 'signal-diag', {'endvideo' : value.true_name}, null, 'redButton')}}
+				{{/if}}
+			</div>
+		</div>
+	{{/for}}
 	<h3>Requests Received</h3>
-		{{for data.requestsReceived}}
-			<div class='item'>
-				<div class="itemLabel">
-				{{:value.name}}
-				</div>
-				<div class="itemContent">
-					<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Accept', 'signal-diag', {'dial' : value.address})}}{{:helper.link('Decline', 'close', {'decline' : value.ref})}}
-				</div>
+	{{for data.requestsReceived}}
+		<div class='item'>
+			<div class="itemLabel">
+			{{:value.name}}
 			</div>
-		{{/for}}
+			<div class="itemContent">
+				<div style="float: left; width: 300px;">{{:value.address}}</div> {{:helper.link('Accept', 'signal-diag', {'dial' : value.address})}}{{:helper.link('Decline', 'close', {'decline' : value.ref})}}
+			</div>
+		</div>
+	{{/for}}
 
 	<h3>Invites Sent</h3>
 	{{for data.invitesSent}}
@@ -146,19 +132,19 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<HR>
 	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
-		{{for data.knownDevices}}
-			<div class='item'>
-				<div class="itemLabel">
-				{{:value.name}}
-				</div>
-				<div class="itemContent">
-					<div style="float: left; width: 100%;">{{:value.address}}</div> 
-					{{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}} 
-					{{:helper.link('Call', 'phone', {'dial' : value.address, 'copy' : value.address, 'switch_tab' : 2})}} 
-					{{:helper.link('Msg', 'mail-closed', {'copy' : value.address, 'copy_name' : value.name, 'switch_tab' : 40})}}
-				</div>
+	{{for data.knownDevices}}
+		<div class='item'>
+			<div class="itemLabel">
+			{{:value.name}}
 			</div>
-		{{/for}}
+			<div class="itemContent">
+				<div style="float: left; width: 100%;">{{:value.address}}</div> 
+				{{:helper.link('Copy', 'pencil', {'copy' : value.address, 'switch_tab' : 2})}} 
+				{{:helper.link('Call', 'phone', {'dial' : value.address, 'copy' : value.address, 'switch_tab' : 2})}} 
+				{{:helper.link('Msg', 'mail-closed', {'copy' : value.address, 'copy_name' : value.name, 'switch_tab' : 40})}}
+			</div>
+		</div>
+	{{/for}}
 
 <!-- Fourth Tab, Messaging -->
 
@@ -215,8 +201,8 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	
 	<HR>
 	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
-	{{if data.feeds.length}}
-		
+	
+	{{if data.feeds.length}}	
 		<!--Most recent three posts -->
 		<h4>Recent News</h4>
 		<div class="statusDisplay" style="height: 250px; overflow: auto;">
@@ -418,8 +404,14 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	<div class="itemContent">
-		{{:helper.link('External Device', 'gear', {'switch_template' : 2})}}
+		{{:helper.link('External Device', 'gear', {'switch_template' : 'comm2.tmpl'})}}
 	</div>
+	{{for data.cart_templates}}
+		<div class="itemContent">
+			{{:helper.link(value.name, 'gear', {'switch_template' : value.template, 'switch_tab' : 0})}}
+		</div>
+	{{empty}}
+	{{/for}}
 	{{if data.cart_devices}}
 		<HR>
 		<h4>Internal Devices</h3>

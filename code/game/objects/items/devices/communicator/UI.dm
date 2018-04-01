@@ -117,17 +117,21 @@
 	if(cartridge) // If there's a cartridge, we need to grab the information from it
 		data["cart_devices"] = cartridge.get_device_status()
 		data["cart_templates"] = cartridge.ui_templates
+		data["cart_info"] = cartridge.get_data()
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700, state = key_state)
+		data["currentTab"] = 1 // Reset the current tab, because we're going to home page
+		ui = new(user, src, ui_key, "communicator_header.tmpl", "Communicator", 475, 700, state = key_state)
 		// add templates for screens in common with communicator.
 		ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
+		// Append main body
+		ui.append_template("Body", "communicator.tmpl")
 		// open the new ui window
 		ui.open()
 		// auto update every five Master Controller tick
@@ -254,11 +258,8 @@
 	if(href_list["switch_template"])
 		var/datum/nanoui/ui = nanomanager.get_open_ui(usr, src, "main")
 		if(ui)
-			switch(href_list["switch_template"])
-				if("1")
-					ui.reinitialise("communicator.tmpl")
-				if("2")
-					ui.reinitialise("comm2.tmpl")
+			usr << "Switching to template [href_list["switch_template"]]"
+			ui.append_template("Body", href_list["switch_template"])
 
 	if(href_list["Light"])
 		fon = !fon

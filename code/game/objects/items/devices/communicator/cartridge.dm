@@ -22,6 +22,9 @@
 			L[++L.len] = list("name" = I.name, "active" = 0, "index" = i++)
 	return L
 
+/obj/item/weapon/commcard/proc/get_data()
+	return list()
+
 /obj/item/weapon/commcard/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
@@ -45,6 +48,7 @@
 /obj/item/weapon/commcard/medical
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
+	ui_templates = list(list("name" = "Medical Records", "template" = "med_records.tmpl"), list("name" = "test", "template" = "comm2.tmpl")) // List of list for when multiple templates
 	//Med records template
 	//Med scanner
 	//Halogen counter
@@ -54,6 +58,27 @@
 	internal_devices |= new /obj/item/device/healthanalyzer(src)
 	internal_devices |= new /obj/item/device/halogen_counter(src)
 	// Add med records template
+
+/obj/item/weapon/commcard/medical/get_data()
+	var/data[0]
+	var/records[0]
+	for(var/datum/data/record/M in sortRecord(data_core.medical))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = M.fields["name"])
+		record[++record.len] = list("tab" = "ID", "val" = M.fields["id"])
+		record[++record.len] = list("tab" = "Blood Type", "val" = M.fields["b_type"])
+		record[++record.len] = list("tab" = "DNA #", "val" = M.fields["b_dna"])
+		record[++record.len] = list("tab" = "Gender", "val" = M.fields["id_gender"])
+		record[++record.len] = list("tab" = "Entity Classification", "val" = M.fields["brain_type"])
+		record[++record.len] = list("tab" = "Minor Disorders", "val" = M.fields["mi_dis"])
+		record[++record.len] = list("tab" = "Major Disorders", "val" = M.fields["ma_dis"])
+		record[++record.len] = list("tab" = "Allergies", "val" = M.fields["alg"])
+		record[++record.len] = list("tab" = "Condition", "val" = M.fields["cdi"])
+		record[++record.len] = list("tab" = "Notes", "val" = M.fields["notes"])
+
+		records[++records.len] = list("name" = M.fields["name"], "record" = record)
+	data["records"] = records
+	return data
 
 /obj/item/weapon/commcard/medical/chemistry
 	name = "\improper ChemWhiz cartridge"

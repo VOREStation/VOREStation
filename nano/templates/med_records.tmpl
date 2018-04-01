@@ -1,0 +1,21 @@
+<h3>Medical Records</h3>
+{{if data.currentTab == "0"}}
+	<div>
+		{{for data.cart_info.records}}
+			<div class="item">
+				{{:helper.link(value.name, '', {"switch_tab" : value.name})}}
+			</div>
+		{{/for}}
+	</div>
+{{/if}}
+{{for data.cart_info.records}}
+	{{if value.name == data.currentTab}}
+		<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'icon-triangle-1-w', {'switch_tab' : 0})}}</div><BR>
+		{{for value.record :itemValue:itemIndex}}
+			<div class="item">
+				<div class="itemLabel">{{:itemValue.tab}}</div>
+				<div class="itemContent">{{:itemValue.val}}</div>
+			</div>
+		{{/for}}
+	{{/if}}
+{{/for}}

@@ -3,7 +3,7 @@ Title: Communicator UI
 Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
  -->
  
- <div class="statusDisplayComm">
+<div class="statusDisplayComm">
 	<div class="item">
 		<div class="itemContent" style="width: 100%; text-align: center;">
 			<span class="average">{{:data.time}} | </span>
@@ -18,11 +18,24 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 </div>
 
 
-<div>{{:helper.link('Home', 'home', {'switch_template' : 1})}}</div>
-<div class='homeContainer'>
-	<div class='homeScreen'>
-		{{for data.homeScreen}}
-			{{:helper.link(value.module, value.icon, {'switch_tab' : value.number}, null, 'link64')}}
+<h3>Medical Records</h3>
+{{if data.currentTab == "0"}}
+	<div>
+		{{for data.cart_info.records}}
+			<div class="item">
+				{{:helper.link(value.name, '', {"switch_tab" : value.name})}}
+			</div>
 		{{/for}}
 	</div>
-</div>
+{{/if}}
+{{for data.cart_info.records}}
+	{{if value.name == data.currentTab}}
+		<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'icon-triangle-1-w', {'switch_tab' : 0})}}</div><BR>
+		{{for value.record :itemValue:itemIndex}}
+			<div class="item">
+				<div class="itemLabel">{{:itemValue.tab}}</div>
+				<div class="itemContent">{{:itemValue.val}}</div>
+			</div>
+		{{/for}}
+	{{/if}}
+{{/for}}
