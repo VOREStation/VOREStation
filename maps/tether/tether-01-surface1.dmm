@@ -13950,7 +13950,7 @@
 "aHg" = (
 /obj/machinery/camera/network/research{
 	dir = 4;
-	network = list("Research")
+	
 	},
 /obj/structure/cable/green{
 	d1 = 1;
