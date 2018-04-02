@@ -13,6 +13,7 @@ var/list/global/map_templates = list()
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
+	var/template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
 	var/width = 0
 	var/height = 0
 	var/mappath = null
@@ -67,7 +68,7 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
 	SSatoms.InitializeAtoms(atoms)
-	
+
 	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
 	SSmachines.setup_atmos_machinery(atmos_machines)
 
@@ -189,6 +190,7 @@ var/list/global/map_templates = list()
 	CHECK_TICK
 
 	var/list/loaded_submap_names = list()
+	var/list/template_groups_used = list() // Used to avoid spawning three seperate versions of the same PoI.
 
 	// Now lets start choosing some.
 	while(budget > 0 && overall_sanity > 0)
@@ -209,6 +211,14 @@ var/list/global/map_templates = list()
 
 		// Can we afford it?
 		if(chosen_template.cost > budget)
+			priority_submaps -= chosen_template
+			potential_submaps -= chosen_template
+			continue
+
+		// Did we already place down a very similar submap?
+		if(chosen_template.template_group && chosen_template.template_group in template_groups_used)
+			priority_submaps -= chosen_template
+			potential_submaps -= chosen_template
 			continue
 
 		// If so, try to place it.
@@ -241,14 +251,21 @@ var/list/global/map_templates = list()
 
 			CHECK_TICK
 
+			// For pretty maploading statistics.
 			if(loaded_submap_names[chosen_template.name])
 				loaded_submap_names[chosen_template.name] += 1
 			else
 				loaded_submap_names[chosen_template.name] = 1
 
+			// To avoid two 'related' similar submaps existing at the same time.
+			if(chosen_template.template_group)
+				template_groups_used += chosen_template.template_group
+
+			// To deduct the cost.
 			if(chosen_template.cost >= 0)
 				budget -= chosen_template.cost
 
+			// Remove the submap from our options.
 			if(chosen_template in priority_submaps) // Always remove priority submaps.
 				priority_submaps -= chosen_template
 			else if(!chosen_template.allow_duplicates)
