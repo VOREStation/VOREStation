@@ -107,10 +107,10 @@
 	if(istype(W,/obj/item/weapon/pen/crayon))
 		switch(W:colourName)
 			if("mime")
-				to_chat(usr,"This crayon is too sad to be contained in this box.")
+				to_chat(user, "This crayon is too sad to be contained in this box.")
 				return
 			if("rainbow")
-				to_chat(usr,"This crayon is too powerful to be contained in this box.")
+				to_chat(user, "This crayon is too powerful to be contained in this box.")
 				return
 	..()
 
@@ -149,10 +149,10 @@
 	if(istype(W,/obj/item/weapon/pen/crayon/marker))
 		switch(W:colourName)
 			if("mime")
-				to_chat(usr,"This marker is too depressing to be contained in this box.")
+				to_chat(user, "This marker is too depressing to be contained in this box.")
 				return
 			if("rainbow")
-				to_chat(usr,"This marker is too childish to be contained in this box.")
+				to_chat(user, "This marker is too childish to be contained in this box.")
 				return
 	..()
 
