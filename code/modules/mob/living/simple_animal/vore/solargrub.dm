@@ -78,7 +78,7 @@ List of things solar grubs should be able to do:
 			anchored = 1
 			PN = attached.powernet
 			PN.draw_power(150000)
-			var/apc_drain_rate = 4000 //5000 seems a bit high, knocking it down to 4000
+			var/apc_drain_rate = 750 //5000 seems a bit high, knocking it down to 4000
 			for(var/obj/machinery/power/terminal/T in PN.nodes)
 				if(istype(T.master, /obj/machinery/power/apc))
 					var/obj/machinery/power/apc/A = T.master
