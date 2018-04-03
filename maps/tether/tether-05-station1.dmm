@@ -10318,6 +10318,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/network/command{
+	c_tag = "Bridge Hallway Central";
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -11600,6 +11601,7 @@
 	dir = 6
 	},
 /obj/machinery/camera/network/command{
+	c_tag = "Bridge Hallway South";
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor/corner2,
@@ -11792,7 +11794,7 @@
 /area/hallway/station/atrium)
 "aHB" = (
 /obj/machinery/camera/network/command{
-	c_tag = "COM - Bridge Starboard"
+	c_tag = "COM - Teleport Access"
 	},
 /turf/simulated/floor/tiled,
 /area/teleporter)
@@ -16848,8 +16850,8 @@
 	dir = 10
 	},
 /obj/machinery/camera/network/command{
-	dir = 9;
-	c_tag = "Gateway Access"
+	c_tag = "Bridge Hallway North";
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
@@ -17093,8 +17095,8 @@
 	},
 /obj/structure/flora/pottedplant,
 /obj/machinery/camera/network/command{
-	dir = 9;
-	c_tag = "Gateway Access"
+	c_tag = "Bridge Northeast";
+	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
@@ -18070,8 +18072,8 @@
 "bsR" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/camera/network/command{
-	dir = 9;
-	c_tag = "Gateway Access"
+	c_tag = "Head of Personnel Office";
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
