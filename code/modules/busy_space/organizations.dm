@@ -373,7 +373,8 @@
 		"Preemptive Defensive Strike",
 		"This Ship Is Spiders",
 		"Legitimate Trade Vessel",
-		"Please Don't Explode II"
+		"Please Don't Explode II",
+		"Get Off the Air"
 		)
 	destination_names = list(
 		"a trade outpost in Shelf"
