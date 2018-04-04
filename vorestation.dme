@@ -2857,4 +2857,5 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
+#include "modular_virgo\code\modules\projectiles\guns\energy\nuclear.dm"
 // END_INCLUDE
