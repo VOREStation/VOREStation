@@ -137,6 +137,18 @@
 		add_hiddenprint(user)
 		destroy()
 
+/obj/machinery/camera/attack_generic(mob/user as mob)
+	if(isanimal(user))
+		var/mob/living/simple_animal/S = user
+		set_status(0)
+		S.do_attack_animation(src)
+		S.setClickCooldown(user.get_attack_speed())
+		visible_message("<span class='warning'>\The [user] [pick(S.attacktext)] \the [src]!</span>")
+		playsound(src.loc, S.attack_sound, 100, 1)
+		add_hiddenprint(user)
+		destroy()
+	..()
+
 /obj/machinery/camera/attackby(obj/item/W as obj, mob/living/user as mob)
 	update_coverage()
 	// DECONSTRUCTION
