@@ -145,8 +145,8 @@
 						if(A.concealed_holster == 0 && A.show_examine)
 							accessories_visible.Add(A)
 					if(accessories_visible.len)
-						tie_msg += ". Attached to it is [lowertext(english_list(accessories_visible))]"
-				else tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
+						tie_msg += ". Attached to it is [english_list(accessories_visible)]"
+				else tie_msg += ". Attached to it is [english_list(U.accessories)]"
 
 		if(w_uniform.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[w_uniform] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [w_uniform.name][tie_msg]!</span>\n"
@@ -166,7 +166,7 @@
 		if(istype(wear_suit,/obj/item/clothing/suit))
 			var/obj/item/clothing/suit/U = wear_suit
 			if(U.accessories.len)
-				tie_msg += ". Attached to it is [lowertext(english_list(U.accessories))]"
+				tie_msg += ". Attached to it is [english_list(U.accessories)]"
 
 		if(wear_suit.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_suit] [wear_suit.gender==PLURAL?"some":"a"] [(wear_suit.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [wear_suit.name]!</span>\n"
