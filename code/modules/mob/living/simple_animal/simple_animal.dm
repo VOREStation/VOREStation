@@ -314,6 +314,9 @@
 	else
 		ma.icon_state = initial(icon_state)
 
+	if(update_vore_icon()) // VOREStation edit
+		ma.icon_state = update_vore_icon()
+
 	if(has_hands)
 		if(r_hand_sprite)
 			ma.overlays += r_hand_sprite
