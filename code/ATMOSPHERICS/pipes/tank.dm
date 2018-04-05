@@ -11,6 +11,7 @@
 	volume = 10000 //in liters, 1 meters by 1 meters by 2 meters ~tweaked it a little to simulate a pressure tank without needing to recode them yet
 	var/start_pressure = 25*ONE_ATMOSPHERE
 
+	layer = ATMOS_LAYER
 	level = 1
 	dir = SOUTH
 	initialize_directions = SOUTH

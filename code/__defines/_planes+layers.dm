@@ -53,8 +53,9 @@ What is the naming convention for planes or layers?
 #define SPACE_PLANE				-43 // Space turfs themselves
 #define PLATING_PLANE			-44 // Plating
 	#define DISPOSAL_LAYER		2.1 // Under objects, even when planeswapped
-	#define WIRES_LAYER			2.2 // Under objects, even when planeswapped
-	#define PIPES_LAYER			2.3	// Under objects, even when planeswapped
+	#define PIPES_LAYER			2.2	// Under objects, even when planeswapped
+	#define WIRES_LAYER			2.3 // Under objects, even when planeswapped
+	#define ATMOS_LAYER			2.4 // Pipe-like atmos machinery that goes on the floor, like filters.
 	#define ABOVE_UTILITY		2.5 // Above stuff like pipes and wires
 #define TURF_PLANE				-45 // Turfs themselves, most flooring
 	#define ABOVE_TURF_LAYER	2.1	// Snow and such

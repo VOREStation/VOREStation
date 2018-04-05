@@ -12,7 +12,7 @@
 	construction_type = /obj/item/pipe/binary/bendable
 	pipe_state = "he"
 
-	layer = 2.41
+	layer = PIPES_HE_LAYER
 	var/initialize_directions_he
 	var/surface = 2	//surface area in m^2
 	var/icon_temperature = T20C //stop small changes in temperature causing an icon refresh

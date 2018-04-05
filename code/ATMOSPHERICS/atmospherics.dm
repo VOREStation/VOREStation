@@ -17,7 +17,7 @@ Pipelines + Other Objects -> Pipe network
 	var/nodealert = 0
 	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
 
-	layer = PIPES_LAYER
+	layer = ATMOS_LAYER
 	plane = PLATING_PLANE
 
 	var/pipe_flags = PIPING_DEFAULT_LAYER_ONLY // Allow other layers by exception basis.
@@ -202,12 +202,12 @@ Pipelines + Other Objects -> Pipe network
 		if(PIPING_LAYER_SCRUBBER)
 			icon_state = "[icon_state]-scrubbers"
 			connect_types = CONNECT_TYPE_SCRUBBER
-			layer = 2.38
+			layer = PIPES_SCRUBBER_LAYER
 			icon_connect_type = "-scrubbers"
 		if(PIPING_LAYER_SUPPLY)
 			icon_state = "[icon_state]-supply"
 			connect_types = CONNECT_TYPE_SUPPLY
-			layer = 2.39
+			layer = PIPES_SUPPLY_LAYER
 			icon_connect_type = "-supply"
 	if(pipe_flags & PIPING_ALL_LAYER)
 		connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
