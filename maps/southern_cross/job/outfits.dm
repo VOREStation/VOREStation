@@ -57,7 +57,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	l_ear = /obj/item/device/radio/headset/sar
-	l_hand = /obj/item/weapon/storage/firstaid/adv
+	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
 	id_type = /obj/item/weapon/card/id/medical/sar
