@@ -426,6 +426,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for (var/mob/R in heard_gibberish)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, part_c, M, 1)
 
+
+	//Vorestation edit begin:
+	for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		if(R.receive_range(display_freq, level) > -2)
+			R.recieve_broadcast(M, vmask, message, name, job, realname, data, compression, freq, speaking)
+	//Vorestation edit end
 	return 1
 
 /proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/level)
