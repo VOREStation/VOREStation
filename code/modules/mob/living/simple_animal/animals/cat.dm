@@ -156,6 +156,7 @@
 /mob/living/simple_animal/cat/fluff/Runtime
 	name = "Runtime"
 	desc = "Her fur has the look and feel of velvet, and her tail quivers occasionally."
+	tt_desc = "Felis medicalis"
 	gender = FEMALE
 	icon_state = "cat"
 	item_state = "cat"

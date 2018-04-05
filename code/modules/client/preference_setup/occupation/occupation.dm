@@ -94,7 +94,7 @@
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			. += "<del>[rank]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
 			continue
-		if((pref.job_civilian_low & ASSISTANT) && job.flag != ASSISTANT)
+		if((pref.job_civilian_low & ASSISTANT) && job.type != /datum/job/assistant)
 			. += "<font color=grey>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
@@ -106,7 +106,7 @@
 
 		. += "<a href='?src=\ref[src];set_job=[rank]'>"
 
-		if(job.flag == ASSISTANT)//Assistant is special
+		if(job.type == /datum/job/assistant)//Assistant is special
 			if(pref.job_civilian_low & ASSISTANT)
 				. += " <font color=55cc55>\[Yes]</font>"
 			else
@@ -180,7 +180,7 @@
 	if(!job)
 		return 0
 
-	if(job.flag == ASSISTANT)
+	if(job.type == /datum/job/assistant)
 		if(pref.job_civilian_low & job.flag)
 			pref.job_civilian_low &= ~job.flag
 		else

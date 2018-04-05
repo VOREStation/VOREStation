@@ -756,6 +756,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 //update whether handcuffs appears on our hud.
 /mob/living/carbon/proc/update_hud_handcuffed()
+	if(QDESTROYING(src))
+		return
+
 	if(hud_used && hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon()
 		hud_used.r_hand_hud_object.update_icon()

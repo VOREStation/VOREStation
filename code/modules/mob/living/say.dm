@@ -292,7 +292,7 @@ proc/get_radio_key_from_channel(var/channel)
 			sound_vol *= 0.5
 
 		//Obtain the mobs and objects in the message range
-		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view)
+		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
 		listening = results["mobs"]
 		listening_obj = results["objs"]
 	else
