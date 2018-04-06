@@ -77,8 +77,8 @@ List of things solar grubs should be able to do:
 				sparks.start()
 			anchored = 1
 			PN = attached.powernet
-			PN.draw_power(150000)
-			var/apc_drain_rate = 4000 //5000 seems a bit high, knocking it down to 4000
+			PN.draw_power(100000) // previous value 150000
+			var/apc_drain_rate = 750 //Going to see if grubs are better as a minimal bother. previous value : 4000
 			for(var/obj/machinery/power/terminal/T in PN.nodes)
 				if(istype(T.master, /obj/machinery/power/apc))
 					var/obj/machinery/power/apc/A = T.master
