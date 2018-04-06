@@ -1,5 +1,5 @@
 
-/datum/event/mundane_news
+/* /datum/event/mundane_news
 	endWhen = 10
 
 /datum/event/mundane_news/announce()
@@ -123,7 +123,7 @@
 				The [using_map.starsys_name] Times is offering discount tickets for two to see [random_name(pick(MALE,FEMALE))] live in return for eyewitness reports and up to the minute coverage."
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
-
+*/
 /datum/event/trivial_news
 	endWhen = 10
 

@@ -59,7 +59,6 @@
 	//generated based on Cerebulon's thing on the wiki
 	var/list/prefixes = list("IAV","ICV","IDV","IDV","IEV","IFV","IIV","ILV","IMV","IRV","ISV","ITV","SCG-A","SCG-C","SCG-D","SCG-D","SCG-E","SCG-F","SCG-I","SCG-L","SCG-M","SCG-R","SCG-S","SCG-T","BAV","BCV","BDV","BDV","BEV","BFV","BIV","BLV","BMV","BRV","BSV","BTV","HAV","HCV","HDV","HDV","HEV","HFV","HIV","HLV","HMV","HRV","HSV","HTV","MAV","MCV","MDV","MDV","MEV","MFV","MIV","MLV","MMV","MRV","MSV","MTV","NAV","NCV","NDV","NDV","NEV","NFV","NIV","NLV","NMV","NRV","NSV","NTV","VAV","VCV","VDV","VDV","VEV","VFV","VIV","VLV","VMV","VRV","VSV","VTV","WAV","WCV","WDV","WDV","WEV","WFV","WIV","WLV","WMV","WRV","WSV","WTV","XAV","XCV","XDV","XDV","XEV","XFV","XIV","XLV","XMV","XRV","XSV","XTV","ZAV","ZCV","ZDV","ZDV","ZEV","ZFV","ZIV","ZLV","ZMV","ZRV","ZSV","ZTV","GAV","GCV","GDV","GDV","GEV","GFV","GIV","GLV","GMV","GRV","GSV","GTV","AAV","ACV","ADV","ADV","AEV","AFV","AIV","ALV","AMV","ARV","ASV","ATV","LAV","LCV","LDV","LDV","LEV","LFV","LIV","LLV","LMV","LRV","LSV","LTV")
 
-	var/datum/trade_destination/affected_dest = pick(weighted_mundaneevent_locations) //shouldn't do anything, not removing it to avoid breaking shit
 	//formatting breaks my fucking eyes
 	var/body = pick("A high-ranking Vey-Med executive was revealed to have been experimenting on biological neural enhancement techniques, believed to be of Skrellian origin, which could lead to the production of transhuman entities with an average cognitive capacity 30% greater than a baseline human.",
 	"[random_name(MALE)], chairman of the controversial Friends of Ned party, is scheduled to speak at a prominant university in [pick(core)] this Monday, according to a statement on his official newsfeed.",
@@ -105,6 +104,7 @@
 	"EIO spokesperson [random_name(MALE)] stated in a press conference yesterday that the \"Shakespear\" A-class codeline was briefly available for download on the darknet, although they claim to be \"confident that the leak was shut down before any significant portion could be downloaded\". Experts suspect Association involvement.",
 	"[pick("Strives Towards", "Embraces", "Dreams of", "Cultivates", "Advocates", "Exemplifies")] [pick("Strength", "Wisdom", "Independence", "Pragmatism", "Reason", "Development")], a Community Child from Angessa's Pearl, published his memoir today, detailing a shocking level of abuse by caretakers and educators.",
 	"Nova Sixty, Mercurial web personality, claims that the disappearence of the SCG-R Song Shi was a plot by \"extradimensional rockmen\" who intend to sow mistrust between the Association and SolGov. Quote Sixty, \"The Far Kingdoms' attempt to hide the TRUTH only proves that they and their rockman allies are NOT to be trusted.\"",
+	"Unusual stellar phenomena was detected on [pick(allloc)], sparking concerns about the colonies in the system.",
 	)
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
