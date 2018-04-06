@@ -282,6 +282,7 @@ area/space/atmosalert()
 /area/shuttle/trade
 	name = "\improper Trade Station"
 	icon_state = "red"
+	dynamic_lighting = 0
 
 /area/shuttle/trade/centcom
 	name = "\improper Trade Shuttle CentCom"

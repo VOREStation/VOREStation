@@ -6,6 +6,10 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 	var/previous_rights = 0
 
+	//Clear profile access
+	for(var/A in world.GetConfig("admin"))
+		world.SetConfig("APP/admin", A, null)
+
 	//load text from file
 	var/list/Lines = file2list("config/admin_ranks.txt")
 

@@ -46,11 +46,11 @@
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
-		to_chat(usr,"You will now draw in white and black with this crayon.")
+		to_chat(user, "You will now draw in white and black with this crayon.")
 	else
 		colour = "#000000"
 		shadeColour = "#FFFFFF"
-		to_chat(usr,"You will now draw in black and white with this crayon.")
+		to_chat(user, "You will now draw in black and white with this crayon.")
 	return
 
 /obj/item/weapon/pen/crayon/rainbow
@@ -72,22 +72,22 @@
 		switch(drawtype)
 			if("letter")
 				drawtype = input("Choose the letter.", "Crayon scribbles") in list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
-				to_chat(usr,"You start drawing a letter on the [target.name].")
+				to_chat(user, "You start drawing a letter on the [target.name].")
 			if("graffiti")
-				to_chat(usr,"You start drawing graffiti on the [target.name].")
+				to_chat(user, "You start drawing graffiti on the [target.name].")
 			if("rune")
-				to_chat(usr,"You start drawing a rune on the [target.name].")
+				to_chat(user, "You start drawing a rune on the [target.name].")
 			if("arrow")
 				drawtype = input("Choose the arrow.", "Crayon scribbles") in list("left", "right", "up", "down")
-				to_chat(usr,"You start drawing an arrow on the [target.name].")
+				to_chat(user, "You start drawing an arrow on the [target.name].")
 		if(instant || do_after(user, 50))
 			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)
-			to_chat(usr,"You finish drawing.")
+			to_chat(user, "You finish drawing.")
 			target.add_fingerprint(user)		// Adds their fingerprints to the floor the crayon is drawn on.
 			if(uses)
 				uses--
 				if(!uses)
-					to_chat(usr,"<span class='warning'>You used up your crayon!</span>")
+					to_chat(user, "<span class='warning'>You used up your crayon!</span>")
 					qdel(src)
 	return
 
@@ -158,11 +158,11 @@
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
-		to_chat(usr,"You will now draw in white and black with this marker.")
+		to_chat(user, "You will now draw in white and black with this marker.")
 	else
 		colour = "#000000"
 		shadeColour = "#FFFFFF"
-		to_chat(usr,"You will now draw in black and white with this marker.")
+		to_chat(user, "You will now draw in black and white with this marker.")
 	return
 
 /obj/item/weapon/pen/crayon/marker/rainbow
@@ -179,7 +179,7 @@
 
 /obj/item/weapon/pen/crayon/marker/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
-		to_chat(usr,"You take a bite of the marker and swallow it.")
+		to_chat(user, "You take a bite of the marker and swallow it.")
 		user.nutrition += 1
 		user.reagents.add_reagent("marker_ink",6)
 		if(uses)

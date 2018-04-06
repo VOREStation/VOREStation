@@ -147,6 +147,14 @@
 	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
 	damage = 60
 
+/obj/item/projectile/bullet/pistol/rubber/strong //"rubber" bullets for revolvers and matebas
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+	damage = 10
+	agony = 60
+	embed_chance = 0
+	sharp = 0
+	check_armour = "melee"
+
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
 	damage = 5

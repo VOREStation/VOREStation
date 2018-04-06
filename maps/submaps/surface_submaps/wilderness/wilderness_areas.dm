@@ -54,6 +54,9 @@
 /area/submap/DJOutpost1
 	name = "DJOutpost1"
 
+/area/submap/DJOutpost2
+	name = "DJOutpost2"
+
 /area/submap/MHR
 	name = "Manhack Rock"
 

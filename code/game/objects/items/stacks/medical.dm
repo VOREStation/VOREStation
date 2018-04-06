@@ -111,6 +111,7 @@
 					user.visible_message("<span class='notice'>\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>", \
 					                              "<span class='notice'>You place a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>" )
 				W.bandage()
+				W.disinfect()
 				used++
 			affecting.update_damages()
 			if(used == amount)

@@ -399,12 +399,9 @@
 
 			var/modified = 0
 			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetID()
-				if(I)
-					perpname = I.registered_name
-				else
-					perpname = name
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
 				perpname = name
 
@@ -438,14 +435,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -468,14 +462,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -496,14 +487,11 @@
 	if (href_list["secrecordadd"])
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -527,14 +515,11 @@
 			var/perpname = "wot"
 			var/modified = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
@@ -566,14 +551,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.medical)
@@ -597,14 +579,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.medical)
@@ -625,14 +604,11 @@
 	if (href_list["medrecordadd"])
 		if(hasHUD(usr,"medical"))
 			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+			var/obj/item/weapon/card/id/I = GetIdCard()
+			if(I)
+				perpname = I.registered_name
 			else
-				perpname = src.name
+				perpname = name
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.medical)
@@ -1184,7 +1160,7 @@
 	if(!(gender in species.genders))
 		gender = species.genders[1]
 
-	icon_state = lowertext(species.name)
+	//icon_state = lowertext(species.name) //Necessary?
 
 	species.create_organs(src)
 
@@ -1615,12 +1591,9 @@
 	if(hasHUD(user,"security"))
 		//Try to find their name
 		var/perpname
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
-				perpname = I.registered_name
-			else
-				perpname = name
+		var/obj/item/weapon/card/id/I = GetIdCard()
+		if(I)
+			perpname = I.registered_name
 		else
 			perpname = name
 		//Try to find their record
