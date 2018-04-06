@@ -149,3 +149,43 @@
 		smallest.loc = src
 		picksToSort -= smallest
 	orient2hud()
+
+/obj/item/weapon/pickaxe/excavationdrill
+	name = "excavation drill"
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "excavationdrill2"
+	item_state = "syringe_0"
+	excavation_amount = 15
+	digspeed = 30
+	desc = "Advanced archaeological drill combining ultrasonic excitation and bluespace manipulation to provide extreme precision. The tip is adjustable from 1 to 30 cm."
+	drill_sound = 'sound/weapons/thudswoosh.ogg'
+	drill_verb = "drilling"
+	force = 5
+	w_class = 2
+	attack_verb = list("drilled")
+
+/obj/item/weapon/pickaxe/excavationdrill/attack_self(mob/user as mob)
+	var/depth = input("Put the desired depth (1-30 centimeters).", "Set Depth", 30) as num
+	if(depth>30 || depth<1)
+		to_chat(user, "<span class='notice'>Invalid depth.</span>")
+		return
+	excavation_amount = depth
+	to_chat(user, "<span class='notice'>You set the depth to [depth]cm.</span>")
+	switch(depth)
+		if(1 to 5)
+			icon_state = "excavationdrill0"
+		if(6 to 10)
+			icon_state = "excavationdrill1"
+		if(11 to 15)
+			icon_state = "excavationdrill2"
+		if(16 to 20)
+			icon_state = "excavationdrill3"
+		if(21 to 25)
+			icon_state = "excavationdrill4"
+		if(25 to 30)
+			icon_state = "excavationdrill5" //The other 2 sprites are comically long. Let's just cut it at 5.
+
+/obj/item/weapon/pickaxe/excavationdrill/examine(mob/user)
+	..()
+	var/depth = excavation_amount
+	to_chat(user, "<span class='info'>It is currently set at [depth]cms.</span>")

@@ -48,15 +48,17 @@
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
 			I.layer = MOB_LAYER + 0.1
+			I.plane = MOB_PLANE
 			I.color = padding_material.icon_colour
 			stool_cache[cache_key] = I
 		overlays |= stool_cache[cache_key]
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
-		src.layer = FLY_LAYER
+		plane = MOB_PLANE
+		layer = MOB_LAYER + 0.1
 	else
-		src.layer = OBJ_LAYER
+		reset_plane_and_layer()
 
 /obj/structure/bed/chair/set_dir()
 	..()

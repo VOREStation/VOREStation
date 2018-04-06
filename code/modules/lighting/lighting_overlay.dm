@@ -5,7 +5,6 @@
 	simulated = 0
 	anchored = 1
 	icon = LIGHTING_ICON
-	layer = LIGHTING_LAYER
 	plane = PLANE_LIGHTING
 	//invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX

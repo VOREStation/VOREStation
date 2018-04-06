@@ -52,13 +52,13 @@
 	. = ..() //Should be an interger value for infection level
 	if(!.) return
 
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 
-	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
+	if(. >= 2 && antibiotics < ANTIBIO_NORM) //INFECTION_LEVEL_TWO
 		if (prob(3))
 			take_damage(1,silent=prob(30))
 
-	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
+	if(. >= 3 && antibiotics < ANTIBIO_OD)	//INFECTION_LEVEL_THREE
 		if (prob(50))
 			take_damage(1,silent=prob(15))
 

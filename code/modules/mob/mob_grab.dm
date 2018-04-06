@@ -31,7 +31,6 @@
 	var/force_down //determines if the affecting mob will be pinned to the ground
 	var/dancing //determines if assailant and affecting keep looking at each other. Basically a wrestling position
 
-	layer = 21
 	abstract = 1
 	item_state = "nothing"
 	w_class = ITEMSIZE_HUGE
@@ -194,7 +193,7 @@
 		return
 	var/shift = 0
 	var/adir = get_dir(assailant, affecting)
-	affecting.layer = 4
+	affecting.layer = MOB_LAYER
 	switch(state)
 		if(GRAB_PASSIVE)
 			shift = 8
@@ -217,7 +216,7 @@
 	switch(adir)
 		if(NORTH)
 			animate(affecting, pixel_x = 0, pixel_y =-shift, 5, 1, LINEAR_EASING)
-			affecting.layer = 3.9
+			affecting.layer = BELOW_MOB_LAYER
 		if(SOUTH)
 			animate(affecting, pixel_x = 0, pixel_y = shift, 5, 1, LINEAR_EASING)
 		if(WEST)
@@ -396,7 +395,7 @@
 
 /obj/item/weapon/grab/Destroy()
 	animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
-	affecting.layer = 4
+	affecting.reset_plane_and_layer()
 	if(affecting)
 		affecting.grabbed_by -= src
 		affecting = null

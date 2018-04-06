@@ -33,7 +33,6 @@
 	if(!istype(H) || !src || !(src.Adjacent(H)))
 		return 0
 	H << "You feel your being twine with that of \the [src] as it merges with your biomass."
-	H.status_flags |= PASSEMOTES
 	src << "You feel your being twine with that of \the [H] as you merge with its biomass."
 	loc = H
 	verbs += /mob/living/carbon/alien/diona/proc/split
@@ -66,4 +65,3 @@
 		for(var/atom/A in M.contents)
 			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
 				return
-	M.status_flags &= ~PASSEMOTES

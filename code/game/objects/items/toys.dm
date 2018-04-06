@@ -860,7 +860,7 @@
 /obj/structure/plushie/carp
 	name = "plush carp"
 	desc = "A plushie of an elated carp! Straight from the wilds of the Vir frontier, now right here in your hands."
-	icon_state = "plushie/carp"
+	icon_state = "carpplushie"
 	phrase = "Glorf!"
 
 /obj/structure/plushie/beepsky

@@ -58,7 +58,7 @@ var/global/list/limb_icon_cache = list()
 	//Every 'addon' below requires information from species
 	if(!owner || !owner.species)
 		return
-	
+
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
 	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR

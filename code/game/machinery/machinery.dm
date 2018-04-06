@@ -97,6 +97,7 @@ Class Procs:
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
+	layer = UNDER_JUNK_LAYER
 
 	var/stat = 0
 	var/emagged = 0

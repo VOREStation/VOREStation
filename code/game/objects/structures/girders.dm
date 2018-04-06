@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 2
+	plane = PLATING_PLANE
 	w_class = ITEMSIZE_HUGE
 	var/state = 0
 	var/health = 200

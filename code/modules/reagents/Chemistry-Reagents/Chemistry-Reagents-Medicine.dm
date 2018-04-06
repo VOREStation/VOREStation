@@ -532,7 +532,7 @@
 /datum/reagent/corophizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
-	
+
 	//Based roughly on Levofloxacin's rather severe side-effects
 	if(prob(20))
 		M.Confuse(5)

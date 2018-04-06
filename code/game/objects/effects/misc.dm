@@ -26,7 +26,8 @@
 	desc = "Something swinging really wide."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "cleave"
-	layer = 6
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	time_to_die = 6
 	alpha = 140
 	mouse_opacity = 0

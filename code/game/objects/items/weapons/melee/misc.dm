@@ -51,3 +51,40 @@
 /obj/item/weapon/melee/umbrella/random/New()
 	color = "#"+get_random_colour()
 	..()
+
+/obj/item/weapon/melee/cursedblade
+	name = "crystal blade"
+	desc = "The red crystal blade's polished surface glints in the light, giving off a faint glow."
+	icon_state = "soulblade"
+	slot_flags = SLOT_BELT | SLOT_BACK
+	force = 30
+	throwforce = 10
+	w_class = ITEMSIZE_NORMAL
+	sharp = 1
+	edge = 1
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	can_speak = 1
+	var/list/voice_mobs = list() //The curse of the sword is that it has someone trapped inside.
+
+
+/obj/item/weapon/melee/cursedblade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_parry_check(user, attacker, damage_source) && prob(50))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+
+/obj/item/weapon/melee/cursedblade/proc/ghost_inhabit(var/mob/candidate)
+	if(!isobserver(candidate))
+		return
+	//Handle moving the ghost into the new shell.
+	announce_ghost_joinleave(candidate, 0, "They are occupying a cursed sword now.")
+	var/mob/living/voice/new_voice = new /mob/living/voice(src) 	//Make the voice mob the ghost is going to be.
+	new_voice.transfer_identity(candidate) 	//Now make the voice mob load from the ghost's active character in preferences.
+	new_voice.mind = candidate.mind			//Transfer the mind, if any.
+	new_voice.ckey = candidate.ckey			//Finally, bring the client over.
+	new_voice.name = "cursed sword"			//Cursed swords shouldn't be known characters.
+	new_voice.real_name = "cursed sword"
+	voice_mobs.Add(new_voice)
+	listening_objects |= src

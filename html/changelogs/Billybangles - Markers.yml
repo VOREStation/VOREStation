@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Nerezza
+author: battlefieldCommander
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,4 +33,6 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - bugfix: "Sifwood floor tiles now correctly use their double-stacked icon instead of disappearing."
+  - rscadd: "Added permanent markers, an alternative to crayons."
+  - tweak: "The chemistry recipe for paint now uses marker ink instead of crayon dust."
+  - rscdel: "Removed crayon boxes from the map. They can still be ordered from cargo in case you need a snack."

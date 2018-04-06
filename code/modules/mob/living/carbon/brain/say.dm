@@ -5,8 +5,8 @@
 
 	message = sanitize(message)
 
-	if(!(container && istype(container, /obj/item/device/mmi)))
-		return //No MMI, can't speak, bucko./N
+	if(!(container && container.can_speak))
+		return //Certain objects can speak, like MMIs. Most others cannot. -Q
 	else
 		var/datum/language/speaking = parse_language(message)
 		if(speaking)
