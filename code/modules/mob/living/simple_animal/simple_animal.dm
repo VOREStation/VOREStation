@@ -314,8 +314,9 @@
 	else
 		ma.icon_state = initial(icon_state)
 
-	if(update_vore_icon()) // VOREStation edit
-		ma.icon_state = update_vore_icon()
+	var/vore_icon_state = update_vore_icon() //VOREStation edit
+	if(vore_icon_state)
+		ma.icon_state = vore_icon_state
 
 	if(has_hands)
 		if(r_hand_sprite)
