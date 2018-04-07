@@ -53,3 +53,12 @@
 	build_path = /obj/machinery/computer/timeclock
 	board_type = new /datum/frame/frame_types/timeclock_terminal
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+
+//Constructable optable voard
+/obj/item/weapon/circuitboard/optable
+	name = T_BOARD("operating table")
+	build_path = /obj/machinery/optable
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 1)

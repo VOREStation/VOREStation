@@ -679,6 +679,7 @@
 #include "code\game\machinery\newscaster.dm"
 #include "code\game\machinery\nuclear_bomb.dm"
 #include "code\game\machinery\OpTable.dm"
+#include "code\game\machinery\OpTable_vr.dm"
 #include "code\game\machinery\overview.dm"
 #include "code\game\machinery\oxygen_pump.dm"
 #include "code\game\machinery\partslathe_vr.dm"
