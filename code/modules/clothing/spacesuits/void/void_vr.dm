@@ -381,7 +381,7 @@
 	pixel_x = -16
 	
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..() && if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/lizard/synthlizard))
+		if(..() && istype(H) && H.ckey == "silencedmp5a5" && istype(H.tail_style, /datum/sprite_accessory/tail/taur/lizard/synthlizard))
 			return 1
 		else
 			H << "<span class='warning'>This suit is not designed for you.</span>"
