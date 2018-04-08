@@ -134,7 +134,7 @@
 			else
 				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
 				return 0
-				
+
 /obj/item/clothing/suit/space/void/medical/alt/taur
 	name = "taur specific streamlined medical voidsuit"
 	desc = "A more recent model of Vey-Med voidsuit, featuring the latest in radiation shielding technology. It has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
@@ -231,7 +231,7 @@
 			else
 				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
 				return 0
-				
+
 /obj/item/clothing/suit/space/void/security/alt/taur
 	name = "taur specific riot security voidsuit"
 	desc = "A heavily armored voidsuit. It has a sticker saying one size fits all taurs on it. Below the sticker, it states that it only fits horses, wolves, and naga taurs."
@@ -368,3 +368,14 @@
 			else
 				H << "<span class='warning'>You need to have a horse, wolf, or naga half to wear this.</span>"
 				return 0
+
+/obj/item/clothing/suit/space/void/security/hasd
+	name = "HASD EVA bodyplates"
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	desc = "A series of armor plates painted black, deployed from a back-mounted module. They fit smoothly over the unit's armor plates and projects a skintight bubble shield over the unit's uncovered parts. Faceplate and coolant unit not included."
+	species_restricted = null
+	icon = 'icons/mob/taursuits_vr.dmi'
+	icon_override = 'icons/mob/taursuits_vr.dmi'
+	icon_state = "hasd_suit"
+	item_state = "hasd_suit"
+	pixel_x = -16

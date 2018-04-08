@@ -1760,3 +1760,22 @@ Departamental Swimsuits, for general use
 	icon_state = "tronsiren_shoes"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+/obj/item/clothing/head/helmet/space/void/security/hasd
+	name = "HASD EVA faceplate"
+	desc = "It's a faceplate that slots into the HASD EVA bodyplate assembly. Functionally useless alone."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "hasd_helm"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "hasd_helm"
+	species_restricted = null
+
+	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+		if(..())
+			if(H.ckey != "silencedmp5a5")
+				H << "<span class='warning'>...The faceplate is clearly not made for your anatomy, thus, does not fit.</span>"
+				return 0
+			else
+				return 1
