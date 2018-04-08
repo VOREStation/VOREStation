@@ -221,7 +221,6 @@
 			/obj/item/clothing/gloves/brown,
 			/obj/item/clothing/gloves/evening,
 			/obj/item/clothing/gloves/fingerless,
-			/obj/item/clothing/gloves/yellow,
 			/obj/item/clothing/gloves/fyellow,
 			/obj/item/clothing/gloves/green,
 			/obj/item/clothing/gloves/grey,
@@ -230,11 +229,7 @@
 			/obj/item/clothing/gloves/purple,
 			/obj/item/clothing/gloves/rainbow,
 			/obj/item/clothing/gloves/red,
-			/obj/item/clothing/gloves/white,
-			/obj/item/clothing/gloves/sterile/latex,
-			/obj/item/clothing/gloves/sterile/nitrile,
-			/obj/item/clothing/gloves/swat,
-			/obj/item/clothing/gloves/tactical
+			/obj/item/clothing/gloves/white
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate

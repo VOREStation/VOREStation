@@ -86,7 +86,7 @@
 			/obj/item/toy/griffin,
 			/obj/item/toy/owl
 			)
-	cost = 50
+	cost = 200
 	containertype = /obj/structure/closet/crate
 	containername = "Action figures crate"
 
@@ -97,7 +97,7 @@
 			)
 	containertype = /obj/structure/closet/crate
 	containername = "Tabletop miniatures crate"
-	cost = 30
+	cost = 50
 
 /datum/supply_packs/randomised/recreation/plushies_vr
 	name = "Plushies crate"
@@ -132,6 +132,6 @@
 			/obj/item/toy/plushie/tuxedo_cat,
 			/obj/item/toy/plushie/white_cat
 			)
-	cost = 30
+	cost = 60
 	containertype = /obj/structure/closet/crate
 	containername = "Plushies crate"
