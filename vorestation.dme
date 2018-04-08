@@ -681,6 +681,7 @@
 #include "code\game\machinery\OpTable.dm"
 #include "code\game\machinery\overview.dm"
 #include "code\game\machinery\oxygen_pump.dm"
+#include "code\game\machinery\painter_vr.dm"
 #include "code\game\machinery\partslathe_vr.dm"
 #include "code\game\machinery\pda_multicaster.dm"
 #include "code\game\machinery\portable_turret.dm"
