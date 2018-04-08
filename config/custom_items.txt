@@ -705,7 +705,7 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 
 #{
 #ckey: silencedmp5a5
-#character_name: Serdykov Antoz
+#character_name: NT-HASD #556
 #item_path: /obj/item/device/modkit_conversion/hasd
 #req_access = 1
 #}
