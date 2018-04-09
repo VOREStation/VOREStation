@@ -132,3 +132,9 @@
 	question = "A curious explorer has touched a mysterious rune. \
 	Would you like to play as the creature it summons?"
 	cutoff_number = 1
+
+/datum/ghost_query/cursedblade
+	role_name = "Cursed Sword"
+	question = "A cursed blade has been discovered by a curious explorer. \
+	Would you like to play as the soul imprisoned within?"
+	cutoff_number = 1

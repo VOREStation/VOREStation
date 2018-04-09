@@ -88,17 +88,17 @@
 #define slot_back        3
 #define slot_belt        4
 #define slot_wear_id     5
-#define slot_l_store     6
-#define slot_r_store     7 //Some things may reference this, try to keep it here
+#define slot_s_store     6
+#define slot_l_store     7
+#define slot_r_store     8 //Some things may reference this, try to keep it here
 //Shown when inventory unhidden
-#define slot_glasses     8
-#define slot_wear_mask   9
-#define slot_gloves      10
-#define slot_head        11
-#define slot_shoes       12
-#define slot_wear_suit   13
-#define slot_w_uniform   14
-#define slot_s_store     15
+#define slot_glasses     9
+#define slot_wear_mask   10
+#define slot_gloves      11
+#define slot_head        12
+#define slot_shoes       13
+#define slot_wear_suit   14
+#define slot_w_uniform   15
 #define slot_l_ear       16
 #define slot_r_ear       17
 //Secret slots

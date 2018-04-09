@@ -1,7 +1,7 @@
 /obj/machinery/camera
-	layer = 4
+	layer = BELOW_MOB_LAYER
 
 /obj/machinery/camera/New()
 	..()
-	if (dir == 1) // idk why the fuck dir is not 2
-		layer = 5
+	if (dir == NORTH)
+		layer = ABOVE_MOB_LAYER

@@ -19,6 +19,18 @@
 				/obj/item/device/flashlight,
 				/obj/item/device/multitool)
 
+/obj/random/tool/powermaint
+	name = "random powertool"
+	desc = "This is a random rare powertool for maintenance"
+	icon_state = "jaws_pry"
+
+/obj/random/tool/powermaint/item_to_spawn()
+	return pick(prob(320);/obj/random/tool,
+				prob(1);/obj/item/weapon/screwdriver/power,
+				prob(1);/obj/item/weapon/wirecutters/power,
+				prob(15);/obj/item/weapon/weldingtool/electric,
+				prob(5);/obj/item/weapon/weldingtool/experimental)
+
 /obj/random/tool/power
 	name = "random powertool"
 	desc = "This is a random powertool"
@@ -148,7 +160,7 @@
 	name = "Random Medicine"
 	desc = "This is a random medical item."
 	icon = 'icons/obj/items.dmi'
-	icon_state = "traumakit"
+	icon_state = "advfirstaid"
 
 /obj/random/medical/item_to_spawn()
 	return pick(prob(21);/obj/random/medical/lite,
@@ -203,11 +215,11 @@
 	icon_state = "firstaid"
 
 /obj/random/firstaid/item_to_spawn()
-	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
-				prob(3);/obj/item/weapon/storage/firstaid/toxin,
-				prob(3);/obj/item/weapon/storage/firstaid/o2,
-				prob(2);/obj/item/weapon/storage/firstaid/adv,
-				prob(3);/obj/item/weapon/storage/firstaid/fire,
+	return pick(prob(10);/obj/item/weapon/storage/firstaid/regular,
+				prob(8);/obj/item/weapon/storage/firstaid/toxin,
+				prob(8);/obj/item/weapon/storage/firstaid/o2,
+				prob(6);/obj/item/weapon/storage/firstaid/adv,
+				prob(8);/obj/item/weapon/storage/firstaid/fire,
 				prob(1);/obj/item/weapon/storage/firstaid/combat)
 
 /obj/random/contraband
@@ -236,6 +248,20 @@
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
+/obj/random/cash
+	name = "random currency"
+	desc = "LOADSAMONEY!"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "spacecash1"
+
+/obj/random/cash/item_to_spawn()
+	return pick(prob(320);/obj/random/maintenance/clean,
+				prob(12);/obj/item/weapon/spacecash/c1,
+				prob(8);/obj/item/weapon/spacecash/c10,
+				prob(4);/obj/item/weapon/spacecash/c20,
+				prob(1);/obj/item/weapon/spacecash/c50,
+				prob(1);/obj/item/weapon/spacecash/c100)
+
 /obj/random/soap
 	name = "Random Soap"
 	desc = "This is a random bar of soap."
@@ -246,7 +272,7 @@
 	return pick(prob(3);/obj/item/weapon/soap,
 				prob(2);/obj/item/weapon/soap/nanotrasen,
 				prob(2);/obj/item/weapon/soap/deluxe,
-				prob(1);/obj/item/weapon/soap/syndie,)
+				prob(1);/obj/item/weapon/soap/syndie)
 
 
 /obj/random/drinkbottle
@@ -387,14 +413,45 @@
 	icon_state = "nymphplushie"
 
 /obj/random/plushie/item_to_spawn()
+	return pick(/obj/item/toy/plushie/nymph,
+				/obj/item/toy/plushie/mouse,
+				/obj/item/toy/plushie/kitten,
+				/obj/item/toy/plushie/lizard,
+				/obj/item/toy/plushie/black_cat,
+				/obj/item/toy/plushie/black_fox,
+				/obj/item/toy/plushie/blue_fox,
+				/obj/random/carp_plushie,
+				/obj/item/toy/plushie/coffee_fox,
+				/obj/item/toy/plushie/corgi,
+				/obj/item/toy/plushie/crimson_fox,
+				/obj/item/toy/plushie/deer,
+				/obj/item/toy/plushie/girly_corgi,
+				/obj/item/toy/plushie/grey_cat,
+				/obj/item/toy/plushie/marble_fox,
+				/obj/item/toy/plushie/octopus,
+				/obj/item/toy/plushie/orange_cat,
+				/obj/item/toy/plushie/orange_fox,
+				/obj/item/toy/plushie/pink_fox,
+				/obj/item/toy/plushie/purple_fox,
+				/obj/item/toy/plushie/red_fox,
+				/obj/item/toy/plushie/robo_corgi,
+				/obj/item/toy/plushie/siamese_cat,
+				/obj/item/toy/plushie/spider,
+				/obj/item/toy/plushie/tabby_cat,
+				/obj/item/toy/plushie/tuxedo_cat,
+				/obj/item/toy/plushie/white_cat)
+
+/obj/random/plushielarge
+	name = "random large plushie"
+	desc = "This is a randomn large plushie."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "droneplushie"
+
+/obj/random/plushielarge/item_to_spawn()
 	return pick(/obj/structure/plushie/ian,
 				/obj/structure/plushie/drone,
 				/obj/structure/plushie/carp,
-				/obj/structure/plushie/beepsky,
-				/obj/item/toy/plushie/nymph,
-				/obj/item/toy/plushie/mouse,
-				/obj/item/toy/plushie/kitten,
-				/obj/item/toy/plushie/lizard)
+				/obj/structure/plushie/beepsky)
 
 /obj/random/toy
 	name = "random toy"
@@ -418,6 +475,8 @@
 				/obj/item/toy/crossbow,
 				/obj/item/toy/blink,
 				/obj/item/toy/waterflower,
+				/obj/item/toy/eight_ball,
+				/obj/item/toy/eight_ball/conch,
 				/obj/item/toy/prize/ripley,
 				/obj/item/toy/prize/fireripley,
 				/obj/item/toy/prize/deathripley,

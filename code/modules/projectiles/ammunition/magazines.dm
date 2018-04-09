@@ -50,6 +50,7 @@
 
 /obj/item/ammo_magazine/s38/rubber
 	name = "speedloader (.38 rubber)"
+	icon_state = "T38"
 	ammo_type = /obj/item/ammo_casing/a38r
 
 /obj/item/ammo_magazine/s38/emp
@@ -492,6 +493,23 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1620) // metal costs are very roughly based around one .50 casing = 180 metal
 	max_ammo = 9
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/s44
+	name = "speedloader (.44)"
+	icon_state = "44"
+	ammo_type = /obj/item/ammo_casing/a44
+	matter = list(DEFAULT_WALL_MATERIAL = 1260) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	caliber = ".44"
+	max_ammo = 6
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/s44/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/s44/rubber
+	name = "speedloader (.44 rubber)"
+	icon_state = "R44"
+	ammo_type = /obj/item/ammo_casing/a44r
 
 ///////// 7.62mm /////////
 

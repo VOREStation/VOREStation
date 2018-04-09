@@ -6,6 +6,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = ITEMSIZE_NORMAL
+	can_speak = 1
 	origin_tech = list(TECH_BIO = 3)
 
 	req_access = list(access_robotics)

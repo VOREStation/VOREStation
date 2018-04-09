@@ -120,7 +120,7 @@
 
 /mob/living/simple_animal/slime/dark_purple
 	desc = "This slime produces ever-coveted phoron.  Risky to handle but very much worth it."
-	color = "#CC23FF"
+	color = "#660088"
 	slime_color = "dark purple"
 	coretype = /obj/item/slime_extract/dark_purple
 	reagent_injected = "phoron"

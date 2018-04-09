@@ -147,6 +147,14 @@
 	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
 	damage = 60
 
+/obj/item/projectile/bullet/pistol/rubber/strong //"rubber" bullets for revolvers and matebas
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+	damage = 10
+	agony = 60
+	embed_chance = 0
+	sharp = 0
+	check_armour = "melee"
+
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
 	damage = 5
@@ -190,6 +198,8 @@
 	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
+
+	combustion = FALSE
 
 /obj/item/projectile/bullet/shotgun/ion/on_hit(var/atom/target, var/blocked = 0)
 	..()
@@ -324,6 +334,8 @@
 	nodamage = 1
 	embed_chance = 0
 	sharp = 0
+
+	combustion = FALSE
 
 /obj/item/projectile/bullet/pistol/cap/process()
 	loc = null

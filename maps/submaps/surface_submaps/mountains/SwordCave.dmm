@@ -1,0 +1,55 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral,/area/submap/cave/swordcave)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"d" = (/obj/machinery/crystal,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"e" = (/turf/simulated/floor/water,/area/submap/cave/swordcave)
+"f" = (/turf/simulated/floor/water/deep,/area/submap/cave/swordcave)
+"g" = (/obj/structure/ghost_pod/manual/cursedblade,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"h" = (/mob/living/simple_animal/hostile/faithless/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"i" = (/obj/item/device/gps/explorer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"j" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"k" = (/mob/living/simple_animal/hostile/scarybat/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+
+(1,1,1) = {"
+aaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa
+aaaaabbbbbbbbbbbcccdccccbbbbbbbbbbbbaaaaa
+aaaabbbbbbcccccccccccccccccccccbbbbbbaaaa
+aaabbbbbbcccccccccccccccccccccccdbbbbbaaa
+aabbbbccccccceeeeeeeeeeeeeccccccccbbbbbaa
+aabbbccccccceeeeeeeeeeeeeeeccccccccbbbbaa
+aabbbcdcccceeeffffffffffffeeeccccccbbbbaa
+aabbbccccceefeeeeeeefeeeeeeeeecccccbbbbaa
+aabbbccccceefeeccceeeeeeeefffeeccccbbbaaa
+aabbbcccceeffeecccccecccceefffeecccbbbaaa
+aabbbcccceeffeeeccgcccchcceeffeecccbbbaaa
+aabbbcccdeeffeeccijcdccccceefeeccdcbbbaaa
+abbbccccceefffeeeccccccceeefeeccccccbbaaa
+abbbcccccceefffeeeccccceeeffeeccccccbbbaa
+abbbcdccccceefffeeeeeeeeffffeeccccccbbbaa
+abbcccckcccceeffffeeeeefffffeeccccccbbbaa
+abbcccccccccceeffffffffffffeeccccdccbbbaa
+abbccccccccccceeffeeeeeefffeecccccccbbbaa
+abbbccccdcccccceefeeeeeeeeeeckccccccbbbaa
+abbbcccccccccccceeecccdceeecccccccccbbaaa
+abbbcccccccccccccecccccccceccccdckccbbaaa
+abbbcccccccccckcccccccccccccccccccccbbaaa
+abbbbcccccckccccccccccccccckccccccccbbaaa
+abbbbbcccccccccccccccckccccccccckcccbbaaa
+aabbbbbccccccccccccccccccccccccccccbbbaaa
+aabbbbbccccccccccccdccccccccccccccbbbbaaa
+aabbbbbcccccdccccccccccccccccccccbbbbbaaa
+aabbbbbccccccccccckccccccccdcccccbbbbaaaa
+aabbbbbbbccccccccccccccccccccccccbbbbaaaa
+aaabbbbbbbcccccccccccccccdccccccbbbbaaaaa
+aaaabbbbbbcckcccccdcccccccccccccbbbbaaaaa
+aaaaabbbbbcccccccccccccccccccccbbbbbaaaaa
+aaaaabbbbbccccccccccccccccccccbbbbbaaaaaa
+aaaaaabbbbbcccdccccccccccccccbbbbbaaaaaaa
+aaaaaaabbbbbcccccccckccccckcbbbbbbaaaaaaa
+aaaaaaabbbbbbcccccccccccccccbbbbbaaaaaaaa
+aaaaaaabbbbbbbbbbbbccccccccccbbbaaaaaaaaa
+aaaaaaaaabbbbbbbbbbbccccccccccbaaaaaaaaaa
+aaaaaaaaaaabbbbbbbbbbccccccccccaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaacccdccccaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaccccccaaaaaaaaaaaa
+"}

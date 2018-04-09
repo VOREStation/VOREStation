@@ -9,7 +9,8 @@
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "emfield_s1"
 	alpha = 50
-	layer = 4
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	light_color = "#cc7700"
 
 	var/size = 1

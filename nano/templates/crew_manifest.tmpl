@@ -1,0 +1,27 @@
+<!-- pAI manifest
+code/modules/mob/living/silicon/pai/software_modules.dm
+
+Copy-pasted from pda.tmpl
+-->
+
+<h3>Crew Manifest</h3>
+
+<HR>
+<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
+
+<div class="item">
+	<center><table class="pmon"><tbody>
+		{{for data.manifest}}
+			{{if value.elems.length}}
+				<tr><th colspan="3" class={{:value.cat}}>{{:value.cat}}</th></tr>
+				{{for value.elems :itemValue:itemIndex}}
+					<tr>
+						<td><span class="average">{{:itemValue.name}}</span></td>
+						<td><span class="average">{{:itemValue.rank}}</span></td>
+						<td><span class="average">{{:itemValue.active}}</span></td>
+					</tr>
+				{{/for}}
+			{{/if}}
+		{{/for}}
+	</tbody></table></center>
+</div>

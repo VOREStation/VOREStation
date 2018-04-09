@@ -122,6 +122,8 @@
 	check_armour = "laser"
 	light_color = "#0066FF"
 
+	combustion = FALSE
+
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
 	impact_type = /obj/effect/projectile/laser_blue/impact
@@ -142,6 +144,8 @@
 	check_armour = "laser"
 	light_color = "#FF0D00"
 
+	combustion = FALSE
+
 /obj/item/projectile/beam/lastertag/red/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living/carbon/human))
 		var/mob/living/carbon/human/M = target
@@ -156,6 +160,8 @@
 	damage_type = BURN
 	check_armour = "laser"
 	light_color = "#00C6FF"
+
+	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
@@ -189,6 +195,8 @@
 	agony = 40
 	damage_type = HALLOSS
 	light_color = "#FFFFFF"
+
+	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer

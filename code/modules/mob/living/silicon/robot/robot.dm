@@ -1115,3 +1115,9 @@
 
 /mob/living/silicon/robot/is_sentient()
 	return braintype != "Drone"
+
+
+/mob/living/silicon/robot/drop_item()
+	if(module_active && istype(module_active,/obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/G = module_active
+		G.drop_item_nm()

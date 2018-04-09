@@ -243,7 +243,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	if(!density)
@@ -263,19 +263,19 @@ var/list/mining_overlay_cache = list()
 
 		if(valid_tool)
 			if (sand_dug)
-				user << "<span class='warning'>This area has already been dug.</span>"
+				to_chat(user, "<span class='warning'>This area has already been dug.</span>")
 				return
 
 			var/turf/T = user.loc
 			if (!(istype(T)))
 				return
 
-			user << "<span class='notice'>You start digging.</span>"
+			to_chat(user, "<span class='notice'>You start digging.</span>")
 			playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
 
 			if(!do_after(user,40)) return
 
-			user << "<span class='notice'>You dug a hole.</span>"
+			to_chat(user, "<span class='notice'>You dug a hole.</span>")
 			GetDrilled()
 
 		else if(istype(W,/obj/item/weapon/storage/bag/ore))
@@ -298,7 +298,7 @@ var/list/mining_overlay_cache = list()
 				return
 			var/obj/item/stack/rods/R = W
 			if (R.use(1))
-				user << "<span class='notice'>Constructing support lattice ...</span>"
+				to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
 				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 				new /obj/structure/lattice(get_turf(src))
 
@@ -314,7 +314,7 @@ var/list/mining_overlay_cache = list()
 				S.use(1)
 				return
 			else
-				user << "<span class='warning'>The plating is going to need some support.</span>"
+				to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
 				return
 
 
@@ -334,7 +334,17 @@ var/list/mining_overlay_cache = list()
 			var/obj/item/device/measuring_tape/P = W
 			user.visible_message("<span class='notice'>\The [user] extends \a [P] towards \the [src].</span>","<span class='notice'>You extend \the [P] towards \the [src].</span>")
 			if(do_after(user, 15))
-				user << "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>"
+				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
+			return
+
+		if(istype(W, /obj/item/device/xenoarch_multi_tool))
+			var/obj/item/device/xenoarch_multi_tool/C = W
+			if(C.mode) //Mode means scanning
+				C.depth_scanner.scan_atom(user, src)
+			else
+				user.visible_message("<span class='notice'>\The [user] extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>", "<span class='notice'>You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>")
+				if(do_after(user, 15))
+					to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
 
 		if (istype(W, /obj/item/weapon/pickaxe))
@@ -356,7 +366,7 @@ var/list/mining_overlay_cache = list()
 				if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
 					fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 
-			user << "<span class='notice'>You start [P.drill_verb][fail_message].</span>"
+			to_chat(user, "<span class='notice'>You start [P.drill_verb][fail_message].</span>")
 
 			if(fail_message && prob(90))
 				if(prob(25))
@@ -375,7 +385,7 @@ var/list/mining_overlay_cache = list()
 					else if(newDepth > F.excavation_required - F.clearance_range) // Not quite right but you still extract your find, the closer to the bottom the better, but not above 80%
 						excavate_find(prob(80 * (F.excavation_required - newDepth) / F.clearance_range), F)
 
-				user << "<span class='notice'>You finish [P.drill_verb] \the [src].</span>"
+				to_chat(user, "<span class='notice'>You finish [P.drill_verb] \the [src].</span>")
 
 				if(newDepth >= 200) // This means the rock is mined out fully
 					var/obj/structure/boulder/B
@@ -480,7 +490,7 @@ var/list/mining_overlay_cache = list()
 		if(prob(50))
 			pain = 1
 		for(var/mob/living/M in range(src, 200))
-			M << "<span class='danger'>[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</span>"
+			to_chat(M, "<span class='danger'>[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</span>")
 			if(pain)
 				flick("pain",M.pain)
 				if(prob(50))

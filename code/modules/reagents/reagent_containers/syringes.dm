@@ -216,7 +216,8 @@
 
 			if(trans)
 				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
-				add_attack_logs(user,target,"Injected with [src.name] containing [contained], trasferred [trans] units")
+				if(ismob(target))
+					add_attack_logs(user,target,"Injected with [src.name] containing [contained], trasferred [trans] units")
 			else
 				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
 

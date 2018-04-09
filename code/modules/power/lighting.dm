@@ -16,7 +16,8 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = 1
-	layer = 5
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -132,7 +133,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
 	anchored = 1
-	layer = 5
 	stage = 1
 	fixture_type = "bulb"
 	sheets_refunded = 1
@@ -143,6 +143,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp-construct-stage1"
 	anchored = 0
+	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	stage = 1
 	fixture_type = "flamp"
@@ -156,7 +157,8 @@
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1
-	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
@@ -197,17 +199,13 @@
 	fitting = "bulb"
 	brightness_range = 5
 	brightness_power = 2
+	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	brightness_color = "#FFF4E5"
 	desc = "A floor lamp."
 	light_type = /obj/item/weapon/light/bulb
 	shows_alerts = FALSE
 	var/lamp_shade = 1
-
-//Vorestation addition, to override the New() proc further below, since this is a lamp.
-/obj/machinery/light/flamp/New()
-	..()
-	layer = OBJ_LAYER
 
 /obj/machinery/light/small/emergency
 	brightness_range = 4
@@ -259,9 +257,6 @@
 					broken(1)
 		spawn(1)
 			update(0)
-	//Vorestation addition, so large mobs stop looking stupid in front of lights.
-	if (dir == 2)
-		layer = 5
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)

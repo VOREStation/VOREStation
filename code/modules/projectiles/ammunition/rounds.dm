@@ -59,6 +59,12 @@
 	caliber = ".44"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
+/obj/item/ammo_casing/a44r
+	icon_state = "r-casing"
+	desc = "A .44 rubber bullet casing."
+	caliber = ".44"
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+
 /*
  * .75 (aka Gyrojet Rockets, aka admin abuse)
  */

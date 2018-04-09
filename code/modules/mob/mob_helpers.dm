@@ -635,7 +635,7 @@ var/global/image/backplane
 	else
 		var/area/A = get_area(src)
 		return A.sound_env
-		
+
 /mob/proc/position_hud_item(var/obj/item/item, var/slot)
 	if(!istype(hud_used) || !slot || !LAZYLEN(hud_used.slot_info))
 		return

@@ -45,7 +45,6 @@
 	icon_state = "riot"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
 /obj/item/clothing/suit/armor/riot/alt
@@ -115,7 +114,7 @@
 	icon_state = "swatarmor"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDETIE|HIDEHOLSTER
 	slowdown = 1
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -311,7 +310,7 @@
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/vest/wardencoat/alt
 	name = "Warden's jacket"
@@ -332,7 +331,7 @@
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDETIE|HIDEHOLSTER
 
 //Jensen cosplay gear
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen

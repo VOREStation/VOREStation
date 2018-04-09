@@ -308,7 +308,6 @@ proc/get_radio_key_from_channel(var/channel)
 	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 	images_to_clients[speech_bubble] = list()
 
-
 	// Attempt Multi-Z Talking
 	var/mob/above = src.shadow
 	while(!QDELETED(above))
@@ -375,8 +374,11 @@ proc/get_radio_key_from_channel(var/channel)
 	return 1
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
-	for (var/mob/O in viewers(src, null))
-		O.hear_signlang(message, verb, language, src)
+	var/list/potentials = get_mobs_and_objs_in_view_fast(src, world.view)
+	var/list/mobs = potentials["mobs"]
+	for(var/hearer in mobs)
+		var/mob/M = hearer
+		M.hear_signlang(message, verb, language, src)
 	return 1
 
 /obj/effect/speech_bubble

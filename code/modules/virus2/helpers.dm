@@ -81,7 +81,7 @@ proc/airborne_can_reach(turf/source, turf/target)
 	var/list/antibodies_in_common = M.antibodies & disease.antigen
 	if(antibodies_in_common.len)
 		return
-	if(M.reagents.has_reagent("spaceacillin"))
+	if(M.chem_effects[CE_ANTIBIOTIC])
 		if(prob(disease.resistance))
 			var/datum/disease2/disease/D = disease.getcopy()
 			D.minormutate()
