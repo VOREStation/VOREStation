@@ -7,7 +7,7 @@
 	var/datum/pipeline/parent
 	var/volume = 0
 
-	layer = 2.4 //under wires with their 2.44
+	layer = PIPES_LAYER
 	use_power = 0
 
 	pipe_flags = 0 // Does not have PIPING_DEFAULT_LAYER_ONLY flag.
