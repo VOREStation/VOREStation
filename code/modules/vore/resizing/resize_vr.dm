@@ -45,14 +45,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	M.Translate(0, 16*(size_multiplier-1))
 	src.transform = M
 
-/mob/living/update_transform()
-	. = ..()
-	ASSERT(!ishuman(src))
-	var/matrix/M = matrix()
-	M.Scale(size_multiplier)
-	M.Translate(0, 16*(size_multiplier-1))
-	src.transform = M
-
 /**
  * Get the effective size of a mob.
  * Currently this is based only on size_multiplier for micro/macro stuff,
