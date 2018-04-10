@@ -70,8 +70,9 @@
 		dat += "<A href='?src=\ref[src];clear=1'>Remove paintjob.</A><BR><BR>"
 		dat += "<A href='?src=\ref[src];eject=1'>Eject item.</A><BR><BR>"
 
-	user << browse(dat, "window=colormate")
-	onclose(user, "colormate")
+	var/datum/browser/menu = new(user, "colormate","Color Mate Control Panel", 400, 600, src)
+	menu.set_content(dat)
+	menu.open()
 	return
 
 /obj/machinery/gear_painter/Topic(href, href_list)
@@ -80,6 +81,9 @@
 
 	usr.set_machine(src)
 	add_fingerprint(usr)
+
+	if(href_list["close"])
+		return
 
 	if(href_list["select"])
 		var/newcolor = input(usr, "Choose a color.", "", activecolor) as color|null
@@ -98,7 +102,7 @@
 
 	if(href_list["eject"])
 		for(var/atom/movable/O in processing)
-			O.loc = src.loc
+			O.forceMove(drop_location())
 		processing.Cut()
 
 	update_icon()
