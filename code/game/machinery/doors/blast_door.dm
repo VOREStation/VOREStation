@@ -7,6 +7,9 @@
 // as they lack any ID scanning system, they just handle remote control signals. Subtypes have
 // different icons, which are defined by set of variables. Subtypes are on bottom of this file.
 
+// UPDATE 06.04.2018
+// The emag thing wasn't working as intended, manually overwrote it.
+
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -55,6 +58,10 @@
 		icon_state = icon_state_open
 	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
+
+// Has to be in here, comment at the top is older than the emag_act code on doors proper
+/obj/machinery/door/blast/emag_act()
+	return -1
 
 // Proc: force_open()
 // Parameters: None
