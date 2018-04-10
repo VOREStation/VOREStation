@@ -2,6 +2,7 @@
 	name = "weapon"
 	icon = 'icons/obj/weapons.dmi'
 	hitsound = "swing_hit"
+	var/can_cleave = FALSE // If true, a 'cleaving' attack will occur.
 	var/cleaving = FALSE // Used to avoid infinite cleaving.
 
 /obj/item/weapon/Bump(mob/M as mob)
@@ -16,14 +17,17 @@
 			)
 
 // Attacks mobs (atm only simple ones due to friendly fire issues) that are adjacent to the target and user.
-/obj/item/weapon/proc/cleave(var/mob/living/user, var/mob/living/target)
+/obj/item/weapon/proc/cleave(mob/living/user, atom/target)
 	if(cleaving)
-		return // We're busy.
+		return FALSE // We're busy.
+	if(!target.Adjacent(user))
+		return FALSE // Too far.
 	if(get_turf(user) == get_turf(target))
-		return // Otherwise we would hit all eight surrounding tiles.
+		return FALSE // Otherwise we would hit all eight surrounding tiles.
+
 	cleaving = TRUE
 	var/hit_mobs = 0
-	for(var/mob/living/simple_animal/SA in orange(get_turf(target), 1))
+	for(var/mob/living/simple_animal/SA in range(get_turf(target), 1))
 		if(SA.stat == DEAD) // Don't beat a dead horse.
 			continue
 		if(SA == user) // Don't hit ourselves.  Simple mobs shouldn't be able to do this but that might change later to be able to hit all mob/living-s.
@@ -42,6 +46,13 @@
 	if(hit_mobs)
 		to_chat(user, "<span class='danger'>You used \the [src] to attack [hit_mobs] other thing\s!</span>")
 	cleaving = FALSE // We're done now.
+	return hit_mobs > 0 // Returns TRUE if anything got hit.
+
+// This cannot go into afterattack since some mobs delete themselves upon dying.
+/obj/item/weapon/material/pre_attack(mob/living/target, mob/living/user)
+	if(can_cleave && istype(target))
+		cleave(user, target)
+	..()
 
 // This is purely the visual effect of cleaving.
 /obj/item/weapon/proc/cleave_visual(var/mob/living/user, var/mob/living/target)
