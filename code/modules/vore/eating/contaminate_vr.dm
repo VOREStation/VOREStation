@@ -93,9 +93,9 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 //////////////
 // Special handling of gurgle_contaminate
 //////////////
-/obj/item/weapon/card/id/gurgle_contaminate(var/atom/movable/item_storage = null)
+/*/obj/item/weapon/card/id/gurgle_contaminate(var/atom/movable/item_storage = null)
 	digest_act(item_storage) //Digesting these anyway
-	return TRUE
+	return TRUE*/
 
 /obj/item/weapon/reagent_containers/food/gurgle_contaminate(var/atom/movable/item_storage = null)
 	digest_act(item_storage)

@@ -22,6 +22,7 @@
 	var/synced = FALSE
 	var/startdrain = 500
 	var/max_item_count = 1
+	var/gulpsound = 'sound/vore/gulp.ogg'
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -55,7 +56,7 @@
 			if(do_after(user, 30, target) && length(contents) < max_item_count)
 				target.forceMove(src)
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [target] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+				playsound(hound, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(istype(target,/obj/item))
 					var/obj/item/tech_item = target
 					for(var/T in tech_item.origin_tech)
@@ -79,7 +80,7 @@
 				trashman.reset_view(src)
 				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
@@ -96,7 +97,7 @@
 			if(do_after(user, 30, target) && length(contents) < max_item_count)
 				target.forceMove(src)
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+				playsound(hound, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
@@ -109,7 +110,7 @@
 				trashmouse.forceMove(src)
 				trashmouse.reset_view(src)
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 30, 1)
+				playsound(hound, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
@@ -129,7 +130,7 @@
 				trashman.reset_view(src)
 				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
-				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
 				if(UI_open == TRUE)
 					sleeperUI(usr)
@@ -157,7 +158,7 @@
 				processing_objects |= src
 				user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [H.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [H] slips into your [src]. Life support functions engaged.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-				playsound(hound, 'sound/vore/gulp.ogg', 80, 1)
+				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(UI_open == TRUE)
 					sleeperUI(usr)
 
@@ -462,9 +463,22 @@
 
 	//Belly is entirely empty
 	if(!length(contents))
+		var/finisher = pick(
+			'sound/vore/death1.ogg',
+			'sound/vore/death2.ogg',
+			'sound/vore/death3.ogg',
+			'sound/vore/death4.ogg',
+			'sound/vore/death5.ogg',
+			'sound/vore/death6.ogg',
+			'sound/vore/death7.ogg',
+			'sound/vore/death8.ogg',
+			'sound/vore/death9.ogg',
+			'sound/vore/death10.ogg')
+		playsound(hound, finisher, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 		to_chat(hound, "<span class='notice'>Your [src.name] is now clean. Ending self-cleaning cycle.</span>")
 		cleaning = 0
 		update_patient()
+		playsound(hound, 'sound/machines/ding.ogg', 50, 1)
 		return
 
 	if(prob(20))
@@ -481,10 +495,7 @@
 			'sound/vore/digest10.ogg',
 			'sound/vore/digest11.ogg',
 			'sound/vore/digest12.ogg')
-		for(var/mob/outhearer in range(1,hound))
-			outhearer << sound(churnsound)
-		for(var/mob/inhearer in contents)
-			inhearer << sound(churnsound)
+		playsound(hound, churnsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 	//If the timing is right, and there are items to be touched
 	if(air_master.current_cycle%3==1 && length(touchable_items))
 
@@ -523,9 +534,7 @@
 					'sound/vore/death8.ogg',
 					'sound/vore/death9.ogg',
 					'sound/vore/death10.ogg')
-				for(var/mob/hearer in range(1,src.hound))
-					hearer << deathsound
-				T << deathsound
+				playsound(hound, deathsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 				if(is_vore_predator(T))
 					for(var/belly in T.vore_organs)
 						var/obj/belly/B = belly

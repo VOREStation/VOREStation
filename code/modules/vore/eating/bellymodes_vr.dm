@@ -20,7 +20,7 @@
 		var/list/EL = emote_lists[digest_mode]
 		if(LAZYLEN(EL))
 			for(var/mob/living/M in contents)
-				if(M.digestable || !(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)) // don't give digesty messages to indigestible people
+				if(M.digestable || !(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK || digest_mode == DM_ITEMWEAK_NUMB)) // don't give digesty messages to indigestible people
 					to_chat(M,"<span class='notice'>[pick(EL)]</span>")
 
 /////////////////////////// Exit Early ////////////////////////////
@@ -38,7 +38,7 @@
 		return SSBELLIES_PROCESSED //Pretty boring, huh
 
 //////////////////////////// DM_DIGEST ////////////////////////////
-	else if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK)
+	else if(digest_mode == DM_DIGEST || digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK || digest_mode == DM_ITEMWEAK_NUMB)
 
 		if(prob(50)) //Was SO OFTEN. AAAA.
 			play_sound = pick(digestion_sounds)
@@ -71,7 +71,7 @@
 				owner.update_icons()
 				continue
 
-			if(digest_mode == DM_DIGEST_NUMB && ishuman(M))
+			if(digest_mode == DM_DIGEST_NUMB || digest_mode == DM_ITEMWEAK_NUMB && ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(H.bloodstr.get_reagent_amount("numbenzyme") < 5)
 					H.bloodstr.add_reagent("numbenzyme",10)
@@ -94,7 +94,26 @@
 		//Contaminate or gurgle items
 		var/obj/item/T = pick(touchable_items)
 		if(istype(T))
-			if(digest_mode == DM_ITEMWEAK)
+			if(digest_mode == DM_ITEMWEAK || digest_mode == DM_ITEMWEAK_NUMB)
+				if(istype(T,/obj/item/weapon/reagent_containers/food) || istype(T,/obj/item/weapon/holder) || istype(T,/obj/item/organ))
+					digest_item(T)
+				else
+					T.gurgle_contaminate(contents, owner)
+					items_preserved |= T
+			else
+				digest_item(T)
+			owner.updateVRPanel()
+
+//////////////////////////// DM_STRIPDIGEST ////////////////////////////
+	else if(digest_mode == DM_STRIPDIGEST || digest_mode == DM_STRIP_ITEMWEAK) // Only gurgle the gear off your prey.
+
+		if(prob(50))
+			play_sound = pick(digestion_sounds)
+
+		// Handle loose items first.
+		var/obj/item/T = pick(touchable_items)
+		if(istype(T))
+			if(digest_mode == DM_STRIP_ITEMWEAK)
 				if(istype(T,/obj/item/weapon/reagent_containers/food) || istype(T,/obj/item/weapon/holder) || istype(T,/obj/item/organ))
 					digest_item(T)
 				else
@@ -103,19 +122,6 @@
 			else
 				digest_item(T)
 
-		owner.updateVRPanel()
-
-//////////////////////////// DM_STRIPDIGEST ////////////////////////////
-	else if(digest_mode == DM_STRIPDIGEST) // Only gurgle the gear off your prey.
-
-		if(prob(50))
-			play_sound = pick(digestion_sounds)
-
-		// Handle loose items first.
-		var/obj/item/T = pick(touchable_items)
-		if(istype(T))
-			digest_item(T)
-
 		for(var/mob/living/carbon/human/M in contents)
 			if (M.absorbed)
 				continue
@@ -123,14 +129,20 @@
 				var/obj/item/thingy = M.get_equipped_item(slot = slot)
 				if(thingy)
 					M.unEquip(thingy,force = TRUE)
-					digest_item(thingy)
+					if(digest_mode == DM_STRIP_ITEMWEAK)
+						if(istype(thingy,/obj/item/weapon/reagent_containers/food) || istype(thingy,/obj/item/weapon/holder) || istype(thingy,/obj/item/organ))
+							digest_item(thingy)
+						else
+							thingy.gurgle_contaminate(contents, owner)
+							items_preserved |= thingy
+					else
+						digest_item(T)
 					break
 			M.updateVRPanel()
-
 		owner.updateVRPanel()
 
 //////////////////////////// DM_ABSORB ////////////////////////////
-	else if(digest_mode == DM_ABSORB)
+	else if(digest_mode == DM_ABSORB || digest_mode == DM_ABSORB_STRIP)
 
 		for (var/mob/living/M in contents)
 
@@ -141,10 +153,17 @@
 				continue
 
 			if(M.nutrition >= 100) //Drain them until there's no nutrients left. Slowly "absorb" them.
-				var/oldnutrition = (M.nutrition * 0.05)
-				M.nutrition = (M.nutrition * 0.95)
-				owner.nutrition += oldnutrition
+				M.nutrition -= digest_brute+digest_burn
+				owner.nutrition += digest_brute+digest_burn
+				if(isrobot(owner))
+					var/mob/living/silicon/robot/R = owner
+					R.cell.charge += 10*(digest_brute+digest_burn)
 			else if(M.nutrition < 100) //When they're finally drained.
+				if(digest_mode == DM_ABSORB_STRIP)
+					for(var/slot in slots)
+						var/obj/item/thingy = M.get_equipped_item(slot = slot)
+						if(thingy)
+							M.unEquip(thingy,force = TRUE)
 				absorb_living(M)
 
 //////////////////////////// DM_UNABSORB ////////////////////////////
@@ -166,9 +185,11 @@
 				play_sound = pick(digestion_sounds)
 
 			if(M.nutrition >= 100) //Drain them until there's no nutrients left.
-				var/oldnutrition = (M.nutrition * 0.05)
-				M.nutrition = (M.nutrition * 0.95)
-				owner.nutrition += oldnutrition
+				M.nutrition -= digest_brute+digest_burn
+				owner.nutrition += digest_brute+digest_burn
+				if(isrobot(owner))
+					var/mob/living/silicon/robot/R = owner
+					R.cell.charge += 10*(digest_brute+digest_burn)
 
 //////////////////////////// DM_SHRINK ////////////////////////////
 	else if(digest_mode == DM_SHRINK)

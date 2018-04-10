@@ -118,6 +118,8 @@
 				spanstyle = "color:green;"
 			if(DM_ABSORB)
 				spanstyle = "color:purple;"
+			if(DM_ABSORB_STRIP)
+				spanstyle = "color:purple;"
 			if(DM_DRAIN)
 				spanstyle = "color:purple;"
 			if(DM_SHRINK)
