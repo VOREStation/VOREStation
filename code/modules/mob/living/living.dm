@@ -1060,7 +1060,7 @@ default behaviour is:
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
-		
+
 	return canmove
 
 // Adds overlays for specific modifiers.
@@ -1088,10 +1088,10 @@ default behaviour is:
 /mob/living/proc/is_sentient()
 	return TRUE
 
-/* //VOREStation Edit. We have a better system in place.
+
 /mob/living/update_transform()
 	// First, get the correct size.
-	var/desired_scale = icon_scale
+	var/desired_scale = size_multiplier //VOREStation edit
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.icon_scale_percent))
 			desired_scale *= M.icon_scale_percent
@@ -1101,8 +1101,8 @@ default behaviour is:
 	M.Scale(desired_scale)
 	M.Translate(0, 16*(desired_scale-1))
 	src.transform = M
-	animate(src, transform = M, time = 10)
-*/ //VOREStation Edit
+	//animate(src, transform = M, time = 10) //VOREStation edit
+
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.

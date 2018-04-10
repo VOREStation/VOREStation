@@ -64,7 +64,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/proc/resize(var/new_size, var/animate = TRUE)
 	if(size_multiplier == new_size)
 		return 1
-	
+
 	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
 	if(animate)
 		var/change = new_size - size_multiplier
