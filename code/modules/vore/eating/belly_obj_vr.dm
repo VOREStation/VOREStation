@@ -34,7 +34,7 @@
 	var/release_sound = TRUE				// Boolean for now, maybe replace with something else later
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
-	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_DIGEST_NUMB,DM_ITEMWEAK_NUMB,DM_STRIPDIGEST,DM_STRIP_ITEMWEAK,DM_HEAL,DM_ABSORB,DM_ABSORB_STRIP,DM_DRAIN,DM_UNABSORB,DM_SHRINK,DM_GROW,DM_SIZE_STEAL)	// Possible digest modes
+	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_DIGEST_NUMB)	// Possible digest modes
 	var/tmp/static/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
 	var/tmp/static/list/slots = list(slot_back,slot_handcuffed,slot_l_store,slot_r_store,slot_wear_mask,slot_l_hand,slot_r_hand,slot_wear_id,slot_glasses,slot_gloves,slot_head,slot_shoes,slot_belt,slot_wear_suit,slot_w_uniform,slot_s_store,slot_l_ear,slot_r_ear)
 
