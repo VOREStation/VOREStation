@@ -435,9 +435,11 @@
 	destination_names = list(
 						"Venus",
 						"Earth",
+						"Mercury",
 						"Luna",
 						"Mars",
-						"Titan"
+						"Titan",
+						"Europa"
 						)// autogen will add a lot of other places as well.
 
 /*
