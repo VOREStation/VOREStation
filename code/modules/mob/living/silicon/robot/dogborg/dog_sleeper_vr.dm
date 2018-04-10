@@ -478,7 +478,7 @@
 		to_chat(hound, "<span class='notice'>Your [src.name] is now clean. Ending self-cleaning cycle.</span>")
 		cleaning = 0
 		update_patient()
-		playsound(hound, 'sound/machines/ding.ogg', 50, 1)
+		playsound(hound, 'sound/machines/ding.ogg', vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 		return
 
 	if(prob(20))
