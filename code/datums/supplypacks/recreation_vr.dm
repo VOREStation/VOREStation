@@ -39,3 +39,32 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "wolfgirl cosplay crate"
+
+/datum/supply_packs/randomised/recreation/figures_vr
+	name = "Action figures crate"
+	num_contained = 5
+	contains = list(
+			/obj/random/action_figure
+			)
+	cost = 200
+	containertype = /obj/structure/closet/crate
+	containername = "Action figures crate"
+
+/datum/supply_packs/recreation/characters_vr
+	name = "Tabletop miniatures"
+	contains = list(
+			/obj/item/weapon/storage/box/characters
+			)
+	containertype = /obj/structure/closet/crate
+	containername = "Tabletop miniatures crate"
+	cost = 50
+
+/datum/supply_packs/randomised/recreation/plushies_vr
+	name = "Plushies crate"
+	num_contained = 3
+	contains = list(
+			/obj/random/plushie
+			)
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "Plushies crate"
