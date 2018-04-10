@@ -51,7 +51,7 @@
 	<br><br> \
 	Although the conflict has long since ended, and relations have slowly improved, Unathi are still often considered to be 'second-class' citizens \
 	and are rarely seen in jobs other than where muscle is needed. It is also still common for racial tensions to run high, although this is less \
-	common on the outskirts of SolGov's grasp, such as systems like [quick_link("Virgo-Erigone")]."
+	common on the outskirts of SolGov's grasp, such as systems like Virgo-Erigone."
 
 /datum/lore/codex/page/tajaran
 	name = "Tajaran"
