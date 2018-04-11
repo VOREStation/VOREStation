@@ -8938,6 +8938,7 @@
 /area/ai_monitored/storage/eva)
 "pa" = (
 /obj/machinery/door/airlock/glass_command{
+	id_tag = "evadoors";
 	name = "E.V.A.";
 	req_one_access = list(18)
 	},
@@ -8958,6 +8959,7 @@
 /area/ai_monitored/storage/eva)
 "pc" = (
 /obj/machinery/door/airlock/glass_command{
+	id_tag = "evadoors";
 	name = "E.V.A.";
 	req_one_access = list(18)
 	},

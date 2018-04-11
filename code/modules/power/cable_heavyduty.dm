@@ -7,7 +7,8 @@
 	icon = 'icons/obj/power_cond_heavy.dmi'
 	name = "large power cable"
 	desc = "This cable is tough. It cannot be cut with simple hand tools."
-	layer = 2.39 //Just below pipes, which are at 2.4
+	plane = PLATING_PLANE
+	layer = PIPES_LAYER - 0.05 //Just below pipes
 	color = null
 
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)

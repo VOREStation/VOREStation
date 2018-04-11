@@ -5,9 +5,46 @@
 		return
 	..()
 
+/mob/living/simple_animal/slime/Found(mob/living/L)
+	if(isliving(L))
+		if(SA_attackable(L))
+			if(L.faction == faction && !attack_same)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
+						return H // Monkeys are always food.
+					else
+						return
+
+			if(L in friends)
+				return
+
+			if(istype(L, /mob/living/simple_animal/slime))
+				var/mob/living/simple_animal/slime/buddy = L
+				if(buddy.slime_color == src.slime_color || discipline || unity || buddy.unity)
+					return // Don't hurt same colored slimes.
+				else
+					return buddy	//do hurt others
+
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
+					return H // Monkeys are always food.
+
+			if(issilicon(L) || isbot(L))
+				if(discipline && !rabid)
+					return // We're a good slime.  For now at least.
+			return
+	return
+
 /mob/living/simple_animal/slime/special_target_check(mob/living/L)
-	if(L.faction == faction && !attack_same)
-		return FALSE
+	if(L.faction == faction && !attack_same && !istype(L, /mob/living/simple_animal/slime))
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
+				return TRUE // Monkeys are always food.
+			else
+				return FALSE
 	if(L in friends)
 		return FALSE
 

@@ -56,7 +56,7 @@
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 20
-	vore_icons = SA_ICON_LIVING
+	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "mutated feral otie"

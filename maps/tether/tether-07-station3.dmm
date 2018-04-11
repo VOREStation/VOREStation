@@ -14692,11 +14692,6 @@
 /obj/structure/bed/psych,
 /turf/simulated/floor/carpet/blue,
 /area/medical/psych)
-"yo" = (
-/obj/item/weapon/clipboard,
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/blue,
-/area/medical/psych)
 "yp" = (
 /turf/simulated/floor/carpet/blue,
 /area/medical/psych)
@@ -15597,6 +15592,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/item/device/flashlight/lamp/green{
+	dir = 2;
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /turf/simulated/floor/carpet/blue,
 /area/medical/psych)
@@ -22828,6 +22828,11 @@
 /obj/effect/landmark/map_data/virgo3b,
 /turf/space,
 /area/space)
+"LV" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/clipboard,
+/turf/simulated/floor/carpet/blue,
+/area/medical/psych)
 "Nw" = (
 /obj/structure/table/standard,
 /obj/item/device/healthanalyzer,
@@ -22877,6 +22882,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"St" = (
+/obj/structure/closet/crate/bin,
+/turf/simulated/floor/wood,
+/area/medical/psych)
 "Uc" = (
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled/white,
@@ -30276,7 +30285,7 @@ uV
 sx
 vK
 uX
-ym
+LV
 zk
 zZ
 ua
@@ -30520,7 +30529,7 @@ uX
 vV
 uX
 uX
-yo
+ym
 zl
 Aa
 ua
@@ -31004,7 +31013,7 @@ rD
 ss
 td
 ua
-va
+vb
 vW
 vW
 vW
@@ -31126,7 +31135,7 @@ rE
 st
 te
 ua
-vb
+St
 vX
 wP
 xG

@@ -65,7 +65,7 @@
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
-	vore_icons = SA_ICON_LIVING
+	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16
@@ -77,6 +77,7 @@
 
 /mob/living/simple_animal/hostile/alien/sentinel/praetorian
 	icon = 'icons/mob/vore64x64.dmi'
+	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /mob/living/simple_animal/hostile/alien/queen/empress/mother
 	vore_icons = 0 // NO VORE SPRITES
@@ -226,11 +227,20 @@
 
 /mob/living/simple_animal/hostile/carp/holodeck
 	vore_icons = 0 // NO VORE SPRITES
+	vore_digest_chance = 0
+	vore_absorb_chance = 0
+
 // Override stuff for holodeck carp to make them not digest when set to safe!
+/mob/living/simple_animal/hostile/carp/holodeck/init_vore()
+	. = ..()
+	var/safe = (faction == "neutral")
+	for(var/belly in vore_organs)
+		var/obj/belly/B = belly
+		B.digest_mode = safe ? DM_HOLD : vore_default_mode
+
 /mob/living/simple_animal/hostile/carp/holodeck/set_safety(var/safe)
 	. = ..()
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
-		B.digestchance = safe ? 0 : vore_digest_chance
-		B.absorbchance = safe ? 0 : vore_absorb_chance
+		

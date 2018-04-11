@@ -50,7 +50,7 @@
 
 /obj/item/organ/external/diona/arm
 	name = "left upper tendril"
-	organ_tag = "l_arm"
+	organ_tag = BP_L_ARM
 	icon_name = "l_arm"
 	max_damage = 30
 	min_broken_damage = 20
@@ -61,13 +61,13 @@
 
 /obj/item/organ/external/diona/arm/right
 	name = "right upper tendril"
-	organ_tag = "r_arm"
+	organ_tag = BP_R_ARM
 	icon_name = "r_arm"
 	body_part = ARM_RIGHT
 
 /obj/item/organ/external/diona/leg
 	name = "left lower tendril"
-	organ_tag = "l_leg"
+	organ_tag = BP_L_LEG
 	icon_name = "l_leg"
 	max_damage = 30
 	min_broken_damage = 20
@@ -79,50 +79,50 @@
 
 /obj/item/organ/external/diona/leg/right
 	name = "right lower tendril"
-	organ_tag = "r_leg"
+	organ_tag = BP_R_LEG
 	icon_name = "r_leg"
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
 /obj/item/organ/external/diona/foot
 	name = "left foot"
-	organ_tag = "l_foot"
+	organ_tag = BP_L_FOOT
 	icon_name = "l_foot"
 	max_damage = 25
 	min_broken_damage = 10
 	w_class = ITEMSIZE_SMALL
 	body_part = FOOT_LEFT
 	icon_position = LEFT
-	parent_organ = "l_leg"
+	parent_organ = BP_R_LEG
 	can_stand = 1
 
 /obj/item/organ/external/diona/foot/right
 	name = "right foot"
-	organ_tag = "r_foot"
+	organ_tag = BP_R_FOOT
 	icon_name = "r_foot"
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
-	parent_organ = "r_leg"
+	parent_organ = BP_R_LEG
 	joint = "right ankle"
 	amputation_point = "right ankle"
 
 /obj/item/organ/external/diona/hand
 	name = "left grasper"
-	organ_tag = "l_hand"
+	organ_tag = BP_L_HAND
 	icon_name = "l_hand"
 	max_damage = 25
 	min_broken_damage = 15
 	w_class = ITEMSIZE_SMALL
 	body_part = HAND_LEFT
-	parent_organ = "l_arm"
+	parent_organ = BP_L_ARM
 	can_grasp = 1
 
 /obj/item/organ/external/diona/hand/right
 	name = "right grasper"
-	organ_tag = "r_hand"
+	organ_tag = BP_R_HAND
 	icon_name = "r_hand"
 	body_part = HAND_RIGHT
-	parent_organ = "r_arm"
+	parent_organ = BP_R_ARM
 
 //DIONA ORGANS.
 /obj/item/organ/external/diona/removed()
@@ -157,26 +157,32 @@
 /obj/item/organ/internal/diona/strata
 	name = "neural strata"
 	parent_organ = BP_TORSO
+	organ_tag = O_STRATA
 
 /obj/item/organ/internal/diona/bladder
 	name = "gas bladder"
 	parent_organ = BP_HEAD
+	organ_tag = O_GBLADDER
 
 /obj/item/organ/internal/diona/polyp
 	name = "polyp segment"
 	parent_organ = BP_GROIN
+	organ_tag = O_POLYP
 
 /obj/item/organ/internal/diona/ligament
 	name = "anchoring ligament"
 	parent_organ = BP_GROIN
+	organ_tag = O_ANCHOR
 
 /obj/item/organ/internal/diona/node
 	name = "receptor node"
 	parent_organ = BP_HEAD
+	organ_tag = O_RESPONSE
 
 /obj/item/organ/internal/diona/nutrients
 	name = O_NUTRIENT
 	parent_organ = BP_TORSO
+	organ_tag = O_NUTRIENT
 
 // These are different to the standard diona organs as they have a purpose in other
 // species (absorbing radiation and light respectively)
@@ -191,8 +197,8 @@
 
 /obj/item/organ/internal/diona/node
 	name = "response node"
-	parent_organ = "head"
-	organ_tag = "receptor node"
+	parent_organ = BP_HEAD
+	organ_tag = O_RESPONSE
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
 

@@ -16866,6 +16866,13 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"Rc" = (
+/obj/structure/table/glass,
+/obj/item/device/defib_kit/compact/loaded,
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/medical)
 
 (1,1,1) = {"
 aa
@@ -23038,7 +23045,7 @@ jK
 jK
 nV
 oR
-po
+Rc
 kv
 kv
 qM

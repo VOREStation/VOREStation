@@ -196,10 +196,14 @@
 	var/substance = matstack.material.name
 	var/actually_added = refactory.add_stored_material(substance,howmuch*matstack.perunit)
 	matstack.use(Ceiling(actually_added/matstack.perunit))
-	if(actually_added < howmuch)
+	if(actually_added && actually_added < howmuch)
 		to_chat(src,"<span class='warning'>Your refactory module is now full, so only [actually_added] units were stored.</span>")
-	else
+		visible_message(src,"<span class='notice'>[src] nibbles some of the [substance] right off the stack!</span>")
+	else if(actually_added)
 		to_chat(src,"<span class='notice'>You store [actually_added] units of [substance].</span>")
+		visible_message(src,"<span class='notice'>[src] devours some of the [substance] right off the stack!</span>")
+	else
+		to_chat(src,"<span class='notice'>You're completely capped out on [substance]!</span>")
 
 ////
 //  Blob Form
@@ -247,26 +251,28 @@
 ////
 //  Change size
 ////
-/mob/living/proc/nano_set_size()
+/mob/living/carbon/human/proc/nano_set_size()
 	set name = "Adjust Volume"
 	set category = "Abilities"
 	set hidden = TRUE
 
+	var/mob/living/user = temporary_form || src
+
 	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 	//Missing the organ that does this
 	if(!istype(refactory))
-		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
+		to_chat(user,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200%. Up-sizing consumes metal, downsizing returns metal."
-	var/new_size = input(src, nagmessage, "Pick a Size", size_multiplier*100) as num|null
+	var/new_size = input(user, nagmessage, "Pick a Size", user.size_multiplier*100) as num|null
 	if(!new_size || !IsInRange(new_size,25,200))
 		return
 
 	var/size_factor = new_size/100
 	
 	//Will be: -1.75 for 200->25, and 1.75 for 25->200
-	var/sizediff = size_factor - size_multiplier
+	var/sizediff = size_factor - user.size_multiplier
 
 	//Negative if shrinking, positive if growing
 	//Will be (PLSC*2)*-1.75 to 1.75
@@ -276,17 +282,19 @@
 	//Sizing up
 	if(cost > 0)
 		if(refactory.use_stored_material("steel",cost))
-			resize(size_factor)
+			user.resize(size_factor)
 		else
-			to_chat(src,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
+			to_chat(user,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
 		return
 	//Sizing down (or not at all)
 	if(cost <= 0)
 		cost = abs(cost)
 		var/actually_added = refactory.add_stored_material("steel",cost)
-		resize(size_factor)
+		user.resize(size_factor)
 		if(actually_added != cost)
-			to_chat(src,"<span class='warning'>Unfortunately, [cost-actually_added] steel was lost due to lack of storage space.</span>")
+			to_chat(user,"<span class='warning'>Unfortunately, [cost-actually_added] steel was lost due to lack of storage space.</span>")
+
+	user.visible_message("<span class='notice'>Black mist swirls around [user] as they change size.</span>")
 
 /// /// /// A helper to reuse
 /mob/living/proc/nano_get_refactory(obj/item/organ/internal/nano/refactory/R)
@@ -350,7 +358,7 @@
 	ability_name = "Change Volume"
 	desc = "Alter your size by consuming steel to produce additional nanites, or regain steel by reducing your size and reclaiming them."
 	icon_state = "volume"
-	to_call = /mob/living/proc/nano_set_size
+	to_call = /mob/living/carbon/human/proc/nano_set_size
 
 /obj/effect/protean_ability/reform_limb
 	ability_name = "Ref - Single Limb"
