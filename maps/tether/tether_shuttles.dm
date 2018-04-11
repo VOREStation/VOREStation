@@ -190,11 +190,15 @@
 	current_area = /area/shuttle/excursion/tether
 	docking_controller_tag = "expshuttle_docker"
 	web_master_type = /datum/shuttle_web_master/excursion
-	var/abduct_chance = 1 //Prob
+	var/abduct_chance = 0.5 //Prob
 
 /datum/shuttle/web_shuttle/excursion/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
 	if(prob(abduct_chance))
 		abduct_chance = 0
+		var/list/occupants = list()
+		for(var/mob/living/L in departing)
+			occupants += key_name(L)
+		log_and_message_admins("Shuttle abduction occuring with (only mobs on turfs): [english_list(occupants)]")
 		//Build the route to the alien ship
 		var/obj/shuttle_connector/alienship/ASC = new /obj/shuttle_connector/alienship(null)
 		ASC.setup_routes()
