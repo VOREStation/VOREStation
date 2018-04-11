@@ -44,21 +44,21 @@
 		var/obj/belly/B = belly
 		for(var/mob/living/M in B)
 			new_fullness += M.size_multiplier
-		new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
+	new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
 
-/mob/living/simple_animal/update_icon()
-	. = ..() // Call sideways "parent" to decide state
-	if(vore_active)
-		update_fullness()
-		if(!vore_fullness)
-			return
-		else if(icon_state == icon_living && (vore_icons & SA_ICON_LIVING))
-			icon_state = "[icon_state]-[vore_fullness]"
-		else if(icon_state == icon_dead && (vore_icons & SA_ICON_DEAD))
-			icon_state = "[icon_state]-[vore_fullness]"
-		else if(icon_state == icon_rest && (vore_icons & SA_ICON_REST))
-			icon_state = "[icon_state]-[vore_fullness]"
+/mob/living/simple_animal/proc/update_vore_icon()
+	if(!vore_active)
+		return 0
+	update_fullness()
+	if(!vore_fullness)
+		return 0
+	else if((stat == CONSCIOUS) && (!icon_rest || !resting || !incapacitated(INCAPACITATION_DISABLED)) && (vore_icons & SA_ICON_LIVING))
+		return "[icon_living]-[vore_fullness]"
+	else if(stat >= DEAD && (vore_icons & SA_ICON_DEAD))
+		return "[icon_dead]-[vore_fullness]"
+	else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
+		return "[icon_rest]-[vore_fullness]"
 
 /mob/living/simple_animal/proc/will_eat(var/mob/living/M)
 	if(client) //You do this yourself, dick!

@@ -1448,24 +1448,27 @@
 
 	//Destination beacon vore checking
 	var/atom/real_dest = dT
-	var/televored = FALSE //UR GONNA GET VORED
 
 	var/atom/real_loc = destination.loc
 	if(isbelly(real_loc))
 		real_dest = real_loc
-		televored = TRUE
 	if(isliving(real_loc))
 		var/mob/living/L = real_loc
 		if(L.vore_selected)
 			real_dest = L.vore_selected
-			televored = TRUE
 		else if(L.vore_organs.len)
 			real_dest = pick(L.vore_organs)
+
+	//Confirm televore
+	var/televored = FALSE
+	if(isbelly(real_dest))
+		var/obj/belly/B = real_dest
+		if(!target.can_be_drop_prey && B.owner != user)
+			to_chat(target,"<span class='warning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
+			real_dest = dT //Nevermind!
+		else
 			televored = TRUE
-			
-	//Televore fluff stuff
-	if(televored)
-		to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -1496,7 +1499,7 @@
 		ready = 1
 		update_icon()
 
-	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_loc.name)])" : null]"
+	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_dest.name)])" : null]"
 
 /obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
 

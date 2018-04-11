@@ -65,7 +65,7 @@
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
-	vore_icons = SA_ICON_LIVING
+	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16
@@ -77,6 +77,7 @@
 
 /mob/living/simple_animal/hostile/alien/sentinel/praetorian
 	icon = 'icons/mob/vore64x64.dmi'
+	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /mob/living/simple_animal/hostile/alien/queen/empress/mother
 	vore_icons = 0 // NO VORE SPRITES
