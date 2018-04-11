@@ -44,6 +44,3 @@
 /mob/living/simple_animal/hostile/rous/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
-
-/mob/living/simple_animal/mouse
-	faction = "mouse" //Apparently mice had no faction. The big dude should be nice to them tho.
