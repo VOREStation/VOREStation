@@ -265,7 +265,7 @@ var/last_chew = 0
 		place_legcuffs(user, user)
 		return
 
-	if(!C.handcuffed)
+	if(!C.legcuffed)
 		if (C == user)
 			place_legcuffs(user, user)
 			return
