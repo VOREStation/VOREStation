@@ -285,9 +285,8 @@
 			user.resize(size_factor)
 		else
 			to_chat(user,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
-		return
 	//Sizing down (or not at all)
-	if(cost <= 0)
+	else if(cost <= 0)
 		cost = abs(cost)
 		var/actually_added = refactory.add_stored_material("steel",cost)
 		user.resize(size_factor)
