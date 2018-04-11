@@ -80,7 +80,7 @@
 				else
 					slowdown = initial(slowdown)
 				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/drake))
+			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/drake) || istype(TT, /datum/sprite_accessory/tail/taur/deer))
 				item_state = "[icon_base]_Drake"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
