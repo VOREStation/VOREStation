@@ -383,6 +383,8 @@
 	M.absorbed = 1
 	to_chat(M,"<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
 	to_chat(owner,"<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
+	if(M.noisy) //Mute drained absorbee hunger if enabled.
+		M.noisy = FALSE
 
 	if(ishuman(M) && ishuman(owner))
 		var/mob/living/carbon/human/Prey = M
