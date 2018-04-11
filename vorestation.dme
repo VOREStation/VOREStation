@@ -2716,6 +2716,7 @@
 #include "code\modules\vore\appearance\update_icons_vr.dm"
 #include "code\modules\vore\eating\belly_dat_vr.dm"
 #include "code\modules\vore\eating\belly_obj_vr.dm"
+#include "code\modules\vore\eating\bellymodes_tf_vr.dm"
 #include "code\modules\vore\eating\bellymodes_vr.dm"
 #include "code\modules\vore\eating\contaminate_vr.dm"
 #include "code\modules\vore\eating\digest_act_vr.dm"

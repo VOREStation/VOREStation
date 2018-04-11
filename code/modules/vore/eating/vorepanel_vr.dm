@@ -18,7 +18,7 @@
 
 	var/dat = picker_holder.gen_ui(src)
 
-	picker_holder.popup = new(src, "insidePanel","Inside!", 400, 600, picker_holder)
+	picker_holder.popup = new(src, "insidePanel","Inside!", 450, 700, picker_holder)
 	picker_holder.popup.set_content(dat)
 	picker_holder.popup.open()
 	src.openpanel = 1
@@ -31,7 +31,7 @@
 
 		var/dat = picker_holder.gen_ui(src)
 
-		picker_holder.popup = new(src, "insidePanel","Inside!", 400, 600, picker_holder)
+		picker_holder.popup = new(src, "insidePanel","Inside!", 450, 700, picker_holder)
 		picker_holder.popup.set_content(dat)
 		picker_holder.popup.open()
 
@@ -110,46 +110,44 @@
 				spanstyle = ""
 			if(DM_DIGEST)
 				spanstyle = "color:red;"
-			if(DM_ITEMWEAK)
-				spanstyle = "color:red;"
-			if(DM_STRIPDIGEST)
-				spanstyle = "color:red;"
-			if(DM_HEAL)
-				spanstyle = "color:green;"
 			if(DM_ABSORB)
 				spanstyle = "color:purple;"
 			if(DM_DRAIN)
 				spanstyle = "color:purple;"
+			if(DM_HEAL)
+				spanstyle = "color:green;"
 			if(DM_SHRINK)
 				spanstyle = "color:purple;"
 			if(DM_GROW)
 				spanstyle = "color:purple;"
 			if(DM_SIZE_STEAL)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_MALE)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_HAIR_AND_EYES)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_FEMALE)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_KEEP_GENDER)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_REPLICA)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_REPLICA_EGG)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_KEEP_GENDER_EGG)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_MALE_EGG)
-				spanstyle = "color:purple;"
-			if(DM_TRANSFORM_FEMALE_EGG)
-				spanstyle = "color:purple;"
-			if(DM_EGG)
-				spanstyle = "color:purple;"
+			if(DM_TRANSFORM)
+				switch(B.tf_mode)
+					if(DM_TRANSFORM_MALE)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_HAIR_AND_EYES)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_FEMALE)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_KEEP_GENDER)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_REPLICA)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_REPLICA_EGG)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_KEEP_GENDER_EGG)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_MALE_EGG)
+						spanstyle = "color:purple;"
+					if(DM_TRANSFORM_FEMALE_EGG)
+						spanstyle = "color:purple;"
+					if(DM_EGG)
+						spanstyle = "color:purple;"
 
 		dat += "<span style='[spanstyle]'> ([B.contents.len])</span></a></li>"
 
@@ -193,7 +191,19 @@
 
 		//Digest Mode Button
 		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a>"
-		dat += " [selected.digest_mode]"
+		var/mode = selected.digest_mode
+		dat += " [mode == DM_TRANSFORM ? selected.tf_mode : mode]"
+
+		//Mode addons button
+		dat += "<br><a href='?src=\ref[src];b_addons=\ref[selected]'>Mode Addons:</a>"
+		var/list/flag_list = list()
+		for(var/flag_name in selected.mode_flag_list)
+			if(selected.mode_flags & selected.mode_flag_list[flag_name])
+				flag_list += flag_name
+		if(flag_list.len)
+			dat += " [english_list(flag_list)]"
+		else
+			dat += " None"
 
 		//Belly verb
 		dat += "<br><a href='?src=\ref[src];b_verb=\ref[selected]'>Vore Verb:</a>"
@@ -499,13 +509,29 @@
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes
 		if(istype(usr,/mob/living/carbon/human))
-			menu_list += selected.transform_modes
+			menu_list += DM_TRANSFORM
 
 		var/new_mode = input("Choose Mode (currently [selected.digest_mode])") as null|anything in menu_list
 		if(!new_mode)
 			return 0
+		
+		if(new_mode == DM_TRANSFORM) //Snowflek submenu
+			var/list/tf_list = selected.transform_modes
+			var/new_tf_mode = input("Choose TF Mode (currently [selected.tf_mode])") as null|anything in tf_list
+			if(!new_tf_mode)
+				return 0
+			selected.tf_mode = new_tf_mode
+		
 		selected.digest_mode = new_mode
 		selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
+
+	if(href_list["b_addons"])
+		var/list/menu_list = selected.mode_flag_list
+		var/toggle_addon = input("Toggle Addon") as null|anything in menu_list
+		if(!toggle_addon)
+			return 0
+		selected.mode_flags ^= selected.mode_flag_list[toggle_addon]
+		selected.items_preserved.Cut() //Re-evaltuate all items in belly on addon toggle
 
 	if(href_list["b_desc"])
 		var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)
