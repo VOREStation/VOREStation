@@ -154,12 +154,6 @@
 		"The grip of that stomach is harsh. Eagerly mushing and rubbing that slime into your body in attempts to break you down!",
 		"The intense churning and grinding jostles your around within the thick slime as you're slowly broken down!"
 		)
-	B.emote_lists[DM_ITEMWEAK] = list(
-		"The walls slop thick slime across your body! It tingles briefly before the sting and ache sets in!",
-		"The sound of your body slipping and sliding against the powerfully churning stomach fills the air!",
-		"The grip of that stomach is harsh. Eagerly mushing and rubbing that slime into your body in attempts to break you down!",
-		"The intense churning and grinding jostles your around within the thick slime as you're slowly broken down!"
-		)
 	B.emote_lists[DM_ABSORB] = list(
 		"The walls cling to you awfully close... It's almost like you're sinking into them.",
 		"You can feel the walls press in tightly against you, clinging to you posessively!",
