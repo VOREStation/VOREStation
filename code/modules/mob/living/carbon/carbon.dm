@@ -46,7 +46,7 @@
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
-
+/* VOREStation Removal - Needless duplicate feature
 /mob/living/carbon/relaymove(var/mob/living/user, direction)
 	if((user in src.stomach_contents) && istype(user))
 		if(user.last_special <= world.time)
@@ -72,7 +72,7 @@
 						A.loc = loc
 						stomach_contents.Remove(A)
 					src.gib()
-
+*/
 /mob/living/carbon/gib()
 	for(var/mob/M in src)
 		if(M in src.stomach_contents)

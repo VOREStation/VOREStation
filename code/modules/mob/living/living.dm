@@ -1060,7 +1060,14 @@ default behaviour is:
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
-
+	//VOREStation Add
+	if(lying && LAZYLEN(buckled_mobs))
+		for(var/rider in buckled_mobs)
+			if(riding_datum)
+				riding_datum.force_dismount(rider)
+			else
+				unbuckle_mob(rider)
+	//VOREStation Add End
 	return canmove
 
 // Adds overlays for specific modifiers.

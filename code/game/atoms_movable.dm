@@ -18,6 +18,7 @@
 	var/icon_scale = 1 // Used to scale icons up or down in update_transform().
 	var/old_x = 0
 	var/old_y = 0
+	var/datum/riding/riding_datum //VOREStation Add - Moved from /obj/vehicle
 
 /atom/movable/Destroy()
 	. = ..()
@@ -37,6 +38,7 @@
 		if (pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
+	qdel_null(riding_datum) //VOREStation Add
 
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
