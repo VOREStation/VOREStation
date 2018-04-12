@@ -20,14 +20,6 @@
 		"Runtime flops onto their side for a minute, spilling acids over your form as you remain trapped in them.",
 		"The CMO's pet doesn't seem to think you're any different from any other meal. At least, their stomach doesn't.")
 
-	B.emote_lists[DM_ITEMWEAK] = list(
-		"Runtime's stomach is treating you rather like a mouse, kneading acids into you with vigor.",
-		"A thick dollop of bellyslime drips from above while the CMO's pet's gut works on churning you up.",
-		"Runtime seems to have decided you're food, based on the acrid air in her guts and the pooling fluids.",
-		"Runtime's stomach tries to claim you, kneading and pressing inwards again and again against your form.",
-		"Runtime flops onto their side for a minute, spilling acids over your form as you remain trapped in them.",
-		"The CMO's pet doesn't seem to think you're any different from any other meal. At least, their stomach doesn't.")
-
 	B.digest_messages_prey = list(
 		"Runtime's stomach slowly melts your body away. Her stomach refuses to give up it's onslaught, continuing until you're nothing more than nutrients for her body to absorb.",
 		"After an agonizing amount of time, Runtime's stomach finally manages to claim you, melting you down and adding you to her stomach.",

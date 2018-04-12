@@ -61,14 +61,6 @@
 		"The fox's stomach churns hungrily over your form, trying to take you.",
 		"With a loud glorp, the stomach spills more acids onto you.")
 
-	B.emote_lists[DM_ITEMWEAK] = list(
-		"The guts knead at you, trying to work you into thick soup.",
-		"You're ground on by the slimey walls, treated like a mouse.",
-		"The acrid air is hard to breathe, and stings at your lungs.",
-		"You can feel the acids coating you, ground in by the slick walls.",
-		"The fox's stomach churns hungrily over your form, trying to take you.",
-		"With a loud glorp, the stomach spills more acids onto you.")
-
 // All them complicated fox procedures.
 /mob/living/simple_animal/fox/Life()
 	. = ..()
@@ -202,14 +194,6 @@
 		"Renault's stomach walls squeeze closer, as he belches quietly, before swallowing more air. Does he do that on purpose?")
 
 	B.emote_lists[DM_DIGEST] = list(
-		"Renault's stomach walls grind hungrily inwards, kneading acids against your form, and treating you like any other food.",
-		"The captain's fox impatiently kneads and works acids against you, trying to claim your body for fuel.",
-		"The walls knead in firmly, squeezing and tossing you around briefly in disorienting aggression.",
-		"Renault belches, letting the remaining air grow more acrid. It burns your lungs with each breath.",
-		"A thick glob of acids drip down from above, adding to the pool of caustic fluids in Renault's belly.",
-		"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
-
-	B.emote_lists[DM_ITEMWEAK] = list(
 		"Renault's stomach walls grind hungrily inwards, kneading acids against your form, and treating you like any other food.",
 		"The captain's fox impatiently kneads and works acids against you, trying to claim your body for fuel.",
 		"The walls knead in firmly, squeezing and tossing you around briefly in disorienting aggression.",

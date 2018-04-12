@@ -103,7 +103,7 @@ var/list/flooring_types
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
-	icon = 'icons/turf/flooring/carpet_vr.dmi'
+	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_base = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200

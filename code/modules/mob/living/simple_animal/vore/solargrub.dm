@@ -96,7 +96,7 @@ List of things solar grubs should be able to do:
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
-	vore_default_mode = DM_ITEMWEAK //item friendly digestions, they just want your chemical energy :3
+	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_animal/retaliate/solargrub/PunchTarget()
 	. = ..()

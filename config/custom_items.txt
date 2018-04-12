@@ -703,6 +703,13 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 #req_access = 1
 #}
 
+#{
+#ckey: silencedmp5a5
+#character_name: NT-HASD #556
+#item_path: /obj/item/device/modkit_conversion/hasd
+#req_access = 1
+#}
+
 {
 ckey: silvertalismen
 character_name: Tasy Ruffles
@@ -879,25 +886,25 @@ item_path: /obj/item/clothing/head/welding/fluff/vinjj
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
 }
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/weapon/reagent_containers/hypospray/vial/tempest
 }
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
 }
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/weapon/implanter/reagent_generator/tempest
 }
 
