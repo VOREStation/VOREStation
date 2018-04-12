@@ -275,6 +275,7 @@
 			var/stacksize = min(S.amount,N.max_amount)
 			N.amount = stacksize
 			S.amount -= stacksize
+			N.update_icon()
 		if(!S.amount)
 			qdel(S) // todo: there's probably something missing here
 	orient2hud(usr)
