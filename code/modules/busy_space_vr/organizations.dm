@@ -713,7 +713,7 @@
 							"facility 8492",
 							"you don't want to know",
 							"if told you I'd have to kill you",
-							"... wait, why am I even telling you this? Just let me pass"
+							"... wait, why am I even telling you this? Just let me pass",
 							"stop asking questions")
 
 /datum/lore/organization/gov/kitsuhana
