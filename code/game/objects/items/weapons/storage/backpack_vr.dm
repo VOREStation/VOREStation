@@ -80,7 +80,7 @@
 				else
 					slowdown = initial(slowdown)
 				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/drake) || istype(TT, /datum/sprite_accessory/tail/taur/deer))
+			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/drake))
 				item_state = "[icon_base]_Drake"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
@@ -89,6 +89,13 @@
 				return 1
 			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/otie))
 				item_state = "[icon_base]_Otie"
+				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
+					slowdown = 0
+				else
+					slowdown = initial(slowdown)
+				return 1
+			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/deer))
+				item_state = "[icon_base]_Deer"
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else
