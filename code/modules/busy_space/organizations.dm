@@ -438,8 +438,7 @@
 						"Mercury",
 						"Luna",
 						"Mars",
-						"Titan",
-						"Europa"
+						"Titan"
 						)// autogen will add a lot of other places as well.
 
 /*

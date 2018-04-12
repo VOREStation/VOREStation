@@ -78,7 +78,7 @@
 	motto = ""
 
 	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response")
-	//Scientist naming scheme
+	//Scientist or Greek mythology naming scheme
 	ship_names = list(
 		"Bardeen",
 		"Einstein",
@@ -430,7 +430,11 @@
 						"Earth",
 						"Luna",
 						"Mars",
-						"Titan"
+						"Titan",
+						"Europa",
+						"Mercury",
+						"the SolGov embassy in Virgo-Erigone",
+						"the SolGov embassy in Vilous"
 						)// autogen will add a lot of other places as well.
 
 /datum/lore/organization/gov/sifgov // Overrides Polaris stuff
@@ -537,7 +541,7 @@
 
 /datum/lore/organization/mil/usdf
 	name = "United Sol Defense Force"
-	short_name = "" // This is blank on purpose. Otherwise they call the ships "USDF" "USDF Name"
+	short_name = "" // This is blank on purpose. Otherwise they call the ships "USDF USDF Name"
 	desc = "The USDF is the dedicated military force of SolGov, originally formed by the United Nations. It is the \
 			dominant superpower of the Orion Spur, and is able to project its influence well into parts of the Perseus and \
 			Sagittarius arms of the galaxy. However, regions beyond that are too far for the USDF to be a major player."
@@ -559,8 +563,8 @@
 			against other major military powers such as the Moghes Hegemony."
 	work = "peacekeeping and piracy suppression"
 	headquarters = "Paris, Earth"
-	motto = "Per Mare, Per Terras, Per Constellatum." // Stolen from Halo because fuck you that's why.
-	ship_prefixes = list("USDF" = "military", "USDF" = "anti-piracy", "USDF" = "escort", "USDF" = "humanitarian", "USDF" = "peacekeeping", "USDF" = "search-and-rescue") // It's all USDF but let's mix up what they do.
+	motto = "Per Mare, Per Terras, Per Constellatum." // Stolen from Halo because fuck you that's why. -Ace
+	ship_prefixes = list("USDF" = "military", "USDF" = "anti-piracy", "USDF" = "escort", "USDF" = "humanitarian", "USDF" = "peacekeeping", "USDF" = "search-and-rescue", "USDF" = "war game") // It's all USDF but let's mix up what missions they do.
 	ship_names = list("Aegis Fate",
 					"Ain't No Sunshine",
 					"All Under Heaven",
@@ -592,6 +596,7 @@
 					"Hoenir",
 					"In Amber Clad",
 					"Iwo Jima",
+					"Jolly Roger",
 					"Jormungandr",
 					"Leonidas",
 					"Meriwether Lewis",
@@ -605,6 +610,7 @@
 					"Purpose",
 					"Ready or Not",
 					"Redoubtable",
+					"Rising Sun",
 					"Saratoga",
 					"Savannah",
 					"Shanxi",
@@ -635,6 +641,80 @@
 						"an emergency nav bouy",
 						"the USDF Naval Academy on Earth",
 						"Fort Rain on Tal")
+
+/datum/lore/organization/mil/oni
+	name = "SolGov Office of Naval Intelligence"
+	short_name = "" // This is blank on purpose. Otherwise they call the ships "ONI ONI Name"
+	desc = "The Office of Naval Intelligence is SolGov's eyes and ears in the galaxy's affairs. Despite its name, and despite its \
+			usual association with the USDF, the Office of Naval Intelligence does not fall under the command of the military. From espionage \
+			to archeological research, ONI's work provides SolGov with the knowledge and technology it requires to advance both military and \
+			civilian interests across the galaxy."
+	history = "ONI was originally created by the consolidation of several military intelligence agencies from Sol during the Sol-Hegemony war. \
+			The USDF's victory in that war was largely accredited to intelligence and technology advancements provided by ONI during that time, \
+			most notably of which was the reverse-engineering of Unathi vessels, allowing the production of countermeasures that played a crucial \
+			role during in the late stages of the conflict. After the war, ONI's resources were pooled into numerous top secret projects; much of \
+			which remains unknown or outright denied to the public even today. Among their suspected activities include exploration, weapons \
+			development, xenoarcheology, xenobiology, corporate espionage, and manipulation of political affairs."
+	work = "peacekeeping and piracy suppression"
+	headquarters = "Paris, Earth"
+	motto = "The truth will set you free."
+	ship_prefixes = list("ONI" = "classified", "ONI" = "archeological", "ONI" = "exploration", "ONI" = "logistic") // It's all ONI but let's mix up what missions they do.
+	ship_names = list("Aegis Fate", // PLACEHOLDERS. Aside from ones I've specifically marked, these should be replaced.
+					"Ain't No Sunshine",
+					"All Under Heaven",
+					"Allegiance",
+					"Andraste",
+					"Anjou",
+					"Barracuda",
+					"Bastion",
+					"Buenos Aires",
+					"Bum Rush",
+					"Callisto",
+					"Charon",
+					"Colorado",
+					"Commonwealth",
+					"Corsair",
+					"DeGaulle",
+					"Devestator",
+					"Dust of Snow",
+					"Euphrates",
+					"Fair Weather",
+					"Finite Hearts",
+					"Forward Unto Dawn",
+					"Hammerhead",
+					"Herakles",
+					"Hoenir", // Notable USDF and ONI ship. Keep this name.
+					"In Amber Clad",
+					"Iwo Jima",
+					"Jolly Roger",
+					"Jormungandr",
+					"Leonidas",
+					"Meriwether Lewis",
+					"Midsummer Night", // Works for an ONI name.
+					"Mona Lisa",
+					"Olympus",
+					"Providence",
+					"Prydwen",
+					"Redoubtable",
+					"Rising Sun",
+					"Saratoga",
+					"Savannah",
+					"Shanxi",
+					"Song of the East",
+					"Stalwart Dawn",
+					"Strident",
+					"Tannenberg",
+					"Tokugawa",
+					"Totem Lake")
+	destination_names = list("parts unknown",
+							"none of your business",
+							"uncharted space",
+							"an undisclosed location",
+							"facility 8492",
+							"you don't want to know",
+							"if told you I'd have to kill you",
+							"... wait, why am I even telling you this? Just let me pass"
+							"stop asking questions")
 
 /datum/lore/organization/gov/kitsuhana
 	name = "Kitsuhana Heavy Industries"
