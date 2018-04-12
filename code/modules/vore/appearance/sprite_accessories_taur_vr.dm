@@ -17,6 +17,10 @@
 		return FALSE
 	return TRUE
 
+/datum/riding/taur/force_dismount(mob/M)
+	. =..()
+	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
+
 //Hoooo boy.
 /datum/riding/taur/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
@@ -61,7 +65,8 @@
 	. = ..()
 
 /mob/living/carbon/human/MouseDrop_T(var/atom/movable/C, mob/user)
-	user_buckle_mob(C, user, silent = TRUE)
+	if(user_buckle_mob(C, user, silent = TRUE))
+		visible_message("<span class='notice'>[C] starts riding [name]!</span>")
 
 /mob/living/carbon/human/attack_hand(mob/user as mob)
 	if(LAZYLEN(buckled_mobs))
