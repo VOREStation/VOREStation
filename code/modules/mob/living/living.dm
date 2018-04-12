@@ -1063,10 +1063,12 @@ default behaviour is:
 	//VOREStation Add
 	if(lying && LAZYLEN(buckled_mobs))
 		for(var/rider in buckled_mobs)
+			var/mob/living/L = rider
 			if(riding_datum)
-				riding_datum.force_dismount(rider)
+				riding_datum.force_dismount(L)
 			else
-				unbuckle_mob(rider)
+				unbuckle_mob(L)
+			L.Stun(5)
 	//VOREStation Add End
 	return canmove
 
