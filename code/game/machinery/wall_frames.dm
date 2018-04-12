@@ -54,17 +54,6 @@
 
 /obj/item/frame/proc/try_build(turf/on_wall, mob/user as mob)
 	update_type_list()
-	var/datum/frame/frame_types/frame_type
-	if(!build_machine_type)
-		var/datum/frame/frame_types/response = input(user, "What kind of frame would you like to make?", "Frame type request", null) in frame_types_wall
-		if(!response || response.name == "Cancel")
-			return
-		frame_type = response
-
-		build_machine_type = /obj/structure/frame
-
-		if(frame_type.frame_size != 5)
-			new /obj/item/stack/material/steel(user.loc, (5 - frame_type.frame_size))
 
 	if(get_dist(on_wall, user)>1)
 		return
@@ -91,6 +80,18 @@
 	if(gotwallitem(loc, ndir))
 		to_chat(user, "<span class='danger'>There's already an item on this wall!</span>")
 		return
+
+	var/datum/frame/frame_types/frame_type
+	if(!build_machine_type)
+		var/datum/frame/frame_types/response = input(user, "What kind of frame would you like to make?", "Frame type request", null) in frame_types_wall
+		if(!response || response.name == "Cancel")
+			return
+		frame_type = response
+
+		build_machine_type = /obj/structure/frame
+
+		if(frame_type.frame_size != 5)
+			new /obj/item/stack/material/steel(user.loc, (5 - frame_type.frame_size))
 
 	var/obj/machinery/M = new build_machine_type(loc, ndir, 1, frame_type)
 	M.fingerprints = fingerprints
