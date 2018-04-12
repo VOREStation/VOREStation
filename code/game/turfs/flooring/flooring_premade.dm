@@ -1,6 +1,6 @@
 /turf/simulated/floor/carpet
 	name = "carpet"
-	icon = 'icons/turf/flooring/carpet_vr.dmi'
+	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
 

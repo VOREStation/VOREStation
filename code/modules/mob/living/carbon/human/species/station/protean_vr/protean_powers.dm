@@ -220,7 +220,6 @@
 			to_chat(temporary_form,"<span class='warning'>You need to regenerate more nanites first!</span>")
 		else if(temporary_form.stat)
 			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
-			return
 		else
 			nano_outofblob(temporary_form)
 	
@@ -285,9 +284,8 @@
 			user.resize(size_factor)
 		else
 			to_chat(user,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
-		return
 	//Sizing down (or not at all)
-	if(cost <= 0)
+	else if(cost <= 0)
 		cost = abs(cost)
 		var/actually_added = refactory.add_stored_material("steel",cost)
 		user.resize(size_factor)
@@ -338,12 +336,10 @@
 		//Blobform using it
 		else
 			var/mob/living/simple_animal/protean_blob/blob = usr
-			if(!blob.humanform)
-				return
 			do_ability(blob.humanform)
 
 /obj/effect/protean_ability/proc/do_ability(var/mob/living/L)
-	if(istype(L) && !L.stat)
+	if(istype(L))
 		call(L,to_call)()
 	return FALSE
 

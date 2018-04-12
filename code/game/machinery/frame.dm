@@ -12,11 +12,6 @@
 		else
 			construction_frame_floor += type
 
-	var/datum/frame/frame_types/cancel/cancel = new /datum/frame/frame_types/cancel
-	construction_frame_wall += cancel
-	construction_frame_floor += cancel
-
-
 //////////////////////////////
 // Frame Type Datum - Describes the frame structures that can be created from a frame item.
 //////////////////////////////
@@ -179,9 +174,6 @@
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 24
 	y_offset = 24
-
-/datum/frame/frame_types/cancel //used to get out of input dialogue
-	name = "Cancel"
 
 //////////////////////////////
 // Frame Object (Structure)

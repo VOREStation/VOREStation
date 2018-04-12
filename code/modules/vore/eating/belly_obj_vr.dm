@@ -32,14 +32,22 @@
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
 	var/release_sound = TRUE				// Boolean for now, maybe replace with something else later
+	var/mode_flags = 0						// Stripping, numbing, etc.
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
-	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ITEMWEAK,DM_STRIPDIGEST,DM_HEAL,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_DIGEST_NUMB)	// Possible digest modes
+	//Actual full digest modes
+	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL)
+	//Digest mode addon flags
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Itemweak" = DM_FLAG_ITEMWEAK, "Stripping" = DM_FLAG_STRIPPING)
+	//Transformation modes
 	var/tmp/static/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
+	
+	//List of slots that stripping handles strips
 	var/tmp/static/list/slots = list(slot_back,slot_handcuffed,slot_l_store,slot_r_store,slot_wear_mask,slot_l_hand,slot_r_hand,slot_wear_id,slot_glasses,slot_gloves,slot_head,slot_shoes,slot_belt,slot_wear_suit,slot_w_uniform,slot_s_store,slot_l_ear,slot_r_ear)
 
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
+	var/tmp/tf_mode = DM_TRANSFORM_REPLICA		// Current transformation mode.
 	var/tmp/next_process = 0					// Waiting for this SSbellies times_fired to process again.
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a belly controller tick #
@@ -127,7 +135,8 @@
 		"digest_messages_owner",
 		"digest_messages_prey",
 		"examine_messages",
-		"emote_lists"
+		"emote_lists",
+		"mode_flags"
 		)
 
 /obj/belly/New(var/newloc)
@@ -359,9 +368,12 @@
 					brain.forceMove(src)
 					items_preserved += brain
 			for(var/slot in slots)
-				var/obj/item/thingy = M.get_equipped_item(slot = slot)
-				if(thingy)
-					M.unEquip(thingy,force = TRUE)
+				var/obj/item/I = M.get_equipped_item(slot = slot)
+				if(I)
+					M.unEquip(I,force = TRUE)
+					I.gurgle_contaminate(contents, owner) //We do an initial contamination pass to get stuff like IDs wet.
+					if(mode_flags & DM_FLAG_ITEMWEAK)
+						items_preserved |= I
 
 	//Reagent transfer
 	if(ishuman(owner))
@@ -383,6 +395,8 @@
 	M.absorbed = 1
 	to_chat(M,"<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
 	to_chat(owner,"<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
+	if(M.noisy) //Mute drained absorbee hunger if enabled.
+		M.noisy = FALSE
 
 	if(ishuman(M) && ishuman(owner))
 		var/mob/living/carbon/human/Prey = M
@@ -533,17 +547,12 @@
 			digest_mode = DM_ABSORB
 			return
 
-		else if(prob(digestchance) && digest_mode != DM_ITEMWEAK && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
+		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
 			to_chat(R,"<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to get more active...</span>")
 			to_chat(owner,"<span class='warning'>You feel your [lowertext(name)] beginning to become active!</span>")
-			digest_mode = DM_ITEMWEAK
-			return
-
-		else if(prob(digestchance) && digest_mode == DM_ITEMWEAK) //Oh god it gets even worse if you fail twice!
-			to_chat(R,"<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to get even more active!</span>")
-			to_chat(owner,"<span class='warning'>You feel your [lowertext(name)] beginning to become even more active!</span>")
 			digest_mode = DM_DIGEST
 			return
+
 		else //Nothing interesting happened.
 			to_chat(R,"<span class='warning'>You make no progress in escaping [owner]'s [lowertext(name)].</span>")
 			to_chat(owner,"<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
@@ -601,6 +610,7 @@
 	dupe.transferlocation = transferlocation
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
+	dupe.mode_flags = mode_flags
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

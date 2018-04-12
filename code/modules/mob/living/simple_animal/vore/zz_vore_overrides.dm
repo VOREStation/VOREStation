@@ -243,4 +243,6 @@
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
-		
+
+/mob/living/simple_animal/mouse
+	faction = "mouse" //Giving mice a faction so certain mobs can get along with them.
