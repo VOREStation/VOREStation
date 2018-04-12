@@ -54,6 +54,7 @@
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
 						/mob/living/simple_animal/hostile/mimic,
+						/mob/living/simple_animal/hostile/rous,
 						/mob/living/simple_animal/otie;0.5)
 	..()
 
