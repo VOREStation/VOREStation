@@ -16,7 +16,7 @@
 	name = "Apex Metabolism"
 	desc = "Finally a proper excuse for your predatory actions. Also makes you process reagents faster but that's totally irrelevant. May cause excessive immersions with large/taur characters. Not recommended for efficient law-abiding workers or eco-aware NIF users."
 	cost = 0
-	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 0.5, "metabolism" = 0.010) //Big boy level
+	var_changes = list("metabolic_rate" = 1.5, "hunger_factor" = 0.3, "metabolism" = 0.0075)
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
 
 /datum/trait/cold_discomfort
