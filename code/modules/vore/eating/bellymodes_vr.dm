@@ -52,6 +52,7 @@
 			if(M.stat == DEAD)
 				var/digest_alert_owner = pick(digest_messages_owner)
 				var/digest_alert_prey = pick(digest_messages_prey)
+				var/compensation = M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
 				//Replace placeholder vars
 				digest_alert_owner = replacetext(digest_alert_owner,"%pred",owner)
@@ -69,6 +70,12 @@
 				play_sound = pick(death_sounds)
 				digestion_death(M)
 				owner.update_icons()
+				if(compensation > 0)
+					if(isrobot(owner))
+						var/mob/living/silicon/robot/R = owner
+						R.cell.charge += 25*compensation
+					else
+						owner.nutrition += 4.5*compensation
 				continue
 
 			if(digest_mode == DM_DIGEST_NUMB && ishuman(M))
@@ -84,11 +91,11 @@
 			var/difference = owner.size_multiplier / M.size_multiplier
 			if(isrobot(owner))
 				var/mob/living/silicon/robot/R = owner
-				R.cell.charge += 20*(digest_brute+digest_burn)
+				R.cell.charge += 25*(digest_brute+digest_burn)
 			if(offset) // If any different than default weight, multiply the % of offset.
-				owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
+				owner.nutrition += offset*(4.5*(digest_brute+digest_burn)/difference) //5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 1000 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 			else
-				owner.nutrition += 2*(digest_brute+digest_burn)/difference
+				owner.nutrition += 4.5*(digest_brute+digest_burn)/difference
 			M.updateVRPanel()
 
 		//Contaminate or gurgle items
