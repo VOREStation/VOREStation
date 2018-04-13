@@ -274,7 +274,7 @@
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/weapon/beartrap,
 				prob(1);/obj/item/weapon/handcuffs/fuzzy,
-				prob(1);/obj/item/weapon/handcuffs/legcuffs,
+				prob(1);/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
 				prob(4);/obj/item/device/radio_jammer,

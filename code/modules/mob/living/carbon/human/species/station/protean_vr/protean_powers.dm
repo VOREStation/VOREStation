@@ -220,7 +220,6 @@
 			to_chat(temporary_form,"<span class='warning'>You need to regenerate more nanites first!</span>")
 		else if(temporary_form.stat)
 			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
-			return
 		else
 			nano_outofblob(temporary_form)
 	
@@ -337,12 +336,10 @@
 		//Blobform using it
 		else
 			var/mob/living/simple_animal/protean_blob/blob = usr
-			if(!blob.humanform)
-				return
 			do_ability(blob.humanform)
 
 /obj/effect/protean_ability/proc/do_ability(var/mob/living/L)
-	if(istype(L) && !L.stat)
+	if(istype(L))
 		call(L,to_call)()
 	return FALSE
 

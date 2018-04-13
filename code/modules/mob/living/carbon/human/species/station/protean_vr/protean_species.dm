@@ -58,6 +58,8 @@
 	siemens_coefficient =   3 //Very bad zappy times
 	rarity_value =          5
 
+	darksight = 3 // Equivalent to the minor trait
+
 	has_organ = list(
 		O_BRAIN = /obj/item/organ/internal/mmi_holder/posibrain/nano,
 		O_ORCH = /obj/item/organ/internal/nano/orchestrator,

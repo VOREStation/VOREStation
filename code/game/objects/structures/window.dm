@@ -311,7 +311,7 @@
 				qdel(src)
 	else if(istype(W,/obj/item/frame) && anchored)
 		var/obj/item/frame/F = W
-		F.try_build(src)
+		F.try_build(src, user)
 	else
 		user.setClickCooldown(user.get_attack_speed(W))
 		if(W.damtype == BRUTE || W.damtype == BURN)

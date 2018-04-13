@@ -373,7 +373,7 @@
 /obj/structure/closet/wardrobe/pjs,
 /obj/item/weapon/handcuffs/fuzzy,
 /obj/item/weapon/handcuffs/fuzzy,
-/obj/item/weapon/handcuffs/legcuffs,
+/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 /obj/item/weapon/handcuffs/fuzzy,
 /obj/item/clothing/mask/balaclava,
 /obj/item/clothing/gloves/combat{
