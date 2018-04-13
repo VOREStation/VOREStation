@@ -5,6 +5,7 @@
 
 	var/datum/light_source/light
 	var/list/light_sources
+	var/light_datum_type = /datum/light_source
 
 // Nonsensical value for l_color default, so we can detect if it gets set to null.
 #define NONSENSICAL_VALUE -99999
@@ -41,7 +42,7 @@
 		if(light)
 			light.update(.)
 		else
-			light = new /datum/light_source(src, .)
+			light = new light_datum_type(src, .)
 
 /atom/New()
 	. = ..()
@@ -109,3 +110,19 @@
 /obj/item/dropped()
 	. = ..()
 	update_light()
+
+/obj/effect/sun
+	name = "sun"
+	desc ="SUNTHESUNTHESUNTHESUNTHE"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "sun"
+	invisibility = 100
+	anchored = TRUE
+	light_datum_type = /datum/light_source/sun
+	light_color = "#FFFFFF"
+	light_range = 65
+
+/obj/effect/sun/Destroy(force = FALSE)
+	if(!force)
+		return QDEL_HINT_LETMELIVE
+	return ..()

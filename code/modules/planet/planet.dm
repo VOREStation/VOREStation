@@ -13,12 +13,13 @@
 
 	var/sun_position = 0 // 0 means midnight, 1 means noon.
 	var/list/sun = list("range","brightness","color")
-	var/expected_z_levels = list()
+	var/list/expected_z_levels = list()
 
 	var/turf/unsimulated/wall/planetary/planetary_wall_type = /turf/unsimulated/wall/planetary
 
 	var/list/turf/simulated/floor/planet_floors = list()
 	var/list/turf/unsimulated/wall/planetary/planet_walls = list()
+	var/list/obj/effect/sun/planet_suns = list()
 
 
 	var/needs_work = 0 // Bitflags to signal to the planet controller these need (properly deferrable) work. Flags defined in controller.
@@ -27,6 +28,8 @@
 	..()
 	weather_holder = new(src)
 	current_time = current_time.make_random_time()
+	if(expected_z_levels.len)
+		build_suns()
 	update_sun()
 
 /datum/planet/proc/process(amount)
@@ -49,4 +52,18 @@
 	sun["brightness"] = new_brightness
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
+
+/datum/planet/proc/build_suns()
+	var/desired_suns_per_row = 15
+
+	var/sun_spacing = Ceiling(max(world.maxx, world.maxy) / desired_suns_per_row)
+
+	for(var/z_level in expected_z_levels)			// Z
+		for(var/i = 1 to desired_suns_per_row)		// X
+			for(var/j = 1 to desired_suns_per_row)	// Y
+				var/turf/T = locate(i * sun_spacing, j * sun_spacing, z_level)
+				if(T) // We might've walked off the map if this is null.
+					var/obj/effect/sun/new_sun = new(T)
+					new_sun.light_range = sun_spacing-1
+					planet_suns += new_sun
 
