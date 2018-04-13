@@ -426,13 +426,13 @@
 
 	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight")
 	destination_names = list(
+						"Mercury",
 						"Venus",
 						"Earth",
 						"Luna",
 						"Mars",
 						"Titan",
 						"Europa",
-						"Mercury",
 						"the SolGov embassy in Virgo-Erigone",
 						"the SolGov embassy in Vilous"
 						)// autogen will add a lot of other places as well.

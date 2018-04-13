@@ -435,7 +435,6 @@
 	destination_names = list(
 						"Venus",
 						"Earth",
-						"Mercury",
 						"Luna",
 						"Mars",
 						"Titan"

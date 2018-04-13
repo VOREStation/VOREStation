@@ -31,7 +31,7 @@
 	keywords += list("Radiance Energy Chain", "R.E.C.")
 	data = "A sparse government-owned chain of automated stations exists between [quick_link("Virgo 3")] and the star itself, known as the Radiance Energy Chain. The idea is based on \
 	an ancient design that was pioneered at Sol. The stations are heavily shielded from the stellar radiation, and feature massive \
-	arrays of photo-voltaic panels. Each station harvests energy from Vir using the solar panels, and sends it to other areas of \
+	arrays of photo-voltaic panels. Each station harvests energy from Virgo-Erigone using the solar panels, and sends it to other areas of \
 	the system by beaming the energy to several relay stations farther away from the star, typically with a large laser.\
 	<br><br>\
 	These stations are generally devoid of life, instead, they are operated mainly by [quick_link("drones")], with maintenance performed \
