@@ -1,5 +1,5 @@
 /datum/reagent/blood
-	data = new/list("donor" = null, "viruses" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
+	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	name = "Blood"
 	id = "blood"
 	taste_description = "iron"
@@ -159,6 +159,18 @@
 			L.ExtinguishMob()
 		L.adjust_fire_stacks(-(amount / 5))
 		remove_self(needed)
+
+/datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(6 * removed)
+	else
+		..()
+
+/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(6 * removed)
+	else
+		..()
 
 /datum/reagent/fuel
 	name = "Welding fuel"

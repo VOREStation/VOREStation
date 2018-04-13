@@ -1,5 +1,5 @@
-//These lists are populated in /datum/shuttle_controller/New()
-//Shuttle controller is instantiated in master_controller.dm.
+//These lists are populated in /datum/controller/subsystem/shuttles/proc/setup_shuttle_docks()
+//Shuttle subsystem is instantiated in shuttles.dm.
 
 //shuttle moving state defines are in setup.dm
 
@@ -60,11 +60,13 @@
 	return TRUE
 
 // If you need an event to occur when the shuttle jumps in short or long jump, override this.
-/datum/shuttle/proc/on_shuttle_departure()
+/datum/shuttle/proc/on_shuttle_departure(var/area/origin)
+	origin.shuttle_departed()
 	return
 
 // Similar to above, but when it finishes moving to the target.  Short jump generally makes this occur immediately after the above proc.
-/datum/shuttle/proc/on_shuttle_arrival()
+/datum/shuttle/proc/on_shuttle_arrival(var/area/destination)
+	destination.shuttle_arrived()
 	return
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
@@ -88,13 +90,13 @@
 			make_sounds(origin, HYPERSPACE_END)
 			return	//someone cancelled the launch
 
-		on_shuttle_departure()
+		on_shuttle_departure(origin)
 
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		move(origin, destination)
 		moving_status = SHUTTLE_IDLE
 
-		on_shuttle_arrival()
+		on_shuttle_arrival(destination)
 
 		make_sounds(destination, HYPERSPACE_END)
 
@@ -125,11 +127,12 @@
 
 		depart_time = world.time
 
-		on_shuttle_departure()
-
 		moving_status = SHUTTLE_INTRANSIT
 
+		on_shuttle_departure(departing)
+
 		move(departing, interim, direction)
+		interim.shuttle_arrived()
 
 		var/last_progress_sound = 0
 		var/made_warning = FALSE
@@ -144,10 +147,11 @@
 				create_warning_effect(destination)
 			sleep(5)
 
+		interim.shuttle_departed()
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
 
-		on_shuttle_arrival()
+		on_shuttle_arrival(destination)
 
 		make_sounds(destination, HYPERSPACE_END)
 
@@ -200,7 +204,7 @@
 			throwy = T.y
 
 	for(var/turf/T in dstturfs)
-		var/turf/D = locate(T.x, throwy - 1, 1)
+		var/turf/D = locate(T.x, throwy - 1, T.z)
 		for(var/atom/movable/AM as mob|obj in T)
 			AM.Move(D)
 
@@ -254,3 +258,7 @@
 			sound_to_play = 'sound/effects/shuttles/hyperspace_end.ogg'
 	for(var/obj/machinery/door/E in A)	//dumb, I know, but playing it on the engines doesn't do it justice
 		playsound(E, sound_to_play, 50, FALSE)
+
+/datum/shuttle/proc/message_passengers(area/A, var/message)
+	for(var/mob/M in A)
+		M.show_message(message, 2)

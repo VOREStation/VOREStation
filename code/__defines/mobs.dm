@@ -9,7 +9,8 @@
 #define CANPARALYSE 0x4
 #define CANPUSH     0x8
 #define LEAPING     0x10
-#define PASSEMOTES  0x32    // Mob has a cortical borer or holders inside of it that need to see emotes.
+#define HIDING      0x20
+#define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
 #define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
@@ -98,9 +99,17 @@
 #define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
 #define INV_W_UNIFORM_DEF_ICON 'icons/mob/uniform.dmi'
 #define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON 'icons/mob/ties.dmi'
+#define INV_TIE_DEF_ICON 'icons/mob/ties.dmi'
 #define INV_SUIT_DEF_ICON 'icons/mob/suit.dmi'
-#define MAX_SUPPLIED_LAW_NUMBER 50
+#define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
+#define INV_GLOVES_DEF_ICON 'icons/mob/hands.dmi'
+#define INV_EYES_DEF_ICON 'icons/mob/eyes.dmi'
+#define INV_EARS_DEF_ICON 'icons/mob/ears.dmi'
+#define INV_FEET_DEF_ICON 'icons/mob/feet.dmi'
+#define INV_BELT_DEF_ICON 'icons/mob/belt.dmi'
+#define INV_MASK_DEF_ICON 'icons/mob/mask.dmi'
+#define INV_HCUFF_DEF_ICON 'icons/mob/mob.dmi'
+#define INV_LCUFF_DEF_ICON 'icons/mob/mob.dmi'
 
 // Character's economic class
 #define CLASS_UPPER 		"Wealthy"
@@ -218,6 +227,44 @@
 #define FBP_POSI	"Positronic"
 #define FBP_DRONE	"Drone"
 
+// 'Regular' species.
+#define SPECIES_HUMAN			"Human"
+#define SPECIES_HUMAN_VATBORN	"Vatborn"
+#define SPECIES_UNATHI			"Unathi"
+#define SPECIES_SKRELL			"Skrell"
+#define SPECIES_TESHARI			"Teshari"
+#define SPECIES_TAJ				"Tajara"
+#define SPECIES_PROMETHEAN		"Promethean"
+#define SPECIES_DIONA			"Diona"
+#define SPECIES_VOX				"Vox"
+
+// Monkey and alien monkeys.
+#define SPECIES_MONKEY			"Monkey"
+#define SPECIES_MONKEY_TAJ		"Farwa"
+#define SPECIES_MONKEY_SKRELL	"Neaera"
+#define SPECIES_MONKEY_UNATHI	"Stok"
+
+// Virtual Reality IDs.
+#define SPECIES_VR				"Virtual Reality Avatar"
+#define SPECIES_VR_HUMAN		"Virtual Reality Human"
+#define SPECIES_VR_UNATHI		"Virtual Reality Unathi"
+#define SPECIES_VR_TAJ			"Virtual Reality Tajara" // NO CHANGING.
+#define SPECIES_VR_SKRELL		"Virtual Reality Skrell"
+#define SPECIES_VR_TESHARI		"Virtual Reality Teshari"
+#define SPECIES_VR_DIONA		"Virtual Reality Diona"
+
+// Ayyy IDs.
+#define SPECIES_XENO			"Xenomorph"
+#define SPECIES_XENO_DRONE		"Xenomorph Drone"
+#define SPECIES_XENO_HUNTER		"Xenomorph Hunter"
+#define SPECIES_XENO_SENTINEL	"Xenomorph Sentinel"
+#define SPECIES_XENO_QUEEN		"Xenomorph Queen"
+
+// Misc species. Mostly unused but might as well be complete.
+#define SPECIES_SHADOW			"Shadow"
+#define SPECIES_SKELETON		"Skeleton"
+#define SPECIES_GOLEM			"Golem"
+
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1
 #define SA_ANIMAL	2
@@ -256,3 +303,6 @@
 #define VIS_MESONS			20
 
 #define VIS_COUNT			20 //Must be highest number from above.
+
+//Some mob icon layering defines
+#define BODY_LAYER		-100

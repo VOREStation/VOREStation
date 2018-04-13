@@ -56,6 +56,9 @@
 /obj/machinery/power/apc/hyper
 	cell_type = /obj/item/weapon/cell/hyper
 
+/obj/machinery/power/apc/alarms_hidden
+	alarms_hidden = TRUE
+
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
@@ -112,6 +115,7 @@
 	var/global/list/status_overlays_equipment
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
+	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 
 /obj/machinery/power/apc/updateDialog()
 	if (stat & (BROKEN|MAINT))
@@ -223,6 +227,10 @@
 		src.area = get_area_name(areastring)
 		name = "\improper [area.name] APC"
 	area.apc = src
+
+	if(istype(area, /area/submap))
+		alarms_hidden = TRUE
+
 	update_icon()
 
 	make_terminal()
@@ -648,7 +656,7 @@
 		if ((stat & BROKEN) \
 				&& !opened \
 				&& W.force >= 5 \
-				&& W.w_class >= ITEMSIZE_NORMAL )
+				&& W.w_class >= ITEMSIZE_SMALL )
 			user.visible_message("<span class='danger'>The [src.name] has been hit with the [W.name] by [user.name]!</span>", \
 				"<span class='danger'>You hit the [src.name] with your [W.name]!</span>", \
 				"You hear a bang!")
@@ -666,7 +674,7 @@
 				istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
 				return src.attack_hand(user)
 			//Placeholder until someone can do take_damage() for APCs or something.
-			to_chat(user,"<span class='notice'>The [src.name] looks too sturdy to bash open.</span>")
+			to_chat(user,"<span class='notice'>The [src.name] looks too sturdy to bash open with \the [W.name].</span>")
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 
@@ -1108,7 +1116,7 @@
 		equipment = autoset(equipment, 0)
 		lighting = autoset(lighting, 0)
 		environ = autoset(environ, 0)
-		power_alarm.triggerAlarm(loc, src)
+		power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 		autoflag = 0
 
 	// update icon & area power if anything changed
@@ -1138,21 +1146,21 @@
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 1)
 			environ = autoset(environ, 1)
-			power_alarm.triggerAlarm(loc, src)
+			power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 			autoflag = 2
 	else if(cell.percent() <= 15)        // <15%, turn off lighting & equipment
 		if((autoflag > 1 && longtermpower < 0) || (autoflag > 1 && longtermpower >= 0))
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
-			power_alarm.triggerAlarm(loc, src)
+			power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 			autoflag = 1
 	else                                   // zero charge, turn all off
 		if(autoflag != 0)
 			equipment = autoset(equipment, 0)
 			lighting = autoset(lighting, 0)
 			environ = autoset(environ, 0)
-			power_alarm.triggerAlarm(loc, src)
+			power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 			autoflag = 0
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)

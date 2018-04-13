@@ -24,6 +24,11 @@
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 
+	// Overlay stuff.
+	var/overlay_half_state = "cell-o1" // Overlay used when not fully charged but not empty.
+	var/overlay_full_state = "cell-o2" // Overlay used when fully charged.
+	var/last_overlay_state = null // Used to optimize update_icon() calls.
+
 /obj/item/weapon/cell/New()
 	..()
 	charge = maxcharge
@@ -55,15 +60,38 @@
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/weapon/cell/update_icon()
-	overlays.Cut()
+#define OVERLAY_FULL	2
+#define OVERLAY_PARTIAL	1
+#define OVERLAY_EMPTY	0
 
-	if(charge < 0.01)
-		return
-	else if(charge/maxcharge >=0.995)
-		overlays += image('icons/obj/power.dmi', "cell-o2")
-	else
-		overlays += image('icons/obj/power.dmi', "cell-o1")
+/obj/item/weapon/cell/update_icon()
+	var/new_overlay = null // The overlay that is needed.
+	// If it's different than the current overlay, then it'll get changed.
+	// Otherwise nothing happens, to save on CPU.
+
+	if(charge < 0.01) // Empty.
+		new_overlay = OVERLAY_EMPTY
+		if(last_overlay_state != new_overlay)
+			cut_overlays()
+
+	else if(charge/maxcharge >= 0.995) // Full
+		new_overlay = OVERLAY_FULL
+		if(last_overlay_state != new_overlay)
+			cut_overlay(overlay_half_state)
+			add_overlay(overlay_full_state)
+
+
+	else // Inbetween.
+		new_overlay = OVERLAY_PARTIAL
+		if(last_overlay_state != new_overlay)
+			cut_overlay(overlay_full_state)
+			add_overlay(overlay_half_state)
+
+	last_overlay_state = new_overlay
+
+#undef OVERLAY_FULL
+#undef OVERLAY_PARTIAL
+#undef OVERLAY_EMPTY
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
@@ -234,5 +262,6 @@
 			return 0
 
 /obj/item/weapon/cell/suicide_act(mob/user)
-	viewers(user) << "<span class='danger'>\The [user] is licking the electrodes of \the [src]! It looks like \he's trying to commit suicide.</span>"
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	viewers(user) << "<span class='danger'>\The [user] is licking the electrodes of \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"
 	return (FIRELOSS)

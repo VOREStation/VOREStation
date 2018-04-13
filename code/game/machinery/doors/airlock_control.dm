@@ -130,17 +130,11 @@ obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 
 
 obj/machinery/door/airlock/initialize()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
 	update_icon()
-
-
-obj/machinery/door/airlock/New()
-	..()
-
-	if(radio_controller)
-		set_frequency(frequency)
 
 obj/machinery/door/airlock/Destroy()
 	if(frequency && radio_controller)
@@ -210,12 +204,8 @@ obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 obj/machinery/airlock_sensor/initialize()
+	. = ..()
 	set_frequency(frequency)
-
-obj/machinery/airlock_sensor/New()
-	..()
-	if(radio_controller)
-		set_frequency(frequency)
 
 obj/machinery/airlock_sensor/Destroy()
 	if(radio_controller)
@@ -227,6 +217,13 @@ obj/machinery/airlock_sensor/airlock_interior
 
 obj/machinery/airlock_sensor/airlock_exterior
 	command = "cycle_exterior"
+
+// Return the air from the turf in "front" of us (Used in shuttles, so it can be in the shuttle area but sense outside it)
+obj/machinery/airlock_sensor/airlock_exterior/shuttle/return_air()
+	var/turf/T = get_step(src, dir)
+	if(isnull(T))
+		return ..()
+	return T.return_air()
 
 obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
@@ -280,14 +277,8 @@ obj/machinery/access_button/proc/set_frequency(new_frequency)
 
 
 obj/machinery/access_button/initialize()
+	. = ..()
 	set_frequency(frequency)
-
-
-obj/machinery/access_button/New()
-	..()
-
-	if(radio_controller)
-		set_frequency(frequency)
 
 obj/machinery/access_button/Destroy()
 	if(radio_controller)

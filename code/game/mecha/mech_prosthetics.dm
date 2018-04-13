@@ -40,6 +40,7 @@
 	return
 
 /obj/machinery/pros_fabricator/initialize()
+	. = ..()
 	manufacturer = basic_robolimb.company
 	update_categories()
 

@@ -1,13 +1,13 @@
 // Alien clothing.
 /datum/gear/suit/zhan_furs
-	display_name = "Zhan-Khazan furs (Tajara)"
+	display_name = "Zhan-Khazan furs (Tajaran)"
 	path = /obj/item/clothing/suit/tajaran/furs
 	sort_category = "Xenowear"
 
 /datum/gear/head/zhan_scarf
 	display_name = "Zhan headscarf"
 	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = "Tajara"
+	whitelisted = SPECIES_TAJ
 
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"
@@ -19,7 +19,7 @@
 	display_name = "headtail chain selection (Skrell)"
 	path = /obj/item/clothing/ears/skrell/chain
 	sort_category = "Xenowear"
-	whitelisted = "Skrell"
+	whitelisted = SPECIES_SKRELL
 
 /datum/gear/ears/skrell/chains/New()
 	..()
@@ -33,7 +33,7 @@
 	display_name = "headtail band selection (Skrell)"
 	path = /obj/item/clothing/ears/skrell/band
 	sort_category = "Xenowear"
-	whitelisted = "Skrell"
+	whitelisted = SPECIES_SKRELL
 
 /datum/gear/ears/skrell/bands/New()
 	..()
@@ -47,7 +47,7 @@
 	display_name = "short headtail cloth (Skrell)"
 	path = /obj/item/clothing/ears/skrell/cloth_male/black
 	sort_category = "Xenowear"
-	whitelisted = "Skrell"
+	whitelisted = SPECIES_SKRELL
 
 /datum/gear/ears/skrell/cloth/short/New()
 	..()
@@ -61,7 +61,7 @@
 	display_name = "long headtail cloth (Skrell)"
 	path = /obj/item/clothing/ears/skrell/cloth_female/black
 	sort_category = "Xenowear"
-	whitelisted = "Skrell"
+	whitelisted = SPECIES_SKRELL
 
 /datum/gear/ears/skrell/cloth/long/New()
 	..()
@@ -75,7 +75,7 @@
 	display_name = "Colored bands (Skrell)"
 	path = /obj/item/clothing/ears/skrell/colored/band
 	sort_category = "Xenowear"
-	whitelisted = "Skrell"
+	whitelisted = SPECIES_SKRELL
 
 /datum/gear/ears/skrell/colored/band/New()
 	..()
@@ -85,7 +85,7 @@
 	display_name = "Colored chain (Skrell)"
 	path = /obj/item/clothing/ears/skrell/colored/chain
 	sort_category = "Xenowear"
-	whitelisted = "Skrell"
+	whitelisted = SPECIES_SKRELL
 
 /datum/gear/ears/skrell/colored/chain/New()
 	..()
@@ -94,7 +94,7 @@
 /datum/gear/uniform/smock
 	display_name = "smock selection (Teshari)"
 	path = /obj/item/clothing/under/seromi/smock
-	whitelisted = "Teshari"
+	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/smock/New()
@@ -108,7 +108,7 @@
 /datum/gear/uniform/undercoat
 	display_name = "undercoat selection (Teshari)"
 	path = /obj/item/clothing/under/seromi/undercoat
-	whitelisted = "Teshari"
+	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/undercoat/New()
@@ -122,7 +122,7 @@
 /datum/gear/suit/cloak
 	display_name = "cloak selection (Teshari)"
 	path = /obj/item/clothing/suit/storage/seromi/cloak
-	whitelisted = "Teshari"
+	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak/New()
@@ -148,3 +148,16 @@
 	path = /obj/item/clothing/shoes/footwraps
 	sort_category = "Xenowear"
 	cost = 1
+
+/datum/gear/uniform/cohesionsuits
+	display_name = "cohesion suit selection (Promethean)"
+	path = /obj/item/clothing/under/cohesion
+	sort_category = "Xenowear"
+
+/datum/gear/uniform/cohesionsuits/New()
+	..()
+	var/list/cohesionsuits = list()
+	for(var/cohesionsuit in (typesof(/obj/item/clothing/under/cohesion)))
+		var/obj/item/clothing/under/cohesion/cohesion_type = cohesionsuit
+		cohesionsuits[initial(cohesion_type.name)] = cohesion_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cohesionsuits))

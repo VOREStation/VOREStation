@@ -1001,11 +1001,6 @@
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
 			M.drop_from_inventory(I, locker)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			H.update_icons_layers() //Cheaper
-		else
-			M.update_icons()
 
 		//so they black out before warping
 		M.Paralyse(5)
@@ -1188,10 +1183,8 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 		var/block=text2num(href_list["block"])
-		//testing("togmutate([href_list["block"]] -> [block])")
 		usr.client.cmd_admin_toggle_block(H,block)
 		show_player_panel(H)
-		//H.regenerate_icons()
 
 	else if(href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])
@@ -1228,7 +1221,7 @@
 		if(ismob(M))
 			var/take_msg = "<span class='notice'><b>ADMINHELP</b>: <b>[key_name(usr.client)]</b> is attending to <b>[key_name(M)]'s</b> adminhelp, please don't dogpile them.</span>"
 			for(var/client/X in admins)
-				if((R_ADMIN|R_MOD|R_EVENT) & X.holder.rights)
+				if((R_ADMIN|R_MOD|R_EVENT|R_SERVER) & X.holder.rights)
 					to_chat(X, take_msg)
 			to_chat(M, "<span class='notice'><b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b></span>")
 		else
@@ -1863,6 +1856,17 @@
 					usr << "Failed to add language '[lang2toggle]' from \the [M]!"
 
 			show_player_panel(M)
+
+	else if(href_list["cryoplayer"])
+		if(!check_rights(R_ADMIN))	return
+
+		var/mob/M = locate(href_list["cryoplayer"])
+		if(!istype(M))
+			to_chat(usr,"<span class='warning'>Mob doesn't exist!</span>")
+			return
+
+		var/client/C = usr.client
+		C.despawn_player(M)
 
 	// player info stuff
 

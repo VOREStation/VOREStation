@@ -40,11 +40,14 @@ var/global/datum/global_init/init = new ()
 
 #define RECOMMENDED_VERSION 501
 /world/New()
+	world.log << "Map Loading Complete"
 	//logs
-	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
-	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
+	diary = file("[log_path].log")
+	href_logfile = file("[log_path]-hrefs.htm")
+	error_log = file("[log_path]-error.log")
+	debug_log = file("[log_path]-debug.log")
+	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
@@ -110,15 +113,20 @@ var/global/datum/global_init/init = new ()
 	// Create frame types.
 	populate_frame_types()
 
+	// Create floor types.
+	populate_flooring_types()
+
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
+
+	processScheduler.deferSetupFor(/datum/controller/process/ticker)
+	processScheduler.setup()
 	Master.Initialize(10, FALSE)
+
 	spawn(1)
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		processScheduler.setup()
 		master_controller.setup()
 #if UNIT_TEST
 		initialize_unit_tests()
@@ -136,7 +144,7 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	debug_log << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
 
 	if (T == "ping")
 		var/x = 1

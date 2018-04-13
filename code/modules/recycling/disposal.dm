@@ -130,9 +130,8 @@
 				for (var/mob/C in viewers(src))
 					C.show_message("<font color='red'>[GM.name] has been placed in the [src] by [user].</font>", 3)
 				qdel(G)
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM.name] ([GM.ckey]) in disposals.</font>")
-				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [usr.name] ([usr.ckey])</font>")
-				msg_admin_attack("[usr] ([usr.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+				
+				add_attack_logs(user,GM,"Disposals dunked")
 		return
 
 	if(isrobot(user))
@@ -185,9 +184,7 @@
 		msg = "[user.name] stuffs [target.name] into the [src]!"
 		user << "You stuff [target.name] into the [src]!"
 
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		add_attack_logs(user,target,"Disposals dunked")
 	else
 		return
 	if (target.client)
@@ -666,7 +663,8 @@
 	var/dpdir = 0		// bitmask of pipe directions
 	dir = 0				// dir will contain dominant direction for junction pipes
 	var/health = 10 	// health points 0-10
-	layer = 2.3			// slightly lower than wires and other pipes
+	plane = PLATING_PLANE
+	layer = DISPOSAL_LAYER	// slightly lower than wires and other pipes
 	var/base_icon_state	// initial icon state on map
 	var/sortType = ""
 	var/subtype = 0

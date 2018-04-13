@@ -50,7 +50,7 @@
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
-	if(!client)	return
+	if(!client && !teleop)	return
 
 	if (type)
 		if((type & 1) && (is_blind() || paralysis) )//Vision related
@@ -69,9 +69,11 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		src << "<I>... You can almost hear someone talking ...</I>"
+		to_chat(src,"<I>... You can almost hear someone talking ...</I>")
 	else
-		src << msg
+		to_chat(src,msg)
+		if(teleop)
+			to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[msg]")
 	return
 
 // Show a message to all mobs and objects in sight of this one
@@ -142,7 +144,6 @@
 /mob/proc/Life()
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
-	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
 	return
 
 #define UNBUCKLED 0
@@ -525,10 +526,10 @@
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
 				if(e && H.lying)
-					if(((e.status & ORGAN_BROKEN && !(e.splinted)) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
+					if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted && e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
 						return 1
 						break
-		return 0
+	return 0
 
 /mob/MouseDrop(mob/M as mob)
 	..()
@@ -643,6 +644,9 @@
 	return client && !!mind
 
 /mob/proc/get_gender()
+	return gender
+
+/mob/proc/get_visible_gender()
 	return gender
 
 /mob/proc/see(message)
@@ -764,16 +768,19 @@
 	if(status_flags & CANSTUN)
 		facing_dir = null
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
+		update_canmove()	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
 		stunned = max(amount,0)
+		update_canmove()	//updates lying, canmove and icons
 	return
 
 /mob/proc/AdjustStunned(amount)
 	if(status_flags & CANSTUN)
 		stunned = max(stunned + amount,0)
+		update_canmove()	//updates lying, canmove and icons
 	return
 
 /mob/proc/Weaken(amount)
@@ -786,7 +793,7 @@
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)
 		weakened = max(amount,0)
-		update_canmove()	//updates lying, canmove and icons
+		update_canmove()	//can you guess what this does yet?
 	return
 
 /mob/proc/AdjustWeakened(amount)
@@ -851,14 +858,17 @@
 /mob/proc/Resting(amount)
 	facing_dir = null
 	resting = max(max(resting,amount),0)
+	update_canmove()
 	return
 
 /mob/proc/SetResting(amount)
 	resting = max(amount,0)
+	update_canmove()
 	return
 
 /mob/proc/AdjustResting(amount)
 	resting = max(resting + amount,0)
+	update_canmove()
 	return
 
 /mob/proc/AdjustLosebreath(amount)
@@ -1126,3 +1136,26 @@ mob/proc/yank_out_object()
 	if(client && client.color)
 		animate(client, color = null, time = 10)
 	return
+
+/mob/proc/swap_hand()
+	return
+
+//Throwing stuff
+/mob/proc/throw_item(atom/target)
+	return
+
+/mob/MouseEntered(location, control, params)
+	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips))
+		openToolTip(user = usr, tip_src = src, params = params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
+
+	..()
+
+/mob/MouseDown()
+	closeToolTip(usr) //No reason not to, really
+
+	..()
+
+/mob/MouseExited()
+	closeToolTip(usr) //No reason not to, really
+
+	..()

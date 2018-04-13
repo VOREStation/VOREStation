@@ -65,7 +65,7 @@ emp_act
 				c_hand = r_hand
 
 			if(c_hand && (stun_amount || agony_amount > 10))
-				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
+				msg_admin_attack("[key_name(src)] was disarmed by a stun effect")
 
 				drop_from_inventory(c_hand)
 				if (affected.robotic >= ORGAN_ROBOT)
@@ -196,12 +196,6 @@ emp_act
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
 	return 0
-
-/mob/living/carbon/human/emp_act(severity)
-	for(var/obj/O in src)
-		if(!O)	continue
-		O.emp_act(severity)
-	..()
 
 /mob/living/carbon/human/proc/get_accuracy_penalty(mob/living/user)
 	// Certain statuses make it harder to score a hit.  These are the same as gun accuracy, however melee doesn't use multiples of 15.
@@ -347,7 +341,7 @@ emp_act
 
 /mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
 	var/obj/item/organ/external/affecting = get_organ(user.zone_sel.selecting)
-	if(!affecting || !(affecting.status & ORGAN_ROBOT))
+	if(!affecting || !(affecting.robotic >= ORGAN_ROBOT))
 		user << "<span class='warning'>That limb isn't robotic.</span>"
 		return -1
 	if(affecting.sabotaged)
@@ -409,13 +403,7 @@ emp_act
 		src.visible_message("<font color='red'>[src] has been hit in the [hit_area] by [O].</font>")
 
 		if(ismob(O.thrower))
-			var/mob/M = O.thrower
-			var/client/assailant = M.client
-			if(assailant)
-				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a [O], thrown by [M.name] ([assailant.ckey])</font>")
-				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Hit [src.name] ([src.ckey]) with a thrown [O]</font>")
-				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+			add_attack_logs(O.thrower,src,"Hit with thrown [O.name]")
 
 		//If the armor absorbs all of the damage, skip the rest of the calculations
 		var/soaked = get_armor_soak(affecting, "melee", O.armor_penetration)

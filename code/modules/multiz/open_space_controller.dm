@@ -61,12 +61,6 @@
 			add_turf(T)
 	open_space_initialised = TRUE
 
-/turf/simulated/open/initialize()
-	. = ..()
-	if(open_space_initialised)
-		// log_debug("[src] ([x],[y],[z]) queued for update for initialize()")
-		OS_controller.add_turf(src)
-
 /turf/Entered(atom/movable/AM)
 	. = ..()
 	if(open_space_initialised && !AM.invisibility && isobj(AM))

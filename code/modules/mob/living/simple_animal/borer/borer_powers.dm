@@ -104,7 +104,6 @@
 			M << "Something disgusting and slimy wiggles into your ear!"
 
 		src.host = M
-		src.host.status_flags |= PASSEMOTES
 		src.forceMove(M)
 
 		//Update their traitor status.

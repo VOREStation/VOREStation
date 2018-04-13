@@ -7,7 +7,7 @@
 	var/list/stating_laws = list()// Channels laws are currently being stated on
 	var/obj/item/device/radio/common_radio
 
-	var/list/hud_list[10]
+	has_huds = TRUE
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
 
 	//Used in say.dm.
@@ -30,7 +30,8 @@
 /mob/living/silicon/New()
 	silicon_mob_list |= src
 	..()
-	add_language("Galactic Common")
+	add_language(LANGUAGE_GALCOM)
+	set_default_language(all_languages[LANGUAGE_GALCOM])
 	init_id()
 	init_subsystems()
 
@@ -322,6 +323,8 @@
 /mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)
 		next_alarm_notice = world.time + SecondsToTicks(10)
+	if(alarm.hidden)
+		return
 
 	var/list/alarms = queued_alarms[alarm_handler]
 	if(was_raised)

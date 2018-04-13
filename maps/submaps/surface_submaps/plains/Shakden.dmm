@@ -1,0 +1,34 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Shakden)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Shakden)
+"d" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"e" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"f" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"g" = (/mob/living/simple_animal/hostile/shantak{hostile = 0},/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"h" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"i" = (/mob/living/simple_animal/hostile/shantak{hostile = 0},/turf/simulated/floor/outdoors/dirt,/area/submap/Shakden)
+"j" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"k" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/material/knife/hook,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+abbbccccccccccccbbba
+abccccccccccccccccba
+abccccdddedfccccccba
+abccceddgddddddcccca
+abcchdddddddgddcccca
+acccdddddccdddddccca
+accddddcccccdddddcca
+abcdgddcccccddgddcca
+abccdddhcceddddddcca
+abccdddddddddccddcca
+abcedddddddddccdddba
+accddgddgdddcccdddba
+acccdddddddcccdddbba
+acccddgdddfcccdddbba
+accccdddijkcccddcbba
+abccccddddecccddccba
+abccccccccccccccccba
+abbccccccbbbbccccbba
+aaaaaaaaaaaaaaaaaaaa
+"}

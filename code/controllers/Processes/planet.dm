@@ -47,7 +47,8 @@ var/datum/controller/process/planet/planet_controller = null
 		//Weather style needs redrawing
 		if(P.needs_work & PLANET_PROCESS_WEATHER)
 			P.needs_work &= ~PLANET_PROCESS_WEATHER
-			var/image/new_overlay = image(icon = P.weather_holder.current_weather.icon, icon_state = P.weather_holder.current_weather.icon_state, layer = LIGHTING_LAYER - 1)
+			var/image/new_overlay = image(icon = P.weather_holder.current_weather.icon, icon_state = P.weather_holder.current_weather.icon_state)
+			new_overlay.plane = PLANE_PLANETLIGHTING
 			//Redraw weather icons
 			for(var/T in P.planet_floors)
 				var/turf/simulated/turf = T

@@ -6,19 +6,19 @@
 	density = 0
 	anchored = 1.0
 	w_class = ITEMSIZE_NORMAL
-	layer = 2.3 //under pipes
+	plane = PLATING_PLANE
 	//	flags = CONDUCT
 
 /obj/structure/lattice/initialize()
-	..()
+	. = ..()
 
 	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/mineral)))
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
-			qdel(LAT)
+			crash_with("Found multiple lattices at '[log_info_line(loc)]'")
+			return INITIALIZE_HINT_QDEL
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()

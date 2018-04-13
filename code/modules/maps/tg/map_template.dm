@@ -13,6 +13,7 @@ var/list/global/map_templates = list()
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
+	var/template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
 	var/width = 0
 	var/height = 0
 	var/mappath = null
@@ -23,6 +24,7 @@ var/list/global/map_templates = list()
 	it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc. \
 	Set to -1 to force the submap to always be made.
 	var/allow_duplicates = FALSE // If false, only one map template will be spawned by the game. Doesn't affect admins spawning then manually.
+	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
 
 	var/static/dmm_suite/maploader = new
 
@@ -43,70 +45,52 @@ var/list/global/map_templates = list()
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(var/list/bounds)
-	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
+		return // let proper initialisation handle it later
+
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
-//	var/list/turf/turfs = list()
-
-	for(var/L in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
-	                   locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
+	var/list/obj/structure/cable/cables = list()
+	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	var/list/turf/turfs = block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
+	                   			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
+	for(var/L in turfs)
 		var/turf/B = L
 		atoms += B
+		areas |= B.loc
 		for(var/A in B)
 			atoms += A
-//			turfs += B
-			areas |= get_area(B)
-			if(istype(A, /obj/machinery/atmospherics))
+			if(istype(A, /obj/structure/cable))
+				cables += A
+			else if(istype(A, /obj/machinery/atmospherics))
 				atmos_machines += A
+	atoms |= areas
 
-	var/i = 0
-
-// Apparently when areas get initialize()'d they initialize their turfs as well.
-// If this is ever changed, uncomment the block of code below.
-
-//	admin_notice("<span class='danger'>Initializing newly created simulated turfs in submap.</span>", R_DEBUG)
-//	for(var/turf/simulated/T in turfs)
-//		T.initialize()
-//		i++
-//	admin_notice("<span class='danger'>[i] turf\s initialized.</span>", R_DEBUG)
-//	i = 0
-
-	SScreation.initialize_late_atoms()
-
-	admin_notice("<span class='danger'>Initializing newly created area(s) in submap.</span>", R_DEBUG)
-	for(var/area/A in areas)
-		A.initialize()
-		i++
-	admin_notice("<span class='danger'>[i] area\s initialized.</span>", R_DEBUG)
-	i = 0
+	admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
+	SSatoms.InitializeAtoms(atoms)
 
 	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
-	for(var/obj/machinery/atmospherics/machine in atmos_machines)
-		machine.atmos_init()
-		i++
-
-	for(var/obj/machinery/atmospherics/machine in atmos_machines)
-		machine.build_network()
-
-	for(var/obj/machinery/atmospherics/unary/U in machines)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
-			T.broadcast_status()
-	admin_notice("<span class='danger'>[i] pipe\s initialized.</span>", R_DEBUG)
+	SSmachines.setup_atmos_machinery(atmos_machines)
 
 	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
-	SSmachines.makepowernets()
+	SSmachines.setup_powernets_for_cables(cables)
+
+	// Ensure all machines in loaded areas get notified of power status
+	for(var/I in areas)
+		var/area/A = I
+		A.power_change()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z()
-	var/x = round(world.maxx/2)
-	var/y = round(world.maxy/2)
+/datum/map_template/proc/load_new_z(var/centered = FALSE)
+	var/x = 1
+	var/y = 1
 
-	var/list/bounds = maploader.load_map(file(mappath), x, y)
+	if(centered)
+		x = round((world.maxx - width)/2)
+		y = round((world.maxy - height)/2)
+
+	var/list/bounds = maploader.load_map(file(mappath), x, y, no_changeturf = TRUE)
 	if(!bounds)
 		return FALSE
 
@@ -117,7 +101,7 @@ var/list/global/map_templates = list()
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, dont_init = FALSE)
+/datum/map_template/proc/load(turf/T, centered = FALSE)
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
@@ -139,8 +123,7 @@ var/list/global/map_templates = list()
 //		repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
-	if(!dont_init)
-		initTemplateBounds(bounds)
+	initTemplateBounds(bounds)
 
 	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
 	loaded++
@@ -197,6 +180,8 @@ var/list/global/map_templates = list()
 			continue
 		if(!istype(MT, desired_map_template_type)) // Not the type wanted.
 			continue
+		if(MT.discard_prob && prob(MT.discard_prob))
+			continue
 		if(MT.cost && MT.cost < 0) // Negative costs always get spawned.
 			priority_submaps += MT
 		else
@@ -205,6 +190,7 @@ var/list/global/map_templates = list()
 	CHECK_TICK
 
 	var/list/loaded_submap_names = list()
+	var/list/template_groups_used = list() // Used to avoid spawning three seperate versions of the same PoI.
 
 	// Now lets start choosing some.
 	while(budget > 0 && overall_sanity > 0)
@@ -225,6 +211,14 @@ var/list/global/map_templates = list()
 
 		// Can we afford it?
 		if(chosen_template.cost > budget)
+			priority_submaps -= chosen_template
+			potential_submaps -= chosen_template
+			continue
+
+		// Did we already place down a very similar submap?
+		if(chosen_template.template_group && chosen_template.template_group in template_groups_used)
+			priority_submaps -= chosen_template
+			potential_submaps -= chosen_template
 			continue
 
 		// If so, try to place it.
@@ -253,18 +247,25 @@ var/list/global/map_templates = list()
 			admin_notice("Submap \"[chosen_template.name]\" placed at ([T.x], [T.y], [T.z])", R_DEBUG)
 
 			// Do loading here.
-			chosen_template.load(T, centered = TRUE, dont_init = TRUE) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
+			chosen_template.load(T, centered = TRUE) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
 
 			CHECK_TICK
 
+			// For pretty maploading statistics.
 			if(loaded_submap_names[chosen_template.name])
 				loaded_submap_names[chosen_template.name] += 1
 			else
 				loaded_submap_names[chosen_template.name] = 1
 
+			// To avoid two 'related' similar submaps existing at the same time.
+			if(chosen_template.template_group)
+				template_groups_used += chosen_template.template_group
+
+			// To deduct the cost.
 			if(chosen_template.cost >= 0)
 				budget -= chosen_template.cost
 
+			// Remove the submap from our options.
 			if(chosen_template in priority_submaps) // Always remove priority submaps.
 				priority_submaps -= chosen_template
 			else if(!chosen_template.allow_duplicates)

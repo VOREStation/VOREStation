@@ -23,6 +23,10 @@
 	..(newloc,"gold")
 /turf/simulated/wall/silver/New(var/newloc)
 	..(newloc,"silver")
+/turf/simulated/wall/lead/New(var/newloc)
+	..(newloc,"lead")
+/turf/simulated/wall/r_lead/New(var/newloc)
+	..(newloc,"lead", "lead")
 /turf/simulated/wall/phoron/New(var/newloc)
 	..(newloc,"phoron")
 /turf/simulated/wall/sandstone/New(var/newloc)
@@ -35,6 +39,8 @@
 	..(newloc,"silver","gold")
 /turf/simulated/wall/sandstonediamond/New(var/newloc)
 	..(newloc,"sandstone","diamond")
+/turf/simulated/wall/snowbrick/New(var/newloc)
+	..(newloc,"packed snow")
 
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/New(var/newloc)
@@ -132,7 +138,7 @@
 	name = true_name
 
 /turf/simulated/shuttle/wall/initialize()
-	..()
+	. = ..()
 
 	if(join_group)
 		src.auto_join()
@@ -213,12 +219,12 @@
 	stripe_color = "#00FF00"
 
 /turf/simulated/shuttle/wall/voidcraft/initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /turf/simulated/shuttle/wall/voidcraft/update_icon()
 	if(stripe_color)
-		overlays.Cut()
+		cut_overlays()
 		var/image/I = image(icon = src.icon, icon_state = "o_[icon_state]")
 		I.color = stripe_color
-		overlays.Add(I)
+		add_overlay(I)

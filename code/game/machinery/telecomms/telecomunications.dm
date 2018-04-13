@@ -131,6 +131,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
+	. = ..()
 
 /obj/machinery/telecomms/Destroy()
 	telecomms_list -= src
@@ -314,7 +315,25 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuitboard = "/obj/item/weapon/circuitboard/telecomms/hub"
 	long_range_link = 1
 	netspeed = 40
+	var/list/telecomms_map
 
+/obj/machinery/telecomms/hub/initialize()
+	. = ..()
+	LAZYINITLIST(telecomms_map)
+
+/obj/machinery/telecomms/hub/process()
+	. = ..()
+	telecomms_map.Cut()
+
+	if(!on)
+		return
+
+	for(var/M in links)
+		if(istype(M,/obj/machinery/telecomms/receiver) || istype(M,/obj/machinery/telecomms/relay))
+			var/obj/machinery/telecomms/R = M
+			if(!R.on)
+				continue
+			telecomms_map |= R.listening_level
 
 /obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	if(is_freq_listening(signal))
@@ -633,9 +652,40 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/garbage_collector = 1 // if set to 0, will not be garbage collected
 	var/input_type = "Speech File"
 
+//Generic telecomm connectivity test proc
+/proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
+	if(!A || !B)
+		log_debug("can_telecomm(): Undefined endpoints!")
+		return FALSE
 
+	//Can't in this case, obviously!
+	if(is_jammed(A) || is_jammed(B))
+		return FALSE
 
+	//Items don't have a Z when inside an object or mob
+	var/turf/src_turf = get_turf(A)
+	var/turf/dst_turf = get_turf(B)
 
+	//Nullspace, probably.
+	if(!src_turf || !dst_turf)
+		return FALSE
 
+	var/src_z = src_turf.z
+	var/dst_z = dst_turf.z
 
+	//Mysterious!
+	if(!src_z || !dst_z)
+		return FALSE
 
+	//We can do the simple check first, if you have ad_hoc radios.
+	if(ad_hoc && src_z == dst_z)
+		return TRUE
+
+	//Let's look at hubs and see what we got.
+	var/can_comm = FALSE
+	for(var/obj/machinery/telecomms/hub/H in telecomms_list)
+		if((src_z in H.telecomms_map) && (dst_z in H.telecomms_map))
+			can_comm = TRUE
+			break
+
+	return can_comm

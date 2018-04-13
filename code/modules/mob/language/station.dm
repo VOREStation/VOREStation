@@ -63,6 +63,20 @@
 	"ka","aasi","far","wa","baq","ara","qara","zir","saam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
 	"hal","ket","jurl","mah","tul","cresh","azu","ragh","mro","mra","mrro","mrra")
 
+/datum/language/tajaranakhani
+	name = LANGUAGE_AKHANI
+	desc = "The language of the sea-faring Njarir'Akhan Tajaran. Borrowing some elements from Siik, the language is distinctly more structured."
+	speech_verb = "chatters"
+	ask_verb = "mrowls"
+	exclaim_verb = "wails"
+	colour = "akhani"
+	key = "h"
+	flags = WHITELISTED
+	syllables = list("mrr","rr","marr","tar","ahk","ket","hal","kah","dra","nal","kra","vah","dar","hrar", "eh",
+	"ara","ka","zar","mah","ner","zir","mur","hai","raz","ni","ri","nar","njar","jir","ri","ahn","kha","sir",
+	"kar","yar","kzar","rha","hrar","err","fer","rir","rar","yarr","arr","ii'r","jar","kur","ran","rii","ii",
+	"nai","ou","kah","oa","ama","uuk","bel","chi","ayt","kay","kas","akor","tam","yir","enai")
+
 /datum/language/tajaran/get_random_name(var/gender)
 
 	var/new_name = ..(gender,1)
@@ -84,6 +98,20 @@
 	space_chance = 30
 	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
+
+/datum/language/skrellfar
+	name = LANGUAGE_SKRELLIANFAR
+	desc = "The most common language among the Skrellian Far Kingdoms. Has an even higher than usual concentration of inaudible phonemes."
+	speech_verb = "warbles"
+	ask_verb = "warbles"
+	exclaim_verb = "sings"
+	whisper_verb = "hums"
+	colour = "skrellfar"
+	key = "p"
+	space_chance = 30
+	flags = WHITELISTED
+	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix", "...", "oo", "q", "nq", "x", "xq", "ll", "...", "...", "...") //should sound like there's holes in it
+
 
 /datum/language/human
 	name = LANGUAGE_SOL_COMMON
@@ -114,7 +142,7 @@
 
 /datum/language/machine
 	name = LANGUAGE_EAL
-	desc = "An efficient language of encoded tones developed by synthetics and cyborgs."
+	desc = "An efficient language of encoded tones developed by positronics."
 	speech_verb = "whistles"
 	ask_verb = "chirps"
 	exclaim_verb = "whistles loudly"

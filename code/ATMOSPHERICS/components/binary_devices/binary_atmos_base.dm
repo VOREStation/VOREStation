@@ -30,6 +30,9 @@
 			initialize_directions = EAST|WEST
 
 // Housekeeping and pipe network stuff below
+/obj/machinery/atmospherics/binary/get_neighbor_nodes_for_init()
+	return list(node1, node2)
+
 /obj/machinery/atmospherics/binary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
 		network1 = new_network
@@ -64,17 +67,8 @@
 	var/node2_connect = dir
 	var/node1_connect = turn(dir, 180)
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node1 = target
-				break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
-				node2 = target
-				break
+	STANDARD_ATMOS_CHOOSE_NODE(1, node1_connect)
+	STANDARD_ATMOS_CHOOSE_NODE(2, node2_connect)
 
 	update_icon()
 	update_underlays()

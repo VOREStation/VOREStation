@@ -13,10 +13,14 @@
 	speed = 8
 
 	harm_intent_damage = 8
-	melee_damage_lower = 5
-	melee_damage_upper = 5
 
-	attacktext = "chomped"
+	melee_damage_lower = 8
+	melee_damage_upper = 15
+	attack_armor_pen = 5	//It's a horror from beyond, I ain't gotta explain 5 AP
+	attack_sharp = 1
+	attack_edge = 1
+
+	attacktext = list("chomped")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	speak_emote = list("gibbers")
@@ -48,7 +52,7 @@
 	health = 160
 
 	harm_intent_damage = 5
-	melee_damage_lower = 8
+	melee_damage_lower = 13
 	melee_damage_upper = 25
 
 /mob/living/simple_animal/hostile/creature/strong/cult

@@ -26,6 +26,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/toggleguests,	//toggles whether guests can join the current game,
 	/datum/admins/proc/announce,		//priority announce something to all clients.,
 	/datum/admins/proc/intercom,		//send a fake intercom message, like an arrivals announcement,
+	/datum/admins/proc/intercom_convo,	//send a fake intercom conversation, like an ATC exchange,
 	/client/proc/colorooc,				//allows us to set a custom colour for everythign we say in ooc,
 	/client/proc/admin_ghost,			//allows us to ghost/reenter body at will,
 	/client/proc/toggle_view_range,		//changes how far we can see,
@@ -59,7 +60,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
-	/client/proc/ghost_view,			//let us see ghosts WHENEVERRRR
 //	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
 	/client/proc/investigate_show,		//various admintools for investigation. Such as a singulo grief-log,
 	/client/proc/secrets,
@@ -101,7 +101,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggle_attack_logs,
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/fixatmos,
-	/datum/admins/proc/sendFax
+	/datum/admins/proc/sendFax,
+	/client/proc/despawn_player
 	)
 
 var/list/admin_verbs_ban = list(
@@ -192,6 +193,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/cmd_display_del_log,
+	/client/proc/cmd_display_init_log,
+	/client/proc/cmd_display_overlay_log,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/reload_eventMs,
@@ -212,7 +215,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
-	/client/proc/ghost_view,
 	/client/proc/toggle_debug_logs,
 	/client/proc/admin_ghost,			//allows us to ghost/reenter body at will,
 	/datum/admins/proc/view_runtimes,
@@ -325,7 +327,6 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_info,
 	/client/proc/player_panel_new,
 	/client/proc/dsay,
-	/client/proc/ghost_view,
 	/datum/admins/proc/show_skills,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
@@ -350,7 +351,6 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/admin_ghost,
 	/datum/admins/proc/show_player_info,
 	/client/proc/dsay,
-	/client/proc/ghost_view,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/debug_variables,
 	/client/proc/check_antagonists,
@@ -489,24 +489,6 @@ var/list/admin_verbs_event_manager = list(
 			if(!body.key)
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/ghost_view()
-	set category = "Admin"
-	set name = "Ghost View"
-	set desc = "Toggles ability to see ghosts, even while in a mob."
-	if(!holder) return
-	if(!mob.plane_holder) return
-
-	var/choice = alert(src,"Do you want to see ghosts, or not?","Ghost viewing","Show 'em!","Cancel","Hide 'em!")
-	if(choice == "Cancel")
-		return
-
-	if(choice == "Show 'em!" && mob.plane_holder)
-		mob.plane_holder.set_vis(VIS_GHOSTS,TRUE)
-		to_chat(src,"<span class='notice'>Ghosts are now visible (while in this mob).</span>")
-	else if(mob.plane_holder)
-		mob.plane_holder.set_vis(VIS_GHOSTS,FALSE)
-		to_chat(src,"<span class='notice'>Ghosts are now hidden (while in this mob).</span>")
 
 /client/proc/invisimin()
 	set name = "Invisimin"
@@ -779,11 +761,11 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Debug"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
-	if(air_processing_killed)
-		air_processing_killed = 0
+	if(!SSair.can_fire)
+		SSair.can_fire = TRUE
 		usr << "<b>Enabled air processing.</b>"
 	else
-		air_processing_killed = 1
+		SSair.can_fire = FALSE
 		usr << "<b>Disabled air processing.</b>"
 	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
@@ -887,13 +869,13 @@ var/list/admin_verbs_event_manager = list(
 	if(!H.client)
 		usr << "Only mobs with clients can alter their own appearance."
 		return
-
+	var/datum/gender/T = gender_datums[H.get_visible_gender()]
 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
-			log_and_message_admins("has allowed [H] to change \his appearance, without whitelisting of races.")
+			log_and_message_admins("has allowed [H] to change [T.his] appearance, without whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 0)
 		if("No")
-			log_and_message_admins("has allowed [H] to change \his appearance, with whitelisting of races.")
+			log_and_message_admins("has allowed [H] to change [T.his] appearance, with whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -1043,7 +1025,7 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Fun"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
-	
+
 	if(alert("Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
 
 	T << "<span class='notice'><b><font size=3>Man up and deal with it.</font></b></span>"
@@ -1056,7 +1038,7 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Fun"
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
-	
+
 	if(alert("Are you sure you want to tell the whole server up?","Confirmation","Deal with it","No")=="No") return
 
 	for (var/mob/T as mob in mob_list)

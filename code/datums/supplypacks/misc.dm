@@ -70,3 +70,10 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Webbing crate"
+
+/datum/supply_packs/misc/holoplant
+	name = "Holoplant Pot"
+	contains = list(/obj/machinery/holoplant/shipped)
+	cost = 15
+	containertype = /obj/structure/closet/crate
+	containername = "Holoplant crate"

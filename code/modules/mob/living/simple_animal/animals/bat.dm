@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/scarybat
 	name = "space bats"
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
+	tt_desc = "Desmodus rotundus" //Common vampire bat
 	icon = 'icons/mob/bats.dmi'
 	icon_state = "bat"
 	icon_living = "bat"
@@ -20,11 +21,14 @@
 	response_harm = "hits the"
 
 	harm_intent_damage = 10
-	melee_damage_lower = 3
-	melee_damage_upper = 3
+
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	attack_sharp = 1
+
 	environment_smash = 1
 
-	attacktext = "bites"
+	attacktext = list("bites")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	min_oxy = 0

@@ -35,7 +35,7 @@
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
 				tally += 4
-			else if(E.splinted)
+			else if(E.splinted && E.splinted.loc != E)
 				tally += 0.5
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
@@ -47,7 +47,7 @@
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
 				tally += 4
-			else if(E.splinted)
+			else if(E.splinted && E.splinted.loc != E)
 				tally += 0.5
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
@@ -189,7 +189,7 @@
 		volume *= 0.5
 	else if(shoes)
 		var/obj/item/clothing/shoes/feet = shoes
-		if(feet)
+		if(istype(feet))
 			volume *= feet.step_volume_mod
 
 	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))

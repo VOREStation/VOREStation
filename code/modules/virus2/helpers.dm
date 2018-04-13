@@ -81,8 +81,16 @@ proc/airborne_can_reach(turf/source, turf/target)
 	var/list/antibodies_in_common = M.antibodies & disease.antigen
 	if(antibodies_in_common.len)
 		return
-	if(M.reagents.has_reagent("spaceacillin"))
-		return
+	if(M.chem_effects[CE_ANTIBIOTIC])
+		if(prob(disease.resistance))
+			var/datum/disease2/disease/D = disease.getcopy()
+			D.minormutate()
+			D.resistance += rand(1,9)
+//			log_debug("Adding virus")
+			M.virus2["[D.uniqueID]"] = D
+			BITSET(M.hud_updateflag, STATUS_HUD)
+		else
+			return //Virus prevented by antibiotics
 
 	if(!disease.affected_species.len)
 		return

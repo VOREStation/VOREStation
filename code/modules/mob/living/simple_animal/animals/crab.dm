@@ -2,6 +2,7 @@
 /mob/living/simple_animal/crab
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
+	tt_desc = "Ranina ranina"
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
@@ -49,7 +50,7 @@
 
 //Sif Crabs
 /mob/living/simple_animal/giant_crab
-	name = "Giant Crab"
+	name = "giant crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey."
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
@@ -67,8 +68,11 @@
 
 	minbodytemp = 175
 
-	melee_damage_lower = 15
+	melee_damage_lower = 22
 	melee_damage_upper = 35
+	attack_armor_pen = 35
+	attack_sharp = 1
+	attack_edge = 1
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	response_help  = "pets"

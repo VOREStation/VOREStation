@@ -1,6 +1,7 @@
 /mob/living/simple_animal/slime
 	name = "pet slime"
 	desc = "A lovable, domesticated slime."
+	tt_desc = "Amorphidae proteus"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey baby slime"
 	icon_living = "grey baby slime"
@@ -27,7 +28,7 @@
 	icon_dead = "rainbow baby slime dead"
 
 /mob/living/simple_animal/slime/science/initialize()
-	..()
+	. = ..()
 	overlays.Cut()
 	overlays += "aslime-:33"
 

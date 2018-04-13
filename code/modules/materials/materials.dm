@@ -99,6 +99,7 @@ var/list/name_to_material
 	var/conductivity = null      // How conductive the material is. Iron acts as the baseline, at 10.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	var/luminescence
+	var/radiation_resistance = 0 // Radiation resistance, which is added on top of a material's weight for blocking radiation. Needed to make lead special without superrobust weapons.
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
@@ -192,11 +193,16 @@ var/list/name_to_material
 	name = "placeholder"
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material)
+/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material, var/material/girder_material)
 	var/obj/structure/girder/G = new(target)
 	if(reinf_material)
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
+	if(girder_material)
+		if(istype(girder_material, /material))
+			girder_material = girder_material.name
+		G.set_material(girder_material)
+
 
 // General wall debris product placement.
 // Not particularly necessary aside from snowflakey cult girders.
@@ -341,6 +347,7 @@ var/list/name_to_material
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
 	stack_type = /obj/item/stack/material/marble
 
+
 /material/steel
 	name = DEFAULT_WALL_MATERIAL
 	stack_type = /obj/item/stack/material/steel
@@ -386,6 +393,7 @@ var/list/name_to_material
 	conductivity = 13 // For the purposes of balance.
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
+
 
 // Very rare alloy that is reflective, should be used sparingly.
 /material/durasteel
@@ -623,6 +631,16 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
+/material/lead
+	name = "lead"
+	stack_type = /obj/item/stack/material/lead
+	icon_colour = "#273956"
+	weight = 23 // Lead is a bit more dense than silver IRL, and silver has 22 ingame.
+	conductivity = 10
+	sheet_singular_name = "ingot"
+	sheet_plural_name = "ingots"
+	radiation_resistance = 25 // Lead is Special and so gets to block more radiation than it normally would with just weight, totalling in 48 protection.
+
 // Adminspawn only, do not let anyone get this.
 /material/alienalloy
 	name = "alienalloy"
@@ -647,6 +665,12 @@ var/list/name_to_material
 	name = "dungeonium"
 	display_name = "ultra-durable"
 	icon_base = "dungeon"
+	icon_colour = "#FFFFFF"
+
+/material/alienalloy/bedrock
+	name = "bedrock"
+	display_name = "impassable rock"
+	icon_base = "rock"
 	icon_colour = "#FFFFFF"
 
 /material/alienalloy/alium
@@ -734,6 +758,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
+	radiation_resistance = 1
 
 /material/snow
 	name = MAT_SNOW
@@ -751,6 +776,25 @@ var/list/name_to_material
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
 	sheet_plural_name = "pile" //Just a bigger pile
+	radiation_resistance = 1
+
+/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
+	name = "packed snow"
+	flags = MATERIAL_BRITTLE
+	stack_type = /obj/item/stack/material/snowbrick
+	icon_base = "stone"
+	icon_reinf = "reinf_stone"
+	icon_colour = "#D8FDFF"
+	integrity = 50
+	weight = 2
+	hardness = 2
+	protectiveness = 0 // 0%
+	stack_origin_tech = list(TECH_MATERIAL = 1)
+	melting_point = T0C+1
+	destruction_desc = "crumbles"
+	sheet_singular_name = "brick"
+	sheet_plural_name = "bricks"
+	radiation_resistance = 1
 
 /material/cloth //todo
 	name = "cloth"

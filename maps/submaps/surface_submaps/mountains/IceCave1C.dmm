@@ -1,0 +1,40 @@
+"a" = (/turf/simulated/wall/solidrock{block_tele = 0},/area/submap/cave/IceCave1C)
+"b" = (/turf/template_noop,/area/submap/cave/IceCave1C)
+"c" = (/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/IceCave1C)
+"d" = (/obj/machinery/crystal/ice,/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/IceCave1C)
+"e" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1C)
+"f" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1C)
+"g" = (/obj/machinery/crystal/ice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1C)
+"h" = (/obj/random/firstaid,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1C)
+"i" = (/obj/random/ammo,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1C)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaabbbbbbbbbbaaaaaaaaaa
+aaccccccccccccccddaabbbbbbbbbbaaaefggaaa
+aacdccccccccccccddaaabbbbbbbbaaagfffghaa
+aacccccccccccccdaaaaaaaaaaaaaaaafffffiaa
+aaccccccccccccccaaaaaaaaaaaaaaaffffffeaa
+aacccccccccccdccaaaaaadcccccdgfffffffaaa
+aaccccdcccccccccaaaaaacccccddggffgefgaaa
+aaccccccccccccccfffffgcdcccccfffaaaaaaaa
+aacccccdccccccccffggffccccdddgggaaaaaaab
+aaccccccccdcccccaaaaaaddaaaaaaaaaaabbbbb
+aaccdcccccccccccaaaaaaddageffffaaaabbbbb
+aadcccccccccccccaaggffgdagfffffaabbbbbbb
+aaccccccccccccdcaafffffgaaafafgaabbbbbbb
+aaaaaadddddddddfffffgfffffffaffaabbbbbbb
+aaaaaagggfffgddddggggggffgffaffaabbbbbbb
+aagggfffffffffccaaaaaaaafffgagfaabbbbbbb
+aagfffffffffffccaaaaaaaaggggaffaabbbbbbb
+aaaggfaaaaaaaaccaaaaaaagfffffffaabbbbbbb
+aaaaffaaaaaaaaccaaaaaaaffffffaaaabbbbbbb
+aaaaffgaaaaaaaccccccddafffffgaaaabbbbbbb
+aaaaaffgaaaaaaccccccddaagfaaaaabbbbbbbbb
+aaaagfffaaaaaaaaddccffgfffaaaaabbbbbbbbb
+aaaggafffaaaaaaaddccffffffaabbbbbbbbbbbb
+faaaaafffgaaaaaaaaaaaafffgaabbbbbbbbbbbb
+ffaaaagffaaaaaaaaaaaaaggggaabbbbbbbbbbbb
+fffffffffaaaaaaaaaaaaaaaaaaabbbbbbbbbbbb
+ffffffffaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbb
+"}

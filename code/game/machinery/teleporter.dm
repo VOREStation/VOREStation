@@ -18,7 +18,7 @@
 	return
 
 /obj/machinery/computer/teleporter/initialize()
-	..()
+	. = ..()
 	var/obj/machinery/teleport/station/station
 	var/obj/machinery/teleport/hub/hub
 

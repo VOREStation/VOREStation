@@ -3,7 +3,6 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
-	layer = 2.9
 	anchored = 1
 	density = 1
 	var/obj/machinery/computer3/laptop/vended/newlap = null
@@ -28,6 +27,9 @@
 
 /obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/item/weapon/card/id/I = W.GetID()
+
+	if(default_unfasten_wrench(user, W, 20))
+		return
 
 	if(vendmode == 1 && I)
 		scan_id(I, W)

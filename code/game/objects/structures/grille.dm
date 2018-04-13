@@ -7,7 +7,7 @@
 	anchored = 1
 	flags = CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	layer = 2.9
+	layer = UNDER_JUNK_LAYER
 	explosion_resistance = 1
 	var/health = 10
 	var/destroyed = 0
@@ -104,7 +104,7 @@
 			playsound(src, W.usesound, 100, 1)
 			anchored = !anchored
 			user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-								 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+								 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor.</span>")
 			return
 
 //window placing begin //TODO CONVERT PROPERLY TO MATERIAL DATUM

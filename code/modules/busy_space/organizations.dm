@@ -41,9 +41,9 @@
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(6, 10)
 		var/list/star_names = list(
-			"Sol", "Alpha Centauri", "Sirius", "Vega", "Regulus", "Vir", "Algol", "Aldebaran",
-			"Delta Doradus", "Menkar", "Geminga", "Elnath", "Gienah", "Mu Leporis", "Nyx", "Tau Ceti",
-			"Wazn", "Alphard", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "the Almach Rim")
+			"Sol", "Alpha Centauri", "Tau Ceti", "Zhu Que", "Oasis", "Vir", "Gavel", "Ganesha",
+			"Saint Columbia", "Altair", "Sidhe", "New Ohio", "Parvati", "Mahi-Mahi", "Nyx", "New Seoul",
+			"Kess-Gendar", "Raphael", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "Thoth", "Jahan's Post", "Kauq'xum", "Silk", "New Singapore", "Stove", "Viola", "Love", "Isavau's Gamble" )
 		var/list/destination_types = list("dockyard", "station", "vessel", "waystation", "telecommunications satellite", "spaceport", "distress beacon", "anomaly", "colony", "outpost")
 		while(i)
 			destination_names.Add("a [pick(destination_types)] in [pick(star_names)]")
@@ -104,8 +104,8 @@
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
-		//"NCS Northern Star in Vir",
-		"NLS Southern Cross in Vir",
+		"NCS Northern Star in Vir",
+		//"NLS Southern Cross in Vir",
 		"NAS Vir Central Command",
 		"a dockyard orbiting Sif",
 		"an asteroid orbiting Kara",
@@ -235,6 +235,19 @@
 	motto = ""
 
 	ship_prefixes = list("WTV" = "freight")
+	ship_names = list(
+		"Comet",
+		"Aurora",
+		"Supernova",
+		"Nebula",
+		"Galaxy",
+		"Starburst",
+		"Constellation",
+		"Pulsar",
+		"Quark",
+		"Void",
+		"Asteroid"
+		)
 	destination_names = list()
 
 /datum/lore/organization/tsc/bishop
@@ -360,7 +373,8 @@
 		"Preemptive Defensive Strike",
 		"This Ship Is Spiders",
 		"Legitimate Trade Vessel",
-		"Please Don't Explode II"
+		"Please Don't Explode II",
+		"Get Off the Air"
 		)
 	destination_names = list(
 		"a trade outpost in Shelf"

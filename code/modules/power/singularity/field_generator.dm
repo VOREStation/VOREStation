@@ -90,6 +90,7 @@ field_generator power level display
 					"You turn on the [src.name].", \
 					"You hear heavy droning")
 				turn_on()
+				log_game("FIELDGEN([x],[y],[z]) Activated by [key_name(user)]")
 				investigate_log("<font color='green'>activated</font> by [user.key].","singulo")
 
 				src.add_fingerprint(user)
@@ -213,6 +214,7 @@ field_generator power level display
 		for(var/mob/M in viewers(src))
 			M.show_message("<font color='red'>\The [src] shuts down!</font>")
 		turn_off()
+		log_game("FIELDGEN([x],[y],[z]) Lost power and was ON.")
 		investigate_log("ran out of power and <font color='red'>deactivated</font>","singulo")
 		src.power = 0
 		return 0
@@ -338,4 +340,5 @@ field_generator power level display
 					temp = 0
 					message_admins("A singulo exists and a containment field has failed.",1)
 					investigate_log("has <font color='red'>failed</font> whilst a singulo exists.","singulo")
+					log_game("FIELDGEN([x],[y],[z]) Containment failed while singulo/tesla exists.")
 			O.last_warning = world.time

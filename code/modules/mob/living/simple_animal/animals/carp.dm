@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/carp
 	name = "space carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	tt_desc = "Cyprinus aetherius" //carpspace? maybe
 	icon_state = "carp"
 	icon_living = "carp"
 	icon_dead = "carp_dead"
@@ -8,6 +9,7 @@
 
 	faction = "carp"
 	intelligence_level = SA_ANIMAL
+	hovering = TRUE
 	maxHealth = 25
 	health = 25
 	speed = 4
@@ -20,7 +22,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	//Space carp aren't affected by atmos.

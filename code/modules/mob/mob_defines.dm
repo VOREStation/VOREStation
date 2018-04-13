@@ -1,6 +1,7 @@
 /mob
 	density = 1
-	layer = 4.0
+	layer = MOB_LAYER
+	plane = MOB_PLANE
 	animate_movement = 2
 	flags = PROXMOVE
 	var/datum/mind/mind
@@ -217,7 +218,15 @@
 
 	var/seedarkness = 1	//Determines mob's ability to see shadows. 1 = Normal vision, 0 = darkvision
 
-	// Falling things
-	var/hovering = FALSE	// Is the mob floating or flying in some way? If so, don't fall normally.	//Not implemented yet, idea is to let them ignore terrain slowdown and falling down floors
-	var/softfall = FALSE	// Is the mob able to lessen their impact upon falling?
-	var/parachuting = FALSE	// Is the mob able to jump out of planes and survive? Don't check this directly outside of CanParachute().
+	var/get_rig_stats = 0 //Moved from computer.dm
+
+	var/typing
+	var/obj/effect/decal/typing_indicator
+
+	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level
+
+	var/default_pixel_x = 0 //For offsetting mobs
+	var/default_pixel_y = 0
+
+	var/attack_icon //Icon to use when attacking w/o anything in-hand
+	var/attack_icon_state //State for above

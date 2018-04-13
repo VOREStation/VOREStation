@@ -48,7 +48,7 @@
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(!reagents.total_volume)
+	if(reagents && !reagents.total_volume)
 		user << "<span class='danger'>None of [src] left!</span>"
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -105,9 +105,8 @@
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(!do_mob(user, M)) return
 
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-				msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+				//Do we really care about this
+				add_attack_logs(user,M,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
 
 				user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
@@ -375,6 +374,29 @@
 	reagents.add_reagent("sugar", 2)
 	reagents.add_reagent("coco", 2)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece
+	name = "chocolate piece"
+	desc = "A luscious milk chocolate piece filled with gooey caramel."
+	icon_state =  "chocolatepiece"
+	filling_color = "#7D5F46"
+	center_of_mass = list("x"=15, "y"=15)
+	nutriment_amt = 1
+	nutriment_desc = list("chocolate" = 3, "caramel" = 2, "lusciousness" = 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/white
+	name = "white chocolate piece"
+	desc = "A creamy white chocolate piece drizzled in milk chocolate."
+	icon_state = "chocolatepiece_white"
+	filling_color = "#E2DAD3"
+	nutriment_desc = list("white chocolate" = 3, "creaminess" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/truffle
+	name = "chocolate truffle"
+	desc = "A bite-sized milk chocolate truffle that could buy anyone's love."
+	icon_state = "chocolatepiece_truffle"
+	nutriment_desc = list("chocolate" = 3, "undying devotion" = 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolateegg
 	name = "Chocolate Egg"
@@ -1772,10 +1794,18 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
-	user << "You unwrap the cube."
+	to_chat(user, "You unwrap the cube.")
 	wrapped = 0
 	flags |= OPENCONTAINER
 	return
+
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
+		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
+		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
+	Expand()
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/on_reagent_change()
 	if(reagents.has_reagent("water"))
@@ -1974,7 +2004,7 @@
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/onionrings
-	name = "Onion Soup"
+	name = "Onion Rings"
 	desc = "Crispy rings."
 	icon_state = "onionrings"
 	trash = /obj/item/trash/plate
@@ -2445,9 +2475,9 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 	name = "meatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
+	desc = "The culinary base of every self-respecting eloquent gentleman."
 	icon_state = "meatbread"
-	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatbread
 	slices_num = 5
 	filling_color = "#FF7575"
 	center_of_mass = list("x"=19, "y"=9)
@@ -2459,7 +2489,7 @@
 	reagents.add_reagent("protein", 20)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread
 	name = "meatbread slice"
 	desc = "A slice of delicious meatbread."
 	icon_state = "meatbreadslice"
@@ -2469,14 +2499,14 @@
 	center_of_mass = list("x"=16, "y"=16)
 	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
 	filled = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 	name = "xenomeatbread loaf"
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
 	icon_state = "xenomeatbread"
-	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread
 	slices_num = 5
 	filling_color = "#8AFF75"
 	center_of_mass = list("x"=16, "y"=9)
@@ -2488,7 +2518,7 @@
 	reagents.add_reagent("protein", 20)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread
 	name = "xenomeatbread slice"
 	desc = "A slice of delicious meatbread. Extra Heretical."
 	icon_state = "xenobreadslice"
@@ -2499,7 +2529,7 @@
 	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled/filled
+/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread/filled
 	filled = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
@@ -3494,9 +3524,9 @@
 	..()
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/knife))
-		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
+/obj/item/weapon/reagent_containers/food/snacks/grown/attackby(obj/item/weapon/W, mob/user)
+	if(seed && seed.kitchen_tag && seed.kitchen_tag == "potato" && istype(W,/obj/item/weapon/material/knife))
+		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
 		user << "You cut the potato."
 		qdel(src)
 	else

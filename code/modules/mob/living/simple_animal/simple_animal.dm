@@ -5,6 +5,7 @@
 
 /mob/living/simple_animal
 	name = "animal"
+	desc = ""
 	icon = 'icons/mob/animal.dmi'
 	health = 20
 	maxHealth = 20
@@ -13,16 +14,28 @@
 	mob_swap_flags = MONKEY|SLIME|HUMAN
 	mob_push_flags = MONKEY|SLIME|HUMAN
 
+	var/tt_desc = "Uncataloged Life Form" //Tooltip description
+
 	//Settings for played mobs
 	var/show_stat_health = 1		// Does the percentage health show in the stat panel for the mob
 	var/ai_inactive = 0 			// Set to 1 to turn off most AI actions
+	var/has_hands = 0				// Set to 1 to enable the use of hands and the hands hud
+	var/humanoid_hands = 0			// Can a player in this mob use things like guns or AI cards?
+	var/hand_form = "hands"			// Used in IsHumanoidToolUser. 'Your X are not fit-'.
+	var/list/hud_gears				// Slots to show on the hud (typically none)
+	var/ui_icons					// Icon file path to use for the HUD, otherwise generic icons are used
+	var/r_hand_sprite				// If they have hands,
+	var/l_hand_sprite				// they could use some icons.
+	var/player_msg					// Message to print to players about 'how' to play this mob on login.
 
 	//Mob icon/appearance settings
 	var/icon_living = ""			// The iconstate if we're alive, required
 	var/icon_dead = ""				// The iconstate if we're dead, required
-	var/icon_gib = null				// The iconstate for being gibbed, optional
+	var/icon_gib = "generic_gib"	// The iconstate for being gibbed, optional. Defaults to a generic gib animation.
 	var/icon_rest = null			// The iconstate for resting, optional
 	var/image/modifier_overlay = null // Holds overlays from modifiers.
+	attack_icon = 'icons/effects/effects.dmi' //Just the default, played like the weapon attack anim
+	attack_icon_state = "slash" //Just the default
 
 	//Mob talking settings
 	universal_speak = 0				// Can all mobs in the entire universe understand this one?
@@ -69,7 +82,7 @@
 	var/cold_damage_per_tick = 2	// Same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
 	var/fire_alert = 0				// 0 = fine, 1 = hot, 2 = cold
 
-	var/min_oxy = 5					// Oxygen in moles, minimum, 0 is 'no minimum
+	var/min_oxy = 5					// Oxygen in moles, minimum, 0 is 'no minimum'
 	var/max_oxy = 0					// Oxygen in moles, maximum, 0 is 'no maximum'
 	var/min_tox = 0					// Phoron min
 	var/max_tox = 1					// Phoron max
@@ -104,13 +117,17 @@
 	//Mob melee settings
 	var/melee_damage_lower = 2		// Lower bound of randomized melee damage
 	var/melee_damage_upper = 6		// Upper bound of randomized melee damage
-	var/attacktext = "attacked"		// "You are [attacktext] by the mob!"
-	var/friendly = "nuzzles"		// What mobs do to people when they aren't really hostile
+	var/list/attacktext = list("attacked") // "You are [attacktext] by the mob!"
+	var/list/friendly = list("nuzzles") // "The mob [friendly] the person."
 	var/attack_sound = null			// Sound to play when I attack
 	var/environment_smash = 0		// How much environment damage do I do when I hit stuff?
 	var/melee_miss_chance = 15		// percent chance to miss a melee attack.
 	var/melee_attack_minDelay = 5		// How long between attacks at least
 	var/melee_attack_maxDelay = 10		// How long between attacks at most
+	var/attack_armor_type = "melee"		// What armor does this check?
+	var/attack_armor_pen = 0			// How much armor pen this attack has.
+	var/attack_sharp = 0				// Is the attack sharp?
+	var/attack_edge = 0					// Does the attack have an edge?
 
 	//Special attacks
 	var/spattack_prob = 0			// Chance of the mob doing a special attack (0 for never)
@@ -124,15 +141,16 @@
 	var/astar_adjacent_proc = /turf/proc/CardinalTurfsWithAccess // Proc to use when A* pathfinding.  Default makes them bound to cardinals.
 
 	//Damage resistances
+	var/shock_resistance = 0		// Siemens modifier, directly subtracted from 1. Value of 0.4 means 0.6 siemens on shocks.
 	var/resistance = 0				// Damage reduction for all types
-	var/list/resistances = list(
-								HALLOSS = 0,
-								BRUTE = 1,
-								BURN = 1,
-								TOX = 1,
-								OXY = 0,
-								CLONE = 0
-								)
+	var/list/armor = list(			// Values for normal getarmor() checks
+				"melee" = 0,
+				"bullet" = 0,
+				"laser" = 0,
+				"energy" = 0,
+				"bomb" = 0,
+				"bio" = 100,
+				"rad" = 100)
 
 	//Scary debug things
 	var/debug_ai = 0				// Logging level for this mob (1,2,3)
@@ -168,6 +186,7 @@
 	home_turf = get_turf(src)
 	path_overlay = new(path_icon,path_icon_state)
 	move_to_delay = max(2,move_to_delay) //Protection against people coding things incorrectly and A* pathing 100% of the time
+	maxHealth = health
 
 	for(var/L in has_langs)
 		languages |= all_languages[L]
@@ -206,21 +225,17 @@
 
 //Client attached
 /mob/living/simple_animal/Login()
-	if(src && src.client)
-		src.client.screen = list()
-		src.client.screen += src.client.void
-		ai_inactive = 1
-		handle_stance(STANCE_IDLE)
-		LoseTarget()
-		src.client << "<span class='notice'>Mob AI disabled while you are controlling the mob.</span>"
-	..()
+	. = ..()
+	ai_inactive = 1
+	handle_stance(STANCE_IDLE)
+	LoseTarget()
+	to_chat(src,"<span class='notice'>Mob AI disabled while you are controlling the mob.</span><br><b>You are \the [src]. [player_msg]</b>")
 
 //Client detatched
 /mob/living/simple_animal/Logout()
-	if(src && !src.client)
-		spawn(15 SECONDS) //15 seconds to get back into the mob before it goes wild
-			if(src && !src.client)
-				ai_inactive = initial(ai_inactive) //So if they never have an AI, they stay that way.
+	spawn(15 SECONDS) //15 seconds to get back into the mob before it goes wild
+		if(src && !src.client)
+			ai_inactive = initial(ai_inactive) //So if they never have an AI, they stay that way.
 	..()
 
 //For debug purposes!
@@ -240,23 +255,74 @@
 	if(health > getMaxHealth())
 		health = getMaxHealth()
 
+	//Update our hud if we have one
+	if(healths)
+		if(stat != DEAD)
+			var/heal_per = (health / getMaxHealth()) * 100
+			switch(heal_per)
+				if(100 to INFINITY)
+					healths.icon_state = "health0"
+				if(80 to 100)
+					healths.icon_state = "health1"
+				if(60 to 80)
+					healths.icon_state = "health2"
+				if(40 to 60)
+					healths.icon_state = "health3"
+				if(20 to 40)
+					healths.icon_state = "health4"
+				if(0 to 20)
+					healths.icon_state = "health5"
+				else
+					healths.icon_state = "health6"
+		else
+			healths.icon_state = "health7"
+
+	//Updates the nutrition while we're here
+	if(nutrition_icon)
+		var/food_per = (nutrition / initial(nutrition)) * 100
+		switch(food_per)
+			if(90 to INFINITY)
+				nutrition_icon.icon_state = "nutrition0"
+			if(75 to 90)
+				nutrition_icon.icon_state = "nutrition1"
+			if(50 to 75)
+				nutrition_icon.icon_state = "nutrition2"
+			if(25 to 50)
+				nutrition_icon.icon_state = "nutrition3"
+			if(0 to 25)
+				nutrition_icon.icon_state = "nutrition4"
+
 /mob/living/simple_animal/update_icon()
-	..()
+	. = ..()
+	var/mutable_appearance/ma = new(src)
+	ma.layer = layer
+	ma.plane = plane
+
+	ma.overlays = list(modifier_overlay)
+
 	//Awake and normal
 	if((stat == CONSCIOUS) && (!icon_rest || !resting || !incapacitated(INCAPACITATION_DISABLED) ))
-		icon_state = icon_living
+		ma.icon_state = icon_living
 
 	//Dead
 	else if(stat >= DEAD)
-		icon_state = icon_dead
+		ma.icon_state = icon_dead
 
 	//Resting or KO'd
 	else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest)
-		icon_state = icon_rest
+		ma.icon_state = icon_rest
 
 	//Backup
 	else
-		icon_state = initial(icon_state)
+		ma.icon_state = initial(icon_state)
+
+	if(has_hands)
+		if(r_hand_sprite)
+			ma.overlays += r_hand_sprite
+		if(l_hand_sprite)
+			ma.overlays += l_hand_sprite
+
+	appearance = ma
 
 // If your simple mob's update_icon() call calls overlays.Cut(), this needs to be called after this, or manually apply modifier_overly to overlays.
 /mob/living/simple_animal/update_modifier_visuals()
@@ -291,7 +357,6 @@
 	handle_paralysed()
 	handle_supernatural()
 	handle_atmos() //Atmos
-	update_icon()
 
 	ai_log("Life() - stance=[stance] ai_inactive=[ai_inactive]", 4)
 
@@ -316,7 +381,7 @@
 		if(istype(loc,/obj/structure/closet))
 			var/obj/structure/closet/C = loc
 			if(C.welded)
-				resist()
+				handle_resist()
 			else
 				C.open()
 
@@ -376,7 +441,7 @@
 // Handle interacting with and taking damage from atmos
 // TODO - Refactor this to use handle_environment() like a good /mob/living
 /mob/living/simple_animal/proc/handle_atmos()
-	var/atmos_suitable = 1
+	var/atmos_unsuitable = 0
 
 	var/atom/A = src.loc
 
@@ -392,41 +457,52 @@
 
 			if(min_oxy)
 				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
+					atmos_unsuitable = 1
 			if(max_oxy)
 				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
+					atmos_unsuitable = 1
 			if(min_tox)
 				if(Environment.gas["phoron"] < min_tox)
-					atmos_suitable = 0
+					atmos_unsuitable = 2
 			if(max_tox)
 				if(Environment.gas["phoron"] > max_tox)
-					atmos_suitable = 0
+					atmos_unsuitable = 2
 			if(min_n2)
 				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
+					atmos_unsuitable = 1
 			if(max_n2)
 				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
+					atmos_unsuitable = 1
 			if(min_co2)
 				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
+					atmos_unsuitable = 1
 			if(max_co2)
 				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+					atmos_unsuitable = 1
 
 	//Atmos effect
 	if(bodytemperature < minbodytemp)
 		fire_alert = 2
 		adjustBruteLoss(cold_damage_per_tick)
+		if(fire)
+			fire.icon_state = "fire1"
 	else if(bodytemperature > maxbodytemp)
 		fire_alert = 1
 		adjustBruteLoss(heat_damage_per_tick)
+		if(fire)
+			fire.icon_state = "fire2"
 	else
 		fire_alert = 0
+		if(fire)
+			fire.icon_state = "fire0"
 
-	if(!atmos_suitable)
+	if(atmos_unsuitable)
 		adjustBruteLoss(unsuitable_atoms_damage)
+		if(oxygen)
+			oxygen.icon_state = "oxy1"
+	else if(oxygen)
+		if(oxygen)
+			oxygen.icon_state = "oxy0"
 
 // For setting the stance WITHOUT processing it
 /mob/living/simple_animal/proc/set_stance(var/new_stance)
@@ -459,7 +535,7 @@
 					stop_automated_movement = 0
 
 			//Search for targets while idle
-			if(hostile)
+			if(hostile || specific_targets)
 				FindTarget()
 		if(STANCE_FOLLOW)
 			annoyed = 15
@@ -467,7 +543,7 @@
 			if(follow_until_time && world.time > follow_until_time)
 				LoseFollow()
 				return
-			if(hostile)
+			if(hostile || specific_targets)
 				FindTarget()
 		if(STANCE_ATTACK)
 			annoyed = 50
@@ -483,7 +559,7 @@
 		purge -= 1
 
 /mob/living/simple_animal/gib()
-	..(icon_gib,1)
+	..(icon_gib,1,icon) // we need to specify where the gib animation is stored
 
 /mob/living/simple_animal/emote(var/act, var/type, var/desc)
 	if(act)
@@ -496,25 +572,17 @@
 	custom_emote(2, act_desc)
 
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)
-		return
 	ai_log("bullet_act() I was shot by: [Proj.firer]",2)
 
-	if(Proj.taser_effect)
-		stun_effect_act(0, Proj.agony)
-
+	//Projectiles with bonus SA damage
 	if(!Proj.nodamage)
-		var/true_damage = Proj.damage
 		if(!Proj.SA_vulnerability || Proj.SA_vulnerability == intelligence_level)
-			true_damage += Proj.SA_bonus_damage
-		adjustBruteLoss(true_damage)
+			Proj.damage += Proj.SA_bonus_damage
+
+	. = ..()
 
 	if(Proj.firer)
 		react_to_attack(Proj.firer)
-
-	Proj.on_hit(src)
-
-	return 0
 
 // When someone clicks us with an empty hand
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
@@ -554,7 +622,8 @@
 			react_to_attack(M)
 
 		if(I_HURT)
-			adjustBruteLoss(harm_intent_damage)
+			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
+			apply_damage(damage = harm_intent_damage, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 			M.visible_message("<span class='warning'>[M] [response_harm] \the [src]!</span>")
 			M.do_attack_animation(src)
 			ai_log("attack_hand() I was hit by: [M]",2)
@@ -577,34 +646,35 @@
 						if ((M.client && !( M.blinded )))
 							M.show_message("<span class='notice'>[user] applies the [MED] on [src].</span>")
 		else
-			user << "<span class='notice'>\The [src] is dead, medical items won't bring \him back to life.</span>"
+			var/datum/gender/T = gender_datums[src.get_visible_gender()]
+			user << "<span class='notice'>\The [src] is dead, medical items won't bring [T.him] back to life.</span>" // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		O.attack(src, user, user.zone_sel.selecting)
 		ai_log("attackby() I was weapon'd by: [user]",2)
 		if(O.force)
 			react_to_attack(user)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
+	return ..()
 
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+	effective_force = O.force
+
+	//Animals can't be stunned(?)
+	if(O.damtype == HALLOSS)
+		effective_force = 0
+	if(supernatural && istype(O,/obj/item/weapon/nullrod))
+		effective_force *= 2
+		purge = 3
 	if(O.force <= resistance)
-		user << "<span class='danger'>This weapon is ineffective, it does no damage.</span>"
+		to_chat(user,"<span class='danger'>This weapon is ineffective, it does no damage.</span>")
 		return 2
 
-	var/damage = O.force
-	if (O.damtype == HALLOSS)
-		damage = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
-		damage *= 2
-		purge = 3
-	adjustBruteLoss(damage)
 	ai_log("hit_with_weapon() I was h_w_weapon'd by: [user]",2)
 	react_to_attack(user)
 
-	return 0
+	. = ..()
 
 // When someone throws something at us
 /mob/living/simple_animal/hitby(atom/movable/AM)
@@ -637,6 +707,9 @@
 			tally = 1
 		tally *= purge
 
+	if(m_intent == "walk")
+		tally *= 1.5
+
 	return tally+config.animal_delay
 
 /mob/living/simple_animal/Stat()
@@ -651,6 +724,7 @@
 		icon_state = icon_rest
 	else
 		icon_state = icon_living
+	update_icon()
 
 /mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
 	density = 0 //We don't block even if we did before
@@ -672,18 +746,20 @@
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		flash_eyes()
+	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
+	var/bombdam = 500
 	switch (severity)
 		if (1.0)
-			adjustBruteLoss(500)
-			gib()
-			return
-
+			bombdam = 500
 		if (2.0)
-			adjustBruteLoss(60)
+			bombdam = 60
+		if (3.0)
+			bombdam = 30
 
+	apply_damage(damage = bombdam, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 
-		if(3.0)
-			adjustBruteLoss(30)
+	if(bombdam > maxHealth)
+		gib()
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
@@ -712,6 +788,9 @@
 	return verb
 
 /mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
+	if(has_hands)
+		put_in_active_hand(W)
+		return 1
 	W.forceMove(get_turf(src))
 	return 1
 
@@ -732,7 +811,6 @@
 
 /mob/living/simple_animal/handle_fire()
 	return
-
 /mob/living/simple_animal/update_fire()
 	return
 /mob/living/simple_animal/IgniteMob()
@@ -742,16 +820,16 @@
 
 //We got hit! Consider hitting them back!
 /mob/living/simple_animal/proc/react_to_attack(var/mob/living/M)
-	if(stat || M == target_mob) return //Not if we're dead or already hitting them
+	if(ai_inactive || stat || M == target_mob) return //Not if we're dead or already hitting them
 	if(M in friends || M.faction == faction) return //I'll overlook it THIS time...
 	ai_log("react_to_attack([M])",1)
-	if(retaliate && set_target(M))
+	if(retaliate && set_target(M, 1))
 		handle_stance(STANCE_ATTACK)
 		return M
 
 	return 0
 
-/mob/living/simple_animal/proc/set_target(var/mob/M)
+/mob/living/simple_animal/proc/set_target(var/mob/M, forced = 0)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -765,7 +843,7 @@
 		annoyed += 14
 		sleep(1 SECOND) //For realism
 
-	if(M in ListTargets(view_range))
+	if(forced || (M in ListTargets(view_range)))
 		try_say_list(say_got_target)
 		target_mob = M
 		last_target_time = world.time
@@ -1179,10 +1257,9 @@
 		var/mob/living/L = target_mob
 
 		if(prob(melee_miss_chance))
-			src.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [L.name] ([L.ckey])</font>")
-			L.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [src.name] ([src.ckey])</font>")
-			src.visible_message("<span class='danger'>[src] misses [L]!</span>")
-			src.do_attack_animation(src)
+			add_attack_logs(src,L,"Animal-attacked (miss)", admin_notify = FALSE)
+			visible_message("<span class='danger'>[src] misses [L]!</span>")
+			do_attack_animation(src)
 			return L
 		else
 			DoPunch(L)
@@ -1194,7 +1271,7 @@
 
 // This is the actual act of 'punching'.  Override for special behaviour.
 /mob/living/simple_animal/proc/DoPunch(var/atom/A)
-	if(!Adjacent(target_mob)) // They could've moved in the meantime.
+	if(!Adjacent(A) && !istype(A, /obj/structure/window) && !istype(A, /obj/machinery/door/window)) // They could've moved in the meantime. But a Window probably wouldn't have. This allows player simple-mobs to attack windows.
 		return FALSE
 
 	var/damage_to_do = rand(melee_damage_lower, melee_damage_upper)
@@ -1203,16 +1280,15 @@
 		if(!isnull(M.outgoing_melee_damage_percent))
 			damage_to_do *= M.outgoing_melee_damage_percent
 
-	if(attack_sound)
-		playsound(src, attack_sound, 75, 1)
-
 	// SA attacks can be blocked with shields.
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(H.check_shields(damage = damage_to_do, damage_source = src, attacker = src, def_zone = null, attack_text = "the attack"))
 			return FALSE
 
-	A.attack_generic(src, damage_to_do, attacktext)
+	if(A.attack_generic(src, damage_to_do, pick(attacktext), attack_armor_type, attack_armor_pen, attack_sharp, attack_edge) && attack_sound)
+		playsound(src, attack_sound, 75, 1)
+
 	return TRUE
 
 //The actual top-level ranged attack proc
@@ -1370,23 +1446,23 @@
 	for(var/obj/structure/window/obstacle in problem_turf)
 		if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
 			ai_log("DestroySurroundings() directional window hit",3)
-			obstacle.attack_generic(src, damage_to_do, attacktext)
+			obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 		else if(obstacle.is_fulltile())
 			ai_log("DestroySurroundings() full tile window hit",3)
-			obstacle.attack_generic(src, damage_to_do, attacktext)
+			obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 
 	var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
 	if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 		ai_log("DestroySurroundings() generic structure hit [obstacle]",3)
-		obstacle.attack_generic(src, damage_to_do ,attacktext)
+		obstacle.attack_generic(src, damage_to_do, pick(attacktext))
 		return
 
 	for(var/obj/machinery/door/baddoor in problem_turf) //Required since firelocks take up the same turf
 		if(baddoor.density)
 			ai_log("DestroySurroundings() door hit [baddoor]",3)
-			baddoor.attack_generic(src, damage_to_do ,attacktext)
+			baddoor.attack_generic(src, damage_to_do, pick(attacktext))
 			return
 
 //Check for shuttle bumrush
@@ -1430,11 +1506,11 @@
 
 //Touches a wire, etc
 /mob/living/simple_animal/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
-	shock_damage *= siemens_coeff
+	shock_damage *= max(siemens_coeff - shock_resistance, 0)
 	if (shock_damage < 1)
 		return 0
 
-	adjustFireLoss(shock_damage)
+	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 	playsound(loc, "sparks", 50, 1, -1)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -1446,14 +1522,15 @@
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0
+		var/armor = run_armor_check(def_zone = null, attack_flag = "energy")
 
 		if(stun_amount)
 			stunDam += stun_amount * 0.5
-			adjustFireLoss(stunDam)
+			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
 		if(agony_amount)
 			agonyDam += agony_amount * 0.5
-			adjustFireLoss(agonyDam)
+			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
 /mob/living/simple_animal/emp_act(severity)
 	if(!isSynthetic())
@@ -1468,6 +1545,13 @@
 		if(4)
 			adjustFireLoss(rand(1, 6))
 
+/mob/living/simple_animal/getarmor(def_zone, attack_flag)
+	var/armorval = armor[attack_flag]
+	if(!armorval)
+		return 0
+	else
+		return armorval
+
 // Force it to target something
 /mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)
 	if(intelligence_level == SA_HUMANOID && !forced)
@@ -1477,10 +1561,151 @@
 /mob/living/simple_animal/is_sentient()
 	return intelligence_level != SA_PLANT && intelligence_level != SA_ROBOTIC
 
+// Hand procs for player-controlled SA's
+/mob/living/simple_animal/swap_hand()
+	src.hand = !( src.hand )
+	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		if(hand)	//This being 1 means the left hand is in use
+			hud_used.l_hand_hud_object.icon_state = "l_hand_active"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_inactive"
+		else
+			hud_used.l_hand_hud_object.icon_state = "l_hand_inactive"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
+	return
+/*
+/mob/living/simple_animal/put_in_active_hand(var/obj/item/I)
+	if(!has_hands || !istype(I))
+		return
+*/
+//Puts the item into our active hand if possible. returns 1 on success.
+/mob/living/simple_animal/put_in_active_hand(var/obj/item/W)
+	if(!has_hands)
+		return FALSE
+	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
+
+/mob/living/simple_animal/put_in_l_hand(var/obj/item/W)
+	if(!..() || l_hand)
+		return 0
+	W.forceMove(src)
+	l_hand = W
+	W.equipped(src,slot_l_hand)
+	W.add_fingerprint(src)
+	update_inv_l_hand()
+	return TRUE
+
+/mob/living/simple_animal/put_in_r_hand(var/obj/item/W)
+	if(!..() || r_hand)
+		return 0
+	W.forceMove(src)
+	r_hand = W
+	W.equipped(src,slot_r_hand)
+	W.add_fingerprint(src)
+	update_inv_r_hand()
+	return TRUE
+
+/mob/living/simple_animal/update_inv_r_hand()
+	if(QDESTROYING(src))
+		return
+
+	if(r_hand)
+		r_hand.screen_loc = ui_rhand	//TODO
+
+		//determine icon state to use
+		var/t_state
+		if(r_hand.item_state_slots && r_hand.item_state_slots[slot_r_hand_str])
+			t_state = r_hand.item_state_slots[slot_r_hand_str]
+		else if(r_hand.item_state)
+			t_state = r_hand.item_state
+		else
+			t_state = r_hand.icon_state
+
+		//determine icon to use
+		var/icon/t_icon
+		if(r_hand.item_icons && (slot_r_hand_str in r_hand.item_icons))
+			t_icon = r_hand.item_icons[slot_r_hand_str]
+		else if(r_hand.icon_override)
+			t_state += "_r"
+			t_icon = r_hand.icon_override
+		else
+			t_icon = INV_R_HAND_DEF_ICON
+
+		//apply color
+		var/image/standing = image(icon = t_icon, icon_state = t_state)
+		standing.color = r_hand.color
+
+		r_hand_sprite = standing
+
+	else
+		r_hand_sprite = null
+
+	update_icon()
+
+/mob/living/simple_animal/update_inv_l_hand()
+	if(QDESTROYING(src))
+		return
+
+	if(l_hand)
+		l_hand.screen_loc = ui_lhand	//TODO
+
+		//determine icon state to use
+		var/t_state
+		if(l_hand.item_state_slots && l_hand.item_state_slots[slot_l_hand_str])
+			t_state = l_hand.item_state_slots[slot_l_hand_str]
+		else if(l_hand.item_state)
+			t_state = l_hand.item_state
+		else
+			t_state = l_hand.icon_state
+
+		//determine icon to use
+		var/icon/t_icon
+		if(l_hand.item_icons && (slot_l_hand_str in l_hand.item_icons))
+			t_icon = l_hand.item_icons[slot_l_hand_str]
+		else if(l_hand.icon_override)
+			t_state += "_l"
+			t_icon = l_hand.icon_override
+		else
+			t_icon = INV_L_HAND_DEF_ICON
+
+		//apply color
+		var/image/standing = image(icon = t_icon, icon_state = t_state)
+		standing.color = l_hand.color
+
+		l_hand_sprite = standing
+
+	else
+		l_hand_sprite = null
+
+	update_icon()
+
+//Can insert extra huds into the hud holder here.
+/mob/living/simple_animal/proc/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+	return
+
+//If they can or cannot use tools/machines/etc
+/mob/living/simple_animal/IsAdvancedToolUser()
+	return has_hands
+
+/mob/living/simple_animal/proc/IsHumanoidToolUser(var/atom/tool)
+	if(!humanoid_hands)
+		var/display_name = null
+		if(tool)
+			display_name = tool
+		else
+			display_name = "object"
+		to_chat(src, "<span class='danger'>Your [hand_form] are not fit for use of \the [display_name].</span>")
+	return humanoid_hands
+
+/mob/living/simple_animal/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+	. = ..(W, target)
+	if(!target)
+		target = src.loc
+	if(.)
+		W.forceMove(src.loc)
+
 //Commands, reactions, etc
 /mob/living/simple_animal/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	..()
-	if(reacts && speaker && (message in reactions) && (!hostile || isliving(speaker)) && say_understands(speaker,language))
+	if(!ai_inactive && reacts && speaker && (message in reactions) && (!hostile || isliving(speaker)) && say_understands(speaker,language))
 		var/mob/living/L = speaker
 		if(L.faction == faction)
 			spawn(10)
@@ -1498,3 +1723,6 @@
 /mob/living/simple_animal/retaliate
 	retaliate = 1
 	destroy_surroundings = 1
+
+/mob/living/simple_animal/get_nametag_desc(mob/user)
+	return "<i>[tt_desc]</i>"

@@ -3,7 +3,7 @@
 "c" = (/turf/template_noop,/area/submap/Shack1)
 "d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Shack1)
 "e" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood{tag = "icon-wood_broken1"; icon_state = "wood_broken1"},/area/submap/Shack1)
-"f" = (/obj/structure/table/wooden_reinforced,/turf/simulated/floor/wood,/area/submap/Shack1)
+"f" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/storage/fancy/candle_box,/obj/item/weapon/storage/box/matches,/turf/simulated/floor/wood,/area/submap/Shack1)
 "g" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/apron/overalls,/obj/item/clothing/under/overalls,/turf/simulated/floor/wood,/area/submap/Shack1)
 "h" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/wood,/area/submap/Shack1)
 "i" = (/turf/simulated/floor/wood,/area/submap/Shack1)

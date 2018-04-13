@@ -58,7 +58,7 @@
 	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask.
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | PHORONGUARD
 	phoronproof = 1
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	filtered_gases = list("oxygen", "sleeping_agent")
 
 /obj/item/clothing/mask/gas/syndicate
@@ -73,7 +73,6 @@
 	icon_state = "explorer"
 	item_state_slots = list(slot_r_hand_str = "gas", slot_l_hand_str = "gas")
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 0, bio = 50, rad = 0)
-	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/mask/gas/clown_hat

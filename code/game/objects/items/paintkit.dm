@@ -66,7 +66,7 @@
 	var/new_light_overlay
 
 /obj/item/device/kit/suit/can_customize(var/obj/item/I)
-	return istype(I, /obj/item/clothing/head/helmet/space/void) || istype(I, /obj/item/clothing/suit/space/void) || istype(I, /obj/item/clothing/suit/storage/hooded/explorer)
+	return istype(I, /obj/item/clothing/head/helmet/space/void) || istype(I, /obj/item/clothing/suit/space/void) || istype(I, /obj/item/clothing/suit/storage/hooded)
 
 /obj/item/device/kit/suit/set_info(var/kit_name, var/kit_desc, var/kit_icon, var/kit_icon_file = CUSTOM_ITEM_OBJ, var/kit_icon_override_file = CUSTOM_ITEM_MOB, var/additional_data)
 	..()
@@ -109,9 +109,9 @@
 				suit.icon_override = new_icon_override_file
 				S.icon_override = new_icon_override_file
 			to_chat(user, "You set about modifying the suit into [suit].")
-			var/mob/living/carbon/human/H = user
-			if(istype(H))
-				suit.species_restricted = list(H.species.get_bodytype(H))
+//			var/mob/living/carbon/human/H = user
+//			if(istype(H))
+//				suit.species_restricted = list(H.species.get_bodytype(H)) Does not quite make sense for something usually very pliable.
 		else
 			var/obj/item/clothing/suit/space/void/suit = I
 			suit.name = "[new_name] voidsuit"

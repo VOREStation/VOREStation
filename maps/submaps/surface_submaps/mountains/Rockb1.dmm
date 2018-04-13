@@ -1,10 +1,10 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/template_noop,/area/submap/Rockb1)
 "c" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Rockb1)
-"d" = (/turf/simulated/mineral/ignore_mapgen/sif,/area/submap/Rockb1)
+"d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rockb1)
 "e" = (/turf/simulated/wall/r_wall,/area/submap/Rockb1)
 "f" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/lino,/area/submap/Rockb1)
-"g" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/weapon/gun/projectile/pistol,/obj/item/ammo_magazine/m9mm/compact,/obj/item/ammo_magazine/m9mm/compact,/turf/simulated/floor/lino,/area/submap/Rockb1)
+"g" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/weapon/gun/projectile/pistol,/obj/item/ammo_magazine/m9mm/compact,/turf/simulated/floor/lino,/area/submap/Rockb1)
 "h" = (/obj/structure/bookcase,/turf/simulated/floor/lino,/area/submap/Rockb1)
 "i" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/submap/Rockb1)
 "j" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled,/area/submap/Rockb1)
@@ -24,22 +24,25 @@
 "x" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/tiled,/area/submap/Rockb1)
 "y" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/submap/Rockb1)
 "z" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"A" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"B" = (/obj/machinery/power/apc{operating = 0; pixel_x = 31},/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"C" = (/obj/machinery/door/airlock,/turf/space,/area/submap/Rockb1)
-"D" = (/obj/machinery/light/small{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
-"E" = (/obj/structure/toilet{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
-"F" = (/obj/structure/table/standard,/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"G" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"H" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/excavation,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"I" = (/obj/structure/table/standard,/obj/item/stack/material/cyborg/steel,/obj/item/stack/material/cyborg/glass,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"J" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"K" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"L" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled,/area/submap/Rockb1)
-"M" = (/turf/simulated/floor/plating,/area/submap/Rockb1)
-"N" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/plating,/area/submap/Rockb1)
-"O" = (/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/submap/Rockb1)
-"P" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"A" = (/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"B" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"C" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"D" = (/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc{dir = 4; name = "east bump"; operating = 0; pixel_x = 24},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"E" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"F" = (/obj/machinery/light/small{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
+"G" = (/obj/structure/toilet{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/hydro,/area/submap/Rockb1)
+"H" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable/green,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"I" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/terminal{dir = 8},/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"J" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/excavation,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"K" = (/obj/structure/table/standard,/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"L" = (/obj/structure/table/standard,/obj/fiftyspawner/glass,/obj/fiftyspawner/steel,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"M" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"N" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"O" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor/tiled,/area/submap/Rockb1)
+"P" = (/turf/simulated/floor/plating,/area/submap/Rockb1)
+"Q" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5},/turf/simulated/floor/plating,/area/submap/Rockb1)
+"R" = (/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/submap/Rockb1)
+"S" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/plating,/area/submap/Rockb1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa
@@ -53,10 +56,10 @@ abcddepqrestmetumvedcccba
 abcddeeewemtteweeeeecccba
 accddemtxmmtttttxyzycccba
 abdddeweeeeeeeweeeeecccba
-abdddettABetAmtCDEedcccba
-abdddeFGHmetIJKeeeedcccba
-abcddeeeeeeLeeeeddddcccba
-abccddddddeMNOPedddccccba
+abdddeABCDetEmtwFGedcccba
+abdddeHIJKetLMNeeeedcccba
+abcddeeeeeeOeeeeddddcccba
+abccddddddePQRSedddccccba
 abccddddddeeeeeedccccccba
 abcccccccddddddddddccccba
 abbcccccccccccccccccccbba

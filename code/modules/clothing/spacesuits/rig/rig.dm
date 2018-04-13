@@ -179,6 +179,15 @@
 	spark_system = null
 	return ..()
 
+/obj/item/weapon/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
+	if(!inhands && slot_name == slot_back_str)
+		if(icon_override)
+			return icon_override
+		else if(mob_icon)
+			return mob_icon
+
+	return ..()
+
 /obj/item/weapon/rig/proc/suit_is_deployed()
 	if(!istype(wearer) || src.loc != wearer || wearer.back != src)
 		return 0
@@ -330,7 +339,6 @@
 			piece.item_flags &= ~(STOPPRESSUREDAMAGE|AIRTIGHT)
 		else
 			piece.item_flags |=  (STOPPRESSUREDAMAGE|AIRTIGHT)
-	update_icon(1)
 
 /obj/item/weapon/rig/ui_action_click()
 	toggle_cooling(usr)
@@ -598,7 +606,7 @@
 		// update_inv_wear_suit(), handle species checks here.
 		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
 			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
-		mob_icon = image("icon" = species_icon, "icon_state" = "[icon_state]")
+		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)

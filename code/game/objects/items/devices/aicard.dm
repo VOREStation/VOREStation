@@ -61,7 +61,7 @@
 	if (href_list["wipe"])
 		var/confirm = alert("Are you sure you want to disable this core's power? This cannot be undone once started.", "Confirm Shutdown", "Yes", "No")
 		if(confirm == "Yes" && (CanUseTopic(user, state) == STATUS_INTERACTIVE))
-			admin_attack_log(user, carded_ai, "Purged using \the [src.name]", "Was purged with \the [src.name]", "used \the [src.name] to purge")
+			add_attack_logs(user,carded_ai,"Purged from AI Card")
 			flush = 1
 			carded_ai.suiciding = 1
 			carded_ai << "Your power has been disabled!"
@@ -102,6 +102,11 @@
 		user << "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one."
 		return 0
 
+	if(!user.IsAdvancedToolUser() && isanimal(user))
+		var/mob/living/simple_animal/S = user
+		if(!S.IsHumanoidToolUser(src))
+			return 0
+
 	user.visible_message("\The [user] starts transferring \the [ai] into \the [src]...", "You start transferring \the [ai] into \the [src]...")
 	ai << "<span class='danger'>\The [user] is transferring you into \the [src]!</span>"
 
@@ -110,7 +115,7 @@
 			new /obj/structure/AIcore/deactivated(get_turf(ai))
 
 		ai.carded = 1
-		admin_attack_log(user, ai, "Extracted with [src.name]", "Was extracted with [src.name]", "used the [src.name] to extract")
+		add_attack_logs(user,ai,"Extracted into AI Card")
 		src.name = "[initial(name)] - [ai.name]"
 
 		ai.loc = src

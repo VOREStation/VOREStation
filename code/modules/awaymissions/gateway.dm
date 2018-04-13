@@ -1,6 +1,6 @@
 /obj/machinery/gateway
 	name = "gateway"
-	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	desc = "A state-of-the-art Nanotrasen gateway, used to teleport rich commuters anywhere in the same planetary system."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
 	density = 1
@@ -10,9 +10,9 @@
 
 /obj/machinery/gateway/initialize()
 	update_icon()
-	if(dir == 2)
+	if(dir == SOUTH)
 		density = 0
-
+	. = ..()
 
 /obj/machinery/gateway/update_icon()
 	if(active)
@@ -38,7 +38,7 @@
 	update_icon()
 	wait = world.time + config.gateway_delay	//+ thirty minutes default
 	awaygate = locate(/obj/machinery/gateway/centeraway)
-
+	. = ..()
 
 /obj/machinery/gateway/centerstation/update_icon()
 	if(active)
@@ -152,6 +152,7 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway/initialize()
 	update_icon()
 	stationgate = locate(/obj/machinery/gateway/centerstation)
+	. = ..()
 
 
 /obj/machinery/gateway/centeraway/update_icon()

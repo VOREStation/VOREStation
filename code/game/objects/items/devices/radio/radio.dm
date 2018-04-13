@@ -39,6 +39,7 @@ var/global/list/default_medbay_channels = list(
 	var/listening = 1
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
+	var/adhoc_fallback = FALSE //Falls back to 'radio' mode if subspace not available
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
 	var/centComm = 0//Holder to see if it's a CentCom encrypted radio
 	flags = CONDUCT
@@ -52,14 +53,13 @@ var/global/list/default_medbay_channels = list(
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
-/obj/item/device/radio
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
-	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, frequency)
-		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+/obj/item/device/radio/proc/set_frequency(new_frequency)
+	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/device/radio/New()
 	..()
@@ -79,7 +79,7 @@ var/global/list/default_medbay_channels = list(
 
 
 /obj/item/device/radio/initialize()
-
+	. = ..()
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)
@@ -414,9 +414,15 @@ var/global/list/default_medbay_channels = list(
 		for(var/obj/machinery/telecomms/allinone/R in telecomms_list)
 			R.receive_signal(signal)
 
-		// Receiving code can be located in Telecommunications.dm
-		return signal.data["done"] && position.z in signal.data["level"]
+		if(signal.data["done"] && position.z in signal.data["level"])
+			return TRUE //Huzzah, sent via subspace
 
+		else if(adhoc_fallback) //Less huzzah, we have to fallback
+			to_chat(loc,"<span class='warning'>\The [src] pings as it falls back to local radio transmission.</span>")
+			subspace_transmission = FALSE
+			return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
+					  src, message, displayname, jobname, real_name, M.voice_name,
+					  signal.transmission_method, signal.data["compression"], list(position.z), connection.frequency,verb,speaking)
 
   /* ###### Intercoms and station-bounced radios ###### */
 
@@ -463,10 +469,10 @@ var/global/list/default_medbay_channels = list(
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 		R.receive_signal(signal)
 
-
-	sleep(rand(10,25)) // wait a little...
-
 	if(signal.data["done"] && position.z in signal.data["level"])
+		if(adhoc_fallback)
+			to_chat(loc,"<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
+			subspace_transmission = TRUE
 		// we're done here.
 		return 1
 

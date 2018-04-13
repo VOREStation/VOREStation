@@ -12,15 +12,15 @@
 	var/apply_tape = FALSE
 
 /obj/item/taperoll/initialize()
-	..()
+	. = ..()
 	if(apply_tape)
 		var/turf/T = get_turf(src)
 		if(!T)
 			return
-		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in T
-		if(airlock)
-			afterattack(airlock, null, TRUE)
-		qdel(src)
+		var/obj/machinery/door/door = locate(/obj/machinery/door) in T
+		if((door == /obj/machinery/door/airlock) || (door == /obj/machinery/door/firedoor))
+			afterattack(door, null, TRUE)
+		return INITIALIZE_HINT_QDEL
 
 
 var/list/image/hazard_overlays
@@ -30,7 +30,7 @@ var/list/tape_roll_applications = list()
 	name = "tape"
 	icon = 'icons/policetape.dmi'
 	anchored = 1
-	layer = 3.2
+	layer = WINDOW_LAYER
 	var/lifted = 0
 	var/crumpled = 0
 	var/tape_dir = 0
@@ -250,14 +250,14 @@ var/list/tape_roll_applications = list()
 	if(!proximity)
 		return
 
-	if (istype(A, /obj/machinery/door/airlock))
+	if (istype(A, /obj/machinery/door))
 		var/turf/T = get_turf(A)
 		if(locate(/obj/item/tape, A.loc))
 			user << "There's already tape over that door!"
 		else
 			var/obj/item/tape/P = new tape_type(T)
 			P.update_icon()
-			P.layer = 3.2
+			P.layer = WINDOW_LAYER
 			user << "<span class='notice'>You finish placing \the [src].</span>"
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
@@ -307,10 +307,11 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape/proc/lift(time)
 	lifted = 1
-	layer = 8
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	spawn(time)
 		lifted = 0
-		layer = initial(layer)
+		reset_plane_and_layer()
 
 // Returns a list of all tape objects connected to src, including itself.
 /obj/item/tape/proc/gettapeline()

@@ -935,3 +935,63 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "Random events disabled"
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/despawn_player(var/mob/M in living_mob_list)
+	set name = "Cryo Player"
+	set category = "Admin"
+	set desc = "Removes a player from the round as if they'd cryo'd."
+	set popup_menu = FALSE
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(!M)
+		return
+
+	var/confirm = alert("Are you sure you want to cryo [M]?","Confirmation","No","Yes")
+	if(confirm == "No")
+		return
+
+	var/list/human_cryopods = list()
+	var/list/robot_cryopods = list()
+
+	for(var/obj/machinery/cryopod/CP in machines)
+		if(!CP.control_computer)
+			continue //Broken pod w/o computer, move on.
+
+		var/listname = "[CP.name] ([CP.x],[CP.y],[CP.z])"
+		if(istype(CP,/obj/machinery/cryopod/robot))
+			robot_cryopods[listname] = CP
+		else
+			human_cryopods[listname] = CP
+
+	//Gotta log this up here before they get ghostized and lose their key or anything.
+	log_and_message_admins("[key_name(src)] admin cryo'd [key_name(M)].")
+	feedback_add_details("admin_verb","ACRYO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(ishuman(M))
+		var/obj/machinery/cryopod/CP = human_cryopods[input(usr,"Select a cryopod to use","Cryopod Choice") as null|anything in human_cryopods]
+		if(!CP)
+			return
+		M.ghostize()
+		CP.despawn_occupant(M)
+		return
+
+	else if(issilicon(M))
+		if(isAI(M))
+			var/mob/living/silicon/ai/ai = M
+			empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(ai.loc)
+			global_announcer.autosay("[ai] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+			ai.clear_client()
+			return
+		else
+			var/obj/machinery/cryopod/robot/CP = robot_cryopods[input(usr,"Select a cryopod to use","Cryopod Choice") as null|anything in robot_cryopods]
+			if(!CP)
+				return
+			M.ghostize()
+			CP.despawn_occupant(M)
+			return
+
+	else if(isliving(M))
+		M.ghostize()
+		qdel(M) //Bye

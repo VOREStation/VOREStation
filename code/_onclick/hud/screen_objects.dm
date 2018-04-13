@@ -201,20 +201,22 @@
 				L.resist()
 
 		if("mov_intent")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
-				if(C.legcuffed)
-					C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
-					C.m_intent = "walk"	//Just incase
-					C.hud_used.move_intent.icon_state = "walking"
-					return 1
-				switch(usr.m_intent)
+			if(isliving(usr))
+				if(iscarbon(usr))
+					var/mob/living/carbon/C = usr
+					if(C.legcuffed)
+						C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
+						C.m_intent = "walk"	//Just incase
+						C.hud_used.move_intent.icon_state = "walking"
+						return 1
+				var/mob/living/L = usr
+				switch(L.m_intent)
 					if("run")
-						usr.m_intent = "walk"
-						usr.hud_used.move_intent.icon_state = "walking"
+						L.m_intent = "walk"
+						L.hud_used.move_intent.icon_state = "walking"
 					if("walk")
-						usr.m_intent = "run"
-						usr.hud_used.move_intent.icon_state = "running"
+						L.m_intent = "run"
+						L.hud_used.move_intent.icon_state = "running"
 		if("m_intent")
 			if(!usr.m_int)
 				switch(usr.m_intent)
@@ -276,7 +278,7 @@
 							// Rigs are a fucking pain since they keep an air tank in nullspace.
 							if(istype(C.back,/obj/item/weapon/rig))
 								var/obj/item/weapon/rig/rig = C.back
-								if(rig.air_supply)
+								if(rig.air_supply && !rig.offline)
 									from = "in"
 									nicename |= "hardsuit"
 									tankcheck |= rig.air_supply
@@ -485,8 +487,6 @@
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.view_images()
-		else
-			return 0
 	return 1
 
 /obj/screen/inventory/Click()

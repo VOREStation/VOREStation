@@ -28,6 +28,8 @@
 	var/xeno_harm_strength = 15 	// Ditto.
 	var/baton_glow = "#FF6A00"
 
+	var/used_weapon	= /obj/item/weapon/melee/baton	//Weapon used by the bot
+
 	var/list/threat_found_sounds = list('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = list('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bcreep.ogg')
 	var/list/fighting_sounds = list('sound/voice/biamthelaw.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bjustice.ogg')
@@ -47,6 +49,7 @@
 	baton_glow = "#33CCFF"
 	req_one_access = list(access_research, access_robotics)
 	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
+	used_weapon = /obj/item/weapon/melee/baton/slime
 
 /mob/living/bot/secbot/slime/slimesky
 	name = "Doctor Slimesky"
@@ -289,7 +292,7 @@
 	Sa.overlays += image('icons/obj/aibots.dmi', "hs_hole")
 	Sa.created_name = name
 	new /obj/item/device/assembly/prox_sensor(Tsec)
-	new /obj/item/weapon/melee/baton(Tsec)
+	new used_weapon(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
 

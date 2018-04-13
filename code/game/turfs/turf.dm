@@ -1,5 +1,7 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
+	layer = TURF_LAYER
+	plane = TURF_PLANE
 	level = 1
 	var/holy = 0
 
@@ -84,6 +86,34 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			S.gather_all(src, user)
 	return ..()
 
+// Hits a mob on the tile.
+/turf/proc/attack_tile(obj/item/weapon/W, mob/living/user)
+	if(!istype(W))
+		return FALSE
+
+	var/list/viable_targets = list()
+	var/success = FALSE // Hitting something makes this true. If its still false, the miss sound is played.
+
+	for(var/mob/living/L in contents)
+		if(L == user) // Don't hit ourselves.
+			continue
+		viable_targets += L
+
+	if(!viable_targets.len) // No valid targets on this tile.
+		if(W.can_cleave)
+			success = W.cleave(user, src)
+	else
+		var/mob/living/victim = pick(viable_targets)
+		success = W.resolve_attackby(victim, user)
+
+	user.setClickCooldown(user.get_attack_speed(W))
+	user.do_attack_animation(src, no_attack_icons = TRUE)
+
+	if(!success) // Nothing got hit.
+		user.visible_message("<span class='warning'>\The [user] swipes \the [W] over \the [src].</span>")
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+	return success
+
 /turf/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc
@@ -91,7 +121,7 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return
 	if(istype(O, /obj/screen))
 		return
-	if(user.restrained() || user.stat || user.stunned || user.paralysis)
+	if(user.restrained() || user.stat || user.stunned || user.paralysis || (!user.lying && !istype(user, /mob/living/silicon/robot)))
 		return
 	if((!(istype(O, /atom/movable)) || O.anchored || !Adjacent(user) || !Adjacent(O) || !user.Adjacent(O)))
 		return
@@ -101,6 +131,12 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return
 	if (do_after(user, 25 + (5 * user.weakened)) && !(user.stat))
 		step_towards(O, src)
+		if(ismob(O))
+			animate(O, transform = turn(O.transform, 20), time = 2)
+			sleep(2)
+			animate(O, transform = turn(O.transform, -40), time = 4)
+			sleep(4)
+			animate(O, transform = turn(O.transform, 20), time = 2)
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -277,3 +313,6 @@ var/const/enterloopsanity = 100
 		if(isliving(AM))
 			var/mob/living/M = AM
 			M.turf_collision(src, speed)
+
+/turf/AllowDrop()
+	return TRUE

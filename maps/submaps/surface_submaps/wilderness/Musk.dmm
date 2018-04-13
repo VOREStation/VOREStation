@@ -1,0 +1,12 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,/turf/template_noop,/area/template_noop)
+"c" = (/obj/effect/decal/mecha_wreckage/gygax,/turf/template_noop,/area/template_noop)
+"d" = (/obj/item/mecha_parts/mecha_equipment/shocker,/turf/template_noop,/area/template_noop)
+
+(1,1,1) = {"
+aaaaa
+aaaaa
+aabca
+aaada
+aaaaa
+"}

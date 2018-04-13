@@ -5,7 +5,7 @@
 /obj/machinery/atmospherics/unary/outlet_injector
 	icon = 'icons/atmos/injector.dmi'
 	icon_state = "map_injector"
-	layer = 3
+	pipe_state = "injector"
 
 	name = "air injector"
 	desc = "Passively injects air into its surroundings. Has a valve attached to it that can control flow rate."
@@ -123,9 +123,9 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/outlet_injector/initialize()
-	..()
-
-	set_frequency(frequency)
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))

@@ -3,7 +3,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 // Species definition follows.
 /datum/species/shapeshifter/promethean
 
-	name =             "Promethean"
+	name =             SPECIES_PROMETHEAN
 	name_plural =      "Prometheans"
 	blurb =            "What has Science done?"
 	show_ssd =         "totally quiescent"
@@ -39,7 +39,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	virus_immune =	1
 	blood_volume =	560
 	min_age =		1
-	max_age =		5
+	max_age =		10
 	brute_mod =		0.75
 	burn_mod =		2
 	oxy_mod =		0
@@ -56,7 +56,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	body_temperature =      310.15
 
-	siemens_coefficient =   0.3
+	siemens_coefficient =   0.4
 	rarity_value =          5
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
@@ -83,12 +83,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
+		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/regenerate
 		)
 
-	valid_transform_species = list("Human", "Vatborn", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
+	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY)
 
 	var/heal_rate = 0.5 // Temp. Regen per tick.
 
@@ -149,11 +150,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.nutrition += rand(15, 45)
 
 	// Heal remaining damage.
-	if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-		H.adjustBruteLoss(-heal_rate)
-		H.adjustFireLoss(-heal_rate)
-		H.adjustOxyLoss(-heal_rate)
-		H.adjustToxLoss(-heal_rate)
+	if(H.fire_stacks >= 0)
+		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
+			H.adjustBruteLoss(-heal_rate)
+			H.adjustFireLoss(-heal_rate)
+			H.adjustOxyLoss(-heal_rate)
+			H.adjustToxLoss(-heal_rate)
+	else
+		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())

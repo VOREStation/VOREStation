@@ -8,17 +8,6 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/weapon/material/knuckledusters
-	name = "knuckle dusters"
-	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
-	icon_state = "knuckledusters"
-	gender = PLURAL
-	w_class = ITEMSIZE_SMALL
-	force_divisor = 0.63
-	dulled_divisor = 0.75	//It's a heavy bit of metal
-	attack_verb = list("punched", "beaten", "struck")
-	applies_material_colour = 0
-
 /obj/item/weapon/material/knife/machete/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
@@ -39,7 +28,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
-	should_cleave = FALSE
+	can_cleave = FALSE
 	var hits = 0
 
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
@@ -111,7 +100,7 @@
 		user.put_in_hands(S)
 	else
 		visible_message("[user] starts compacting the snowball.", "You start compacting the snowball.")
-		if(do_after(user, 2000))
+		if(do_after(user, 2 SECONDS))
 			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
 			del(src)
 			user.put_in_hands(S)
@@ -119,6 +108,6 @@
 /obj/item/weapon/material/snow/snowball/reinforced
 	name = "snowball"
 	desc = "A well-formed and fun snowball. It looks kind of dangerous."
-	icon_state = "snowball-reinf"
+	//icon_state = "reinf-snowball"
 	force_divisor = 0.20
 	thrown_force_divisor = 0.25

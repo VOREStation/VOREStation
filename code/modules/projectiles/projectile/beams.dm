@@ -1,6 +1,7 @@
 /obj/item/projectile/beam
 	name = "laser"
 	icon_state = "laser"
+	fire_sound = 'sound/weapons/Laser.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 40
 	damage_type = BURN
@@ -21,7 +22,6 @@
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	damage_type = BURN
 	check_armour = "laser"
@@ -31,6 +31,9 @@
 	name = "weak laser"
 	icon_state = "laser"
 	damage = 15
+
+/obj/item/projectile/beam/smalllaser
+	damage = 25
 
 /obj/item/projectile/beam/burstlaser
 	damage = 30
@@ -44,6 +47,7 @@
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	damage = 60
 	armor_penetration = 30
 	light_range = 3
@@ -62,6 +66,7 @@
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
+	fire_sound = 'sound/weapons/eluger.ogg'
 	damage = 25
 	armor_penetration = 50
 	light_color = "#00CC33"
@@ -83,8 +88,9 @@
 /obj/item/projectile/beam/pulse
 	name = "pulse"
 	icon_state = "u_laser"
-	damage = 50
-	armor_penetration = 30
+	fire_sound='sound/weapons/pulse.ogg'
+	damage = 100	//Badmin toy, don't care
+	armor_penetration = 100
 	light_color = "#0066FF"
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
@@ -99,6 +105,7 @@
 /obj/item/projectile/beam/emitter
 	name = "emitter beam"
 	icon_state = "emitter"
+	fire_sound = 'sound/weapons/emitter.ogg'
 	damage = 0 // The actual damage is computed in /code/modules/power/singularity/emitter.dm
 	light_color = "#00CC33"
 
@@ -109,12 +116,13 @@
 /obj/item/projectile/beam/lastertag/blue
 	name = "lasertag beam"
 	icon_state = "bluelaser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
 	light_color = "#0066FF"
+
+	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
@@ -130,12 +138,13 @@
 /obj/item/projectile/beam/lastertag/red
 	name = "lasertag beam"
 	icon_state = "laser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
 	light_color = "#FF0D00"
+
+	combustion = FALSE
 
 /obj/item/projectile/beam/lastertag/red/on_hit(var/atom/target, var/blocked = 0)
 	if(istype(target, /mob/living/carbon/human))
@@ -147,11 +156,12 @@
 /obj/item/projectile/beam/lastertag/omni//A laser tag bolt that stuns EVERYONE
 	name = "lasertag beam"
 	icon_state = "omnilaser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	damage_type = BURN
 	check_armour = "laser"
 	light_color = "#00C6FF"
+
+	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
@@ -167,6 +177,7 @@
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
+	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 	damage = 50
 	armor_penetration = 10
 	light_color = "#00CC33"
@@ -178,11 +189,14 @@
 /obj/item/projectile/beam/stun
 	name = "stun beam"
 	icon_state = "stun"
+	fire_sound = 'sound/weapons/Taser.ogg'
 	nodamage = 1
 	taser_effect = 1
 	agony = 40
 	damage_type = HALLOSS
 	light_color = "#FFFFFF"
+
+	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer

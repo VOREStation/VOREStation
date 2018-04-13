@@ -188,3 +188,14 @@ Any-Mode: (hotkey doesn't need to be on)
 		src << other
 	if(holder)
 		src << admin
+
+// Set the DreamSeeker input macro to the type appropriate for its mob
+/client/proc/set_hotkeys_macro(macro_name = "macro", hotkey_macro_name = "hotkeymode", hotkeys_enabled = null)
+	// If hotkeys mode was not specified, fall back to choice of default in client preferences.
+	if(isnull(hotkeys_enabled))
+		hotkeys_enabled = is_preference_enabled(/datum/client_preference/hotkeys_default)
+
+	if(hotkeys_enabled)
+		winset(src, null, "mainwindow.macro=[hotkey_macro_name] hotkey_toggle.is-checked=true mapwindow.map.focus=true")
+	else
+		winset(src, null, "mainwindow.macro=[macro_name] hotkey_toggle.is-checked=false input.focus=true")

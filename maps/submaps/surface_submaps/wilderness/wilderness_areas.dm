@@ -54,6 +54,9 @@
 /area/submap/DJOutpost1
 	name = "DJOutpost1"
 
+/area/submap/DJOutpost2
+	name = "DJOutpost2"
+
 /area/submap/MHR
 	name = "Manhack Rock"
 
@@ -65,3 +68,13 @@
 
 /area/submap/DecoupledEngine
 	name = "DecoupledEngine"
+
+/area/submap/DoomP
+	name = "DoomP"
+
+/area/submap/CaveS
+	name = "CaveS"
+
+/area/submap/Drugd
+	name = "DrugDen"
+

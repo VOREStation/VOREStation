@@ -4,7 +4,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/equip_preview_mob = EQUIP_PREVIEW_ALL
 
 	var/icon/bgstate = "000"
-	var/list/bgstate_options = list("000", "fff", "steel", "white")
+	var/list/bgstate_options = list("000", "midgrey", "FFF", "white", "steel", "techmaint", "dark", "plating", "reinforced")
 
 /datum/category_item/player_setup_item/general/body
 	name = "Body"
@@ -69,7 +69,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in playable_species))
-		pref.species = "Human"
+		pref.species = SPECIES_HUMAN
 	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
 	pref.g_hair			= sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
 	pref.b_hair			= sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
@@ -282,21 +282,21 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "<b>Hair</b><br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_hair, 2)][num2hex(pref.g_hair, 2)][num2hex(pref.b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_hair, 2)][num2hex(pref.g_hair, 2)][num2hex(pref.b_hair)]'><tr><td>__</td></tr></table></font> "
+		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_hair, 2)][num2hex(pref.g_hair, 2)][num2hex(pref.b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_hair, 2)][num2hex(pref.g_hair, 2)][num2hex(pref.b_hair, 2)]'><tr><td>__</td></tr></table></font> "
 	. += " Style: <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>"
 
 	. += "<br><b>Facial</b><br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];facial_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_facial, 2)][num2hex(pref.g_facial, 2)][num2hex(pref.b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(pref.r_facial, 2)][num2hex(pref.g_facial, 2)][num2hex(pref.b_facial)]'><tr><td>__</td></tr></table></font> "
+		. += "<a href='?src=\ref[src];facial_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_facial, 2)][num2hex(pref.g_facial, 2)][num2hex(pref.b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(pref.r_facial, 2)][num2hex(pref.g_facial, 2)][num2hex(pref.b_facial, 2)]'><tr><td>__</td></tr></table></font> "
 	. += " Style: <a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a><br>"
 
 	if(has_flag(mob_species, HAS_EYE_COLOR))
 		. += "<br><b>Eyes</b><br>"
-		. += "<a href='?src=\ref[src];eye_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_eyes, 2)][num2hex(pref.g_eyes, 2)][num2hex(pref.b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(pref.r_eyes, 2)][num2hex(pref.g_eyes, 2)][num2hex(pref.b_eyes)]'><tr><td>__</td></tr></table></font><br>"
+		. += "<a href='?src=\ref[src];eye_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_eyes, 2)][num2hex(pref.g_eyes, 2)][num2hex(pref.b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(pref.r_eyes, 2)][num2hex(pref.g_eyes, 2)][num2hex(pref.b_eyes, 2)]'><tr><td>__</td></tr></table></font><br>"
 
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color</b><br>"
-		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin)]'><tr><td>__</td></tr></table></font><br>"
+		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_skin, 2)][num2hex(pref.g_skin, 2)][num2hex(pref.b_skin, 2)]'><tr><td>__</td></tr></table></font><br>"
 
 	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
 	for(var/M in pref.body_markings)
@@ -307,7 +307,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br>"
 	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(pref.synth_color)
-		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth)]'><tr><td>__</td></tr></table></font> "
+		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth, 2)]'><tr><td>__</td></tr></table></font> "
 
 	. = jointext(.,null)
 
@@ -588,7 +588,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.rlimb_data[second_limb] = null
 
 			if("Prosthesis")
-				var/tmp_species = pref.species ? pref.species : "Human"
+				var/tmp_species = pref.species ? pref.species : SPECIES_HUMAN
 				var/list/usable_manufacturers = list()
 				for(var/company in chargen_robolimbs)
 					var/datum/robolimb/M = chargen_robolimbs[company]
@@ -727,7 +727,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/general/body/proc/SetSpecies(mob/user)
 	if(!pref.species_preview || !(pref.species_preview in all_species))
-		pref.species_preview = "Human"
+		pref.species_preview = SPECIES_HUMAN
 	var/datum/species/current_species = all_species[pref.species_preview]
 	var/dat = "<body>"
 	dat += "<center><h2>[current_species.name] \[<a href='?src=\ref[src];show_species=1'>change</a>\]</h2></center><hr/>"
@@ -741,7 +741,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "<b>Language:</b> [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
-		dat += "</br><b>Often present on human stations.</b>"
+		switch(current_species.rarity_value)
+			if(1 to 2)
+				dat += "</br><b>Often present on human stations.</b>"
+			if(3 to 4)
+				dat += "</br><b>Rarely present on human stations.</b>"
+			if(5)
+				dat += "</br><b>Unheard of on human stations.</b>"
+			else
+				dat += "</br><b>May be present on human stations.</b>"
 	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
 		dat += "</br><b>Whitelist restricted.</b>"
 	if(!current_species.has_organ[O_HEART])

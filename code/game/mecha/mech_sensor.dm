@@ -7,7 +7,7 @@
 	density = 1
 	throwpass = 1
 	use_power = 1
-	layer = 3.3
+	layer = ON_WINDOW_LAYER
 	power_channel = EQUIP
 	var/on = 0
 	var/id_tag = null
@@ -70,6 +70,7 @@
 		icon_state = "airlock_sensor_off"
 
 /obj/machinery/mech_sensor/initialize()
+	. = ..()
 	set_frequency(frequency)
 
 /obj/machinery/mech_sensor/proc/set_frequency(new_frequency)

@@ -256,3 +256,9 @@
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return 1
+
+/mob/living/silicon/robot/is_holding_item_of_type(typepath)
+	for(var/obj/item/I in list(module_state_1, module_state_2, module_state_3))
+		if(istype(I, typepath))
+			return I
+	return FALSE

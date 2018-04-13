@@ -2,6 +2,7 @@
 /mob/living/simple_animal/retaliate/goat
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
+	tt_desc = "Oreamnos americanus"
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -19,7 +20,7 @@
 
 	melee_damage_lower = 1
 	melee_damage_upper = 5
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	speak_chance = 1
 	speak = list("EHEHEHEHEH","eh?")
@@ -85,6 +86,7 @@
 /mob/living/simple_animal/cow
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
+	tt_desc = "Bos taurus"
 	icon_state = "cow"
 	icon_living = "cow"
 	icon_dead = "cow_dead"
@@ -98,7 +100,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	speak_chance = 1
 	speak = list("moo?","moo","MOOOOOO")
@@ -153,6 +155,7 @@
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
+	tt_desc = "Gallus domesticus"
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
@@ -168,7 +171,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	has_langs = list("Bird")
 	speak_chance = 2
@@ -203,6 +206,7 @@ var/global/chicken_count = 0
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
+	tt_desc = "Gallus domesticus"
 	icon_state = "chicken"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
@@ -216,7 +220,7 @@ var/global/chicken_count = 0
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicked"
+	attacktext = list("kicked")
 
 	has_langs = list("Bird")
 	speak_chance = 2

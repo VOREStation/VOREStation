@@ -63,11 +63,11 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear/proc/is_default(var/gender)
 	return is_default
 
-/datum/category_item/underwear/proc/generate_image(var/list/metadata)
+/datum/category_item/underwear/proc/generate_image(var/list/metadata, var/layer = FLOAT_LAYER)
 	if(!icon_state)
 		return
 
-	var/image/I = image(icon = icon, icon_state = icon_state)
+	var/image/I = image(icon = icon, icon_state = icon_state, layer = layer)
 	for(var/datum/gear_tweak/gt in tweaks)
 		gt.tweak_item(I, metadata && metadata["[gt]"] ? metadata["[gt]"] : gt.get_default())
 	return I

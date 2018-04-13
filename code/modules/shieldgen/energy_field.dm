@@ -15,7 +15,8 @@
 	icon_state = "shield"
 	alpha = 100
 	anchored = 1
-	layer = 4.1		//just above mobs
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	density = 0
 	var/obj/machinery/shield_gen/my_gen = null
 	var/strength = 0 // in Renwicks

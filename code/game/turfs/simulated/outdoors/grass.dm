@@ -32,7 +32,7 @@ var/list/grass_types = list(
 /turf/simulated/floor/outdoors/grass/sif/initialize()
 	if(tree_chance && prob(tree_chance))
 		new /obj/structure/flora/tree/sif(src)
-	..()
+	. = ..()
 
 /turf/simulated/floor/outdoors/grass/initialize()
 	if(prob(50))
@@ -42,7 +42,7 @@ var/list/grass_types = list(
 	if(grass_chance && prob(grass_chance))
 		var/grass_type = pick(grass_types)
 		new grass_type(src)
-	..()
+	. = ..()
 
 /turf/simulated/floor/outdoors/grass/forest
 	name = "thick grass"

@@ -22,6 +22,7 @@
 	*/
 	var/list/sprite_sheets_refit = null
 	var/ear_protection = 0
+	var/blood_sprite_state
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -56,7 +57,7 @@
 	if (!..())
 		return 0
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
+	if(LAZYLEN(species_restricted) && istype(M,/mob/living/carbon/human))
 		var/exclusive = null
 		var/wearable = null
 		var/mob/living/carbon/human/H = M
@@ -66,10 +67,10 @@
 
 		if(H.species)
 			if(exclusive)
-				if(!(H.species.get_bodytype() in species_restricted))
+				if(!(H.species.get_bodytype(H) in species_restricted))
 					wearable = 1
 			else
-				if(H.species.get_bodytype() in species_restricted)
+				if(H.species.get_bodytype(H) in species_restricted)
 					wearable = 1
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
@@ -83,16 +84,14 @@
 
 	//Set species_restricted list
 	switch(target_species)
-		if("Human", "Skrell")	//humanoid bodytypes
-			species_restricted = list("Human", "Skrell", "Promethean") //skrell/humans can wear each other's suits
+		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell/humans can wear each other's suits
 		else
 			species_restricted = list(target_species)
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
+		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -105,17 +104,15 @@
 
 	//Set species_restricted list
 	switch(target_species)
-		if("Skrell")
-			species_restricted = list("Human", "Skrell", "Promethean") //skrell helmets fit humans too
+		if(SPECIES_SKRELL)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell helmets fit humans too
 
 		else
 			species_restricted = list(target_species)
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
+		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -130,7 +127,7 @@
 	throwforce = 2
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/ears.dmi')
+		SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -196,20 +193,23 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
-	siemens_coefficient = 0.75
+	siemens_coefficient = 0.9
+	blood_sprite_state = "bloodyhands"
 	var/wired = 0
 	var/obj/item/weapon/cell/cell = 0
 	var/fingerprint_chance = 0	//How likely the glove is to let fingerprints through
 	var/obj/item/clothing/gloves/ring = null		//Covered ring
 	var/mob/living/carbon/human/wearer = null	//Used for covered rings when dropping
-	var/glove_level = 2	//What "layer" the glove is on
-	var/overgloves = 0	//Used by gauntlets and arm_guards
+	var/glove_level = 2			//What "layer" the glove is on
+	var/overgloves = 0			//Used by gauntlets and arm_guards
+	var/punch_force = 0			//How much damage do these gloves add to a punch?
+	var/punch_damtype = BRUTE	//What type of damage does this make fists be?
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/gloves.dmi',
-		"Vox" = 'icons/mob/species/vox/gloves.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -242,8 +242,8 @@
 		name = "modified [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
 		if("exclude" in species_restricted)
-			species_restricted -= "Unathi"
-			species_restricted -= "Tajara"
+			species_restricted -= SPECIES_UNATHI
+			species_restricted -= SPECIES_TAJ
 		return
 */
 
@@ -251,7 +251,7 @@
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
-		if(istype(H.gloves, /obj/item/clothing/gloves/ring))
+		if(H.gloves)
 			ring = H.gloves
 			if(ring.glove_level >= src.glove_level)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
@@ -261,6 +261,8 @@
 				H.drop_from_inventory(ring)	//Remove the ring (or other under-glove item in the hand slot?) so you can put on the gloves.
 				ring.forceMove(src)
 				to_chat(user, "You slip \the [src] on over \the [src.ring].")
+				if(!(flags & THICKMATERIAL))
+					punch_force += ring.punch_force
 		else
 			ring = null
 
@@ -268,6 +270,7 @@
 		if(ring) //Put the ring back on if the check fails.
 			if(H.equip_to_slot_if_possible(ring, slot_gloves))
 				src.ring = null
+		punch_force = initial(punch_force)
 		return 0
 
 	wearer = H //TODO clean this when magboots are cleaned
@@ -284,6 +287,7 @@
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
 			ring.forceMove(get_turf(src))
 		src.ring = null
+	punch_force = initial(punch_force)
 	wearer = null
 
 /////////////////////////////////////////////////////////////////////
@@ -294,10 +298,11 @@
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/obj/clothing/rings.dmi'
 	gender = NEUTER
-	species_restricted = list("exclude", "Diona")
+	species_restricted = list("exclude", SPECIES_DIONA)
 	siemens_coefficient = 1
 	glove_level = 1
 	fingerprint_chance = 100
+	punch_force = 2
 
 ///////////////////////////////////////////////////////////////////////
 //Head
@@ -311,15 +316,17 @@
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEMSIZE_SMALL
+	blood_sprite_state = "helmetblood"
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
 	var/brightness_on
 	var/on = 0
+	var/image/helmet_light
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/head.dmi',
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 
 /obj/item/clothing/head/attack_self(mob/user)
@@ -379,29 +386,29 @@
 	return 1
 
 /obj/item/clothing/head/update_icon(var/mob/user)
-
-	overlays.Cut()
 	var/mob/living/carbon/human/H
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		H = user
 
 	if(on)
-
 		// Generate object icon.
 		if(!light_overlay_cache["[light_overlay]_icon"])
-			light_overlay_cache["[light_overlay]_icon"] = image("icon" = 'icons/obj/light_overlays.dmi', "icon_state" = "[light_overlay]")
-		overlays |= light_overlay_cache["[light_overlay]_icon"]
+			light_overlay_cache["[light_overlay]_icon"] = image(icon = 'icons/obj/light_overlays.dmi', icon_state = "[light_overlay]")
+		helmet_light = light_overlay_cache["[light_overlay]_icon"]
+		add_overlay(helmet_light)
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
-		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype(H)]" : ""]"
+		var/body_type = (H && H.species.get_bodytype(H))
+		var/cache_key = "[light_overlay][body_type && sprite_sheets[body_type] ? "_[body_type]" : ""]"
 		if(!light_overlay_cache[cache_key])
-			var/use_icon = 'icons/mob/light_overlays.dmi'
-			if(H && sprite_sheets[H.species.get_bodytype(H)])
-				use_icon = sprite_sheets[H.species.get_bodytype(H)]
-			light_overlay_cache[cache_key] = image("icon" = use_icon, "icon_state" = "[light_overlay]")
+			var/use_icon = LAZYACCESS(sprite_sheets,body_type) || 'icons/mob/light_overlays.dmi'
+			light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
 
-	if(H)
-		H.update_inv_head()
+	else if(helmet_light)
+		cut_overlay(helmet_light)
+		helmet_light = null
+
+	user.update_inv_head() //Will redraw the helmet with the light on the mob
 
 /obj/item/clothing/head/update_clothing_icon()
 	if (ismob(src.loc))
@@ -420,11 +427,12 @@
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
+	blood_sprite_state = "maskblood"
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/masks.dmi',
-		"Vox" = 'icons/mob/species/vox/masks.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/mask.dmi',
-		"Unathi" = 'icons/mob/species/unathi/mask.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/masks.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/masks.dmi',
+		SPECIES_TAJ = 'icons/mob/species/tajaran/mask.dmi',
+		SPECIES_UNATHI = 'icons/mob/species/unathi/mask.dmi'
 		)
 
 	var/voicechange = 0
@@ -453,6 +461,7 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = FEET
 	slot_flags = SLOT_FEET
+	blood_sprite_state = "shoeblood"
 
 	var/can_hold_knife = 0
 	var/obj/item/holding
@@ -468,10 +477,10 @@
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Teshari", "Vox")
+	species_restricted = list("exclude",SPECIES_TESHARI, SPECIES_VOX)
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/shoes.dmi',
-		"Vox" = 'icons/mob/species/vox/shoes.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
 
 /obj/item/clothing/shoes/proc/draw_knife()
@@ -567,9 +576,10 @@
 	w_class = ITEMSIZE_NORMAL
 	preserve_item = 1
 
+
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/suit.dmi',
-		"Vox" = 'icons/mob/species/vox/suit.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi'
 		)
 
 	valid_accessory_slots = list("over", "armband")
@@ -595,6 +605,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = ITEMSIZE_NORMAL
 	show_messages = 1
+	blood_sprite_state = "uniformblood"
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
@@ -607,8 +618,8 @@
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/uniform.dmi',
-		"Vox" = 'icons/mob/species/vox/uniform.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/uniform.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.

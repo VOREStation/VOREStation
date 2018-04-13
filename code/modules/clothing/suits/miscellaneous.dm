@@ -265,6 +265,15 @@
 			return
 	..()
 
+/obj/item/clothing/suit/straight_jacket/equipped(var/mob/living/user,var/slot)
+	. = ..()
+	if(slot == slot_wear_suit)
+		user.drop_l_hand()
+		user.drop_r_hand()
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.drop_from_inventory(H.handcuffed)
+
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
@@ -347,6 +356,14 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	icon_state = "peacoat"
 	addblends = "peacoat_a"
 	item_state_slots = list(slot_r_hand_str = "peacoat", slot_l_hand_str = "peacoat")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/duster
+	name = "cowboy duster"
+	desc = "A duster commonly seen on cowboys from Earth's late 1800's."
+	icon_state = "duster"
+	blood_overlay_type = "coat"
+	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter)
 	flags_inv = HIDEHOLSTER
 /*
  * stripper
@@ -782,7 +799,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	hooded = TRUE
 	hoodtype = /obj/item/clothing/head/hood/explorer
 	siemens_coefficient = 0.9
-	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 50, bio = 100, rad = 50) // Inferior to sec vests in bullet/laser but better for environmental protection.
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35) // Inferior to sec vests in bullet/laser but better for environmental protection.
 	allowed = list(
 		/obj/item/device/flashlight,
 		/obj/item/weapon/gun,
@@ -798,16 +815,13 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	name = "explorer hood"
 	desc = "An armoured hood for exploring harsh environments."
 	icon_state = "explorer"
-	brightness_on = 3
-	light_overlay = "hood_light"
-	action_button_name = "Toggle Head-light"
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	flags = THICKMATERIAL
 	flags_inv = HIDEEARS | BLOCKHAIR
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 50, bio = 100, rad = 50)
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35)
 
 /obj/item/clothing/suit/varsity
 	name = "black varsity jacket"

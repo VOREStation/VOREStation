@@ -509,6 +509,16 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //		mob_list.Add(M)
 	return moblist
 
+// Format a power value in W, kW, MW, or GW.
+/proc/DisplayPower(powerused)
+	if(powerused < 1000) //Less than a kW
+		return "[powerused] W"
+	else if(powerused < 1000000) //Less than a MW
+		return "[round((powerused * 0.001),0.01)] kW"
+	else if(powerused < 1000000000) //Less than a GW
+		return "[round((powerused * 0.000001),0.001)] MW"
+	return "[round((powerused * 0.000000001),0.0001)] GW"
+
 //Forces a variable to be posative
 /proc/modulus(var/M)
 	if(M >= 0)
@@ -790,15 +800,16 @@ proc/GaussRandRound(var/sigma,var/roundto)
 						var/old_dir1 = T.dir
 						var/old_icon_state1 = T.icon_state
 						var/old_icon1 = T.icon
-						var/old_overlays = T.overlays.Copy()
 						var/old_underlays = T.underlays.Copy()
+						var/old_decals = T.decals ? T.decals.Copy() : null
 
 						X = B.ChangeTurf(T.type)
 						X.set_dir(old_dir1)
 						X.icon_state = old_icon_state1
 						X.icon = old_icon1
-						X.overlays = old_overlays
+						X.copy_overlays(T, TRUE)
 						X.underlays = old_underlays
+						X.decals = old_decals
 
 					//Move the air from source to dest
 					var/turf/simulated/ST = T
@@ -817,14 +828,15 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					for(var/mob/M in T)
 						if(istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
+						if(istype(M, /mob/living))
+							var/mob/living/LM = M
+							LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
 
 					if(shuttlework)
 						var/turf/simulated/shuttle/SS = T
 						SS.landed_holder.leave_turf()
-
 					else if(turftoleave)
 						T.ChangeTurf(turftoleave)
-
 					else
 						T.ChangeTurf(get_base_turf_by_area(T))
 
@@ -1411,3 +1423,50 @@ var/mob/dview/dview_mob = new
 
 #undef NOT_FLAG
 #undef HAS_FLAG
+
+// Returns direction-string, rounded to multiples of 22.5, from the first parameter to the second
+// N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW
+/proc/get_adir(var/turf/A, var/turf/B)
+	var/degree = Get_Angle(A, B)
+	switch(round(degree%360, 22.5))
+		if(0)
+			return "North"
+		if(22.5)
+			return "North-Northeast"
+		if(45)
+			return "Northeast"
+		if(67.5)
+			return "East-Northeast"
+		if(90)
+			return "East"
+		if(112.5)
+			return "East-Southeast"
+		if(135)
+			return "Southeast"
+		if(157.5)
+			return "South-Southeast"
+		if(180)
+			return "South"
+		if(202.5)
+			return "South-Southwest"
+		if(225)
+			return "Southwest"
+		if(247.5)
+			return "West-Southwest"
+		if(270)
+			return "West"
+		if(292.5)
+			return "West-Northwest"
+		if(315)
+			return "Northwest"
+		if(337.5)
+			return "North-Northwest"
+
+
+
+
+
+
+
+
+

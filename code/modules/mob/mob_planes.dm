@@ -94,6 +94,9 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
+/obj/screen/plane_master/New()
+	..(null) //Never be in anything ever.
+
 /obj/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
 		desired_alpha = new_alpha
@@ -132,7 +135,7 @@
 //Lighting is weird and has matrix shenanigans. Think of this as turning on/off darkness.
 /obj/screen/plane_master/fullbright
 	plane = PLANE_LIGHTING
-	layer = LIGHTING_LAYER+1
+	layer = LAYER_HUD_BASE+1 // This MUST be above the lighting plane_master
 	color = null //To break lighting when visible (this is sorta backwards)
 	alpha = 0 //Starts full opaque
 	invisibility = 101

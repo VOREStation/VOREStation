@@ -11,13 +11,14 @@
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "14.5mm"
 	recoil = 5 //extra kickback
-	fire_sound = 'sound/weapons/sniper.ogg' // extra boom
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/a145
-	accuracy = -5
-	scoped_accuracy = 5
+	projectile_type = /obj/item/projectile/bullet/rifle/a145
+	accuracy = -75
+	scoped_accuracy = 75
+//	one_handed_penalty = 90
 	var/bolt_open = 0
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
@@ -79,10 +80,10 @@
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "7.62mm"
 	load_method = MAGAZINE
-	accuracy = -3 //shooting at the hip
+	accuracy = -45 //shooting at the hip
 	scoped_accuracy = 0
 //	requires_two_hands = 1
-	one_handed_penalty = 4 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
+//	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	fire_sound = 'sound/weapons/SVD_shot.ogg'
 	magazine_type = /obj/item/ammo_magazine/m762svd
 	allowed_magazines = list(/obj/item/ammo_magazine/m762svd)

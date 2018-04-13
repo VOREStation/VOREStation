@@ -10,7 +10,7 @@ var/global/list/image/splatter_cache=list()
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
+	plane = BLOOD_PLANE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
@@ -96,18 +96,18 @@ var/global/list/image/splatter_cache=list()
 				S.overlays.Cut()
 				S.overlays += S.blood_overlay
 			S.blood_DNA |= blood_DNA.Copy()
+			perp.update_inv_shoes()
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
-		if(!perp.feet_blood_DNA)
-			perp.feet_blood_DNA = list()
+		LAZYINITLIST(perp.feet_blood_DNA)
 		perp.feet_blood_DNA |= blood_DNA.Copy()
+		perp.update_bloodied()
 	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
 		W.bloodiness = 4
 
-	perp.update_inv_shoes(1)
 	amount--
 
 /obj/effect/decal/cleanable/blood/proc/dry()
@@ -179,7 +179,6 @@ var/global/list/image/splatter_cache=list()
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6")
@@ -236,7 +235,6 @@ var/global/list/image/splatter_cache=list()
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
@@ -247,3 +245,9 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/New()
 	spawn(DRYING_TIME * 2)
 		dry=1
+
+//This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
+/obj/effect/decal/cleanable/mucus/mapped/New()
+	...()
+	virus2 = new /datum/disease2/disease
+	virus2.makerandom()

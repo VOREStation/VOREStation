@@ -148,6 +148,7 @@
 		if(output_used < 0.0001)			// either from no charge or set to 0
 			outputting(0)
 			investigate_log("lost power and turned <font color='red'>off</font>","singulo")
+			log_game("SMES([x],[y],[z]) Power depleted.")
 	else if(output_attempt && output_level > 0)
 		outputting = 1
 	else
@@ -214,6 +215,7 @@
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.set_dir(tempDir)
 		terminal.master = src
+		terminal.connect_to_network()
 		return 0
 	return 1
 
@@ -265,7 +267,6 @@
 		user.visible_message(\
 				"<span class='notice'>[user.name] has added cables to the [src].</span>",\
 				"<span class='notice'>You added cables to the [src].</span>")
-		terminal.connect_to_network()
 		stat = 0
 		return 0
 
@@ -374,7 +375,7 @@
 		output_level = max(0, min(output_level_max, output_level))	// clamp to range
 
 	investigate_log("input/output; <font color='[input_level>output_level?"green":"red"][input_level]/[output_level]</font> | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
-
+	log_game("SMES([x],[y],[z]) [key_name(usr)] changed settings: I:[input_level]([input_attempt]), O:[output_level]([output_attempt])")
 	return 1
 
 

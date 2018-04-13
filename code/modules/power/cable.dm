@@ -53,7 +53,8 @@ var/list/possible_cable_coil_colours = list(
 	icon_state = "0-1"
 	var/d1 = 0
 	var/d2 = 1
-	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
+	plane = PLATING_PLANE
+	layer = WIRES_LAYER
 	color = COLOR_RED
 	var/obj/machinery/power/breakerbox/breaker_box
 
@@ -497,10 +498,11 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	charge_costs = list(1)
 
 /obj/item/stack/cable_coil/suicide_act(mob/user)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if(locate(/obj/item/weapon/stool) in user.loc)
-		user.visible_message("<span class='suicide'>[user] is making a noose with the [src.name]! It looks like \he's trying to commit suicide.</span>")
+		user.visible_message("<span class='suicide'>[user] is making a noose with the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	else
-		user.visible_message("<span class='suicide'>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
+		user.visible_message("<span class='suicide'>[user] is strangling [TU.himself] with the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return(OXYLOSS)
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
@@ -879,6 +881,12 @@ obj/structure/cable/proc/cableColor(var/colorC)
 /obj/item/stack/cable_coil/random/New()
 	stacktype = /obj/item/stack/cable_coil
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN, COLOR_SILVER, COLOR_GRAY, COLOR_BLACK, COLOR_MAROON, COLOR_OLIVE, COLOR_LIME, COLOR_TEAL, COLOR_NAVY, COLOR_PURPLE, COLOR_BEIGE, COLOR_BROWN)
+	..()
+
+/obj/item/stack/cable_coil/random_belt/New()
+	stacktype = /obj/item/stack/cable_coil
+	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_ORANGE)
+	amount = 30
 	..()
 
 //Endless alien cable coil

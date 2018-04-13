@@ -9,8 +9,8 @@ var/list/holder_mob_icon_cache = list()
 	show_messages = 1
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/head.dmi',
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 
 	origin_tech = null
@@ -39,10 +39,13 @@ var/list/holder_mob_icon_cache = list()
 		update_state()
 
 /obj/item/weapon/holder/proc/update_state()
-	if(istype(loc,/turf) || !(contents.len))
+	if(!(contents.len))
+		qdel(src)
+	else if(isturf(loc))
+		drop_items()
 		if(held_mob)
 			held_mob.forceMove(loc)
-		drop_items()
+			held_mob = null
 		qdel(src)
 
 /obj/item/weapon/holder/proc/drop_items()
@@ -83,8 +86,6 @@ var/list/holder_mob_icon_cache = list()
 			H.update_inv_l_hand()
 		else if(H.r_hand == src)
 			H.update_inv_r_hand()
-		else
-			H.regenerate_icons()
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona
@@ -138,7 +139,6 @@ var/list/holder_mob_icon_cache = list()
 		grabber << "<span class='notice'>You scoop up \the [src]!</span>"
 		src << "<span class='notice'>\The [grabber] scoops you up!</span>"
 
-	grabber.status_flags |= PASSEMOTES
 	H.sync(src)
 	return H
 

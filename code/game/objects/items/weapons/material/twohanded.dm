@@ -29,7 +29,7 @@
 
 /obj/item/weapon/material/twohanded/update_held_icon()
 	var/mob/living/M = loc
-	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
+	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
 		wielded = 1
 		force = force_wielded
 		name = "[base_name] (wielded)"
@@ -94,6 +94,7 @@
 	force_wielded = 30
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	applies_material_colour = 0
+	can_cleave = TRUE
 
 /obj/item/weapon/material/twohanded/fireaxe/update_held_icon()
 	var/mob/living/M = loc
@@ -123,12 +124,6 @@
 		else if(istype(A,/obj/effect/plant))
 			var/obj/effect/plant/P = A
 			P.die_off()
-
-// This cannot go into afterattack since some mobs delete themselves upon dying.
-/obj/item/weapon/material/twohanded/fireaxe/pre_attack(var/mob/living/target, var/mob/living/user)
-	if(istype(target))
-		cleave(user, target)
-	..()
 
 /obj/item/weapon/material/twohanded/fireaxe/scythe
 	icon_state = "scythe0"

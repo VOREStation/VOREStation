@@ -106,8 +106,9 @@
 	var/random_color = TRUE
 
 	suicide_act(mob/user)
-		viewers(user) << pick("<span class='danger'>\The [user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</span>", \
-		                       "<span class='danger'>\The [user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</span>")
+		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+		viewers(user) << pick("<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] temple! It looks like [TU.hes] trying to commit suicide.</span>", \
+		                       "<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] heart! It looks like [TU.hes] trying to commit suicide.</span>")
 		return(BRUTELOSS)
 
 /obj/item/weapon/screwdriver/New()
@@ -235,7 +236,7 @@
 	..()
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
+	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")

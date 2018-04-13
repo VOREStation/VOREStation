@@ -47,7 +47,6 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/master(technomancer_mob), slot_head)
-	technomancer_mob.update_icons_layers()
 	return 1
 
 /datum/antagonist/technomancer/proc/equip_apprentice(var/mob/living/carbon/human/technomancer_mob)
@@ -67,7 +66,6 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/apprentice(technomancer_mob), slot_head)
-	technomancer_mob.update_icons()
 	return 1
 
 /datum/antagonist/technomancer/check_victory()

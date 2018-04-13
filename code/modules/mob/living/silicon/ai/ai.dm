@@ -150,13 +150,16 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_SOL_COMMON, 1)
 	add_language(LANGUAGE_UNATHI, 1)
 	add_language(LANGUAGE_SIIK, 1)
+	add_language(LANGUAGE_AKHANI, 1)
 	add_language(LANGUAGE_SKRELLIAN, 1)
+	add_language(LANGUAGE_SKRELLIANFAR, 0)
 	add_language(LANGUAGE_TRADEBAND, 1)
 	add_language(LANGUAGE_GUTTER, 1)
 	add_language(LANGUAGE_EAL, 1)
 	add_language(LANGUAGE_SCHECHI, 1)
 	add_language(LANGUAGE_SIGN, 1)
 	add_language(LANGUAGE_ROOTLOCAL, 1)
+	add_language(LANGUAGE_TERMINUS, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -255,7 +258,7 @@ var/list/ai_verbs_default = list(
 		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
 
 	if(aiCommunicator)
-		aiCommunicator.register_device(src)
+		aiCommunicator.register_device(src.name)
 
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.
@@ -387,7 +390,7 @@ var/list/ai_verbs_default = list(
 		return
 	CentCom_announce(input, usr)
 	usr << "<span class='notice'>Message transmitted.</span>"
-	log_say("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
+	log_game("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
@@ -576,8 +579,8 @@ var/list/ai_verbs_default = list(
 				"female human",
 				"male unathi",
 				"female unathi",
-				"male tajara",
-				"female tajara",
+				"male tajaran",
+				"female tajaran",
 				"male tesharii",
 				"female tesharii",
 				"male skrell",
@@ -619,9 +622,9 @@ var/list/ai_verbs_default = list(
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounam"))
 					if("female unathi")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holounaf"))
-					if("male tajara")
+					if("male tajaran")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajm"))
-					if("female tajara")
+					if("female tajaran")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotajf"))
 					if("male tesharii")
 						holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holotesm"))

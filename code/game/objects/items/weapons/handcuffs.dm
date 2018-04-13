@@ -18,7 +18,13 @@
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 	var/use_time = 30
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/handcuffs.dmi')
+
+/obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_handcuffed_str)
+		return "handcuff1" //Simple
+
+	return ..()
 
 /obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 
@@ -76,9 +82,7 @@
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
 		return 0
 
-	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [H.name] ([H.ckey])</font>")
-	msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
+	add_attack_logs(user,H,"Handcuffed (attempt)")
 	feedback_add_details("handcuffs","H")
 
 	user.setClickCooldown(user.get_attack_speed(src))
@@ -97,6 +101,13 @@
 	target.update_inv_handcuffed()
 	return 1
 
+/obj/item/weapon/handcuffs/equipped(var/mob/living/user,var/slot)
+	. = ..()
+	if(slot == slot_handcuffed)
+		user.drop_r_hand()
+		user.drop_l_hand()
+		user.stop_pulling()
+
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
@@ -112,10 +123,11 @@ var/last_chew = 0
 	var/obj/item/organ/external/O = H.organs_by_name[(H.hand ? BP_L_HAND : BP_R_HAND)]
 	if (!O) return
 
-	var/s = "<span class='warning'>[H.name] chews on \his [O.name]!</span>"
+	var/datum/gender/T = gender_datums[H.get_visible_gender()]
+
+	var/s = "<span class='warning'>[H.name] chews on [T.his] [O.name]!</span>"
 	H.visible_message(s, "<span class='warning'>You chew on your [O.name]!</span>")
-	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
-	log_attack("[s] ([H.ckey])")
+	add_attack_logs(H,H,"chewed own [O.name]")
 
 	if(O.take_damage(3,0,1,1,"teeth marks"))
 		H:UpdateDamageIcon()
@@ -208,6 +220,12 @@ var/last_chew = 0
 	breakouttime = 30
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
 
+/obj/item/weapon/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_legcuffed_str)
+		return "legcuff1"
+
+	return ..()
+
 /obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
@@ -247,7 +265,7 @@ var/last_chew = 0
 		place_legcuffs(user, user)
 		return
 
-	if(!C.handcuffed)
+	if(!C.legcuffed)
 		if (C == user)
 			place_legcuffs(user, user)
 			return
@@ -281,9 +299,7 @@ var/last_chew = 0
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
 		return 0
 
-	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been legcuffed (attempt) by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to legcuff [H.name] ([H.ckey])</font>")
-	msg_admin_attack("[key_name(user)] attempted to legcuff [key_name(H)]")
+	add_attack_logs(user,H,"Legcuffed (attempt)")
 	feedback_add_details("legcuffs","H")
 
 	user.setClickCooldown(user.get_attack_speed(src))
@@ -301,3 +317,11 @@ var/last_chew = 0
 	target.legcuffed = lcuffs
 	target.update_inv_legcuffed()
 	return 1
+
+/obj/item/weapon/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
+	. = ..()
+	if(slot == slot_legcuffed)
+		if(user.m_intent != "walk")
+			user.m_intent = "walk"
+			if(user.hud_used && user.hud_used.move_intent)
+				user.hud_used.move_intent.icon_state = "walking"

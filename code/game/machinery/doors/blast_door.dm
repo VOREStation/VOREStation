@@ -7,6 +7,9 @@
 // as they lack any ID scanning system, they just handle remote control signals. Subtypes have
 // different icons, which are defined by set of variables. Subtypes are on bottom of this file.
 
+// UPDATE 06.04.2018
+// The emag thing wasn't working as intended, manually overwrote it.
+
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -30,7 +33,7 @@
 	block_air_zones = 0
 
 /obj/machinery/door/blast/initialize()
-	..()
+	. = ..()
 	implicit_material = get_material_by_name("plasteel")
 
 /obj/machinery/door/blast/get_material()
@@ -55,6 +58,10 @@
 		icon_state = icon_state_open
 	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
+
+// Has to be in here, comment at the top is older than the emag_act code on doors proper
+/obj/machinery/door/blast/emag_act()
+	return -1
 
 // Proc: force_open()
 // Parameters: None
@@ -195,6 +202,27 @@
 		else
 			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
 			return
+	..()
+
+// Proc: attack_generic()
+// Parameters: Attacking simple mob, incoming damage.
+// Description: Checks the power or integrity of the blast door, if either have failed, chekcs the damage to determine if the creature would be able to open the door by force. Otherwise, super.
+/obj/machinery/door/blast/attack_generic(var/mob/user, var/damage)
+	if(stat & (BROKEN|NOPOWER))
+		if(damage >= 10)
+			if(src.density)
+				visible_message("<span class='danger'>\The [user] starts forcing \the [src] open!</span>")
+				if(do_after(user, 5 SECONDS, src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					force_open(1)
+			else
+				visible_message("<span class='danger'>\The [user] starts forcing \the [src] closed!</span>")
+				if(do_after(user, 2 SECONDS, src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+					force_close(1)
+		else
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+		return
 	..()
 
 // Proc: open()

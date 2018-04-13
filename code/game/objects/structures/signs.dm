@@ -3,7 +3,7 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	layer = 3.5
+	layer = ABOVE_JUNK_LAYER
 	w_class = ITEMSIZE_NORMAL
 
 /obj/structure/sign/ex_act(severity)
@@ -156,6 +156,9 @@
 
 /obj/structure/sign/warning/docking_area
 	name = "\improper KEEP CLEAR: DOCKING AREA"
+
+/obj/structure/sign/warning/evac
+	name = "\improper KEEP CLEAR: EVAC DOCKING AREA"
 	icon_state = "evac"
 
 /obj/structure/sign/warning/engineering_access

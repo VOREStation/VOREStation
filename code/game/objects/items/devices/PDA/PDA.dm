@@ -11,7 +11,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/id.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi')
 
 	//Main variables
 	var/pdachoice = 1
@@ -1169,7 +1169,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" ([reply ? "<a href='byond://?src=\ref[src];choice=Message;notap=[istype(loc, /mob/living/silicon)];skiprefresh=1;target=\ref[sending_unit]'>Reply</a>" : "Unable to Reply"])"
 	new_info(message_silent, ttone, reception_message)
 
-	log_pda("[usr] (PDA: [sending_unit]) sent \"[message]\" to [name]")
+	log_pda("(PDA: [sending_unit]) sent \"[message]\" to [name]", usr)
 	new_message = 1
 	update_icon()
 
@@ -1181,7 +1181,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;notap=1;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>) [track]"
 	new_info(message_silent, newstone, reception_message)
 
-	log_pda("[usr] (PDA: [sending_unit]) sent \"[message]\" to [name]")
+	log_pda("(PDA: [sending_unit]) sent \"[message]\" to [name]",usr)
 	new_message = 1
 
 /obj/item/device/pda/verb/verb_reset_pda()
@@ -1247,20 +1247,17 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(issilicon(usr))
 		return
 
-	if (can_use(usr) && !isnull(cartridge))
-		var/turf/T = get_turf(src)
-		cartridge.loc = T
-		if (ismob(loc))
+	if(can_use(usr) && !isnull(cartridge))
+		cartridge.forceMove(get_turf(src))
+		if(ismob(loc))
 			var/mob/M = loc
 			M.put_in_hands(cartridge)
-		else
-			cartridge.loc = get_turf(src)
 		mode = 0
 		scanmode = 0
 		if (cartridge.radio)
 			cartridge.radio.hostpda = null
-		cartridge = null
 		to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
+		cartridge = null
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
@@ -1379,14 +1376,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							to_chat(user, "<span class='notice'>Blood type: [C:blood_DNA[blood]]\nDNA: [blood]</span>")
 
 			if(4)
-				for (var/mob/O in viewers(C, null))
-					O.show_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", 1)
-
-				user.show_message("<span class='notice'>Analyzing Results for [C]:</span>")
+				user.visible_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", 1)
+				to_chat(user, "<span class='notice'>Analyzing Results for [C]:</span>")
 				if(C.radiation)
-					user.show_message("<span class='notice'>Radiation Level: [C.radiation]</span>")
+					to_chat(user, "<span class='notice'>Radiation Level: [C.radiation]</span>")
 				else
-					user.show_message("<span class='notice'>No radiation detected.</span>")
+					to_chat(user, "<span class='notice'>No radiation detected.</span>")
 
 /obj/item/device/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return

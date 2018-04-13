@@ -75,12 +75,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	//This is a pretty terrible way of doing this.
 	spawn(5 SECONDS) //Wait for our mob to finish spawning.
 		if(ismob(loc))
-			register_device(loc)
+			register_device(loc.name)
 			initialize_exonet(loc)
 		else if(istype(loc, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = loc
 			if(ismob(S.loc))
-				register_device(S.loc)
+				register_device(S.loc.name)
 				initialize_exonet(S.loc)
 
 // Proc: examine()
@@ -173,8 +173,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
 /obj/item/device/communicator/proc/get_connection_to_tcomms()
-	if(node && node.on && node.allow_external_communicators && !is_jammed(src))
-		return 1
+	if(node && node.on && node.allow_external_communicators)
+		return can_telecomm(src,node)
 	return 0
 
 // Proc: process()
@@ -268,12 +268,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: register_device()
 // Parameters: 1 (user - the person to use their name for)
 // Description: Updates the owner's name and the device's name.
-/obj/item/device/communicator/proc/register_device(mob/user)
-	if(!user)
+/obj/item/device/communicator/proc/register_device(new_name)
+	if(!new_name)
 		return
-	owner = user.name
+	owner = new_name
 
-	name = "[owner]'s [initial(name)]"
+	name = "[new_name]'s [initial(name)]"
 	if(camera)
 		camera.name = name
 		camera.c_tag = name
@@ -287,17 +287,20 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		to_chat(voice, "<span class='danger'>\icon[src] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
+
+	//Clean up all references we might have to others
 	communicating.Cut()
 	voice_requests.Cut()
 	voice_invites.Cut()
+	node = null
+
+	//Clean up references that might point at us
 	all_communicators -= src
 	processing_objects -= src
 	listening_objects.Remove(src)
-	qdel(camera)
-	camera = null
-	if(exonet)
-		exonet.remove_address()
-		exonet = null
+	qdel_null(camera)
+	qdel_null(exonet)
+
 	return ..()
 
 // Proc: update_icon()

@@ -38,11 +38,14 @@
 	var/atom/movable/overlay/c_animation = null
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
-	if(damage >= 10)
-		visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
-		take_damage(damage)
-	else
-		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
+	if(isanimal(user))
+		var/mob/living/simple_animal/S = user
+		if(damage >= 10)
+			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
+			playsound(src, S.attack_sound, 75, 1)
+			take_damage(damage)
+		else
+			visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
 	user.do_attack_animation(src)
 
 /obj/machinery/door/New()

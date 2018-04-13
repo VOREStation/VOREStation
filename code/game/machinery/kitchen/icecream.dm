@@ -52,7 +52,7 @@
 			return "vanilla"
 
 /obj/machinery/icecream_vat/initialize()
-	..()
+	. = ..()
 	create_reagents(100)
 	while(product_types.len < 6)
 		product_types.Add(5)
@@ -172,7 +172,6 @@
 	name = "ice cream cone"
 	desc = "Delicious waffle cone, but no ice cream."
 	icon_state = "icecream_cone_waffle" //default for admin-spawned cones, href_list["cone"] should overwrite this all the time
-	layer = 3.1
 	bitesize = 3
 
 	var/ice_creamed = 0

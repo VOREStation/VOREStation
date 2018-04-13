@@ -18,6 +18,8 @@ var/list/fusion_cores = list()
 	active_power_usage = 500 //multiplied by field strength
 	anchored = 0
 
+	circuit = /obj/item/weapon/circuitboard/fusion_core
+
 	var/obj/effect/fusion_em_field/owned_field
 	var/field_strength = 1//0.01
 	var/id_tag
@@ -27,8 +29,12 @@ var/list/fusion_cores = list()
 
 /obj/machinery/power/fusion_core/initialize()
 	. = ..()
-	connect_to_network()
 	fusion_cores += src
+	default_apply_parts()
+
+/obj/machinery/power/fusion_core/mapped/initialize()
+	. = ..()
+	connect_to_network()
 
 /obj/machinery/power/fusion_core/Destroy()
 	for(var/obj/machinery/computer/fusion_core_control/FCC in machines)
@@ -47,6 +53,7 @@ var/list/fusion_cores = list()
 			owned_field.radiation_scale()
 			owned_field.temp_dump()
 			owned_field.temp_color()
+
 /obj/machinery/power/fusion_core/Topic(href, href_list)
 	if(..())
 		return 1
@@ -70,7 +77,7 @@ var/list/fusion_cores = list()
 	if(owned_field)
 		icon_state = "core0"
 		if(force_rupture || owned_field.plasma_temperature > 1000)
-			owned_field.Rupture()
+			owned_field.MRC()
 		else
 			owned_field.RadiateAll()
 		qdel(owned_field)
@@ -106,23 +113,20 @@ var/list/fusion_cores = list()
 		to_chat(user,"<span class='warning'>Shut \the [src] off first!</span>")
 		return
 
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
+
 	if(ismultitool(W))
 		var/new_ident = input("Enter a new ident tag.", "Fusion Core", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return
 
-	else if(iswrench(W))
-		anchored = !anchored
-		playsound(src, W.usesound, 75, 1)
-		if(anchored)
-			user.visible_message("[user.name] secures [src.name] to the floor.", \
-				"You secure the [src.name] to the floor.", \
-				"You hear a ratchet")
-		else
-			user.visible_message("[user.name] unsecures [src.name] from the floor.", \
-				"You unsecure the [src.name] from the floor.", \
-				"You hear a ratchet")
+	if(default_unfasten_wrench(user, W))
 		return
 
 	return ..()

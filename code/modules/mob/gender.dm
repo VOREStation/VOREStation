@@ -18,6 +18,9 @@
 	var/has  = "have"
 	var/is   = "are"
 	var/does = "do"
+	var/himself = "themselves"
+	var/s = ""
+	var/hes = "they're"
 
 /datum/gender/male
 	key  = "male"
@@ -30,6 +33,9 @@
 	has  = "has"
 	is   = "is"
 	does = "does"
+	himself = "himself"
+	s = "s"
+	hes = "he's"
 
 /datum/gender/female
 	key  = "female"
@@ -42,6 +48,9 @@
 	has  = "has"
 	is   = "is"
 	does = "does"
+	himself = "herself"
+	s = "s"
+	hes = "she's"
 
 /datum/gender/neuter
 	key = "neuter"
@@ -54,3 +63,6 @@
 	has  = "has"
 	is   = "is"
 	does = "does"
+	himself = "itself"
+	s = "s"
+	hes = "it's"

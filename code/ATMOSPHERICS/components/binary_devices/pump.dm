@@ -15,6 +15,8 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/pump
 	icon = 'icons/atmos/pump.dmi'
 	icon_state = "map_off"
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "pump"
 	level = 1
 
 	name = "gas pump"
@@ -148,7 +150,7 @@ Thus, the two variables affect pump operation are set in New():
 		ui.set_auto_update(1)		// auto update every Master Controller tick
 
 /obj/machinery/atmospherics/binary/pump/initialize()
-	..()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
@@ -236,5 +238,4 @@ Thus, the two variables affect pump operation are set in New():
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
+		deconstruct()

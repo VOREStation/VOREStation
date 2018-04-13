@@ -565,7 +565,7 @@
 		S.enrage()
 
 	for(var/mob/living/carbon/human/H in view(get_turf(holder.my_atom)))
-		if(H.species.name == "Promethean")
+		if(H.species.name == SPECIES_PROMETHEAN)
 			H.add_modifier(/datum/modifier/berserk, 30 SECONDS)
 			to_chat(H, "<span class='warning'>An intense wave of rage is felt from inside, but you remain in control of yourself.</span>")
 
@@ -896,7 +896,7 @@
 	on_expired_text = "<span class='notice'>The spores of goo have faded, and you feel your agility returning to what it was before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-	evasion = 2
+	evasion = 30
 	slowdown = -1
 	attack_speed_percent = 0.75
 
@@ -970,6 +970,7 @@
 
 	if(S)
 		new S(get_turf(holder.my_atom))
+	..()
 
 /datum/chemical_reaction/slime/rainbow_unity
 	name = "Slime Unity"

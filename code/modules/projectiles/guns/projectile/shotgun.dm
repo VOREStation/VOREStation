@@ -12,8 +12,8 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	load_method = SINGLE_CASING|SPEEDLOADER
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
+	projectile_type = /obj/item/projectile/bullet/shotgun
 	handle_casings = HOLD_CASINGS
-	fire_sound = 'sound/weapons/shotgun.ogg'
 	var/recentpump = 0 // to prevent spammage
 	var/action_sound = 'sound/weapons/shotgunpump.ogg'
 
@@ -106,7 +106,7 @@
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "sawn-off shotgun"
 			desc = "Omar's coming!"
-			user << "<span class='warning'>You shorten the barrel of \the [src]!</span>"
+			to_chat(user, "<span class='warning'>You shorten the barrel of \the [src]!</span>")
 	else
 		..()
 

@@ -13,10 +13,7 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/initialize()
 	update_seed()
-	..()
-
-/obj/item/seeds/New()
-	..()
+	. = ..()
 
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
@@ -79,7 +76,7 @@ var/global/list/plant_seed_sprites = list()
 /obj/item/seeds/random/initialize()
 	seed = plant_controller.create_random_seed()
 	seed_type = seed.name
-	update_seed()
+	. = ..()
 
 /obj/item/seeds/replicapod
 	seed_type = "diona"

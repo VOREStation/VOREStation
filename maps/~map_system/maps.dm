@@ -38,6 +38,12 @@ var/list/all_maps = list()
 	//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 	var/list/accessible_z_levels = list()
 
+	//List of additional z-levels to load above the existing .dmm file z-levels using the maploader. Must be map template >>> NAMES <<<.
+	var/list/lateload_z_levels = list()
+
+	//Similar to above, but only pick ONE to load, useful for random away missions and whatnot
+	var/list/lateload_single_pick = list()
+
 	var/list/allowed_jobs = list() //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
 	                               //We don't have to C&P ones that are only common between two of them
@@ -78,6 +84,7 @@ var/list/all_maps = list()
 	var/list/unit_test_exempt_areas = list()
 	var/list/unit_test_exempt_from_atmos = list()
 	var/list/unit_test_exempt_from_apc = list()
+	var/list/unit_test_z_levels //To test more than Z1, set your z-levels to test here.
 
 /datum/map/New()
 	..()
@@ -134,6 +141,10 @@ var/list/all_maps = list()
 		return list(srcz)
 	else
 		return list()
+
+/datum/map/proc/get_zlevel_name(var/index)
+	var/datum/map_z_level/Z = zlevels["[index]"]
+	return Z.name
 
 // Another way to setup the map datum that can be convenient.  Just declare all your zlevels as subtypes of a common
 // subtype of /datum/map_z_level and set zlevel_datum_type on /datum/map to have the lists auto-initialized.

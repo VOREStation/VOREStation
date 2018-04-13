@@ -1,7 +1,7 @@
 /datum/species/human
-	name = "Human"
+	name = SPECIES_HUMAN
 	name_plural = "Humans"
-	primitive_form = "Monkey"
+	primitive_form = SPECIES_MONKEY
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	blurb = "Humanity originated in the Sol system, and over the last five centuries has spread \
 	colonies across a wide swathe of space. They hold a wide range of forms and creeds.<br/><br/> \
@@ -10,27 +10,27 @@
 	worlds tumultous at best."
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
-	secondary_langs = list(LANGUAGE_SOL_COMMON)
+	secondary_langs = list(LANGUAGE_SOL_COMMON, LANGUAGE_TERMINUS)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	min_age = 17
-	max_age = 110
+	max_age = 130
 	health_hud_intensity = 1.5
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
-	return "Human"
+	return SPECIES_HUMAN
 
 /datum/species/unathi
-	name = "Unathi"
+	name = SPECIES_UNATHI
 	name_plural = "Unathi"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	tail = "sogtail"
 	tail_animation = 'icons/mob/species/unathi/tail.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	primitive_form = "Stok"
+	primitive_form = SPECIES_MONKEY_UNATHI
 	darksight = 3
 	ambiguous_genders = TRUE
 	gluttonous = 1
@@ -132,7 +132,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
 /datum/species/tajaran
-	name = "Tajara"
+	name = SPECIES_TAJ
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
@@ -148,7 +148,7 @@
 	metabolic_rate = 1.1
 	gluttonous = 1
 	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_SIIK)
+	secondary_langs = list(LANGUAGE_SIIK, LANGUAGE_AKHANI)
 	name_language = LANGUAGE_SIIK
 	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
@@ -180,7 +180,7 @@
 	breath_heat_level_2 = 430	//Default 450
 	breath_heat_level_3 = 1000	//Default 1250
 
-	primitive_form = "Farwa"
+	primitive_form = SPECIES_MONKEY_TAJ
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -215,11 +215,11 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
 /datum/species/skrell
-	name = "Skrell"
+	name = SPECIES_SKRELL
 	name_plural = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	primitive_form = "Neaera"
+	primitive_form = SPECIES_MONKEY_SKRELL
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	blurb = "An amphibious species, Skrell come from the star system known as Qerr'Vallis, which translates to 'Star of \
 	the royals' or 'Light of the Crown'.<br/><br/>Skrell are a highly advanced and logical race who live under the rule \
@@ -288,7 +288,7 @@
 	return TRUE
 
 /datum/species/diona
-	name = "Diona"
+	name = SPECIES_DIONA
 	name_plural = "Dionaea"
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
@@ -405,3 +405,33 @@
 			qdel(D)
 
 	H.visible_message("<span class='danger'>\The [H] splits apart with a wet slithering noise!</span>")
+
+/datum/species/diona/handle_environment_special(var/mob/living/carbon/human/H)
+	if(H.inStasisNow())
+		return
+
+	var/obj/item/organ/internal/diona/node/light_organ = locate() in H.internal_organs
+
+	if(light_organ && !light_organ.is_broken())
+		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
+		if(isturf(H.loc)) //else, there's considered to be no light
+			var/turf/T = H.loc
+			light_amount = T.get_lumcount() * 10
+		H.nutrition += light_amount
+		H.shock_stage -= light_amount
+
+		if(H.nutrition > 450)
+			H.nutrition = 450
+		if(light_amount >= 3) //if there's enough light, heal
+			H.adjustBruteLoss(-(round(light_amount/2)))
+			H.adjustFireLoss(-(round(light_amount/2)))
+			H.adjustToxLoss(-(light_amount))
+			H.adjustOxyLoss(-(light_amount))
+			//TODO: heal wounds, heal broken limbs.
+
+	else if(H.nutrition < 200)
+		H.take_overall_damage(2,0)
+
+		//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
+		//Not that it matters much for diona, who have NO_PAIN.
+		H.shock_stage++

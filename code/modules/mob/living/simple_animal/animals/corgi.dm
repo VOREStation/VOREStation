@@ -1,8 +1,9 @@
 //Corgi
 /mob/living/simple_animal/corgi
-	name = "\improper corgi"
+	name = "corgi"
 	real_name = "corgi"
 	desc = "It's a corgi."
+	tt_desc = "Canis familiaris"
 	intelligence_level = SA_ANIMAL
 	icon_state = "corgi"
 	icon_living = "corgi"
@@ -37,6 +38,7 @@
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
 	desc = "It's a corgi."
+	tt_desc = "Canis commandus"
 	var/turns_since_scan = 0
 	var/obj/movement_target
 	response_help  = "pets"
@@ -96,8 +98,8 @@
 					sleep(1)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
-	name = "Corgi meat"
-	desc = "Tastes like... well you know..."
+	name = "corgi meat"
+	desc = "Tastes like... well, you know..."
 
 /mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	if(istype(O, /obj/item/weapon/newspaper))
@@ -137,7 +139,7 @@
 
 
 /mob/living/simple_animal/corgi/puppy
-	name = "\improper corgi puppy"
+	name = "corgi puppy"
 	real_name = "corgi"
 	desc = "It's a corgi puppy."
 	icon_state = "puppy"
@@ -170,7 +172,7 @@
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		usr << "<font color='red'>[src] already has a cute bow!</font>"
+		to_chat(usr, "<font color='red'>[src] already has a cute bow!</font>")
 		return
 	..()
 
@@ -208,7 +210,7 @@
 
 //Technically this should be like, its own file or something or a subset of dog but whatever. Not a coder.
 /mob/living/simple_animal/corgi/tamaskan
-	name = "\improper tamaskan"
+	name = "tamaskan"
 	real_name = "tamaskan"
 	desc = "It's a tamaskan."
 	icon_state = "tamaskan"

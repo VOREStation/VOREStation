@@ -491,6 +491,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/roller/adv
 	sort_string = "MBBAF"
 
+/datum/design/item/medical/improved_analyzer
+	name = "improved health analyzer"
+	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
+	id = "improved_analyzer"
+	req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 1500)
+	build_path = /obj/item/device/healthanalyzer/improved
+	sort_string = "MBBAG"
+
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
@@ -1781,9 +1790,33 @@ CIRCUITS BELOW
 	name = "handheld translator"
 	id = "translator"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 3000)
 	build_path = /obj/item/device/universal_translator
-	sort_string = "HABBA"
+	sort_string = "HABQA"
+
+/datum/design/item/ear_translator
+	name = "earpiece translator"
+	id = "ear_translator"
+	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5)	//It's been hella miniaturized.
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "gold" = 1000)
+	build_path = /obj/item/device/universal_translator/ear
+	sort_string = "HABQB"
+
+/datum/design/obj/item/device/xenoarch_multi_tool
+	name = "xenoarcheology multitool"
+	id = "xenoarch_multitool"
+	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3)
+	build_path = /obj/item/device/xenoarch_multi_tool
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "uranium" = 500, "phoron" = 500)
+	sort_string = "HABQC"
+
+/datum/design/excavationdrill
+	name = "Excavation Drill"
+	id = "excavationdrill"
+	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
+	build_type = PROTOLATHE
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/weapon/pickaxe/excavationdrill
 
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert

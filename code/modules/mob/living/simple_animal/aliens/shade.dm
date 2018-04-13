@@ -20,7 +20,8 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15
-	attacktext = "drained the life from"
+	attack_armor_pen = 100	//It's a ghost/horror from beyond, I ain't gotta explain 100 AP
+	attacktext = list("drained the life from")
 
 	minbodytemp = 0
 	maxbodytemp = 4000

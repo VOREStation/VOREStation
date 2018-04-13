@@ -1,10 +1,10 @@
 /mob/living/simple_animal/penguin
 	name = "space penguin"
 	desc = "An ungainly, waddling, cute, and VERY well-dressed bird."
+	tt_desc = "Aptenodytes forsteri"
 	icon_state = "penguin"
 	icon_living = "penguin"
 	icon_dead = "penguin_dead"
-	icon_gib = "generic_gib"
 	intelligence_level = SA_ANIMAL
 
 	maxHealth = 20
@@ -19,7 +19,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	attacktext = "pecked"
+	attacktext = list("pecked")
 
 	has_langs = list("Bird")
 	speak_chance = 0

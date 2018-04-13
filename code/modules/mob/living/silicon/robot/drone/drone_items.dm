@@ -58,7 +58,8 @@
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/weapon/reagent_containers/pill,
-		/obj/item/weapon/reagent_containers/blood
+		/obj/item/weapon/reagent_containers/blood,
+		/obj/item/stack/material/phoron
 		)
 
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
@@ -194,6 +195,21 @@
 		return
 
 	to_chat(src.loc, "<span class='danger'>You drop \the [wrapped].</span>")
+	wrapped.loc = get_turf(src)
+	wrapped = null
+	//update_icon()
+
+/obj/item/weapon/gripper/proc/drop_item_nm()
+
+	if(!wrapped)
+		for(var/obj/item/thing in src.contents)
+			thing.loc = get_turf(src)
+		return
+
+	if(wrapped.loc != src)
+		wrapped = null
+		return
+
 	wrapped.loc = get_turf(src)
 	wrapped = null
 	//update_icon()

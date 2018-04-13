@@ -50,6 +50,9 @@
 		user << "<span class='warning'>\The [src] is running!</span>"
 		return
 
+	if(default_unfasten_wrench(user, I, 20))
+		return
+
 	// We are trying to cook a grabbed mob.
 	var/obj/item/weapon/grab/G = I
 	if(istype(G))

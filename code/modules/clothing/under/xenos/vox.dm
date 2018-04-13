@@ -1,6 +1,6 @@
 /obj/item/clothing/under/vox
 	has_sensor = 0
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	valid_accessory_slots = list("vox")
 	restricted_accessory_slots = list("vox")
 	phoronproof = 1

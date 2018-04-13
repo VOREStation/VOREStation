@@ -1,4 +1,12 @@
 
+#define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
+#define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
+#define INITIALIZATION_INNEW_REGULAR 2	//New should call Initialize(FALSE)
+
+#define INITIALIZE_HINT_NORMAL   0  //Nothing happens
+#define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
+#define INITIALIZE_HINT_QDEL     2  //Call qdel on the atom
+
 // SS runlevels
 
 #define RUNLEVEL_INIT 0			// "Initialize Only" - Used for subsystems that should never be fired (Should also have SS_NO_FIRE set)
@@ -15,5 +23,40 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
+#define INIT_ORDER_DECALS	16
+#define INIT_ORDER_ATOMS	15
 #define INIT_ORDER_MACHINES 10
+#define INIT_ORDER_SHUTTLES 3
 #define INIT_ORDER_LIGHTING 0
+#define INIT_ORDER_AIR		-1
+#define INIT_ORDER_OVERLAY	-6
+#define INIT_ORDER_XENOARCH	-20
+ 
+
+// Subsystem fire priority, from lowest to highest priority
+// If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
+
+ #define FIRE_PRIORITY_OVERLAYS		500
+
+// Macro defining the actual code applying our overlays lists to the BYOND overlays list. (I guess a macro for speed)
+// TODO - I don't really like the location of this macro define.  Consider it. ~Leshana
+#define COMPILE_OVERLAYS(A)\
+	if (TRUE) {\
+		var/list/oo = A.our_overlays;\
+		var/list/po = A.priority_overlays;\
+		if(LAZYLEN(po)){\
+			if(LAZYLEN(oo)){\
+				A.overlays = oo + po;\
+			}\
+			else{\
+				A.overlays = po;\
+			}\
+		}\
+		else if(LAZYLEN(oo)){\
+			A.overlays = oo;\
+		}\
+		else{\
+			A.overlays.Cut();\
+		}\
+		A.flags &= ~OVERLAY_QUEUED;\
+	}

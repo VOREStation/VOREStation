@@ -461,11 +461,11 @@
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - removed * 5, 0)
+				R.remove_self(removed * 5)
 	if(M.bloodstr)
 		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - removed * 15, 0) 
+				R.remove_self(removed * 15)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -509,10 +509,45 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"
-	metabolism = REM * 0.05
+	metabolism = REM * 0.25
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+
+/datum/reagent/spaceacillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
+
+/datum/reagent/corophizine
+	name = "Corophizine"
+	id = "corophizine"
+	description = "A wide-spectrum antibiotic drug. Powerful and uncomfortable in equal doses."
+	taste_description = "burnt toast"
+	reagent_state = LIQUID
+	color = "#FFB0B0"
+	mrate_static = TRUE
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/corophizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
+
+	//Based roughly on Levofloxacin's rather severe side-effects
+	if(prob(20))
+		M.Confuse(5)
+	if(prob(20))
+		M.Weaken(5)
+	if(prob(20))
+		M.make_dizzy(5)
+	if(prob(20))
+		M.hallucination = max(M.hallucination, 10)
+
+	//One of the levofloxacin side effects is 'spontaneous tendon rupture', which I'll immitate here. 1:1000 chance, so, pretty darn rare.
+	if(ishuman(M) && rand(1,1000) == 1)
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/eo = pick(H.organs) //Misleading variable name, 'organs' is only external organs
+		eo.fracture()
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"
@@ -562,6 +597,7 @@
 	name = "Rezadone"
 	id = "rezadone"
 	description = "A powder with almost magical properties, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
+	taste_description = "bitterness"
 	reagent_state = SOLID
 	color = "#669900"
 	overdose = REAGENTS_OVERDOSE
@@ -653,27 +689,6 @@
 			else
 				M << "<span class='warning'>Your mind breaks apart...</span>"
 				M.hallucination += 200
-
-/datum/reagent/rezadone
-	name = "Rezadone"
-	id = "rezadone"
-	description = "A powder with almost magical properties, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
-	taste_description = "bitterness"
-	reagent_state = SOLID
-	color = "#669900"
-	overdose = REAGENTS_OVERDOSE
-	scannable = 1
-
-/datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustCloneLoss(-20 * removed)
-	M.adjustOxyLoss(-2 * removed)
-	M.heal_organ_damage(20 * removed, 20 * removed)
-	M.adjustToxLoss(-20 * removed)
-	if(dose > 3)
-		M.status_flags &= ~DISFIGURED
-	if(dose > 10)
-		M.make_dizzy(5)
-		M.make_jittery(5)
 
 /datum/reagent/qerr_quem
 	name = "Qerr-quem"

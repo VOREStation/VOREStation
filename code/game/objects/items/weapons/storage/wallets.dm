@@ -10,6 +10,9 @@
 		/obj/item/weapon/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
 		/obj/item/device/flashlight/pen,
+		/obj/item/device/tape,
+		/obj/item/weapon/cartridge,
+		/obj/item/device/encryptionkey,
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/weapon/coin,
@@ -18,13 +21,21 @@
 		/obj/item/weapon/implanter,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/flame/match,
+		/obj/item/weapon/forensics,
+		/obj/item/weapon/glass_extra,
+		/obj/item/weapon/haircomb,
+		/obj/item/weapon/hand,
+		/obj/item/weapon/key,
+		/obj/item/weapon/lipstick,
 		/obj/item/weapon/paper,
 		/obj/item/weapon/pen,
 		/obj/item/weapon/photo,
 		/obj/item/weapon/reagent_containers/dropper,
+		/obj/item/weapon/sample,
 		/obj/item/weapon/screwdriver,
 		/obj/item/weapon/stamp,
-		/obj/item/clothing/accessory/permit
+		/obj/item/clothing/accessory/permit,
+		/obj/item/clothing/accessory/badge
 		)
 	slot_flags = SLOT_ID
 

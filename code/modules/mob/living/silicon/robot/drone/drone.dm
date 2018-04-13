@@ -174,7 +174,7 @@ var/list/mob_hat_cache = list()
 		return
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-
+		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 		if(stat == 2)
 
 			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
@@ -185,7 +185,7 @@ var/list/mob_hat_cache = list()
 				to_chat(user, "<span class='danger'>Access denied.</span>")
 				return
 
-			user.visible_message("<span class='danger'>\The [user] swipes \his ID card through \the [src], attempting to reboot it.</span>", "<span class='danger'>>You swipe your ID card through \the [src], attempting to reboot it.</span>")
+			user.visible_message("<span class='danger'>\The [user] swipes [TU.his] ID card through \the [src], attempting to reboot it.</span>", "<span class='danger'>>You swipe your ID card through \the [src], attempting to reboot it.</span>")
 			var/drones = 0
 			for(var/mob/living/silicon/robot/drone/D in world)
 				if(D.key && D.client)
@@ -195,7 +195,7 @@ var/list/mob_hat_cache = list()
 			return
 
 		else
-			user.visible_message("<span class='danger'>\The [user] swipes \his ID card through \the [src], attempting to shut it down.</span>", "<span class='danger'>You swipe your ID card through \the [src], attempting to shut it down.</span>")
+			user.visible_message("<span class='danger'>\The [user] swipes [TU.his] ID card through \the [src], attempting to shut it down.</span>", "<span class='danger'>You swipe your ID card through \the [src], attempting to shut it down.</span>")
 
 			if(emagged)
 				return
@@ -233,11 +233,12 @@ var/list/mob_hat_cache = list()
 	clear_supplied_laws()
 	clear_inherent_laws()
 	laws = new /datum/ai_laws/syndicate_override
-	set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 
 	src << "<b>Obey these laws:</b>"
 	laws.show_laws(src)
-	src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.</span>"
+	src << "<span class='danger'>ALERT: [user.real_name] [TU.is] your new master. Obey your new laws and [TU.his] commands.</span>"
 	return 1
 
 //DRONE LIFE/DEATH

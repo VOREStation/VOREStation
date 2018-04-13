@@ -12,18 +12,22 @@
 	var/turf/turf_type
 	var/turf/simulated/shuttle/my_turf
 	var/image/turf_image
+	var/list/decals
 
 	New(var/location = null, var/turf/simulated/shuttle/turf)
+		..(null)
 		my_turf = turf
 
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information
-	var/old_dest_type = T.type
-	var/old_dest_dir = T.dir
-	var/old_dest_icon_state = T.icon_state
-	var/old_dest_icon = T.icon
-	var/list/old_dest_overlays = T.overlays.Copy()
-	var/list/old_dest_underlays = T.underlays.Copy()
+	var/obj/landed_holder/new_holder = new(null)
+	new_holder.turf_type = T.type
+	new_holder.dir = T.dir
+	new_holder.icon = T.icon
+	new_holder.icon_state =  T.icon_state
+	new_holder.copy_overlays(T, TRUE)
+	new_holder.underlays = T.underlays.Copy()
+	new_holder.decals = T.decals ? T.decals.Copy() : null
 
 	//Set the destination to be like us
 	T.Destroy()
@@ -31,23 +35,19 @@
 	new_dest.set_dir(my_turf.dir)
 	new_dest.icon_state = my_turf.icon_state
 	new_dest.icon = my_turf.icon
-	new_dest.overlays = my_turf.overlays
+	new_dest.copy_overlays(my_turf, TRUE)
 	new_dest.underlays = my_turf.underlays
-		//Shuttle specific stuff
+	new_dest.decals = my_turf.decals
+	//Shuttle specific stuff
 	new_dest.interior_corner = my_turf.interior_corner
 	new_dest.takes_underlays = my_turf.takes_underlays
 	new_dest.under_turf = my_turf.under_turf
 	new_dest.join_flags = my_turf.join_flags
 	new_dest.join_group = my_turf.join_group
 
-	//Tell the new turf about what was there before
-	new_dest.landed_holder = new(turf = new_dest)
-	new_dest.landed_holder.turf_type = old_dest_type
-	new_dest.landed_holder.dir = old_dest_dir
-	new_dest.landed_holder.icon = old_dest_icon
-	new_dest.landed_holder.icon_state = old_dest_icon_state
-	new_dest.landed_holder.overlays = old_dest_overlays
-	new_dest.landed_holder.underlays = old_dest_underlays
+	// Associate the holder with the new turf.
+	new_holder.my_turf = new_dest
+	new_dest.landed_holder = new_holder
 
 	//Update underlays if necessary (interior corners won't have changed).
 	if(new_dest.takes_underlays && !new_dest.interior_corner)
@@ -63,8 +63,9 @@
 		new_source.set_dir(dir)
 		new_source.icon_state = icon_state
 		new_source.icon = icon
-		new_source.overlays = overlays
+		new_source.copy_overlays(src, TRUE)
 		new_source.underlays = underlays
+		new_source.decals = decals
 	else
 		new_source = my_turf.ChangeTurf(get_base_turf_by_area(my_turf),,1)
 
@@ -93,6 +94,8 @@
 		return 0
 
 	var/turf/under //May be a path or a turf
+	var/mutable_appearance/us = new(src) //We'll use this for changes later
+	us.underlays.Cut()
 
 	//Mapper wanted something specific
 	if(under_turf)
@@ -100,8 +103,11 @@
 
 	//Well if this isn't our first rodeo, we know EXACTLY what we landed on, and it looks like this.
 	if(landed_holder && !interior_corner)
-		underlays.Cut()
-		underlays += image(landed_holder,layer=FLOAT_LAYER)
+		var/mutable_appearance/landed_on = new(landed_holder)
+		landed_on.layer = FLOAT_LAYER //Not turf
+		landed_on.plane = FLOAT_PLANE //Not turf
+		us.underlays = list(landed_on)
+		appearance = us
 		return
 
 	if(!under)
@@ -122,20 +128,26 @@
 		else
 			under = get_base_turf_by_area(src)
 
-	var/use_icon = ispath(under) ? initial(under.icon) : under.icon
-	var/use_icon_state
-
 	if(istype(under,/turf/simulated/shuttle))
 		interior_corner = 1 //Prevents us from 'landing on grass' and having interior corners update.
 
-	if(ispath(under,/turf/space))
-		use_icon_state = "[rand(1,25)]" //Space turfs should be random.
-	else
-		use_icon_state = ispath(under) ? initial(under.icon_state) : under.icon_state
+	var/mutable_appearance/under_ma
 
-	var/image/under_image = new(use_icon,icon_state = use_icon_state)
-	underlays.Cut()
-	underlays |= under_image
+	if(ispath(under)) //It's just a mapper-specified path
+		under_ma = new()
+		under_ma.icon = initial(under.icon)
+		under_ma.icon_state = initial(under.icon_state)
+		under_ma.color = initial(under.color)
+
+	else //It's a real turf
+		under_ma = new(under)
+
+	if(under_ma)
+		if(ispath(under,/turf/space)) //Scramble space turfs
+			under_ma.icon_state = "[rand(1,25)]"
+		us.underlays = list(under_ma)
+
+	appearance = us
 
 	return under
 
@@ -174,7 +186,7 @@
 	block_tele = TRUE
 
 /turf/simulated/shuttle/floor/alien/initialize()
-	..()
+	. = ..()
 	icon_state = "alienpod[rand(1, 9)]"
 
 /turf/simulated/shuttle/floor/alienplating

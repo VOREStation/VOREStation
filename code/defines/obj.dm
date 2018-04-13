@@ -137,6 +137,18 @@ var/global/list/PDA_Manifest = list()
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
+	// Synthetics don't have actual records, so we will pull them from here.
+	// Synths don't have records, which is the means by which isactive is retrieved, so I'm hardcoding it to active, don't really have any better means
+	for(var/mob/living/silicon/ai/ai in mob_list)
+		bot[++bot.len] = list("name" = ai.real_name, "rank" = "Artificial Intelligence", "active" = "Active")
+
+	for(var/mob/living/silicon/robot/robot in mob_list)
+		// No combat/syndicate cyborgs, no drones.
+		if(robot.module && robot.module.hide_on_manifest)
+			continue
+
+		bot[++bot.len] = list("name" = robot.real_name, "rank" = "[robot.modtype] [robot.braintype]", "active" = "Active")
+
 
 	PDA_Manifest = list(
 		list("cat" = "Command", "elems" = heads),
@@ -190,6 +202,12 @@ var/global/list/PDA_Manifest = list()
 	density = 1
 	anchored = 1
 	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
+
+/obj/structure/showcase/sign
+	name = "WARNING: WILDERNESS"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "wilderness1"
+	desc = "This appears to be a sign warning people that the other side is dangerous. It also says that NanoTrasen cannot guarantee your safety beyond this point."
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

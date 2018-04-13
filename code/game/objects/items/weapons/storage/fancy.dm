@@ -10,6 +10,8 @@
  *		Candle Box
  *		Crayon Box
  *		Cigarette Box
+ *		Vial Box
+ *		Box of Chocolates
  */
 
 /obj/item/weapon/storage/fancy/
@@ -50,12 +52,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
 		/obj/item/weapon/reagent_containers/food/snacks/boiledegg
 		)
-
-/obj/item/weapon/storage/fancy/egg_box/New()
-	..()
-	for(var/i=1 to storage_slots)
-		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
-	return
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/egg = 12)
 
 /*
  * Candle Box
@@ -70,12 +67,7 @@
 	item_state = "candlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
-
-/obj/item/weapon/storage/fancy/candle_box/New()
-	..()
-	for(var/i=1 to 5)
-		new /obj/item/weapon/flame/candle(src)
-	return
+	starts_with = list(/obj/item/weapon/flame/candle = 5)
 
 /*
  * Crayon Box
@@ -91,31 +83,76 @@
 	can_hold = list(
 		/obj/item/weapon/pen/crayon
 	)
+	starts_with = list(
+		/obj/item/weapon/pen/crayon/red,
+		/obj/item/weapon/pen/crayon/orange,
+		/obj/item/weapon/pen/crayon/yellow,
+		/obj/item/weapon/pen/crayon/green,
+		/obj/item/weapon/pen/crayon/blue,
+		/obj/item/weapon/pen/crayon/purple
+	)
 
-/obj/item/weapon/storage/fancy/crayons/New()
-	..()
-	new /obj/item/weapon/pen/crayon/red(src)
-	new /obj/item/weapon/pen/crayon/orange(src)
-	new /obj/item/weapon/pen/crayon/yellow(src)
-	new /obj/item/weapon/pen/crayon/green(src)
-	new /obj/item/weapon/pen/crayon/blue(src)
-	new /obj/item/weapon/pen/crayon/purple(src)
+/obj/item/weapon/storage/fancy/crayons/initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/storage/fancy/crayons/update_icon()
-	overlays = list() //resets list
-	overlays += image('icons/obj/crayons.dmi',"crayonbox")
+	var/mutable_appearance/ma = new(src)
+	ma.overlays = list()
 	for(var/obj/item/weapon/pen/crayon/crayon in contents)
-		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
+		ma.overlays += image('icons/obj/crayons.dmi',crayon.colourName)
+	appearance = ma
 
 /obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/pen/crayon))
 		switch(W:colourName)
 			if("mime")
-				usr << "This crayon is too sad to be contained in this box."
+				to_chat(user, "This crayon is too sad to be contained in this box.")
 				return
 			if("rainbow")
-				usr << "This crayon is too powerful to be contained in this box."
+				to_chat(user, "This crayon is too powerful to be contained in this box.")
+				return
+	..()
+
+/obj/item/weapon/storage/fancy/markers
+	name = "box of markers"
+	desc = "A very professional looking box of permanent markers."
+	icon = 'icons/obj/crayons.dmi'
+	icon_state = "markerbox"
+	w_class = ITEMSIZE_SMALL
+	icon_type = "marker"
+	can_hold = list(
+		/obj/item/weapon/pen/crayon/marker
+	)
+	starts_with = list(
+		/obj/item/weapon/pen/crayon/marker/black,
+		/obj/item/weapon/pen/crayon/marker/red,
+		/obj/item/weapon/pen/crayon/marker/orange,
+		/obj/item/weapon/pen/crayon/marker/yellow,
+		/obj/item/weapon/pen/crayon/marker/green,
+		/obj/item/weapon/pen/crayon/marker/blue,
+		/obj/item/weapon/pen/crayon/marker/purple
+	)
+
+/obj/item/weapon/storage/fancy/markers/initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/weapon/storage/fancy/markers/update_icon()
+	var/mutable_appearance/ma = new(src)
+	ma.overlays = list()
+	for(var/obj/item/weapon/pen/crayon/marker/marker in contents)
+		ma.overlays += image('icons/obj/crayons.dmi',"m"+marker.colourName)
+	appearance = ma
+
+/obj/item/weapon/storage/fancy/markers/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/pen/crayon/marker))
+		switch(W:colourName)
+			if("mime")
+				to_chat(user, "This marker is too depressing to be contained in this box.")
+				return
+			if("rainbow")
+				to_chat(user, "This marker is too childish to be contained in this box.")
 				return
 	..()
 
@@ -134,13 +171,12 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
 	icon_type = "cigarette"
+	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 6)
 	var/brand = "\improper Trans-Stellar Duty-free"
 
-/obj/item/weapon/storage/fancy/cigarettes/New()
-	..()
+/obj/item/weapon/storage/fancy/cigarettes/initialize()
+	. = ..()
 	flags |= NOREACT
-	for(var/i = 1 to storage_slots)
-		new /obj/item/clothing/mask/smokable/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 	flags |= OPENCONTAINER
 	if(brand)
@@ -199,10 +235,6 @@
 	icon_state = "Bpacket"
 	brand = "\improper Acme Co. cigarette"
 
-//	New()
-//		..()
-//		fill_cigarre_package(src,list("fuel" = 15))
-
 // New exciting ways to kill your lungs! - Earthcrusher //
 
 /obj/item/weapon/storage/fancy/cigarettes/luckystars
@@ -246,12 +278,11 @@
 	storage_slots = 7
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)
 	icon_type = "cigar"
+	starts_with = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 7)
 
-/obj/item/weapon/storage/fancy/cigar/New()
-	..()
+/obj/item/weapon/storage/fancy/cigar/initialize()
+	. = ..()
 	flags |= NOREACT
-	for(var/i = 1 to storage_slots)
-		new /obj/item/clothing/mask/smokable/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)
 
 /obj/item/weapon/storage/fancy/cigar/update_icon()
@@ -259,10 +290,22 @@
 	return
 
 /obj/item/weapon/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
-		var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
-		if(!istype(C)) return
-		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
-		..()
+	var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
+	if(!istype(C)) return
+	reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
+	..()
+
+/obj/item/weapon/storage/rollingpapers
+	name = "rolling paper pack"
+	desc = "A small cardboard pack containing several folded rolling papers."
+	icon_state = "paperbox"
+	icon = 'icons/obj/cigarettes.dmi'
+	w_class = ITEMSIZE_TINY
+	throwforce = 2
+	slot_flags = SLOT_BELT
+	storage_slots = 14
+	can_hold = list(/obj/item/weapon/rollingpaper)
+	starts_with = list(/obj/item/weapon/rollingpaper = 14)
 
 /*
  * Vial Box
@@ -275,12 +318,7 @@
 	name = "vial storage box"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
-
-/obj/item/weapon/storage/fancy/vials/New()
-	..()
-	for(var/i=1 to 6)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
-	return
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/vial = 6)
 
 /obj/item/weapon/storage/lockbox/vials
 	name = "secure vial storage box"
@@ -294,8 +332,8 @@
 	storage_slots = 6
 	req_access = list(access_virology)
 
-/obj/item/weapon/storage/lockbox/vials/New()
-	..()
+/obj/item/weapon/storage/lockbox/vials/initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = 0)
@@ -313,3 +351,36 @@
 /obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	update_icon()
+
+/*
+ * Box of Chocolates/Heart Box
+ */
+
+/obj/item/weapon/storage/fancy/heartbox
+	icon_state = "heartbox"
+	name = "box of chocolates"
+	icon_type = "chocolate"
+
+	var/startswith = 6
+	max_storage_space = ITEMSIZE_COST_SMALL * 6
+	can_hold = list(
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/white,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/truffle
+		)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/white,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/white,
+		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/truffle
+	)
+
+/obj/item/weapon/storage/fancy/heartbox/initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/weapon/storage/fancy/heartbox/update_icon(var/itemremoved = 0)
+	if (contents.len == 0)
+		icon_state = "heartbox_empty"

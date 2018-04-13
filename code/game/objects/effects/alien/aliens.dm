@@ -147,7 +147,8 @@
 
 	anchored = 1
 	density = 0
-	layer = 2
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
 
@@ -155,7 +156,7 @@
 	icon_state = "weednode"
 	name = "purple sac"
 	desc = "Weird purple octopus-like thing."
-	layer = 3
+	layer = ABOVE_TURF_LAYER+0.01
 	light_range = NODERANGE
 	var/node_range = NODERANGE
 

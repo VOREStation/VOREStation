@@ -105,15 +105,16 @@
 	if(!(robotic >= ORGAN_ROBOT))
 		return
 	var/burn_damage = 0
-	switch (severity)
-		if (1)
-			burn_damage += rand(8, 13)
-		if (2)
-			burn_damage += rand(6, 9)
-		if(3)
-			burn_damage += rand(4, 7)
-		if(4)
-			burn_damage += rand(1, 5)
+	for(var/i = 1; i <= robotic; i++)
+		switch (severity)
+			if (1)
+				burn_damage += rand(5, 8)
+			if (2)
+				burn_damage += rand(4, 6)
+			if(3)
+				burn_damage += rand(2, 5)
+			if(4)
+				burn_damage += rand(1, 3)
 
 	if(burn_damage)
 		take_damage(0, burn_damage)
@@ -193,9 +194,9 @@
 
 	dislocated = 1
 	if(owner)
-		owner.verbs |= /mob/living/carbon/human/proc/undislocate
+		owner.verbs |= /mob/living/carbon/human/proc/relocate
 
-/obj/item/organ/external/proc/undislocate()
+/obj/item/organ/external/proc/relocate()
 	if(dislocated == -1)
 		return
 
@@ -207,7 +208,7 @@
 		for(var/obj/item/organ/external/limb in owner.organs)
 			if(limb.dislocated == 1)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/undislocate
+		owner.verbs -= /mob/living/carbon/human/proc/relocate
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
@@ -323,7 +324,8 @@
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
-	owner.updatehealth() //droplimb will call updatehealth() again if it does end up being called
+	if(owner)
+		owner.updatehealth() //droplimb will call updatehealth() again if it does end up being called
 
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner && !is_stump())
@@ -397,7 +399,7 @@
 		user << "<span class='notice'>Nothing to fix!</span>"
 		return 0
 
-	if(damage_amount >= ROBOLIMB_REPAIR_CAP)
+	if(brute_dam + burn_dam >= ROBOLIMB_REPAIR_CAP)
 		user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 		return 0
 
@@ -424,7 +426,8 @@
 
 	if(damage_desc)
 		if(user == src.owner)
-			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on \his [src.name] with [tool].</span>")
+			var/datum/gender/T = gender_datums[user.get_visible_gender()]
+			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [T.his] [src.name] with [tool].</span>")
 		else
 			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [owner]'s [src.name] with [tool].</span>")
 
@@ -541,7 +544,7 @@ This function completely restores a damaged organ to perfect condition.
 //external organs handle brokenness a bit differently when it comes to damage. Instead brute_dam is checked inside process()
 //this also ensures that an external organ cannot be "broken" without broken_description being set.
 /obj/item/organ/external/is_broken()
-	return ((status & ORGAN_CUT_AWAY) || ((status & ORGAN_BROKEN) && !(splinted)))
+	return ((status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN) && (!splinted || (splinted && splinted in src.contents && prob(30))))
 
 //Determines if we even need to process this organ.
 /obj/item/organ/external/proc/need_process()
@@ -618,13 +621,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 		handle_germ_effects()
 
 /obj/item/organ/external/proc/handle_germ_sync()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
 		if (owner.germ_level > W.germ_level && W.infection_check())
 			W.germ_level++
 
-	if (antibiotics < 5)
+	if (antibiotics < ANTIBIO_NORM)
 		for(var/datum/wound/W in wounds)
 			//Infected wounds raise the organ's germ level
 			if (W.germ_level > germ_level)
@@ -635,9 +638,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..() //May be null or an infection level, if null then no specific processing needed here
 	if(!.) return
 
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 
-	if(. >= 2 && antibiotics < 5) //INFECTION_LEVEL_TWO
+	if(. >= 2 && antibiotics < ANTIBIO_NORM) //INFECTION_LEVEL_TWO
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/obj/item/organ/I in internal_organs)
@@ -669,7 +672,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 
-	if(. >= 3 && antibiotics < 30)	//INFECTION_LEVEL_THREE
+	if(. >= 3 && antibiotics < ANTIBIO_OD)	//INFECTION_LEVEL_THREE
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"
@@ -870,7 +873,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	spawn(1)
 		victim.updatehealth()
 		victim.UpdateDamageIcon()
-		victim.regenerate_icons()
+		victim.update_icons_body()
 		dir = 2
 
 	switch(disintegrate)
@@ -1129,7 +1132,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/is_malfunctioning()
-	return ((robotic >= ORGAN_ROBOT) && (brute_dam + burn_dam) >= 25 && prob(brute_dam + burn_dam))
+	return ((robotic >= ORGAN_ROBOT) && (brute_dam + burn_dam) >= ROBOLIMB_REPAIR_CAP && prob(brute_dam + burn_dam))
 
 /obj/item/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
 	if(!owner || loc != owner)

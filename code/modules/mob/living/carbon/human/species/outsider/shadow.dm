@@ -1,5 +1,5 @@
 /datum/species/shadow
-	name = "Shadow"
+	name = SPECIES_SHADOW
 	name_plural = "shadows"
 
 	icobase = 'icons/mob/human_races/r_shadow.dmi'
@@ -14,6 +14,8 @@
 
 	blood_color = "#CCCCCC"
 	flesh_color = "#AAAAAA"
+
+	virus_immune = 1
 
 	remains_type = /obj/effect/decal/cleanable/ash
 	death_message = "dissolves into ash..."

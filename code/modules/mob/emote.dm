@@ -15,14 +15,13 @@
 	else
 		input = message
 	if(input)
+		log_emote(message,src) //Log before we add junk
 		message = "<B>[src]</B> [input]"
 	else
 		return
 
 
 	if (message)
-		log_emote("[name]/[key] : [message]")
-
 		message = say_emphasis(message)
 
  // Hearing gasp and such every five seconds is not good emotes were not global for a reason.
@@ -30,7 +29,7 @@
 
 		var/turf/T = get_turf(src)
 		if(!T) return
-		var/list/in_range = get_mobs_and_objs_in_view_fast(T,range,2)
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,range,2,remote_ghosts = client ? TRUE : FALSE)
 		var/list/m_viewers = in_range["mobs"]
 		var/list/o_viewers = in_range["objs"]
 
@@ -71,7 +70,7 @@
 	input = say_emphasis(input)
 
 	if(input)
-		log_emote("Ghost/[src.key] : [input]")
+		log_ghostemote(input, src)
 		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
 			visible_message("<span class='deadsay'><B>[src]</B> [input]</span>")
 		else

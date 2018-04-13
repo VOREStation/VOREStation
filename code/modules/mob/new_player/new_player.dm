@@ -115,7 +115,13 @@
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait 5 minutes before being able to respawn!","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
-			var/mob/observer/dead/observer = new()
+			
+			//Make a new mannequin quickly, and allow the observer to take the appearance
+			var/mob/living/carbon/human/dummy/mannequin = new()
+			client.prefs.dress_preview_mob(mannequin)
+			var/mob/observer/dead/observer = new(mannequin)
+			observer.forceMove(null) //Let's not stay in our doomed mannequin
+			qdel(mannequin)
 
 			spawning = 1
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
@@ -125,20 +131,13 @@
 			close_spawn_windows()
 			var/obj/O = locate("landmark*Observer-Start")
 			if(istype(O))
-				src << "<span class='notice'>Now teleporting.</span>"
-				observer.loc = O.loc
+				to_chat(src,"<span class='notice'>Now teleporting.</span>")
+				observer.forceMove(O.loc)
 			else
-				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
+				to_chat(src,"<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
-			var/mob/living/carbon/human/dummy/mannequin = new()
-			client.prefs.dress_preview_mob(mannequin)
-			observer.appearance = mannequin
-			observer.alpha = 127
-			observer.layer = initial(observer.layer)
-			observer.invisibility = initial(observer.invisibility)
-			qdel(mannequin)
 
 			if(client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
@@ -326,15 +325,26 @@
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0
+	if(!client)
+		return 0
+
+	//Find our spawning point.
+	var/list/join_props = job_master.LateSpawn(client, rank)
+	var/turf/T = join_props["turf"]
+	var/join_message = join_props["msg"]
+
+	if(!T || !join_message)
+		return 0
 
 	spawning = 1
 	close_spawn_windows()
 
 	job_master.AssignRole(src, rank, 1)
 
-	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
+	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
+	log_game("JOINED [key_name(character)] as \"[rank]\"")
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
@@ -354,14 +364,11 @@
 		qdel(src)
 		return
 
-	//Find our spawning point.
-	var/join_message = job_master.LateSpawn(character, rank)
 	// Equip our custom items only AFTER deploying to spawn points eh?
 	equip_custom_items(character)
 
 	character.apply_traits()
 
-	character.lastarea = get_area(loc)
 	// Moving wheelchair if they have one
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
@@ -419,7 +426,7 @@
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
 
 
-/mob/new_player/proc/create_character()
+/mob/new_player/proc/create_character(var/turf/T)
 	spawning = 1
 	close_spawn_windows()
 
@@ -434,19 +441,19 @@
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 		if(is_alien_whitelisted(chosen_species))
-			new_character = new(loc, use_species_name)
+			new_character = new(T, use_species_name)
 
 	if(!new_character)
-		new_character = new(loc)
+		new_character = new(T)
 
-	new_character.lastarea = get_area(loc)
+	new_character.lastarea = get_area(T)
 
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
-		client.prefs.copy_to(new_character)
+		client.prefs.copy_to(new_character, icon_updates = TRUE)
 
 	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
 
@@ -478,8 +485,8 @@
 
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()
+	new_character.update_icons_body()
 	new_character.update_eyes()
-	new_character.regenerate_icons()
 
 	new_character.key = key		//Manually transfer the key to log them in
 
@@ -512,12 +519,12 @@
 		chosen_species = all_species[client.prefs.species]
 
 	if(!chosen_species)
-		return "Human"
+		return SPECIES_HUMAN
 
 	if(is_alien_whitelisted(chosen_species))
 		return chosen_species.name
 
-	return "Human"
+	return SPECIES_HUMAN
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()

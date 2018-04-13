@@ -44,7 +44,7 @@
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
 		new_overlays += "[initial(icon_state)]-paddles"
-	if(bcell)
+	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
 			if(paddles.combat)
 				new_overlays += "[initial(icon_state)]-combat"
@@ -475,7 +475,7 @@
 	if(burn_damage > 15 && H.can_feel_pain())
 		H.emote("scream")
 
-	admin_attack_log(user, H, "Electrocuted using \a [src]", "Was electrocuted with \a [src]", "used \a [src] to electrocute")
+	add_attack_logs(user,H,"Shocked using [name]")
 
 /obj/item/weapon/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
 	var/deadtime = world.time - M.timeofdeath
@@ -487,7 +487,6 @@
 
 	M.timeofdeath = 0
 	M.stat = UNCONSCIOUS //Life() can bring them back to consciousness if it needs to.
-	M.regenerate_icons()
 	M.failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	M.reload_fullscreen()
 

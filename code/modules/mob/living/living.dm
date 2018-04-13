@@ -1,18 +1,26 @@
 /mob/living/New()
 	..()
 
+	//Prime this list if we need it.
+	if(has_huds)
+		add_overlay(backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
+		hud_list = list()
+		hud_list.len = TOTAL_HUDS
+		make_hud_overlays()
+
 	//I'll just hang my coat up over here
 	dsoverlay = image('icons/mob/darksight.dmi',global_hud.darksight) //This is a secret overlay! Go look at the file, you'll see.
 	var/mutable_appearance/dsma = new(dsoverlay) //Changing like ten things, might as well.
 	dsma.alpha = 0
 	dsma.plane = PLANE_LIGHTING
-	dsma.layer = LIGHTING_LAYER + 0.1
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
 	dsoverlay = null
+	if(buckled)
+		buckled.unbuckle_mob(src, TRUE)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -172,10 +180,10 @@ default behaviour is:
 /mob/living/verb/succumb()
 	set hidden = 1
 	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
-		src.adjustOxyLoss(src.health + src.getMaxHealth() * 2) // Deal 2x health in OxyLoss damage, as before but variable.
-		src.health = src.getMaxHealth() - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
+		src.death()
 		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
-
+	else
+		to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -245,7 +253,8 @@ default behaviour is:
 /mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
 	return getBruteLoss()
 
-/mob/living/proc/adjustBruteLoss(var/amount)
+//'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
+/mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -319,7 +328,8 @@ default behaviour is:
 /mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
 	return getFireLoss()
 
-/mob/living/proc/adjustFireLoss(var/amount)
+//'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
+/mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -825,7 +835,6 @@ default behaviour is:
 		for(var/atom/A in M.contents)
 			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
 				return
-		M.status_flags &= ~PASSEMOTES
 
 	else if(istype(H.loc,/obj/item/clothing/accessory/holster))
 		var/obj/item/clothing/accessory/holster/holster = H.loc
@@ -855,6 +864,7 @@ default behaviour is:
 
 	resting = !resting
 	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+	update_canmove()
 
 /mob/living/proc/cannot_use_vents()
 	if(mob_size > MOB_SMALL)
@@ -1002,14 +1012,10 @@ default behaviour is:
 			canmove = 0
 			break
 
-	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
-	if( update_icon )	//forces a full overlay update
-		update_icon = 0
-		regenerate_icons()
-	else if( lying != lying_prev )
-		update_icons()
+	if(lying != lying_prev)
+		lying_prev = lying
+		update_transform()
+		
 	return canmove
 
 // Adds overlays for specific modifiers.
@@ -1085,3 +1091,107 @@ default behaviour is:
 
 	else // No colors, so remove the client's color.
 		animate(client, color = null, time = 10)
+
+/mob/living/swap_hand()
+	src.hand = !( src.hand )
+	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		if(hand)	//This being 1 means the left hand is in use
+			hud_used.l_hand_hud_object.icon_state = "l_hand_active"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_inactive"
+		else
+			hud_used.l_hand_hud_object.icon_state = "l_hand_inactive"
+			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
+	return
+
+/mob/living/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+
+	if(istext(selhand))
+		selhand = lowertext(selhand)
+
+		if(selhand == "right" || selhand == "r")
+			selhand = 0
+		if(selhand == "left" || selhand == "l")
+			selhand = 1
+
+	if(selhand != src.hand)
+		swap_hand()
+
+/mob/living/throw_item(atom/target)
+	src.throw_mode_off()
+	if(usr.stat || !target)
+		return
+	if(target.type == /obj/screen) return
+
+	var/atom/movable/item = src.get_active_hand()
+
+	if(!item) return
+
+	var/throw_range = item.throw_range
+	if (istype(item, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = item
+		item = G.throw_held() //throw the person instead of the grab
+		if(ismob(item))
+			var/mob/M = item
+
+			//limit throw range by relative mob size
+			throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
+
+			var/turf/end_T = get_turf(target)
+			if(end_T)
+				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+
+	src.drop_from_inventory(item)
+	if(!item || !isturf(item.loc))
+		return
+
+	//actually throw it!
+	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
+
+	if(!src.lastarea)
+		src.lastarea = get_area(src.loc)
+	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+		src.inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+
+
+/*
+	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
+		src.inertia_dir = get_dir(target, src)
+		step(src, inertia_dir)
+*/
+
+
+	item.throw_at(target, throw_range, item.throw_speed, src)
+
+/mob/living/get_sound_env(var/pressure_factor)
+	if (hallucination)
+		return PSYCHOTIC
+	else if (druggy)
+		return DRUGGED
+	else if (drowsyness)
+		return DIZZY
+	else if (confused)
+		return DIZZY
+	else if (sleeping)
+		return UNDERWATER
+	else
+		return ..()
+
+//Add an entry to overlays, assuming it exists
+/mob/living/proc/apply_hud(cache_index, var/image/I)
+	hud_list[cache_index] = I
+	if((. = hud_list[cache_index]))
+		//underlays += .
+		add_overlay(.)
+
+//Remove an entry from overlays, and from the list
+/mob/living/proc/grab_hud(cache_index)
+	var/I = hud_list[cache_index]
+	if(I)
+		//underlays -= I
+		cut_overlay(I)
+		hud_list[cache_index] = null
+		return I
+
+/mob/living/proc/make_hud_overlays()
+	return

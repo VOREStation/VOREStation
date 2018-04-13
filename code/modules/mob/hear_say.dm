@@ -1,7 +1,7 @@
 // At minimum every mob has a hear_say proc.
 
 /mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	if(!client)
+	if(!client && !teleop)
 		return
 
 	if(speaker && !speaker.client && istype(src,/mob/observer/dead) && is_preference_enabled(/datum/client_preference/ghost_ears) && !(speaker in view(src)))
@@ -80,10 +80,14 @@
 
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
+	if(teleop)
+		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[message]")
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
 	to_chat(src, "[time] [message]")
+	if(teleop)
+		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[time] [message]")
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
@@ -298,11 +302,6 @@
 			else			adverb = " a very lengthy message"
 		message = "<B>[speaker]</B> [verb][adverb]."
 
-	if(src.status_flags & PASSEMOTES)
-		for(var/obj/item/weapon/holder/H in src.contents)
-			H.show_message(message)
-		for(var/mob/living/M in src.contents)
-			M.show_message(message)
 	src.show_message(message)
 
 /mob/proc/hear_sleep(var/message)

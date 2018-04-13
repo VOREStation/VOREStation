@@ -69,7 +69,7 @@
 	var/static/list/possible_tech = list(TECH_MATERIAL, TECH_ENGINEERING, TECH_PHORON, TECH_POWER, TECH_BIO, TECH_COMBAT, TECH_MAGNET, TECH_DATA)
 
 /obj/item/prop/alien/junk/initialize()
-	..()
+	. = ..()
 	icon_state = pick(possible_states)
 	var/list/techs = possible_tech.Copy()
 	origin_tech = list()

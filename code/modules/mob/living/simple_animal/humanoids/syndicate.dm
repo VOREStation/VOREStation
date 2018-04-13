@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/syndicate
-	name = "syndicate operative"
+	name = "mercenary"
 	desc = "Death to the Company."
 	icon_state = "syndicate"
 	icon_living = "syndicate"
@@ -31,7 +31,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	environment_smash = 1
-	attacktext = "punched"
+	attacktext = list("punched")
 
 	min_oxy = 5
 	max_oxy = 0
@@ -73,9 +73,12 @@
 	icon_state = "syndicatemelee"
 	icon_living = "syndicatemelee"
 
-	melee_damage_lower = 20
-	melee_damage_upper = 25
-	attacktext = "slashed"
+	melee_damage_lower = 30
+	melee_damage_upper = 30
+	attack_armor_pen = 50
+	attack_sharp = 1
+	attack_edge = 1
+	attacktext = list("slashed")
 
 	status_flags = 0
 
@@ -133,7 +136,7 @@
 	ranged = 1
 	rapid = 1
 	projectiletype = /obj/item/projectile/bullet/pistol/medium
-	casingtype = /obj/item/ammo_casing/spent
+//	casingtype = /obj/item/ammo_casing/spent	//Makes infinite stacks of bullets when put in PoIs.
 	projectilesound = 'sound/weapons/Gunshot_light.ogg'
 
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
@@ -167,6 +170,7 @@
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
 	intelligence_level = SA_ROBOTIC
+	hovering = TRUE
 
 	faction = "syndicate"
 	maxHealth = 15
@@ -176,8 +180,10 @@
 
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_sharp = 1
+	attack_edge = 1
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	attacktext = "cut"
+	attacktext = list("cut")
 
 	min_oxy = 0
 	max_oxy = 0

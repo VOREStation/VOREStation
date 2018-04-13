@@ -226,7 +226,7 @@
 	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/tajaraphobe
-	name = "Tajara-phobic"
+	name = "Tajaran-phobic"
 	desc = "Boilerplate racism for cats goes here."
 	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 

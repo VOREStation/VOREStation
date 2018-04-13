@@ -42,6 +42,7 @@
 	var/blood_volume = 560                               // Initial blood volume.
 	var/bloodloss_rate = 1								 // Multiplier for how fast a species bleeds out. Higher = Faster
 	var/hunger_factor = 0.05                             // Multiplier for hunger.
+	var/active_regen_mult = 1							 // Multiplier for 'Regenerate' power speed, in human_powers.dm
 
 	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
 
@@ -163,6 +164,7 @@
 	var/obj/effect/decal/cleanable/blood/tracks/move_trail = /obj/effect/decal/cleanable/blood/tracks/footprints // What marks are left when walking
 	var/list/skin_overlays = list()
 	var/has_floating_eyes = 0     // Whether the eyes can be shown above other icons
+	var/has_glowing_eyes = 0      // Whether the eyes are shown above all lighting
 	var/water_movement = 0		  // How much faster or slower the species is in water
 	var/snow_movement = 0		  // How much faster or slower the species is on snow
 
@@ -231,20 +233,48 @@
 /datum/species/proc/sanitize_name(var/name, var/robot = 0)
 	return sanitizeName(name, MAX_NAME_LEN, robot)
 
-/datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
+/datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 0,var/comprehensive = 0)
 	var/boxtype = /obj/item/weapon/storage/box/survival //Default survival box
-	if(H.isSynthetic())
-		boxtype = /obj/item/weapon/storage/box //Empty box for synths
 
-	else if(extendedtank)
-		boxtype = /obj/item/weapon/storage/box/engineer //Special box for engineers
+	var/synth = H.isSynthetic()
+
+	//Empty box for synths
+	if(synth)
+		boxtype = /obj/item/weapon/storage/box/survival/synth
+
+	//Special box with extra equipment
+	else if(comprehensive)
+		boxtype = /obj/item/weapon/storage/box/survival/comp
+
+	//Create the box
+	var/obj/item/weapon/storage/box/box = new boxtype(H)
+
+	//If not synth, they get an air tank (if they breathe)
+	if(!synth && breath_type)
+		//Create a tank (if such a thing exists for this species)
+		var/tanktext = "/obj/item/weapon/tank/emergency/" + "[breath_type]"
+		var/obj/item/weapon/tank/emergency/tankpath //Will force someone to come look here if they ever alter this path.
+		if(extendedtank)
+			tankpath = text2path(tanktext + "/engi")
+			if(!tankpath) //Is it just that there's no /engi?
+				tankpath = text2path(tanktext + "/double")
+
+		if(!tankpath)
+			tankpath = text2path(tanktext)
+
+		if(tankpath)
+			new tankpath(box)
+
+	//If they are synth, they get a smol battery
+	else if(synth)
+		new /obj/item/device/fbp_backup_cell(box)
+
+	box.calibrate_size()
 
 	if(H.backbag == 1)
-		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H), slot_r_hand)
-		else	H.equip_to_slot_or_del(new boxtype(H), slot_r_hand)
+		H.equip_to_slot_or_del(box, slot_r_hand)
 	else
-		if (extendedtank)	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
-		else	H.equip_to_slot_or_del(new boxtype(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(box, slot_in_backpack)
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
@@ -392,3 +422,7 @@
 // Used to override normal fall behaviour. Use only when the species does fall down a level.
 /datum/species/proc/fall_impact_special(var/mob/living/carbon/human/H, var/atom/A)
 	return FALSE
+
+// Allow species to display interesting information in the human stat panels
+/datum/species/proc/Stat(var/mob/living/carbon/human/H)
+	return

@@ -415,6 +415,8 @@
 	desc = "It's an extra resilient airlock intended for spacefaring vessels."
 	icon = 'icons/obj/doors/shuttledoors.dmi'
 	explosion_resistance = 20
+	opacity = 0
+	glass = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft
 
 // Airlock opens from top-bottom instead of left-right.
@@ -565,7 +567,7 @@ About the new airlock wires panel:
 	else if(duration)	//electrify door for the given duration seconds
 		if(usr)
 			shockedby += text("\[[time_stamp()]\] - [usr](ckey:[usr.ckey])")
-			usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+			add_attack_logs(usr,name,"Electrified a door")
 		else
 			shockedby += text("\[[time_stamp()]\] - EMP)")
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
@@ -1177,6 +1179,7 @@ About the new airlock wires panel:
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

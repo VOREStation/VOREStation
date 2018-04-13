@@ -27,6 +27,13 @@
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = 1
 
+/obj/machinery/computer/cryopod/update_icon()
+	..()
+	if((stat & NOPOWER) || (stat & BROKEN))
+		icon_state = "[initial(icon_state)]-p"
+	else
+		icon_state = initial(icon_state)
+
 /obj/machinery/computer/cryopod/robot
 	name = "robotic storage console"
 	desc = "An interface between crew and the robotic storage systems"
@@ -41,8 +48,6 @@
 /obj/machinery/computer/cryopod/dorms
 	name = "residential oversight console"
 	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
-	icon = 'icons/obj/robot_storage.dmi' //placeholder
-	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
@@ -52,8 +57,6 @@
 /obj/machinery/computer/cryopod/travel
 	name = "docking oversight console"
 	desc = "An interface between visitors and the docking oversight systems tasked with keeping track of all visitors who enter or exit from the docks."
-	icon = 'icons/obj/robot_storage.dmi' //placeholder
-	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
@@ -63,8 +66,6 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
-	icon = 'icons/obj/robot_storage.dmi' //placeholder
-	icon_state = "console" //placeholder
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
@@ -299,18 +300,23 @@
 	return ..()
 
 /obj/machinery/cryopod/initialize()
-	..()
+	. = ..()
 
 	find_control_computer()
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
-	//control_computer = locate(/obj/machinery/computer/cryopod) in src.loc.loc // Broken due to http://www.byond.com/forum/?post=2007448
-	control_computer = locate(/obj/machinery/computer/cryopod) in range(6,src)
+	control_computer = null
+
+	var/area/my_area = get_area(src)
+	control_computer = locate(/obj/machinery/computer/cryopod) in my_area
+
+	if(!control_computer) //Fallback to old method.
+		control_computer = locate(/obj/machinery/computer/cryopod) in range(6,src)
 
 	// Don't send messages unless we *need* the computer, and less than five minutes have passed since last time we messaged
-	if(!control_computer && urgent && last_no_computer_message + 5*60*10 < world.time)
-		log_admin("Cryopod in [src.loc.loc] could not find control computer!")
-		message_admins("Cryopod in [src.loc.loc] could not find control computer!")
+	if(!control_computer && urgent && last_no_computer_message + 5 MINUTES < world.time)
+		log_admin("Cryopod in [my_area] could not find control computer!")
+		message_admins("Cryopod in [my_area] could not find control computer!")
 		last_no_computer_message = world.time
 
 	return control_computer != null
@@ -346,8 +352,8 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/robot/despawn_occupant()
-	var/mob/living/silicon/robot/R = occupant
+/obj/machinery/cryopod/robot/despawn_occupant(var/mob/to_despawn)
+	var/mob/living/silicon/robot/R = to_despawn
 	if(!istype(R)) return ..()
 
 	qdel(R.mmi)

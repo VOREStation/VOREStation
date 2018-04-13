@@ -8,13 +8,17 @@
 	name = "stack of wood"
 	type_to_spawn = /obj/item/stack/tile/wood
 
+/obj/fiftyspawner/wood/sif
+	name = "stack of alien wood"
+	type_to_spawn = /obj/item/stack/tile/wood/sif
+
 /obj/fiftyspawner/carpet
 	name = "stack of carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet
 
-/obj/fiftyspawner/bluecarpet
-	name = "stack of blue carpet"
-	type_to_spawn = /obj/item/stack/tile/carpet/blue
+/obj/fiftyspawner/tealcarpet
+	name = "stack of teal carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/teal
 
 /obj/fiftyspawner/floor
 	name = "stack of floor tiles"

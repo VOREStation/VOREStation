@@ -18,6 +18,6 @@
 	harm_intent_damage = 5
 	melee_damage_upper = 15
 	melee_damage_lower = 10
-	attacktext = "mauled"
+	attacktext = list("mauled")
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
