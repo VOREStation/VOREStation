@@ -1,4 +1,5 @@
 #define DAM_SCALE_FACTOR 0.01
+#define METAL_PER_TICK 150
 /datum/species/protean
 	name =             "Protean"
 	name_plural =      "Proteans"
@@ -170,15 +171,15 @@
 	if(refactory && !(refactory.status & ORGAN_DEAD))
 		
 		//MHydrogen adds speeeeeed
-		if(refactory.get_stored_material("mhydrogen") >= 100)
+		if(refactory.get_stored_material("mhydrogen") >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/mhydrogen, origin = refactory)
 
 		//Plasteel adds brute armor
-		if(refactory.get_stored_material("plasteel") >= 100)
+		if(refactory.get_stored_material("plasteel") >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/plasteel, origin = refactory)
 
 		//Diamond adds burn armor
-		if(refactory.get_stored_material("diamond") >= 100)
+		if(refactory.get_stored_material("diamond") >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/diamond, origin = refactory)
 
 	return ..()
@@ -207,7 +208,7 @@
 // Various modifiers
 /datum/modifier/protean
 	stacks = MODIFIER_STACK_FORBID
-	var/material_use = 150
+	var/material_use = METAL_PER_TICK
 	var/material_name = DEFAULT_WALL_MATERIAL
 
 /datum/modifier/protean/on_applied()
@@ -303,3 +304,4 @@
 		desc += "\nVALID THROUGH END OF: [time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+544)]\nREGISTRANT: [new_name]"
 
 #undef DAM_SCALE_FACTOR
+#undef METAL_PER_TICK
