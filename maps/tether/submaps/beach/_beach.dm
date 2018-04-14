@@ -13,7 +13,7 @@
 
 //The other destination is landed on the surface
 /datum/shuttle_destination/excursion/beach
-	name = "Coastal Area"
+	name = "Remote Coastal Area"
 	my_area = /area/shuttle/excursion/away_beach
 	preferred_interim_area = /area/shuttle/excursion/sand_moving
 	skip_me = TRUE
@@ -157,7 +157,7 @@
 	dynamic_lighting = 0
 
 /area/tether_away/beach
-	name = "\improper Desert Planet Beach"
+	name = "\improper Away Mission - Virgo 4 Beach"
 	icon_state = "away"
 	base_turf = /turf/simulated/floor/beach/sand //This is what the ground turns into if destroyed/bombed/etc
 	//Not going to do sunlight simulations here like virgo3b
