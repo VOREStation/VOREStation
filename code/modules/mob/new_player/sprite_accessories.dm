@@ -1025,11 +1025,6 @@
 		icon_state = "teshari_mushroom"
 		species_allowed = list(SPECIES_TESHARI)
 
-	teshari_fluffymohawk
-		name = "Teshari Fluffy Mohawk"
-		icon_state = "teshari_fluffymohawk"
-		species_allowed = list(SPECIES_TESHARI)
-
 // Vox things
 	vox_braid_long
 		name = "Long Vox braid"

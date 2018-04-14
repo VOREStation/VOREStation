@@ -255,6 +255,13 @@
 	teshari_fluffymohawk
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
+	teshari_fluffymohawk
+		name = "Teshari Fluffy Mohawk"
+		icon =  'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "teshari_fluffymohawk"
+		species_allowed = list(SPECIES_TESHARI)
+
 //Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
 	skr_tentacle_veryshort
 		name = "Skrell Very Short Tentacles"
