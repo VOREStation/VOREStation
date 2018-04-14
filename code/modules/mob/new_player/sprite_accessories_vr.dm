@@ -253,9 +253,6 @@
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 	teshari_fluffymohawk
-		icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-	teshari_fluffymohawk
 		name = "Teshari Fluffy Mohawk"
 		icon =  'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
