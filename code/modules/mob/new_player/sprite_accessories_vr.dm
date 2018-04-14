@@ -252,7 +252,7 @@
 	teshari_mushroom
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
-	teshari_mohawk
+	teshari_fluffymohawk
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 //Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
