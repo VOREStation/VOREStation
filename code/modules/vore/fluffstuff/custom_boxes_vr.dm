@@ -172,27 +172,6 @@
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
 
-//Arokha:Aronai Kadigan
-/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
-	name = "blue medical satchel"
-	desc = "A medical satchel done up in blue and white."
-
-	New()
-		..() //Might look like a lot... but all small items.
-		//Centcom stuff and permit
-		new /obj/item/weapon/card/id/centcom/station/fluff/aronai(src)
-		//new /obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan(src)
-		//Gun and holster
-		//new /obj/item/weapon/gun/projectile/nsfw(src)
-		//new /obj/item/ammo_magazine/nsfw_mag(src)
-		//new /obj/item/ammo_casing/nsfw_batt/stun(src)
-		//new /obj/item/ammo_casing/nsfw_batt/stun(src)
-		//new /obj/item/ammo_casing/nsfw_batt/net(src)
-		//new /obj/item/clothing/accessory/holster(src)
-
-/obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai/digest_act(...)
-	return FALSE //I get eaten a lot, okay
-
 //Aerowing:Sebastian Aji
 /obj/item/weapon/storage/box/fluff/sebastian_aji
 	name = "Sebastian's Lumoco Arms P3 Box"
