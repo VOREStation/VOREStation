@@ -1101,7 +1101,7 @@
 	desc = ""
 	icon_state = "zenghu_taj"
 
-/datum/sprite_accessory/tail/special/teshari-fluffytail
+/datum/sprite_accessory/tail/special/teshari_fluffytail
 	name = "Teshari alternative, colorable"
 	desc = ""
 	icon_state = "teshari_fluffytail_s"
