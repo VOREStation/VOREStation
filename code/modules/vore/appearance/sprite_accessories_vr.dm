@@ -1104,16 +1104,10 @@
 /datum/sprite_accessory/tail/special/teshari-fluffytail
 	name = "Teshari alternative, colorable"
 	desc = ""
-	icon_state = "teshari-fluffytail_s"
-	extra_overlay = "teshari-fluffytail_mark_s"
+	icon_state = "teshari_fluffytail_s"
+	extra_overlay = "teshari_fluffytail_mark_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/special/shookitail
-	name = "Shooki"
-	desc = ""
-	icon_state = "shookitail_s"
-	ckeys_allowed = list("NeverKnowWhyThis")
 
 /*
 ////////////////////////////
