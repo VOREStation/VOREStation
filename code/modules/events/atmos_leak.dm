@@ -26,19 +26,7 @@
 		gas_choices += "volatile_fuel" // Dangerous and no default atmos setup!
 	gas_type = pick(gas_choices)
 
-	// Assemble areas that all exists (See DM reference if you are confused about loop labels)
-	var/list/area/grand_list_of_areas = list()
-	looping_station_areas:
-		for(var/parentpath in global.the_station_areas)
-			// Check its not excluded
-			for(var/excluded_path in excluded)
-				if(ispath(parentpath, excluded_path))
-					continue looping_station_areas
-			// Otherwise add it and all subtypes that exist on the map to our grand list
-			for(var/areapath in typesof(parentpath))
-				var/area/A = locate(areapath) // Check if it actually exists
-				if(istype(A) && A.z in using_map.player_levels)
-					grand_list_of_areas += A
+	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 
 	// Okay, now lets try and pick a target! Lets try 10 times, otherwise give up
 	for(var/i in 1 to 10)
