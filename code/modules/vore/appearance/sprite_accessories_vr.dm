@@ -270,6 +270,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/teshari
+	name = "Teshari (colorable eartips)"
+	desc = ""
+	icon_state = "teshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshariinner"
+
 // Special snowflake ears go below here.
 
 /datum/sprite_accessory/ears/molenar_kitsune
@@ -1092,6 +1100,20 @@
 	name = "Zeng-Hu Tajaran Synth tail"
 	desc = ""
 	icon_state = "zenghu_taj"
+
+/datum/sprite_accessory/tail/special/teshari-fluffytail
+	name = "Teshari alternative, colorable"
+	desc = ""
+	icon_state = "teshari-fluffytail_s"
+	extra_overlay = "teshari-fluffytail_mark_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/special/shookitail
+	name = "Shooki"
+	desc = ""
+	icon_state = "shookitail_s"
+	ckeys_allowed = list("NeverKnowWhyThis")
 
 /*
 ////////////////////////////

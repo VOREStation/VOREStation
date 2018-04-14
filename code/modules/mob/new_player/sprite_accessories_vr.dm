@@ -252,6 +252,9 @@
 	teshari_mushroom
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
+	teshari_mohawk
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
 //Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
 	skr_tentacle_veryshort
 		name = "Skrell Very Short Tentacles"
@@ -909,3 +912,15 @@
 		icon_state = "catwomanleft"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG)
+
+	teshifluff
+		name = "Teshari underfluff"
+		icon_state = "teshifluff"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO,BP_HEAD)
+
+	teshismallfeathers
+		name = "Teshari small wingfeathers"
+		icon_state = "teshismallfeathers"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO)
