@@ -9,6 +9,22 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/path_to_some_food
 */
 
+/datum/recipe/jellydonut
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice
+
+/datum/recipe/jellydonut/slime
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice
+
+/datum/recipe/jellydonut/cherry
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice
+
+/datum/recipe/donut
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice
+
 /datum/recipe/sushi
 	fruit = list("cabbage" = 1)
 	reagents = list("rice" = 20)
