@@ -47,6 +47,8 @@
 
 	player_msg = "In this form, you can move a little faster, your health will regenerate as long as you have metal in you, and you can ventcrawl!"
 
+	can_buckle = TRUE //Blobsurfing
+
 //Constructor allows passing the human to sync damages
 /mob/living/simple_animal/protean_blob/New(var/newloc, var/mob/living/carbon/human/H)
 	..()
@@ -183,6 +185,8 @@
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
 				if(istype(target) && vore_selected)
+					if(target.buckled)
+						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
