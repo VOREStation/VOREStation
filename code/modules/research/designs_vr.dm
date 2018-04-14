@@ -173,6 +173,41 @@
 	build_path = /obj/item/weapon/circuitboard/bomb_tester
 	sort_string = "HABAG"
 
+/datum/design/circuit/sleeper
+	name = "sleeper"
+	id = "sleeper"
+	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 4)
+	build_path = /obj/item/weapon/circuitboard/sleeper
+	sort_string = "FBAAA"
+
+/datum/design/circuit/sleeper_console
+	name = "sleeper console"
+	id = "sleeper_console"
+	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 4)
+	build_path = /obj/item/weapon/circuitboard/sleeper_console
+	sort_string = "FBAAB"
+
+/datum/design/circuit/body_scanner
+	name = "body scanner"
+	id = "body_scanner"
+	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 3)
+	build_path = /obj/item/weapon/circuitboard/body_scanner
+	sort_string = "FBAAC"
+
+/datum/design/circuit/scanner_console
+	name = "body scanner console"
+	id = "scanner_console"
+	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 3)
+	build_path = /obj/item/weapon/circuitboard/scanner_console
+	sort_string = "FBAAD"
+
+/datum/design/circuit/OpTable
+	name = "operating table"
+	id = "optable"
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 5)
+	build_path = /obj/item/weapon/circuitboard/optable
+	sort_string = "FBAAE"
+
 ////// RIGSuit Stuff
 /*
 /datum/design/item/rig

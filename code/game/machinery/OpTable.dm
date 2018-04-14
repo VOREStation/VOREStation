@@ -90,7 +90,7 @@
 	C.resting = 1
 	C.loc = src.loc
 	for(var/obj/O in src)
-		O.loc = src.loc
+		if(!(O in component_parts) && !(O == circuit)) O.loc = src.loc	//VOREStation Edit: constructable optables
 	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
