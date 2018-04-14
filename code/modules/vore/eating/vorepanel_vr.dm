@@ -507,7 +507,7 @@
 		selected.name = new_name
 
 	if(href_list["b_mode"])
-		var/list/menu_list = selected.digest_modes
+		var/list/menu_list = selected.digest_modes.Copy()
 		if(istype(usr,/mob/living/carbon/human))
 			menu_list += DM_TRANSFORM
 
@@ -526,7 +526,7 @@
 		selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
 
 	if(href_list["b_addons"])
-		var/list/menu_list = selected.mode_flag_list
+		var/list/menu_list = selected.mode_flag_list.Copy()
 		var/toggle_addon = input("Toggle Addon") as null|anything in menu_list
 		if(!toggle_addon)
 			return 0
