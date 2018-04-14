@@ -904,6 +904,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "deertail_mark"
 
+/datum/sprite_accessory/tail/teshari_fluffytail
+	name = "Teshari alternative, colorable"
+	desc = ""
+	icon_state = "teshari_fluffytail"
+	extra_overlay = "teshari_fluffytail_mark"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
@@ -1100,14 +1108,6 @@
 	name = "Zeng-Hu Tajaran Synth tail"
 	desc = ""
 	icon_state = "zenghu_taj"
-
-/datum/sprite_accessory/tail/special/teshari_fluffytail
-	name = "Teshari alternative, colorable"
-	desc = ""
-	icon_state = "teshari_fluffytail_s"
-	extra_overlay = "teshari_fluffytail_mark_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /*
 ////////////////////////////
