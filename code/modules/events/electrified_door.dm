@@ -25,8 +25,9 @@
 	if(!chosen_door)
 		return
 	chosen_door.set_safeties(0)
-	chosen_door.electrify(-1)
-	chosen_door.unlock()
+	if(severity >= EVENT_LEVEL_MODERATE)
+		chosen_door.electrify(-1)
+	chosen_door.lock()
 	chosen_door.health = chosen_door.maxhealth / 6
 	chosen_door.aiControlDisabled = 1
 	chosen_door.update_icon()
