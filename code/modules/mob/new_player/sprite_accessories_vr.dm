@@ -917,14 +917,14 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG)
 
-	teshifluff
+	teshi_fluff
 		name = "Teshari underfluff"
-		icon_state = "teshifluff"
+		icon_state = "teshi_fluff"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG,BP_R_LEG,BP_GROIN,BP_TORSO,BP_HEAD)
 
-	teshismallfeathers
+	teshi_small_feathers
 		name = "Teshari small wingfeathers"
-		icon_state = "teshismallfeathers"
+		icon_state = "teshi_small_feathers"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO)
