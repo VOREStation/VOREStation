@@ -92,8 +92,10 @@
 				if(spattack_min_range <= 1)
 					SpecialAtkTarget()
 
+
 			else if(melee_damage_upper == 0 && istype(A,/mob/living))
 				custom_emote(1,"[pick(friendly)] [A]!")
+
 
 			else
 				DoPunch(A)

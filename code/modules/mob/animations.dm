@@ -205,8 +205,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2)
 
-/mob/living/do_attack_animation(atom/A)
+/mob/living/do_attack_animation(atom/A, no_attack_icons = FALSE)
 	..()
+	if(no_attack_icons)
+		return FALSE
+
 	//Check for clients with pref enabled
 	var/list/viewing = list()
 	for(var/m in viewers(A))
@@ -265,6 +268,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	update_icon()
 	return TRUE //Found an item, doing item attack animation.
 
 /mob/proc/spin(spintime, speed)

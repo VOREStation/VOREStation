@@ -19,6 +19,7 @@
 #define ASPECT_EMP			"emp"		//Unused now.
 #define ASPECT_UNSTABLE		"unstable"	//Heavily RNG-based, causes instability to the victim.
 #define ASPECT_CHROMATIC	"chromatic"	//Used to combine with other spells.
+#define ASPECT_UNHOLY		"unholy"	//Involves the dead, blood, and most things against divine beings.
 
 /obj/item/weapon/spell
 	name = "glowing particles"
