@@ -655,7 +655,7 @@
 			role during in the late stages of the conflict. After the war, ONI's resources were pooled into numerous top secret projects; much of \
 			which remains unknown or outright denied to the public even today. Among their suspected activities include exploration, weapons \
 			development, xenoarcheology, xenobiology, corporate espionage, and manipulation of political affairs."
-	work = "peacekeeping and piracy suppression"
+	work = "espionage, piracy suppression, xeno research, and various other black book projects"
 	headquarters = "Paris, Earth"
 	motto = "The truth will set you free."
 	ship_prefixes = list("ONI" = "classified", "ONI" = "archeological", "ONI" = "exploration", "ONI" = "logistic") // It's all ONI but let's mix up what missions they do.
