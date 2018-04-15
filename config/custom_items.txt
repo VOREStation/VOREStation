@@ -300,6 +300,24 @@ character_name: Belle Day
 item_path: /obj/item/weapon/implanter/reagent_generator/belle
 }
 
+{
+ckey: hzdonut
+character_name: Jesse Soemmer
+item_path:/obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
+}
+
+{
+ckey: hzdonut
+character_name: Jesse Soemmer
+item_path:/obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
+}
+
+{
+ckey: hzdonut
+character_name: Jesse Soemmer
+item_path:/obj/item/clothing/accessory/holster/hip
+}
+
 # ######## I CKEYS
 
 {
