@@ -54,7 +54,7 @@
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
 	follow_dist = 1
 	var/mob/living/carbon/human/food
-	var/hanger = 0
+	var/hunger = 0
 
 /mob/living/simple_animal/hostile/rous/passive/Life()
 	. = ..()
@@ -66,7 +66,7 @@
 				visible_emote("hungrily devours \the [S].")
 				playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
 				qdel(S)
-				hanger = 0
+				hunger = 0
 				food = null
 			else
 				WanderTowards(S.loc)
@@ -78,8 +78,10 @@
 
 	if(food_dist > 7) //Lose interest on this person.
 		food = null
-		if(hanger < 30) //Get miffed but don't let people evade stack you into pouncing the next victim on sight.
-			hanger += 5
+		if(hunger < 25) //Get miffed but don't let people evade stack you into pouncing the next victim on sight.
+			hunger += 5
+		else if(hunger > 25) //Leave room for interaction with the next victim if blueballed by evader.
+			hunger = 25
 
 	if(food_dist > 1)
 		if(stance == STANCE_IDLE)
@@ -89,45 +91,45 @@
 					lay_down()
 
 	if(food_dist <= 1)
-		if(hanger < 15)
+		if(hunger < 15)
 			if(prob(25))
 				visible_emote(pick("sniffs curiously at [food].",
 								   "stares at [food], seeming to want something.",
 								   "sniffs at [food]'s hands.",
 								   "sniffs curiously at [food]'s pockets.",
 								   "sits down for a moment, reaching towards [food] with its paws."))
-				hanger += 5
-		else if(hanger < 30)
+				hunger += 5
+		else if(hunger < 30)
 			if(prob(25))
 				visible_emote(pick("sniffs intently against [food], especially their pockets and gear.",
 								   "stands up to beg [food] for snacks.",
 								   "attempts to burrow into [food]'s pockets.",
 								   "leans against [food], licking its chops.",
 								   "hungrily nibbles onto [food]."))
-				hanger += 5
-		else if(hanger < 45)
+				hunger += 5
+		else if(hunger < 45)
 			if(prob(25))
 				visible_emote(pick("growls at [food], sounding rather hangry!",
 								   "aggressively bumps and nudges against [food], trying to make something fall out.",
 								   "salivates at [food] in an unsettling manner.",
 								   "pushes hard against [food], licking its chops.",
 								   "almost sinks its teeth into [food], just stopping to give them another chance."))
-				hanger += 5
-		else if(hanger < 50)
+				hunger += 5
+		else if(hunger < 50)
 			visible_emote("appears to have had enough and prepares to strike!")
 		else
 			food.Weaken(5)
 			food.visible_message("<span class='danger'>\the [src] pounces on \the [food]!</span>!")
 			target_mob = food
 			EatTarget()
-			hanger = 0
+			hunger = 0
 			food = null
 
 /mob/living/simple_animal/hostile/rous/passive/attackby(var/obj/item/O, var/mob/user) // Feed the rat your food to satisfy it.
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks))
 		qdel(O)
 		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
-		hanger = 0
+		hunger = 0
 		food = null
 		return
 	. = ..()
