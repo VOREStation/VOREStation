@@ -23,8 +23,8 @@
 	id = "round_end_belt"
 
 	// create a conveyor
-/obj/machinery/conveyor/New(loc, newdir, on = 0)
-	..(loc)
+/obj/machinery/conveyor/initialize(mapload, newdir, on = 0)
+	. = ..()
 	if(newdir)
 		set_dir(newdir)
 
@@ -105,7 +105,7 @@
 			id = input
 			for(var/obj/machinery/conveyor_switch/C in world)
 				if(C.id == id)
-					C.conveyors += src
+					C.conveyors |= src
 			return
 
 	user.drop_item(get_turf(src))
@@ -158,12 +158,6 @@
 	if(C)
 		C.set_operable(stepdir, id, op)
 
-/*
-/obj/machinery/conveyor/verb/destroy()
-	set src in view()
-	src.broken()
-*/
-
 /obj/machinery/conveyor/power_change()
 	..()
 	update()
@@ -189,15 +183,16 @@
 
 
 
-/obj/machinery/conveyor_switch/New()
+/obj/machinery/conveyor_switch/initialize()
 	..()
 	update()
+	return INITIALIZE_HINT_LATELOAD
 
-	spawn(5)		// allow map load
-		conveyors = list()
-		for(var/obj/machinery/conveyor/C in world)
-			if(C.id == id)
-				conveyors += C
+/obj/machinery/conveyor_switch/LateInitialize()
+	conveyors = list()
+	for(var/obj/machinery/conveyor/C in world)
+		if(C.id == id)
+			conveyors += C
 
 // update the icon depending on the position
 
@@ -273,6 +268,7 @@
 				usr << "No input found please hang up and try your call again."
 				return
 			id = input
+			conveyors = list() // Clear list so they aren't double added.
 			for(var/obj/machinery/conveyor/C in world)
 				if(C.id == id)
 					conveyors += C
