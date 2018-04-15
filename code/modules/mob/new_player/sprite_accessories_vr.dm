@@ -211,7 +211,7 @@
 
 	teshari_fluffymohawk
 		name = "Teshari Fluffy Mohawk"
-		icon =  'icons/mob/human_face_or_vr.dmi'
+		icon =  'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "teshari_fluffymohawk"
 		species_allowed = list(SPECIES_TESHARI)
@@ -921,10 +921,10 @@
 		name = "Teshari underfluff"
 		icon_state = "teshi_fluff"
 		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_L_LEG,BP_R_LEG,BP_GROIN,BP_TORSO,BP_HEAD)
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_GROIN,BP_TORSO,BP_HEAD)
 
 	teshi_small_feathers
 		name = "Teshari small wingfeathers"
 		icon_state = "teshi_sf"
 		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO)
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)

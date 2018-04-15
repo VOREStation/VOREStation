@@ -271,12 +271,29 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/teshari
-	name = "Teshari (colorable eartips)"
+	name = "Teshari (colorable fluff)"
 	desc = ""
 	icon_state = "teshari"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "teshariinner"
+
+/datum/sprite_accessory/ears/tesharihigh
+	name = "Teshari upper ears (colorable fluff)"
+	desc = ""
+	icon_state = "tesharihigh"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tesharihighinner"
+
+/datum/sprite_accessory/ears/tesharilow
+	name = "Teshari lower ears (colorable fluff)"
+	desc = ""
+	icon_state = "tesharilow"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tesharilowinner"
+
 
 // Special snowflake ears go below here.
 
