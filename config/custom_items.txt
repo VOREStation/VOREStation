@@ -937,7 +937,7 @@ item_path: /obj/item/clothing/head/fluff/xeno
 }
 
 {
-ckey: Zigfe
+ckey: zigfe
 character_name: Zaoozaoo Xrimxuqmqixzix
 item_path: /obj/item/clothing/head/fluff/zao
 }
