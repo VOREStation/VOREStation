@@ -11,7 +11,7 @@
 		/datum/lore/codex/category/species,
 		/datum/lore/codex/category/auto_org/tsc,
 		/datum/lore/codex/category/auto_org/gov,
-	//	/datum/lore/codex/category/auto_org/mil,
+		/datum/lore/codex/category/auto_org/mil,
 		/datum/lore/codex/category/political_factions,
 		/datum/lore/codex/page/about_lore
 		)
