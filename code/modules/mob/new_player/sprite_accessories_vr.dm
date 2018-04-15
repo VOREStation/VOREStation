@@ -909,3 +909,27 @@
 		icon_state = "catwomanleft"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG)
+
+	spirit_lights
+		name = "Ward - Spirit FBP Lights"
+		icon_state = "lights"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_HEAD)
+		
+	spirit_lights_head
+		name = "Ward - Spirit FBP Lights (headless)"
+		icon_state = "lights"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO)
+		
+	spirit_panels
+		name = "Ward - Spirit FBP Panels"
+		icon_state = "panels"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+		
+	spirit_panels_head
+		name = "Ward - Spirit FBP Panels (headless)"
+		icon_state = "panels"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
