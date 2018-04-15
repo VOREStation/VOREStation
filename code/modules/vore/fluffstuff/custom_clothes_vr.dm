@@ -1797,3 +1797,14 @@ Departamental Swimsuits, for general use
 		else
 			H << "<span class='warning'>This suit is not designed for you.</span>"
 			return 0
+
+//Zigfe:Zaoozaoo Xrimxuqmqixzix
+/obj/item/clothing/head/fluff/zao
+	name = "Zao's Hat"
+	desc = "A black hat that has an uncanny similarity to the HoS's hat. There's a small letter Z sewn on the inside of the brim.
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zao_cap"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "zao_cap_mob"
