@@ -1,28 +1,3 @@
-// Clothing flags, organized in roughly top-bottom
-#define EXAMINE_SKIPHELMET			0x0001
-#define EXAMINE_SKIPEARS			0x0002
-#define EXAMINE_SKIPEYEWEAR			0x0004
-#define EXAMINE_SKIPMASK			0x0008
-#define EXAMINE_SKIPJUMPSUIT		0x0010
-#define EXAMINE_SKIPTIE				0x0020
-#define EXAMINE_SKIPHOLSTER			0x0040
-#define EXAMINE_SKIPSUITSTORAGE		0x0080
-#define EXAMINE_SKIPBACKPACK		0x0100
-#define EXAMINE_SKIPGLOVES			0x0200
-#define EXAMINE_SKIPBELT			0x0400
-#define EXAMINE_SKIPSHOES			0x0800
-
-// Body flags
-#define EXAMINE_SKIPHEAD			0x0001
-#define EXAMINE_SKIPEYES			0x0002
-#define EXAMINE_SKIPFACE			0x0004
-#define EXAMINE_SKIPBODY			0x0008
-#define EXAMINE_SKIPGROIN			0x0010
-#define EXAMINE_SKIPARMS			0x0020
-#define EXAMINE_SKIPHANDS			0x0040
-#define EXAMINE_SKIPLEGS			0x0080
-#define EXAMINE_SKIPFEET			0x0100
-
 /mob/living/carbon/human/examine(mob/user)
 	var/skip_gear = 0
 	var/skip_body = 0
@@ -81,7 +56,7 @@
 		if(head.flags_inv & HIDEEARS)
 			skip_gear |= EXAMINE_SKIPEARS
 		if(head.flags_inv & HIDEFACE)
-			skip_body|= EXAMINE_SKIPFACE
+			skip_body |= EXAMINE_SKIPFACE
 
 	if(wear_mask && (wear_mask.flags_inv & HIDEFACE))
 		skip_body |= EXAMINE_SKIPFACE
