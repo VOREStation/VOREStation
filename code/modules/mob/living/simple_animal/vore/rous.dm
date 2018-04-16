@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rous
+/mob/living/simple_animal/hostile/bigrat
 	name = "giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king."
 	tt_desc = "Mus muscular"
@@ -41,7 +41,7 @@
 	vore_pounce_chance = 45
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/hostile/rous/death()
+/mob/living/simple_animal/hostile/bigrat/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	if(resting)
 		resting = 0
@@ -49,14 +49,14 @@
 		update_icon()
 	..()
 
-/mob/living/simple_animal/hostile/rous/passive
+/mob/living/simple_animal/hostile/bigrat/passive
 	name = "curious giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
 	follow_dist = 1
 	var/mob/living/carbon/human/food
 	var/hunger = 0
 
-/mob/living/simple_animal/hostile/rous/passive/Life()
+/mob/living/simple_animal/hostile/bigrat/passive/Life()
 	. = ..()
 	if(!. || ai_inactive) return
 
@@ -125,7 +125,7 @@
 			hunger = 0
 			food = null
 
-/mob/living/simple_animal/hostile/rous/passive/attackby(var/obj/item/O, var/mob/user) // Feed the rat your food to satisfy it.
+/mob/living/simple_animal/hostile/bigrat/passive/attackby(var/obj/item/O, var/mob/user) // Feed the rat your food to satisfy it.
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks))
 		qdel(O)
 		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -134,7 +134,7 @@
 		return
 	. = ..()
 
-/mob/living/simple_animal/hostile/rous/passive/Found(var/atom/found_atom)
+/mob/living/simple_animal/hostile/bigrat/passive/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
 	else if(ishuman(found_atom) && will_eat(found_atom))
@@ -149,7 +149,7 @@
 			break
 	return null
 
-/mob/living/simple_animal/hostile/rous/passive/FindTarget()
+/mob/living/simple_animal/hostile/bigrat/passive/FindTarget()
 	var/atom/T = null
 	for(var/atom/A in ListTargets(view_range))
 		if(A == src)
