@@ -2011,6 +2011,7 @@
 #include "code\modules\mob\living\carbon\human\species\species_helpers.dm"
 #include "code\modules\mob\living\carbon\human\species\species_hud.dm"
 #include "code\modules\mob\living\carbon\human\species\species_shapeshift.dm"
+#include "code\modules\mob\living\carbon\human\species\species_shapeshift_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\species_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\shadow.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\skeleton.dm"
