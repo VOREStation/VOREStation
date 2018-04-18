@@ -60,8 +60,8 @@
 	. = ..()
 	if(!. || ai_inactive) return
 
-	for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,7)) //Accept thrown offerings and scavenge surroundings.
-		if(isturf(S.loc))
+	if(hunger > 0) //Only look for floor food when hungry.
+		for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,world.view)) //Accept thrown offerings and scavenge surroundings.
 			if(get_dist(src,S) <=1)
 				visible_emote("hungrily devours \the [S].")
 				playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -76,12 +76,9 @@
 
 	var/food_dist = get_dist(src,food)
 
-	if(food_dist > 7) //Lose interest on this person.
+	if(food_dist > world.view) //Lose interest on this person.
 		food = null
-		if(hunger < 25) //Get miffed but don't let people evade stack you into pouncing the next victim on sight.
-			hunger += 5
-		else if(hunger > 25) //Leave room for interaction with the next victim if blueballed by evader.
-			hunger = 25
+		Clamp(hunger+5, 0, 25)
 
 	if(food_dist > 1)
 		if(stance == STANCE_IDLE)
