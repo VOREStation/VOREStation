@@ -1,6 +1,6 @@
 /mob/living/simple_animal/shadekin //Spawning the prototype spawns a random one, see initialize()
 	name = "shadekin"
-	desc = "Some sort of fluffer. Big ears, long tail. "
+	desc = "Some sort of fluffer. Big ears, long tail."
 	icon = 'icons/mob/vore_shadekin.dmi'
 	icon_state = "map_example"
 	icon_living = "map_example"
@@ -62,7 +62,7 @@
 	vore_bump_chance = 0 //They follow people, this would be DENGEROUS
 
 	var/eye_state = RED_EYES //Eye color/energy gain/loss mode
-	var/eye_icon_state = "e_red" //Default, changed in init
+	var/eye_icon_state = null //Default, changed in init
 	var/eye_desc //Eye color description added to examine
 
 	var/mob/living/carbon/human/henlo_human //Human we're stalking currently
@@ -72,9 +72,7 @@
 	var/shy_approach = FALSE //Do we creep up slowly on humans to boop them
 
 	//Icon handling
-	var/image/tailimage //Cached tail icon
-	var/image/eyeimage //Cached eye icon
-	var/prev_fullness = null //Used to avoid needless icon changes when we don't need them
+	var/image/tailimage //Cached tail image
 
 	//Darknesssss
 	var/energy = 100 //For abilities
@@ -108,8 +106,27 @@
 
 	icon_living = icon_state
 
+	switch(eye_state)
+		if(BLUE_EYES)
+			eye_icon_state = "e_blue"
+		if(RED_EYES)
+			eye_icon_state = "e_red"
+		if(PURPLE_EYES)
+			eye_icon_state = "e_purple"
+		if(YELLOW_EYES)
+			eye_icon_state = "e_yellow"
+		if(GREEN_EYES)
+			eye_icon_state = "e_green"
+		if(ORANGE_EYES)
+			eye_icon_state = "e_orange"
+		else
+			eye_icon_state = "e_red"
+
+	tailimage = image('icons/mob/vore_shadekin64.dmi',null,icon_state)
+	tailimage.pixel_x = -16
+
 	if(eye_desc)
-		desc += "This one has [eye_desc]!"
+		desc += " This one has [eye_desc]!"
 
 	var/list/ability_types = subtypesof(/obj/effect/shadekin_ability)
 	shadekin_abilities = list()
@@ -191,33 +208,13 @@
 
 /mob/living/simple_animal/shadekin/update_icon()
 	. = ..()
+	
+	cut_overlay(tailimage)
 
-	if(!tailimage || prev_fullness != vore_fullness)
-		prev_fullness = vore_fullness
-		tailimage = image('icons/mob/vore_shadekin64.dmi',null,icon_state)
-		tailimage.pixel_x = -16
 	tailimage.icon_state = icon_state
 
-	if(!eyeimage || !eye_icon_state)
-		switch(eye_state)
-			if(BLUE_EYES)
-				eye_icon_state = "e_blue"
-			if(RED_EYES)
-				eye_icon_state = "e_red"
-			if(PURPLE_EYES)
-				eye_icon_state = "e_purple"
-			if(YELLOW_EYES)
-				eye_icon_state = "e_yellow"
-			if(GREEN_EYES)
-				eye_icon_state = "e_green"
-			if(ORANGE_EYES)
-				eye_icon_state = "e_orange"
-	eyeimage = image(icon,null,eye_icon_state)
-
-	var/mutable_appearance/ma = new(src)
-	ma.overlays += tailimage
-	ma.overlays += eyeimage
-	appearance = ma
+	add_overlay(tailimage)
+	add_overlay(eye_icon_state)
 
 /mob/living/simple_animal/shadekin/Stat()
 	. = ..()
