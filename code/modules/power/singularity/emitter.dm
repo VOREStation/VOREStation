@@ -165,6 +165,7 @@
 					"You undo the external reinforcing bolts.", \
 					"You hear a ratchet.")
 				src.anchored = 0
+				disconnect_from_network()
 			if(2)
 				user << "<span class='warning'>\The [src] needs to be unwelded from the floor.</span>"
 		return
