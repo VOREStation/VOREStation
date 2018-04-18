@@ -6,7 +6,7 @@
 	var/start_side
 
 /datum/event/meteor_wave/setup()
-	waves = severity * rand(1,3)
+	waves = 2 + rand(1, severity)		//EVENT_LEVEL_MAJOR is 3-5 waves
 	start_side = pick(cardinal)
 	endWhen = worst_case_end()
 
@@ -37,10 +37,10 @@
 			command_announcement.Announce("The colony has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
+	if(EVENT_LEVEL_MAJOR)
+		if(prob(10))
 			return meteors_catastrophic
-		if(EVENT_LEVEL_MODERATE)
-			return meteors_threatening
 		else
-			return meteors_normal
+			return meteors_threatening
+	else
+		return meteors_normal
