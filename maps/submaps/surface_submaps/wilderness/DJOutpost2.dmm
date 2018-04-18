@@ -29,7 +29,7 @@
 "H" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/template_noop,/area/template_noop)
 "I" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "J" = (/obj/item/weapon/material/shard,/turf/template_noop,/area/template_noop)
-"K" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 15; tag = "icon-sink (EAST)"},/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
+"K" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 15},/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "L" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "M" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{icon_state = "medium"},/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)
 "N" = (/obj/structure/grille/broken,/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)

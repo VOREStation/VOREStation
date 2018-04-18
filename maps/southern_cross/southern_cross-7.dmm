@@ -38,7 +38,7 @@
 "aL" = (/obj/machinery/computer/shuttle_control/arrivals,/turf/simulated/shuttle/floor{tag = "icon-floor_red"; icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
 "aM" = (/obj/machinery/light,/obj/structure/bed/chair{dir = 8},/turf/simulated/shuttle/floor{tag = "icon-floor_red"; icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
 "aN" = (/obj/machinery/light,/obj/structure/bed/chair{dir = 4},/turf/simulated/shuttle/floor{tag = "icon-floor_red"; icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
-"aO" = (/obj/structure/table/steel,/obj/structure/flora/pottedplant{icon_state = "plant-09"; name = "Dave"; pixel_y = 15; tag = "icon-plant-09"},/turf/simulated/shuttle/floor{tag = "icon-floor_red"; icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
+"aO" = (/obj/structure/table/steel,/obj/structure/flora/pottedplant{icon_state = "plant-09"; name = "Dave"; pixel_y = 15},/turf/simulated/shuttle/floor{tag = "icon-floor_red"; icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
 "aP" = (/turf/space/transit/east,/area/shuttle/response_ship/transit)
 "aQ" = (/turf/space,/area/shuttle/response_ship/orbit)
 "aR" = (/obj/machinery/status_display,/turf/simulated/shuttle/wall,/area/shuttle/arrival/pre_game)
