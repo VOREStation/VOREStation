@@ -86,6 +86,9 @@
 /mob/living/carbon/human/can_overcome_gravity()
 	return species && species.can_overcome_gravity(src)
 
+/mob/living/simple_animal/construct/can_overcome_gravity()
+	return 1 //They care not for standard physics.
+
 /mob/observer/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(destination)
@@ -114,6 +117,9 @@
 	return ..()
 
 /mob/observer/can_ztravel()
+	return 1
+
+/mob/living/simple_animal/construct/can_ztravel()
 	return 1
 
 /mob/living/carbon/human/can_ztravel()
@@ -261,6 +267,9 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/carp/can_fall() // So can carp apparently.
+	return FALSE
+
+/mob/living/simple_animal/construct/can_fall() //As do Constructs.
 	return FALSE
 
 // Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.

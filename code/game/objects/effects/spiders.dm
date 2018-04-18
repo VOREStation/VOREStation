@@ -221,7 +221,7 @@
 		skitter()
 
 	else if(isorgan(loc))
-		if(!amount_grown) amount_grown = 1
+		if(amount_grown < 0) amount_grown = 1
 		var/obj/item/organ/external/O = loc
 		if(!O.owner || O.owner.stat == DEAD || amount_grown > 80)
 			O.implants -= src
@@ -237,7 +237,7 @@
 	else if(prob(1))
 		src.visible_message("<span class='notice'>\The [src] skitters.</span>")
 
-	if(amount_grown)
+	if(amount_grown >= 0)
 		amount_grown += rand(0,2)
 
 /obj/effect/spider/spiderling/proc/skitter()

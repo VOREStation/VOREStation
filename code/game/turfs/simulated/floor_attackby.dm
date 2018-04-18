@@ -3,6 +3,12 @@
 	if(!C || !user)
 		return 0
 
+	if(isliving(user) && istype(C, /obj/item/weapon))
+		var/mob/living/L = user
+		if(L.a_intent != I_HELP)
+			attack_tile(C, L) // Be on help intent if you want to decon something.
+			return
+
 	if(flooring)
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)
