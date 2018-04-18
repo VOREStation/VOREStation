@@ -79,7 +79,7 @@ item_desc: A medical jacket straight from Central Command.
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
+item_path: /obj/item/weapon/card/id/centcom/station/fluff/aronai
 }
 
 {
@@ -703,12 +703,12 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 #req_access = 1
 #}
 
-#{
-#ckey: silencedmp5a5
-#character_name: NT-HASD #556
-#item_path: /obj/item/device/modkit_conversion/hasd
-#req_access = 1
-#}
+{
+ckey: silencedmp5a5
+character_name: NT-HASD #556
+item_path: /obj/item/device/modkit_conversion/hasd
+req_access = 1
+}
 
 {
 ckey: silvertalismen
@@ -934,6 +934,12 @@ item_path: /obj/item/device/modkit_single/fluff/zekechimera
 ckey: zekesturm
 character_name: Zeke Arachi
 item_path: /obj/item/clothing/head/fluff/xeno
+}
+
+{
+ckey: zigfe
+character_name: Zaoozaoo Xrimxuqmqixzix
+item_path: /obj/item/clothing/head/fluff/zao
 }
 
 {

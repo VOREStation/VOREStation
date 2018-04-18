@@ -22,16 +22,12 @@
 	// Based on the distance used
 	var/teleport_cooldown = 0
 	var/teleporting = 0
-	var/starting_crystals = 2
+	var/starting_crystals = 0
 	var/max_crystals = 4
 	// Used to adjust OP-ness: (4 crystals * 6 efficiency * 12.5 coefficient) = 300 range.
 	var/powerCoefficient = 12.5
 	var/list/crystals = list()
 	var/obj/item/device/gps/inserted_gps
-
-/obj/machinery/computer/telescience/New()
-	..()
-	recalibrate()
 
 /obj/machinery/computer/telescience/Destroy()
 	eject()
@@ -46,6 +42,7 @@
 
 /obj/machinery/computer/telescience/initialize()
 	. = ..()
+	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)
 		crystals += new /obj/item/weapon/ore/bluespace_crystal/artificial(src) // starting crystals
 

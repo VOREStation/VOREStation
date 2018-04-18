@@ -1,5 +1,405 @@
 //Datums for different companies that can be used by busy_space, VR edition
+
+// Some of these intentionally copy from busy_space/organizations.dm, which is disabled in our server.
 //////////////////////////////////////////////////////////////////////////////////
+
+//Datums for different companies that can be used by busy_space
+/datum/lore/organization
+	var/name = ""				// Organization's name
+	var/short_name = ""			// Organization's shortname (NanoTrasen for "NanoTrasen Incorporated")
+	var/acronym = ""			// Organization's acronym, e.g. 'NT' for NanoTrasen'.
+	var/desc = ""				// One or two paragraph description of the organization, but only current stuff.  Currently unused.
+	var/history = ""			// Historical discription of the organization's origins  Currently unused.
+	var/work = ""				// Short description of their work, eg "an arms manufacturer"
+	var/headquarters = ""		// Location of the organization's HQ.  Currently unused.
+	var/motto = ""				// A motto/jingle/whatever, if they have one.  Currently unused.
+
+	var/list/ship_prefixes = list()	//Some might have more than one! Like NanoTrasen. Value is the mission they perform, e.g. ("ABC" = "mission desc")
+	var/list/ship_names = list(		//Names of spaceships.  This is a mostly generic list that all the other organizations inherit from if they don't have anything better.
+		"Kestrel",
+		"Beacon",
+		"Signal",
+		"Freedom",
+		"Glory",
+		"Axiom",
+		"Eternal",
+		"Harmony",
+		"Light",
+		"Discovery",
+		"Endeavour",
+		"Explorer",
+		"Swift",
+		"Dragonfly",
+		"Ascendant",
+		"Tenacious",
+		"Pioneer",
+		"Hawk",
+		"Haste",
+		"Radiant",
+		"Luminous"
+		)
+	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
+	var/autogenerate_destination_names = TRUE
+
+/datum/lore/organization/New()
+	..()
+	if(autogenerate_destination_names) // Lets pad out the destination names.
+		var/i = rand(6, 10)
+		var/list/star_names = list(
+			"Sol", "Alpha Centauri", "Sirius", "Vega", "Regulus", "Vir", "Algol", "Aldebaran", "Vilous", "Sanctum", "Qerr'Vallis", "Kataigal", "Antares",
+			"Delta Doradus", "Menkar", "Geminga", "Elnath", "Gienah", "Mu Leporis", "Nyx", "Tau Ceti", "Virgo-Erigone", "Uueoa-Esa", "Vazzend", "Kastra-71",
+			"Wazn", "Alphard", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "the Almach Rim")
+		var/list/destination_types = list("dockyard", "station", "vessel", "waystation", "telecommunications satellite", "spaceport", "distress beacon", "anomaly", "colony", "outpost")
+		while(i)
+			destination_names.Add("a [pick(destination_types)] in [pick(star_names)]")
+			i--
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// TSCs
+/datum/lore/organization/tsc/nanotrasen
+	name = "NanoTrasen Incorporated"
+	short_name = "NanoTrasen"
+	acronym = "NT"
+	desc = "NanoTrasen is one of the foremost research and development companies in SolGov space. \
+	Originally focused on consumer products, their swift move into the field of Phoron has lead to \
+	them being the foremost experts on the substance and its uses. In the modern day, NanoTrasen prides \
+	itself on being an early adopter to as many new technologies as possible, often offering the newest \
+	products to their employees. In an effort to combat complaints about being 'guinea pigs', Nanotrasen \
+	also offers one of the most comprehensive medical plans in SolGov space, up to and including cloning \
+	and therapy.\
+	<br><br>\
+	NT's most well known products are its phoron based creations, especially those used in Cryotherapy. \
+	It also boasts an prosthetic line, which is provided to its employees as needed, and is used as an incentive \
+	for newly tested posibrains to remain with the company."
+	history = "" // To be written someday.
+	work = "research giant"
+	headquarters = "Luna"
+	motto = ""
+
+	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response")
+	//Scientist or Greek mythology naming scheme
+	ship_names = list(
+		"Bardeen",
+		"Einstein",
+		"Feynman",
+		"Sagan",
+		"Tyson",
+		"Galilei",
+		"Jans",
+		"Fhriede",
+		"Franklin",
+		"Tesla",
+		"Curie",
+		"Darwin",
+		"Newton",
+		"Pasteur",
+		"Bell",
+		"Mendel",
+		"Kepler",
+		"Edision",
+		"Cavendish",
+		"Nye",
+		"Hawking",
+		"Aristotle",
+		"Von Braun",
+		"Kaku",
+		"Oppenheimer"
+		)
+	// Note that the current station being used will be pruned from this list upon being instantiated
+	destination_names = list(
+		"NSS Exodus in Nyx",
+		"NCS Northern Star in Vir",
+		"NAB Smythside Central Headquarters in Sol",
+		"NAS Zeus orbiting Virgo-Prime",
+		"NIB Posideon in Alpha Centauri",
+		"NTB An-Nur on Virgo-Prime",
+		"the colony at Virgo-3B",
+		"the NanoTrasen phoron refinery in Vilous",
+		"a dockyard orbiting Virgo-Prime",
+		"an asteroid orbiting Virgo 3",
+		)
+
+/datum/lore/organization/tsc/nanotrasen/New()
+	..()
+	spawn(1) // BYOND shenanigans means using_map is not initialized yet.  Wait a tick.
+		// Get rid of the current map from the list, so ships flying in don't say they're coming to the current map.
+		var/string_to_test = "[using_map.station_name] in [using_map.starsys_name]"
+		if(string_to_test in destination_names)
+			destination_names.Remove(string_to_test)
+
+
+
+/datum/lore/organization/tsc/hephaestus
+	name = "Hephaestus Industries"
+	short_name = "Hephaestus"
+	acronym = "HI"
+	desc = "Hephaestus Industries is the largest supplier of arms, ammunition, and small millitary vehicles in Sol space. \
+	Hephaestus products have a reputation for reliability, and the corporation itself has a noted tendency to stay removed \
+	from corporate politics. They enforce their neutrality with the help of a fairly large asset-protection contingent which \
+	prevents any contracting polities from using their own materiel against them. SolGov itself is one of Hephastus’ largest \
+	bulk contractors owing to the above factors."
+	history = ""
+	work = "arms manufacturer"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("HTV" = "freight", "HTV" = "munitions resupply")
+	//War God/Soldier Theme
+	ship_names = list(
+		"Ares",
+		"Athena",
+		"Grant",
+		"Custer",
+		"Puller",
+		"Nike",
+		"Bellona",
+		"Leonides",
+		"Bast",
+		"Jackson",
+		"Lee",
+		"Annan",
+		"Chi Yu",
+		"Shiva",
+		"Tyr"
+		)
+	destination_names = list(
+		"a SolGov dockyard on Luna",
+		"a Fleet outpost in the Almach Rim",
+		"a Fleet outpost on the Moghes border"
+		)
+
+/datum/lore/organization/tsc/vey_med
+	name = "Vey-Medical"
+	short_name = "Vey-Med"
+	acronym = "VM"
+	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell. \
+	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \
+	the sale of medical equipment-- from surgical tools to large medical devices to the Oddyseus trauma response mecha \
+	and everything in between. Their equipment tends to be top-of-the-line, most obviously shown by their incredibly \
+	human-like FBP designs. Vey’s rise to stardom came from their introduction of ressurective cloning, although in \
+	recent years they’ve been forced to diversify as their patents expired and NanoTrasen-made medications became \
+	essential to modern cloning."
+	history = ""
+	work = "medical equipment supplier"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("VTV" = "transportation", "VMV" = "medical resupply")
+	// Diona names
+	ship_names = list(
+		"Wind That Stirs The Waves",
+		"Sustained Note Of Metal",
+		"Bright Flash Reflecting Off Glass",
+		"Veil Of Mist Concealing The Rock",
+		"Thin Threads Intertwined",
+		"Clouds Drifting Amid Storm",
+		"Loud Note And Breaking",
+		"Endless Vistas Expanding Before The Void",
+		"Fire Blown Out By Wind",
+		"Star That Fades From View",
+		"Eyes Which Turn Inwards",
+		"Joy Without Which The World Would Come Undone",
+		"A Thousand Thousand Planets Dangling From Branches"
+		)
+	destination_names = list(
+		"a research facility in Samsara",
+		"a SDTF near Ue-Orsi",
+		"a sapientarian mission in the Almach Rim"
+		)
+
+/datum/lore/organization/tsc/zeng_hu
+	name = "Zeng-Hu pharmaceuticals"
+	short_name = "Zeng-Hu"
+	acronym = "ZH"
+	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
+	on the market for medications, and many household names are patentted by Zeng-Hu-- Bicaridyne, Dylovene, Tricordrizine, \
+	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Hu’s fortunes have been in decline as Nanotrasen’s near monopoly \
+	on phoron research cuts into their R&D and Vey-Med’s superior medical equipment effectively decimated their own equipment \
+	interests. The three-way rivalry between these companies for dominance in the medical field is well-known and a matter of \
+	constant economic speculation."
+	history = ""
+	work = "pharmaceuticals company"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("ZTV" = "transportation", "ZMV" = "medical resupply")
+	destination_names = list()
+
+/datum/lore/organization/tsc/ward_takahashi
+	name = "Ward-Takahashi General Manufacturing Conglomerate"
+	short_name = "Ward-Takahashi"
+	acronym = "WT"
+	desc = "Ward-Takahashi focuses on the sale of small consumer electronics, with its computers, communicators, \
+	and even mid-class automobiles a fixture of many households. Less famously, Ward-Takahashi also supplies most \
+	of the AI cores on which vital control systems are mounted, and it is this branch of their industry that has \
+	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashi’s economies \
+	of scale frequently steal market share from Nanotrasen’s high-price products, leading to a bitter rivalry in the \
+	consumer electronics market."
+	history = ""
+	work = "electronics manufacturer"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("WTV" = "freight")
+	ship_names = list(
+		"Comet",
+		"Aurora",
+		"Supernova",
+		"Nebula",
+		"Galaxy",
+		"Starburst",
+		"Constellation",
+		"Pulsar",
+		"Quark",
+		"Void",
+		"Asteroid"
+		)
+	destination_names = list()
+
+/datum/lore/organization/tsc/bishop
+	name = "Bishop Cybernetics"
+	short_name = "Bishop"
+	acronym = "BC"
+	desc = "Bishop’s focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bête noire for \
+	bioconservatives), Bishop manufactures not only prostheses but also brain augmentation, synthetic organ replacements, \
+	and odds and ends like implanted wrist-watches. Their business model tends towards smaller, boutique operations, giving \
+	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Med’s for cost. Bishop’s reputation \
+	for catering towards the interests of human augmentation enthusiasts instead of positronics have earned it ire from the \
+	Positronic Rights Group and puts it in ideological (but not economic) comptetition with Morpheus Cyberkinetics."
+	history = ""
+	work = "cybernetics and augmentation manufacturer"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("BTV" = "transportation")
+	destination_names = list()
+
+/datum/lore/organization/tsc/morpheus
+	name = "Morpheus Cyberkinetics"
+	short_name = "Morpheus"
+	acronym = "MC"
+	desc = "The only large corporation run by positronic intelligences, Morpheus caters almost exclusively to their sensibilities \
+	and needs. A product of the synthetic colony of Shelf, Morpheus eschews traditional advertising to keep their prices low and \
+	relied on word of mouth among positronics to reach their current economic dominance. Morpheus in exchange lobbies heavily for \
+	positronic rights, sponsors positronics through their Jans-Fhriede test, and tends to other positronic concerns to earn them \
+	the good-will of the positronics, and the ire of those who wish to exploit them."
+	history = ""
+	work = "cybernetics manufacturer"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("MTV" = "freight")
+	// Culture names, because Anewbe told me so.
+	ship_names = list(
+		"Nervous Energy",
+		"Prosthetic Conscience",
+		"Revisionist",
+		"Trade Surplus",
+		"Flexible Demeanour",
+		"Just Read The Instructions",
+		"Limiting Factor",
+		"Cargo Cult",
+		"Gunboat Diplomat",
+		"A Ship With A View",
+		"Cantankerous",
+		"I Thought He Was With You",
+		"Never Talk To Strangers",
+		"Sacrificial Victim",
+		"Unwitting Accomplice",
+		"Witting Accomplice",
+		"Bad For Business",
+		"Just Testing",
+		"Size Isn't Everything",
+		"Yawning Angel",
+		"Liveware Problem",
+		"Very Little Gravitas Indeed",
+		"Zero Gravitas",
+		"Gravitas Free Zone",
+		"Absolutely No You-Know-What",
+		"Existence Is Pain",
+		"I'm Walking Here",
+		"Screw Loose",
+		"Of Course I Still Love You",
+		"Limiting Factor",
+		"So Much For Subtley",
+		"Unfortunate Conflict Of Evidence",
+		"Prime Mover",
+		"It's One Of Ours",
+		"Thank You And Goodnight",
+		"Boo!",
+		"Reasonable Excuse",
+		"Honest Mistake",
+		"Appeal To Reason",
+		"My First Ship II",
+		"Hidden Income",
+		"Anything Legal Considered",
+		"New Toy",
+		"Me, I'm Always Counting",
+		"Just Five More Minutes",
+		"Are You Feeling It",
+		"Great White Snark",
+		"No Shirt No Shoes",
+		"Callsign",
+		"Three Ships in a Trenchcoat",
+		"Not Wearing Pants",
+		"Ridiculous Naming Convention",
+		"God Dammit Morpheus",
+		"It Seemed Like a Good Idea",
+		"Legs All the Way Up",
+		"Purchase Necessary",
+		"Some Assembly Required",
+		"Buy One Get None Free",
+		"BRB",
+		"SHIP NAME HERE",
+		"Questionable Ethics",
+		"Accept Most Substitutes",
+		"I Blame the Government",
+		"Garbled Gibberish",
+		"Thinking Emoji",
+		"Is This Thing On?",
+		"Make My Day",
+		"No Vox Here",
+		"Savings and Values",
+		"Secret Name",
+		"Can't Find My Keys",
+		"Look Over There!",
+		"Made You Look!",
+		"Take Nothing Seriously",
+		"It Comes In Lime, Too",
+		"Loot Me",
+		"Nothing To Declare",
+		"Sneaking Suspicion",
+		"Bass Ackwards",
+		"Good Things Come to Those Who Freight",
+		"Redundant Morality",
+		"Synthetic Goodwill",
+		"Your Ad Here",
+		"What Are We Plotting?",
+		"Set Phasers To Stun",
+		"Preemptive Defensive Strike",
+		"This Ship Is Spiders",
+		"Legitimate Trade Vessel",
+		"Please Don't Explode II"
+		)
+	destination_names = list(
+		"a trade outpost in Shelf"
+		)
+
+/datum/lore/organization/tsc/xion
+	name = "Xion Manufacturing Group"
+	short_name = "Xion"
+	desc = "Xion, quietly, controls most of the market for industrial equipment. Their portfolio includes mining exosuits, \
+	factory equipment, rugged positronic chassis, and other pieces of equipment vital to the function of the economy. Xion \
+	keeps its control of the market by leasing, not selling, their equipment, and through infamous and bloody patent protection \
+	lawsuits. Xion are noted to be a favorite contractor for SolGov engineers, owing to their low cost and rugged design."
+	history = ""
+	work = "industrial equipment manufacturer"
+	headquarters = ""
+	motto = ""
+
+	ship_prefixes = list("XTV" = "hauling")
+	destination_names = list()
 
 /datum/lore/organization/gov/solgov
 	name = "Solar Central Government"
@@ -26,26 +426,30 @@
 
 	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight")
 	destination_names = list(
+						"Mercury",
 						"Venus",
 						"Earth",
 						"Luna",
 						"Mars",
-						"Titan"
+						"Titan",
+						"Europa",
+						"the SolGov embassy in Virgo-Erigone",
+						"the SolGov embassy in Vilous"
 						)// autogen will add a lot of other places as well.
 
 /datum/lore/organization/gov/sifgov // Overrides Polaris stuff
 	name = "Virgo-Erigone Governmental Authority"
 	short_name = ""
-	desc = "Existing far outside the reach of SolGov space, the only governing body of the Virgo-Erigone system is the Virgo Prime Governmental \
+	desc = "Existing far outside the reach of SolGov space, the only governing body of the Virgo-Erigone system is the Virgo-Prime Governmental \
 			Authority, also known as VEGA. It is a Technocracy founded and operated by NanoTrasen, using company appointed experts hired to see \
 			to the comfort and well being of Virgo's citizens; most of whom are also NanoTrasen employees. VEGA provides basic social services \
 			such as law enforcement, emergency services, medical care, education, and infrastructure. VEGA's operations are based on the world \
-			of Virgo Prime, within the spaceport city of Anur. Although the government is an entity of NanoTrasen, some elements of democracy \
+			of Virgo-Prime, within the spaceport city of Anur. Although the government is an entity of NanoTrasen, some elements of democracy \
 			are still practiced, such as voting on changes to local law, policy, or public works."
 	history = "VEGA was founded in 2556, shortly after the Virgo-Erigone system was colonized by a population of 1000. That population has \
 			multiplied many times since then as wealth and commerce come and go from this frontier star system."
 	work = "governing body of Virgo-Erigone"
-	headquarters = "Anur, Virgo Prime"
+	headquarters = "Anur, Virgo-Prime"
 	motto = "Reach for the Stars."
 	autogenerate_destination_names = FALSE
 
@@ -53,13 +457,19 @@
 	destination_names = list(
 						"the colony at Virgo-3B",
 						"the VORE-1 debris field",
-						"a colony on Virgo-2",
-						"a telecommunications satellite",
+						"a mining colony on Virgo-2",
 						"the Anur Spaceport",
-						"to a local distress beacon"
+						"to a local distress beacon",
+						"NAS Zeus orbiting Virgo-Prime",
+						"NTB An-Nur on Virgo-Prime",
+						"the colony at Virgo-3B",
+						"a dockyard orbiting Virgo-Prime",
+						"an asteroid orbiting Virgo 3",
+						"a telecommunications satellite near Virgo-3B",
+						"a telecommunications satellite near Virgo-Prime"
 						)
 
-/*
+/* // Waiting for lore to be updated.
 /datum/lore/organization/gov/federation
 	name = "United Federation of Planets"
 	short_name = "Federation"
@@ -127,11 +537,11 @@
 						"Naro Industrial Complex on Scheddi III",
 						"Mari Industrial Complex on Furlou Prime",
 						"Runni Crystal Mines of Keid V")
-*/ // ToDo: ReDo.
+*/
 
-/datum/lore/organization/mil/USDF // change to sif_guard in future to overwrite Polaris stuff
+/datum/lore/organization/mil/usdf
 	name = "United Sol Defense Force"
-	short_name = "" // This is blank on purpose. Otherwise they call the ships "USDF" "USDF Name"
+	short_name = "" // This is blank on purpose. Otherwise they call the ships "USDF USDF Name"
 	desc = "The USDF is the dedicated military force of SolGov, originally formed by the United Nations. It is the \
 			dominant superpower of the Orion Spur, and is able to project its influence well into parts of the Perseus and \
 			Sagittarius arms of the galaxy. However, regions beyond that are too far for the USDF to be a major player."
@@ -153,8 +563,8 @@
 			against other major military powers such as the Moghes Hegemony."
 	work = "peacekeeping and piracy suppression"
 	headquarters = "Paris, Earth"
-	motto = "Per Mare, Per Terras, Per Constellatum." // Stolen from Halo because fuck you that's why.
-	ship_prefixes = list("USDF" = "military", "USDF" = "anti-piracy", "USDF" = "escort", "USDF" = "humanitarian", "USDF" = "peacekeeping", "USDF" = "search-and-rescue") // It's all USDF but let's mix up what they do.
+	motto = "Per Mare, Per Terras, Per Constellatum." // Stolen from Halo because fuck you that's why. -Ace
+	ship_prefixes = list("USDF" = "military", "USDF" = "anti-piracy", "USDF" = "escort", "USDF" = "humanitarian", "USDF" = "peacekeeping", "USDF" = "search-and-rescue", "USDF" = "war game") // It's all USDF but let's mix up what missions they do.
 	ship_names = list("Aegis Fate",
 					"Ain't No Sunshine",
 					"All Under Heaven",
@@ -186,10 +596,10 @@
 					"Hoenir",
 					"In Amber Clad",
 					"Iwo Jima",
+					"Jolly Roger",
 					"Jormungandr",
 					"Leonidas",
 					"Meriwether Lewis",
-					"Midsummer Night",
 					"Mona Lisa",
 					"Olympus",
 					"Paris",
@@ -199,6 +609,7 @@
 					"Purpose",
 					"Ready or Not",
 					"Redoubtable",
+					"Rising Sun",
 					"Saratoga",
 					"Savannah",
 					"Shanxi",
@@ -211,7 +622,6 @@
 					"Tripping Light",
 					"Two for Flinching")
 	destination_names = list("San Francisco on Earth",
-						"SolGov Fleet Academy on Earth",
 						"Gateway One above Luna",
 						"SolGov Headquarters on Earth",
 						"Olympus City on Mars",
@@ -221,13 +631,51 @@
 						"a settlement on Titan",
 						"a settlement on Europa",
 						"Aleph Grande on Ganymede",
-						"a new colony in Proxima II",
-						"a new settlement on Ceti IV-B",
+						"a colony in Proxima II",
+						"a settlement on Ceti IV-B",
 						"a colony ship around Ceti IV-B",
 						"a naval station above Ceti IV-B",
 						"a classified location in SolGov territory",
 						"a classified location in uncharted space",
-						"an emergency nav bouy")
+						"an emergency nav bouy",
+						"the USDF Naval Academy on Earth",
+						"Fort Rain on Tal")
+
+/datum/lore/organization/mil/oni
+	name = "SolGov Office of Naval Intelligence"
+	short_name = "" // This is blank on purpose. Otherwise they call the ships "ONI ONI Name"
+	desc = "The Office of Naval Intelligence is SolGov's eyes and ears in the galaxy's affairs. Despite its name, and despite its \
+			usual association with the USDF, the Office of Naval Intelligence does not fall under the command of the military. From espionage \
+			to archeological research, ONI's work provides SolGov with the knowledge and technology it requires to advance both military and \
+			civilian interests across the galaxy."
+	history = "ONI was originally created by the consolidation of several military intelligence agencies from Sol during the Sol-Hegemony war. \
+			The USDF's victory in that war was largely accredited to intelligence and technology advancements provided by ONI during that time, \
+			most notably of which was the reverse-engineering of Unathi vessels, allowing the production of countermeasures that played a crucial \
+			role during in the late stages of the conflict. After the war, ONI's resources were pooled into numerous top secret projects; much of \
+			which remains unknown or outright denied to the public even today. Among their suspected activities include exploration, weapons \
+			development, xenoarcheology, xenobiology, corporate espionage, and manipulation of political affairs."
+	work = "espionage, piracy suppression, xeno research, and various other black projects"
+	headquarters = "Paris, Earth"
+	motto = "The truth will set you free."
+	ship_prefixes = list("ONI" = "classified", "ONI" = "archeological", "ONI" = "exploration", "ONI" = "logistic") // It's all ONI but let's mix up what missions they do.
+	ship_names = list("Bastille",
+					"Fant�me",
+					"Harpocrates",
+					"Hoenir",
+					"Mata Hari",
+					"Midsummer Night",
+					"Mirage",
+					"Persephone", // Director Ixchel Kisoda's personal research ship
+					"Versailles")
+	destination_names = list("parts unknown",
+							"none of your business",
+							"uncharted space",
+							"an undisclosed location",
+							"facility 8492",
+							"you don't want to know",
+							"if told you I'd have to kill you",
+							"... wait, why am I even telling you this? Just let me pass",
+							"stop asking questions")
 
 /datum/lore/organization/gov/kitsuhana
 	name = "Kitsuhana Heavy Industries"

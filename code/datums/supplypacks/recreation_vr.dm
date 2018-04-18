@@ -18,7 +18,7 @@
 			/obj/item/stack/cable_coil/random,
 			/obj/item/clothing/accessory/collar/shock,
 			/obj/item/clothing/suit/straight_jacket,
-			/obj/item/weapon/handcuffs/legcuffs,
+			/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 			/obj/item/weapon/melee/fluff/holochain/mass,
 			/obj/item/weapon/material/twohanded/fluff/riding_crop,
 			/obj/item/clothing/under/fluff/latexmaid
