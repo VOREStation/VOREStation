@@ -600,7 +600,6 @@
 					"Jormungandr",
 					"Leonidas",
 					"Meriwether Lewis",
-					"Midsummer Night",
 					"Mona Lisa",
 					"Olympus",
 					"Paris",
@@ -655,57 +654,19 @@
 			role during in the late stages of the conflict. After the war, ONI's resources were pooled into numerous top secret projects; much of \
 			which remains unknown or outright denied to the public even today. Among their suspected activities include exploration, weapons \
 			development, xenoarcheology, xenobiology, corporate espionage, and manipulation of political affairs."
-	work = "peacekeeping and piracy suppression"
+	work = "espionage, piracy suppression, xeno research, and various other black projects"
 	headquarters = "Paris, Earth"
 	motto = "The truth will set you free."
 	ship_prefixes = list("ONI" = "classified", "ONI" = "archeological", "ONI" = "exploration", "ONI" = "logistic") // It's all ONI but let's mix up what missions they do.
-	ship_names = list("Aegis Fate", // PLACEHOLDERS. Aside from ones I've specifically marked, these should be replaced.
-					"Ain't No Sunshine",
-					"All Under Heaven",
-					"Allegiance",
-					"Andraste",
-					"Anjou",
-					"Barracuda",
-					"Bastion",
-					"Buenos Aires",
-					"Bum Rush",
-					"Callisto",
-					"Charon",
-					"Colorado",
-					"Commonwealth",
-					"Corsair",
-					"DeGaulle",
-					"Devestator",
-					"Dust of Snow",
-					"Euphrates",
-					"Fair Weather",
-					"Finite Hearts",
-					"Forward Unto Dawn",
-					"Hammerhead",
-					"Herakles",
-					"Hoenir", // Notable USDF and ONI ship. Keep this name.
-					"In Amber Clad",
-					"Iwo Jima",
-					"Jolly Roger",
-					"Jormungandr",
-					"Leonidas",
-					"Meriwether Lewis",
-					"Midsummer Night", // Works for an ONI name.
-					"Mona Lisa",
-					"Olympus",
-					"Providence",
-					"Prydwen",
-					"Redoubtable",
-					"Rising Sun",
-					"Saratoga",
-					"Savannah",
-					"Shanxi",
-					"Song of the East",
-					"Stalwart Dawn",
-					"Strident",
-					"Tannenberg",
-					"Tokugawa",
-					"Totem Lake")
+	ship_names = list("Bastille",
+					"Fantôme",
+					"Harpocrates",
+					"Hoenir",
+					"Mata Hari",
+					"Midsummer Night",
+					"Mirage",
+					"Persephone", // Director Ixchel Kisoda's personal research ship
+					"Versailles")
 	destination_names = list("parts unknown",
 							"none of your business",
 							"uncharted space",
