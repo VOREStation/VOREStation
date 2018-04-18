@@ -16,7 +16,7 @@
 "p" = (/mob/living/simple_animal/mouse,/turf/simulated/floor,/area/submap/Drugd)
 "q" = (/obj/structure/closet/cabinet,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "r" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/pill/methylphenidate,/turf/simulated/floor/carpet,/area/submap/Drugd)
-"s" = (/obj/structure/bed/chair/comfy/beige{tag = "icon-armchair_preview (NORTH)"; icon_state = "armchair_preview"; dir = 1},/turf/simulated/floor/carpet,/area/submap/Drugd)
+"s" = (/obj/structure/bed/chair/comfy/beige{ icon_state = "armchair_preview"; dir = 1},/turf/simulated/floor/carpet,/area/submap/Drugd)
 "t" = (/obj/item/weapon/reagent_containers/pill/citalopram,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "u" = (/obj/random/junk,/turf/simulated/floor,/area/submap/Drugd)
 "v" = (/obj/structure/closet/cabinet,/obj/item/weapon/contraband/poster,/turf/simulated/floor/carpet,/area/submap/Drugd)
