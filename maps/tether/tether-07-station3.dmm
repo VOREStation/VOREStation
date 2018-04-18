@@ -76,8 +76,7 @@
 "am" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8;
-	icon_state = "map";
-	tag = "icon-manifold-f (WEST)"
+	icon_state = "map"
 	},
 /obj/machinery/meter{
 	frequency = 1443;
@@ -322,7 +321,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
 	icon_state = "map";
-	tag = "icon-manifold-f (EAST)"
+	
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -587,8 +586,7 @@
 "ba" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
-	icon_state = "map";
-	tag = "icon-manifold-f (EAST)"
+	icon_state = "map"
 	},
 /turf/simulated/floor/tiled,
 /area/maintenance/station/sec_upper)
@@ -2893,8 +2891,7 @@
 	dir = 4;
 	icon_state = "secintercom";
 	pixel_x = 24;
-	pixel_y = 0;
-	tag = "icon-secintercom (EAST)"
+	pixel_y = 0
 	},
 /turf/simulated/floor/wood,
 /area/security/breakroom)
@@ -2965,8 +2962,7 @@
 	dir = 8;
 	icon_state = "secintercom";
 	pixel_x = -24;
-	pixel_y = 0;
-	tag = "icon-secintercom (WEST)"
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
@@ -4169,7 +4165,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/red/bordercorner{
-	tag = "icon-bordercolorcorner (NORTH)";
 	icon_state = "bordercolorcorner";
 	dir = 1
 	},
@@ -5263,8 +5258,7 @@
 /obj/item/device/radio/intercom/department/security{
 	dir = 1;
 	icon_state = "secintercom";
-	pixel_y = 24;
-	tag = "icon-secintercom (NORTH)"
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)
@@ -7309,8 +7303,7 @@
 /obj/item/device/radio/intercom/department/security{
 	dir = 2;
 	icon_state = "secintercom";
-	pixel_y = -24;
-	tag = "icon-secintercom (NORTH)"
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
@@ -8300,8 +8293,7 @@
 /obj/item/device/radio/intercom/department/security{
 	dir = 2;
 	icon_state = "secintercom";
-	pixel_y = -24;
-	tag = "icon-secintercom (NORTH)"
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)
@@ -9097,8 +9089,7 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 10;
 	icon_state = "borderfloorcorner2";
-	pixel_x = 0;
-	tag = "icon-borderfloorcorner2 (SOUTHWEST)"
+	pixel_x = 0
 	},
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 10
@@ -10812,8 +10803,7 @@
 /obj/item/device/radio/intercom/department/security{
 	dir = 2;
 	icon_state = "secintercom";
-	pixel_y = -24;
-	tag = "icon-secintercom (NORTH)"
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
@@ -11703,8 +11693,7 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 10;
 	icon_state = "borderfloorcorner2";
-	pixel_x = 0;
-	tag = "icon-borderfloorcorner2 (SOUTHWEST)"
+	pixel_x = 0
 	},
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 10
@@ -12438,7 +12427,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/danger{
-	tag = "icon-danger (WEST)";
 	icon_state = "danger";
 	dir = 8
 	},
@@ -13689,8 +13677,7 @@
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = 8;
-	tag = "icon-direction_sec (WEST)"
+	pixel_y = 8
 	},
 /turf/simulated/wall,
 /area/teleporter/departing)
@@ -13730,8 +13717,7 @@
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = 8;
-	tag = "icon-direction_sec (WEST)"
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/cargo{
 	dir = 4;
@@ -15744,7 +15730,6 @@
 	dir = 9
 	},
 /obj/effect/decal/cleanable/cobweb{
-	tag = "icon-cobweb2";
 	icon_state = "cobweb2"
 	},
 /turf/simulated/floor/tiled,
@@ -15990,8 +15975,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
@@ -16144,8 +16128,7 @@
 /obj/machinery/conveyor{
 	dir = 10;
 	icon_state = "conveyor0";
-	id = "QMLoad";
-	tag = "icon-conveyor0 (SOUTHWEST)"
+	id = "QMLoad"
 	},
 /turf/simulated/floor,
 /area/quartermaster/storage)
@@ -17999,8 +17982,7 @@
 "DV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+	icon_state = "intact"
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -18127,8 +18109,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
-	icon_state = "intact";
-	tag = "icon-intact-f (SOUTHWEST)"
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
@@ -18550,8 +18531,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
@@ -19388,8 +19368,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
@@ -20861,7 +20840,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass/hidden{
-	tag = "icon-door_open";
 	icon_state = "door_open";
 	dir = 2
 	},

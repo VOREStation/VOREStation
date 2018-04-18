@@ -767,8 +767,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/common)
@@ -1599,8 +1598,7 @@
 	dir = 4;
 	icon_state = "secintercom";
 	pixel_x = 24;
-	pixel_y = 0;
-	tag = "icon-secintercom (EAST)"
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/common)
@@ -3702,8 +3700,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
@@ -4275,8 +4272,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -6437,8 +6433,7 @@
 /obj/structure/sign/directions/engineering{
 	dir = 10;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-	tag = "icon-direction_eng (WEST)"
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_stairs_three)
@@ -6450,14 +6445,12 @@
 /obj/structure/sign/directions/science{
 	dir = 2;
 	icon_state = "direction_sci";
-	pixel_y = 3;
-	tag = "icon-direction_sci (WEST)"
+	pixel_y = 3
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-	tag = "icon-direction_sec (WEST)"
+	pixel_y = -4
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_stairs_three)
@@ -6813,8 +6806,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_three)
@@ -9549,8 +9541,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -9628,26 +9619,22 @@
 /obj/structure/sign/directions/medical{
 	dir = 1;
 	icon_state = "direction_med";
-	pixel_y = 8;
-	tag = "icon-direction_med (EAST)"
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/science{
 	dir = 2;
 	icon_state = "direction_sci";
-	pixel_y = 3;
-	tag = "icon-direction_sci (WEST)"
+	pixel_y = 3
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-	tag = "icon-direction_sec (WEST)"
+	pixel_y = -4
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-	tag = "icon-direction_eng (WEST)"
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/atrium_three)
@@ -10477,8 +10464,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -12704,8 +12690,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-	tag = "icon-guest (NORTH)"
+	pixel_y = -28
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -13134,8 +13119,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -14425,8 +14409,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
@@ -14492,8 +14475,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -14507,8 +14489,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
@@ -15518,8 +15499,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -16402,8 +16382,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-	tag = "icon-guest (NORTH)"
+	pixel_y = -28
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
@@ -16920,8 +16899,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -17179,8 +17157,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -17498,8 +17475,7 @@
 /obj/structure/sign/directions/medical{
 	dir = 1;
 	icon_state = "direction_med";
-	pixel_y = 8;
-	tag = "icon-direction_med (EAST)"
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/science{
 	dir = 8;
@@ -17508,14 +17484,12 @@
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-	tag = "icon-direction_sec (WEST)"
+	pixel_y = -4
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-	tag = "icon-direction_eng (WEST)"
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/maintenance/engineering/pumpstation)
@@ -18431,8 +18405,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -19103,8 +19076,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-	tag = "icon-guest (NORTH)"
+	pixel_y = -28
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -19971,8 +19943,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
@@ -20720,8 +20691,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -20748,8 +20718,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
@@ -21047,8 +21016,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
@@ -21273,8 +21241,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -21318,8 +21285,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)

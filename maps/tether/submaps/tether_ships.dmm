@@ -977,7 +977,6 @@
 /area/houseboat)
 "cK" = (
 /obj/machinery/door/window/brigdoor/southleft{
-	tag = "icon-leftsecure (NORTH)";
 	name = "Cell 3";
 	icon_state = "leftsecure";
 	dir = 1;
