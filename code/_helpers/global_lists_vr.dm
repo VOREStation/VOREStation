@@ -198,7 +198,7 @@ var/global/list/edible_trash = list(/obj/item/trash,
 				positive_traits[path] = instance
 
 	// Custom species icon bases
-	var/list/blacklisted_icons = list("Custom Species","Promethean") //Just ones that won't work well.
+	var/list/blacklisted_icons = list(SPECIES_CUSTOM,SPECIES_PROMETHEAN) //Just ones that won't work well.
 	for(var/species_name in playable_species)
 		if(species_name in blacklisted_icons)
 			continue
