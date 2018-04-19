@@ -61,7 +61,7 @@
 	faction = "aerostat_inside"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 10
+	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_animal/hostile/hivebot/range = 3,
@@ -75,7 +75,7 @@
 	faction = "aerostat_surface"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 10
+	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_animal/hostile/jelly = 3,
