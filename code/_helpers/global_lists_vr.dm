@@ -11,6 +11,8 @@ var/global/list/positive_traits = list()	// Positive custom species traits, inde
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
 
+var/global/list/custom_species_bases = list() // Species that can be used for a Custom Species icon base
+
 //stores numeric player size options indexed by name
 var/global/list/player_sizes_list = list(
 		"Macro" 	= RESIZE_HUGE,
@@ -194,5 +196,15 @@ var/global/list/edible_trash = list(/obj/item/trash,
 				neutral_traits[path] = instance
 			if(0.1 to INFINITY)
 				positive_traits[path] = instance
+
+	// Custom species icon bases
+	var/list/blacklisted_icons = list("Custom Species","Promethean") //Just ones that won't work well.
+	for(var/species_name in playable_species)
+		if(species_name in blacklisted_icons)
+			continue
+		var/datum/species/S = all_species[species_name]
+		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
+			continue
+		custom_species_bases += species_name
 
 	return 1 // Hooks must return 1
