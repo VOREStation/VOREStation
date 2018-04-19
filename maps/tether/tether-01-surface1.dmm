@@ -13039,6 +13039,11 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aEG" = (
@@ -13929,6 +13934,11 @@
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
 /obj/machinery/reagentgrinder,
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	icon_state = "extinguisher_closed";
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/research/xenobiology)
 "aHe" = (
@@ -18719,6 +18729,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/item/weapon/melee/baton/slime/loaded,
 /turf/simulated/floor/tiled,
 /area/outpost/research/xenobiology)
 "bkt" = (
@@ -18739,7 +18750,8 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
-/obj/item/weapon/melee/baton/slime/loaded,
+/obj/item/device/slime_scanner,
+/obj/item/device/slime_scanner,
 /turf/simulated/floor/tiled,
 /area/outpost/research/xenobiology)
 "bkI" = (
@@ -18755,7 +18767,10 @@
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/item/weapon/extinguisher,
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/glasses/welding,
+/obj/item/weapon/weldingtool,
+/obj/item/weapon/weldingtool,
 /turf/simulated/floor/tiled,
 /area/outpost/research/xenobiology)
 "bkJ" = (
@@ -19246,6 +19261,12 @@
 	},
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 5
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	icon_state = "extinguisher_closed";
+	pixel_x = 30;
+	tag = "icon-extinguisher_closed (WEST)"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/research/xenobiology)
@@ -20523,32 +20544,8 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
-/turf/simulated/floor/tiled,
-/area/rnd/hallway)
-"bvN" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
@@ -22725,6 +22722,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/reinforced,
 /area/outpost/research/xenobiology)
 "bQB" = (
@@ -31790,7 +31788,7 @@ aAS
 aAS
 auu
 auu
-bvN
+bwi
 aEE
 aFk
 aGr
