@@ -278,7 +278,6 @@
 /area/tether_away/alienship)
 "bP" = (
 /obj/structure/prop/alien/computer{
-	tag = "icon-console-c (EAST)";
 	icon_state = "console-c";
 	dir = 4
 	},
@@ -292,7 +291,6 @@
 /area/tether_away/alienship)
 "bR" = (
 /obj/structure/prop/alien/computer{
-	tag = "icon-console-c (EAST)";
 	icon_state = "console-c";
 	dir = 1
 	},
@@ -387,7 +385,6 @@
 /area/tether_away/alienship)
 "cl" = (
 /obj/structure/prop/alien/computer/camera{
-	tag = "icon-camera (WEST)";
 	icon_state = "camera";
 	dir = 1
 	},
@@ -395,7 +392,6 @@
 /area/tether_away/alienship)
 "cm" = (
 /obj/structure/prop/alien/computer/camera{
-	tag = "icon-camera (WEST)";
 	icon_state = "camera";
 	dir = 4
 	},
@@ -403,7 +399,6 @@
 /area/tether_away/alienship)
 "cn" = (
 /obj/structure/prop/alien/computer/camera{
-	tag = "icon-camera (WEST)";
 	icon_state = "camera";
 	dir = 8
 	},
