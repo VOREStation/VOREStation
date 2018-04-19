@@ -173,6 +173,13 @@
 	build_path = /obj/item/weapon/circuitboard/bomb_tester
 	sort_string = "HABAG"
 
+/datum/design/circuit/quantum_pad
+	name = "Quantum Pad"
+	id = "quantum_pad"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 4, TECH_BLUESPACE = 4)
+	build_path = /obj/item/weapon/circuitboard/quantumpad
+	sort_string = "HABAH"
+
 ////// RIGSuit Stuff
 /*
 /datum/design/item/rig
