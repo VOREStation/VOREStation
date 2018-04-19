@@ -186,7 +186,7 @@
 			return 0
 	*/ //VOREStation Removal End
 	//VOREStation Edit Start
-	if(destination.z in using_map.player_levels)
+	if(destination.z in using_map.player_levels || destination.z in using_map.admin_levels)
 		return 1
 	if(istype(teleatom, /mob/living))
 		to_chat(teleatom, "<span class='warning'>The portal refuses to carry you that far away!</span>")
