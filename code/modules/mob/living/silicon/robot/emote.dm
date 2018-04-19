@@ -220,7 +220,7 @@
 			m_type = 1
 
 		if("law")
-			if (istype(module,/obj/item/weapon/robot_module/robot/security))
+			if (istype(module,/obj/item/weapon/robot_module/robot/security) || istype(module,/obj/item/weapon/robot_module/robot/knine)) //VOREStation Add - K9
 				message = "shows its legal authorization barcode."
 
 				playsound(src.loc, 'sound/voice/biamthelaw.ogg', 50, 0)
@@ -229,7 +229,7 @@
 				src << "You are not THE LAW, pal."
 
 		if("halt")
-			if (istype(module,/obj/item/weapon/robot_module/robot/security))
+			if (istype(module,/obj/item/weapon/robot_module/robot/security) || istype(module,/obj/item/weapon/robot_module/robot/knine)) //VOREStation Add - K9
 				message = "<B>'s</B> speakers skreech, \"Halt! Security!\"."
 
 				playsound(src.loc, 'sound/voice/halt.ogg', 50, 0)
