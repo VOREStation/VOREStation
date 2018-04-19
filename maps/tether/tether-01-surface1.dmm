@@ -28117,6 +28117,17 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"rEC" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	icon_state = "bordercolor";
+	dir = 8
+	},
+/obj/machinery/gear_painter,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "rKM" = (
 /obj/structure/stairs/north,
 /turf/simulated/floor/tiled,
@@ -39991,7 +40002,7 @@ cft
 cfL
 cgk
 chl
-chO
+rEC
 chO
 cje
 ceM
