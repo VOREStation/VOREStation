@@ -1,5 +1,5 @@
 //wrapper
-/proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+/proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE) //VOREStation Edit
 	new /datum/teleport/instant/science(arglist(args))
 	return
 
@@ -12,15 +12,16 @@
 	var/soundin //soundfile to play before teleportation
 	var/soundout //soundfile to play after teleportation
 	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
+	var/local = TRUE //VOREStation Add - If false, can teleport from/to any z-level
 
 
-/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE) //VOREStation Edit
 	..()
 	if(!initTeleport(arglist(args)))
 		return 0
 	return 1
 
-/datum/teleport/proc/initTeleport(ateleatom,adestination,aprecision,afteleport,aeffectin,aeffectout,asoundin,asoundout)
+/datum/teleport/proc/initTeleport(ateleatom,adestination,aprecision,afteleport,aeffectin,aeffectout,asoundin,asoundout,local) //VOREStation Edit
 	if(!setTeleatom(ateleatom))
 		return 0
 	if(!setDestination(adestination))
@@ -30,6 +31,7 @@
 	setEffects(aeffectin,aeffectout)
 	setForceTeleport(afteleport)
 	setSounds(asoundin,asoundout)
+	src.local = local // VOREStation Add
 	return 1
 
 //must succeed
@@ -186,7 +188,7 @@
 			return 0
 	*/ //VOREStation Removal End
 	//VOREStation Edit Start
-	if(destination.z in using_map.player_levels)
+	if(!local || (destination.z in using_map.player_levels)) //VOREStation Edit
 		return 1
 	if(istype(teleatom, /mob/living))
 		to_chat(teleatom, "<span class='warning'>The portal refuses to carry you that far away!</span>")
