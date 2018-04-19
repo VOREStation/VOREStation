@@ -57,6 +57,19 @@
 	name = "\improper North Stairwell Third Floor"
 	icon_state = "dk_yellow"
 
+/area/tether/surfacebase/public_garden_one
+	name = "\improper Public Garden First Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden_two
+	name = "\improper Public Garden Second Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden_three
+	name = "\improper Public Garden Third Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden
+	name = "\improper Public Garden"
+	icon_state = "purple"
+
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
 /area/tether/surfacebase/east_stairs_two
@@ -208,6 +221,8 @@
 	name = "\improper Solars maintenanceance"
 /area/maintenance/lower/mining_eva
 	name = "\improper Mining EVA Maintenance"
+/area/maintenance/lower/public_garden_maintenence
+	name = "\improper Public Garden Maintenence"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
