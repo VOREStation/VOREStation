@@ -7,7 +7,7 @@
 	var/trashcan = 0 //It's always sunny in the wrestling ring.
 
 /datum/species/custom
-	name = "Custom Species"
+	name = SPECIES_CUSTOM
 	name_plural = "Custom"
 	var/base_species = "Human"
 
