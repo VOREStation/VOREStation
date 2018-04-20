@@ -1266,7 +1266,8 @@
 	},
 /obj/machinery/door/airlock/glass_security{
 	name = "Break Room";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/security/breakroom)
@@ -2763,7 +2764,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/glass_security{
 	name = "Break Room";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /obj/structure/cable/green{
 	d1 = 2;
@@ -3609,7 +3611,8 @@
 	id_tag = null;
 	layer = 2.8;
 	name = "Security";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/security/lobby)

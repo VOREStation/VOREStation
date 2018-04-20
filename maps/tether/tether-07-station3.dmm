@@ -2897,7 +2897,9 @@
 /area/security/breakroom)
 "ff" = (
 /obj/machinery/door/airlock/security{
-	name = "Security Restroom"
+	name = "Security Restroom";
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
@@ -3269,7 +3271,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/security{
-	name = "Security Restroom"
+	name = "Security Restroom";
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3673,7 +3677,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	name = "Break Room"
+	name = "Break Room";
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/breakroom)
@@ -3685,7 +3691,9 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	name = "Break Room"
+	name = "Break Room";
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_grid,
@@ -5057,7 +5065,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/glass_security{
 	name = "Briefing Room";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/briefing_room)
@@ -6744,7 +6753,8 @@
 	},
 /obj/machinery/door/airlock/glass_security{
 	name = "Briefing Room";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/briefing_room)
@@ -7131,7 +7141,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
 	name = "Briefing Room";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/briefing_room)
@@ -8330,7 +8341,8 @@
 	},
 /obj/machinery/door/airlock/maintenance/sec{
 	name = "Security Maintenance";
-	req_access = list(1,12)
+	req_access = list(12,63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor,
 /area/security/briefing_room)
@@ -8568,7 +8580,8 @@
 	id_tag = "BrigFoyer";
 	layer = 2.8;
 	name = "Security Wing";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/hallway)
@@ -8579,7 +8592,8 @@
 	id_tag = "BrigFoyer";
 	layer = 2.8;
 	name = "Security Wing";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/hallway)
@@ -8639,7 +8653,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/security{
 	name = "Briefing Room";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/security/briefing_room)
@@ -10734,7 +10749,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
 	name = "Front Desk";
-	req_access = list(1)
+	req_access = list(63);
+	req_one_access = list(63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
