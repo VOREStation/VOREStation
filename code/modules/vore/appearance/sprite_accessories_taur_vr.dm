@@ -5,8 +5,11 @@
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
 
 /datum/riding/taur/handle_vehicle_layer()
-	if(ridden.dir != NORTH)
-		ridden.layer = ABOVE_MOB_LAYER
+	if(ridden.has_buckled_mobs())
+		if(ridden.dir != NORTH)
+			ridden.layer = ABOVE_MOB_LAYER
+		else
+			ridden.layer = initial(ridden.layer)
 	else
 		ridden.layer = initial(ridden.layer)
 
