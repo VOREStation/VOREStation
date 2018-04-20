@@ -66,7 +66,7 @@
 	if(default_part_replacement(user, I))
 		return
 
-	if(default_deconstruction_crowbar(I))
+	if(default_deconstruction_crowbar(user, I))
 		return
 
 	return ..()

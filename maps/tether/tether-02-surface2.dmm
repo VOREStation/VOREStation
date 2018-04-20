@@ -17932,7 +17932,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/plating,
 /area/gateway)
 "Sy" = (
 /obj/structure/sign/poster,
@@ -18249,6 +18249,28 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"ZO" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/gateway)
 "ZT" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1;
@@ -22800,7 +22822,7 @@ ae
 bz
 bX
 cm
-bX
+ZO
 bX
 cm
 bX

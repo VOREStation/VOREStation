@@ -5,8 +5,11 @@
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
 
 /datum/riding/taur/handle_vehicle_layer()
-	if(ridden.dir != NORTH)
-		ridden.layer = ABOVE_MOB_LAYER
+	if(ridden.has_buckled_mobs())
+		if(ridden.dir != NORTH)
+			ridden.layer = ABOVE_MOB_LAYER
+		else
+			ridden.layer = initial(ridden.layer)
 	else
 		ridden.layer = initial(ridden.layer)
 
@@ -64,9 +67,11 @@
 	
 	. = ..()
 
-/mob/living/carbon/human/MouseDrop_T(var/atom/movable/C, mob/user)
-	if(user_buckle_mob(C, user, silent = TRUE))
-		visible_message("<span class='notice'>[C] starts riding [name]!</span>")
+/mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
+	if(can_buckle && istype(M))
+		if(user_buckle_mob(M, user, silent = TRUE))
+			visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+			return TRUE
 
 /mob/living/carbon/human/attack_hand(mob/user as mob)
 	if(LAZYLEN(buckled_mobs))
