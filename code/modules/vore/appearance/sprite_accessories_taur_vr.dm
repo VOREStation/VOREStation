@@ -64,9 +64,11 @@
 	
 	. = ..()
 
-/mob/living/carbon/human/MouseDrop_T(var/atom/movable/C, mob/user)
-	if(user_buckle_mob(C, user, silent = TRUE))
-		visible_message("<span class='notice'>[C] starts riding [name]!</span>")
+/mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
+	if(can_buckle && istype(M))
+		if(user_buckle_mob(M, user, silent = TRUE))
+			visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+			return TRUE
 
 /mob/living/carbon/human/attack_hand(mob/user as mob)
 	if(LAZYLEN(buckled_mobs))
