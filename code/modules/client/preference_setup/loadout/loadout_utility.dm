@@ -45,6 +45,11 @@
 	path = /obj/item/weapon/book/codex/corp_regs
 	cost = 0
 
+/datum/gear/utility/robutt
+	display_name = "a buyer's guide to artificial bodies"
+	path = /obj/item/weapon/book/codex/lore/robutt
+	cost = 0
+
 /datum/gear/utility/folder_blue
 	display_name = "folder, blue"
 	path = /obj/item/weapon/folder/blue
