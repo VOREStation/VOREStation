@@ -86,6 +86,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/shapeshifter_select_wings, //VOREStation Add,
+		/mob/living/carbon/human/proc/shapeshifter_select_tail, //VOREStation Add,
+		/mob/living/carbon/human/proc/shapeshifter_select_ears, //VOREStation Add,
 		/mob/living/carbon/human/proc/regenerate
 		)
 

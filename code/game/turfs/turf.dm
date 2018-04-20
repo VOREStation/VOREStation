@@ -86,6 +86,34 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			S.gather_all(src, user)
 	return ..()
 
+// Hits a mob on the tile.
+/turf/proc/attack_tile(obj/item/weapon/W, mob/living/user)
+	if(!istype(W))
+		return FALSE
+
+	var/list/viable_targets = list()
+	var/success = FALSE // Hitting something makes this true. If its still false, the miss sound is played.
+
+	for(var/mob/living/L in contents)
+		if(L == user) // Don't hit ourselves.
+			continue
+		viable_targets += L
+
+	if(!viable_targets.len) // No valid targets on this tile.
+		if(W.can_cleave)
+			success = W.cleave(user, src)
+	else
+		var/mob/living/victim = pick(viable_targets)
+		success = W.resolve_attackby(victim, user)
+
+	user.setClickCooldown(user.get_attack_speed(W))
+	user.do_attack_animation(src, no_attack_icons = TRUE)
+
+	if(!success) // Nothing got hit.
+		user.visible_message("<span class='warning'>\The [user] swipes \the [W] over \the [src].</span>")
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+	return success
+
 /turf/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc

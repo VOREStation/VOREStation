@@ -1,5 +1,9 @@
 //////////////////////////////Construct Spells/////////////////////////
+/*
+ * This has been moved to game/gamemodes/cult/construct_spells.dm. This is here for posterity.
+ */
 
+/*
 /spell/aoe_turf/conjure/construct
 	name = "Artificer"
 	desc = "This spell conjures a construct which may be controlled by Shades"
@@ -110,6 +114,44 @@
 		continue
 	return
 
+/spell/aoe_turf/conjure/door
+	name = "Stone Door"
+	desc = "This spell conjures a massive stone door."
+
+	charge_max = 100
+	spell_flags = CONSTRUCT_CHECK
+	invocation = "none"
+	invocation_type = SpI_NONE
+	range = 0
+
+	hud_state = "const_rune"
+
+/spell/aoe_turf/conjure/door/cast(list/targets)
+	..()
+	var/turf/spawn_place = pick(targets)
+	if(spawn_place)
+		new /obj/structure/simple_door/cult(spawn_place)
+	return
+
+/spell/aoe_turf/conjure/grille
+	name = "Arcane Grille"
+	desc = "This spell conjures an airtight grille."
+
+	charge_max = 100
+	spell_flags = CONSTRUCT_CHECK
+	invocation = "none"
+	invocation_type = SpI_NONE
+	range = 0
+
+	hud_state = "const_rune"
+
+/spell/aoe_turf/conjure/grille/cast(list/targets)
+	..()
+	var/turf/spawn_place = pick(targets)
+	if(spawn_place)
+		new /obj/structure/grille/cult(spawn_place)
+	return
+
 /spell/aoe_turf/conjure/forcewall/lesser
 	name = "Shield"
 	desc = "Allows you to pull up a shield to protect yourself and allies from incoming threats"
@@ -135,3 +177,4 @@
 
 /obj/effect/forcefield/cult/cultify()
 	return
+*/

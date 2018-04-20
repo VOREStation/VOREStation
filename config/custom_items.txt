@@ -300,6 +300,24 @@ character_name: Belle Day
 item_path: /obj/item/weapon/implanter/reagent_generator/belle
 }
 
+{
+ckey: hzdonut
+character_name: Jesse Soemmer
+item_path:/obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
+}
+
+{
+ckey: hzdonut
+character_name: Jesse Soemmer
+item_path:/obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
+}
+
+{
+ckey: hzdonut
+character_name: Jesse Soemmer
+item_path:/obj/item/clothing/accessory/holster/hip
+}
+
 # ######## I CKEYS
 
 {
@@ -934,6 +952,12 @@ item_path: /obj/item/device/modkit_single/fluff/zekechimera
 ckey: zekesturm
 character_name: Zeke Arachi
 item_path: /obj/item/clothing/head/fluff/xeno
+}
+
+{
+ckey: zigfe
+character_name: Zaoozaoo Xrimxuqmqixzix
+item_path: /obj/item/clothing/head/fluff/zao
 }
 
 {

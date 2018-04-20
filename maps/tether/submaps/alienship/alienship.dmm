@@ -278,7 +278,6 @@
 /area/tether_away/alienship)
 "bP" = (
 /obj/structure/prop/alien/computer{
-	tag = "icon-console-c (EAST)";
 	icon_state = "console-c";
 	dir = 4
 	},
@@ -292,7 +291,6 @@
 /area/tether_away/alienship)
 "bR" = (
 /obj/structure/prop/alien/computer{
-	tag = "icon-console-c (EAST)";
 	icon_state = "console-c";
 	dir = 1
 	},
@@ -387,7 +385,6 @@
 /area/tether_away/alienship)
 "cl" = (
 /obj/structure/prop/alien/computer/camera{
-	tag = "icon-camera (WEST)";
 	icon_state = "camera";
 	dir = 1
 	},
@@ -395,7 +392,6 @@
 /area/tether_away/alienship)
 "cm" = (
 /obj/structure/prop/alien/computer/camera{
-	tag = "icon-camera (WEST)";
 	icon_state = "camera";
 	dir = 4
 	},
@@ -403,7 +399,6 @@
 /area/tether_away/alienship)
 "cn" = (
 /obj/structure/prop/alien/computer/camera{
-	tag = "icon-camera (WEST)";
 	icon_state = "camera";
 	dir = 8
 	},
@@ -556,6 +551,10 @@
 "gG" = (
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 /turf/simulated/shuttle/floor/alienplating,
+/area/tether_away/alienship)
+"nr" = (
+/obj/item/weapon/storage/firstaid,
+/turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "us" = (
 /obj/away_mission_init/alienship/door_w2e,
@@ -9677,7 +9676,7 @@ ac
 ac
 ac
 ac
-af
+nr
 ae
 ae
 ae
