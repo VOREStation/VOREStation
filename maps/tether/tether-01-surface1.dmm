@@ -27363,6 +27363,12 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 9
 	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "dbc" = (
@@ -27780,6 +27786,17 @@
 	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/public_garden_maintenence)
+"lCL" = (
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "lFg" = (
 /obj/structure/grille,
@@ -28210,6 +28227,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
+"thL" = (
+/obj/structure/sign/poster,
+/turf/simulated/wall,
+/area/tether/surfacebase/public_garden)
 "tzX" = (
 /obj/structure/grille,
 /turf/simulated/floor/tiled/techmaint,
@@ -28290,6 +28311,19 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"uLU" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden)
 "vkK" = (
 /turf/simulated/wall,
 /area/maintenance/lower/public_garden_maintenence)
@@ -32357,7 +32391,7 @@ aah
 vkK
 pxT
 aRs
-pxT
+lCL
 pxT
 pxT
 pxT
@@ -32860,7 +32894,7 @@ cBB
 hvW
 cBB
 cBB
-cBB
+uLU
 qyw
 qpB
 vHS
@@ -32975,7 +33009,7 @@ wFT
 dbc
 bsU
 wIm
-gXh
+thL
 kuC
 xED
 btx
