@@ -75,6 +75,13 @@
 //	buckled_mob = M
 	buckled_mobs |= M
 
+	//VOREStation Add
+	if(riding_datum)
+		riding_datum.ridden = src
+		riding_datum.handle_vehicle_offsets()
+	M.update_water()
+	//VOREStation Add End
+
 	post_buckle_mob(M)
 	return TRUE
 
@@ -94,6 +101,12 @@
 	//	buckled_mob = null
 		buckled_mobs -= buckled_mob
 
+		//VOREStation Add
+		buckled_mob.update_water()
+		if(riding_datum)
+			riding_datum.restore_position(buckled_mob)
+			riding_datum.handle_vehicle_offsets() // So the person in back goes to the front.
+		//VOREStation Add End
 		post_buckle_mob(.)
 
 /atom/movable/proc/unbuckle_all_mobs(force = FALSE)
@@ -175,3 +188,9 @@
 	. = ..()
 	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(newloc, direct)) //movement failed due to buckled mob(s)
 		. = 0
+	//VOREStation Add
+	else if(. && riding_datum)
+		riding_datum.handle_vehicle_layer()
+		riding_datum.handle_vehicle_offsets()
+	//VOREStation Add End
+	
