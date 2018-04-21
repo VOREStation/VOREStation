@@ -46,7 +46,8 @@
 
 	sergal_medicore
 		name = "Sergal Medicore"
-		icon = 'icons/mob/human_face_vr.dmi'
+		icon = 'icons/mob/human_face_vr.dmi'		name = "Long Unathi Frills"
+
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "serg_medicore"
 		species_allowed = list(SPECIES_SERGAL)
