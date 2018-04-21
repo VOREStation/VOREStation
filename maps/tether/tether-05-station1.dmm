@@ -886,7 +886,7 @@
 	dir = 4
 	},
 /obj/structure/railing,
-/mob/living/simple_animal/fish/koi,
+/mob/living/simple_animal/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "acg" = (
@@ -1343,7 +1343,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/mob/living/simple_animal/fish/koi,
+/mob/living/simple_animal/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "adA" = (
