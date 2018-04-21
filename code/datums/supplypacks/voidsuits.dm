@@ -172,6 +172,7 @@
 	cost = 40
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Security Crowd Control voidsuit crate"
+	access = access_armory
 
 /datum/supply_packs/voidsuits/security/alt
 	name = "Security EVA Riot voidsuits"
@@ -185,6 +186,7 @@
 	cost = 50
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Security EVA Riot voidsuit crate"
+	access = access_armory
 
 /datum/supply_packs/voidsuits/supply
 	name = "Mining voidsuits"
