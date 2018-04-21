@@ -60,6 +60,7 @@
 #include "code\_compatibility\509\type2type.dm"
 #include "code\_helpers\_global_objects.dm"
 #include "code\_helpers\atmospherics.dm"
+#include "code\_helpers\events.dm"
 #include "code\_helpers\files.dm"
 #include "code\_helpers\game.dm"
 #include "code\_helpers\global_lists.dm"
