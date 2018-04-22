@@ -87,6 +87,7 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1
 	edge = 1
+	can_cleave = TRUE
 
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	..()
@@ -97,12 +98,6 @@
 	..()
 	icon_state = initial(icon_state)
 	to_chat(user, "<span class='notice'>\The [src] is de-energised. It's just a regular axe now.</span>")
-
-// This cannot go into afterattack since some mobs delete themselves upon dying.
-/obj/item/weapon/melee/energy/axe/pre_attack(var/mob/living/target, var/mob/living/user)
-	if(istype(target))
-		cleave(user, target)
-	..()
 
 /obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]

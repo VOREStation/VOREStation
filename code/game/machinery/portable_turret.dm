@@ -393,6 +393,18 @@ var/list/turret_icons
 					attacked = 0
 		..()
 
+/obj/machinery/porta_turret/attack_generic(mob/user as mob, var/damage)
+	if(isanimal(user))
+		var/mob/living/simple_animal/S = user
+		if(damage >= 10)
+			var/incoming_damage = round(damage - (damage / 5)) //Turrets are slightly armored, assumedly.
+			visible_message("<span class='danger'>\The [S] [pick(S.attacktext)] \the [src]!</span>")
+			take_damage(incoming_damage)
+			S.do_attack_animation(src)
+			return 1
+		visible_message("<span class='notice'>\The [user] bonks \the [src]'s casing!</span>")
+	return ..()
+
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes

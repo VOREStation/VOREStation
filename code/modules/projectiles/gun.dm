@@ -172,6 +172,10 @@
 		return 0
 	if(!user.IsAdvancedToolUser())
 		return 0
+	if(isanimal(user))
+		var/mob/living/simple_animal/S = user
+		if(!S.IsHumanoidToolUser(src))
+			return 0
 
 	var/mob/living/M = user
 	if(dna_lock && attached_lock.stored_dna)

@@ -13,6 +13,7 @@
 
 	next_process = times_fired + (6 SECONDS/wait) //Set up our next process time.
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
+	var/to_update = FALSE //Did anything update worthy happen?
 
 /////////////////////////// Auto-Emotes ///////////////////////////
 	if(contents.len && next_emote <= times_fired)
@@ -41,7 +42,7 @@
 				items_preserved |= I
 			else
 				digest_item(I)
-			owner.updateVRPanel()
+			to_update = TRUE
 			did_an_item = TRUE
 
 		//Handle eaten mobs
@@ -72,8 +73,7 @@
 								items_preserved |= I
 							else
 								digest_item(I)
-							owner.updateVRPanel()
-							H.updateVRPanel()
+							to_update = TRUE
 							break
 
 ///////////////////////////// DM_HOLD /////////////////////////////
@@ -103,7 +103,7 @@
 				digest_alert_owner = replacetext(digest_alert_owner,"%prey",M)
 				digest_alert_owner = replacetext(digest_alert_owner,"%belly",lowertext(name))
 
-				digest_alert_prey = replacetext(digest_alert_prey,"%pred",owner)
+			  digest_alert_prey = replacetext(digest_alert_prey,"%pred",owner)
 				digest_alert_prey = replacetext(digest_alert_prey,"%prey",M)
 				digest_alert_prey = replacetext(digest_alert_prey,"%belly",lowertext(name))
 
@@ -120,6 +120,8 @@
 						R.cell.charge += 25*compensation
 					else
 						owner.nutrition += 4.5*compensation
+				to_update = TRUE
+
 				continue
 
 			// Deal digestion damage (and feed the pred)
@@ -135,9 +137,7 @@
 				owner.nutrition += offset*(4.5*(digest_brute+digest_burn)/difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 			else
 				owner.nutrition += 4.5*(digest_brute+digest_burn)/difference
-			M.updateVRPanel()
 
-		owner.updateVRPanel()
 
 //////////////////////////// DM_ABSORB ////////////////////////////
 	else if(digest_mode == DM_ABSORB)
@@ -156,6 +156,7 @@
 				owner.nutrition += oldnutrition
 			else if(M.nutrition < 100) //When they're finally drained.
 				absorb_living(M)
+				to_update = TRUE
 
 //////////////////////////// DM_UNABSORB ////////////////////////////
 	else if(digest_mode == DM_UNABSORB)
@@ -168,6 +169,7 @@
 				to_chat(M,"<span class='notice'>You suddenly feel solid again </span>")
 				to_chat(owner,"<span class='notice'>You feel like a part of you is missing.</span>")
 				owner.nutrition -= 100
+				to_update = TRUE
 
 //////////////////////////// DM_DRAIN ////////////////////////////
 	else if(digest_mode == DM_DRAIN)
@@ -261,4 +263,11 @@
 /////////////////////////// Make any noise ///////////////////////////
 	if(play_sound)
 		playsound(src, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
+	if(to_update)
+		for(var/mob/living/M in contents)
+			if(M.client)
+				M.updateVRPanel()
+		if(owner.client)
+			owner.updateVRPanel()
+		
 	return SSBELLIES_PROCESSED

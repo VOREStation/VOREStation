@@ -4,6 +4,8 @@
 	region. Each is labled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article9,
+		/datum/lore/codex/page/article8,
 		/datum/lore/codex/page/article7,
 		/datum/lore/codex/page/article6,
 		/datum/lore/codex/page/article5,
@@ -81,7 +83,7 @@
 /datum/lore/codex/page/article6
 	name = "3/03/62 - A Week Out From Almach: What are the facts?"
 	data = "* Several organizations in the Almach Rim, including Angessa's Pearl, the Aetolian Council, the Interstellar Workers of Wythe, the Republic of Whitney, and members of several prominent families in the Neon Light unilaterally declared secession from SCG. <br><br>*This secession was first called the Grey Hour by political scientists in New Florence, a term popularized by reporter Elspor Fong. <br><br>* Shelf, the FRF, and the EFRB were declared \"observers\" in the Almach Association charter. <br><br>* None of these organizations have issued a statement on the matter.<br><br>* The SCG-R Song Shi was stranded in the region during the secession.<br><br>* SolGov has not issued an official statement of the fate of the Song Shi.<br><br>* Several confederate agencies, including Emergent Intelligence Oversight, the Trade and Customs Bureau, and SCG Fleet Intelligence have declared a \"state of emergency\".<br><br>* SolGov itself has NOT declared a state of emergency.<br><br>* Legitimate communications in and out of the Almach Rim are restricted to audited text messages for the period.<br><br>* Several illegitimate communication links exist and are believed by Fleet Intelligence to be currently hosting the official sites for Morpheus Cyberkinetics and for the Association itself.<br><br>* Icarus Front chairperson Mackenzie West has proposed a moratorium on the creation of new Prometheans for the duration of the crisis.<br><br>* Local laws on the subject will apply until the Assembly meets late in May. <br><br>* No confederate lawmaker has proposed action against Relani, Shelfican, or newly Almachi nationals living within stable regions.<br><br>* The border remains tightly closed to migrants, media, and diplomats alike."
-	
+
 /datum/lore/codex/page/article7
 	name = "3/21/62 - Relan, Shelf Join the Almach Association"
 	data = "Recent reports from within the Association indicate that the Free Relan Federation and Shelf have officially decided to join the Almach Association. President Nia Fischer of the FRF had this to say on the matter, in a speech addressed to the population at large. \
@@ -93,4 +95,17 @@
 	A Shelfican spokesperson, meanwhile, had only this to say:\
 	<br><br>\
 	\"We're probably going to regret this but, y'know, the whole thing is kind of our fault. Sure, whatever.\""
+
+
+/datum/lore/codex/page/article8
+	name = "4/1/62 - Almach Cordon Breached by Unknown Organization"
+	data = "Early this morning, SolGov ships assigned to the Almach Cordon around the Rim territories reported that a number of bulk freighters had eluded apprehension and are now at large within the Golden Crescent. Lieutenant-Major Volkov of the SCG-D Henri Capet reports that the blockade-runners were highly organized and determined, citing several lightly-manned ships left behind to tie up the SolGov forces long enough for the freighters to escape, detonating their reactors when they lost the ability to continue fighting. This resulted in three Fleet casualties and a significant degree of damage to the Henri Capet. The contents and location of the freighters are unknown at this time. In response, eight light-response vessels are being assigned to the Saint Columbia Fleet Base from Jahan's Post and Zhu Que. Residents and traffic officials in Vir, Oasis, and Gavel are to remain alert and notify police if any suspicious or unregistered craft enter their space.\
+	<br><br>\
+	A spokesperson for the Association claims that, while they make no attempts to stop aspiring blockade runners, the organization responsible for this most recent attack is unaffiliated with the Association as a whole and deny any knowledge of their identity or motives."
+
+/datum/lore/codex/page/article9
+	name = "4/7/62 - Boiling Point Tragedy in Gavel"
+	data = "Today, April the Seventh, marks a day of tragedy for all the galaxy. A small group of operatives claiming to be associated with Mercurial terrorist organization Boiling Point invaded major refueling platform NLS Aquarius in the Republic of Gavel after hijacking civilian transport vessel WTV Orion and faking a drive failure. Several detonations were reported within the Aquarius, the operatives entering through unknown (potentially Skrellian) means. After stating their affiliation and desire for the liberation of all \"Prometheans, drones, and ex-humans\", they opened fire on a crowd of unarmed bystanders, killing as many as seven. A multiple-hour long firefight with Nanotrasen corporate asset protection ensued, at which point the operatives demonstrated capabilities well in excess of Five Points-prescribed limits. Asset Protection was successful in repelling the terrorists, though their harsh methods drew outrage from the people they were protecting, leading a notable director of research to resign her position with the corporation. Several operatives are still at large, though the SG-PV Juno recovered two living terrorists and one totaled synthetic platform. \
+	<br><br>\
+	The intervention of a local Defense Force drone wing on behalf of the terrorists leads many in the intelligence community to assume that more Boiling Point operatives remain active within Gavel, and possibly nearby systems such as Vir and Oasis. Some have also noted that elements of the terrorists' tactics and augmentations suggest Association training, though the specifics remain classified. More information as the story breaks."
 

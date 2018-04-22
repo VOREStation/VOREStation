@@ -1110,7 +1110,6 @@
 /area/rnd/outpost/testing)
 "cy" = (
 /obj/effect/floor_decal/industrial/warning/cee{
-	tag = "icon-warningcee (NORTH)";
 	icon_state = "warningcee";
 	dir = 1
 	},
@@ -1438,7 +1437,6 @@
 	pixel_y = 2
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
-	tag = "icon-steel_decals_central5 (EAST)";
 	icon_state = "steel_decals_central5";
 	dir = 4
 	},
@@ -1620,8 +1618,7 @@
 "dB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
-	icon_state = "map";
-	tag = "icon-manifold-f (EAST)"
+	icon_state = "map"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 5
@@ -1631,8 +1628,7 @@
 "dC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+	icon_state = "intact"
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -1942,7 +1938,6 @@
 /area/rnd/outpost/mixing)
 "ej" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -2349,8 +2344,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -2576,8 +2570,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -2612,8 +2605,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
-	icon_state = "intact";
-	tag = "icon-intact-f (SOUTHWEST)"
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -3399,7 +3391,6 @@
 /area/tether/outpost/solars_outside)
 "gv" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	tag = "icon-map (NORTH)";
 	icon_state = "map";
 	dir = 1
 	},
@@ -3437,7 +3428,6 @@
 /area/rnd/outpost/heating)
 "gy" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -3658,7 +3648,6 @@
 	dir = 6
 	},
 /obj/effect/floor_decal/industrial/warning/cee{
-	tag = "icon-warningcee (NORTH)";
 	icon_state = "warningcee";
 	dir = 1
 	},
@@ -3938,7 +3927,6 @@
 /area/rnd/outpost/heating)
 "hp" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	tag = "icon-map (NORTH)";
 	icon_state = "map";
 	dir = 1
 	},
@@ -3948,7 +3936,6 @@
 "hq" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	tag = "icon-map (NORTH)";
 	icon_state = "map";
 	dir = 1
 	},
@@ -4032,8 +4019,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -4498,7 +4484,6 @@
 /area/rnd/outpost/atmos)
 "il" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -4579,7 +4564,6 @@
 /area/rnd/outpost/heating)
 "iu" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	tag = "icon-map (NORTH)";
 	icon_state = "map";
 	dir = 1
 	},
@@ -4587,7 +4571,6 @@
 /area/rnd/outpost/heating)
 "iv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -4603,8 +4586,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/heating)
@@ -5033,8 +5015,7 @@
 /area/tether/outpost/solars_outside)
 "ju" = (
 /obj/structure/cable/heavyduty{
-	icon_state = "1-8";
-	tag = "icon-1-4"
+	icon_state = "1-8"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,

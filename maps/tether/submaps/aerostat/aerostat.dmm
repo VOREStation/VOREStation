@@ -391,8 +391,7 @@
 /area/tether_away/aerostat)
 "aW" = (
 /obj/structure/cable/heavyduty{
-	icon_state = "1-8";
-	tag = "icon-1-4"
+	icon_state = "1-8"
 	},
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
@@ -818,8 +817,7 @@
 /area/shuttle/aerostat/docked)
 "cm" = (
 /obj/structure/cable/heavyduty{
-	icon_state = "1-8";
-	tag = "icon-1-4"
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)

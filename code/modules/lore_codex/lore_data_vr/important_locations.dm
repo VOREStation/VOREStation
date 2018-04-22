@@ -28,10 +28,10 @@
 
 /datum/lore/codex/page/radiance_energy_chain/add_content()
 	name = "R.E.C. (Artificial Satellites)"
-	keywords += list("Radiance Energy Chain")
+	keywords += list("Radiance Energy Chain", "R.E.C.")
 	data = "A sparse government-owned chain of automated stations exists between [quick_link("Virgo 3")] and the star itself, known as the Radiance Energy Chain. The idea is based on \
 	an ancient design that was pioneered at Sol. The stations are heavily shielded from the stellar radiation, and feature massive \
-	arrays of photo-voltaic panels. Each station harvests energy from Vir using the solar panels, and sends it to other areas of \
+	arrays of photo-voltaic panels. Each station harvests energy from Virgo-Erigone using the solar panels, and sends it to other areas of \
 	the system by beaming the energy to several relay stations farther away from the star, typically with a large laser.\
 	<br><br>\
 	These stations are generally devoid of life, instead, they are operated mainly by [quick_link("drones")], with maintenance performed \
@@ -86,9 +86,9 @@
 	Currently, [quick_link("NanoTrasen")] is constructing a 'space elevator' for commercial purposes, as the atmosphere of Virgo-3B is inimical to shuttles, and engines in particular."
 
 /datum/lore/codex/page/virgo_prime/add_content() // Virgo 4 technically.
-	name = "Virgo Prime (Terrestrial Planet)"
-	keywords += list("Virgo Prime")
-	data = "Virgo Prime is the fourth planet of Virgo-Eirgone. Although primarily desert, temperatures linger around only 287 kelvin (~14°C). \
+	name = "Virgo 4 / Virgo-Prime (Terrestrial Planet)"
+	keywords += list("Virgo 4","Virgo-Prime")
+	data = "Virgo 4, also known as Virgo-Prime, is the fourth planet of Virgo-Eirgone. Although primarily desert, temperatures linger around only 287 kelvin (~14°C). \
 	It is the only planet in the system with an environment that supports oxygen-breathing lifeforms. \
 	<br><br> \
 	While being about the size of Earth, it is home to only about 750,000 known residents, most of whom live \
