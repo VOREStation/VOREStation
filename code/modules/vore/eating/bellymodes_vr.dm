@@ -103,7 +103,7 @@
 				digest_alert_owner = replacetext(digest_alert_owner,"%prey",M)
 				digest_alert_owner = replacetext(digest_alert_owner,"%belly",lowertext(name))
 
-			  	digest_alert_prey = replacetext(digest_alert_prey,"%pred",owner)
+				digest_alert_prey = replacetext(digest_alert_prey,"%pred",owner)
 				digest_alert_prey = replacetext(digest_alert_prey,"%prey",M)
 				digest_alert_prey = replacetext(digest_alert_prey,"%belly",lowertext(name))
 
