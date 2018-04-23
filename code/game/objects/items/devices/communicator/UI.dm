@@ -117,7 +117,8 @@
 	if(cartridge) // If there's a cartridge, we need to grab the information from it
 		data["cart_devices"] = cartridge.get_device_status()
 		data["cart_templates"] = cartridge.ui_templates
-		data["cart_info"] = cartridge.get_data()
+		for(var/list/L in cartridge.get_data())
+			data[L["field"]] = L["value"]
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)

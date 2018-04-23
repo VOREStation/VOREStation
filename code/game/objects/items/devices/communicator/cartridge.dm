@@ -28,6 +28,7 @@
 /obj/item/weapon/commcard/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
+	ui_templates = list(list("name" = "Power Monitor", "template" = "comm_power_monitor.tmpl"))
 	//Power monitor template
 	//Halogen counter
 
@@ -57,11 +58,9 @@
 	..()
 	internal_devices |= new /obj/item/device/healthanalyzer(src)
 	internal_devices |= new /obj/item/device/halogen_counter(src)
-	// Add med records template
 
 /obj/item/weapon/commcard/medical/get_data()
-	var/data[0]
-	var/records[0]
+	var/med_records[0]
 	for(var/datum/data/record/M in sortRecord(data_core.medical))
 		var/record[0]
 		record[++record.len] = list("tab" = "Name", "val" = M.fields["name"])
@@ -76,9 +75,8 @@
 		record[++record.len] = list("tab" = "Condition", "val" = M.fields["cdi"])
 		record[++record.len] = list("tab" = "Notes", "val" = M.fields["notes"])
 
-		records[++records.len] = list("name" = M.fields["name"], "record" = record)
-	data["records"] = records
-	return data
+		med_records[++med_records.len] = list("name" = M.fields["name"], "record" = record)
+	return list(list("field" = "med_records", "value" = med_records))
 
 /obj/item/weapon/commcard/medical/chemistry
 	name = "\improper ChemWhiz cartridge"
@@ -89,32 +87,88 @@
 	..()
 	internal_devices |= new /obj/item/device/reagent_scanner(src)
 
-/obj/item/weapon/commcard/medical/detective
-	name = "\improper D.E.T.E.C.T. cartridge"
-	icon_state = "cart-s"
-	//Security records template
-
-/obj/item/weapon/commcard/medical/detective/New()
-	..()
-	// Add sec records to ui template
-
 /obj/item/weapon/commcard/int_aff
 	name = "\improper P.R.O.V.E. cartridge"
 	icon_state = "cart-s"
-	//Sec records
+	ui_templates = list(list("name" = "Employment Records", "template" = "emp_records.tmpl"))
+	//Emp records
 
 /obj/item/weapon/commcard/int_aff/New()
 	..()
-	//Add sec records to ui template
 
-/obj/item/weapon/commcard/int_aff/security
+/obj/item/weapon/commcard/int_aff/get_data()
+	var/emp_records[0]
+	for(var/datum/data/record/G in sortRecord(data_core.general))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = G.fields["name"])
+		record[++record.len] = list("tab" = "ID", "val" = G.fields["id"])
+		record[++record.len] = list("tab" = "Rank", "val" = G.fields["rank"])
+		record[++record.len] = list("tab" = "Fingerprint", "val" = G.fields["fingerprint"])
+		record[++record.len] = list("tab" = "Entity Classification", "val" = G.fields["brain_type"])
+		record[++record.len] = list("tab" = "Sex", "val" = G.fields["sex"])
+		record[++record.len] = list("tab" = "Species", "val" = G.fields["species"])
+		record[++record.len] = list("tab" = "Age", "val" = G.fields["age"])
+		record[++record.len] = list("tab" = "Notes", "val" = G.fields["notes"])
+
+		emp_records[++emp_records.len] = list("name" = G.fields["name"], "record" = record)
+	return list(list("field" = "emp_records", "value" = emp_records))
+
+/obj/item/weapon/commcard/security
 	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-s"
+	ui_templates = list(list("name" = "Security Records", "template" = "sec_records.tmpl"), list("name" = "Security Bot Controller", "template" = "sec_bot_access.tmpl"))
+	//Sec records
 	//Sec bot access template
 
-/obj/item/weapon/commcard/int_aff/security/New()
+/obj/item/weapon/commcard/security/New()
 	..()
+	//Add sec records to ui template
 	//Add sec bot access template
+
+/obj/item/weapon/commcard/security/get_data()
+	var/sec_records[0]
+	for(var/datum/data/record/G in sortRecord(data_core.general))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Sex", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Species", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Age", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Rank", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Fingerprint", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Physical Status", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Mental Status", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Criminal Status", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Major Crimes", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Minor Crimes", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Notes", "val" = G.fields["notes"])
+
+		sec_records[++sec_records.len] = list("name" = G.fields["name"], "record" = record)
+	return list(list("field" = "sec_records", "value" = sec_records))
+
+/obj/item/weapon/commcard/security/detective
+	name = "\improper D.E.T.E.C.T. cartridge"
+	icon_state = "cart-s"
+	//Med records
+
+/obj/item/weapon/commcard/security/detective/New()
+	var/list/data = ..()
+	var/med_records[0]
+	for(var/datum/data/record/M in sortRecord(data_core.medical))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = M.fields["name"])
+		record[++record.len] = list("tab" = "ID", "val" = M.fields["id"])
+		record[++record.len] = list("tab" = "Blood Type", "val" = M.fields["b_type"])
+		record[++record.len] = list("tab" = "DNA #", "val" = M.fields["b_dna"])
+		record[++record.len] = list("tab" = "Gender", "val" = M.fields["id_gender"])
+		record[++record.len] = list("tab" = "Entity Classification", "val" = M.fields["brain_type"])
+		record[++record.len] = list("tab" = "Minor Disorders", "val" = M.fields["mi_dis"])
+		record[++record.len] = list("tab" = "Major Disorders", "val" = M.fields["ma_dis"])
+		record[++record.len] = list("tab" = "Allergies", "val" = M.fields["alg"])
+		record[++record.len] = list("tab" = "Condition", "val" = M.fields["cdi"])
+		record[++record.len] = list("tab" = "Notes", "val" = M.fields["notes"])
+
+		med_records[++med_records.len] = list("name" = M.fields["name"], "record" = record)
+	data[++data.len] = list("field" = "med_records", "value" = med_records)
 
 /obj/item/weapon/commcard/janitor
 	name = "\improper CustodiPRO cartridge"
