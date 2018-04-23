@@ -49,6 +49,8 @@
 	riding_datum = new /datum/riding/taur(src)
 
 /mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
+	if(forced)
+		return ..() // Skip our checks
 	if(!isTaurTail(tail_style))
 		return FALSE
 	if(lying)
@@ -66,6 +68,8 @@
 		return FALSE
 	
 	. = ..()
+	if(.)
+		buckled_mobs[M] = "riding"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
 	if(can_buckle && istype(M))
