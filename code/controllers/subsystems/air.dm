@@ -224,6 +224,9 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 // ZAS might displace objects as the map loads if an air tick is processed mid-load.
 /datum/controller/subsystem/air/StartLoadingMap(var/quiet = TRUE)
 	can_fire = FALSE
+	// Don't let map actually start loading if we are in the middle of firing
+	while(current_step)
+		stoplag()
 	. = ..()
 
 /datum/controller/subsystem/air/StopLoadingMap(var/quiet = TRUE)
