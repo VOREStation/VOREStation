@@ -352,6 +352,10 @@
 	name = "Modified LeMat"
 	desc = "The LeMat Revolver is a 9 shot revolver with a secondary firing barrel for loading shotgun shells. Uses .38-Special and 12g rounds depending on the barrel. This one appears to have had it's secondary barrel sealed off and looks to be in pristine condition. Either it's brand new, or its owner takes very good care of it."
 	icon_state = "lemat"
+	max_shells = 9
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/a38
+	preserve_item = FALSE
 
 //////////////////// Energy Weapons ////////////////////
 
