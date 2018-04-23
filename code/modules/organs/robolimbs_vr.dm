@@ -169,7 +169,7 @@
 /obj/item/weapon/disk/limb/dsi_spider
 	company = "DSI - Vasilissan"
 
-/datum/robolimb/nestortesh
+/datum/robolimb/dsi_teshari
 	company = "DSI - Teshari"
 	desc = "This limb has a thin synthflesh casing with a few connection ports."
 	icon = 'icons/mob/human_races/cyberlimbs/DSITeshari/dsi_teshari.dmi'
