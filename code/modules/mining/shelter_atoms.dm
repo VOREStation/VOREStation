@@ -109,7 +109,11 @@
 
 //Table
 /obj/structure/table/survival_pod
+	name = "table"
 	icon = 'icons/obj/survival_pod.dmi'
+	icon_state = "table"
+
+/obj/structure/table/survival_pod/update_icon()
 	icon_state = "table"
 
 //Sleeper

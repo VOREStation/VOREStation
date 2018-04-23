@@ -68,7 +68,8 @@
 /area/survivalpod)
 "n" = (
 /obj/structure/window/reinforced/survival_pod{
-	dir = 8
+	dir = 8;
+	layer = 2.6
 	},
 /obj/machinery/door/window/survival_pod{
 	dir = 1;
