@@ -173,6 +173,7 @@
 	company = "DSI - Teshari"
 	desc = "This limb has a thin synthflesh casing with a few connection ports."
 	icon = 'icons/mob/human_races/cyberlimbs/DSITeshari/dsi_teshari.dmi'
+	lifelike = 1
 	suggested_species = "Teshari"
 
 /obj/item/weapon/disk/limb/dsi_teshari
