@@ -47,6 +47,10 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14 // 56
 	storage_cost = INVENTORY_STANDARD_SPACE + 1
 
+/obj/item/weapon/storage/backpack/holding/duffle
+	name = "dufflebag of holding"
+	icon_state = "holdingduffle"
+
 /obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
 		user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
