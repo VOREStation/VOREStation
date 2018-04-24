@@ -176,5 +176,10 @@
 	lifelike = 1
 	suggested_species = "Teshari"
 
+/datum/robolimb/dsi_teshari/New()
+	species_cannot_use = all_species.Copy()
+	species_cannot_use -= SPECIES_TESHARI
+	..()
+
 /obj/item/weapon/disk/limb/dsi_teshari
 	company = "DSI - Teshari"
