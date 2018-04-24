@@ -1482,6 +1482,7 @@
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
+/obj/machinery/mineral/equipment_vendor,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
 "adg" = (

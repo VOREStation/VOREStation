@@ -115,6 +115,12 @@
 /area/tether/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
 
+// Mining Underdark
+/area/mine/unexplored/underdark
+	name = "\improper Mining Underdark"
+/area/mine/explored/underdark
+	name = "\improper Mining Underdark"
+
 // Mining outpost areas
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
