@@ -944,6 +944,7 @@
 #include "code\game\objects\items\devices\geiger.dm"
 #include "code\game\objects\items\devices\gps.dm"
 #include "code\game\objects\items\devices\hacktool.dm"
+#include "code\game\objects\items\devices\laserpointer_vr.dm"
 #include "code\game\objects\items\devices\lightreplacer.dm"
 #include "code\game\objects\items\devices\locker_painter.dm"
 #include "code\game\objects\items\devices\megaphone.dm"
