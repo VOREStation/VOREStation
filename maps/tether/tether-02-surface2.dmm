@@ -17686,6 +17686,32 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"IX" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/bar)
+"IY" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/tether/surfacebase/outside/outside2)
+"Jx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "Kj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -17722,6 +17748,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Lp" = (
+/obj/structure/frame{
+	anchored = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "LG" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
@@ -17731,12 +17763,31 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"LI" = (
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside2)
+"LM" = (
+/obj/structure/frame{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "Mf" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/firecloset/full/double,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_two)
+"Mv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "MX" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -17749,6 +17800,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"MZ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/bar)
 "Na" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -17776,6 +17841,12 @@
 /obj/structure/sign/nanotrasen,
 /turf/simulated/wall,
 /area/tether/surfacebase/public_garden_two)
+"NY" = (
+/obj/structure/symbol/gu,
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/maintenance/lower/bar)
 "NZ" = (
 /obj/structure/stairs/south,
 /obj/structure/window/reinforced{
@@ -17805,6 +17876,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"ON" = (
+/obj/structure/closet,
+/obj/random/maintenance/clean,
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "OQ" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -17821,6 +17897,17 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_two)
+"OZ" = (
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
+"Pd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/newspaper,
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "Po" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -17836,6 +17923,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Py" = (
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "PC" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/floor_decal/borderfloor/corner{
@@ -17846,6 +17936,29 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"PI" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/bar)
+"PL" = (
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "PP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -18018,6 +18131,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"UJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/obj/structure/table/rack,
+/obj/random/maintenance/clean,
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "UX" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -18054,6 +18179,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Vx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "VM" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/standard{
@@ -18067,6 +18196,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"VR" = (
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/tether/surfacebase/outside/outside2)
 "Wr" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -18085,6 +18217,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Xc" = (
+/obj/structure/dogbed,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/mob/living/simple_animal/lizard,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "Xd" = (
 /obj/machinery/light{
 	dir = 1
@@ -18149,6 +18289,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_two)
+"Ye" = (
+/obj/structure/frame/computer,
+/turf/simulated/floor,
+/area/maintenance/lower/bar)
 "Yq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/borderfloor{
@@ -18234,6 +18378,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Zs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "Zt" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/lime/bordercorner,
@@ -33971,12 +34122,12 @@ kR
 du
 ee
 du
-ac
-ac
-ac
-ac
-ac
-ac
+LM
+Xc
+Ye
+UJ
+PL
+LM
 rg
 rg
 rg
@@ -34113,13 +34264,13 @@ kR
 du
 ee
 du
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+LM
+Jx
+Ye
+Pd
+Zs
+LM
+du
 ac
 ac
 ac
@@ -34254,18 +34405,18 @@ du
 du
 du
 ee
+NY
+Py
+iu
+Mv
+Mv
+iu
+ON
 du
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+VR
 ac
 ac
 ac
@@ -34397,17 +34548,17 @@ ee
 ee
 ee
 du
+LM
+Jx
+Lp
+Lp
+Zs
+LM
+du
+IY
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+VR
+VR
 ac
 ac
 ac
@@ -34539,16 +34690,16 @@ du
 du
 du
 du
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+LM
+OZ
+Py
+Vx
+Zs
+LM
+du
+IY
+IY
+IY
 ac
 ac
 ac
@@ -34680,16 +34831,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+du
+PI
+du
+IX
+MZ
+du
+PI
+du
+IY
+IY
 ac
 ac
 ac
@@ -34821,17 +34972,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+VR
+VR
+IY
+IY
+IY
+IY
+LI
+LI
+IY
+IY
+LI
 ac
 ac
 ac
@@ -34964,16 +35115,16 @@ jM
 jM
 jM
 jM
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+IY
+LI
+LI
+LI
+LI
+LI
+LI
+LI
+LI
+LI
 ac
 ac
 ac
@@ -35106,16 +35257,16 @@ jM
 jM
 jM
 jM
-ac
-ac
-ac
-ac
-ac
-ac
+LI
+LI
+LI
+LI
+LI
+LI
 jM
-ac
-ac
-ac
+LI
+LI
+LI
 jM
 jM
 jM
@@ -35248,9 +35399,9 @@ jM
 jM
 jM
 jM
-ac
-ac
-ac
+LI
+LI
+LI
 jM
 jM
 jM
