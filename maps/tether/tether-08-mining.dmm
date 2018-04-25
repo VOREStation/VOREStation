@@ -176,6 +176,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/engineering/atmospherics)
 "aK" = (
