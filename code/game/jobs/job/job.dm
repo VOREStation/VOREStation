@@ -61,7 +61,7 @@
 			if(CLASS_LOWER)		income = 0.50
 
 	//give them an account in the station database
-	var/money_amount = (rand(15,40) + rand(15,40)) * income * economic_modifier * ECO_MODIFIER //VOREStation Edit - Smoothed peaks.
+	var/money_amount = (rand(15,40) + rand(15,40)) * income * economic_modifier * (H.species.economic_modifier) //VOREStation Edit - Smoothed peaks.
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind)
 		var/remembered_info = ""

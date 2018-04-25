@@ -385,7 +385,7 @@ var/datum/controller/master/Master = new()
 		if (SS_flags & SS_NO_FIRE)
 			subsystemstocheck -= SS
 			continue
-		if (!(SS_flags & SS_TICKER) && (SS_flags & SS_KEEP_TIMING) && SS.last_fire + (SS.wait * 0.75) > world.time)
+		if ((SS_flags & (SS_TICKER|SS_KEEP_TIMING)) == SS_KEEP_TIMING && SS.last_fire + (SS.wait * 0.75) > world.time)
 			continue
 		SS.enqueue()
 	. = 1
@@ -428,7 +428,7 @@ var/datum/controller/master/Master = new()
 			//	in those cases, so we just let them run)
 			if (queue_node_flags & SS_NO_TICK_CHECK)
 				if (queue_node.tick_usage > TICK_LIMIT_RUNNING - TICK_USAGE && ran_non_ticker)
-					queue_node.queued_priority += queue_priority_count * 0.10
+					queue_node.queued_priority += queue_priority_count * 0.1
 					queue_priority_count -= queue_node_priority
 					queue_priority_count += queue_node.queued_priority
 					current_tick_budget -= queue_node_priority
@@ -446,26 +446,32 @@ var/datum/controller/master/Master = new()
 			else
 				tick_precentage = tick_remaining
 
-			current_ticklimit = TICK_USAGE + tick_precentage
+			// Reduce tick allocation for subsystems that overran on their last tick.
+			tick_precentage = max(tick_precentage*0.5, tick_precentage-queue_node.tick_overrun)
+
+			current_ticklimit = round(TICK_USAGE + tick_precentage)
 
 			if (!(queue_node_flags & SS_TICKER))
 				ran_non_ticker = TRUE
 			ran = TRUE
-			tick_usage = TICK_USAGE
+
 			queue_node_paused = (queue_node.state == SS_PAUSED || queue_node.state == SS_PAUSING)
 			last_type_processed = queue_node
 
 			queue_node.state = SS_RUNNING
 
+			tick_usage = TICK_USAGE
 			var/state = queue_node.ignite(queue_node_paused)
+			tick_usage = TICK_USAGE - tick_usage
+
 			if (state == SS_RUNNING)
 				state = SS_IDLE
 			current_tick_budget -= queue_node_priority
-			tick_usage = TICK_USAGE - tick_usage
+
 
 			if (tick_usage < 0)
 				tick_usage = 0
-
+			queue_node.tick_overrun = max(0, MC_AVG_FAST_UP_SLOW_DOWN(queue_node.tick_overrun, tick_usage-tick_precentage))
 			queue_node.state = state
 
 			if (state == SS_PAUSED)
@@ -494,11 +500,11 @@ var/datum/controller/master/Master = new()
 			if (queue_node_flags & SS_TICKER)
 				queue_node.next_fire = world.time + (world.tick_lag * queue_node.wait)
 			else if (queue_node_flags & SS_POST_FIRE_TIMING)
-				queue_node.next_fire = world.time + queue_node.wait
+				queue_node.next_fire = world.time + queue_node.wait + (world.tick_lag * (queue_node.tick_overrun/100))
 			else if (queue_node_flags & SS_KEEP_TIMING)
 				queue_node.next_fire += queue_node.wait
 			else
-				queue_node.next_fire = queue_node.queued_time + queue_node.wait
+				queue_node.next_fire = queue_node.queued_time + queue_node.wait + (world.tick_lag * (queue_node.tick_overrun/100))
 
 			queue_node.queued_time = 0
 
