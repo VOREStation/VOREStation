@@ -69,6 +69,10 @@
 /area/tether/surfacebase/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
+/area/tether/surfacebase/bar_backroom
+	name = "\improper Bar Backroom"
+	icon_state = "red"
+	sound_env = SMALL_SOFTFLOOR
 
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
