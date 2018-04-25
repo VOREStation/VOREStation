@@ -22867,6 +22867,20 @@
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"Zb" = (
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/mine/explored/upper_level)
+"ZR" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor,
+/area/security/nuke_storage)
+"ZS" = (
+/turf/simulated/floor/airless,
+/area/mine/explored/upper_level)
 "ZX" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -26911,14 +26925,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-nA
-nB
-nB
-nB
+ZS
+ZS
+ZS
+ZS
+Zb
+ZS
+ZS
+ZS
 nB
 nB
 nB
@@ -27053,14 +27067,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-nA
-aa
-aa
-nB
+ZS
+ZS
+ZS
+ZS
+Zb
+ZS
+ZS
+ZS
 aa
 aa
 aa
@@ -27191,20 +27205,20 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ls
-ls
-ls
-ls
-ls
-rg
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZR
 rh
 ri
 ri
@@ -27338,14 +27352,14 @@ ab
 ab
 ab
 ab
-ls
-ls
-ls
-ls
-ls
-ls
-ls
-qw
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
+ZS
 rh
 ri
 ri
