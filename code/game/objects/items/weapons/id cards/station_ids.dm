@@ -8,6 +8,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi'
 		)
 
+	var/mining_points = 0 // VOREStation Edit - For redeeming at mining equipment lockers
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	slot_flags = SLOT_ID | SLOT_EARS
