@@ -13,11 +13,11 @@
 
 	investigates = TRUE
 
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 10
+	melee_damage_upper = 25
 	grab_resist = 100
 
-	speak_chance = 4
+	speak_chance = 3
 	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")
 	speak_emote = list("growls", "declares", "groans", "distorts")
 	emote_hear = list("jitters and snaps.", "lets out an agonizingly distorted scream.", "wails mechanically", "growls.", "emits illegibly distorted speech.", "gurgles ferociously.", "lets out a distorted beep.", "borks.", "lets out a broken howl.")
@@ -50,7 +50,7 @@
 
 	vore_active = TRUE
 	vore_capacity = 1
-	vore_pounce_chance = 30
+	vore_pounce_chance = 15
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	vore_stomach_name = "fuel processor"
 	vore_stomach_flavor = "You have ended up in the fuel processor of this corrupted machine. This place was definitely not designed with safety and comfort in mind. The heated and cramped surroundings oozing potent fluids all over your form, eager to do nothing less than breaking you apart to fuel its rampage for the next few days... hours... minutes? Oh dear..."
@@ -65,6 +65,9 @@
 	icon_dead = "prettyboi-dead"
 	icon_rest = "prettyboi_rest"
 
+	vore_pounce_chance = 40
+
+	attacktext = list("malsnuggled","scrunched","squeezed","assaulted","violated")
 	speak = list("I FEEL SOFT.","FEED ME!","Feelin' fine... So fine!","F-F-F-F-darn.","Delicious!","Still craving meat...","PET ME!","I am become softness.","I AM BIG MEAN HUG MACHINE!","Honk...")
 	speak_emote = list("growls", "declares", "groans", "distorts")
 	emote_hear = list("jitters and snaps.", "lets out some awkwardly distorted kitten noises.", "awoos mechanically", "growls.", "emits some soft distorted melody.", "gurgles ferociously.", "lets out a distorted beep.", "borks.", "lets out a broken howl.")
