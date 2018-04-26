@@ -47,6 +47,7 @@
 	max_n2 = 0
 	minbodytemp = 150
 	maxbodytemp = 900
+	var/image/eye_layer = null
 
 	vore_active = TRUE
 	vore_capacity = 1
@@ -87,7 +88,29 @@
 		return EatTarget()
 	else ..()
 
+/mob/living/simple_animal/hostile/badboi/proc/add_eyes()
+	if(!eye_layer)
+		eye_layer = image(icon, "badboi-eyes")
+		eye_layer.plane = PLANE_LIGHTING_ABOVE
+		modifier_overlay = eye_layer
+	overlays += eye_layer
+
+/mob/living/simple_animal/hostile/badboi/proc/remove_eyes()
+	overlays -= eye_layer
+
+/mob/living/simple_animal/hostile/badboi/New()
+	add_eyes()
+	..()
+
 /mob/living/simple_animal/hostile/badboi/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
+	remove_eyes()
 	resting = 0
 	icon_state = icon_dead
+
+/mob/living/simple_animal/hostile/badboi/lay_down()
+	..()
+	if(resting)
+		remove_eyes()
+	else
+		add_eyes()
