@@ -7,7 +7,8 @@
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
-	pixel_y = 24
+	pixel_y = 24;
+	alarms_hidden = TRUE
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
