@@ -5,7 +5,7 @@
 			/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
 			/obj/item/weapon/reagent_containers/food/snacks/jellyburger,
 			/obj/item/weapon/reagent_containers/food/snacks/tofuburger,
-			/obj/item/weapon/reagent_containers/food/snacks/fishburger
+			/obj/item/weapon/reagent_containers/food/snacks/fries
 			)
 	name = "Burger crate"
 	cost = 25
