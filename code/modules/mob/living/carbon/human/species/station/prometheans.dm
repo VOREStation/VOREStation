@@ -181,6 +181,8 @@ VOREStation Removal End */
 		t_she = "They are"
 	else if(H.identifying_gender == NEUTER)
 		t_she = "It is"
+	else if(H.identifying_gender == HERM) //VOREStation Edit
+		t_she = "Shi is"
 
 	switch(stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)
