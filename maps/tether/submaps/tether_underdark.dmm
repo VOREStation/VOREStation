@@ -22,6 +22,12 @@
 	ignore_mapgen = 1
 	},
 /area/mine/explored/underdark)
+"d" = (
+/obj/effect/decal/remains/deer,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
 "e" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/mine/explored/underdark)
@@ -183,6 +189,43 @@
 "J" = (
 /turf/simulated/mineral/floor/virgo3b,
 /area/mine/unexplored/underdark)
+"L" = (
+/obj/structure/sign/warning{
+	desc = "There's some rude graffiti at the bottom instructing you to 'PIS OFF'";
+	name = "\improper Caution: Dangerous fauna ahead"
+	},
+/turf/simulated/wall/r_wall,
+/area/mine/explored/underdark)
+"N" = (
+/obj/effect/decal/remains/posi,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"R" = (
+/obj/item/weapon/bone,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"S" = (
+/obj/item/weapon/bone,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
+"T" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"W" = (
+/obj/item/weapon/bone/skull,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
+"Z" = (
+/obj/effect/decal/remains/ribcage,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
 
 (1,1,1) = {"
 e
@@ -16114,7 +16157,7 @@ g
 c
 c
 h
-c
+W
 f
 f
 f
@@ -16534,7 +16577,7 @@ g
 g
 g
 c
-c
+S
 c
 c
 c
@@ -16955,7 +16998,7 @@ g
 g
 g
 g
-c
+Z
 c
 c
 c
@@ -17384,7 +17427,7 @@ c
 s
 s
 H
-c
+d
 g
 g
 g
@@ -17525,7 +17568,7 @@ h
 h
 s
 G
-h
+L
 h
 g
 g
@@ -17662,7 +17705,7 @@ g
 g
 g
 g
-o
+T
 o
 B
 o
@@ -17804,7 +17847,7 @@ g
 g
 g
 o
-o
+R
 o
 o
 o
@@ -17943,7 +17986,7 @@ g
 g
 h
 g
-o
+N
 o
 o
 o
@@ -19087,7 +19130,7 @@ o
 o
 o
 o
-o
+R
 h
 g
 g
