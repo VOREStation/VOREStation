@@ -17,6 +17,7 @@ var/datum/antagonist/renegade/renegades
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those without explicit exceptions apply to antagonists.</b>"
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
+	can_use_aooc = FALSE
 
 	hard_cap = 8
 	hard_cap_round = 12

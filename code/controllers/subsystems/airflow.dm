@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(airflow)
 	wait = 2
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
-	priority = 30
+	priority = FIRE_PRIORITY_AIRFLOW
 
 	var/list/processing = list()
 	var/list/currentrun = list()
