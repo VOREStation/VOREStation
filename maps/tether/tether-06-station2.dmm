@@ -17874,8 +17874,8 @@
 /area/maintenance/station/sec_lower)
 "Os" = (
 /obj/structure/table/glass,
-/obj/item/device/antibody_scanner,
 /obj/item/clothing/accessory/stethoscope,
+/obj/item/device/healthanalyzer,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
 "OA" = (
