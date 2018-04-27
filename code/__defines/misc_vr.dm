@@ -31,4 +31,5 @@
 #define BLUE_SHIELDED 2 // Shield from bluespace teleportation (telescience)
 
 //Assistant/Visitor/Whatever
-#define USELESS_JOB "Visitor"
+#define USELESS_JOB "Visitor"#define HERM "herm"
+
