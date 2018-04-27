@@ -50,12 +50,12 @@ NanoStateClass.prototype.onUpdate = function (data) {
     {
         if (!this.layoutRendered || (data['config'].hasOwnProperty('autoUpdateLayout') && data['config']['autoUpdateLayout']))
         {
-            $("#uiLayout").html(NanoTemplate.parse('layout', data)); // render the 'mail' template to the #mainTemplate div
+            $("#uiLayout").html(NanoTemplate.parse('layout', data)); // render the 'layout' template to the #uiLayout div
             this.layoutRendered = true;
         }
         if (!this.contentRendered || (data['config'].hasOwnProperty('autoUpdateContent') && data['config']['autoUpdateContent']))
         {
-            $("#uiContent").html(NanoTemplate.parse('main', data)); // render the 'mail' template to the #mainTemplate div
+            $("#uiContent").html(NanoTemplate.parse('main', data)); // render the 'main' template to the #uiContent div
             this.contentRendered = true;
         }
         if (NanoTemplate.templateExists('mapContent'))
