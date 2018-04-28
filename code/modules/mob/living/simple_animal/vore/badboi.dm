@@ -92,11 +92,10 @@
 	if(!eye_layer)
 		eye_layer = image(icon, "badboi-eyes")
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
-		modifier_overlay = eye_layer
-	overlays += eye_layer
+	add_overlay(eye_layer)
 
 /mob/living/simple_animal/hostile/badboi/proc/remove_eyes()
-	overlays -= eye_layer
+	cut_overlay(eye_layer)
 
 /mob/living/simple_animal/hostile/badboi/New()
 	add_eyes()
@@ -104,13 +103,11 @@
 
 /mob/living/simple_animal/hostile/badboi/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
-	remove_eyes()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_animal/hostile/badboi/lay_down()
-	..()
-	if(resting)
-		remove_eyes()
-	else
+/mob/living/simple_animal/hostile/badboi/update_icon()
+	. = ..()
+	remove_eyes()
+	if(stat == CONSCIOUS && !resting)
 		add_eyes()

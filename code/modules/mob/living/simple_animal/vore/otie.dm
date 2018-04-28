@@ -330,29 +330,23 @@
 	if(!eye_layer)
 		eye_layer = image(icon, "[eyetype]-eyes")
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
-		modifier_overlay = eye_layer
-	overlays += eye_layer
+	add_overlay(eye_layer)
 
 /mob/living/simple_animal/otie/proc/remove_eyes()
-	overlays -= eye_layer
+	cut_overlay(eye_layer)
 
 /mob/living/simple_animal/otie/New()
 	if(glowyeyes)
 		add_eyes()
 	..()
 
-/mob/living/simple_animal/otie/lay_down()
-	..()
-	if(glowyeyes)
-		if(resting)
-			remove_eyes()
-		else
-			add_eyes()
+/mob/living/simple_animal/otie/update_icon()
+	. = ..()
+	remove_eyes()
+	if(glowyeyes && stat == CONSCIOUS && !resting)
+		add_eyes()
 
 /mob/living/simple_animal/otie/death(gibbed, deathmessage = "dies!")
-	if(glowyeyes)
-		remove_eyes()
+	.=..()
 	resting = 0
 	icon_state = icon_dead
-	update_icon()
-	..()
