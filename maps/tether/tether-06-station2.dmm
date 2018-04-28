@@ -466,14 +466,13 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "aO" = (
@@ -17467,13 +17466,49 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/crew_quarters/medbreak)
+"Dp" = (
+/obj/item/weapon/paper,
+/turf/simulated/floor,
+/area/chapel/office)
+"Dy" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"DA" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 10
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"DR" = (
+/obj/random/trash,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ej" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "Ev" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/mineral/vacuum,
-/area/mine/explored/upper_level)
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "Ew" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -17484,6 +17519,36 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/prison)
+"ED" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/random/maintenance/clean,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"EH" = (
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Fe" = (
+/obj/structure/table/glass,
+/obj/item/weapon/surgical/scalpel,
+/obj/random/maintenance/medical,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ff" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 9
+	},
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
 "Fo" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -17493,6 +17558,46 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/security/prison)
+"Fr" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/reagent_containers/blood,
+/turf/simulated/floor,
+/area/chapel/office)
+"Ft" = (
+/obj/structure/closet,
+/obj/item/clothing/accessory/poncho/roles/medical,
+/obj/item/clothing/shoes/boots/winter/medical,
+/obj/item/clothing/shoes/boots/winter/medical,
+/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
+/obj/item/clothing/under/rank/medical,
+/obj/item/clothing/under/seromi/smock/medical,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Fv" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"FA" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"FC" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "FD" = (
 /obj/structure/bed/padded,
 /obj/machinery/camera/network/medbay{
@@ -17501,6 +17606,51 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"FJ" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"FR" = (
+/obj/effect/floor_decal/rust,
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"FZ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
+"GV" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor,
+/area/vacant/vacant_restaurant_upper)
+"GW" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Hb" = (
+/obj/structure/closet/crate,
+/obj/random/maintenance/clean,
+/obj/effect/floor_decal/techfloor{
+	dir = 9
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ik" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "IK" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall/r_wall,
@@ -17512,21 +17662,470 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/airless,
 /area/space)
-"Mq" = (
-/obj/structure/disposalpipe/segment,
+"Jh" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Jr" = (
+/obj/structure/girder,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"JH" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
+"JO" = (
+/obj/machinery/door/airlock/maintenance/common,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Kg" = (
+/obj/structure/closet,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Kn" = (
+/obj/structure/inflatable/door,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"KG" = (
+/turf/simulated/mineral/floor/cave,
+/area/maintenance/station/sec_lower)
+"KU" = (
+/obj/structure/table/glass,
+/obj/item/weapon/storage/box/gloves{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/roller,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Lf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Lg" = (
+/obj/structure/inflatable,
+/turf/simulated/mineral/floor/vacuum,
+/area/mine/explored/upper_level)
+"Ln" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Lo" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ly" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/closet/crate,
+/obj/random/maintenance/engineering,
 /turf/simulated/floor/airless,
-/area/space)
+/area/maintenance/station/sec_lower)
+"Mn" = (
+/obj/structure/table/steel,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Mq" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
+"Ms" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 10
+	},
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"Mw" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/closet/crate,
+/obj/random/junk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"MK" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"MN" = (
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"MO" = (
+/obj/effect/floor_decal/rust,
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Na" = (
+/obj/structure/table/glass,
+/obj/item/weapon/book/manual/medical_diagnostics_manual,
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"Nb" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"Nm" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"Nt" = (
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/mine/explored/upper_level)
+"Ny" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"NA" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"NM" = (
+/obj/structure/lattice,
+/turf/simulated/mineral/floor/cave,
+/area/maintenance/station/sec_lower)
+"NN" = (
+/obj/structure/table/glass,
+/obj/item/taperoll/medical,
+/obj/random/maintenance/medical,
+/obj/random/maintenance/medical,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"NY" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"NZ" = (
+/obj/random/junk,
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ob" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"Oj" = (
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/obj/structure/table/steel,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Or" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Os" = (
+/obj/structure/table/glass,
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/device/healthanalyzer,
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"OA" = (
+/obj/effect/floor_decal/rust,
+/obj/random/trash,
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"OY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Py" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"PC" = (
+/obj/item/weapon/reagent_containers/blood,
+/turf/simulated/floor,
+/area/chapel/office)
+"PF" = (
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/maintenance/station/sec_lower)
+"PV" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"PX" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Qk" = (
+/obj/effect/floor_decal/rust,
+/obj/random/trash,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ql" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/steel,
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"Qs" = (
+/turf/simulated/mineral/vacuum,
+/area/maintenance/station/sec_lower)
+"Qz" = (
+/obj/item/weapon/paper,
+/obj/effect/rune,
+/obj/effect/decal/cleanable/blood,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/chapel/office)
+"QG" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/random/maintenance/engineering,
+/obj/random/junk,
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"QN" = (
+/obj/structure/closet,
+/obj/item/clothing/shoes/boots/winter/medical,
+/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
+/obj/item/clothing/under/rank/medical,
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"QQ" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"QS" = (
+/obj/machinery/light/small,
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/random/maintenance/clean,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"QW" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"QZ" = (
+/obj/structure/railing,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Rb" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Rf" = (
+/obj/structure/closet/crate,
+/obj/random/junk,
+/obj/random/maintenance/engineering,
+/obj/structure/lattice,
+/turf/simulated/mineral/floor/cave,
+/area/maintenance/station/sec_lower)
+"Rr" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"RB" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
+"RD" = (
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"RF" = (
+/obj/structure/closet/emcloset,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"RO" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/paper,
+/turf/simulated/floor,
+/area/chapel/office)
+"RQ" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"RR" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
+"RS" = (
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "RT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/mineral/vacuum,
-/area/mine/explored/upper_level)
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"RY" = (
+/obj/random/junk,
+/obj/random/junk,
+/turf/simulated/floor,
+/area/chapel/office)
+"Sg" = (
+/obj/structure/table/steel,
+/obj/random/maintenance/clean,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Si" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "SI" = (
 /obj/structure/disposalpipe/segment,
-/turf/simulated/mineral/vacuum,
-/area/mine/explored/upper_level)
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"SJ" = (
+/obj/random/junk,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Tm" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Tq" = (
+/obj/item/weapon/surgical/cautery,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Tw" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ty" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "TA" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -17544,6 +18143,231 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/security/brig)
+"TW" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ug" = (
+/obj/structure/closet/crate,
+/obj/random/junk,
+/obj/random/junk,
+/turf/simulated/mineral/floor/cave,
+/area/maintenance/station/sec_lower)
+"Uk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"UH" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"UJ" = (
+/obj/random/trash,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"UO" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"UZ" = (
+/obj/structure/inflatable,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Vb" = (
+/obj/structure/lattice,
+/turf/simulated/mineral/floor/vacuum,
+/area/mine/explored/upper_level)
+"VH" = (
+/obj/structure/table/steel,
+/obj/item/device/radio{
+	pixel_x = -4
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"VJ" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Wi" = (
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Wj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ww" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/closet,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"WE" = (
+/obj/structure/sink{
+	dir = 8;
+	icon_state = "sink";
+	pixel_x = -12;
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"Xc" = (
+/obj/structure/table/glass,
+/obj/item/weapon/storage/box/syringes{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
+"Xj" = (
+/turf/simulated/floor,
+/area/chapel/office)
+"Xk" = (
+/obj/structure/table/steel,
+/obj/item/device/flashlight/lamp{
+	pixel_y = 10
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"XA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"XI" = (
+/obj/random/junk,
+/turf/simulated/floor,
+/area/chapel/office)
+"XJ" = (
+/obj/random/maintenance/engineering,
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"XM" = (
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"XN" = (
+/obj/item/weapon/paper_bin,
+/turf/simulated/floor,
+/area/chapel/office)
+"Yd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Yh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/airless,
+/area/maintenance/station/sec_lower)
+"Yw" = (
+/turf/simulated/floor/airless,
+/area/mine/explored/upper_level)
+"YD" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"YM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"YV" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/paperplane,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/chapel/office)
+"YW" = (
+/obj/random/trash,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Zl" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Zr" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"ZE" = (
+/obj/structure/table/steel,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"ZJ" = (
+/obj/structure/table/steel,
+/obj/item/weapon/storage/briefcase/inflatable,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"ZL" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"ZW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 
 (1,1,1) = {"
 aa
@@ -21580,14 +22404,14 @@ aa
 aa
 eM
 eM
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+at
+FZ
+FZ
+at
+at
+FZ
+FZ
+at
 eM
 aa
 aa
@@ -21722,14 +22546,14 @@ eM
 eM
 eM
 eM
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+RB
+Ff
+Nm
+UH
+NY
+Nm
+Ms
+RR
 eM
 aa
 aa
@@ -21839,42 +22663,42 @@ aa
 ab
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ab
-ab
-aa
-eM
-ab
-ab
-ab
-ab
-aP
-aP
-aP
-aP
-aP
-aP
-aP
+at
+Qs
+Qs
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+FZ
+FZ
+at
+at
+Ob
+FJ
+Yh
+Yd
+Or
+ZW
+at
+FZ
+FZ
+FZ
 pd
 pF
 pF
@@ -21981,42 +22805,42 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ab
-ab
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
+Qs
+Qs
+Qs
+at
+Hb
+UJ
+Tm
+Tm
+Zr
+Tm
+Tm
+Tm
+NZ
+Zr
+Zr
+Tm
+Tm
+Tm
+SJ
+Zr
+Zr
+Tm
+Tm
+Tm
+Tm
+RF
+NA
+Jh
+at
+at
+XM
+Ny
+Zr
+Zr
+FR
+DA
 pd
 pG
 pG
@@ -22122,44 +22946,44 @@ aa
 aa
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-pd
+at
+Qs
+Qs
+Ug
+at
+DR
+Ty
+Or
+Yd
+Yd
+Yd
+Or
+XM
+XM
+Lf
+Yd
+Yd
+Lf
+Lf
+Lf
+Lf
+QW
+Jh
+Yd
+Yd
+Yd
+Yd
+Yd
+Wj
+at
+at
+XM
+Uk
+Yd
+Yd
+Or
+XM
+GV
 pG
 qk
 pG
@@ -22264,43 +23088,43 @@ ab
 ab
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aP
-aP
-aP
-aP
-aP
-kI
-aP
+at
+Qs
+Rf
+NM
+at
+Tw
+ZL
+at
+at
+at
+at
+at
+at
+at
+at
+JO
+at
+at
+at
+at
+at
+at
+at
+at
+JO
+at
+at
+at
+at
+at
+at
+JH
+JH
+at
+JH
+JH
+at
 pd
 pG
 qk
@@ -22406,35 +23230,35 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Qs
+Qs
+NM
+RS
+at
+TW
+ZL
+at
+Na
+MN
+MN
+RS
+WE
+KU
+at
+RS
+at
+aP
+kI
+aP
+aP
+at
+ZE
+RS
+RS
+RS
+RS
+Mn
+at
 ac
 kI
 aP
@@ -22548,35 +23372,35 @@ ac
 ac
 ac
 ac
+at
+Qs
+RS
+RS
+at
+TW
+OY
+at
+Os
+MN
+Tq
+RS
+MN
+Xc
+at
+RS
+at
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+aP
+at
+Mn
+RS
+RS
+RS
+RS
+QS
+at
 aP
 aP
 lt
@@ -22690,35 +23514,35 @@ ac
 ac
 ac
 ac
+at
+Qs
+RS
+RS
+at
+QZ
+OY
+at
+NN
+QN
+GW
+Nb
+Ft
+Fe
+at
+RS
+at
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+at
+Sg
+Zl
+ZE
+RQ
+PX
+ED
+at
 aP
 aP
 lu
@@ -22832,35 +23656,35 @@ ac
 ac
 ac
 ac
+at
+Qs
+RS
+RS
+PF
+TW
+OY
+at
+at
+at
+at
+at
+at
+at
+at
+Lo
+at
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+aP
+at
+at
+at
+at
+at
+at
+at
+at
 aP
 aP
 lv
@@ -22974,27 +23798,27 @@ ac
 ac
 ac
 ac
+at
+Qs
+RS
+RS
+at
+QZ
+OY
+at
+MK
+Lo
+RS
+RS
+RS
+RS
+RS
+RS
+at
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+kI
 fX
 fX
 fX
@@ -23116,25 +23940,25 @@ ac
 ac
 ac
 ac
+at
+NM
+RS
+RS
+at
+TW
+OY
+at
+YW
+RS
+at
+at
+at
+at
+at
+at
+at
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
 bW
 bW
 fX
@@ -23258,17 +24082,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+NM
+NM
+RS
+at
+Qk
+OY
+JO
+RS
+Lo
+at
 ac
 ac
 bW
@@ -23276,7 +24100,7 @@ bW
 bW
 bW
 bW
-ac
+aP
 bW
 fw
 fY
@@ -23400,17 +24224,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+Qs
+NM
+NM
+at
+TW
+OY
+at
+Ww
+RS
+at
 ac
 ac
 bW
@@ -23542,17 +24366,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Qs
+Qs
+Ug
+KG
+at
+TW
+OY
+at
+at
+at
+at
 ac
 ac
 bW
@@ -23683,14 +24507,14 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+at
+at
+at
+at
+at
+EH
+YM
 ae
 ae
 ae
@@ -23825,14 +24649,14 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+FC
+Ik
+PX
+MK
+at
+UO
+ZL
 ae
 ag
 av
@@ -23967,14 +24791,14 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+RS
+RS
+RS
+RS
+at
+UO
+YM
 ae
 ah
 aw
@@ -24109,14 +24933,14 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+Wi
+RS
+RS
+RD
+at
+UO
+YM
 ae
 ai
 ax
@@ -24251,14 +25075,14 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+RS
+RS
+RS
+RS
+at
+TW
+YM
 ae
 aj
 ay
@@ -24393,14 +25217,14 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+RS
+RS
+RS
+RS
+Ln
+TW
+YM
 ae
 ah
 az
@@ -24535,14 +25359,14 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+XJ
+Mw
+RS
+Dy
+at
+Kg
+YM
 ae
 ah
 aA
@@ -24677,14 +25501,14 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+at
+at
+at
+at
+at
+UO
+YM
 ae
 ah
 ay
@@ -24822,11 +25646,11 @@ ac
 ac
 ac
 ac
+aP
 ac
-ac
-ac
-ac
-ac
+at
+UO
+YM
 ae
 ak
 aB
@@ -24962,13 +25786,13 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+BK
+aP
+aP
+kI
+at
+TW
+YM
 ae
 ah
 aC
@@ -25104,13 +25928,13 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+BK
+kI
+aP
+aP
+at
+TW
+YM
 ae
 ah
 ay
@@ -25246,13 +26070,13 @@ ac
 ac
 ac
 ac
+BK
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+at
+TW
+OY
 ae
 aj
 aD
@@ -25392,9 +26216,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
+at
+TW
+QQ
 ae
 al
 aE
@@ -25525,18 +26349,18 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+QZ
+XA
 ae
 am
 aF
@@ -25667,18 +26491,18 @@ aa
 aa
 ab
 ab
-ab
-ab
-ac
+RB
+Ly
+RS
 Ev
 SI
+YD
 SI
 SI
 SI
-SI
-SI
-SI
-SI
+Fv
+VJ
+Rb
 IK
 Ew
 Fo
@@ -25810,17 +26634,17 @@ ab
 ab
 IO
 Mq
-Mq
+Ql
 SI
 RT
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+RS
+RS
+Lo
+Rr
+PX
+at
+QZ
+XA
 ae
 ah
 aG
@@ -25951,18 +26775,18 @@ aa
 ab
 ab
 ab
-ab
-ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+VH
+RS
+Lo
+Lo
+at
+at
+at
+at
+at
+UO
+PV
 ae
 an
 aG
@@ -26093,18 +26917,18 @@ aa
 ab
 ab
 ab
-ab
+RB
+ZJ
+Lo
+Si
+Py
+at
+aP
+aP
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+TW
+OY
 ae
 aj
 aG
@@ -26235,18 +27059,18 @@ aa
 ab
 ab
 ab
-ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+RB
+Zl
+RS
+Oj
+Xk
+at
+aP
+aP
+aP
+at
+TW
+YM
 ae
 ah
 aH
@@ -26377,18 +27201,18 @@ aa
 ab
 ab
 ab
-ab
+at
+at
+at
+at
+at
+at
 ac
+aP
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+at
+TW
+YM
 ae
 ao
 aI
@@ -26524,13 +27348,13 @@ ac
 ac
 ac
 ac
+BK
 ac
+aP
 ac
-ac
-ac
-ac
-ac
-ac
+at
+TW
+XM
 af
 ap
 aJ
@@ -26668,11 +27492,11 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+at
+TW
+XM
 af
 aq
 aK
@@ -26810,11 +27634,11 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+at
+TW
+PV
 af
 ar
 aL
@@ -26950,13 +27774,13 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+BK
+aP
+aP
+aP
+at
+TW
+XA
 af
 as
 aM
@@ -27092,13 +27916,13 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+BK
+aP
+aP
+aP
+at
+TW
+OY
 af
 af
 af
@@ -27234,15 +28058,15 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+BK
+aP
+aP
+aP
 at
+MO
+Ej
+XM
+PF
 aN
 be
 be
@@ -27378,12 +28202,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+at
+OA
+FA
+QG
 at
 aO
 bf
@@ -27521,11 +28345,11 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
+aP
+at
+at
+at
+at
 at
 at
 at
@@ -27660,21 +28484,21 @@ aa
 aa
 ac
 ac
+BK
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+Kn
+RS
+RS
+Qs
+cY
+XI
+RO
+Xj
+XI
+XI
+Fr
 cY
 dz
 dZ
@@ -27805,18 +28629,18 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Lg
+Jr
+RS
+RS
+Qs
+cY
+RY
+Xj
+Dp
+Xj
+Dp
+Xj
 cY
 dA
 ea
@@ -27948,17 +28772,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Jr
+RS
+RS
+Qs
+cY
+Xj
+Qz
+XN
+Xj
+Xj
+Xj
 cY
 dB
 eb
@@ -28086,21 +28910,21 @@ aa
 aa
 ac
 ac
+aP
+aP
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aP
+UZ
+RS
+Qs
+Qs
+cY
+YV
+Xj
+PC
+Xj
+RO
+XI
 cY
 dC
 ec
@@ -28229,20 +29053,20 @@ aa
 ac
 ac
 ac
+aP
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-bg
+aP
+Qs
+Kn
+Qs
+Qs
+cY
+cY
+cY
+cY
+cY
+cY
+cY
 cY
 cY
 cY
@@ -28371,12 +29195,12 @@ ac
 ac
 ac
 ac
+aP
+aP
+aP
 ac
-ac
-ac
-ac
-ac
-ac
+Yw
+Vb
 ac
 ac
 ac
@@ -28513,14 +29337,14 @@ ac
 ac
 ac
 ac
+aP
+aP
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+Vb
+Yw
+Nt
+aP
 ac
 ac
 ac
@@ -28655,15 +29479,15 @@ ac
 ac
 ac
 ac
+aP
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+Vb
+Vb
+Nt
+aP
+aP
 ac
 ac
 ac
@@ -28797,15 +29621,15 @@ ac
 ac
 ac
 ac
+aP
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+Vb
+aP
+Yw
+aP
+aP
 ac
 ac
 ac
@@ -28939,15 +29763,15 @@ ac
 ac
 ac
 ac
+aP
+aP
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Vb
+Vb
+aP
+aP
+aP
 ac
 ac
 ac
@@ -29082,14 +29906,14 @@ ac
 ac
 ac
 ac
+aP
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+Vb
+aP
+aP
+aP
+aP
 ac
 ac
 ac
@@ -29224,12 +30048,12 @@ ac
 ac
 ac
 ac
+aP
+aP
 ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+aP
 ac
 ac
 ac
@@ -29367,11 +30191,11 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
+aP
+aP
+aP
+aP
+aP
 ac
 ac
 ac
@@ -29511,9 +30335,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
+aP
+aP
+aP
 ac
 ac
 ac
@@ -29653,9 +30477,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
+aP
+aP
+aP
 ac
 ac
 ac
@@ -29796,7 +30620,7 @@ ac
 ac
 ac
 ac
-ac
+aP
 ac
 ac
 ac

@@ -29,7 +29,7 @@
 	<b>Function:</b> Contains no innate functions until other components are added.<BR>
 	<b>Special Features:</b>
 	<i>Modular Circuitry</i>- Can be loaded with specific modular circuitry in order to fulfill a wide possibility of functions.<BR>
-	<b>Integrity:</b> Implant is not shielded from electromagnetic interferance, otherwise it is independant of subject's status."}
+	<b>Integrity:</b> Implant is not shielded from electromagnetic interference, otherwise it is independent of subject's status."}
 	return dat
 
 /obj/item/weapon/implant/integrated_circuit/emp_act(severity)

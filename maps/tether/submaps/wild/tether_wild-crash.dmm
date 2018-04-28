@@ -102,7 +102,7 @@
 "bX" = (/obj/machinery/door/window/westleft{name = "Storefront"; req_access = list(160)},/obj/structure/window/reinforced,/obj/structure/table/marble,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "bY" = (/obj/effect/step_trigger/teleporter/wild/to_wild_3,/turf/simulated/floor/outdoors/grass/sif/virgo3b{icon_state = "grass_sif_dark"; name = "passage"; tree_chance = 0},/area/tether/surfacebase/outside/wilderness)
 "bZ" = (/obj/machinery/computer/arcade/battle,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
-"ca" = (/obj/structure/table/steel_reinforced,/obj/structure/flora/pottedplant{icon_state = "plant-09"; name = "Esteban"; pixel_y = 8; tag = "icon-plant-09"},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
+"ca" = (/obj/structure/table/steel_reinforced,/obj/structure/flora/pottedplant{icon_state = "plant-09"; name = "Esteban"; pixel_y = 8;},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
 "cb" = (/obj/machinery/door/airlock/multi_tile/glass{dir = 2},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "cc" = (/obj/machinery/door/window/westright,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "cd" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)

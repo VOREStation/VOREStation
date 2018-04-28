@@ -1206,6 +1206,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	victim.organs -= src
 	victim.organs_by_name[organ_tag] = null // Remove from owner's vars.
 
+	status |= ORGAN_CUT_AWAY //Checked during surgeries to reattach it
+
 	//Robotic limbs explode if sabotaged.
 	if(is_robotic && sabotaged)
 		victim.visible_message(
