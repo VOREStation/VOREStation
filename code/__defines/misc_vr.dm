@@ -33,6 +33,9 @@
 //Assistant/Visitor/Whatever
 #define USELESS_JOB "Visitor"
 
+//Herm Gender
+#define HERM "herm"
+
 // Bluespace shelter deploy checks
 #define SHELTER_DEPLOY_ALLOWED "allowed"
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
