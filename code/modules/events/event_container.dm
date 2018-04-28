@@ -60,7 +60,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	var/list/possible_events = list()
 	for(var/datum/event_meta/EM in available_events)
 		var/event_weight = get_weight(EM, active_with_role)
-		if(event_weight)
+		if(event_weight > 0)
 			possible_events[EM] = event_weight
 
 	if(possible_events.len == 0)
