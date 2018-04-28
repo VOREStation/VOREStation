@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/badboi
+/mob/living/simple_animal/hostile/corrupthound
 	name = "corrupt hound"
 	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
 	icon = 'icons/mob/vore64x32.dmi'
@@ -57,7 +57,7 @@
 
 	loot_list = list(/obj/item/borg/upgrade/syndicate = 6, /obj/item/borg/upgrade/vtec = 6, /obj/item/weapon/material/knife/ritual = 6, /obj/item/weapon/disk/nifsoft/compliance = 6)
 
-/mob/living/simple_animal/hostile/badboi/prettyboi
+/mob/living/simple_animal/hostile/corrupthound/prettyboi
 	name = "corrupt corrupt hound"
 	desc = "Bad boy machine broke as well. Seems an attempt was made to achieve a less threatening look, and this one is definitely having some conflicting feelings about it."
 	icon_state = "prettyboi"
@@ -76,18 +76,18 @@
 	say_got_target = list("HERE COMES BIG MEAN HUG MACHINE!", "I'LL BE GENTLE!", "FUEL ME FRIEND!", "I*M SO SORRY!", "YUMMY TREAT DETECTED!", "LOVE ME!", "Not again. NOT AGAIN!")
 
 
-/mob/living/simple_animal/hostile/badboi/isSynthetic()
+/mob/living/simple_animal/hostile/corrupthound/isSynthetic()
 	return TRUE
 
-/mob/living/simple_animal/hostile/badboi/speech_bubble_appearance()
+/mob/living/simple_animal/hostile/corrupthound/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/simple_animal/hostile/badboi/PunchTarget()
+/mob/living/simple_animal/hostile/corrupthound/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_animal/mouse))
 		return EatTarget()
 	else ..()
 
-/mob/living/simple_animal/hostile/badboi/death(gibbed, deathmessage = "shudders and collapses!")
+/mob/living/simple_animal/hostile/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
