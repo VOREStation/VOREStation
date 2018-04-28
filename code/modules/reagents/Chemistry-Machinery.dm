@@ -329,8 +329,7 @@
 
 	//vorestation edit start - for solargrubs
 	if (istype(O, /obj/item/device/multitool))
-		..()
-		return
+		return ..()
 	//vorestation edit end
 
 
