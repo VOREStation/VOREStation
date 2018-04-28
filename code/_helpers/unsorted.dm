@@ -1467,11 +1467,21 @@ var/mob/dview/dview_mob = new
 		if(337.5)
 			return "North-Northwest"
 
+//This is used to force compiletime errors if you incorrectly supply variable names. Crafty!
+#define NAMEOF(datum, X) (#X || ##datum.##X)
 
+//Creates a callback with the specific purpose of setting a variable
+#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, weakref(##datum), NAMEOF(##datum, ##var), ##var_value)
 
-
-
-
-
-
-
+//Helper for the above
+/proc/___callbackvarset(list_or_datum, var_name, var_value)
+	if(isweakref(list_or_datum))
+		var/weakref/wr = list_or_datum
+		list_or_datum = wr.resolve()
+	if(!list_or_datum)
+		return
+	if(length(list_or_datum))
+		list_or_datum[var_name] = var_value
+		return
+	var/datum/D = list_or_datum
+	D.vars[var_name] = var_value
