@@ -114,6 +114,8 @@
 	var/active_edges = air_master.active_edges.len
 
 	if(active_edges)
+		for(var/line in air_master.startup_active_edge_log) // Report where the edges are.
+			log_unit_test(line)
 		fail("Maps contained [active_edges] active edges at round-start.")
 	else
 		pass("No active edges.")
