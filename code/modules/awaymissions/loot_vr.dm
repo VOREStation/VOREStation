@@ -365,7 +365,7 @@
 	icon_state = "da"
 
 /obj/structure/symbol/em
-	desc = "It looks like the letter 'Y' with an underline."
+	desc = "It looks kind of like a cup. Specifically, a martini glass."
 	icon_state = "em"
 
 /obj/structure/symbol/es
@@ -381,7 +381,7 @@
 	icon_state = "gu"
 
 /obj/structure/symbol/lo
-	desc = "It looks kind of like a cup. Specifically, a martini glass."
+	desc = "It looks like the letter 'Y' with an underline."
 	icon_state = "lo"
 
 /obj/structure/symbol/pr
