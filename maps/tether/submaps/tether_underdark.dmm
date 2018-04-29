@@ -189,11 +189,15 @@
 "J" = (
 /turf/simulated/mineral/floor/virgo3b,
 /area/mine/unexplored/underdark)
-"L" = (
-/obj/structure/sign/warning{
-	desc = "There's some rude graffiti at the bottom instructing you to 'PIS OFF'";
-	name = "\improper Caution: Dangerous fauna ahead"
+"K" = (
+/obj/structure/sign/graffiti/pisoff{
+	pixel_x = 5;
+	pixel_y = 3
 	},
+/turf/simulated/wall/r_wall,
+/area/mine/explored/underdark)
+"L" = (
+/obj/structure/sign/hostilefauna,
 /turf/simulated/wall/r_wall,
 /area/mine/explored/underdark)
 "N" = (
@@ -16719,7 +16723,7 @@ g
 c
 c
 c
-h
+K
 c
 c
 c
