@@ -82,6 +82,15 @@ Nurse Family
 	var/atom/cocoon_target
 	var/egg_inject_chance = 5
 
+/mob/living/simple_animal/hostile/giant_spider/nurse/hat
+	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes and a tiny nurse hat"
+	icon_state = "nursemed"
+	icon_living = "nursemed"
+	icon_dead = "nursemed_dead"
+
+	maxHealth = 50
+	health = 50
+
 /mob/living/simple_animal/hostile/giant_spider/nurse/queen
 	desc = "Absolutely gigantic, this creature is horror itself."
 	icon = 'icons/mob/64x64.dmi'
