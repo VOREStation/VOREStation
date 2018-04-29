@@ -102,7 +102,7 @@
 	if(!feral && (hungry || shock || jittery))
 
 		// If they're hungry, give nag messages (when not bellied)
-		if(H.nutrition >= 100 && prob(0.5) && !ismob(H.loc))
+		if(H.nutrition >= 100 && prob(0.5) && !isbelly(H.loc))
 			switch(H.nutrition)
 				if(150 to 200)
 					to_chat(H,"<span class='info'>You feel rather hungry. It might be a good idea to find some some food...</span>")
@@ -110,7 +110,7 @@
 					to_chat(H,"<span class='warning'>You feel like you're going to snap and give in to your hunger soon... It would be for the best to find some [pick("food","prey")] to eat...</span>")
 
 		// Going feral due to hunger
-		else if(H.nutrition < 100)
+		else if(H.nutrition < 100 && !isbelly(H.loc))
 			to_chat(H,"<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>")
 			log_and_message_admins("has gone feral due to hunger.", H)
 			feral = 5
@@ -190,8 +190,8 @@
 			//This is basically the 'lite' version of the below block.
 			var/list/nearby = H.living_mobs(world.view)
 
-			//Not in the dark.
-			if(!darkish)
+			//Not in the dark and out in the open.
+			if(!darkish && isturf(H.loc))
 
 				//Always handle feral if nobody's around and not in the dark.
 				if(!nearby.len)
@@ -204,8 +204,8 @@
 			//And bail
 			return
 
-		// In the darkness. No need for custom scene-protection checks as it's just an occational infomessage.
-		if(darkish)
+		// In the darkness or "hidden". No need for custom scene-protection checks as it's just an occational infomessage.
+		if(darkish || !isturf(H.loc))
 			// If hurt, tell 'em to heal up
 			if (shock)
 				to_chat(H,"<span class='info'>This place seems safe, secure, hidden, a place to lick your wounds and recover...</span>")

@@ -43,6 +43,7 @@
 				else
 					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
 					verbs |= /mob/living/carbon/human/proc/hatch
+					reviving = REVIVING_DONE
 
 		//Dead until nutrition injected.
 		else
@@ -60,11 +61,13 @@
 			if(stat != DEAD)
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
+				reviving = REVIVING_DONE
 
 			//Was alive, now dead
 			else if(hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
+				reviving = REVIVING_DONE
 
 			//Dead until nutrition injected.
 			else
@@ -96,6 +99,7 @@
 			//Check again for nutriment (necessary?)
 			if(hasnutriment())
 				chimera_hatch()
+				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
 				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
 				return
 
@@ -116,7 +120,7 @@
 
 	//Modify and record values (half nutrition and braindamage)
 	var/old_nutrition = nutrition * 0.5
-	var/braindamage = (brainloss * 0.5) + 10 //A little damage from the process.
+	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
 
 	//I did have special snowflake code, but this is easier.
 	revive()
