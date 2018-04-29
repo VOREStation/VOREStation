@@ -17,7 +17,7 @@
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!(locate(/obj/machinery/power/fusion_core/mapped) in world))
+	if(!(locate(/obj/machinery/power/fusion_core/mapped) in machines))
 		to_chat(usr, "This map is not appropriate for this verb.")
 		return
 
@@ -40,7 +40,7 @@
 		var/list/delayed_objects = list()
 
 		// SETUP PHASE
-		for(var/obj/effect/engine_setup/S in world)
+		for(var/obj/effect/engine_setup/S in machines)
 			var/result = S.activate(0)
 			switch(result)
 				if(SETUP_OK)

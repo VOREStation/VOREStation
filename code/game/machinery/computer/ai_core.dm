@@ -181,6 +181,8 @@
 				feedback_inc("cyborg_ais_created",1)
 				qdel(src)
 
+GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactivated)
+
 /obj/structure/AIcore/deactivated
 	name = "inactive AI"
 	icon = 'icons/mob/AI.dmi'
@@ -255,7 +257,7 @@
 	set category = "Admin"
 
 	var/list/cores = list()
-	for(var/obj/structure/AIcore/deactivated/D in world)
+	for(var/obj/structure/AIcore/deactivated/D in all_deactivated_AI_cores)
 		cores["[D] ([D.loc.loc])"] = D
 
 	var/id = input("Which core?", "Toggle AI Core Latejoin", null) as null|anything in cores

@@ -237,3 +237,22 @@
 #define USE_FAIL_INCAPACITATED 5
 #define USE_FAIL_NOT_IN_USER 6
 #define USE_FAIL_IS_SILICON 7
+
+
+// This creates a consistant definition for creating global lists, automatically inserting objects into it when they are created, and removing them when deleted.
+// It is very good for removing the 'in world' junk that exists in the codebase painlessly.
+// First argument is the list name/path desired, e.g. 'all_candles' would be 'var/list/all_candles = list()'.
+// Second argument is the path the list is expected to contain. Note that children will also get added to the global list.
+// If the GLOB system is ever ported, you can change this macro in one place and have less work to do than you otherwise would.
+#define GLOBAL_LIST_BOILERPLATE(LIST_NAME, PATH)\
+var/global/list/##LIST_NAME = list();\
+##PATH/initialize(mapload, ...)\
+	{\
+	##LIST_NAME += src;\
+	return ..();\
+	}\
+##PATH/Destroy(force, ...)\
+	{\
+	##LIST_NAME -= src;\
+	return ..();\
+	}\

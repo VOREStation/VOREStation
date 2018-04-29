@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(air)
 
 	current_cycle = 0
 	var/simulated_turf_count = 0
-	for(var/turf/simulated/S in world)
+	for(var/turf/simulated/S in turfs)
 		simulated_turf_count++
 		S.update_air_properties()
 		CHECK_TICK

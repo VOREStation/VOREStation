@@ -54,11 +54,7 @@
 		if(3) //Leaving the code in so someone can try and delag it, but this event can no longer occur randomly, per SoS's request. --NEO
 			command_alert("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert")
 			world << sound('sound/AI/spanomalies.ogg')
-			var/list/turfs = new
 			var/turf/picked
-			for(var/turf/simulated/floor/T in world)
-				if(T.z in station_levels)
-					turfs += T
 			for(var/turf/simulated/floor/T in turfs)
 				if(prob(20))
 					spawn(50+rand(0,3000))
@@ -140,7 +136,7 @@ var/hadevent    = 0
 /proc/high_radiation_event()
 
 /* // Haha, this is way too laggy. I'll keep the prison break though.
-	for(var/obj/machinery/light/L in world)
+	for(var/obj/machinery/light/L in machines)
 		if(isNotStationLevel(L.z)) continue
 		L.flicker(50)
 
@@ -173,7 +169,7 @@ var/hadevent    = 0
 
 
 	var/list/area/areas = list()
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		if(istype(A, /area/security/prison) || istype(A, /area/security/brig))
 			areas += A
 
@@ -366,21 +362,21 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 
 	spawn(0)
 		world << "Started processing APCs"
-		for (var/obj/machinery/power/apc/APC in world)
+		for (var/obj/machinery/power/apc/APC in machines)
 			if(APC.z in station_levels)
 				APC.ion_act()
 				apcnum++
 		world << "Finished processing APCs. Processed: [apcnum]"
 	spawn(0)
 		world << "Started processing SMES"
-		for (var/obj/machinery/power/smes/SMES in world)
+		for (var/obj/machinery/power/smes/SMES in machines)
 			if(SMES.z in station_levels)
 				SMES.ion_act()
 				smesnum++
 		world << "Finished processing SMES. Processed: [smesnum]"
 	spawn(0)
 		world << "Started processing AIRLOCKS"
-		for (var/obj/machinery/door/airlock/D in world)
+		for (var/obj/machinery/door/airlock/D in machines)
 			if(D.z in station_levels)
 				//if(length(D.req_access) > 0 && !(12 in D.req_access)) //not counting general access and maintenance airlocks
 				airlocknum++
@@ -389,7 +385,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 		world << "Finished processing AIRLOCKS. Processed: [airlocknum]"
 	spawn(0)
 		world << "Started processing FIREDOORS"
-		for (var/obj/machinery/door/firedoor/D in world)
+		for (var/obj/machinery/door/firedoor/D in machines)
 			if(D.z in station_levels)
 				firedoornum++;
 				spawn(0)
