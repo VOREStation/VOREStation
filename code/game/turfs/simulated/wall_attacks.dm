@@ -57,12 +57,19 @@
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
 /turf/simulated/wall/proc/fail_smash(var/mob/user)
-	to_chat(user, "<span class='danger'>You smash against the wall!</span>")
+	var/damage_lower = 25
+	var/damage_upper = 75
 	if(isanimal(user))
 		var/mob/living/simple_animal/S = user
 		playsound(src, S.attack_sound, 75, 1)
+		if(!(S.melee_damage_upper >= 10))
+			to_chat(user, "<span class='notice'>You bounce against the wall.</span>")
+			return FALSE
+		damage_lower = S.melee_damage_lower
+		damage_upper = S.melee_damage_upper
+	to_chat(user, "<span class='danger'>You smash against the wall!</span>")
 	user.do_attack_animation(src)
-	take_damage(rand(25,75))
+	take_damage(rand(damage_lower,damage_upper))
 
 /turf/simulated/wall/proc/success_smash(var/mob/user)
 	to_chat(user, "<span class='danger'>You smash through the wall!</span>")

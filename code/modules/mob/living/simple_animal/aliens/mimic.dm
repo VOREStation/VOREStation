@@ -48,6 +48,12 @@
 	..()
 	qdel(src)
 
+/mob/living/simple_animal/hostile/mimic/MouseEntered(location, control, params)
+	..()
+	closeToolTip(usr) 
+	// ideally, we'd remove the code in ..() that opens the tooltip, 
+	// but then we'd need to duplicate all the other code in ..()
+
 //
 // Crate Mimic
 //

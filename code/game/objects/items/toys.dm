@@ -768,7 +768,7 @@
 	name = "space carp plushie"
 	desc = "An adorable stuffed toy that resembles a space carp."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "plushie/carp"
+	icon_state = "basecarp"
 	attack_verb = list("bitten", "eaten", "fin slapped")
 	var/bitesound = 'sound/weapons/bite.ogg'
 
@@ -787,39 +787,49 @@
 	name = "Random Carp Plushie"
 	desc = "This is a random plushie"
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "plushie/carp"
+	icon_state = "basecarp"
 
 /obj/random/carp_plushie/item_to_spawn()
 	return pick(typesof(/obj/item/toy/plushie/carp)) //can pick any carp plushie, even the original.
 
 /obj/item/toy/plushie/carp/ice
+	name = "ice carp plushie"
 	icon_state = "icecarp"
 
 /obj/item/toy/plushie/carp/silent
+	name = "monochrome carp plushie"
 	icon_state = "silentcarp"
 
 /obj/item/toy/plushie/carp/electric
+	name = "electric carp plushie"
 	icon_state = "electriccarp"
 
 /obj/item/toy/plushie/carp/gold
+	name = "golden carp plushie"
 	icon_state = "goldcarp"
 
 /obj/item/toy/plushie/carp/toxin
+	name = "toxic carp plushie"
 	icon_state = "toxincarp"
 
 /obj/item/toy/plushie/carp/dragon
+	name = "dragon carp plushie"
 	icon_state = "dragoncarp"
 
 /obj/item/toy/plushie/carp/pink
+	name = "pink carp plushie"
 	icon_state = "pinkcarp"
 
 /obj/item/toy/plushie/carp/candy
+	name = "candy carp plushie"
 	icon_state = "candycarp"
 
 /obj/item/toy/plushie/carp/nebula
+	name = "nebula carp plushie"
 	icon_state = "nebulacarp"
 
 /obj/item/toy/plushie/carp/void
+	name = "void carp plushie"
 	icon_state = "voidcarp"
 
 //Large plushies.

@@ -497,7 +497,7 @@ area/space/atmosalert()
 
 //names are used
 /area/syndicate_station
-	name = "\improper Independant Station"
+	name = "\improper Independent Station"
 	icon_state = "yellow"
 	requires_power = 0
 	flags = RAD_SHIELDED

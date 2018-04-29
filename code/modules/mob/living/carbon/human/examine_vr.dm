@@ -35,6 +35,12 @@
 			t_he	= "it"
 			t_His 	= "Its"
 			t_his 	= "its"
+		if(HERM)
+			t_He 	= "Shi"
+			t_he	= "shi"
+			t_His 	= "Hir"
+			t_his 	= "hir"
+			t_heavy = "curvy"
 
 	switch(weight_examine)
 		if(0 to 74)
@@ -88,6 +94,10 @@
 			t_He 	= "It"
 			t_his 	= "its"
 			t_His	= "Its"
+		if(HERM)
+			t_He 	= "Shi"
+			t_his 	= "hir"
+			t_His 	= "Hir"
 	switch(nutrition_examine)
 		if(0 to 49)
 			message = "<span class='warning'>[t_He] [t_is] starving! You can hear [t_his] stomach snarling from across the room!</span>\n"

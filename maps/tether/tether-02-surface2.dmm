@@ -3078,7 +3078,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+
 	},
 /turf/simulated/open,
 /area/tether/surfacebase/north_staires_two)
@@ -3179,25 +3179,25 @@
 	dir = 1;
 	icon_state = "direction_med";
 	pixel_y = 8;
-	tag = "icon-direction_med (EAST)"
+
 	},
 /obj/structure/sign/directions/science{
 	dir = 1;
 	icon_state = "direction_sci";
 	pixel_y = 3;
-	tag = "icon-direction_sci (WEST)"
+
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
 	pixel_y = -4;
-	tag = "icon-direction_sec (WEST)"
+
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 4;
 	icon_state = "direction_eng";
 	pixel_y = -10;
-	tag = "icon-direction_eng (WEST)"
+
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_staires_two)
@@ -4396,7 +4396,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
@@ -4718,7 +4718,7 @@
 "kt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/industrial/danger{
-	tag = "icon-danger (WEST)";
+
 	icon_state = "danger";
 	dir = 8
 	},
@@ -5267,7 +5267,7 @@
 	dir = 4;
 	icon_state = "extinguisher_closed";
 	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
@@ -6577,13 +6577,13 @@
 "oe" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
-	tag = "icon-left";
+
 	name = "Janitorial Desk";
 	icon_state = "left";
 	dir = 2
 	},
 /obj/machinery/door/window/eastleft{
-	tag = "icon-left (NORTH)";
+
 	name = "Janitorial Desk";
 	icon_state = "left";
 	dir = 1
@@ -7581,7 +7581,7 @@
 	dir = 4;
 	icon_state = "extinguisher_closed";
 	pixel_x = -30;
-	tag = "icon-extinguisher_closed (EAST)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/lockers)
@@ -8690,7 +8690,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/lower/lobby)
@@ -9573,7 +9573,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -10205,7 +10205,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
@@ -10594,7 +10594,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact (NORTHEAST)"
+
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -10888,7 +10888,7 @@
 	dir = 1;
 	icon_state = "guest";
 	pixel_y = -28;
-	tag = "icon-guest (NORTH)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
@@ -11186,7 +11186,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -11237,7 +11237,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -12016,7 +12016,7 @@
 /area/engineering/atmos/hallway)
 "wQ" = (
 /obj/machinery/computer/atmos_alert{
-	tag = "icon-computer (NORTH)";
+
 	icon_state = "computer";
 	dir = 1
 	},
@@ -12039,7 +12039,7 @@
 /area/engineering/atmos/monitoring)
 "wT" = (
 /obj/machinery/computer/rcon{
-	tag = "icon-computer (NORTH)";
+
 	icon_state = "computer";
 	dir = 1
 	},
@@ -12053,7 +12053,7 @@
 /area/engineering/atmos/monitoring)
 "wV" = (
 /obj/machinery/computer/power_monitor{
-	tag = "icon-computer (NORTH)";
+
 	icon_state = "computer";
 	dir = 1
 	},
@@ -12234,7 +12234,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8;
 	icon_state = "map";
-	tag = "icon-manifold-f (WEST)"
+
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/server)
@@ -12242,7 +12242,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -12381,7 +12381,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/hallway)
@@ -13885,7 +13885,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/research_storage)
@@ -14130,7 +14130,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact (SOUTHEAST)"
+
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -14145,13 +14145,13 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
 	icon_state = "intact";
-	tag = "icon-intact (SOUTHEAST)"
+
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
@@ -14257,7 +14257,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
 	icon_state = "intact";
-	tag = "icon-intact (SOUTHEAST)"
+
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -14334,7 +14334,7 @@
 /area/engineering/atmos)
 "Bv" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-	tag = "icon-map_on (NORTH)";
+
 	icon_state = "map_on";
 	dir = 1
 	},
@@ -14392,7 +14392,7 @@
 /area/engineering/atmos)
 "BD" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-	tag = "icon-map_on (EAST)";
+
 	icon_state = "map_on";
 	dir = 4
 	},
@@ -14449,7 +14449,7 @@
 /obj/machinery/atmospherics/valve/digital/open{
 	dir = 4;
 	icon_state = "map_valve1";
-	tag = "icon-map_valve1 (WEST)"
+
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
@@ -14501,7 +14501,7 @@
 /area/engineering/atmos)
 "BU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
-	tag = "icon-intact (NORTHEAST)";
+
 	icon_state = "intact";
 	dir = 5
 	},
@@ -14609,7 +14609,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
 	icon_state = "intact";
-	tag = "icon-intact (SOUTHEAST)"
+
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -14899,7 +14899,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/cap/visible{
-	tag = "icon-cap (NORTH)";
+
 	icon_state = "cap";
 	dir = 1
 	},
@@ -15069,7 +15069,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-	tag = "icon-extinguisher_closed (WEST)"
+
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -15976,7 +15976,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -15999,7 +15999,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
 	icon_state = "intact";
-	tag = "icon-intact-f (SOUTHWEST)"
+
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -16673,7 +16673,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHEAST)"
+
 	},
 /obj/machinery/airlock_sensor/airlock_exterior{
 	frequency = 1381;
@@ -17676,7 +17676,7 @@
 	dir = 1;
 	icon_state = "borderfloor";
 	pixel_y = 0;
-	tag = "icon-borderfloor (NORTH)"
+
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
@@ -18033,7 +18033,7 @@
 	dir = 1;
 	icon_state = "borderfloor";
 	pixel_y = 0;
-	tag = "icon-borderfloor (NORTH)"
+
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1

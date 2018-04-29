@@ -756,6 +756,7 @@
 /mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
 	density = 0 //We don't block even if we did before
 	walk(src, 0) //We stop any background-processing walks
+	resting = 0 //We can rest in peace later.
 
 	if(faction_friends.len)
 		faction_friends -= src
