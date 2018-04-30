@@ -407,7 +407,7 @@ var/global/list/latejoin_tram   = list()
 	guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_animal/hostile/jelly = 3,
-		/mob/living/simple_animal/hostile/giant_spider/electric = 1,
+		/mob/living/simple_animal/hostile/giant_spider/hunter = 1,
 		/mob/living/simple_animal/hostile/giant_spider/phorogenic = 1,
 		/mob/living/simple_animal/hostile/giant_spider/lurker = 1,
 	)
