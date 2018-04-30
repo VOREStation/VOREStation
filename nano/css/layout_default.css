@@ -70,9 +70,9 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -240px 0 0 -240px; /* VOREStation Edit - Tether map is small */
-    width: 120px; /* VOREStation Edit - Tether map is small */
-    height: 120px; /* VOREStation Edit - Tether map is small */
+    margin: -280px 0 0 -280px; /* VOREStation Edit - Tether map is small */
+    width: 140px; /* VOREStation Edit - Tether map is small */
+    height: 140px; /* VOREStation Edit - Tether map is small */
     overflow: hidden;
     zoom: 4;
 }
@@ -81,16 +81,16 @@ body {
     position: absolute;
     bottom: 1px;
     left: 1px;
-    width: 120px; /* VOREStation Edit - Tether map is small */
-    height: 120px; /* VOREStation Edit - Tether map is small */
+    width: 140px; /* VOREStation Edit - Tether map is small */
+    height: 140px; /* VOREStation Edit - Tether map is small */
 }
 
 #uiMapContent {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    width: 120px; /* VOREStation Edit - Tether map is small */
-    height: 120px; /* VOREStation Edit - Tether map is small */
+    width: 140px; /* VOREStation Edit - Tether map is small */
+    height: 140px; /* VOREStation Edit - Tether map is small */
 }
 
 #uiMapFooter {
