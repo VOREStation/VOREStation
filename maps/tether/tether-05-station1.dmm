@@ -7378,7 +7378,7 @@
 "avf" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/airless,
-/area/engineering/engineering_airlock)
+/area/space)
 "avg" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -9442,9 +9442,8 @@
 	req_one_access = list(11,24)
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/machinery/light/small,
 /turf/simulated/floor/airless,
-/area/engineering/engineering_airlock)
+/area/space)
 "aAR" = (
 /obj/structure/window/reinforced{
 	dir = 8;
