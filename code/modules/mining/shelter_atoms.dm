@@ -118,6 +118,7 @@
 
 //Sleeper
 /obj/machinery/sleeper/survival_pod
+	desc = "A limited functionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting
