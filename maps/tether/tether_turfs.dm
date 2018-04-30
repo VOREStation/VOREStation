@@ -4,22 +4,21 @@ VIRGO3B_TURF_CREATE(/turf/simulated/open)
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
 /turf/simulated/open/virgo3b/New()
 	..()
-	outdoor_turfs.Add(src)
+	if(outdoors)
+		outdoor_turfs.Add(src)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
-/turf/simulated/floor/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
 
 /turf/simulated/floor/virgo3b_indoors
 	VIRGO3B_SET_ATMOS
 /turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	return 0
 
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
-
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
-
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 /turf/simulated/floor/outdoors/grass/sif
 	turf_layers = list(
@@ -28,15 +27,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 		)
 
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
-/turf/simulated/floor/reinforced/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
-/turf/simulated/floor/tiled/steel_dirty/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
 
 // Overriding these for the sake of submaps that use them on other planets.
 // This means that mining on tether base and space is oxygen-generating, but solars and mining should use the virgo3b subtype
@@ -119,16 +109,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 		mineral = ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
-
-VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/wall/dark/hard_corner)
-/turf/simulated/shuttle/wall/dark/hard_corner/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
-/turf/simulated/shuttle/floor/black/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
 
 //Unsimulated
 /turf/unsimulated/wall/planetary/virgo3b
