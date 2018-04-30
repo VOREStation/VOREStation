@@ -7,7 +7,8 @@
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
-	pixel_y = 24
+	pixel_y = 24;
+	alarms_hidden = TRUE
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
@@ -18,6 +19,12 @@
 /turf/simulated/mineral/floor/virgo3b,
 /area/mine/explored/underdark)
 "c" = (
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
+"d" = (
+/obj/effect/decal/remains/deer,
 /turf/simulated/mineral/floor/virgo3b{
 	ignore_mapgen = 1
 	},
@@ -183,6 +190,47 @@
 "J" = (
 /turf/simulated/mineral/floor/virgo3b,
 /area/mine/unexplored/underdark)
+"K" = (
+/obj/structure/sign/graffiti/pisoff{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/wall/r_wall,
+/area/mine/explored/underdark)
+"L" = (
+/obj/structure/sign/hostilefauna,
+/turf/simulated/wall/r_wall,
+/area/mine/explored/underdark)
+"N" = (
+/obj/effect/decal/remains/posi,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"R" = (
+/obj/item/weapon/bone,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"S" = (
+/obj/item/weapon/bone,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
+"T" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"W" = (
+/obj/item/weapon/bone/skull,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
+"Z" = (
+/obj/effect/decal/remains/ribcage,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
+/area/mine/explored/underdark)
 
 (1,1,1) = {"
 e
@@ -16114,7 +16162,7 @@ g
 c
 c
 h
-c
+W
 f
 f
 f
@@ -16534,7 +16582,7 @@ g
 g
 g
 c
-c
+S
 c
 c
 c
@@ -16676,7 +16724,7 @@ g
 c
 c
 c
-h
+K
 c
 c
 c
@@ -16955,7 +17003,7 @@ g
 g
 g
 g
-c
+Z
 c
 c
 c
@@ -17384,7 +17432,7 @@ c
 s
 s
 H
-c
+d
 g
 g
 g
@@ -17525,7 +17573,7 @@ h
 h
 s
 G
-h
+L
 h
 g
 g
@@ -17662,7 +17710,7 @@ g
 g
 g
 g
-o
+T
 o
 B
 o
@@ -17804,7 +17852,7 @@ g
 g
 g
 o
-o
+R
 o
 o
 o
@@ -17943,7 +17991,7 @@ g
 g
 h
 g
-o
+N
 o
 o
 o
@@ -19087,7 +19135,7 @@ o
 o
 o
 o
-o
+R
 h
 g
 g

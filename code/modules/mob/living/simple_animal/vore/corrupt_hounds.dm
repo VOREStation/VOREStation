@@ -47,7 +47,9 @@
 	max_n2 = 0
 	minbodytemp = 150
 	maxbodytemp = 900
+
 	var/image/eye_layer = null
+
 
 	vore_active = TRUE
 	vore_capacity = 1

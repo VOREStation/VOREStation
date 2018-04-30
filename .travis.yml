@@ -34,6 +34,7 @@ install:
 script:
   - shopt -s globstar
   - (! grep 'step_[xy]' maps/**/*.dmm)
+  - (! grep -Pn '( |\t|;|{)tag( ?)=' maps/**/*.dmm)
   - (! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
   - (! grep -En "<\s*span\s+class\s*=\s*('[^'>]+|[^'>]+')\s*>" **/*.dm)
   - (! grep 'maps\\.*test.*' *.dme)

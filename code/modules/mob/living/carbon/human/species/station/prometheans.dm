@@ -35,11 +35,14 @@ var/datum/species/shapeshifter/promethean/prometheans
 	male_cough_sounds = list('sound/effects/slime_squish.ogg')
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
+	min_age =		1
+	max_age =		10
+
+	economic_modifier = 3
+
 	//gluttonous =	1 // VOREStation Edit. Redundant feature.
 	virus_immune =	1
 	blood_volume =	560
-	min_age =		1
-	max_age =		10
 	brute_mod =		0.75
 	burn_mod =		2
 	oxy_mod =		0
@@ -181,6 +184,8 @@ VOREStation Removal End */
 		t_she = "They are"
 	else if(H.identifying_gender == NEUTER)
 		t_she = "It is"
+	else if(H.identifying_gender == HERM) //VOREStation Edit
+		t_she = "Shi is"
 
 	switch(stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)

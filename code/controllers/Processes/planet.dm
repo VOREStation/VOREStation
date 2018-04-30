@@ -61,14 +61,40 @@ var/datum/controller/process/planet/planet_controller = null
 		//Sun light needs changing
 		if(P.needs_work & PLANET_PROCESS_SUN)
 			P.needs_work &= ~PLANET_PROCESS_SUN
-			//Redraw sun overlay
-			var/new_range = P.sun["range"]
+			// Remove old value from corners
+			var/list/sunlit_corners = P.sunlit_corners
+			var/old_lum_r = -P.sun["lum_r"]
+			var/old_lum_g = -P.sun["lum_g"]
+			var/old_lum_b = -P.sun["lum_b"]
+			if(old_lum_r || old_lum_g || old_lum_b)
+				for(var/C in P.sunlit_corners)
+					var/datum/lighting_corner/LC = C
+					LC.update_lumcount(old_lum_r, old_lum_g, old_lum_b)
+					SCHECK
+			sunlit_corners.Cut()
+
+			// Calculate new values to apply
 			var/new_brightness = P.sun["brightness"]
 			var/new_color = P.sun["color"]
-			for(var/T in P.planet_floors)
-				var/turf/simulated/turf = T
-				turf.set_light(new_range, new_brightness, new_color)
+			var/lum_r = new_brightness * GetRedPart  (new_color) / 255
+			var/lum_g = new_brightness * GetGreenPart(new_color) / 255
+			var/lum_b = new_brightness * GetBluePart (new_color) / 255
+			var/static/update_gen = -1 // Used to prevent double-processing corners. Otherwise would happen when looping over adjacent turfs.
+			for(var/I in P.planet_floors)
+				var/turf/simulated/T = I
+				if(!T.lighting_corners_initialised)
+					T.generate_missing_corners()
+				for(var/C in T.get_corners())
+					var/datum/lighting_corner/LC = C
+					if(LC.update_gen != update_gen && LC.active)
+						sunlit_corners += LC
+						LC.update_gen = update_gen
+						LC.update_lumcount(lum_r, lum_g, lum_b)
 				SCHECK
+			update_gen--
+			P.sun["lum_r"] = lum_r
+			P.sun["lum_g"] = lum_g
+			P.sun["lum_b"] = lum_b
 
 		//Temperature needs updating
 		if(P.needs_work & PLANET_PROCESS_TEMP)

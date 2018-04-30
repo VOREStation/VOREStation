@@ -420,8 +420,8 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/badboi = 1,
-		/mob/living/simple_animal/hostile/rous = 1,
+		/mob/living/simple_animal/hostile/corrupthound = 1,
+		/mob/living/simple_animal/hostile/rat = 1,
 		/mob/living/simple_animal/hostile/mimic = 1
 	)
 
