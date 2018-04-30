@@ -67,7 +67,7 @@
 		/mob/living/simple_animal/hostile/hivebot/range = 3,
 		/mob/living/simple_animal/hostile/hivebot/range/ion = 3,
 		/mob/living/simple_animal/hostile/hivebot/range/laser = 3,
-		/mob/living/simple_animal/hostile/badboi = 1
+		/mob/living/simple_animal/hostile/corrupthound = 1
 	)
 
 /obj/tether_away_spawner/aerostat_surface
@@ -80,7 +80,7 @@
 	mobs_to_pick_from = list(
 		/mob/living/simple_animal/hostile/jelly = 3,
 		/mob/living/simple_animal/hostile/viscerator = 2,
-		/mob/living/simple_animal/hostile/badboi = 1
+		/mob/living/simple_animal/hostile/corrupthound = 1
 	)
 
 /obj/structure/old_roboprinter

@@ -14424,7 +14424,7 @@
 /area/bridge/meeting_room)
 "ys" = (
 /obj/machinery/camera/network/command{
-	c_tag = "Head of Personnel Office";
+	c_tag = "Command Meeting Room East";
 	dir = 9
 	},
 /turf/simulated/floor/wood,

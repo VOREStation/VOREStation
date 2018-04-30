@@ -387,6 +387,18 @@
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "doorwreath"
 
+/obj/structure/sign/hostilefauna
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "\improper Caution: Hostile fauna"
+	desc = "This sign warns of hostile life forms in the area."
+	icon_state = "h_fauna"
+
+/obj/structure/sign/graffiti/pisoff
+	icon = 'icons/obj/decals_vr.dmi'
+	name = "\improper PIS OFF"
+	desc = "This sign bears some rather rude looking graffiti instructing you to PIS OFF."
+	icon_state = "pisoff"
+
 //Eris signs
 
 /obj/structure/sign/ironhammer

@@ -177,7 +177,10 @@
 	dir = 8
 	},
 /obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "aK" = (
 /obj/structure/cable/green{
@@ -185,7 +188,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "aM" = (
 /obj/machinery/power/apc{
@@ -198,7 +204,10 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "aW" = (
 /obj/machinery/power/smes/buildable{
@@ -206,7 +215,10 @@
 	RCon_tag = "Mining Station"
 	},
 /obj/structure/cable/green,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "aX" = (
 /obj/structure/cable/yellow{
@@ -214,7 +226,10 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "aY" = (
 /obj/structure/cable/green{
@@ -228,11 +243,17 @@
 	name = "Powernet Sensor - Mining Station";
 	name_tag = "Mining Station"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "aZ" = (
 /obj/machinery/mech_recharger,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "bg" = (
 /obj/structure/cable/green{
@@ -245,19 +266,37 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "bh" = (
-/obj/machinery/telecomms/relay/preset/mining,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/obj/structure/table/steel,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "bi" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/yellow,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "bv" = (
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "bE" = (
 /obj/effect/floor_decal/rust/steel_decals_rusted2,
@@ -323,7 +362,10 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
 /area/outpost/engineering/atmospherics)
 "Nh" = (
 /obj/structure/railing{
@@ -340,6 +382,13 @@
 /obj/structure/railing,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
+"Uk" = (
+/obj/machinery/telecomms/relay/preset/underdark,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
+/area/outpost/engineering/atmospherics)
 "Wy" = (
 /obj/structure/railing{
 	icon_state = "railing0";
@@ -347,6 +396,13 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
+"ZV" = (
+/obj/machinery/telecomms/relay/preset/mining,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b{
+	name = "shed floor";
+	outdoors = 0
+	},
+/area/outpost/engineering/atmospherics)
 
 (1,1,1) = {"
 aa
@@ -3879,7 +3935,7 @@ aC
 aE
 bg
 bv
-bv
+ZV
 ay
 ab
 ab
@@ -4021,7 +4077,7 @@ ao
 ay
 aM
 aZ
-bv
+Uk
 ay
 al
 ab

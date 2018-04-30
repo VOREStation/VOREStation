@@ -623,7 +623,7 @@
 	},
 /area/space)
 "bW" = (
-/mob/living/simple_animal/wah,
+/mob/living/simple_animal/redpanda,
 /turf/simulated/floor/grass,
 /area/submap/spa)
 "bX" = (
