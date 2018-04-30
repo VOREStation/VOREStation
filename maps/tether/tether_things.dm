@@ -436,6 +436,10 @@ var/global/list/latejoin_tram   = list()
 		/mob/living/simple_animal/hostile/dragon = 1
 	)
 
+// Used at centcomm for the elevator
+/obj/machinery/cryopod/robot/door/dorms
+	spawnpoint_type = /datum/spawnpoint/tram
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
