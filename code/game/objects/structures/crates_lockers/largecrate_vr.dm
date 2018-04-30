@@ -54,8 +54,8 @@
 						/mob/living/simple_animal/hostile/bear/brown;0.5,
 						/mob/living/simple_animal/hostile/carp,
 						/mob/living/simple_animal/hostile/mimic,
-						/mob/living/simple_animal/hostile/bigrat,
-						/mob/living/simple_animal/hostile/bigrat/passive,
+						/mob/living/simple_animal/hostile/rat,
+						/mob/living/simple_animal/hostile/rat/passive,
 						/mob/living/simple_animal/otie;0.5)
 	..()
 
@@ -74,7 +74,7 @@
 						/mob/living/simple_animal/hostile/alien/sentinel,
 						/mob/living/simple_animal/hostile/alien/queen,
 						/mob/living/simple_animal/otie/feral,
-						/mob/living/simple_animal/hostile/badboi)
+						/mob/living/simple_animal/hostile/corrupthound)
 	..()
 
 /obj/structure/largecrate/animal/guardbeast
