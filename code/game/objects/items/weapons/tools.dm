@@ -172,7 +172,7 @@
 	item_state = "drill"
 	matter = list(DEFAULT_WALL_MATERIAL = 150, MAT_SILVER = 50)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-
+	slot_flags = SLOT_BELT
 	force = 8
 	w_class = ITEMSIZE_SMALL
 	throwforce = 8
