@@ -48,6 +48,9 @@
 	minbodytemp = 150
 	maxbodytemp = 900
 
+	var/image/eye_layer = null
+
+
 	vore_active = TRUE
 	vore_capacity = 1
 	vore_pounce_chance = 15
@@ -87,7 +90,26 @@
 		return EatTarget()
 	else ..()
 
+/mob/living/simple_animal/hostile/corrupthound/proc/add_eyes()
+	if(!eye_layer)
+		eye_layer = image(icon, "badboi-eyes")
+		eye_layer.plane = PLANE_LIGHTING_ABOVE
+	add_overlay(eye_layer)
+
+/mob/living/simple_animal/hostile/corrupthound/proc/remove_eyes()
+	cut_overlay(eye_layer)
+
+/mob/living/simple_animal/hostile/corrupthound/New()
+	add_eyes()
+	..()
+
 /mob/living/simple_animal/hostile/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
+
+/mob/living/simple_animal/hostile/corrupthound/update_icon()
+	. = ..()
+	remove_eyes()
+	if(stat == CONSCIOUS && !resting)
+		add_eyes()
