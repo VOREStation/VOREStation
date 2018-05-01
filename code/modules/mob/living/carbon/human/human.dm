@@ -661,12 +661,13 @@
 		I = internal_organs_by_name[O_EYES]
 		if(I.is_broken())
 			return FLASH_PROTECTION_MAJOR
-	else // They can't be flashed if they don't have eyes.
+	else if(!species.dispersed_eyes) // They can't be flashed if they don't have eyes, or widespread sensing surfaces.
 		return FLASH_PROTECTION_MAJOR
 
 	var/number = get_equipment_flash_protection()
-	number = I.get_total_protection(number)
-	I.additional_flash_effects(number)
+	if(I)
+		number = I.get_total_protection(number)
+		I.additional_flash_effects(number)
 	return number
 
 #define add_clothing_protection(A)	\

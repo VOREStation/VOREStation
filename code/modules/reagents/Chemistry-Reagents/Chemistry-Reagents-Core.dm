@@ -172,6 +172,11 @@
 	else
 		..()
 
+/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.visible_message("<span class='warning'>[M]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
+	..()
+
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"

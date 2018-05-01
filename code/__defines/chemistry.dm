@@ -33,6 +33,7 @@
 #define CE_ALCOHOL "alcohol" // Liver filtering
 #define CE_ALCOHOL_TOXIC "alcotoxic" // Liver damage
 #define CE_SPEEDBOOST "gofast" // Hyperzine
+#define CE_SLOWDOWN "goslow" // Slowdown
 
 #define REAGENTS_PER_SHEET 20
 

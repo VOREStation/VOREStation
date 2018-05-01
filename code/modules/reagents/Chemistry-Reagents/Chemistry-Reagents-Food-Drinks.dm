@@ -34,7 +34,7 @@
 				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!injectable)
+	if(!injectable && alien != IS_SLIME)
 		M.adjustToxLoss(0.1 * removed)
 		return
 	affect_ingest(M, alien, removed)
@@ -94,7 +94,7 @@
 	nutriment_factor = 10
 	color = "#FFFF00"
 
-/datum/reagent/honey/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nutriment/honey/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
 	var/effective_dose = dose
@@ -255,6 +255,16 @@
 	overdose = REAGENTS_OVERDOSE
 	ingest_met = REM
 
+/datum/reagent/sodiumchloride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		M.adjustFireLoss(removed)
+
+/datum/reagent/sodiumchloride/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	var/pass_mod = rand(3,5)
+	var/passthrough = (removed - (removed/pass_mod)) //Some may be nullified during consumption, between one third and one fifth.
+	affect_blood(M, alien, passthrough)
+
 /datum/reagent/blackpepper
 	name = "Black Pepper"
 	id = "blackpepper"
@@ -354,6 +364,15 @@
 /datum/reagent/condensedcapsaicin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	var/eyes_covered = 0
 	var/mouth_covered = 0
+
+	var/head_covered = 0
+	var/arms_covered = 0 //These are used for the effects on slime-based species.
+	var/legs_covered = 0
+	var/hands_covered = 0
+	var/feet_covered = 0
+	var/chest_covered = 0
+	var/groin_covered = 0
+
 	var/obj/item/safe_thing = null
 
 	var/effective_strength = 5
@@ -384,27 +403,78 @@
 				eyes_covered = 1
 				if(!safe_thing)
 					safe_thing = H.glasses
+		if(alien == IS_SLIME)
+			for(var/obj/item/clothing/C in H.worn_clothing)
+				if(C.body_parts_covered & HEAD)
+					head_covered = 1
+				if(C.body_parts_covered & UPPER_TORSO)
+					chest_covered = 1
+				if(C.body_parts_covered & LOWER_TORSO)
+					groin_covered = 1
+				if(C.body_parts_covered & LEGS)
+					legs_covered = 1
+				if(C.body_parts_covered & ARMS)
+					arms_covered = 1
+				if(C.body_parts_covered & HANDS)
+					hands_covered = 1
+				if(C.body_parts_covered & FEET)
+					feet_covered = 1
+				if(head_covered && chest_covered && groin_covered && legs_covered && arms_covered && hands_covered && feet_covered)
+					break
 	if(eyes_covered && mouth_covered)
-		M << "<span class='warning'>Your [safe_thing] protects you from the pepperspray!</span>"
-		return
+		to_chat(M, "<span class='warning'>Your [safe_thing] protects you from the pepperspray!</span>")
+		if(alien != IS_SLIME)
+			return
 	else if(eyes_covered)
-		M << "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>"
+		to_chat(M, "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>")
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 3)
 		M.Blind(effective_strength)
 		M.Stun(5)
 		M.Weaken(5)
-		return
-	else if (mouth_covered) // Mouth cover is better than eye cover
-		M << "<span class='warning'>Your [safe_thing] protects your face from the pepperspray!</span>"
+		if(alien != IS_SLIME)
+			return
+	else if(mouth_covered) // Mouth cover is better than eye cover
+		to_chat(M, "<span class='warning'>Your [safe_thing] protects your face from the pepperspray!</span>")
 		M.eye_blurry = max(M.eye_blurry, effective_strength)
-		return
-	else // Oh dear :D
-		M << "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>"
+		if(alien != IS_SLIME)
+			return
+	else// Oh dear :D
+		to_chat(M, "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>")
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 5)
 		M.Blind(effective_strength * 2)
 		M.Stun(5)
 		M.Weaken(5)
-		return
+		if(alien != IS_SLIME)
+			return
+	if(alien == IS_SLIME)
+		if(!head_covered)
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your head burns!</span>")
+			M.apply_effect(5 * effective_strength, AGONY, 0)
+		if(!chest_covered)
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your chest burns!</span>")
+			M.apply_effect(5 * effective_strength, AGONY, 0)
+		if(!groin_covered && prob(75))
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your groin burns!</span>")
+			M.apply_effect(3 * effective_strength, AGONY, 0)
+		if(!arms_covered && prob(45))
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your arms burns!</span>")
+			M.apply_effect(3 * effective_strength, AGONY, 0)
+		if(!legs_covered && prob(45))
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your legs burns!</span>")
+			M.apply_effect(3 * effective_strength, AGONY, 0)
+		if(!hands_covered && prob(20))
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your hands burns!</span>")
+			M.apply_effect(effective_strength / 2, AGONY, 0)
+		if(!feet_covered && prob(20))
+			if(prob(33))
+				to_chat(M, "<span class='warning'>The exposed flesh on your feet burns!</span>")
+			M.apply_effect(effective_strength / 2, AGONY, 0)
 
 /datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -437,7 +507,10 @@
 	var/adj_temp = 0
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though
+	var/strength_mod = 1
+	if(alien == IS_SLIME)
+		strength_mod = 3
+	M.adjustToxLoss(removed * strength_mod) // Probably not a good idea; not very deadly though
 	return
 
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -449,6 +522,8 @@
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(removed * 2)
 
 /datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Add special interactions here in the future if desired.
 	..()
@@ -489,7 +564,7 @@
 	..()
 	M.reagents.add_reagent("imidazoline", removed * 0.2)
 
-/datum/reagent/drink/juice/
+/datum/reagent/drink/juice
 	name = "Grape Juice"
 	id = "grapejuice"
 	description = "It's grrrrrape!"
@@ -499,7 +574,7 @@
 	glass_name = "grape juice"
 	glass_desc = "It's grrrrrape!"
 
-/datum/reagent/juice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/juice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
 	var/effective_dose = dose/2
@@ -729,6 +804,24 @@
 	cup_name = "cup of iced tea"
 	cup_desc = "No relation to a certain rap artist/ actor."
 
+/datum/reagent/drink/tea/icetea/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(M.bodytemperature > T0C)
+			M.bodytemperature -= 0.5
+		if(M.bodytemperature < T0C)
+			M.bodytemperature += 0.5
+		M.adjustToxLoss(5 * removed)
+
+/datum/reagent/drink/tea/icetea/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(M.bodytemperature > T0C)
+			M.bodytemperature -= 0.5
+		if(M.bodytemperature < T0C)
+			M.bodytemperature += 0.5
+		M.adjustToxLoss(5 * removed)
+
 /datum/reagent/drink/tea/minttea
 	name = "Mint Tea"
 	id = "minttea"
@@ -825,7 +918,7 @@
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 
-/datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_TAJARA)
 		M.adjustToxLoss(2 * removed)
@@ -850,6 +943,24 @@
 	glass_name = "iced coffee"
 	glass_desc = "A drink to perk you up and refresh you!"
 	glass_special = list(DRINK_ICE)
+
+/datum/reagent/drink/coffee/icecoffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(M.bodytemperature > T0C)
+			M.bodytemperature -= 0.5
+		if(M.bodytemperature < T0C)
+			M.bodytemperature += 0.5
+		M.adjustToxLoss(5 * removed)
+
+/datum/reagent/drink/coffee/icecoffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(M.bodytemperature > T0C)
+			M.bodytemperature -= 0.5
+		if(M.bodytemperature < T0C)
+			M.bodytemperature += 0.5
+		M.adjustToxLoss(5 * removed)
 
 /datum/reagent/drink/coffee/soy_latte
 	name = "Soy Latte"
@@ -1047,13 +1158,13 @@
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
-	
+
 
 	glass_name = "Coffee Milkshake"
 	glass_desc = "An energizing coffee milkshake, perfect for hot days at work.."
 
 /datum/reagent/drink/milkshake/coffeeshake/overdose(var/mob/living/carbon/M, var/alien)
-	M.make_jittery(5) 
+	M.make_jittery(5)
 
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
@@ -1308,6 +1419,24 @@
 	glass_name = "ice"
 	glass_desc = "Generally, you're supposed to put something else in there too..."
 	glass_icon = DRINK_ICON_NOISY
+
+/datum/reagent/drink/ice/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(M.bodytemperature > T0C)
+			M.bodytemperature -= rand(1,3)
+		if(M.bodytemperature < T0C)
+			M.bodytemperature += rand(1,3)
+		M.adjustToxLoss(5 * removed)
+
+/datum/reagent/drink/ice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(M.bodytemperature > T0C)
+			M.bodytemperature -= rand(1,3)
+		if(M.bodytemperature < T0C)
+			M.bodytemperature += rand(1,3)
+		M.adjustToxLoss(5 * removed)
 
 /datum/reagent/drink/nothing
 	name = "Nothing"

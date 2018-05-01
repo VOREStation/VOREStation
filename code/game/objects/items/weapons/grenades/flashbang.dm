@@ -3,19 +3,20 @@
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
+	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 
 /obj/item/weapon/grenade/flashbang/prime()
 	..()
-	for(var/obj/structure/closet/L in hear(7, get_turf(src)))
+	for(var/obj/structure/closet/L in hear(max_range, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
 				bang(get_turf(src), M)
 
-	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
+	for(var/mob/living/carbon/M in hear(max_range, get_turf(src)))
 		bang(get_turf(src), M)
 
-	for(var/obj/structure/blob/B in hear(8,get_turf(src)))       		//Blob damage here
+	for(var/obj/structure/blob/B in hear(max_range - 2,get_turf(src)))       		//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
 		if(B.overmind)
 			damage *= B.overmind.blob_type.burn_multiplier
@@ -39,13 +40,19 @@
 		ear_safety = M.get_ear_protection()
 
 	//Flashing everyone
-	if(eye_safety < 1)
+	var/mob/living/carbon/human/H = M
+	var/flash_effectiveness = 1
+	var/bang_effectiveness = 1
+	if(ishuman(M))
+		flash_effectiveness = H.species.flash_mod
+		bang_effectiveness = H.species.sound_mod
+	if(eye_safety < 1 && get_dist(M, T) <= round(max_range * 0.7 * flash_effectiveness))
 		M.flash_eyes()
-		M.Confuse(2)
-		M.Weaken(5)
+		M.Confuse(2 * flash_effectiveness)
+		M.Weaken(5 * flash_effectiveness)
 
 	//Now applying sound
-	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+	if((get_dist(M, T) <= round(max_range * 0.3 * bang_effectiveness) || src.loc == M.loc || src.loc == M))
 		if(ear_safety > 0)
 			M.Confuse(2)
 			M.Weaken(1)
@@ -58,20 +65,19 @@
 				M.ear_damage += rand(0, 5)
 				M.ear_deaf = max(M.ear_deaf,15)
 
-	else if(get_dist(M, T) <= 5)
+	else if(get_dist(M, T) <= round(max_range * 0.5 * bang_effectiveness))
 		if(!ear_safety)
 			M.Confuse(8)
 			M.ear_damage += rand(0, 3)
 			M.ear_deaf = max(M.ear_deaf,10)
 
-	else if(!ear_safety)
+	else if(!ear_safety && get_dist(M, T) <= (max_range * 0.7 * bang_effectiveness))
 		M.Confuse(4)
 		M.ear_damage += rand(0, 1)
 		M.ear_deaf = max(M.ear_deaf,5)
 
 	//This really should be in mob not every check
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if (E && E.damage >= E.min_bruised_damage)
 			M << "<span class='danger'>Your eyes start to burn badly!</span>"

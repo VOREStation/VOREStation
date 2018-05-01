@@ -1319,7 +1319,6 @@
 #include "code\modules\client\preference_setup\global\01_ui.dm"
 #include "code\modules\client\preference_setup\global\02_settings.dm"
 #include "code\modules\client\preference_setup\global\03_pai.dm"
-#include "code\modules\client\preference_setup\global\04_ooc.dm"
 #include "code\modules\client\preference_setup\global\setting_datums.dm"
 #include "code\modules\client\preference_setup\loadout\gear_tweaks.dm"
 #include "code\modules\client\preference_setup\loadout\loadout.dm"
