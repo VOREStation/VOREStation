@@ -22941,7 +22941,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 9;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+	
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/station/ai)
@@ -23098,7 +23098,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+	
 	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
@@ -23112,7 +23112,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+	
 	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
@@ -23121,7 +23121,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-	tag = "icon-intact-f (NORTHWEST)"
+	
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/station/ai)
