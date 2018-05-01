@@ -1,8 +1,7 @@
 /proc/count_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in world)
-		if(D.key && D.client)
-			drones++
+	for(var/mob/living/silicon/robot/drone/D in player_list)
+		drones++
 	return drones
 
 /obj/machinery/drone_fabricator
@@ -135,7 +134,7 @@
 		return
 
 	var/list/all_fabricators = list()
-	for(var/obj/machinery/drone_fabricator/DF in world)
+	for(var/obj/machinery/drone_fabricator/DF in machines)
 		if(DF.stat & NOPOWER || !DF.produce_drones)
 			continue
 		if(DF.drone_progress >= 100)

@@ -95,7 +95,7 @@
 	var/list/L = list()
 	var/list/areaindex = list()
 
-	for(var/obj/item/device/radio/beacon/R in world)
+	for(var/obj/item/device/radio/beacon/R in all_beacons)
 		var/turf/T = get_turf(R)
 		if(!T)
 			continue
@@ -108,7 +108,7 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for (var/obj/item/weapon/implant/tracking/I in world)
+	for (var/obj/item/weapon/implant/tracking/I in all_tracking_implants)
 		if(!I.implanted || !ismob(I.loc))
 			continue
 		else

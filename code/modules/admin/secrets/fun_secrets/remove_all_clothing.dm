@@ -6,5 +6,5 @@
 	if(!.)
 		return
 
-	for(var/obj/item/clothing/O in world)
+	for(var/obj/item/clothing/O in all_clothing)
 		qdel(O)

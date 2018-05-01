@@ -41,7 +41,7 @@
 
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
 
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		if((A.z in zs_to_test) && !(A.type in exempt_areas))
 			area_test_count++
 			var/area_good = 1
@@ -114,6 +114,8 @@
 	var/active_edges = air_master.active_edges.len
 
 	if(active_edges)
+		for(var/line in air_master.startup_active_edge_log) // Report where the edges are.
+			log_unit_test(line)
 		fail("Maps contained [active_edges] active edges at round-start.")
 	else
 		pass("No active edges.")

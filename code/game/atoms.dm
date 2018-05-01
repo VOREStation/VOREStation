@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_atoms, /atom) // Use with care, its likely barely better than using world.
+
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2

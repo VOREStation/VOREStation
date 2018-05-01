@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(xenoarch)
 	. = ..()
 
 /datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
-	for(var/turf/simulated/mineral/M in world)
+	for(var/turf/simulated/mineral/M in turfs)
 		if(!M.density)
 			continue
 
