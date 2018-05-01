@@ -5,20 +5,33 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	var/cleanname
 	var/cleandesc
 
-/obj/item/proc/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/proc/gurgle_contaminate(var/atom/movable/item_storage = null, var/cont_flavor = "All")
 	if(!can_gurgle())
 		return FALSE
 
 	if(!gurgled)
 		gurgled = TRUE
 		overlays += gurgled_overlay
-		var/gurgleflavor = pick("soggy","soaked","dirty","nasty","slimy","drenched","sloppy","grimy","sludgy","stinky","mucky","stained","soiled","filthy","saucy","foul","icky","tarnished","unsanitary","messy","begrimed","cruddy","funky","disgusting","repulsive","noxious","gruesome","gross","putrid","yucky","tainted","putrescent","unsavory","smelly","smutty","acrid","pungent","unclean","contaminated","gunky","gooey","sticky","drippy","oozing","sloshed","digested","sopping","damp","gloppy","begraggled","churned")
+		switch(cont_flavor)
+			if("All")
+				cont_flavor = cont_flavors_all
+			if("Acrid")
+				cont_flavor = cont_flavors_acrid
+			if("Dirty")
+				cont_flavor = cont_flavors_dirty
+			if("Musky")
+				cont_flavor = cont_flavors_musky
+			if("Smelly")
+				cont_flavor = cont_flavors_smelly
+			if("Wet")
+				cont_flavor = cont_flavors_wet
+		var/gurgleflavor = pick(cont_flavor)
 		cleanname = src.name
 		cleandesc = src.desc
 		name = "[gurgleflavor] [cleanname]"
 		desc = "[cleandesc] It seems to be covered in ominously foul residue and needs a wash."
 		for(var/obj/item/O in contents)
-			O.gurgle_contaminate(item_storage)
+			O.gurgle_contaminate(item_storage, cont_flavor)
 		return TRUE
 
 /obj/item/proc/can_gurgle()
