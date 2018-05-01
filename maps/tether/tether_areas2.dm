@@ -424,6 +424,9 @@
 	name = "\improper Micro Maintenance"
 /area/maintenance/station/virology
 	name = "\improper Virology Maintenance"
+/area/maintenance/station/ai
+	name = "\improper AI Maintenance"
+	sound_env = SEWER_PIPE
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
