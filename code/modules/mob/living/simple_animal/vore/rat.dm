@@ -41,14 +41,6 @@
 	vore_pounce_chance = 45
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/hostile/bigrat/death()
-	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
-	if(resting)
-		resting = 0
-		icon_state = icon_dead
-		update_icon()
-	..()
-
 /mob/living/simple_animal/hostile/rat/passive
 	name = "curious giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
@@ -156,7 +148,7 @@
 			T = F
 			break
 	return T
-=======
+
 /mob/living/simple_animal/hostile/rat/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
