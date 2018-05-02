@@ -111,6 +111,13 @@
 		src.loc = null
 	return ..()
 
+// Check if target is reasonable for us to operate on.
+/obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
+	if(((src in target) && !target_self) || ((!istype(target.loc, /turf)) && (!istype(target, /turf)) && (not_inside)))
+		return FALSE
+	else
+		return TRUE
+
 /obj/item/proc/update_twohanding()
 	update_held_icon()
 

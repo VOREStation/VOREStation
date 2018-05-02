@@ -56,7 +56,7 @@
 /datum/chemical_reaction/xenolazarus/on_reaction(var/datum/reagents/holder, var/created_volume) //literally all this does is mash the regenerate button
 	if(ishuman(holder.my_atom))
 		var/mob/living/carbon/human/H = holder.my_atom
-		if(H.stat == DEAD && (/mob/living/carbon/human/proc/begin_reconstitute_form in H.verbs)) //no magical regen for non-regenners, and can't force the reaction on live ones
+		if(H.stat == DEAD && (/mob/living/carbon/human/proc/reconstitute_form in H.verbs)) //no magical regen for non-regenners, and can't force the reaction on live ones
 			if(H.hasnutriment()) // make sure it actually has the conditions to revive
 				if(!H.reviving) // if it's not reviving, start doing so
 					H.visible_message("<span class='info'>[H] shudders briefly, then relaxes, faint movements stirring within.</span>")

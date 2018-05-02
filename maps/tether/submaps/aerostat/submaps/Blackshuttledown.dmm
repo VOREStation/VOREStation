@@ -31,23 +31,20 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark6";
-	name = "Unknown Shuttle";
-	tag = "icon-dark6"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "aj" = (
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle";
-	tag = "icon-dark0"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "ak" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
-	name = "Unknown Shuttle";
-	tag = "icon-dark10"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "al" = (
@@ -67,8 +64,7 @@
 	},
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle";
-	tag = "icon-dark0"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "an" = (
@@ -121,8 +117,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark5";
-	name = "Unknown Shuttle";
-	tag = "icon-dark5"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "av" = (
@@ -149,8 +144,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
-	name = "Unknown Shuttle";
-	tag = "icon-dark9"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "aB" = (
@@ -325,8 +319,7 @@
 	},
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle";
-	tag = "icon-dark0"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "bd" = (

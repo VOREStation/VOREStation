@@ -13,6 +13,7 @@
 
 	next_process = times_fired + (6 SECONDS/wait) //Set up our next process time.
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
+	var/to_update = FALSE //Did anything update worthy happen?
 
 /////////////////////////// Auto-Emotes ///////////////////////////
 	if(contents.len && next_emote <= times_fired)
@@ -41,7 +42,7 @@
 				items_preserved |= I
 			else
 				digest_item(I)
-			owner.updateVRPanel()
+			to_update = TRUE
 			did_an_item = TRUE
 
 		//Handle eaten mobs
@@ -72,8 +73,7 @@
 								items_preserved |= I
 							else
 								digest_item(I)
-							owner.updateVRPanel()
-							H.updateVRPanel()
+							to_update = TRUE
 							break
 
 ///////////////////////////// DM_HOLD /////////////////////////////
@@ -113,6 +113,7 @@
 				play_sound = pick(death_sounds)
 				digestion_death(M)
 				owner.update_icons()
+				to_update = TRUE
 				continue
 
 			// Deal digestion damage (and feed the pred)
@@ -128,9 +129,6 @@
 				owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
 			else
 				owner.nutrition += 2*(digest_brute+digest_burn)/difference
-			M.updateVRPanel()
-
-		owner.updateVRPanel()
 
 //////////////////////////// DM_ABSORB ////////////////////////////
 	else if(digest_mode == DM_ABSORB)
@@ -149,6 +147,7 @@
 				owner.nutrition += oldnutrition
 			else if(M.nutrition < 100) //When they're finally drained.
 				absorb_living(M)
+				to_update = TRUE
 
 //////////////////////////// DM_UNABSORB ////////////////////////////
 	else if(digest_mode == DM_UNABSORB)
@@ -161,6 +160,7 @@
 				to_chat(M,"<span class='notice'>You suddenly feel solid again </span>")
 				to_chat(owner,"<span class='notice'>You feel like a part of you is missing.</span>")
 				owner.nutrition -= 100
+				to_update = TRUE
 
 //////////////////////////// DM_DRAIN ////////////////////////////
 	else if(digest_mode == DM_DRAIN)
@@ -254,4 +254,11 @@
 /////////////////////////// Make any noise ///////////////////////////
 	if(play_sound)
 		playsound(src, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
+	if(to_update)
+		for(var/mob/living/M in contents)
+			if(M.client)
+				M.updateVRPanel()
+		if(owner.client)
+			owner.updateVRPanel()
+		
 	return SSBELLIES_PROCESSED

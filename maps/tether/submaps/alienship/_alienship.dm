@@ -107,7 +107,7 @@
 	icon = 'alienship.dmi'
 	icon_state = "alien_injector"
 	item_state = "autoinjector"
-	filled_reagents = list("rezadone" = 5)
+	filled_reagents = list("rezadone" = 4, "corophizine" = 1)
 
 
 // -- Areas -- //

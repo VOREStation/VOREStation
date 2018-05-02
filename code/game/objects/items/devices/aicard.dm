@@ -102,6 +102,11 @@
 		user << "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one."
 		return 0
 
+	if(!user.IsAdvancedToolUser() && isanimal(user))
+		var/mob/living/simple_animal/S = user
+		if(!S.IsHumanoidToolUser(src))
+			return 0
+
 	user.visible_message("\The [user] starts transferring \the [ai] into \the [src]...", "You start transferring \the [ai] into \the [src]...")
 	ai << "<span class='danger'>\The [user] is transferring you into \the [src]!</span>"
 

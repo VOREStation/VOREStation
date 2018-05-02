@@ -57,6 +57,23 @@
 	name = "\improper North Stairwell Third Floor"
 	icon_state = "dk_yellow"
 
+/area/tether/surfacebase/public_garden_one
+	name = "\improper Public Garden First Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden_two
+	name = "\improper Public Garden Second Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden_three
+	name = "\improper Public Garden Third Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden
+	name = "\improper Public Garden"
+	icon_state = "purple"
+/area/tether/surfacebase/bar_backroom
+	name = "\improper Bar Backroom"
+	icon_state = "red"
+	sound_env = SMALL_SOFTFLOOR
+
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
 /area/tether/surfacebase/east_stairs_two
@@ -101,6 +118,12 @@
 	name = "\improper Mining Bathroom"
 /area/tether/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
+
+// Mining Underdark
+/area/mine/unexplored/underdark
+	name = "\improper Mining Underdark"
+/area/mine/explored/underdark
+	name = "\improper Mining Underdark"
 
 // Mining outpost areas
 /area/outpost/mining_main/passage
@@ -208,6 +231,8 @@
 	name = "\improper Solars maintenanceance"
 /area/maintenance/lower/mining_eva
 	name = "\improper Mining EVA Maintenance"
+/area/maintenance/lower/public_garden_maintenence
+	name = "\improper Public Garden Maintenence"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos

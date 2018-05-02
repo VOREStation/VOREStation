@@ -3,7 +3,7 @@
 	name = "\improper MPA6 \'Sickshot\'"
 	desc = "Need to stun someone? Don't mind having to clean up the mess afterwards? The Sickshot is the answer to your prayers. \
 	Using a short-range concentrated blast of disruptive sound, the Sickshot will nauseate and confuse the target for several seconds. NOTE: Not suitable \
-	for use in vacuum, or on animals. May cause contraction and release of various 'things' from various 'orifices'."
+	for use in vacuum. Usage on animals may cause panic and rage without stunning. May cause contraction and release of various 'things' from various 'orifices', even if the target is already dead."
 
 	description_info = "This gun causes nausea in targets, stunning them briefly and causing vomiting. It will also cause them to vomit up prey, sometimes. Repeated shots may help in that case."
 	description_fluff = ""

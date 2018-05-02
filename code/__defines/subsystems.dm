@@ -28,6 +28,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_ATOMS	15
 #define INIT_ORDER_MACHINES 10
 #define INIT_ORDER_SHUTTLES 3
+#define INIT_ORDER_DEFAULT	0
 #define INIT_ORDER_LIGHTING 0
 #define INIT_ORDER_AIR		-1
 #define INIT_ORDER_HOLOMAPS -5
@@ -37,8 +38,14 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
-
- #define FIRE_PRIORITY_OVERLAYS		500
+#define FIRE_PRIORITY_SHUTTLES		5
+#define FIRE_PRIORITY_ORBIT			8
+#define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_AIRFLOW		30
+#define FIRE_PRIORITY_AIR			35
+#define FIRE_PRIORITY_DEFAULT		50
+#define FIRE_PRIORITY_MACHINES		100
+#define FIRE_PRIORITY_OVERLAYS		500
 
 // Macro defining the actual code applying our overlays lists to the BYOND overlays list. (I guess a macro for speed)
 // TODO - I don't really like the location of this macro define.  Consider it. ~Leshana

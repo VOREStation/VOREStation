@@ -156,3 +156,7 @@
 			T = F
 			break
 	return T
+=======
+/mob/living/simple_animal/hostile/rat/death()
+	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
+	..()

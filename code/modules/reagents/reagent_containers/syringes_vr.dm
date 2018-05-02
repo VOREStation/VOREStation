@@ -36,7 +36,7 @@
 	targets |= hash
 
 	//Grab any viruses they have
-	if(LAZYLEN(target.virus2.len))
+	if(iscarbon(target) && LAZYLEN(target.virus2.len))
 		LAZYINITLIST(viruses)
 		var/datum/disease2/disease/virus = pick(target.virus2.len)
 		viruses[hash] = virus.getcopy()

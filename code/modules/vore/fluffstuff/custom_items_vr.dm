@@ -1382,58 +1382,65 @@
 	else
 		..()
 
-/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity)
-	//No, you can't teleport people from over there.
-	if(!proximity)
-		return
-
+/obj/item/device/perfect_tele/proc/teleport_checks(mob/living/target,mob/living/user)
 	//Uhhuh, need that power source
 	if(!power_source)
 		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
-		return
+		return FALSE
 
 	//Check for charge
 	if(!power_source.check_charge(charge_cost))
 		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
-		return
+		return FALSE
 
 	//Only mob/living need apply.
 	if(!istype(user) || !istype(target))
-		return
+		return FALSE
 
 	//No, you can't teleport buckled people.
 	if(target.buckled)
 		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
-		return
+		return FALSE
 
 	//No, you can't teleport if it's not ready yet.
 	if(!ready)
 		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
-		return
+		return FALSE
 
 	//No, you can't teleport if there's no destination.
 	if(!destination)
 		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
-		return
+		return FALSE
 
 	//No, you can't teleport if there's a jammer.
 	if(is_jammed(src) || is_jammed(destination))
 		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
-		return
+		return FALSE
 
 	//No, you can't port to or from away missions. Stupidly complicated check.
 	var/turf/uT = get_turf(user)
 	var/turf/dT = get_turf(destination)
 	if(!uT || !dT)
-		return
+		return FALSE
 
 	if( (uT.z != dT.z) && ( (uT.z > max_default_z_level() ) || (dT.z > max_default_z_level()) ) )
 		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
-		return
+		return FALSE
 
 	if(uT.block_tele || dT.block_tele)
 		to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
+		return FALSE
+
+	//Seems okay to me!
+	return TRUE
+
+/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity)
+	//No, you can't teleport people from over there.
+	if(!proximity)
 		return
+
+	if(!teleport_checks(target,user))
+		return //The checks proc can send them a message if it wants.
 
 	//Bzzt.
 	ready = 0
@@ -1447,6 +1454,7 @@
 		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
 
 	//Destination beacon vore checking
+	var/turf/dT = get_turf(destination)
 	var/atom/real_dest = dT
 
 	var/atom/real_loc = destination.loc
@@ -1569,6 +1577,21 @@
 				user.unEquip(src)
 				forceMove(bellychoice)
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
+
+// A single-beacon variant for use by miners (or whatever)
+/obj/item/device/perfect_tele/one_beacon
+	name = "mini-translocator"
+	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
+	icon_state = "minitrans"
+	beacons_left = 1 //Just one
+	charge_cost = 2400 //One per
+
+/obj/item/device/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
+	var/turf/T = get_turf(destination)
+	if(T && user.z != T.z)
+		to_chat(user,"<span class='warning'>\The [src] is too far away from the beacon. Try getting closer first!</span>")
+		return FALSE
+	return ..()
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda

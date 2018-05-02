@@ -216,6 +216,27 @@
 			return
 	..()
 
+/obj/machinery/door/firedoor/attack_generic(var/mob/user, var/damage)
+	if(stat & (BROKEN|NOPOWER))
+		if(damage >= 10)
+			var/time_to_force = (2 + (2 * blocked)) * 5
+			if(src.density)
+				visible_message("<span class='danger'>\The [user] starts forcing \the [src] open!</span>")
+				if(do_after(user, time_to_force, src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					src.blocked = 0
+					open(1)
+			else
+				time_to_force = (time_to_force / 2)
+				visible_message("<span class='danger'>\The [user] starts forcing \the [src] closed!</span>")
+				if(do_after(user, time_to_force, src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+					close(1)
+		else
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+		return
+	..()
+
 /obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(istype(C, /obj/item/taperoll))
