@@ -103,9 +103,9 @@
 		if(dose >= 15)
 			M.druggy = max(M.druggy, 5)
 	if(alien != IS_DIONA)
-		M.drowsyness = max(0, M.drowsyness - 6 * removed * chem_effective = 0.66)
-		M.hallucination = max(0, M.hallucination - 9 * removed * chem_effective = 0.66)
-		M.adjustToxLoss(-4 * removed * chem_effective = 0.66)
+		M.drowsyness = max(0, M.drowsyness - 6 * removed * chem_effective)
+		M.hallucination = max(0, M.hallucination - 9 * removed * chem_effective)
+		M.adjustToxLoss(-4 * removed * chem_effective)
 
 /datum/reagent/carthatoline
 	name = "Carthatoline"
@@ -392,7 +392,6 @@
 /datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	var/
 	var/chem_effective = 1
 	if(alien == IS_SLIME)
 		chem_effective = 0.25
