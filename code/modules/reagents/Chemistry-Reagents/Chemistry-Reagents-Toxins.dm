@@ -492,6 +492,7 @@
 	reagent_state = LIQUID
 	color = "#009CA8"
 	metabolism = REM * 0.5
+	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -538,6 +539,7 @@
 	reagent_state = SOLID
 	color = "#000067"
 	metabolism = REM * 0.5
+	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 	overdose_mod = 5	//For that good, lethal feeling
 
