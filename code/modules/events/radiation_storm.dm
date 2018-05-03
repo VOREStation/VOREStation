@@ -9,7 +9,7 @@
 	var/postStartTicks 		= 0
 
 /datum/event/radiation_storm/announce()
-	command_announcement.Announce("High levels of radiation detected near the station. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
