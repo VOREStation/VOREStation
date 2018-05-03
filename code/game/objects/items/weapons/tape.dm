@@ -56,6 +56,7 @@
 				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
 				H.update_inv_glasses()
+				playsound(src, 'sound/effects/tape.ogg',25)
 
 			else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
 				if(!H.organs_by_name[BP_HEAD])
@@ -94,6 +95,7 @@
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 				H.update_inv_wear_mask()
+				playsound(src, 'sound/effects/tape.ogg',25)
 
 			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
 				can_place = 0
@@ -109,6 +111,7 @@
 					return
 
 				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+				playsound(src, 'sound/effects/tape.ogg',25)
 
 				if(!T.place_handcuffs(H, user))
 					user.unEquip(T)
@@ -124,6 +127,7 @@
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
 	tape.attach(W)
 	user.put_in_hands(tape)
+	playsound(src, 'sound/effects/tape.ogg',25)
 
 /obj/item/weapon/ducttape
 	name = "tape"
@@ -188,6 +192,7 @@
 			return											// reduce papers around corners issue.
 
 	user.drop_from_inventory(src)
+	playsound(src, 'sound/effects/tape.ogg',25)
 	forceMove(source_turf)
 
 	if(params)
