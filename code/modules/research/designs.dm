@@ -841,6 +841,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/storage/backpack/holding
 	sort_string = "VAEAA"
 
+/datum/design/item/dufflebag_holding
+	name = "'DuffleBag of Holding', an infinite capacity dufflebag prototype"
+	desc = "A minaturized prototype of the popular Bag of Holding, the Dufflebag of Holding is, functionally, identical to the bag of holding, but comes in a more stylish and compact form."
+	id = "dufflebag_holding"
+	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
+	materials = list("gold" = 3000, "diamond" = 1500, "uranium" = 250)
+	build_path = /obj/item/weapon/storage/backpack/holding/duffle
+	sort_string = "VAEAB"
+
 /datum/design/item/binaryencrypt
 	name = "Binary encryption key"
 	desc = "Allows for deciphering the binary channel on-the-fly."
