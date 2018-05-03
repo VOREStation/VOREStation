@@ -83,3 +83,21 @@
 	desc = "Your body is smaller than average."
 
 	icon_scale_percent = 0.9
+
+/datum/modifier/trait/colorblind_taj
+	name = "Colorblind - B+R"
+	desc = "You are colorblind. You have a minor issue with blue colors and have difficulty recognizing them from red colors."
+	
+	client_color = MATRIX_Taj_Colorblind
+
+/datum/modifier/trait/colorblind_vulp
+	name = "Colorblind - G+R"
+	desc = "You are colorblind. You have a severe issue with green colors and have difficulty recognizing them from red colors."
+	
+	client_color = MATRIX_Vulp_Colorblind
+
+/datum/modifier/trait/colorblind_mono
+	name = "Colorblind - Mono"
+	desc = "You are colorblind. Your condition is rare, but you can see no colors at all."
+	
+	client_color = MATRIX_Monochromia
