@@ -155,7 +155,7 @@
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
-	tt_desc = "E Gallus gallus domesticus"
+	tt_desc = "E Gallus gallus"
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
@@ -206,7 +206,7 @@ var/global/chicken_count = 0
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
-	tt_desc = "E Gallus gallus domesticus"
+	tt_desc = "E Gallus gallus"
 	icon_state = "chicken"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"

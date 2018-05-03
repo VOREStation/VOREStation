@@ -46,7 +46,7 @@
 
 /mob/living/simple_animal/fish/trout
 	name = "trout"
-	tt_desc = "E salmo trutta"
+	tt_desc = "E Salmo trutta"
 	icon_state = "trout-swim"
 	icon_living = "trout-swim"
 	icon_dead = "trout-dead"
@@ -67,6 +67,7 @@
 
 /mob/living/simple_animal/fish/pike
 	name = "pike"
+	tt_desc = "E Esox aquitanicus"
 	icon_state = "pike-swim"
 	icon_living = "pike-swim"
 	icon_dead = "pike-dead"

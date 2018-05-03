@@ -156,7 +156,7 @@
 /mob/living/simple_animal/cat/fluff/Runtime
 	name = "Runtime"
 	desc = "Her fur has the look and feel of velvet, and her tail quivers occasionally."
-	tt_desc = "E Felis catus medicalis"
+	tt_desc = "E Felis silvestris medicalis" //a hypoallergenic breed produced by NT for... medical purposes? Sure.
 	gender = FEMALE
 	icon_state = "cat"
 	item_state = "cat"
