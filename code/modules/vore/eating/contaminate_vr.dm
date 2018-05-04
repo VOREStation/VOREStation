@@ -5,27 +5,15 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	var/cleanname
 	var/cleandesc
 
-/obj/item/proc/gurgle_contaminate(var/atom/movable/item_storage = null, var/cont_flavor = "All")
+/obj/item/proc/gurgle_contaminate(var/atom/movable/item_storage = null, var/cont_flavor = "Generic")
 	if(!can_gurgle())
 		return FALSE
 
 	if(!gurgled)
 		gurgled = TRUE
 		overlays += gurgled_overlay
-		switch(cont_flavor)
-			if("All")
-				cont_flavor = cont_flavors_all
-			if("Acrid")
-				cont_flavor = cont_flavors_acrid
-			if("Dirty")
-				cont_flavor = cont_flavors_dirty
-			if("Musky")
-				cont_flavor = cont_flavors_musky
-			if("Smelly")
-				cont_flavor = cont_flavors_smelly
-			if("Wet")
-				cont_flavor = cont_flavors_wet
-		var/gurgleflavor = pick(cont_flavor)
+		var/list/pickfrom = cont_flavors[cont_flavor]
+		var/gurgleflavor = pick(pickfrom)
 		cleanname = src.name
 		cleandesc = src.desc
 		name = "[gurgleflavor] [cleanname]"
