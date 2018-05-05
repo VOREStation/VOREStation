@@ -1124,6 +1124,9 @@ default behaviour is:
 	var/list/colors_to_blend = list()
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.client_color))
+			if(islist(M.client_color)) //It's a color matrix! Forget it. Just use that one.
+				animate(client, color = M.client_color, time = 10)
+				return
 			colors_to_blend += M.client_color
 
 	if(colors_to_blend.len)
