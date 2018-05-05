@@ -56,7 +56,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	//This proc is responsible for ore generation on surface turfs
 /turf/simulated/mineral/virgo3b/make_ore(var/rare_ore)
-	if(mineral)
+	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
 	if(rare_ore)
@@ -84,7 +84,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	update_icon()
 
 /turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
-	if(mineral)
+	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
 	if(rare_ore)
