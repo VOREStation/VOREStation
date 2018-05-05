@@ -9141,8 +9141,6 @@
 /obj/item/clothing/head/helmet/space/void/medical,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/medical,
-/obj/item/clothing/suit/space/void/medical/taur,
-/obj/item/clothing/head/helmet/space/void/medical,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "px" = (
@@ -9265,8 +9263,6 @@
 /obj/item/clothing/head/helmet/space/void/security,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/security,
-/obj/item/clothing/suit/space/void/security/taur,
-/obj/item/clothing/head/helmet/space/void/security,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "pF" = (
@@ -10509,8 +10505,6 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/atmos,
-/obj/item/clothing/suit/space/void/atmos/taur,
 /obj/item/clothing/head/helmet/space/void/atmos,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)

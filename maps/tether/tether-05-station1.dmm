@@ -9459,10 +9459,6 @@
 	req_access = list(24)
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/atmos/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/atmos,
-/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/atmos,
@@ -9498,10 +9494,6 @@
 	name = "Atmospherics Hardsuits";
 	req_access = list(24)
 	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/atmos/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/mask/breath,
@@ -11227,29 +11219,6 @@
 /obj/item/clothing/head/helmet/space/void/engineering,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
-"aFM" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.6
-	},
-/obj/machinery/door/window/northleft{
-	name = "Engineering Hardsuits";
-	req_access = list(11)
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
 "aFO" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -11262,28 +11231,6 @@
 	name = "Engineering Hardsuits";
 	req_access = list(11)
 	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
-"aFR" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.6
-	},
-/obj/machinery/door/window/northright{
-	name = "Engineering Hardsuits";
-	req_access = list(11)
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/engineering,
 /obj/item/clothing/mask/breath,
@@ -27131,7 +27078,7 @@ aue
 aAS
 auA
 auA
-aFM
+aFL
 aSC
 aoq
 aLy
@@ -27273,7 +27220,7 @@ aue
 aBl
 auB
 avj
-aFR
+aFO
 aSC
 aTK
 aLG
