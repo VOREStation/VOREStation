@@ -82,9 +82,10 @@
 
 	// limited organs, 'cause they're simple
 	has_organ = list(
-		O_HEART =    /obj/item/organ/internal/heart,
-		O_BRAIN =    /obj/item/organ/internal/brain,
-		O_EYES =     /obj/item/organ/internal/eyes,
+		O_LIVER =    /obj/item/organ/internal/liver/alraune,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys/alraune,
+		O_BRAIN =    /obj/item/organ/internal/brain/alraune,
+		O_EYES =     /obj/item/organ/internal/eyes/alraune,
 		)
 
 /datum/species/alraune/can_breathe_water()
@@ -308,3 +309,28 @@
 
 	breath.update_values()
 	return 1
+
+/obj/item/organ/internal/brain/alraune
+	icon = 'icons/mob/species/alraune/organs.dmi'
+	icon_state = "neurostroma"
+	name = "neuro-stroma"
+	desc = "A knot of fibrous plant matter."
+	parent_organ = BP_TORSO // brains in their core
+
+/obj/item/organ/internal/eyes/alraune
+	icon = 'icons/mob/species/alraune/organs.dmi'
+	icon_state = "photoreceptors"
+	name = "photoreceptors"
+	desc = "Bulbous and fleshy plant matter."
+
+/obj/item/organ/internal/kidneys/alraune
+	icon = 'icons/mob/species/alraune/organs.dmi'
+	icon_state = "rhyzofilter"
+	name = "rhyzofilter"
+	desc = "A tangle of root nodules."
+
+/obj/item/organ/internal/liver/alraune
+	icon = 'icons/mob/species/alraune/organs.dmi'
+	icon_state = "phytoextractor"
+	name = "phytoextractor"
+	desc = "A bulbous gourd-like structure."
