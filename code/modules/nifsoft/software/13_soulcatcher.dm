@@ -356,12 +356,10 @@
 		return ..(direction)
 
 /mob/living/carbon/brain/caught_soul/say(var/message)
-	if(parent_mob) return ..()
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj)
 
 /mob/living/carbon/brain/caught_soul/emote(var/act,var/m_type=1,var/message = null)
-	if(parent_mob) return ..()
 	if(silent) return FALSE
 	if (act == "me")
 		if(silent)
