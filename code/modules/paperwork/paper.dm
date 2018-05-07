@@ -75,7 +75,7 @@
 	stamps = null
 
 	if(info != initial(info))
-		info = html_encode(info)
+		info = lhtml_encode(info)
 		info = replacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 		return
@@ -110,7 +110,7 @@
 		desc = "This is a paper titled '" + name + "'."
 
 	if(info != initial(info))
-		info = html_encode(info)
+		info = lhtml_encode(info)
 		info = replacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 
@@ -436,7 +436,7 @@
 
 		var last_fields_value = fields
 
-		//t = html_encode(t)
+		//t = lhtml_encode(t)
 		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 

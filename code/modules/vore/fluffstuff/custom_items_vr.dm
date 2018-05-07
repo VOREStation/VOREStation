@@ -1329,7 +1329,7 @@
 				alert("The translocator can't support any more beacons!","Error")
 				return
 
-			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
+			var/new_name = lhtml_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
 
 			if(length(new_name) > 20 || length(new_name) < 2)
 				alert("Entered name length invalid (must be longer than 2, no more than than 20).","Error")

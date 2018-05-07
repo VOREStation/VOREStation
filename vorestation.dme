@@ -1799,6 +1799,7 @@
 #include "code\modules\integrated_electronics\subtypes\time.dm"
 #include "code\modules\integrated_electronics\subtypes\trig.dm"
 #include "code\modules\integrated_electronics\~defines\~defines.dm"
+#include "code\modules\l10n\localisation.dm"
 #include "code\modules\library\lib_items.dm"
 #include "code\modules\library\lib_machines.dm"
 #include "code\modules\library\lib_readme.dm"

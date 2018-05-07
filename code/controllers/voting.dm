@@ -336,6 +336,7 @@ var/global/list/round_voters = list() // Keeps track of the individuals voting f
 		. += "</ul><hr>"
 
 	. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
+	return sanitize_local(., SANITIZE_BROWSER)
 
 /datum/controller/vote/Topic(href, href_list[])
 	if(!usr || !usr.client)

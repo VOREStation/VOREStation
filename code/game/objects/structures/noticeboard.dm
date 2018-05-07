@@ -62,7 +62,7 @@
 		var/dat = "<B>Noticeboard</B><BR>"
 		for(var/obj/item/weapon/paper/P in src)
 			dat += "<A href='?src=\ref[src];read=\ref[P]'>[P.name]</A> <A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A><BR>"
-		user << browse("<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
+		user << browse("<HEAD><TITLE>Notices</TITLE></HEAD>[sanitize_local(dat, SANITIZE_BROWSER)]","window=noticeboard")
 		onclose(user, "noticeboard")
 	else
 		..()
