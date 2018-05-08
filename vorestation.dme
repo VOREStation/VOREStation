@@ -332,6 +332,7 @@
 #include "code\datums\supplypacks\recreation.dm"
 #include "code\datums\supplypacks\recreation_vr.dm"
 #include "code\datums\supplypacks\robotics.dm"
+#include "code\datums\supplypacks\robotics_vr.dm"
 #include "code\datums\supplypacks\science.dm"
 #include "code\datums\supplypacks\science_vr.dm"
 #include "code\datums\supplypacks\security.dm"
