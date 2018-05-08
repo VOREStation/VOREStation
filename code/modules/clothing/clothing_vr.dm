@@ -99,11 +99,33 @@
 		)
 //"Spider" 		= 'icons/mob/species/spider/mask_vr.dmi' Add this later when they have custom mask sprites and everything.
 
+//Switch to taur sprites if a taur equips
+/obj/item/clothing/suit
+	var/taurized = FALSE //Easier than trying to 'compare icons' to see if it's a taur suit
+
+/obj/item/clothing/suit/equipped(var/mob/user, var/slot)
+	var/normalize = TRUE
+	
+	//Pyramid of doom-y. Improve somehow?
+	if(!taurized && slot == slot_wear_suit && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(isTaurTail(H.tail_style))
+			var/datum/sprite_accessory/tail/taur/taurtail = H.tail_style
+			if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in icon_states(taurtail.suit_sprites)))
+				icon_override = taurtail.suit_sprites
+				normalize = FALSE
+				taurized = TRUE
+
+	if(normalize && taurized)
+		icon_override = initial(icon_override)
+		taurized = FALSE
+
+	return ..()
+
 // Taur suits need to be shifted so its centered on their taur half.
-// TODO - Instead of just assuming this junk, shift some of the data onto the taur tail datum.
 /obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
 	var/image/standing = ..()
-	if(icon_override && icon_override == 'icons/mob/taursuits_vr.dmi')
+	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
 		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
 	return standing
