@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/scarybat
 	name = "space bats"
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
-	tt_desc = "Desmodus rotundus" //Common vampire bat
+	tt_desc = "N Bestia gregaria" //Nispean swarm bats, because of course Nisp has swarm bats
 	icon = 'icons/mob/bats.dmi'
 	icon_state = "bat"
 	icon_living = "bat"

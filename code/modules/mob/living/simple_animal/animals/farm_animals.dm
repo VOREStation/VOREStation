@@ -2,7 +2,7 @@
 /mob/living/simple_animal/retaliate/goat
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
-	tt_desc = "Oreamnos americanus"
+	tt_desc = "E Oreamnos americanus"
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -86,7 +86,7 @@
 /mob/living/simple_animal/cow
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
-	tt_desc = "Bos taurus"
+	tt_desc = "E Bos taurus"
 	icon_state = "cow"
 	icon_living = "cow"
 	icon_dead = "cow_dead"
@@ -155,7 +155,7 @@
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
-	tt_desc = "Gallus domesticus"
+	tt_desc = "E Gallus gallus"
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
@@ -206,7 +206,7 @@ var/global/chicken_count = 0
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
-	tt_desc = "Gallus domesticus"
+	tt_desc = "E Gallus gallus"
 	icon_state = "chicken"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
