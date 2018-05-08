@@ -327,6 +327,12 @@ item_path:/obj/item/clothing/accessory/badge/holo/detective/ruda
 }
 
 {
+ckey: interrolouis
+character_name: Kai Highlands
+/obj/item/borg/upgrade/modkit/chassis_mod/kai
+}
+
+{
 ckey: ivymoomoo
 character_name: Ivy Baladeva
 item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
