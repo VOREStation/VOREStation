@@ -1980,3 +1980,23 @@
 	from_suit = /obj/item/clothing/suit/space/void/security/taur
 	to_helmet = /obj/item/clothing/head/helmet/space/void/security/hasd
 	to_suit = /obj/item/clothing/suit/space/void/security/hasd
+
+//InterroLouis - Kai Highlands
+/obj/item/borg/upgrade/modkit/chassis_mod/kai
+	name = "kai chassis"
+	desc = "Makes your KA green. All the fun of having a more powerful KA without actually having a more powerful KA."
+	cost = 0
+	denied_type = /obj/item/borg/upgrade/modkit/chassis_mod
+	chassis_icon = "kineticgun_K"
+	chassis_name = "Kai-netic Accelerator"
+	var/chassis_desc = "A self recharging, ranged mining tool that does increased damage in low temperature. Capable of holding up to six slots worth of mod kits. It seems to have been painted an ugly green, and has a small image of a bird scratched crudely into the stock."
+	var/chassis_icon_file = 'icons/vore/custom_guns_vr.dmi'
+
+/obj/item/borg/upgrade/modkit/chassis_mod/kai/install(obj/item/weapon/gun/energy/kinetic_accelerator/KA, mob/user)
+	KA.desc = chassis_desc
+	KA.icon = chassis_icon_file
+	..()
+/obj/item/borg/upgrade/modkit/chassis_mod/kai/uninstall(obj/item/weapon/gun/energy/kinetic_accelerator/KA)
+	KA.desc = initial(KA.desc)
+	KA.icon = initial(KA.icon)
+	..()
