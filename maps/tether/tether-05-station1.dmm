@@ -21643,9 +21643,6 @@
 /obj/structure/closet/secure_closet/guncabinet/excursion,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_prep)
-"lnl" = (
-/turf/simulated/floor,
-/area/mine/explored/upper_level)
 "lue" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -34460,7 +34457,7 @@ aaU
 avK
 qgR
 aad
-lnl
+aae
 aaT
 aAC
 acp
@@ -34602,7 +34599,7 @@ aap
 avK
 qgR
 aad
-lnl
+aae
 aaT
 aAF
 acp
@@ -34744,7 +34741,7 @@ afd
 ate
 qgR
 aad
-lnl
+aae
 aaT
 aAE
 act
@@ -34886,7 +34883,7 @@ arw
 vrH
 auU
 aad
-lnl
+aae
 aaT
 aAL
 aCx
@@ -35028,7 +35025,7 @@ nxL
 coV
 abc
 aad
-lnl
+aae
 aaT
 aAH
 aCw
