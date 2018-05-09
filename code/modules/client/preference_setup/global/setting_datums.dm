@@ -193,6 +193,20 @@ var/list/_client_preferences_by_type
 	enabled_description = "Fancy"
 	disabled_description = "Plain"
 
+/datum/client_preference/ambient_occlusion
+	description = "Fake Ambient Occlusion"
+	key = "AMBIENT_OCCLUSION_PREF"
+	enabled_by_default = FALSE
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/ambient_occlusion/toggled(var/mob/preference_mob, var/enabled)
+	. = ..()
+	if(preference_mob && preference_mob.plane_holder)
+		var/datum/plane_holder/PH = preference_mob.plane_holder
+		PH.set_ao(VIS_OBJS, enabled)
+		PH.set_ao(VIS_MOBS, enabled)
+
 /********************
 * Staff Preferences *
 ********************/

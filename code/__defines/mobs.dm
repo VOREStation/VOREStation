@@ -299,7 +299,11 @@
 
 #define VIS_MESONS			18
 
-#define VIS_COUNT			18 //Must be highest number from above.
+#define VIS_TURFS			19
+#define VIS_OBJS			20
+#define VIS_MOBS			21
+
+#define VIS_COUNT			21 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
