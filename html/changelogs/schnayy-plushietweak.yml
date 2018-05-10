@@ -1,9 +1,0 @@
-# Your name.  
-author: schnayy
-
-# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
-delete-after: True
-
-# Any changes you've made.  See valid prefix list above.
-  - bugfix: "Space carp plushies now load sprites and are all selectable from loadout."
-  - tweak: "Adds several newer plushies to the gift vendor as well as adjusting cost of gift vendor's contents."

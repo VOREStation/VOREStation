@@ -84,13 +84,16 @@ Nurse Family
 	var/atom/cocoon_target
 	var/egg_inject_chance = 5
 
-// VOREStation Edit - Keep Nurse Hat Spiders
-/mob/living/simple_animal/hostile/giant_spider/nurse/medical
+/mob/living/simple_animal/hostile/giant_spider/nurse/hat
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes and a tiny nurse hat."
 	icon_state = "nursemed"
 	icon_living = "nursemed"
 	icon_dead = "nursemed_dead"
 
+	maxHealth = 50
+	health = 50
+
+// VOREStation Edit
 	melee_damage_lower = 8
 	melee_damage_upper = 16
 	poison_type = "tramadol"

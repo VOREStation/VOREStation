@@ -159,8 +159,8 @@
 /obj/random/medical
 	name = "Random Medicine"
 	desc = "This is a random medical item."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "advfirstaid"
+	icon = 'icons/obj/stacks.dmi'
+	icon_state = "traumakit"
 
 /obj/random/medical/item_to_spawn()
 	return pick(prob(21);/obj/random/medical/lite,
