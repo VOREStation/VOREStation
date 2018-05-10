@@ -529,6 +529,7 @@
 		var/obj/item/device/nif/nif = new MR.nif_path(occupant,MR.nif_durability)
 		for(var/path in MR.nif_software)
 			new path(nif)
+		nif.durability = MR.nif_durability //Restore backed up durability as the line above forces reinstall wear for each soft.
 
 	// If it was a custom sleeve (not owned by anyone), update namification sequences
 	if(!occupant.original_player)
