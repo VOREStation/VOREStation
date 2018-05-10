@@ -69,6 +69,10 @@
 	H.dna = R.dna.Clone()
 	H.original_player = current_project.ckey
 
+	//Apply genetic modifiers
+	for(var/modifier_type in R.genetic_modifiers)
+		H.add_modifier(modifier_type)
+
 	//Apply damage
 	H.adjustCloneLoss((H.getMaxHealth() - config.health_threshold_dead)*0.75)
 	H.Paralyse(4)

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/rous
+/mob/living/simple_animal/hostile/rat
 	name = "giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king."
 	tt_desc = "Mus muscular"
@@ -41,6 +41,6 @@
 	vore_pounce_chance = 45
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/hostile/rous/death()
+/mob/living/simple_animal/hostile/rat/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()

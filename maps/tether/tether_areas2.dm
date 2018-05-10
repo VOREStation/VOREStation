@@ -69,6 +69,10 @@
 /area/tether/surfacebase/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
+/area/tether/surfacebase/bar_backroom
+	name = "\improper Bar Backroom"
+	icon_state = "red"
+	sound_env = SMALL_SOFTFLOOR
 
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
@@ -114,6 +118,12 @@
 	name = "\improper Mining Bathroom"
 /area/tether/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
+
+// Mining Underdark
+/area/mine/unexplored/underdark
+	name = "\improper Mining Underdark"
+/area/mine/explored/underdark
+	name = "\improper Mining Underdark"
 
 // Mining outpost areas
 /area/outpost/mining_main/passage
@@ -414,6 +424,9 @@
 	name = "\improper Micro Maintenance"
 /area/maintenance/station/virology
 	name = "\improper Virology Maintenance"
+/area/maintenance/station/ai
+	name = "\improper AI Maintenance"
+	sound_env = SEWER_PIPE
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"

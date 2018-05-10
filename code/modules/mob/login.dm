@@ -34,6 +34,11 @@
 	if(hud_used)	qdel(hud_used)		//remove the hud objects
 	hud_used = new /datum/hud(src)
 
+	if(client.prefs && client.prefs.client_fps)
+		client.fps = client.prefs.client_fps
+	else
+		client.fps = 0 // Results in using the server FPS
+
 	next_move = 1
 	disconnect_time = null				//clear the disconnect time
 	sight |= SEE_SELF

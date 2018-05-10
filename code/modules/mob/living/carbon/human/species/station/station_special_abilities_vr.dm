@@ -1,137 +1,151 @@
-/mob/living/carbon/human/proc/begin_reconstitute_form() //Scree's race ability.in exchange for: No cloning.
+/mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
 	set name = "Reconstitute Form"
 	set category = "Abilities"
 
-	if(world.time < last_special)
-		return
-
-	last_special = world.time + 50 //To prevent button spam.
-
+	// Sanity is mostly handled in chimera_regenerate()
+	
 	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
 		chimera_regenerate()
 
 /mob/living/carbon/human/proc/chimera_regenerate()
-	var/nutrition_used = nutrition/2
-
-	if(reviving == TRUE) //If they're already unable to
-		to_chat(src, "You are already reconstructing, or your body is currently recovering from the intense process of your previous reconstitution.")
-		return
-
-	if(stat == DEAD) //Uh oh, you died!
-		if(hasnutriment()) //Let's hope you have nutriment in you.... If not
-			var/time = (240+960/(1 + nutrition_used/75))
-			reviving = TRUE
-			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
-			//don't need all the weakened, does_not_breathe, canmove, heal IB crap here like you do for live ones'cause they're DEAD.
-
-			spawn(time SECONDS)
-				if(src) //Runtime prevention.
-					if (stat == DEAD) // let's make sure they've not been defibbed or whatever
-						to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
-						verbs += /mob/living/carbon/human/proc/hatch
-						return
-					else // their revive got aborted by being made not-dead. Remove their cooldown.
-						to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
-						reviving = FALSE
-						return
-				else
-					return //Something went wrong.
-		else //Dead until nutrition injected.
-			to_chat(src, "Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain.")
+	//If they're already regenerating
+	switch(reviving)
+		if(REVIVING_NOW)
+			to_chat(src, "You are already reconstructing, just wait for the reconstruction to finish!")
+			return
+		if(REVIVING_DONE)
+			to_chat(src, "Your reconstruction is done, but you need to hatch now.")
+			return
+		if(REVIVING_COOLDOWN)
+			to_chat(src, "You can't use that ability again so soon!")
 			return
 
-	else if(stat != DEAD) //If they're alive at the time of regenerating.
-		var/time = (240+960/(1 + nutrition_used/75))
-		weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
-		reviving = TRUE
-		canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
-		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
-		does_not_breathe = 1 //effectively makes them spaceworthy while regenning
+	var/nutrition_used = nutrition * 0.5
+	var/time = (240+960/(1 + nutrition_used/75))
 
-		spawn(time SECONDS)
-			if(stat != DEAD) //If they're still alive after regenning.
-				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs += /mob/living/carbon/human/proc/hatch
-				return
-			else if(stat == DEAD)
-				if(hasnutriment()) //Let's hope you have nutriment in you.... If not
-					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-					verbs += /mob/living/carbon/human/proc/hatch
-					return
-				else //Dead until nutrition injected.
-					to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
-					reviving = FALSE // so they can try again when they're given a kickstart
-					return
-			else
-				return //Something went wrong
+	//Clicked regen while dead.
+	if(stat == DEAD)
+
+		//Has nutrition and dead, allow regen.
+		if(hasnutriment())
+			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+
+			//Scary spawnerization.
+			reviving = REVIVING_NOW
+			spawn(time SECONDS)
+				// Was dead, now not dead.
+				if(stat != DEAD)
+					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
+					reviving = 0 //Not bool
+
+				// Was dead, still dead.
+				else
+					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
+					verbs |= /mob/living/carbon/human/proc/hatch
+					reviving = REVIVING_DONE
+
+		//Dead until nutrition injected.
+		else
+			to_chat(src, "<span class='warning'>Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain.</span>")
+
+	//Clicked regen while NOT dead
 	else
-		return //Something went wrong
+		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+
+		//Waiting for regen after being alive
+		reviving = REVIVING_NOW
+		spawn(time SECONDS)
+
+			//If they're still alive after regenning.
+			if(stat != DEAD)
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				reviving = REVIVING_DONE
+
+			//Was alive, now dead
+			else if(hasnutriment())
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				reviving = REVIVING_DONE
+
+			//Dead until nutrition injected.
+			else
+				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
+				reviving = 0 //Not boolean
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
-		return 1
+		return TRUE
 	else if (ingested.has_reagent("nutriment", 60) || src.ingested.has_reagent("protein", 30)) //try forcefeeding them, why not. Less effective.
-		return 1
-	else return 0
+		return TRUE
+	else return FALSE
 
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
 	set category = "Abilities"
 
-	if(world.time < last_special)
+	if(reviving != REVIVING_DONE)
+		//Hwhat?
+		verbs -= /mob/living/carbon/human/proc/hatch
 		return
-
-	last_special = world.time + 50 //To prevent button spam.
 
 	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
-		if(stat == DEAD) //Uh oh, you died!
-			if(hasnutriment()) //Let's hope you have nutriment in you.... If not
-				if(src) //Runtime prevention.
-					chimera_hatch()
-					visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
-					brainloss += 10 //Reviving from dead means you take a lil' brainloss on top of whatever was healed in the revive.
-					return
-				else
-					return //Runtime prevention
-			else //don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
-				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
-				reviving = FALSE // so they can try again when they're given a kickstart
+
+		//Dead when hatching
+		if(stat == DEAD)
+			//Check again for nutriment (necessary?)
+			if(hasnutriment())
+				chimera_hatch()
+				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
+				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
 				return
 
-		else if(stat != DEAD) //If they're alive at the time of regenerating.
+			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
+			else
+				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
+				verbs -= /mob/living/carbon/human/proc/hatch
+				reviving = 0 //So they can try again when they're given a kickstart
+
+		//Alive when hatching
+		else
 			chimera_hatch()
 			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
-			return
-		else
-			return //Runtime prevention.
 
 /mob/living/carbon/human/proc/chimera_hatch()
-	nutrition -= nutrition/2 //Cut their nutrition in half.
-	var/old_nutrition = nutrition //Since the game is being annoying.
+	verbs -= /mob/living/carbon/human/proc/hatch
 	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
-	var/T = get_turf(src)
-	new /obj/effect/gibspawner/human/scree(T)
-	var/braindamage = brainloss/2 //If you have 100 brainloss, it gives you 50.
-	does_not_breathe = 0 //start breathing again
-	revive() // I did have special snowflake code, but this is easier.
-	weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
+
+	//Modify and record values (half nutrition and braindamage)
+	var/old_nutrition = nutrition * 0.5
+	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
+
+	//I did have special snowflake code, but this is easier.
+	revive()
 	mutations.Remove(HUSK)
 	nutrition = old_nutrition
-	brainloss = braindamage //Gives them half their prior brain damage.
-	update_canmove()
+	setBrainLoss(braindamage)
+
+	//Drop everything
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
-	spawn(3600 SECONDS) //1 hour wait until you can revive.
-		reviving = FALSE
-		to_chat(src, "Your body has recovered from the strenuous effort of rebuilding itself.")
-	verbs -= /mob/living/carbon/human/proc/hatch
-	return
 
-/obj/effect/gibspawner/human/scree
-	fleshcolor = "#14AD8B" //Scree blood.
+	//Unfreeze some things
+	does_not_breathe = FALSE
+	update_canmove()
+	weakened = 2
+
+	//Visual effects
+	var/T = get_turf(src)
+	new /obj/effect/gibspawner/human/xenochimera(T)
+
+	reviving = REVIVING_COOLDOWN
+	schedule_callback_in(1 HOUR, VARSET_CALLBACK(src, reviving, 0))
+
+/obj/effect/gibspawner/human/xenochimera
+	fleshcolor = "#14AD8B"
 	bloodcolor = "#14AD8B"
 
 /mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
@@ -141,7 +155,7 @@
 	else return 0
 
 /mob/living/carbon/human/proc/handle_feral()
-	if(handling_hal) return //avoid conflict with actual hallucinations
+	if(handling_hal) return
 	handling_hal = 1
 
 	if(client && feral >= 10) // largely a copy of handle_hallucinations() without the fake attackers. Unlike hallucinations, only fires once - if they're still feral they'll get hit again anyway.
@@ -650,7 +664,7 @@
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
 			choices += M
-		
+
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
@@ -698,7 +712,7 @@
 		if(can_shred(T) != T)
 			to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
 			return
-		
+
 		//Removing an internal organ
 		if(T_int && T_int.damage >= 25) //Internal organ and it's been severely damaged
 			T.apply_damage(15, BRUTE, T_ext) //Damage the external organ they're going through.
@@ -713,7 +727,7 @@
 		//Removing an external organ
 		else if(!T_int && (T_ext.damage >= 25 || T_ext.brute_dam >= 25))
 			T_ext.droplimb(1,DROPLIMB_EDGE) //Clean cut so it doesn't kill the prey completely.
-			
+
 			//Is it groin/chest? You can't remove those.
 			if(T_ext.cannot_amputate)
 				T.apply_damage(25, BRUTE, T_ext)
@@ -726,13 +740,19 @@
 				visible_message("<span class='warning'>[src] tears off [T]'s [T_ext.name]!</span>","<span class='warning'>You tear off [T]'s [T_ext.name]!</span>")
 
 		//Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
-		else 
+		else
 			if(T_int)
 				T_int.damage = 25 //Internal organs can only take damage, not brute damage.
 			T.apply_damage(25, BRUTE, T_ext)
 			visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
-		
+
 		add_attack_logs(src,T,"Shredded (hardvore)")
+
+/mob/living/proc/shred_limb_temp()
+	set name = "Damage/Remove Prey's Organ (beartrap)"
+	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
+	set category = "Abilities"
+	shred_limb()
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"

@@ -1060,16 +1060,18 @@ default behaviour is:
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
-	//VOREStation Add
-	if(lying && LAZYLEN(buckled_mobs))
-		for(var/rider in buckled_mobs)
-			var/mob/living/L = rider
-			if(riding_datum)
-				riding_datum.force_dismount(L)
-			else
-				unbuckle_mob(L)
-			L.Stun(5)
-	//VOREStation Add End
+		//VOREStation Add
+		if(lying && LAZYLEN(buckled_mobs))
+			for(var/rider in buckled_mobs)
+				var/mob/living/L = rider
+				if(buckled_mobs[rider] != "riding")
+					continue // Only boot off riders
+				if(riding_datum)
+					riding_datum.force_dismount(L)
+				else
+					unbuckle_mob(L)
+				L.Stun(5)
+		//VOREStation Add End
 	return canmove
 
 // Adds overlays for specific modifiers.
@@ -1122,6 +1124,9 @@ default behaviour is:
 	var/list/colors_to_blend = list()
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.client_color))
+			if(islist(M.client_color)) //It's a color matrix! Forget it. Just use that one.
+				animate(client, color = M.client_color, time = 10)
+				return
 			colors_to_blend += M.client_color
 
 	if(colors_to_blend.len)

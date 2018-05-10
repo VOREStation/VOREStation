@@ -49,6 +49,8 @@
 	riding_datum = new /datum/riding/taur(src)
 
 /mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
+	if(forced)
+		return ..() // Skip our checks
 	if(!isTaurTail(tail_style))
 		return FALSE
 	if(lying)
@@ -66,6 +68,8 @@
 		return FALSE
 	
 	. = ..()
+	if(.)
+		buckled_mobs[M] = "riding"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
 	if(can_buckle && istype(M))
@@ -100,6 +104,8 @@
 	icon = 'icons/mob/vore/taurs_vr.dmi'
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
+
+	var/icon/suit_sprites = null //File for suit sprites, if any.
 
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
@@ -138,6 +144,7 @@
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf (Taur)"
 	icon_state = "wolf_s"
+	suit_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color (Taur)"
@@ -152,6 +159,7 @@
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
 	icon_state = "naga_s"
+	suit_sprites = 'icons/mob/taursuits_naga_vr.dmi'
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -188,6 +196,7 @@
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse (Taur)"
 	icon_state = "horse_s"
+	suit_sprites = 'icons/mob/taursuits_horse_vr.dmi'
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -212,6 +221,7 @@
 /datum/sprite_accessory/tail/taur/cow
 	name = "Cow (Taur)"
 	icon_state = "cow_s"
+	suit_sprites = 'icons/mob/taursuits_cow_vr.dmi'
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -251,6 +261,7 @@
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"
 	icon_state = "lizard_s"
+	suit_sprites = 'icons/mob/taursuits_lizard_vr.dmi'
 
 /datum/sprite_accessory/tail/taur/lizard/lizard_2c
 	name = "Lizard dual-color (Taur)"

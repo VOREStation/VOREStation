@@ -4,7 +4,7 @@
 
 /datum/category_item/player_setup_item/player_global/media
 	name = "Media"
-	sort_order = 6
+	sort_order = 5
 
 /datum/category_item/player_setup_item/player_global/media/load_preferences(var/savefile/S)
 	S["media_volume"]	>> pref.media_volume
