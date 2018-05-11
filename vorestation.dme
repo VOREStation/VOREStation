@@ -819,6 +819,7 @@
 #include "code\game\machinery\kitchen\icecream.dm"
 #include "code\game\machinery\kitchen\microwave.dm"
 #include "code\game\machinery\kitchen\smartfridge.dm"
+#include "code\game\machinery\kitchen\smartfridge_vr.dm"
 #include "code\game\machinery\kitchen\cooking_machines\_cooker.dm"
 #include "code\game\machinery\kitchen\cooking_machines\_cooker_output.dm"
 #include "code\game\machinery\kitchen\cooking_machines\candy.dm"
