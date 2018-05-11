@@ -103,8 +103,10 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	return TRUE
 
 /obj/item/weapon/holder/gurgle_contaminate(var/atom/movable/item_storage = null)
-	digest_act(item_storage)
-	return TRUE
+	if(isbelly(loc))
+		digest_act(item_storage)
+		return TRUE
+	return FALSE
 
 /obj/item/organ/gurgle_contaminate(var/atom/movable/item_storage = null)
 	digest_act(item_storage)
