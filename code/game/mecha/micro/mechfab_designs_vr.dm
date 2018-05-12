@@ -41,7 +41,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 12500)
 
 /datum/design/item/mecha/drill/micro
-	name = "Miniture Drill"
+	name = "Miniature Drill"
 	id = "micro_drill"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/micro
 	time = 5
