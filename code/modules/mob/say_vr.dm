@@ -42,6 +42,8 @@
 		return
 
 	if (message)
+		message = say_emphasis(message)
+
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
 		var/list/vis_mobs = vis["mobs"]
 		var/list/vis_objs = vis["objs"]

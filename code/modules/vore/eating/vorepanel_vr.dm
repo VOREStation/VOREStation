@@ -204,6 +204,9 @@
 			dat += " [english_list(flag_list)]"
 		else
 			dat += " None"
+		if(selected.mode_flags & DM_FLAG_ITEMWEAK)
+			dat += "<br><a href='?src=\ref[src];b_cont_flavor=\ref[selected]'>Contamination Mode:</a>"
+			dat += "[selected.cont_flavor]"
 
 		//Belly verb
 		dat += "<br><a href='?src=\ref[src];b_verb=\ref[selected]'>Vore Verb:</a>"
@@ -532,6 +535,13 @@
 			return 0
 		selected.mode_flags ^= selected.mode_flag_list[toggle_addon]
 		selected.items_preserved.Cut() //Re-evaltuate all items in belly on addon toggle
+
+	if(href_list["b_cont_flavor"])
+		var/list/menu_list = cont_flavors.Copy()
+		var/new_flavor = input("Choose Contamination Mode (currently [selected.cont_flavor])") as null|anything in menu_list
+		if(!new_flavor)
+			return 0
+		selected.cont_flavor = new_flavor
 
 	if(href_list["b_desc"])
 		var/new_desc = lhtml_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)

@@ -1865,8 +1865,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
 /obj/item/weapon/mining_scanner,
-/obj/item/clothing/suit/space/void/mining/taur,
-/obj/item/clothing/head/helmet/space/void/mining,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /turf/simulated/floor/tiled,
@@ -1877,8 +1875,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
 /obj/item/weapon/mining_scanner,
-/obj/item/clothing/suit/space/void/mining/taur,
-/obj/item/clothing/head/helmet/space/void/mining,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},

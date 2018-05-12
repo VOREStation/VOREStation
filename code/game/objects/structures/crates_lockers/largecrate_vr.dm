@@ -48,7 +48,7 @@
 						/mob/living/simple_animal/hostile/frog,
 						/mob/living/simple_animal/horse,
 						/mob/living/simple_animal/hostile/panther,
-						/mob/living/simple_animal/hostile/snake,
+						/mob/living/simple_animal/hostile/giant_snake,
 						/mob/living/simple_animal/hostile/wolf,
 						/mob/living/simple_animal/hostile/bear;0.5,
 						/mob/living/simple_animal/hostile/bear/brown;0.5,

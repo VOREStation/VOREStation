@@ -355,15 +355,13 @@
 	name = "KSS-8 security armor"
 	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
 	species_restricted = null //Species restricted since all it cares about is a taur half
-	icon_override = 'icons/mob/taursuits_vr.dmi' //Needs to be this since it's 64*32
+	icon = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_state = "serdy_armor"
+	item_state = "serdy_armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
 
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
-		icon_override = 'icons/mob/taursuits_vr.dmi' //Just in case
-		icon_state = "serdy_armor" //Just in case
-		pixel_x = -16
 		return ..()
 	else
 		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
@@ -1977,6 +1975,26 @@
 	icon_state = "modkit"
 
 	from_helmet = /obj/item/clothing/head/helmet/space/void/security
-	from_suit = /obj/item/clothing/suit/space/void/security/taur
+	from_suit = /obj/item/clothing/suit/space/void/security
 	to_helmet = /obj/item/clothing/head/helmet/space/void/security/hasd
 	to_suit = /obj/item/clothing/suit/space/void/security/hasd
+
+//InterroLouis - Kai Highlands
+/obj/item/borg/upgrade/modkit/chassis_mod/kai
+	name = "kai chassis"
+	desc = "Makes your KA green. All the fun of having a more powerful KA without actually having a more powerful KA."
+	cost = 0
+	denied_type = /obj/item/borg/upgrade/modkit/chassis_mod
+	chassis_icon = "kineticgun_K"
+	chassis_name = "Kai-netic Accelerator"
+	var/chassis_desc = "A self recharging, ranged mining tool that does increased damage in low temperature. Capable of holding up to six slots worth of mod kits. It seems to have been painted an ugly green, and has a small image of a bird scratched crudely into the stock."
+	var/chassis_icon_file = 'icons/vore/custom_guns_vr.dmi'
+
+/obj/item/borg/upgrade/modkit/chassis_mod/kai/install(obj/item/weapon/gun/energy/kinetic_accelerator/KA, mob/user)
+	KA.desc = chassis_desc
+	KA.icon = chassis_icon_file
+	..()
+/obj/item/borg/upgrade/modkit/chassis_mod/kai/uninstall(obj/item/weapon/gun/energy/kinetic_accelerator/KA)
+	KA.desc = initial(KA.desc)
+	KA.icon = initial(KA.icon)
+	..()

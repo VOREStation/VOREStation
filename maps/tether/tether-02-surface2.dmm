@@ -3078,7 +3078,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-
+	
 	},
 /turf/simulated/open,
 /area/tether/surfacebase/north_staires_two)
@@ -3179,25 +3179,25 @@
 	dir = 1;
 	icon_state = "direction_med";
 	pixel_y = 8;
-
+	
 	},
 /obj/structure/sign/directions/science{
 	dir = 1;
 	icon_state = "direction_sci";
 	pixel_y = 3;
-
+	
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
 	pixel_y = -4;
-
+	
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 4;
 	icon_state = "direction_eng";
 	pixel_y = -10;
-
+	
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_staires_two)
@@ -4396,7 +4396,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-
+	
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
@@ -4718,7 +4718,6 @@
 "kt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/industrial/danger{
-
 	icon_state = "danger";
 	dir = 8
 	},
@@ -5267,7 +5266,7 @@
 	dir = 4;
 	icon_state = "extinguisher_closed";
 	pixel_x = -30;
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
@@ -6577,13 +6576,11 @@
 "oe" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
-
 	name = "Janitorial Desk";
 	icon_state = "left";
 	dir = 2
 	},
 /obj/machinery/door/window/eastleft{
-
 	name = "Janitorial Desk";
 	icon_state = "left";
 	dir = 1
@@ -7581,7 +7578,7 @@
 	dir = 4;
 	icon_state = "extinguisher_closed";
 	pixel_x = -30;
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/lockers)
@@ -8690,7 +8687,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/lower/lobby)
@@ -9573,7 +9570,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-
+	
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -10205,7 +10202,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-
+	
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
@@ -10594,7 +10591,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 5;
 	icon_state = "intact";
-
+	
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -10888,7 +10885,7 @@
 	dir = 1;
 	icon_state = "guest";
 	pixel_y = -28;
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
@@ -11186,7 +11183,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
 	icon_state = "intact";
-
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -11237,7 +11234,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
 	icon_state = "intact";
-
+	
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -12016,7 +12013,6 @@
 /area/engineering/atmos/hallway)
 "wQ" = (
 /obj/machinery/computer/atmos_alert{
-
 	icon_state = "computer";
 	dir = 1
 	},
@@ -12039,7 +12035,6 @@
 /area/engineering/atmos/monitoring)
 "wT" = (
 /obj/machinery/computer/rcon{
-
 	icon_state = "computer";
 	dir = 1
 	},
@@ -12053,7 +12048,6 @@
 /area/engineering/atmos/monitoring)
 "wV" = (
 /obj/machinery/computer/power_monitor{
-
 	icon_state = "computer";
 	dir = 1
 	},
@@ -12234,7 +12228,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8;
 	icon_state = "map";
-
+	
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/server)
@@ -12242,7 +12236,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
 	icon_state = "intact";
-
+	
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -12381,7 +12375,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
 	icon_state = "intact";
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/hallway)
@@ -13885,7 +13879,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-
+	
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/research_storage)
@@ -14130,7 +14124,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 5;
 	icon_state = "intact";
-
+	
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -14145,13 +14139,13 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
 	icon_state = "intact";
-
+	
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-
+	
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
@@ -14257,7 +14251,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
 	icon_state = "intact";
-
+	
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -14334,7 +14328,6 @@
 /area/engineering/atmos)
 "Bv" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-
 	icon_state = "map_on";
 	dir = 1
 	},
@@ -14392,7 +14385,6 @@
 /area/engineering/atmos)
 "BD" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-
 	icon_state = "map_on";
 	dir = 4
 	},
@@ -14449,7 +14441,7 @@
 /obj/machinery/atmospherics/valve/digital/open{
 	dir = 4;
 	icon_state = "map_valve1";
-
+	
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
@@ -14501,7 +14493,6 @@
 /area/engineering/atmos)
 "BU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
-
 	icon_state = "intact";
 	dir = 5
 	},
@@ -14609,7 +14600,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
 	icon_state = "intact";
-
+	
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -14899,7 +14890,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/cap/visible{
-
 	icon_state = "cap";
 	dir = 1
 	},
@@ -15069,7 +15059,7 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30;
-
+	
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -15579,8 +15569,6 @@
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/void/atmos/taur,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
 /turf/simulated/floor/tiled/techfloor,
@@ -15601,8 +15589,6 @@
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/void/atmos/taur,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
 /turf/simulated/floor/tiled/techfloor,
@@ -15976,7 +15962,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact";
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -15999,7 +15985,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
 	icon_state = "intact";
-
+	
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -16673,7 +16659,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact";
-
+	
 	},
 /obj/machinery/airlock_sensor/airlock_exterior{
 	frequency = 1381;
@@ -17676,7 +17662,7 @@
 	dir = 1;
 	icon_state = "borderfloor";
 	pixel_y = 0;
-
+	
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
@@ -18033,7 +18019,7 @@
 	dir = 1;
 	icon_state = "borderfloor";
 	pixel_y = 0;
-
+	
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
