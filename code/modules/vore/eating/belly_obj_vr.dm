@@ -33,6 +33,7 @@
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
 	var/release_sound = TRUE				// Boolean for now, maybe replace with something else later
 	var/mode_flags = 0						// Stripping, numbing, etc.
+	var/cont_flavor = "Generic"				// Selected contamination mode.
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -136,7 +137,8 @@
 		"digest_messages_prey",
 		"examine_messages",
 		"emote_lists",
-		"mode_flags"
+		"mode_flags",
+		"cont_flavor"
 		)
 
 /obj/belly/New(var/newloc)
@@ -371,7 +373,7 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
-					I.gurgle_contaminate(contents, owner) //We do an initial contamination pass to get stuff like IDs wet.
+					I.gurgle_contaminate(contents, cont_flavor) //We do an initial contamination pass to get stuff like IDs wet.
 					if(mode_flags & DM_FLAG_ITEMWEAK)
 						items_preserved |= I
 
@@ -576,6 +578,7 @@
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
+	items_preserved -= content
 	if(!silent && target.vore_sound && !recent_sound)
 		var/soundfile = vore_sounds[target.vore_sound]
 		if(soundfile)
@@ -611,6 +614,7 @@
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
 	dupe.mode_flags = mode_flags
+	dupe.cont_flavor = cont_flavor
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
