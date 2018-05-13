@@ -303,6 +303,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		else
 			HTML += addtext("<i><b>&larr; From <a href='byond://?src=\ref[src];choice=Message;notap=1;target=",index["target"],"'>", index["owner"],"</a>:</b></i><br>", index["message"], "<br>")
 	HTML +="</body></html>"
+	HTML = sanitize_local(HTML, SANITIZE_BROWSER)
 	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 
 
@@ -787,8 +788,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/n = input(U, "Please enter message", name, notehtml) as message
 			if (in_range(src, U) && loc == U)
 				n = sanitizeSafe(n, extra = 0)
+				n = fix_rus_nanoui(n)
 				if (mode == 1)
-					note = html_decode(n)
+					note = lhtml_decode(n)
 					notehtml = note
 					note = replacetext(note, "\n", "<br>")
 			else
@@ -1102,8 +1104,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			to_chat(U, "ERROR: Messaging server rejected your message. Reason: contains '[send_result]'.")
 			return
 
-		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
-		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
+		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[fix_rus_nanoui(t)]", "target" = "\ref[P]")))
+		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[fix_rus_nanoui(t)]", "target" = "\ref[src]")))
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.client && (M.is_preference_enabled(/datum/client_preference/ghost_ears))) // src.client is so that ghosts don't have to listen to mice
 				if(istype(M, /mob/new_player))
@@ -1176,7 +1178,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/ai/new_message(var/atom/movable/sending_unit, var/sender, var/sender_job, var/message)
 	var/track = ""
 	if(ismob(sending_unit.loc) && isAI(loc))
-		track = "(<a href='byond://?src=\ref[loc];track=\ref[sending_unit.loc];trackname=[html_encode(sender)]'>Follow</a>)"
+		track = "(<a href='byond://?src=\ref[loc];track=\ref[sending_unit.loc];trackname=[lhtml_encode(sender)]'>Follow</a>)"
 
 	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;notap=1;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>) [track]"
 	new_info(message_silent, newstone, reception_message)

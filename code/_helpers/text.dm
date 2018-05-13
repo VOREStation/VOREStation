@@ -23,22 +23,25 @@
  */
 
 //Used for preprocessing entered text
-/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1, var/mode = SANITIZE_CHAT)
 	if(!input)
 		return
 
 	if(max_length)
 		input = copytext(input,1,max_length)
 
+	//code in modules/l10n/localisation.dm
+	input = sanitize_local(input, mode)
+
 	if(extra)
 		input = replace_characters(input, list("\n"=" ","\t"=" "))
 
 	if(encode)
 		// The below \ escapes have a space inserted to attempt to enable Travis auto-checking of span class usage. Please do not remove the space.
-		//In addition to processing html, html_encode removes byond formatting codes like "\ red", "\ i" and other.
+		//In addition to processing html, lhtml_encode removes byond formatting codes like "\ red", "\ i" and other.
 		//It is important to avoid double-encode text, it can "break" quotes and some other characters.
 		//Also, keep in mind that escaped characters don't work in the interface (window titles, lower left corner of the main window, etc.)
-		input = html_encode(input)
+		input = lhtml_encode(input)
 	else
 		//If not need encode text, simply remove < and >
 		//note: we can also remove here byond formatting codes: 0xFF + next byte
@@ -50,12 +53,81 @@
 
 	return input
 
-//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after html_encode().
+/proc/fix_rus_nanoui(var/input)
+	input = replacetext(input, "À", "&#1040;")
+	input = replacetext(input, "Á", "&#1041;")
+	input = replacetext(input, "Â", "&#1042;")
+	input = replacetext(input, "Ã", "&#1043;")
+	input = replacetext(input, "Ä", "&#1044;")
+	input = replacetext(input, "Å", "&#1045;")
+	input = replacetext(input, "Æ", "&#1046;")
+	input = replacetext(input, "Ç", "&#1047;")
+	input = replacetext(input, "È", "&#1048;")
+	input = replacetext(input, "É", "&#1049;")
+	input = replacetext(input, "Ê", "&#1050;")
+	input = replacetext(input, "Ë", "&#1051;")
+	input = replacetext(input, "Ì", "&#1052;")
+	input = replacetext(input, "Í", "&#1053;")
+	input = replacetext(input, "Î", "&#1054;")
+	input = replacetext(input, "Ï", "&#1055;")
+	input = replacetext(input, "Ð", "&#1056;")
+	input = replacetext(input, "Ñ", "&#1057;")
+	input = replacetext(input, "Ò", "&#1058;")
+	input = replacetext(input, "Ó", "&#1059;")
+	input = replacetext(input, "Ô", "&#1060;")
+	input = replacetext(input, "Õ", "&#1061;")
+	input = replacetext(input, "Ö", "&#1062;")
+	input = replacetext(input, "×", "&#1063;")
+	input = replacetext(input, "Ø", "&#1064;")
+	input = replacetext(input, "Ù", "&#1065;")
+	input = replacetext(input, "Ú", "&#1066;")
+	input = replacetext(input, "Û", "&#1067;")
+	input = replacetext(input, "Ü", "&#1068;")
+	input = replacetext(input, "Ý", "&#1069;")
+	input = replacetext(input, "Þ", "&#1070;")
+	input = replacetext(input, "ß", "&#1071;")
+	input = replacetext(input, "à", "&#1072;")
+	input = replacetext(input, "á", "&#1073;")
+	input = replacetext(input, "â", "&#1074;")
+	input = replacetext(input, "ã", "&#1075;")
+	input = replacetext(input, "ä", "&#1076;")
+	input = replacetext(input, "å", "&#1077;")
+	input = replacetext(input, "æ", "&#1078;")
+	input = replacetext(input, "ç", "&#1079;")
+	input = replacetext(input, "è", "&#1080;")
+	input = replacetext(input, "é", "&#1081;")
+	input = replacetext(input, "ê", "&#1082;")
+	input = replacetext(input, "ë", "&#1083;")
+	input = replacetext(input, "ì", "&#1084;")
+	input = replacetext(input, "í", "&#1085;")
+	input = replacetext(input, "î", "&#1086;")
+	input = replacetext(input, "ï", "&#1087;")
+	input = replacetext(input, "ð", "&#1088;")
+	input = replacetext(input, "ñ", "&#1089;")
+	input = replacetext(input, "ò", "&#1090;")
+	input = replacetext(input, "ó", "&#1091;")
+	input = replacetext(input, "ô", "&#1092;")
+	input = replacetext(input, "õ", "&#1093;")
+	input = replacetext(input, "ö", "&#1094;")
+	input = replacetext(input, "÷", "&#1095;")
+	input = replacetext(input, "ø", "&#1096;")
+	input = replacetext(input, "ù", "&#1097;")
+	input = replacetext(input, "ú", "&#1098;")
+	input = replacetext(input, "û", "&#1099;")
+	input = replacetext(input, "ü", "&#1100;")
+	input = replacetext(input, "ý", "&#1101;")
+	input = replacetext(input, "þ", "&#1102;")
+	input = replacetext(input, "ÿ", "&#1103;")
+	input = replacetext(input, "¸", "&#1105;")
+	input = replacetext(input, "¨", "&#1025;")
+	return input
+
+//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after lhtml_encode().
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
-/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
-	return sanitize(replace_characters(input, list(">"=" ","<"=" ", "\""="'")), max_length, encode, trim, extra)
+/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1, var/mode = SANITIZE_CHAT)
+	return sanitize(replace_characters(input, list(">"=" ","<"=" ", "\""="'")), max_length, encode, trim, extra, mode)
 
 //Filters out undesirable characters from names
 /proc/sanitizeName(var/input, var/max_length = MAX_NAME_LEN, var/allow_numbers = 0)
@@ -137,7 +209,7 @@
 
 //Old variant. Haven't dared to replace in some places.
 /proc/sanitize_old(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
-	return html_encode(replace_characters(t,repl_chars))
+	return lhtml_encode(replace_characters(t,repl_chars))
 
 /*
  * Text searches
@@ -297,7 +369,7 @@ proc/TextPreview(var/string,var/len=40)
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
 /proc/copytext_preserve_html(var/text, var/first, var/last)
-	return html_encode(copytext(html_decode(text), first, last))
+	return lhtml_encode(copytext(html_decode(text), first, last))
 
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources

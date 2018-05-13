@@ -461,7 +461,7 @@
 		if(user.vore_organs.len >= BELLIES_MAX)
 			return 0
 
-		var/new_name = html_encode(input(usr,"New belly's name:","New Belly") as text|null)
+		var/new_name = lhtml_encode(input(usr,"New belly's name:","New Belly") as text|null)
 
 		var/failure_msg
 		if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
@@ -490,7 +490,7 @@
 	//Please keep these the same order they are on the panel UI for ease of coding
 	////
 	if(href_list["b_name"])
-		var/new_name = html_encode(input(usr,"Belly's new name:","New Name") as text|null)
+		var/new_name = lhtml_encode(input(usr,"Belly's new name:","New Name") as text|null)
 
 		var/failure_msg
 		if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
@@ -544,7 +544,7 @@
 		selected.cont_flavor = new_flavor
 
 	if(href_list["b_desc"])
-		var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)
+		var/new_desc = lhtml_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)
 
 		if(new_desc)
 			new_desc = readd_quotes(new_desc)
@@ -604,7 +604,7 @@
 					selected.struggle_messages_inside = initial(selected.struggle_messages_inside)
 
 	if(href_list["b_verb"])
-		var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
+		var/new_verb = lhtml_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
 
 		if(length(new_verb) > BELLIES_NAME_MAX || length(new_verb) < BELLIES_NAME_MIN)
 			alert("Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
@@ -758,7 +758,7 @@
 			to_chat(user,"<span class='notice'>Virgo-specific preferences applied from active slot!</span>")
 
 	if(href_list["setflavor"])
-		var/new_flavor = html_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",user.vore_taste) as text|null)
+		var/new_flavor = lhtml_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",user.vore_taste) as text|null)
 		if(!new_flavor)
 			return 0
 

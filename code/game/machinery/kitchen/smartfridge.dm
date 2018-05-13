@@ -314,7 +314,7 @@
 		var/datum/stored_item/I = item_records[i]
 		var/count = I.get_amount()
 		if(count > 0)
-			items.Add(list(list("display_name" = html_encode(capitalize(I.item_name)), "vend" = i, "quantity" = count)))
+			items.Add(list(list("display_name" = lhtml_encode(capitalize(I.item_name)), "vend" = i, "quantity" = count)))
 
 	if(items.len > 0)
 		data["contents"] = items

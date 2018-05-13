@@ -63,7 +63,7 @@
 	planet, they mostly hold ideals of honesty, virtue, proficiency and bravery above all \
 	else, frequently even their own lives. They prefer warmer temperatures than most species and \
 	their native tongue is a heavy hissing laungage called Sinta'Unathi."
-/* VOREStation Removal
+
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120
@@ -80,7 +80,7 @@
 	breath_heat_level_3 = 1400	//Default 1250
 
 	minimum_breath_pressure = 18	//Bigger, means they need more air
-*/
+
 	body_temperature = T20C
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -118,14 +118,14 @@
 		)
 
 
-	//heat_discomfort_level = 295 //VOREStation Edit
+	heat_discomfort_level = 295
 	heat_discomfort_strings = list(
 		"You feel soothingly warm.",
 		"You feel the heat sink into your bones.",
 		"You feel warm enough to take a nap."
 		)
 
-	//cold_discomfort_level = 292 //VOREStation Removal
+	cold_discomfort_level = 292
 	cold_discomfort_strings = list(
 		"You feel chilly.",
 		"You feel sluggish and cold.",
@@ -174,7 +174,7 @@
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
 	cold_level_3 = 80  //Default 120
-/* VOREStation Removal
+
 	heat_level_1 = 330 //Default 360
 	heat_level_2 = 380 //Default 400
 	heat_level_3 = 800 //Default 1000
@@ -191,7 +191,7 @@
 	breath_heat_level_1 = 360	//Default 380 - Higher is better
 	breath_heat_level_2 = 430	//Default 450
 	breath_heat_level_3 = 1000	//Default 1250
-*/
+
 	primitive_form = SPECIES_MONKEY_TAJ
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -202,14 +202,14 @@
 
 	//reagent_tag = IS_TAJARA //VOREStation Removal
 
-	//heat_discomfort_level = 292 //VOREStation Removal
+	heat_discomfort_level = 303
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
-	//cold_discomfort_level = 275 //VOREStation Removal
+	cold_discomfort_level = 275
 
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart,

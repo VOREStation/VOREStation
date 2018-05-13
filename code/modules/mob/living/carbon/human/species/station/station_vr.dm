@@ -310,8 +310,7 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
-	tail_animation = 'icons/mob/species/tajaran/tail_vr.dmi'
-	color_mult = 1
+	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 	inherent_verbs = list(/mob/living/proc/shred_limb)
@@ -348,12 +347,10 @@
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/human
-	color_mult = 1
-	icobase = 'icons/mob/human_races/r_human_vr.dmi'
-	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
-	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	icobase = 'icons/mob/human_races/r_human.dmi'
+	deform = 'icons/mob/human_races/r_def_human.dmi'
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 	min_age = 18
-	base_color = "#EECEB3"
 
 /datum/species/vox
 	gluttonous = 0

@@ -24,7 +24,7 @@ world/IsBanned(key,address,computer_id)
 		//Ban Checking
 		. = CheckBan( ckey(key), computer_id, address )
 		if(.)
-			log_adminwarn("Failed Login: [key] [computer_id] [address] - Banned [.["reason"]]")
+			log_adminwarn("Failed Login: [key] [computer_id] [address] - Banned [sanitize_local(.["reason"], SANITIZE_LOG)]")
 			message_admins("<font color='blue'>Failed Login: [key] id:[computer_id] ip:[address] - Banned [.["reason"]]</font>")
 			return .
 
