@@ -41,9 +41,9 @@
 	if(!used)
 		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
 		used = TRUE
-		
+
 		sleep(5 SECONDS)
-		
+
 		var/turf/deploy_location = get_turf(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)
@@ -53,7 +53,7 @@
 				var/width = template.width
 				var/height = template.height
 				src.loc.visible_message("<span class='warning'>\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!</span>")
-		
+
 		if(status != SHELTER_DEPLOY_ALLOWED)
 			used = FALSE
 			return
@@ -112,9 +112,21 @@
 	name = "table"
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "table"
+	can_reinforce = FALSE
+	can_plate = FALSE
 
 /obj/structure/table/survival_pod/update_icon()
 	icon_state = "table"
+
+/obj/structure/table/survival_pod/New()
+	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	verbs -= /obj/structure/table/verb/do_flip
+	verbs -= /obj/structure/table/proc/do_put
+	..()
+
+/obj/structure/table/survival_pod/dismantle(obj/item/weapon/wrench/W, mob/user)
+	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
+	return
 
 //Sleeper
 /obj/machinery/sleeper/survival_pod
