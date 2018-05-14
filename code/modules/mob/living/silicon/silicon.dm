@@ -419,3 +419,6 @@
 
 	ghostize(0)
 	qdel(src)
+
+/mob/living/silicon/has_vision()
+	return 0 //NOT REAL EYES

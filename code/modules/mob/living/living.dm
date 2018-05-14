@@ -1015,7 +1015,7 @@ default behaviour is:
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
-		
+
 	return canmove
 
 // Adds overlays for specific modifiers.
@@ -1198,3 +1198,7 @@ default behaviour is:
 
 /mob/living/proc/make_hud_overlays()
 	return
+
+
+/mob/living/proc/has_vision()
+	return !(eye_blind || (disabilities & BLIND) || stat || blinded)

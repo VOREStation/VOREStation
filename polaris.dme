@@ -1884,6 +1884,7 @@
 #include "code\modules\mob\living\simple_animal\aliens\hivebot.dm"
 #include "code\modules\mob\living\simple_animal\aliens\mimic.dm"
 #include "code\modules\mob\living\simple_animal\aliens\shade.dm"
+#include "code\modules\mob\living\simple_animal\aliens\statue.dm"
 #include "code\modules\mob\living\simple_animal\animals\bat.dm"
 #include "code\modules\mob\living\simple_animal\animals\bear.dm"
 #include "code\modules\mob\living\simple_animal\animals\carp.dm"
