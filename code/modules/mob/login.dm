@@ -61,6 +61,11 @@
 	client.screen += plane_holder.plane_masters
 	recalculate_vis()
 
+	// AO support
+	var/ao_enabled = client.is_preference_enabled(/datum/client_preference/ambient_occlusion)
+	plane_holder.set_ao(VIS_OBJS, ao_enabled)
+	plane_holder.set_ao(VIS_MOBS, ao_enabled)
+
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	client.set_hotkeys_macro("macro", "hotkeymode")
 
