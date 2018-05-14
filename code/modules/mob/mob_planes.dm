@@ -36,9 +36,9 @@
 	plane_masters[VIS_MESONS]		= new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
 
 	// Real tangible stuff planes
-	plane_masters[VIS_TURFS]	= new /obj/screen/plane_master{plane = TURF_PLANE; alpha = 255}
-	plane_masters[VIS_OBJS]		= new /obj/screen/plane_master{plane = OBJ_PLANE; alpha = 255}
-	plane_masters[VIS_MOBS]		= new /obj/screen/plane_master{plane = MOB_PLANE; alpha = 255}
+	plane_masters[VIS_TURFS]	= new /obj/screen/plane_master/main{plane = TURF_PLANE}
+	plane_masters[VIS_OBJS]		= new /obj/screen/plane_master/main{plane = OBJ_PLANE}
+	plane_masters[VIS_MOBS]		= new /obj/screen/plane_master/main{plane = MOB_PLANE}
 
 	..()
 
@@ -171,3 +171,9 @@
 /obj/screen/plane_master/ghosts
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
+
+/////////////////
+//The main game planes start normal and visible
+/obj/screen/plane_master/main
+	alpha = 255
+	mouse_opacity = 1
