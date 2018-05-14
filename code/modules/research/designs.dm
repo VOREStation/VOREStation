@@ -751,6 +751,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/lightreplacer
 	sort_string = "VAAAH"
 
+datum/design/item/laserpointer
+	name = "laser pointer"
+	desc = "Don't shine it in your eyes!"
+	id = "laser_pointer"
+	req_tech = list(TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 100, "glass" = 50)
+	build_path = /obj/item/device/laser_pointer
+	sort_string = "VAAAI"
+
 /datum/design/item/paicard
 	name = "'pAI', personal artificial intelligence device"
 	id = "paicard"
