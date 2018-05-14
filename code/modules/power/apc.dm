@@ -64,6 +64,8 @@
 	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/power_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "apc0"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	use_power = 0
 	req_access = list(access_engine_equip)
