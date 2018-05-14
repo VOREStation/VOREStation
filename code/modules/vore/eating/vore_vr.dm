@@ -111,7 +111,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
-	can_be_drop_prey = json_from_file["can_be_drop_pred"]
+	can_be_drop_pred = json_from_file["can_be_drop_pred"]
 	belly_prefs = json_from_file["belly_prefs"]
 
 	//Quick sanitize
