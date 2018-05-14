@@ -1,4 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - tweak: "Human examine code has received a major refactor. If you encounter unusual behaviour that seems wrong, please report it."

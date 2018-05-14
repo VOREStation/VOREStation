@@ -97,6 +97,31 @@
 			)
 		)
 
+/obj/random/multiple/voidsuit/medical
+	name = "Random Mining Voidsuit"
+	desc = "This is a random mining voidsuit."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "rig-mining"
+
+/obj/random/multiple/voidsuit/medical/item_to_spawn()
+	return pick(
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/medical,
+				/obj/item/clothing/head/helmet/space/void/medical
+			),
+			prob(1);list(
+				/obj/item/clothing/suit/space/void/medical/alt,
+				/obj/item/clothing/head/helmet/space/void/medical/alt
+			),
+			prob(3);list(
+				/obj/item/clothing/suit/space/void/medical/bio,
+				/obj/item/clothing/head/helmet/space/void/medical/bio
+			),
+			prob(4);list(
+				/obj/item/clothing/suit/space/void/medical/emt,
+				/obj/item/clothing/head/helmet/space/void/medical/emt
+			)
+		)
 
 /obj/random/rigsuit
 	name = "Random rigsuit"
