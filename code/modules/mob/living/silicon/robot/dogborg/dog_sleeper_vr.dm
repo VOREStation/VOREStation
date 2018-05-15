@@ -18,11 +18,17 @@
 	var/UI_open = FALSE
 	var/compactor = FALSE
 	var/analyzer = FALSE
+	var/decompiler = FALSE
 	var/datum/research/techonly/files //Analyzerbelly var.
 	var/synced = FALSE
 	var/startdrain = 500
 	var/max_item_count = 1
 	var/gulpsound = 'sound/vore/gulp.ogg'
+	var/datum/matter_synth/metal = null
+	var/datum/matter_synth/glass = null
+	var/datum/matter_synth/wood = null
+	var/datum/matter_synth/plastic = null
+	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
 
@@ -518,6 +524,7 @@
 
 		//Pick a random item to deal with (if there are any)
 		var/atom/target = pick(touchable_items)
+		var/volume = 0
 
 		//Handle the target being a mob
 		if(isliving(target))
@@ -559,6 +566,13 @@
 							items_preserved += brain
 					else
 						T.drop_from_inventory(I, src)
+				if(ishuman(T))
+					var/mob/living/carbon/human/Prey = T
+					volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
+					water.add_charge(volume)
+				if(T.reagents)
+					volume = T.reagents.total_volume
+					water.add_charge(volume)
 				qdel(T)
 				update_patient()
 				if(UI_open == TRUE)
@@ -568,26 +582,45 @@
 		else
 			var/obj/item/T = target
 			if(istype(T))
-				if(analyzer == TRUE)
-					var/obj/item/tech_item = T
-					for(var/tech in tech_item.origin_tech)
-						files.UpdateTech(tech, tech_item.origin_tech[tech])
-						synced = FALSE
+				if(T.reagents)
+					volume = T.reagents.total_volume
 				var/digested = T.digest_act(item_storage = src)
 				if(!digested)
 					items_preserved |= T
 				else
-					drain(-50 * digested)
+					if(analyzer && digested)
+						var/obj/item/tech_item = T
+						for(var/tech in tech_item.origin_tech)
+							files.UpdateTech(tech, tech_item.origin_tech[tech])
+							synced = FALSE
+						drain(-50 * digested)
+					if(volume)
+						water.add_charge(volume)
+					if(!analyzer && compactor && T.matter)
+						for(var/material in T.matter)
+							var/total_material = T.matter[material]
+							if(istype(T,/obj/item/stack))
+								var/obj/item/stack/stack = T
+								total_material *= stack.get_amount()
+							if(material == DEFAULT_WALL_MATERIAL)
+								metal.add_charge(total_material)
+							if(material == "glass")
+								glass.add_charge(total_material)
+							if(decompiler)
+								if(material == "plastic")
+									plastic.add_charge(total_material)
+								if(material == "wood")
+									wood.add_charge(total_material)
+					else
+						drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
 				drain(-100)
 			else
 				items_preserved |= target
-
 			if(UI_open == TRUE)
 				update_patient()
 				sleeperUI(hound)
-
 		return
 
 /obj/item/device/dogborg/sleeper/process()
@@ -632,3 +665,10 @@
 	max_item_count = 1
 	startdrain = 100
 	analyzer = TRUE
+
+/obj/item/device/dogborg/sleeper/compactor/decompiler
+	name = "Matter Decompiler"
+	desc = "A mounted matter decompiling unit with fuel processor."
+	icon_state = "decompiler"
+	max_item_count = 10
+	decompiler = TRUE

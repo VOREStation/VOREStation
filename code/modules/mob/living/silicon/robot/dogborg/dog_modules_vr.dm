@@ -25,7 +25,7 @@
 
 /obj/item/weapon/dogborg/jaws/small/attack_self(mob/user)
 	var/mob/living/silicon/robot.R = user
-	if(R.emagged)
+	if(R.emagged || R.emag_items)
 		emagged = !emagged
 		if(emagged)
 			name = "combat jaws"
@@ -140,7 +140,7 @@
 	combat = 1
 	attack_verb = list("batted", "pawed", "bopped", "whapped")
 	chargecost = 500
-	
+
 /obj/item/weapon/shockpaddles/robot/hound/jumper
 	name = "paws of life"
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -159,6 +159,7 @@
 	icon_state = "synthtongue"
 	hitsound = 'sound/effects/attackblob.ogg'
 	var/emagged = 0
+	var/datum/matter_synth/water = null
 
 /obj/item/device/dogborg/tongue/New()
 	..()
@@ -166,7 +167,7 @@
 
 /obj/item/device/dogborg/tongue/attack_self(mob/user)
 	var/mob/living/silicon/robot.R = user
-	if(R.emagged)
+	if(R.emagged || R.emag_items)
 		emagged = !emagged
 		if(emagged)
 			name = "hacked tongue of doom"
@@ -187,14 +188,15 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.client && (target in user.client.screen))
 		to_chat(user, "<span class='warning'>You need to take \the [target.name] off before cleaning it!</span>")
-	else if(istype(target,/obj/effect/decal/cleanable))
+	else if(istype(target,/obj/effect/decal/cleanable) && water.energy >= 5)
 		user.visible_message("[user] begins to lick off \the [target.name].", "<span class='notice'>You begin to lick off \the [target.name]...</span>")
 		if(do_after (user, 50))
 			to_chat(user, "<span class='notice'>You finish licking off \the [target.name].</span>")
+			water.use_charge(5)
 			qdel(target)
 			var/mob/living/silicon/robot.R = user
 			R.cell.charge += 50
-	else if(istype(target,/obj/item))
+	else if(istype(target,/obj/item) && water.energy >= 5)
 		if(istype(target,/obj/item/trash))
 			user.visible_message("[user] nibbles away at \the [target.name].", "<span class='notice'>You begin to nibble away at \the [target.name]...</span>")
 			if(do_after (user, 50))
@@ -203,6 +205,7 @@
 				qdel(target)
 				var/mob/living/silicon/robot.R = user
 				R.cell.charge += 250
+				water.use_charge(5)
 			return
 		if(istype(target,/obj/item/weapon/cell))
 			user.visible_message("[user] begins cramming \the [target.name] down its throat.", "<span class='notice'>You begin cramming \the [target.name] down your throat...</span>")
@@ -212,11 +215,13 @@
 				var/mob/living/silicon/robot.R = user
 				var/obj/item/weapon/cell.C = target
 				R.cell.charge += C.maxcharge / 3
+				water.use_charge(5)
 				qdel(target)
 			return
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
 			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+			water.use_charge(5)
 			var/obj/effect/decal/cleanable/C = locate() in target
 			qdel(C)
 			target.clean_blood()
@@ -226,34 +231,65 @@
 			var/mob/living/L = target
 			if(R.cell.charge <= 666)
 				return
-			L.Stun(4) // normal stunbaton is force 7 gimme a break good sir!
-			L.Weaken(4)
-			L.apply_effect(STUTTER, 4)
+			L.Stun(1)
+			L.Weaken(1)
+			L.apply_effect(STUTTER, 1)
 			L.visible_message("<span class='danger'>[user] has shocked [L] with its tongue!</span>", \
 								"<span class='userdanger'>[user] has shocked you with its tongue! You can feel the betrayal.</span>")
 			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			R.cell.charge -= 666
-		else
+		else if(water.energy >= 5)
 			user.visible_message("<span class='notice'>\the [user] affectionally licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionally lick all over \the [target]'s face!</span>")
 			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+			water.use_charge(5)
+			var/mob/living/carbon/human/H = target
+			if(H.species.lightweight == 1)
+				H.Weaken(3)
 			return
-	else if(istype(target, /obj/structure/window))
+	else if(istype(target, /obj/structure/window) && water.energy >= 1)
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
 			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+			water.use_charge(5)
 			target.color = initial(target.color)
-			//target.SetOpacity(initial(target.opacity)) //Apparantly this doesn't work?
-	else
+	else if(istype(target, /obj/structure/sink) || istype(target, /obj/structure/toilet)) //Dog vibes.
+		user.visible_message("[user] begins to lap up water from [target.name].", "<span class='notice'>You begin to lap up water from [target.name].</span>")
+		if(do_after (user, 50))
+			water.add_charge(100)
+	else if(water.energy >= 5)
 		user.visible_message("[user] begins to lick \the [target.name] clean...", "<span class='notice'>You begin to lick \the [target.name] clean...</span>")
 		if(do_after (user, 50))
 			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 			var/obj/effect/decal/cleanable/C = locate() in target
 			qdel(C)
 			target.clean_blood()
+			water.use_charge(5)
 			if(istype(target, /turf/simulated))
 				var/turf/simulated/T = target
 				T.dirt = 0
 	return
+
+/obj/item/pupscrubber
+	name = "floor scrubber"
+	desc = "Toggles floor scrubbing."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "scrub0"
+	var/enabled = FALSE
+
+/obj/item/pupscrubber/New()
+	..()
+	flags |= NOBLUDGEON
+
+/obj/item/pupscrubber/attack_self(mob/user)
+	var/mob/living/silicon/robot.R = user
+	if(!enabled)
+		R.scrubbing = TRUE
+		enabled = TRUE
+		icon_state = "scrub1"
+	else
+		R.scrubbing = FALSE
+		enabled = FALSE
+		icon_state = "scrub0"
 
 /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
 	name = "disabler"
@@ -284,25 +320,23 @@
 	name = "light replacer"
 	desc = "A device to automatically replace lights. This version is capable to produce a few replacements using your internal matter reserves."
 	max_uses = 16
+	uses = 10
 	var/cooldown = 0
+	var/datum/matter_synth/glass = null
 
-/obj/item/device/lightreplacer/dogborg/proc/AddUses(var/amount = 1)
-	uses = min(max(uses + amount, 0), max_uses)
-
-/obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Boo recharger fill is slow as shit and removes all the extra cyberfat gains you worked so hard for!
+/obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Recharger refill is so last season. Now we recycle without magic!
 	if(uses >= max_uses)
 		to_chat(user, "<span class='warning'>[src.name] is full.</span>")
 		return
 	if(uses < max_uses && cooldown == 0)
-		var/mob/living/silicon/robot.R = user
-		if(R.cell.charge <= 1000)
-			to_chat(user, "<span class='warning'>Insufficient power reserves. Please recharge.</span>")
+		if(glass.energy < 125)
+			to_chat(user, "<span class='warning'>Insufficient material reserves.</span>")
 			return
 		to_chat(user, "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still.")
 		cooldown = 1
 		if(do_after(user, 50))
-			R.cell.charge -= 800
-			AddUses(1)
+			glass.use_charge(125)
+			add_uses(1)
 			cooldown = 0
 		else
 			cooldown = 0
@@ -324,7 +358,7 @@
 	flags |= NOBLUDGEON
 
 /obj/item/weapon/dogborg/pounce/attack_self(mob/user)
-	var/mob/living/silicon/robot.R = user
+	var/mob/living/silicon/robot/R = user
 	R.leap()
 
 /mob/living/silicon/robot/proc/leap()
@@ -385,5 +419,5 @@
 	var/armor_block = run_armor_check(T, "melee")
 	var/armor_soak = get_armor_soak(T, "melee")
 	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
-	if(prob(25))
+	if(prob(33))
 		T.apply_effect(3, WEAKEN, armor_block)
