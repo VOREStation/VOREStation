@@ -84,6 +84,9 @@ var/image/no_ceiling_image = null
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]")) // VOREStation Edit - Eris overlays
 
+	if(weather_overlay)
+		add_overlay(weather_overlay)
+
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))
 			if(F == src)

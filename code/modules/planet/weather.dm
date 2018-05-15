@@ -8,9 +8,6 @@
 	var/list/roundstart_weather_chances = list()
 	var/next_weather_shift = null
 
-	// Holds the weather icon, using vis_contents. Documentation says an /atom/movable is required for placing inside another atom's vis_contents.
-	var/atom/movable/weather_visuals/visuals = null
-
 /datum/weather_holder/New(var/source)
 	..()
 	our_planet = source
@@ -18,7 +15,6 @@
 		var/datum/weather/W = allowed_weather_types[A]
 		if(istype(W))
 			W.holder = src
-	visuals = new()
 
 /datum/weather_holder/proc/change_weather(var/new_weather)
 	var/old_light_modifier = null
@@ -45,7 +41,7 @@
 		current_weather.process_effects()
 
 /datum/weather_holder/proc/update_icon_effects()
-	visuals.icon_state = current_weather.icon_state
+	our_planet.needs_work |= PLANET_PROCESS_WEATHER
 
 /datum/weather_holder/proc/update_temperature()
 	temperature = Interpolate(current_weather.temp_low, current_weather.temp_high, weight = our_planet.sun_position)
@@ -69,9 +65,3 @@
 
 /datum/weather/proc/process_effects()
 	return
-
-// All this does is hold the weather icon.
-/atom/movable/weather_visuals
-	icon = 'icons/effects/weather.dmi'
-	mouse_opacity = 0
-	plane = PLANE_PLANETLIGHTING
