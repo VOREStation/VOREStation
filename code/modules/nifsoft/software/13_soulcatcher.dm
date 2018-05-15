@@ -462,8 +462,6 @@
 		if(istype(HP) && HP.nif && HP.nif.flag_check(NIF_O_SCOTHERS,NIF_FLAGS_OTHER))
 			var/datum/nifsoft/soulcatcher/SC = HP.nif.imp_check(NIF_SOULCATCHER)
 			SC.catch_mob(H)
-		else if(H.nif && H.nif.flag_check(NIF_SC_BACKUPS))
-			SStranscore.m_backup(H,0) //If dying inside a pred who lacks SC, let ours do a backup if enabled before it's gone for good.
 	else if(H.nif && H.nif.flag_check(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)) //They are caught in their own NIF
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 		SC.catch_mob(H)
