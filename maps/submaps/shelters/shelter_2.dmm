@@ -94,7 +94,7 @@
 /area/survivalpod)
 "q" = (
 /obj/structure/tubes,
-/obj/machinery/holoplant,
+/obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "r" = (
@@ -145,6 +145,7 @@
 	icon_state = "pwindow";
 	dir = 1
 	},
+/obj/machinery/holoplant,
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "w" = (
