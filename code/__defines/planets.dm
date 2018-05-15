@@ -10,5 +10,6 @@
 #define WEATHER_HOT					"hot"
 #define WEATHER_BLOOD_MOON			"blood moon" // For admin fun or cult later on.
 
-#define PLANET_PROCESS_SUN		0x1
-#define PLANET_PROCESS_TEMP		0x2
+#define PLANET_PROCESS_WEATHER	0x1
+#define PLANET_PROCESS_SUN		0x2
+#define PLANET_PROCESS_TEMP		0x4
