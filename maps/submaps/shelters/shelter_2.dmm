@@ -189,6 +189,13 @@
 /obj/structure/sign/mining,
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
+"S" = (
+/obj/machinery/button/remote/airlock/survival_pod{
+	dir = 10;
+	pixel_y = -24
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
 
 (1,1,1) = {"
 a
@@ -232,7 +239,7 @@ h
 n
 r
 w
-A
+S
 a
 "}
 (6,1,1) = {"

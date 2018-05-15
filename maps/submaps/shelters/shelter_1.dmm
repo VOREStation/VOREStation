@@ -53,6 +53,10 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
+/obj/machinery/button/remote/airlock/survival_pod{
+	dir = 10;
+	pixel_y = -24
+	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "m" = (
