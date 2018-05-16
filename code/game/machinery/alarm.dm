@@ -36,6 +36,8 @@
 	name = "alarm"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 80
@@ -804,6 +806,8 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
