@@ -139,10 +139,12 @@ SUBSYSTEM_DEF(transcore)
 					var/datum/nifsoft/nifsoft = N
 					nifsofts += nifsoft.type
 			MR.nif_software = nifsofts
+			MR.nif_savedata = nif.save_data.Copy()
 		else if(isnull(nif)) //Didn't pass anything, so no NIF
 			MR.nif_path = null
 			MR.nif_durability = null
 			MR.nif_software = null
+			MR.nif_savedata = null
 
 	else
 		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time)

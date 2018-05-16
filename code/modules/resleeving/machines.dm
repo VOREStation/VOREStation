@@ -526,9 +526,10 @@
 
 	//Re-supply a NIF if one was backed up with them.
 	if(MR.nif_path)
-		var/obj/item/device/nif/nif = new MR.nif_path(occupant,MR.nif_durability)
+		var/obj/item/device/nif/nif = new MR.nif_path(occupant,null,MR.nif_savedata)
 		for(var/path in MR.nif_software)
 			new path(nif)
+		nif.durability = MR.nif_durability //Restore backed up durability after restoring the softs.
 
 	// If it was a custom sleeve (not owned by anyone), update namification sequences
 	if(!occupant.original_player)

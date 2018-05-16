@@ -230,6 +230,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			brainmob.dna = H.dna
+			brainmob.ooc_notes = H.ooc_notes
 			brainmob.timeofhostdeath = H.timeofdeath
 			SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
