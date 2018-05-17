@@ -1,0 +1,6 @@
+author: lorwp
+
+delete-after: True
+
+changes: 
+  - tweak: "Search and Rescue can now add certain medical restricted items to their loadouts"
