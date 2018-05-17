@@ -164,7 +164,7 @@
 	active_power_usage = 10		// Previously 20.
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
-	var/brightness_range = 6	// luminosity when on, also used in power calculation
+	var/brightness_range = 8	// luminosity when on, also used in power calculation
 	var/brightness_power = 0.8
 	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
