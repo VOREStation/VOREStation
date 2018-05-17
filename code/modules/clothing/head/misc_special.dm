@@ -99,7 +99,7 @@
 		slot_l_hand_str = "engiewelding",
 		slot_r_hand_str = "engiewelding",
 		)
-.
+
 
 /*
  * Cakehat

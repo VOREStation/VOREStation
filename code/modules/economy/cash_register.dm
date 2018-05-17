@@ -519,28 +519,21 @@
 
 /obj/machinery/cash_register/command
 	account_to_connect = "Command"
-	..()
 
 /obj/machinery/cash_register/medical
 	account_to_connect = "Medical"
-	..()
 
 /obj/machinery/cash_register/engineering
 	account_to_connect = "Engineering"
-	..()
 
 /obj/machinery/cash_register/science
 	account_to_connect = "Science"
-	..()
 
 /obj/machinery/cash_register/security
 	account_to_connect = "Security"
-	..()
 
 /obj/machinery/cash_register/cargo
 	account_to_connect = "Cargo"
-	..()
 
 /obj/machinery/cash_register/civilian
 	account_to_connect = "Civilian"
-	..()

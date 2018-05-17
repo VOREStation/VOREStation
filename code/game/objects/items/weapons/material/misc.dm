@@ -29,7 +29,7 @@
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
 	can_cleave = FALSE
-	var hits = 0
+	var/hits = 0
 
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
 	if(hits > 0)
