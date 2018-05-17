@@ -313,6 +313,8 @@
 	icon_opened = "medical_wall_open"
 	icon_broken = "medical_wall_spark"
 	icon_off = "medical_wall_off"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	density = 0
 	wall_mounted = 1

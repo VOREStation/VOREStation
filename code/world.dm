@@ -43,11 +43,11 @@ var/global/datum/global_init/init = new ()
 	world.log << "Map Loading Complete"
 	//logs
 	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	diary = file("[log_path].log")
-	href_logfile = file("[log_path]-hrefs.htm")
-	error_log = file("[log_path]-error.log")
-	debug_log = file("[log_path]-debug.log")
-	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
+	diary = start_log("[log_path].log")
+	href_logfile = start_log("[log_path]-hrefs.htm")
+	error_log = start_log("[log_path]-error.log")
+	debug_log = start_log("[log_path]-debug.log")
+
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
@@ -59,8 +59,9 @@ var/global/datum/global_init/init = new ()
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+	// TODO - Figure out what this is. Can you assign to world.log?
+	// if(config && config.log_runtime)
+	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
 	//Emergency Fix
@@ -147,7 +148,7 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	debug_log << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
 		var/x = 1
@@ -450,6 +451,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
+	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..(reason)
 
 /hook/startup/proc/loadMode()

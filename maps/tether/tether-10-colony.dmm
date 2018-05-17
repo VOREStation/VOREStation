@@ -5460,8 +5460,8 @@
 /obj/structure/table/rack{
 	dir = 4
 	},
-/obj/item/clothing/suit/space/void/security/taur,
-/obj/item/clothing/suit/space/void/security/taur,
+/obj/item/clothing/suit/space/void/security,
+/obj/item/clothing/suit/space/void/security,
 /obj/item/clothing/head/helmet/space/void/security,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/unsimulated/floor{

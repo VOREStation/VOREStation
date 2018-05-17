@@ -1,38 +1,51 @@
 //print an error message to world.log
 
+// Fall back to using old format if we are not using rust-g
+#ifdef RUST_G
+	#define WRITE_LOG(log, text) call(RUST_G, "log_write")(log, text)
+#else
+	#define WRITE_LOG(log, text) log << "\[[time_stamp()]][text]"
+#endif
 
-// On Linux/Unix systems the line endings are LF, on windows it's CRLF, admins that don't use notepad++
-// will get logs that are one big line if the system is Linux and they are using notepad.  This solves it by adding CR to every line ending
-// in the logs.  ascii character 13 = CR
+/* For logging round startup. */
+/proc/start_log(log)
+	#ifndef RUST_G
+	log = file(log)
+	#endif
+	WRITE_LOG(log, "START: Starting up [log_path].")
+	return log
 
-/var/global/log_end= world.system_type == UNIX ? ascii2text(13) : ""
-
+/* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
+/proc/shutdown_logging()
+	#ifdef RUST_G
+	call(RUST_G, "log_close_all")()
+	#endif
 
 /proc/error(msg)
-	world.log << "## ERROR: [msg][log_end]"
+	world.log << "## ERROR: [msg]"
 
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 //print a warning message to world.log
 /proc/warning(msg)
-	world.log << "## WARNING: [msg][log_end]"
+	world.log << "## WARNING: [msg]"
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
-	world.log << "## TESTING: [msg][log_end]"
+	world.log << "## TESTING: [msg]"
 
 /proc/log_admin(text)
 	admin_log.Add(text)
 	if (config.log_admin)
-		diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
+		WRITE_LOG(diary, "ADMIN: [text]")
 
 /proc/log_adminpm(text, client/source, client/dest)
 	admin_log.Add(text)
 	if (config.log_admin)
-		diary << "\[[time_stamp()]]ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
 
 /proc/log_debug(text)
 	if (config.log_debug)
-		debug_log << "\[[time_stamp()]]DEBUG: [text][log_end]"
+		WRITE_LOG(debug_log, "DEBUG: [text]")
 
 	for(var/client/C in admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
@@ -40,89 +53,97 @@
 
 /proc/log_game(text)
 	if (config.log_game)
-		diary << "\[[time_stamp()]]GAME: [text][log_end]"
+		WRITE_LOG(diary, "GAME: [text]")
 
 /proc/log_vote(text)
 	if (config.log_vote)
-		diary << "\[[time_stamp()]]VOTE: [text][log_end]"
+		WRITE_LOG(diary, "VOTE: [text]")
 
 /proc/log_access_in(client/new_client)
 	if (config.log_access)
 		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"			
-		diary << "\[[time_stamp()]]ACCESS IN: [message][log_end]"
+		WRITE_LOG(diary, "ACCESS IN: [message]")
 
 /proc/log_access_out(mob/last_mob)
 	if (config.log_access)
 		var/message = "[key_name(last_mob)] - IP:[last_mob.lastKnownIP] - CID:Logged Out - BYOND Logged Out"
-		diary << "\[[time_stamp()]]ACCESS OUT: [message][log_end]"
+		WRITE_LOG(diary, "ACCESS OUT: [message]")
 
 /proc/log_say(text, mob/speaker)
 	if (config.log_say)
-		diary << "\[[time_stamp()]]SAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "SAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_ooc(text, client/user)
 	if (config.log_ooc)
-		diary << "\[[time_stamp()]]OOC: [user.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "OOC: [user.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_aooc(text, client/user)
 	if (config.log_ooc)
-		diary << "\[[time_stamp()]]AOOC: [user.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "AOOC: [user.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_looc(text, client/user)
 	if (config.log_ooc)
-		diary << "\[[time_stamp()]]LOOC: [user.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "LOOC: [user.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_whisper(text, mob/speaker)
 	if (config.log_whisper)
-		diary << "\[[time_stamp()]]WHISPER: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "WHISPER: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_emote(text, mob/speaker)
 	if (config.log_emote)
-		diary << "\[[time_stamp()]]EMOTE: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_attack(attacker, defender, message)
 	if (config.log_attack)
-		diary << "\[[time_stamp()]]ATTACK: [attacker] against [defender]: [message][log_end]"
+		WRITE_LOG(diary, "ATTACK: [attacker] against [defender]: [message]")
 
 /proc/log_adminsay(text, mob/speaker)
 	if (config.log_adminchat)
-		diary << "\[[time_stamp()]]ADMINSAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "ADMINSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_modsay(text, mob/speaker)
 	if (config.log_adminchat)
-		diary << "\[[time_stamp()]]MODSAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "MODSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_eventsay(text, mob/speaker)
 	if (config.log_adminchat)
-		diary << "\[[time_stamp()]]EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_ghostsay(text, mob/speaker)
 	if (config.log_say)
-		diary << "\[[time_stamp()]]DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_ghostemote(text, mob/speaker)
 	if (config.log_emote)
-		diary << "\[[time_stamp()]]DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_adminwarn(text)
 	if (config.log_adminwarn)
-		diary << "\[[time_stamp()]]ADMINWARN: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "ADMINWARN: [html_decode(text)]")
 
 /proc/log_pda(text, mob/speaker)
 	if (config.log_pda)
-		diary << "\[[time_stamp()]]PDA: [speaker.simple_info_line()]: [html_decode(text)][log_end]"
+		WRITE_LOG(diary, "PDA: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
 	if(config.log_world_output)
-		diary << "\[[time_stamp()]]DD_OUTPUT: [text][log_end]"
+		WRITE_LOG(diary, "DD_OUTPUT: [text]")
 
 /proc/log_error(text)
 	world.log << text
-	error_log << "\[[time_stamp()]]RUNTIME: [text][log_end]"
+	WRITE_LOG(error_log, "RUNTIME: [text]")
 
 /proc/log_misc(text)
-	diary << "\[[time_stamp()]]MISC: [text][log_end]"
+	WRITE_LOG(diary, "MISC: [text]")
+
+/proc/log_topic(text)
+	if(Debug2)
+		WRITE_LOG(diary, "TOPIC: [text]")
+
+/proc/log_href(text)
+	// Configs are checked by caller
+	WRITE_LOG(href_logfile, "HREF: [text]")
 
 /proc/log_unit_test(text)
 	world.log << "## UNIT_TEST: [text]"

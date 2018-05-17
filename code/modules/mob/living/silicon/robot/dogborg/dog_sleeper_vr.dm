@@ -23,6 +23,8 @@
 	var/startdrain = 500
 	var/max_item_count = 1
 	var/gulpsound = 'sound/vore/gulp.ogg'
+	var/digest_brute = 2
+	var/digest_burn = 3
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -504,9 +506,14 @@
 			if((T.status_flags & GODMODE) || !T.digestable)
 				items_preserved += T
 			else
-				T.adjustBruteLoss(2)
-				T.adjustFireLoss(3)
-				drain(-100) //20*total loss as with voreorgan stats.
+				var/old_brute = T.getBruteLoss()
+				var/old_burn = T.getFireLoss()
+				T.adjustBruteLoss(digest_brute)
+				T.adjustFireLoss(digest_burn)
+				var/actual_brute = T.getBruteLoss() - old_brute
+				var/actual_burn = T.getFireLoss() - old_burn
+				var/damage_gain = actual_brute + actual_burn
+				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
 				update_patient()
 
 		//Pick a random item to deal with (if there are any)

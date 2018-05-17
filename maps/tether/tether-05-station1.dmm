@@ -374,9 +374,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
 "aaY" = (
-/obj/structure/frame{
-	anchored = 0
-	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/excursion/tether)
 "aaZ" = (
@@ -5074,11 +5072,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/tank/air{
-	dir = 4;
-	icon_state = "air_map";
-	start_pressure = 300;
-	volume = 20000
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/excursion/tether)
@@ -9459,10 +9455,6 @@
 	req_access = list(24)
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/atmos/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/atmos,
-/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/atmos,
@@ -9498,10 +9490,6 @@
 	name = "Atmospherics Hardsuits";
 	req_access = list(24)
 	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/atmos/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/mask/breath,
@@ -11227,29 +11215,6 @@
 /obj/item/clothing/head/helmet/space/void/engineering,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
-"aFM" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.6
-	},
-/obj/machinery/door/window/northleft{
-	name = "Engineering Hardsuits";
-	req_access = list(11)
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
 "aFO" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -11262,28 +11227,6 @@
 	name = "Engineering Hardsuits";
 	req_access = list(11)
 	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
-"aFR" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.6
-	},
-/obj/machinery/door/window/northright{
-	name = "Engineering Hardsuits";
-	req_access = list(11)
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/engineering/taur,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/engineering,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/engineering,
 /obj/item/clothing/mask/breath,
@@ -20943,8 +20886,8 @@
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/tank/oxygen,
 /obj/item/device/suit_cooling_unit,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space/void,
+/obj/item/clothing/head/helmet/space/void,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
@@ -21616,20 +21559,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
-"hgY" = (
-/obj/machinery/washing_machine,
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/explorer_meeting)
 "hJg" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin{
@@ -21656,6 +21585,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"jjb" = (
+/turf/simulated/mineral/vacuum,
+/area/tether/station/explorer_meeting)
 "jop" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
@@ -21669,6 +21601,7 @@
 /obj/item/device/taperecorder,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
+/obj/item/weapon/paper_bin,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "jDS" = (
@@ -21973,6 +21906,7 @@
 	icon_state = "bordercolor";
 	dir = 5
 	},
+/obj/machinery/washing_machine,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "rhA" = (
@@ -22090,6 +22024,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"tWI" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/tiled,
+/area/tether/station/explorer_prep)
 "uzS" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/folder/blue,
@@ -27131,7 +27079,7 @@ aue
 aAS
 auA
 auA
-aFM
+aFL
 aSC
 aoq
 aLy
@@ -27273,7 +27221,7 @@ aue
 aBl
 auB
 avj
-aFR
+aFO
 aSC
 aTK
 aLG
@@ -34509,7 +34457,7 @@ aaU
 avK
 qgR
 aad
-aac
+aae
 aaT
 aAC
 acp
@@ -34651,7 +34599,7 @@ aap
 avK
 qgR
 aad
-aac
+aae
 aaT
 aAF
 acp
@@ -34793,7 +34741,7 @@ afd
 ate
 qgR
 aad
-aac
+aae
 aaT
 aAE
 act
@@ -34935,7 +34883,7 @@ arw
 vrH
 auU
 aad
-aac
+aae
 aaT
 aAL
 aCx
@@ -35077,7 +35025,7 @@ nxL
 coV
 abc
 aad
-aac
+aae
 aaT
 aAH
 aCw
@@ -36207,7 +36155,7 @@ bQJ
 bQT
 bQJ
 bQJ
-aiv
+bQJ
 aiv
 jDS
 wLj
@@ -36348,9 +36296,9 @@ aei
 bQK
 bQK
 bQK
+tWI
 jZJ
-aiv
-hgY
+nYM
 uDP
 mFo
 mFo
@@ -36486,13 +36434,13 @@ aaa
 aaa
 aaa
 aac
-aac
+aei
 aiv
 aiv
 aiv
 aiv
 aiv
-hgY
+nYM
 qzk
 dMN
 mcn
@@ -36633,9 +36581,9 @@ aac
 aac
 aac
 aac
+jjb
 nYM
 dvn
-ggi
 ggi
 ggi
 ggi

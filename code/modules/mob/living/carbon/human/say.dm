@@ -3,7 +3,7 @@
 	if(name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
 
-	message = sanitize(message)
+	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages, within reason
 	..(message, alt_name = alt_name, whispering = whispering)
 
 /mob/living/carbon/human/proc/forcesay(list/append)

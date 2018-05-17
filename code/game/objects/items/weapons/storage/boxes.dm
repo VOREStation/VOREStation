@@ -450,7 +450,7 @@
 	item_state_slots = list(slot_r_hand_str = "medicalpack", slot_l_hand_str = "medicalpack")
 	foldable = null
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
+	can_hold = list(/obj/item/organ)
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 

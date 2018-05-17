@@ -152,6 +152,15 @@
 	dir = 10;
 	icon_state = "intact"
 	},
+/obj/machinery/light_switch{
+	pixel_x = -25;
+	pixel_y = 25
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/airlock)
 "aaw" = (
@@ -167,9 +176,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/mining_main/airlock)
 "aax" = (
-/obj/machinery/light_switch{
-	pixel_x = 25
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
@@ -184,6 +190,14 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/airlock)
@@ -327,11 +341,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
 	},
@@ -350,15 +359,6 @@
 /obj/structure/grille,
 /obj/structure/railing{
 	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
@@ -1865,8 +1865,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
 /obj/item/weapon/mining_scanner,
-/obj/item/clothing/suit/space/void/mining/taur,
-/obj/item/clothing/head/helmet/space/void/mining,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /turf/simulated/floor/tiled,
@@ -1877,8 +1875,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
 /obj/item/weapon/mining_scanner,
-/obj/item/clothing/suit/space/void/mining/taur,
-/obj/item/clothing/head/helmet/space/void/mining,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},

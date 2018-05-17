@@ -243,7 +243,7 @@
 	var/mob/living/carbon/human/user = AM
 
 	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
-	if(user && choice == "Yes")
+	if(user && Adjacent(user) && choice == "Yes")
 		user.ghostize()
 		despawn_occupant(user)
 
@@ -369,7 +369,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/item/weapon/reagent_containers/pill/airlock
 	name = "\'Airlock\' Pill"
-	desc = "Neutralizes toxins and provides a mild alangesic effect."
+	desc = "Neutralizes toxins and provides a mild analgesic effect."
 	icon_state = "pill2"
 
 /obj/item/weapon/reagent_containers/pill/airlock/New()

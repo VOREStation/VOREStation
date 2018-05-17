@@ -1,8 +1,0 @@
-
-author: Cerebulon
-
-
-delete-after: True
-
-changes: 
-  - bugfix: "Pumpkins no longer green ovals. Now grow on actual vines."

@@ -94,8 +94,8 @@
 	dat += "<a href='?src=\ref[src];log=1'>View storage log</a>.<br>"
 	if(allow_items)
 		dat += "<a href='?src=\ref[src];view=1'>View objects</a>.<br>"
-		dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
-		dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
+		//dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>" //VOREStation Removal - Just log them.
+		//dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>" //VOREStation Removal
 
 	user << browse(dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
@@ -122,8 +122,10 @@
 		if(!allow_items) return
 
 		var/dat = "<b>Recently stored objects</b><br/><hr/><br/>"
-		for(var/obj/item/I in frozen_items)
-			dat += "[I.name]<br/>"
+		//VOREStation Edit Start
+		for(var/I in frozen_items)
+			dat += "[I]<br/>"
+		//VOREStation Edit End
 		dat += "<hr/>"
 
 		user << browse(dat, "window=cryoitems")
@@ -240,7 +242,7 @@
 	on_store_name = "Robotic Storage Oversight"
 	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
 	allow_occupant_types = list(/mob/living/silicon/robot)
-	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
+	//disallow_occupant_types = list(/mob/living/silicon/robot/drone) //VOREStation Removal - Why? How else do they leave?
 	applies_stasis = 0
 
 /obj/machinery/cryopod/robot/door
@@ -429,12 +431,14 @@
 		if(!preserve)
 			qdel(W)
 		else
+			log_special_item(W,to_despawn) //VOREStation Add
+			/* VOREStation Removal - We do our own thing.
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
 				W.loc = control_computer //VOREStation Edit
 			else
 				W.forceMove(src.loc)
-
+			VOREStation Removal End */
 	for(var/obj/structure/B in items)
 		if(istype(B,/obj/structure/bed))
 			qdel(B)

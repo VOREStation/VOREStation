@@ -137,6 +137,8 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			animate(O, transform = turn(O.transform, -40), time = 4)
 			sleep(4)
 			animate(O, transform = turn(O.transform, 20), time = 2)
+			sleep(2)
+			O.update_transform()
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)

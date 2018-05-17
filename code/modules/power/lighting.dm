@@ -161,7 +161,7 @@
 	layer = ABOVE_MOB_LAYER
 	use_power = 2
 	idle_power_usage = 2
-	active_power_usage = 20
+	active_power_usage = 20 // VOREStation Edit - Keep lights at 20 power
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/brightness_range = 10	// luminosity when on, also used in power calculation // VOREStation Edit - Put light range back how it was for now.
