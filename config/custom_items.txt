@@ -215,7 +215,7 @@ item_path: /obj/item/weapon/storage/box/fluff/drake
 {
 ckey: draycu
 character_name: Theseus
-item_path:/obj/item/weapon/coin/diamond
+item_path: /obj/item/weapon/coin/diamond
 item_name: theseus' diamond coin
 item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
 }
@@ -303,19 +303,19 @@ item_path: /obj/item/weapon/implanter/reagent_generator/belle
 {
 ckey: hzdonut
 character_name: Jesse Soemmer
-item_path:/obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
+item_path: /obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
 }
 
 {
 ckey: hzdonut
 character_name: Jesse Soemmer
-item_path:/obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
+item_path: /obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
 }
 
 {
 ckey: hzdonut
 character_name: Jesse Soemmer
-item_path:/obj/item/clothing/accessory/holster/hip
+item_path: /obj/item/clothing/accessory/holster/hip
 }
 
 # ######## I CKEYS
@@ -323,13 +323,13 @@ item_path:/obj/item/clothing/accessory/holster/hip
 {
 ckey: interrolouis
 character_name:  Ruda Lizden
-item_path:/obj/item/clothing/accessory/badge/holo/detective/ruda
+item_path: /obj/item/clothing/accessory/badge/holo/detective/ruda
 }
 
 {
 ckey: interrolouis
 character_name: Kai Highlands
-/obj/item/borg/upgrade/modkit/chassis_mod/kai
+item_path: /obj/item/borg/upgrade/modkit/chassis_mod/kai
 }
 
 {
