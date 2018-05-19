@@ -20886,8 +20886,6 @@
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/tank/oxygen,
 /obj/item/device/suit_cooling_unit,
-/obj/item/clothing/suit/space/void,
-/obj/item/clothing/head/helmet/space/void,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
@@ -20898,6 +20896,8 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
 	},
+/obj/item/clothing/suit/space/void/explorer,
+/obj/item/clothing/head/helmet/space/void/explorer,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/explorer_prep)
 "bQM" = (
@@ -22004,6 +22004,24 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/excursion_dock)
+"tAc" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/suit/space/void/explorer,
+/obj/item/clothing/head/helmet/space/void/explorer,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/station/explorer_prep)
 "tCn" = (
 /obj/machinery/shuttle_sensor{
 	dir = 6;
@@ -36292,10 +36310,10 @@ aaa
 aac
 aac
 aac
-aei
+aiv
 bQK
 bQK
-bQK
+tAc
 tWI
 jZJ
 nYM
@@ -36434,7 +36452,7 @@ aaa
 aaa
 aaa
 aac
-aei
+aiv
 aiv
 aiv
 aiv
