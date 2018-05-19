@@ -103,7 +103,6 @@
 		/obj/item/rig_module/self_destruct
 		)
 
-	..()
 
 /obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	name = "insulated gloves"
