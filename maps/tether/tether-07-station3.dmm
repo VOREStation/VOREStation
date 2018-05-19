@@ -8469,7 +8469,12 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	pressure_checks = 1;
+	pressure_checks_default = 1
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/delivery)
 "oo" = (
