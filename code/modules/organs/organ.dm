@@ -163,7 +163,7 @@ var/list/organ_cache = list()
 		infection_damage = max(0.25, 0.25 + round((germ_level - INFECTION_LEVEL_TWO)/200,0.25))
 
 	if(infection_damage)
-		owner.adjustToxLoss(infection_damage)
+		owner.adjustToxLoss(infection_damage/8) //VOREStation Edit for little more reasonable numbers. Divided by half of the average organ count to make up for the exponential spreading of the infection causing death within seconds. (Would've gone with full average but didn't wanna go that far yet.)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		adjust_germ_level(-antibiotics)
