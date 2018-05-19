@@ -103,6 +103,7 @@
 	name = "shelter privacy control"
 	desc = "You can secure yourself inside the shelter here."
 	specialfunctions = 4 // 4 is bolts
+	id = "placeholder_id_do_not_use" //This has to be this way, otherwise it will control ALL doors if left blank.
 	var/obj/machinery/door/airlock/voidcraft/survival_pod/door
 
 /obj/machinery/button/remote/airlock/survival_pod/attack_hand(obj/item/weapon/W, mob/user as mob)
