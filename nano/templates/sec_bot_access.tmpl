@@ -1,0 +1,37 @@
+<H2>Security Bot Control </H2>
+
+{{if data.currentTab == 0}}
+<!-- List bots -->
+
+	<div class="item">
+		Select A Bot.
+	</div>
+	<br>
+	{{for data.sec_bot_access}}
+		<div class="item">
+			{{:helper.link(value.bot, 'gear', {'switch_tab' : value.bot})}}
+		</div>
+	{{empty}}
+		<H1><span class="bad">No bots found.</span></H1>
+	{{/for}}
+	<br>
+	{{:helper.link('Scan for Bots','gear', {'cartridge_topic' : "1", 'refresh_sec_bots' : "1"})}}
+
+{{else}}	
+
+<!-- Specific bot status -->
+	{{for data.sec_bot_access}}
+		{{if value.bot == data.currentTab}}
+			{{for value.status :statVal:statIndex}}
+				<div class="item">
+					<div class="itemLabel">
+						{{:statVal.tab}}
+					</div>
+					<div class="itemContent">
+						{{:statVal.val}}
+					</div>
+				</div>
+			{{/for}}
+		{{/if}}
+	{{/for}}
+{{/if}}

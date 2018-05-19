@@ -119,6 +119,9 @@
 		data["cart_templates"] = cartridge.ui_templates
 		for(var/list/L in cartridge.get_data())
 			data[L["field"]] = L["value"]
+			// cartridge.get_data() returns a list of tuples:
+			// The field element is the tag used to access the information by the template
+			// The value element is the actual data, and can take any form necessary for the template
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -178,7 +181,7 @@
 
 	if(href_list["dial"])
 		if(!get_connection_to_tcomms())
-			usr << "<span class='danger'>Error: Cannot connect to Exonet node.</span>"
+			to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
 			return
 		var/their_address = href_list["dial"]
 		exonet.send_message(their_address, "voice")
@@ -269,6 +272,9 @@
 	if(href_list["toggle_device"])
 		var/obj/O = cartridge.internal_devices[text2num(href_list["toggle_device"])]
 		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
+
+	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
+		data = cartridge.Topic(href, href_list)
 
 	GLOB.nanomanager.update_uis(src)
 	add_fingerprint(usr)

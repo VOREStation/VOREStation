@@ -95,3 +95,101 @@
 				news.Remove(news[i])
 
 	return news
+
+
+
+// Putting the commcard data harvesting helpers here
+// Not ideal to put all the procs on the base type
+// but it may open options for adminbus,
+// And it saves duplicated code
+
+// Medical records
+/obj/item/weapon/commcard/proc/get_med_records()
+	var/med_records[0]
+	for(var/datum/data/record/M in sortRecord(data_core.medical))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = M.fields["name"])
+		record[++record.len] = list("tab" = "ID", "val" = M.fields["id"])
+		record[++record.len] = list("tab" = "Blood Type", "val" = M.fields["b_type"])
+		record[++record.len] = list("tab" = "DNA #", "val" = M.fields["b_dna"])
+		record[++record.len] = list("tab" = "Gender", "val" = M.fields["id_gender"])
+		record[++record.len] = list("tab" = "Entity Classification", "val" = M.fields["brain_type"])
+		record[++record.len] = list("tab" = "Minor Disorders", "val" = M.fields["mi_dis"])
+		record[++record.len] = list("tab" = "Major Disorders", "val" = M.fields["ma_dis"])
+		record[++record.len] = list("tab" = "Allergies", "val" = M.fields["alg"])
+		record[++record.len] = list("tab" = "Condition", "val" = M.fields["cdi"])
+		record[++record.len] = list("tab" = "Notes", "val" = M.fields["notes"])
+
+		med_records[++med_records.len] = list("name" = M.fields["name"], "record" = record)
+	return med_records
+
+// Employment records
+/obj/item/weapon/commcard/proc/get_emp_records()
+	var/emp_records[0]
+	for(var/datum/data/record/G in sortRecord(data_core.general))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = G.fields["name"])
+		record[++record.len] = list("tab" = "ID", "val" = G.fields["id"])
+		record[++record.len] = list("tab" = "Rank", "val" = G.fields["rank"])
+		record[++record.len] = list("tab" = "Fingerprint", "val" = G.fields["fingerprint"])
+		record[++record.len] = list("tab" = "Entity Classification", "val" = G.fields["brain_type"])
+		record[++record.len] = list("tab" = "Sex", "val" = G.fields["sex"])
+		record[++record.len] = list("tab" = "Species", "val" = G.fields["species"])
+		record[++record.len] = list("tab" = "Age", "val" = G.fields["age"])
+		record[++record.len] = list("tab" = "Notes", "val" = G.fields["notes"])
+
+		emp_records[++emp_records.len] = list("name" = G.fields["name"], "record" = record)
+	return emp_records
+
+// Security records
+/obj/item/weapon/commcard/proc/get_sec_records()
+	var/sec_records[0]
+	for(var/datum/data/record/G in sortRecord(data_core.general))
+		var/record[0]
+		record[++record.len] = list("tab" = "Name", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Sex", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Species", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Age", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Rank", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Fingerprint", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Physical Status", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Mental Status", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Criminal Status", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Major Crimes", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Minor Crimes", "val" = G.fields[""])
+		record[++record.len] = list("tab" = "Notes", "val" = G.fields["notes"])
+
+		sec_records[++sec_records.len] = list("name" = G.fields["name"], "record" = record)
+	return sec_records
+
+/obj/item/weapon/commcard/proc/get_sec_bot_access()
+	var/sec_bots[0]
+	for(var/mob/living/bot/secbot/S in mob_list)
+		// Get new bot
+		var/status[0]
+		status[++status.len] = list("tab" = "Name", "val" = sanitize(S.name))
+
+		// If it's turned off, then it shouldn't be broadcasting any further info
+		if(!S.on)
+			status[++status.len] = list("tab" = "Power", "val" = "<span class='bad'>Off</span>") // Encoding the span classes here so I don't have to do complicated switches in the ui template
+			continue
+		status[++status.len] = list("tab" = "Power", "val" = "<span class='good'>On</span>")
+
+		// -- What it's doing
+		// If it's engaged, then say who it thinks it's engaging
+		if(S.target)
+			status[++status.len] = list("tab" = "Status", "val" = "<span class='bad'>Apprehending Target</span>")
+			status[++status.len] = list("tab" = "Target", "val" = S.target_name(S.target))
+		// Else if it's patrolling
+		else if(S.will_patrol)
+			status[++status.len] = list("tab" = "Status", "val" = "<span class='good'>Patrolling</span>")
+		// Otherwise we don't know what it's doing
+		else
+			status[++status.len] = list("tab" = "Status", "val" = "<span class='average'>Idle</span>")
+
+		// Where it is
+		status[++status.len] = list("tab" = "Location", "val" = sanitize("[get_area(S.loc)]"))
+
+		// Append bot to the list
+		sec_bots[++sec_bots.len] = list("bot" = S.name, "status" = status)
+	return sec_bots

@@ -11,11 +11,13 @@
 {{for data.sec_records}}
 	{{if value.name == data.currentTab}}
 		<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'icon-triangle-1-w', {'switch_tab' : 0})}}</div><BR>
-		{{for value.record :itemValue:itemIndex}}
-			<div class="item">
-				<div class="itemLabel">{{:itemValue.tab}}</div>
-				<div class="itemContent">{{:itemValue.val}}</div>
-			</div>
-		{{/for}}
+		<div class="statusDisplayRecords">
+			{{for value.record :itemValue:itemIndex}}
+				<div class="item">
+					<div class="itemLabel">{{:itemValue.tab}}</div>
+					<div class="itemContent">{{:itemValue.val}}</div>
+				</div>
+			{{/for}}
+		</div>
 	{{/if}}
 {{/for}}
