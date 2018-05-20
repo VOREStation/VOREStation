@@ -3,8 +3,7 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = UNDER_JUNK_LAYER
 	w_class = ITEMSIZE_NORMAL
 
 /obj/structure/sign/ex_act(severity)

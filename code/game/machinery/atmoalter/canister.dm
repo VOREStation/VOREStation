@@ -7,6 +7,8 @@
 	flags = CONDUCT
 	w_class = ITEMSIZE_HUGE
 
+	layer = TABLE_LAYER	// Above catwalks, hopefully below other things
+
 	var/valve_open = 0
 	var/release_pressure = ONE_ATMOSPHERE
 	var/release_flow_rate = ATMOS_DEFAULT_VOLUME_PUMP //in L/s
