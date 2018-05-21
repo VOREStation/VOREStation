@@ -61,7 +61,7 @@
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
-	if(M.size_multiplier > size_multiplier)
+	if(M.size_multiplier > size_multiplier*1.1)
 		to_chat(M,"<span class='warning'>This isn't a pony show! They need to be bigger to ride.</span>")
 		return FALSE
 
