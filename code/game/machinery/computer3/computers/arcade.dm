@@ -24,17 +24,20 @@
 							/obj/item/toy/prize/odysseus					= 1,
 							/obj/item/toy/prize/phazon						= 1
 							)
-	proc/dispense()
-		if(computer && !computer.stat)
-			var/prizeselect = pickweight(prizes)
-			new prizeselect(computer.loc)
-			if(istype(prizeselect, /obj/item/weapon/gun/projectile/revolver/capgun)) //Ammo comes with the gun
-				new /obj/item/projectile/bullet/pistol/cap(src.loc)
-			else if(istype(prizeselect, /obj/item/clothing/suit/syndicatefake)) //Helmet is part of the suit
-				new	/obj/item/clothing/head/syndicatefake(computer.loc)
-			feedback_inc("arcade_win_normal")
-			computer.use_power(500)
 
+/obj/item/part/computer/toybox/allow_attackby(var/obj/item/I, var/mob/user)
+	return 0
+
+/obj/item/part/computer/toybox/proc/dispense()
+	if(computer && !computer.stat)
+		var/prizeselect = pickweight(prizes)
+		new prizeselect(computer.loc)
+		if(istype(prizeselect, /obj/item/weapon/gun/projectile/revolver/capgun)) //Ammo comes with the gun
+			new /obj/item/projectile/bullet/pistol/cap(src.loc)
+		else if(istype(prizeselect, /obj/item/clothing/suit/syndicatefake)) //Helmet is part of the suit
+			new	/obj/item/clothing/head/syndicatefake(computer.loc)
+		feedback_inc("arcade_win_normal")
+		computer.use_power(500)
 
 /datum/file/program/arcade
 	desc = "The best arcade game ever produced by the Company's short-lived entertainment divison."
@@ -65,7 +68,6 @@
 
 	enemy_name = replacetext(name_part1, "the ", "") + name_part2
 	name = (name_action + name_part1 + name_part2)
-
 
 /datum/file/program/arcade/interact()
 	if(!interactable())
