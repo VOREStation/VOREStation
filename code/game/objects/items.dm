@@ -680,6 +680,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/is_hot()
 	return FALSE
 
+// Called when you swap hands away from the item
+/obj/item/proc/in_inactive_hand(mob/user)
+	return
+
 // My best guess as to why this is here would be that it does so little. Still, keep it under all the procs, for sanity's sake.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

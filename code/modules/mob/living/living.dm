@@ -1113,6 +1113,13 @@ default behaviour is:
 		else
 			hud_used.l_hand_hud_object.icon_state = "l_hand_inactive"
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
+
+	// We just swapped hands, so the thing in our inactive hand will notice it's not the focus
+	var/obj/item/I = get_inactive_hand()
+	if(I)
+		if(I.zoom)
+			I.zoom()
+		I.in_inactive_hand(src)	//This'll do specific things, determined by the item
 	return
 
 /mob/living/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
