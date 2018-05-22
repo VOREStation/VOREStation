@@ -2,7 +2,7 @@
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	slot = list("utility", "sheath") //VOREStation Edit
+	slot = "utility"
 	var/list/can_hold //VOREStation Edit
 	concealed_holster = 1
 	var/obj/item/holstered = null
