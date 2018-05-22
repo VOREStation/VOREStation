@@ -1,0 +1,9 @@
+
+author: Mechoid
+
+delete-after: True
+
+changes: 
+  - rsctweak: "Promethean limbs store more damage."
+  - rsctweak: "Promethean limbs, in addition to normal severing rules, have a higher chance to be splattered or ashed once they reach maximum damage."
+  - rscadd: "Limbs can now spread their damage with the spread_dam var, when reaching max damage."
