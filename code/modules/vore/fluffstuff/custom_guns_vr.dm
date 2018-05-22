@@ -804,3 +804,26 @@
 			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
 			return 0
 	return ..()
+
+//Expeditionary Holdout Phaser
+/obj/item/weapon/gun/energy/frontier/locked/holdout
+	name = "holdout frontier phaser"
+	desc = "A recently introduced weapon intended for self defense by expeditionary support. It includes the same crank charger as the frontier phaser."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "PDW"
+	item_state = "gun"
+	w_class = ITEMSIZE_SMALL
+	firemodes = list(
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 1200),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 240),
+	)
+
+/obj/item/weapon/gun/energy/frontier/locked/holdout/proc/update_mode()
+	var/datum/firemode/current_mode = firemodes[sel_mode]
+	switch(current_mode.name)
+		if("low-power") overlays += "taser_pdw"
+		if("normal") overlays += "lazer_pdw"
+
+/obj/item/weapon/gun/energy/frontier/locked/holdout/update_icon()
+	overlays.Cut()
+	update_mode()
