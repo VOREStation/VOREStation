@@ -2,7 +2,7 @@
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	slot = "utility"
+	slot = list("utility", "sheath") //VOREStation Edit
 	var/list/can_hold //VOREStation Edit
 	concealed_holster = 1
 	var/obj/item/holstered = null
@@ -18,6 +18,7 @@
 			return
 
 	else if (!(I.slot_flags & SLOT_HOLSTER))
+	//VOREStation Edit End
 		user << "<span class='warning'>[I] won't fit in [src]!</span>"
 		return
 
