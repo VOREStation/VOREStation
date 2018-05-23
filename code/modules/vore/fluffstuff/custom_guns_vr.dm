@@ -826,4 +826,10 @@
 
 /obj/item/weapon/gun/energy/frontier/locked/holdout/update_icon()
 	cut_overlays()
-	update_mode()
+	if(recharging)
+		icon_state = "[initial(icon_state)]_pump"
+		update_held_icon()
+		return
+	else
+		icon_state = "[initial(icon_state)]"
+		update_mode()
