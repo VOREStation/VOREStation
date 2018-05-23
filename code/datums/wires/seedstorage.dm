@@ -1,12 +1,12 @@
+#define SEED_WIRE_SMART 1
+#define SEED_WIRE_CONTRABAND 2
+#define SEED_WIRE_ELECTRIFY 4
+#define SEED_WIRE_LOCKDOWN 8
+
 /datum/wires/seedstorage
 	holder_type = /obj/machinery/seed_storage
 	wire_count = 4
 	random = 1
-
-var/const/SEED_WIRE_SMART = 1
-var/const/SEED_WIRE_CONTRABAND = 2
-var/const/SEED_WIRE_ELECTRIFY = 4
-var/const/SEED_WIRE_LOCKDOWN = 8
 
 /datum/wires/seedstorage/CanUse(var/mob/living/L)
 	var/obj/machinery/seed_storage/V = holder
