@@ -52,7 +52,7 @@
 
 	if(BSACooldown)
 		if(user)
-			to_chat(user,"<span class='warning'>BSA is still cooling down, please wait!")
+			to_chat(user,"<span class='warning'>BSA is still cooling down, please wait!</span>")
 		return
 
 	BSACooldown = 1
