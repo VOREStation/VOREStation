@@ -52,6 +52,11 @@ proc/admin_notice(var/message, var/rights)
 	else
 		body += " \[<A href='?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
 
+	if(M.client)
+		body += "<br><b>First connection:</b> [M.client.player_age] days ago"
+		body += "<br><b>BYOND account created:</b> [M.client.account_join_date]"
+		body += "<br><b>BYOND account age (days):</b> [M.client.account_age]"
+
 	body += {"
 		<br><br>\[
 		<a href='?_src_=vars;Vars=\ref[M]'>VV</a> -
