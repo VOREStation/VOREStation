@@ -15,7 +15,7 @@
 
 	//Mask to just consumed restricted
 	var/consumed_restricted = restricted_accessory_slots & consumed_slots
-	
+
 	//They share at least one bit with the restricted slots
 	if(consumed_restricted & A.slot)
 		return FALSE
@@ -123,7 +123,6 @@
 	set src in usr
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
-	if(!accessories.len) return
 	var/obj/item/clothing/accessory/A
 	if(LAZYLEN(accessories))
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories
