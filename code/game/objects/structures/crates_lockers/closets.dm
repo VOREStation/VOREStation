@@ -5,6 +5,7 @@
 	icon_state = "closed"
 	density = 1
 	w_class = ITEMSIZE_HUGE
+	layer = UNDER_JUNK_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0
