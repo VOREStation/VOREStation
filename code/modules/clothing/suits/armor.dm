@@ -492,8 +492,20 @@
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular_armor.dmi')
 	icon_state = "pcarrier"
-	valid_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA, ACCESSORY_SLOT_ARMOR_C, ACCESSORY_SLOT_ARMOR_A, ACCESSORY_SLOT_ARMOR_L, ACCESSORY_SLOT_ARMOR_S, ACCESSORY_SLOT_ARMOR_M)
-	restricted_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA, ACCESSORY_SLOT_ARMOR_C, ACCESSORY_SLOT_ARMOR_A, ACCESSORY_SLOT_ARMOR_L, ACCESSORY_SLOT_ARMOR_S)
+	valid_accessory_slots = (\
+		ACCESSORY_SLOT_INSIGNIA\
+		|ACCESSORY_SLOT_ARMOR_C\
+		|ACCESSORY_SLOT_ARMOR_A\
+		|ACCESSORY_SLOT_ARMOR_L\
+		|ACCESSORY_SLOT_ARMOR_S\
+		|ACCESSORY_SLOT_ARMOR_M)
+	restricted_accessory_slots = (\
+		ACCESSORY_SLOT_INSIGNIA\
+		|ACCESSORY_SLOT_ARMOR_C\
+		|ACCESSORY_SLOT_ARMOR_A\
+		|ACCESSORY_SLOT_ARMOR_L\
+		|ACCESSORY_SLOT_ARMOR_S\
+		|ACCESSORY_SLOT_ARMOR_M)
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/pcarrier/light

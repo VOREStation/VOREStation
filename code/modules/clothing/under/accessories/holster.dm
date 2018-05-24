@@ -2,7 +2,7 @@
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	slot = "utility"
+	slot = ACCESSORY_SLOT_TORSO //Legacy/balance purposes
 	concealed_holster = 1
 	var/obj/item/holstered = null
 

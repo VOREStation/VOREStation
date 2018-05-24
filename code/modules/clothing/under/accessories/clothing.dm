@@ -2,11 +2,13 @@
 	name = "black vest"
 	desc = "Slick black suit vest."
 	icon_state = "det_vest"
+	slot = ACCESSORY_SLOT_OVER
 
-/obj/item/clothing/accessory/jacket/
+/obj/item/clothing/accessory/jacket
 	name = "tan suit jacket"
 	desc = "Cozy suit jacket."
 	icon_state = "tan_jacket"
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/jacket/charcoal
 	name = "charcoal suit jacket"
@@ -55,7 +57,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
-	slot = "over"
+	slot = ACCESSORY_SLOT_OVER
 
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
@@ -176,6 +178,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/hawaii/red
 	icon_state = "hawaii2"
@@ -201,6 +204,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/wcoat/red
 	name = "red waistcoat"
@@ -242,6 +246,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/sweater/pink
 	name = "pink sweater"

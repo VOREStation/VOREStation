@@ -9,6 +9,7 @@
 	desc = "Security Department detective's badge, made from gold."
 	icon_state = "badge"
 	slot_flags = SLOT_BELT | SLOT_TIE
+	slot = ACCESSORY_SLOT_MEDAL
 
 	var/stored_name
 	var/badge_string = "Corporate Security"
