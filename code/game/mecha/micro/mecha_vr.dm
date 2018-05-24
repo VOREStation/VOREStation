@@ -27,7 +27,7 @@
 		origin_tech = list(TECH_DATA = 4, TECH_COMBAT = 4)
 
 /obj/item/weapon/circuitboard/mecha/polecat/main
-		name = T_BOARD_MICRO_MECHA("Weasel central control")
+		name = T_BOARD_MICRO_MECHA("Polecat central control")
 		icon_state = "mainboard"
 
 /obj/item/weapon/circuitboard/mecha/weasel
