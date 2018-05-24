@@ -31,7 +31,7 @@
 		return 1
 	if(get_dist(src,T0) > 1)
 		return 0
-
+	if(T0.z != z) return 0 //VOREStation Add
 	if(T0.x == x || T0.y == y)
 		// Check for border blockages
 		return T0.ClickCross(get_dir(T0,src), border_only = 1) && src.ClickCross(get_dir(src,T0), border_only = 1, target_atom = target)
