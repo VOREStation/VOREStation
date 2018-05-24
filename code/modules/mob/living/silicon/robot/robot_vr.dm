@@ -7,6 +7,8 @@
 	var/leap_at
 	var/dogborg = FALSE //Dogborg special features (overlays etc.)
 	var/wideborg = FALSE //When the borg simply doesn't use standard 32p size.
+	var/scrubbing = FALSE //Floor cleaning enabled
+	var/datum/matter_synth/water_res = null
 	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
@@ -64,13 +66,13 @@
 		add_overlay("wreck-overlay")
 
 /mob/living/silicon/robot/Move(a, b, flag)
-
 	. = ..()
-
-	if(module)
-		if(module.type == /obj/item/weapon/robot_module/robot/scrubpup)//no water reserve mechanics yet.
+	if(scrubbing)
+		var/datum/matter_synth/water = water_res
+		if(water && water.energy >= 1)
 			var/turf/tile = loc
 			if(isturf(tile))
+				water.use_charge(1)
 				tile.clean_blood()
 				if(istype(tile, /turf/simulated))
 					var/turf/simulated/T = tile
@@ -95,7 +97,6 @@
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
 							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
-		return
 	return
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
@@ -107,3 +108,19 @@
 		icon = 'icons/mob/robots_vr.dmi'
 	else if(!(icon_state in vr_icons))
 		icon = original_icon
+
+/mob/living/silicon/robot/proc/ex_reserve_refill()
+	set name = "Refill Extinguisher"
+	set category = "Object"
+	var/datum/matter_synth/water = water_res
+	for(var/obj/item/weapon/extinguisher/E in module.modules)
+		if(E.reagents.total_volume < E.max_water)
+			if(water && water.energy > 0)
+				var/amount = E.max_water - E.reagents.total_volume
+				if(water.energy < amount)
+					amount = water.energy
+				water.use_charge(amount)
+				E.reagents.add_reagent("water", amount)
+				to_chat(src, "You refill the extinguisher using your water reserves.")
+			else
+				to_chat(src, "Insufficient water reserves.")
