@@ -5,32 +5,33 @@
 
 /obj/structure/closet/secure_closet/hos_wardrobe
 	name = "head of security's locker"
-	req_access = list(access_hos)
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
 	icon_locked = "hossecure1"
 	icon_opened = "hossecureopen"
 	icon_broken = "hossecurebroken"
 	icon_off = "hossecureoff"
+	req_access = list(access_hos)
 
-/obj/structure/closet/secure_closet/hos_wardrobe/New()
-	..()
+	starts_with = list(
+		/obj/item/clothing/under/rank/head_of_security/jensen,
+		/obj/item/clothing/under/rank/head_of_security/corp,
+		/obj/item/clothing/suit/storage/vest/hoscoat/jensen,
+		/obj/item/clothing/suit/storage/vest/hoscoat,
+		/obj/item/weapon/cartridge/hos,
+		/obj/item/device/radio/headset/heads/hos,
+		/obj/item/clothing/glasses/sunglasses/sechud,
+		/obj/item/weapon/storage/box/holobadge/hos,
+		/obj/item/clothing/accessory/badge/holo/hos,
+		/obj/item/clothing/accessory/holster/waist,
+		/obj/item/clothing/head/beret/sec/corporate/hos,
+		/obj/item/clothing/mask/gas/half)
+
+/obj/structure/closet/secure_closet/hos_wardrobe/initialize()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/security(src)
+		starts_with += /obj/item/weapon/storage/backpack/security
 	else
-		new /obj/item/weapon/storage/backpack/satchel/sec(src)
+		starts_with += /obj/item/weapon/storage/backpack/satchel/sec
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
-	new /obj/item/clothing/under/rank/head_of_security/jensen(src)
-	new /obj/item/clothing/under/rank/head_of_security/corp(src)
-	new /obj/item/clothing/suit/storage/vest/hoscoat/jensen(src)
-	new /obj/item/clothing/suit/storage/vest/hoscoat(src)
-	new /obj/item/weapon/cartridge/hos(src)
-	new /obj/item/device/radio/headset/heads/hos(src)
-	new /obj/item/clothing/glasses/sunglasses/sechud(src)
-	new /obj/item/weapon/storage/box/holobadge/hos(src)
-	new /obj/item/clothing/accessory/badge/holo/hos(src)
-	new /obj/item/clothing/accessory/holster/waist(src)
-	new /obj/item/clothing/head/beret/sec/corporate/hos(src)
-	new /obj/item/clothing/mask/gas/half(src)
-	return
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sec
+	return ..()

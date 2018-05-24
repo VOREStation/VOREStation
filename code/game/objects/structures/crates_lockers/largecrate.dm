@@ -4,9 +4,13 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
 	density = 1
+	var/list/starts_with
 
 /obj/structure/largecrate/initialize()
 	. = ..()
+	if(starts_with)
+		create_objects_in_loc(src, starts_with)
+		starts_with = null
 	for(var/obj/I in src.loc)
 		if(I.density || I.anchored || I == src || !I.simulated)
 			continue
@@ -50,38 +54,30 @@
 
 /obj/structure/largecrate/animal
 	icon_state = "mulecrate"
-	var/held_count = 1
-	var/held_type
-
-/obj/structure/largecrate/animal/New()
-	..()
-	for(var/i = 1;i<=held_count;i++)
-		new held_type(src)
 
 /obj/structure/largecrate/animal/mulebot
 	name = "Mulebot crate"
-	held_type = /mob/living/bot/mulebot
+	starts_with = list(/mob/living/bot/mulebot)
 
 /obj/structure/largecrate/animal/corgi
 	name = "corgi carrier"
-	held_type = /mob/living/simple_animal/corgi
+	starts_with = list(/mob/living/simple_animal/corgi)
 
 /obj/structure/largecrate/animal/cow
 	name = "cow crate"
-	held_type = /mob/living/simple_animal/cow
+	starts_with = list(/mob/living/simple_animal/cow)
 
 /obj/structure/largecrate/animal/goat
 	name = "goat crate"
-	held_type = /mob/living/simple_animal/retaliate/goat
+	starts_with = list(/mob/living/simple_animal/retaliate/goat)
 
 /obj/structure/largecrate/animal/cat
 	name = "cat carrier"
-	held_type = /mob/living/simple_animal/cat
+	starts_with = list(/mob/living/simple_animal/cat)
 
 /obj/structure/largecrate/animal/cat/bones
-	held_type = /mob/living/simple_animal/cat/fluff/bones
+	starts_with = list(/mob/living/simple_animal/cat/fluff/bones)
 
 /obj/structure/largecrate/animal/chick
 	name = "chicken crate"
-	held_count = 5
-	held_type = /mob/living/simple_animal/chick
+	starts_with = list(/mob/living/simple_animal/chick = 5)
