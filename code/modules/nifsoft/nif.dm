@@ -580,21 +580,21 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/mob/living/carbon/human/U = user
 	var/mob/living/carbon/human/T = M
 
-	if(istype(T.species,/datum/species/shapeshifter/promethean) && target_zone == should_be_in) //Are prommy, aimed at head.
-		if(T.head || T.glasses)
-			to_chat(user,"<span class='warning'>Remove any headgear they have on first, as it might interfere.</span>")
+	if(istype(T.species,/datum/species/shapeshifter/promethean) && target_zone == BP_TORSO)
+		if(T.w_uniform || T.wear_suit)
+			to_chat(user,"<span class='warning'>Remove any clothing they have on, as it might interfere!</span>")
 			return
-		var/obj/item/organ/external/head = T.get_organ(should_be_in)
+		var/obj/item/organ/external/eo = T.get_organ(BP_TORSO)
 		if(!T)
-			to_chat(user,"<span class='warning'>They should probably regrow their head first.</span>")
+			to_chat(user,"<span class='warning'>They should probably regrow their torso first.</span>")
 			return
-		U.visible_message("<span class='notice'>[U] begins installing [src] into [T]'s head by just stuffing it in.</span>",
-		"<span class='notice'>You begin installing [src] into [T]'s head by just stuffing it in.</span>",
+		U.visible_message("<span class='notice'>[U] begins installing [src] into [T]'s chest by just stuffing it in.</span>",
+		"<span class='notice'>You begin installing [src] into [T]'s chest by just stuffing it in.</span>",
 		"There's a wet SQUISH noise.")
-		if(do_mob(user = user, target = T, time = 200, target_zone = should_be_in))
+		if(do_mob(user = user, target = T, time = 200, target_zone = BP_TORSO))
 			user.unEquip(src)
-			forceMove(head)
-			head.implants |= src
+			forceMove(eo)
+			eo.implants |= src
 			implant(T)
 			playsound(T,'sound/effects/slime_squish.ogg',50,1)
 	else
