@@ -1050,6 +1050,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/obj/item/clothing/suit/space/suit = owner.wear_suit
 		suit.handle_fracture(owner, src)
 
+	return 1
+
 /obj/item/organ/external/proc/mend_fracture()
 	if(robotic >= ORGAN_ROBOT)
 		return 0	//ORGAN_BROKEN doesn't have the same meaning for robot limbs

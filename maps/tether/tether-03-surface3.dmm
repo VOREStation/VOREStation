@@ -767,8 +767,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/common)
@@ -1599,8 +1598,7 @@
 	dir = 4;
 	icon_state = "secintercom";
 	pixel_x = 24;
-	pixel_y = 0;
-
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/common)
@@ -3702,8 +3700,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
@@ -4275,8 +4272,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -6437,8 +6433,7 @@
 /obj/structure/sign/directions/engineering{
 	dir = 10;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_stairs_three)
@@ -6450,14 +6445,12 @@
 /obj/structure/sign/directions/science{
 	dir = 2;
 	icon_state = "direction_sci";
-	pixel_y = 3;
-
+	pixel_y = 3
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-
+	pixel_y = -4
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_stairs_three)
@@ -6813,8 +6806,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_three)
@@ -9549,8 +9541,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -9628,26 +9619,22 @@
 /obj/structure/sign/directions/medical{
 	dir = 1;
 	icon_state = "direction_med";
-	pixel_y = 8;
-
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/science{
 	dir = 2;
 	icon_state = "direction_sci";
-	pixel_y = 3;
-
+	pixel_y = 3
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-
+	pixel_y = -4
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/atrium_three)
@@ -10477,8 +10464,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -11021,8 +11007,9 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/bar)
 "th" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-j2"
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -12704,8 +12691,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-
+	pixel_y = -28
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -13134,8 +13120,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -14421,8 +14406,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
@@ -14484,8 +14468,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -14499,8 +14482,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
@@ -15511,8 +15493,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -16395,8 +16376,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-
+	pixel_y = -28
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
@@ -16855,9 +16835,6 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -16869,13 +16846,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "Ds" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
@@ -16886,6 +16862,10 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -16935,8 +16915,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -17194,8 +17173,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -17518,8 +17496,7 @@
 /obj/structure/sign/directions/medical{
 	dir = 1;
 	icon_state = "direction_med";
-	pixel_y = 8;
-
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/science{
 	dir = 8;
@@ -17528,14 +17505,12 @@
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-
+	pixel_y = -4
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/maintenance/engineering/pumpstation)
@@ -19113,8 +19088,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-
+	pixel_y = -28
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -19950,8 +19924,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
@@ -20104,6 +20077,7 @@
 	},
 /obj/structure/closet/secure_closet/RD,
 /obj/item/clothing/glasses/omnihud/rnd,
+/obj/item/device/aicard,
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "Iz" = (
@@ -20699,8 +20673,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -20727,8 +20700,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
@@ -21026,8 +20998,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
@@ -21252,8 +21223,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -21297,8 +21267,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-
+	pixel_x = -30
 	},
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
@@ -21372,6 +21341,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"KX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "Lr" = (
 /obj/structure/table/woodentable,
 /obj/random/maintenance/clean,
@@ -21394,8 +21378,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-
+	pixel_x = 30
 	},
 /obj/machinery/door/window/brigdoor/northleft{
 	name = "Bar";
@@ -21409,6 +21392,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"LX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "LZ" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
@@ -21640,6 +21630,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"PA" = (
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "PD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -21742,6 +21740,11 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Qo" = (
+/obj/structure/table/bench/wooden,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "Qr" = (
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -21799,9 +21802,6 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "Rv" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
@@ -21813,6 +21813,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "Rw" = (
@@ -22165,10 +22166,34 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"XG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "XK" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"XN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "XY" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -22218,9 +22243,6 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "YM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -22231,6 +22253,10 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -22251,6 +22277,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"YP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "YV" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
@@ -22266,6 +22299,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Zc" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "Zn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -22296,6 +22333,13 @@
 "Zq" = (
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
+"Zz" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "ZI" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
@@ -37151,18 +37195,18 @@ sk
 sH
 sX
 th
-sX
-tO
-uk
-uO
-uk
-sX
-sX
-sX
-sX
-yg
-yJ
-sX
+Zc
+KX
+Qo
+PA
+Qo
+Zc
+Zc
+Zc
+Zc
+YP
+XG
+Zz
 Ai
 vp
 BE
@@ -37304,12 +37348,12 @@ sX
 sX
 yg
 yJ
-sX
-sX
-sX
-yg
-yJ
-sX
+LX
+Zc
+Zc
+YP
+XG
+Zc
 YM
 sX
 EF
@@ -37452,7 +37496,7 @@ sX
 yg
 yJ
 sX
-YM
+XN
 sX
 EF
 FI
@@ -37594,7 +37638,7 @@ uk
 yh
 yK
 uk
-YM
+XN
 sX
 EF
 FI
@@ -37736,7 +37780,7 @@ wu
 BF
 uO
 wu
-YM
+XN
 sX
 EF
 FI
@@ -37878,7 +37922,7 @@ uk
 uk
 uk
 uk
-YM
+XN
 sX
 EF
 FJ
@@ -38020,7 +38064,7 @@ sX
 sX
 sX
 sX
-YM
+XN
 sX
 EF
 FI
@@ -38162,7 +38206,7 @@ sX
 sX
 sX
 sX
-YM
+XN
 sX
 EG
 LP

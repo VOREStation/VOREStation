@@ -113,16 +113,12 @@
 	cost = -2
 	var_changes = list("lightweight" = 1)
 
-/datum/trait/colorblind
+/datum/trait/colorblind/mono
 	name = "Colorblindness (Monochromancy)"
 	desc = "You simply can't see colors at all, period. You are 100% colorblind."
 	cost = -1
 
-/datum/modifier/colorblindness_mono
-	name = "Colorblindness (Monochromancy)"
-	desc = "You simply can't see colors at all, period. You are 100% colorblind."
-
-/datum/trait/colorblind/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.add_modifier(/datum/modifier/trait/colorblind_mono)
 

@@ -134,7 +134,9 @@ var/list/admin_verbs_fun = list(
 	/client/proc/editappear,
 	/client/proc/roll_dices,
 	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod
+	/datum/admins/proc/call_drop_pod,
+	/client/proc/smite_vr, //VOREStation Add,
+	/client/proc/smite
 	)
 
 var/list/admin_verbs_spawn = list(

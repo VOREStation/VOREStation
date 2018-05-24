@@ -3077,8 +3077,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	
+	pixel_x = 30
 	},
 /turf/simulated/open,
 /area/tether/surfacebase/north_staires_two)
@@ -3178,26 +3177,22 @@
 /obj/structure/sign/directions/medical{
 	dir = 1;
 	icon_state = "direction_med";
-	pixel_y = 8;
-	
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/science{
 	dir = 1;
 	icon_state = "direction_sci";
-	pixel_y = 3;
-	
+	pixel_y = 3
 	},
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_y = -4;
-	
+	pixel_y = -4
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 4;
 	icon_state = "direction_eng";
-	pixel_y = -10;
-	
+	pixel_y = -10
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/north_staires_two)
@@ -4395,8 +4390,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
@@ -5265,8 +5259,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
@@ -7577,8 +7570,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	icon_state = "extinguisher_closed";
-	pixel_x = -30;
-	
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/lockers)
@@ -8686,8 +8678,7 @@
 "rF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/lower/lobby)
@@ -9527,6 +9518,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled,
 /area/rnd/research)
 "te" = (
@@ -9569,8 +9561,7 @@
 "ti" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -9980,6 +9971,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled,
 /area/rnd/research)
 "tS" = (
@@ -10201,8 +10193,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
@@ -10378,6 +10369,7 @@
 	pixel_x = 30;
 	pixel_y = 0
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled,
 /area/rnd/research)
 "uC" = (
@@ -10590,8 +10582,7 @@
 "uO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -10884,8 +10875,7 @@
 /obj/machinery/computer/guestpass{
 	dir = 1;
 	icon_state = "guest";
-	pixel_y = -28;
-	
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
@@ -10940,6 +10930,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 6
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled,
 /area/rnd/research)
 "vr" = (
@@ -11182,8 +11173,7 @@
 "vB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -11233,8 +11223,7 @@
 "vD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -12227,16 +12216,14 @@
 "xq" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8;
-	icon_state = "map";
-	
+	icon_state = "map"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/server)
 "xr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -12374,8 +12361,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/hallway)
@@ -13878,8 +13864,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/research_storage)
@@ -14123,8 +14108,7 @@
 "AW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -14138,14 +14122,12 @@
 "AY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
@@ -14250,8 +14232,7 @@
 "Bl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -14440,8 +14421,7 @@
 "BL" = (
 /obj/machinery/atmospherics/valve/digital/open{
 	dir = 4;
-	icon_state = "map_valve1";
-	
+	icon_state = "map_valve1"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
@@ -14599,8 +14579,7 @@
 "Cg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -15058,8 +15037,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	icon_state = "extinguisher_closed";
-	pixel_x = 30;
-	
+	pixel_x = 30
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -15961,8 +15939,7 @@
 "EZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -15984,8 +15961,7 @@
 "Fc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -16658,8 +16634,7 @@
 "Gh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/machinery/airlock_sensor/airlock_exterior{
 	frequency = 1381;
@@ -17661,8 +17636,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
-	pixel_y = 0;
-	
+	pixel_y = 0
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
@@ -18018,8 +17992,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
-	pixel_y = 0;
-	
+	pixel_y = 0
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1

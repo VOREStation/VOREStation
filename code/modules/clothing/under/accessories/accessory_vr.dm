@@ -177,3 +177,16 @@
 		to_chat(user,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
 		name = initial(name) + " ([str])"
 		desc = initial(desc) + " The tag says \"[str]\"."
+
+//Machete Holsters
+/obj/item/clothing/accessory/holster/machete
+	name = "machete sheath"
+	desc = "A handsome synthetic leather sheath with matching belt."
+	icon = 'icons/obj/clothing/ties_vr.dmi'
+	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_state = "holster_machete"
+	slot = "sheath"
+	concealed_holster = 0
+	can_hold = list(/obj/item/weapon/material/knife/machete)
+	//sound_in = 'sound/effects/holster/sheathin.ogg'
+	//sound_out = 'sound/effects/holster/sheathout.ogg'
