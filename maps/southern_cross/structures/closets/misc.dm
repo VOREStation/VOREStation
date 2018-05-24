@@ -61,10 +61,9 @@
 		new /obj/item/weapon/storage/backpack(src)
 	else
 		new /obj/item/weapon/storage/backpack/satchel/norm(src)
-	if(prob(75))
-		new /obj/item/weapon/material/knife/tacknife/survival(src)
-	else
-		new /obj/item/weapon/material/knife/machete(src)
+	new /obj/item/weapon/material/knife/tacknife/survival(src) //VOREStation Edit
+	new /obj/item/weapon/material/knife/machete(src) //VOREStation Edit
+	new /obj/item/clothing/accessory/holster/machete(src) //VOREStation Edit
 	new /obj/item/clothing/under/explorer(src)
 	new /obj/item/clothing/suit/storage/hooded/explorer(src)
 	new	/obj/item/clothing/mask/gas/explorer(src)

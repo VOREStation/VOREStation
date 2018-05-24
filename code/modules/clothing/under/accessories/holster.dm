@@ -3,6 +3,7 @@
 	desc = "A handgun holster."
 	icon_state = "holster"
 	slot = "utility"
+	var/list/can_hold //VOREStation Edit
 	concealed_holster = 1
 	var/obj/item/holstered = null
 
@@ -10,8 +11,14 @@
 	if(holstered && istype(user))
 		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
 		return
+	//VOREStation Edit - Machete sheath support
+	if (can_hold)
+		if(!is_type_in_list(I,can_hold))
+			to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
+			return
 
-	if (!(I.slot_flags & SLOT_HOLSTER))
+	else if (!(I.slot_flags & SLOT_HOLSTER))
+	//VOREStation Edit End
 		user << "<span class='warning'>[I] won't fit in [src]!</span>"
 		return
 
@@ -38,8 +45,8 @@
 	else
 		if(user.a_intent == I_HURT)
 			usr.visible_message(
-				"<span class='danger'>[user] draws \the [holstered], ready to shoot!</span>",
-				"<span class='warning'>You draw \the [holstered], ready to shoot!</span>"
+				"<span class='danger'>[user] draws \the [holstered], ready to go!</span>", //VOREStation Edit
+				"<span class='warning'>You draw \the [holstered], ready to go!</span>" //VOREStation Edit
 				)
 		else
 			user.visible_message(
