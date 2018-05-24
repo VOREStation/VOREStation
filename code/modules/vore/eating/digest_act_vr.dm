@@ -49,7 +49,7 @@
 	. = ..()
 
 /obj/item/weapon/card/id/digest_act(var/atom/movable/item_storage = null)
-	desc = "A partially digested card that has seen better days. Much of it's data has been destroyed, but the card itself is still completely salvageable. Please recycle it at crew resources office."
+	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic, but the access codes need to be reprogrammed at the HoP office."
 	icon = 'icons/obj/card_vr.dmi'
 	icon_state = "[initial(icon_state)]_digested"
 	access = list() // No access
