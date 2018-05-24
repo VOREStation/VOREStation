@@ -2082,13 +2082,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining_eva)
 "aeC" = (
-/obj/structure/closet/crate,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "aeD" = (
@@ -2666,6 +2666,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "agf" = (
@@ -6393,6 +6394,7 @@
 	pixel_y = 0;
 	req_access = list(31)
 	},
+/obj/structure/closet/crate,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "apI" = (
@@ -6455,6 +6457,7 @@
 	pixel_y = -28
 	},
 /obj/structure/cable/green,
+/obj/structure/closet/crate,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "apM" = (
@@ -28081,6 +28084,10 @@
 /obj/structure/stairs/north,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"rTC" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether/surfacebase/mining_main/ore)
 "slR" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	scrub_id = "atrium"
@@ -39798,8 +39805,8 @@ acx
 adS
 aer
 aeC
-afe
-afe
+rTC
+rTC
 age
 aer
 aah
@@ -40368,7 +40375,7 @@ ajQ
 akA
 alN
 any
-aeF
+afe
 aer
 aah
 agM
