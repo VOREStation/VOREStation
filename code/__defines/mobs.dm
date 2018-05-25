@@ -264,6 +264,7 @@
 #define SPECIES_SHADOW			"Shadow"
 #define SPECIES_SKELETON		"Skeleton"
 #define SPECIES_GOLEM			"Golem"
+#define SPECIES_EVENT1			"X Occursus"
 
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1

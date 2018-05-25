@@ -154,6 +154,12 @@
 #define MAT_LOG				"log"
 #define MAT_SIFWOOD			"alien wood"
 #define MAT_SIFLOG			"alien log"
+#define MAT_STEELHULL		"steel hull"
+#define MAT_PLASTEEL		"plasteel"
+#define MAT_PLASTEELHULL	"plasteel hull"
+#define MAT_DURASTEEL		"durasteel"
+#define MAT_DURASTEELHULL	"durasteel hull"
+#define MAT_TITANIUMHULL	"titanium hull"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"

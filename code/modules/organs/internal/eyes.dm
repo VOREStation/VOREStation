@@ -21,6 +21,17 @@
 	..()
 	robotize()
 
+/obj/item/organ/internal/eyes/grey
+	icon_state = "eyes_grey"
+
+/obj/item/organ/internal/eyes/grey/colormatch/New()
+	..()
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.blood_color
+
 /obj/item/organ/internal/eyes/proc/change_eye_color()
 	set name = "Change Eye Color"
 	set desc = "Changes your robotic eye color instantly."
