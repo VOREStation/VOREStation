@@ -527,8 +527,10 @@
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+	/* VOREStation Removal
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(removed * 2)
+	*/ //VOREStation Removal End
 
 /datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Add special interactions here in the future if desired.
 	..()
@@ -816,7 +818,7 @@
 			M.bodytemperature -= 0.5
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += 0.5
-		M.adjustToxLoss(5 * removed)
+		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/tea/icetea/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -825,7 +827,7 @@
 			M.bodytemperature -= 0.5
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += 0.5
-		M.adjustToxLoss(5 * removed)
+		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/tea/minttea
 	name = "Mint Tea"
@@ -956,7 +958,7 @@
 			M.bodytemperature -= 0.5
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += 0.5
-		M.adjustToxLoss(5 * removed)
+		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/coffee/icecoffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -965,7 +967,7 @@
 			M.bodytemperature -= 0.5
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += 0.5
-		M.adjustToxLoss(5 * removed)
+		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/coffee/soy_latte
 	name = "Soy Latte"
@@ -1432,7 +1434,7 @@
 			M.bodytemperature -= rand(1,3)
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += rand(1,3)
-		M.adjustToxLoss(5 * removed)
+		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/ice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1441,7 +1443,7 @@
 			M.bodytemperature -= rand(1,3)
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += rand(1,3)
-		M.adjustToxLoss(5 * removed)
+		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/nothing
 	name = "Nothing"

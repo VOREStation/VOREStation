@@ -95,8 +95,8 @@
 	if(alien == IS_DIONA)
 		strength_mod = 0
 	if(alien == IS_SLIME)
-		M.adjustToxLoss(removed) //Sterilizing, if only by a little bit. Also already doubled above.
-
+		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed)
+	
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 	if(dose * strength_mod >= strength) // Early warning
@@ -139,7 +139,7 @@
 	if(alien == IS_DIONA)
 		strength_mod = 0
 	if(alien == IS_SLIME)
-		M.adjustToxLoss(removed * 2) //Sterilizing, if only by a little bit.
+		strength_mod *= 2 // VOREStation Edit - M.adjustToxLoss(removed * 2)
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
