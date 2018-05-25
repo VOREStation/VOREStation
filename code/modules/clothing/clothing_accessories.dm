@@ -1,12 +1,26 @@
 /obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
-	if(src.valid_accessory_slots && (A.slot in src.valid_accessory_slots))
-		if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
-			for(var/obj/item/clothing/accessory/AC in accessories)
-				if (AC.slot == A.slot)
-					return FALSE
-		return TRUE
-	else
+	//Just no, okay
+	if(!A.slot)
 		return FALSE
+
+	//Not valid at all, not in the valid list period.
+	if((valid_accessory_slots & A.slot) != A.slot)
+		return FALSE
+
+	//Find all consumed slots
+	var/consumed_slots = 0
+	for(var/thing in accessories)
+		var/obj/item/clothing/accessory/AC = thing
+		consumed_slots |= AC.slot
+
+	//Mask to just consumed restricted
+	var/consumed_restricted = restricted_accessory_slots & consumed_slots
+
+	//They share at least one bit with the restricted slots
+	if(consumed_restricted & A.slot)
+		return FALSE
+
+	return TRUE
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
@@ -14,7 +28,7 @@
 		if(attempt_attach_accessory(A, user))
 			return
 
-	if(accessories.len)
+	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attackby(I, user)
 		return
@@ -23,7 +37,7 @@
 
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
-	if(accessories.len && src.loc == user)
+	if(LAZYLEN(accessories) && src.loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attack_hand(user)
 		return
@@ -54,7 +68,7 @@
 
 /obj/item/clothing/examine(var/mob/user)
 	..(user)
-	if(accessories.len)
+	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
 			user << "\A [A] is attached to it."
 
@@ -65,7 +79,7 @@
  *  items on spawn
  */
 /obj/item/clothing/proc/attempt_attach_accessory(obj/item/clothing/accessory/A, mob/user)
-	if(!valid_accessory_slots || !valid_accessory_slots.len)
+	if(!valid_accessory_slots)
 		if(user)
 			to_chat(user, "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>")
 		return FALSE
@@ -83,14 +97,14 @@
 
 
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
-	accessories += A
+	LAZYADD(accessories,A)
 	A.on_attached(src, user)
 	src.verbs |= /obj/item/clothing/proc/removetie_verb
 	update_accessory_slowdown()
 	update_clothing_icon()
 
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
-	if(!(A in accessories))
+	if(!LAZYLEN(accessories) || !(A in accessories))
 		return
 
 	A.on_removed(user)
@@ -109,15 +123,14 @@
 	set src in usr
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
-	if(!accessories.len) return
 	var/obj/item/clothing/accessory/A
-	if(accessories.len > 1)
+	if(LAZYLEN(accessories))
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories
-	else
-		A = accessories[1]
-	src.remove_accessory(usr,A)
-	if(!accessories.len)
+	if(A)
+		remove_accessory(usr,A)
+	if(!LAZYLEN(accessories))
 		src.verbs -= /obj/item/clothing/proc/removetie_verb
+		accessories = null
 
 /obj/item/clothing/emp_act(severity)
 	if(accessories.len)

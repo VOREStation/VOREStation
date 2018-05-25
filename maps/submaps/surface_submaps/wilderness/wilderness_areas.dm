@@ -78,3 +78,6 @@
 /area/submap/Drugd
 	name = "DrugDen"
 
+/area/submap/Manor1
+	name = "Manor1"
+

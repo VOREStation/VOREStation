@@ -21,4 +21,4 @@
 	item_icons = list(slot_wear_suit_str = 'maps/southern_cross/icons/mob/sc_suit.dmi')
 	icon = 'maps/southern_cross/icons/obj/sc_suit.dmi'
 	armor = list(melee = 15, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 5)
-	valid_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA)
+	valid_accessory_slots = (ACCESSORY_SLOT_INSIGNIA)

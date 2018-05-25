@@ -115,6 +115,11 @@
 
 	tally += item_tally
 
+	if(CE_SLOWDOWN in chem_effects)
+		if (tally >= 0 )
+			tally = (tally + tally/4) //Add a quarter of penalties on top.
+		tally += 1
+
 	if(CE_SPEEDBOOST in chem_effects)
 		if (tally >= 0)	// cut any penalties in half
 			tally = tally/2

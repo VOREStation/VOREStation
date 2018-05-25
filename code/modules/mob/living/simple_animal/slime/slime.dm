@@ -1,6 +1,7 @@
 /mob/living/simple_animal/slime
 	name = "slime"
 	desc = "The most basic of slimes.  The grey slime has no remarkable qualities, however it remains one of the most useful colors for scientists."
+	tt_desc = "A Macrolimbus vulgaris"
 	icon = 'icons/mob/slime2.dmi'
 	icon_state = "grey baby slime"
 	intelligence_level = SA_ANIMAL

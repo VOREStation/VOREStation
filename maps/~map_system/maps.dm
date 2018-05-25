@@ -125,7 +125,7 @@ var/list/all_maps = list()
 
 	// Update all turfs to ensure everything looks good post-generation. Yes,
 	// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-	for(var/turf/simulated/mineral/M in world) // Ugh.
+	for(var/turf/simulated/mineral/M in turfs) // Ugh.
 		M.update_icon()
 
 /datum/map/proc/get_network_access(var/network)

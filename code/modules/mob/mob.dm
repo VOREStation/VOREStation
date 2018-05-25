@@ -347,20 +347,20 @@
 	set category = "OOC"
 
 	if (!( config.abandon_allowed ))
-		usr << "<span class='notice'>Respawn is disabled.</span>"
+		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if ((stat != 2 || !( ticker )))
-		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
+		to_chat(usr, "<span class='notice'><B>You must be dead to use this!</B></span>")
 		return
 	if (ticker.mode && ticker.mode.deny_respawn) //BS12 EDIT
-		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
+		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
 		if(istype(src,/mob/observer/dead))
 			var/mob/observer/dead/G = src
 			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-				usr << "<font color='blue'><B>Upon using the antagHUD you forfeighted the ability to join the round.</B></font>"
+				to_chat(usr, "<font color='blue'><B>By using the antagHUD you forfeit the ability to join the round.</B></font>")
 				return
 		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
@@ -371,17 +371,17 @@
 		else if(deathtimeminutes > 1)
 			pluralcheck = " [deathtimeminutes] minutes and"
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
+		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if (deathtime < (600)) //VOREStation Edit
-			usr << "You must wait 60 seconds to respawn!" //VOREStation Edit
+		if ((deathtime < (5 * 600)) && (ticker && ticker.current_state > GAME_STATE_PREGAME))
+			to_chat(usr, "You must wait 5 minutes to respawn!")
 			return
 		else
-			usr << "You can respawn now, enjoy your new life!"
+			to_chat(usr, "You can respawn now, enjoy your new life!")
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	usr << "<font color='blue'><B>Make sure to play a different character, and please roleplay correctly!</B></font>"
+	to_chat(usr, "<font color='blue'><B>Make sure to play a different character, and please roleplay correctly!</B></font>")
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")

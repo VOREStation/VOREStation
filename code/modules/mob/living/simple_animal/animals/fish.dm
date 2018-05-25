@@ -39,36 +39,42 @@
 
 /mob/living/simple_animal/fish/bass
 	name = "bass"
+	tt_desc = "E Micropterus notius"
 	icon_state = "bass-swim"
 	icon_living = "bass-swim"
 	icon_dead = "bass-dead"
 
 /mob/living/simple_animal/fish/trout
 	name = "trout"
+	tt_desc = "E Salmo trutta"
 	icon_state = "trout-swim"
 	icon_living = "trout-swim"
 	icon_dead = "trout-dead"
 
 /mob/living/simple_animal/fish/salmon
 	name = "salmon"
+	tt_desc = "E Oncorhynchus nerka"
 	icon_state = "salmon-swim"
 	icon_living = "salmon-swim"
 	icon_dead = "salmon-dead"
 
 /mob/living/simple_animal/fish/perch
 	name = "perch"
+	tt_desc = "E Perca flavescens"
 	icon_state = "perch-swim"
 	icon_living = "perch-swim"
 	icon_dead = "perch-dead"
 
 /mob/living/simple_animal/fish/pike
 	name = "pike"
+	tt_desc = "E Esox aquitanicus"
 	icon_state = "pike-swim"
 	icon_living = "pike-swim"
 	icon_dead = "pike-dead"
 
 /mob/living/simple_animal/fish/koi
 	name = "koi"
+	tt_desc = "E Cyprinus rubrofuscus"
 	icon_state = "koi-swim"
 	icon_living = "koi-swim"
 	icon_dead = "koi-dead"

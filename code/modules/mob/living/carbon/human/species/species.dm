@@ -75,13 +75,14 @@
 		/datum/unarmed_attack/bite
 		)
 	var/list/unarmed_attacks = null							// For empty hand harm-intent attack
-	var/brute_mod =			1								// Physical damage multiplier.
-	var/burn_mod =			1								// Burn damage multiplier.
-	var/oxy_mod =			1								// Oxyloss modifier
-	var/toxins_mod =		1								// Toxloss modifier
-	var/radiation_mod =		1								// Radiation modifier
-	var/flash_mod =			1								// Stun from blindness modifier.
-	var/chemOD_mod =		1								// Damage modifier for overdose
+	var/brute_mod =     1									// Physical damage multiplier.
+	var/burn_mod =      1									// Burn damage multiplier.
+	var/oxy_mod =       1									// Oxyloss modifier
+	var/toxins_mod =    1									// Toxloss modifier
+	var/radiation_mod = 1									// Radiation modifier
+	var/flash_mod =     1									// Stun from blindness modifier.
+	var/sound_mod =     1									// Stun from sounds, I.E. flashbangs.
+	var/chemOD_mod =	1									// Damage modifier for overdose
 	var/vision_flags = SEE_SELF								// Same flags as glasses.
 
 	// Death vars.
@@ -189,6 +190,7 @@
 		O_EYES =		 /obj/item/organ/internal/eyes
 		)
 	var/vision_organ										// If set, this organ is required for vision. Defaults to "eyes" if the species has them.
+	var/dispersed_eyes            // If set, the species will be affected by flashbangs regardless if they have eyes or not, as they see in large areas.
 
 	var/list/has_limbs = list(
 		BP_TORSO =	list("path" = /obj/item/organ/external/chest),

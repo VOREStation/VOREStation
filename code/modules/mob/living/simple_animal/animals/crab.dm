@@ -2,7 +2,7 @@
 /mob/living/simple_animal/crab
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
-	tt_desc = "Ranina ranina"
+	tt_desc = "E Cancer bellianus"
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
@@ -52,6 +52,7 @@
 /mob/living/simple_animal/giant_crab
 	name = "giant crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey."
+	tt_desc = "S Cancer holligus"
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
 	icon_dead = "sif_crab_dead"

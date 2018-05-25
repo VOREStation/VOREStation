@@ -118,6 +118,8 @@
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700, state = key_state)
+		// add templates for screens in common with communicator.
+		ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

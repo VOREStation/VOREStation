@@ -510,6 +510,8 @@
 			if(R.get_product(get_turf(src)))
 				visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
 
+		playsound(src, 'sound/items/vending.ogg', 50, 1, 1)
+
 		status_message = ""
 		status_error = 0
 		vend_ready = 1
