@@ -329,6 +329,7 @@
 #include "code\datums\wires\particle_accelerator.dm"
 #include "code\datums\wires\radio.dm"
 #include "code\datums\wires\robot.dm"
+#include "code\datums\wires\seedstorage.dm"
 #include "code\datums\wires\smartfridge.dm"
 #include "code\datums\wires\smes.dm"
 #include "code\datums\wires\suit_storage_unit.dm"
