@@ -11,7 +11,6 @@
 	var/min_health = -100
 	var/cleaning = 0
 	var/patient_laststat = null
-	var/mob_energy = -100 //Energy gained from digesting dead mobs (including PCs)
 	var/list/injection_chems = list("inaprovaline", "dexalin", "bicaridine", "kelotane","anti_toxin", "alkysine", "imidazoline", "spaceacillin", "paracetamol") //The borg is able to heal every damage type. As a nerf, they use 750 charge per injection.
 	var/eject_port = "ingestion"
 	var/list/items_preserved = list()
@@ -70,8 +69,6 @@
 					for(var/T in tech_item.origin_tech)
 						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")
 				update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(usr)
 			return
 
 		else if(ishuman(target))
@@ -90,8 +87,6 @@
 				user.visible_message("<span class='warning'>[hound.name]'s internal analyzer groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your internal analyzer groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(usr)
 			return
 		return
 
@@ -107,8 +102,6 @@
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [target] slips inside.</span>")
 				playsound(hound, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(usr)
 			return
 
 		if(istype(target, /mob/living/simple_animal/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
@@ -120,8 +113,6 @@
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashmouse] slips inside.</span>")
 				playsound(hound, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(usr)
 			return
 
 		else if(ishuman(target))
@@ -140,8 +131,6 @@
 				user.visible_message("<span class='warning'>[hound.name]'s garbage processor groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your garbage compactor groans lightly as [trashman] slips inside.</span>")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(usr)
 			return
 		return
 	else if(ishuman(target))
@@ -167,8 +156,6 @@
 				user.visible_message("<span class='warning'>[hound.name]'s medical pod lights up as [H.name] slips inside into their [src.name].</span>", "<span class='notice'>Your medical pod lights up as [H] slips into your [src]. Life support functions engaged.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
-				if(UI_open == TRUE)
-					sleeperUI(usr)
 
 /obj/item/device/dogborg/sleeper/proc/go_out(var/target)
 	hound = src.loc
@@ -208,10 +195,9 @@
 	if(..())
 		return
 	sleeperUI(user)
-	UI_open = TRUE
 
 /obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
-	var/dat
+	var/dat = "<TITLE>[name] Console</TITLE><BR>"
 
 	if(islist(injection_chems)) //Only display this if we're a drug-dispensing doggo.
 		dat += "<h3>Injector</h3>"
@@ -295,10 +281,10 @@
 				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"
 	dat += "</div>"
 
-	var/datum/browser/popup = new(user, "sleeper", "[name] Console", 520, 540)	//Set up the popup browser window
-	//popup.set_title_image(user.browse_rsc_icon(icon, icon_state)) //I have no idea what this is, but it feels irrelevant and causes runtimes idk.
+	var/datum/browser/popup = new(user, "sleeper_b", "[name] Console", 400, 500, src)
 	popup.set_content(dat)
 	popup.open()
+	UI_open = TRUE
 	return
 
 /obj/item/device/dogborg/sleeper/Topic(href, href_list)
@@ -328,7 +314,6 @@
 					drain(startdrain)
 					processing_objects |= src
 					update_patient()
-					sleeperUI(usr)
 					if(patient)
 						to_chat(patient, "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>")
 					return
@@ -392,6 +377,8 @@
 //For if the dogborg's existing patient uh, doesn't make it.
 /obj/item/device/dogborg/sleeper/proc/update_patient()
 	hound = src.loc
+	if(UI_open == TRUE)
+		sleeperUI(hound)
 
 	//Well, we HAD one, what happened to them?
 	if(patient in contents)
@@ -411,8 +398,6 @@
 			//Update icon
 			hound.updateicon()
 		//Return original patient
-		if(UI_open == TRUE)
-			sleeperUI(usr)
 		return(patient)
 
 	//Check for a new patient
@@ -433,8 +418,6 @@
 				patient_laststat = patient.stat
 			//Update icon and return new patient
 			hound.updateicon()
-			if(UI_open == TRUE)
-				sleeperUI(usr)
 			return(C)
 
 	//Cleaning looks better with red on, even with nobody in it
@@ -455,8 +438,6 @@
 	patient_laststat = null
 	patient = null
 	hound.updateicon()
-	if(UI_open == TRUE)
-		sleeperUI(usr)
 	return
 
 //Gurgleborg process
@@ -470,7 +451,7 @@
 	var/list/touchable_items = contents - items_preserved
 
 	//Belly is entirely empty
-	if(!length(contents))
+	if(!length(touchable_items))
 		var/finisher = pick(
 			'sound/vore/death1.ogg',
 			'sound/vore/death2.ogg',
@@ -508,7 +489,9 @@
 	if(air_master.current_cycle%3==1 && length(touchable_items))
 
 		//Burn all the mobs or add them to the exclusion list
+		var/volume = 0
 		for(var/mob/living/T in (touchable_items))
+			touchable_items -= T //Exclude mobs from loose item picking.
 			if((T.status_flags & GODMODE) || !T.digestable)
 				items_preserved += T
 			else
@@ -520,66 +503,55 @@
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
 				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
-				update_patient()
+				water.add_charge(damage_gain)
+				if(T.stat == DEAD)
+					if(ishuman(T))
+						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+					to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
+					to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
+					var/deathsound = pick(
+						'sound/vore/death1.ogg',
+						'sound/vore/death2.ogg',
+						'sound/vore/death3.ogg',
+						'sound/vore/death4.ogg',
+						'sound/vore/death5.ogg',
+						'sound/vore/death6.ogg',
+						'sound/vore/death7.ogg',
+						'sound/vore/death8.ogg',
+						'sound/vore/death9.ogg',
+						'sound/vore/death10.ogg')
+					playsound(hound, deathsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
+					if(is_vore_predator(T))
+						for(var/belly in T.vore_organs)
+							var/obj/belly/B = belly
+							for(var/atom/movable/thing in B)
+								thing.forceMove(src)
+								if(ismob(thing))
+									to_chat(thing, "As [T] melts away around you, you find yourself in [hound]'s [name]")
+					for(var/obj/item/I in T)
+						if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
+							var/obj/item/organ/internal/mmi_holder/MMI = I
+							var/atom/movable/brain = MMI.removed()
+							if(brain)
+								hound.remove_from_mob(brain,src)
+								brain.forceMove(src)
+								items_preserved += brain
+						else
+							T.drop_from_inventory(I, src)
+					if(ishuman(T))
+						var/mob/living/carbon/human/Prey = T
+						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
+						water.add_charge(volume)
+					if(T.reagents)
+						volume = T.reagents.total_volume
+						water.add_charge(volume)
+					qdel(T)
 
 		//Pick a random item to deal with (if there are any)
-		var/atom/target = pick(touchable_items)
-		var/volume = 0
+		if(length(touchable_items))
+			var/atom/target = pick(touchable_items)
 
-		//Handle the target being a mob
-		if(isliving(target))
-			var/mob/living/T = target
-
-			//Mob is now dead
-			if(T.stat == DEAD)
-				if(ishuman(target))
-					message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-				to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
-				to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
-				drain(mob_energy) //Fueeeeellll
-				var/deathsound = pick(
-					'sound/vore/death1.ogg',
-					'sound/vore/death2.ogg',
-					'sound/vore/death3.ogg',
-					'sound/vore/death4.ogg',
-					'sound/vore/death5.ogg',
-					'sound/vore/death6.ogg',
-					'sound/vore/death7.ogg',
-					'sound/vore/death8.ogg',
-					'sound/vore/death9.ogg',
-					'sound/vore/death10.ogg')
-				playsound(hound, deathsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
-				if(is_vore_predator(T))
-					for(var/belly in T.vore_organs)
-						var/obj/belly/B = belly
-						for(var/atom/movable/thing in B)
-							thing.forceMove(src)
-							if(ismob(thing))
-								to_chat(thing, "As [T] melts away around you, you find yourself in [hound]'s [name]")
-				for(var/obj/item/I in T)
-					if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
-						var/obj/item/organ/internal/mmi_holder/MMI = I
-						var/atom/movable/brain = MMI.removed()
-						if(brain)
-							hound.remove_from_mob(brain,src)
-							brain.forceMove(src)
-							items_preserved += brain
-					else
-						T.drop_from_inventory(I, src)
-				if(ishuman(T))
-					var/mob/living/carbon/human/Prey = T
-					volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
-					water.add_charge(volume)
-				if(T.reagents)
-					volume = T.reagents.total_volume
-					water.add_charge(volume)
-				qdel(T)
-				update_patient()
-				if(UI_open == TRUE)
-					sleeperUI(hound)
-
-		//Handle the target being anything but a /mob/living
-		else
+			//Handle the target being anything but a /mob/living
 			var/obj/item/T = target
 			if(istype(T))
 				if(T.reagents)
@@ -618,10 +590,8 @@
 				drain(-100)
 			else
 				items_preserved |= target
-			if(UI_open == TRUE)
-				update_patient()
-				sleeperUI(hound)
-		return
+		update_patient()
+	return
 
 /obj/item/device/dogborg/sleeper/process()
 
