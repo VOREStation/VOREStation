@@ -5,13 +5,14 @@
 	slot = ACCESSORY_SLOT_TORSO //Legacy/balance purposes
 	concealed_holster = 1
 	var/obj/item/holstered = null
+	var/list/can_hold //VOREStation Add
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
 		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
 		return
 	//VOREStation Edit - Machete sheath support
-	if (can_hold)
+	if (LAZYLEN(can_hold))
 		if(!is_type_in_list(I,can_hold))
 			to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
 			return
