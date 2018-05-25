@@ -433,6 +433,8 @@ var/global/list/robot_modules = list(
 	synths += metal
 	synths += glass
 	synths += plasteel
+	synths += wood
+	synths += plastic
 	synths += wire
 
 	var/obj/item/weapon/matter_decompiler/MD = new /obj/item/weapon/matter_decompiler(src)
