@@ -144,6 +144,7 @@ var/redspace_abduction_z
 				var/turf/T = locate(x,y,z)
 				new /area/redspace_abduction(T)
 				T.ChangeTurf(/turf/unsimulated/fake_space)
+				T.plane = -100
 				CHECK_TICK
 		redspace_abduction_z = z
 
