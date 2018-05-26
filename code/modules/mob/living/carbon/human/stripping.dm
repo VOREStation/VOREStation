@@ -33,7 +33,7 @@
 			return
 		if("tie")
 			var/obj/item/clothing/under/suit = w_uniform
-			if(!istype(suit) || !suit.accessories.len)
+			if(!istype(suit) || !LAZYLEN(suit.accessories))
 				return
 			var/obj/item/clothing/accessory/A = suit.accessories[1]
 			if(!istype(A))

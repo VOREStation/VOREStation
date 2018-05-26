@@ -98,7 +98,7 @@
 		H = src
 	else if (istype(src, /obj/item/clothing/under))
 		var/obj/item/clothing/under/S = src
-		if (S.accessories.len)
+		if (LAZYLEN(S.accessories))
 			H = locate() in S.accessories
 
 	if (!H)
