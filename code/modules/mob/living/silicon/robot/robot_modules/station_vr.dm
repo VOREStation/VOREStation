@@ -480,6 +480,7 @@
 	MD.glass = glass
 	MD.wood = wood
 	MD.plastic = plastic
+	MD.water = water
 	src.modules += MD
 
 	var/obj/item/stack/material/cyborg/steel/M = new (src)
