@@ -16,8 +16,8 @@
 	response_harm = "hits the"
 
 	harm_intent_damage = 20
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	attacktext = list("Bites")
 
 	speak_chance = 1
