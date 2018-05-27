@@ -112,11 +112,15 @@
 /datum/unit_test/active_edges/start_test()
 
 	var/active_edges = air_master.active_edges.len
+	var/list/edge_log = list()
+	if(active_edges)
+		for(var/connection_edge/E in air_master.active_edges)
+			edge_log += "Active Edge [E] ([E.type])"
+			for(var/turf/T in E.connecting_turfs)
+				edge_log += "+--- Connecting Turf [T] @ [T.x], [T.y], [T.z]"
 
 	if(active_edges)
-		for(var/line in air_master.startup_active_edge_log) // Report where the edges are.
-			log_unit_test(line)
-		fail("Maps contained [active_edges] active edges at round-start.")
+		fail("Maps contained [active_edges] active edges at round-start.\n" + edge_log.Join("\n"))
 	else
 		pass("No active edges.")
 

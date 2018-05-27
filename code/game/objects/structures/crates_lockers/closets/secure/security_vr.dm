@@ -1,16 +1,62 @@
 /obj/structure/closet/secure_closet/hos
-	name = "head of security's locker"
-	req_access = list(access_hos)
+	name = "head of security's attire"
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
 	icon_locked = "hossecure1"
 	icon_opened = "hossecureopen"
 	icon_broken = "hossecurebroken"
 	icon_off = "hossecureoff"
-	storage_capacity = 3 * MOB_MEDIUM
+	req_access = list(access_hos)
+	storage_capacity = 2.5 * MOB_MEDIUM
+
+	starts_with = list(
+		/obj/item/clothing/head/helmet/HoS,
+		/obj/item/clothing/head/helmet/HoS/hat,
+		/obj/item/clothing/suit/storage/vest/hos,
+		/obj/item/clothing/under/rank/head_of_security/jensen,
+		/obj/item/clothing/under/rank/head_of_security/corp,
+		/obj/item/clothing/suit/storage/vest/hoscoat/jensen,
+		/obj/item/clothing/suit/storage/vest/hoscoat,
+		/obj/item/clothing/head/helmet/dermal,
+		/obj/item/device/radio/headset/heads/hos,
+		/obj/item/device/radio/headset/heads/hos/alt,
+		/obj/item/clothing/glasses/sunglasses/sechud,
+		/obj/item/weapon/storage/belt/security,
+		/obj/item/clothing/accessory/holster/waist,
+		/obj/item/clothing/head/beret/sec/corporate/hos,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/mask/gas/half)
+
+/obj/structure/closet/secure_closet/hos2
+	name = "head of security's gear"
+	icon_state = "hossecure1"
+	icon_closed = "hossecure"
+	icon_locked = "hossecure1"
+	icon_opened = "hossecureopen"
+	icon_broken = "hossecurebroken"
+	icon_off = "hossecureoff"
+	req_access = list(access_hos)
+	storage_capacity = 2.5 * MOB_MEDIUM
+
+	starts_with = list(
+		/obj/item/weapon/cartridge/hos,
+		/obj/item/taperoll/police,
+		/obj/item/weapon/shield/riot/tele,
+		/obj/item/weapon/storage/box/holobadge/hos,
+		/obj/item/clothing/accessory/badge/holo/hos,
+		/obj/item/weapon/reagent_containers/spray/pepper,
+		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/storage/box/flashbangs,
+		/obj/item/device/flash,
+		/obj/item/weapon/melee/baton/loaded,
+		/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos,
+		/obj/item/weapon/melee/telebaton,
+		/obj/item/clothing/head/beret/sec/corporate/hos,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/shoes/boots/winter/security,
+		/obj/item/device/flashlight/maglight)
 
 //Custom NT Security Lockers, Only found at central command
-
 /obj/structure/closet/secure_closet/nanotrasen_security
 	name = "NanoTrasen security officer's locker"
 	req_access = list(access_brig)

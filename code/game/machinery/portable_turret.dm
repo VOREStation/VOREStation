@@ -105,6 +105,13 @@
 	stat = BROKEN
 	can_salvage = FALSE // So you need to actually kill a turret to get the alien gun.
 
+/obj/machinery/porta_turret/poi	//These are always angry
+	enabled = TRUE
+	lethal = TRUE
+	ailock = TRUE
+	check_all = TRUE
+	can_salvage = FALSE	// So you can't just twoshot a turret and get a fancy gun
+
 /obj/machinery/porta_turret/New()
 	..()
 	req_access.Cut()

@@ -59,7 +59,7 @@
 		clear_holster()
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
-	if (has_suit)	//if we are part of a suit
+	if (has_suit && (slot & ACCESSORY_SLOT_UTILITY))	//if we are part of a suit
 		if (holstered)
 			unholster(user)
 		return
@@ -105,7 +105,7 @@
 		H = src
 	else if (istype(src, /obj/item/clothing/under))
 		var/obj/item/clothing/under/S = src
-		if (S.accessories.len)
+		if (LAZYLEN(S.accessories))
 			H = locate() in S.accessories
 
 	if (!H)

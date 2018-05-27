@@ -26,6 +26,8 @@ GLOBAL_LIST_BOILERPLATE(all_clothing, /obj/item/clothing)
 	var/ear_protection = 0
 	var/blood_sprite_state
 
+	var/update_icon_define = null	// Only needed if you've got multiple files for the same type of clothing
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return

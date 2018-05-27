@@ -1,0 +1,7 @@
+
+author: Mechoid
+
+delete-after: True
+
+changes: 
+  - rscadd: "Seed Storage Vendors are now hackable. Can choose from various lists of concerning plants."
