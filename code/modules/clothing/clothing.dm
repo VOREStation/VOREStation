@@ -1,10 +1,12 @@
+GLOBAL_LIST_BOILERPLATE(all_clothing, /obj/item/clothing)
+
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
 	var/list/species_restricted = null //Only these species can wear this kit.
 	var/gunshot_residue //Used by forensics.
 
-	var/list/accessories = list()
+	var/list/accessories
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
 	var/list/starting_accessories
@@ -589,8 +591,8 @@
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi'
 		)
 
-	valid_accessory_slots = list("over", "armband")
-	restricted_accessory_slots = list("armband")
+	valid_accessory_slots = (ACCESSORY_SLOT_OVER | ACCESSORY_SLOT_ARMBAND)
+	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
@@ -632,15 +634,26 @@
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 	//Also used by rolling/unrolling.
 	var/worn_state = null
-	valid_accessory_slots = list("utility","armband","sheath","decor","over") //VOREStation Edit - Adds Machete Sheath
-	restricted_accessory_slots = list("utility", "armband", "sheath") //VOREStation Edit - Adds Machete Sheath
+	valid_accessory_slots = (\
+		ACCESSORY_SLOT_UTILITY\
+		|ACCESSORY_SLOT_WEAPON\
+		|ACCESSORY_SLOT_ARMBAND\
+		|ACCESSORY_SLOT_DECOR\
+		|ACCESSORY_SLOT_MEDAL\
+		|ACCESSORY_SLOT_TIE\
+		|ACCESSORY_SLOT_OVER)
+	restricted_accessory_slots = (\
+		ACCESSORY_SLOT_UTILITY\
+		|ACCESSORY_SLOT_WEAPON\
+		|ACCESSORY_SLOT_ARMBAND\
+		|ACCESSORY_SLOT_TIE\
+		|ACCESSORY_SLOT_OVER)
 
 	var/icon/rolled_down_icon = 'icons/mob/uniform_rolled_down.dmi'
 	var/icon/rolled_down_sleeves_icon = 'icons/mob/uniform_sleeves_rolled.dmi'
 
-
 /obj/item/clothing/under/attack_hand(var/mob/user)
-	if(accessories && accessories.len)
+	if(LAZYLEN(accessories))
 		..()
 	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
 		return

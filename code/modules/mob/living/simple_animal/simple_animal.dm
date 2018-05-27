@@ -1227,7 +1227,7 @@
 	if(astarpathing) ForgetPath()
 	ai_log("GoHome()",1)
 	var/close_enough = 2
-	var/look_in = 250
+	var/look_in = 50
 	if(GetPath(home_turf,close_enough,look_in))
 		stop_automated_movement = 1
 		spawn(1)

@@ -340,7 +340,7 @@
 		new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
 		return
 
-
+GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/brig)
 
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"

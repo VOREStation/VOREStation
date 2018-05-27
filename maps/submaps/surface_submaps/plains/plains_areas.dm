@@ -78,3 +78,6 @@
 
 /area/submap/RationCache
 	name = "Ration Cache"
+
+/area/submap/Oldhouse
+	name = "Oldhouse"

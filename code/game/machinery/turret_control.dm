@@ -51,7 +51,7 @@
 	else if(ispath(control_area))
 		control_area = locate(control_area)
 	else if(istext(control_area))
-		for(var/area/A in world)
+		for(var/area/A in all_areas)
 			if(A.name && A.name==control_area)
 				control_area = A
 				break

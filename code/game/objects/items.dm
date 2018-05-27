@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_items, /obj/item)
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
@@ -587,7 +589,7 @@ var/list/global/slot_flags_enumeration = list(
 	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
 
 	//not sure if this is worth it. It attaches the blood_overlay to every item of the same type if they don't have one already made.
-	for(var/obj/item/A in world)
+	for(var/obj/item/A in all_items)
 		if(A.type == type && !A.blood_overlay)
 			A.blood_overlay = image(I)
 
@@ -684,6 +686,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // Check if an object should ignite others, like a lit lighter or candle.
 /obj/item/proc/is_hot()
 	return FALSE
+
+// Called when you swap hands away from the item
+/obj/item/proc/in_inactive_hand(mob/user)
+	return
 
 // My best guess as to why this is here would be that it does so little. Still, keep it under all the procs, for sanity's sake.
 /obj/item/device

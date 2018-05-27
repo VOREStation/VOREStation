@@ -26,6 +26,7 @@
 #include "Snow5.dmm"
 #include "SupplyDrop2.dmm"
 #include "RationCache.dmm"
+#include "Oldhouse.dmm"
 #endif
 
 
@@ -194,3 +195,9 @@
 	desc = "A drop pod that's clearly been here a while, most of the things inside are rusted and worthless."
 	mappath = 'maps/submaps/surface_submaps/plains/SupplyDrop2.dmm'
 	cost = 8
+
+/datum/map_template/surface/plains/Oldhouse
+	name = "Oldhouse"
+	desc = "Someones old library it seems.."
+	mappath = 'maps/submaps/surface_submaps/plains/Oldhouse.dmm'
+	cost = 15

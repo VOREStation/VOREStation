@@ -2,10 +2,10 @@
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	slot = "utility"
+	slot = ACCESSORY_SLOT_UTILITY
 	show_messages = 1
 
-	var/slots = 3
+	var/slots = 5
 	var/obj/item/weapon/storage/internal/hold
 	w_class = ITEMSIZE_NORMAL
 
@@ -49,45 +49,40 @@
 	name = "webbing"
 	desc = "Sturdy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
+	slots = 3
 
 /obj/item/clothing/accessory/storage/black_vest
 	name = "black webbing vest"
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
 	icon_state = "vest_black"
-	slots = 5
 
 /obj/item/clothing/accessory/storage/brown_vest
 	name = "brown webbing vest"
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
-	slots = 5
 
 /obj/item/clothing/accessory/storage/white_vest
 	name = "white webbing vest"
 	desc = "Durable white synthcotton vest with lots of pockets to carry essentials."
 	icon_state = "vest_white"
-	slots = 5
 
 /obj/item/clothing/accessory/storage/black_drop_pouches
 	name = "black drop pouches"
 	gender = PLURAL
 	desc = "Robust black synthcotton bags to hold whatever you need, but cannot hold in hands."
 	icon_state = "thigh_black"
-	slots = 5
 
 /obj/item/clothing/accessory/storage/brown_drop_pouches
 	name = "brown drop pouches"
 	gender = PLURAL
 	desc = "Worn brownish synthcotton bags to hold whatever you need, but cannot hold in hands."
 	icon_state = "thigh_brown"
-	slots = 5
 
 /obj/item/clothing/accessory/storage/white_drop_pouches
 	name = "white drop pouches"
 	gender = PLURAL
 	desc = "Durable white synthcotton bags to hold whatever you need, but cannot hold in hands."
 	icon_state = "thigh_white"
-	slots = 5
 
 /obj/item/clothing/accessory/storage/knifeharness
 	name = "decorated harness"

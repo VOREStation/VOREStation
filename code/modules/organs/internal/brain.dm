@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
+
 /obj/item/organ/internal/brain
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?

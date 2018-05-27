@@ -5,7 +5,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	name =             SPECIES_PROMETHEAN
 	name_plural =      "Prometheans"
-	blurb =            "What has Science done?"
+	blurb =            "Prometheans (Macrolimus artificialis) are a species of artificially-created gelatinous humanoids, \
+	chiefly characterized by their primarily liquid bodies and ability to change their bodily shape and color in order to  \
+	mimic many forms of life. Derived from the Aetolian giant slime (Macrolimus vulgaris) inhabiting the warm, tropical planet \
+	of Aetolus, they are a relatively new lab-created sapient species, and as such many things about them have yet to be comprehensively studied. \
+	What has Science done?"
 	show_ssd =         "totally quiescent"
 	death_message =    "rapidly loses cohesion, splattering across the ground..."
 	knockout_message = "collapses inwards, forming a disordered puddle of goo."
@@ -46,6 +50,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	brute_mod =		0.75
 	burn_mod =		2
 	oxy_mod =		0
+	flash_mod =		0.5 //No centralized, lensed eyes.
+	item_slowdown_mod = 1.33
 
 	cloning_modifier = /datum/modifier/cloning_sickness/promethean
 
@@ -66,6 +72,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
 	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
+
+	dispersed_eyes = TRUE
+
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unbreakable/slime),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unbreakable/slime),
@@ -147,25 +156,41 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/turf/T = H.loc
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
-		if(C)
-			if(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)))
-				return
+		if(C && !(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			qdel(C)
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
 				S.dirt = 0
-			H.nutrition += rand(15, 45)
+
+			H.nutrition = min(500, max(0, H.nutrition + rand(15, 30)))
 VOREStation Removal End */
 	// Heal remaining damage.
 	if(H.fire_stacks >= 0)
 		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-			H.adjustBruteLoss(-heal_rate)
-			H.adjustFireLoss(-heal_rate)
-			H.adjustOxyLoss(-heal_rate)
-			H.adjustToxLoss(-heal_rate)
-/*	else //VOREStation Edit Start.
-		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
-*/ //VOREStation Edit End
+			var/nutrition_cost = 0
+			var/nutrition_debt = H.getBruteLoss()
+			var/starve_mod = 1
+			if(H.nutrition <= 25)
+				starve_mod = 0.75
+			H.adjustBruteLoss(-heal_rate * starve_mod)
+			nutrition_cost += nutrition_debt - H.getBruteLoss()
+
+			nutrition_debt = H.getFireLoss()
+			H.adjustFireLoss(-heal_rate * starve_mod)
+			nutrition_cost += nutrition_debt - H.getFireLoss()
+
+			nutrition_debt = H.getOxyLoss()
+			H.adjustOxyLoss(-heal_rate * starve_mod)
+			nutrition_cost += nutrition_debt - H.getOxyLoss()
+
+			nutrition_debt = H.getToxLoss()
+			H.adjustToxLoss(-heal_rate * starve_mod)
+			nutrition_cost += nutrition_debt - H.getToxLoss()
+			H.nutrition -= (2 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
+			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
+	//else//VOREStation Removal
+		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
