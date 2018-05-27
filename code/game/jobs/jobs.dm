@@ -56,6 +56,7 @@ var/list/command_positions = list(
 	"Chief Engineer",
 	"Research Director",
 	"Chief Medical Officer",
+	"Pathfinder",  // VOREStation Edit - Added Pathfinder
 	"Command Secretary"
 )
 

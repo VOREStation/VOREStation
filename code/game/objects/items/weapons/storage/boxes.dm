@@ -479,3 +479,9 @@
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
+
+//VOREStation Edit - Adds Explorer Key Box
+/obj/item/weapon/storage/box/explorerkeys
+	name = "box of volunteer headsets"
+	desc = "A box full of volunteer headsets, for issuing out to exploration volunteers."
+	starts_with = list(/obj/item/device/radio/headset/volunteer = 7)

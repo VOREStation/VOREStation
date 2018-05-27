@@ -4,6 +4,7 @@
 var/const/SAR 				=(1<<11)
 var/const/PILOT 			=(1<<15) //VOREStation Edit - Bumped up 2
 var/const/EXPLORER 			=(1<<12) //VOREStation Edit - Moved to science
+var/const/PATHFINDER 		=(1<<13) //VOREStation Edit - Added Pathfinder
 
 var/const/access_pilot = 67
 var/const/access_explorer = 43
@@ -19,6 +20,12 @@ var/const/access_explorer = 43
 	region = ACCESS_REGION_GENERAL
 
 //SC IDs
+
+//VOREStation Edit - Added Pathfinder
+/obj/item/weapon/card/id/silver/pathfinder
+	assignment = "Pathfinder"
+	rank = "Pathfinder"
+	job_access_type = /datum/job/pathfinder
 
 /obj/item/weapon/card/id/medical/sar
 	assignment = "Search and Rescue"
@@ -69,6 +76,25 @@ var/const/access_explorer = 43
 	return get_all_station_access()
 */
 
+//VOREStation Edit - Added Pathfinder
+/datum/job/pathfinder
+	title = "Pathfinder"
+	flag = PATHFINDER
+	department = "Command"
+	department_flag = MEDSCI
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the research director"
+	selection_color = "#2F2F7F"
+	idtype = /obj/item/weapon/card/id/silver/pathfinder
+	economic_modifier = 10
+	
+	access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks,
+			access_pilot, access_explorer, access_research, access_heads, access_keycard_auth, access_gateway)
+	minimal_access = list(access_medical, access_pilot, access_explorer, access_research, access_heads, access_gateway)
+	outfit_type = /decl/hierarchy/outfit/job/pathfinder
+
 /datum/job/pilot
 	title = "Pilot"
 	flag = PILOT
@@ -77,10 +103,10 @@ var/const/access_explorer = 43
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the head of personnel"
+	supervisors = "the pathfinder and the head of personnel" //VOREStation Edit
 	selection_color = "#515151"
 	idtype = /obj/item/weapon/card/id/civilian/pilot
-	economic_modifier = 4
+	economic_modifier = 5 //VOREStation Edit
 	access = list(access_pilot) //VOREStation Edit
 	minimal_access = list(access_pilot) //VOREStation Edit
 	outfit_type = /decl/hierarchy/outfit/job/pilot
@@ -91,12 +117,12 @@ var/const/access_explorer = 43
 	department = "Science" //VOREStation Edit
 	department_flag = MEDSCI //VOREStation Edit
 	faction = "Station"
-	total_positions = 3 //VOREStation Edit
-	spawn_positions = 3 //VOREStation Edit
-	supervisors = "the research director" //VOREStation Edit
+	total_positions = 2 //VOREStation Edit
+	spawn_positions = 2 //VOREStation Edit
+	supervisors = "the pathfinder and the research director" //VOREStation Edit
 	selection_color = "#633D63" //VOREStation Edit
 	idtype = /obj/item/weapon/card/id/civilian/explorer
-	economic_modifier = 4
+	economic_modifier = 6 //VOREStation Edit
 	access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
 	minimal_access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
@@ -112,12 +138,12 @@ var/const/access_explorer = 43
 	department = "Medical"
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 2 //VOREStation Edit
-	spawn_positions = 2 //VOREStation Edit
-	supervisors = "the chief medical officer"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the pathfinder and the chief medical officer" //VOREStation Edit
 	selection_color = "#013D3B" //VOREStation Edit
 	idtype = /obj/item/weapon/card/id/medical
-	economic_modifier = 4
+	economic_modifier = 6 //VOREStation Edit
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist, access_explorer)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_explorer)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar

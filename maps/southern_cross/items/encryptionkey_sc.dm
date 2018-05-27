@@ -1,6 +1,6 @@
 /obj/item/device/encryptionkey/pilot
 	name = "pilot's encryption key"
-	icon_state = "com_cypherkey"
+	icon_state = "cypherkey" //VOREStation Edit
 	channels = list("Explorer" = 1) //VOREStation Edit
 
 /obj/item/device/encryptionkey/explorer
@@ -12,6 +12,12 @@
 	name = "sar's encryption key"
 	icon_state = "med_cypherkey"
 	channels = list("Medical" = 1, "Explorer" = 1)
+
+//VOREStation Edit - Added Pathfinder
+/obj/item/device/encryptionkey/pathfinder
+	name = "pathfinder's encryption key"
+	icon_state = "medsci_cypherkey"
+	channels = list("Command" = 1, "Science" = 1, "Medical" = 1, "Explorer" = 1)
 
 /obj/item/device/encryptionkey/heads/hop
 	name = "head of personnel's encryption key"
