@@ -59,7 +59,7 @@
 
 /obj/structure/largecrate/animal/dangerous
 	name = "Dangerous Predator carrier"
-	starts_with = (/mob/living/simple_animal/hostile/alien_
+	starts_with = list(/mob/living/simple_animal/hostile/alien)
 
 /obj/structure/largecrate/animal/dangerous/initialize()
 	starts_with = list(pick(/mob/living/simple_animal/hostile/carp/pike,
