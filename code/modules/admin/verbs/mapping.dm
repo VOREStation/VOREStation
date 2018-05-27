@@ -296,7 +296,7 @@ var/list/debug_verbs = list (
 
 	var/list/atom/atom_list = list()
 
-	for(var/atom/A in all_atoms)
+	for(var/atom/A in world)
 		if(istype(A,type_path))
 			var/atom/B = A
 			while(!(isturf(B.loc)))
@@ -332,7 +332,7 @@ var/list/debug_verbs = list (
 
 	var/count = 0
 
-	for(var/atom/A in all_atoms)
+	for(var/atom/A in world)
 		if(istype(A,type_path))
 			count++
 	/*

@@ -967,7 +967,7 @@
 
 // *** TEST verb
 //client/verb/dispstop()
-//	for(var/obj/structure/disposalholder/H in all_objs)
+//	for(var/obj/structure/disposalholder/H in world)
 //		H.active = 0
 
 // a straight or bent segment
