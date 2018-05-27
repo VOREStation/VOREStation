@@ -213,6 +213,8 @@ GLOBAL_LIST_BOILERPLATE(all_items, /obj/item)
 		if(!temp)
 			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
 			return
+
+	var/old_loc = src.loc
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
@@ -225,7 +227,11 @@ GLOBAL_LIST_BOILERPLATE(all_items, /obj/item)
 	else
 		if(isliving(src.loc))
 			return
-	user.put_in_active_hand(src)
+	if(user.put_in_active_hand(src))
+		if(isturf(old_loc))
+			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
+			ghost.assumeform(src)
+			ghost.animate_towards(user)
 	return
 
 /obj/item/attack_ai(mob/user as mob)
