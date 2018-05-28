@@ -1611,6 +1611,7 @@
 #include "code\modules\clothing\under\accessories\holster.dm"
 #include "code\modules\clothing\under\accessories\lockets.dm"
 #include "code\modules\clothing\under\accessories\permits.dm"
+#include "code\modules\clothing\under\accessories\permits_vr.dm"
 #include "code\modules\clothing\under\accessories\storage.dm"
 #include "code\modules\clothing\under\jobs\civilian.dm"
 #include "code\modules\clothing\under\jobs\engineering.dm"
