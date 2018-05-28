@@ -5,8 +5,6 @@
 	icon_state = "helm_explorer"
 	item_state = "helm_explorer"
 	armor = list(melee = 50, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
-	//icon = 'icons/obj/clothing/hats_vr.dmi'
-	//icon_override = 'icons/mob/head_vr.dmi'
 	light_overlay = "helmet_light_dual" //explorer_light
 
 /obj/item/clothing/suit/space/void/exploration
@@ -15,8 +13,6 @@
 	icon_state = "void_explorer"
 	armor = list(melee = 50, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/device/healthanalyzer,/obj/item/device/gps,/obj/item/device/radio/beacon,/obj/item/weapon/shovel)
-	icon = 'icons/obj/clothing/suits_2.dmi'
-	icon_override = 'icons/mob/suit_2.dmi'
 
 /obj/item/clothing/suit/space/void/exploration/prepared
 	helmet = /obj/item/clothing/head/helmet/space/void/exploration
@@ -30,8 +26,6 @@
 	item_state = "pilot_helm"
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 50)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
-	//icon = 'icons/obj/clothing/hats_vr.dmi'
-	//icon_override = 'icons/mob/head_vr.dmi'
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/suit/space/void/pilot
@@ -42,8 +36,6 @@
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 50)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/toolbox,/obj/item/weapon/storage/briefcase/inflatable,/obj/item/device/t_scanner,/obj/item/weapon/rcd)
-	icon = 'icons/obj/clothing/suits_2.dmi'
-	icon_override = 'icons/mob/suit_2.dmi'
 
 /obj/item/clothing/suit/space/void/pilot/prepared
 	helmet = /obj/item/clothing/head/helmet/space/void/pilot

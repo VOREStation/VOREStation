@@ -152,7 +152,7 @@
 	return ..()
 
 //VOREStation Add - Pathfinder Locker
-/obj/structure/closet/secure_closet/explorer
+/obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
 	icon = 'icons/obj/closet_vr.dmi'
 	icon_state = "secureexp1"
