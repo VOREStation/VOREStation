@@ -5,6 +5,8 @@
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
+	plane = TURF_PLANE
+	layer = TABLE_LAYER	// Above catwalks, hopefully below other things
 	density = 1
 	anchored = 0
 	pressure_resistance = 2*ONE_ATMOSPHERE

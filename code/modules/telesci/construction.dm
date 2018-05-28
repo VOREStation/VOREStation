@@ -47,7 +47,7 @@
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
 	build_path = /obj/item/weapon/circuitboard/telesci_pad
 	sort_string = "HAAEB"
-
+/* Normal GPS has all the fancy features now
 /datum/design/item/telesci_gps
 	name = "GPS device"
 	id = "telesci_gps"
@@ -55,7 +55,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1000)
 	build_path = /obj/item/device/gps/advanced
 	sort_string = "HAAEB"
-
+*/
 /datum/design/circuit/quantum_pad
 	name = "Quantum Pad"
 	id = "quantum_pad"

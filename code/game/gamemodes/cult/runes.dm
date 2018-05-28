@@ -21,7 +21,7 @@ var/list/sacrificed = list()
 			allrunesloc = new/list()
 			var/index = 0
 		//	var/tempnum = 0
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in rune_list)
 				if(R == src)
 					continue
 				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
@@ -59,7 +59,7 @@ var/list/sacrificed = list()
 			var/runecount = 0
 			var/obj/effect/rune/IP = null
 			var/mob/living/user = usr
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in rune_list)
 				if(R == src)
 					continue
 				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["other"] && R.word3 == key)
@@ -243,7 +243,7 @@ var/list/sacrificed = list()
 
 		drain()
 			var/drain = 0
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in rune_list)
 				if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
 					for(var/mob/living/carbon/D in R.loc)
 						if(D.stat!=2)
@@ -343,7 +343,7 @@ var/list/sacrificed = list()
 
 			is_sacrifice_target = 0
 			find_sacrifice:
-				for(var/obj/effect/rune/R in world)
+				for(var/obj/effect/rune/R in rune_list)
 					if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
 						for(var/mob/living/carbon/human/N in R.loc)
 							if(cult && N.mind && N.mind == cult.sacrifice_target)
@@ -374,7 +374,7 @@ var/list/sacrificed = list()
 			sleep(10 SECONDS)
 
 			if(corpse_to_raise.client)
-				
+
 				var/datum/gender/TU = gender_datums[corpse_to_raise.get_visible_gender()]
 				var/datum/gender/TT = gender_datums[body_to_sacrifice.get_visible_gender()]
 
@@ -1049,7 +1049,7 @@ var/list/sacrificed = list()
 				if(iscultist(C) && !C.stat)
 					culcount++
 			if(culcount >= 5)
-				for(var/obj/effect/rune/R in world)
+				for(var/obj/effect/rune/R in rune_list)
 					if(R.blood_DNA == src.blood_DNA)
 						for(var/mob/living/M in orange(2,R))
 							M.take_overall_damage(0,15)

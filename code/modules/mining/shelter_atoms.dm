@@ -15,12 +15,14 @@
 	w_class = ITEMSIZE_TINY
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
+	var/datum/map_template/shelter/template_roof
 	var/used = FALSE
 
 /obj/item/device/survivalcapsule/proc/get_template()
 	if(template)
 		return
 	template = SSmapping.shelter_templates[template_id]
+	template_roof = SSmapping.shelter_templates[template.roof]
 	if(!template)
 		throw EXCEPTION("Shelter template ([template_id]) not found!")
 		qdel(src)
@@ -41,19 +43,26 @@
 	if(!used)
 		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
 		used = TRUE
-		
+
 		sleep(5 SECONDS)
-		
+
 		var/turf/deploy_location = get_turf(src)
 		var/status = template.check_deploy(deploy_location)
+		var/turf/above_location = GetAbove(deploy_location)
+		if(above_location && status == SHELTER_DEPLOY_ALLOWED)
+			status = template.check_deploy(above_location)
+		
 		switch(status)
+			//Not allowed due to /area technical reasons
 			if(SHELTER_DEPLOY_BAD_AREA)
 				src.loc.visible_message("<span class='warning'>\The [src] will not function in this area.</span>")
+			
+			//Anchored objects or no space
 			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
 				var/width = template.width
 				var/height = template.height
 				src.loc.visible_message("<span class='warning'>\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!</span>")
-		
+
 		if(status != SHELTER_DEPLOY_ALLOWED)
 			used = FALSE
 			return
@@ -68,6 +77,8 @@
 		playsound(get_turf(src), 'sound/effects/phasein.ogg', 100, 1)
 
 		log_and_message_admins("[key_name_admin(usr)] activated a bluespace capsule at [get_area(T)]!")
+		if(above_location && template_roof)
+			template_roof.load(above_location, centered = TRUE)
 		template.load(deploy_location, centered = TRUE)
 		qdel(src)
 
@@ -86,6 +97,23 @@
 /obj/machinery/door/airlock/voidcraft/survival_pod
 	name = "survival airlock"
 	block_air_zones = 1
+
+//Door access setter button
+/obj/machinery/button/remote/airlock/survival_pod
+	name = "shelter privacy control"
+	desc = "You can secure yourself inside the shelter here."
+	specialfunctions = 4 // 4 is bolts
+	id = "placeholder_id_do_not_use" //This has to be this way, otherwise it will control ALL doors if left blank.
+	var/obj/machinery/door/airlock/voidcraft/survival_pod/door
+
+/obj/machinery/button/remote/airlock/survival_pod/attack_hand(obj/item/weapon/W, mob/user as mob)
+	if(..()) return 1 //1 is failure on machines (for whatever reason)
+	if(!door)
+		var/turf/dT = get_step(src,dir)
+		door = locate() in dT
+	if(door)
+		door.glass = !door.glass
+		door.opacity = !door.opacity
 
 //Windows
 /obj/structure/window/reinforced/survival_pod
@@ -112,9 +140,21 @@
 	name = "table"
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "table"
+	can_reinforce = FALSE
+	can_plate = FALSE
 
 /obj/structure/table/survival_pod/update_icon()
 	icon_state = "table"
+
+/obj/structure/table/survival_pod/New()
+	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	verbs -= /obj/structure/table/verb/do_flip
+	verbs -= /obj/structure/table/proc/do_put
+	..()
+
+/obj/structure/table/survival_pod/dismantle(obj/item/weapon/wrench/W, mob/user)
+	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
+	return
 
 //Sleeper
 /obj/machinery/sleeper/survival_pod
@@ -178,6 +218,9 @@
 		return
 	for(var/i in 1 to 5)
 		var/obj/item/weapon/reagent_containers/food/snacks/liquidfood/W = new(src)
+		stock(W)
+	for(var/i in 1 to 2)
+		var/obj/item/device/fbp_backup_cell/W = new(src)
 		stock(W)
 	if(prob(50))
 		var/obj/item/weapon/storage/pill_bottle/dice/D = new(src)

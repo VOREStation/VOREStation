@@ -1,13 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/mineral/floor/virgo3b,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
 /area/mine/explored/underdark)
 "b" = (
 /turf/simulated/mineral/virgo3b/rich,
 /area/mine/explored/underdark)
 "c" = (
 /obj/tether_away_spawner/underdark_normal,
-/turf/simulated/mineral/floor/virgo3b,
+/turf/simulated/mineral/floor/virgo3b{
+	ignore_mapgen = 1
+	},
 /area/mine/explored/underdark)
 
 (1,1,1) = {"

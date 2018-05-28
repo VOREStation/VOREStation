@@ -19,6 +19,20 @@
 	else
 		set_light(3, 3, "#33CC33")
 
+/obj/machinery/crystal/alt
+	name = "Crystal"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "crystal"
+	density = TRUE
+	anchored = TRUE
+
+/obj/machinery/crystal/alt/New()
+	if(prob(50))
+		icon_state = "crystal2"
+		set_light(3, 3, "#CC00CC")
+	else
+		set_light(3, 3, "#33CC33")
+
 /obj/machinery/crystal/ice //slightly more thematic crystals
 	name = "ice crystal"
 	desc = "A large crystalline ice formation."

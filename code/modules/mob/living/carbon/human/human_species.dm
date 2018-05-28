@@ -51,3 +51,6 @@
 
 /mob/living/carbon/human/stok/New(var/new_loc)
 	..(new_loc, SPECIES_MONKEY_UNATHI)
+
+/mob/living/carbon/human/event1/New(var/new_loc)
+	..(new_loc, SPECIES_EVENT1)

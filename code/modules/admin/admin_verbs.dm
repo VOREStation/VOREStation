@@ -134,7 +134,9 @@ var/list/admin_verbs_fun = list(
 	/client/proc/editappear,
 	/client/proc/roll_dices,
 	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod
+	/datum/admins/proc/call_drop_pod,
+	/client/proc/smite_vr, //VOREStation Add,
+	/client/proc/smite
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -176,7 +178,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/nanomapgen_DumpImage,
 	/client/proc/modify_server_news,
 	/client/proc/recipe_dump,
-	/client/proc/panicbunker
+	/client/proc/panicbunker,
+	/client/proc/paranoia_logging
 	)
 
 var/list/admin_verbs_debug = list(

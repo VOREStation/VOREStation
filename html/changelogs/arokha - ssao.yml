@@ -33,5 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - bugfix: "Nerve reattaching surgery now works correctly. (Hemostat on limb)"
-  - bugfix: "Limbs dropped by people don't have appropriate flags."
+  - rscadd: "Added a 'fake SSAO' toggle to Global in character setup, ported from /tg/. Looks like drop shadows on everything."

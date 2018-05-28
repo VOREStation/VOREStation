@@ -180,6 +180,61 @@
 	build_path = /obj/item/weapon/circuitboard/quantumpad
 	sort_string = "HABAH"
 
+//////Micro mech stuff
+/datum/design/circuit/mecha/gopher_main
+	name = "'Gopher' central control"
+	id = "gopher_main"
+	build_path = /obj/item/weapon/circuitboard/mecha/gopher/main
+	sort_string = "NAAEA"
+
+/datum/design/circuit/mecha/gopher_peri
+	name = "'Gopher' peripherals control"
+	id = "gopher_peri"
+	build_path = /obj/item/weapon/circuitboard/mecha/gopher/peripherals
+	sort_string = "NAAEB"
+
+/datum/design/circuit/mecha/polecat_main
+	name = "'Polecat' central control"
+	id = "polecat_main"
+	req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/weapon/circuitboard/mecha/polecat/main
+	sort_string = "NAAFA"
+
+/datum/design/circuit/mecha/polecat_peri
+	name = "'Polecat' peripherals control"
+	id = "polecat_peri"
+	req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/weapon/circuitboard/mecha/polecat/peripherals
+	sort_string = "NAAFB"
+
+/datum/design/circuit/mecha/polecat_targ
+	name = "'Polecat' weapon control and targeting"
+	id = "polecat_targ"
+	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	build_path = /obj/item/weapon/circuitboard/mecha/polecat/targeting
+	sort_string = "NAAFC"
+
+/datum/design/circuit/mecha/weasel_main
+	name = "'Weasel' central control"
+	id = "weasel_main"
+	req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/weapon/circuitboard/mecha/weasel/main
+	sort_string = "NAAGA"
+
+/datum/design/circuit/mecha/weasel_peri
+	name = "'Weasel' peripherals control"
+	id = "weasel_peri"
+	req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/weapon/circuitboard/mecha/weasel/peripherals
+	sort_string = "NAAGB"
+
+/datum/design/circuit/mecha/weasel_targ
+	name = "'Weasel' weapon control and targeting"
+	id = "weasel_targ"
+	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	build_path = /obj/item/weapon/circuitboard/mecha/weasel/targeting
+	sort_string = "NAAGC"
+
 ////// RIGSuit Stuff
 /*
 /datum/design/item/rig

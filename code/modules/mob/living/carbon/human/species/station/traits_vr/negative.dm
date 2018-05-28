@@ -113,16 +113,14 @@
 	cost = -2
 	var_changes = list("lightweight" = 1)
 
-/datum/trait/colorblind
+/datum/trait/colorblind/mono
 	name = "Colorblindness (Monochromancy)"
 	desc = "You simply can't see colors at all, period. You are 100% colorblind."
 	cost = -1
 
-/datum/trait/colorblind/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	if(!H.plane_holder)
-		H.plane_holder = new(H)
-	H.plane_holder.set_vis(VIS_D_COLORBLIND,TRUE) //The default is monocrhomia, no need to set values
+	H.add_modifier(/datum/modifier/trait/colorblind_mono)
 
 /datum/trait/colorblind/para_vulp
 	name = "Colorblindness (Para Vulp)"
@@ -131,7 +129,7 @@
 
 /datum/trait/colorblind/para_vulp/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.plane_holder.alter_values(VIS_D_COLORBLIND,list("variety" = "Paradise Vulp"))
+	H.add_modifier(/datum/modifier/trait/colorblind_vulp)
 
 /datum/trait/colorblind/para_taj
 	name = "Colorblindness (Para Taj)"
@@ -140,4 +138,4 @@
 
 /datum/trait/colorblind/para_taj/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.plane_holder.alter_values(VIS_D_COLORBLIND,list("variety" = "Paradise Taj"))
+	H.add_modifier(/datum/modifier/trait/colorblind_taj)

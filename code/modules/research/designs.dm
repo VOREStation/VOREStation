@@ -565,7 +565,6 @@ other types of metals and chemistry for reagents).
 	id = "decloner"
 	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
 	materials = list("gold" = 5000,"uranium" = 10000)
-	chemicals = list("mutagen" = 40)
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
 
@@ -752,6 +751,15 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/lightreplacer
 	sort_string = "VAAAH"
 
+datum/design/item/laserpointer
+	name = "laser pointer"
+	desc = "Don't shine it in your eyes!"
+	id = "laser_pointer"
+	req_tech = list(TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 100, "glass" = 50)
+	build_path = /obj/item/device/laser_pointer
+	sort_string = "VAAAI"
+
 /datum/design/item/paicard
 	name = "'pAI', personal artificial intelligence device"
 	id = "paicard"
@@ -841,6 +849,15 @@ other types of metals and chemistry for reagents).
 	materials = list("gold" = 3000, "diamond" = 1500, "uranium" = 250)
 	build_path = /obj/item/weapon/storage/backpack/holding
 	sort_string = "VAEAA"
+
+/datum/design/item/dufflebag_holding
+	name = "'DuffleBag of Holding', an infinite capacity dufflebag prototype"
+	desc = "A minaturized prototype of the popular Bag of Holding, the Dufflebag of Holding is, functionally, identical to the bag of holding, but comes in a more stylish and compact form."
+	id = "dufflebag_holding"
+	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
+	materials = list("gold" = 3000, "diamond" = 1500, "uranium" = 250)
+	build_path = /obj/item/weapon/storage/backpack/holding/duffle
+	sort_string = "VAEAB"
 
 /datum/design/item/binaryencrypt
 	name = "Binary encryption key"

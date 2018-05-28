@@ -54,8 +54,8 @@
 	var/language = LANGUAGE_GALCOM							// Default racial language, if any.
 	var/species_language = LANGUAGE_GALCOM					// Used on the Character Setup screen
 	var/list/secondary_langs = list()						// The names of secondary languages that are available to this species.
-	var/list/speech_sounds									// A list of sounds to potentially play when speaking.
-	var/list/speech_chance									// The likelihood of a speech sound playing.
+	var/list/speech_sounds = list()							// A list of sounds to potentially play when speaking.
+	var/list/speech_chance = list()							// The likelihood of a speech sound playing.
 	var/num_alternate_languages = 0							// How many secondary languages are available to select at character creation
 	var/name_language = LANGUAGE_GALCOM						// The language to use when determining names for this species, or null to use the first name/last name generator
 
@@ -75,13 +75,14 @@
 		/datum/unarmed_attack/bite
 		)
 	var/list/unarmed_attacks = null							// For empty hand harm-intent attack
-	var/brute_mod =			1								// Physical damage multiplier.
-	var/burn_mod =			1								// Burn damage multiplier.
-	var/oxy_mod =			1								// Oxyloss modifier
-	var/toxins_mod =		1								// Toxloss modifier
-	var/radiation_mod =		1								// Radiation modifier
-	var/flash_mod =			1								// Stun from blindness modifier.
-	var/chemOD_mod =		1								// Damage modifier for overdose
+	var/brute_mod =     1									// Physical damage multiplier.
+	var/burn_mod =      1									// Burn damage multiplier.
+	var/oxy_mod =       1									// Oxyloss modifier
+	var/toxins_mod =    1									// Toxloss modifier
+	var/radiation_mod = 1									// Radiation modifier
+	var/flash_mod =     1									// Stun from blindness modifier.
+	var/sound_mod =     1									// Stun from sounds, I.E. flashbangs.
+	var/chemOD_mod =	1									// Damage modifier for overdose
 	var/vision_flags = SEE_SELF								// Same flags as glasses.
 
 	// Death vars.
@@ -152,7 +153,7 @@
 	var/health_hud_intensity = 1							// This modifies how intensely the health hud is colored.
 
 	// Body/form vars.
-	var/list/inherent_verbs									// Species-specific verbs.
+	var/list/inherent_verbs = list()									// Species-specific verbs.
 	var/has_fine_manipulation = 1							// Can use small items.
 	var/siemens_coefficient = 1								// The lower, the thicker the skin and better the insulation.
 	var/darksight = 2										// Native darksight distance.
@@ -189,6 +190,7 @@
 		O_EYES =		 /obj/item/organ/internal/eyes
 		)
 	var/vision_organ										// If set, this organ is required for vision. Defaults to "eyes" if the species has them.
+	var/dispersed_eyes            // If set, the species will be affected by flashbangs regardless if they have eyes or not, as they see in large areas.
 
 	var/list/has_limbs = list(
 		BP_TORSO =	list("path" = /obj/item/organ/external/chest),

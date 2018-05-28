@@ -28,9 +28,9 @@
 /datum/riding/taur/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
 	var/scale = L.size_multiplier
-	
+
 	var/list/values = list(
-		"[NORTH]" = list(0, 8*scale, ABOVE_MOB_LAYER), 
+		"[NORTH]" = list(0, 8*scale, ABOVE_MOB_LAYER),
 		"[SOUTH]" = list(0, 8*scale, BELOW_MOB_LAYER),
 		"[EAST]" = list(-10*scale, 8*scale, BELOW_MOB_LAYER),
 		"[WEST]" = list(10*scale, 8*scale, BELOW_MOB_LAYER))
@@ -53,6 +53,10 @@
 		return ..() // Skip our checks
 	if(!isTaurTail(tail_style))
 		return FALSE
+	else
+		var/datum/sprite_accessory/tail/taur/taurtype = tail_style
+		if(!taurtype.can_ride)
+			return FALSE
 	if(lying)
 		return FALSE
 	if(!ishuman(M))
@@ -60,13 +64,13 @@
 	if(M.size_multiplier > size_multiplier)
 		to_chat(M,"<span class='warning'>This isn't a pony show! They need to be bigger to ride.</span>")
 		return FALSE
-	
+
 	var/mob/living/carbon/human/H = M
 
 	if(isTaurTail(H.tail_style))
 		to_chat(H,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
-	
+
 	. = ..()
 	if(.)
 		buckled_mobs[M] = "riding"
@@ -105,6 +109,9 @@
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
+	var/icon/suit_sprites = null //File for suit sprites, if any.
+
+	var/can_ride = 1			//whether we're real rideable taur or just in that category
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
 	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
@@ -142,6 +149,7 @@
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf (Taur)"
 	icon_state = "wolf_s"
+	suit_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color (Taur)"
@@ -156,6 +164,7 @@
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
 	icon_state = "naga_s"
+	suit_sprites = 'icons/mob/taursuits_naga_vr.dmi'
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -192,6 +201,7 @@
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse (Taur)"
 	icon_state = "horse_s"
+	suit_sprites = 'icons/mob/taursuits_horse_vr.dmi'
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -216,6 +226,7 @@
 /datum/sprite_accessory/tail/taur/cow
 	name = "Cow (Taur)"
 	icon_state = "cow_s"
+	suit_sprites = 'icons/mob/taursuits_cow_vr.dmi'
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -255,6 +266,7 @@
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"
 	icon_state = "lizard_s"
+	suit_sprites = 'icons/mob/taursuits_lizard_vr.dmi'
 
 /datum/sprite_accessory/tail/taur/lizard/lizard_2c
 	name = "Lizard dual-color (Taur)"
@@ -288,6 +300,7 @@
 /datum/sprite_accessory/tail/taur/tents
 	name = "Tentacles (Taur)"
 	icon_state = "tent_s"
+	can_ride = 0
 
 	msg_prey_stepunder = "You run between %prey's tentacles."
 	msg_owner_stepunder = "%owner runs between your tentacles."
@@ -410,18 +423,26 @@
 	ani_state = "alraune_closed_s"
 	ckeys_allowed = list("natje")
 	do_colouration = 0
+	can_ride = 0
 
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
 
-	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
+	msg_prey_stepunder = "You run between %prey's vines."
+	msg_owner_stepunder = "%owner runs between your vines."
 
-	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor below!"
+	msg_owner_disarm_run = "You quickly push %prey to the ground with some of your vines!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with some of their vines!"
 
-	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
-	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
+	msg_owner_disarm_walk = "You push down on %prey with some of your vines, pinning them down firmly under you!"
+	msg_prey_disarm_walk = "%owner pushes down on you with some of their vines, pinning you down firmly below them!"
 
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+	msg_owner_harm_run = "Your vines carelessly slide past %prey, crushing them!"
+	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their vines!"
+
+	msg_owner_harm_walk = "Your vines methodically apply pressure on %prey's body, crushing them against the floor below!"
+	msg_prey_harm_walk = "%owner's thick vines methodically apply pressure on your body, crushing you into the floor below!"
+
+	msg_owner_grab_success = "You slide over %prey with your vines, smushing them against the ground before wrapping one up around them, trapping them within the tight confines of your vines!"
+	msg_prey_grab_success = "%owner slides over you with their vines, smushing you against the ground before wrapping one up around you, trapping you within the tight confines of their vines!"
+
+	msg_owner_grab_fail = "You step down onto %prey with one of your vines, forcing them onto the ground!"
+	msg_prey_grab_fail = "%owner steps down onto you with one of their vines, squishing you and forcing you onto the ground!"

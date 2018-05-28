@@ -1815,7 +1815,7 @@ window "mainwindow"
 		right-click = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		on-size = ""
-		title = "Space Station 13"
+		title = "VOREStation"
 		titlebar = true
 		statusbar = true
 		can-close = true
@@ -1825,7 +1825,7 @@ window "mainwindow"
 		is-minimized = false
 		is-maximized = true
 		can-scroll = none
-		icon = 'icons\\ss13_64.png'
+		icon = 'icons\\virgoicon.png'
 		image = ""
 		image-mode = stretch
 		keep-aspect = false

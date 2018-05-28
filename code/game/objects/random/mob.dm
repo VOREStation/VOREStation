@@ -74,6 +74,23 @@
 				prob(1);/mob/living/simple_animal/hostile/goose,
 				prob(20);/mob/living/simple_animal/giant_crab)
 
+
+/obj/random/mob/sif/peaceful
+	name = "Random Peaceful Sif Animal"
+	desc = "This is a random peaceful cold weather animal."
+	icon_state = "penguin"
+
+	mob_returns_home = 1
+	mob_wander_distance = 12
+
+/obj/random/mob/sif/peaceful/item_to_spawn()
+	return pick(prob(30);/mob/living/simple_animal/retaliate/diyaab,
+				prob(15);/mob/living/simple_animal/crab,
+				prob(15);/mob/living/simple_animal/penguin,
+				prob(15);/mob/living/simple_animal/mouse,
+				prob(15);/mob/living/simple_animal/corgi/tamaskan,
+				prob(20);/mob/living/simple_animal/giant_crab)
+
 /obj/random/mob/sif/hostile
 	name = "Random Hostile Sif Animal"
 	desc = "This is a random hostile cold weather animal."
@@ -96,6 +113,18 @@
 	return pick(prob(22);/mob/living/simple_animal/hostile/giant_spider/nurse,
 				prob(33);/mob/living/simple_animal/hostile/giant_spider/hunter,
 				prob(45);/mob/living/simple_animal/hostile/giant_spider)
+
+/obj/random/mob/spider/nurse
+	name = "Random Nurse Spider"
+	desc = "This is a random nurse spider."
+	icon_state = "nurse"
+
+	mob_returns_home = 1
+	mob_wander_distance = 4
+
+/obj/random/mob/spider/nurse/item_to_spawn()
+	return pick(prob(22);/mob/living/simple_animal/hostile/giant_spider/nurse/hat,
+				prob(45);/mob/living/simple_animal/hostile/giant_spider/nurse)
 
 /obj/random/mob/spider/mutant
 	name = "Random Mutant Spider"

@@ -43,11 +43,11 @@ var/global/datum/global_init/init = new ()
 	world.log << "Map Loading Complete"
 	//logs
 	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	diary = file("[log_path].log")
-	href_logfile = file("[log_path]-hrefs.htm")
-	error_log = file("[log_path]-error.log")
-	debug_log = file("[log_path]-debug.log")
-	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
+	diary = start_log("[log_path].log")
+	href_logfile = start_log("[log_path]-hrefs.htm")
+	error_log = start_log("[log_path]-error.log")
+	debug_log = start_log("[log_path]-debug.log")
+
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
@@ -59,8 +59,9 @@ var/global/datum/global_init/init = new ()
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+	// TODO - Figure out what this is. Can you assign to world.log?
+	// if(config && config.log_runtime)
+	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
 	//Emergency Fix
@@ -88,28 +89,7 @@ var/global/datum/global_init/init = new ()
 	if(config.generate_map)
 		if(using_map.perform_map_generation())
 			using_map.refresh_mining_turfs()
-/*
-	if(config.generate_asteroid)
-		// These values determine the specific area that the map is applied to.
-		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
-		if(config.asteroid_z_levels)
-			for(var/z_level in config.asteroid_z_levels)
-				// In case we got fed a string instead of a number...
-				z_level = text2num(z_level)
-				if(!isnum(z_level))
-					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
-				// Now for the actual map generating.  This occurs for every z-level defined in the config.
-				new /datum/random_map/automata/cave_system(null,1,1,z_level,300,300)
-				// Let's add ore too.
-				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
-		else
-			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
-		// Update all turfs to ensure everything looks good post-generation. Yes,
-		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-		for(var/turf/simulated/mineral/M in world) // Ugh.
-			M.update_icon()
-*/
+
 	// Create frame types.
 	populate_frame_types()
 
@@ -147,7 +127,7 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	debug_log << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
 		var/x = 1
@@ -450,6 +430,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
+	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..(reason)
 
 /hook/startup/proc/loadMode()

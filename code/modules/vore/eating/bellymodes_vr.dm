@@ -38,8 +38,9 @@
 		if(isitem(A) && !did_an_item)
 			var/obj/item/I = A
 			if(mode_flags & DM_FLAG_ITEMWEAK)
-				I.gurgle_contaminate(contents, owner)
+				I.gurgle_contaminate(contents, cont_flavor)
 				items_preserved |= I
+				to_update = TRUE
 			else
 				digest_item(I)
 			to_update = TRUE
@@ -52,11 +53,11 @@
 
 			if(L.absorbed)
 				L.Weaken(5)
-			
+
 			//Handle 'human'
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				
+
 				//Numbing flag
 				if(mode_flags & DM_FLAG_NUMBING)
 					if(H.bloodstr.get_reagent_amount("numbenzyme") < 2)
@@ -69,7 +70,7 @@
 						if(I)
 							H.unEquip(I,force = TRUE)
 							if(mode_flags & DM_FLAG_ITEMWEAK)
-								I.gurgle_contaminate(contents, owner)
+								I.gurgle_contaminate(contents, cont_flavor)
 								items_preserved |= I
 							else
 								digest_item(I)
@@ -96,6 +97,7 @@
 			if(M.stat == DEAD)
 				var/digest_alert_owner = pick(digest_messages_owner)
 				var/digest_alert_prey = pick(digest_messages_prey)
+				var/compensation = M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
 				//Replace placeholder vars
 				digest_alert_owner = replacetext(digest_alert_owner,"%pred",owner)
@@ -113,22 +115,35 @@
 				play_sound = pick(death_sounds)
 				digestion_death(M)
 				owner.update_icons()
+				if(compensation > 0)
+					if(isrobot(owner))
+						var/mob/living/silicon/robot/R = owner
+						R.cell.charge += 25*compensation
+					else
+						owner.nutrition += 4.5*compensation
 				to_update = TRUE
+
 				continue
 
 			// Deal digestion damage (and feed the pred)
+			var/old_brute = M.getBruteLoss()
+			var/old_burn = M.getFireLoss()
 			M.adjustBruteLoss(digest_brute)
 			M.adjustFireLoss(digest_burn)
+			var/actual_brute = M.getBruteLoss() - old_brute
+			var/actual_burn = M.getFireLoss() - old_burn
+			var/damage_gain = actual_brute + actual_burn
 
 			var/offset = (1 + ((M.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 			var/difference = owner.size_multiplier / M.size_multiplier
 			if(isrobot(owner))
 				var/mob/living/silicon/robot/R = owner
-				R.cell.charge += 20*(digest_brute+digest_burn)
+				R.cell.charge += 25*damage_gain
 			if(offset) // If any different than default weight, multiply the % of offset.
-				owner.nutrition += offset*(2*(digest_brute+digest_burn)/difference) // 9.5 nutrition per digestion tick if they're 130 pounds and it's same size. 10.2 per digestion tick if they're 140 and it's same size. Etc etc.
+				owner.nutrition += offset*(4.5*(damage_gain)/difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 			else
-				owner.nutrition += 2*(digest_brute+digest_burn)/difference
+				owner.nutrition += 4.5*(damage_gain)/difference
+
 
 //////////////////////////// DM_ABSORB ////////////////////////////
 	else if(digest_mode == DM_ABSORB)
@@ -154,7 +169,7 @@
 
 		for (var/target in touchable_mobs)
 			var/mob/living/M = target
-			
+
 			if(M.absorbed && owner.nutrition >= 100)
 				M.absorbed = 0
 				to_chat(M,"<span class='notice'>You suddenly feel solid again </span>")
@@ -167,7 +182,7 @@
 
 		for (var/target in touchable_mobs)
 			var/mob/living/M = target
-			
+
 			if(prob(10)) //Less often than gurgles. People might leave this on forever.
 				play_sound = pick(digestion_sounds)
 
@@ -181,13 +196,13 @@
 
 		for (var/target in touchable_mobs)
 			var/mob/living/M = target
-			
+
 			if(prob(10)) //Infinite gurgles!
 				play_sound = pick(digestion_sounds)
 
 			if(M.size_multiplier > shrink_grow_size) //Shrink until smol.
 				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick.
-				
+
 				if(M.nutrition >= 100) //Absorbing bodymass results in nutrition if possible.
 					var/oldnutrition = (M.nutrition * 0.05)
 					M.nutrition = (M.nutrition * 0.95)
@@ -198,7 +213,7 @@
 
 		for (var/target in touchable_mobs)
 			var/mob/living/M = target
-			
+
 			if(prob(10))
 				play_sound = pick(digestion_sounds)
 
@@ -212,14 +227,14 @@
 
 		for (var/target in touchable_mobs)
 			var/mob/living/M = target
-			
+
 			if(prob(10))
 				play_sound = pick(digestion_sounds)
 
 			if(M.size_multiplier > shrink_grow_size && owner.size_multiplier < 2) //Grow until either pred is large or prey is small.
 				owner.resize(owner.size_multiplier+0.01) //Grow by 1% per tick.
 				M.resize(M.size_multiplier-0.01) //Shrink by 1% per tick
-				
+
 				if(M.nutrition >= 100)
 					var/oldnutrition = (M.nutrition * 0.05)
 					M.nutrition = (M.nutrition * 0.95)
@@ -227,7 +242,7 @@
 
 ///////////////////////////// DM_HEAL /////////////////////////////
 	else if(digest_mode == DM_HEAL)
-		
+
 		if(prob(50)) //Wet heals! The secret is you can leave this on for gurgle noises for fun.
 			play_sound = pick(digestion_sounds)
 
@@ -260,5 +275,5 @@
 				M.updateVRPanel()
 		if(owner.client)
 			owner.updateVRPanel()
-		
+
 	return SSBELLIES_PROCESSED

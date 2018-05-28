@@ -285,7 +285,7 @@ var/global/use_preloader = FALSE
 		var/atom/instance
 		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
 		var/atype = members[index]
-		for(var/area/A in world)
+		for(var/area/A in all_areas)
 			if(A.type == atype)
 				instance = A
 				break

@@ -13,6 +13,9 @@
 	return
 
 /turf/simulated/wall/solidrock //for more stylish anti-cheese.
+	name = "solid rock"
+	desc = "This rock seems dense, impossible to drill."
+	description_info = "Probably not going to be able to drill or bomb your way through this, best to try and find a way around."
 	icon_state = "bedrock"
 	var/base_state = "bedrock"
 	block_tele = TRUE

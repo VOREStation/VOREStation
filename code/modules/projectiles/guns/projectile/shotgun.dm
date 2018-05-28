@@ -41,6 +41,9 @@
 
 	update_icon()
 
+/obj/item/weapon/gun/projectile/shotgun/pump/slug
+	ammo_type = /obj/item/ammo_casing/a12g
+
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
 	desc = "Built for close quarters combat, the Hephaestus Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. Uses 12g rounds."

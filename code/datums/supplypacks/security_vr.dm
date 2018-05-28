@@ -20,8 +20,7 @@
 	contains = list(
 			/obj/item/clothing/head/bio_hood/security = 3,
 			/obj/item/clothing/under/rank/security = 3,
-			/obj/item/clothing/suit/bio_suit/security = 2,
-			/obj/item/clothing/suit/bio_suit/security/taur = 1,
+			/obj/item/clothing/suit/bio_suit/security = 3,
 			/obj/item/clothing/shoes/white = 3,
 			/obj/item/clothing/mask/gas = 3,
 			/obj/item/weapon/tank/oxygen = 3,

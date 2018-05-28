@@ -26,6 +26,7 @@
 #include "CaveS.dmm"
 #include "Drugden.dmm"
 #include "Musk.dmm"
+#include "Manor1.dmm"
 
 #endif
 
@@ -202,3 +203,9 @@
 	desc = "0 to 60 in 1.9 seconds."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Musk.dmm'
 	cost = 10
+
+/datum/map_template/surface/wilderness/deep/Manor1
+	name = "Manor1"
+	desc = "Whodunit"
+	mappath = 'maps/submaps/surface_submaps/wilderness/Manor1.dmm'
+	cost = 20

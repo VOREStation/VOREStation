@@ -197,13 +197,16 @@
 		var/obj/item/weapon/grab/grab = G
 		if(!ismob(grab.affecting))
 			return
+		if(occupant)
+			to_chat(user,"<span class='warning'>\The [src] is already occupied by [occupant].</span>")
 		for(var/mob/living/simple_animal/slime/M in range(1,grab.affecting))
 			if(M.victim == grab.affecting)
 				usr << "[grab.affecting.name] will not fit into the cryo because they have a slime latched onto their head."
 				return
 		var/mob/M = grab.affecting
-		if(put_mob(M))
-			qdel(grab)
+		qdel(grab)
+		put_mob(M)
+			
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user) //Allows borgs to put people into cryo without external assistance

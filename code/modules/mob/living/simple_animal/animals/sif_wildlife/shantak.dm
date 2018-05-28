@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/shantak
 	name = "shantak"
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
+	tt_desc = "S Choeros shantak"
 	faction = "shantak"
 	icon_state = "shantak"
 	icon_living = "shantak"

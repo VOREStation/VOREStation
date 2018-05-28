@@ -1,10 +1,11 @@
 // Based on catwalk.dm from https://github.com/Endless-Horizon/CEV-Eris
 /obj/structure/catwalk
-	layer = TURF_LAYER + 0.5
-	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "catwalk"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
+	plane = TURF_PLANE
+	layer = ABOVE_UTILITY
+	icon = 'icons/turf/catwalks.dmi'
+	icon_state = "catwalk"
 	density = 0
 	var/health = 100
 	var/maxhealth = 100

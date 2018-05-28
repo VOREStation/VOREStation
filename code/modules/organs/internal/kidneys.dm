@@ -35,3 +35,14 @@
 			owner.custom_pain("You feel extremely tired, like you can't move!",1)
 			owner.m_intent = "walk"
 			owner.hud_used.move_intent.icon_state = "walking"
+
+/obj/item/organ/internal/kidneys/grey
+	icon_state = "kidneys_grey"
+
+/obj/item/organ/internal/kidneys/grey/colormatch/New()
+	..()
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.blood_color

@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
+
 /obj/item/organ/internal/brain
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
@@ -144,3 +146,15 @@
 	desc = "A tightly furled roll of paper, covered with indecipherable runes."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
+
+/obj/item/organ/internal/brain/grey
+	desc = "A piece of juicy meat found in a person's head. This one is strange."
+	icon_state = "brain_grey"
+
+/obj/item/organ/internal/brain/grey/colormatch/New()
+	..()
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.blood_color

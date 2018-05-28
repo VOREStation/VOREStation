@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/tomato
 	name = "tomato"
 	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
+	tt_desc = "X Solanum abominable"
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"

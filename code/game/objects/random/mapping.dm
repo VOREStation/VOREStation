@@ -92,8 +92,8 @@
 /obj/random/multiple/minevault
 	name = "random vault loot"
 	desc = "Loot for mine vaults."
-	icon = 'icons/misc/mark.dmi'
-	icon_state = "rup"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "crate"
 
 /obj/random/multiple/minevault/item_to_spawn()
 	return pick(

@@ -32,7 +32,7 @@
 
 	// CONFIGURATION PHASE
 	// Coolant canisters, set types according to response.
-	for(var/obj/effect/engine_setup/coolant_canister/C in world)
+	for(var/obj/effect/engine_setup/coolant_canister/C in all_engine_setup_markers)
 		switch(response)
 			if("N2")
 				C.canister_type = /obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/
@@ -44,7 +44,7 @@
 				C.canister_type = /obj/machinery/portable_atmospherics/canister/phoron/engine_setup/
 				continue
 
-	for(var/obj/effect/engine_setup/core/C in world)
+	for(var/obj/effect/engine_setup/core/C in all_engine_setup_markers)
 		switch(response)
 			if("N2")
 				C.energy_setting = ENERGY_NITROGEN
@@ -56,12 +56,12 @@
 				C.energy_setting = ENERGY_PHORON
 				continue
 
-	for(var/obj/effect/engine_setup/atmo_filter/F in world)
+	for(var/obj/effect/engine_setup/atmo_filter/F in all_engine_setup_markers)
 		F.coolant = response
 
 	var/list/delayed_objects = list()
 	// SETUP PHASE
-	for(var/obj/effect/engine_setup/S in world)
+	for(var/obj/effect/engine_setup/S in all_engine_setup_markers)
 		var/result = S.activate(0)
 		switch(result)
 			if(SETUP_OK)
@@ -107,6 +107,8 @@
 	density = 0
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x3"
+
+GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 
 /obj/effect/engine_setup/proc/activate(var/last = 0)
 	return 1

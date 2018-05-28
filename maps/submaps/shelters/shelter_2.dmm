@@ -94,7 +94,7 @@
 /area/survivalpod)
 "q" = (
 /obj/structure/tubes,
-/obj/machinery/holoplant,
+/obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "r" = (
@@ -145,6 +145,7 @@
 	icon_state = "pwindow";
 	dir = 1
 	},
+/obj/machinery/holoplant,
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "w" = (
@@ -189,6 +190,13 @@
 /obj/structure/sign/mining,
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
+"S" = (
+/obj/machinery/button/remote/airlock/survival_pod{
+	dir = 10;
+	pixel_y = -24
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
 
 (1,1,1) = {"
 a
@@ -232,7 +240,7 @@ h
 n
 r
 w
-A
+S
 a
 "}
 (6,1,1) = {"

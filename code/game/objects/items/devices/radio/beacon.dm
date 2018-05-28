@@ -6,6 +6,8 @@
 	var/code = "electronic"
 	origin_tech = list(TECH_BLUESPACE = 1)
 
+GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/device/radio/beacon)
+
 /obj/item/device/radio/beacon/hear_talk()
 	return
 

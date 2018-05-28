@@ -440,7 +440,7 @@ datum/gear/suit/duster
 /datum/gear/suit/snowsuit/medical
 	display_name = "snowsuit, medical"
 	path = /obj/item/clothing/suit/storage/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
 
 /datum/gear/suit/snowsuit/science
 	display_name = "snowsuit, science"
@@ -455,4 +455,4 @@ datum/gear/suit/duster
 /datum/gear/suit/snowsuit/cargo
 	display_name = "snowsuit, supply"
 	path = /obj/item/clothing/suit/storage/snowsuit/cargo
-	allowed_roles = list("Quartermaster","shaft Miner","Cargo Technician","Head of Personnel")
+	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")

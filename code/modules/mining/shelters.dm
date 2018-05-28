@@ -5,6 +5,7 @@
 	var/whitelisted_turfs
 	var/banned_areas
 	var/banned_objects
+	var/roof
 
 /datum/map_template/shelter/New()
 	. = ..()
@@ -38,6 +39,11 @@
 		sleeping area! Order now, and we'll throw in a TINY FAN, \
 		absolutely free!"
 	mappath = "maps/submaps/shelters/shelter_1.dmm"
+	roof = "roof_alpha"
+
+/datum/map_template/shelter/alpha_roof
+	shelter_id = "roof_alpha"
+	mappath = "maps/submaps/shelters/shelter_1_roof.dmm"
 
 /datum/map_template/shelter/alpha/New()
 	. = ..()
@@ -53,8 +59,14 @@
 		and a deluxe companion to keep you from getting lonely during \
 		an ash storm."
 	mappath = "maps/submaps/shelters/shelter_2.dmm"
+	roof = "roof_beta"
+
+/datum/map_template/shelter/beta_roof
+	shelter_id = "roof_beta"
+	mappath = "maps/submaps/shelters/shelter_2_roof.dmm"
 
 /datum/map_template/shelter/beta/New()
 	. = ..()
 	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
 	banned_objects = list()
+

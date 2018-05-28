@@ -46,9 +46,11 @@
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
-	var/player_age = "Requires database"	//So admins know why it isn't working - Used to determine how old the account is - in days.
-	var/related_accounts_ip = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
-	var/related_accounts_cid = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
+	var/player_age = "(Requires database)"	//So admins know why it isn't working - Used to determine how old the account is - in days.
+	var/related_accounts_ip = "(Requires database)"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
+	var/related_accounts_cid = "(Requires database)"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
+	var/account_join_date = "(Requires database)"
+	var/account_age = "(Requires database)"
 	var/list/department_hours	// VOREStation Edit - Track hours of leave accured for each department.
 
 	preload_rsc = PRELOAD_RSC

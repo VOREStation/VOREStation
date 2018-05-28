@@ -57,3 +57,14 @@
 		if(prob(1) && owner.getToxLoss() < owner.getMaxHealth()*0.3)
 			//owner << "" //Toxins provide their own messages for pain
 			owner.adjustToxLoss(5) //Not realistic to PA but there are basically no 'real' liver infections
+
+/obj/item/organ/internal/liver/grey
+	icon_state = "liver_grey"
+
+/obj/item/organ/internal/liver/grey/colormatch/New()
+	..()
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.blood_color

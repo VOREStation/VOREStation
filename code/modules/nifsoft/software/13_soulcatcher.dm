@@ -230,6 +230,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			brainmob.dna = H.dna
+			brainmob.ooc_notes = H.ooc_notes
 			brainmob.timeofhostdeath = H.timeofdeath
 			SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
@@ -356,12 +357,10 @@
 		return ..(direction)
 
 /mob/living/carbon/brain/caught_soul/say(var/message)
-	if(parent_mob) return ..()
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj)
 
 /mob/living/carbon/brain/caught_soul/emote(var/act,var/m_type=1,var/message = null)
-	if(parent_mob) return ..()
 	if(silent) return FALSE
 	if (act == "me")
 		if(silent)

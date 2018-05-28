@@ -28,14 +28,8 @@
 	icon_closed = "poireactor"
 	climbable = 0
 
-/obj/structure/closet/crate/oldreactor/New()
-	..()
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	starts_with = list(
+		/obj/item/weapon/fuel_assembly/deuterium = 6)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"
@@ -51,4 +45,15 @@
 
 /obj/item/poi/brokenoldreactor/Destroy()
 	processing_objects -= src
+	return ..()
+
+
+//Crashed Cargo Shuttle PoI
+
+/obj/structure/largecrate/animal/crashedshuttle
+	name = "SCP"
+/obj/structure/largecrate/animal/crashedshuttle/initialize()
+	starts_with = pick(/mob/living/simple_animal/hostile/statue, /obj/item/cursed_marble)
+	name = pick("Spicy Crust Pizzeria", "Soap and Care Products", "Sally's Computer Parts", "Steve's Chocolate Pastries", "Smith & Christian's Plastics","Standard Containers & Packaging Co.", "Sanitary Chemical Purgation (LTD)")
+	name += " delivery crate"
 	return ..()
