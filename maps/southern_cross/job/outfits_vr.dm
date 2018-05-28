@@ -2,7 +2,7 @@
 	name = OUTFIT_JOB_NAME("Pathfinder")
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer //TODO: Uniforms.
-	l_ear = /obj/item/device/radio/headset/pathfinder
+	l_ear = /obj/item/device/radio/headset/explorer
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/heads

@@ -752,7 +752,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	user << "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>"
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","Exploration","Pilot","^%###^%$", "Charring") //VORESTATION EDIT
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$", "Charring")
 	species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI, "Nevrean", "Akula", "Sergal", "Flatland Zorren", "Highlander Zorren", "Vulpkanin", "Promethean", "Xenomorph Hybrid", "Vasilissan", "Rapala") //VORESTATION EDIT
 
 	emagged = 1
@@ -1084,28 +1084,6 @@
 				suit.item_state = "rig-medical_emt"
 				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit_emt"
 				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit_emt"
-		if("Exploration")
-			if(helmet)
-				helmet.name = "exploration voidsuit helmet"
-				helmet.icon_state = "helm_explorer"
-				helmet.item_state = "helm_explorer"
-			if(suit)
-				suit.name = "exploration voidsuit"
-				suit.icon_state = "void_explorer"
-				suit.item_state = "void_explorer"
-				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
-		if("Pilot")
-			if(helmet)
-				helmet.name = "pilot voidsuit helmet"
-				helmet.icon_state = "rig0_pilot"
-				helmet.item_state = "pilot_helm"
-			if(suit)
-				suit.name = "pilot voidsuit"
-				suit.icon_state = "rig-pilot"
-				suit.item_state = "rig-pilot"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
 		if("^%###^%$" || "Mercenary")
 			if(helmet)
 				helmet.name = "blood-red voidsuit helmet"

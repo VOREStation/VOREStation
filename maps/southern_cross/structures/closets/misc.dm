@@ -137,7 +137,6 @@
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/device/radio/headset/pilot/alt,
 		/obj/item/device/flashlight,
-		/obj/item/device/survivalcapsule, //VOREStation Add,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/weapon/storage/box/flare,

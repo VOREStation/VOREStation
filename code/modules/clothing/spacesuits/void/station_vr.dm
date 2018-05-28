@@ -4,14 +4,14 @@
 	desc = "A radiation-resistant helmet made especially for exploring unknown planetary environments."
 	icon_state = "helm_explorer"
 	item_state = "helm_explorer"
-	armor = list(melee = 50, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
+	armor = list(melee = 40, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
 	light_overlay = "helmet_light_dual" //explorer_light
 
 /obj/item/clothing/suit/space/void/exploration
 	name = "exploration voidsuit"
 	desc = "A lightweight, radiation-resistant voidsuit, featuring the Explorer emblem on its chest plate. Designed for exploring unknown planetary environments."
 	icon_state = "void_explorer"
-	armor = list(melee = 50, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
+	armor = list(melee = 40, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/device/healthanalyzer,/obj/item/device/gps,/obj/item/device/radio/beacon,/obj/item/weapon/shovel)
 
 /obj/item/clothing/suit/space/void/exploration/prepared
