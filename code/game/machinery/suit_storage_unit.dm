@@ -643,16 +643,6 @@
 	departments = list("Mercenary", "Charring")
 	can_repair = 1
 
-//VOREStation Edit - Adds Explorer Suit Cycler
-/obj/machinery/suit_cycler/explorer
-	name = "Explorer suit cycler"
-	model_text = "Exploration"
-	req_access = list(access_pilot)
-	departments = list("Exploration","Pilot")
-
-/obj/machinery/suit_cycler/explorer/initialize()
-	species -= SPECIES_TESHARI
-
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
 	return attack_hand(user)
 

@@ -95,21 +95,13 @@
 
 /obj/item/weapon/material/knife/machete
 	name = "machete"
-	desc = "A long, sturdy blade with a rugged handle. Leading the way to cursed treasures since before space travel." //VOREStation Edit
+	desc = "A sharp machete often found in survival kits."
 	icon_state = "machete"
 	force_divisor = 0.3 // 18 when hardness 60 (steel)
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT
 	default_material = "plasteel" //VOREStation Edit
-
-	//VOREStation Edit - Added Deluxe Machete
-/obj/item/weapon/material/knife/machete/deluxe
-	name = "deluxe machete"
-	desc = "A fine example of a machete, with a polished blade, wooden handle and a leather cord loop."
-	icon = 'icons/obj/weapons_vr.dmi'
-	icon_state = "machetedx"
-	item_state = "machete"
 
 /obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"

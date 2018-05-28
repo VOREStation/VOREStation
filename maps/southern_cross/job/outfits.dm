@@ -63,21 +63,3 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_type = /obj/item/weapon/card/id/medical/sar
 	id_pda_assignment = "Search and Rescue"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
-
-/decl/hierarchy/outfit/job/pathfinder
-	name = OUTFIT_JOB_NAME("Pathfinder")
-	shoes = /obj/item/clothing/shoes/boots/winter/explorer
-	uniform = /obj/item/clothing/under/explorer //TODO: Uniforms.
-	l_ear = /obj/item/device/radio/headset/pathfinder
-	id_slot = slot_wear_id
-	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/heads
-	id_type = /obj/item/weapon/card/id/science/head/pathfinder
-	id_pda_assignment = "Pathfinder"
-	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
-	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
-
-/decl/hierarchy/outfit/job/explorer2/post_equip(mob/living/carbon/human/H)
-	..()
-	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
-		permit.set_name(H.real_name)

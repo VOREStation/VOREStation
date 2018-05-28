@@ -13,12 +13,6 @@
 	icon_state = "med_cypherkey"
 	channels = list("Medical" = 1, "Explorer" = 1)
 
-//VOREStation Edit - Added Pathfinder
-/obj/item/device/encryptionkey/pathfinder
-	name = "pathfinder's encryption key"
-	icon_state = "medsci_cypherkey"
-	channels = list("Command" = 1, "Science" = 1, "Medical" = 1, "Explorer" = 1)
-
 /obj/item/device/encryptionkey/heads/hop
 	name = "head of personnel's encryption key"
 	icon_state = "hop_cypherkey"

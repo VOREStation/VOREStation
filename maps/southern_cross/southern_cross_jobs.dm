@@ -4,7 +4,6 @@
 var/const/SAR 				=(1<<11)
 var/const/PILOT 			=(1<<15) //VOREStation Edit - Bumped up 2
 var/const/EXPLORER 			=(1<<12) //VOREStation Edit - Moved to science
-var/const/PATHFINDER 		=(1<<13) //VOREStation Edit - Added Pathfinder
 
 var/const/access_pilot = 67
 var/const/access_explorer = 43
@@ -20,13 +19,6 @@ var/const/access_explorer = 43
 	region = ACCESS_REGION_GENERAL
 
 //SC IDs
-
-//VOREStation Edit - Added Pathfinder
-/obj/item/weapon/card/id/science/head/pathfinder
-	desc = "A card which represents discovery of the unknown."
-	assignment = "Pathfinder"
-	rank = "Pathfinder"
-	job_access_type = /datum/job/pathfinder
 
 /obj/item/weapon/card/id/medical/sar
 	assignment = "Search and Rescue"
@@ -76,24 +68,6 @@ var/const/access_explorer = 43
 /datum/job/captain/get_access()
 	return get_all_station_access()
 */
-
-//VOREStation Edit - Added Pathfinder
-/datum/job/pathfinder
-	title = "Pathfinder"
-	flag = PATHFINDER
-	department = "Science"
-	department_flag = MEDSCI
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the research director"
-	selection_color = "#AD6BAD"
-	idtype = /obj/item/weapon/card/id/science/head/pathfinder
-	economic_modifier = 10
-	
-	access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_research, access_gateway)
-	minimal_access = list(access_medical, access_pilot, access_explorer, access_research, access_gateway)
-	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 
 /datum/job/pilot
 	title = "Pilot"
