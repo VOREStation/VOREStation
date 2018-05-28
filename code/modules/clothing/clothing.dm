@@ -1,5 +1,3 @@
-GLOBAL_LIST_BOILERPLATE(all_clothing, /obj/item/clothing)
-
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9

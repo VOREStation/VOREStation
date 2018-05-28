@@ -1,5 +1,3 @@
-GLOBAL_LIST_BOILERPLATE(all_objs, /obj)
-
 /obj
 	layer = OBJ_LAYER
 	plane = OBJ_PLANE
