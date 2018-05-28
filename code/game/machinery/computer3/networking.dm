@@ -172,16 +172,16 @@
 		return list()
 	if(typekey == null)
 		typekey = /obj/machinery
-	var/list/machines = list()
+	var/list/nearby_machines = list()
 	for(var/obj/O in T)
 		if(istype(O,typekey))
-			machines += O
+			nearby_machines += O
 	for(var/d in cardinal)
 		var/turf/T2 = get_step(T,d)
 		for(var/obj/O in T2)
 			if(istype(O,typekey))
-				machines += O
-	return machines
+				nearby_machines += O
+	return nearby_machines
 
 /obj/item/part/computer/networking/prox/verify_machine(var/obj/previous)
 	if(!previous)
