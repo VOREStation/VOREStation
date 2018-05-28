@@ -42,7 +42,7 @@
 
 /decl/hierarchy/outfit/costume/horrorcop/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
-	if(U.accessories.len)
+	if(LAZYLEN(U.accessories))
 		for(var/obj/item/clothing/accessory/A in U.accessories)
 			if(istype(A, /obj/item/clothing/accessory/holster))
 				var/obj/item/clothing/accessory/holster/O = A
@@ -59,7 +59,7 @@
 
 /decl/hierarchy/outfit/costume/cowboy/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
-	if(U.accessories.len)
+	if(LAZYLEN(U.accessories))
 		for(var/obj/item/clothing/accessory/A in U.accessories)
 			if(istype(A, /obj/item/clothing/accessory/holster))
 				var/obj/item/clothing/accessory/holster/O = A

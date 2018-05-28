@@ -730,7 +730,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!wear_suit)
 		return //No point, no suit.
 
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = INV_SUIT_DEF_ICON, default_layer = SUIT_LAYER)
+	// Part of splitting the suit sprites up
+	var/iconFile = INV_SUIT_DEF_ICON
+	if(istype(wear_suit, /obj/item/clothing/suit))
+		var/obj/item/clothing/suit/S = wear_suit
+		if(S.update_icon_define)
+			iconFile = S.update_icon_define
+
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = iconFile, default_layer = SUIT_LAYER)
 
 	apply_layer(SUIT_LAYER)
 

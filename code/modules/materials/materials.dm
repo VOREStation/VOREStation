@@ -16,7 +16,17 @@
 			stone
 			metal
 			solid
-			cult
+			ONLY WALLS
+				cult
+				hull
+				curvy
+				jaggy
+				brick
+				REINFORCEMENT
+					reinf_over
+					reinf_mesh
+					reinf_cult
+					reinf_metal
 		DOORS
 			stone
 			metal
@@ -358,6 +368,18 @@ var/list/name_to_material
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 
+/material/steel/hull
+	name = MAT_STEELHULL
+	stack_type = /obj/item/stack/material/steel/hull
+	integrity = 250
+	explosion_resistance = 10
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
+	icon_colour = "#666677"
+
+/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
+	new /obj/item/stack/material/steel(target)
+
 /material/diona
 	name = "biomass"
 	icon_colour = null
@@ -394,6 +416,17 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
 
+/material/plasteel/hull
+	name = MAT_PLASTEELHULL
+	stack_type = /obj/item/stack/material/plasteel/hull
+	integrity = 600
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
+	icon_colour = "#777788"
+	explosion_resistance = 40
+
+/material/plasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+	new /obj/item/stack/material/plasteel(target)
 
 // Very rare alloy that is reflective, should be used sparingly.
 /material/durasteel
@@ -412,6 +445,14 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 8)
 	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
 
+/material/durasteel/hull //The 'Hardball' of starship hulls.
+	name = MAT_DURASTEELHULL
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
+	icon_colour = "#45829a"
+	explosion_resistance = 90
+	reflectivity = 0.9
+
 /material/plasteel/titanium
 	name = "titanium"
 	stack_type = null
@@ -420,6 +461,12 @@ var/list/name_to_material
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
+
+/material/plasteel/titanium/hull
+	name = MAT_TITANIUMHULL
+	stack_type = null
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
 
 /material/glass
 	name = "glass"

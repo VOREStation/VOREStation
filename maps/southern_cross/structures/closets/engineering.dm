@@ -5,33 +5,33 @@
 
 /obj/structure/closet/secure_closet/engineering_chief_wardrobe
 	name = "chief engineer's wardrobe"
-	req_access = list(access_ce)
 	icon_state = "securece1"
 	icon_closed = "securece"
 	icon_locked = "securece1"
 	icon_opened = "secureceopen"
 	icon_broken = "securecebroken"
 	icon_off = "secureceoff"
+	req_access = list(access_ce)
 
+	starts_with = list(
+		/obj/item/clothing/under/rank/chief_engineer,
+		/obj/item/clothing/under/rank/chief_engineer/skirt,
+		/obj/item/clothing/head/hardhat/white,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/weapon/cartridge/ce,
+		/obj/item/device/radio/headset/heads/ce,
+		/obj/item/device/radio/headset/heads/ce/alt,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/gas,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/taperoll/engineering,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering)
 
-/obj/structure/closet/secure_closet/engineering_chief_wardrobe/New()
-	..()
+/obj/structure/closet/secure_closet/engineering_chief_wardrobe/initialize()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
+		starts_with += /obj/item/weapon/storage/backpack/industrial
 	else
-		new /obj/item/weapon/storage/backpack/satchel/eng(src)
+		starts_with += /obj/item/weapon/storage/backpack/satchel/eng
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/dufflebag/eng(src)
-	new /obj/item/clothing/under/rank/chief_engineer(src)
-	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
-	new /obj/item/clothing/head/hardhat/white(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/weapon/cartridge/ce(src)
-	new /obj/item/device/radio/headset/heads/ce(src)
-	new /obj/item/device/radio/headset/heads/ce/alt(src)
-	new /obj/item/clothing/suit/storage/hazardvest(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
-	new /obj/item/taperoll/engineering(src)
-	new /obj/item/clothing/suit/storage/hooded/wintercoat/engineering(src)
-	return
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/eng
+	return ..()

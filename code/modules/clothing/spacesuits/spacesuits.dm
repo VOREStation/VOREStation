@@ -49,6 +49,8 @@
 /obj/item/clothing/suit/space
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
+	icon = 'icons/obj/clothing/spacesuits.dmi'
+	update_icon_define = INV_SPACESUIT_DEF_ICON
 	icon_state = "space"
 	w_class = ITEMSIZE_HUGE // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
