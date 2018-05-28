@@ -72,7 +72,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/heads
-	id_type = /obj/item/weapon/card/id/silver/pathfinder
+	id_type = /obj/item/weapon/card/id/science/head/pathfinder
 	id_pda_assignment = "Pathfinder"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)

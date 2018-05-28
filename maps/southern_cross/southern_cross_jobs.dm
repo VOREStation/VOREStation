@@ -22,7 +22,8 @@ var/const/access_explorer = 43
 //SC IDs
 
 //VOREStation Edit - Added Pathfinder
-/obj/item/weapon/card/id/silver/pathfinder
+/obj/item/weapon/card/id/science/head/pathfinder
+	desc = "A card which represents discovery of the unknown."
 	assignment = "Pathfinder"
 	rank = "Pathfinder"
 	job_access_type = /datum/job/pathfinder
@@ -80,19 +81,18 @@ var/const/access_explorer = 43
 /datum/job/pathfinder
 	title = "Pathfinder"
 	flag = PATHFINDER
-	department = "Command"
+	department = "Science"
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the research director"
-	selection_color = "#2F2F7F"
-	idtype = /obj/item/weapon/card/id/silver/pathfinder
+	selection_color = "#AD6BAD"
+	idtype = /obj/item/weapon/card/id/science/head/pathfinder
 	economic_modifier = 10
 	
-	access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks,
-			access_pilot, access_explorer, access_research, access_heads, access_keycard_auth, access_gateway)
-	minimal_access = list(access_medical, access_pilot, access_explorer, access_research, access_heads, access_gateway)
+	access = list(access_medical, access_medical_equip, access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_research, access_gateway)
+	minimal_access = list(access_medical, access_pilot, access_explorer, access_research, access_gateway)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 
 /datum/job/pilot
