@@ -92,7 +92,6 @@
 	icon_off = "medicaloff"
 	req_access = list(access_medical_equip)
 
-<<<<<<< master
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
 		/obj/item/weapon/storage/box/autoinjectors,
@@ -100,6 +99,7 @@
 		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
 		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
 		/obj/item/weapon/storage/belt/medical/emt,
+		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar,
 		/obj/item/clothing/shoes/boots/winter/explorer,
@@ -119,38 +119,6 @@
 		/obj/item/device/gps,
 		/obj/item/device/geiger,
 		/obj/item/bodybag/cryobag)
-=======
-
-/obj/structure/closet/secure_closet/sar/New()
-	..()
-	new /obj/item/weapon/storage/backpack/dufflebag/emt(src)
-	new /obj/item/weapon/storage/box/autoinjectors(src)
-	new /obj/item/weapon/storage/box/syringes(src)
-	new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
-	new /obj/item/weapon/storage/belt/medical/emt(src)
-	new /obj/item/weapon/material/knife/tacknife/survival(src) //VOREStation Edit
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar(src)
-	new /obj/item/clothing/shoes/boots/winter/explorer(src)
-	new /obj/item/device/radio/headset/sar(src)
-	new /obj/item/weapon/cartridge/medical(src)
-	new /obj/item/device/flashlight(src)
-	new /obj/item/weapon/tank/emergency/oxygen/engi(src)
-	new /obj/item/clothing/glasses/hud/health(src)
-	new /obj/item/device/healthanalyzer(src)
-	new /obj/item/device/radio/off(src)
-	new /obj/random/medical(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/extinguisher/mini(src)
-	new /obj/item/weapon/storage/box/freezer(src)
-	new /obj/item/clothing/accessory/storage/white_vest(src)
-	new /obj/item/taperoll/medical(src)
-	new /obj/item/device/gps(src)
-	new /obj/item/device/geiger(src)
-	new /obj/item/bodybag/cryobag(src)
-	return
->>>>>>> Pathfinder Update
 
 //Pilot Locker
 
@@ -169,6 +137,7 @@
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/device/radio/headset/pilot/alt,
 		/obj/item/device/flashlight,
+		/obj/item/device/survivalcapsule, //VOREStation Edit
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/weapon/storage/box/flare,
@@ -179,33 +148,11 @@
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack
 	else
-<<<<<<< master
 		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
 	return ..()
-=======
-		new /obj/item/weapon/storage/backpack/satchel/norm(src)
-	new /obj/item/weapon/storage/backpack/parachute(src)
-	new /obj/item/weapon/material/knife/tacknife/survival(src)
-	new /obj/item/clothing/head/pilot(src)
-	new /obj/item/clothing/under/rank/pilot1(src)
-	new /obj/item/clothing/suit/storage/toggle/bomber/pilot(src)
-	new	/obj/item/clothing/mask/gas/half(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/gloves/fingerless(src)
-	new /obj/item/device/radio/headset/pilot/alt(src)
-	new /obj/item/device/flashlight(src)
-	new /obj/item/device/survivalcapsule(src) //VOREStation Edit
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle(src)
-	new /obj/item/weapon/storage/box/flare(src)
-	new /obj/item/weapon/cell/device(src)
-	new /obj/item/device/radio(src)
-	return
->>>>>>> Pathfinder Update
 
-//VOREStation Addition - Pathfinder Lockers
-
-/obj/structure/closet/secure_closet/pathfinder
+//VOREStation Add - Pathfinder Locker
+/obj/structure/closet/secure_closet/explorer
 	name = "pathfinder locker"
 	icon = 'icons/obj/closet_vr.dmi'
 	icon_state = "secureexp1"
@@ -216,35 +163,33 @@
 	icon_off = "secureexpoff"
 	req_access = list(access_gateway)
 
-/obj/structure/closet/secure_closet/pathfinder/New()
-	..()
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/norm(src)
-	new /obj/item/weapon/material/knife/tacknife/survival(src)
-	new /obj/item/weapon/material/knife/machete/deluxe(src)
-	new /obj/item/clothing/accessory/holster/machete(src)
-	new /obj/item/clothing/under/explorer(src)
-	new /obj/item/clothing/suit/storage/hooded/explorer(src)
-	new	/obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/clothing/shoes/boots/winter/explorer(src)
-	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/device/radio/headset/explorer(src)
-	new /obj/item/device/flashlight(src)
-	new /obj/item/device/gps/explorer(src)
-	new /obj/item/weapon/storage/box/flare(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/device/geiger(src)
-	new /obj/item/device/survivalcapsule/luxury(src)
-	new /obj/item/weapon/cell/device(src)
-	//new /obj/item/device/radio/pathfinder(src) //Removed until I can get it working
-	new /obj/item/weapon/storage/box/explorerkeys(src)
-	new /obj/item/stack/marker_beacon/thirty(src)
-	return
+	starts_with = list(
+		/obj/item/clothing/under/explorer,
+		/obj/item/clothing/suit/storage/hooded/explorer,
+		/obj/item/clothing/mask/gas/explorer,
+		/obj/item/clothing/shoes/boots/winter/explorer,
+		/obj/item/clothing/gloves/black,
+		/obj/item/device/radio/headset/pathfinder,
+		/obj/item/device/flashlight,
+		/obj/item/device/gps/explorer,
+		/obj/item/weapon/storage/box/flare,
+		/obj/item/weapon/storage/box/explorerkeys,
+		/obj/item/device/geiger,
+		/obj/item/weapon/cell/device,
+		/obj/item/device/radio,
+		/obj/item/device/survivalcapsule/luxury,
+		/obj/item/stack/marker_beacon/thirty,
+		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/item/weapon/material/knife/machete/deluxe,
+		/obj/item/clothing/accessory/holster/machete,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2)
 
-//VOREStation Addition End
+/obj/structure/closet/secure_closet/explorer/initialize()
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack
+	else
+		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+	return ..()
 
 //Exotic Seeds Crate
 
