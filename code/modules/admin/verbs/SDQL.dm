@@ -115,7 +115,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/obj/item"))
-					for(var/obj/item/m in all_items)
+					for(var/obj/item/m in world)
 						if(istype(m, f2))
 							from_objs += m
 
@@ -125,12 +125,12 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/obj"))
-					for(var/obj/m in all_objs)
+					for(var/obj/m in world)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/atom"))
-					for(var/atom/m in all_atoms)
+					for(var/atom/m in world)
 						if(istype(m, f2))
 							from_objs += m
 /*
