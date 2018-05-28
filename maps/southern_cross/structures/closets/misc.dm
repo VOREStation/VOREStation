@@ -99,7 +99,7 @@
 		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
 		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
 		/obj/item/weapon/storage/belt/medical/emt,
-		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/item/weapon/material/knife/tacknife/survival, //VOREStation Add,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar,
 		/obj/item/clothing/shoes/boots/winter/explorer,
@@ -137,7 +137,7 @@
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/device/radio/headset/pilot/alt,
 		/obj/item/device/flashlight,
-		/obj/item/device/survivalcapsule, //VOREStation Edit
+		/obj/item/device/survivalcapsule, //VOREStation Add,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/weapon/storage/box/flare,

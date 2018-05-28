@@ -1,7 +1,7 @@
 /obj/item/device/encryptionkey/pilot
 	name = "pilot's encryption key"
-	icon_state = "cypherkey" //VOREStation Edit
-	channels = list("Explorer" = 1) //VOREStation Edit
+	icon_state = "com_cypherkey"
+	channels = list("Supply" = 1, "Explorer" = 1)
 
 /obj/item/device/encryptionkey/explorer
 	name = "explorer radio encryption key"
