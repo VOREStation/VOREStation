@@ -395,6 +395,8 @@ var/global/list/cont_flavors_musky = list("drenched",
 	paths = typesof(/datum/trait) - /datum/trait
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
+		if(!instance.name)
+			continue //A prototype or something
 		var/cost = instance.cost
 		traits_costs[path] = cost
 		all_traits[path] = instance
