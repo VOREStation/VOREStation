@@ -860,6 +860,7 @@
 	seed_name = "watermelon"
 	display_name = "watermelon vine"
 	chems = list("nutriment" = list(1,6), "watermelonjuice" = list(10,6))
+	kitchen_tag = "watermelon"
 
 /datum/seed/watermelon/New()
 	..()
