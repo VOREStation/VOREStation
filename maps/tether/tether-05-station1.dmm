@@ -22443,7 +22443,7 @@
 /area/tether/station/pathfinder_office)
 "vQL" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/command{
+/obj/machinery/door/airlock/research{
 	name = "Pathfinder's Office";
 	req_access = list(62);
 	req_one_access = list(62)
