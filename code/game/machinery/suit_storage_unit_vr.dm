@@ -25,8 +25,8 @@
 	departments = list("Exploration","Pilot")
 
 /obj/machinery/suit_cycler/explorer/initialize()
-	..()
 	species -= SPECIES_TESHARI
+	return ..()
 
 /obj/machinery/suit_cycler/apply_paintjob()
 	if(!target_species || !target_department)
