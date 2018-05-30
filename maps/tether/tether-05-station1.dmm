@@ -9530,16 +9530,13 @@
 /area/hallway/station/docks)
 "aBa" = (
 /obj/structure/closet/emcloset,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "aBb" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/status_display{
-	pixel_y = 30
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
@@ -18654,6 +18651,9 @@
 	icon_state = "2-8"
 	},
 /obj/item/device/megaphone,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "bza" = (
@@ -21492,6 +21492,25 @@
 /obj/structure/closet/secure_closet/pilot,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_prep)
+"eAf" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/bridge_hallway)
 "eUx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -21658,6 +21677,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"lxQ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/bridge_hallway)
 "lHz" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -21844,6 +21883,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"oEH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
 "oVP" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
 	dir = 1;
@@ -28683,7 +28729,7 @@ bYj
 awu
 bsl
 btu
-aBZ
+oEH
 awu
 aaa
 aaa
@@ -29535,7 +29581,7 @@ bQa
 aws
 aAV
 btu
-aBZ
+oEH
 awu
 aaa
 aaa
@@ -32793,7 +32839,7 @@ acp
 bej
 bfW
 axe
-axF
+lxQ
 aye
 ayS
 axF
@@ -32808,7 +32854,7 @@ azY
 bBz
 aEV
 aFB
-aFB
+eAf
 ccx
 aGK
 bLL
