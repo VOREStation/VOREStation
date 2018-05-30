@@ -164,9 +164,9 @@
 	active_power_usage = 20 // VOREStation Edit - Keep lights at 20 power
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
-	var/brightness_range = 8	// luminosity when on, also used in power calculation
+	var/brightness_range = 10	// luminosity when on, also used in power calculation //VOREStation Edit - 8->10
 	var/brightness_power = 0.8
-	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
+	var/brightness_color = LIGHT_COLOR_FLUORESCENT_TUBE //VOREStation Edit - Our tubes are whiter
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
 	var/light_type = /obj/item/weapon/light/tube		// the type of light item
@@ -185,7 +185,7 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
+	brightness_range = 5 //VOREStation Edit - 4->5
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
@@ -196,7 +196,7 @@
 	icon_state = "flamp1"
 	base_state = "flamp"
 	fitting = "bulb"
-	brightness_range = 5
+	brightness_range = 8 //VOREStation Edit - 4->8
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
