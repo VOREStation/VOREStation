@@ -1,5 +1,5 @@
 /turf/space/transit
-	keep_sprite = 1
+	keep_sprite = TRUE
 	var/pushdirection // push things that get caught in the transit tile this direction
 
 //Overwrite because we dont want people building rods in space.

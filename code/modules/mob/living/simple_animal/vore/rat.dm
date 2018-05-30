@@ -41,6 +41,8 @@
 	vore_pounce_chance = 45
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
+	var/life_since_foodscan = 0
+
 /mob/living/simple_animal/hostile/rat/passive
 	name = "curious giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
@@ -50,10 +52,12 @@
 
 /mob/living/simple_animal/hostile/rat/passive/Life()
 	. = ..()
-	if(!. || ai_inactive) return
+	if(!. || ai_inactive)
+		return
 
-	if(hunger > 0) //Only look for floor food when hungry.
-		for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,world.view)) //Accept thrown offerings and scavenge surroundings.
+	if(hunger > 0 && life_since_foodscan++ > 5) //Only look for floor food when hungry.
+		life_since_foodscan = 0
+		for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3)) //Accept thrown offerings and scavenge surroundings.
 			if(get_dist(src,S) <=1)
 				visible_emote("hungrily devours \the [S].")
 				playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -64,13 +68,14 @@
 				WanderTowards(S.loc)
 			break
 
-	if(!food) return
+	if(!food)
+		return
 
 	var/food_dist = get_dist(src,food)
 
 	if(food_dist > world.view) //Lose interest on this person.
 		food = null
-		Clamp(hunger+5, 0, 25)
+		hunger = Clamp(hunger+5, 0, 25)
 
 	if(food_dist > 1)
 		if(stance == STANCE_IDLE)

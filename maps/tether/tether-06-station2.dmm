@@ -4477,6 +4477,9 @@
 	},
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
 "hR" = (
@@ -9425,6 +9428,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
@@ -17895,6 +17901,23 @@
 	},
 /turf/simulated/floor/airless,
 /area/maintenance/station/sec_lower)
+"Nq" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/station/port)
 "Nt" = (
 /obj/structure/girder,
 /turf/simulated/floor/airless,
@@ -18475,6 +18498,25 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
+"WG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
 "WI" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -26680,7 +26722,7 @@ oi
 pK
 qs
 ri
-rV
+Nq
 sw
 sw
 sw
@@ -30932,7 +30974,7 @@ kv
 lo
 lT
 kb
-nh
+WG
 nP
 ot
 oW
