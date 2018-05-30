@@ -83,7 +83,7 @@ var/list/marker_beacon_colors = list(
 //	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
 	light_range = 2
-	light_power = 3
+	light_power = 0.8
 	var/remove_speed = 15
 	var/picked_color
 

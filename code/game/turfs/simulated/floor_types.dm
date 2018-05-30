@@ -181,7 +181,7 @@
 /turf/simulated/shuttle/floor/alien
 	icon_state = "alienpod1"
 	light_range = 3
-	light_power = 3
+	light_power = 0.6
 	light_color = "#66ffff" // Bright cyan.
 	block_tele = TRUE
 

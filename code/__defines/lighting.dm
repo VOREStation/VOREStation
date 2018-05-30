@@ -74,5 +74,12 @@
 #define LIGHT_COLOR_TUNGSTEN   "#FAE1AF" //Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)
 #define LIGHT_COLOR_HALOGEN    "#F0FAFA" //Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 
+//Lighting values used by the station lights
+#define LIGHT_COLOR_FLUORESCENT_TUBE "#E0EFFF"
+#define LIGHT_COLOR_FLUORESCENT_FLASHLIGHT "#CDDDFF"
+#define LIGHT_COLOR_INCANDESCENT_TUBE "#FFEEDD"
+#define LIGHT_COLOR_INCANDESCENT_BULB "#FFDDBB"
+#define LIGHT_COLOR_INCANDESCENT_FLASHLIGHT "#FFCC66"
+
 //Fake ambient occlusion filter
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
