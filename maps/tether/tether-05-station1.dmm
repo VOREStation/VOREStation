@@ -22491,8 +22491,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	name = "Pathfinder's Office";
-	req_access = list(62);
-	req_one_access = list(62)
+	req_access = list(43);
+	req_one_access = list(43)
 	},
 /obj/structure/cable/green{
 	d1 = 4;
