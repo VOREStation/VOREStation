@@ -325,7 +325,7 @@
 			icon_state = "alarm1"
 			new_color = "#DA0205"
 
-	set_light(l_range = 2, l_power = 0.5, l_color = new_color)
+	set_light(l_range = 2, l_power = 0.25, l_color = new_color)
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
@@ -843,14 +843,14 @@ FIRE ALARM
 	else
 		if(!detecting)
 			icon_state = "fire1"
-			set_light(l_range = 4, l_power = 2, l_color = "#ff0000")
+			set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
 		else
 			icon_state = "fire0"
 			switch(seclevel)
-				if("green")	set_light(l_range = 2, l_power = 0.5, l_color = "#00ff00")
-				if("blue")	set_light(l_range = 2, l_power = 0.5, l_color = "#1024A9")
-				if("red")	set_light(l_range = 4, l_power = 2, l_color = "#ff0000")
-				if("delta")	set_light(l_range = 4, l_power = 2, l_color = "#FF6633")
+				if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
+				if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
+				if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
+				if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
 		add_overlay("overlay_[seclevel]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)

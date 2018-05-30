@@ -10,6 +10,8 @@
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
+	var/flashlight_power = 0.8	//lighting power when on
+	var/flashlight_colour = LIGHT_COLOR_INCANDESCENT_FLASHLIGHT	//lighting colour when on
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/device
 	var/list/brightness_levels
@@ -71,11 +73,11 @@
 		icon_state = "[initial(icon_state)]-on"
 
 		if(brightness_level == "low")
-			set_light(brightness_on/2)
+			set_light(brightness_on/2, flashlight_power*0.75, flashlight_colour)
 		else if(brightness_level == "high")
-			set_light(brightness_on*1.5)
+			set_light(brightness_on*1.5, flashlight_power*1.1, flashlight_colour)
 		else
-			set_light(brightness_on)
+			set_light(brightness_on, flashlight_power, flashlight_colour)
 
 	else
 		icon_state = "[initial(icon_state)]"
@@ -267,6 +269,7 @@
 	name = "maglight"
 	desc = "A very, very heavy duty flashlight."
 	icon_state = "maglight"
+	flashlight_colour = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
 	force = 10
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -303,7 +306,7 @@
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	brightness_on = 5
-	light_color = "#FFC58F"
+	flashlight_colour = "#FFC58F"
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
@@ -320,8 +323,8 @@
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = ITEMSIZE_SMALL
 	brightness_on = 8 // Pretty bright.
-	light_power = 3
-	light_color = LIGHT_COLOR_FLARE
+	flashlight_power = 0.8
+	flashlight_colour = LIGHT_COLOR_FLARE
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
@@ -383,8 +386,8 @@
 	desc = "A green military-grade glowstick."
 	w_class = ITEMSIZE_SMALL
 	brightness_on = 4
-	light_power = 2
-	light_color = "#49F37C"
+	flashlight_power = 0.9
+	flashlight_colour = "#49F37C"
 	icon_state = "glowstick"
 	item_state = "glowstick"
 	var/fuel = 0
@@ -422,28 +425,28 @@
 /obj/item/device/flashlight/glowstick/red
 	name = "red glowstick"
 	desc = "A red military-grade glowstick."
-	light_color = "#FC0F29"
+	flashlight_colour = "#FC0F29"
 	icon_state = "glowstick_red"
 	item_state = "glowstick_red"
 
 /obj/item/device/flashlight/glowstick/blue
 	name = "blue glowstick"
 	desc = "A blue military-grade glowstick."
-	light_color = "#599DFF"
+	flashlight_colour = "#599DFF"
 	icon_state = "glowstick_blue"
 	item_state = "glowstick_blue"
 
 /obj/item/device/flashlight/glowstick/orange
 	name = "orange glowstick"
 	desc = "A orange military-grade glowstick."
-	light_color = "#FA7C0B"
+	flashlight_colour = "#FA7C0B"
 	icon_state = "glowstick_orange"
 	item_state = "glowstick_orange"
 
 /obj/item/device/flashlight/glowstick/yellow
 	name = "yellow glowstick"
 	desc = "A yellow military-grade glowstick."
-	light_color = "#FEF923"
+	flashlight_colour = "#FEF923"
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
 
@@ -454,7 +457,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	light_color = "#FFF423"
+	flashlight_colour = "#FFF423"
 	w_class = ITEMSIZE_TINY
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
@@ -462,7 +465,7 @@
 
 /obj/item/device/flashlight/slime/New()
 	..()
-	set_light(brightness_on)
+	set_light(brightness_on, flashlight_power, flashlight_colour)
 
 /obj/item/device/flashlight/slime/update_icon()
 	return
