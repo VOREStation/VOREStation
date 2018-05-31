@@ -447,6 +447,9 @@
 /area/tether/station/explorer_meeting
 	name = "\improper Explorer Meeting Room"
 
+/area/tether/station/pathfinder_office
+	name = "\improper Pathfinder's Office"
+
 /area/shuttle/excursion
 	name = "\improper Excursion Shuttle"
 	icon_state = "shuttle2"

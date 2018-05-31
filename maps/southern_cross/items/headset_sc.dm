@@ -1,32 +1,30 @@
 /obj/item/device/radio/headset/pilot
 	name = "pilot's headset"
-	desc = "A headset used by pilots, has access to supply and explorer channels."
+	desc = "A headset used by pilots, has access to the explorer channel." //VOREStation Edit
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/pilot
-	adhoc_fallback = TRUE //VOREStation Edit
 
 /obj/item/device/radio/headset/pilot/alt
 	name = "pilot's bowman headset"
-	desc = "A bowman headset used by pilots, has access to supply and explorer channels."
+	desc = "A bowman headset used by pilots, has access to the explorer channel." //VOREStation Edit
 	icon_state = "pilot_headset_alt"
 
 /obj/item/device/radio/headset/pilot/alt
 	name = "pilot's bowman headset"
-	desc = "A bowman headset used by pilots, has access to supply and explorer channels."
+	desc = "A bowman headset used by pilots, has access to the explorer channel." //VOREStation Edit
 	icon_state = "pilot_headset_alt"
 
 /obj/item/device/radio/headset/explorer
 	name = "explorer's headset"
-	desc = "Headset used by explorers for exploring. Access to the explorer channel."
+	desc = "Headset used by explorers for exploring. Access to explorer and science channels." //VOREStation Edit
 	icon_state = "exp_headset"
 	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/explorer
-	adhoc_fallback = TRUE //VOREStation Edit
 
 /obj/item/device/radio/headset/explorer/alt
 	name = "explorer's bowman headset"
-	desc = "Bowman headset used by explorers for exploring. Access to the explorer channel."
+	desc = "Bowman headset used by explorers for exploring. Access to explorer and science channels." //VOREStation Edit
 	icon_state = "exp_headset_alt"
 
 /obj/item/device/radio/headset/sar
@@ -35,7 +33,6 @@
 	icon_state = "sar_headset"
 	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/sar
-	adhoc_fallback = TRUE //VOREStation Edit
 
 /obj/item/device/radio/headset/sar/alt
 	name = "sar radio bowman headset"

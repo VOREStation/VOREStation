@@ -101,7 +101,7 @@
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT
-	default_material = "plasteel"
+	default_material = "plasteel" //VOREStation Edit
 
 /obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"
@@ -110,5 +110,5 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
-	default_material = "plasteel"
+	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
