@@ -126,15 +126,6 @@
 	my_doors = list("expshuttle_door_L" = "Port Cargo", "expshuttle_door_Ro" = "Airlock Outer", "expshuttle_door_Ri" = "Airlock Inner", "expshuttle_door_cargo" = "Cargo Hatch");
 	my_sensors = list("shuttlesens_exp" = "Exterior Environment", "shuttlesens_exp_int" = "Cargo Area", "shuttlesens_exp_psg" = "Passenger Area")
 	},
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the shuttle blast doors.";
-	id = "shuttle blast";
-	name = "Shuttle Blast Doors";
-	pixel_x = 25;
-	pixel_y = 0;
-	req_access = null;
-	req_one_access = list(67)
-	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "aax" = (
@@ -21703,14 +21694,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "shuttle blast";
-	name = "Shuttle Blast Doors";
-	opacity = 0
-	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/excursion/tether)
 "ixk" = (
@@ -21987,14 +21970,6 @@
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "shuttle blast";
-	name = "Shuttle Blast Doors";
-	opacity = 0
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/excursion/tether)
@@ -22555,14 +22530,6 @@
 /obj/structure/window/reinforced{
 	dir = 8;
 	health = 1e+006
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "shuttle blast";
-	name = "Shuttle Blast Doors";
-	opacity = 0
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/excursion/tether)
