@@ -36,5 +36,5 @@
 /datum/supply_packs/hydro/fennec
 	name = "Fennec crate"
 	cost = 60 //considering a corgi crate is 50, and you get two fennecs
-	containertype = /obj/structure/largecrate/fennec
+	containertype = /obj/structure/largecrate/animal/fennec
 	containername = "Fennec crate"
