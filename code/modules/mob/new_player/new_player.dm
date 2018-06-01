@@ -358,7 +358,6 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
-	log_game("JOINED [key_name(character)] as \"[rank]\"")
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")
