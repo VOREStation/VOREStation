@@ -123,7 +123,7 @@
 	desc = "Bounces around a lot. Looks messily packaged, were they in a hurry?"
 	starts_with = list(/mob/living/simple_animal/fennec)
 
-/obj/structure/largecrate/animal/dangerous/initialize()
+/obj/structure/largecrate/animal/fennec/initialize()
 	starts_with = list(pick(/mob/living/simple_animal/fennec = 2,
 						/mob/living/simple_animal/retaliate/fennix;0.5))
 	return ..()
