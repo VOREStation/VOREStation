@@ -9146,7 +9146,6 @@
 	layer = 2.9
 	},
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/medical,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/medical,
 /obj/item/clothing/head/helmet/space/void/medical,
@@ -9269,7 +9268,6 @@
 "pE" = (
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/security,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/security,
 /obj/item/clothing/head/helmet/space/void/security,
@@ -10518,7 +10516,6 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
@@ -16387,6 +16384,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
 	},
+/obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "Bd" = (
