@@ -45,7 +45,7 @@
 		qdel(src)
 
 /obj/machinery/computer/arcade/proc/prizevend()
-	if(!contents.len)
+	if(!(contents-circuit).len)
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
@@ -53,7 +53,7 @@
 			new	/obj/item/clothing/head/syndicatefake(src.loc)
 
 	else
-		var/atom/movable/prize = pick(contents)
+		var/atom/movable/prize = pick(contents-circuit)
 		prize.loc = src.loc
 
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
@@ -272,7 +272,7 @@
 /obj/machinery/computer/arcade/battle/emag_act(var/charges, var/mob/user)
 	if(!emagged)
 		to_chat(user, span("notice","You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Hyper-Lethal Mode."))
-		
+
 		temp = "If you die in the game, you die for real!"
 		player_hp = 30
 		player_mp = 10
@@ -407,7 +407,7 @@
 				if(emagged)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
-					M.IgniteMob() //flew into a star, so you're on fire	
+					M.IgniteMob() //flew into a star, so you're on fire
 					to_chat(user,span("danger", "<font size=3>You feel an immense wave of heat emanate from \the [src]. Your skin bursts into flames.</font>"))
 		dat += "<br><P ALIGN=Right><a href='byond://?src=\ref[src];menu=1'>OK...</a></P>"
 
