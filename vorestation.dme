@@ -2222,6 +2222,7 @@
 #include "code\modules\mob\living\simple_animal\vore\dino.dm"
 #include "code\modules\mob\living\simple_animal\vore\dragon.dm"
 #include "code\modules\mob\living\simple_animal\vore\fennec.dm"
+#include "code\modules\mob\living\simple_animal\vore\fennix.dm"
 #include "code\modules\mob\living\simple_animal\vore\frog.dm"
 #include "code\modules\mob\living\simple_animal\vore\gaslamp.dm"
 #include "code\modules\mob\living\simple_animal\vore\horse.dm"
