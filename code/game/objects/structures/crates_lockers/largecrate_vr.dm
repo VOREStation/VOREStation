@@ -125,6 +125,5 @@
 
 /obj/structure/largecrate/animal/dangerous/initialize()
 	starts_with = list(pick(/mob/living/simple_animal/fennec = 2,
-						/mob/living/simple_animal/retaliate/fennix;0.1 = 2,
-						/mob/living/simple_animal/retaliate/fennix;0.4))
+						/mob/living/simple_animal/retaliate/fennix;0.5))
 	return ..()
