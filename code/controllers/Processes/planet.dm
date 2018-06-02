@@ -8,6 +8,7 @@ var/datum/controller/process/planet/planet_controller = null
 	name = "planet controller"
 	planet_controller = src
 	schedule_interval = 1 MINUTE
+	start_delay = 20 SECONDS
 
 	var/list/planet_datums = typesof(/datum/planet) - /datum/planet
 	for(var/P in planet_datums)
