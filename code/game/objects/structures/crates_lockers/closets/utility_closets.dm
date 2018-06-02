@@ -152,7 +152,8 @@
 	icon_closed = "radsuitcloset"
 
 	starts_with = list(
-		/obj/item/clothing/suit/radiation = 4,
+		/obj/item/clothing/suit/radiation = 2,
+		/obj/item/clothing/head/radiation = 2,
 		/obj/item/device/geiger = 2)
 
 /*
