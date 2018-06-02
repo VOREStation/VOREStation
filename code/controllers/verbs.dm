@@ -133,8 +133,5 @@
 		if("Vote")
 			debug_variables(vote)
 			feedback_add_details("admin_verb", "DVote")
-		if("Planets")
-			debug_variables(planet_controller)
-			feedback_add_details("admin_verb", "DPlanets")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
