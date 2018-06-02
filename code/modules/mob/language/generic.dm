@@ -1,4 +1,4 @@
-LANGUAGE_TERMINUS// Noise "language", for audible emotes.
+// Noise "language", for audible emotes.
 /datum/language/noise
 	name = "Noise"
 	desc = "Noises"
