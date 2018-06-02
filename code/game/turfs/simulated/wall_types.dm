@@ -3,6 +3,23 @@
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, "plasteel","plasteel") //3strong
 
+/turf/simulated/wall/shull/New(var/newloc) //Spaaaace ship.
+	..(newloc, MAT_STEELHULL, null, MAT_STEELHULL)
+/turf/simulated/wall/rshull/New(var/newloc)
+	..(newloc, MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
+/turf/simulated/wall/pshull/New(var/newloc) //Spaaaace-er ship.
+	..(newloc, MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
+/turf/simulated/wall/rpshull/New(var/newloc)
+	..(newloc, MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
+/turf/simulated/wall/dshull/New(var/newloc) //Spaaaace-est ship.
+	..(newloc, MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
+/turf/simulated/wall/rdshull/New(var/newloc)
+	..(newloc, MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
+/turf/simulated/wall/thull/New(var/newloc)
+	..(newloc, MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
+/turf/simulated/wall/rthull/New(var/newloc)
+	..(newloc, MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
+
 /turf/simulated/wall/cult
 	icon_state = "cult"
 /turf/simulated/wall/cult/New(var/newloc)
@@ -118,7 +135,7 @@
 	icon_state = "alien"
 	base_state = "alien"
 	light_range = 3
-	light_power = 3
+	light_power = 0.75
 	light_color = "#ff0066" // Pink-ish
 	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
 

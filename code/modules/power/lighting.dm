@@ -164,9 +164,9 @@
 	active_power_usage = 20 // VOREStation Edit - Keep lights at 20 power
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
-	var/brightness_range = 10	// luminosity when on, also used in power calculation // VOREStation Edit - Put light range back how it was for now.
-	var/brightness_power = 3
-	var/brightness_color = null
+	var/brightness_range = 10	// luminosity when on, also used in power calculation //VOREStation Edit - 8->10
+	var/brightness_power = 0.8
+	var/brightness_color = LIGHT_COLOR_FLUORESCENT_TUBE //VOREStation Edit - Our tubes are whiter
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
 	var/light_type = /obj/item/weapon/light/tube		// the type of light item
@@ -185,9 +185,8 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 6  // VOREStation Edit - Put light range back how it was for now.
-	brightness_power = 2
-	brightness_color = "#FFF4E5"
+	brightness_range = 5 //VOREStation Edit - 4->5
+	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 	shows_alerts = FALSE
@@ -197,11 +196,10 @@
 	icon_state = "flamp1"
 	base_state = "flamp"
 	fitting = "bulb"
-	brightness_range = 5
-	brightness_power = 2
+	brightness_range = 8 //VOREStation Edit - 4->8
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
-	brightness_color = "#FFF4E5"
+	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 	desc = "A floor lamp."
 	light_type = /obj/item/weapon/light/bulb
 	shows_alerts = FALSE
@@ -209,7 +207,6 @@
 
 /obj/machinery/light/small/emergency
 	brightness_range = 4
-	brightness_power = 2
 	brightness_color = "#da0205"
 
 /obj/machinery/light/spot
@@ -218,7 +215,7 @@
 	light_type = /obj/item/weapon/light/tube/large
 	shows_alerts = FALSE
 	brightness_range = 12
-	brightness_power = 4
+	brightness_power = 0.9
 
 /obj/machinery/light/built/New()
 	status = LIGHT_EMPTY
@@ -757,8 +754,8 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 	var/rigged = 0		// true if rigged to explode
 	var/brightness_range = 2 //how much light it gives off
-	var/brightness_power = 1
-	var/brightness_color = null
+	var/brightness_power = 0.8
+	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 
 /obj/item/weapon/light/tube
 	name = "light tube"
@@ -768,13 +765,12 @@
 	item_state = "c_tube"
 	matter = list("glass" = 100)
 	brightness_range = 8
-	brightness_power = 3
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
-	brightness_power = 4
+	brightness_power = 0.9
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -784,8 +780,7 @@
 	item_state = "contvapour"
 	matter = list("glass" = 100)
 	brightness_range = 5
-	brightness_power = 2
-	brightness_color = "#a0a080"
+	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
@@ -799,7 +794,6 @@
 	item_state = "egg4"
 	matter = list("glass" = 100)
 	brightness_range = 5
-	brightness_power = 2
 
 // update the icon state and description of the light
 

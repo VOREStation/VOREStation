@@ -80,6 +80,7 @@ var/list/medical_positions = list(
 
 var/list/science_positions = list(
 	"Research Director",
+	"Pathfinder", // VOREStation Edit - Added Pathfinder
 	"Scientist",
 	"Geneticist",	//Part of both medical and science
 	"Roboticist",

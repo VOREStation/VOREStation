@@ -113,6 +113,8 @@ var/global/list/sparring_attack_cache = list()
 	sharp = 0
 	edge = 0
 
+/datum/unarmed_attack/bite/event1
+
 /datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 
 	if (user.is_muzzled())
@@ -127,6 +129,8 @@ var/global/list/sparring_attack_cache = list()
 	eye_attack_text = "fingers"
 	eye_attack_text_victim = "digits"
 	damage = 0
+
+/datum/unarmed_attack/punch/event1
 
 /datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
@@ -179,6 +183,8 @@ var/global/list/sparring_attack_cache = list()
 	attack_sound = "swing_hit"
 	damage = 0
 
+/datum/unarmed_attack/kick/event1
+
 /datum/unarmed_attack/kick/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 	if (user.legcuffed)
 		return 0
@@ -219,6 +225,8 @@ var/global/list/sparring_attack_cache = list()
 	attack_noun = list("stomp")
 	attack_sound = "swing_hit"
 	damage = 0
+
+/datum/unarmed_attack/stomp/event1
 
 /datum/unarmed_attack/stomp/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 

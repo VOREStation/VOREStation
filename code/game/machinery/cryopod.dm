@@ -422,7 +422,7 @@
 			preserve = 1
 
 		if(istype(W,/obj/item/weapon/implant/health))
-			for(var/obj/machinery/computer/cloning/com in world)
+			for(var/obj/machinery/computer/cloning/com in machines)
 				for(var/datum/dna2/record/R in com.records)
 					if(locate(R.implant) == W)
 						qdel(R)

@@ -340,6 +340,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(W.action_button_name)
 		update_action_buttons()
 
+	if(W.zoom)
+		W.zoom()
+
+	W.in_inactive_hand(src)
+
 	return 1
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I

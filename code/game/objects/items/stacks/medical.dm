@@ -9,6 +9,7 @@
 	throw_range = 20
 	var/heal_brute = 0
 	var/heal_burn = 0
+	var/apply_sounds
 
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if (!istype(M))
@@ -65,6 +66,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -112,6 +114,7 @@
 					                              "<span class='notice'>You place a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>" )
 				W.bandage()
 				// W.disinfect() // VOREStation - Tech1 should not disinfect
+				playsound(src, pick(apply_sounds), 25)
 				used++
 			affecting.update_damages()
 			if(used == amount)
@@ -130,6 +133,7 @@
 	heal_burn = 1
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
+	apply_sounds = list('sound/effects/ointment.ogg')
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -159,6 +163,7 @@
 			                         "<span class='notice'>You salved wounds on [M]'s [affecting.name].</span>" )
 			use(1)
 			affecting.salve()
+			playsound(src, pick(apply_sounds), 25)
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
@@ -167,6 +172,7 @@
 	icon_state = "traumakit"
 	heal_brute = 3
 	origin_tech = list(TECH_BIO = 1)
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -212,6 +218,7 @@
 				W.bandage()
 				W.disinfect()
 				W.heal_damage(heal_brute)
+				playsound(src, pick(apply_sounds), 25)
 				used++
 			affecting.update_damages()
 			if(used == amount)
@@ -228,7 +235,7 @@
 	icon_state = "burnkit"
 	heal_burn = 3
 	origin_tech = list(TECH_BIO = 1)
-
+	apply_sounds = list('sound/effects/ointment.ogg')
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -258,6 +265,7 @@
 			affecting.heal_damage(0,heal_burn)
 			use(1)
 			affecting.salve()
+			playsound(src, pick(apply_sounds), 25)
 
 /obj/item/stack/medical/splint
 	name = "medical splints"

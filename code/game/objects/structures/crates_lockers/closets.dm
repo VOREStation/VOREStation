@@ -5,6 +5,7 @@
 	icon_state = "closed"
 	density = 1
 	w_class = ITEMSIZE_HUGE
+	layer = UNDER_JUNK_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0
@@ -21,12 +22,13 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
-	var/list/will_contain
+	var/list/starts_with
 
 /obj/structure/closet/initialize()
 	. = ..()
-	if(will_contain)
-		create_objects_in_loc(src, will_contain)
+	if(starts_with)
+		create_objects_in_loc(src, starts_with)
+		starts_with = null
 
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		if(istype(loc, /mob/living)) return //VOREStation Edit - No collecting mob organs if spawned inside mob
@@ -346,7 +348,7 @@
 		icon_state = icon_opened
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
-	if(!damage || !wallbreaker)
+	if(damage < 10 || !wallbreaker)
 		return
 	user.do_attack_animation(src)
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")

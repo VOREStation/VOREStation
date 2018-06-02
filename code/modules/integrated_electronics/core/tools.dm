@@ -265,6 +265,7 @@
 		/obj/item/weapon/screwdriver,
 		/obj/item/device/multitool
 		)
+	cant_hold = list(/obj/item/weapon/screwdriver/power)
 
 /obj/item/weapon/storage/bag/circuits/basic/New()
 	..()

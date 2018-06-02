@@ -30,6 +30,7 @@
 #include "SwordCave.dmm"
 #include "SupplyDrop1.dmm"
 #include "BlastMine1.dmm"
+#include "crashedcontainmentshuttle.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -184,6 +185,13 @@
 	cost = 10
 	allow_duplicates = TRUE
 
+/datum/map_template/surface/mountains/normal/crashedcontainmentshuttle
+	name = "Crashed Cargo Shuttle"
+	desc = "A severely damaged military shuttle, its cargo seems to remain intact."
+	mappath = 'maps/submaps/surface_submaps/mountains/crashedcontainmentshuttle.dmm'
+	cost = 30
+
+
 /**************
  * Deep Caves *
  **************/
@@ -257,3 +265,4 @@
 	desc = "An abandoned blast mining site, seems that local wildlife has moved in."
 	mappath = 'maps/submaps/surface_submaps/mountains/BlastMine1.dmm'
 	cost = 20
+

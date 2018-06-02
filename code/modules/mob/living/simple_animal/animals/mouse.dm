@@ -2,7 +2,7 @@
 	name = "mouse"
 	real_name = "mouse"
 	desc = "It's a small rodent."
-	tt_desc = "Mus musculus"
+	tt_desc = "E Mus musculus"
 	icon_state = "mouse_gray"
 	item_state = "mouse_gray"
 	icon_living = "mouse_gray"

@@ -2,17 +2,17 @@
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	slot = "utility"
-	var/list/can_hold //VOREStation Edit
+	slot = ACCESSORY_SLOT_TORSO //Legacy/balance purposes
 	concealed_holster = 1
 	var/obj/item/holstered = null
+	var/list/can_hold //VOREStation Add
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
 		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
 		return
 	//VOREStation Edit - Machete sheath support
-	if (can_hold)
+	if (LAZYLEN(can_hold))
 		if(!is_type_in_list(I,can_hold))
 			to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
 			return
@@ -59,7 +59,7 @@
 		clear_holster()
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
-	if (has_suit)	//if we are part of a suit
+	if (has_suit && (slot & ACCESSORY_SLOT_UTILITY))	//if we are part of a suit
 		if (holstered)
 			unholster(user)
 		return
@@ -105,7 +105,7 @@
 		H = src
 	else if (istype(src, /obj/item/clothing/under))
 		var/obj/item/clothing/under/S = src
-		if (S.accessories.len)
+		if (LAZYLEN(S.accessories))
 			H = locate() in S.accessories
 
 	if (!H)

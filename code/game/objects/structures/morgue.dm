@@ -196,6 +196,8 @@
  * Crematorium
  */
 
+GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
+
 /obj/structure/morgue/crematorium
 	name = "crematorium"
 	desc = "A human incinerator. Works well on barbeque nights."
@@ -342,7 +344,7 @@
 	if(..())
 		return
 	if(src.allowed(user))
-		for (var/obj/structure/morgue/crematorium/C in world)
+		for (var/obj/structure/morgue/crematorium/C in all_crematoriums)
 			if (C.id == id)
 				if (!C.cremating)
 					C.cremate(user)

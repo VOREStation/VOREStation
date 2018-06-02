@@ -130,7 +130,7 @@
 				for (var/mob/C in viewers(src))
 					C.show_message("<font color='red'>[GM.name] has been placed in the [src] by [user].</font>", 3)
 				qdel(G)
-				
+
 				add_attack_logs(user,GM,"Disposals dunked")
 		return
 

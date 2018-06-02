@@ -6,6 +6,7 @@
 	icon = 'icons/obj/card.dmi'
 	icon_state = "permit"
 	w_class = ITEMSIZE_TINY
+	slot = ACCESSORY_SLOT_MEDAL
 	var/owner = 0	//To prevent people from just renaming the thing if they steal it
 
 /obj/item/clothing/accessory/permit/attack_self(mob/user as mob)

@@ -55,6 +55,8 @@
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	to_chat(user, "<span class='notice'>You inject [M] with \the [src].</span>")
 	to_chat(M, "<span class='notice'>You feel a tiny prick!</span>")
+	
+	playsound(src, 'sound/effects/hypospray.ogg',25)
 
 	if(M.reagents)
 		var/contained = reagentlist()

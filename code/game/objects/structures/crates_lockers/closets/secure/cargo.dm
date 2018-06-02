@@ -8,28 +8,28 @@
 	icon_broken = "securecargobroken"
 	icon_off = "securecargooff"
 
-	New()
-		..()
-		if(prob(75))
-			new /obj/item/weapon/storage/backpack(src)
-		else
-			new /obj/item/weapon/storage/backpack/satchel/norm(src)
-		if(prob(25))
-			new /obj/item/weapon/storage/backpack/dufflebag(src)
-		new /obj/item/clothing/under/rank/cargotech(src)
-		new /obj/item/clothing/under/rank/cargotech/skirt(src)
-		new /obj/item/clothing/under/rank/cargotech/jeans(src)
-		new /obj/item/clothing/under/rank/cargotech/jeans/female(src)
-		new /obj/item/clothing/suit/storage/hooded/wintercoat/cargo(src)
-		new /obj/item/clothing/shoes/boots/winter/supply(src)
-		new /obj/item/clothing/shoes/black(src)
-		new /obj/item/device/radio/headset/headset_cargo(src)
-		new /obj/item/device/radio/headset/headset_cargo/alt(src)
-		new /obj/item/clothing/gloves/black(src)
-		new /obj/item/clothing/gloves/fingerless(src)
-		new /obj/item/clothing/head/soft(src)
-//		new /obj/item/weapon/cartridge/quartermaster(src)
-		return
+	starts_with = list(
+		/obj/item/clothing/under/rank/cargotech,
+		/obj/item/clothing/under/rank/cargotech/skirt,
+		/obj/item/clothing/under/rank/cargotech/jeans,
+		/obj/item/clothing/under/rank/cargotech/jeans/female,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
+		/obj/item/clothing/shoes/boots/winter/supply,
+		/obj/item/clothing/shoes/black,
+		/obj/item/device/radio/headset/headset_cargo,
+		/obj/item/device/radio/headset/headset_cargo/alt,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/gloves/fingerless,
+		/obj/item/clothing/head/soft)
+
+/obj/structure/closet/secure_closet/cargotech/initialize()
+	if(prob(75))
+		starts_with += /obj/item/weapon/storage/backpack
+	else
+		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+	if(prob(25))
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag
+	return ..()
 
 /obj/structure/closet/secure_closet/quartermaster
 	name = "quartermaster's locker"
@@ -41,32 +41,32 @@
 	icon_broken = "secureqmbroken"
 	icon_off = "secureqmoff"
 
-	New()
-		..()
-		if(prob(75))
-			new /obj/item/weapon/storage/backpack(src)
-		else
-			new /obj/item/weapon/storage/backpack/satchel/norm(src)
-		if(prob(25))
-			new /obj/item/weapon/storage/backpack/dufflebag(src)
-		new /obj/item/clothing/under/rank/cargo(src)
-		new /obj/item/clothing/under/rank/cargo/skirt(src)
-		new /obj/item/clothing/under/rank/cargo/jeans(src)
-		new /obj/item/clothing/under/rank/cargo/jeans/female(src)
-		new /obj/item/clothing/shoes/brown(src)
-		new /obj/item/device/radio/headset/headset_cargo(src)
-		new /obj/item/device/radio/headset/headset_cargo/alt(src)
-		new /obj/item/clothing/gloves/black(src)
-		new /obj/item/clothing/gloves/fingerless(src)
-//		new /obj/item/weapon/cartridge/quartermaster(src)
-		new /obj/item/clothing/suit/fire/firefighter(src)
-		new /obj/item/weapon/tank/emergency/oxygen(src)
-		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/clothing/glasses/meson(src)
-		new /obj/item/clothing/head/soft(src)
-		new /obj/item/clothing/suit/storage/hooded/wintercoat/cargo(src)
-		new /obj/item/clothing/shoes/boots/winter/supply(src)
-		return
+	starts_with = list(
+		/obj/item/clothing/under/rank/cargo,
+		/obj/item/clothing/under/rank/cargo/skirt,
+		/obj/item/clothing/under/rank/cargo/jeans,
+		/obj/item/clothing/under/rank/cargo/jeans/female,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/device/radio/headset/headset_cargo,
+		/obj/item/device/radio/headset/headset_cargo/alt,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/gloves/fingerless,
+		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/weapon/tank/emergency/oxygen,
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/glasses/meson,
+		/obj/item/clothing/head/soft,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
+		/obj/item/clothing/shoes/boots/winter/supply)
+
+/obj/structure/closet/secure_closet/quartermaster/initialize()
+	if(prob(75))
+		starts_with += /obj/item/weapon/storage/backpack
+	else
+		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+	if(prob(25))
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag
+	return ..()
 
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
@@ -78,23 +78,24 @@
 	icon_off = "miningsecoff"
 	req_access = list(access_mining)
 
-/obj/structure/closet/secure_closet/miner/New()
-	..()
-	sleep(2)
+	starts_with = list(
+		/obj/item/device/radio/headset/headset_mine,
+		/obj/item/clothing/under/rank/miner,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/device/analyzer,
+		/obj/item/weapon/storage/bag/ore,
+		/obj/item/device/flashlight/lantern,
+		/obj/item/weapon/shovel,
+		/obj/item/weapon/pickaxe,
+		/obj/item/clothing/glasses/material,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
+		/obj/item/clothing/shoes/boots/winter/mining,
+		/obj/item/stack/marker_beacon/thirty)
+
+/obj/structure/closet/secure_closet/miner/initialize()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
+		starts_with += /obj/item/weapon/storage/backpack/industrial
 	else
-		new /obj/item/weapon/storage/backpack/satchel/eng(src)
-	new /obj/item/device/radio/headset/headset_mine(src)
-	new /obj/item/clothing/under/rank/miner(src)
-	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/device/analyzer(src)
-	new /obj/item/weapon/storage/bag/ore(src)
-	new /obj/item/device/flashlight/lantern(src)
-	new /obj/item/weapon/shovel(src)
-	new /obj/item/weapon/pickaxe(src)
-	new /obj/item/clothing/glasses/material(src)
-	new /obj/item/clothing/suit/storage/hooded/wintercoat/miner(src)
-	new /obj/item/clothing/shoes/boots/winter/mining(src)
-	new /obj/item/stack/marker_beacon/thirty(src)
+		starts_with += /obj/item/weapon/storage/backpack/satchel/eng
+	return ..()

@@ -81,6 +81,11 @@
 	path =/obj/item/weapon/storage/secure/briefcase
 	cost = 2
 
+/datum/gear/utility/laserpointer
+	display_name = "laser pointer"
+	path =/obj/item/device/laser_pointer
+	cost = 2
+
 /datum/gear/utility/flashlight
 	display_name = "flashlight"
 	path = /obj/item/device/flashlight

@@ -1,5 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
+GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
+
 /obj/singularity/
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."

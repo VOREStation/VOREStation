@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/syndicate
 	name = "mercenary"
 	desc = "Death to the Company."
+	tt_desc = "E Homo sapiens"
 	icon_state = "syndicate"
 	icon_living = "syndicate"
 	icon_dead = "syndicate_dead"
@@ -61,9 +62,13 @@
 	var/corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier
 
 /mob/living/simple_animal/hostile/syndicate/death()
-	..()
 	if(corpse)
+		..()
 		new corpse (src.loc)
+	else
+		..(0,"explodes!")
+		new /obj/effect/gibspawner/human(src.loc)
+		explosion(get_turf(src), -1, 0, 1, 3)
 	qdel(src)
 	return
 
@@ -141,6 +146,24 @@
 
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
 
+/mob/living/simple_animal/hostile/syndicate/ranged/laser
+	icon_state = "syndicateranged_laser"
+	icon_living = "syndicateranged_laser"
+	rapid = 0
+	projectiletype = /obj/item/projectile/beam/midlaser
+	projectilesound = 'sound/weapons/Laser.ogg'
+
+	loot_list = list(/obj/item/weapon/gun/energy/laser = 100)
+
+/mob/living/simple_animal/hostile/syndicate/ranged/ionrifle
+	icon_state = "syndicateranged_ionrifle"
+	icon_living = "syndicateranged_ionrifle"
+	rapid = 0
+	projectiletype = /obj/item/projectile/ion
+	projectilesound = 'sound/weapons/Laser.ogg'
+
+	loot_list = list(/obj/item/weapon/gun/energy/ionrifle = 100)
+
 /mob/living/simple_animal/hostile/syndicate/ranged/space
 	name = "space mercenary" //VOREStation Edit
 	icon_state = "syndicaterangedpsace"
@@ -163,6 +186,42 @@
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space/Process_Spacemove(var/check_drift = 0)
 	return
+
+///////////////////////////////////////////////
+//	POI Mobs
+//	Don't leave corpses, to help balance loot.
+///////////////////////////////////////////////
+
+/mob/living/simple_animal/hostile/syndicate/poi
+	loot_list = list()
+	corpse = null
+
+/mob/living/simple_animal/hostile/syndicate/melee/poi
+	loot_list = list()
+	corpse = null
+
+/mob/living/simple_animal/hostile/syndicate/melee/space/poi
+	loot_list = list()
+	corpse = null
+
+/mob/living/simple_animal/hostile/syndicate/ranged/poi
+	loot_list = list()
+	corpse = null
+
+/mob/living/simple_animal/hostile/syndicate/ranged/laser/poi
+	loot_list = list()
+	corpse = null
+
+/mob/living/simple_animal/hostile/syndicate/ranged/ionrifle/poi
+	loot_list = list()
+	corpse = null
+
+/mob/living/simple_animal/hostile/syndicate/ranged/space/poi
+	loot_list = list()
+	corpse = null
+
+
+//Viscerators
 
 /mob/living/simple_animal/hostile/viscerator
 	name = "viscerator"

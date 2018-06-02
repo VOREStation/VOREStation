@@ -1,6 +1,7 @@
 /mob/living/simple_animal/retaliate/diyaab
 	name = "diyaab"
 	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
+	tt_desc = "S Choeros hirtus" //diyaab and shantak are technically reletives!
 	faction = "diyaab"
 	icon_state = "diyaab"
 	icon_living = "diyaab"

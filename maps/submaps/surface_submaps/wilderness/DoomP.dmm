@@ -72,7 +72,7 @@
 /turf/simulated/floor/outdoors/grass/sif/forest,
 /area/submap/DoomP)
 "as" = (
-/obj/machinery/porta_turret,
+/obj/machinery/porta_turret/poi,
 /turf/simulated/floor/plating,
 /area/submap/DoomP)
 "at" = (
@@ -106,17 +106,6 @@
 "az" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/submap/DoomP)
-"aA" = (
-/obj/structure/bed/chair,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/syndicate/ranged{
-	desc = "Even less friendly than he looks.";
-	speak = list("Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Anyone else smell that?")
 	},
 /turf/simulated/floor/tiled,
 /area/submap/DoomP)
@@ -211,10 +200,6 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/syndicate/ranged{
-	desc = "Even less friendly than he looks.";
-	speak = list("Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Anyone else smell that?")
-	},
 /turf/simulated/floor/tiled,
 /area/submap/DoomP)
 "aN" = (
@@ -271,6 +256,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
+/mob/living/simple_animal/hostile/syndicate/melee/poi,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/DoomP)
 "aU" = (
@@ -339,6 +325,7 @@
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/syndicate/ranged/laser/poi,
 /turf/simulated/floor/tiled,
 /area/submap/DoomP)
 "bh" = (
@@ -536,6 +523,17 @@
 "bK" = (
 /obj/structure/lattice,
 /turf/simulated/floor/outdoors/grass/sif/forest,
+/area/submap/DoomP)
+"ta" = (
+/mob/living/simple_animal/hostile/syndicate/melee/poi,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/DoomP)
+"ND" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/syndicate/ranged/poi,
+/turf/simulated/floor/tiled,
 /area/submap/DoomP)
 
 (1,1,1) = {"
@@ -2056,7 +2054,7 @@ ad
 ad
 ad
 at
-az
+ND
 aO
 aN
 be
@@ -2118,7 +2116,7 @@ ad
 ad
 ad
 at
-aA
+ay
 aN
 aN
 bf
@@ -2186,7 +2184,7 @@ aN
 be
 at
 bp
-bl
+ta
 at
 ac
 af
@@ -2242,7 +2240,7 @@ ad
 ad
 ad
 at
-aA
+ay
 aN
 aN
 be

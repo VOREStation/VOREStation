@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
+
 /obj/item/device/paicard
 	name = "personal AI device"
 	icon = 'icons/obj/pda.dmi'
