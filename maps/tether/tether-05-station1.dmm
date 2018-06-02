@@ -9301,33 +9301,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
-"aAC" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/atrium)
 "aAD" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -9352,6 +9325,12 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -9401,11 +9380,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 0;
-	pixel_y = 26
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -9435,6 +9414,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
+	},
+/obj/machinery/newscaster{
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -21592,6 +21574,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
+"eJL" = (
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "eUx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -21677,6 +21662,12 @@
 /obj/item/clothing/head/pilot,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
+"heA" = (
+/obj/structure/sign/poster{
+	pixel_x = 32
+	},
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "hCe" = (
 /turf/simulated/wall/r_wall,
 /area/tether/station/pathfinder_office)
@@ -21769,6 +21760,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"jQQ" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
+	},
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "jZN" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized{
@@ -21806,6 +21805,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_prep)
+"llP" = (
+/obj/structure/table/woodentable,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "lue" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -22013,6 +22017,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)
+"nOl" = (
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "nOF" = (
 /obj/structure/closet/secure_closet/pilot,
 /turf/simulated/floor/tiled,
@@ -22462,6 +22472,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/pathfinder_office)
+"vIv" = (
+/obj/structure/table/bench/padded,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "vQL" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
@@ -22624,6 +22643,10 @@
 /obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled,
 /area/tether/station/pathfinder_office)
+"xhj" = (
+/obj/structure/table/bench/padded,
+/turf/simulated/floor/carpet,
+/area/hallway/station/atrium)
 "xhk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -33649,7 +33672,7 @@ aaT
 aAn
 acp
 acy
-acT
+acy
 acy
 acD
 acH
@@ -33791,7 +33814,7 @@ aaT
 aAl
 acp
 acy
-acy
+acT
 acy
 acE
 acH
@@ -34922,9 +34945,9 @@ afV
 avK
 qgR
 aad
-aae
-aaT
-aAC
+nOl
+jQQ
+aAt
 acp
 acy
 adE
@@ -35064,8 +35087,8 @@ afV
 avK
 qgR
 aad
-aae
-aaT
+xhj
+llP
 aAF
 acp
 acy
@@ -35206,8 +35229,8 @@ afd
 ate
 qgR
 aad
-aae
-aaT
+vIv
+llP
 aAE
 act
 acy
@@ -35348,8 +35371,8 @@ arw
 vrH
 auU
 aad
-aae
-aaT
+xhj
+llP
 aAL
 aCx
 acW
@@ -35490,8 +35513,8 @@ nxL
 coV
 abc
 aad
-aae
-aaT
+heA
+eJL
 aAH
 aCw
 aDZ

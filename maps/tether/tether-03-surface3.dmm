@@ -10639,9 +10639,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/structure/window/basic{
-	dir = 8
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "sB" = (
@@ -10878,9 +10875,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/window/basic{
-	dir = 8
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "sU" = (
@@ -11245,9 +11239,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/window/basic{
-	dir = 8
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "tJ" = (
@@ -11557,9 +11548,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/window/basic{
-	dir = 8
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "uh" = (
@@ -21358,6 +21346,22 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
+"Li" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "Lr" = (
 /obj/structure/table/woodentable,
 /obj/random/maintenance/clean,
@@ -21488,6 +21492,21 @@
 /obj/effect/floor_decal/corner/lime/bordercorner,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Ng" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "NA" = (
 /obj/machinery/alarm{
 	breach_detection = 0;
@@ -21504,6 +21523,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"NG" = (
+/obj/structure/bed/chair/wood,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "NL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -21920,6 +21955,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Sf" = (
+/obj/structure/table/woodentable,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/item/weapon/flame/candle,
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "Sg" = (
 /obj/structure/sink{
 	dir = 4;
@@ -22244,6 +22293,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Xo" = (
+/obj/structure/bed/chair/wood,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "Xq" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -22295,6 +22357,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"Ya" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/simulated/open,
+/area/tether/surfacebase/atrium_three)
 "Yc" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -22305,6 +22374,22 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
+"Yu" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "Yz" = (
 /obj/item/device/radio/intercom{
 	broadcasting = 1;
@@ -35999,15 +36084,15 @@ lY
 lY
 lY
 lY
-lY
-lY
-lY
-lY
-lY
-lY
-lY
-lY
-uI
+lZ
+lZ
+lZ
+lZ
+lZ
+lZ
+lZ
+lZ
+uJ
 vk
 jR
 wr
@@ -36140,17 +36225,17 @@ lZ
 lZ
 lZ
 lZ
-lZ
-lZ
-lZ
-lZ
-lZ
-lZ
-lZ
-lZ
-lZ
-uJ
-vk
+Ya
+NG
+Sf
+Ng
+Xo
+Sf
+Ng
+Xo
+Sf
+Ng
+Li
 jR
 wp
 wP
@@ -36283,8 +36368,8 @@ lm
 qd
 qR
 qR
-qR
-qR
+Yu
+Yu
 sA
 sT
 sT
