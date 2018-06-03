@@ -27,6 +27,7 @@
 	destroy_surroundings = 0
 	hovering = TRUE
 
+	armor = list(melee = 25, bullet = 25, laser = 25, energy = 10, bomb = 25, bio = 100, rad = 100)	// Some level of armor plating makes sense
 	//Drones aren't affected by atmos.
 	min_oxy = 0
 	max_oxy = 0

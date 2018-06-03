@@ -29,10 +29,14 @@
 	response_harm = "hits"
 
 	harm_intent_damage = 5
-	melee_damage_lower = 10
+	melee_damage_lower = 15		//Tac Knife damage
 	melee_damage_upper = 15
 	environment_smash = 1
-	attacktext = list("punched")
+	attack_sharp = 1
+	attack_edge = 1
+	attacktext = list("slashed", "stabbed")
+
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 100, rad = 100)	// Same armor values as the vest they drop, plus simple mob immunities
 
 	min_oxy = 5
 	max_oxy = 0
@@ -118,6 +122,8 @@
 	icon_living = "syndicatemeleespace"
 
 	speed = 0
+
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 100)	// Same armor as their voidsuit
 
 	min_oxy = 0
 	max_oxy = 0
