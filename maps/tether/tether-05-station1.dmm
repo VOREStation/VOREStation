@@ -22148,7 +22148,8 @@
 /area/tether/station/explorer_meeting)
 "pYE" = (
 /obj/structure/closet/secure_closet/pathfinder{
-	req_access = list(18,43,67)
+	req_access = list(18,43,67);
+	req_one_access = list(30)
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
@@ -22471,7 +22472,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	name = "Pathfinder's Office";
-	req_access = list(18,43,67)
+	req_access = list(18,43,67);
+	req_one_access = list(30)
 	},
 /obj/structure/cable/green{
 	d1 = 4;
