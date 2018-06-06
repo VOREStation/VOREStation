@@ -445,6 +445,27 @@
 					piles -= N
 					qdel(N)
 			break
+	if(hacked || emagged)
+		for (var/datum/seed_pile/N in piles_contra)
+			if (N.ID == ID)
+				if (task == "vend")
+					var/obj/O = pick(N.seeds)
+					if (O)
+						--N.amount
+						N.seeds -= O
+						if (N.amount <= 0 || N.seeds.len <= 0)
+							piles_contra -= N
+							qdel(N)
+						O.loc = src.loc
+					else
+						piles_contra -= N
+						qdel(N)
+				else if (task == "purge")
+					for (var/obj/O in N.seeds)
+						qdel(O)
+						piles_contra -= N
+						qdel(N)
+				break
 	updateUsrDialog()
 
 /obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -477,6 +498,23 @@
 	else if((istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool)) && panel_open)
 		wires.Interact(user)
 
+/obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
+	if(!src.emagged)
+		emagged = 1
+		if(lockdown)
+			to_chat(user, "<span class='notice'>\The [src]'s control panel thunks, as its cover retracts.</span>")
+			lockdown = 0
+		if(req_access || req_one_access)
+			req_access = list()
+			req_one_access = list()
+			to_chat(user, "<span class='warning'>\The [src]'s access mechanism shorts out.</span>")
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			sparks.set_up(3, 0, get_turf(src))
+			sparks.start()
+			visible_message("<span class='warning'>\The [src]'s panel sparks!</span>")
+			qdel(sparks)
+		return 1
+
 /obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj, var/contraband = 0)
 	if (istype(O.loc, /mob))
 		var/mob/user = O.loc
@@ -489,6 +527,8 @@
 	var/newID = 0
 
 	if(contraband)
+		var/datum/seed_pile/final_pile = piles[piles.len]
+		newID = final_pile.ID + 1
 		for (var/datum/seed_pile/N in piles_contra)
 			if (N.matches(O))
 				++N.amount
