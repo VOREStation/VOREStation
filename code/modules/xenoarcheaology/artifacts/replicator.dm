@@ -125,6 +125,9 @@
 	user << browse(dat, "window=alien_replicator")
 
 /obj/machinery/replicator/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+	if(!W.canremove || !user.canUnEquip(W)) //No armblades, no grabs. No other-thing-I-didn't-think-of.
+		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
+		return
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
