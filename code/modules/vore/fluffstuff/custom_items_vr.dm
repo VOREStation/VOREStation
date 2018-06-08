@@ -1998,3 +1998,11 @@
 	KA.desc = initial(KA.desc)
 	KA.icon = initial(KA.icon)
 	..()
+	
+//ArgobargSoup:Lynn Shady
+/obj/item/device/flashlight/pen/fluff/lynn
+	name = "Lynn's penlight"
+	desc = "A personalized penlight, a bit bulkier than the standard model.  Blue, with a medical cross on it, and the name Lynn Shady engraved in gold."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "penlightlynn"

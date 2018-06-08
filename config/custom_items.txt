@@ -61,6 +61,12 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 }
 
 {
+ckey: argobargsoup
+character_name: Lynn Shady
+item_path: /obj/item/device/flashlight/pen/fluff/lynn
+}
+
+{
 ckey: arokha
 character_name: Aronai Kadigan
 item_path: /obj/item/clothing/under/utility/sifguard/medical/command
