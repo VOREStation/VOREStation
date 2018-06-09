@@ -613,6 +613,12 @@ character_name: Pumila
 item_path: /obj/item/weapon/implanter/reagent_generator/pumila_apple
 }
 
+{
+ckey: nepox
+character_name: Annie Rose
+item_path: /obj/item/clothing/accessory/sweater/fluff/annie
+}
+
 # ######## O CKEYS
 {
 ckey: orbisa
