@@ -612,7 +612,7 @@
 
 /mob/living/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>\n")
+	to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])
@@ -622,11 +622,11 @@
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument
 	if(!user)
 		CRASH("display_voreprefs() was called without an associated user.")
-	var/dispvoreprefs = "<bold>[src]'s vore preferences</bold><br><br><br>"
-	dispvoreprefs += "<bold>Digestable:</bold> [digestable ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<bold>Mob Vore:</bold> [allowmobvore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<bold>Drop-nom prey:</bold> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<bold>Drop-nom pred:</bold> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
+	var/dispvoreprefs = "<b>[src]'s vore preferences</b><br><br><br>"
+	dispvoreprefs += "<b>Digestable:</b> [digestable ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Drop-nom prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Drop-nom pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
 	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name];size=200x300;can_resize=0;can_minimize=0")
 	onclose(user, "[name]")
 	return
