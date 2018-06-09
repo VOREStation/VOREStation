@@ -1786,8 +1786,8 @@ Departamental Swimsuits, for general use
 
 //Nepox:Annie Rose
 /obj/item/clothing/accessory/sweater/fluff/annie
-	name = "Annie's pullover"
-	desc = "A unique pullover!"
+	name = "Lazy Annie's Lazy Sweater"
+	desc = "A cozy sweater that's probably far too long for it's owner.  She's too lazy to care though."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "sweater_annie"
