@@ -50,7 +50,7 @@
 		// Now sync the organ's eye_colour list.
 		update_colour()
 		// Finally, update the eye icon on the mob.
-		owner.update_eyes()
+		owner.regenerate_icons()
 
 /obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
 
