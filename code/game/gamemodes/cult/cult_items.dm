@@ -84,7 +84,6 @@
 
 /obj/item/clothing/suit/cultrobes/alt
 	icon_state = "cultrobesalt"
-	item_state = "cultrobes"
 
 /obj/item/clothing/suit/cultrobes/magusred
 	name = "magus robes"
