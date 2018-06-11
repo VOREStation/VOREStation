@@ -17600,6 +17600,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/prison)
+"Ey" = (
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "ED" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -18101,6 +18104,11 @@
 /obj/random/maintenance/medical,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"NS" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/space,
+/area/space)
 "NY" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -22628,16 +22636,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+NS
+NS
+NS
+NS
+NS
+NS
+NS
+eM
+NS
+NS
 aa
 aa
 aa
@@ -22770,6 +22778,7 @@ aa
 aa
 aa
 aa
+NS
 aa
 aa
 aa
@@ -22778,8 +22787,7 @@ aa
 aa
 aa
 aa
-aa
-aa
+NS
 aa
 aa
 aa
@@ -22912,7 +22920,7 @@ aa
 aa
 aa
 aa
-aa
+NS
 aa
 aa
 aa
@@ -23054,7 +23062,7 @@ aa
 aa
 aa
 aa
-aa
+NS
 aa
 aa
 aa
@@ -23196,7 +23204,7 @@ aa
 aa
 aa
 aa
-aa
+NS
 aa
 aa
 aa
@@ -23338,14 +23346,14 @@ aa
 aa
 aa
 aa
-aa
+NS
 aa
 aa
 aa
 ab
-ac
-ac
-at
+Ey
+Ey
+Ey
 Qs
 Qs
 at
@@ -23480,14 +23488,14 @@ aa
 aa
 aa
 aa
+NS
 aa
 aa
 aa
-aa
-ac
-ac
-ac
-Qs
+ab
+Ey
+Ey
+Ey
 Qs
 Qs
 at
@@ -23622,14 +23630,14 @@ aa
 aa
 aa
 aa
-aa
+eM
 aa
 aa
 aa
 ac
-ac
-at
-Qs
+Ey
+Ey
+kk
 Qs
 Ug
 at
@@ -23764,7 +23772,7 @@ aa
 aa
 aa
 aa
-aa
+NS
 aa
 ab
 ab
@@ -23906,8 +23914,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+NS
+NS
 ac
 ac
 ac
