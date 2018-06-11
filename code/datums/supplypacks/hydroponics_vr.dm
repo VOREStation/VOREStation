@@ -31,4 +31,10 @@
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/wolpincubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Wolpin crate"	
+	containername = "Wolpin crate"
+	
+/datum/supply_packs/hydro/fennec
+	name = "Fennec crate"
+	cost = 60 //considering a corgi crate is 50, and you get two fennecs
+	containertype = /obj/structure/largecrate/animal/fennec
+	containername = "Fennec crate"
