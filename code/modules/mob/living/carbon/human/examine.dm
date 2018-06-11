@@ -329,7 +329,7 @@
 		else if(disconnect_time)
 			msg += "\[Disconnected/ghosted [round(((world.realtime - disconnect_time)/10)/60)] minutes ago\]\n"
 		//VOREStation Add End
-	
+
 	var/list/wound_flavor_text = list()
 	var/list/is_bleeding = list()
 	var/applying_pressure = ""
@@ -439,6 +439,9 @@
 	// VOREStation Start
 	if(ooc_notes)
 		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
+
+	msg += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>\n"
+
 	// VOREStation End
 	msg += "*---------*</span><br>"
 	msg += applying_pressure
