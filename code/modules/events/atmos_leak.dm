@@ -51,17 +51,6 @@
 		kill()
 		return
 
-/** Checks if any living humans are in a given area! */
-/datum/event/atmos_leak/proc/is_area_occupied(var/area/myarea)
-	// Testing suggests looping over human_mob_list is quicker than looping over area contents
-	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
-			continue
-		var/area/A = get_area(H)
-		if(A == myarea) //The loc of a turf is the area it is in.
-			return 1
-	return 0
-
 /datum/event/atmos_leak/announce()
 	command_announcement.Announce("Warning, hazardous [gas_data.name[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert")
 
