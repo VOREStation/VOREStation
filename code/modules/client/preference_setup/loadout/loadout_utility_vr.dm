@@ -55,3 +55,8 @@
     display_name = "science dufflebag"
     path = /obj/item/weapon/storage/backpack/dufflebag/sci
     allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Explorer")
+
+/datum/gear/utility/sizegun_small
+    display_name = "holdout size gun"
+    path = /obj/item/weapon/gun/energy/sizegun/small
+    cost = 4

@@ -82,3 +82,9 @@
 			H.updateicon()
 		else
 			return 1
+
+//Two shot version for loadouts
+/obj/item/weapon/gun/energy/sizegun/small
+	name = "holdout size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
+	desc = "A two shot raygun, able to change the size of a shot creature. Warning: Do not insert into mouth."
+	charge_cost = 1200
