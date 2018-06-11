@@ -1783,3 +1783,19 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "zao_cap_mob"
+
+//Nepox:Annie Rose
+/obj/item/clothing/accessory/sweater/fluff/annie
+	name = "Lazy Annie's Lazy Sweater"
+	desc = "A cozy sweater that's probably far too long for it's owner.  She's too lazy to care though."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "sweater_annie"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "sweater_annie"
+
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
