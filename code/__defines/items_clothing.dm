@@ -219,3 +219,7 @@
 #define SUIT_SENSOR_BINARY   1
 #define SUIT_SENSOR_VITAL    2
 #define SUIT_SENSOR_TRACKING 3
+
+// Hair Defines
+#define HAIR_VERY_SHORT 0x1
+#define HAIR_TIEABLE 0x4
