@@ -659,10 +659,12 @@ var/list/admin_verbs_event_manager = list(
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/turf/epicenter = mob.loc
-	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
+	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb", "Cancel")
 	var/choice = input("What size explosion would you like to produce?") in choices
 	switch(choice)
 		if(null)
+			return 0
+		if("Cancel")
 			return 0
 		if("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
