@@ -40,7 +40,7 @@
 /obj/item/weapon/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
 	icon = 'icons/obj/tank_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
-	icon_state = "phoron_voxgauge"
+	icon_state = "phoron_vox"
 	gauge_cap = 3
 	gauge_icon = "indicator_double"
 
