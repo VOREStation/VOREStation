@@ -578,6 +578,11 @@
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
+	if(isitem(content))
+		var/obj/item/I = content
+		if(I.gurgled && (target.mode_flags & DM_FLAG_ITEMWEAK))
+			I.decontaminate()
+			I.gurgle_contaminate(target.contents, target.cont_flavor)
 	items_preserved -= content
 	if(!silent && target.vore_sound && !recent_sound)
 		var/soundfile = vore_sounds[target.vore_sound]
