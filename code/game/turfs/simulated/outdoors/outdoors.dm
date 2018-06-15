@@ -1,5 +1,4 @@
 var/list/turf_edge_cache = list()
-var/list/outdoor_turfs = list()
 
 /turf/
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,
@@ -24,24 +23,21 @@ var/list/outdoor_turfs = list()
 
 /turf/simulated/floor/New()
 	if(outdoors)
-		outdoor_turfs.Add(src)
+		SSplanets.addTurf(src)
 	..()
 
 /turf/simulated/floor/Destroy()
 	if(outdoors)
-		planet_controller.unallocateTurf(src)
+		SSplanets.removeTurf(src)
 	return ..()
 
 /turf/simulated/proc/make_outdoors()
 	outdoors = TRUE
-	outdoor_turfs.Add(src)
+	SSplanets.addTurf(src)
 
 /turf/simulated/proc/make_indoors()
 	outdoors = FALSE
-	if(planet_controller)
-		planet_controller.unallocateTurf(src)
-	else // This is happening during map gen, if there's no planet_controller (hopefully).
-		outdoor_turfs -= src
+	SSplanets.removeTurf(src)
 
 /turf/simulated/post_change()
 	..()
