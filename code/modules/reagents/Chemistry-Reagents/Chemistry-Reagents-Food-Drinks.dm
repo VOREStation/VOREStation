@@ -909,9 +909,9 @@
 
 	cup_icon_state = "cup_coffee"
 	cup_name = "cup of coffee"
-	cup_desc = "Don't drop it, or you'll send scalding liquid and porcelain shards everywhere."
+	cup_desc = "Don't drop it, or you'll send scalding liquid and ceramic shards everywhere."
 
-	glass_name = "cup of coffee"
+	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 
 
