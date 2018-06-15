@@ -30,9 +30,10 @@
 	current_time = current_time.make_random_time()
 	update_sun()
 
-/datum/planet/proc/process(amount)
+/datum/planet/proc/process(last_fire)
 	if(current_time)
-		current_time = current_time.add_seconds(amount)
+		var/difference = world.time - last_fire
+		current_time = current_time.add_seconds(difference SECONDS)
 	update_weather() // We update this first, because some weather types decease the brightness of the sun.
 	if(sun_last_process <= world.time - sun_process_interval)
 		update_sun()
