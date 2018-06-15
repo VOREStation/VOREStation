@@ -5,11 +5,14 @@
 	var/metabolism = 0.0015
 	var/lightweight = 0 //Oof! Nonhelpful bump stumbles.
 	var/trashcan = 0 //It's always sunny in the wrestling ring.
+	var/base_species = null // Unused outside of a few species
+	var/selects_bodytype = 0 // Allows the species to choose from body types intead of being forced to be just one.
 
 /datum/species/custom
 	name = SPECIES_CUSTOM
 	name_plural = "Custom"
-	var/base_species = "Human"
+	selects_bodytype = 1
+	base_species = SPECIES_HUMAN
 
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 

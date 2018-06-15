@@ -14,6 +14,8 @@
 	min_age = 18
 	max_age = 250
 	health_hud_intensity = 1.5
+	base_species = SPECIES_ALRAUNE
+	selects_bodytype = 1
 
 	body_temperature = T20C
 	breath_type = "carbon_dioxide"
@@ -87,6 +89,17 @@
 		O_BRAIN =    /obj/item/organ/internal/brain/alraune,
 		O_EYES =     /obj/item/organ/internal/eyes/alraune,
 		)
+
+/datum/species/alraune/equip_survival_gear(var/mob/living/carbon/human/H)
+	..()
+
+	var/implanter = /obj/item/weapon/implanter/reagent_generator/fruit_implant
+	var/obj/item/weapon/implanter/reagent_generator/fruit_implant/implant = new implanter
+
+	if(H.backbag == 1)
+		H.equip_to_slot_or_del(implant, slot_r_hand)
+	else
+		H.equip_to_slot_or_del(implant, slot_in_backpack)
 
 /datum/species/alraune/can_breathe_water()
 	return TRUE //eh, why not? Aquatic plants are a thing.
@@ -334,3 +347,51 @@
 	icon_state = "phytoextractor"
 	name = "phytoextractor"
 	desc = "A bulbous gourd-like structure."
+
+
+
+/datum/species/alraune/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
+	ASSERT(to_copy)
+	ASSERT(istype(H))
+
+	if(ispath(to_copy))
+		to_copy = "[initial(to_copy.name)]"
+	if(istext(to_copy))
+		to_copy = all_species[to_copy]
+
+	var/datum/species/alraune/new_copy = new()
+
+	//Initials so it works with a simple path passed, or an instance
+	new_copy.base_species = to_copy.name
+	new_copy.icobase = to_copy.icobase
+	new_copy.deform = to_copy.deform
+	new_copy.tail = to_copy.tail
+	new_copy.tail_animation = to_copy.tail_animation
+	new_copy.icobase_tail = to_copy.icobase_tail
+	new_copy.color_mult = to_copy.color_mult
+	new_copy.primitive_form = to_copy.primitive_form
+	new_copy.appearance_flags = to_copy.appearance_flags
+	new_copy.flesh_color = to_copy.flesh_color
+	new_copy.base_color = to_copy.base_color
+	new_copy.blood_mask = to_copy.blood_mask
+	new_copy.damage_mask = to_copy.damage_mask
+	new_copy.damage_overlays = to_copy.damage_overlays
+
+	//Set up a mob
+	H.species = new_copy
+	H.icon_state = lowertext(new_copy.get_bodytype())
+
+	if(new_copy.holder_type)
+		H.holder_type = new_copy.holder_type
+
+	if(H.dna)
+		H.dna.ready_dna(H)
+
+	return new_copy
+
+/datum/species/alraune/get_bodytype()
+	return base_species
+
+/datum/species/alraune/get_race_key()
+	var/datum/species/real = all_species[base_species]
+	return real.race_key

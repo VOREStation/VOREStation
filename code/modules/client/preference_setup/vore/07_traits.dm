@@ -80,7 +80,8 @@
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	if(pref.species == SPECIES_CUSTOM || pref.species == SPECIES_XENOCHIMERA)
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		var/datum/species/custom/CS = character.species
 		var/S = pref.custom_base ? pref.custom_base : "Human"
 		var/datum/species/custom/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
@@ -92,7 +93,8 @@
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
-	if(pref.species == SPECIES_CUSTOM || pref.species == SPECIES_XENOCHIMERA)
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
