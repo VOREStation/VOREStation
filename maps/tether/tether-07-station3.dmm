@@ -23475,6 +23475,10 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
+"Wf" = (
+/obj/structure/grille,
+/turf/space,
+/area/space)
 "WD" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -27344,16 +27348,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+nA
+nA
+nA
+nA
+Wf
+nA
+nA
+nB
+nA
+nA
 aa
 aa
 aa
@@ -27486,6 +27490,7 @@ aa
 aa
 aa
 aa
+nA
 aa
 aa
 aa
@@ -27494,8 +27499,7 @@ aa
 aa
 aa
 aa
-aa
-aa
+nA
 aa
 aa
 aa
@@ -27628,7 +27632,7 @@ aa
 aa
 aa
 aa
-aa
+nA
 aa
 aa
 aa
@@ -27770,7 +27774,7 @@ aa
 aa
 aa
 aa
-aa
+nA
 aa
 aa
 aa
@@ -27912,7 +27916,7 @@ aa
 aa
 aa
 aa
-aa
+nA
 aa
 aa
 aa
@@ -28054,7 +28058,7 @@ aa
 aa
 aa
 aa
-aa
+nA
 aa
 aa
 aa
@@ -28196,7 +28200,7 @@ aa
 aa
 aa
 aa
-aa
+nA
 aa
 aa
 aa
@@ -28338,7 +28342,7 @@ aa
 aa
 aa
 aa
-aa
+nB
 aa
 aa
 aa
@@ -28480,7 +28484,7 @@ aa
 aa
 aa
 aa
-aa
+nA
 aa
 aa
 aa
@@ -28622,8 +28626,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+nA
+nA
 ab
 ab
 ab
