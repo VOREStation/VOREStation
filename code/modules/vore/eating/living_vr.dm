@@ -22,7 +22,6 @@
 	var/tail_alt = 0					// Tail layer toggle.
 	var/can_be_drop_prey = 0
 	var/can_be_drop_pred = 1			// Mobs are pred by default.
-	var/fruit_type = "apple"			// Not used outside of Alraunes. This is on all /living just in case some other mob gets it or it's being bussed in an event. Mobs with fruit, anyone?
 
 //
 // Hook for generic creation of stuff on new creatures

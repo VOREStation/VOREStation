@@ -7,3 +7,4 @@
 	var/flapping = 0
 	var/vantag_pref = VANTAG_NONE //What's my status?
 	var/impersonate_bodytype //For impersonating a bodytype
+	var/fruit_type = "apple" // Decides the frruit type. Not used outside of Alraunes

@@ -2023,8 +2023,8 @@
 	self_emote_descriptor = list("grab", "pick", "snatch")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_fruit_implant
 
-/obj/item/weapon/implant/reagent_generator/fruit_implant/implanted(mob/living/carbon/source)
-	if(source.species.name != "Alraune")
+/obj/item/weapon/implant/reagent_generator/fruit_implant/implanted(mob/living/carbon/human/source)
+	if(source.species.name != SPECIES_ALRAUNE)
 		to_chat(source, "<span class='notice'>Perhaps using this implant as a non Alraune was a bad idea...</span>") //You wasted it. Good job.
 		return 1
 	processing_objects += src
