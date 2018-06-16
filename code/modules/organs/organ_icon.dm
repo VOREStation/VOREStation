@@ -4,13 +4,13 @@ var/global/list/limb_icon_cache = list()
 	return
 
 /obj/item/organ/external/proc/compile_icon()
-	overlays.Cut()
+	cut_overlays()
 	 // This is a kludge, only one icon has more than one generation of children though.
 	for(var/obj/item/organ/external/organ in contents)
 		if(organ.children && organ.children.len)
 			for(var/obj/item/organ/external/child in organ.children)
 				overlays += child.mob_icon
-		overlays += organ.mob_icon
+		add_overlay(organ.mob_icon)
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
 	s_tone = null
@@ -94,14 +94,28 @@ var/global/list/limb_icon_cache = list()
 		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 		icon_cache_key += "[M][markings[M]["color"]]"
 
+<<<<<<< HEAD
+=======
+	add_overlay(get_hair_icon())
+
+	return mob_icon
+
+/obj/item/organ/external/head/proc/get_hair_icon()
+	var/image/res = image('icons/mob/human_face.dmi',"bald_s")
+>>>>>>> 109a93b... Merge pull request #5357 from VOREStation/pol-overlays
 	//Facial hair
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
+<<<<<<< HEAD
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_MULTIPLY) // VOREStation edit
 			add_overlay(facial_s)
+=======
+				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
+			res.add_overlay(facial_s)
+>>>>>>> 109a93b... Merge pull request #5357 from VOREStation/pol-overlays
 
 	//Head hair
 	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
@@ -112,7 +126,11 @@ var/global/list/limb_icon_cache = list()
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_MULTIPLY)
 				hair_s.Blend(hair_s_add, ICON_ADD)
+<<<<<<< HEAD
 			add_overlay(hair_s)
+=======
+			res.add_overlay(hair_s)
+>>>>>>> 109a93b... Merge pull request #5357 from VOREStation/pol-overlays
 
 	return mob_icon
 
@@ -153,8 +171,13 @@ var/global/list/limb_icon_cache = list()
 				for(var/M in markings)
 					var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 					var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+<<<<<<< HEAD
 					mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
 					overlays |= mark_s //So when it's not on your body, it has icons
+=======
+					mark_s.Blend(markings[M]["color"], ICON_ADD)
+					add_overlay(mark_s) //So when it's not on your body, it has icons
+>>>>>>> 109a93b... Merge pull request #5357 from VOREStation/pol-overlays
 					mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 					icon_cache_key += "[M][markings[M]["color"]]"
 
@@ -270,7 +293,7 @@ var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F
 				var/b = 0.11 * R.health_hud_intensity
 				temp.color = list(r, r, r, g, g, g, b, b, b)
 		hud_damage_image = image(null)
-		hud_damage_image.overlays += temp
+		hud_damage_image.add_overlay(temp)
 
 	// Calculate the required color index.
 	var/dam_state = min(1,((brute_dam+burn_dam)/max_damage))
