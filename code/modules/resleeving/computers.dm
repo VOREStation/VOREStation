@@ -121,7 +121,7 @@
 
 	var/pods_list_ui[0]
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
-		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.biomass)
+		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.get_biomass())
 
 	var/spods_list_ui[0]
 	for(var/obj/machinery/transhuman/synthprinter/spod in spods)
@@ -294,7 +294,7 @@
 						temp = "Error: Growpod is currently occupied."
 
 					//Not enough materials.
-					else if(pod.biomass < CLONE_BIOMASS)
+					else if(pod.get_biomass() < CLONE_BIOMASS)
 						temp = "Error: Not enough biomass."
 
 					//Gross pod (broke mid-cloning or something).
