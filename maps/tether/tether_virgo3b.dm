@@ -179,7 +179,7 @@ datum/weather/virgo3b
 		)
 
 /datum/weather/virgo3b/snow/process_effects()
-	for(var/turf/simulated/floor/outdoors/snow/S in outdoor_turfs)
+	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This does not make sense
 		if(S.z in holder.our_planet.expected_z_levels)
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
@@ -201,7 +201,7 @@ datum/weather/virgo3b
 		)
 
 /datum/weather/virgo3b/blizzard/process_effects()
-	for(var/turf/simulated/floor/outdoors/snow/S in outdoor_turfs)
+	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This does not make sense
 		if(S.z in holder.our_planet.expected_z_levels)
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)

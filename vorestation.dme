@@ -216,11 +216,8 @@
 #include "code\controllers\subsystems\mobs.dm"
 #include "code\controllers\subsystems\orbits.dm"
 #include "code\controllers\subsystems\overlays.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\persist_vr.dm"
-=======
 #include "code\controllers\subsystems\planets.dm"
->>>>>>> 9e28740... Merge pull request #5322 from VOREStation/pol-planetstart:polaris.dme
 #include "code\controllers\subsystems\shuttles.dm"
 #include "code\controllers\subsystems\transcore_vr.dm"
 #include "code\controllers\subsystems\xenoarch.dm"
