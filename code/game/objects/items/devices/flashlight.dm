@@ -41,6 +41,9 @@
 		processing_objects -= src
 	return ..()
 
+/obj/item/device/flashlight/get_cell()
+	return cell
+
 /obj/item/device/flashlight/verb/toggle()
 	set name = "Toggle Flashlight Brightness"
 	set category = "Object"
