@@ -49,6 +49,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/suggested_species = "Human"						 //If it should make the torso a species
 	var/speech_bubble_appearance = "synthetic"			 // What icon_state to use for speech bubbles when talking.  Check talk.dmi for all the icons.
 
+	var/robo_brute_mod = 1								 // Multiplier for incoming brute damage.
+	var/robo_burn_mod = 1								 // As above for burn.
+
 /datum/robolimb/unbranded_monitor
 	company = "Unbranded Monitor"
 	desc = "A generic unbranded interpretation of a popular prosthetic head model. It looks rudimentary and cheaply constructed."
@@ -214,6 +217,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	skin_tone = 1
 	blood_color = "#CCCCCC"
 	speech_bubble_appearance = "normal"
+	//robo_brute_mod = 1.1 //VOREStation Edit
+	//robo_burn_mod = 1.1 //VOREStation Edit
 
 /datum/robolimb/wardtakahashi
 	company = "Ward-Takahashi"

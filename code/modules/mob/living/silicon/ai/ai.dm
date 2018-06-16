@@ -693,6 +693,9 @@ var/list/ai_verbs_default = list(
 		card.grab_ai(src, user)
 
 	else if(istype(W, /obj/item/weapon/wrench))
+		if(user == controlling_drone)
+			to_chat(user, "<span class='notice'>The drone's subsystems resist your efforts to tamper with your bolts.</span>")
+			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")

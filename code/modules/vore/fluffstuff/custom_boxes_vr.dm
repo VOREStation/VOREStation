@@ -217,6 +217,13 @@
 		/obj/item/clothing/gloves/fluff/morsleeves,
 		/obj/item/clothing/under/fluff/morunder)
 
+// Mewchild: Phi Vietsi
+/obj/item/weapon/storage/box/fluff/vietsi
+	name = "Phi's Personal Items"
+	desc = "A small box containing Phi's small things"
+	has_items = list(
+		/obj/item/clothing/accessory/medal/bronze_heart,
+		/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

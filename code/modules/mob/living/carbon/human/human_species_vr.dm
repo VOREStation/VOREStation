@@ -25,3 +25,7 @@
 
 /mob/living/carbon/human/protean/New(var/new_loc)
 	..(new_loc, "Protean")
+
+
+/mob/living/carbon/human/alraune/New(var/new_loc)
+	..(new_loc, "Alraune")

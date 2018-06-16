@@ -22,16 +22,16 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Security equipment crate"
-	access = access_security
+	access = access_security*/
 
 /datum/supply_packs/munitions/egunpistol
 	name = "Weapons - Energy sidearms"
 	contains = list(/obj/item/weapon/gun/energy/gun = 2)
-	cost = 40
+	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Energy sidearms crate"
-	access = access_security
-*/
+	access = access_armory //VOREStation Edit - Guns are for the armory.
+
 /datum/supply_packs/munitions/flareguns
 	name = "Weapons - Flare guns"
 	contains = list(

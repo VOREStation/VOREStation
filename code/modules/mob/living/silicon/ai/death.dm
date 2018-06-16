@@ -3,6 +3,10 @@
 	if(stat == DEAD)
 		return
 
+	if(controlling_drone)
+		controlling_drone.release_ai_control("<b>WARNING: Primary control loop failure.</b> Session terminated.")
+	. = ..(gibbed)
+
 	if(src.eyeobj)
 		src.eyeobj.setLoc(get_turf(src))
 

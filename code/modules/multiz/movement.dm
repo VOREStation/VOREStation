@@ -451,7 +451,7 @@
 		if(!silent)
 			if(planetary)
 				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
-					"<span class='danger'><font size='3'> You fall out of the skiy and crash into \the [landing]!</font></span>", \
+					"<span class='danger'><font size='3'> You fall out of the sky and crash into \the [landing]!</font></span>", \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)
