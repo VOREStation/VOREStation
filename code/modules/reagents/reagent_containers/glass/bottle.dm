@@ -55,14 +55,12 @@
 		var/image/lid = image(icon, src, "lid_bottle")
 		overlays += lid
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline
 	name = "inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	prefill = list("inaprovaline" = 60)
-
 
 /obj/item/weapon/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
@@ -71,14 +69,12 @@
 	icon_state = "bottle-3"
 	prefill = list("toxin" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 	prefill = list("cyanide" = 30) //volume changed to match chloral
-
 
 /obj/item/weapon/reagent_containers/glass/bottle/stoxin
 	name = "soporific bottle"
@@ -87,14 +83,12 @@
 	icon_state = "bottle-3"
 	prefill = list("stoxin" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate
-	name = "Chloral Hydrate Bottle"
+	name = "chloral hydrate bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 	prefill = list("chloralhydrate" = 30) //Intentionally low since it is so strong. Still enough to knock someone out.
-
 
 /obj/item/weapon/reagent_containers/glass/bottle/antitoxin
 	name = "dylovene bottle"
@@ -103,14 +97,12 @@
 	icon_state = "bottle-4"
 	prefill = list("anti_toxin" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/mutagen
 	name = "unstable mutagen bottle"
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-1"
 	prefill = list("mutagen" = 60)
-
 
 /obj/item/weapon/reagent_containers/glass/bottle/ammonia
 	name = "ammonia bottle"
@@ -119,14 +111,12 @@
 	icon_state = "bottle-1"
 	prefill = list("ammonia" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/eznutrient
 	name = "\improper EZ NUtrient bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	prefill = list("eznutrient" = 60)
-
 
 /obj/item/weapon/reagent_containers/glass/bottle/left4zed
 	name = "\improper Left-4-Zed bottle"
@@ -135,14 +125,12 @@
 	icon_state = "bottle-4"
 	prefill = list("left4zed" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/robustharvest
 	name = "\improper Robust Harvest"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	prefill = list("robustharvest" = 60)
-
 
 /obj/item/weapon/reagent_containers/glass/bottle/diethylamine
 	name = "diethylamine bottle"
@@ -152,32 +140,36 @@
 	prefill = list("diethylamine" = 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/pacid
-	name = "Polytrinic Acid Bottle"
+	name = "polytrinic acid bottle"
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	prefill = list("pacid" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine
-	name = "Adminordrazine Bottle"
+	name = "adminordrazine bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
 	prefill = list("adminordrazine" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/capsaicin
-	name = "Capsaicin Bottle"
+	name = "capsaicin bottle"
 	desc = "A small bottle. Contains hot sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	prefill = list("capsaicin" = 60)
 
-
 /obj/item/weapon/reagent_containers/glass/bottle/frostoil
-	name = "Frost Oil Bottle"
+	name = "frost oil bottle"
 	desc = "A small bottle. Contains cold sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
 	prefill = list("frostoil" = 60)
+
+/obj/item/weapon/reagent_containers/glass/bottle/biomass
+	name = "biomass bottle"
+	desc = "A bottle of raw biomass! Gross!"
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle-3"
+	prefill = list("biomass" = 60)

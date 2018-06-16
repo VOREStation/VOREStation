@@ -482,3 +482,11 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+/datum/reagent/nutriment/biomass
+	name = "Biomass"
+	id = "biomass"
+	description = "A slurry of compounds that contains the basic requirements for life."
+	taste_description = "salty meat"
+	reagent_state = LIQUID
+	color = "#DF9FBF"
