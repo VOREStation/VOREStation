@@ -200,14 +200,16 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	if(!istype(transfer) || locate(/mob/living/silicon/ai) in src)
 		return
 
+	if(transfer.controlling_drone)
+		transfer.controlling_drone.release_ai_control("Unit control lost. Core transfer completed.")
 	transfer.aiRestorePowerRoutine = 0
 	transfer.control_disabled = 0
 	transfer.aiRadio.disabledAi = 0
 	transfer.loc = get_turf(src)
 	transfer.create_eyeobj()
 	transfer.cancel_camera()
-	user << "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary core."
-	transfer << "You have been transferred into a stationary core. Remote device connection restored."
+	to_chat(user, "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary core.")
+	to_chat(transfer, "You have been transferred into a stationary core. Remote device connection restored.")
 
 	if(card)
 		card.clear()
