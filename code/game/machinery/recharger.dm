@@ -95,26 +95,9 @@ obj/machinery/recharger
 			else
 				icon_state = icon_state_charged
 				update_use_power(1)
-<<<<<<< HEAD
-			return
-
-		if(istype(charging, /obj/item/device/electronic_assembly))
-			var/obj/item/device/electronic_assembly/assembly = charging
-			if(assembly.battery)
-				if(!assembly.battery.fully_charged())
-					icon_state = icon_state_charging
-					assembly.battery.give(active_power_usage*CELLRATE)
-					update_use_power(2)
-				else
-					icon_state = icon_state_charged
-					update_use_power(1)
-			else
-				icon_state = icon_state_idle
-				update_use_power(1)
-			return
 
 		//VOREStation Add - NSFW Batteries
-		if(istype(charging, /obj/item/ammo_casing/nsfw_batt))
+		else if(istype(charging, /obj/item/ammo_casing/nsfw_batt))
 			var/obj/item/ammo_casing/nsfw_batt/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
 				icon_state = icon_state_charged
@@ -125,19 +108,6 @@ obj/machinery/recharger
 				update_use_power(2)
 			return
 		//VOREStation Add End
-
-		if(istype(charging, /obj/item/weapon/weldingtool/electric))
-			var/obj/item/weapon/weldingtool/electric/C = charging
-			if(!C.power_supply.fully_charged())
-				icon_state = icon_state_charging
-				C.power_supply.give(active_power_usage*CELLRATE)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-			return
-=======
->>>>>>> 32557da... Merge pull request #5356 from Anewbe/recharger_refactor
 
 /obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
