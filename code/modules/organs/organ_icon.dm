@@ -51,10 +51,10 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/get_icon()
 	..()
-	
+
 	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
 	cut_overlays()
-	
+
 	//Every 'addon' below requires information from species
 	if(!owner || !owner.species)
 		return
@@ -78,7 +78,7 @@ var/global/list/limb_icon_cache = list()
 			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
 		add_overlay(eyes_icon)
 		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-		
+
 	//Lip color/icon
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
@@ -111,7 +111,11 @@ var/global/list/limb_icon_cache = list()
 
 	//Head hair
 	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[owner.h_style]
+		var/style = owner.h_style
+		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[style]
+		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
+			if(!(hair_style.flags & HAIR_VERY_SHORT))
+				hair_style = hair_styles_list["Short Hair"]
 		if(hair_style && (species.get_bodytype(owner) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")
@@ -120,7 +124,7 @@ var/global/list/limb_icon_cache = list()
 				hair_s.Blend(hair_s_add, ICON_ADD)
 			res.add_overlay(hair_s)
 
-	return mob_icon
+	return res
 
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
