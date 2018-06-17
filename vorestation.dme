@@ -2455,8 +2455,12 @@
 #include "code\modules\projectiles\guns\energy\laser.dm"
 #include "code\modules\projectiles\guns\energy\netgun_vr.dm"
 #include "code\modules\projectiles\guns\energy\nuclear.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\projectiles\guns\energy\nuclear_vr.dm"
 #include "code\modules\projectiles\guns\energy\particle.dm"
+=======
+#include "code\modules\projectiles\guns\energy\phase.dm"
+>>>>>>> 8690135... More Phase Guns (#5276):polaris.dme
 #include "code\modules\projectiles\guns\energy\pulse.dm"
 #include "code\modules\projectiles\guns\energy\special.dm"
 #include "code\modules\projectiles\guns\energy\special_vr.dm"
@@ -2599,6 +2603,7 @@
 #include "code\modules\research\rdmachines.dm"
 #include "code\modules\research\research.dm"
 #include "code\modules\research\server.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\resleeving\circuitboards.dm"
 #include "code\modules\resleeving\computers.dm"
 #include "code\modules\resleeving\designer.dm"
@@ -2616,6 +2621,19 @@
 #include "code\modules\rogueminer_vr\wrappers.dm"
 #include "code\modules\rogueminer_vr\zone_console.dm"
 #include "code\modules\rogueminer_vr\zonemaster.dm"
+=======
+#include "code\modules\research\designs\ai_modules.dm"
+#include "code\modules\research\designs\circuit_assembly.dm"
+#include "code\modules\research\designs\circuits.dm"
+#include "code\modules\research\designs\illegal.dm"
+#include "code\modules\research\designs\medical.dm"
+#include "code\modules\research\designs\mining_toys.dm"
+#include "code\modules\research\designs\misc.dm"
+#include "code\modules\research\designs\pdas.dm"
+#include "code\modules\research\designs\powercells.dm"
+#include "code\modules\research\designs\stock_parts.dm"
+#include "code\modules\research\designs\weapons.dm"
+>>>>>>> 8690135... More Phase Guns (#5276):polaris.dme
 #include "code\modules\scripting\Errors.dm"
 #include "code\modules\scripting\IDE.dm"
 #include "code\modules\scripting\Options.dm"
