@@ -137,6 +137,7 @@
 
 	if(!IsAdvancedToolUser())
 		verbs |= /mob/living/simple_animal/proc/animal_nom
+		verbs |= /mob/living/proc/shred_limb
 
 	if(LAZYLEN(vore_organs))
 		return
