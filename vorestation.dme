@@ -1913,6 +1913,7 @@
 #include "code\modules\mob\transform_procs.dm"
 #include "code\modules\mob\typing_indicator.dm"
 #include "code\modules\mob\update_icons.dm"
+#include "code\modules\mob\_modifiers\aura.dm"
 #include "code\modules\mob\_modifiers\cloning.dm"
 #include "code\modules\mob\_modifiers\modifiers.dm"
 #include "code\modules\mob\_modifiers\modifiers_misc.dm"
