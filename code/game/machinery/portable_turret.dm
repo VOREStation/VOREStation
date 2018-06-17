@@ -47,6 +47,7 @@
 	var/check_synth	 = 0 	//if active, will shoot at anything not an AI or cyborg
 	var/check_all = 0		//If active, will fire on anything, including synthetics.
 	var/ailock = 0 			// AI cannot use this
+	var/faction = null		//if set, will not fire at people in the same faction for any reason.
 
 	var/attacked = 0		//if set to 1, the turret gets pissed off and shoots at people nearby (unless they have sec access!)
 
@@ -79,6 +80,11 @@
 	ailock = 1
 	lethal = 1
 	installation = /obj/item/weapon/gun/energy/laser
+
+/obj/machinery/porta_turret/stationary/syndie // Generic turrets for POIs that need to not shoot their buddies.
+	enabled = TRUE
+	check_all = TRUE
+	faction = "syndicate" // Make sure this equals the faction that the mobs in the POI have or they will fight each other.
 
 /obj/machinery/porta_turret/ai_defense
 	name = "defense turret"
@@ -550,6 +556,9 @@ var/list/turret_icons
 		return TURRET_NOT_TARGET
 
 	if(!L)
+		return TURRET_NOT_TARGET
+
+	if(faction && L.faction == faction)
 		return TURRET_NOT_TARGET
 
 	if(!emagged && issilicon(L) && check_all == 0)	// Don't target silica, unless told to neutralize everything.
