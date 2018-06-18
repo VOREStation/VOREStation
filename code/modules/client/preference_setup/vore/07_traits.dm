@@ -73,7 +73,8 @@
 			if(!(path in negative_traits))
 				pref.neg_traits -= path
 
-	if(pref.species == pref.custom_base && pref.species != SPECIES_CUSTOM)
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		// Allowed!
 	else if(!pref.custom_base || !(pref.custom_base in custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
