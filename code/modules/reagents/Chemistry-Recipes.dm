@@ -501,6 +501,7 @@
 	id = "ammonia"
 	result = "ammonia"
 	required_reagents = list("hydrogen" = 3, "nitrogen" = 1)
+	inhibitors = list("phoron" = 1) // Messes with lexorin
 	result_amount = 3
 
 /datum/chemical_reaction/diethylamine
@@ -2245,3 +2246,11 @@
 	result = "qerr_quem"
 	required_reagents = list("nicotine" = 1, "carbon" = 1, "sugar" = 2)
 	result_amount = 4
+
+// Biomass, for cloning and bioprinters
+/datum/chemical_reaction/biomass
+	name = "Biomass"
+	id = "biomass"
+	result = "biomass"
+	required_reagents = list("protein" = 1, "sugar" = 1, "phoron" = 1)
+	result_amount = 6	// Roughly 120u per phoron sheet //VOREStation Edit
