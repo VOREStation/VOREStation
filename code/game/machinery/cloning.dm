@@ -23,7 +23,7 @@
 			break
 	return selected
 
-#define CLONE_BIOMASS 30
+#define CLONE_BIOMASS 30 //VOREstation Edit
 
 /obj/machinery/clonepod
 	name = "cloning pod"
