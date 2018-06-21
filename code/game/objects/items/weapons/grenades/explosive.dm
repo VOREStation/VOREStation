@@ -53,7 +53,8 @@
 
 	if(explosion_size)
 		on_explosion(O)
-	src.fragmentate(O, num_fragments, spread_range, fragment_types)
+	if(num_fragments)
+		fragmentate(O, num_fragments, spread_range, fragment_types)
 	qdel(src)
 
 
@@ -98,3 +99,9 @@
 	num_fragments = 200  //total number of fragments produced by the grenade
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
+
+// This thing literally just explodes
+/obj/item/weapon/grenade/explosive/concussion
+	name = "concussion grenade"
+	desc = "A small explosive grenade"
+	num_fragments = 0
