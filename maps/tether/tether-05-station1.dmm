@@ -821,7 +821,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)
 "abW" = (
 /obj/structure/sign/securearea{
@@ -1116,7 +1116,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)
 "acQ" = (
 /obj/structure/cable/green{

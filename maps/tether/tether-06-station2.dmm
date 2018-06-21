@@ -17893,6 +17893,9 @@
 /obj/structure/inflatable/door,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"Ko" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
 "KG" = (
 /turf/simulated/mineral/floor/cave,
 /area/maintenance/station/sec_lower)
@@ -32318,7 +32321,7 @@ aP
 aP
 aP
 aP
-ac
+aP
 OJ
 Hk
 Ll
@@ -32445,7 +32448,7 @@ aa
 aa
 aa
 aa
-aa
+Ko
 ac
 ac
 ac
@@ -32460,7 +32463,7 @@ aP
 aP
 aP
 aP
-ac
+aP
 OJ
 Ll
 Ll
@@ -32588,7 +32591,7 @@ aa
 aa
 aa
 aa
-aa
+Ko
 ac
 ac
 ac
@@ -32873,7 +32876,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 aP
 ac
 aP
@@ -33015,7 +33018,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 aP
 aP
 aP
@@ -33157,7 +33160,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 aP
 aP
 aP
@@ -33299,10 +33302,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aP
+ab
+ab
+ab
+Yw
 aP
 aP
 aP
