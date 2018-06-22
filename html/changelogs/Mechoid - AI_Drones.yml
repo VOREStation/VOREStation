@@ -1,7 +1,0 @@
-
-author: Mechoid
-
-delete-after: True
-
-changes: 
-  - rscadd: "Allow AIs to create and take control of mindless drones from fabricators."
