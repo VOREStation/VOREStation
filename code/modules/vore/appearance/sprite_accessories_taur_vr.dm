@@ -61,6 +61,8 @@
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
+	if(M in buckled_mobs)
+		return FALSE
 	if(M.size_multiplier > size_multiplier)
 		to_chat(M,"<span class='warning'>This isn't a pony show! They need to be bigger to ride.</span>")
 		return FALSE
@@ -70,14 +72,17 @@
 	if(isTaurTail(H.tail_style))
 		to_chat(H,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
+	if(M.loc != src.loc)
+		if(M.Adjacent(src))
+			M.forceMove(get_turf(src))
 
 	. = ..()
 	if(.)
 		buckled_mobs[M] = "riding"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
-	if(can_buckle && istype(M))
-		if(user_buckle_mob(M, user, silent = TRUE))
+	if(can_buckle && istype(M) && user.Adjacent(M))
+		if(buckle_mob(M))
 			visible_message("<span class='notice'>[M] starts riding [name]!</span>")
 			return TRUE
 
