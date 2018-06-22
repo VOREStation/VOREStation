@@ -106,7 +106,11 @@ var/global/list/limb_icon_cache = list()
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
+<<<<<<< HEAD
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_MULTIPLY) // VOREStation edit
+=======
+				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
+>>>>>>> dd1a5b9... Brings the make_ai_great_again branch up to date with master (#5364)
 			res.add_overlay(facial_s)
 
 	//Head hair
@@ -163,7 +167,11 @@ var/global/list/limb_icon_cache = list()
 				for(var/M in markings)
 					var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 					var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+<<<<<<< HEAD
 					mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
+=======
+					mark_s.Blend(markings[M]["color"], ICON_ADD)
+>>>>>>> dd1a5b9... Brings the make_ai_great_again branch up to date with master (#5364)
 					add_overlay(mark_s) //So when it's not on your body, it has icons
 					mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 					icon_cache_key += "[M][markings[M]["color"]]"
