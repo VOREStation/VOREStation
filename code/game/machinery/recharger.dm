@@ -95,6 +95,7 @@ obj/machinery/recharger
 			else
 				icon_state = icon_state_charged
 				update_use_power(1)
+<<<<<<< HEAD
 
 		//VOREStation Add - NSFW Batteries
 		else if(istype(charging, /obj/item/ammo_casing/nsfw_batt))
@@ -108,6 +109,8 @@ obj/machinery/recharger
 				update_use_power(2)
 			return
 		//VOREStation Add End
+=======
+>>>>>>> dd1a5b9... Brings the make_ai_great_again branch up to date with master (#5364)
 
 /obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)

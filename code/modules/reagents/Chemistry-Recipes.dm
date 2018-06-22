@@ -2253,4 +2253,8 @@
 	id = "biomass"
 	result = "biomass"
 	required_reagents = list("protein" = 1, "sugar" = 1, "phoron" = 1)
+<<<<<<< HEAD
 	result_amount = 6	// Roughly 120u per phoron sheet //VOREStation Edit
+=======
+	result_amount = 1	// Roughly 20u per phoron sheet
+>>>>>>> dd1a5b9... Brings the make_ai_great_again branch up to date with master (#5364)

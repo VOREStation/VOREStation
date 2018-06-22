@@ -23,7 +23,11 @@
 	force = 5
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	charge_cost = 480
+<<<<<<< HEAD
 	projectile_type = /obj/item/projectile/ion/pistol // still packs a punch but no AoE
+=======
+	projectile_type = /obj/item/projectile/ion/pistol
+>>>>>>> dd1a5b9... Brings the make_ai_great_again branch up to date with master (#5364)
 
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"
