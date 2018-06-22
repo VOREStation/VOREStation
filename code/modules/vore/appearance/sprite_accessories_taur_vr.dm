@@ -81,7 +81,7 @@
 		buckled_mobs[M] = "riding"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
-	if(can_buckle && istype(M) && user.Adjacent(M))
+	if(can_buckle && istype(M) && user.Adjacent(M) && (M != src))
 		if(buckle_mob(M))
 			visible_message("<span class='notice'>[M] starts riding [name]!</span>")
 			return TRUE
