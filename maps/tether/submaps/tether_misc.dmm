@@ -1805,8 +1805,7 @@
 /obj/item/weapon/surgical/retractor,
 /obj/item/stack/nanopaste,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/shuttle/floor,
 /area/syndicate_station/start)
@@ -1834,8 +1833,7 @@
 /area/syndicate_station/start)
 "eH" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/shuttle/floor,
 /area/syndicate_station/start)
@@ -2519,8 +2517,7 @@
 "gH" = (
 /obj/machinery/iv_drip,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/shuttle/floor,
 /area/syndicate_station/start)
@@ -2559,8 +2556,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
@@ -2682,8 +2678,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
@@ -3207,8 +3202,7 @@
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
@@ -6561,12 +6555,10 @@
 /area/antag/antag_base)
 "pn" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 2;
-	health = 1e+006
+	dir = 2
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6585,8 +6577,7 @@
 /area/antag/antag_base)
 "po" = (
 /obj/structure/window/reinforced{
-	dir = 2;
-	health = 1e+006
+	dir = 2
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6605,15 +6596,13 @@
 /area/antag/antag_base)
 "pp" = (
 /obj/structure/window/reinforced{
-	dir = 2;
-	health = 1e+006
+	dir = 2
 	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 1e+006
+	dir = 4
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -6862,8 +6851,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 2;
-	health = 1e+006
+	dir = 2
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
