@@ -940,3 +940,24 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		msg += " It doesn't seem to have a beginning, or an end."
 
 	to_chat(user, msg)
+
+/obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
+	if (user.get_inactive_hand() == src)
+		var/N = input("How many units of wire do you want to take from [src]?  You can only take up to [amount] at a time.", "Split stacks", 1) as num|null
+		if(N && N <= amount)
+			var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
+			CC.amount = N
+			CC.update_icon()
+			to_chat(user,"<font color='blue'>You take [N] units of wire from the [src].</font>")
+			if (CC)
+				user.put_in_hands(CC)
+				src.add_fingerprint(user)
+				CC.add_fingerprint(user)
+				spawn(0)
+					if (src && usr.machine==src)
+						src.interact(usr)
+		else
+			return
+	else
+		..()
+	return
