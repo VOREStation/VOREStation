@@ -133,8 +133,7 @@
 	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/shuttle/plating,
 /area/houseboat)
@@ -962,8 +961,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -1873,13 +1871,6 @@
 	tiles = 0
 	},
 /turf/space/sandyscroll,
-/area/space)
-"eV" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 1e+006
-	},
-/turf/unsimulated/wall,
 /area/space)
 "eW" = (
 /obj/structure/railing{
@@ -19971,23 +19962,23 @@ aa
 aa
 aa
 ey
-eV
-eV
-eV
-eV
-eV
+gL
+gL
+gL
+gL
+gL
 ey
-eV
-eV
-eV
-eV
-eV
+gL
+gL
+gL
+gL
+gL
 ey
-eV
-eV
-eV
-eV
-eV
+gL
+gL
+gL
+gL
+gL
 ey
 aa
 aa
