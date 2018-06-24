@@ -32,8 +32,8 @@
 	var/list/values = list(
 		"[NORTH]" = list(0, 8*scale, ABOVE_MOB_LAYER),
 		"[SOUTH]" = list(0, 8*scale, BELOW_MOB_LAYER),
-		"[EAST]" = list(-10*scale, 8*scale, BELOW_MOB_LAYER),
-		"[WEST]" = list(10*scale, 8*scale, BELOW_MOB_LAYER))
+		"[EAST]" = list(-10*scale, 8*scale, ABOVE_MOB_LAYER),
+		"[WEST]" = list(10*scale, 8*scale, ABOVE_MOB_LAYER))
 
 	return values
 
