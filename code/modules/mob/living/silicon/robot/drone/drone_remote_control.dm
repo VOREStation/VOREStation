@@ -93,8 +93,7 @@
 
 	radio.channels = module.channels
 	verbs -= /mob/living/silicon/robot/drone/proc/release_ai_control_verb
-	languages = initial(languages)
-	speech_synthesizer_langs = initial(speech_synthesizer_langs)
+	module.remove_languages(src) //Removes excess, adds 'default'.
 	remove_language("Robot Talk")
 	add_language("Robot Talk", 0)
 	add_language("Drone Talk", 1)

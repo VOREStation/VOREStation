@@ -114,6 +114,7 @@ var/list/mob_hat_cache = list()
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
 	updateicon()
+	updatename()
 
 /mob/living/silicon/robot/drone/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
