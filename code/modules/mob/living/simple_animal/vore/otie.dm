@@ -84,6 +84,35 @@
 	glowyeyes = TRUE
 	eyetype = "photie"
 
+/mob/living/simple_animal/otie/redspace
+	name = "feral red otie"
+	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces."
+	icon_state = "hotie"
+	icon_living = "hotie"
+	icon_dead = "hotie-dead"
+	icon_rest = "hotie_rest"
+	faction = "virgo3b"
+	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
+	melee_damage_lower = 10
+	melee_damage_upper = 25
+	// Lazy way of making sure this otie survives outside.
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	glowyeyes = TRUE
+	eyetype = "hotie"
+
+/mob/living/simple_animal/otie/redspace/friendly //gets the pet2tame feature and doesn't kill you right away
+	name = "red otie"
+	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. This one might even tolerate you!"
+	faction = "neutral"
+	tamed = 1
+
 /mob/living/simple_animal/otie/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"

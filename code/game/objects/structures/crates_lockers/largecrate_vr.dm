@@ -71,6 +71,7 @@
 						/mob/living/simple_animal/hostile/alien/sentinel,
 						/mob/living/simple_animal/hostile/alien/queen,
 						/mob/living/simple_animal/otie/feral,
+						/mob/living/simple_animal/otie/redspace,
 						/mob/living/simple_animal/hostile/corrupthound))
 	return ..()
 
