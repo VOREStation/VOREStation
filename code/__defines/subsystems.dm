@@ -32,7 +32,10 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_LIGHTING 0
 #define INIT_ORDER_AIR		-1
 #define INIT_ORDER_PLANETS	-4
+<<<<<<< HEAD
 #define INIT_ORDER_HOLOMAPS	-5 //VOREStation Add
+=======
+>>>>>>> 2d94e00... Clones merc simple_animal mobs into the simple_mob format (#5363)
 #define INIT_ORDER_OVERLAY	-6
 #define INIT_ORDER_XENOARCH	-20
  
