@@ -253,7 +253,8 @@
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
-		if(H.gloves)
+		var/obj/item/clothing/gloves/G = H.gloves
+		if(istype(G))
 			ring = H.gloves
 			if(ring.glove_level >= src.glove_level)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
