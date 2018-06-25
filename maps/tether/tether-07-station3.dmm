@@ -7822,12 +7822,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "ni" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "nj" = (
@@ -23672,6 +23670,15 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/maintenance/station/ai)
+"YY" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "Zb" = (
 /obj/structure/grille,
 /turf/simulated/floor/airless,
@@ -34916,7 +34923,7 @@ kH
 lm
 lP
 mC
-mC
+YY
 oi
 oO
 MC
