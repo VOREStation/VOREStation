@@ -169,7 +169,7 @@
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
 
-/*Aerowing:Sebastian Aji
+Aerowing:Sebastian Aji
 /obj/item/weapon/storage/box/fluff/sebastian_aji
 	name = "Sebastian's Lumoco Arms P3 Box"
 	has_items = list(
@@ -177,7 +177,6 @@
 		/obj/item/ammo_magazine/m9mm/compact/flash,
 		/obj/item/ammo_magazine/m9mm/compact/flash,
 		/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji)
-*/
 
 /*
 /obj/item/weapon/storage/box/fluff/briana_moore

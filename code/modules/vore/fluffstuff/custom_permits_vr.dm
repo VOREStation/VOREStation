@@ -6,11 +6,11 @@
 	to_chat(user, "You cannot reset the naming locks on [src]. It's issued by CentCom and totally tamper-proof!")
 	return
 
-/* aerowing:Sebastian Aji
+// aerowing:Sebastian Aji
 /obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji
 	name = "Sebastian Aji's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on April 17th, 2563."
-*/
+
 
 /* arokha:Aronai Kadigan
 /obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan
