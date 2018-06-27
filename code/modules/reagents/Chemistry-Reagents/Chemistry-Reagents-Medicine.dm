@@ -141,21 +141,21 @@
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
-	metabolism = 0.2 //VOREStation Edit
+	metabolism = REM * 0.25 //VOREStation Edit
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 30) //VOREStation Edit
+		M.adjustToxLoss(removed * 24) //VOREStation Edit
 	else if(alien == IS_SLIME && dose >= 15)
 		M.add_chemical_effect(CE_PAINKILLER, 15)
 		if(prob(15))
 			to_chat(M, "<span class='notice'>You have a moment of clarity as you collapse.</span>")
-			M.adjustBrainLoss(-25 * removed) //VOREStation Edit
+			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-150 * removed) //VOREStation Edit
+		M.adjustOxyLoss(-60 * removed) //VOREStation Edit
 
-	holder.remove_reagent("lexorin", 10 * removed) //VOREStation Edit
+	holder.remove_reagent("lexorin", 8 * removed) //VOREStation Edit
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
