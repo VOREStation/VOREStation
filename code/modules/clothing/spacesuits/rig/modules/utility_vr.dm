@@ -104,14 +104,14 @@
 	interface_name = "mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
 
-	var/max_reagent_volume = 10 //Regen to this volume
+	var/max_reagent_volume = 20 //Regen to this volume
 	var/chems_to_use = 5 //Per injection
 
 	charges = list(
-		list("inaprovaline",  "inaprovaline",  0, 10),
-		list("tricordrazine", "tricordrazine", 0, 10),
-		list("tramadol",      "tramadol",      0, 10),
-		list("dexalin plus",  "dexalinp",      0, 10)
+		list("inaprovaline",  "inaprovaline",  0, 20),
+		list("dylovene",  "dylovene",  0, 20),
+		list("paracetamol",      "paracetamol",      0, 20),
+		list("dexalin",  "dexalin",      0, 20)
 		)
 
 /obj/item/rig_module/rescue_pharm/process()

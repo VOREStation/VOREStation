@@ -130,7 +130,7 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	heal_burn = 1
+	heal_burn = 3
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/ointment.ogg')
@@ -170,7 +170,9 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 3
+	heal_brute = 6 //VOREStation Edit
+	amount = 20 //VOREStation Edit
+	max_amount = 20 //VOREStation Edit
 	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
@@ -233,7 +235,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 3
+	heal_burn = 12 //VOREStation Edit
 	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/ointment.ogg')
 
