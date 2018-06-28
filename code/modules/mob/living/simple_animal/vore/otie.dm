@@ -6,7 +6,7 @@
 /mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."
-	tt_desc = "Canis otis"
+	tt_desc = "Otus robustus"
 	icon = 'icons/mob/vore64x32.dmi'
 	icon_state = "otie"
 	icon_living = "otie"
@@ -64,6 +64,7 @@
 /mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "mutated feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
+	tt_desc = "Otus phoronis"
 	icon_state = "siftusian"
 	icon_living = "siftusian"
 	icon_dead = "siftusian-dead"
@@ -84,6 +85,36 @@
 	glowyeyes = TRUE
 	eyetype = "photie"
 
+/mob/living/simple_animal/otie/red
+	name = "feral red otie"
+	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces."
+	tt_desc = "Otus infernalis"
+	icon_state = "hotie"
+	icon_living = "hotie"
+	icon_dead = "hotie-dead"
+	icon_rest = "hotie_rest"
+	faction = "cult"
+	tame_chance = 20
+	melee_damage_lower = 10
+	melee_damage_upper = 25
+	// Lazy way of making sure this otie survives outside.
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	glowyeyes = TRUE
+	eyetype = "hotie"
+
+/mob/living/simple_animal/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
+	name = "red otie"
+	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. This one seems rather peaceful though."
+	faction = "neutral"
+	tamed = 1
+
 /mob/living/simple_animal/otie/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
@@ -102,6 +133,7 @@
 /mob/living/simple_animal/otie/cotie/phoron //friendly phoron pup with collar
 	name = "mutated otie"
 	desc = "Looks like someone did manage to domesticate one of those wild phoron mutants. What a badass."
+	tt_desc = "Otus phoronis"
 	icon_state = "pcotie"
 	icon_living = "pcotie"
 	icon_rest = "pcotie_rest"
@@ -139,6 +171,7 @@
 /mob/living/simple_animal/otie/security/phoron
 	name = "mutated guard otie"
 	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs."
+	tt_desc = "Otus phoronis"
 	icon_state = "sifguard"
 	icon_living = "sifguard"
 	icon_rest = "sifguard_rest"
