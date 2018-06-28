@@ -62,20 +62,17 @@
 /datum/reagent/vermicetol
 	name = "Vermicetol"
 	id = "vermicetol"
-	description = "A potent chemical that treats all damage at an exceptional rate and lasts a while."
+	description = "A potent chemical that treats physical damage at an exceptional rate."
 	taste_description = "sparkles"
+	taste_mult = 3
 	reagent_state = SOLID
 	color = "#964e06"
-	overdose = 15
+	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
-	metabolism = 0.05
-	mrate_static = TRUE
 
 /datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		var/chem_effective = 1
-		if(alien == IS_SLIME)
-			chem_effective = 0.5
-		M.heal_organ_damage(60 * removed, 60 * removed * chem_effective)
-		M.adjustOxyLoss(-120 * removed * chem_effective)
-		M.adjustToxLoss(-60 * removed * chem_effective)
+		M.heal_organ_damage(8 * removed * chem_effective, 0)
