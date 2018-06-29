@@ -44,15 +44,6 @@
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 
-/mob/living/carbon/human/New()
-	.=..()
-	spawn(2 SECONDS)
-	if(isTaurTail(tail_style))
-		var/datum/sprite_accessory/tail/taur/taurtype = tail_style
-		if(taurtype.can_ride)
-			riding_datum = new /datum/riding/taur(src)
-			verbs |= /mob/living/carbon/human/proc/taur_mount
-
 /mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
