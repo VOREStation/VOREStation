@@ -10,24 +10,25 @@
 /obj/item/weapon/storage/firstaid
 	name = "first aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
-	var/list/icon_variety
+//	var/list/icon_variety // VOREStation edit
 
 /obj/item/weapon/storage/firstaid/initialize()
 	. = ..()
-	if(icon_variety)
-		icon_state = pick(icon_variety)
-		icon_variety = null
+//	if(icon_variety) // VOREStation edit
+//		icon_state = pick(icon_variety)
+//		icon_variety = null
 
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>spontaneously</i> burns down."
 	icon_state = "ointment"
 	item_state_slots = list(slot_r_hand_str = "firstaid-ointment", slot_l_hand_str = "firstaid-ointment")
-	icon_variety = list("ointment","firefirstaid")
+//	icon_variety = list("ointment","firefirstaid") // VOREStation edit
 	starts_with = list(
 		/obj/item/device/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
@@ -55,7 +56,7 @@
 	desc = "Used to treat when one has a high amount of toxins in their body."
 	icon_state = "antitoxin"
 	item_state_slots = list(slot_r_hand_str = "firstaid-toxin", slot_l_hand_str = "firstaid-toxin")
-	icon_variety = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
+//	icon_variety = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3") // VOREStation edit
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/syringe/antitoxin,
 		/obj/item/weapon/reagent_containers/syringe/antitoxin,
@@ -70,7 +71,7 @@
 	name = "oxygen deprivation first aid kit"
 	desc = "A box full of oxygen goodies."
 	icon_state = "o2"
-	item_state_slots = list(slot_r_hand_str = "firstaid-o2", slot_l_hand_str = "firstaid-o2")
+	item_state_slots = list(slot_r_hand_str = "firstaid-o2", slot_l_hand_str = "firstaid-o2") 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/pill/dexalin,
 		/obj/item/weapon/reagent_containers/pill/dexalin,
@@ -116,6 +117,7 @@
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
 	desc = "Contains tools for surgery. Has precise foam fitting for safe transport and automatically sterilizes the content between uses."
+	icon = 'icons/obj/storage.dmi' // VOREStation edit
 	icon_state = "surgerykit"
 	item_state = "firstaid-surgery"
 	max_w_class = ITEMSIZE_NORMAL
@@ -152,6 +154,7 @@
 /obj/item/weapon/storage/firstaid/clotting
 	name = "clotting kit"
 	desc = "Contains chemicals to stop bleeding."
+	icon_state = "clottingkit" // VOREStation edit
 	max_storage_space = ITEMSIZE_COST_SMALL * 7
 	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting = 8)
 
