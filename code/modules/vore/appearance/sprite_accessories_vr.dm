@@ -219,6 +219,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/smallbear
+	name = "small bear"
+	desc = ""
+	icon_state = "smallbear"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/squirrelhc
 	name = "squirrel, colorable"
 	desc = ""
@@ -256,6 +263,28 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "antlers_mark"
 
+/datum/sprite_accessory/ears/smallantlers
+	name = "small antlers"
+	desc = ""
+	icon_state = "smallantlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/smallantlers_e
+	name = "small antlers with ears"
+	desc = ""
+	icon_state = "smallantlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "deer"
+
+/datum/sprite_accessory/ears/deer
+	name = "deer ears"
+	desc = ""
+	icon_state = "deer"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
 	desc = ""
@@ -272,6 +301,13 @@
 	name = "cow, no horns"
 	desc = ""
 	icon_state = "cow-nohorns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/caprahorns
+	name = "caprine horns"
+	desc = ""
+	icon_state = "caprahorns"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -301,6 +337,13 @@
 	name = "sleek ears"
 	desc = ""
 	icon_state = "sleek"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/drake
+	name = "drake frills"
+	desc = ""
+	icon_state = "drake"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 

@@ -748,11 +748,41 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
+	otter_nose
+		name = "Otter nose"
+		icon_state = "otternose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	otter_face
+		name = "Otter face"
+		icon_state = "otterface"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	deer_face
+		name = "Deer face"
+		icon_state = "deerface"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
 	sharkface
 		name = "Akula snout"
 		icon_state = "sharkface"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
+
+	sheppy_face
+		name = "Shepherd snout"
+		icon_state = "shepface"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	sheppy_back
+		name = "Shepherd back"
+		icon_state = "shepback"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_TORSO,BP_GROIN)
 
 	zorren_belly_male
 		name = "Zorren Male Torso"
@@ -829,6 +859,12 @@
 		icon_state = "harpy-leg"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
+
+	chooves
+		name = "Cloven hooves"
+		icon_state = "chooves"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT)
 
 	alurane
 		name = "Alurane Body"
@@ -928,13 +964,13 @@
 		icon_state = "teshi_sf"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_HAND,BP_R_HAND,BP_TORSO)
-		
+
 	spirit_lights
 		name = "Ward - Spirit FBP Lights"
 		icon_state = "lights"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_HEAD)
-		
+
 	spirit_lights_body
 		name = "Ward - Spirit FBP Lights (body)"
 		icon_state = "lights"
@@ -946,13 +982,13 @@
 		icon_state = "lights"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
-		
+
 	spirit_panels
 		name = "Ward - Spirit FBP Panels"
 		icon_state = "panels"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
-		
+
 	spirit_panels_body
 		name = "Ward - Spirit FBP Panels (body)"
 		icon_state = "panels"
