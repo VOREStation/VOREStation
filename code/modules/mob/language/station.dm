@@ -77,6 +77,14 @@
 	"kar","yar","kzar","rha","hrar","err","fer","rir","rar","yarr","arr","ii'r","jar","kur","ran","rii","ii",
 	"nai","ou","kah","oa","ama","uuk","bel","chi","ayt","kay","kas","akor","tam","yir","enai")
 
+/datum/language/tajsign
+	name = LANGUAGE_SIIK_TAJR
+	desc = "A type of sign language mostly based on tail movements that was used during the Tajaran rebellion."
+	signlang_verb = list("uses their tail to convey", "gestures with their tail", "gestures with their tail elaborately")
+	colour = "tajaran"
+	key = "l"
+	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
+
 /datum/language/tajaran/get_random_name(var/gender)
 
 	var/new_name = ..(gender,1)
