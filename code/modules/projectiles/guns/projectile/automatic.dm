@@ -21,6 +21,31 @@
 //		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15,-30,-30), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
+/obj/item/weapon/gun/projectile/automatic/saber //Fixed it
+	name = "prototype SMG"
+	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "saber"//Still ugly
+	w_class = ITEMSIZE_NORMAL
+	load_method = MAGAZINE  //This should fix it
+	max_shells = 22
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
+	slot_flags = SLOT_BELT
+	magazine_type = /obj/item/ammo_magazine/m9mmR/saber/ap
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mmR/saber, /obj/item/ammo_magazine/m9mmR/saber/ap)
+	projectile_type = /obj/item/projectile/bullet/pistol
+	multi_aim = 1
+	burst_delay = 2
+
+//	one_handed_penalty = 15
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
+//		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15,-30,-30), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+)
+
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "submachine gun"
 	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. It has 'Scarborough Arms - Per falcis, per pravitas' inscribed on the stock. Uses 10mm rounds."
