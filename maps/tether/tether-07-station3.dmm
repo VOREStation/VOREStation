@@ -1435,9 +1435,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/security)
-"cm" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "cn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -2922,17 +2919,12 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "eW" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/computer/secure_data,
-/obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled,
-/area/security/observation)
+/obj/structure/closet/crate,
+/obj/random/maintenance/security,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "eX" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -9414,9 +9406,9 @@
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pN" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/security/security_processing)
+/obj/structure/closet,
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "pO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -18597,37 +18589,59 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "DO" = (
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/computer/secure_data,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
-/obj/structure/table/glass,
-/obj/machinery/computer/med_data/laptop,
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Cell 1";
+	name = "Cell 1 Door";
+	pixel_x = -24;
+	pixel_y = 7;
+	req_access = list(1,2)
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Cell 2";
+	name = "Cell 2 Door";
+	pixel_x = -36;
+	pixel_y = 7;
+	req_access = list(1,2)
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Cell 3";
+	name = "Cell 3 Door";
+	pixel_x = -24;
+	pixel_y = -7;
+	req_access = list(1,2)
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Cell 4";
+	name = "Cell 4 Door";
+	pixel_x = -36;
+	pixel_y = -7;
+	req_access = list(1,2)
+	},
+/turf/simulated/floor/tiled,
+/area/security/observation)
 "DP" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/table/steel,
+/obj/machinery/button/windowtint{
+	id = "sec_processing";
+	pixel_x = 6;
+	pixel_y = -2;
+	req_access = list(1)
 	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
+/turf/simulated/floor/tiled,
+/area/security/security_processing)
 "DQ" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -19053,16 +19067,36 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "EI" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "EJ" = (
-/obj/machinery/door/window/eastleft{
-	req_one_access = list(5)
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/obj/structure/table/glass,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/computer/crew{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "EK" = (
@@ -19949,34 +19983,15 @@
 /area/medical/reception)
 "Gn" = (
 /obj/structure/table/glass,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "Go" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/door/window/eastleft{
+	req_one_access = list(5)
 	},
 /obj/structure/table/glass,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/item/weapon/storage/firstaid/regular{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "Gp" = (
@@ -20312,8 +20327,18 @@
 /turf/simulated/floor,
 /area/quartermaster/storage)
 "GS" = (
-/turf/simulated/wall,
-/area/mine/explored/upper_level)
+/obj/structure/table/glass,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
 "GT" = (
 /turf/simulated/wall,
 /area/maintenance/security_starboard)
@@ -20772,9 +20797,27 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "HI" = (
-/obj/structure/catwalk,
-/turf/simulated/floor,
-/area/mine/explored/upper_level)
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/computer/med_data/laptop{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
 "HJ" = (
 /obj/structure/catwalk,
 /turf/simulated/floor,
@@ -21288,7 +21331,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/clean,
 /turf/simulated/floor,
-/area/mine/explored/upper_level)
+/area/maintenance/security_starboard)
 "Ix" = (
 /turf/simulated/wall,
 /area/medical/resleeving)
@@ -21633,7 +21676,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor,
-/area/mine/explored/upper_level)
+/area/maintenance/security_starboard)
 "Ja" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -22177,7 +22220,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/clean,
 /turf/simulated/floor,
-/area/mine/explored/upper_level)
+/area/maintenance/security_starboard)
 "JQ" = (
 /obj/structure/sign/nosmoking_1,
 /turf/simulated/wall,
@@ -32403,12 +32446,12 @@ vt
 vt
 vt
 ab
-GS
-GS
-GS
-GS
-GS
-GS
+GT
+GT
+GT
+GT
+GT
+GT
 ab
 ab
 ab
@@ -32545,12 +32588,12 @@ we
 vt
 ab
 ab
-GS
-HI
-HI
-HI
-HI
-GS
+GT
+HJ
+HJ
+HJ
+HJ
+GT
 ab
 ab
 ab
@@ -32692,7 +32735,7 @@ HJ
 Iw
 IZ
 JP
-GS
+GT
 ab
 ab
 ab
@@ -33647,7 +33690,7 @@ jw
 cx
 ek
 cP
-eW
+DO
 kD
 kN
 cP
@@ -34511,7 +34554,7 @@ jk
 of
 oD
 pn
-pN
+DP
 qi
 qN
 rx
@@ -34529,10 +34572,10 @@ Ah
 Bt
 Cl
 Dk
-DO
 EI
-Fx
 Gn
+Fx
+GS
 GW
 HO
 Iz
@@ -34671,10 +34714,10 @@ Ae
 Bs
 Ck
 Dk
-DP
 EJ
-Fy
 Go
+Fy
+HI
 GX
 HP
 Iy
@@ -37188,9 +37231,9 @@ hb
 hx
 aF
 bc
-iq
-iq
-iq
+db
+eW
+pN
 iq
 iq
 dy
@@ -37467,14 +37510,14 @@ aa
 aa
 aa
 ab
-gJ
-gJ
-hy
-hy
-gJ
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 iV
 jr
 dC
@@ -37609,14 +37652,14 @@ aa
 aa
 aa
 ab
-gJ
-gJ
-hy
-hy
-hy
-hy
-hy
-cm
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 iV
 js
 dD

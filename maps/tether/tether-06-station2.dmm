@@ -18068,15 +18068,6 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"QT" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/mine/explored/upper_level)
 "QW" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -18947,9 +18938,6 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
-"Xf" = (
-/turf/simulated/wall/r_wall,
-/area/mine/explored/upper_level)
 "Xj" = (
 /turf/simulated/floor,
 /area/chapel/office)
@@ -25078,8 +25066,8 @@ kk
 kk
 kk
 kk
-Xf
-Xf
+bW
+bW
 bW
 bW
 fX
@@ -25221,7 +25209,7 @@ Jl
 Jp
 PW
 WS
-QT
+dK
 en
 dK
 fY
