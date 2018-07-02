@@ -32,7 +32,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(6 * removed * chem_effective, 0)
+		M.heal_organ_damage(4 * removed * chem_effective, 0) //VOREStation Edit
 
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -67,7 +67,7 @@
 		chem_effective = 0.5
 		M.adjustBruteLoss(2 * removed) //Mends burns, but has negative effects with a Promethean's skeletal structure.
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 6 * removed * chem_effective)
+		M.heal_organ_damage(0, 4 * removed * chem_effective) //VOREStation edit
 
 /datum/reagent/dermaline
 	name = "Dermaline"
@@ -85,7 +85,7 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 12 * removed * chem_effective)
+		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -141,20 +141,21 @@
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+	metabolism = REM * 0.25 //VOREStation Edit
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 6)
+		M.adjustToxLoss(removed * 24) //VOREStation Edit
 	else if(alien == IS_SLIME && dose >= 15)
 		M.add_chemical_effect(CE_PAINKILLER, 15)
 		if(prob(15))
 			to_chat(M, "<span class='notice'>You have a moment of clarity as you collapse.</span>")
-			M.adjustBrainLoss(-5 * removed)
+			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-15 * removed)
+		M.adjustOxyLoss(-60 * removed) //VOREStation Edit
 
-	holder.remove_reagent("lexorin", 2 * removed)
+	holder.remove_reagent("lexorin", 8 * removed) //VOREStation Edit
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
@@ -399,7 +400,7 @@
 			M.Weaken(5)
 		if(dose >= 10 && M.paralysis < 40)
 			M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
-	M.adjustBrainLoss(-30 * removed * chem_effective)
+	M.adjustBrainLoss(-8 * removed * chem_effective) //VOREStation Edit
 	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective)
 
 /datum/reagent/imidazoline
