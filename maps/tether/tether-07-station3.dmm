@@ -9567,6 +9567,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/station/elevator)
+"qg" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
 "qi" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
@@ -31622,7 +31625,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
@@ -31764,7 +31767,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
@@ -31907,8 +31910,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+qg
+qg
 ab
 ab
 aj
@@ -32049,8 +32052,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+qg
+qg
 ab
 ab
 ab
@@ -32191,8 +32194,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+qg
+qg
 ab
 ab
 ab
@@ -32333,7 +32336,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
@@ -32475,7 +32478,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
@@ -32617,7 +32620,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
@@ -32759,7 +32762,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
@@ -33044,7 +33047,7 @@ aa
 aa
 aa
 aa
-aa
+qg
 ab
 ab
 ab
