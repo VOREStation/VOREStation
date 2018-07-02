@@ -977,8 +977,42 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "bD" = (
-/obj/structure/table/reinforced,
-/obj/item/device/retail_scanner/security,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/warden,
+/obj/item/weapon/gun/projectile/shotgun/pump/combat{
+	ammo_type = /obj/item/ammo_casing/a12g/beanbag;
+	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. This one has 'Property of the Warden' inscribed on the stock.";
+	name = "warden's shotgun"
+	},
+/obj/item/weapon/book/manual/security_space_law,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/obj/machinery/button/remote/airlock{
+	id = "armory_red";
+	name = "HoS Armory Access";
+	pixel_x = -10;
+	pixel_y = 28;
+	req_access = list(58)
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "bE" = (
@@ -1155,22 +1189,8 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/warden,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat{
-	ammo_type = /obj/item/ammo_casing/a12g/beanbag;
-	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. This one has 'Property of the Warden' inscribed on the stock.";
-	name = "warden's shotgun"
-	},
-/obj/item/weapon/book/manual/security_space_law,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/photocopier,
+/obj/machinery/camera/network/security,
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
@@ -1241,11 +1261,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "cb" = (
-/obj/machinery/light,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 4;
-	pixel_y = -28
-	},
+/obj/structure/table/reinforced,
+/obj/item/device/retail_scanner/security,
+/obj/machinery/recharger,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "cc" = (
@@ -4387,6 +4405,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/button/remote/airlock{
+	id = "armory_red";
+	name = "HoS Armory Access";
+	pixel_x = -10;
+	pixel_y = -24;
+	req_access = list(58)
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/red)
 "hG" = (
@@ -4808,21 +4833,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "ik" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
+/obj/machinery/light,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = -32
 	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
-	},
-/obj/machinery/photocopier,
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 0;
-	pixel_y = 26
-	},
-/obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "il" = (
@@ -33252,10 +33267,10 @@ gO
 hi
 hF
 dI
-bS
-fl
 bD
+fl
 cb
+ik
 dI
 dI
 dK
@@ -33394,7 +33409,7 @@ gP
 bZ
 bv
 dI
-ik
+bS
 ez
 bE
 ez
