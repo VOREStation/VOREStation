@@ -5,8 +5,12 @@
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY
 
+	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
+
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
+		if(user.a_intent == I_HELP)
+			return
 		var/can_place = 0
 		if(istype(user, /mob/living/silicon/robot))
 			can_place = 1
