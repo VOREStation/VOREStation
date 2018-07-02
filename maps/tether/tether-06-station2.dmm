@@ -107,24 +107,58 @@
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "ao" = (
-/turf/space,
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/floor_decal/borderfloor/shifted{
+	icon_state = "borderfloor_shifted";
+	dir = 4
 	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/floor_decal/corner/red/border/shifted{
+	icon_state = "bordercolor_shifted";
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red{
+	icon_state = "corner_white";
+	dir = 6
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/security/brig/visitation)
 "ap" = (
-/turf/space,
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/effect/floor_decal/borderfloor/shifted{
+	icon_state = "borderfloor_shifted";
+	dir = 4
 	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/floor_decal/corner/red/border/shifted{
+	icon_state = "bordercolor_shifted";
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red{
+	icon_state = "corner_white";
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "visitdoor";
+	name = "Visitation Access";
+	pixel_y = -24
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/security/brig/visitation)
 "aq" = (
 /obj/machinery/light{
 	dir = 4
@@ -133,15 +167,18 @@
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "ar" = (
-/turf/space,
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/structure/bed/chair{
+	dir = 1
 	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green,
+/turf/simulated/floor/tiled,
+/area/security/brig)
 "as" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
@@ -152,6 +189,19 @@
 "at" = (
 /turf/simulated/wall,
 /area/maintenance/station/sec_lower)
+"au" = (
+/obj/item/weapon/stool/padded,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green,
+/turf/simulated/floor/tiled,
+/area/security/brig)
 "av" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -241,6 +291,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/security/brig)
+"aE" = (
+/obj/machinery/atmospherics/portables_connector,
+/turf/simulated/floor,
+/area/security/riot_control)
 "aF" = (
 /obj/random/trash,
 /turf/simulated/floor/tiled/dark,
@@ -280,6 +334,31 @@
 /obj/item/toy/stickhorse,
 /turf/simulated/floor/tiled/dark,
 /area/security/recstorage)
+"aJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/security/riot_control)
+"aK" = (
+/obj/machinery/atmospherics/binary/pump,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/security/riot_control)
 "aL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -476,6 +555,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"aZ" = (
+/obj/machinery/atmospherics/valve/digital,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/security/riot_control)
 "ba" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -645,6 +729,58 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
+"bn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
+/area/security/riot_control)
+"bo" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/green,
+/obj/machinery/meter,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/security/riot_control)
+"bp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	icon_state = "intact";
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/security/riot_control)
 "bq" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -672,6 +808,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/security/brig)
+"br" = (
+/turf/space,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "bs" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -696,6 +842,25 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"bt" = (
+/turf/space,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"bu" = (
+/turf/space,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "bx" = (
 /obj/effect/floor_decal/rust,
 /obj/random/junk,
@@ -755,22 +920,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/green{
 	icon_state = "map";
 	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig)
-"bF" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/green{
-	icon_state = "map";
-	dir = 4
-	},
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
@@ -1544,26 +1693,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/recstorage)
-"cW" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	icon_state = "borderfloor_shifted";
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red/border/shifted{
-	icon_state = "bordercolor_shifted";
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red{
-	icon_state = "corner_white";
-	dir = 6
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig/visitation)
 "cX" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -1795,18 +1924,6 @@
 /obj/machinery/door/window/brigdoor/eastright,
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
-"dm" = (
-/obj/item/weapon/stool/padded,
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig)
 "dn" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1873,29 +1990,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
-"dr" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	icon_state = "borderfloor_shifted";
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red/border/shifted{
-	icon_state = "bordercolor_shifted";
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red{
-	icon_state = "corner_white";
-	dir = 6
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/button/remote/airlock{
-	id = "visitdoor";
-	name = "Visitation Access";
-	pixel_y = -24
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig/visitation)
 "ds" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -4191,42 +4285,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
-"ix" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/atmospherics/portables_connector,
-/turf/simulated/floor,
-/area/security/riot_control)
-"iy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/green,
-/turf/simulated/floor,
-/area/security/riot_control)
 "iz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -4561,10 +4619,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/security/riot_control)
-"ji" = (
-/obj/machinery/atmospherics/binary/pump,
-/turf/simulated/floor,
-/area/security/riot_control)
 "jj" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -4748,13 +4802,6 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner2,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
-"jK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/green{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/simulated/floor,
-/area/security/riot_control)
 "jL" = (
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
@@ -16768,28 +16815,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
-"FF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/green{
-	icon_state = "intact";
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor,
-/area/security/riot_control)
 "FI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -17712,10 +17737,6 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"Ok" = (
-/obj/machinery/atmospherics/valve/digital,
-/turf/simulated/floor,
-/area/security/riot_control)
 "Op" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -19263,11 +19284,6 @@
 /obj/machinery/vending/cola,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
-"YR" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/green,
-/obj/machinery/meter,
-/turf/simulated/floor,
-/area/security/riot_control)
 "YU" = (
 /obj/effect/floor_decal/rust,
 /obj/random/trash_pile,
@@ -25724,9 +25740,9 @@ av
 aQ
 bh
 af
-cW
+ao
 dk
-dr
+ap
 dj
 dL
 Tk
@@ -26720,11 +26736,11 @@ bm
 DF
 bE
 bc
-bF
+ar
 cg
 ca
 cd
-dm
+au
 dQ
 Ye
 VB
@@ -27157,9 +27173,9 @@ Zu
 Ng
 JD
 TY
-ix
-ji
-jK
+aE
+aK
+bn
 TY
 TY
 ac
@@ -27299,9 +27315,9 @@ aS
 Wk
 Eu
 dR
-iy
-Ok
-YR
+aJ
+aZ
+bo
 Xp
 TY
 ac
@@ -27443,7 +27459,7 @@ Ph
 TY
 iz
 ad
-FF
+bp
 Xp
 TY
 ac
@@ -29892,11 +29908,11 @@ AN
 AN
 Bw
 yY
-ao
-ap
-ap
-ap
-ar
+br
+bt
+bt
+bt
+bu
 yY
 ac
 ac
