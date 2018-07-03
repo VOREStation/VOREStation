@@ -121,8 +121,8 @@
  * Cloak
  */
 /obj/item/clothing/accessory/poncho/roles/cloak
-	name = "brown cloak"
-	desc = "An elaborate brown cloak."
+	name = "quartermaster's cloak"
+	desc = "An elaborate brown and gold cloak."
 	icon_state = "qmcloak"
 	item_state = "qmcloak"
 	body_parts_covered = null
@@ -168,6 +168,54 @@
 	desc = "An elaborate cloak meant to be worn by the colony director."
 	icon_state = "capcloak"
 	item_state = "capcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/cargo
+	name = "brown cloak"
+	desc = "A simple brown and black cloak."
+	icon_state = "cargocloak"
+	item_state = "cargocloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mining
+	name = "trimmed purple cloak"
+	desc = "A trimmed purple and brown cloak."
+	icon_state = "miningcloak"
+	item_state = "miningcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/security
+	name = "red cloak"
+	desc = "A simple red and black cloak."
+	icon_state = "seccloak"
+	item_state = "seccloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/service
+	name = "green cloak"
+	desc = "A simple green and blue cloak."
+	icon_state = "servicecloak"
+	item_state = "servicecloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/engineer
+	name = "gold cloak"
+	desc = "A simple gold and brown cloak."
+	icon_state = "engicloak"
+	item_state = "engicloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/atmos
+	name = "yellow cloak"
+	desc = "A trimmed yellow and blue cloak."
+	icon_state = "atmoscloak"
+	item_state = "atmoscloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/research
+	name = "purple cloak"
+	desc = "A simple purple and white cloak."
+	icon_state = "scicloak"
+	item_state = "scicloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/medical
+	name = "blue cloak"
+	desc = "A simple blue and white cloak."
+	icon_state = "medcloak"
+	item_state = "medcloak"
 
 /obj/item/clothing/accessory/hawaii
 	name = "flower-pattern shirt"
