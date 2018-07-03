@@ -134,7 +134,11 @@ var/global/photo_count = 0
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 	var/size = 3
+<<<<<<< HEAD
 	var/picture_planes = list()
+=======
+	var/list/picture_planes = list()
+>>>>>>> 2a696db... Merge pull request #5385 from Mechoid/Camerafix
 
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"
@@ -194,7 +198,11 @@ var/global/photo_count = 0
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
+<<<<<<< HEAD
 			var/icon/img = getFlatIcon(A)//, picture_planes = picture_planes)//build_composite_icon(A) //VOREStation Edit
+=======
+			var/icon/img = getFlatIcon(A, picture_planes)//build_composite_icon(A)
+>>>>>>> 2a696db... Merge pull request #5385 from Mechoid/Camerafix
 
 			// If what we got back is actually a picture, draw it.
 			if(istype(img, /icon))
