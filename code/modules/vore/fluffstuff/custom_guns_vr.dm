@@ -541,6 +541,7 @@
 
 /obj/item/projectile/beam/imperial
 	name = "laser beam"
+	fire_sound = 'sound/weapons/mandalorian.ogg'
 	icon_state = "darkb"
 	light_color = "#8837A3"
 	muzzle_type = /obj/effect/projectile/darkmatter/muzzle
