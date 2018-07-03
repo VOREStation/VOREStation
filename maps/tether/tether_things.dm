@@ -378,11 +378,11 @@ var/global/list/latejoin_tram   = list()
 	reagents.add_reagent("paracetamol", 5)
 
 //"Red" Armory Door
-/obj/machinery/door/airlock/multi_tile/metal/red
+/obj/machinery/door/airlock/security/armory
 	name = "Red Armory"
 	//color = ""
 
-/obj/machinery/door/airlock/multi_tile/metal/red/allowed(mob/user)
+/obj/machinery/door/airlock/security/armory/allowed(mob/user)
 	if(get_security_level() in list("green","blue"))
 		return FALSE
 

@@ -90,3 +90,7 @@
 /area/engineering/shaft
 	name = "\improper Engineering Electrical Shaft"
 	icon_state = "substation"
+
+/area/vacant/vacant_office
+	name = "\improper Vacant Office"
+	icon_state = "vacant_site"
