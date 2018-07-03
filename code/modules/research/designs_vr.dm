@@ -109,13 +109,13 @@
 	build_path = /obj/item/device/nifrepairer
 	sort_string = "HABBE" //Changed String from HABBD to HABBE
 
-/datum/design/item/medical/phasic_analyzer
-	name = "phasic health analyzer"
-	desc = "A state of the art refinement of the improved health scanner, with a full biosign monitor, on-board gastrointestinal, radiation and neurological analysis suites."
-	id = "phasic_analyzer"
+/datum/design/item/medical/advanced_analyzer
+	name = "advanced health analyzer"
+	desc = "A state of the art refinement of the improved health scanner, with a full biosign monitor, on-board radiation and neurological analysis suites."
+	id = "advanced_analyzer"
 	req_tech = list(TECH_MAGNET = 6, TECH_BIO = 7, TECH_BLUESPACE = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "silver" = 4000, "gold" = 6000, "diamond" = 6000)
-	build_path = /obj/item/device/healthanalyzer/phasic
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "silver" = 2000, "gold" = 3000, "diamond" = 4000)
+	build_path = /obj/item/device/healthanalyzer/advanced
 	sort_string = "MBBAH"
 
 /datum/design/item/medical/protohypospray
@@ -350,18 +350,21 @@
 	name = "rig module - laser cannon"
 	id = "rigmod_lasercannon"
 	build_path = /obj/item/rig_module/mounted
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 6000, "silver" = 4000, "uranium" = 2000, "diamond" = 2000)
 	sort_string = "HCAAM"
 
 /datum/design/item/rig_module/egun
 	name = "rig module - egun"
 	id = "rigmod_egun"
 	build_path = /obj/item/rig_module/mounted/egun
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 6000, "silver" = 4000, "uranium" = 2000, "diamond" = 1000)
 	sort_string = "HCAAN"
 
 /datum/design/item/rig_module/grenade
 	name = "rig module - grenade launcher"
 	id = "rigmod_grenade"
 	build_path = /obj/item/rig_module/grenade_launcher
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 6000, "silver" = 4000, "uranium" = 2000, "diamond" = 3000)
 	sort_string = "HCAAO"
 
 /datum/design/item/rig_module/taser
@@ -374,4 +377,5 @@
 	name = "rig module - rcd"
 	id = "rigmod_rcd"
 	build_path = /obj/item/rig_module/device/rcd
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 6000, "silver" = 4000, "uranium" = 2000, "diamond" = 2000)
 	sort_string = "HCAAQ"

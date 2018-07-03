@@ -493,7 +493,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
 "bA" = (
