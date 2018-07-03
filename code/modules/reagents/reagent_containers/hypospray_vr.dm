@@ -47,7 +47,7 @@
 		if(H != user)
 			to_chat(user, "<span class='notice'>You begin injecting [H] with \the [src].</span>")
 			to_chat(H, "<span class='danger'> [user] is trying to inject you with \the [src]!</span>")
-			if(!do_after(user, 30))
+			if(!do_after(user, 30, H))
 				return
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
