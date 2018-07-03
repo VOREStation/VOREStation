@@ -51,7 +51,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	magazine_type = /obj/item/ammo_magazine/m95
 	allowed_magazines = list(/obj/item/ammo_magazine/m95)
-	fire_sound = 'sound/weapons/battlerifle.ogg'
+	//fire_sound = 'sound/weapons/battlerifle.ogg' // Handled by projectiles now.
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
 	//requires_two_hands = 1
@@ -103,7 +103,7 @@
 	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
 	icon_state = "ge_pistol"
 	item_state = "ge_pistol"
-	fire_sound = 'sound/weapons/mandalorian.ogg'
+	//fire_sound = 'sound/weapons/mandalorian.ogg' // Handled by projectiles now.
 	icon = 'icons/obj/gun_vr.dmi'
 	item_icons = list(slot_r_hand_str = 'icons/obj/gun_vr.dmi', slot_l_hand_str = 'icons/obj/gun_vr.dmi') // WORK YOU FUCKING CUNT PIECE OF SHIT BASTARD STUPID BITCH ITEM ICON AAAAHHHH
 	item_state_slots = list(slot_r_hand_str = "ge_pistol_r", slot_l_hand_str = "ge_pistol_l")
@@ -128,7 +128,6 @@
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "tasaldrevolver"
 	item_state = "revolver"
-	fire_sound = 'sound/weapons/pistol.ogg'
 	ammo_type = /obj/item/ammo_casing/a357/rubber //Like I said, no reason to nerf. --Joan Risu
 	var/recentpump = 0
 	var/cocksound = 'sound/weapons/revolvercock.ogg'
@@ -194,7 +193,6 @@
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "raikov"
 	icon_state = "raikov"
-	fire_sound = 'sound/weapons/45pistol_vr.ogg'
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
 /* //Commented out due to weapon change.
@@ -204,7 +202,6 @@
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "model10"
 	icon_state = "model10"
-	fire_sound = 'sound/weapons/deagle.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a38r //Rubber rounds.
 */
@@ -244,16 +241,12 @@
 	desc = "Can you match my resolve? If so then you will succeed. I believe that the human spirit is indomitable. Keep Moving Forward. Uses 7.62mm rounds."
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "crestrose_fold"
-
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "crestrose_fold_mob"
-
 	item_icons = null
-
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
 	slot_flags = null
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	force = 3
 	recoil = 2
@@ -307,9 +300,8 @@
 	desc = "A gas-powered dart gun designed by the National Armory of Gaia. This gun is used primarily by United Federation special forces for Tactical Espionage missions. Don't forget your bandana."
 	icon_state = "tranqgun"
 	item_state = null
-
 	caliber = "dart"
-	fire_sound = 'sound/weapons/empty.ogg'
+	//fire_sound = 'sound/weapons/empty.ogg' // Handled by projectiles now.
 	fire_sound_text = "a metallic click"
 	recoil = 0
 	silenced = 1
@@ -375,7 +367,6 @@
 	icon = 'icons/obj/gun64_vr.dmi'
 	icon_state = "g44estun100"
 	item_state = "energystun100" //This is temporary.
-	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
 	force = 8
 	w_class = ITEMSIZE_LARGE
@@ -390,10 +381,10 @@
 	one_handed_penalty = 4
 
 	firemodes = list(
-		list(mode_name="stun", burst=1, projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg', charge_cost = 100),
-		list(mode_name="stun burst", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", burst=1, projectile_type=/obj/item/projectile/beam/burstlaser, modifystate="g44ekill", fire_sound='sound/weapons/Laser.ogg', charge_cost = 200),
-		list(mode_name="lethal burst", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/burstlaser, modifystate="g44ekill", fire_sound='sound/weapons/Laser.ogg'),
+		list(mode_name="stun", burst=1, projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun", charge_cost = 100),
+		list(mode_name="stun burst", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/stun/weak, modifystate="g44estun"),
+		list(mode_name="lethal", burst=1, projectile_type=/obj/item/projectile/beam/burstlaser, modifystate="g44ekill", charge_cost = 200),
+		list(mode_name="lethal burst", burst=3, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/burstlaser, modifystate="g44ekill"),
 		)*/
 
 
@@ -427,10 +418,9 @@
 	battery_lock = 1 // In exchange for balance, you cannot remove the battery. Also there's no sprite for that and I fucking suck at sprites. -Ace
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2) // Illegal tech cuz Space Nazis
 	modifystate = "elugerstun"
-	fire_sound = 'sound/weapons/Taser.ogg'
 	firemodes = list(
-	list(mode_name="stun", charge_cost=120,projectile_type=/obj/item/projectile/beam/stun, modifystate="elugerstun", fire_sound='sound/weapons/Taser.ogg'),
-	list(mode_name="lethal", charge_cost=240,projectile_type=/obj/item/projectile/beam/eluger, modifystate="elugerkill", fire_sound='sound/weapons/eluger.ogg'),
+	list(mode_name="stun", charge_cost=120,projectile_type=/obj/item/projectile/beam/stun, modifystate="elugerstun"),
+	list(mode_name="lethal", charge_cost=240,projectile_type=/obj/item/projectile/beam/eluger, modifystate="elugerkill"),
 	)
 
 //////////////////// Eris Ported Guns ////////////////////
@@ -441,7 +431,6 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "Headdeagle"
 	item_state = "revolver"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
 	caliber = ".44"
 	magazine_type = /obj/item/ammo_magazine/m44/rubber
 	allowed_magazines = list(/obj/item/ammo_magazine/m44,/obj/item/ammo_magazine/m44/rubber)
@@ -470,7 +459,6 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m380)
 	load_method = MAGAZINE
 	w_class = ITEMSIZE_SMALL
-	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
@@ -567,11 +555,10 @@
 	charge_meter = 0
 	modifystate = null
 	battery_lock = 1
-	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam),
 		)
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
@@ -788,14 +775,10 @@
 	item_state = "phaser"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
 	item_state_slots = list(slot_r_hand_str = "phaser", slot_l_hand_str = "phaser", "slot_belt" = "phaser")
-	fire_sound = 'sound/weapons/laser2.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_POWER = 4)
-
 	battery_lock = 1
 	unacidable = 1
-
 	var/recharging = 0
-
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
 		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
