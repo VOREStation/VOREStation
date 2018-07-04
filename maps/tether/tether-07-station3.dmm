@@ -27174,6 +27174,9 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"SW" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -35297,8 +35300,8 @@ aJ
 aJ
 aJ
 aJ
-aJ
-aa
+SW
+SW
 ab
 ab
 aU
@@ -35438,9 +35441,9 @@ aa
 aa
 ae
 aa
-aa
 aJ
-aa
+SW
+SW
 ab
 ab
 aU
@@ -35580,9 +35583,9 @@ aa
 aa
 ae
 aa
-aa
 aJ
-aa
+SW
+SW
 ab
 ab
 aU
@@ -35722,8 +35725,8 @@ aa
 aa
 aO
 aa
-aa
 aJ
+SW
 ab
 ab
 ab
@@ -35864,8 +35867,8 @@ aa
 aa
 aa
 aa
-aa
 aJ
+SW
 ab
 ab
 ab
@@ -36006,7 +36009,7 @@ aa
 aa
 aa
 aa
-aa
+aJ
 aJ
 ab
 ab
