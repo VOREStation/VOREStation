@@ -7521,11 +7521,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
-"mx" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "my" = (
 /obj/structure/sign/warning/secure_area,
 /turf/simulated/wall/r_wall,
@@ -30850,7 +30845,7 @@ aa
 aa
 aa
 aa
-mx
+ae
 aa
 aa
 ae
