@@ -7521,6 +7521,9 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
+"mx" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
 "my" = (
 /obj/structure/sign/warning/secure_area,
 /turf/simulated/wall/r_wall,
@@ -35365,8 +35368,8 @@ aJ
 aJ
 aJ
 aJ
-gg
-gg
+mx
+mx
 ab
 ab
 aU
@@ -35506,9 +35509,9 @@ aa
 aa
 ae
 aa
-aa
-gg
-gg
+aJ
+mx
+mx
 ab
 ab
 aU
@@ -35648,9 +35651,9 @@ aa
 aa
 ae
 aa
-ed
-gg
-gg
+aJ
+mx
+mx
 ab
 ab
 aU
@@ -35790,8 +35793,8 @@ aa
 aa
 aO
 aa
-ed
-gg
+aJ
+mx
 ab
 ab
 ab
@@ -35932,8 +35935,8 @@ aa
 aa
 aa
 aa
-ed
-gg
+aJ
+mx
 ab
 ab
 ab
@@ -36074,8 +36077,8 @@ aa
 aa
 aa
 aa
-ed
-gg
+aJ
+aJ
 ab
 ab
 ab
@@ -36217,7 +36220,7 @@ aa
 aa
 aa
 aa
-gg
+aJ
 ab
 ab
 ab
@@ -36359,7 +36362,7 @@ aa
 aa
 aa
 aa
-gg
+aJ
 ab
 ab
 ab
