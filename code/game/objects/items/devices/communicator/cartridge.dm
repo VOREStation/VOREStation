@@ -1,5 +1,6 @@
-// Communicator peripherals
-
+// Communicator peripheral devices
+// Internal devices that attack() can be relayed to
+// Additional UI menus for added functionality
 /obj/item/weapon/commcard
 	name = "generic commcard"
 	desc = "A peripheral plug-in for personal communicators."
@@ -11,6 +12,8 @@
 	var/list/internal_devices = list() // Devices that can be toggled on to trigger on attack()
 	var/list/active_devices = list()   // Devices that will be triggered on attack()
 	var/list/ui_templates = list()     // List of lists for when multiple templates
+	var/list/internal_data = list()	   // Data that shouldn't be updated every time nanoUI updates, due to the time complexity of regenerating it, will be stored within the device. I'd really rather not have to, but powernet monitor iterates over machine
+
 
 /obj/item/weapon/commcard/proc/get_device_status()
 	var/list/L = list()
@@ -22,17 +25,62 @@
 			L[++L.len] = list("name" = I.name, "active" = 0, "index" = i++)
 	return L
 
+
 // cartridge.get_data() returns a list of tuples:
 // The field element is the tag used to access the information by the template
 // The value element is the actual data, and can take any form necessary for the template
 /obj/item/weapon/commcard/proc/get_data()
 	return list()
 
+// Handles cartridge-specific functions
+// The helper.link() MUST HAVE 'cartridge_topic' passed into href in order for cartridge functions to be processed.
+// Doesn't matter what the value of it is in most cases, it's just a flag to say, "Hey, there's cartridge data to change!"
+/obj/item/weapon/commcard/Topic(href, href_list)
+
+	// Signalers
+	if(href_list["signaler_target"])
+
+		world << href
+
+		var/obj/item/device/assembly/signaler/S = locate(href_list["signaler_target"]) // Should locate the correct signaler
+
+		if(!istype(S)) // Ref is no longer valid
+			return
+
+		if(S.loc != src) // No longer within the cartridge
+			return
+
+		switch(href_list["signaler_action"])
+			if("Pulse")
+				S.activate()
+
+			if("Edit")
+				var/mob/user = locate(href_list["user"])
+				if(!istype(user)) // Ref no longer valid
+					return
+
+				var/newVal = input(user, "Input a new [href_list["signaler_value"]].", href_list["signaler_value"], (href_list["signaler_value"] == "Code" ? S.code : S.frequency)) as num|null
+				if(newVal)
+					switch(href_list["signaler_value"])
+						if("Code")
+							S.code = newVal
+
+						if("Frequency")
+							S.frequency = newVal
+
+	// Refresh list of powernet sensors
+	if(href_list["powernet_refresh"])
+		internal_data["grid_sensors"] = find_powernet_sensors()
+
+	if(href_list["powernet_target"])
+		internal_data["powernet_target"] = href_list["powernet_target"]
+
+
 // Engineering Cartridge:
 // Devices
 //  *- Halogen Counter
 // Templates
-//  -- Power Monitor
+//  *- Power Monitor
 /obj/item/weapon/commcard/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
@@ -41,10 +89,14 @@
 /obj/item/weapon/commcard/engineering/New()
 	..()
 	internal_devices |= new /obj/item/device/halogen_counter(src)
+	internal_data["grid_sensors"] = find_powernet_sensors()
+	internal_data["powernet_target"] = ""
 
 /obj/item/weapon/commcard/engineering/get_data()
-	// Fetch power monitor data
-
+	return list(
+			list("field" = "powernet_monitoring", "value" = get_powernet_monitoring_list()),
+			list("field" = "powernet_target", "value" = get_powernet_target(internal_data["powernet_target"]))
+		)
 
 // Atmospherics Cartridge:
 // Devices
@@ -68,9 +120,6 @@
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
 	ui_templates = list(list("name" = "Medical Records", "template" = "med_records.tmpl"))
-	//Med records
-	//Med scanner
-	//Halogen counter
 
 /obj/item/weapon/commcard/medical/New()
 	..()
@@ -134,7 +183,6 @@
 	..()
 
 /obj/item/weapon/commcard/int_aff/get_data()
-
 	return list(
 			list("field" = "emp_records", "value" = get_emp_records()),
 			list("field" = "sec_records", "value" = get_sec_records())
@@ -157,7 +205,6 @@
 	..()
 
 /obj/item/weapon/commcard/security/get_data()
-
 	return list(
 			list("field" = "sec_records", "value" = get_sec_records()),
 			list("field" = "sec_bot_access", "value" = get_sec_bot_access())
@@ -166,15 +213,23 @@
 
 // Janitor Cartridge:
 // Templates
-//  -- Janitorial Locator Magicbox
+//  *- Janitorial Locator Magicbox
 /obj/item/weapon/commcard/janitor
 	name = "\improper CustodiPRO cartridge"
 	desc = "The ultimate in clean-room design."
+	ui_templates = list(
+			list("name" = "Janitorial Supply Locator", "template" = "janitorialLocator.tmpl")
+		)
 
 /obj/item/weapon/commcard/janitor/get_data()
-	// Fetch janitorial locator
+	return list(
+			list("field" = "janidata", "value" = get_janitorial_locations())
+		)
 
-
+// Too computationally expensive; unfeasible to perform the list parsing with the frequency nanoUI will demand
+// In order to get all microwave recipe ingredient/product names, I'd have to instantiate and then delete everything at least once
+// Drink recipes are more doable, but still requires iterating over a fairly large set of subtypes
+/******************************************************
 // Service Cartridge:
 // Templates
 //  -- Recipe Lists
@@ -186,18 +241,18 @@
 /obj/item/weapon/commcard/service/get_data()
 	// Add list of recipes to ui template
 	// SEE: /code/modules/food/recipe_dump.dm
-
+******************************************************/
 
 // Signal Cartridge:
 // Devices
 //  *- Signaler
 // Templates
-//  -- Signaler Access
+//  *- Signaler Access
 /obj/item/weapon/commcard/signal
 	name = "generic signaler cartridge"
 	desc = "A data cartridge with an integrated radio signaler module."
 	ui_templates = list(
-			list("name" = "Signaller", "template" = "signaler.tmpl")
+			list("name" = "Integrated Signaler Control", "template" = "signaler_access.tmpl")
 		)
 
 /obj/item/weapon/commcard/signal/New()
@@ -206,17 +261,8 @@
 	// I'm probably gonna regret this too
 
 /obj/item/weapon/commcard/signal/get_data()
-	signallers[0]
-	for(var/obj/item/device/assembly/signaler/S in internal_devices)
-		world << "Found [S]"
-		unit[0]
-		unit[++unit.len] = list("tab" = "Code", "value" = S.code)
-		unit[++unit.len] = list("tab" = "Frequency", "value" = S.frequency)
-
-		signallers[++signallers.len] = unit
-
 	return list(
-			list("field" = "signallers", "value" = signallers)
+			list("field" = "signaler_access", "value" = get_int_signalers())
 		)
 
 
@@ -226,7 +272,7 @@
 //  *- Reagent Scanner
 //  *- Gas Scanner
 // Templates
-//  -- Signaler Access
+//  *- Signaler Access
 /obj/item/weapon/commcard/signal/science
 	name = "\improper Signal Ace 2 cartridge"
 	desc = "Complete with integrated radio signaler!"
@@ -256,6 +302,8 @@
 // Mining Cartridge:
 // Templates
 //  -- Ore Processing Recipes
+// Much more doable than food/drink, there's vastly fewer recipe datums to iterate over.
+// Code here will be similar to what would be used for food/drink, just different path for subtypesof()
 /obj/item/weapon/commcard/miner
 	name = "\improper Drill-Jockey 4.5"
 	desc = "It's covered in some sort of sand."
@@ -284,8 +332,8 @@
 //  *- Security Records
 //  -- Supply Records
 //  -- Supply Bot Access
-//  -- Recipe Lists
-//  -- Janitorial Locator Magicbox
+//  X- Recipe Lists - See service cartridge
+//  *- Janitorial Locator Magicbox
 /obj/item/weapon/commcard/head/hop
 	name = "\improper HumanResources9001 cartridge"
 	icon_state = "cart-h"
@@ -325,7 +373,7 @@
 // Templates
 //  -- Status Display Access
 //  *- Employment Records
-//  -- Signaler Access
+//  *- Signaler Access
 /obj/item/weapon/commcard/head/rd
 	name = "\improper Signal Ace DELUXE"
 	icon_state = "cart-rd"
@@ -375,7 +423,7 @@
 // Templates
 //  -- Status Display Access
 //  *- Employment Records
-//  -- Power Monitoring
+//  *- Power Monitoring
 /obj/item/weapon/commcard/head/ce
 	name = "\improper Power-On DELUXE"
 	icon_state = "cart-ce"
@@ -404,13 +452,14 @@
 //  *- Employment Records
 //  *- Medical Records
 //  *- Security Records
-//  -- Power Monitoring
+//  *- Power Monitoring
 //  -- Supply Records
 //  -- Supply Bot Access
 //  *- Security Bot Access
-//  -- Janitorial Locator Magicbox
+//  *- Janitorial Locator Magicbox
 //  -- GPS Access
-//  -- Signaler Access
+//  *- Signaler Access
+//  X- Recipe lists - See service cartridge
 /obj/item/weapon/commcard/head/captain
 	name = "\improper Value-PAK cartridge"
 	desc = "Now with 200% more value!"

@@ -88,6 +88,7 @@
 	for(var/list/R in modules)
 		modules_ui[++modules_ui.len] = R
 
+	data["user"] = "\ref[user]"	// For receiving input() via topic, because input(usr,...) wasn't working on cartridges
 	data["owner"] = owner ? owner : "Unset"
 	data["occupation"] = occupation ? occupation : "Swipe ID to set."
 	data["connectionStatus"] = get_connection_to_tcomms()
@@ -274,7 +275,7 @@
 		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
 
 	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
-		data = cartridge.Topic(href, href_list)
+		cartridge.Topic(href, href_list)
 
 	GLOB.nanomanager.update_uis(src)
 	add_fingerprint(usr)

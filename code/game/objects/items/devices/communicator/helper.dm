@@ -103,6 +103,7 @@
 // but it may open options for adminbus,
 // And it saves duplicated code
 
+
 // Medical records
 /obj/item/weapon/commcard/proc/get_med_records()
 	var/med_records[0]
@@ -123,6 +124,7 @@
 		med_records[++med_records.len] = list("name" = M.fields["name"], "record" = record)
 	return med_records
 
+
 // Employment records
 /obj/item/weapon/commcard/proc/get_emp_records()
 	var/emp_records[0]
@@ -140,6 +142,7 @@
 
 		emp_records[++emp_records.len] = list("name" = G.fields["name"], "record" = record)
 	return emp_records
+
 
 // Security records
 /obj/item/weapon/commcard/proc/get_sec_records()
@@ -162,6 +165,9 @@
 		sec_records[++sec_records.len] = list("name" = G.fields["name"], "record" = record)
 	return sec_records
 
+
+// Status of all secbots
+// Weaker than what PDAs appear to do, but as of 7/1/2018 PDA secbot access is nonfunctional
 /obj/item/weapon/commcard/proc/get_sec_bot_access()
 	var/sec_bots[0]
 	for(var/mob/living/bot/secbot/S in mob_list)
@@ -193,3 +199,130 @@
 		// Append bot to the list
 		sec_bots[++sec_bots.len] = list("bot" = S.name, "status" = status)
 	return sec_bots
+
+
+// Code and frequency of stored signalers
+// Supports multiple signalers within the device
+/obj/item/weapon/commcard/proc/get_int_signalers()
+	var/signalers[0]
+	for(var/obj/item/device/assembly/signaler/S in internal_devices)
+		var/unit[0]
+		unit[++unit.len] = list("tab" = "Code", "val" = S.code)
+		unit[++unit.len] = list("tab" = "Frequency", "val" = S.frequency)
+
+		signalers[++signalers.len] = list("ref" = "\ref[S]", "status" = unit)
+
+	return signalers
+
+// Returns list of all powernet sensors currently visible to the commcard
+/obj/item/weapon/commcard/proc/find_powernet_sensors()
+	var/grid_sensors[0]
+
+	// Find all the powernet sensors we need to pull data from
+	// Copied from /datum/nano_module/power_monitor/proc/refresh_sensors(),
+	// located in '/code/modules/nano/modules/power_monitor.dm'
+	// Minor tweaks for efficiency and cleanliness
+	var/turf/T = get_turf(src)
+	if(T)
+		var/list/levels = using_map.get_map_levels(T.z, FALSE)
+		for(var/obj/machinery/power/sensor/S in machines)
+			if((S.long_range) || (S.loc.z in levels) || (S.loc.z == T.z)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
+				if(S.name_tag == "#UNKN#") // Default name. Shouldn't happen!
+					warning("Powernet sensor with unset ID Tag! [S.x]X [S.y]Y [S.z]Z")
+				else
+					grid_sensors += S
+	return grid_sensors
+
+// List of powernets
+/obj/item/weapon/commcard/proc/get_powernet_monitoring_list()
+	// Fetch power monitor data
+	var/sensors[0]
+
+	for(var/obj/machinery/power/sensor/S in internal_data["grid_sensors"])
+		var/list/focus = S.return_reading_data()
+
+		sensors[++sensors.len] = list(
+				"name" = S.name_tag,
+				"alarm" = focus["alarm"]
+			)
+
+	return sensors
+
+// Information about the targeted powernet
+/obj/item/weapon/commcard/proc/get_powernet_target(var/target_sensor)
+	if(!target_sensor)
+		return
+
+	var/powernet_target[0]
+
+	for(var/obj/machinery/power/sensor/S in internal_data["grid_sensors"])
+		var/list/focus = S.return_reading_data()
+
+		// Packages the span class here so it doesn't need to be interpreted w/in the for loop in the ui template
+		var/load_stat = "<span class='good'>Optimal</span>"
+		if(focus["load_percentage"] >= 95)
+			load_stat = "<span class='bad'>DANGER: Overload</span>"
+		else if(focus["load_percentage"] >= 85)
+			load_stat = "<span class='average'>WARNING: High Load</span>"
+
+		var/alarm_stat = focus["alarm"] ? "<span class='bad'>WARNING: Abnormal activity detected!</span>" : "<span class='good'>Secure</span>"
+
+		if(target_sensor == S.name_tag)
+			powernet_target = list(
+				"name" = S.name_tag,
+				"alarm" = focus["alarm"],
+				"error" = focus["error"],
+				"apc_data" = focus["apc_data"],
+				"status" = list(
+						list("field" = "Network Load Status", "statval" = load_stat),
+						list("field" = "Network Security Status", "statval" = alarm_stat),
+						list("field" = "Load Percentage", "statval" = focus["load_percentage"]),
+						list("field" = "Available Power", "statval" = focus["total_avail"]),
+						list("field" = "APC Power Usage", "statval" = focus["total_used_apc"]),
+						list("field" = "Other Power Usage", "statval" = focus["total_used_other"]),
+						list("field" = "Total Usage", "statval" = focus["total_used_all"])
+					)
+			)
+
+	return powernet_target
+
+/obj/item/weapon/commcard/proc/get_janitorial_locations()
+	// Fetch janitorial locator
+	var/janidata[0]
+	var/list/cleaningList = list()
+	cleaningList += all_mops + all_mopbuckets + all_janitorial_carts
+
+	// User's location
+	var/turf/userloc = get_turf(src)
+	if(isturf(userloc))
+		janidata[++janidata.len] = list("field" = "Current Location", "val" = "<span class='good'>[userloc.x], [userloc.y], [using_map.get_zlevel_name(userloc.z)]</span>")
+	else
+		janidata[++janidata.len] = list("field" = "Current Location", "val" = "<span class='bad'>Unknown</span>")
+		return janidata // If the user isn't on a valid turf, then it shouldn't be able to find anything anyways
+
+	// Mops, mop buckets, janitorial carts.
+	for(var/obj/C in cleaningList)
+		var/turf/T = get_turf(C)
+		if(isturf(T) )//&& T.z in using_map.get_map_levels(userloc, FALSE))
+			if(T.z == userloc.z)
+				janidata[++janidata.len] = list("field" = apply_text_macros("\proper [C.name]"), "val" = "<span class='good'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>")
+			else
+				janidata[++janidata.len] = list("field" = apply_text_macros("\proper [C.name]"), "val" = "<span class='average'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>")
+
+	// Cleanbots
+	for(var/mob/living/bot/cleanbot/B in living_mob_list)
+		var/turf/T = get_turf(B)
+		if(isturf(T) )//&& T.z in using_map.get_map_levels(userloc, FALSE))
+			var/textout = ""
+			if(B.on)
+				textout += "Status: <span class='good'>Online</span><br>"
+				if(T.z == userloc.z)
+					textout += "<span class='good'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>"
+				else
+					textout += "<span class='average'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>"
+			else
+				textout += "Status: <span class='bad'>Offline</span>"
+
+			janidata[++janidata.len] = list("field" = "[B.name]", "val" = textout)
+
+	return janidata

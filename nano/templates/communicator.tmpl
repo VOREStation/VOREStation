@@ -18,10 +18,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 2}}
 
 	<h3>Manual Dial</h3>
-
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
-
 	
 	<div class="item">
 		<div class="itemLabelWide">
@@ -68,9 +65,11 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			</div>
 		</div>
 	</div>
+	
 	<HR>
 	<h3>Connection Management</h3>
 	<HR>
+	
 	<h3>External Connections</h3>
 	{{for data.voice_mobs}}
 		<div class='item'>
@@ -82,6 +81,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			</div>
 		</div>
 	{{/for}}
+	
 	<h3>Internal Connections</h3>
 	{{for data.communicating}}
 		<div class='item'>
@@ -98,6 +98,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			</div>
 		</div>
 	{{/for}}
+	
 	<h3>Requests Received</h3>
 	{{for data.requestsReceived}}
 		<div class='item'>
@@ -128,9 +129,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 3}}
 
 	<h3>Known Devices</h3>
-	
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	{{for data.knownDevices}}
 		<div class='item'>
@@ -151,9 +150,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 4}}
 
 	<h3>Messaging</h3>
-
 	<HR>
-	<div class="itemContent" style="width: 100%; margin-bottom: 5px;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	{{for data.imContacts}}
 		<div class='item' style="margin-top: 5px;">
@@ -170,9 +167,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 40}}
 
 	<h3>Conversation With: {{:data.targetAddressName}}</h3>
-
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Back', 'arrowreturnthick-1-w', {'switch_tab' : 4})}}</div><BR>
 	
 	<div class='statusDisplay' style='overflow: auto; float: left; width: 95%;'>
 		<div class='item' style='width: 100%;'>
@@ -198,9 +193,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 5}}
 
 	<h3>News</h3>
-	
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	{{if data.feeds.length}}	
 		<!--Most recent three posts -->
@@ -250,9 +243,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 6}}
 
 	<h3>Note Keeper</h3>
-
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 
 	<div class="item">
 		<div class="itemLabel">
@@ -276,9 +267,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 
 {{else data.currentTab == 7}}
 	<h3>Weather</h3>
-	
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	<h4>Current Conditions:</h4>
     {{#def.atmosphericScan}}
@@ -312,9 +301,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 8}}
 	
 	<h3>Crew Manifest</h3>
-	
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	<div class="item">
 		<center><table class="pmon"><tbody>
@@ -338,9 +325,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 9}}
 
 	<h3>Settings</h3>
-	
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 
 	<div class="item">
 		<div class="itemLabel">
@@ -399,9 +384,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 {{else data.currentTab == 10}}
 
 	<h3>External Plugin</h3>
-	
 	<HR>
-	<div class="itemContent" style="width: 100%;">{{:helper.link('Home', 'home', {'switch_tab' : 1})}}</div><BR>
 	
 	{{for data.cart_templates}}
 		<div class="itemContent">
