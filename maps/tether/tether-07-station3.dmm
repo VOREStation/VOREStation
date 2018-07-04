@@ -7522,13 +7522,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "mx" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
-"my" = (
-/obj/structure/sign/warning/secure_area,
-/turf/simulated/wall/r_wall,
-/area/security/security_bathroom)
-"mz" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
 	},
@@ -7546,6 +7539,29 @@
 /obj/item/weapon/storage/box/nifsofts_security,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"my" = (
+/obj/structure/sign/warning/secure_area,
+/turf/simulated/wall/r_wall,
+/area/security/security_bathroom)
+"mz" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/filingcabinet/chestdrawer,
+/turf/simulated/floor/tiled,
+/area/security/security_processing)
 "mA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -10029,23 +10045,29 @@
 /area/security/security_processing)
 "qP" = (
 /obj/effect/floor_decal/borderfloor{
-	dir = 4
+	dir = 1;
+	pixel_y = 0
 	},
 /obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled,
-/area/security/security_processing)
+/area/security/hallway)
 "qQ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -11678,30 +11700,18 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "tc" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized{
+	dir = 10;
+	icon_state = "fwindow";
+	id = "lawyer_blast"
 	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/security/hallway)
+/turf/simulated/floor,
+/area/lawoffice)
 "td" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -17846,19 +17856,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
-"Cu" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor,
-/area/lawoffice)
 "Cv" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -27245,6 +27242,9 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"SW" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -32410,7 +32410,7 @@ kK
 kY
 eT
 mc
-mz
+mx
 eu
 nH
 ob
@@ -32709,9 +32709,9 @@ sT
 tP
 uJ
 vu
-Cu
-Cu
-Cu
+tc
+tc
+tc
 vu
 uO
 zX
@@ -34409,7 +34409,7 @@ qh
 fK
 rv
 qQ
-tc
+qP
 tX
 uR
 vF
@@ -34974,7 +34974,7 @@ oF
 pp
 pP
 qi
-qP
+mz
 ry
 qQ
 tZ
@@ -35368,8 +35368,8 @@ aJ
 aJ
 aJ
 aJ
-mx
-mx
+SW
+SW
 ab
 ab
 aU
@@ -35510,8 +35510,8 @@ aa
 ae
 aa
 aJ
-mx
-mx
+SW
+SW
 ab
 ab
 aU
@@ -35652,8 +35652,8 @@ aa
 ae
 aa
 aJ
-mx
-mx
+SW
+SW
 ab
 ab
 aU
@@ -35794,7 +35794,7 @@ aa
 aO
 aa
 aJ
-mx
+SW
 ab
 ab
 ab
@@ -35936,7 +35936,7 @@ aa
 aa
 aa
 aJ
-mx
+SW
 ab
 ab
 ab
