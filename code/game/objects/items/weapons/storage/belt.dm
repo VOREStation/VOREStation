@@ -87,7 +87,6 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/crowbar,
 		/obj/item/weapon/wirecutters,
-		/obj/item/device/t_scanner
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
