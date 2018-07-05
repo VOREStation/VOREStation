@@ -36,6 +36,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["synth_red"]			>> pref.r_synth
 	S["synth_green"]		>> pref.g_synth
 	S["synth_blue"]			>> pref.b_synth
+	S["synth_markings"]		>> pref.synth_markings //VOREStation edit.
 	pref.preview_icon = null
 	S["bgstate"]			>> pref.bgstate
 
@@ -65,6 +66,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["synth_red"]			<< pref.r_synth
 	S["synth_green"]		<< pref.g_synth
 	S["synth_blue"]			<< pref.b_synth
+	S["synth_markings"]		<< pref.synth_markings //VOREStation edit.
 	S["bgstate"]			<< pref.bgstate
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
@@ -120,6 +122,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_synth	= pref.r_synth
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
+	character.synth_markings = pref.synth_markings //VOREStation edit.
 
 	// Destroy/cyborgize organs and limbs.
 	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
@@ -305,6 +308,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<br>"
 
 	. += "<br>"
+	. += "<b>Allow Synth markings:</b> <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>" //VOREStation edit.
 	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(pref.synth_color)
 		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_synth, 2)][num2hex(pref.g_synth, 2)][num2hex(pref.b_synth, 2)]'><tr><td>__</td></tr></table></font> "
@@ -700,6 +704,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["synth_color"])
 		pref.synth_color = !pref.synth_color
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["synth_markings"]) //VOREStation edit.
+		pref.synth_markings = !pref.synth_markings //VOREStation edit.
+		return TOPIC_REFRESH_UPDATE_PREVIEW //VOREStation edit.
 
 	else if(href_list["synth2_color"])
 		var/new_color = input(user, "Choose your character's synth colour: ", "Character Preference", rgb(pref.r_synth, pref.g_synth, pref.b_synth)) as color|null
