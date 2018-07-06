@@ -2221,7 +2221,6 @@
 #include "code\modules\mob\living\simple_animal\slime\life.dm"
 #include "code\modules\mob\living\simple_animal\slime\slime.dm"
 #include "code\modules\mob\living\simple_animal\slime\subtypes.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\simple_animal\vore\awoo.dm"
 #include "code\modules\mob\living\simple_animal\vore\bee.dm"
 #include "code\modules\mob\living\simple_animal\vore\carp.dm"
@@ -2251,7 +2250,6 @@
 #include "code\modules\mob\living\simple_animal\vore\shadekin\shadekin.dm"
 #include "code\modules\mob\living\simple_animal\vore\shadekin\types.dm"
 #include "code\modules\mob\living\simple_animal\vore\shadekin\~defines.dm"
-=======
 #include "code\modules\mob\living\simple_mob\appearance.dm"
 #include "code\modules\mob\living\simple_mob\combat.dm"
 #include "code\modules\mob\living\simple_mob\defense.dm"
@@ -2285,7 +2283,6 @@
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\hivebot\ranged_damage.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\hivebot\support.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\hivebot\tank.dm"
->>>>>>> 6578227... Merge pull request #5383 from Neerti/carp_port:polaris.dme
 #include "code\modules\mob\living\voice\voice.dm"
 #include "code\modules\mob\new_player\login.dm"
 #include "code\modules\mob\new_player\logout.dm"
