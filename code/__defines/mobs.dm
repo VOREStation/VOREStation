@@ -273,8 +273,6 @@
 #define SA_ROBOTIC	3
 #define SA_HUMANOID	4
 
-<<<<<<< HEAD
-=======
 // More refined version of SA_* ""intelligence"" seperators.
 // Now includes bitflags, so to target two classes you just do 'MOB_CLASS_ANIMAL|MOB_CLASS_HUMANOID'
 #define MOB_CLASS_NONE 			0	// Default value, and used to invert for _ALL.
@@ -292,7 +290,6 @@
 
 #define MOB_CLASS_ALL (~MOB_CLASS_NONE)
 
->>>>>>> 6578227... Merge pull request #5383 from Neerti/carp_port
 // For slime commanding.  Higher numbers allow for more actions.
 #define SLIME_COMMAND_OBEY		1 // When disciplined.
 #define SLIME_COMMAND_FACTION	2 // When in the same 'faction'.
