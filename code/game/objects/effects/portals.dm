@@ -31,6 +31,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	return
 
 /obj/effect/portal/New()
+	..() // Necessary for the list boilerplate to work
 	spawn(300)
 		qdel(src)
 		return

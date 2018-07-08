@@ -20,6 +20,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 /obj/structure/janitorialcart/New()
 	create_reagents(300)
+	..()
 
 
 /obj/structure/janitorialcart/examine(mob/user)
