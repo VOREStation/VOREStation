@@ -216,12 +216,22 @@
 		return
 
 	if (M.species == "Promethean" && O.species != "Promethean") //If the person was a promethean before TF, remove all their verbs!
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_shape
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_colour
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_gender
+		M.verbs -= /mob/living/carbon/human/proc/shapeshifter_select_shape,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_colour,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_gender,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_wings,
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_tail, 
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_ears,
+		M.verbs -=  /mob/living/proc/set_size,
+		M.verbs -=  /mob/living/carbon/human/proc/succubus_drain,
+		M.verbs -=  /mob/living/carbon/human/proc/succubus_drain_finalize,
+		M.verbs -=  /mob/living/carbon/human/proc/succubus_drain_lethal,
+		M.verbs -=  /mob/living/carbon/human/proc/slime_feed,
+		M.verbs -=  /mob/living/proc/eat_trash,
 		M.verbs -=  /mob/living/carbon/human/proc/regenerate
-		M.verbs -=  /mob/living/proc/set_size
 
 	M.species = O.species
 	M.custom_species = O.custom_species
@@ -239,12 +249,22 @@
 		to_chat(M, "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>")
 		to_chat(O, "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>")
 	if (M.species == "Promethean") //Did they get TF'd into a promethean?
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_shape
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_colour
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_gender
+		M.verbs += /mob/living/carbon/human/proc/shapeshifter_select_shape,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_colour,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_gender,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_wings,
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_tail, 
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_ears,
+		M.verbs +=  /mob/living/proc/set_size,
+		M.verbs +=  /mob/living/carbon/human/proc/succubus_drain,
+		M.verbs +=  /mob/living/carbon/human/proc/succubus_drain_finalize,
+		M.verbs +=  /mob/living/carbon/human/proc/succubus_drain_lethal,
+		M.verbs +=  /mob/living/carbon/human/proc/slime_feed,
+		M.verbs +=  /mob/living/proc/eat_trash,
 		M.verbs +=  /mob/living/carbon/human/proc/regenerate
-		M.verbs +=  /mob/living/proc/set_size
 		M.shapeshifter_select_shape()
 
 /obj/belly/proc/put_in_egg(var/atom/movable/M, message=0)
