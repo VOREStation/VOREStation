@@ -179,6 +179,7 @@ var/global/list/limb_icon_cache = list()
 	if(model)
 		icon_cache_key += "_model_[model]"
 		apply_colouration(mob_icon)
+<<<<<<< HEAD
 		// VOREStation edit to enable markings on synths
 		for(var/M in markings)
 			var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
@@ -196,6 +197,16 @@ var/global/list/limb_icon_cache = list()
 				limb_icon_cache[cache_key] = I
 			mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
 		// VOREStation edit ends here
+=======
+		if(owner && owner.synth_markings)
+			for(var/M in markings)
+				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+				mark_s.Blend(markings[M]["color"], ICON_ADD)
+				add_overlay(mark_s) //So when it's not on your body, it has icons
+				mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
+				icon_cache_key += "[M][markings[M]["color"]]"
+>>>>>>> 9e51c85... Merge pull request #5394 from Verkister/synthpaints
 
 	dir = EAST
 	icon = mob_icon
