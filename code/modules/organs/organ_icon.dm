@@ -179,6 +179,14 @@ var/global/list/limb_icon_cache = list()
 	if(model)
 		icon_cache_key += "_model_[model]"
 		apply_colouration(mob_icon)
+		if(owner && owner.synth_markings)
+			for(var/M in markings)
+				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+				var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
+				mark_s.Blend(markings[M]["color"], ICON_ADD)
+				add_overlay(mark_s) //So when it's not on your body, it has icons
+				mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
+				icon_cache_key += "[M][markings[M]["color"]]"
 
 	dir = EAST
 	icon = mob_icon
