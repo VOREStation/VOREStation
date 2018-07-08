@@ -20,7 +20,7 @@
 	trashcan = 1 //They have goopy bodies. They can just dissolve things within them.
 
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
-/* //Use the list in prometheans_vr. This is done in order to cause conflicts if their verbs list is updated so if Polaris gives them a verb, we'll know about it and it doesn't get overlooked.
+/* //Use the list in prometheans. This is done in order to cause conflicts if their verbs list is updated so if Polaris gives them a verb, we'll know about it and it doesn't get overlooked.
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
