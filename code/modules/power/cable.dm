@@ -160,6 +160,7 @@ var/list/possible_cable_coil_colours = list(
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
+		var/obj/item/stack/cable_coil/CC
 		if(d1 == UP || d2 == UP)
 			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
 			return
@@ -172,9 +173,12 @@ var/list/possible_cable_coil_colours = list(
 			return
 
 		if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
-			new/obj/item/stack/cable_coil(T, 2, color)
+			CC = new/obj/item/stack/cable_coil(T, 2, color)
 		else
-			new/obj/item/stack/cable_coil(T, 1, color)
+			CC = new/obj/item/stack/cable_coil(T, 1, color)
+
+		src.add_fingerprint(user)
+		src.transfer_fingerprints_to(CC)
 
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
