@@ -1,25 +1,40 @@
-/obj/item/weapon/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude //Except burstfire isn't fit for an rp server --Mark
+/obj/item/weapon/gun/projectile/automatic //This should never be spawned in, it is just here because of code necessities.
+	name = "daka SMG"
+	desc = "A small SMG. You really shouldn't be able to get this gun. Uses 9mm rounds."
+	icon_state = "c05r"	//Used because it's not used anywhere else
+	load_method = SPEEDLOADER
+	ammo_type = /obj/item/ammo_casing/a9mm
+	projectile_type = /obj/item/projectile/bullet/pistol
+
+//Burst is the number of bullets fired; Fire delay is the time you have to wait to shoot the gun again, Move delay is the same but for moving after shooting. .
+//Burst accuracy is the accuracy of each bullet fired in the burst. Dispersion is how much the bullets will 'spread' away from where you aimed.
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)))
+
+/obj/item/weapon/gun/projectile/automatic/saber //Fixed it
 	name = "prototype SMG"
 	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
-	icon_state = "saber"	//ugly
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "saber"//Still ugly
 	w_class = ITEMSIZE_NORMAL
-	load_method = SPEEDLOADER //yup. until someone sprites a magazine for it.
+	load_method = MAGAZINE  //This should fix it
 	max_shells = 22
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = /obj/item/ammo_casing/a9mm
+	magazine_type = /obj/item/ammo_magazine/m9mmR/saber
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mmR/saber, /obj/item/ammo_magazine/m9mmR/saber/ap)
 	projectile_type = /obj/item/projectile/bullet/pistol
 	multi_aim = 1
 	burst_delay = 2
 
-//	one_handed_penalty = 15
-
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
-//		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15,-30,-30), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		)
+	//	list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15,-30,-30), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+	)
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "submachine gun"
