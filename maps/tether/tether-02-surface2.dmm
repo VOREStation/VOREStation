@@ -10029,8 +10029,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -12529,8 +12528,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
@@ -15127,8 +15125,7 @@
 /area/engineering/atmos)
 "DB" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -15536,8 +15533,7 @@
 	layer = 2.9
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/door/window/northleft{
 	name = "Atmospherics Hardsuits";
@@ -15621,8 +15617,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
@@ -18219,8 +18214,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -18235,8 +18229,7 @@
 /area/tether/surfacebase/public_garden_two)
 "YH" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 1e+006
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4

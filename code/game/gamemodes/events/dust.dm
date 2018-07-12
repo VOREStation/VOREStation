@@ -83,7 +83,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				endx = world.maxx-TRANSITIONEDGE
 		//VOREStation Edit - No space dust outside of space
 		var/list/z_levels = using_map.station_levels.Copy()
-		for(var/datum/planet/P in planet_controller.planets)
+		for(var/datum/planet/P in SSplanets.planets)
 			z_levels.Remove(P.expected_z_levels)
 		var/z_level = pick(z_levels)
 		//VOREStation Edit End

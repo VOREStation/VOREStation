@@ -6,15 +6,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	density = TRUE
 	anchored = TRUE
-	var/interaction_message = null
-
-/obj/structure/prop/alien/attack_hand(mob/living/user) // Used to tell the player that this isn't useful for anything.
-	if(!istype(user))
-		return FALSE
-	if(!interaction_message)
-		return ..()
-	else
-		to_chat(user, interaction_message)
 
 /obj/structure/prop/alien/computer
 	name = "alien console"

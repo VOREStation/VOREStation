@@ -5,7 +5,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/open)
 /turf/simulated/open/virgo3b/New()
 	..()
 	if(outdoors)
-		outdoor_turfs.Add(src)
+		SSplanets.addTurf(src)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
 
@@ -183,7 +183,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	color = "#FFBBBB"
 
 /turf/simulated/sky/virgo3b/initialize()
-	outdoor_turfs.Add(src)
+	SSplanets.addTurf(src)
 	set_light(2, 2, "#FFBBBB")
 
 /turf/simulated/sky/virgo3b/north

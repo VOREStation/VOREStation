@@ -1,7 +1,6 @@
 #define AI_CHECK_WIRELESS 1
 #define AI_CHECK_RADIO 2
 
-var/list/ai_list = list()
 var/list/ai_verbs_default = list(
 	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
@@ -65,6 +64,7 @@ var/list/ai_verbs_default = list(
 	var/datum/announcement/priority/announcement
 	var/obj/machinery/ai_powersupply/psupply = null // Backwards reference to AI's powersupply object.
 	var/hologram_follow = 1 //This is used for the AI eye, to determine if a holopad's hologram should follow it or not.
+	var/is_dummy = 0 //Used to prevent dummy AIs from spawning with communicators.
 	//NEWMALF VARIABLES
 	var/malfunctioning = 0						// Master var that determines if AI is malfunctioning.
 	var/datum/malf_hardware/hardware = null		// Installed piece of hardware.
@@ -112,15 +112,16 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
+	if(!is_dummy)
+		aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = 1
 	canmove = 0
 	density = 1
 	loc = loc
-
-	aiCommunicator = new /obj/item/device/communicator/integrated(src)
-
+	
+	if(!is_dummy)
+		aiCommunicator = new /obj/item/device/communicator/integrated(src)
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 
@@ -694,6 +695,9 @@ var/list/ai_verbs_default = list(
 		card.grab_ai(src, user)
 
 	else if(istype(W, /obj/item/weapon/wrench))
+		if(user == controlling_drone)
+			to_chat(user, "<span class='notice'>The drone's subsystems resist your efforts to tamper with your bolts.</span>")
+			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")
@@ -801,6 +805,21 @@ var/list/ai_verbs_default = list(
 	// AI cores don't store what brain was used to build them so we're just gonna assume they can think to some degree.
 	// If that is ever fixed please update this proc.
 	return TRUE
+
+//Special subtype kept around for global announcements
+/mob/living/silicon/ai/announcer/
+	is_dummy = 1
+	
+/mob/living/silicon/ai/announcer/initialize()
+	. = ..()
+	mob_list -= src
+	living_mob_list -= src
+	dead_mob_list -= src
+	ai_list -= src
+	silicon_mob_list -= src
+
+/mob/living/silicon/ai/announcer/Life()
+	return
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

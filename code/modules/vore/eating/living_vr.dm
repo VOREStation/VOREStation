@@ -355,7 +355,7 @@
 		var/obj/effect/overlay/aiholo/holo = loc
 		holo.drop_prey() //Easiest way
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
-	
+
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -609,3 +609,24 @@
 	set category = "Preferences"
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
+
+/mob/living/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
+
+/mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
+	if(href_list["vore_prefs"])
+		display_voreprefs(usr)
+	return ..()
+
+/mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument
+	if(!user)
+		CRASH("display_voreprefs() was called without an associated user.")
+	var/dispvoreprefs = "<b>[src]'s vore preferences</b><br><br><br>"
+	dispvoreprefs += "<b>Digestable:</b> [digestable ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Drop-nom prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Drop-nom pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
+	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name];size=200x300;can_resize=0;can_minimize=0")
+	onclose(user, "[name]")
+	return

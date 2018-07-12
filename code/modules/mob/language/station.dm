@@ -86,6 +86,15 @@
 		new_name += " [..(gender,1)]"
 	return new_name
 
+/datum/language/tajsign
+	name = LANGUAGE_ALAI
+	desc = "A standardized Tajaran sign language that was developed in Zarraya and gradually adopted by other nations, incorporating \
+			hand gestures and movements of the ears and tail."
+	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
+	colour = "tajaran"
+	key = "l"
+	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
+
 /datum/language/skrell
 	name = LANGUAGE_SKRELLIAN
 	desc = "A set of warbles and hums, the language itself a complex mesh of both melodic and rhythmic components, exceptionally capable of conveying intent and emotion of the speaker."

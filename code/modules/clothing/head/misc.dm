@@ -20,27 +20,32 @@
 
 /obj/item/clothing/head/pin/pink
 	icon_state = "pinkpin"
+	addblends = null
 	name = "pink hair hat"
 
 /obj/item/clothing/head/pin/clover
 	icon_state = "cloverpin"
 	name = "clover pin"
+	addblends = null
 	desc = "A hair pin in the shape of a clover leaf."
 
 /obj/item/clothing/head/pin/butterfly
 	icon_state = "butterflypin"
 	name = "butterfly pin"
+	addblends = null
 	desc = "A hair pin in the shape of a bright blue butterfly."
 
 /obj/item/clothing/head/pin/magnetic
 	icon_state = "magnetpin"
 	name = "magnetic 'pin'"
+	addblends = null
 	desc = "Finally, a hair pin even a Morpheus chassis can use."
 	matter = list(DEFAULT_WALL_MATERIAL = 10)
 
 /obj/item/clothing/head/pin/flower
 	name = "red flower pin"
 	icon_state = "hairflower"
+	addblends = null
 	desc = "Smells nice."
 
 /obj/item/clothing/head/pin/flower/blue
@@ -82,6 +87,7 @@
 /obj/item/clothing/head/pin/bow/big/red
 	icon_state = "redribbon"
 	name = "red ribbon"
+	addblends = null
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"

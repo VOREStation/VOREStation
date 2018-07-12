@@ -28,6 +28,12 @@
 
 	return gas_filtered
 
+/obj/item/clothing/mask/gas/clear
+	name = "gas mask"
+	desc = "A face-covering mask with a transparent faceplate that can be connected to an air supply."
+	icon_state = "gas_clear"
+	flags_inv = null
+
 /obj/item/clothing/mask/gas/half
 	name = "face mask"
 	desc = "A compact, durable gas mask that can be connected to an air supply."

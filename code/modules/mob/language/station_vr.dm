@@ -71,7 +71,6 @@
 	"mihi","wan","six","salve","tartu")
 	machine_understands = FALSE
 
-
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran

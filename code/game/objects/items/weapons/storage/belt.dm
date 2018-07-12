@@ -67,6 +67,7 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
 		)
 
 /obj/item/weapon/storage/belt/utility/full
@@ -86,7 +87,6 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/crowbar,
 		/obj/item/weapon/wirecutters,
-		/obj/item/device/t_scanner
 	)
 
 /obj/item/weapon/storage/belt/utility/chief

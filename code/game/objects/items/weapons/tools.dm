@@ -685,7 +685,7 @@
 
 /obj/item/weapon/weldingtool/experimental
 	name = "experimental welding tool"
-	desc = "An experimental welder capable of self-fuel generation. It can output a flame hotter than regular welders."
+	desc = "An experimental welder capable of synthesizing its own fuel from waste compounds. It can output a flame hotter than regular welders."
 	icon_state = "exwelder"
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
@@ -776,6 +776,9 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
+/obj/item/weapon/weldingtool/electric/unloaded/New()
+	cell_type = null
+
 /obj/item/weapon/weldingtool/electric/New()
 	..()
 	if(cell_type == null)
@@ -786,8 +789,8 @@
 		power_supply = new /obj/item/weapon/cell/device(src)
 	update_icon()
 
-/obj/item/weapon/weldingtool/electric/unloaded/New()
-	cell_type = null
+/obj/item/weapon/weldingtool/electric/get_cell()
+	return power_supply
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	if(get_dist(src, user) > 1)

@@ -170,6 +170,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -239,6 +240,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/ert
@@ -284,6 +286,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/scrubpup
@@ -363,6 +366,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/science
@@ -408,6 +412,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/robot/engiedog
@@ -531,6 +536,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
 /obj/item/weapon/robot_module/Reset(var/mob/living/silicon/robot/R)
@@ -543,4 +549,5 @@
 	R.default_pixel_x = initial(pixel_x)
 	R.scrubbing = FALSE
 	R.verbs -= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs -= /mob/living/proc/shred_limb
 	..()

@@ -156,8 +156,8 @@
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_SIIK)
-	name_language = LANGUAGE_SIIK
+	secondary_langs = list(LANGUAGE_TERMINUS)
+	name_language = LANGUAGE_TERMINUS
 
 	min_age = 18
 	max_age = 80
@@ -176,6 +176,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
+	blood_color = "#240bc4"
 	color_mult = 1
 
 	heat_discomfort_strings = list(
@@ -194,8 +195,8 @@
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_SIIK)
-	name_language = LANGUAGE_SIIK
+	secondary_langs = list(LANGUAGE_TERMINUS)
+	name_language = LANGUAGE_TERMINUS
 
 	min_age = 18
 	max_age = 80
@@ -214,6 +215,7 @@
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
+	blood_color = "#240bc4"
 	color_mult = 1
 	inherent_verbs = list(/mob/living/proc/shred_limb)
 
@@ -361,7 +363,7 @@
 	min_age = 18
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/proc/eat_trash)
 
 datum/species/harpy
 	name = SPECIES_RAPALA

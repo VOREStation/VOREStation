@@ -9,8 +9,8 @@
 /obj/item/clothing/head/helmet/combat/USDF
 	name = "marine helmet"
 	desc = "If you wanna to keep your brain inside yo' head, you'd best put this on!"
-	icon_state = "UNSC_helm"
-	item_state = "UNSC_helm"
+	icon_state = "unsc_helm"
+	item_state = "unsc_helm"
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	icon_override = 'icons/mob/head_vr.dmi'
 
