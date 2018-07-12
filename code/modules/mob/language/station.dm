@@ -77,15 +77,6 @@
 	"kar","yar","kzar","rha","hrar","err","fer","rir","rar","yarr","arr","ii'r","jar","kur","ran","rii","ii",
 	"nai","ou","kah","oa","ama","uuk","bel","chi","ayt","kay","kas","akor","tam","yir","enai")
 
-/datum/language/tajsign
-	name = LANGUAGE_SIIK_ALAI
-	desc = "A standardized Tajaran sign language that was developed in Zarraya and gradually adopted by other nations, incorporating \
-			hand gestures and movements of the ears and tail."
-	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
-	colour = "tajaran"
-	key = "l"
-	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
-
 /datum/language/tajaran/get_random_name(var/gender)
 
 	var/new_name = ..(gender,1)
@@ -94,6 +85,15 @@
 	else
 		new_name += " [..(gender,1)]"
 	return new_name
+
+/datum/language/tajsign
+	name = LANGUAGE_ALAI
+	desc = "A standardized Tajaran sign language that was developed in Zarraya and gradually adopted by other nations, incorporating \
+			hand gestures and movements of the ears and tail."
+	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
+	colour = "tajaran"
+	key = "l"
+	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
 
 /datum/language/skrell
 	name = LANGUAGE_SKRELLIAN

@@ -156,7 +156,7 @@
 	metabolic_rate = 1.1
 	gluttonous = 1
 	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_SIIK, LANGUAGE_AKHANI, LANGUAGE_SIIK_ALAI)
+	secondary_langs = list(LANGUAGE_SIIK, LANGUAGE_AKHANI, LANGUAGE_ALAI)
 	name_language = LANGUAGE_SIIK
 	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
