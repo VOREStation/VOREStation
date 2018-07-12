@@ -50,12 +50,7 @@
 #define LANGUAGE_MINBUS "Minbus"
 #define LANGUAGE_EVENT1 "Occursus"
 #define LANGUAGE_AKHANI "Akhani"
-<<<<<<< HEAD
-#define LANGUAGE_SIIK_TAJR "Siik'Tajr"
-#define LANGUAGE_SIIK_ALAI "Siik'alai"
-=======
 #define LANGUAGE_ALAI "Alai"
->>>>>>> 6a03e89... Merge pull request #5401 from Anewbe/tajsign
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.
