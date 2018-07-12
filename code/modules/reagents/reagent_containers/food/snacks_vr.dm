@@ -165,7 +165,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
 	name = "kitsune udon"
-	desc = "A purported favorite of kitsunes in ancient japanese myth: udon noodles, friend egg, and tofu."
+	desc = "A purported favorite of kitsunes in ancient japanese myth: udon noodles, fried egg, and tofu."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "kitsuneudon"
 	trash = /obj/item/trash/snack_bowl
