@@ -23,7 +23,7 @@
 	force = 5
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	charge_cost = 480
-	projectile_type = /obj/item/projectile/ion/pistol // still packs a punch but no AoE
+	projectile_type = /obj/item/projectile/ion/pistol
 
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"

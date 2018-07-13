@@ -64,6 +64,7 @@ var/list/ai_verbs_default = list(
 	var/datum/announcement/priority/announcement
 	var/obj/machinery/ai_powersupply/psupply = null // Backwards reference to AI's powersupply object.
 	var/hologram_follow = 1 //This is used for the AI eye, to determine if a holopad's hologram should follow it or not.
+	var/is_dummy = 0 //Used to prevent dummy AIs from spawning with communicators.
 	//NEWMALF VARIABLES
 	var/malfunctioning = 0						// Master var that determines if AI is malfunctioning.
 	var/datum/malf_hardware/hardware = null		// Installed piece of hardware.
@@ -111,15 +112,16 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
+	if(!is_dummy)
+		aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = 1
 	canmove = 0
 	density = 1
 	loc = loc
-
-	aiCommunicator = new /obj/item/device/communicator/integrated(src)
-
+	
+	if(!is_dummy)
+		aiCommunicator = new /obj/item/device/communicator/integrated(src)
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 
@@ -805,6 +807,9 @@ var/list/ai_verbs_default = list(
 	return TRUE
 
 //Special subtype kept around for global announcements
+/mob/living/silicon/ai/announcer/
+	is_dummy = 1
+	
 /mob/living/silicon/ai/announcer/initialize()
 	. = ..()
 	mob_list -= src

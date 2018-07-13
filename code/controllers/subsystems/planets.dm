@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(planets)
 	while(currentlist.len)
 		var/turf/simulated/OT = currentlist[currentlist.len]
 		currentlist.len--
-		if(istype(OT) && z_to_planet[OT.z])
+		if(istype(OT) && z_to_planet.len >= OT.z && z_to_planet[OT.z])
 			var/datum/planet/P = z_to_planet[OT.z]
 			P.planet_floors |= OT
 			OT.vis_contents |= P.weather_holder.visuals
@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(planets)
 	while(currentlist.len)
 		var/turf/unsimulated/wall/planetary/PW = currentlist[currentlist.len]
 		currentlist.len--
-		if(istype(PW) && z_to_planet[PW.z])
+		if(istype(PW) && z_to_planet.len >= PW.z && z_to_planet[PW.z])
 			var/datum/planet/P = z_to_planet[PW.z]
 			P.planet_walls |= PW
 		if(!initial && MC_TICK_CHECK)

@@ -865,7 +865,7 @@
 	glass_name = "lime tea"
 	glass_desc = "A tasty mixture of lime and tea. It's apparently good for you!"
 
-	cup_name = "cup of berry tea"
+	cup_name = "cup of lime tea"
 	cup_desc = "A tasty mixture of lime and tea. It's apparently good for you!"
 
 /datum/reagent/drink/tea/orangetea

@@ -47,9 +47,10 @@
 
 /datum/design/item/weapon/smg
 	id = "smg"
+	desc = "An compact reliable SMG firing armor piercing ammo."
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, "silver" = 2000, "diamond" = 1000)
-	build_path = /obj/item/weapon/gun/projectile/automatic
+	build_path = /obj/item/weapon/gun/projectile/automatic/saber
 	sort_string = "TAABA"
 
 /datum/design/item/weapon/ammo_9mm

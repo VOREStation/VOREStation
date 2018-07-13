@@ -88,11 +88,13 @@ character_name: Aronai Kadigan
 item_path: /obj/item/weapon/card/id/centcom/station/fluff/aronai
 }
 
+Weapon Box. Permit Expired
 {
 ckey: aerowing
 character_name: Sebastian Aji
 item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
 }
+
 # ######## B CKEYS
 {
 ckey: benemuel
@@ -188,17 +190,18 @@ character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 }
 
-{
-ckey: dhaeleena
-character_name: Dhaeleena M'iar
-item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
-}
-
-{
-ckey: dhaeleena
-character_name: Dhaeleena M'iar
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
-}
+#Permit Expired
+#{
+#ckey: dhaeleena
+#character_name: Dhaeleena M'iar
+#item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+#}
+#
+#{
+#ckey: dhaeleena
+#character_name: Dhaeleena M'iar
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
+#}
 
 {
 ckey: dickfreedomjohnson
@@ -306,23 +309,23 @@ character_name: Belle Day
 item_path: /obj/item/weapon/implanter/reagent_generator/belle
 }
 
-{
-ckey: hzdonut
-character_name: Jesse Soemmer
-item_path: /obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
-}
-
-{
-ckey: hzdonut
-character_name: Jesse Soemmer
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
-}
-
-{
-ckey: hzdonut
-character_name: Jesse Soemmer
-item_path: /obj/item/clothing/accessory/holster/hip
-}
+#{
+#ckey: hzdonut
+#character_name: Jesse Soemmer
+#item_path: /obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
+#}
+#
+#{
+#ckey: hzdonut
+#character_name: Jesse Soemmer
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
+#}
+#
+#{
+#ckey: hzdonut
+#character_name: Jesse Soemmer
+#item_path: /obj/item/clothing/accessory/holster/hip
+#}
 
 # ######## I CKEYS
 
@@ -513,11 +516,14 @@ item_path: /obj/item/weapon/implanter/reagent_generator/rischi
 }
 
 # ######## L CKEYS
+
+#Weapon Box. Permit Expired
 #{
 #ckey: luminescentring
 #character_name: Briana Moore
 #item_path: /obj/item/weapon/storage/box/fluff/briana_moore
 #}
+
 {
 ckey: luminescentring
 character_name: Briana Moore
@@ -731,7 +737,7 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 #item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 #req_access = 1
 #}
-
+#
 #{
 #ckey: silencedmp5a5
 #character_name: Serdykov Antoz

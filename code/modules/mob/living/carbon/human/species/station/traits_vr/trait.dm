@@ -1,5 +1,5 @@
 /datum/trait
-	var/name = "Prototype Trait"
+	var/name
 	var/desc = "Contact a developer if you see this trait."
 
 	var/cost = 0			// 0 is neutral, negative cost means negative, positive cost means positive.
