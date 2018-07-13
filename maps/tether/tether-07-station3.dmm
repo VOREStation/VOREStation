@@ -380,7 +380,7 @@
 /area/maintenance/station/sec_upper)
 "aJ" = (
 /obj/structure/lattice,
-/obj/structure/catwalk,
+/obj/structure/railing,
 /turf/space,
 /area/space)
 "aK" = (
@@ -594,6 +594,8 @@
 	phorontanks = 0
 	},
 /obj/machinery/light,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/corner/red/bordercorner2,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "aX" = (
@@ -726,6 +728,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/red)
 "bm" = (
@@ -1439,6 +1442,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/gun/energy/ionrifle/pistol,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "cl" = (
@@ -3425,31 +3429,18 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/evidence_storage)
 "fM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	icon_state = "bordercolorcorner2";
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	icon_state = "bordercolorcorner2";
-	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
-/area/security/forensics)
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/security/armory/blue)
 "fN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5540,17 +5531,15 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "jh" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/security/armory/blue)
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/security/briefing_room)
 "ji" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -5987,11 +5976,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
-	dir = 2;
-	pixel_x = -10;
-	pixel_y = 12
-	},
 /obj/machinery/computer/skills{
 	icon_state = "laptop";
 	dir = 4
@@ -6128,6 +6112,11 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/weapon/stamp/hos,
+/obj/item/device/flashlight/lamp/green{
+	dir = 2;
+	pixel_x = -4;
+	pixel_y = 12
+	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "jY" = (
@@ -6482,6 +6471,9 @@
 	},
 /obj/structure/closet/secure_closet/hos2,
 /obj/machinery/light,
+/obj/machinery/keycard_auth{
+	pixel_y = -28
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "kH" = (
@@ -6702,6 +6694,9 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/borderfloorblack/corner2,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/glasses/hud/security,
+/obj/item/clothing/glasses/hud/security,
+/obj/item/clothing/glasses/hud/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "lb" = (
@@ -7537,6 +7532,7 @@
 	},
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/nifsofts_security,
+/obj/item/weapon/hand_labeler,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "my" = (
@@ -8045,14 +8041,14 @@
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)
 "nu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
-/area/security/briefing_room)
+/area/security/security_processing)
 "nv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -14156,22 +14152,32 @@
 /turf/simulated/floor/tiled,
 /area/security/observation)
 "wS" = (
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10;
-	icon_state = "borderfloorcorner2";
-	pixel_x = 0
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 8
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 10
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
 	},
-/turf/simulated/floor/tiled,
-/area/security/lobby)
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	icon_state = "bordercolorcorner2";
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	icon_state = "bordercolorcorner2";
+	dir = 5
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/security/forensics)
 "wT" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/cups,
@@ -16440,9 +16446,6 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "Ai" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -17774,6 +17777,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/timeclock/premade/south,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "Cn" = (
@@ -17856,6 +17860,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"Cu" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/lawoffice)
 "Cv" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -27242,6 +27250,48 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"Rf" = (
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10;
+	icon_state = "borderfloorcorner2";
+	pixel_x = 0
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 10
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/security/lobby)
+"Rg" = (
+/obj/structure/catwalk,
+/turf/space,
+/area/space)
+"Rh" = (
+/obj/structure/lattice,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/space,
+/area/space)
+"Ri" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/space,
+/area/space)
+"Rj" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "SW" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
@@ -31710,7 +31760,7 @@ fr
 qd
 fJ
 rh
-fM
+wS
 sO
 tJ
 qc
@@ -32541,7 +32591,7 @@ ih
 ix
 ih
 jb
-jh
+fM
 ih
 jF
 bd
@@ -32666,7 +32716,7 @@ aa
 ae
 ae
 ae
-aJ
+Rg
 ae
 ae
 ab
@@ -32808,7 +32858,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 aa
 aa
 ab
@@ -32949,8 +32999,8 @@ aa
 aa
 ad
 aa
-aa
-aJ
+ed
+Rg
 bh
 aa
 aa
@@ -33091,8 +33141,8 @@ aa
 aa
 ae
 ae
-ae
 aJ
+Rg
 bh
 aa
 aa
@@ -33233,8 +33283,8 @@ aa
 aa
 ad
 aa
-aa
-aJ
+ed
+Rg
 bh
 aa
 aa
@@ -33376,7 +33426,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 aa
 aa
 aa
@@ -33420,7 +33470,7 @@ tS
 uK
 vz
 wh
-wh
+Cu
 xC
 ym
 zm
@@ -33518,7 +33568,7 @@ aa
 ae
 ae
 ae
-aJ
+Rg
 ae
 ae
 ae
@@ -33660,7 +33710,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 aa
 aa
 aa
@@ -33801,8 +33851,8 @@ aa
 aa
 ad
 aa
-aa
-aJ
+ed
+Rg
 bh
 aa
 ab
@@ -33943,8 +33993,8 @@ aa
 aa
 ae
 ae
-ae
 aJ
+Rg
 bh
 aa
 ab
@@ -34085,8 +34135,8 @@ aa
 aa
 ad
 aa
-aa
-aJ
+ed
+Rg
 bh
 aa
 ab
@@ -34228,7 +34278,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 ae
 ae
 cv
@@ -34370,7 +34420,7 @@ aa
 ae
 ae
 ae
-aJ
+Rg
 cv
 cv
 cv
@@ -34512,7 +34562,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 cv
 cv
 cv
@@ -34654,7 +34704,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 cv
 cv
 cv
@@ -34689,7 +34739,7 @@ of
 oD
 pn
 DP
-qi
+nu
 qN
 rx
 qQ
@@ -34796,7 +34846,7 @@ aa
 ae
 ae
 ae
-aJ
+Rg
 cv
 cv
 cv
@@ -34840,7 +34890,7 @@ tW
 uT
 vH
 wn
-wS
+Rf
 wn
 yt
 zq
@@ -34938,7 +34988,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 cv
 cv
 cv
@@ -35080,7 +35130,7 @@ aa
 ad
 aa
 aa
-aJ
+Rg
 cv
 cv
 cv
@@ -35222,7 +35272,7 @@ aa
 ae
 ae
 ae
-aJ
+Rg
 cv
 cv
 cv
@@ -35232,10 +35282,10 @@ cv
 cv
 cv
 cv
-hp
-hp
-hp
-hp
+cv
+cv
+cv
+cv
 iC
 bP
 cn
@@ -35364,11 +35414,11 @@ aa
 ad
 aa
 aa
-aJ
-aJ
-aJ
-aJ
-SW
+Rg
+Rg
+Rg
+Rg
+gg
 SW
 ab
 ab
@@ -35507,10 +35557,10 @@ ad
 aa
 aa
 aa
-ae
-aa
-aJ
-SW
+Rh
+Ri
+Rj
+gg
 SW
 ab
 ab
@@ -35651,8 +35701,8 @@ aa
 aa
 ae
 aa
-aJ
-SW
+ed
+gg
 SW
 ab
 ab
@@ -35793,8 +35843,8 @@ aa
 aa
 aO
 aa
-aJ
-SW
+ed
+gg
 ab
 ab
 ab
@@ -35935,8 +35985,8 @@ aa
 aa
 aa
 aa
-aJ
-SW
+aa
+gg
 ab
 ab
 ab
@@ -36077,8 +36127,8 @@ aa
 aa
 aa
 aa
-aJ
-aJ
+aa
+gg
 ab
 ab
 ab
@@ -36103,7 +36153,7 @@ lh
 lH
 lH
 lH
-nu
+jh
 lH
 ok
 oK
@@ -36220,7 +36270,7 @@ aa
 aa
 aa
 aa
-aJ
+gg
 ab
 ab
 ab
@@ -36362,7 +36412,7 @@ aa
 aa
 aa
 aa
-aJ
+gg
 ab
 ab
 ab

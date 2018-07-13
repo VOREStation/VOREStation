@@ -422,6 +422,12 @@
 /turf/simulated/wall/r_wall,
 /area/security/brig)
 "aT" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/freezer,
 /area/security/brig/bathroom)
 "aU" = (
@@ -1069,6 +1075,12 @@
 	pixel_x = -24;
 	pixel_y = -8;
 	req_access = list(1,2)
+	},
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
