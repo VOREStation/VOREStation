@@ -1,7 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - rscadd: "Steel sheets can be used to construct Roofing Tiles"
-  - rscadd: "Roofing tiles can be used on tiles under open spaces or space tiles in multiZ maps to place a lattice and plating on the space above"
-  - rscadd: "Roofing tiles can be used on outdoor turfs to make them indoors"
-  - rscadd: "Both functions work together on multiZ maps with outdoor turfs, only one roofing tile is used per tile roofed."
