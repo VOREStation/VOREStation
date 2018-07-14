@@ -40,6 +40,7 @@
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
 	var/old_corners = corners
+	var/old_outdoors = outdoors
 
 	//world << "Replacing [src.type] with [N]"
 
@@ -108,3 +109,4 @@
 				lighting_build_overlay()
 			else
 				lighting_clear_overlay()
+	outdoors = old_outdoors
