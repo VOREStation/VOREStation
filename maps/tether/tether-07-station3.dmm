@@ -14142,12 +14142,19 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/weapon/paper_bin{
-	pixel_x = -3;
+	pixel_x = 4;
 	pixel_y = 7
 	},
 /obj/item/weapon/pen/blue{
 	pixel_x = 5;
 	pixel_y = 5
+	},
+/obj/machinery/button/remote/airlock{
+	id = "BrigFoyer";
+	name = "Brig Foyer";
+	pixel_x = -6;
+	pixel_y = 0;
+	req_access = list(1)
 	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
