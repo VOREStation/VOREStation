@@ -133,10 +133,10 @@
 		ui = new(user, src, ui_key, "communicator_header.tmpl", "Communicator", 475, 700, state = key_state)
 		// add templates for screens in common with communicator.
 		ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")
+		ui.add_template("crewManifest", "crew_manifest.tmpl")
+		ui.add_template("Body", "communicator.tmpl") // Main body
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
-		// Append main body
-		ui.append_template("Body", "communicator.tmpl")
 		// open the new ui window
 		ui.open()
 		// auto update every five Master Controller tick

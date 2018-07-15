@@ -655,6 +655,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state = inventory_state)
 		// add templates for screens in common with communicator.
 		ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")
+		ui.add_template("crewManifest", "crew_manifest.tmpl")
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
