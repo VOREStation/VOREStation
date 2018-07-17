@@ -41,15 +41,15 @@
 				if(t && CanUseTopic(user))
 					candidate.name = t
 			if("desc")
-				t = input(user, "Enter a description for your pAI", "Global Preference", html_decode(candidate.description)) as message|null
+				t = input(user, "Enter a description for your pAI", "Global Preference", rhtml_decode(candidate.description)) as message|null
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.description = sanitize(t)
 			if("role")
-				t = input(user, "Enter a role for your pAI", "Global Preference", html_decode(candidate.role)) as text|null
+				t = input(user, "Enter a role for your pAI", "Global Preference", rhtml_decode(candidate.role)) as text|null
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = input(user, "Enter any OOC comments", "Global Preference", html_decode(candidate.comments)) as message
+				t = input(user, "Enter any OOC comments", "Global Preference", rhtml_decode(candidate.comments)) as message
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.comments = sanitize(t)
 		return TOPIC_REFRESH

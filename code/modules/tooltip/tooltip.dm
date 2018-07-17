@@ -108,7 +108,7 @@ Notes:
 	if(istype(user))
 		if(user.client && user.client.tooltips)
 			if(!theme && user.client.prefs && user.client.prefs.tooltipstyle)
-				theme = lowertext(user.client.prefs.tooltipstyle)
+				theme = rlowertext(user.client.prefs.tooltipstyle)
 			if(!theme)
 				theme = "midnight"
 			user.client.tooltips.show(tip_src, params, title, content, theme)

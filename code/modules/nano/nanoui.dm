@@ -264,7 +264,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/set_layout_key(nlayout_key)
-	layout_key = lowertext(nlayout_key)
+	layout_key = rlowertext(nlayout_key)
 
  /**
   * Set the ui to update the layout (re-render it) on each update, turning this on will break the map ui (if it's being used)

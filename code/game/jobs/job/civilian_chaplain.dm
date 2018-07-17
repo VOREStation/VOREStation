@@ -33,7 +33,7 @@
 
 		if (!new_religion)
 			new_religion = religion_name
-		switch(lowertext(new_religion))
+		switch(rlowertext(new_religion))
 			if("unitarianism")
 				B.name = "The Talmudic Quran"
 			if("christianity")

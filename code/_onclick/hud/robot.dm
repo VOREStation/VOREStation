@@ -277,5 +277,5 @@ var/obj/screen/robot_inventory
 
 /mob/living/silicon/robot/update_hud()
 	if(modtype)
-		hands.icon_state = lowertext(modtype)
+		hands.icon_state = rlowertext(modtype)
 	..()

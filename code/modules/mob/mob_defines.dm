@@ -105,6 +105,7 @@
 
 	var/name_archive //For admin things like possession
 
+	var/timeofact = 0.0//didn't acted yet
 	var/timeofdeath = 0.0//Living
 	var/cpr_time = 1.0//Carbon
 

@@ -71,7 +71,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 		back_to_param = ";viewruntime_backto=\ref[back_to]"
 	if(linear)
 		back_to_param += ";viewruntime_linear=1"
-	return "<A HREF='?src=\ref[src];viewruntime=\ref[src][back_to_param]'>[html_encode(linktext)]</A>"
+	return "<A HREF='?src=\ref[src];viewruntime=\ref[src][back_to_param]'>[rhtml_encode(linktext)]</A>"
 
 /datum/ErrorViewer/Topic(href, href_list)
 	if(..())
@@ -123,7 +123,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	// (Also, make sure config is initialized, or log_debug will runtime)
 	if(config && error_source.next_message_at <= world.time)
 		var/const/viewtext = "\[view]" // Nesting these in other brackets went poorly
-		log_debug("Runtime in [e.file],[e.line]: [html_encode(e.name)] [error_entry.makeLink(viewtext)]")
+		log_debug("Runtime in [e.file],[e.line]: [rhtml_encode(e.name)] [error_entry.makeLink(viewtext)]")
 		error_source.next_message_at = world.time + ERROR_MSG_DELAY
 
 /datum/ErrorViewer/ErrorSource
@@ -168,7 +168,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	if(istype(desclines))
 		for(var/line in desclines)
 			// There's probably a better way to do this than non-breaking spaces...
-			desc += "&nbsp;&nbsp;" + html_encode(line) + "<br>"
+			desc += "&nbsp;&nbsp;" + rhtml_encode(line) + "<br>"
 	if(istype(e_src))
 		srcRef = "\ref[e_src]"
 		srcType = e_src.type
@@ -181,7 +181,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	if(!istype(back_to))
 		back_to = error_source
 	var/html = buildHeader(back_to, linear)
-	html += "<div class='runtime'>[html_encode(name)]<br>[desc]</div>"
+	html += "<div class='runtime'>[rhtml_encode(name)]<br>[desc]</div>"
 	if(srcRef)
 		html += "<br>src: <a href='?_src_=vars;Vars=[srcRef]'>VV</a>"
 		if(ispath(srcType, /mob))
@@ -201,6 +201,6 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 
 /datum/ErrorViewer/ErrorEntry/makeLink(var/linktext, var/datum/ErrorViewer/back_to, var/linear)
 	if(isSkipCount)
-		return html_encode(name)
+		return rhtml_encode(name)
 	else
 		return ..()

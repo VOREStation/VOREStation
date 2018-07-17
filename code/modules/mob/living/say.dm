@@ -47,7 +47,7 @@ var/list/department_radio_keys = list(
 	  ":û" = "Security",	".û" = "Security",
 	  ":ö" = "whisper",		".ö" = "whisper",
 	  ":å" = "Mercenary",	".å" = "Mercenary",
-	  ":é" = "Supply",		".é" = "Supply",
+	  ":ã" = "Supply",		".ã" = "Supply",
 )
 
 
@@ -95,7 +95,7 @@ proc/get_radio_key_from_channel(var/channel)
 	. = 0
 
 	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
+		message = "[ruppertext(message)]!!!"
 		verb = pick("yells","roars","hollers")
 		whispering = 0
 		. = 1

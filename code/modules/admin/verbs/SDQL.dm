@@ -16,7 +16,7 @@
 			usr << "<font color='red'>SDQL: Too few discrete tokens in query \"[query_text]\". Please check your syntax and try again.</font>"
 		return
 
-	if(!(lowertext(query_list[1]) in list("select", "delete", "update")))
+	if(!(rlowertext(query_list[1]) in list("select", "delete", "update")))
 		usr << "<font color='red'>SDQL: Unknown query type: \"[query_list[1]]\" in query \"[query_text]\". Please check your syntax and try again.</font>"
 		return
 
@@ -34,7 +34,7 @@
 	var/list/from = list()
 
 	if(i <= query_list.len)
-		if(lowertext(query_list[i]) in list("from", "in"))
+		if(rlowertext(query_list[i]) in list("from", "in"))
 			for(i++; i <= query_list.len; i += 2)
 				from += query_list[i]
 
@@ -48,8 +48,8 @@
 
 	var/list/set_vars = list()
 
-	if(lowertext(query_list[1]) == "update")
-		if(i <= query_list.len && lowertext(query_list[i]) == "set")
+	if(rlowertext(query_list[1]) == "update")
+		if(i <= query_list.len && rlowertext(query_list[i]) == "set")
 			for(i++; i <= query_list.len; i++)
 				if(i + 2 <= query_list.len && query_list[i + 1] == "=")
 					set_vars += query_list[i]
@@ -70,7 +70,7 @@
 
 	var/list/where = list()
 
-	if(i <= query_list.len && lowertext(query_list[i]) == "where")
+	if(i <= query_list.len && rlowertext(query_list[i]) == "where")
 		where = query_list.Copy(i + 1)
 
 	var/list/from_objs = list()
@@ -220,7 +220,7 @@
 
 			var/j
 			for(j = i, j <= where.len, j++)
-				if(lowertext(where[j]) in list("and", "or", ";"))
+				if(rlowertext(where[j]) in list("and", "or", ";"))
 					break
 
 			if(!currently_false)
@@ -247,9 +247,9 @@
 						currently_false = !(value >= result)
 
 
-			if(j > where.len || lowertext(where[j]) == ";")
+			if(j > where.len || rlowertext(where[j]) == ";")
 				break
-			else if(lowertext(where[j]) == "or")
+			else if(rlowertext(where[j]) == "or")
 				if(currently_false)
 					currently_false = 0
 				else
@@ -289,7 +289,7 @@
 	for(var/datum/t in objs)
 		usr << t
 */
-	switch(lowertext(query_list[1]))
+	switch(rlowertext(query_list[1]))
 		if("delete")
 			for(var/datum/t in objs)
 				qdel(t)

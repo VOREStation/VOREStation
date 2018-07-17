@@ -1327,7 +1327,7 @@
 				alert("The translocator can't support any more beacons!","Error")
 				return
 
-			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
+			var/new_name = rhtml_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
 
 			if(length(new_name) > 20 || length(new_name) < 2)
 				alert("Entered name length invalid (must be longer than 2, no more than than 20).","Error")
@@ -1470,11 +1470,11 @@
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
 		if(!target.can_be_drop_prey && B.owner != user)
-			to_chat(target,"<span class='warning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,"<span class='warning'>\The [src] narrowly avoids teleporting you right into \a [rlowertext(real_dest.name)]!</span>")
 			real_dest = dT //Nevermind!
 		else
 			televored = TRUE
-			to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [rlowertext(real_dest.name)]!</span>")
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -1495,7 +1495,7 @@
 			//Move them, and televore if necessary
 			G.affecting.forceMove(real_dest)
 			if(televored)
-				to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
+				to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [rlowertext(real_dest.name)]!</span>")
 
 			//Phase-in effect for grabbed person
 			phase_in(G.affecting,get_turf(G.affecting))
@@ -1505,7 +1505,7 @@
 		ready = 1
 		update_icon()
 
-	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_dest.name)])" : null]"
+	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [rlowertext(real_dest.name)])" : null]"
 
 /obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
 

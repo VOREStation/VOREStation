@@ -53,7 +53,7 @@
 	last_special = world.time + 10
 
 	if(src.icon_state == "promethean")
-		icon_state = lowertext(src.species.get_bodytype(src))
+		icon_state = rlowertext(src.species.get_bodytype(src))
 		shapeshifter_change_species("Virtual Reality [src.species.get_bodytype(src)]")
 	else
 		icon_state = "promethean"

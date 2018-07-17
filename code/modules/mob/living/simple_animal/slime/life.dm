@@ -169,7 +169,7 @@
 					continue // Don't target ourselves.
 				var/list/valid_names = splittext(L.name, " ") // Should output list("John", "Doe") as an example.
 				for(var/line in valid_names) // Check each part of someone's name.
-					if(findtext(message, lowertext(line))) // If part of someone's name is in the command, the slime targets them if allowed to.
+					if(findtext(message, rlowertext(line))) // If part of someone's name is in the command, the slime targets them if allowed to.
 						if(!(mass_order && line == "slime"))	//don't think random other slimes are target
 							if(special_target_check(L))
 								delayed_say("Okay... I attack \the [L]...", speaker)

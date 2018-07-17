@@ -162,7 +162,7 @@
 		return //Someone dropping something (or being stripdigested)
 
 	//Generic entered message
-	to_chat(owner,"<span class='notice'>[thing] slides into your [lowertext(name)].</span>")
+	to_chat(owner,"<span class='notice'>[thing] slides into your [rlowertext(name)].</span>")
 
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound)
@@ -208,7 +208,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent)
-		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] expels everything from their [rlowertext(name)]!</b></font>")
 		if(release_sound)
 			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
 
@@ -246,7 +246,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent)
-		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [rlowertext(name)]!</b></font>")
 		if(release_sound)
 			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
 
@@ -277,7 +277,7 @@
 		var/raw_message = pick(examine_messages)
 		var/total_bulge = 0
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+		formatted_message = replacetext(raw_message,"%belly",rlowertext(name))
 		formatted_message = replacetext(formatted_message,"%pred",owner)
 		formatted_message = replacetext(formatted_message,"%prey",english_list(contents))
 		for(var/mob/living/P in contents)
@@ -316,15 +316,15 @@
 /obj/belly/proc/set_messages(var/raw_text, var/type, var/delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
 
-	var/list/raw_list = text2list(html_encode(raw_text),delim)
+	var/list/raw_list = text2list(rhtml_encode(raw_text),delim)
 	if(raw_list.len > 10)
 		raw_list.Cut(11)
-		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
+		log_debug("[owner] tried to set [rlowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
 		if(length(raw_list[i]) > 160 || length(raw_list[i]) < 10) //160 is fudged value due to htmlencoding increasing the size
 			raw_list.Cut(i,i)
-			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
+			log_debug("[owner] tried to set [rlowertext(name)] with >121 or <10 char message")
 		else
 			raw_list[i] = readd_quotes(raw_list[i])
 			//Also fix % sign for var replacement
@@ -353,7 +353,7 @@
 /obj/belly/proc/digestion_death(var/mob/living/M)
 	//M.death(1) // "Stop it he's already dead..." Basically redundant and the reason behind screaming mouse carcasses.
 	if(M.ckey)
-		message_admins("[key_name(owner)] has digested [key_name(M)] in their [lowertext(name)] ([owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[owner.x];Y=[owner.y];Z=[owner.z]'>JMP</a>" : "null"])")
+		message_admins("[key_name(owner)] has digested [key_name(M)] in their [rlowertext(name)] ([owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[owner.x];Y=[owner.y];Z=[owner.z]'>JMP</a>" : "null"])")
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
@@ -395,8 +395,8 @@
 // Handle a mob being absorbed
 /obj/belly/proc/absorb_living(var/mob/living/M)
 	M.absorbed = 1
-	to_chat(M,"<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
-	to_chat(owner,"<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
+	to_chat(M,"<span class='notice'>[owner]'s [rlowertext(name)] absorbs your body, making you part of them.</span>")
+	to_chat(owner,"<span class='notice'>Your [rlowertext(name)] absorbs [M]'s body, making them part of you.</span>")
 	if(M.noisy) //Mute drained absorbee hunger if enabled.
 		M.noisy = FALSE
 
@@ -469,8 +469,8 @@
 	R.setClickCooldown(50)
 
 	if(owner.stat) //If owner is stat (dead, KO) we can actually escape
-		to_chat(R,"<span class='warning'>You attempt to climb out of \the [lowertext(name)]. (This will take around [escapetime/10] seconds.)</span>")
-		to_chat(owner,"<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
+		to_chat(R,"<span class='warning'>You attempt to climb out of \the [rlowertext(name)]. (This will take around [escapetime/10] seconds.)</span>")
+		to_chat(owner,"<span class='warning'>Someone is attempting to climb out of your [rlowertext(name)]!</span>")
 
 		if(do_after(R, escapetime, owner, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 			if((owner.stat || escapable) && (R.loc == src)) //Can still escape?
@@ -479,8 +479,8 @@
 			else if(R.loc != src) //Aren't even in the belly. Quietly fail.
 				return
 			else //Belly became inescapable or mob revived
-				to_chat(R,"<span class='warning'>Your attempt to escape [lowertext(name)] has failed!</span>")
-				to_chat(owner,"<span class='notice'>The attempt to escape from your [lowertext(name)] has failed!</span>")
+				to_chat(R,"<span class='warning'>Your attempt to escape [rlowertext(name)] has failed!</span>")
+				to_chat(owner,"<span class='notice'>The attempt to escape from your [rlowertext(name)] has failed!</span>")
 				return
 			return
 	var/struggle_outer_message = pick(struggle_messages_outside)
@@ -488,11 +488,11 @@
 
 	struggle_outer_message = replacetext(struggle_outer_message,"%pred",owner)
 	struggle_outer_message = replacetext(struggle_outer_message,"%prey",R)
-	struggle_outer_message = replacetext(struggle_outer_message,"%belly",lowertext(name))
+	struggle_outer_message = replacetext(struggle_outer_message,"%belly",rlowertext(name))
 
 	struggle_user_message = replacetext(struggle_user_message,"%pred",owner)
 	struggle_user_message = replacetext(struggle_user_message,"%prey",R)
-	struggle_user_message = replacetext(struggle_user_message,"%belly",lowertext(name))
+	struggle_user_message = replacetext(struggle_user_message,"%belly",rlowertext(name))
 
 	struggle_outer_message = "<span class='alert'>" + struggle_outer_message + "</span>"
 	struggle_user_message = "<span class='alert'>" + struggle_user_message + "</span>"
@@ -507,21 +507,21 @@
 
 	if(escapable) //If the stomach has escapable enabled.
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
-			to_chat(R,"<span class='warning'>You start to climb out of \the [lowertext(name)].</span>")
-			to_chat(owner,"<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
+			to_chat(R,"<span class='warning'>You start to climb out of \the [rlowertext(name)].</span>")
+			to_chat(owner,"<span class='warning'>Someone is attempting to climb out of your [rlowertext(name)]!</span>")
 			if(do_after(R, escapetime))
 				if((escapable) && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
 					release_specific_contents(R)
-					to_chat(R,"<span class='warning'>You climb out of \the [lowertext(name)].</span>")
-					to_chat(owner,"<span class='warning'>[R] climbs out of your [lowertext(name)]!</span>")
+					to_chat(R,"<span class='warning'>You climb out of \the [rlowertext(name)].</span>")
+					to_chat(owner,"<span class='warning'>[R] climbs out of your [rlowertext(name)]!</span>")
 					for(var/mob/M in hearers(4, owner))
-						M.show_message("<span class='warning'>[R] climbs out of [owner]'s [lowertext(name)]!</span>", 2)
+						M.show_message("<span class='warning'>[R] climbs out of [owner]'s [rlowertext(name)]!</span>", 2)
 					return
 				else if(!(R.loc == src)) //Aren't even in the belly. Quietly fail.
 					return
 				else //Belly became inescapable.
-					to_chat(R,"<span class='warning'>Your attempt to escape [lowertext(name)] has failed!</span>")
-					to_chat(owner,"<span class='notice'>The attempt to escape from your [lowertext(name)] has failed!</span>")
+					to_chat(R,"<span class='warning'>Your attempt to escape [rlowertext(name)] has failed!</span>")
+					to_chat(owner,"<span class='notice'>The attempt to escape from your [rlowertext(name)] has failed!</span>")
 					return
 
 		else if(prob(transferchance) && transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
@@ -533,31 +533,31 @@
 					break
 
 			if(!dest_belly)
-				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings. Your <b>[rlowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
 				transferchance = 0
 				transferlocation = null
 				return
 
-			to_chat(R,"<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>")
-			to_chat(owner,"<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [lowertext(name)]!</span>")
+			to_chat(R,"<span class='warning'>Your attempt to escape [rlowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>")
+			to_chat(owner,"<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [rlowertext(name)]!</span>")
 			transfer_contents(R, dest_belly)
 			return
 
 		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
-			to_chat(R,"<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to cling more tightly...</span>")
-			to_chat(owner,"<span class='warning'>You feel your [lowertext(name)] start to cling onto its contents...</span>")
+			to_chat(R,"<span class='warning'>In response to your struggling, \the [rlowertext(name)] begins to cling more tightly...</span>")
+			to_chat(owner,"<span class='warning'>You feel your [rlowertext(name)] start to cling onto its contents...</span>")
 			digest_mode = DM_ABSORB
 			return
 
 		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
-			to_chat(R,"<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to get more active...</span>")
-			to_chat(owner,"<span class='warning'>You feel your [lowertext(name)] beginning to become active!</span>")
+			to_chat(R,"<span class='warning'>In response to your struggling, \the [rlowertext(name)] begins to get more active...</span>")
+			to_chat(owner,"<span class='warning'>You feel your [rlowertext(name)] beginning to become active!</span>")
 			digest_mode = DM_DIGEST
 			return
 
 		else //Nothing interesting happened.
-			to_chat(R,"<span class='warning'>You make no progress in escaping [owner]'s [lowertext(name)].</span>")
-			to_chat(owner,"<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
+			to_chat(R,"<span class='warning'>You make no progress in escaping [owner]'s [rlowertext(name)].</span>")
+			to_chat(owner,"<span class='warning'>Your prey appears to be unable to make any progress in escaping your [rlowertext(name)].</span>")
 			return
 
 /obj/belly/proc/get_mobs_and_objs_in_belly()

@@ -54,7 +54,7 @@
 			atc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.
 		else
 			atc.reroute_traffic(yes = 0)
-		admin_chat_message(message = "Security level is now: [uppertext(get_security_level())]", color = "#CC2222") //VOREStation Add
+		admin_chat_message(message = "Security level is now: [ruppertext(get_security_level())]", color = "#CC2222") //VOREStation Add
 
 /proc/get_security_level()
 	switch(security_level)
@@ -79,7 +79,7 @@
 			return "delta"
 
 /proc/seclevel2num(var/seclevel)
-	switch( lowertext(seclevel) )
+	switch( rlowertext(seclevel) )
 		if("green")
 			return SEC_LEVEL_GREEN
 		if("blue")

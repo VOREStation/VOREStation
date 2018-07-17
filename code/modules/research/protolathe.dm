@@ -206,7 +206,7 @@
 
 /obj/machinery/r_n_d/protolathe/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? 1 : 0
-	material = lowertext(material)
+	material = rlowertext(material)
 	var/mattype
 	switch(material)
 		if(DEFAULT_WALL_MATERIAL)

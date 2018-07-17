@@ -56,7 +56,7 @@ var/list/name_to_material
 		var/material/new_mineral = new type
 		if(!new_mineral.name)
 			continue
-		name_to_material[lowertext(new_mineral.name)] = new_mineral
+		name_to_material[rlowertext(new_mineral.name)] = new_mineral
 	return 1
 
 // Safety proc to make sure the material list exists before trying to grab from it.

@@ -46,7 +46,7 @@
 
 	//primitive_form = "Farwa"
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
+	spawn_flags = SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken. Disallowed to join because non-sapient species are questionable to present on station as crewmembers.
 	flags = NO_SCAN | NO_INFECT //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
@@ -278,7 +278,7 @@
 
 	//Set up a mob
 	H.species = new_copy
-	H.icon_state = lowertext(new_copy.get_bodytype())
+	H.icon_state = rlowertext(new_copy.get_bodytype())
 
 	if(new_copy.holder_type)
 		H.holder_type = new_copy.holder_type

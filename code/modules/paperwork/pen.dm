@@ -164,7 +164,7 @@
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK
-		usr << "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>"
+		usr << "<span class='info'>You select the [rlowertext(selected_type)] ink container.</span>"
 
 
 /*

@@ -370,14 +370,14 @@
 						return 1
 
 					var/obj/belly/TB = user.vore_selected
-					to_chat(user,"<span class='warning'>You begin to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
-					to_chat(M,"<span class='warning'>[user] begins to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
+					to_chat(user,"<span class='warning'>You begin to [rlowertext(TB.vore_verb)] [M] into your [rlowertext(TB.name)]!</span>")
+					to_chat(M,"<span class='warning'>[user] begins to [rlowertext(TB.vore_verb)] you into their [rlowertext(TB.name)]!</span>")
 					to_chat(OB.owner,"<span class='warning'>Someone inside you is eating someone else!</span>")
 
 					sleep(TB.nonhuman_prey_swallow_time) //Can't do after, in a stomach, weird things abound.
 					if((user in OB) && (M in OB)) //Make sure they're still here.
-						to_chat(user,"<span class='warning'>You manage to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
-						to_chat(M,"<span class='warning'>[user] manages to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
+						to_chat(user,"<span class='warning'>You manage to [rlowertext(TB.vore_verb)] [M] into your [rlowertext(TB.name)]!</span>")
+						to_chat(M,"<span class='warning'>[user] manages to [rlowertext(TB.vore_verb)] you into their [rlowertext(TB.name)]!</span>")
 						to_chat(OB.owner,"<span class='warning'>Someone inside you has eaten someone else!</span>")
 						TB.nom_mob(M)
 
@@ -426,7 +426,7 @@
 						return 0
 
 					for(var/atom/movable/tgt in selected)
-						to_chat(tgt,"<span class='warning'>You're squished from [user]'s [lowertext(selected)] to their [lowertext(choice.name)]!</span>")
+						to_chat(tgt,"<span class='warning'>You're squished from [user]'s [rlowertext(selected)] to their [rlowertext(choice.name)]!</span>")
 						selected.transfer_contents(tgt, choice, 1)
 
 		var/atom/movable/tgt = locate(href_list["insidepick"])
@@ -454,14 +454,14 @@
 				if(!choice || !(tgt in selected))
 					return 0
 
-				to_chat(tgt,"<span class='warning'>You're squished from [user]'s [lowertext(selected.name)] to their [lowertext(choice.name)]!</span>")
+				to_chat(tgt,"<span class='warning'>You're squished from [user]'s [rlowertext(selected.name)] to their [rlowertext(choice.name)]!</span>")
 				selected.transfer_contents(tgt, choice)
 
 	if(href_list["newbelly"])
 		if(user.vore_organs.len >= BELLIES_MAX)
 			return 0
 
-		var/new_name = html_encode(input(usr,"New belly's name:","New Belly") as text|null)
+		var/new_name = rhtml_encode(input(usr,"New belly's name:","New Belly") as text|null)
 
 		var/failure_msg
 		if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
@@ -470,7 +470,7 @@
 		else
 			for(var/belly in user.vore_organs)
 				var/obj/belly/B = belly
-				if(lowertext(new_name) == lowertext(B.name))
+				if(rlowertext(new_name) == rlowertext(B.name))
 					failure_msg = "No duplicate belly names, please."
 					break
 
@@ -490,7 +490,7 @@
 	//Please keep these the same order they are on the panel UI for ease of coding
 	////
 	if(href_list["b_name"])
-		var/new_name = html_encode(input(usr,"Belly's new name:","New Name") as text|null)
+		var/new_name = rhtml_encode(input(usr,"Belly's new name:","New Name") as text|null)
 
 		var/failure_msg
 		if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
@@ -499,7 +499,7 @@
 		else
 			for(var/belly in user.vore_organs)
 				var/obj/belly/B = belly
-				if(lowertext(new_name) == lowertext(B.name))
+				if(rlowertext(new_name) == rlowertext(B.name))
 					failure_msg = "No duplicate belly names, please."
 					break
 
@@ -544,7 +544,7 @@
 		selected.cont_flavor = new_flavor
 
 	if(href_list["b_desc"])
-		var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)
+		var/new_desc = rhtml_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)
 
 		if(new_desc)
 			new_desc = readd_quotes(new_desc)
@@ -604,7 +604,7 @@
 					selected.struggle_messages_inside = initial(selected.struggle_messages_inside)
 
 	if(href_list["b_verb"])
-		var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
+		var/new_verb = rhtml_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
 
 		if(length(new_verb) > BELLIES_NAME_MAX || length(new_verb) < BELLIES_NAME_MIN)
 			alert("Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
@@ -667,10 +667,10 @@
 	if(href_list["b_escapable"])
 		if(selected.escapable == 0) //Possibly escapable and special interactions.
 			selected.escapable = 1
-			to_chat(usr,"<span class='warning'>Prey now have special interactions with your [lowertext(selected.name)] depending on your settings.</span>")
+			to_chat(usr,"<span class='warning'>Prey now have special interactions with your [rlowertext(selected.name)] depending on your settings.</span>")
 		else if(selected.escapable == 1) //Never escapable.
 			selected.escapable = 0
-			to_chat(usr,"<span class='warning'>Prey will not be able to have special interactions with your [lowertext(selected.name)].</span>")
+			to_chat(usr,"<span class='warning'>Prey will not be able to have special interactions with your [rlowertext(selected.name)].</span>")
 			show_interacts = 0 //Force the hiding of the panel
 		else
 			alert("Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
@@ -693,7 +693,7 @@
 			selected.transferchance = sanitize_integer(transfer_chance_input, 0, 100, initial(selected.transferchance))
 
 	if(href_list["b_transferlocation"])
-		var/obj/belly/choice = input("Where do you want your [lowertext(selected.name)] to lead if prey resists?","Select Belly") as null|anything in (user.vore_organs + "None - Remove" - selected)
+		var/obj/belly/choice = input("Where do you want your [rlowertext(selected.name)] to lead if prey resists?","Select Belly") as null|anything in (user.vore_organs + "None - Remove" - selected)
 
 		if(!choice) //They cancelled, no changes
 			return 0
@@ -713,7 +713,7 @@
 			selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(selected.digestchance))
 
 	if(href_list["b_del"])
-		var/alert = alert("Are you sure you want to delete your [lowertext(selected.name)]?","Confirmation","Delete","Cancel")
+		var/alert = alert("Are you sure you want to delete your [rlowertext(selected.name)]?","Confirmation","Delete","Cancel")
 		if(!alert == "Delete")
 			return 0
 
@@ -758,7 +758,7 @@
 			to_chat(user,"<span class='notice'>Virgo-specific preferences applied from active slot!</span>")
 
 	if(href_list["setflavor"])
-		var/new_flavor = html_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",user.vore_taste) as text|null)
+		var/new_flavor = rhtml_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",user.vore_taste) as text|null)
 		if(!new_flavor)
 			return 0
 

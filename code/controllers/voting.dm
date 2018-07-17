@@ -229,11 +229,11 @@ var/global/list/round_voters = list() // Keeps track of the individuals voting f
 						choices.Add(antag.role_text)
 				choices.Add("None")
 			if(VOTE_CUSTOM)
-				question = sanitizeSafe(input(usr, "What is the vote for?") as text|null)
+				question = cp1251_to_utf8(rhtml_encode(input(usr, "What is the vote for?") as text|null))
 				if(!question)
 					return 0
 				for(var/i = 1 to 10)
-					var/option = capitalize(sanitize(input(usr, "Please enter an option or hit cancel to finish") as text|null))
+					var/option = cp1251_to_utf8(capitalize(sanitize(input(usr, "Please enter an option or hit cancel to finish") as text|null)))
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
@@ -245,7 +245,7 @@ var/global/list/round_voters = list() // Keeps track of the individuals voting f
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator]."
 		if(mode == VOTE_CUSTOM)
-			text += "\n[question]"
+			text += "\n[utf8_to_cp1251(question)]"
 
 		log_vote(text)
 

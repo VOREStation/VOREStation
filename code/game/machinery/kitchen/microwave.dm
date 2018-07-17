@@ -201,7 +201,7 @@
 		for (var/O in items_counts)
 			var/N = items_counts[O]
 			if (!(O in items_measures))
-				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
+				dat += {"<B>[capitalize(O)]:</B> [N] [rlowertext(O)]\s<BR>"}
 			else
 				if (N==1)
 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures[O]]<BR>"}

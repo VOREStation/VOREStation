@@ -1,5 +1,5 @@
 // Damage things. TODO: Merge these down to reduce on defines.
-// Way to waste perfectly good damage-type names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc.
+// Way to waste perfectly good damage-type names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used rlowertext(damagetype) in the proc.
 #define BRUTE     "brute"
 #define BURN      "fire"
 #define TOX       "tox"

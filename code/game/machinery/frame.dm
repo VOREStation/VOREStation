@@ -27,7 +27,7 @@
 
 // Get the icon state to use at a given state.  Default implementation is based on the frame's name
 /datum/frame/frame_types/proc/get_icon_state(var/state)
-	var/type = lowertext(name)
+	var/type = rlowertext(name)
 	type = replacetext(type, " ", "_")
 	return "[type]_[state]"
 

@@ -148,9 +148,9 @@
 
 		switch(field)
 			if("ckey")
-				current_data.assoc_key = lowertext(field_data)
+				current_data.assoc_key = rlowertext(field_data)
 			if("character_name")
-				current_data.character_name = lowertext(field_data)
+				current_data.character_name = rlowertext(field_data)
 			if("item_path")
 				current_data.item_path = text2path(field_data)
 			if("item_name")
@@ -184,7 +184,7 @@
 	for(var/datum/custom_item/citem in key_list)
 
 		// Check for requisite ckey and character name.
-		if((lowertext(citem.assoc_key) != lowertext(M.ckey)) || (lowertext(citem.character_name) != lowertext(M.real_name)))
+		if((rlowertext(citem.assoc_key) != rlowertext(M.ckey)) || (rlowertext(citem.character_name) != rlowertext(M.real_name)))
 			log_debug("Custom Item: [key_name(M)] Ckey or Char name does not match.")
 			continue
 

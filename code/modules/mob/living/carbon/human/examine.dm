@@ -271,6 +271,11 @@
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].<br>"
 
+	if(is_nude() && gender == MALE && species.genitals)
+		msg += "<B>[T.He] [T.has] a penis!</B><br>"
+	else if(is_nude() && gender == FEMALE && species.genitals)
+		msg += "<B>[T.He] [T.has] a vagina!</B><br>"
+
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)

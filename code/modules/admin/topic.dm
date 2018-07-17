@@ -1380,7 +1380,7 @@
 			usr << "The person you are trying to contact is not wearing a headset"
 			return
 
-		var/input = sanitize(input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", ""))
+		var/input = russian_to_utf8(input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", ""))
 		if(!input)	return
 
 		src.owner << "You sent [input] to [H] via a secure channel."
@@ -1661,7 +1661,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_message"])
-		src.admincaster_feed_message.body = sanitize(input(usr, "Write your Feed story", "Network Channel Handler", ""))
+		src.admincaster_feed_message.body = rhtml_encode(input_utf8(input(usr, "Write your Feed story", "Network Channel Handler", "")))
 		src.access_news_network()
 
 	else if(href_list["ac_submit_new_message"])

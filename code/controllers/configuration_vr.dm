@@ -25,10 +25,10 @@
 		var/value = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
+			name = rlowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
 		else
-			name = lowertext(t)
+			name = rlowertext(t)
 
 		if (!name)
 			continue
