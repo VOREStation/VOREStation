@@ -149,6 +149,37 @@
 		if(is_hot(W))
 			burn(is_hot(W))
 
+<<<<<<< HEAD
+=======
+	if(istype(W, /obj/item/stack/tile/roofing))
+		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
+		var/turf/T = GetAbove(src)
+		var/obj/item/stack/tile/roofing/R = W
+
+		// Place plating over a wall
+		if(T)
+			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
+				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
+					T.ReplaceWithLattice()
+					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					user.visible_message("<span class='notice'>[user] patches a hole in the ceiling.</span>", "<span class='notice'>You patch a hole in the ceiling.</span>")
+					expended_tile = TRUE
+			else
+				to_chat(user, "<span class='warning'>There aren't any holes in the ceiling to patch here.</span>")
+				return
+
+		// Create a ceiling to shield from the weather
+		if(outdoors)
+			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
+				make_indoors()
+				if(!expended_tile) // Would've already played a sound
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				user.visible_message("<span class='notice'>[user] roofs \the [src], shielding it from the elements.</span>", "<span class='notice'>You roof \the [src] tile, shielding it from the elements.</span>")
+		return
+
+
+>>>>>>> 14d8df2... Merge pull request #5424 from Neerti/outdoor_shuttle_fix
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		if(istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
