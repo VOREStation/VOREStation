@@ -198,3 +198,9 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
+
+/obj/item/stack/tile/roofing
+	name = "roofing"
+	singular_name = "roofing"
+	desc = "A section of roofing material. You can use it to repair the ceiling, or expand it."
+	icon_state = "techtile_grid"
