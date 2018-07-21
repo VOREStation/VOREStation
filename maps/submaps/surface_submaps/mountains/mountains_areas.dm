@@ -89,3 +89,6 @@
 
 /area/submap/crashedcontainmentshuttle
 	name = "Crashed	Containment	Shuttle"
+
+/area/submap/deadspy
+	name = "Dead Spy"
