@@ -2709,6 +2709,7 @@
 #include "code\modules\surgery\_defines.dm"
 #include "code\modules\surgery\bones.dm"
 #include "code\modules\surgery\encased.dm"
+#include "code\modules\surgery\external_repair.dm"
 #include "code\modules\surgery\face.dm"
 #include "code\modules\surgery\generic.dm"
 #include "code\modules\surgery\implant.dm"
