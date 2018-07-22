@@ -5,6 +5,7 @@
 
 	default_language = "Xenomorph"
 	language = "Hivemind"
+	assisted_langs = list()
 	unarmed_types = list(/datum/unarmed_attack/claws/strong/xeno, /datum/unarmed_attack/bite/strong/xeno)
 	hud_type = /datum/hud_data/alien
 	rarity_value = 3

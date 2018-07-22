@@ -84,6 +84,7 @@ var/list/datum/ai_icon/ai_icons
 /datum/ai_icon/glitchman
 	name = "Glitchman"
 	alive_icon = "ai-glitchman"
+	dead_icon = "ai-glitchman-crash"
 
 /datum/ai_icon/goon
 	name = "Goon"
@@ -110,6 +111,7 @@ var/list/datum/ai_icon/ai_icons
 	name = "Inverted"
 	alive_icon = "ai-u"
 	alive_light = "#81DDFF"
+	dead_icon = "ai-u-crash"
 
 /datum/ai_icon/lonestar
 	name = "Lonestar"
@@ -163,14 +165,87 @@ var/list/datum/ai_icon/ai_icons
 /datum/ai_icon/trapped
 	name = "Trapped"
 	alive_icon = "ai-hades"
-	dead_icon = "ai-hades_dead"
+	dead_icon = "ai-hades-crash"
 
-/datum/ai_icon/triumvirate_static
+/datum/ai_icon/triumvirate
 	name = "Triumvirate"
 	alive_icon = "ai-triumvirate"
 	alive_light = "#020B2B"
 
 /datum/ai_icon/triumvirate_static
 	name = "Triumvirate Static"
-	alive_icon = "ai-static"
+	alive_icon = "ai-triumvirate-malf"
 	alive_light = "#020B2B"
+
+//Eros Research Platform Ports
+
+/datum/ai_icon/clown2
+	name = "Honk"
+	alive_icon = "ai-clown2"
+	dead_icon = "ai-clown2-crash"
+
+/datum/ai_icon/boxfort
+	name = "Boxfort"
+	alive_icon = "ai-boxfort"
+	dead_icon = "ai-boxfort_dead"
+
+/datum/ai_icon/ravensdale
+	name = "Integration"
+	alive_icon = "ai-ravensdale"
+	dead_icon = "ai-ravensdale-crash"
+
+/datum/ai_icon/gentoo
+	name = "Gentoo"
+	alive_icon = "ai-gentoo"
+	dead_icon = "ai-gentoo_dead"
+
+/datum/ai_icon/serithi
+	name = "Mechanicus"
+	alive_icon = "ai-serithi"
+	dead_icon = "ai-serithi-crash"
+
+/datum/ai_icon/alien
+	name = "Xenomorph"
+	alive_icon = "ai-alien"
+	dead_icon = "ai-alien-crash"
+
+/datum/ai_icon/syndicat
+	name = "Syndi-cat"
+	alive_icon = "ai-syndicatmeow"
+
+/datum/ai_icon/wasp
+	name = "Wasp"
+	alive_icon = "ai-wasp"
+
+/datum/ai_icon/house
+	name = "Doctor"
+	alive_icon = "ai-house"
+
+/datum/ai_icon/fabulous
+	name = "Fabulous"
+	alive_icon = "ai-fabulous"
+
+/datum/ai_icon/yesman
+	name = "Yes Man"
+	alive_icon = "ai-yes-man"
+	dead_icon = "ai-alien-crash"
+
+/datum/ai_icon/royal
+	name = "Royal"
+	alive_icon = "ai-royal"
+
+/datum/ai_icon/pirate
+	name = "Pirate"
+	alive_icon = "ai-pirate"
+
+/datum/ai_icon/gygas
+	name = "Love"
+	alive_icon = "ai-gygas"
+
+/datum/ai_icon/xerxes
+	name = "Xerxes"
+	alive_icon = "ai-xerxes"
+
+/datum/ai_icon/godfrey
+	name = "Godfrey"
+	alive_icon = "ai-godfrey"

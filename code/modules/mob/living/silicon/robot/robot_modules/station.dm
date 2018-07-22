@@ -216,6 +216,7 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
+	src.modules += new /obj/item/weapon/autopsy_scanner(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
