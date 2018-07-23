@@ -4,6 +4,7 @@
 	name = "phase carbine"
 	desc = "The NT EW26 Artemis is a downsized energy weapon, specifically designed for use against wildlife."
 	icon_state = "phasecarbine"
+	item_state = "phasecarbine"
 	wielded_item_state = "phasecarbine-wielded"
 	slot_flags = SLOT_BACK|SLOT_BELT
 	charge_cost = 240
