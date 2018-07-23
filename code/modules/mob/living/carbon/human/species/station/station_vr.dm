@@ -346,7 +346,7 @@
 		)
 
 /datum/species/shapeshifter/promethean
-	spawn_flags = SPECIES_CAN_JOIN
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 
 /datum/species/human
 	color_mult = 1
