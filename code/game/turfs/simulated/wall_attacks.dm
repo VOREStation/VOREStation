@@ -149,8 +149,6 @@
 		if(is_hot(W))
 			burn(is_hot(W))
 
-<<<<<<< HEAD
-=======
 	if(istype(W, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
 		var/turf/T = GetAbove(src)
@@ -179,7 +177,6 @@
 		return
 
 
->>>>>>> fb052bc... Merge pull request #5420 from Neerti/weather_visual_fix
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		if(istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
