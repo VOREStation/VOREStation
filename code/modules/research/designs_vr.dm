@@ -92,13 +92,22 @@
 	build_path = /obj/item/device/nif
 	sort_string = "HABBC"
 
+/datum/design/item/nifbio
+	name = "bioadaptive NIF"
+	id = "bioadapnif"
+	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 15000, "uranium" = 10000, "diamond" = 10000)
+	build_path = /obj/item/device/nif/bioadap
+	sort_string = "HABBD" //Changed String from HABBE to HABBD
+//Addiing bioadaptive NIF to Protolathe
+
 /datum/design/item/nifrepairtool
 	name = "adv. NIF repair tool"
 	id = "anrt"
 	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 3000, "uranium" = 2000, "diamond" = 2000)
 	build_path = /obj/item/device/nifrepairer
-	sort_string = "HABBD"
+	sort_string = "HABBE" //Changed String from HABBD to HABBE
 
 // Resleeving Circuitboards
 

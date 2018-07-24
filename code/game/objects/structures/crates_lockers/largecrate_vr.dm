@@ -71,6 +71,7 @@
 						/mob/living/simple_animal/hostile/alien/sentinel,
 						/mob/living/simple_animal/hostile/alien/queen,
 						/mob/living/simple_animal/otie/feral,
+						/mob/living/simple_animal/otie/red,
 						/mob/living/simple_animal/hostile/corrupthound))
 	return ..()
 
@@ -100,6 +101,11 @@
 	name = "VARMAcorp adaptive beta subject (Experimental)"
 	desc = "VARMAcorp experimental hostile environment adaptive breeding development kit. WARNING, DO NOT RELEASE IN WILD!"
 	starts_with = list(/mob/living/simple_animal/otie/cotie/phoron)
+
+/obj/structure/largecrate/animal/otie/phoron/initialize()
+	starts_with = list(pick(/mob/living/simple_animal/otie/cotie/phoron;2,
+						/mob/living/simple_animal/otie/red/friendly;0.5))
+	return ..()
 
 /obj/structure/largecrate/animal/otie/attack_hand(mob/living/carbon/human/M as mob)//I just couldn't decide between the icons lmao
 	if(taped == 1)

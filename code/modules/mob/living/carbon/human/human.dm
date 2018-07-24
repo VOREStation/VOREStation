@@ -166,25 +166,12 @@
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
-/mob/living/carbon/human/proc/implant_loadout(var/datum/gear/G = new/datum/gear/utility/implant)
-	var/obj/item/weapon/implant/I = new G.path(src)
-	I.imp_in = src
-	I.implanted = 1
-	var/obj/item/organ/external/affected = src.organs_by_name[BP_HEAD]
-	affected.implants += I
-	I.part = affected
-	I.implanted(src)
-
 /mob/living/carbon/human/proc/implant_loyalty(override = FALSE) // Won't override by default.
 	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
 
 	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(src)
-	L.imp_in = src
-	L.implanted = 1
-	var/obj/item/organ/external/affected = src.organs_by_name[BP_HEAD]
-	affected.implants += L
-	L.part = affected
-	L.implanted(src)
+	if(L.handle_implant(src, BP_HEAD))
+		L.post_implant(src)
 
 /mob/living/carbon/human/proc/is_loyalty_implanted()
 	for(var/L in src.contents)
@@ -1139,6 +1126,8 @@
 			remove_language(species.language)
 		if(species.default_language)
 			remove_language(species.default_language)
+		for(var/datum/language/L in species.assisted_langs)
+			remove_language(L)
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null

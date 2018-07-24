@@ -12,6 +12,9 @@
 /turf/simulated/wall/dungeon/ex_act()
 	return
 
+/turf/simulated/wall/dungeon/take_damage()	//These things are suppose to be unbreakable
+	return
+
 /turf/simulated/wall/solidrock //for more stylish anti-cheese.
 	name = "solid rock"
 	desc = "This rock seems dense, impossible to drill."
@@ -37,4 +40,7 @@
 	return
 
 /turf/simulated/wall/solidrock/ex_act()
+	return
+
+/turf/simulated/wall/solidrock/take_damage()	//These things are suppose to be unbreakable
 	return

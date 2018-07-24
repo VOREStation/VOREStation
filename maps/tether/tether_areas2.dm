@@ -167,7 +167,7 @@
 /area/tether/surfacebase/security/common
 	name = "\improper Surface Security Room"
 /area/tether/surfacebase/security/armory
-	name = "\improper Surface Armoary"
+	name = "\improper Surface Armory"
 /area/tether/surfacebase/security/checkpoint
 	name = "\improper Surface Checkpoint Office"
 /area/tether/surfacebase/security/hallway
@@ -360,6 +360,9 @@
 /area/security/hallway
 	name = "\improper Security Hallway"
 	icon_state = "security"
+/area/security/hallwayaux
+	name = "\improper Security Armory Hallway"
+	icon_state = "security"
 /area/security/forensics
 	name = "\improper Forensics Lab"
 	icon_state = "security"
@@ -372,15 +375,21 @@
 /area/security/brig/bathroom
 	name = "\improper Brig Bathroom"
 	icon_state = "security"
-/area/security/armory/green
-	name = "\improper Armory - Green"
-	icon_state = "security_equip_storage"
 /area/security/armory/blue
 	name = "\improper Armory - Blue"
 	icon_state = "armory"
 /area/security/armory/red
 	name = "\improper Armory - Red"
 	icon_state = "red2"
+/area/security/observation
+	name = "\improper Brig Observation"
+	icon_state = "riot_control"
+/area/security/eva
+	name = "\improper Security EVA"
+	icon_state = "security_equip_storage"
+/area/security/recstorage
+	name = "\improper Brig Recreation Storage"
+	icon_state = "brig"
 
 /area/engineering/atmos/backup
 	name = "\improper Backup Atmospherics"

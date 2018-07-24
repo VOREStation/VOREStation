@@ -50,6 +50,7 @@
 #define LANGUAGE_MINBUS "Minbus"
 #define LANGUAGE_EVENT1 "Occursus"
 #define LANGUAGE_AKHANI "Akhani"
+#define LANGUAGE_ALAI "Alai"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

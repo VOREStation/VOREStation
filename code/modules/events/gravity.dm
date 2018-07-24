@@ -6,9 +6,8 @@
 	endWhen = rand(15, 60)
 	// Setup which levels we will disrupt gravit on.
 	zLevels = using_map.station_levels.Copy()
-	if (planet_controller)
-		for(var/datum/planet/P in planet_controller.planets)
-			zLevels -= P.expected_z_levels
+	for(var/datum/planet/P in SSplanets.planets)
+		zLevels -= P.expected_z_levels
 
 /datum/event/gravity/announce()
 	command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system \

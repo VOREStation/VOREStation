@@ -63,6 +63,14 @@
 	"ka","aasi","far","wa","baq","ara","qara","zir","saam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
 	"hal","ket","jurl","mah","tul","cresh","azu","ragh","mro","mra","mrro","mrra")
 
+/datum/language/tajaran/get_random_name(var/gender)
+	var/new_name = ..(gender,1)
+	if(prob(50))
+		new_name += " [pick(list("Hadii","Kaytam","Nazkiin","Zhan-Khazan","Hharar","Njarir'Akhan","Faaira'Nrezi","Rhezar","Mi'dynh","Rrhazkal","Bayan","Al'Manq","Mi'jri","Chur'eech","Sanu'dra","Ii'rka"))]"
+	else
+		new_name += " [..(gender,1)]"
+	return new_name
+
 /datum/language/tajaranakhani
 	name = LANGUAGE_AKHANI
 	desc = "The language of the sea-faring Njarir'Akhan Tajaran. Borrowing some elements from Siik, the language is distinctly more structured."
@@ -77,14 +85,27 @@
 	"kar","yar","kzar","rha","hrar","err","fer","rir","rar","yarr","arr","ii'r","jar","kur","ran","rii","ii",
 	"nai","ou","kah","oa","ama","uuk","bel","chi","ayt","kay","kas","akor","tam","yir","enai")
 
-/datum/language/tajaran/get_random_name(var/gender)
+/datum/language/tajsign
+	name = LANGUAGE_ALAI
+	desc = "A standardized Tajaran sign language that was developed in Zarraya and gradually adopted by other nations, incorporating \
+			hand gestures and movements of the ears and tail."
+	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
+	colour = "tajaran"
+	key = "l"
+	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
 
-	var/new_name = ..(gender,1)
-	if(prob(50))
-		new_name += " [pick(list("Hadii","Kaytam","Nazkiin","Zhan-Khazan","Hharar","Njarir'Akhan","Faaira'Nrezi","Rhezar","Mi'dynh","Rrhazkal","Bayan","Al'Manq","Mi'jri","Chur'eech","Sanu'dra","Ii'rka"))]"
-	else
-		new_name += " [..(gender,1)]"
-	return new_name
+/datum/language/tajsign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
+	var/list/allowed_species = list(SPECIES_TAJ, SPECIES_TESHARI)	// Need a tail and ears and such to use this.
+	if(iscarbon(speaker))
+		var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
+		if(!hands)
+			return FALSE
+		if(ishuman(speaker))
+			var/mob/living/carbon/human/H = speaker
+			if(H.species.get_bodytype(H) in allowed_species)
+				return TRUE
+
+	return FALSE
 
 /datum/language/skrell
 	name = LANGUAGE_SKRELLIAN
@@ -151,11 +172,6 @@
 	flags = NO_STUTTER
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz","shh","shk")
 	space_chance = 10
-
-/datum/language/machine/can_speak_special(var/mob/speaker)
-	var/obj/item/weapon/implant/language/eal/beep = locate() in speaker
-	return ((beep && beep.implanted) || speaker.isSynthetic() || isvoice(speaker))
-	//thank you sweet zuhayr
 
 /datum/language/machine/get_random_name()
 	if(prob(70))

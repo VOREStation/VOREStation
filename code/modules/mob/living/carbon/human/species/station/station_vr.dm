@@ -363,7 +363,7 @@
 	min_age = 18
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/proc/eat_trash)
 
 datum/species/harpy
 	name = SPECIES_RAPALA

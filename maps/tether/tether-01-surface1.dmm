@@ -1001,6 +1001,9 @@
 	dir = 1
 	},
 /obj/machinery/camera/network/cargo,
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "ace" = (
@@ -1078,6 +1081,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/nosmoking_2{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "ack" = (
@@ -2911,6 +2917,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 6
 	},
+/obj/structure/sign/nosmoking_2{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
 "agP" = (
@@ -4474,6 +4483,9 @@
 /obj/machinery/washing_machine,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/camera/network/civilian,
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva)
 "akg" = (
@@ -5142,6 +5154,9 @@
 	dir = 4
 	},
 /obj/structure/curtain/open/shower,
+/obj/structure/sign/fire{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/storage/surface_eva)
 "amd" = (
@@ -10226,6 +10241,9 @@
 	frequency = 1379;
 	scrub_id = "civ_airlock_scrubber"
 	},
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/storage/surface_eva/external)
 "ayO" = (
@@ -11329,8 +11347,7 @@
 "aAN" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -11343,6 +11360,9 @@
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/storage/surface_eva)
 "aAO" = (
@@ -12776,6 +12796,9 @@
 	frequency = 1379;
 	scrub_id = "civ_airlock_scrubber"
 	},
+/obj/structure/sign/fire{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/storage/surface_eva/external)
 "aEo" = (
@@ -12867,14 +12890,16 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northleft,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/structure/sign/fire{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/dark,
 /area/storage/surface_eva)
 "aEu" = (
@@ -18651,8 +18676,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular{
@@ -19189,8 +19213,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -19331,8 +19354,7 @@
 /area/rnd/xenobiology/xenoflora)
 "boP" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
@@ -19652,8 +19674,7 @@
 /area/rnd/hallway)
 "bqH" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/cable/green{
 	d1 = 2;
@@ -19825,8 +19846,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular{
@@ -20433,8 +20453,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -21362,8 +21381,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular{
@@ -21681,8 +21699,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -22061,8 +22078,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular{
@@ -22336,8 +22352,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -22715,8 +22730,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -23023,8 +23037,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -23047,8 +23060,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -23095,8 +23107,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -23119,8 +23130,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
@@ -27562,8 +27572,7 @@
 /area/tether/surfacebase/public_garden_one)
 "gwL" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 1e+006
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -27598,6 +27607,16 @@
 "gPz" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"gRx" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	frequency = 1379;
+	scrub_id = "mining_airlock_scrubber"
+	},
+/obj/structure/sign/nosmoking_2{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/mining_main/airlock)
 "gUy" = (
 /obj/structure/railing{
 	dir = 4
@@ -27697,6 +27716,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"iAg" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	frequency = 1379;
+	scrub_id = "mining_airlock_scrubber"
+	},
+/obj/structure/sign/fire{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/mining_main/airlock)
 "iPi" = (
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 1
@@ -27952,8 +27981,7 @@
 /area/tether/surfacebase/public_garden)
 "nMZ" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -28266,6 +28294,16 @@
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
+"tNF" = (
+/obj/structure/grille,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/external)
 "tPq" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -28392,6 +28430,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"vNR" = (
+/obj/structure/grille,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/sign/fire{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/external)
 "vOI" = (
 /obj/structure/table/bench/steel,
 /obj/effect/floor_decal/borderfloor{
@@ -33973,7 +34021,7 @@ aGi
 aGw
 aHA
 aHe
-aHC
+vNR
 aHC
 aHe
 azr
@@ -34683,7 +34731,7 @@ aGA
 bIj
 aGR
 aHh
-aHH
+tNF
 aHH
 aHh
 aah
@@ -39024,8 +39072,8 @@ aaf
 aaf
 aao
 aau
-aau
-aau
+gRx
+iAg
 aau
 aao
 abn

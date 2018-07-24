@@ -8,6 +8,12 @@
 	name = "grower pod"
 	circuit = /obj/item/weapon/circuitboard/transhuman_clonepod
 
+//A full version of the pod
+/obj/machinery/clonepod/transhuman/full/initialize()
+	. = ..()
+	for(var/i = 1 to container_limit)
+		containers += new /obj/item/weapon/reagent_containers/glass/bottle/biomass(src)
+
 /obj/machinery/clonepod/transhuman/growclone(var/datum/transhuman/body_record/current_project)
 	//Manage machine-specific stuff.
 	if(mess || attempting)
@@ -17,6 +23,9 @@
 	eject_wait = 1
 	spawn(30)
 		eject_wait = 0
+
+	// Remove biomass when the cloning is started, rather than when the guy pops out
+	remove_biomass(CLONE_BIOMASS)
 
 	//Get the DNA and generate a new mob
 	var/datum/dna2/record/R = current_project.mydna
@@ -110,16 +119,6 @@
 	return 1
 
 /obj/machinery/clonepod/transhuman/process()
-
-	var/visible_message = 0
-	for(var/obj/item/weapon/reagent_containers/food/snacks/meat/meat in range(1, src))
-		qdel(meat)
-		biomass += 50
-		visible_message = 1 // Prevent chatspam if multiple meat are near
-
-	if(visible_message)
-		visible_message("[src] sucks in and processes the nearby biomass.")
-
 	if(stat & NOPOWER)
 		if(occupant)
 			locked = 0
@@ -539,14 +538,8 @@
 
 	//Give them a backup implant
 	var/obj/item/weapon/implant/backup/new_imp = new()
-	if(new_imp.implanted(occupant))
-		new_imp.loc = occupant
-		new_imp.imp_in = occupant
-		new_imp.implanted = 1
-		//Put it in the head! Makes sense.
-		var/obj/item/organ/external/affected = occupant.get_organ(BP_HEAD)
-		affected.implants += new_imp
-		new_imp.part = affected
+	if(new_imp.handle_implant(occupant, BP_HEAD))
+		new_imp.post_implant(occupant)
 
 	//Inform them and make them a little dizzy.
 	if(confuse_amount + blur_amount <= 16)

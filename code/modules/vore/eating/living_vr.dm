@@ -2,6 +2,7 @@
 /mob/living
 	var/digestable = 1					// Can the mob be digested inside a belly?
 	var/allowmobvore = 1				// Will simplemobs attempt to eat the mob?
+	var/showvoreprefs = 1				// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = 0					// If a mob is absorbed into another
@@ -612,7 +613,8 @@
 
 /mob/living/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
+	if(showvoreprefs)
+		to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])

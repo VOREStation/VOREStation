@@ -14,7 +14,7 @@
 
 /turf/simulated/sky/initialize()
 	. = ..()
-	outdoor_turfs.Add(src)
+	SSplanets.addTurf(src)
 	set_light(2, 2, "#FFFFFF")
 
 /turf/simulated/sky/north

@@ -776,6 +776,9 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
+/obj/item/weapon/weldingtool/electric/unloaded/New()
+	cell_type = null
+
 /obj/item/weapon/weldingtool/electric/New()
 	..()
 	if(cell_type == null)
@@ -786,8 +789,8 @@
 		power_supply = new /obj/item/weapon/cell/device(src)
 	update_icon()
 
-/obj/item/weapon/weldingtool/electric/unloaded/New()
-	cell_type = null
+/obj/item/weapon/weldingtool/electric/get_cell()
+	return power_supply
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	if(get_dist(src, user) > 1)

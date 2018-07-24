@@ -9,6 +9,51 @@
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
 
+	if(istype(C, /obj/item/stack/tile/roofing))
+		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
+		var/turf/T = GetAbove(src)
+		var/obj/item/stack/tile/roofing/R = C
+
+		// Patch holes in the ceiling
+		if(T)
+			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
+			 	// Must be build adjacent to an existing floor/wall, no floating floors
+				var/list/cardinalTurfs = list() // Up a Z level
+				for(var/dir in cardinal)
+					var/turf/B = get_step(T, dir)
+					if(B)
+						cardinalTurfs += B
+
+				var/turf/simulated/A = locate(/turf/simulated/floor) in cardinalTurfs
+				if(!A)
+					A = locate(/turf/simulated/wall) in cardinalTurfs
+				if(!A)
+					to_chat(user, "<span class='warning'>There's nothing to attach the ceiling to!</span>")
+					return
+
+				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
+					T.ReplaceWithLattice()
+					T.ChangeTurf(/turf/simulated/floor)
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					user.visible_message("<span class='notice'>[user] patches a hole in the ceiling.</span>", "<span class='notice'>You patch a hole in the ceiling.</span>")
+					expended_tile = TRUE
+			else
+				to_chat(user, "<span class='warning'>There aren't any holes in the ceiling to patch here.</span>")
+				return
+
+		// Create a ceiling to shield from the weather
+		if(src.outdoors)
+			for(var/dir in cardinal)
+				var/turf/A = get_step(src, dir)
+				if(A && !A.outdoors)
+					if(expended_tile || R.use(1))
+						src.outdoors = FALSE
+						SSplanets.unallocateTurf(src)
+						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+						user.visible_message("<span class='notice'>[user] roofs a tile, shielding it from the elements.</span>", "<span class='notice'>You roof this tile, shielding it from the elements.</span>")
+					break
+		return
+
 	if(flooring)
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)

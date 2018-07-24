@@ -41,6 +41,9 @@
 		processing_objects -= src
 	return ..()
 
+/obj/item/weapon/cell/get_cell()
+	return src
+
 /obj/item/weapon/cell/process()
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)

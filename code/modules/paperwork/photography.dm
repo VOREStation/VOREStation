@@ -134,7 +134,7 @@ var/global/photo_count = 0
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 	var/size = 3
-	var/picture_planes = list()
+	var/list/picture_planes = list()
 
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"

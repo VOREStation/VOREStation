@@ -28,6 +28,9 @@
 
 	var/obj/machinery/computer3/laptop/stored_computer = null
 
+/obj/item/device/laptop/get_cell()
+	return stored_computer.battery
+
 /obj/item/device/laptop/verb/open_computer()
 	set name = "Open Laptop"
 	set category = "Object"

@@ -38,7 +38,7 @@
 		if(isitem(A) && !did_an_item)
 			var/obj/item/I = A
 			if(mode_flags & DM_FLAG_ITEMWEAK)
-				I.gurgle_contaminate(contents, cont_flavor)
+				I.gurgle_contaminate(src, cont_flavor)
 				items_preserved |= I
 				to_update = TRUE
 			else
