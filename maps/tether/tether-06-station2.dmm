@@ -2699,57 +2699,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
-"ed" = (
-/obj/structure/closet,
-/obj/random/contraband,
-/obj/random/maintenance/cargo,
-/obj/random/maintenance/clean,
-/obj/random/maintenance/clean,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor,
-/area/chapel/chapel_morgue)
-"ee" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 9
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"ef" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 1
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"eg" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"eh" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"ei" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"ej" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 5
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
 "ek" = (
 /obj/structure/cable/pink,
 /obj/machinery/power/apc{
@@ -2916,6 +2865,10 @@
 /obj/item/weapon/pen/crayon/mime,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
+/obj/structure/closet,
+/obj/random/contraband,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
 /turf/simulated/floor,
 /area/chapel/chapel_morgue)
 "eE" = (
@@ -2925,15 +2878,17 @@
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "eF" = (
-/obj/machinery/computer/aiupload,
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_upload)
-"eG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/stairs/north,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"eG" = (
+/obj/machinery/computer/aiupload,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload)
 "eH" = (
-/obj/structure/ladder/up,
 /obj/structure/cable/cyan{
 	d1 = 16;
 	d2 = 0;
@@ -2943,14 +2898,18 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
+/obj/machinery/atmospherics/pipe/zpipe/up/supply,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "eI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"eJ" = (
 /obj/machinery/computer/borgupload,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "eK" = (
@@ -3091,23 +3050,16 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
-	dir = 4
-	},
 /obj/machinery/camera/motion/security{
 	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
-"fq" = (
-/obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_upload)
 "fr" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "fs" = (
@@ -3116,21 +3068,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "ft" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_upload)
-"fu" = (
 /obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -3481,10 +3425,16 @@
 "gn" = (
 /obj/effect/floor_decal/techfloor,
 /obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "go" = (
 /obj/effect/floor_decal/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "gp" = (
@@ -3498,8 +3448,12 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "gq" = (
@@ -3512,6 +3466,9 @@
 	dir = 2;
 	name = "south bump";
 	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
@@ -3932,6 +3889,11 @@
 	},
 /obj/effect/floor_decal/techfloor/hole/right{
 	dir = 1
+	},
+/obj/item/device/radio/intercom/locked/ai_private{
+	dir = 1;
+	icon_state = "intercom";
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
@@ -6007,6 +5969,11 @@
 /obj/machinery/light,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/item/device/radio/intercom/locked/ai_private{
+	dir = 4;
+	icon_state = "intercom";
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
@@ -17157,6 +17124,13 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/evahallway)
+"Hm" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/structure/stairs/north,
+/turf/simulated/floor/bluegrid,
+/area/ai_upload)
 "Hq" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -18023,6 +17997,13 @@
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
 /area/security/brig)
+"Pv" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/stairs/north,
+/turf/simulated/floor/bluegrid,
+/area/ai_upload)
 "Py" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -18262,6 +18243,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"QK" = (
+/obj/effect/floor_decal/techfloor,
+/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai_upload)
 "QN" = (
 /obj/structure/closet,
 /obj/item/clothing/shoes/boots/winter/medical,
@@ -30405,9 +30394,9 @@ ac
 ac
 ac
 ac
+ac
 bg
 cZ
-dD
 dD
 dD
 fn
@@ -30547,9 +30536,9 @@ ac
 ac
 ac
 ac
+ac
 bg
 da
-bg
 bg
 bg
 fo
@@ -30689,10 +30678,10 @@ ac
 ac
 ac
 ac
+ac
 bg
 da
 bg
-ed
 eD
 fo
 fT
@@ -30831,9 +30820,9 @@ ac
 ac
 ac
 ac
+ac
 bg
 da
-dE
 dE
 dE
 dE
@@ -30973,11 +30962,11 @@ ac
 ac
 ac
 ac
+ac
 bg
 db
 dE
-ee
-eE
+Pv
 fp
 eE
 gm
@@ -31115,12 +31104,12 @@ ac
 ac
 ac
 ac
+ac
 bg
 dc
 dE
-ef
 eF
-fq
+fU
 fU
 gn
 dE
@@ -31257,10 +31246,10 @@ ac
 ac
 ac
 ac
+ac
 bg
 da
 dE
-eg
 eG
 fr
 fV
@@ -31399,10 +31388,10 @@ ac
 ac
 ac
 ac
+ac
 bg
 da
 dE
-eh
 eH
 fs
 fW
@@ -31541,10 +31530,10 @@ ac
 ac
 ac
 ac
+ac
 bg
 dd
 dE
-ei
 eI
 ft
 fV
@@ -31683,14 +31672,14 @@ ac
 ac
 ac
 ac
+ac
 bg
 da
 dE
-ef
-eJ
-fu
+eF
 fU
-gn
+fU
+QK
 dE
 hn
 fU
@@ -31822,14 +31811,14 @@ ac
 ac
 ac
 ac
+ac
 bg
 bg
 bg
 bg
 da
 dE
-ej
-eK
+Hm
 fv
 eK
 gr
@@ -31965,11 +31954,11 @@ ac
 ac
 bg
 bg
+bg
 bT
 bT
 bg
 de
-dE
 dE
 dE
 dE
@@ -32110,10 +32099,10 @@ by
 bU
 bU
 cE
+bU
 df
 dF
 ek
-bU
 bg
 OQ
 OQ
@@ -32252,10 +32241,10 @@ bz
 bV
 cj
 cF
+cF
 dg
 dG
 el
-bU
 bg
 UX
 KX
