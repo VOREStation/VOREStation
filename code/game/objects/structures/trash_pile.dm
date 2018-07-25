@@ -206,7 +206,6 @@
 					prob(1);/obj/item/device/flashlight/glowstick/yellow,
 					prob(1);/obj/item/device/flashlight/pen,
 					prob(1);/obj/item/device/paicard,
-					prob(1);/obj/item/weapon/card/emag,
 					prob(1);/obj/item/clothing/mask/gas/voice,
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,
