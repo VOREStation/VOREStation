@@ -286,6 +286,7 @@
 
 	return powernet_target
 
+// Compiles the locations of all janitorial paraphernalia, as used by janitorialLocator.tmpl
 /obj/item/weapon/commcard/proc/get_janitorial_locations()
 	// Fetch janitorial locator
 	var/janidata[0]
@@ -326,3 +327,63 @@
 			janidata[++janidata.len] = list("field" = "[B.name]", "val" = textout)
 
 	return janidata
+
+// Compiles the three lists used by GPS_access.tmpl
+// The contents of the three lists are inherently related, so separating them into different procs would be largely redundant
+/obj/item/weapon/commcard/proc/get_GPS_lists()
+	// GPS Access
+	var/intgps[0] // Gps devices within the commcard -- Allow tag edits, turning on/off, etc
+	var/extgps[0] // Gps devices not inside the commcard -- Print locations if a gps is on
+	var/stagps[0] // Gps net status, location, whether it's on, if it's got long range
+	var/obj/item/device/gps/cumulative = new(src)
+	cumulative.tracking = FALSE
+	cumulative.local_mode = TRUE // Won't detect long-range signals automatically
+	cumulative.long_range = FALSE
+	var/list/toggled_gps = list() // List of GPS units that are turned off before display_list() is called
+
+	for(var/obj/item/device/gps/G in internal_devices)
+		var/gpsdata[0]
+		if(G.tracking && !G.emped)
+			cumulative.tracking = TRUE // Turn it on
+			if(G.long_range)
+				cumulative.long_range = TRUE // It can detect long-range
+				if(!G.local_mode)
+					cumulative.local_mode = FALSE // It is detecting long-range
+
+		gpsdata["ref"] = "\ref[G]"
+		gpsdata["tag"] = G.gps_tag
+		gpsdata["power"] = G.tracking
+		gpsdata["local_mode"] = G.local_mode
+		gpsdata["long_range"] = G.long_range
+		gpsdata["hide_signal"] = G.hide_signal
+		gpsdata["can_hide"] = G.can_hide_signal
+
+		intgps[++intgps.len] = gpsdata // Add it to the list
+
+		if(G.tracking)
+			G.tracking = FALSE // Disable the internal gps units so they don't show up in the report
+			toggled_gps += G
+
+	var/list/remote_gps = cumulative.display_list() // Fetch information for all units except the ones inside of this device
+
+	for(var/obj/item/device/gps/G in toggled_gps) // Reenable any internal GPS units
+		G.tracking = TRUE
+
+	stagps["enabled"] = cumulative.tracking
+	stagps["long_range_en"] = (cumulative.long_range && !cumulative.local_mode)
+
+	stagps["my_area_name"] = remote_gps["my_area_name"]
+	stagps["curr_x"] = remote_gps["curr_x"]
+	stagps["curr_y"] = remote_gps["curr_y"]
+	stagps["curr_z"] = remote_gps["curr_z"]
+	stagps["curr_z_name"] = remote_gps["curr_z_name"]
+
+	extgps = remote_gps["gps_list"] // Compiled by the GPS
+
+	qdel(cumulative) // Don't want spare GPS units building up in the contents
+
+	return list(
+			intgps,
+			extgps,
+			stagps
+		)

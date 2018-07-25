@@ -452,7 +452,7 @@
 //  *- Gas Scanner
 //  *- Reagent Scanner
 //  *- Halogen Counter
-//  -- GPS
+//  X- GPS - Balance
 //  *- Signaler
 // Templates
 //  -- Status Display Access
@@ -464,9 +464,8 @@
 //  -- Supply Bot Access
 //  *- Security Bot Access
 //  *- Janitorial Locator Magicbox
-//  -- GPS Access
+//  X- GPS Access - Balance
 //  *- Signaler Access
-//  X- Recipe lists - See service cartridge
 /obj/item/weapon/commcard/head/captain
 	name = "\improper Value-PAK cartridge"
 	desc = "Now with 200% more value!"
@@ -494,9 +493,12 @@
 
 // Explorer Cartridge
 // Devices
-//  -- GPS
+//  *- GPS
 // Templates
-//  -- GPS Access
+//  *- GPS Access
+
+// IMPORTANT: NOT MAPPED IN DUE TO BALANCE CONCERNS RE: FINDING THE VICTIMS OF ANTAGS.
+// See suit sensors, specifically ease of turning them off, and variable level of settings which may or may not give location
 /obj/item/weapon/commcard/explorer
 	name = "\improper Explorator cartridge"
 	icon_state = "cart-tox"
@@ -509,57 +511,10 @@
 	internal_devices |= new /obj/item/device/gps/explorer(src)
 
 /obj/item/weapon/commcard/explorer/get_data()
-	// GPS Access
-	var/intgps[0] // Gps devices within the commcard -- Allow tag edits, turning on/off, etc
-	var/extgps[0] // Gps devices not inside the commcard -- Print locations if a gps is on
-	var/stagps[0] // Gps status
-	var/obj/item/device/gps/cumulative = new(src)
-	cumulative.tracking = FALSE
-	cumulative.local_mode = TRUE // Won't detect long-range signals automatically
-	cumulative.long_range = FALSE
-	var/list/toggled_gps = list() // List of GPS units that are turned off before display_list() is called
-
-	for(var/obj/item/device/gps/G in internal_devices)
-		var/gpsdata[0]
-		if(G.tracking && !G.emped)
-			cumulative.tracking = TRUE // Turn it on
-			if(G.long_range)
-				cumulative.long_range = TRUE // It can detect long-range
-				if(!G.local_mode)
-					cumulative.local_mode = FALSE // It is detecting long-range
-
-		gpsdata["ref"] = "\ref[G]"
-		gpsdata["tag"] = G.gps_tag
-		gpsdata["power"] = G.tracking
-		gpsdata["local_mode"] = G.local_mode
-		gpsdata["long_range"] = G.long_range
-		gpsdata["hide_signal"] = G.hide_signal
-		gpsdata["can_hide"] = G.can_hide_signal
-
-		intgps[++intgps.len] = gpsdata // Add it to the list
-
-		if(G.tracking)
-			G.tracking = FALSE // Disable the internal gps units so they don't show up in the report
-			toggled_gps += G
-
-	var/list/remote_gps = cumulative.display_list()
-	for(var/obj/item/device/gps/G in toggled_gps)
-		G.tracking = TRUE
-
-	stagps["enabled"] = cumulative.tracking
-	stagps["long_range_en"] = (cumulative.long_range && !cumulative.local_mode)
-
-	stagps["my_area_name"] = remote_gps["my_area_name"]
-	stagps["curr_x"] = remote_gps["curr_x"]
-	stagps["curr_y"] = remote_gps["curr_y"]
-	stagps["curr_z"] = remote_gps["curr_z"]
-	stagps["curr_z_name"] = remote_gps["curr_z_name"]
-	extgps = remote_gps["gps_list"]
-
-	qdel(cumulative)
+	var/list/GPS = get_GPS_list()
 
 	return list(
-			list("field" = "gps_access", "value" = intgps),
-			list("field" = "gps_signal", "value" = extgps),
-			list("field" = "gps_status", "value" = stagps)
+			list("field" = "gps_access", "value" = GPS[1]),
+			list("field" = "gps_signal", "value" = GPS[2]),
+			list("field" = "gps_status", "value" = GPS[3])
 		)
