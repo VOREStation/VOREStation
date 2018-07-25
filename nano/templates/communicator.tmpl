@@ -314,7 +314,10 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			Owner:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.owner}}</div> {{:helper.link('Rename', 'pencil', {'rename' : 1})}}
+			<div style="float: left; width: 180px;">
+				{{:data.owner}}
+			</div>
+			{{:helper.link('Rename', 'pencil', {'rename' : 1})}}
 		</div>
 	</div>
 	
@@ -323,7 +326,9 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			Occupation:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.occupation}}</div>
+			<div style="float: left; width: 180px;">
+				{{:data.occupation}}
+			</div>
 		</div>
 	</div>
 
@@ -345,10 +350,15 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			Device EPv2 Address:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.address}}</div>
+			<div style="float: left; width: 180px;">
+				{{:data.address}}
+			</div>
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:helper.link('Visible', 'signal-diag', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}</div>
+			<div style="float: left; width: 180px;">
+				{{:helper.link('Visible', 'signal-diag', {'toggle_visibility' : 1}, data.visible ? 'selected' : null)}}
+				{{:helper.link('Invisible', 'close', {'toggle_visibility' : 1}, data.visible ? null : 'selected')}}
+			</div>
 		</div>
 	</div>
 	
@@ -357,7 +367,10 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 			Ringer:
 		</div>
 		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-on', {'toggle_ringer' : 1}, data.ring ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_ringer' : 1}, data.ring ? null : 'selected')}}</div>
+			<div style="float: left; width: 180px;">
+				{{:helper.link('On', 'volume-on', {'toggle_ringer' : 1}, data.ring ? 'selected' : null)}}
+				{{:helper.link('Off', 'volume-off', {'toggle_ringer' : 1}, data.ring ? null : 'selected')}}
+			</div>
 		</div>
 	</div>
 
@@ -383,7 +396,8 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 					{{:value.name}}
 				</div>
 				<div class="itemContent">
-					<div style="float: left; width: 180px;">{{:helper.link('On', 'volume-on', {'toggle_device' : value.index}, value.active ? 'selected' : null)}}{{:helper.link('Off', 'volume-off', {'toggle_device' : value.index}, value.active ? null : 'selected')}}</div>
+					<div style="float: left; width: 180px;">{{:helper.link('On', 'power', {'toggle_device' : value.index}, value.active ? 'selected' : null)}}
+					{{:helper.link('Off', 'stop', {'toggle_device' : value.index}, value.active ? null : 'selected')}}</div>
 				</div>
 			</div>
 		{{/for}}

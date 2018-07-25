@@ -33,14 +33,12 @@
 	return list()
 
 // Handles cartridge-specific functions
-// The helper.link() MUST HAVE 'cartridge_topic' passed into href in order for cartridge functions to be processed.
-// Doesn't matter what the value of it is in most cases, it's just a flag to say, "Hey, there's cartridge data to change!"
+// The helper.link() MUST HAVE 'cartridge_topic' passed into the href in order for cartridge functions to be processed.
+// Doesn't matter what the value of it is for now, it's just a flag to say, "Hey, there's cartridge data to change!"
 /obj/item/weapon/commcard/Topic(href, href_list)
 
 	// Signalers
 	if(href_list["signaler_target"])
-
-		world << href
 
 		var/obj/item/device/assembly/signaler/S = locate(href_list["signaler_target"]) // Should locate the correct signaler
 
@@ -72,8 +70,46 @@
 	if(href_list["powernet_refresh"])
 		internal_data["grid_sensors"] = find_powernet_sensors()
 
+	// Load apc's on targeted powernet
 	if(href_list["powernet_target"])
 		internal_data["powernet_target"] = href_list["powernet_target"]
+
+	// GPS units
+	if(href_list["gps_target"])
+		var/obj/item/device/gps/G = locate(href_list["gps_target"])
+
+		if(!istype(G)) // Ref is no longer valid
+			return
+
+		if(G.loc != src) // No longer within the cartridge
+			return
+
+		world << "Valid gps_target"
+
+		switch(href_list["gps_action"])
+			if("Power")
+				world << "Setting tracking to [href_list["value"]]"
+				G.tracking = text2num(href_list["value"])
+
+			if("Long_Range")
+				world << "Setting local_mode to [href_list["value"]]"
+				G.local_mode = text2num(href_list["value"])
+
+			if("Hide_Signal")
+				world << "Setting hide_signal to [href_list["value"]]"
+				G.hide_signal = text2num(href_list["value"])
+
+			if("Tag")
+				var/mob/user = locate(href_list["user"])
+				if(!istype(user)) // Ref no longer valid
+					return
+
+				var/newTag = input(user, "Please enter desired tag.", G.tag) as text|null
+
+				world << "Setting Tag to [newTag]"
+
+				if(newTag)
+					G.tag = newTag
 
 
 // Engineering Cartridge:
@@ -226,22 +262,6 @@
 			list("field" = "janidata", "value" = get_janitorial_locations())
 		)
 
-// Too computationally expensive; unfeasible to perform the list parsing with the frequency nanoUI will demand
-// In order to get all microwave recipe ingredient/product names, I'd have to instantiate and then delete everything at least once
-// Drink recipes are more doable, but still requires iterating over a fairly large set of subtypes
-/******************************************************
-// Service Cartridge:
-// Templates
-//  -- Recipe Lists
-/obj/item/weapon/commcard/service
-	name = "\improper Serv-U Pro"
-	desc = "A data cartridge designed to serve YOU!"
-	//I'm gonna regret this but recipes menu
-
-/obj/item/weapon/commcard/service/get_data()
-	// Add list of recipes to ui template
-	// SEE: /code/modules/food/recipe_dump.dm
-******************************************************/
 
 // Signal Cartridge:
 // Devices
@@ -297,19 +317,6 @@
 /obj/item/weapon/commcard/supply/get_data()
 	// Add supply records to ui template
 	// Add supply bot access to ui template
-
-
-// Mining Cartridge:
-// Templates
-//  -- Ore Processing Recipes
-// Much more doable than food/drink, there's vastly fewer recipe datums to iterate over.
-// Code here will be similar to what would be used for food/drink, just different path for subtypesof()
-/obj/item/weapon/commcard/miner
-	name = "\improper Drill-Jockey 4.5"
-	desc = "It's covered in some sort of sand."
-
-/obj/item/weapon/commcard/miner/get_data()
-	// Add ore recipes to ui template
 
 
 // Command Cartridge:
@@ -493,11 +500,66 @@
 /obj/item/weapon/commcard/explorer
 	name = "\improper Explorator cartridge"
 	icon_state = "cart-tox"
-	//GPS
+	ui_templates = list(
+			list("name" = "Integrated GPS", "template" = "gps_access.tmpl")
+		)
 
 /obj/item/weapon/commcard/explorer/New()
 	..()
-	internal_devices |= new /obj/item/device/gps(src)
+	internal_devices |= new /obj/item/device/gps/explorer(src)
 
 /obj/item/weapon/commcard/explorer/get_data()
 	// GPS Access
+	var/intgps[0] // Gps devices within the commcard -- Allow tag edits, turning on/off, etc
+	var/extgps[0] // Gps devices not inside the commcard -- Print locations if a gps is on
+	var/stagps[0] // Gps status
+	var/obj/item/device/gps/cumulative = new(src)
+	cumulative.tracking = FALSE
+	cumulative.local_mode = TRUE // Won't detect long-range signals automatically
+	cumulative.long_range = FALSE
+	var/list/toggled_gps = list() // List of GPS units that are turned off before display_list() is called
+
+	for(var/obj/item/device/gps/G in internal_devices)
+		var/gpsdata[0]
+		if(G.tracking && !G.emped)
+			cumulative.tracking = TRUE // Turn it on
+			if(G.long_range)
+				cumulative.long_range = TRUE // It can detect long-range
+				if(!G.local_mode)
+					cumulative.local_mode = FALSE // It is detecting long-range
+
+		gpsdata["ref"] = "\ref[G]"
+		gpsdata["tag"] = G.gps_tag
+		gpsdata["power"] = G.tracking
+		gpsdata["local_mode"] = G.local_mode
+		gpsdata["long_range"] = G.long_range
+		gpsdata["hide_signal"] = G.hide_signal
+		gpsdata["can_hide"] = G.can_hide_signal
+
+		intgps[++intgps.len] = gpsdata // Add it to the list
+
+		if(G.tracking)
+			G.tracking = FALSE // Disable the internal gps units so they don't show up in the report
+			toggled_gps += G
+
+	var/list/remote_gps = cumulative.display_list()
+	for(var/obj/item/device/gps/G in toggled_gps)
+		G.tracking = TRUE
+
+	stagps["enabled"] = cumulative.tracking
+	stagps["long_range_en"] = (cumulative.long_range && !cumulative.local_mode)
+
+	stagps["my_area_name"] = remote_gps["my_area_name"]
+	stagps["curr_x"] = remote_gps["curr_x"]
+	stagps["curr_y"] = remote_gps["curr_y"]
+	stagps["curr_z"] = remote_gps["curr_z"]
+	stagps["curr_z_name"] = remote_gps["curr_z_name"]
+	extgps = remote_gps["gps_list"]
+
+	qdel(cumulative)
+
+	return list(
+			list("field" = "gps_access", "value" = intgps),
+			list("field" = "gps_signal", "value" = extgps),
+			list("field" = "gps_status", "value" = stagps)
+		)
