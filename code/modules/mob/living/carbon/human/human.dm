@@ -861,7 +861,7 @@
 					to_chat(H, message)
 
 		else if (href_list["interaction"] == "anal")
-			if (H.loc == P.loc && isnude_p && isnude && haspenis && hasanus_p && P.species.name != "Diona")
+			if (((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && isnude && haspenis && hasanus_p && P.species.name != "Diona")
 				if (acttime > (1800))
 					if (H.potenzia > 0)
 						H.fuck(H, P, "anal")
@@ -870,7 +870,7 @@
 					to_chat(H, message)
 
 		else if (href_list["interaction"] == "vaginal")
-			if (H.loc == P.loc && isnude_p && isnude && haspenis && hasvagina_p && P.species.name != "Teshari")
+			if (((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && isnude && haspenis && hasvagina_p && P.species.name != "Teshari")
 				if (acttime > (1800))
 					if (H.potenzia > 0)
 						H.fuck(H, P, "vaginal")
@@ -879,7 +879,7 @@
 					to_chat(H, message)
 
 		else if (href_list["interaction"] == "oral")
-			if (H.loc == P.loc && isnude && mouthfree_p && haspenis && P.species.name != "Diona")
+			if (((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude && mouthfree_p && haspenis && P.species.name != "Diona")
 				if (acttime > (1800))
 					if (H.potenzia > 0)
 						H.fuck(H, P, "oral")
