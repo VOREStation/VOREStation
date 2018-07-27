@@ -204,7 +204,7 @@
 			dat +=  {"Х <A href='?src=\ref[src];interaction=spit'><font color=red>ѕлюнуть.</font></A><BR>"}
 		dat +=  {"Х <A href='?src=\ref[src];interaction=tongue'><font color=red>ѕоказать [ya]зык.</font></A><BR>"}
 
-	if (Adjacent(P) && P.species.name != "Diona")
+	if (Adjacent(P) && isnude && P.species.name != "Diona")
 		if (haspenis && hashands)
 			dat += {"<font size=3><B>„лен:</B></font><BR>"}
 			if (isnude_p)
