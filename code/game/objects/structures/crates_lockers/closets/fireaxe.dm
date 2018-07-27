@@ -16,6 +16,13 @@
 
 	starts_with = list(/obj/item/weapon/material/twohanded/fireaxe)
 
+<<<<<<< HEAD
+=======
+/obj/structure/closet/fireaxecabinet/initialize()
+	..()
+	fireaxe = locate() in contents
+
+>>>>>>> 8cd1f6a... Merge pull request #5446 from Anewbe/fireaxe_fix_again
 /obj/structure/closet/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
 
