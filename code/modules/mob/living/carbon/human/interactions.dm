@@ -207,13 +207,12 @@
 	if (Adjacent(P) && isnude && P.species.name != "Diona")
 		if (haspenis && hashands)
 			dat += {"<font size=3><B>„лен:</B></font><BR>"}
-			if (isnude_p)
-				if (hasvagina_p && P.species.name != "Teshari")
-					dat += {"Х <A href='?src=\ref[src];interaction=vaginal'><font color=purple>“рахнуть вагинально.</font></A><BR>"}
-				if (hasanus_p)
-					dat += {"Х <A href='?src=\ref[src];interaction=anal'><font color=purple>“рахнуть анально.</font></A><BR>"}
-				if (mouthfree_p)
-					dat += {"Х <A href='?src=\ref[src];interaction=oral'><font color=purple>“рахнуть орально.</font></A><BR>"}
+			if (hasvagina_p && isnude_p && P.species.name != "Teshari")
+				dat += {"Х <A href='?src=\ref[src];interaction=vaginal'><font color=purple>“рахнуть вагинально.</font></A><BR>"}
+			if (hasanus_p && isnude_p)
+				dat += {"Х <A href='?src=\ref[src];interaction=anal'><font color=purple>“рахнуть анально.</font></A><BR>"}
+			if (mouthfree_p)
+				dat += {"Х <A href='?src=\ref[src];interaction=oral'><font color=purple>“рахнуть орально.</font></A><BR>"}
 	if (isnude && hashands)
 		if (hasvagina)
 			dat += {"<font size=3><B>Ћоно:</B></font><BR>"}
