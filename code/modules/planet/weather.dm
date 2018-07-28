@@ -10,6 +10,7 @@
 
 	// Holds the weather icon, using vis_contents. Documentation says an /atom/movable is required for placing inside another atom's vis_contents.
 	var/atom/movable/weather_visuals/visuals = null
+	var/atom/movable/weather_visuals/special/special_visuals = null
 
 /datum/weather_holder/New(var/source)
 	..()
@@ -19,6 +20,7 @@
 		if(istype(W))
 			W.holder = src
 	visuals = new()
+	special_visuals = new()
 
 /datum/weather_holder/proc/change_weather(var/new_weather)
 	var/old_light_modifier = null
@@ -87,3 +89,9 @@
 	icon = 'icons/effects/weather.dmi'
 	mouse_opacity = 0
 	plane = PLANE_PLANETLIGHTING
+
+// This is for special effects for specific types of weather, such as lightning flashes in a storm.
+// It's a seperate object to allow the use of flick().
+/atom/movable/weather_visuals/special
+	plane = PLANE_LIGHTING_ABOVE
+	alpha = 127
