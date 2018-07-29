@@ -247,7 +247,7 @@ datum/gear/suit/duster
 	allowed_roles = list("Cargo Technician","Quartermaster")
 
 /datum/gear/suit/roles/poncho/cloak/mining
-	display_name = "cloak, cargo"
+	display_name = "cloak, mining"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/mining
 	allowed_roles = list("Quartermaster","Shaft Miner")
 
