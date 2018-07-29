@@ -1042,6 +1042,44 @@
 	name = "tuxedo cat plushie"
 	icon_state = "tuxedocat"
 
+// nah, squids are better than foxes :>
+
+/obj/item/toy/plushie/squid/green
+	name = "green squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is green."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "greensquid"
+
+/obj/item/toy/plushie/squid/mint
+	name = "mint squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is mint coloured."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "mintsquid"
+
+/obj/item/toy/plushie/squid/blue
+	name = "blue squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is blue."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "bluesquid"
+
+/obj/item/toy/plushie/squid/orange
+	name = "orange squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is orange."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "orangesquid"
+
+/obj/item/toy/plushie/squid/yellow
+	name = "yellow squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is yellow."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "yellowsquid"
+
+/obj/item/toy/plushie/squid/pink
+	name = "pink squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is pink."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "pinksquid"
+
 /obj/item/toy/plushie/therapy/red
 	name = "red therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is red."
