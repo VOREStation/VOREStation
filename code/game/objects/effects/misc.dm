@@ -61,5 +61,6 @@
 	pixel_x = -32
 
 /obj/effect/temporary_effect/lightning_strike/initialize()
-	icon_state += rand(1,2) // To have two variants of lightning sprites.
+	icon_state += "[rand(1,2)]" // To have two variants of lightning sprites.
+	animate(src, alpha = 0, time = time_to_die - 1)
 	. = ..()

@@ -94,4 +94,3 @@
 // It's a seperate object to allow the use of flick().
 /atom/movable/weather_visuals/special
 	plane = PLANE_LIGHTING_ABOVE
-	alpha = 127

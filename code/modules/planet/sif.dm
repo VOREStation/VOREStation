@@ -312,32 +312,6 @@ datum/weather/sif
 	var/turf/T = pick(holder.our_planet.planet_floors) // This has the chance to 'strike' the sky, but that might be a good thing, to scare reckless pilots.
 	lightning_strike(T)
 
-// This is global until I can figure out a better place for it.
-// T is the turf that is being struck. If cosmetic is true, the lightning won't actually hurt anything.
-/proc/lightning_strike(turf/T, cosmetic = FALSE)
-	world << "Going to strike turf [T] ([T.x],[T.y],[T.z])."
-	// First, visuals.
-	// Do a lightning flash for the whole planet, if the turf belongs to a planet.
-	var/datum/planet/P = null
-	P = SSplanets.z_to_planet[T.z]
-	if(P)
-		world << "Planet [P] ([P.name]) is hopefully not null."
-		var/datum/weather_holder/holder = P.weather_holder
-		world << "Weather holder is hopefully not null."
-		flick("lightning_flash", holder.special_visuals)
-
-	// Now make the lightning strike sprite. It will delete itself in a second.
-	new /obj/effect/temporary_effect/lightning_strike(T)
-
-	// Todo: Thunder.
-
-	if(cosmetic) // Everything beyond here involves damaging things. If we don't want to do that, stop now.
-		return
-
-// Test verb
-/mob/verb/test_lightning()
-	lightning_strike(get_turf(src))
-
 /datum/weather/sif/hail
 	name = "hail"
 	icon_state = "hail"
