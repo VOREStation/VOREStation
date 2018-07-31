@@ -92,7 +92,7 @@
 
 /datum/modifier/trait/colorblind_deuteranopia
 	name = "Deuteranopia"
-	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing between yellows and reds."
+	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing them from yellows and reds."
 
 	client_color = MATRIX_Deuteranopia
 

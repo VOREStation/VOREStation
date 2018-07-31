@@ -100,7 +100,7 @@
 
 /datum/trait/modifier/physical/colorblind_deuteranopia
 	name = "Deuteranopia"
-	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing between yellows and reds."
+	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing them from yellows and reds."
 	modifier_type = /datum/modifier/trait/colorblind_deuteranopia
 	mutually_exclusive = list(/datum/trait/modifier/physical/colorblind_protanopia, /datum/trait/modifier/physical/colorblind_tritanopia, /datum/trait/modifier/physical/colorblind_monochrome)
 
