@@ -47,6 +47,8 @@
 		return
 
 	affecting.grabbed_by += src
+	affecting.reveal("<span class='warning'>You are revealed as [assailant] grabs you.</span>")
+	assailant.reveal("<span class='warning'>You reveal yourself as you grab [affecting].</span>")
 
 	hud = new /obj/screen/grab(src)
 	hud.icon_state = "reinforce"

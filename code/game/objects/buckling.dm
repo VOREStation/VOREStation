@@ -142,17 +142,22 @@
 
 	. = buckle_mob(M, forced)
 	if(.)
+		var/reveal_message
 		if(!silent)
 			if(M == user)
+				reveal_message = "<span class='notice'>You come out of hiding and buckle yourself to [src].</span>"
 				M.visible_message(\
 					"<span class='notice'>[M.name] buckles themselves to [src].</span>",\
 					"<span class='notice'>You buckle yourself to [src].</span>",\
 					"<span class='notice'>You hear metal clanking.</span>")
 			else
+				reveal_message = "<span class='notice'>You are revealed as you are buckled to [src].</span>"
 				M.visible_message(\
 					"<span class='danger'>[M.name] is buckled to [src] by [user.name]!</span>",\
 					"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
 					"<span class='notice'>You hear metal clanking.</span>")
+
+		M.reveal(silent, reveal_message) //Reveal people so they aren't buckled to chairs from behind.
 
 /atom/movable/proc/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	var/mob/living/M = unbuckle_mob(buckled_mob)
@@ -193,4 +198,3 @@
 		riding_datum.handle_vehicle_layer()
 		riding_datum.handle_vehicle_offsets()
 	//VOREStation Add End
-	
