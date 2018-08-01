@@ -57,6 +57,7 @@ SUBSYSTEM_DEF(planets)
 		else
 			P.planet_walls -= T
 		T.vis_contents -= P.weather_holder.visuals
+		T.vis_contents -= P.weather_holder.special_visuals
 
 /datum/controller/subsystem/planets/proc/allocateTurfs(var/initial = FALSE)
 	var/list/currentlist = new_outdoor_turfs
@@ -67,6 +68,7 @@ SUBSYSTEM_DEF(planets)
 			var/datum/planet/P = z_to_planet[OT.z]
 			P.planet_floors |= OT
 			OT.vis_contents |= P.weather_holder.visuals
+			OT.vis_contents |= P.weather_holder.special_visuals
 		if(!initial && MC_TICK_CHECK)
 			return
 
@@ -85,6 +87,7 @@ SUBSYSTEM_DEF(planets)
 		var/datum/planet/P = z_to_planet[T.z]
 		P.planet_floors -= T
 		T.vis_contents -= P.weather_holder.visuals
+		T.vis_contents -= P.weather_holder.special_visuals
 
 
 /datum/controller/subsystem/planets/fire(resumed = 0)
