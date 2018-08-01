@@ -48,6 +48,7 @@
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\stat_tracking.dm"
 #include "code\__defines\subsystems.dm"
+#include "code\__defines\supply.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\turfs.dm"
 #include "code\__defines\unit_tests.dm"
