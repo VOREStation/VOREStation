@@ -1,6 +1,0 @@
-author: PrismaticGynoid
-
-delete-after: True
-
-changes: 
-  - rscadd: "Adds four types of colorblindness to the traits in the setup menu."
