@@ -75,7 +75,7 @@ obj/machinery/recharger
 		G.loc = src
 		charging = G
 		update_icon()
-	else if(portable && istype(G, /obj/item/weapon/wrench))
+	else if(portable && G.is_wrench())
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return

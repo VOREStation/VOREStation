@@ -2,65 +2,65 @@
 ///// Construction datums //////
 ////////////////////////////////
 
-/datum/construction/mecha/custom_action(step, atom/used_atom, mob/user)
-	if(istype(used_atom, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = used_atom
+/datum/construction/mecha/custom_action(step, obj/item/I, mob/user)
+	if(I.is_welder())
+		var/obj/item/weapon/weldingtool/W = I
 		if (W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
 			return 0
-	else if(istype(used_atom, /obj/item/weapon/wrench))
+	else if(I.is_wrench())
 		playsound(holder, 'sound/items/Ratchet.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/weapon/screwdriver))
+	else if(I.is_screwdriver())
 		playsound(holder, 'sound/items/Screwdriver.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/weapon/wirecutters))
+	else if(I.is_wirecutter())
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = used_atom
+	else if(I.is_cable_coil())
+		var/obj/item/stack/cable_coil/C = I
 		if(C.use(4))
 			playsound(holder, 'sound/items/Deconstruct.ogg', 50, 1)
 		else
-			user << ("There's not enough cable to finish the task.")
+			to_chat(user, "There's not enough cable to finish the task.")
 			return 0
-	else if(istype(used_atom, /obj/item/stack))
-		var/obj/item/stack/S = used_atom
+	else if(istype(I, /obj/item/stack))
+		var/obj/item/stack/S = I
 		if(S.get_amount() < 5)
-			user << ("There's not enough material in this stack.")
+			to_chat(user, "There's not enough material in this stack.")
 			return 0
 		else
 			S.use(5)
 	return 1
 
-/datum/construction/reversible/mecha/custom_action(index as num, diff as num, atom/used_atom, mob/user as mob)
-	if(istype(used_atom, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = used_atom
+/datum/construction/reversible/mecha/custom_action(index as num, diff as num, obj/item/I, mob/user as mob)
+	if(I.is_welder())
+		var/obj/item/weapon/weldingtool/W = I
 		if (W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
 			return 0
-	else if(istype(used_atom, /obj/item/weapon/wrench))
+	else if(I.is_wrench())
 		playsound(holder, 'sound/items/Ratchet.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/weapon/screwdriver))
+	else if(I.is_screwdriver())
 		playsound(holder, 'sound/items/Screwdriver.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/weapon/wirecutters))
+	else if(I.is_wirecutter())
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = used_atom
+	else if(I.is_cable_coil())
+		var/obj/item/stack/cable_coil/C = I
 		if(C.use(4))
 			playsound(holder, 'sound/items/Deconstruct.ogg', 50, 1)
 		else
-			user << ("There's not enough cable to finish the task.")
+			to_chat(user, "There's not enough cable to finish the task.")
 			return 0
-	else if(istype(used_atom, /obj/item/stack))
-		var/obj/item/stack/S = used_atom
+	else if(istype(I, /obj/item/stack))
+		var/obj/item/stack/S = I
 		if(S.get_amount() < 5)
-			user << ("There's not enough material in this stack.")
+			to_chat(user, "There's not enough material in this stack.")
 			return 0
 		else
 			S.use(5)
@@ -75,14 +75,14 @@
 					 list("key"=/obj/item/mecha_parts/part/ripley_right_leg)//5
 					)
 
-	custom_action(step, atom/used_atom, mob/user)
-		user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
-		holder.overlays += used_atom.icon_state+"+o"
-		qdel(used_atom)
+	custom_action(step, obj/item/I, mob/user)
+		user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+		holder.overlays += I.icon_state+"+o"
+		qdel(I)
 		return 1
 
-	action(atom/used_atom,mob/user as mob)
-		return check_all_steps(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_all_steps(I,user)
 
 	spawn_result()
 		var/obj/item/mecha_parts/chassis/const_holder = holder
@@ -101,11 +101,11 @@
 	steps = list(
 					//1
 					list("key"=/obj/item/weapon/weldingtool,
-							"backkey"=/obj/item/weapon/wrench,
+							"backkey"=/obj/item/weapon/tool/wrench,
 							"desc"="External armor is wrenched."),
 					//2
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/material/plasteel,
@@ -113,53 +113,53 @@
 					 		"desc"="Internal armor is welded."),
 					 //4
 					 list("key"=/obj/item/weapon/weldingtool,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Internal armor is installed"),
 					 //6
 					 list("key"=/obj/item/stack/material/steel,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Peripherals control module is secured"),
 					 //7
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //8
 					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //9
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //10
 					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //11
-					 list("key"=/obj/item/weapon/wirecutters,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //12
 					 list("key"=/obj/item/stack/cable_coil,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The hydraulic systems are active."),
 					 //13
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are connected."),
 					 //14
-					 list("key"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-	action(atom/used_atom,mob/user as mob)
-		return check_step(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_step(I,user)
 
-	custom_action(index, diff, atom/used_atom, mob/user)
+	custom_action(index, diff, obj/item/I, mob/user)
 		if(!..())
 			return 0
 
@@ -194,7 +194,7 @@
 			if(10)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "ripley5"
 				else
 					user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
@@ -210,7 +210,7 @@
 			if(8)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "ripley7"
 				else
 					user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
@@ -286,14 +286,14 @@
 					 list("key"=/obj/item/mecha_parts/part/gygax_head)
 					)
 
-	custom_action(step, atom/used_atom, mob/user)
-		user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
-		holder.overlays += used_atom.icon_state+"+o"
-		qdel(used_atom)
+	custom_action(step, obj/item/I, mob/user)
+		user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+		holder.overlays += I.icon_state+"+o"
+		qdel(I)
 		return 1
 
-	action(atom/used_atom,mob/user as mob)
-		return check_all_steps(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_all_steps(I,user)
 
 	spawn_result()
 		var/obj/item/mecha_parts/chassis/const_holder = holder
@@ -311,11 +311,11 @@
 	steps = list(
 					//1
 					list("key"=/obj/item/weapon/weldingtool,
-							"backkey"=/obj/item/weapon/wrench,
+							"backkey"=/obj/item/weapon/tool/wrench,
 							"desc"="External armor is wrenched."),
 					 //2
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/mecha_parts/part/gygax_armour,
@@ -323,77 +323,77 @@
 					 		"desc"="Internal armor is welded."),
 					 //4
 					 list("key"=/obj/item/weapon/weldingtool,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Internal armor is installed"),
 					 //6
 					 list("key"=/obj/item/stack/material/steel,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Advanced capacitor is secured"),
 					 //7
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Advanced capacitor is installed"),
 					 //8
 					 list("key"=/obj/item/weapon/stock_parts/capacitor/adv,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Advanced scanner module is secured"),
 					 //9
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Advanced scanner module is installed"),
 					 //10
 					 list("key"=/obj/item/weapon/stock_parts/scanning_module/adv,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Targeting module is secured"),
 					 //11
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Targeting module is installed"),
 					 //12
 					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/targeting,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Peripherals control module is secured"),
 					 //13
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //14
 					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/peripherals,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //15
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //16
 					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/main,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/wirecutters,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //18
 					 list("key"=/obj/item/stack/cable_coil,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The hydraulic systems are active."),
 					 //19
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are connected."),
 					 //20
-					 list("key"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-	action(atom/used_atom,mob/user as mob)
-		return check_step(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_step(I,user)
 
-	custom_action(index, diff, atom/used_atom, mob/user)
+	custom_action(index, diff, obj/item/I, mob/user)
 		if(!..())
 			return 0
 
@@ -428,7 +428,7 @@
 			if(16)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "gygax5"
 				else
 					user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
@@ -444,7 +444,7 @@
 			if(14)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "gygax7"
 				else
 					user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
@@ -460,7 +460,7 @@
 			if(12)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the weapon control module into [holder].", "You install the weapon control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "gygax9"
 				else
 					user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
@@ -476,7 +476,7 @@
 			if(10)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs advanced scanner module to [holder].", "You install advanced scanner module to [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "gygax11"
 				else
 					user.visible_message("[user] unfastens the weapon control module.", "You unfasten the weapon control module.")
@@ -492,7 +492,7 @@
 			if(8)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs advanced capacitor to [holder].", "You install advanced capacitor to [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "gygax13"
 				else
 					user.visible_message("[user] unfastens the advanced scanner module.", "You unfasten the advanced scanner module.")
@@ -531,7 +531,7 @@
 			if(3)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs Gygax Armour Plates to [holder].", "You install Gygax Armour Plates to [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "gygax18"
 				else
 					user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
@@ -566,15 +566,15 @@
 					 list("key"=/obj/item/clothing/suit/fire)//6
 					)
 
-	custom_action(step, atom/used_atom, mob/user)
-		user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
-		holder.overlays += used_atom.icon_state+"+o"
+	custom_action(step, obj/item/I, mob/user)
+		user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+		holder.overlays += I.icon_state+"+o"
 		user.drop_item()
-		qdel(used_atom)
+		qdel(I)
 		return 1
 
-	action(atom/used_atom,mob/user as mob)
-		return check_all_steps(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_all_steps(I,user)
 
 	spawn_result()
 		var/obj/item/mecha_parts/chassis/const_holder = holder
@@ -592,15 +592,15 @@
 	steps = list(
 					//1
 					list("key"=/obj/item/weapon/weldingtool,
-							"backkey"=/obj/item/weapon/wrench,
+							"backkey"=/obj/item/weapon/tool/wrench,
 							"desc"="External armor is wrenched."),
 					//2
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/material/plasteel,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="External armor is being installed."),
 					 //4
 					 list("key"=/obj/item/stack/material/plasteel,
@@ -608,54 +608,54 @@
 					 		"desc"="Internal armor is welded."),
 					 //5
 					 list("key"=/obj/item/weapon/weldingtool,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //6
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Internal armor is installed"),
 
 					 //7
 					 list("key"=/obj/item/stack/material/plasteel,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Peripherals control module is secured"),
 					 //8
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //9
 					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //10
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //11
 					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //12
-					 list("key"=/obj/item/weapon/wirecutters,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //13
 					 list("key"=/obj/item/stack/cable_coil,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The hydraulic systems are active."),
 					 //14
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are connected."),
 					 //15
-					 list("key"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-	action(atom/used_atom,mob/user as mob)
-		return check_step(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_step(I,user)
 
-	custom_action(index, diff, atom/used_atom, mob/user)
+	custom_action(index, diff, obj/item/I, mob/user)
 		if(!..())
 			return 0
 
@@ -690,7 +690,7 @@
 			if(11)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "fireripley5"
 				else
 					user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
@@ -706,7 +706,7 @@
 			if(9)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "fireripley7"
 				else
 					user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
@@ -790,14 +790,14 @@
 					 list("key"=/obj/item/mecha_parts/part/durand_head)
 					)
 
-	custom_action(step, atom/used_atom, mob/user)
-		user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
-		holder.overlays += used_atom.icon_state+"+o"
-		qdel(used_atom)
+	custom_action(step, obj/item/I, mob/user)
+		user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+		holder.overlays += I.icon_state+"+o"
+		qdel(I)
 		return 1
 
-	action(atom/used_atom,mob/user as mob)
-		return check_all_steps(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_all_steps(I,user)
 
 	spawn_result()
 		var/obj/item/mecha_parts/chassis/const_holder = holder
@@ -814,11 +814,11 @@
 	steps = list(
 					//1
 					list("key"=/obj/item/weapon/weldingtool,
-							"backkey"=/obj/item/weapon/wrench,
+							"backkey"=/obj/item/weapon/tool/wrench,
 							"desc"="External armor is wrenched."),
 					 //2
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/mecha_parts/part/durand_armour,
@@ -826,78 +826,78 @@
 					 		"desc"="Internal armor is welded."),
 					 //4
 					 list("key"=/obj/item/weapon/weldingtool,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Internal armor is installed"),
 					 //6
 					 list("key"=/obj/item/stack/material/steel,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Advanced capacitor is secured"),
 					 //7
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Advanced capacitor is installed"),
 					 //8
 					 list("key"=/obj/item/weapon/stock_parts/capacitor/adv,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Advanced scanner module is secured"),
 					 //9
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Advanced scanner module is installed"),
 					 //10
 					 list("key"=/obj/item/weapon/stock_parts/scanning_module/adv,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Targeting module is secured"),
 					 //11
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Targeting module is installed"),
 					 //12
 					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/targeting,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Peripherals control module is secured"),
 					 //13
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //14
 					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/peripherals,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //15
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //16
 					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/main,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/wirecutters,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //18
 					 list("key"=/obj/item/stack/cable_coil,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The hydraulic systems are active."),
 					 //19
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are connected."),
 					 //20
-					 list("key"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
 
-	action(atom/used_atom,mob/user as mob)
-		return check_step(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_step(I,user)
 
-	custom_action(index, diff, atom/used_atom, mob/user)
+	custom_action(index, diff, obj/item/I, mob/user)
 		if(!..())
 			return 0
 
@@ -932,7 +932,7 @@
 			if(16)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "durand5"
 				else
 					user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
@@ -948,7 +948,7 @@
 			if(14)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "durand7"
 				else
 					user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
@@ -964,7 +964,7 @@
 			if(12)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the weapon control module into [holder].", "You install the weapon control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "durand9"
 				else
 					user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
@@ -980,7 +980,7 @@
 			if(10)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs advanced scanner module to [holder].", "You install advanced scanner module to [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "durand11"
 				else
 					user.visible_message("[user] unfastens the weapon control module.", "You unfasten the weapon control module.")
@@ -996,7 +996,7 @@
 			if(8)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs advanced capacitor to [holder].", "You install advanced capacitor to [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "durand13"
 				else
 					user.visible_message("[user] unfastens the advanced scanner module.", "You unfasten the advanced scanner module.")
@@ -1035,7 +1035,7 @@
 			if(3)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs Durand Armour Plates to [holder].", "You install Durand Armour Plates to [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "durand18"
 				else
 					user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
@@ -1072,14 +1072,14 @@
 					 list("key"=/obj/item/mecha_parts/part/phazon_head)
 					)
 
-	custom_action(step, atom/used_atom, mob/user)
-		user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
-		holder.overlays += used_atom.icon_state+"+o"
-		qdel(used_atom)
+	custom_action(step, obj/item/I, mob/user)
+		user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+		holder.overlays += I.icon_state+"+o"
+		qdel(I)
 		return 1
 
-	action(atom/used_atom,mob/user as mob)
-		return check_all_steps(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_all_steps(I,user)
 
 
 
@@ -1093,14 +1093,14 @@
 					 list("key"=/obj/item/mecha_parts/part/odysseus_right_leg)//6
 					)
 
-	custom_action(step, atom/used_atom, mob/user)
-		user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
-		holder.overlays += used_atom.icon_state+"+o"
-		qdel(used_atom)
+	custom_action(step, obj/item/I, mob/user)
+		user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
+		holder.overlays += I.icon_state+"+o"
+		qdel(I)
 		return 1
 
-	action(atom/used_atom,mob/user as mob)
-		return check_all_steps(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_all_steps(I,user)
 
 	spawn_result()
 		var/obj/item/mecha_parts/chassis/const_holder = holder
@@ -1118,11 +1118,11 @@
 	steps = list(
 					//1
 					list("key"=/obj/item/weapon/weldingtool,
-							"backkey"=/obj/item/weapon/wrench,
+							"backkey"=/obj/item/weapon/tool/wrench,
 							"desc"="External armor is wrenched."),
 					//2
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/material/plasteel,
@@ -1130,53 +1130,53 @@
 					 		"desc"="Internal armor is welded."),
 					 //4
 					 list("key"=/obj/item/weapon/weldingtool,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
-					 list("key"=/obj/item/weapon/wrench,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/wrench,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Internal armor is installed"),
 					 //6
 					 list("key"=/obj/item/stack/material/steel,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Peripherals control module is secured"),
 					 //7
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //8
 					 list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/peripherals,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //9
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/crowbar,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //10
 					 list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/main,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //11
-					 list("key"=/obj/item/weapon/wirecutters,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //12
 					 list("key"=/obj/item/stack/cable_coil,
-					 		"backkey"=/obj/item/weapon/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/screwdriver,
 					 		"desc"="The hydraulic systems are active."),
 					 //13
-					 list("key"=/obj/item/weapon/screwdriver,
-					 		"backkey"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/screwdriver,
+					 		"backkey"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are connected."),
 					 //14
-					 list("key"=/obj/item/weapon/wrench,
+					 list("key"=/obj/item/weapon/tool/wrench,
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-	action(atom/used_atom,mob/user as mob)
-		return check_step(used_atom,user)
+	action(obj/item/I,mob/user as mob)
+		return check_step(I,user)
 
-	custom_action(index, diff, atom/used_atom, mob/user)
+	custom_action(index, diff, obj/item/I, mob/user)
 		if(!..())
 			return 0
 
@@ -1211,7 +1211,7 @@
 			if(10)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "odysseus5"
 				else
 					user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
@@ -1227,7 +1227,7 @@
 			if(8)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
-					qdel(used_atom)
+					qdel(I)
 					holder.icon_state = "odysseus7"
 				else
 					user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
@@ -1265,7 +1265,7 @@
 					holder.icon_state = "odysseus9"
 			if(3)
 				if(diff==FORWARD)
-					user.visible_message("[user] installs [used_atom] layer to [holder].", "You install external reinforced armor layer to [holder].")
+					user.visible_message("[user] installs [I] layer to [holder].", "You install external reinforced armor layer to [holder].")
 
 					holder.icon_state = "odysseus12"
 				else

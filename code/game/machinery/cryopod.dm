@@ -95,7 +95,7 @@
 		dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
 		dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 
-	user << browse(dat, "window=cryopod_console")
+	to_chat(user, browse(dat, "window=cryopod_console"))
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
@@ -114,7 +114,7 @@
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryolog")
+		to_chat(user, browse(dat, "window=cryolog"))
 
 	if(href_list["view"])
 		if(!allow_items) return
@@ -124,13 +124,13 @@
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryoitems")
+		to_chat(user, browse(dat, "window=cryoitems"))
 
 	else if(href_list["item"])
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << "<span class='notice'>There is nothing to recover from storage.</span>"
+			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
 			return
 
 		var/obj/item/I = input(usr, "Please choose which object to retrieve.","Object recovery",null) as null|anything in frozen_items
@@ -138,7 +138,7 @@
 			return
 
 		if(!(I in frozen_items))
-			user << "<span class='notice'>\The [I] is no longer in storage.</span>"
+			to_chat(user, "<span class='notice'>\The [I] is no longer in storage.</span>")
 			return
 
 		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>", 3)
@@ -150,7 +150,7 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << "<span class='notice'>There is nothing to recover from storage.</span>"
+			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
 			return
 
 		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>", 3)
@@ -484,7 +484,7 @@
 
 		var/obj/item/weapon/grab/grab = G
 		if(occupant)
-			user << "<span class='notice'>\The [src] is in use.</span>"
+			to_chat(user, "<span class='notice'>\The [src] is in use.</span>")
 			return
 
 		if(!ismob(grab.affecting))
@@ -529,12 +529,12 @@
 		return
 
 	if(occupant)
-		usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
+		to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 		return
 
 	for(var/mob/living/simple_animal/slime/M in range(1,usr))
 		if(M.victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
+			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
 
 	visible_message("[usr] [on_enter_visible_message] [src].", 3)
@@ -545,7 +545,7 @@
 			return
 
 		if(occupant)
-			usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
+			to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 			return
 
 		usr.stop_pulling()
@@ -561,8 +561,8 @@
 
 		icon_state = occupied_icon_state
 
-		usr << "<span class='notice'>[on_enter_occupant_message]</span>"
-		usr << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		to_chat(usr, "<span class='notice'>[on_enter_occupant_message]</span>")
+		to_chat(usr, "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>")
 
 		time_entered = world.time
 

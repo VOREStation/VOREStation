@@ -684,7 +684,7 @@ var/list/ai_verbs_default = list(
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")

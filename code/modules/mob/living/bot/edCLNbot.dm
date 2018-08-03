@@ -173,7 +173,7 @@
 				icon_state = "edCLN_bucket"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(W.is_welder())
 				var/obj/item/weapon/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
@@ -190,7 +190,7 @@
 				icon_state = "edCLN_prox"
 
 		if(5)
-			if(istype(W, /obj/item/stack/cable_coil))
+			if(W.is_cable_coil())
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
 					to_chat(user, "<span class='warning'>You need one coil of wire to wire \the [src].</span>")
@@ -214,7 +214,7 @@
 				qdel(W)
 
 		if(7)
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(W.is_screwdriver())
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, "<span class='notice'>Attatching the mop to the frame...</span>")

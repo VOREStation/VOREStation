@@ -93,11 +93,11 @@
 /obj/machinery/xenobio2/manualinjector/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(istype(W, /obj/item/weapon/crowbar) && !occupant)
+	if(W.is_crowbar() && !occupant)
 		default_deconstruction_crowbar(user, W)
 		return
 
@@ -109,7 +109,7 @@
 		return
 
 	//Did you want to link it?
-	if(istype(W, /obj/item/device/multitool))
+	if(W.is_multitool())
 		var/obj/item/device/multitool/P = W
 		if(P.connectable)
 			if(istype(P.connectable, /obj/machinery/computer/xenobio2))

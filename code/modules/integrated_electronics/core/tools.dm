@@ -261,11 +261,11 @@
 		/obj/item/weapon/storage/bag/circuits/mini,
 		/obj/item/device/electronic_assembly,
 		/obj/item/device/integrated_electronics,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
 		/obj/item/device/multitool
 		)
-	cant_hold = list(/obj/item/weapon/screwdriver/power)
+	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 
 /obj/item/weapon/storage/bag/circuits/basic/New()
 	..()
@@ -290,8 +290,8 @@
 		new /obj/item/device/assembly/electronic_assembly(src)
 		new /obj/item/device/assembly/electronic_assembly(src)
 		new /obj/item/device/multitool(src)
-		new /obj/item/weapon/screwdriver(src)
-		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/tool/screwdriver(src)
+		new /obj/item/weapon/tool/crowbar(src)
 		make_exact_fit()
 
 /obj/item/weapon/storage/bag/circuits/all/New()
@@ -317,7 +317,7 @@
 		new /obj/item/device/electronic_assembly/drone(src)
 		new /obj/item/device/integrated_electronics/wirer(src)
 		new /obj/item/device/integrated_electronics/debugger(src)
-		new /obj/item/weapon/crowbar(src)
+		new /obj/item/weapon/tool/crowbar(src)
 		make_exact_fit()
 
 /obj/item/weapon/storage/bag/circuits/mini/

@@ -89,7 +89,7 @@ obj/structure/windoor_assembly/Destroy()
 
 	switch(state)
 		if("01")
-			if(istype(W, /obj/item/weapon/weldingtool) && !anchored )
+			if(W.is_welder() && !anchored )
 				var/obj/item/weapon/weldingtool/WT = W
 				if (WT.remove_fuel(0,user))
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
@@ -108,7 +108,7 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
-			if(istype(W, /obj/item/weapon/wrench) && !anchored)
+			if(W.is_wrench() && !anchored)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
@@ -119,7 +119,7 @@ obj/structure/windoor_assembly/Destroy()
 					step = 0
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-			else if(istype(W, /obj/item/weapon/wrench) && anchored)
+			else if(W.is_wrench() && anchored)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
@@ -130,7 +130,7 @@ obj/structure/windoor_assembly/Destroy()
 					step = null
 
 			//Adding cable to the assembly. Step 5 complete.
-			else if(istype(W, /obj/item/stack/cable_coil) && anchored)
+			else if(W.is_cable_coil() && anchored)
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = W
@@ -145,7 +145,7 @@ obj/structure/windoor_assembly/Destroy()
 		if("02")
 
 			//Removing wire from the assembly. Step 5 undone.
-			if(istype(W, /obj/item/weapon/wirecutters) && !src.electronics)
+			if(W.is_wirecutter() && !src.electronics)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
@@ -174,7 +174,7 @@ obj/structure/windoor_assembly/Destroy()
 					W.loc = src.loc
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
-			else if(istype(W, /obj/item/weapon/screwdriver) && src.electronics)
+			else if(W.is_screwdriver() && src.electronics)
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
@@ -187,7 +187,7 @@ obj/structure/windoor_assembly/Destroy()
 					ae.loc = src.loc
 
 			//Crowbar to complete the assembly, Step 7 complete.
-			else if(istype(W, /obj/item/weapon/crowbar))
+			else if(W.is_crowbar())
 				if(!src.electronics)
 					to_chat(usr,"<span class='warning'>The assembly is missing electronics.</span>")
 					return

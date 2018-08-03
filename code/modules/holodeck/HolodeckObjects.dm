@@ -128,7 +128,8 @@
 	item_state = "boxing"
 
 /obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return//I really wish I did not need this
+	if(!istype(W))
+		return//I really wish I did not need this
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
 		if(istype(G.affecting,/mob/living))
@@ -155,12 +156,12 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
-		user << ("<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
-		user << ("<span class='notice'>It's a holowindow, you can't pry it!</span>")
-	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
-		user << ("<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
+	if(W.is_screwdriver())
+		to_chat(user, "<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
+	else if(W.is_crowbar() && reinf && state <= 1)
+		to_chat(user, "<span class='notice'>It's a holowindow, you can't pry it!</span>")
+	else if(W.is_wrench() && !anchored && (!state || !reinf))
+		to_chat(user, "<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
@@ -216,8 +217,8 @@
 	qdel(src)
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		user << ("<span class='notice'>It's a holochair, you can't dismantle it!</span>")
+	if(W.is_wrench())
+		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 
 /obj/item/weapon/holo
@@ -269,13 +270,13 @@
 		icon_state = "sword[item_color]"
 		w_class = ITEMSIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		user << "<span class='notice'>[src] is now active.</span>"
+		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 	else
 		force = 3
 		icon_state = "sword0"
 		w_class = ITEMSIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		user << "<span class='notice'>[src] can now be concealed.</span>"
+		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -307,7 +308,7 @@
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
 		if(G.state<2)
-			user << "<span class='warning'>You need a better grip to do that!</span>"
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		G.affecting.loc = src.loc
 		G.affecting.Weaken(5)
@@ -350,7 +351,7 @@
 	power_channel = ENVIRON
 
 /obj/machinery/readybutton/attack_ai(mob/user as mob)
-	user << "The station AI is not to interact with these devices!"
+	to_chat(user, "The station AI is not to interact with these devices!")
 	return
 
 /obj/machinery/readybutton/New()
@@ -358,12 +359,12 @@
 
 
 /obj/machinery/readybutton/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	user << "The device is a solid button, there's nothing you can do with it!"
+	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
 
 	if(user.stat || stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
+		to_chat(user, "This device is not powered.")
 		return
 
 	if(!user.IsAdvancedToolUser())
@@ -374,7 +375,7 @@
 		qdel(src)
 
 	if(eventstarted)
-		usr << "The event has already begun!"
+		to_chat(usr, "The event has already begun!")
 		return
 
 	ready = !ready
@@ -405,7 +406,7 @@
 		qdel(W)
 
 	for(var/mob/M in currentarea)
-		M << "FIGHT!"
+		to_chat(M, "FIGHT!")
 
 // A window that disappears when the ready button is pressed
 /obj/structure/window/reinforced/holowindow/disappearing

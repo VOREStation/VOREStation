@@ -88,7 +88,7 @@
 			spark_system.start()
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src.loc, "sparks", 50, 1)
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		if(welded)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")

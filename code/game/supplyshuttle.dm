@@ -57,7 +57,7 @@ var/list/mechtoys = list(
 		)
 
 /obj/structure/plasticflaps/attackby(obj/item/P, mob/user)
-	if(istype(P, /obj/item/weapon/wirecutters))
+	if(P.is_wirecutter())
 		playsound(src, P.usesound, 50, 1)
 		user << "<span class='notice'>You start to cut the plastic flaps.</span>"
 		if(do_after(user, 10 * P.toolspeed))
@@ -251,13 +251,13 @@ var/list/mechtoys = list(
 
 //Buyin
 /datum/controller/supply/proc/buy()
-	if(!shoppinglist.len) 
+	if(!shoppinglist.len)
 		return
 
 	var/orderedamount = shoppinglist.len
 
 	var/area/area_shuttle = shuttle.get_location_area()
-	if(!area_shuttle)   
+	if(!area_shuttle)
 		return
 
 	var/list/clear_turfs = list()

@@ -4,11 +4,13 @@
 	icon_state = "boxing"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 
+/*
 /obj/item/clothing/gloves/boxing/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/surgical/scalpel))
+	if(W.is_wirecutter() || istype(W, /obj/item/weapon/surgical/scalpel))
 		user << "<span class='notice'>That won't work.</span>"	//Nope
 		return
 	..()
+*/
 
 /obj/item/clothing/gloves/boxing/green
 	icon_state = "boxinggreen"

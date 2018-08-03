@@ -118,18 +118,18 @@
 	if(istype(W, /obj/item/weapon/hand_labeler))
 		return
 	if(mechanical)
-		if(istype(W, /obj/item/weapon/screwdriver))
+		if(W.is_screwdriver())
 			if(!locked)
 				open = !open
 				update_icon()
-				user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+				to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 				playsound(src, W.usesound, 50, 1)
-		else if(istype(W, /obj/item/weapon/crowbar) && cell && open)
+		else if(W.is_crowbar() && cell && open)
 			remove_cell(user)
 
 		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 			insert_cell(W, user)
-		else if(istype(W, /obj/item/weapon/weldingtool))
+		else if(W.is_welder())
 			var/obj/item/weapon/weldingtool/T = W
 			if(T.welding)
 				if(health < maxhealth)
@@ -139,11 +139,11 @@
 						playsound(src, T.usesound, 50, 1)
 						user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
 					else
-						user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+						to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 				else
-					user << "<span class='notice'>[src] does not need a repair.</span>"
+					to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
 			else
-				user << "<span class='notice'>Unable to repair while [src] is off.</span>"
+				to_chat(user, "<span class='notice'>Unable to repair while [src] is off.</span>")
 
 	else if(hasvar(W,"force") && hasvar(W,"damtype"))
 		user.setClickCooldown(user.get_attack_speed(W))
@@ -237,7 +237,7 @@
 		emagged = 1
 		if(locked)
 			locked = 0
-			user << "<span class='warning'>You bypass [src]'s controls.</span>"
+			to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 		return TRUE
 
 /obj/vehicle/proc/explode()
@@ -300,7 +300,7 @@
 	C.forceMove(src)
 	cell = C
 	powercheck()
-	usr << "<span class='notice'>You install [C] in [src].</span>"
+	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!mechanical)
@@ -308,7 +308,7 @@
 	if(!cell)
 		return
 
-	usr << "<span class='notice'>You remove [cell] from [src].</span>"
+	to_chat(usr, "<span class='notice'>You remove [cell] from [src].</span>")
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null

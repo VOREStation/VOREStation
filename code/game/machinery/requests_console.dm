@@ -204,7 +204,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console/attackby(var/obj/item/weapon/O as obj, var/mob/user as mob)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
-	if(istype(O, /obj/item/device/multitool))
+	if(O.is_multitool())
 		if(panel_open)
 			var/input = sanitize(input(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
 			if(!input)
@@ -237,7 +237,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_message()
-				user << "<span class='warning'>You are not authorized to send announcements.</span>"
+				to_chat(user, "<span class='warning'>You are not authorized to send announcements.</span>")
 			updateUsrDialog()
 	if(istype(O, /obj/item/weapon/stamp))
 		if(inoperable(MAINT)) return

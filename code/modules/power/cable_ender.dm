@@ -24,7 +24,7 @@
 
 /obj/structure/cable/ender/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		to_chat(user,  "<span class='notice'> These cables are too tough to be cut with those [W.name].</span>")
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))

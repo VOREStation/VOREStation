@@ -1,1 +1,6 @@
 #undef SURGERY_FAILURE
+
+#undef IS_SCREWDRIVER
+#undef IS_CROWBAR
+#undef IS_WIRECUTTER
+#undef IS_WRENCH

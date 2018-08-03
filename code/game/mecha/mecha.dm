@@ -719,7 +719,7 @@
 				user << "<span class='warning'>Invalid ID: Access denied.</span>"
 		else
 			user << "<span class='warning'>Maintenance protocols disabled by operator.</span>"
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		if(state==1)
 			state = 2
 			user << "You undo the securing bolts."
@@ -727,7 +727,7 @@
 			state = 1
 			user << "You tighten the securing bolts."
 		return
-	else if(istype(W, /obj/item/weapon/crowbar))
+	else if(W.is_crowbar())
 		if(state==2)
 			state = 3
 			user << "You open the hatch to the power unit"
@@ -735,7 +735,7 @@
 			state=2
 			user << "You close the hatch to the power unit"
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(W.is_cable_coil())
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.use(2))
@@ -744,7 +744,7 @@
 			else
 				user << "There's not enough wire to finish the task."
 		return
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(W.is_screwdriver())
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 			user << "You repair the damaged temperature controller."
@@ -759,7 +759,7 @@
 			user << "You screw the cell in place"
 		return
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(W.is_multitool())
 		if(state>=3 && src.occupant)
 			user << "You attempt to eject the pilot using the maintenance controls."
 			if(src.occupant.stat)
@@ -783,7 +783,7 @@
 				user << "There's already a powercell installed."
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
+	else if(W.is_welder() && user.a_intent != I_HURT)
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))

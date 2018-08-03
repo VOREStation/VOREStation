@@ -61,7 +61,7 @@
 
 /obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.broken > 0)
-		if(src.broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
+		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
 			user.visible_message( \
 				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
@@ -73,7 +73,7 @@
 					"<span class='notice'>You have fixed part of the microwave.</span>" \
 				)
 				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && istype(O, /obj/item/weapon/wrench)) // If it's broken and they're doing the wrench
+		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
 			user.visible_message( \
 				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
@@ -88,7 +88,7 @@
 				src.dirty = 0 // just to be sure
 				src.flags = OPENCONTAINER | NOREACT
 		else
-			user << "<span class='warning'>It's broken!</span>"
+			to_chat(user, "<span class='warning'>It's broken!</span>")
 			return 1
 	else if(default_deconstruction_screwdriver(user, O))
 		return
@@ -113,11 +113,11 @@
 				src.icon_state = "mw"
 				src.flags = OPENCONTAINER | NOREACT
 		else //Otherwise bad luck!!
-			user << "<span class='warning'>It's dirty!</span>"
+			to_chat(user, "<span class='warning'>It's dirty!</span>")
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
 		if (contents.len>=(max_n_of_items + component_parts.len + 1))	//Adds component_parts to the maximum number of items.	The 1 is from the circuit
-			user << "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>"
+			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = O
@@ -143,15 +143,15 @@
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
-				user << "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>"
+				to_chat(user, "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>")
 				return 1
 		return
 	else if(istype(O,/obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = O
-		user << "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>"
+		to_chat(user, "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>")
 		return 1
 	else
-		user << "<span class='warning'>You have no idea what you can cook with this [O].</span>"
+		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [O].</span>")
 	..()
 	src.updateUsrDialog()
 
@@ -225,7 +225,7 @@
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
+	to_chat(user, browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave"))
 	onclose(user, "microwave")
 	return
 

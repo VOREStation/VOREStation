@@ -264,13 +264,13 @@
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
 			return TRUE
-	else if(istype(I, /obj/item/weapon/crowbar))
+	else if(I.is_crowbar())
 		playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
 		update_icon()
 		return TRUE
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/screwdriver))
+	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.is_screwdriver())
 		if(opened)
 			interact(user)
 		else
