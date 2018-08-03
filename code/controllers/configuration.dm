@@ -60,6 +60,7 @@ var/list/gamemode_cache = list()
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 1					// allow ai job
+	var/allow_ai_drones = 0					// allow ai controlled drones
 	var/hostedby = null
 	var/respawn = 1
 	var/guest_jobban = 1
@@ -399,6 +400,9 @@ var/list/gamemode_cache = list()
 
 				if ("allow_ai")
 					config.allow_ai = 1
+
+				if ("allow_ai_drones")
+					config.allow_ai_drones = 1
 
 //				if ("authentication")
 //					config.enable_authentication = 1

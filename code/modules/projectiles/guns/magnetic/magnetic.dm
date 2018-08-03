@@ -36,6 +36,9 @@
 	qdel_null(capacitor)
 	. = ..()
 
+/obj/item/weapon/gun/magnetic/get_cell()
+	return cell
+
 /obj/item/weapon/gun/magnetic/process()
 	if(capacitor)
 		if(cell)

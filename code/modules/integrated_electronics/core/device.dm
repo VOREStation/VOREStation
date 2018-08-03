@@ -19,6 +19,9 @@
 	else
 		..()
 
+/obj/item/device/electronic_assembly/get_cell()
+	return battery
+
 /obj/item/device/assembly/electronic_assembly/proc/toggle_open(mob/user)
 	playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 	opened = !opened

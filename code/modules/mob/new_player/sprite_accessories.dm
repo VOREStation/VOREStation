@@ -1257,6 +1257,24 @@
 			name = "Tattoo (Campbell, L.Arm)"
 			body_parts = list(BP_L_ARM)
 
+		rightleg
+			name = "Tattoo (Campbell, R.Leg)"
+			body_parts = list(BP_R_LEG)
+
+		leftleg
+			name = "Tattoo (Campbell, L.Leg)"
+			body_parts = list (BP_L_LEG)
+
+	tat_silverburgh
+		name = "Tattoo (Silverburgh, R.Leg)"
+		icon_state = "tat_silverburgh"
+		body_parts = list (BP_R_LEG)
+
+		left
+			name = "Tattoo (Silverburgh, L.Leg)"
+			icon_state = "tat_silverburgh"
+			body_parts = list (BP_L_LEG)
+
 	tat_tiger
 		name = "Tattoo (Tiger Stripes, Body)"
 		icon_state = "tat_tiger"

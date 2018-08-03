@@ -168,6 +168,12 @@ var/list/mining_overlay_cache = list()
 			if(istype(get_step(src, direction), /turf/space) && !istype(get_step(src, direction), /turf/space/cracked_asteroid))
 				add_overlay(get_cached_border("asteroid_edge",direction,icon,"asteroid_edges", 0))
 
+			//Or any time
+			else
+				var/turf/T = get_step(src, direction)
+				if(istype(T) && T.density)
+					add_overlay(get_cached_border("rock_side",direction,'icons/turf/walls.dmi',"rock_side"))
+
 		if(overlay_detail)
 			add_overlay('icons/turf/flooring/decals.dmi',overlay_detail)
 

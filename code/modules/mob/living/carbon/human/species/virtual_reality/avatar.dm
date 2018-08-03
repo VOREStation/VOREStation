@@ -16,6 +16,8 @@
 
 	speech_bubble_appearance = "cyber"
 
+	assisted_langs = list()
+
 	male_cough_sounds = list('sound/effects/mob_effects/m_cougha.ogg','sound/effects/mob_effects/m_coughb.ogg', 'sound/effects/mob_effects/m_coughc.ogg')
 	female_cough_sounds = list('sound/effects/mob_effects/f_cougha.ogg','sound/effects/mob_effects/f_coughb.ogg')
 	male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'

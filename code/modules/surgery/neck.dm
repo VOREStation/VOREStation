@@ -219,7 +219,6 @@
 	priority = 3 //Do this instead of searching for objects in the skull.
 	allowed_tools = list(
 		/obj/item/weapon/surgical/hemostat = 100,
-		/obj/item/weapon/tool/wirecutters = 60,
 		/obj/item/weapon/melee/changeling/claw = 20) //Claws. Good for digging, not so much for moving.
 
 	allowed_procs = list(IS_WIRECUTTER = 60)

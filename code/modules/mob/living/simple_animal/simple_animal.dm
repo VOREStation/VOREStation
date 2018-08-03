@@ -888,6 +888,8 @@
 				continue
 			else if(L in friends)
 				continue
+			else if(L.alpha <= EFFECTIVE_INVIS)
+				continue
 			else if(!SA_attackable(L))
 				continue
 			else if(!special_target_check(L))
@@ -1215,7 +1217,7 @@
 		ai_log("AttackTarget() Bailing because we're disabled",2)
 		LoseTarget()
 		return 0
-	if(!target_mob || !SA_attackable(target_mob))
+	if(!target_mob || !SA_attackable(target_mob) || (target_mob.alpha <= EFFECTIVE_INVIS)) //if the target went invisible, you can't follow it
 		LoseTarget()
 		return 0
 	if(!(target_mob in ListTargets(view_range)))

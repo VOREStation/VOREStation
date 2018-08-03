@@ -148,6 +148,7 @@
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)
 
 	// Surgery things.
+	src.modules += new /obj/item/weapon/autopsy_scanner(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)

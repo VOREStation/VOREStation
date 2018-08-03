@@ -142,15 +142,44 @@
 		return
 
 	//get the user's location
-	if(!istype(user.loc, /turf))	return	//can't do this stuff whilst inside objects and such
+	if(!istype(user.loc, /turf))
+		return	//can't do this stuff whilst inside objects and such
 
 	if(W)
 		radiate()
 		if(is_hot(W))
 			burn(is_hot(W))
 
+	if(istype(W, /obj/item/stack/tile/roofing))
+		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
+		var/turf/T = GetAbove(src)
+		var/obj/item/stack/tile/roofing/R = W
+
+		// Place plating over a wall
+		if(T)
+			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
+				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
+					T.ReplaceWithLattice()
+					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					user.visible_message("<span class='notice'>[user] patches a hole in the ceiling.</span>", "<span class='notice'>You patch a hole in the ceiling.</span>")
+					expended_tile = TRUE
+			else
+				to_chat(user, "<span class='warning'>There aren't any holes in the ceiling to patch here.</span>")
+				return
+
+		// Create a ceiling to shield from the weather
+		if(outdoors)
+			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
+				make_indoors()
+				if(!expended_tile) // Would've already played a sound
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				user.visible_message("<span class='notice'>[user] roofs \the [src], shielding it from the elements.</span>", "<span class='notice'>You roof \the [src] tile, shielding it from the elements.</span>")
+		return
+
+
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		if(W.is_welder())
+		if(istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				to_chat(user, "<span class='notice'>You burn away the fungi with \the [WT].</span>")
@@ -165,7 +194,7 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
-		if(W.is_welder())
+		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
@@ -188,7 +217,7 @@
 
 	var/turf/T = user.loc	//get user's location for delay checks
 
-	if(damage && W.is_welder())
+	if(damage && istype(W, /obj/item/weapon/weldingtool))
 
 		var/obj/item/weapon/weldingtool/WT = W
 
@@ -214,7 +243,7 @@
 		var/dismantle_verb
 		var/dismantle_sound
 
-		if(W.is_welder())
+		if(istype(W,/obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
 			if(!WT.isOn())
 				return
@@ -282,7 +311,7 @@
 					return
 			if(4)
 				var/cut_cover
-				if(W.is_welder())
+				if(istype(W,/obj/item/weapon/weldingtool))
 					var/obj/item/weapon/weldingtool/WT = W
 					if(!WT.isOn())
 						return
@@ -337,7 +366,7 @@
 					return
 			if(1)
 				var/cut_cover
-				if(W.is_welder())
+				if(istype(W, /obj/item/weapon/weldingtool))
 					var/obj/item/weapon/weldingtool/WT = W
 					if( WT.remove_fuel(0,user) )
 						cut_cover=1

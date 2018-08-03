@@ -31,7 +31,9 @@
 		/obj/item/weapon/coin = 50,
 		/obj/item/weapon/material/knife = 50
 	)
+
 	allowed_procs = list(IS_SCREWDRIVER = 100)
+
 	req_open = 0
 
 	min_duration = 90
@@ -231,7 +233,6 @@
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
 	/obj/item/weapon/surgical/bonegel = 30, 		\
-	/obj/item/weapon/tool/screwdriver = 70,	\
 	)
 
 	allowed_procs = list(IS_SCREWDRIVER = 100)

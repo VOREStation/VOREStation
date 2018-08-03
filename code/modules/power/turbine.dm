@@ -131,7 +131,7 @@
 		return
 	return ..()
 
-/obj/machinery/compressor/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/wrench/W, var/time = 20)
+/obj/machinery/compressor/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time = 20)
 	if((. = ..()))
 		turbine = null
 		if(anchored)
@@ -229,7 +229,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/turbine/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/wrench/W, var/time = 20)
+/obj/machinery/power/turbine/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time = 20)
 	if((. = ..()))
 		compressor = null
 		if(anchored)

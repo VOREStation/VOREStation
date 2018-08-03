@@ -1,5 +1,5 @@
-#define WELDER_FUEL_BURN_INTERVAL 13
 
+#define WELDER_FUEL_BURN_INTERVAL 13
 /*
  * Welding Tool
  */
@@ -63,7 +63,7 @@
 
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(W.is_screwdriver())
+	if(istype(W,/obj/item/weapon/tool/screwdriver))
 		if(welding)
 			to_chat(user, "<span class='danger'>Stop welding first!</span>")
 			return
@@ -99,11 +99,14 @@
 	..()
 	return
 
+
 /obj/item/weapon/weldingtool/process()
 	if(welding)
 		++burned_fuel_for
 		if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 			remove_fuel(1)
+
+
 
 		if(get_fuel() < 1)
 			setWelding(0)
@@ -117,6 +120,7 @@
 			location = get_turf(M)
 	if (istype(location, /turf))
 		location.hotspot_expose(700, 5)
+
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
@@ -145,6 +149,7 @@
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
 	return
+
 
 /obj/item/weapon/weldingtool/attack_self(mob/user as mob)
 	setWelding(!welding, usr)
@@ -208,24 +213,6 @@
 	if(istype(M))
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
-
-/obj/item/weapon/weldingtool/attack(var/atom/A, var/mob/living/user, var/def_zone)
-	if(ishuman(A) && user.a_intent == I_HELP)
-		var/mob/living/carbon/human/H = A
-		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
-
-		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
-			return ..()
-
-		if(!welding)
-			to_chat(user, "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>")
-			return 1
-
-		if(S.robo_repair(15, BRUTE, "some dents", src, user))
-			remove_fuel(1, user)
-
-	else
-		return ..()
 
 /obj/item/weapon/weldingtool/MouseDrop(obj/over_object as obj)
 	if(!canremove)
@@ -348,9 +335,6 @@
 
 /obj/item/weapon/weldingtool/is_hot()
 	return isOn()
-
-/obj/item/weapon/weldingtool/is_welder()
-	return TRUE
 
 /obj/item/weapon/weldingtool/largetank
 	name = "industrial welding tool"
@@ -495,6 +479,9 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
+/obj/item/weapon/weldingtool/electric/unloaded/New()
+	cell_type = null
+
 /obj/item/weapon/weldingtool/electric/New()
 	..()
 	if(cell_type == null)
@@ -505,17 +492,17 @@
 		power_supply = new /obj/item/weapon/cell/device(src)
 	update_icon()
 
-/obj/item/weapon/weldingtool/electric/unloaded/New()
-	cell_type = null
+/obj/item/weapon/weldingtool/electric/get_cell()
+	return power_supply
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	if(get_dist(src, user) > 1)
 		to_chat(user, desc)
 	else					// The << need to stay, for some reason
 		if(power_supply)
-			to_chat(user, text("\icon[] The [] has [] charge left.", src, src.name, get_fuel()))
+			user << text("\icon[] The [] has [] charge left.", src, src.name, get_fuel())
 		else
-			to_chat(user, text("\icon[] The [] has no power cell!", src, src.name))
+			user << text("\icon[] The [] has no power cell!", src, src.name)
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)

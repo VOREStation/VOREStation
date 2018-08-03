@@ -1,5 +1,4 @@
 var/list/turf_edge_cache = list()
-var/list/outdoor_turfs = list()
 
 /turf/
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,
@@ -24,24 +23,21 @@ var/list/outdoor_turfs = list()
 
 /turf/simulated/floor/New()
 	if(outdoors)
-		outdoor_turfs.Add(src)
+		SSplanets.addTurf(src)
 	..()
 
 /turf/simulated/floor/Destroy()
 	if(outdoors)
-		planet_controller.unallocateTurf(src)
+		SSplanets.removeTurf(src)
 	return ..()
 
 /turf/simulated/proc/make_outdoors()
 	outdoors = TRUE
-	outdoor_turfs.Add(src)
+	SSplanets.addTurf(src)
 
 /turf/simulated/proc/make_indoors()
 	outdoors = FALSE
-	if(planet_controller)
-		planet_controller.unallocateTurf(src)
-	else // This is happening during map gen, if there's no planet_controller (hopefully).
-		outdoor_turfs -= src
+	SSplanets.removeTurf(src)
 
 /turf/simulated/post_change()
 	..()
@@ -58,8 +54,8 @@ var/list/outdoor_turfs = list()
 			if(istype(T) && T.edge_blending_priority && edge_blending_priority < T.edge_blending_priority && icon_state != T.icon_state)
 				var/cache_key = "[T.get_edge_icon_state()]-[checkdir]"
 				if(!turf_edge_cache[cache_key])
-					var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir)
-					I.plane = 0
+					var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir, layer = ABOVE_TURF_LAYER)
+					I.plane = TURF_PLANE
 					turf_edge_cache[cache_key] = I
 				add_overlay(turf_edge_cache[cache_key])
 

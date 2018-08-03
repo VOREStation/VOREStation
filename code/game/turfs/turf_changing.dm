@@ -22,7 +22,7 @@
 		below.update_icon() // To add or remove the 'ceiling-less' overlay.
 
 //Creates a new turf
-/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0, var/preserve_outdoors = FALSE)
 	if (!N)
 		return
 
@@ -38,6 +38,7 @@
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
 	var/old_corners = corners
+	var/old_outdoors = outdoors
 
 	//world << "Replacing [src.type] with [N]"
 
@@ -106,3 +107,6 @@
 				lighting_build_overlay()
 			else
 				lighting_clear_overlay()
+
+	if(preserve_outdoors)
+		outdoors = old_outdoors

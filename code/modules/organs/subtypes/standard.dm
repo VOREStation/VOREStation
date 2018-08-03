@@ -25,8 +25,9 @@
 
 /obj/item/organ/external/chest/robotize()
 	if(..())
-		// Give them a new cell.
-		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
+		// Give them fancy new organs.
+		owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
+		owner.internal_organs_by_name[O_VOICE] = new /obj/item/organ/internal/voicebox/robot(owner, 1)
 
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
