@@ -170,7 +170,7 @@
 		rename_door(user)
 		return
 
-	if(W.is_welder() && ( (istext(glass)) || (glass == 1) || (!anchored) ))
+	if(istype(W, /obj/item/weapon/weldingtool) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
@@ -212,7 +212,7 @@
 			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured the airlock assembly!</span>")
 			anchored = !anchored
 
-	else if(W.is_cable_coil() && state == 0 && anchored)
+	else if(istype(W, /obj/item/stack/cable_coil) && state == 0 && anchored)
 		var/obj/item/stack/cable_coil/C = W
 		if (C.get_amount() < 1)
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the airlock assembly.</span>")

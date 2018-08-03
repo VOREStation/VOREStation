@@ -18,7 +18,7 @@
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
 
 	// Using a multitool lets you access the receiver's interface
-	if(P.is_multitool())
+	if(istype(P, /obj/item/device/multitool))
 		attack_hand(user)
 
 
@@ -62,7 +62,7 @@
 				A.amount = 5
 				stat |= BROKEN // the machine's been borked!
 		if(3)
-			if(P.is_cable_coil())
+			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
 					to_chat(user, "<span class='notice'>You insert the cables.</span>")
@@ -91,7 +91,7 @@
 								newpath = text2path(I)
 								var/obj/item/s = new newpath
 								s.loc = user.loc
-								if(P.is_cable_coil())
+								if(istype(P, /obj/item/stack/cable_coil))
 									var/obj/item/stack/cable_coil/A = P
 									A.amount = 1
 

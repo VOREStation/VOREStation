@@ -109,7 +109,7 @@
 		return
 
 	//Did you want to link it?
-	if(W.is_multitool())
+	if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/P = W
 		if(P.connectable)
 			if(istype(P.connectable, /obj/machinery/computer/xenobio2))

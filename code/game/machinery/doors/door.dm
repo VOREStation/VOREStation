@@ -237,7 +237,7 @@
 
 		return
 
-	if(repairing && I.is_welder())
+	if(repairing && istype(I, /obj/item/weapon/weldingtool))
 		if(!density)
 			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
 			return

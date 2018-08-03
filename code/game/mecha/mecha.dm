@@ -735,7 +735,7 @@
 			state=2
 			user << "You close the hatch to the power unit"
 		return
-	else if(W.is_cable_coil())
+	else if(istype(W, /obj/item/stack/cable_coil))
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.use(2))
@@ -759,7 +759,7 @@
 			user << "You screw the cell in place"
 		return
 
-	else if(W.is_multitool())
+	else if(istype(W, /obj/item/device/multitool))
 		if(state>=3 && src.occupant)
 			user << "You attempt to eject the pilot using the maintenance controls."
 			if(src.occupant.stat)
@@ -783,7 +783,7 @@
 				user << "There's already a powercell installed."
 		return
 
-	else if(W.is_welder() && user.a_intent != I_HURT)
+	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))

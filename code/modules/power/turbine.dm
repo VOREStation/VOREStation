@@ -124,7 +124,7 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(W.is_multitool())
+	if(istype(W, /obj/item/device/multitool))
 		var/new_ident = input("Enter a new ident tag.", name, comp_id) as null|text
 		if(new_ident && user.Adjacent(src))
 			comp_id = new_ident
@@ -337,7 +337,7 @@
 			doors += P
 
 /obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)
-	if(W.is_multitool())
+	if(istype(W, /obj/item/device/multitool))
 		var/new_ident = input("Enter a new ident tag.", name, id) as null|text
 		if(new_ident && user.Adjacent(src))
 			id = new_ident

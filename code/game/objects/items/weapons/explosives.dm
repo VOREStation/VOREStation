@@ -29,7 +29,7 @@
 		open_panel = !open_panel
 		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
 		playsound(src, I.usesound, 50, 1)
-	else if(I.is_wirecutter() || I.is_multitool() || istype(I, /obj/item/device/assembly/signaler ))
+	else if(I.is_wirecutter() || istype(I, /obj/item/device/multitool) || istype(I, /obj/item/device/assembly/signaler ))
 		wires.Interact(user)
 	else
 		..()

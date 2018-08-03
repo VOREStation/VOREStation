@@ -207,7 +207,7 @@
 			return
 
 	// Repair
-	if(health < maxhealth && W.is_welder())
+	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/F = W
 		if(F.welding)
 			playsound(src.loc, F.usesound, 50, 1)

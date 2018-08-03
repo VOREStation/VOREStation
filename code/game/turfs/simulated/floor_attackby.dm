@@ -57,7 +57,7 @@
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)
 			return
-		else if(C.is_cable_coil())
+		else if(istype(C, /obj/item/stack/cable_coil))
 			to_chat(user, "<span class='warning'>You must remove the [flooring.descriptor] first.</span>")
 			return
 		else if(istype(C, /obj/item/stack/tile))
@@ -65,7 +65,7 @@
 			return
 	else
 
-		if(C.is_cable_coil())
+		if(istype(C, /obj/item/stack/cable_coil))
 			if(broken || burnt)
 				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
 				return
@@ -101,7 +101,7 @@
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Repairs.
-		else if(C.is_welder())
+		else if(istype(C, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/welder = C
 			if(welder.isOn() && (is_plating()))
 				if(broken || burnt)

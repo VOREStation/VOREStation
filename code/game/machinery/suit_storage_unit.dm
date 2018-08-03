@@ -653,7 +653,7 @@
 			return
 
 	//Hacking init.
-	if(I.is_multitool() || I.is_wirecutter())
+	if(istype(I, /obj/item/device/multitool) || I.is_wirecutter())
 		if(panel_open)
 			attack_hand(user)
 		return

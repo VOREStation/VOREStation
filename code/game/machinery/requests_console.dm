@@ -204,7 +204,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console/attackby(var/obj/item/weapon/O as obj, var/mob/user as mob)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
-	if(O.is_multitool())
+	if(istype(O, /obj/item/device/multitool))
 		if(panel_open)
 			var/input = sanitize(input(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
 			if(!input)

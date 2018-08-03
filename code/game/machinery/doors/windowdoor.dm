@@ -181,7 +181,7 @@
 		return
 
 	// Fixing.
-	if(I.is_welder() && user.a_intent == I_HELP)
+	if(istype(I, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
 		var/obj/item/weapon/weldingtool/WT = I
 		if(health < maxhealth)
 			if(WT.remove_fuel(1 ,user))

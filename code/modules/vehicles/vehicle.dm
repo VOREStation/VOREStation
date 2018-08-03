@@ -129,7 +129,7 @@
 
 		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 			insert_cell(W, user)
-		else if(W.is_welder())
+		else if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/T = W
 			if(T.welding)
 				if(health < maxhealth)

@@ -33,7 +33,7 @@
 		increment_construction_stage()
 		return
 
-	if(thing.is_welder() && construction_stage == 4)
+	if(istype(thing, /obj/item/weapon/weldingtool) && construction_stage == 4)
 		var/obj/item/weapon/weldingtool/welder = thing
 
 		if(!welder.isOn())
@@ -49,7 +49,7 @@
 		increment_construction_stage()
 		return
 
-	if(thing.is_cable_coil() && construction_stage == 5)
+	if(istype(thing, /obj/item/stack/cable_coil) && construction_stage == 5)
 		var/obj/item/stack/cable_coil/cable = thing
 		if(cable.get_amount() < 5)
 			to_chat(user, "<span class='warning'>You need at least 5 lengths of cable for this task.</span>")

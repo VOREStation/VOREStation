@@ -122,7 +122,7 @@ field_generator power level display
 			if(2)
 				user << "<font color='red'>The [src.name] needs to be unwelded from the floor.</font>"
 				return
-	else if(W.is_welder())
+	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		switch(state)
 			if(0)

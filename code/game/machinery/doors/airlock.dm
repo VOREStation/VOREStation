@@ -870,7 +870,7 @@ About the new airlock wires panel:
 	if(istype(C, /mob/living))
 		..()
 		return
-	if(!repairing && C.is_welder() && !( src.operating > 0 ) && src.density)
+	if(!repairing && istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density)
 		var/obj/item/weapon/weldingtool/W = C
 		if(W.remove_fuel(0,user))
 			if(!src.welded)
@@ -895,7 +895,7 @@ About the new airlock wires panel:
 		src.update_icon()
 	else if(C.is_wirecutter())
 		return src.attack_hand(user)
-	else if(C.is_multitool())
+	else if(istype(C, /obj/item/device/multitool))
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)

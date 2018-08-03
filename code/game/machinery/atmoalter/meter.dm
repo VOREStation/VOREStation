@@ -117,7 +117,7 @@
 			qdel(src)
 			return
 
-	if(W.is_multitool())
+	if(istype(W, /obj/item/device/multitool))
 		for(var/obj/machinery/atmospherics/pipe/P in loc)
 			pipes_on_turf |= P
 		if(!pipes_on_turf.len)

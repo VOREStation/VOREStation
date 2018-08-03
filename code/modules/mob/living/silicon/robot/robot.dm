@@ -475,7 +475,7 @@
 		M.install(src, user)
 		return
 
-	if (W.is_welder())
+	if (istype(W, /obj/item/weapon/weldingtool))
 		if (src == user)
 			to_chat(user, "<span class='warning'>You lack the reach to be able to repair yourself.</span>")
 			return
@@ -495,7 +495,7 @@
 			to_chat(user, "Need more welding fuel!")
 			return
 
-	else if(W.is_cable_coil() && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
+	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
 		if (!getFireLoss())
 			to_chat(user, "Nothing to fix here!")
 			return
@@ -584,7 +584,7 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (W.is_wirecutter() || W.is_multitool())
+	else if (W.is_wirecutter() || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			wires.Interact(user)
 		else

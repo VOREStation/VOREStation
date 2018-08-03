@@ -48,7 +48,7 @@
 		opened = !opened
 	else if(W.is_crowbar())
 		default_deconstruction_crowbar(user, W)
-	else if(W.is_multitool() || W.is_wirecutter())
+	else if(istype(W, /obj/item/device/multitool) || W.is_wirecutter())
 		attack_hand(user)
 
 /obj/machinery/power/grid_checker/attack_hand(mob/user)

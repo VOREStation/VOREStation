@@ -104,7 +104,7 @@
 		else
 			to_chat(user, "<span class='notice'>You need to unlock the controls first.</span>")
 		return
-	else if(O.is_welder())
+	else if(istype(O, /obj/item/weapon/weldingtool))
 		if(health < getMaxHealth())
 			if(open)
 				health = min(getMaxHealth(), health + 10)

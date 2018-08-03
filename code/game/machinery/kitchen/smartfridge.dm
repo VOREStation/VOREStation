@@ -221,7 +221,7 @@
 	if(wrenchable && default_unfasten_wrench(user, O, 20))
 		return
 
-	if(O.is_multitool() || O.is_wirecutter())
+	if(istype(O, /obj/item/device/multitool) || O.is_wirecutter())
 		if(panel_open)
 			attack_hand(user)
 		return

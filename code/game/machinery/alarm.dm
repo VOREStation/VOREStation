@@ -873,7 +873,7 @@ FIRE ALARM
 	add_fingerprint(user)
 
 	if(panel_open)
-		if(W.is_multitool())
+		if(istype(W, /obj/item/device/multitool))
 			detecting = !(detecting)
 			if(detecting)
 				user.visible_message("<span class='notice'>\The [user] has reconnected [src]'s detecting unit!</span>", "<span class='notice'>You have reconnected [src]'s detecting unit.</span>")

@@ -89,7 +89,7 @@ obj/structure/windoor_assembly/Destroy()
 
 	switch(state)
 		if("01")
-			if(W.is_welder() && !anchored )
+			if(istype(W, /obj/item/weapon/weldingtool) && !anchored )
 				var/obj/item/weapon/weldingtool/WT = W
 				if (WT.remove_fuel(0,user))
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
@@ -130,7 +130,7 @@ obj/structure/windoor_assembly/Destroy()
 					step = null
 
 			//Adding cable to the assembly. Step 5 complete.
-			else if(W.is_cable_coil() && anchored)
+			else if(istype(W, /obj/item/stack/cable_coil) && anchored)
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = W

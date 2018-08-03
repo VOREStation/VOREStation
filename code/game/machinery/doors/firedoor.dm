@@ -243,7 +243,7 @@
 		return //Don't open the door if we're putting tape on it to tell people 'don't open the door'.
 	if(operating)
 		return//Already doing something.
-	if(C.is_welder() && !repairing)
+	if(istype(C, /obj/item/weapon/weldingtool) && !repairing)
 		if(prying)
 			to_chat(user, "<span class='notice'>Someone's busy prying that [density ? "open" : "closed"]!</span>")
 		var/obj/item/weapon/weldingtool/W = C

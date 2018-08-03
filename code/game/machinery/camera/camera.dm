@@ -159,10 +159,10 @@
 		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
 		playsound(src.loc, W.usesound, 50, 1)
 
-	else if((W.is_wirecutter() || W.is_multitool()) && panel_open)
+	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
 		interact(user)
 
-	else if(W.is_welder() && (wires.CanDeconstruct() || (stat & BROKEN)))
+	else if(istype(W, /obj/item/weapon/weldingtool) && (wires.CanDeconstruct() || (stat & BROKEN)))
 		if(weld(W, user))
 			if(assembly)
 				assembly.loc = src.loc

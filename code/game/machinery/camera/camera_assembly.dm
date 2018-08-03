@@ -40,7 +40,7 @@
 
 		if(1)
 			// State 1
-			if(W.is_welder())
+			if(istype(W, /obj/item/weapon/weldingtool))
 				if(weld(W, user))
 					user << "You weld the assembly securely into place."
 					anchored = 1
@@ -57,7 +57,7 @@
 
 		if(2)
 			// State 2
-			if(W.is_cable_coil())
+			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(2))
 					user << "<span class='notice'>You add wires to the assembly.</span>"
@@ -66,7 +66,7 @@
 					user << "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>"
 				return
 
-			else if(W.is_welder())
+			else if(istype(W, /obj/item/weapon/weldingtool))
 
 				if(weld(W, user))
 					user << "You unweld the assembly from its place."

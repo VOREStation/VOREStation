@@ -821,7 +821,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/is_wirecutter()
 	return FALSE
 
-// These next three might bug out or runtime if they're used as anything other than istype style checks
+// These next three might bug out or runtime, unless someone goes back and finds a way to generalize their specific code
 /obj/item/proc/is_cable_coil()
 	return FALSE
 

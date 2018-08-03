@@ -82,7 +82,7 @@
 		playsound(src.loc, W.usesound, 50, 1)
 		return
 
-	if(W.is_cable_coil())
+	if(istype(W, /obj/item/stack/cable_coil))
 		if (src.stage != 1) return
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.use(1))

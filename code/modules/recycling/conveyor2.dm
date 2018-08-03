@@ -96,7 +96,7 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 
-	if(I.is_multitool())
+	if(istype(I, /obj/item/device/multitool))
 		if(panel_open)
 			var/input = sanitize(input(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
 			if(!input)
@@ -247,7 +247,7 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(I.is_welder())
+	if(istype(I, /obj/item/weapon/weldingtool))
 		if(panel_open)
 			var/obj/item/weapon/weldingtool/WT = I
 			if(!WT.remove_fuel(0, user))
@@ -261,7 +261,7 @@
 				qdel(src)
 				return
 
-	if(I.is_multitool())
+	if(istype(I, /obj/item/device/multitool))
 		if(panel_open)
 			var/input = sanitize(input(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
 			if(!input)

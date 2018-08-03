@@ -78,7 +78,7 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
-	if(O.is_wirecutter() || O.is_multitool())
+	if(O.is_wirecutter() || istype(O, /obj/item/device/multitool))
 		if(opened == 1)
 			nukehack_win(user)
 		return
@@ -94,7 +94,7 @@ var/bomb_set
 	if(anchored)
 		switch(removal_stage)
 			if(0)
-				if(O.is_welder())
+				if(istype(O,/obj/item/weapon/weldingtool))
 
 					var/obj/item/weapon/weldingtool/WT = O
 					if(!WT.isOn()) return
@@ -122,7 +122,7 @@ var/bomb_set
 				return
 
 			if(2)
-				if(O.is_welder())
+				if(istype(O,/obj/item/weapon/weldingtool))
 
 					var/obj/item/weapon/weldingtool/WT = O
 					if(!WT.isOn()) return

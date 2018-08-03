@@ -28,7 +28,7 @@
 	attackby(obj/item/P as obj, mob/user as mob)
 		switch(state)
 			if(1)
-				if(P.is_cable_coil())
+				if(istype(P, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/C = P
 					if (C.get_amount() < 5)
 						to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
@@ -151,5 +151,5 @@
 									update_desc()
 									break
 							to_chat(user, desc)
-							if(P && P.loc != src && !P.is_cable_coil())
+							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
 								to_chat(user, "<span class='warning'>You cannot add that component to the machine!</span>")

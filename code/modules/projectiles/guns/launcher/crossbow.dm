@@ -227,7 +227,7 @@
 			else
 				user << "<span class='notice'>You need at least three rods to complete this task.</span>"
 			return
-	else if(W.is_welder())
+	else if(istype(W, /obj/item/weapon/weldingtool))
 		if(buildstate == 1)
 			var/obj/item/weapon/weldingtool/T = W
 			if(T.remove_fuel(0,user))
@@ -237,7 +237,7 @@
 			buildstate++
 			update_icon()
 		return
-	else if(W.is_cable_coil())
+	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(buildstate == 2)
 			if(C.use(5))

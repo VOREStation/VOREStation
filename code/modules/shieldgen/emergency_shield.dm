@@ -291,7 +291,7 @@
 			to_chat(user, "<font color='blue'>You open the panel and expose the wiring.</font>")
 			is_open = 1
 
-	else if(W.is_cable_coil() && malfunction && is_open)
+	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
 		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage

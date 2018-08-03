@@ -173,7 +173,7 @@
 				icon_state = "edCLN_bucket"
 
 		if(3)
-			if(W.is_welder())
+			if(istype(W, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
@@ -190,7 +190,7 @@
 				icon_state = "edCLN_prox"
 
 		if(5)
-			if(W.is_cable_coil())
+			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
 					to_chat(user, "<span class='warning'>You need one coil of wire to wire \the [src].</span>")

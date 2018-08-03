@@ -280,7 +280,7 @@
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				anchored = 0
 
-	else if(P.is_welder())
+	else if(istype(P, /obj/item/weapon/weldingtool))
 		if(state == FRAME_PLACED)
 			var/obj/item/weapon/weldingtool/WT = P
 			if(WT.remove_fuel(0, user))
@@ -445,7 +445,7 @@
 				state = FRAME_WIRED
 				new /obj/item/stack/material/glass(src.loc, 2)
 
-	else if(P.is_cable_coil())
+	else if(istype(P, /obj/item/stack/cable_coil))
 		if(state == FRAME_FASTENED)
 			var/obj/item/stack/cable_coil/C = P
 			if(C.get_amount() < 5)
@@ -464,7 +464,7 @@
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(P.is_cable_coil())
+						if(istype(P, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
 								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided

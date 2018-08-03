@@ -142,7 +142,7 @@
 
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
-		if(O.is_multitool())
+		if(istype(O, /obj/item/device/multitool))
 			var/newtag = text2num(sanitizeSafe(input(user, "Enter new ID number or leave empty to cancel.", "Assign ID number") as text, 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"

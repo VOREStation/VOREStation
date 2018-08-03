@@ -139,7 +139,7 @@
 		dismantle(W, user)
 		return 1
 
-	if(health < maxhealth && W.is_welder())
+	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/F = W
 		if(F.welding)
 			to_chat(user, "<span class='notice'>You begin reparing damage to \the [src].</span>")

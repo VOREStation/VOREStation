@@ -220,7 +220,7 @@
 	if(!istype(W)) return//I really wish I did not need this
 
 	// Fixing.
-	if(W.is_welder() && user.a_intent == I_HELP)
+	if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
 		var/obj/item/weapon/weldingtool/WT = W
 		if(health < maxhealth)
 			if(WT.remove_fuel(1 ,user))
@@ -294,7 +294,7 @@
 			if(is_fulltile())
 				mats.amount = 4
 			qdel(src)
-	else if(W.is_cable_coil() && reinf && state == 0 && !istype(src, /obj/structure/window/reinforced/polarized))
+	else if(istype(W, /obj/item/stack/cable_coil) && reinf && state == 0 && !istype(src, /obj/structure/window/reinforced/polarized))
 		var/obj/item/stack/cable_coil/C = W
 		if (C.use(1))
 			playsound(src.loc, 'sound/effects/sparks1.ogg', 75, 1)
@@ -572,7 +572,7 @@
 	maxhealth = 80
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.is_multitool() && !anchored) // Only allow programming if unanchored!
+	if(istype(W, /obj/item/device/multitool) && !anchored) // Only allow programming if unanchored!
 		var/obj/item/device/multitool/MT = W
 		// First check if they have a windowtint button buffered
 		if(istype(MT.connectable, /obj/machinery/button/windowtint))
@@ -632,7 +632,7 @@
 	icon_state = "light[active]"
 
 /obj/machinery/button/windowtint/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.is_multitool())
+	if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/MT = W
 		if(!id)
 			// If no ID is set yet (newly built button?) let them select an ID for first-time use!

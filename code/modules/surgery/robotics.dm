@@ -152,7 +152,7 @@
 /datum/surgery_step/robotics/repair_brute/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(tool.is_welder())
+		if(istype(tool, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
@@ -192,7 +192,7 @@
 /datum/surgery_step/robotics/repair_burn/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(tool.is_cable_coil())
+		if(istype(tool, /obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/C = tool
 			if(affected.burn_dam == 0)
 				to_chat(user, "<span class='notice'>There are no burnt wires here!</span>")

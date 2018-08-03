@@ -78,7 +78,7 @@ datum/track/New(var/title_name, var/audio)
 		return
 	if(W.is_wirecutter())
 		return wires.Interact(user)
-	if(W.is_multitool())
+	if(istype(W, /obj/item/device/multitool))
 		return wires.Interact(user)
 	if(W.is_wrench())
 		if(playing)

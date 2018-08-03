@@ -432,7 +432,7 @@
 				playsound(src.loc, I.usesound, 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(I.is_welder() && c_mode==1)
+		else if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, W.usesound, 50, 1)

@@ -266,7 +266,7 @@
 			playsound(loc, I.usesound, 100, 1)
 			update()
 
-		else if(I.is_welder())
+		else if(istype(I, /obj/item/weapon/weldingtool))
 			if(anchored)
 				var/obj/item/weapon/weldingtool/W = I
 				if(W.remove_fuel(0,user))

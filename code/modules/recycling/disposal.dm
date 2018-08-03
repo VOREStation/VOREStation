@@ -69,7 +69,7 @@
 				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(I.is_welder() && mode==-1)
+		else if(istype(I, /obj/item/weapon/weldingtool) && mode==-1)
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -877,7 +877,7 @@
 		if(!T.is_plating())
 			return		// prevent interaction with T-scanner revealed pipes
 		src.add_fingerprint(user)
-		if(I.is_welder())
+		if(istype(I, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/W = I
 
 			if(W.remove_fuel(0,user))
@@ -1357,7 +1357,7 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(I.is_welder())
+	if(istype(I, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/W = I
 
 		if(W.remove_fuel(0,user))
@@ -1486,7 +1486,7 @@
 				to_chat(user, "You attach the screws around the power connection.")
 				playsound(src, I.usesound, 50, 1)
 				return
-		else if(I.is_welder() && mode==1)
+		else if(istype(I, /obj/item/weapon/weldingtool) && mode==1)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src, W.usesound, 100, 1)

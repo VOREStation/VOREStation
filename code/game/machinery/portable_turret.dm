@@ -816,7 +816,7 @@ var/list/turret_icons
 				build_step = 3
 				return
 
-			else if(I.is_welder())
+			else if(istype(I, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = I
 				if(!WT.isOn())
 					return
@@ -894,7 +894,7 @@ var/list/turret_icons
 				return
 
 		if(7)
-			if(I.is_welder())
+			if(istype(I, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = I
 				if(!WT.isOn()) return
 				if(WT.get_fuel() < 5)

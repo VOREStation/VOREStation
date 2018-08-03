@@ -3,7 +3,7 @@
 ////////////////////////////////
 
 /datum/construction/mecha/custom_action(step, obj/item/I, mob/user)
-	if(I.is_welder())
+	if(istype(I, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/W = I
 		if (W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
@@ -18,7 +18,7 @@
 	else if(I.is_wirecutter())
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
-	else if(I.is_cable_coil())
+	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
 		if(C.use(4))
 			playsound(holder, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -35,7 +35,7 @@
 	return 1
 
 /datum/construction/reversible/mecha/custom_action(index as num, diff as num, obj/item/I, mob/user as mob)
-	if(I.is_welder())
+	if(istype(I, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/W = I
 		if (W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
@@ -50,7 +50,7 @@
 	else if(I.is_wirecutter())
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
-	else if(I.is_cable_coil())
+	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
 		if(C.use(4))
 			playsound(holder, 'sound/items/Deconstruct.ogg', 50, 1)
