@@ -1,6 +1,0 @@
-author: PrismaticGynoid
-
-delete-after: True
-
-changes: 
-  - tweak: "pAIs can now be picked up while unfolded, and can display more than 9 emotions."
