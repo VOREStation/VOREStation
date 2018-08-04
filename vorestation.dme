@@ -210,7 +210,11 @@
 #include "code\controllers\subsystems\atoms.dm"
 #include "code\controllers\subsystems\bellies_vr.dm"
 #include "code\controllers\subsystems\garbage.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\holomaps_vr.dm"
+=======
+#include "code\controllers\subsystems\holomaps.dm"
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort:polaris.dme
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
 #include "code\controllers\subsystems\mapping_vr.dm"
