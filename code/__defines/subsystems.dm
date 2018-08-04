@@ -31,9 +31,10 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_LIGHTING 0
 #define INIT_ORDER_AIR		-1
 #define INIT_ORDER_PLANETS	-4
+#define INIT_ORDER_HOLOMAPS	-5
 #define INIT_ORDER_OVERLAY	-6
 #define INIT_ORDER_XENOARCH	-20
- 
+
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
