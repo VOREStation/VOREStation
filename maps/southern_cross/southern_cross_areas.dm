@@ -659,6 +659,7 @@
 /area/tcomm/
 	icon_state = "tcomsatcham"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 /area/tcomm/entrance
 	name = "\improper Telecomms Teleporter"
@@ -739,22 +740,27 @@
 /area/crew_quarters/heads/sc/hop
 	name = "\improper Command - HoP's Office"
 	icon_state = "head_quarters"
+	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 /area/crew_quarters/heads/sc/hor
 	name = "\improper Research - RD's Office"
 	icon_state = "head_quarters"
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/crew_quarters/heads/sc/chief
 	name = "\improper Engineering - CE's Office"
 	icon_state = "head_quarters"
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/crew_quarters/heads/sc/hos
 	name = "\improper Security - HoS' Office"
 	icon_state = "head_quarters"
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/crew_quarters/heads/sc/cmo
 	name = "\improper Medbay - CMO's Office"
 	icon_state = "head_quarters"
+	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/engineering/engineer_eva
 	name = "\improper Engineering EVA"
@@ -896,6 +902,9 @@
 
 //Deck Three (Z-3)
 
+/area/ai
+	holomap_color = HOLOMAP_AREACOLOR_COMMAND
+
 /area/ai/ai_cyborg_station
 	name = "\improper Cyborg Station"
 	icon_state = "ai_cyborg"
@@ -921,6 +930,7 @@
 	name = "\improper Command - Station Director's Office"
 	icon_state = "captain"
 	sound_env = MEDIUM_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 area/crew_quarters/heads/sc/hop/quarters
 	name = "\improper Command - HoP's Quarters"
@@ -980,6 +990,7 @@ area/crew_quarters/heads/sc/hop/quarters
 /area/maintenance/solars
 	icon_state = "SolarcontrolA"
 	sound_env = SMALL_ENCLOSED
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/maintenance/solars/aftportsolar
 	name = "Solar Maintenance - Aft Port"
