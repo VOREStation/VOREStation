@@ -1357,7 +1357,7 @@
 "Ae" = (/obj/structure/closet/secure_closet/bar,/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/restaurant)
 "Af" = (/obj/structure/table/marble,/obj/effect/floor_decal/corner/white/diagonal,/obj/machinery/cash_register/civilian{ icon_state = "register_idle"; dir = 8},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/restaurant)
 "Ag" = (/obj/structure/table/standard,/obj/effect/floor_decal/corner/white/diagonal,/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/restaurant)
-"Ah" = (/obj/machinery/computer/ordercomp,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
+"Ah" = (/obj/machinery/computer/supplycomp/control,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "Ai" = (/obj/machinery/button/remote/blast_door{id = "crescent_checkpoint_access"; name = "Crescent Checkpoint Access"; pixel_x = -6; pixel_y = -24; req_access = list(101)},/obj/machinery/button/remote/blast_door{id = "crescent_thunderdome"; name = "Thunderdome Access"; pixel_x = 6; pixel_y = -24; req_access = list(101)},/obj/machinery/button/remote/blast_door{id = "crescent_vip_shuttle"; name = "VIP Shuttle Access"; pixel_x = 6; pixel_y = -34; req_access = list(101)},/obj/machinery/turretid{pixel_x = 28; pixel_y = -28; req_access = list(101)},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "Aj" = (/obj/machinery/computer/shuttle_control{req_access = list(101); shuttle_tag = "Centcom"},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)
 "Ak" = (/obj/machinery/computer/communications,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/command)

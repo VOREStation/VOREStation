@@ -4,13 +4,13 @@
 */
 
 
-/datum/supply_packs/costumes
+/datum/supply_pack/costumes
 	group = "Costumes"
 
-/datum/supply_packs/randomised/costumes
+/datum/supply_pack/randomised/costumes
 	group = "Costumes"
 
-/datum/supply_packs/costumes/wizard
+/datum/supply_pack/costumes/wizard
 	name = "Wizard costume"
 	contains = list(
 			/obj/item/weapon/staff,
@@ -22,7 +22,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Wizard costume crate"
 
-/datum/supply_packs/randomised/costumes/hats
+/datum/supply_pack/randomised/costumes/hats
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/head/collectable/chef,
@@ -51,7 +51,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Collectable hats crate! Brought to you by Bass.inc!"
 
-/datum/supply_packs/randomised/costumes/costume
+/datum/supply_pack/randomised/costumes/costume
 	num_contained = 3
 	contains = list(
 			/obj/item/clothing/suit/pirate,
@@ -87,7 +87,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Actor Costumes"
 
-/datum/supply_packs/costumes/formal_wear
+/datum/supply_pack/costumes/formal_wear
 	contains = list(
 			/obj/item/clothing/head/bowler,
 			/obj/item/clothing/head/that,
@@ -109,7 +109,7 @@
 	containertype = /obj/structure/closet
 	containername = "Formalwear for the best occasions."
 
-datum/supply_packs/costumes/witch
+datum/supply_pack/costumes/witch
 	name = "Witch costume"
 	containername = "Witch costume"
 	containertype = /obj/structure/closet
@@ -121,7 +121,7 @@ datum/supply_packs/costumes/witch
 			/obj/item/weapon/staff/broom
 			)
 
-/datum/supply_packs/randomised/costumes/costume_hats
+/datum/supply_pack/randomised/costumes/costume_hats
 	name = "Costume hats"
 	containername = "Actor hats crate"
 	containertype = /obj/structure/closet/crate
@@ -146,7 +146,7 @@ datum/supply_packs/costumes/witch
 			/obj/item/clothing/head/ushanka
 			)
 
-/datum/supply_packs/randomised/costumes/dresses
+/datum/supply_pack/randomised/costumes/dresses
 	name = "Womens formal dress locker"
 	containername = "Pretty dress locker"
 	containertype = /obj/structure/closet
