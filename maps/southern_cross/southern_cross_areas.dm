@@ -57,6 +57,9 @@
 	name = "Southern Shoreline"
 	icon_state = "southeast"
 
+/area/surface/outside
+	ambience = AMBIENCE_SIF
+
 // The area near the outpost, so POIs don't show up right next to the outpost.
 /area/surface/outside/plains/outpost
 	name = "Outpost Perimeter"
@@ -122,7 +125,6 @@
 	flags = RAD_SHIELDED
 
 /area/surface/cave
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg', 'sound/ambience/serspaceamb1.ogg')
 
 // The bottom half that connects to the outpost and is safer.
 /area/surface/cave/explored/normal
@@ -147,6 +149,7 @@
 //Surface Outposts
 
 /area/surface/outpost
+	ambience = AMBIENCE_GENERIC
 
 // Main mining outpost
 /area/surface/outpost/mining_main
@@ -281,6 +284,7 @@
 /area/surface/outpost/main/gen_room
 	name = "\improper Main Outpost SMES"
 	icon_state = "substation"
+	ambience = AMBIENCE_ENGINEERING
 
 /area/surface/outpost/main/gen_room/smes
 	name = "\improper Main Outpost Dorm SMES"
@@ -345,9 +349,11 @@
 	name = "The Wall"
 	icon_state = "red"
 	requires_power = FALSE
+	ambience = AMBIENCE_HIGHSEC
 
 /area/surface/outpost/wall/checkpoint
 	name = "Checkpoint"
+	ambience = AMBIENCE_HIGHSEC
 
 //Mining Station
 
@@ -364,7 +370,6 @@
 /area/outpost/mining_station/gen_station
 	name = "Mining Station Generator Room"
 	icon_state = "substation"
-	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/outpost/mining_station/crew_area
 	name = "Mining Station Crew Area"
@@ -658,7 +663,6 @@
 
 /area/tcomm/
 	icon_state = "tcomsatcham"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 /area/tcomm/entrance
@@ -668,7 +672,6 @@
 /area/tcomm/tcomfoyer
 	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatfoyer"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomm/chamber
 	name = "\improper Telecomms Central Compartment"
@@ -677,7 +680,6 @@
 /area/tcomm/tcomstorage
 	name = "\improper Telecomms Storage"
 	icon_state = "tcomsatstore"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcomm/computer
 	name = "\improper Telecomms Control Room"
@@ -904,6 +906,7 @@
 
 /area/ai
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
+	ambience = AMBIENCE_AI
 
 /area/ai/ai_cyborg_station
 	name = "\improper Cyborg Station"
@@ -913,12 +916,10 @@
 /area/ai/ai_upload
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
-	ambience = list('sound/ambience/ambimalf.ogg')
 
 /area/ai/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
-	ambience = list('sound/ambience/ambimalf.ogg')
 	sound_env = SMALL_ENCLOSED
 
 /area/ai/ai_server_room
@@ -1011,6 +1012,7 @@ area/crew_quarters/heads/sc/hop/quarters
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
+	ambience = AMBIENCE_SPACE
 
 /area/solar/aftportsolar
 	name = "\improper Aft Port Solar Array"
@@ -1031,6 +1033,7 @@ area/crew_quarters/heads/sc/hop/quarters
 /area/thirddeck/roof
 	name = "\improper Third Deck Plating"
 	dynamic_lighting = 0
+	ambience = AMBIENCE_SPACE
 
 // Shuttles
 
@@ -1041,6 +1044,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	icon_state = "centcom"
 	requires_power = 0
 	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
 
 /area/shuttle/response_ship/start
 	name = "\improper Response Team Base"
@@ -1222,6 +1226,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	requires_power = 0
 	dynamic_lighting = 0
 	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station
 	name = "\improper Mercenary Base"
@@ -1229,6 +1234,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	requires_power = 0
 	dynamic_lighting = 0
 	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station/start
 	name = "\improper Mercenary Ship"
@@ -1289,6 +1295,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	requires_power = 0
 	dynamic_lighting = 0
 	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
 
 /area/skipjack_station/transit
 	name = "transit"
@@ -1342,6 +1349,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	icon_state = "green"
 	requires_power = 0
 	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
 
 /area/ninja_dojo/dojo
 	name = "\improper Clan Dojo"
@@ -1571,7 +1579,9 @@ area/crew_quarters/heads/sc/hop/quarters
 /area/wreck/ufoship
 	name = "\improper Wreck"
 	icon_state = "storage"
+	ambience = AMBIENCE_OTHERWORLDLY
 
 /area/wreck/supplyshuttle
 	name = "\improper Wreck"
 	icon_state = "storage"
+	ambience = AMBIENCE_RUINS
