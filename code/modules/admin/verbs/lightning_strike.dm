@@ -1,5 +1,5 @@
 /client/proc/admin_lightning_strike()
-	set name = "Lightning Stirke"
+	set name = "Lightning Strike"
 	set desc = "Causes lightning to strike on your tile. This will hurt things on or nearby it severely."
 	set category = "Fun"
 
