@@ -1112,6 +1112,7 @@
 #include "code\game\objects\structures\flora\grass.dm"
 #include "code\game\objects\structures\flora\trees.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods.dm"
+#include "code\game\objects\structures\ghost_pods\mysterious.dm"
 #include "code\game\objects\structures\ghost_pods\silicon.dm"
 #include "code\game\objects\structures\props\alien_props.dm"
 #include "code\game\objects\structures\props\beam_prism.dm"
