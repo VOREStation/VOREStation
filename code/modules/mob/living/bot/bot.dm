@@ -7,6 +7,8 @@
 	universal_speak = 1
 	density = 0
 
+	makes_dirt = FALSE	// No more dirt from Beepsky
+
 	var/obj/item/weapon/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = 1
