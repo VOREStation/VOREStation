@@ -24,6 +24,7 @@
 	// Vars for hacking
 	var/datum/wires/jukebox/wires = null
 	var/hacked = 0 // Whether to show the hidden songs or not
+<<<<<<< HEAD
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
@@ -32,6 +33,31 @@
 	var/list/datum/track/queue = list()			// Queued songs
 	var/list/datum/track/tracks = list()		// Available tracks
 	var/list/datum/track/secret_tracks = list() // Only visible if hacked
+=======
+	var/freq = 0
+
+	var/datum/track/current_track
+	var/list/datum/track/tracks = list(
+		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
+		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
+		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
+		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
+		new/datum/track("Floating", 'sound/music/main.ogg'),
+		new/datum/track("Endless Space", 'sound/music/space.ogg'),
+		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
+		new/datum/track("Scratch", 'sound/music/title1.ogg'),
+		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
+		new/datum/track("Stellar Transit", 'sound/ambience/space/space_serithi.ogg'),
+	)
+
+	// Only visible if hacked
+	var/list/datum/track/secret_tracks = list(
+		new/datum/track("Clown", 'sound/music/clown.ogg'),
+		new/datum/track("Space Asshole", 'sound/music/space_asshole.ogg'),
+		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
+		new/datum/track("Russkiy rep Diskoteka", 'sound/music/russianrapdisco.ogg')
+	)
+>>>>>>> 3de28fa... Ambience Refactor (#5476)
 
 /obj/machinery/media/jukebox/New()
 	..()
