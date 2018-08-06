@@ -1131,7 +1131,6 @@ proc/is_hot(obj/item/W as obj)
 	if(W.sharp)
 		return TRUE
 	return ( \
-		W.sharp													  || \
 		W.is_screwdriver()		     				              || \
 		istype(W, /obj/item/weapon/pen)                           || \
 		istype(W, /obj/item/weapon/weldingtool)					  || \
