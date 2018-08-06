@@ -173,6 +173,9 @@
 	if(!below)
 		return
 
+	if(istype(below, /turf/space))
+		return
+
 	var/turf/T = loc
 	if(!T.CanZPass(src, DOWN) || !below.CanZPass(src, DOWN))
 		return
