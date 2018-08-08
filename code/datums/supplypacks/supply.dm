@@ -58,7 +58,7 @@
 				/obj/item/weapon/wrapping_paper = 2,
 				/obj/item/device/destTagger,
 				/obj/item/weapon/hand_labeler,
-				/obj/item/weapon/wirecutters,
+				/obj/item/weapon/tool/wirecutters,
 				/obj/item/weapon/tape_roll = 2)
 	cost = 10
 	containertype = "/obj/structure/closet/crate"

@@ -23,7 +23,7 @@
 			L.set_dir(dir)
 
 /obj/structure/bed/chair/wheelchair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wrench() || W.is_wirecutter() || istype(W,/obj/item/stack))
 		return
 	..()
 

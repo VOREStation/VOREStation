@@ -146,7 +146,7 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		if(active)
 			user << "Turn off [src] first."
 			return

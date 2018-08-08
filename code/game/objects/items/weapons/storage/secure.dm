@@ -41,13 +41,13 @@
 				playsound(src.loc, "sparks", 50, 1)
 				return
 
-			if (istype(W, /obj/item/weapon/screwdriver))
+			if (W.is_screwdriver())
 				if (do_after(user, 20 * W.toolspeed))
 					src.open =! src.open
 					playsound(src, W.usesound, 50, 1)
 					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (src.open ? "open" : "close")))
 				return
-			if ((istype(W, /obj/item/device/multitool)) && (src.open == 1)&& (!src.l_hacking))
+			if (istype(W, /obj/item/device/multitool) && (src.open == 1)&& (!src.l_hacking))
 				user.show_message("<span class='notice'>Now attempting to reset internal memory, please hold.</span>", 1)
 				src.l_hacking = 1
 				if (do_after(usr, 100))
@@ -135,7 +135,7 @@
 		src.overlays = null
 		overlays += image('icons/obj/storage.dmi', icon_locking)
 		locked = 0
-		user << (feedback ? feedback : "You short out the lock of \the [src].")
+		to_chat(user, (feedback ? feedback : "You short out the lock of \the [src]."))
 		return 1
 
 // -----------------------------
@@ -156,7 +156,7 @@
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))
-			usr << "<span class='warning'>[src] is locked and cannot be opened!</span>"
+			to_chat(user, "<span class='warning'>[src] is locked and cannot be opened!</span>")
 		else if ((src.loc == user) && (!src.locked))
 			src.open(usr)
 		else

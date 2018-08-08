@@ -30,13 +30,13 @@
 	..()
 
 /obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(I.is_screwdriver())
 		if(mode == 0)
 			var/turf/T = loc
 			if(isturf(T) && !!T.is_plating())
 				attached = locate() in T
 				if(!attached)
-					user << "No exposed cable here to attach to."
+					to_chat(user, "No exposed cable here to attach to.")
 					return
 				else
 					anchored = 1
@@ -45,7 +45,7 @@
 					playsound(src, I.usesound, 50, 1)
 					return
 			else
-				user << "Device must be placed over an exposed cable to attach to it."
+				to_chat(user, "Device must be placed over an exposed cable to attach to it.")
 				return
 		else
 			if (mode == 2)
