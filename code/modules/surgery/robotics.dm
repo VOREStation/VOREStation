@@ -28,10 +28,12 @@
 
 /datum/surgery_step/robotics/unscrew_hatch
 	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
 		/obj/item/weapon/coin = 50,
 		/obj/item/weapon/material/knife = 50
 	)
+
+	allowed_procs = list(IS_SCREWDRIVER = 100)
+
 	req_open = 0
 
 	min_duration = 90
@@ -66,9 +68,10 @@
 /datum/surgery_step/robotics/open_hatch
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
 	)
+
+	allowed_procs = list(IS_CROWBAR = 100)
 
 	min_duration = 30
 	max_duration = 40
@@ -102,9 +105,10 @@
 /datum/surgery_step/robotics/close_hatch
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
 	)
+
+	allowed_procs = list(IS_CROWBAR = 100)
 
 	min_duration = 70
 	max_duration = 100
@@ -148,7 +152,7 @@
 /datum/surgery_step/robotics/repair_brute/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(istype(tool,/obj/item/weapon/weldingtool))
+		if(istype(tool, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
@@ -188,7 +192,7 @@
 /datum/surgery_step/robotics/repair_burn/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(istype(tool,/obj/item/stack/cable_coil/))
+		if(istype(tool, /obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/C = tool
 			if(affected.burn_dam == 0)
 				to_chat(user, "<span class='notice'>There are no burnt wires here!</span>")
@@ -229,8 +233,9 @@
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
 	/obj/item/weapon/surgical/bonegel = 30, 		\
-	/obj/item/weapon/screwdriver = 70,	\
 	)
+
+	allowed_procs = list(IS_SCREWDRIVER = 100)
 
 	min_duration = 70
 	max_duration = 90
@@ -348,9 +353,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/attach_organ_robotic
-	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
-	)
+	allowed_procs = list(IS_SCREWDRIVER = 100)
 
 	min_duration = 100
 	max_duration = 120

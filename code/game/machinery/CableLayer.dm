@@ -35,7 +35,7 @@
 			user << "You load [result] lengths of cable into [src]."
 		return
 
-	if(istype(O, /obj/item/weapon/wirecutters))
+	if(O.is_wirecutter())
 		if(cable && cable.amount)
 			var/m = round(input(usr,"Please specify the length of cable to cut","Cut cable",min(cable.amount,30)) as num, 1)
 			m = min(m, cable.amount)

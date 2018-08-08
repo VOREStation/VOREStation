@@ -254,7 +254,7 @@
 				repairing = null
 		return
 
-	if(repairing && istype(I, /obj/item/weapon/crowbar))
+	if(repairing && I.is_crowbar())
 		user << "<span class='notice'>You remove \the [repairing].</span>"
 		playsound(src, I.usesound, 100, 1)
 		repairing.loc = user.loc

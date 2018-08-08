@@ -806,3 +806,27 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/apply_accessories(var/image/standing)
 	return standing
 
+/*
+ *	Assorted tool procs, so any item can emulate any tool, if coded
+*/
+/obj/item/proc/is_screwdriver()
+	return FALSE
+
+/obj/item/proc/is_wrench()
+	return FALSE
+
+/obj/item/proc/is_crowbar()
+	return FALSE
+
+/obj/item/proc/is_wirecutter()
+	return FALSE
+
+// These next three might bug out or runtime, unless someone goes back and finds a way to generalize their specific code
+/obj/item/proc/is_cable_coil()
+	return FALSE
+
+/obj/item/proc/is_multitool()
+	return FALSE
+
+/obj/item/proc/is_welder()
+	return FALSE

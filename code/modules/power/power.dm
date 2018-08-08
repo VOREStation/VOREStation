@@ -139,7 +139,7 @@
 	return
 
 // Power machinery should also connect/disconnect from the network.
-/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/wrench/W, var/time = 20)
+/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time = 20)
 	if((. = ..()))
 		if(anchored)
 			connect_to_network()

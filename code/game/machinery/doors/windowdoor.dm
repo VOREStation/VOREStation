@@ -207,7 +207,7 @@
 		return 1
 
 	//If it's opened/emagged, crowbar can pry it out of its frame.
-	if (!density && istype(I, /obj/item/weapon/crowbar))
+	if (!density && I.is_crowbar())
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
 		if (do_after(user,40 * I.toolspeed))
@@ -268,8 +268,6 @@
 
 	return
 
-
-
 /obj/machinery/door/window/brigdoor
 	name = "secure door"
 	icon = 'icons/obj/doors/windoor.dmi'
@@ -283,7 +281,6 @@
 /obj/machinery/door/window/brigdoor/shatter()
 	new /obj/item/stack/rods(src.loc, 2)
 	..()
-
 
 /obj/machinery/door/window/northleft
 	dir = NORTH

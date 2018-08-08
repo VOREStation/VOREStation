@@ -429,8 +429,8 @@
 	return
 
 /obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
-	if (istype(O, /obj/item/weapon/wrench))
-		if (anchored)
+	if(O.is_wrench())
+		if(anchored)
 			playsound(src.loc, O.usesound, 50, 1)
 			user << "<span class='notice'>You begin to loosen \the [src]'s casters...</span>"
 			if (do_after(user, 40 * O.toolspeed))

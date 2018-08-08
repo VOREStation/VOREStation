@@ -55,7 +55,7 @@
 "bc" = (/obj/structure/table/steel,/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
 "bd" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
 "be" = (/obj/structure/closet,/obj/random/maintenance/clean,/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
-"bf" = (/obj/structure/closet/crate,/obj/random/powercell,/obj/item/weapon/screwdriver,/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
+"bf" = (/obj/structure/closet/crate,/obj/random/powercell,/obj/item/weapon/tool/screwdriver,/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
 "bg" = (/obj/random/junk,/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "mining_dock_1"; name = "shuttle bay controller"; pixel_x = 0; pixel_y = -26; tag_door = "mining_dock_1_door"},/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
 "bh" = (/obj/machinery/space_heater,/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
 "bi" = (/obj/item/weapon/banner/virgov,/turf/simulated/floor/plating/external,/area/surface/outside/path/wilderness)
@@ -329,3 +329,4 @@ aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
 aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacbqbrblbsbqacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaKaKaKacacacacacacacacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabqbtbtbtbqaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabububuaaaaaaaaaaaaaaaaaa
 "}
+

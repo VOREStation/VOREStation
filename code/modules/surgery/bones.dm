@@ -9,9 +9,11 @@
 
 /datum/surgery_step/glue_bone
 	allowed_tools = list(
-	/obj/item/weapon/surgical/bonegel = 100,	\
-	/obj/item/weapon/screwdriver = 75
+		/obj/item/weapon/surgical/bonegel = 100
 	)
+
+	allowed_procs = list(IS_SCREWDRIVER = 75)
+
 	can_infect = 1
 	blood_level = 1
 
@@ -49,9 +51,10 @@
 
 /datum/surgery_step/set_bone
 	allowed_tools = list(
-	/obj/item/weapon/surgical/bonesetter = 100,	\
-	/obj/item/weapon/wrench = 75		\
+		/obj/item/weapon/surgical/bonesetter = 100
 	)
+
+	allowed_procs = list(IS_WRENCH = 75)
 
 	min_duration = 60
 	max_duration = 70
@@ -92,9 +95,10 @@
 
 /datum/surgery_step/mend_skull
 	allowed_tools = list(
-	/obj/item/weapon/surgical/bonesetter = 100,	\
-	/obj/item/weapon/wrench = 75		\
+		/obj/item/weapon/surgical/bonesetter = 100
 	)
+
+	allowed_procs = list(IS_WRENCH = 75)
 
 	min_duration = 60
 	max_duration = 70
@@ -130,9 +134,11 @@
 
 /datum/surgery_step/finish_bone
 	allowed_tools = list(
-	/obj/item/weapon/surgical/bonegel = 100,	\
-	/obj/item/weapon/screwdriver = 75
+		/obj/item/weapon/surgical/bonegel = 100
 	)
+
+	allowed_procs = list(IS_SCREWDRIVER = 75)
+
 	can_infect = 1
 	blood_level = 1
 
@@ -169,8 +175,9 @@
 
 /datum/surgery_step/clamp_bone
 	allowed_tools = list(
-	/obj/item/weapon/surgical/bone_clamp = 100
-	)
+		/obj/item/weapon/surgical/bone_clamp = 100
+		)
+
 	can_infect = 1
 	blood_level = 1
 
