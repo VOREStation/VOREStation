@@ -1,5 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - rscadd: "The supply controller has been refactored and shifted to nanoUI."
-  - rscadd: "The ordering and control consoles are now generally upgraded in terms of information and options."
