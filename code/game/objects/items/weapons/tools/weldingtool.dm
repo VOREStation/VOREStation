@@ -61,6 +61,23 @@
 		if(max_fuel)
 			to_chat(user, text("\icon[] The [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
+/obj/item/weapon/weldingtool/attack(var/atom/A, var/mob/living/user, var/def_zone)
+	if(ishuman(A) && user.a_intent == I_HELP)
+		var/mob/living/carbon/human/H = A
+		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
+
+		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
+			return ..()
+
+		if(!welding)
+			to_chat(user, "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>")
+			return 1
+
+		if(S.robo_repair(15, BRUTE, "some dents", src, user))
+			remove_fuel(1, user)
+			return 1
+
+	return ..()
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W,/obj/item/weapon/tool/screwdriver))
