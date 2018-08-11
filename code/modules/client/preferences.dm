@@ -104,6 +104,8 @@ datum/preferences
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
 
+	var/list/body_descriptors = list()
+
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
@@ -294,6 +296,10 @@ datum/preferences
 		character.update_mutations()
 		character.update_underwear()
 		character.update_hair()
+
+	if(LAZYLEN(character.descriptors))
+		for(var/entry in body_descriptors)
+			character.descriptors[entry] = body_descriptors[entry]
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

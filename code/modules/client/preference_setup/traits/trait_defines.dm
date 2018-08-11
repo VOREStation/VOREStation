@@ -72,6 +72,8 @@
 	Regardless, you find it quite difficult to land shots where you wanted them to go."
 	modifier_type = /datum/modifier/trait/inaccurate
 
+/* Disabled because it makes sprites fuzzy and we have descriptors
+
 /datum/trait/modifier/physical/smaller
 	name = "Smaller"
 	modifier_type = /datum/modifier/trait/smaller
@@ -91,6 +93,7 @@
 	name = "Larger"
 	modifier_type = /datum/modifier/trait/larger
 	mutually_exclusive = list(/datum/trait/modifier/physical/smaller, /datum/trait/modifier/physical/small, /datum/trait/modifier/physical/large)
+*/
 
 /datum/trait/modifier/physical/colorblind_protanopia
 	name = "Protanopia"
