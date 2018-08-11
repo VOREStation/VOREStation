@@ -77,7 +77,9 @@
 				"Weather" = planet.weather_holder.current_weather.name,
 				"Temperature" = planet.weather_holder.temperature - T0C,
 				"High" = planet.weather_holder.current_weather.temp_high - T0C,
-				"Low" = planet.weather_holder.current_weather.temp_low - T0C)
+				"Low" = planet.weather_holder.current_weather.temp_low - T0C,
+				"Forecast" = english_list(planet.weather_holder.forecast, and_text = "&#8594;", comma_text = "&#8594;", final_comma_text = "&#8594;") // Unicode RIGHTWARDS ARROW.
+				)
 			weather[++weather.len] = W
 
 	injection = "<div>Test</div>"

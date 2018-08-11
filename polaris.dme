@@ -1540,6 +1540,7 @@
 #include "code\modules\ext_scripts\python.dm"
 #include "code\modules\flufftext\Dreaming.dm"
 #include "code\modules\flufftext\Hallucination.dm"
+#include "code\modules\flufftext\look_up.dm"
 #include "code\modules\flufftext\TextFilters.dm"
 #include "code\modules\food\recipe_dump.dm"
 #include "code\modules\food\recipes_microwave.dm"
