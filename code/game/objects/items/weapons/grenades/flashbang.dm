@@ -6,7 +6,7 @@
 	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 
-/obj/item/weapon/grenade/flashbang/prime()
+/obj/item/weapon/grenade/flashbang/detonate()
 	..()
 	for(var/obj/structure/closet/L in hear(max_range, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
@@ -108,7 +108,7 @@
 	var/min_banglets = 4
 	var/max_banglets = 8
 
-/obj/item/weapon/grenade/flashbang/clusterbang/prime()
+/obj/item/weapon/grenade/flashbang/clusterbang/detonate()
 	var/numspawned = rand(min_banglets, max_banglets)
 	var/again = 0
 
@@ -147,7 +147,7 @@
 
 	var/dettime = rand(15,60)
 	spawn(dettime)
-		prime()
+		detonate()
 
 /obj/item/weapon/grenade/flashbang/cluster
 	banglet = TRUE
@@ -163,4 +163,4 @@
 
 	var/dettime = rand(15,60)
 	spawn(dettime)
-		prime()
+		detonate()
