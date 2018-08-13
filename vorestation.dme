@@ -2564,7 +2564,6 @@
 #include "code\modules\reagents\reagent_containers\spray.dm"
 #include "code\modules\reagents\reagent_containers\spray_vr.dm"
 #include "code\modules\reagents\reagent_containers\syringes.dm"
-#include "code\modules\reagents\reagent_containers\syringes_vr.dm"
 #include "code\modules\reagents\reagent_containers\drinkingglass\drinkingglass.dm"
 #include "code\modules\reagents\reagent_containers\drinkingglass\extras.dm"
 #include "code\modules\reagents\reagent_containers\drinkingglass\glass_boxes.dm"

@@ -161,9 +161,8 @@
 				return
 
 			var/mob/living/carbon/human/H = target
-			var/obj/item/organ/external/affected //VOREStation Edit - Moved this outside this if
 			if(istype(H))
-				affected = H.get_organ(user.zone_sel.selecting) //VOREStation Edit - See above comment.
+				var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
 				if(!affected)
 					to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
 					return
@@ -203,28 +202,26 @@
 			var/contained = reagentlist()
 			while(reagents.total_volume)
 				if(ismob(target))
-					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)	
+					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
 				else
 					trans += reagents.trans_to_obj(target, amount_per_transfer_from_this)
 				update_icon()
 				if(!reagents.total_volume || !do_after(user,cycle_time,target))
 					break
-			
+
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
 
 			if(trans)
 				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
-				if(ismob(target))
-					add_attack_logs(user,target,"Injected with [src.name] containing [contained], trasferred [trans] units")
+				add_attack_logs(user,target,"Injected with [src.name] containing [contained], trasferred [trans] units")
 			else
 				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
 
-			dirty(target,affected) //VOREStation Add
 
 	return
-/* VOREStation Edit - See syringes_vr.dm
+
 /obj/item/weapon/reagent_containers/syringe/update_icon()
 	overlays.Cut()
 
@@ -251,7 +248,7 @@
 
 		filling.color = reagents.get_color()
 		overlays += filling
-*/
+
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if(istype(target, /mob/living/carbon/human))
 
@@ -333,8 +330,8 @@
 /obj/item/weapon/reagent_containers/syringe/inaprovaline/New()
 	..()
 	reagents.add_reagent("inaprovaline", 15)
-	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
-	//update_icon()
+	mode = SYRINGE_INJECT
+	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
@@ -343,8 +340,8 @@
 /obj/item/weapon/reagent_containers/syringe/antitoxin/New()
 	..()
 	reagents.add_reagent("anti_toxin", 15)
-	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
-	//update_icon()
+	mode = SYRINGE_INJECT
+	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
 	name = "Syringe (spaceacillin)"
@@ -353,8 +350,8 @@
 /obj/item/weapon/reagent_containers/syringe/antiviral/New()
 	..()
 	reagents.add_reagent("spaceacillin", 15)
-	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
-	//update_icon()
+	mode = SYRINGE_INJECT
+	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/drugs
 	name = "Syringe (drugs)"
@@ -365,8 +362,8 @@
 	reagents.add_reagent("space_drugs",  5)
 	reagents.add_reagent("mindbreaker",  5)
 	reagents.add_reagent("cryptobiolin", 5)
-	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
-	//update_icon()
+	mode = SYRINGE_INJECT
+	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral/New()
 	..()
