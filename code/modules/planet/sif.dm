@@ -12,6 +12,9 @@ var/datum/planet/sif/planet_sif = null
 //	expected_z_levels = list(1) // To be changed when real map is finished.
 	planetary_wall_type = /turf/unsimulated/wall/planetary/sif
 
+	sun_name = "Vir"
+	moon_name = "Thor"
+
 /datum/planet/sif/New()
 	..()
 	planet_sif = src
@@ -131,7 +134,7 @@ var/datum/planet/sif/planet_sif = null
 		WEATHER_HAIL		= 2.5
 		)
 
-datum/weather/sif
+/datum/weather/sif
 	name = "sif base"
 	temp_high = 283.15	// 10c
 	temp_low = 263.15	// -10c
@@ -142,6 +145,13 @@ datum/weather/sif
 		WEATHER_CLEAR = 60,
 		WEATHER_OVERCAST = 40
 		)
+	transition_messages = list(
+		"The sky clears up.",
+		"The sky is visible.",
+		"The weather is calm."
+		)
+	sky_visible = TRUE
+	observed_message = "The sky is clear."
 
 /datum/weather/sif/overcast
 	name = "overcast"
@@ -153,6 +163,12 @@ datum/weather/sif
 		WEATHER_SNOW = 5,
 		WEATHER_RAIN = 5,
 		WEATHER_HAIL = 5
+		)
+	observed_message = "It is overcast, all you can see are clouds."
+	transition_messages = list(
+		"All you can see above are clouds.",
+		"Clouds cut off your view of the sky.",
+		"It's very cloudy."
 		)
 
 /datum/weather/sif/light_snow
@@ -166,6 +182,11 @@ datum/weather/sif
 		WEATHER_LIGHT_SNOW = 50,
 		WEATHER_SNOW = 25,
 		WEATHER_HAIL = 5
+		)
+	observed_message = "It is snowing lightly."
+	transition_messages = list(
+		"Small snowflakes begin to fall from above.",
+		"It begins to snow lightly.",
 		)
 
 /datum/weather/sif/snow
@@ -182,6 +203,11 @@ datum/weather/sif
 		WEATHER_HAIL = 5,
 		WEATHER_OVERCAST = 5
 		)
+	observed_message = "It is snowing."
+	transition_messages = list(
+		"It's starting to snow.",
+		"The air feels much colder as snowflakes fall from above."
+	)
 
 /datum/weather/sif/snow/process_effects()
 	..()
@@ -206,6 +232,11 @@ datum/weather/sif
 		WEATHER_HAIL = 10,
 		WEATHER_OVERCAST = 5
 		)
+	observed_message = "A blizzard blows snow everywhere."
+	transition_messages = list(
+		"Strong winds howl around you as a blizzard appears.",
+		"It starts snowing heavily, and it feels extremly cold now."
+	)
 
 /datum/weather/sif/blizzard/process_effects()
 	..()
@@ -230,6 +261,10 @@ datum/weather/sif
 		WEATHER_STORM = 10,
 		WEATHER_HAIL = 5
 		)
+	observed_message = "It is raining."
+	transition_messages = list(
+		"The sky is dark, and rain falls down upon you."
+	)
 
 /datum/weather/sif/rain/process_effects()
 	..()
@@ -267,6 +302,12 @@ datum/weather/sif
 	var/next_lightning_strike = 0 // world.time when lightning will strike.
 	var/min_lightning_cooldown = 5 SECONDS
 	var/max_lightning_cooldown = 1 MINUTE
+	observed_message = "An intense storm pours down over the region."
+	transition_messages = list(
+		"You feel intense winds hit you as the weather takes a turn for the worst.",
+		"Loud thunder is heard in the distance.",
+		"A bright flash heralds the approach of a storm."
+	)
 
 
 	transition_chances = list(
@@ -329,6 +370,12 @@ datum/weather/sif
 		WEATHER_HAIL = 10,
 		WEATHER_OVERCAST = 5
 		)
+	observed_message = "Ice is falling from the sky."
+	transition_messages = list(
+		"Ice begins to fall from the sky.",
+		"It begins to hail.",
+		"An intense chill is felt, and chunks of ice start to fall from the sky, towards you."
+	)
 
 /datum/weather/sif/hail/process_effects()
 	..()
@@ -375,3 +422,7 @@ datum/weather/sif
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100
 		)
+	observed_message = "Everything is red. Something really wrong is going on."
+	transition_messages = list(
+		"The sky turns blood red!"
+	)
