@@ -86,6 +86,8 @@
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo = null
 
+	var/can_remove_ammo = TRUE	// Can this thing have bullets removed one-by-one? As of first implementation, only affects smart magazines
+
 	var/multiple_sprites = 0
 	//because BYOND doesn't support numbers as keys in associative lists
 	var/list/icon_keys = list()		//keys
@@ -117,7 +119,7 @@
 			return
 		user.remove_from_mob(C)
 		C.loc = src
-		stored_ammo.Insert(1, C) //add to the head of the list
+		stored_ammo.Add(C)
 		update_icon()
 	if(istype(W, /obj/item/ammo_magazine/clip))
 		var/obj/item/ammo_magazine/clip/L = W
@@ -138,16 +140,34 @@
 	playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
 	update_icon()
 
+// This dumps all the bullets right on the floor
 /obj/item/ammo_magazine/attack_self(mob/user)
-	if(!stored_ammo.len)
-		to_chat(user, "<span class='notice'>[src] is already empty!</span>")
+	if(can_remove_ammo)
+		if(!stored_ammo.len)
+			to_chat(user, "<span class='notice'>[src] is already empty!</span>")
+			return
+		to_chat(user, "<span class='notice'>You empty [src].</span>")
+		for(var/obj/item/ammo_casing/C in stored_ammo)
+			C.loc = user.loc
+			C.set_dir(pick(cardinal))
+		stored_ammo.Cut()
+		update_icon()
+	else
+		to_chat(user, "<span class='notice'>\The [src] is not designed to be unloaded.</span>")
 		return
-	to_chat(user, "<span class='notice'>You empty [src].</span>")
-	for(var/obj/item/ammo_casing/C in stored_ammo)
-		C.loc = user.loc
-		C.set_dir(pick(cardinal))
-	stored_ammo.Cut()
-	update_icon()
+
+// This puts one bullet from the magazine into your hand
+/obj/item/ammo_magazine/attack_hand(mob/user)
+	if(can_remove_ammo)	// For Smart Magazines
+		if(user.get_inactive_hand() == src)
+			if(stored_ammo.len)
+				var/obj/item/ammo_casing/C = stored_ammo[stored_ammo.len]
+				stored_ammo-=C
+				user.put_in_hands(C)
+				user.visible_message("\The [user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+				update_icon()
+				return
+	..()
 
 /obj/item/ammo_magazine/update_icon()
 	if(multiple_sprites)
