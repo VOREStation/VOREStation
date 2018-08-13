@@ -264,6 +264,9 @@ datum/weather/sif
 	temp_low = 233.15  // -40c
 	light_modifier = 0.3
 	flight_failure_modifier = 10
+	var/next_lightning_strike = 0 // world.time when lightning will strike.
+	var/min_lightning_cooldown = 5 SECONDS
+	var/max_lightning_cooldown = 1 MINUTE
 
 
 	transition_chances = list(
@@ -297,6 +300,17 @@ datum/weather/sif
 
 			L.water_act(2)
 			to_chat(L, "<span class='warning'>Rain falls on you, drenching you in water.</span>")
+
+	handle_lightning()
+
+// This gets called to do lightning periodically.
+// There is a seperate function to do the actual lightning strike, so that badmins can play with it.
+/datum/weather/sif/storm/proc/handle_lightning()
+	if(world.time < next_lightning_strike)
+		return // It's too soon to strike again.
+	next_lightning_strike = world.time + rand(min_lightning_cooldown, max_lightning_cooldown)
+	var/turf/T = pick(holder.our_planet.planet_floors) // This has the chance to 'strike' the sky, but that might be a good thing, to scare reckless pilots.
+	lightning_strike(T)
 
 /datum/weather/sif/hail
 	name = "hail"
