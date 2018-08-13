@@ -1,4 +1,5 @@
 aether_elemental - Daemon
+arokha - Protean
 aruis - Diona
 aruis - Xenochimera
 azmodan412 - Xenochimera
