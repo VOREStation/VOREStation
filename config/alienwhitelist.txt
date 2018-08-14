@@ -1,4 +1,5 @@
 aether_elemental - Daemon
+arokha - Protean
 aruis - Diona
 aruis - Xenochimera
 azmodan412 - Xenochimera
@@ -23,6 +24,7 @@ seiga - Vox
 sepulchre - Vox
 sepulchre - Xenomorph Hybrid
 silverTalismen - Diona
+silverTalismen - Vox
 silvertalismen - Xenochimera
 singo - Gutter
 some~user - Species
@@ -34,3 +36,4 @@ xioen - Xenomorph Hybrid
 zammyman215 - Vox
 zekesturm - Xenomorph Hybrid
 wtfismyname - Xenomorph Hybrid
+jademanique - Xenochimera

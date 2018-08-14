@@ -5,7 +5,7 @@ var/datum/antagonist/traitor/traitors
 	id = MODE_TRAITOR
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Colony Director")
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
-	can_use_aooc = FALSE
+	can_speak_aooc = FALSE	// If they want to plot and plan as this sort of traitor, they'll need to do it ICly.
 
 /datum/antagonist/traitor/auto
 	id = MODE_AUTOTRAITOR

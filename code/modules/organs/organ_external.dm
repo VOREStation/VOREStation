@@ -72,6 +72,8 @@
 	var/open = 0
 	var/stage = 0
 	var/cavity = 0
+	var/burn_stage = 0		//Surgical repair stage for burn.
+	var/brute_stage = 0		//Surgical repair stage for brute.
 
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
@@ -1345,3 +1347,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if(6 to INFINITY)
 					flavor_text += "a ton of [wound]\s"
 		return english_list(flavor_text)
+
+// Returns a list of the clothing (not glasses) that are covering this part
+/obj/item/organ/external/proc/get_covering_clothing()
+	var/list/covering_clothing = list()
+	if(owner)
+		var/list/protective_gear = list(owner.head, owner.wear_mask, owner.wear_suit, owner.w_uniform, owner.gloves, owner.shoes)
+		for(var/obj/item/clothing/gear in protective_gear)
+			if(gear.body_parts_covered & src.body_part)
+				covering_clothing |= gear
+			if(LAZYLEN(gear.accessories))
+				for(var/obj/item/clothing/accessory/bling in gear.accessories)
+					if(bling.body_parts_covered & src.body_part)
+						covering_clothing |= bling
+
+	return covering_clothing

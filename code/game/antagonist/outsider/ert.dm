@@ -25,7 +25,8 @@ var/datum/antagonist/ert/ert
 	initial_spawn_req = 5
 	initial_spawn_target = 7
 
-	can_use_aooc = FALSE // They're the good guys.
+	can_hear_aooc = FALSE // They're the good guys.
+	can_speak_aooc = FALSE	// Just in case the above var bugs, or gets touched.
 
 /datum/antagonist/ert/create_default(var/mob/source)
 	var/mob/living/carbon/human/M = ..()

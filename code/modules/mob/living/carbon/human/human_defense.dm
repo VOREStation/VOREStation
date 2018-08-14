@@ -146,45 +146,35 @@ emp_act
 
 //this proc returns the armour value for a particular external organ.
 /mob/living/carbon/human/proc/getarmor_organ(var/obj/item/organ/external/def_zone, var/type)
-	if(!type || !def_zone) return 0
+	if(!type || !def_zone)
+		return 0
 	var/protection = 0
-	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	var/list/protective_gear = def_zone.get_covering_clothing()
 	for(var/obj/item/clothing/gear in protective_gear)
-		if(gear.body_parts_covered & def_zone.body_part)
-			protection += gear.armor[type]
-		if(LAZYLEN(gear.accessories))
-			for(var/obj/item/clothing/accessory/bling in gear.accessories)
-				if(bling.body_parts_covered & def_zone.body_part)
-					protection += bling.armor[type]
+		protection += gear.armor[type]
 	return protection
 
 /mob/living/carbon/human/proc/getsoak_organ(var/obj/item/organ/external/def_zone, var/type)
-	if(!type || !def_zone) return 0
+	if(!type || !def_zone)
+		return 0
 	var/soaked = 0
-	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	var/list/protective_gear = def_zone.get_covering_clothing()
 	for(var/obj/item/clothing/gear in protective_gear)
-		if(gear.body_parts_covered & def_zone.body_part)
-			soaked += gear.armorsoak[type]
-		if(LAZYLEN(gear.accessories))
-			for(var/obj/item/clothing/accessory/bling in gear.accessories)
-				if(bling.body_parts_covered & def_zone.body_part)
-					soaked += bling.armorsoak[type]
+		soaked += gear.armorsoak[type]
 	return soaked
 
+// Checked in borer code
 /mob/living/carbon/human/proc/check_head_coverage()
-
-	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform)
-	for(var/bp in body_parts)
-		if(!bp)	continue
-		if(bp && istype(bp ,/obj/item/clothing))
-			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & HEAD)
-				return 1
+	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
+	var/list/body_parts = H.get_covering_clothing()
+	if(LAZYLEN(body_parts))
+		return 1
 	return 0
 
 //Used to check if they can be fed food/drinks/pills
 /mob/living/carbon/human/proc/check_mouth_coverage()
-	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform)
+	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
+	var/list/protective_gear = H.get_covering_clothing()
 	for(var/obj/item/gear in protective_gear)
 		if(istype(gear) && (gear.body_parts_covered & FACE) && !(gear.item_flags & FLEXIBLEMATERIAL))
 			return gear

@@ -70,6 +70,7 @@ Variables you may want to make use of are:
 	num_alternate_languages = 3
 	species_language = LANGUAGE_GALCOM
 	secondary_langs = list()
+	assisted_langs = list()
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 
 	min_age = 0
