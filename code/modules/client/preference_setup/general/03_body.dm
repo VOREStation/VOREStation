@@ -705,10 +705,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.synth_color = !pref.synth_color
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["synth_markings"]) //VOREStation edit.
-		pref.synth_markings = !pref.synth_markings //VOREStation edit.
-		return TOPIC_REFRESH_UPDATE_PREVIEW //VOREStation edit.
-
 	else if(href_list["synth2_color"])
 		var/new_color = input(user, "Choose your character's synth colour: ", "Character Preference", rgb(pref.r_synth, pref.g_synth, pref.b_synth)) as color|null
 		if(new_color && CanUseTopic(user))
