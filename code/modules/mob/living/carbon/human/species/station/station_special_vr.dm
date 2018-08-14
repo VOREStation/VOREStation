@@ -5,7 +5,7 @@
 
 
 /datum/species/xenochimera //Scree's race.
-	name = "Xenochimera"
+	name = SPECIES_XENOCHIMERA
 	name_plural = "Xenochimeras"
 	icobase = 'icons/mob/human_races/r_xenochimera.dmi'
 	deform = 'icons/mob/human_races/r_def_xenochimera.dmi'
@@ -14,7 +14,8 @@
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
-	var/base_species = "Xenochimera"
+	base_species = "Xenochimera"
+	selects_bodytype = TRUE
 
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
@@ -300,7 +301,7 @@
 /////SPIDER RACE/////
 /////////////////////
 /datum/species/spider //These actually look pretty damn spooky!
-	name = "Vasilissan"
+	name = SPECIES_VASILISSAN
 	name_plural = "Vasilissans"
 	icobase = 'icons/mob/human_races/r_spider.dmi'
 	deform = 'icons/mob/human_races/r_def_spider.dmi'
