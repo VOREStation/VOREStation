@@ -1427,3 +1427,6 @@ var/mob/dview/dview_mob = new
 			return "Northwest"
 		if(337.5)
 			return "North-Northwest"
+
+/proc/pass()
+	return

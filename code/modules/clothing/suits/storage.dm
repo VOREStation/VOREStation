@@ -8,7 +8,7 @@
 	pockets.max_storage_space = ITEMSIZE_COST_SMALL * 2
 
 /obj/item/clothing/suit/storage/Destroy()
-	qdel_null(pockets)
+	QDEL_NULL(pockets)
 	return ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user as mob)

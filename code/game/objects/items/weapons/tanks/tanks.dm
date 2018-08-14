@@ -70,10 +70,10 @@ var/list/global/tank_gauge_cache = list()
 	return
 
 /obj/item/weapon/tank/Destroy()
-	qdel_null(air_contents)
+	QDEL_NULL(air_contents)
 
 	processing_objects.Remove(src)
-	qdel_null(src.proxyassembly)
+	QDEL_NULL(src.proxyassembly)
 
 	if(istype(loc, /obj/item/device/transfer_valve))
 		var/obj/item/device/transfer_valve/TTV = loc
