@@ -1509,6 +1509,7 @@
 #include "code\modules\client\preference_setup\vore\06_vantag.dm"
 #include "code\modules\client\preference_setup\vore\07_traits.dm"
 #include "code\modules\client\preference_setup\vore\08_nif.dm"
+#include "code\modules\client\preference_setup\vore\09_misc.dm"
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\clothing_accessories.dm"

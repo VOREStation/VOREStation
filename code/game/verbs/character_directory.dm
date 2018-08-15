@@ -12,6 +12,8 @@
 
 	var/curID = 0
 	for(var/client/C in clients)
+		if(C.prefs && !C.prefs.show_in_directory)
+			continue
 		if(ishuman(C.mob))
 			curID++
 			var/mob/living/carbon/human/H = C.mob
