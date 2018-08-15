@@ -55,9 +55,9 @@
 		for(var/client/C in clients)
 			var/entry = "\t"
 			if(C.holder && C.holder.fakekey)
-				var/entry += "[C.holder.fakekey]"
+				entry += "[C.holder.fakekey]"
 			else
-				var/entry += "[C.key]"
+				entry += "[C.key]"
 			var/mob/observer/dead/O = C.mob
 			if(isobserver(O))
 				entry += " - <font color='gray'>Observing</font>"
