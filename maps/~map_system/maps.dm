@@ -51,14 +51,20 @@ var/list/all_maps = list()
 	                               //Also including them lets us override already created jobs, letting us keep the datums to a minimum mostly.
 	                               //This is probably a lot longer explanation than it needs to be.
 
+<<<<<<< HEAD
 	// VOREStation Edit - Holomaps!
+=======
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort
 	var/list/holomap_smoosh		// List of lists of zlevels to smoosh into single icons
 	var/list/holomap_offset_x = list()
 	var/list/holomap_offset_y = list()
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
+<<<<<<< HEAD
 	// VOREStation Edit End
 	var/list/meteor_strike_areas	// VOREStation Edit - Areas meteor strikes may choose to hit.
+=======
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -178,6 +184,12 @@ var/list/all_maps = list()
 	var/holomap_legend_y = 96	// y position of the holomap legend for this z
 	// VOREStation Edit End
 
+// Holomaps
+	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	var/holomap_legend_x = 96	// x position of the holomap legend for this z
+	var/holomap_legend_y = 96	// y position of the holomap legend for this z
+
 // Default constructor applies itself to the parent map datum
 /datum/map_z_level/New(var/datum/map/map)
 	if(!z) return
@@ -197,7 +209,11 @@ var/list/all_maps = list()
 		map.base_turf_by_z["[z]"] = base_turf
 	if(transit_chance)
 		map.accessible_z_levels["[z]"] = transit_chance
+<<<<<<< HEAD
 	// VOREStation Edit - Holomaps
+=======
+	// Holomaps
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort
 	// Auto-center the map if needed (Guess based on maxx/maxy)
 	if (holomap_offset_x < 0)
 		holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
@@ -208,7 +224,10 @@ var/list/all_maps = list()
 	LIST_NUMERIC_SET(map.holomap_offset_y, z, holomap_offset_y)
 	LIST_NUMERIC_SET(map.holomap_legend_x, z, holomap_legend_x)
 	LIST_NUMERIC_SET(map.holomap_legend_y, z, holomap_legend_y)
+<<<<<<< HEAD
 	// VOREStation Edit End
+=======
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort
 
 /datum/map_z_level/Destroy(var/force)
 	crash_with("Attempt to delete a map_z_level instance [log_info_line(src)]")

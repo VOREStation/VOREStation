@@ -8,9 +8,15 @@
 	if(!station_map || reinit)
 		station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[T.z]"])
 	if(!cursor || reinit)
+<<<<<<< HEAD
 		cursor = image('icons/holomap_markers_vr.dmi', "you")
 	if(!legend || reinit)
 		legend = image('icons/effects/64x64_vr.dmi', "legend")
+=======
+		cursor = image('icons/holomap_markers.dmi', "you")
+	if(!legend || reinit)
+		legend = image('icons/effects/64x64.dmi', "legend_sc")
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort
 
 	if(isAI)
 		T = get_turf(user.client.eye)
@@ -24,8 +30,13 @@
 	station_map.overlays |= legend
 
 /datum/station_holomap/proc/initialize_holomap_bogus()
+<<<<<<< HEAD
 	station_map = image('icons/480x480_vr.dmi', "stationmap")
 	legend = image('icons/effects/64x64_vr.dmi', "notfound")
+=======
+	station_map = image('icons/480x480.dmi', "stationmap")
+	legend = image('icons/effects/64x64.dmi', "notfound")
+>>>>>>> 9c081d5... Merge pull request #5466 from Woodratt/08022018_HolomapPort
 	legend.pixel_x = 7 * WORLD_ICON_SIZE
 	legend.pixel_y = 7 * WORLD_ICON_SIZE
 	station_map.overlays |= legend
