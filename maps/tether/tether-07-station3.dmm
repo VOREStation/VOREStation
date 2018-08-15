@@ -2129,6 +2129,24 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
+/obj/item/device/radio/intercom/locked/ai_private{
+	dir = 4;
+	icon_state = "intercom";
+	pixel_x = 32
+	},
+/obj/item/device/radio/intercom{
+	broadcasting = 1;
+	dir = 8;
+	listening = 1;
+	name = "Common Channel";
+	pixel_x = -21;
+	pixel_y = 0
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 21
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "dI" = (
@@ -2344,6 +2362,7 @@
 	req_access = list(16)
 	},
 /obj/machinery/light/small,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/ai)
 "ea" = (
@@ -2845,6 +2864,10 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 1
+	},
+/obj/machinery/hologram/holopad,
+/obj/machinery/status_display{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
@@ -3470,6 +3493,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/machinery/porta_turret/ai_defense,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "fR" = (
@@ -3531,6 +3555,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
+/obj/machinery/porta_turret/ai_defense,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "fW" = (
@@ -7132,11 +7157,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "lP" = (
 /obj/machinery/ai_slipper{
 	icon_state = "motion0"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
@@ -7146,8 +7175,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai/foyer)
 "lR" = (
@@ -7158,6 +7191,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "lS" = (
@@ -7468,14 +7502,15 @@
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "ms" = (
-/obj/structure/ladder{
-	pixel_y = 16
-	},
 /obj/structure/cable/cyan{
 	icon_state = "32-1"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/supply{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai/foyer)
 "mt" = (
@@ -7783,34 +7818,16 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/cargo)
-"mW" = (
+"mY" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"mX" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"mY" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/railing{
+	dir = 8
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "mZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /obj/effect/floor_decal/techfloor,
 /obj/machinery/camera/network/command{
 	dir = 1
@@ -7818,23 +7835,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai/foyer)
 "na" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"nb" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"nc" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/zpipe/down/supply{
-	dir = 8
+/obj/structure/railing{
+	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
@@ -27337,9 +27342,64 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/wall/r_wall,
 /area/security/lobby)
+"Rn" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"SL" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/item/device/radio/intercom/locked/ai_private{
+	dir = 1;
+	icon_state = "intercom";
+	pixel_y = 32
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"SS" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
 "SW" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
+"Ti" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"Un" = (
+/obj/machinery/ai_slipper{
+	icon_state = "motion0"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"Yi" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"Zo" = (
+/turf/simulated/open,
+/area/ai/foyer)
 
 (1,1,1) = {"
 aa
@@ -38752,8 +38812,8 @@ bY
 fQ
 lk
 lO
-lk
-mW
+Zo
+Zo
 fP
 ab
 iV
@@ -38892,10 +38952,10 @@ eO
 fg
 bY
 fR
-ll
-ll
 mr
-mX
+SS
+Zo
+Zo
 fP
 ab
 iV
@@ -39036,7 +39096,7 @@ bY
 fS
 ll
 lP
-ll
+Rn
 mY
 fP
 ab
@@ -39317,10 +39377,10 @@ dk
 eP
 fj
 bY
-fR
+SL
 ll
-lP
-ll
+Un
+Yi
 na
 fP
 hy
@@ -39460,10 +39520,10 @@ eR
 dj
 bY
 fU
-ll
-ll
 mt
-nb
+Ti
+Zo
+Zo
 fP
 hy
 eM
@@ -39604,8 +39664,8 @@ bY
 fV
 ln
 lR
-ln
-nc
+Zo
+Zo
 fP
 hy
 gJ
