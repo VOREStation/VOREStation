@@ -15,8 +15,11 @@
 		if(C.prefs && !C.prefs.show_in_directory)
 			continue
 		if(ishuman(C.mob))
-			curID++
 			var/mob/living/carbon/human/H = C.mob
+			if(data_core && data_core.general)
+				if(!find_general_record("name", H.real_name))
+					continue
+			curID++
 			html += "<div class='block'>"
 			html += "<h3 class='uiContent highlight' style='font-size:16px'>[H.real_name]</h3><br>"
 			if(H.flavor_texts["general"])
