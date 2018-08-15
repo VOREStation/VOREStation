@@ -1294,6 +1294,7 @@
 #include "code\game\turfs\unsimulated\sky_vr.dm"
 #include "code\game\turfs\unsimulated\walls.dm"
 #include "code\game\verbs\advanced_who.dm"
+#include "code\game\verbs\character_directory.dm"
 #include "code\game\verbs\ignore.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\suicide.dm"
