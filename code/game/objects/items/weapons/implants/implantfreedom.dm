@@ -16,7 +16,9 @@
 
 
 /obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
-	if (src.uses < 1)	return 0
+	if (src.uses < 1)
+		return 0
+
 	if (emote == src.activation_emote)
 		src.uses--
 		source << "You feel a faint click."
@@ -46,13 +48,9 @@
 					W.layer = initial(W.layer)
 	return
 
-
-/obj/item/weapon/implant/freedom/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/freedom/post_implant(mob/source)
 	source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	source << "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
-	listening_objects |= src
-	return 1
-
 
 /obj/item/weapon/implant/freedom/get_data()
 	var/dat = {"

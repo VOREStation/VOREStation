@@ -45,12 +45,18 @@ SUBSYSTEM_DEF(transcore)
 		current_run.len--
 
 		//Remove if not in a human anymore.
-		if(!imp || !ishuman(imp.loc))
+		if(!imp || !isorgan(imp.loc))
 			implants -= imp
 			continue
 
-		//We're in a human, at least.
-		var/mob/living/carbon/human/H = imp.loc
+		//We're in an organ, at least.
+		var/obj/item/organ/external/EO = imp.loc
+		var/mob/living/carbon/human/H = EO.owner
+		if(!H)
+			implants -= imp
+			continue
+
+		//In a human	
 		BITSET(H.hud_updateflag, BACKUP_HUD)
 
 		if(H == imp.imp_in && H.mind && H.stat < DEAD)

@@ -36,7 +36,7 @@
 			and it otherwise has no bearing on your round.</span>"
 	player.current.verbs |= /mob/living/proc/write_ambition
 
-	if(can_use_aooc)
+	if(can_speak_aooc)
 		player.current.client.verbs += /client/proc/aooc
 
 	// Handle only adding a mind and not bothering with gear etc.
