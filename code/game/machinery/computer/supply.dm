@@ -11,7 +11,7 @@
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/can_order_contraband = 0
-	var/last_viewed_group = "categories"
+	var/active_category = null
 	var/menu_tab = 0
 	var/list/expanded_packs = list()
 
@@ -48,8 +48,7 @@
 /obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
 	var/data[0]
 	var/shuttle_status[0]	// Supply shuttle status
-	var/supply_pack[0]		// List of supply packs, sorted by category
-	var/sorted_pack[0]		// List of supply packs, sorted by category, with numerical indices for nanoUI iteration
+	var/pack_list[0]		// List of supply packs within the active_category
 	var/orders[0]
 	var/receipts[0]
 
@@ -106,30 +105,23 @@
 	else
 		shuttle["mode"] = SUP_SHUTTLE_ERROR
 
-	// Uses two separate lists, one of which indexes on the category for easy insertion
-	for(var/cat in all_supply_groups) // Global list of supply categories
-		supply_pack[cat] = list() // Create an index for the category
-
 	for(var/pack_name in supply_controller.supply_pack)
 		var/datum/supply_pack/P = supply_controller.supply_pack[pack_name]
-		var/list/pack = list(
-				"name" = P.name,
-				"cost" = P.cost,
-				"contraband" = P.contraband,
-				"manifest" = uniquelist(P.manifest),
-				"random" = P.num_contained,
-				"expand" = 0,
-				"ref" = "\ref[P]"
-			)
+		if(P.group == active_category)
+			var/list/pack = list(
+					"name" = P.name,
+					"cost" = P.cost,
+					"contraband" = P.contraband,
+					"manifest" = uniquelist(P.manifest),
+					"random" = P.num_contained,
+					"expand" = 0,
+					"ref" = "\ref[P]"
+				)
 
+			if(P in expanded_packs)
+				pack["expand"] = 1
 
-		if(P in expanded_packs)
-			pack["expand"] = 1
-
-		supply_pack[P.group][++supply_pack[P.group].len] = pack
-
-	for(var/index in supply_pack)
-		sorted_pack[++sorted_pack.len] = list("name" = index, "category_packs" = supply_pack[index])
+			pack_list[++pack_list.len] = pack
 
 	// Compile user-side orders
 	// Status determines which menus the entry will display in
@@ -169,7 +161,9 @@
 	data["order_auth"] = (authorization & SUP_ACCEPT_ORDERS)   // Whether this ui is permitted to accept/deny requested orders
 	data["shuttle"] = shuttle_status
 	data["supply_points"] = supply_controller.points
-	data["supply_packs"] = sorted_pack
+	data["categories"] = all_supply_groups
+	data["active_category"] = active_category
+	data["supply_packs"] = pack_list
 	data["orders"] = orders
 	data["receipts"] = receipts
 	data["contraband"] = can_order_contraband
@@ -184,8 +178,8 @@
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
-		// auto update every five Master Controller tick
-		ui.set_auto_update(5)
+		// auto update every 20 Master Controller tick
+		ui.set_auto_update(20) // Longer term to reduce the rate of data collection and processing
 
 
 
@@ -209,6 +203,9 @@
 	// Switch menu
 	if(href_list["switch_tab"])
 		menu_tab = href_list["switch_tab"]
+
+	if(href_list["active_category"])
+		active_category = href_list["active_category"]
 
 	if(href_list["pack_ref"])
 		var/datum/supply_pack/S = locate(href_list["pack_ref"])

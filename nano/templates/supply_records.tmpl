@@ -73,9 +73,9 @@
 	
 	<!-- List supply pack categories -->
 	{{if data.currentTab == 1}}
-		{{for data.supply_packs}}
+		{{for data.categories}}
 			<div class='item'>
-				{{:helper.link(value.name, 'bookmark', {'switch_tab' : value.name})}}
+				{{:helper.link(value, 'bookmark', {'switch_tab' : value, 'active_category' : value})}}
 			</div>
 		{{/for}}
 	
@@ -187,39 +187,39 @@
 	<!-- List supplypacks from individual category -->
 	<!-- currentTab will be set to the category name -->
 	{{else}}
-		{{for data.supply_packs}}
-			{{if data.currentTab == value.name}}
+		<div class='item'>
+			{{:helper.link('Back to categories', 'arrow-return-1-w', {'switch_tab' : 1})}}
+		</div>
+		
+		<h4>
+			{{:data.active_category}}
+		</h4>
+		
+		{{for data.supply_packs :packValue:packIndex}}
+			{{if !packValue.contraband || data.contraband}}
 				<div class='item'>
-					{{:helper.link('Back to categories', 'arrow-return-1-w', {'switch_tab' : 1})}}
+					<!-- Sending 'expand' will toggle the value of packValue.expand -->
+					{{:helper.link(packValue.name + ' - ' + packValue.cost, packValue.expand ? 'folder-open' : 'folder-collapsed', {'cartridge_topic' : 1, 'pack_ref' : packValue.ref, 'expand' : 1})}}
 				</div>
-				
-				{{for value.category_packs :packValue:packIndex}}
-					{{if !packValue.contraband || data.contraband}}
-						<div class='item'>
-							<!-- Sending 'expand' will toggle the value of packValue.expand -->
-							{{:helper.link(packValue.name + ' - ' + packValue.cost, packValue.expand ? 'folder-open' : 'folder-collapsed', {'cartridge_topic' : 1, 'pack_ref' : packValue.ref, 'expand' : 1})}}
+			
+				{{if packValue.expand}}
+					<div class='item'>
+						<div class='itemLabel'>
+							{{if packValue.random}}
+								Contains any {{:packValue.random}} of:<br>
+							{{/if}}
+						
+							{{for packValue.manifest :manifestElem:manifestIndex}}
+								{{:manifestElem}}<br>
+							{{/for}}
 						</div>
-					
-						{{if packValue.expand}}
-							<div class='item'>
-								<div class='itemLabel'>
-									{{if packValue.random}}
-										Contains any {{:packValue.random}} of:<br>
-									{{/if}}
-								
-									{{for packValue.manifest :manifestElem:manifestIndex}}
-										{{:manifestElem}}<br>
-									{{/for}}
-								</div>
 							
-								<div class='itemContent'>
-									{{:helper.link('Request', 'cart', {'cartridge_topic' : 1, 'pack_ref' : packValue.ref, 'request' : 1, 'user' : data.user})}}
-								</div>
-							</div>
-							<hr>
-						{{/if}}
-					{{/if}}
-				{{/for}}
+						<div class='itemContent'>
+							{{:helper.link('Request', 'cart', {'cartridge_topic' : 1, 'pack_ref' : packValue.ref, 'request' : 1, 'user' : data.user})}}
+						</div>
+					</div>
+					<hr>
+				{{/if}}
 			{{/if}}
 		{{/for}}
 	{{/if}}		
