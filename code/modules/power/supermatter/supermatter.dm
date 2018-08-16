@@ -194,7 +194,7 @@
 	else
 		shift_light(4,initial(light_color))
 	if(grav_pulling)
-		supermatter_pull()
+		supermatter_pull(src)
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/removed = null
@@ -381,18 +381,9 @@
 	var/rads = 500
 	radiation_repository.radiate(src, rads)
 
-/obj/machinery/power/supermatter/proc/supermatter_pull()
-	//following is adapted from singulo code
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 1
-	// Let's just make this one loop.
-	for(var/atom/X in orange(pull_radius,src))
-		spawn()	X.singularity_pull(src, STAGE_FIVE)
-
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 0
-	return
-
+/proc/supermatter_pull(var/atom/target, var/pull_range = 255, var/pull_power = STAGE_FIVE)
+	for(var/atom/A in range(pull_range, target))
+		A.singularity_pull(target, pull_power)
 
 /obj/machinery/power/supermatter/GotoAirflowDest(n) //Supermatter not pushed around by airflow
 	return
