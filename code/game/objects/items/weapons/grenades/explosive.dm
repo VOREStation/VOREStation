@@ -45,7 +45,7 @@
 	var/spread_range = 7
 	loadable = null
 
-/obj/item/weapon/grenade/explosive/prime()
+/obj/item/weapon/grenade/explosive/detonate()
 	..()
 
 	var/turf/O = get_turf(src)

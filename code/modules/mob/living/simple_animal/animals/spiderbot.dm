@@ -240,7 +240,7 @@
 			"You hear a skittering noise and a thump!")
 		var/obj/item/weapon/grenade/G = held_item
 		G.forceMove(src.loc)
-		G.prime()
+		G.detonate()
 		held_item = null
 		return 1
 
