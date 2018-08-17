@@ -171,8 +171,7 @@
 		// Create a ceiling to shield from the weather
 		if(outdoors)
 			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
-				outdoors = FALSE
-				SSplanets.unallocateTurf(src)
+				make_indoors()
 				if(!expended_tile) // Would've already played a sound
 					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 				user.visible_message("<span class='notice'>[user] roofs \the [src], shielding it from the elements.</span>", "<span class='notice'>You roof \the [src] tile, shielding it from the elements.</span>")
