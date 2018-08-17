@@ -309,6 +309,7 @@
 	t = replacetext(t, "\[/h2\]", "</H2>")
 	t = replacetext(t, "\[h3\]", "<H3>")
 	t = replacetext(t, "\[/h3\]", "</H3>")
+	t = replacetext(t, "\[tab\]", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
 
 	if(!iscrayon)
 		t = replacetext(t, "\[*\]", "<li>")
