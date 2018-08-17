@@ -27791,6 +27791,14 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"kCO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_3/holo)
 "kOB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -28023,6 +28031,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"oUC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_1/holo)
 "piN" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -28082,6 +28098,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"qBH" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_7/holo)
 "qGm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28475,6 +28499,14 @@
 /obj/random/maintenance/research,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
+"wUS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_5/holo)
 "wYi" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
@@ -41690,19 +41722,19 @@ aCI
 aCI
 cgS
 cgY
-cgY
+qBH
 cgY
 cgS
 chL
-chL
+wUS
 chL
 chM
 ciz
-ciz
+kCO
 ciz
 ciA
 cjl
-cjl
+oUC
 cjl
 cjm
 aah

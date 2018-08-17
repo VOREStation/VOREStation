@@ -1942,3 +1942,9 @@
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "penlightlynn"
+	
+//Knightfall5:Ashley Kifer
+/obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
+	name = "nobel sciences award"
+	desc = "A bronze medal which represents significant contributions to the field of science or engineering, this one has Ashley Kifer engraved on it."
+
