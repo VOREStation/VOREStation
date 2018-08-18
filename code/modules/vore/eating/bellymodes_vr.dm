@@ -42,6 +42,7 @@
 				items_preserved |= I
 				to_update = TRUE
 			else
+				I.gurgle_contaminate(src, cont_flavor)
 				digest_item(I)
 			to_update = TRUE
 			did_an_item = TRUE
