@@ -15,14 +15,16 @@
 				O.forceMove(item_storage)
 		qdel(src)
 		return w_class
-	var/g_damage = 4
+	var/g_damage = 1
 	if(digest_stage == null)
 		digest_stage = w_class
+	if(isbelly(item_storage))
+		var/obj/belly/B = item_storage
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
 	if(digest_stage > 0)
-		if(isbelly(item_storage))
-			var/obj/belly/B = item_storage
-			g_damage = B.digest_brute + B.digest_burn
-		digest_stage -= 0.25 * g_damage
+		if(g_damage > digest_stage)
+			g_damage = digest_stage
+		digest_stage -= g_damage
 	else
 		for(var/obj/item/O in contents)
 			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
@@ -33,7 +35,7 @@
 			else if(item_storage)
 				O.forceMove(item_storage)
 		qdel(src)
-	return 0.25 * g_damage
+	return g_damage
 
 /////////////
 // Some indigestible stuff
