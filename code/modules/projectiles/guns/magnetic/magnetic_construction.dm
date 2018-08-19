@@ -66,7 +66,7 @@
 		increment_construction_stage()
 		return
 
-	if(isscrewdriver(thing) && construction_stage >= 9)
+	if(thing.is_screwdriver() && construction_stage >= 9)
 		user.visible_message("<span class='notice'>\The [user] secures \the [src] and finishes it off.</span>")
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		var/obj/item/weapon/gun/magnetic/coilgun = new(loc)

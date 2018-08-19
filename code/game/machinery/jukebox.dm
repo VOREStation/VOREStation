@@ -120,11 +120,17 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		return wires.Interact(user)
 	if(istype(W, /obj/item/device/multitool))
 		return wires.Interact(user)
+<<<<<<< HEAD
 	if(istype(W, /obj/item/weapon/wrench))
+=======
+	if(W.is_wrench())
+		if(playing)
+			StopPlaying()
+>>>>>>> bb575f0... Merge pull request #5468 from Anewbe/is_tool
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
@@ -170,11 +176,16 @@
 		return
 
 	if(!anchored)
-		usr << "<span class='warning'>You must secure \the [src] first.</span>"
+		to_chat(usr, "<span class='warning'>You must secure \the [src] first.</span>")
 		return
 
+<<<<<<< HEAD
 	if(inoperable())
 		usr << "\The [src] doesn't appear to function."
+=======
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(usr, "\The [src] doesn't appear to function.")
+>>>>>>> bb575f0... Merge pull request #5468 from Anewbe/is_tool
 		return
 
 	if(href_list["change_track"])
@@ -210,15 +221,20 @@
 			spawn(15)
 				explode()
 		else if(current_track == null)
-			usr << "No track selected."
+			to_chat(usr, "No track selected.")
 		else
 			StartPlaying()
 
 	return 1
 
 /obj/machinery/media/jukebox/interact(mob/user)
+<<<<<<< HEAD
 	if(inoperable())
 		usr << "\The [src] doesn't appear to function."
+=======
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(usr, "\The [src] doesn't appear to function.")
+>>>>>>> bb575f0... Merge pull request #5468 from Anewbe/is_tool
 		return
 	ui_interact(user)
 
@@ -277,7 +293,7 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		if(playing)
 			StopPlaying()
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")

@@ -43,11 +43,11 @@
 	icon_state = "utility"
 	can_hold = list(
 		///obj/item/weapon/combitool,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -72,21 +72,21 @@
 
 /obj/item/weapon/storage/belt/utility/full
 	starts_with = list(
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
 		/obj/item/stack/cable_coil/random_belt
 	)
 
 /obj/item/weapon/storage/belt/utility/atmostech
 	starts_with = list(
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
@@ -97,8 +97,8 @@
 
 /obj/item/weapon/storage/belt/utility/chief/full
 	starts_with = list(
-		/obj/item/weapon/screwdriver/power,
-		/obj/item/weapon/crowbar/power,
+		/obj/item/weapon/tool/screwdriver/power,
+		/obj/item/weapon/tool/crowbar/power,
 		/obj/item/weapon/weldingtool/experimental,
 		/obj/item/device/multitool,
 		/obj/item/stack/cable_coil/random_belt,
@@ -132,7 +132,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/clothing/glasses,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
 		/obj/item/weapon/extinguisher/mini,
@@ -243,11 +243,11 @@
 
 /obj/item/weapon/storage/belt/utility/alien/full
 	starts_with = list(
-		/obj/item/weapon/screwdriver/alien,
-		/obj/item/weapon/wrench/alien,
+		/obj/item/weapon/tool/screwdriver/alien,
+		/obj/item/weapon/tool/wrench/alien,
 		/obj/item/weapon/weldingtool/alien,
-		/obj/item/weapon/crowbar/alien,
-		/obj/item/weapon/wirecutters/alien,
+		/obj/item/weapon/tool/crowbar/alien,
+		/obj/item/weapon/tool/wirecutters/alien,
 		/obj/item/device/multitool/alien,
 		/obj/item/stack/cable_coil/alien
 	)
@@ -280,7 +280,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/clothing/glasses,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
 		/obj/item/weapon/extinguisher/mini,
@@ -370,7 +370,7 @@
 		/obj/item/weapon/clipboard,
 		/obj/item/weapon/anodevice,
 		/obj/item/clothing/glasses,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
 		/obj/item/device/ano_scanner,

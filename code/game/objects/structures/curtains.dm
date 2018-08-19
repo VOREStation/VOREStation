@@ -37,7 +37,7 @@
 		layer = OBJ_LAYER
 
 /obj/structure/curtain/attackby(obj/item/P, mob/user)
-	if(istype(P, /obj/item/weapon/wirecutters))
+	if(P.is_wirecutter())
 		playsound(src, P.usesound, 50, 1)
 		user << "<span class='notice'>You start to cut the shower curtains.</span>"
 		if(do_after(user, 10))

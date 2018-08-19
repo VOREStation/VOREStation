@@ -56,7 +56,7 @@
 	return 1
 
 /obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
 		if(carving_1)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
@@ -72,7 +72,7 @@
 				epitaph += carving_2
 				update_icon()
 		return
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		user.visible_message("[user] starts taking down \the [src.name].", "You start taking down \the [src.name].")
 		if(do_after(user, material.hardness * W.toolspeed))
 			user.visible_message("[user] takes down \the [src.name].", "You take down \the [src.name].")
