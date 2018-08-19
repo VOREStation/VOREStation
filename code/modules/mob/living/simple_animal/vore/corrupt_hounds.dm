@@ -48,6 +48,11 @@
 	minbodytemp = 150
 	maxbodytemp = 900
 
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+
 	var/image/eye_layer = null
 
 
@@ -113,3 +118,11 @@
 	remove_eyes()
 	if(stat == CONSCIOUS && !resting)
 		add_eyes()
+
+/mob/living/simple_animal/hostile/corrupthound/Login()
+	. = ..()
+	riding_datum = new /datum/riding/simple_animal(src)
+	verbs |= /mob/living/simple_animal/proc/animal_mount
+
+/mob/living/simple_animal/hostile/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
+	return
