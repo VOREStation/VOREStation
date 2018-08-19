@@ -392,7 +392,8 @@
 
 /mob/living/simple_animal/otie/Login()
 	. = ..()
-	riding_datum = new /datum/riding/simple_animal(src)
+	if(!riding_datum)
+		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
 
 /mob/living/simple_animal/otie/MouseDrop_T(mob/living/M, mob/living/user)
