@@ -511,7 +511,7 @@
 	internal_devices |= new /obj/item/device/gps/explorer(src)
 
 /obj/item/weapon/commcard/explorer/get_data()
-	var/list/GPS = get_GPS_list()
+	var/list/GPS = get_GPS_lists()
 
 	return list(
 			list("field" = "gps_access", "value" = GPS[1]),
