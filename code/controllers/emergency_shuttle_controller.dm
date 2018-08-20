@@ -98,10 +98,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	autopilot = 1
 	set_launch_countdown(get_shuttle_prep_time())
 	auto_recall_time = rand(world.time + 300, launch_time - 300)
-	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
+	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
 	atc.shift_ending()
