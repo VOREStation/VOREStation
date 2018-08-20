@@ -106,7 +106,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			output += "<br>"
 			output += "<b>Soulcatcher detected ([SC.brainmobs.len] minds)</b><br>"
 			for(var/mob/living/carbon/brain/caught_soul/mind in SC.brainmobs)
-				output += "<i>[mind.name]: </i>\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]<br>"
+				output += "<i>[mind.name]: </i> [mind.transient == FALSE ? "\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]" : "<span class='warning'>Incompatible</span>"]<br>"
 
 			if(stored_mind)
 				output += "<b>Store in Soulcatcher: </b>\[<a href='?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
