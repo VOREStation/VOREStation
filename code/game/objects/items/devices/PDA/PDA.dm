@@ -1383,7 +1383,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							to_chat(user, "<span class='notice'>Blood type: [C:blood_DNA[blood]]\nDNA: [blood]</span>")
 
 			if(4)
-				user.visible_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", 1)
+				user.visible_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", "<span class='notice'>You have analyzed [C]'s radiation levels!</span>")
 				to_chat(user, "<span class='notice'>Analyzing Results for [C]:</span>")
 				if(C.radiation)
 					to_chat(user, "<span class='notice'>Radiation Level: [C.radiation]</span>")

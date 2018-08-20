@@ -23,7 +23,6 @@
 	processing_objects -= src
 	..()
 
-
 /obj/item/weapon/deadringer/dropped()
 	if(timer > 20)
 		uncloak()
@@ -49,7 +48,6 @@
 		to_chat(H,"<font color='blue'>You press a small button on [src]'s side. It stops humming.</font>")
 		activated = 0
 		return
-
 
 /obj/item/weapon/deadringer/process()
 	if(activated)
@@ -77,13 +75,11 @@
 		icon_state = "deadringer"
 	return
 
-
 /obj/item/weapon/deadringer/proc/deathprevent()
 	for(var/mob/living/simple_animal/D in oviewers(7, src))
 		D.LoseTarget()
 	watchowner.emote("deathgasp")
-	watchowner.invisibility = 85
-	watchowner.alpha = 127
+	watchowner.alpha = 15
 	makeacorpse(watchowner)
 	for(var/mob/living/simple_animal/D in oviewers(7, src))
 		D.LoseTarget()
@@ -91,7 +87,6 @@
 
 /obj/item/weapon/deadringer/proc/uncloak()
 	if(watchowner)
-		watchowner.invisibility = 0
 		watchowner.alpha = 255
 		playsound(get_turf(src), 'sound/effects/uncloak.ogg', 35, 1, -1)
 	return
@@ -180,5 +175,3 @@
 		var/obj/item/organ/internal/G = I
 		G.Destroy()
 	return
-
-

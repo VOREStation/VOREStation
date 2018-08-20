@@ -75,7 +75,6 @@
 /obj/item/integrated_circuit/memory/constant
 	name = "constant chip"
 	desc = "This tiny chip can store one piece of data, which cannot be overwritten without disassembly."
-	icon_state = "memory"
 	complexity = 1
 	inputs = list()
 	outputs = list("output pin" = IC_PINTYPE_ANY)

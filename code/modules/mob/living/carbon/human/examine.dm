@@ -2,7 +2,7 @@
 	var/skip_gear = 0
 	var/skip_body = 0
 
-	if(alpha <= 50)
+	if(alpha <= EFFECTIVE_INVIS)
 		src.loc.examine(user)
 		return
 
