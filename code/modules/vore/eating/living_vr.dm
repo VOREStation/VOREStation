@@ -139,7 +139,7 @@
 			var/obj/belly/B = input("Which belly?","Select A Belly") as null|anything in vore_organs
 			if(!istype(B))
 				return 1
-			visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [rlowertext(B.name)]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
+			visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [lowertext(B.name)]!</span>","<span class='warning'>[user] is trying to stuff a beacon into you!</span>")
 			if(do_after(user,30,src))
 				user.drop_item()
 				I.forceMove(B)
@@ -390,7 +390,7 @@
 /mob/living/proc/perform_the_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/obj/belly/belly, var/delay)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [rlowertext(belly.name)] but it went wrong.")
+		log_debug("[user] attempted to feed [prey] to [pred], via [lowertext(belly.name)] but it went wrong.")
 		return
 
 	// The belly selected at the time of noms
@@ -406,11 +406,11 @@
 
 	// Prepare messages
 	if(user == pred) //Feeding someone to yourself
-		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,rlowertext(belly.vore_verb),prey,rlowertext(belly.name))
-		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,rlowertext(belly.vore_verb),prey,rlowertext(belly.name))
+		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
+		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
 	else //Feeding someone to another person
-		attempt_msg = text("<span class='warning'>[] is attempting to make [] [] [] into their []!</span>",user,pred,rlowertext(belly.vore_verb),prey,rlowertext(belly.name))
-		success_msg = text("<span class='warning'>[] manages to make [] [] [] into their []!</span>",user,pred,rlowertext(belly.vore_verb),prey,rlowertext(belly.name))
+		attempt_msg = text("<span class='warning'>[] is attempting to make [] [] [] into their []!</span>",user,pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
+		success_msg = text("<span class='warning'>[] manages to make [] [] [] into their []!</span>",user,pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
 
 	// Announce that we start the attempt!
 	user.visible_message(attempt_msg)
