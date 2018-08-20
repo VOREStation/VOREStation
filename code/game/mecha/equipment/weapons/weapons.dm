@@ -38,11 +38,13 @@
 		projectiles--
 		var/P = new projectile(curloc)
 		Fire(P, target)
+		if(i == 1)
+			set_ready_state(0)
 		if(fire_cooldown)
 			sleep(fire_cooldown)
 	if(auto_rearm)
 		projectiles = projectiles_per_shot
-	set_ready_state(0)
+//	set_ready_state(0)
 	do_after_cooldown()
 	return
 

@@ -4,7 +4,7 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-// Invisibility constants.
+// Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
 #define INVISIBILITY_LEVEL_TWO            45
@@ -20,6 +20,9 @@
 
 #define SEE_INVISIBLE_MINIMUM 5
 #define INVISIBILITY_MAXIMUM 100
+
+// Pseudo-Invis, like Ninja, Ling, Etc.
+#define EFFECTIVE_INVIS					  50		// Below this, can't be examined, may as well be invisible to the game
 
 // For the client FPS pref and anywhere else
 #define MAX_CLIENT_FPS	200
