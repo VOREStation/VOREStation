@@ -12,6 +12,8 @@
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 	required_type = list(/obj/mecha/combat, /obj/mecha/working/hoverpod/combatpod)
 
+	equip_type = EQUIP_WEAPON
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target)
 	if(projectiles <= 0)
 		return 0
@@ -68,11 +70,13 @@
 	equip_cooldown = 30
 	name = "jury-rigged welder-laser"
 	desc = "While not regulation, this inefficient weapon can be attached to working exo-suits in desperate, or malicious, times."
-	icon_state = "mecha_laser"
+	icon_state = "mecha_laser-rig"
 	energy_drain = 80
 	projectile = /obj/item/projectile/beam
 	fire_sound = 'sound/weapons/Laser.ogg'
 	required_type = list(/obj/mecha/combat, /obj/mecha/working)
+
+	equip_type = EQUIP_UTILITY
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
@@ -126,6 +130,8 @@
 	energy_drain = 300
 	equip_cooldown = 150
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 4, TECH_ILLEGAL = 1)
+
+	equip_type = EQUIP_SPECIAL
 
 /obj/item/mecha_parts/mecha_equipment/honker/action(target)
 	if(!chassis)
@@ -198,7 +204,7 @@
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/pistol/medium
 	fire_sound = 'sound/weapons/machinegun.ogg'
-	projectiles = 300
+	projectiles = 30 //10 bursts, matching the Scattershot's 10. Also, conveniently, doesn't eat your powercell when reloading like 300 bullets does.
 	projectiles_per_shot = 3
 	deviation = 0.3
 	projectile_energy_cost = 20
@@ -223,6 +229,8 @@
 	missile_speed = 1
 	missile_range = 15
 	required_type = /obj/mecha  //Why restrict it to just mining or combat mechs?
+
+	equip_type = EQUIP_UTILITY
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/device/flashlight/flare/fired = AM
@@ -249,13 +257,13 @@
 	var/primed = null
 	throwforce = 15
 
-	throw_impact(atom/hit_atom)
-		if(primed)
-			explosion(hit_atom, 0, 1, 2, 4)
-			qdel(src)
-		else
-			..()
-		return
+/obj/item/missile/throw_impact(atom/hit_atom)
+	if(primed)
+		explosion(hit_atom, 0, 1, 2, 4)
+		qdel(src)
+	else
+		..()
+	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
 	name = "\improper SGL-6 grenade launcher"
@@ -320,6 +328,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged
 	name = "\improper AA-CR-1 Mark 4"
 	description_fluff = "A firefighting tool maintained by Aether Atmospherics, whose initial design originated from a small Earth company. This one seems to have been jury rigged."
+	icon_state = "mecha_cremate-rig"
 
 	energy_drain = 50
 	required_type = list(/obj/mecha/combat, /obj/mecha/working)
@@ -327,6 +336,8 @@
 	projectile = /obj/item/projectile/bullet/incendiary/flamethrower
 
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_PHORON = 3, TECH_ILLEGAL = 2)
+
+	equip_type = EQUIP_UTILITY
 
 //////////////
 //Defensive//
@@ -342,6 +353,8 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_POWER = 6)
 	var/shock_damage = 15
 	var/active
+
+	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/shocker/can_attach(obj/mecha/M as obj)
 	if(..())
