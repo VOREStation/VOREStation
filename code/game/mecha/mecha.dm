@@ -24,6 +24,7 @@
 	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
 	var/health = 300 //health is health
+	var/maxhealth = 300 //maxhealth is maxhealth.
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
@@ -66,8 +67,23 @@
 
 	var/list/equipment = new
 	var/obj/item/mecha_parts/mecha_equipment/selected
-	var/max_equip = 3
+	var/max_equip = 2
 	var/datum/events/events
+//mechaequipt2 stuffs
+	var/list/hull_equipment = new
+	var/list/weapon_equipment = new
+	var/list/utility_equipment = new
+	var/list/universal_equipment = new
+	var/list/special_equipment = new
+	var/max_hull_equip = 2
+	var/max_weapon_equip = 2
+	var/max_utility_equip = 2
+	var/max_universal_equip = 2
+	var/max_special_equip = 1
+//Working exosuit vars
+	var/list/cargo = list()
+	var/cargo_capacity = 3
+
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -99,10 +115,24 @@
 	mechas_list += src //global mech list
 	return
 
+/obj/mecha/Exit(atom/movable/O)
+	if(O in cargo)
+		return 0
+	return ..()
+
 /obj/mecha/Destroy()
 	src.go_out()
-	for(var/mob/M in src) //Let's just be ultra sure
-		M.Move(loc)
+	for(var/mob/M in src) //Be Extra Sure
+		M.forceMove(get_turf(src))
+		M.loc.Entered(M)
+		if(M != src.occupant)
+			step_rand(M)
+	for(var/atom/movable/A in src.cargo)
+		A.forceMove(get_turf(src))
+		var/turf/T = get_turf(A)
+		if(T)
+			T.Entered(A)
+		step_rand(A)
 
 	if(loc)
 		loc.Exited(src)
@@ -112,6 +142,11 @@
 
 	if(wreckage)
 		var/obj/effect/decal/mecha_wreckage/WR = new wreckage(loc)
+		hull_equipment.Cut()
+		weapon_equipment.Cut()
+		utility_equipment.Cut()
+		universal_equipment.Cut()
+		special_equipment.Cut()
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 			if(E.salvageable && prob(30))
 				WR.crowbar_salvage += E
@@ -1348,6 +1383,14 @@
 						<b>Lights: </b>[lights?"on":"off"]<br>
 						[src.dna?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='?src=\ref[src];reset_dna=1'>Reset</a>\]<br>":null]
 					"}
+//Cargo components.
+	output += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
+	if(src.cargo.len)
+		for(var/obj/O in src.cargo)
+			output += "<a href='?src=\ref[src];drop_from_cargo=\ref[O]'>Unload</a> : [O]<br>"
+	else
+		output += "Nothing"
+	output += "</div>"
 	return output
 
 /obj/mecha/proc/get_commands()
@@ -1396,10 +1439,23 @@
 		output += {"<div class='wr'>
 						<div class='header'>Equipment</div>
 						<div class='links'>"}
-		for(var/obj/item/mecha_parts/mecha_equipment/W in equipment)
-			output += "[W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
-		output += "<b>Available equipment slots:</b> [max_equip-equipment.len]"
-		output += "</div></div>"
+		for(var/obj/item/mecha_parts/mecha_equipment/W in hull_equipment)
+			output += "Hull Module: [W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
+		for(var/obj/item/mecha_parts/mecha_equipment/W in weapon_equipment)
+			output += "Weapon Module: [W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
+		for(var/obj/item/mecha_parts/mecha_equipment/W in utility_equipment)
+			output += "Utility Module: [W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
+		for(var/obj/item/mecha_parts/mecha_equipment/W in universal_equipment)
+			output += "Universal Module: [W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
+		for(var/obj/item/mecha_parts/mecha_equipment/W in special_equipment)
+			output += "Special Module: [W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
+		output += {"<b>Available hull slots:</b> [max_hull_equip-hull_equipment.len]<br>
+		 <b>Available weapon slots:</b> [max_weapon_equip-weapon_equipment.len]<br>
+		 <b>Available utility slots:</b> [max_utility_equip-utility_equipment.len]<br>
+		 <b>Available universal slots:</b> [max_universal_equip-universal_equipment.len]<br>
+		 <b>Available special slots:</b> [max_special_equip-special_equipment.len]<br>
+		 </div></div>
+		 "}
 	return output
 
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
@@ -1673,6 +1729,17 @@
 			else
 				src.occupant_message("<font color='red'>Recalibration failed.</font>")
 				src.log_message("Recalibration of coordination system failed with 1 error.",1)
+	if(href_list["drop_from_cargo"])
+		var/obj/O = locate(href_list["drop_from_cargo"])
+		if(O && O in src.cargo)
+			src.occupant_message("<span class='notice'>You unload [O].</span>")
+			O.forceMove(get_turf(src))
+			src.cargo -= O
+			var/turf/T = get_turf(O)
+			if(T)
+				T.Entered(O)
+			src.log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]")
+	return
 
 	//debug
 	/*
