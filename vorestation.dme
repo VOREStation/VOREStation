@@ -61,7 +61,11 @@
 #include "code\__defines\species_languages_vr.dm"
 #include "code\__defines\stat_tracking.dm"
 #include "code\__defines\subsystems.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\subsystems_vr.dm"
+=======
+#include "code\__defines\supply.dm"
+>>>>>>> 6ffd299... Merge pull request #5461 from Atermonera/supply_nanoUI:polaris.dme
 #include "code\__defines\targeting.dm"
 #include "code\__defines\turfs.dm"
 #include "code\__defines\unit_tests.dm"
@@ -403,7 +407,6 @@
 #include "code\game\shuttle_engines.dm"
 #include "code\game\skincmd.dm"
 #include "code\game\sound.dm"
-#include "code\game\supplyshuttle.dm"
 #include "code\game\trader_visit.dm"
 #include "code\game\antagonist\_antagonist_setup.dm"
 #include "code\game\antagonist\antagonist.dm"
