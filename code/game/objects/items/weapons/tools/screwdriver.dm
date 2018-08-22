@@ -113,7 +113,7 @@
 /obj/item/weapon/tool/screwdriver/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
-		qdel_null(counterpart)
+		QDEL_NULL(counterpart)
 	return ..()
 
 /obj/item/weapon/tool/screwdriver/power/attack_self(mob/user)

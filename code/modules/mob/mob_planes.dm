@@ -11,7 +11,7 @@
 	my_mob = this_guy
 
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
-	
+
 	// 'Utility' planes
 	plane_masters[VIS_FULLBRIGHT] 	= new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
 	plane_masters[VIS_LIGHTING] 	= new /obj/screen/plane_master/lighting							//Lighting system (but different!)
@@ -44,7 +44,7 @@
 
 /datum/plane_holder/Destroy()
 	my_mob = null
-	qdel_null_list(plane_masters) //Goodbye my children, be free
+	QDEL_NULL_LIST(plane_masters) //Goodbye my children, be free
 	return ..()
 
 /datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)

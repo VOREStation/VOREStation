@@ -36,8 +36,8 @@
 		visible_message("<span class='notice'>The mask rapidly retracts just before /the [src] is destroyed!</span>")
 		breather = null
 
-	qdel_null(tank)
-	qdel_null(contained)
+	QDEL_NULL(tank)
+	QDEL_NULL(contained)
 	return ..()
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)

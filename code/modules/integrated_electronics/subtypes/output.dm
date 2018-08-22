@@ -246,7 +246,7 @@
 	on_data_written()
 
 /obj/item/integrated_circuit/output/video_camera/Destroy()
-	qdel_null(camera)
+	QDEL_NULL(camera)
 	return ..()
 
 /obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)

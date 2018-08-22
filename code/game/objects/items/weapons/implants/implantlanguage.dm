@@ -23,7 +23,7 @@
 					V.mechassist()
 				for(var/L in need_amend)
 					V.add_assistable_langs(L)
-		qdel_null(src)
+		QDEL_NULL(src)
 
 /obj/item/weapon/implant/language/get_data()
 	var/dat = {"

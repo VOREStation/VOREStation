@@ -76,5 +76,5 @@
 		G.epitaph = epitaph
 		G.add_fingerprint(usr)
 		G.dir = user.dir
-		qdel_null(src)
+		QDEL_NULL(src)
 	return

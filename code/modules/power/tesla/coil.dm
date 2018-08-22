@@ -30,7 +30,7 @@
 	default_apply_parts()
 
 /obj/machinery/power/tesla_coil/Destroy()
-	qdel_null(wires)
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/power/tesla_coil/RefreshParts()
