@@ -24678,7 +24678,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/mob/living/simple_animal/cat/fluff/Runtime,
+/mob/living/simple_animal/catgirl{
+	size_multiplier = 0.5
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "NB" = (
