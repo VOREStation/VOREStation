@@ -12,7 +12,7 @@
 
 	var/active = 0
 	var/det_time = 50
-	var/loadable = 1
+	var/loadable = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
