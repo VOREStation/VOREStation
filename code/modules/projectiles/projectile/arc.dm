@@ -20,7 +20,7 @@
 	return ..()
 
 /obj/item/projectile/arc/Destroy()
-	qdel_null(shadow)
+	QDEL_NULL(shadow)
 	return ..()
 
 /obj/item/projectile/arc/Bump(atom/A, forced=0)

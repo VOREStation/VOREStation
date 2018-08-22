@@ -30,7 +30,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
 	if(!isnull(pai))
 		pai.death(0)
-	qdel_null(radio)
+	QDEL_NULL(radio)
 	return ..()
 
 /obj/item/device/paicard/attack_self(mob/user)

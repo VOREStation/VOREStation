@@ -149,8 +149,8 @@
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
-	qdel_null(syringe)
-	qdel_null(tank)
+	QDEL_NULL(syringe)
+	QDEL_NULL(tank)
 	return ..()
 
 /obj/structure/closet/body_bag/cryobag/open()

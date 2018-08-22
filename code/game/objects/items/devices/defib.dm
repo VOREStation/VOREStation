@@ -32,8 +32,8 @@
 
 /obj/item/device/defib_kit/Destroy()
 	. = ..()
-	qdel_null(paddles)
-	qdel_null(bcell)
+	QDEL_NULL(paddles)
+	QDEL_NULL(bcell)
 
 /obj/item/device/defib_kit/loaded //starts with a cell
 	bcell = /obj/item/weapon/cell/apc

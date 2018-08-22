@@ -1470,6 +1470,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/Destroy()
 	PDAs -= src
+<<<<<<< HEAD
 	// VOREStation Edit - Always destroy IDs
 	// if (src.id && prob(90)) //IDs are kept in 90% of the cases
 	// 	src.id.forceMove(get_turf(src.loc))
@@ -1479,6 +1480,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	// VOREStation Edit End
 	qdel_null(src.cartridge)
 	qdel_null(src.pai)
+=======
+	if (src.id && prob(90)) //IDs are kept in 90% of the cases
+		src.id.forceMove(get_turf(src.loc))
+	else
+		QDEL_NULL(src.id)
+	QDEL_NULL(src.cartridge)
+	QDEL_NULL(src.pai)
+>>>>>>> 50efc3c... Merge pull request #5502 from Anewbe/glob_is_hungry_for_souls
 	return ..()
 
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.

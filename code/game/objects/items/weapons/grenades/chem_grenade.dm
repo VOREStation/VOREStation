@@ -20,8 +20,8 @@
 		create_reagents(1000)
 
 	Destroy()
-		qdel_null(detonator)
-		qdel_null_list(beakers)
+		QDEL_NULL(detonator)
+		QDEL_NULL_LIST(beakers)
 		return ..()
 
 	attack_self(mob/user as mob)
