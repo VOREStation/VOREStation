@@ -24,6 +24,7 @@
 	// Vars for hacking
 	var/datum/wires/jukebox/wires = null
 	var/hacked = 0 // Whether to show the hidden songs or not
+<<<<<<< HEAD
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
@@ -32,6 +33,31 @@
 	var/list/datum/track/queue = list()			// Queued songs
 	var/list/datum/track/tracks = list()		// Available tracks
 	var/list/datum/track/secret_tracks = list() // Only visible if hacked
+=======
+	var/freq = 0
+
+	var/datum/track/current_track
+	var/list/datum/track/tracks = list(
+		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
+		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
+		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
+		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
+		new/datum/track("Floating", 'sound/music/main.ogg'),
+		new/datum/track("Endless Space", 'sound/music/space.ogg'),
+		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
+		new/datum/track("Scratch", 'sound/music/title1.ogg'),
+		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
+		new/datum/track("Stellar Transit", 'sound/ambience/space/space_serithi.ogg'),
+	)
+
+	// Only visible if hacked
+	var/list/datum/track/secret_tracks = list(
+		new/datum/track("Clown", 'sound/music/clown.ogg'),
+		new/datum/track("Space Asshole", 'sound/music/space_asshole.ogg'),
+		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
+		new/datum/track("Russkiy rep Diskoteka", 'sound/music/russianrapdisco.ogg')
+	)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 /obj/machinery/media/jukebox/New()
 	..()
@@ -120,11 +146,17 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		return wires.Interact(user)
 	if(istype(W, /obj/item/device/multitool))
 		return wires.Interact(user)
+<<<<<<< HEAD
 	if(istype(W, /obj/item/weapon/wrench))
+=======
+	if(W.is_wrench())
+		if(playing)
+			StopPlaying()
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
@@ -170,11 +202,16 @@
 		return
 
 	if(!anchored)
-		usr << "<span class='warning'>You must secure \the [src] first.</span>"
+		to_chat(usr, "<span class='warning'>You must secure \the [src] first.</span>")
 		return
 
+<<<<<<< HEAD
 	if(inoperable())
 		usr << "\The [src] doesn't appear to function."
+=======
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(usr, "\The [src] doesn't appear to function.")
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 		return
 
 	if(href_list["change_track"])
@@ -210,15 +247,20 @@
 			spawn(15)
 				explode()
 		else if(current_track == null)
-			usr << "No track selected."
+			to_chat(usr, "No track selected.")
 		else
 			StartPlaying()
 
 	return 1
 
 /obj/machinery/media/jukebox/interact(mob/user)
+<<<<<<< HEAD
 	if(inoperable())
 		usr << "\The [src] doesn't appear to function."
+=======
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(usr, "\The [src] doesn't appear to function.")
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 		return
 	ui_interact(user)
 
@@ -277,7 +319,7 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		if(playing)
 			StopPlaying()
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")

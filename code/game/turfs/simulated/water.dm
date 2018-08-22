@@ -9,6 +9,14 @@
 	edge_blending_priority = -1
 	movement_cost = 4
 	outdoors = TRUE
+<<<<<<< HEAD
+=======
+
+	layer = WATER_FLOOR_LAYER
+
+	can_dirty = FALSE	// It's water
+
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	var/depth = 1 // Higher numbers indicates deeper water.
 
 /turf/simulated/floor/water/initialize()

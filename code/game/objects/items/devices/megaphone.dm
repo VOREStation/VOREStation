@@ -91,12 +91,20 @@
 			to_chat(user, "<span class='warning'>You re-scramble \the [src]'s voice synthesizer.</span>")
 		return 1
 
+<<<<<<< HEAD
 /obj/item/device/megaphone/super/verb/turn_volume_dial(mob/living/user)
+=======
+/obj/item/device/megaphone/super/verb/turn_volume_dial()
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	set name = "Change Volume"
 	set desc = "Allows you to change the megaphone's volume."
 	set category = "Object"
 
+<<<<<<< HEAD
 	adjust_volume(user)
+=======
+	adjust_volume(usr)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 /obj/item/device/megaphone/super/proc/adjust_volume(var/mob/living/user)
 	var/new_volume = input(user, "Set Volume") as null|anything in volume_options
@@ -104,12 +112,20 @@
 	if(new_volume && Adjacent(user))
 		broadcast_size = new_volume
 
+<<<<<<< HEAD
 /obj/item/device/megaphone/super/verb/change_font(mob/living/user)
+=======
+/obj/item/device/megaphone/super/verb/change_font()
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	set name = "Change... Pronunciation?"
 	set desc = "Allows you to change the megaphone's font."
 	set category = "Object"
 
+<<<<<<< HEAD
 	adjust_font(user)
+=======
+	adjust_font(usr)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 /obj/item/device/megaphone/super/proc/adjust_font(var/mob/living/user)
 	var/new_font = input(user, "Set Volume") as null|anything in font_options
@@ -117,12 +133,20 @@
 	if(new_font && Adjacent(user))
 		broadcast_font = new_font
 
+<<<<<<< HEAD
 /obj/item/device/megaphone/super/verb/change_color(mob/living/user)
+=======
+/obj/item/device/megaphone/super/verb/change_color()
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	set name = "Change... Tune?"
 	set desc = "Allows you to change the megaphone's color."
 	set category = "Object"
 
+<<<<<<< HEAD
 	adjust_color(user)
+=======
+	adjust_color(usr)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 /obj/item/device/megaphone/super/proc/adjust_color(var/mob/living/user)
 	var/new_color = input(user, "Set Volume") as null|anything in color_options

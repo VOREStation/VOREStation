@@ -11,8 +11,8 @@
 	var/splicing = 0
 	var/scanning = 0
 
-/obj/machinery/computer/diseasesplicer/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+/obj/machinery/computer/diseasesplicer/attackby(var/obj/item/I as obj, var/mob/user as mob)
+	if(I.is_screwdriver())
 		return ..(I,user)
 
 	if(default_unfasten_wrench(user, I, 20))
@@ -21,7 +21,7 @@
 	if(istype(I,/obj/item/weapon/virusdish))
 		var/mob/living/carbon/c = user
 		if (dish)
-			user << "\The [src] is already loaded."
+			to_chat(user, "\The [src] is already loaded.")
 			return
 
 		dish = I
@@ -29,7 +29,7 @@
 		I.loc = src
 
 	if(istype(I,/obj/item/weapon/diseasedisk))
-		user << "You upload the contents of the disk onto the buffer."
+		to_chat(user, "You upload the contents of the disk onto the buffer.")
 		memorybank = I:effect
 		species_buffer = I:species
 		analysed = I:analysed

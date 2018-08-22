@@ -100,7 +100,7 @@
 	active_spell = null
 	return ..()
 
-/mob/living/simple_animal/hostile/hivebot/death()
+/mob/living/simple_animal/technomancer_golem/death()
 	..()
 	visible_message("\The [src] disintegrates!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)

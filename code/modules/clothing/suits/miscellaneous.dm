@@ -86,40 +86,6 @@
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
-/*/obj/item/clothing/suit/wcoat
-	name = "waistcoat"
-	desc = "For some classy, murderous fun."
-	icon_state = "vest"
-	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
-	blood_overlay_type = "armor"
-	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/suit/wcoat/red
-	name = "red waistcoat"
-	icon_state = "red_waistcoat"
-
-/obj/item/clothing/suit/wcoat/grey
-	name = "grey waistcoat"
-	icon_state = "grey_waistcoat"
-
-/obj/item/clothing/suit/wcoat/brown
-	name = "brown waistcoat"
-	icon_state = "brown_waistcoat"
-
-/obj/item/clothing/suit/wcoat/swvest
-	name = "black sweatervest"
-	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
-	icon_state = "sweatervest"
-
-/obj/item/clothing/suit/wcoat/swvest/blue
-	name = "blue sweatervest"
-	icon_state = "sweatervest_blue"
-
-/obj/item/clothing/suit/wcoat/swvest/red
-	name = "red sweatervest"
-	icon_state = "sweatervest_red"
-*/
 /obj/item/clothing/suit/storage/apron/overalls
 	name = "coveralls"
 	desc = "A set of denim overalls."
@@ -628,6 +594,7 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/storage/hooded/carp_costume
 	name = "carp costume"
 	desc = "A costume made from 'synthetic' carp scales, it smells."
@@ -825,6 +792,8 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	siemens_coefficient = 0.9
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35)
 
+=======
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 /obj/item/clothing/suit/varsity
 	name = "black varsity jacket"
 	desc = "A favorite of jocks everywhere from Sol to Nyx."

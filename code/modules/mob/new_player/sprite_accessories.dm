@@ -739,6 +739,22 @@
 	mohawkunshaven
 		name = "Unshaven Mohawk"
 		icon_state = "hair_unshaven_mohawk"
+
+	belenko
+		name = "Belenko"
+		icon_state = "hair_belenko"
+		flags = HAIR_TIEABLE
+
+	belenkotied
+		name = "Belenko Tied"
+		icon_state = "hair_belenkotied"
+		flags = HAIR_TIEABLE
+
+	belenkotied
+		name = "Supernova"
+		icon_state = "hair_supernova"
+		flags = HAIR_TIEABLE
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /

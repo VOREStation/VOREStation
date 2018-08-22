@@ -36,6 +36,10 @@
 	summon_amt = 10
 	range = 3
 
+<<<<<<< HEAD
 	summon_type = list(/mob/living/simple_animal/hostile/creature/vore) // Vorestation Edit
+=======
+	summon_type = list(/mob/living/simple_mob/creature)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 	hud_state = "wiz_creature"

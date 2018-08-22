@@ -309,8 +309,8 @@
 	if(os)
 		os.error = BUSTED_ASS_COMPUTER
 
-/obj/machinery/computer3/attackby(I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver) && allow_disassemble)
+/obj/machinery/computer3/attackby(obj/item/I as obj, mob/user as mob)
+	if(I.is_screwdriver() && allow_disassemble)
 		disassemble(user)
 		return
 

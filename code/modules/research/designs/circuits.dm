@@ -364,14 +364,14 @@ CIRCUITS BELOW
 /datum/design/circuit/ordercomp
 	name = "supply ordering console"
 	id = "ordercomp"
-	build_path = /obj/item/weapon/circuitboard/ordercomp
+	build_path = /obj/item/weapon/circuitboard/supplycomp
 	sort_string = "KAAAY"	// Duplicate string, really need to redo this whole thing
 
 /datum/design/circuit/supplycomp
 	name = "supply control console"
 	id = "supplycomp"
 	req_tech = list(TECH_DATA = 3)
-	build_path = /obj/item/weapon/circuitboard/supplycomp
+	build_path = /obj/item/weapon/circuitboard/supplycomp/control
 	sort_string = "KAAAZ"	// Duplicate string, really need to redo this whole thing
 
 /datum/design/circuit/biogenerator

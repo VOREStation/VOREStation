@@ -52,7 +52,7 @@
 
 	examine(mob/user)
 		..(user)
-		user << "<font color='blue'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</font>"
+		to_chat(user, "<font color='blue'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</font>")
 
 	handleInactive()
 		heat -= 2
@@ -70,29 +70,29 @@
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(istype(O, /obj/item/weapon/tank/phoron))
 			if(P)
-				user << "<font color='red'>The generator already has a phoron tank loaded!</font>"
+				to_chat(user, "<font color='red'>The generator already has a phoron tank loaded!</font>")
 				return
 			P = O
 			user.drop_item()
 			O.loc = src
-			user << "<font color='blue'>You add the phoron tank to the generator.</font>"
+			to_chat(user, "<font color='blue'>You add the phoron tank to the generator.</font>")
 		else if(!active)
-			if(istype(O, /obj/item/weapon/wrench))
+			if(O.is_wrench())
 				anchored = !anchored
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
-					user << "<font color='blue'>You secure the generator to the floor.</font>"
+					to_chat(user, "<font color='blue'>You secure the generator to the floor.</font>")
 				else
-					user << "<font color='blue'>You unsecure the generator from the floor.</font>"
+					to_chat(user, "<font color='blue'>You unsecure the generator from the floor.</font>")
 				SSmachines.makepowernets()
-			else if(istype(O, /obj/item/weapon/screwdriver))
+			else if(O.is_screwdriver())
 				open = !open
 				playsound(loc, O.usesound, 50, 1)
 				if(open)
-					user << "<font color='blue'>You open the access panel.</font>"
+					to_chat(user, "<font color='blue'>You open the access panel.</font>")
 				else
-					user << "<font color='blue'>You close the access panel.</font>"
-			else if(istype(O, /obj/item/weapon/crowbar) && !open)
+					to_chat(user, "<font color='blue'>You close the access panel.</font>")
+			else if(O.is_crowbar() && !open)
 				playsound(loc, O.usesound, 50, 1)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)

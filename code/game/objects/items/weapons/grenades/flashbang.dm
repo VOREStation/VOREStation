@@ -6,7 +6,7 @@
 	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 
-/obj/item/weapon/grenade/flashbang/prime()
+/obj/item/weapon/grenade/flashbang/detonate()
 	..()
 	for(var/obj/structure/closet/L in hear(max_range, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
@@ -24,6 +24,7 @@
 
 	new/obj/effect/effect/sparks(src.loc)
 	new/obj/effect/effect/smoke/illumination(src.loc, 5, range=30, power=30, color="#FFFFFF")
+
 	qdel(src)
 	return
 
@@ -93,35 +94,37 @@
 	else if(M.ear_damage >= 5)
 		to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
 
-	M.update_icons() //Forces matrix transform to proc if they are now laying, I guess?
-
 /obj/item/weapon/grenade/flashbang/Destroy()
 	walk(src, 0) // Because we might have called walk_away, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
+
 
 /obj/item/weapon/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local Colony Director."
 	name = "clusterbang"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang"
+	var/can_repeat = TRUE		// Does this thing drop mini-clusterbangs?
+	var/min_banglets = 4
+	var/max_banglets = 8
 
-/obj/item/weapon/grenade/flashbang/clusterbang/prime()
-	var/numspawned = rand(4,8)
+/obj/item/weapon/grenade/flashbang/clusterbang/detonate()
+	var/numspawned = rand(min_banglets, max_banglets)
 	var/again = 0
-	for(var/more = numspawned,more > 0,more--)
-		if(prob(35))
-			again++
-			numspawned --
 
-	for(,numspawned > 0, numspawned--)
-		spawn(0)
-			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)//Launches flashbangs
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+	if(can_repeat)
+		for(var/more = numspawned, more > 0, more--)
+			if(prob(35))
+				again++
+				numspawned--
 
-	for(,again > 0, again--)
-		spawn(0)
-			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+	for(var/do_spawn = numspawned, do_spawn > 0, do_spawn--)
+		new /obj/item/weapon/grenade/flashbang/cluster(src.loc)//Launches flashbangs
+		playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+
+	for(var/do_again = again, do_again > 0, do_again--)
+		new /obj/item/weapon/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
+		playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	qdel(src)
 	return
 
@@ -130,41 +133,34 @@
 	name = "clusterbang segment"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang_segment"
+	can_repeat = FALSE
+	banglet = TRUE
 
 /obj/item/weapon/grenade/flashbang/clusterbang/segment/New()//Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
+	..()
+
 	icon_state = "clusterbang_segment_active"
-	active = 1
-	banglet = 1
+
 	var/stepdist = rand(1,4)//How far to step
 	var/temploc = src.loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
+
 	var/dettime = rand(15,60)
 	spawn(dettime)
-		prime()
-	..()
+		detonate()
 
-/obj/item/weapon/grenade/flashbang/clusterbang/segment/prime()
-	var/numspawned = rand(4,8)
-	for(var/more = numspawned,more > 0,more--)
-		if(prob(35))
-			numspawned --
-
-	for(,numspawned > 0, numspawned--)
-		spawn(0)
-			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-	qdel(src)
-	return
+/obj/item/weapon/grenade/flashbang/cluster
+	banglet = TRUE
 
 /obj/item/weapon/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
-	spawn(0)
-		icon_state = "flashbang_active"
-		active = 1
-		banglet = 1
-		var/stepdist = rand(1,3)
-		var/temploc = src.loc
-		walk_away(src,temploc,stepdist)
-		var/dettime = rand(15,60)
-		spawn(dettime)
-		prime()
 	..()
+
+	icon_state = "flashbang_active"
+
+	var/stepdist = rand(1,3)
+	var/temploc = src.loc
+	walk_away(src,temploc,stepdist)
+
+	var/dettime = rand(15,60)
+	spawn(dettime)
+		detonate()

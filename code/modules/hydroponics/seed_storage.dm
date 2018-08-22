@@ -482,20 +482,20 @@
 		if (loaded)
 			user.visible_message("[user] puts the seeds from \the [O.name] into \the [src].", "You put the seeds from \the [O.name] into \the [src].")
 		else
-			user << "<span class='notice'>There are no seeds in \the [O.name].</span>"
+			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
 		return
-	else if(istype(O, /obj/item/weapon/wrench))
+	else if(O.is_wrench())
 		playsound(loc, O.usesound, 50, 1)
 		anchored = !anchored
-		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
-	else if(istype(O, /obj/item/weapon/screwdriver))
+		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
+	else if(O.is_screwdriver())
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, O.usesound, 50, 1)
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, "[initial(icon_state)]-panel")
-	else if((istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool)) && panel_open)
+	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)

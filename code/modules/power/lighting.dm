@@ -47,7 +47,7 @@
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if (istype(W, /obj/item/weapon/wrench))
+	if (W.is_wrench())
 		if (src.stage == 1)
 			playsound(src, W.usesound, 75, 1)
 			usr << "You begin deconstructing [src]."
@@ -66,7 +66,7 @@
 			usr << "You have to unscrew the case first."
 			return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		if (src.stage != 2) return
 		src.stage = 1
 		switch(fixture_type)
@@ -98,7 +98,7 @@
 				"You add wires to [src].")
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		if (src.stage == 2)
 			switch(fixture_type)
 				if ("tube")
@@ -461,7 +461,7 @@
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
-		if(istype(W, /obj/item/weapon/screwdriver)) //If it's a screwdriver open it.
+		if(W.is_screwdriver()) //If it's a screwdriver open it.
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
@@ -497,7 +497,7 @@
 				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 /obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
@@ -510,7 +510,7 @@
 			return
 
 	else
-		if(istype(W, /obj/item/weapon/screwdriver))
+		if(W.is_screwdriver())
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] removes [src]'s lamp shade.", \
 				"You remove [src]'s lamp shade.", "You hear a noise.")

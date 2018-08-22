@@ -73,6 +73,7 @@ What is the naming convention for planes or layers?
 	#define ABOVE_JUNK_LAYER		3.1 // Things that want to be slightly above common objects
 	#define DOOR_CLOSED_LAYER		3.1	// Doors when closed
 	#define WINDOW_LAYER			3.2	// Windows
+	#define ABOVE_WINDOW_LAYER 		3.25 //Above full tile windows so wall items are clickable
 	#define ON_WINDOW_LAYER			3.3 // Ontop of a window
 	
 // Mob planes

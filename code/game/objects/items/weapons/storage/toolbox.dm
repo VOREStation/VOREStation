@@ -20,7 +20,7 @@
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
 	starts_with = list(
-		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/tool/crowbar/red,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/device/radio
 	)
@@ -36,12 +36,12 @@
 	icon_state = "blue"
 	item_state_slots = list(slot_r_hand_str = "toolbox_blue", slot_l_hand_str = "toolbox_blue")
 	starts_with = list(
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/analyzer,
-		/obj/item/weapon/wirecutters
+		/obj/item/weapon/tool/wirecutters
 	)
 
 /obj/item/weapon/storage/toolbox/electrical
@@ -49,10 +49,10 @@
 	icon_state = "yellow"
 	item_state_slots = list(slot_r_hand_str = "toolbox_yellow", slot_l_hand_str = "toolbox_yellow")
 	starts_with = list(
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wirecutters,
 		/obj/item/device/t_scanner,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/stack/cable_coil/random_belt,
 		/obj/item/stack/cable_coil/random_belt
 	)
@@ -72,20 +72,20 @@
 	force = 14
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
 		/obj/item/device/multitool
 	)
 
 /obj/item/weapon/storage/toolbox/syndicate/powertools
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow,
-		/obj/item/weapon/screwdriver/power,
+		/obj/item/weapon/tool/screwdriver/power,
 		/obj/item/weapon/weldingtool/experimental,
-		/obj/item/weapon/crowbar/power,
+		/obj/item/weapon/tool/crowbar/power,
 		/obj/item/device/multitool,
 		/obj/item/stack/cable_coil/random_belt,
 		/obj/item/device/analyzer
