@@ -28,22 +28,29 @@
 		/mob/living/simple_animal/chicken,
 		/mob/living/simple_animal/corgi,
 		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/lizard,
+		/mob/living/simple_mob/animal/passive/crab,
+		/mob/living/simple_mob/animal/passive/lizard,
 		/mob/living/simple_animal/mouse,
 		/mob/living/simple_animal/parrot,
 		/mob/living/simple_animal/slime,
+<<<<<<< HEAD
 //		/mob/living/simple_animal/adultslime,
 		/mob/living/simple_animal/tindalos,
 		/mob/living/simple_animal/yithian,
+=======
+		/mob/living/simple_mob/animal/passive/tindalos,
+		/mob/living/simple_mob/animal/passive/yithian,
+		/mob/living/simple_animal/hostile/bear,
+		/mob/living/simple_animal/hostile/carp,
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 		/mob/living/simple_animal/hostile/scarybat,
-		/mob/living/simple_animal/hostile/viscerator,
-		/mob/living/simple_animal/hostile/malf_drone,
-		/mob/living/simple_animal/hostile/giant_spider,
-		/mob/living/simple_animal/hostile/hivebot,
-		/mob/living/simple_animal/retaliate/diyaab, //Doubt these will get used but might as well,
-		/mob/living/simple_animal/hostile/savik,
-		/mob/living/simple_animal/hostile/shantak
+		/mob/living/simple_mob/mechanical/viscerator,
+		/mob/living/simple_mob/mechanical/combat_drone,
+		/mob/living/simple_mob/animal/giant_spider,
+		/mob/living/simple_mob/mechanical/hivebot,
+		/mob/living/simple_mob/animal/sif/diyaab,
+		/mob/living/simple_mob/animal/sif/savik,
+		/mob/living/simple_mob/animal/sif/shantak
 		)
 
 //This unfortunately is gonna be rather messy due to the various mobtypes involved.

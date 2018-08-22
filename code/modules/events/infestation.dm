@@ -69,7 +69,7 @@
 			max_number = 12
 			vermstring = "mice"
 		if(VERM_LIZARDS)
-			spawn_types = list(/mob/living/simple_animal/lizard)
+			spawn_types = list(/mob/living/simple_mob/animal/passive/lizard)
 			max_number = 6
 			vermstring = "lizards"
 		if(VERM_SPIDERS)

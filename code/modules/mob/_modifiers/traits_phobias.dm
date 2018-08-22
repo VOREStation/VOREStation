@@ -207,8 +207,8 @@
 		if(istype(thing, /obj/structure/snowman/spider)) //Snow spiders are also spooky so people can be assholes with those too.
 			fear_amount += 1
 
-		if(istype(thing, /mob/living/simple_animal/hostile/giant_spider)) // Actual giant spiders are the scariest of them all.
-			var/mob/living/simple_animal/hostile/giant_spider/S = thing
+		if(istype(thing, /mob/living/simple_mob/animal/giant_spider)) // Actual giant spiders are the scariest of them all.
+			var/mob/living/simple_mob/animal/giant_spider/S = thing
 			if(S.stat == DEAD) // Dead giant spiders are less scary than alive ones.
 				fear_amount += 4
 			else

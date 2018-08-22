@@ -26,7 +26,7 @@
 			var/obj/item/device/destTagger/O = W
 			if(O.currTag)
 				if(src.sortTag != O.currTag)
-					user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
+					to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
 					if(!src.sortTag)
 						src.sortTag = O.currTag
 						update_icon()
@@ -34,16 +34,16 @@
 						src.sortTag = O.currTag
 					playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				else
-					user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
+					to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
 			else
-				user << "<span class='warning'>You need to set a destination first!</span>"
+				to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
 		else if(istype(W, /obj/item/weapon/pen))
 			switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 				if("Title")
 					var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 					if(!str || !length(str))
-						usr << "<span class='warning'> Invalid text.</span>"
+						to_chat(user, "<span class='warning'> Invalid text.</span>")
 						return
 					user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 					"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
@@ -57,7 +57,7 @@
 				if("Description")
 					var/str = sanitize(input(usr,"Label text?","Set label",""))
 					if(!str || !length(str))
-						usr << "<font color='red'>Invalid text.</font>"
+						to_chat(user, "<font color='red'>Invalid text.</font>")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -101,9 +101,9 @@
 	examine(mob/user)
 		if(..(user, 4))
 			if(sortTag)
-				user << "<span class='notice'>It is labeled \"[sortTag]\"</span>"
+				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
 			if(examtext)
-				user << "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
 		return
 
 /obj/item/smallDelivery
@@ -133,7 +133,7 @@
 			var/obj/item/device/destTagger/O = W
 			if(O.currTag)
 				if(src.sortTag != O.currTag)
-					user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
+					to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
 					if(!src.sortTag)
 						src.sortTag = O.currTag
 						update_icon()
@@ -141,16 +141,16 @@
 						src.sortTag = O.currTag
 					playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				else
-					user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
+					to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
 			else
-				user << "<span class='warning'>You need to set a destination first!</span>"
+				to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
 		else if(istype(W, /obj/item/weapon/pen))
 			switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 				if("Title")
 					var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 					if(!str || !length(str))
-						usr << "<span class='warning'> Invalid text.</span>"
+						to_chat(user, "<span class='warning'> Invalid text.</span>")
 						return
 					user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 					"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
@@ -165,7 +165,7 @@
 				if("Description")
 					var/str = sanitize(input(usr,"Label text?","Set label",""))
 					if(!str || !length(str))
-						usr << "<font color='red'>Invalid text.</font>"
+						to_chat(user, "<font color='red'>Invalid text.</font>")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -205,9 +205,9 @@
 	examine(mob/user)
 		if(..(user, 4))
 			if(sortTag)
-				user << "<span class='notice'>It is labeled \"[sortTag]\"</span>"
+				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
 			if(examtext)
-				user << "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
 		return
 
 /obj/item/weapon/packageWrap
@@ -278,7 +278,7 @@
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
 				"You hear someone taping paper around a large object.")
 			else if(src.amount < 3)
-				user << "<span class='warning'>You need more paper.</span>"
+				to_chat(user, "<span class='warning'>You need more paper.</span>")
 		else if (istype (target, /obj/structure/closet))
 			var/obj/structure/closet/O = target
 			if (src.amount > 3 && !O.opened)
@@ -291,9 +291,9 @@
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
 				"You hear someone taping paper around a large object.")
 			else if(src.amount < 3)
-				user << "<span class='warning'>You need more paper.</span>"
+				to_chat(user, "<span class='warning'>You need more paper.</span>")
 		else
-			user << "<font color='blue'>The object you are trying to wrap is unsuitable for the sorting machinery!</font>"
+			to_chat(user, "<font color='blue'>The object you are trying to wrap is unsuitable for the sorting machinery!</font>")
 		if (src.amount <= 0)
 			new /obj/item/weapon/c_tube( src.loc )
 			qdel(src)
@@ -302,7 +302,7 @@
 
 	examine(mob/user)
 		if(..(user, 0))
-			user << "<font color='blue'>There are [amount] units of package wrap left!</font>"
+			to_chat(user, "<font color='blue'>There are [amount] units of package wrap left!</font>")
 
 		return
 
@@ -421,25 +421,25 @@
 		if(!I || !user)
 			return
 
-		if(istype(I, /obj/item/weapon/screwdriver))
+		if(I.is_screwdriver())
 			if(c_mode==0)
 				c_mode=1
 				playsound(src.loc, I.usesound, 50, 1)
-				user << "You remove the screws around the power connection."
+				to_chat(user, "You remove the screws around the power connection.")
 				return
 			else if(c_mode==1)
 				c_mode=0
 				playsound(src.loc, I.usesound, 50, 1)
-				user << "You attach the screws around the power connection."
+				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I,/obj/item/weapon/weldingtool) && c_mode==1)
+		else if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, W.usesound, 50, 1)
-				user << "You start slicing the floorweld off the delivery chute."
+				to_chat(user, "You start slicing the floorweld off the delivery chute.")
 				if(do_after(user,20 * W.toolspeed))
 					if(!src || !W.isOn()) return
-					user << "You sliced the floorweld off the delivery chute."
+					to_chat(user, "You sliced the floorweld off the delivery chute.")
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					C.ptype = 8 // 8 =  Delivery chute
 					C.update()
@@ -448,7 +448,7 @@
 					qdel(src)
 				return
 			else
-				user << "You need more welding fuel to complete this task."
+				to_chat(user, "You need more welding fuel to complete this task.")
 				return
 
 /obj/machinery/disposal/deliveryChute/Destroy()

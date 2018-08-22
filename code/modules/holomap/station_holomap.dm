@@ -4,7 +4,11 @@
 /obj/machinery/station_map
 	name = "station holomap"
 	desc = "A virtual map of the surrounding station."
+<<<<<<< HEAD
 	icon = 'icons/obj/machines/stationmap_vr.dmi'
+=======
+	icon = 'icons/obj/machines/stationmap.dmi'
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	icon_state = "station_map"
 	anchored = 1
 	density = 0
@@ -67,7 +71,11 @@
 	// small_station_map.plane = LIGHTING_PLANE // Not until we do planes ~Leshana
 	// small_station_map.layer = LIGHTING_LAYER+1 // Weird things will happen!
 
+<<<<<<< HEAD
 	floor_markings = image('icons/obj/machines/stationmap_vr.dmi', "decal_station_map")
+=======
+	floor_markings = image('icons/obj/machines/stationmap.dmi', "decal_station_map")
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	floor_markings.dir = src.dir
 	// floor_markings.plane = ABOVE_TURF_PLANE // Not until we do planes ~Leshana
 	// floor_markings.layer = DECAL_LAYER
@@ -228,7 +236,11 @@
 	x_offset = WORLD_ICON_SIZE
 	y_offset = WORLD_ICON_SIZE
 	circuit = /obj/item/weapon/circuitboard/station_map
+<<<<<<< HEAD
 	icon_override = 'icons/obj/machines/stationmap_vr.dmi'
+=======
+	icon_override = 'icons/obj/machines/stationmap.dmi'
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 /datum/frame/frame_types/station_map/get_icon_state(var/state)
 	return "station_map_frame_[state]"

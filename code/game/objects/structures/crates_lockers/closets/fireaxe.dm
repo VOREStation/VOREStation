@@ -16,6 +16,13 @@
 
 	starts_with = list(/obj/item/weapon/material/twohanded/fireaxe)
 
+<<<<<<< HEAD
+=======
+/obj/structure/closet/fireaxecabinet/initialize()
+	..()
+	fireaxe = locate() in contents
+
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 /obj/structure/closet/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
 

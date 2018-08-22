@@ -317,7 +317,7 @@
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/corgi))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/crab))
+	if(ispath(MP, /mob/living/simple_mob/animal/passive/crab))
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
 		return 1

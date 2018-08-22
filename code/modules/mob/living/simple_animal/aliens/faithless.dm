@@ -72,7 +72,6 @@
 	melee_damage_lower = 13
 	melee_damage_upper = 28
 
-
 /mob/living/simple_animal/hostile/faithless/strong/cult
 	faction = "cult"
 	supernatural = 1

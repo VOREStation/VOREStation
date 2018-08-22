@@ -15,7 +15,11 @@ var/list/global_huds = list(
 		global_hud.meson,
 		global_hud.science,
 		global_hud.material,
+<<<<<<< HEAD
 		global_hud.holomap	// VOREStation Edit - Holomap
+=======
+		global_hud.holomap
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 		)
 
 /datum/hud/var/obj/screen/grab_intent
@@ -36,7 +40,11 @@ var/list/global_huds = list(
 	var/obj/screen/meson
 	var/obj/screen/science
 	var/obj/screen/material
+<<<<<<< HEAD
 	var/obj/screen/holomap // VOREStation Edit - Holomap
+=======
+	var/obj/screen/holomap
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
 	var/obj/screen/screen = new /obj/screen()
@@ -92,19 +100,29 @@ var/list/global_huds = list(
 	science = setup_overlay("science_hud")
 	material = setup_overlay("material_hud")
 
+<<<<<<< HEAD
 	// VOREStation Edit Begin - Holomap
+=======
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	// The holomap screen object is actually totally invisible.
 	// Station maps work by setting it as an images location before sending to client, not
 	// actually changing the icon or icon state of the screen object itself!
 	// Why do they work this way? I don't know really, that is how /vg designed them, but since they DO
+<<<<<<< HEAD
 	// work this way, we can take advantage of their immutability by making them part of 
+=======
+	// work this way, we can take advantage of their immutability by making them part of
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	// the global_hud (something we have and /vg doesn't) instead of an instance per mob.
 	holomap = new /obj/screen()
 	holomap.name = "holomap"
 	holomap.icon = null
 	holomap.screen_loc = ui_holomap
 	holomap.mouse_opacity = 0
+<<<<<<< HEAD
 	// VOREStation Edit End
+=======
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 
 	var/obj/screen/O
 	var/i

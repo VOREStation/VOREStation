@@ -26,9 +26,15 @@
 	/obj/item/roller,
 	/obj/structure/closet/crate,
 	/obj/structure/closet/acloset,
+<<<<<<< HEAD
 	/mob/living/simple_animal/hostile/mimic/crate,
 	/mob/living/simple_animal/hostile/viscerator,
 	/mob/living/simple_animal/hostile/hivebot,
+=======
+	/mob/living/simple_animal/hostile/mimic,
+	/mob/living/simple_mob/mechanical/viscerator,
+	/mob/living/simple_mob/mechanical/hivebot,
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	/obj/item/device/analyzer,
 	/obj/item/device/camera,
 	/obj/item/device/flash,
@@ -45,7 +51,7 @@
 	/obj/item/weapon/material/knife/butch,
 	/obj/item/weapon/caution,
 	/obj/item/weapon/caution/cone,
-	/obj/item/weapon/crowbar,
+	/obj/item/weapon/tool/crowbar,
 	/obj/item/weapon/clipboard,
 	/obj/item/weapon/cell,
 	/obj/item/weapon/surgical/circular_saw,
@@ -59,9 +65,9 @@
 	/obj/item/weapon/pickaxe,
 	/obj/item/weapon/shovel,
 	/obj/item/weapon/weldingtool,
-	/obj/item/weapon/wirecutters,
-	/obj/item/weapon/wrench,
-	/obj/item/weapon/screwdriver,
+	/obj/item/weapon/tool/wirecutters,
+	/obj/item/weapon/tool/wrench,
+	/obj/item/weapon/tool/screwdriver,
 	/obj/item/weapon/grenade/chem_grenade/cleaner,
 	/obj/item/weapon/grenade/chem_grenade/metalfoam)
 

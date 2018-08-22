@@ -87,7 +87,11 @@
 	if(charges >= 3)
 		if(prob(5))
 			charges -= 1
+<<<<<<< HEAD
 			var/spawn_type = pick(/mob/living/simple_animal/hostile/creature/vore)  // Vorestation Edit
+=======
+			var/spawn_type = pick(/mob/living/simple_mob/creature)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 			new spawn_type(pick(view(1,src)))
 			playsound(src.loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
 

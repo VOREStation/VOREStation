@@ -17,10 +17,10 @@
 	summoned_mob_type = null
 	summon_options = list(
 		"Mouse"			=	/mob/living/simple_animal/mouse,
-		"Lizard"		=	/mob/living/simple_animal/lizard,
+		"Lizard"		=	/mob/living/simple_mob/animal/passive/lizard,
 		"Chicken"		=	/mob/living/simple_animal/chicken,
 		"Chick"			=	/mob/living/simple_animal/chick,
-		"Crab"			=	/mob/living/simple_animal/crab,
+		"Crab"			=	/mob/living/simple_mob/animal/passive/crab,
 		"Parrot"		=	/mob/living/simple_animal/parrot,
 		"Goat"			=	/mob/living/simple_animal/retaliate/goat,
 		"Cat"			=	/mob/living/simple_animal/cat,
@@ -28,9 +28,9 @@
 		"Corgi"			=	/mob/living/simple_animal/corgi,
 		"Corgi Pup"		=	/mob/living/simple_animal/corgi/puppy,
 		"BAT"			=	/mob/living/simple_animal/hostile/scarybat,
-		"SPIDER"		=	/mob/living/simple_animal/hostile/giant_spider,
-		"SPIDER HUNTER"	=	/mob/living/simple_animal/hostile/giant_spider/hunter,
-		"SPIDER NURSE"	=	/mob/living/simple_animal/hostile/giant_spider/nurse,
+		"SPIDER"		=	/mob/living/simple_mob/animal/giant_spider,
+		"SPIDER HUNTER"	=	/mob/living/simple_mob/animal/giant_spider/hunter,
+		"SPIDER NURSE"	=	/mob/living/simple_mob/animal/giant_spider/nurse,
 		"CARP"			=	/mob/living/simple_animal/hostile/carp,
 		"BEAR"			=	/mob/living/simple_animal/hostile/bear
 		) // Vorestation edits to add vore versions.

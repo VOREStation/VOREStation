@@ -90,7 +90,7 @@
 			return
 		if(default_unfasten_wrench(user, W, 40))
 			return
-	/*if(istype(W,/obj/item/weapon/screwdriver))
+	/*if(W.is_screwdriver())
 		panel = !panel
 		user << "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>"*/
 	if(istype(W,/obj/item/weapon/pen/crayon) || istype(W,/obj/item/weapon/stamp))

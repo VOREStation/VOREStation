@@ -95,6 +95,9 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/drone
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 
+/obj/item/weapon/holder/pai
+	origin_tech = list(TECH_DATA = 2)
+
 /obj/item/weapon/holder/mouse
 	w_class = ITEMSIZE_TINY
 

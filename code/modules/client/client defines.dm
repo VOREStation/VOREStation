@@ -29,8 +29,7 @@
 		///////////////
 		//SOUND STUFF//
 		///////////////
-	var/ambience_playing= null
-	var/played			= 0
+	var/time_last_ambience_played = 0 // world.time when ambience was played to this client, to space out ambience sounds.
 
 		////////////
 		//SECURITY//

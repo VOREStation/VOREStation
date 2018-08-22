@@ -21,6 +21,7 @@
 
 	//33% chance to spawn nasties
 	if(prob(33))
+<<<<<<< HEAD
 		spawn_type = pick(\
 		/mob/living/simple_animal/hostile/giant_spider/nurse,\
 		/mob/living/simple_animal/hostile/alien,\
@@ -28,6 +29,13 @@
 		/mob/living/simple_animal/hostile/carp,\
 		/mob/living/simple_animal/hostile/creature\
 		) // Vorestation Edits
+=======
+		spawn_type = pick(
+		/mob/living/simple_mob/animal/giant_spider/nurse,
+		/mob/living/simple_animal/hostile/alien,
+		/mob/living/simple_animal/hostile/bear,
+		/mob/living/simple_mob/creature)
+>>>>>>> 6a40982... Converts a number of simple_animals into their simple_mob variants (#5510)
 	else
 		spawn_type = pick(\
 		/mob/living/simple_animal/cat,
@@ -37,7 +45,7 @@
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/parrot,
 		/mob/living/simple_animal/slime,
-		/mob/living/simple_animal/crab,
+		/mob/living/simple_mob/animal/passive/crab,
 		/mob/living/simple_animal/mouse,
 		/mob/living/simple_animal/retaliate/goat)
 
