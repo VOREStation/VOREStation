@@ -208,14 +208,14 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
 
-	qdel_null(announcement)
-	qdel_null(eyeobj)
-	qdel_null(psupply)
-	qdel_null(aiPDA)
-	qdel_null(aiCommunicator)
-	qdel_null(aiMulti)
-	qdel_null(aiRadio)
-	qdel_null(aiCamera)
+	QDEL_NULL(announcement)
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(psupply)
+	QDEL_NULL(aiPDA)
+	QDEL_NULL(aiCommunicator)
+	QDEL_NULL(aiMulti)
+	QDEL_NULL(aiRadio)
+	QDEL_NULL(aiCamera)
 	hack = null
 
 	return ..()

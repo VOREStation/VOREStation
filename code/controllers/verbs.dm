@@ -125,7 +125,7 @@
 			debug_variables(alarm_manager)
 			feedback_add_details("admin_verb", "DAlarm")
 		if("Nano")
-			debug_variables(nanomanager)
+			debug_variables(GLOB.nanomanager)
 			feedback_add_details("admin_verb", "DNano")
 		if("Chemistry")
 			debug_variables(chemistryProcess)

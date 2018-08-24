@@ -59,7 +59,7 @@
 /obj/item/weapon/tool/wrench/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
-		qdel_null(counterpart)
+		QDEL_NULL(counterpart)
 	return ..()
 
 /obj/item/weapon/tool/wrench/power/attack_self(mob/user)

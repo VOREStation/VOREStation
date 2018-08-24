@@ -31,9 +31,9 @@
 
 /obj/item/weapon/gun/magnetic/Destroy()
 	processing_objects.Remove(src)
-	qdel_null(cell)
-	qdel_null(loaded)
-	qdel_null(capacitor)
+	QDEL_NULL(cell)
+	QDEL_NULL(loaded)
+	QDEL_NULL(capacitor)
 	. = ..()
 
 /obj/item/weapon/gun/magnetic/get_cell()
