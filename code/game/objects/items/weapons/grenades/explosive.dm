@@ -31,6 +31,10 @@
 	damage = 15
 	armor_penetration = 20
 
+/obj/item/projectile/bullet/pellet/fragment/weak
+	damage = 4
+	armor_penetration = 40
+
 /obj/item/weapon/grenade/explosive
 	name = "fragmentation grenade"
 	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
@@ -98,3 +102,12 @@
 	num_fragments = 200  //total number of fragments produced by the grenade
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
+
+/obj/item/weapon/grenade/explosive/mini
+	name = "mini fragmentation grenade"
+	desc = "A miniaturized fragmentation grenade, this one poses relatively little threat on its own."
+	icon_state = "minifrag"
+	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
+	num_fragments = 20
+	spread_range = 3
+	explosion_size = 1
