@@ -50,8 +50,9 @@
 	..()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/mimic/MouseEntered(location, control, params)
-	return // Do not call parent: Mimics shouldn't have tooltips!
+/mob/living/simple_animal/hostile/mimic/will_show_tooltip()
+	return FALSE
+
 
 //
 // Crate Mimic

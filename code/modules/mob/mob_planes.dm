@@ -52,6 +52,10 @@
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+
+	if(my_mob.alpha <= EFFECTIVE_INVIS)
+		state = FALSE
+
 	PM.set_visibility(state)
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
