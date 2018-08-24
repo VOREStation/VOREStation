@@ -69,7 +69,7 @@
 	name = "mini fragmentation grenade"
 	desc = "A miniaturized fragmentation grenade, this one poses relatively little threat on its own."
 	icon_state = "minifrag"
-	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
+	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment/weak, /obj/item/projectile/bullet/pellet/fragment/weak, /obj/item/projectile/bullet/pellet/fragment, /obj/item/projectile/bullet/pellet/fragment/strong)
 	num_fragments = 20
 	spread_range = 3
 	explosion_size = 1
