@@ -84,19 +84,14 @@
 		if(G.loc != src) // No longer within the cartridge
 			return
 
-		world << "Valid gps_target"
-
 		switch(href_list["gps_action"])
 			if("Power")
-				world << "Setting tracking to [href_list["value"]]"
 				G.tracking = text2num(href_list["value"])
 
 			if("Long_Range")
-				world << "Setting local_mode to [href_list["value"]]"
 				G.local_mode = text2num(href_list["value"])
 
 			if("Hide_Signal")
-				world << "Setting hide_signal to [href_list["value"]]"
 				G.hide_signal = text2num(href_list["value"])
 
 			if("Tag")
@@ -106,10 +101,241 @@
 
 				var/newTag = input(user, "Please enter desired tag.", G.tag) as text|null
 
-				world << "Setting Tag to [newTag]"
-
 				if(newTag)
 					G.tag = newTag
+
+		if(href_list["active_category"])
+			internal_data["supply_category"] = href_list["active_category"]
+
+	// Supply topic
+	// Copied from /obj/machinery/computer/supplycomp/Topic()
+	// code\game\machinery\computer\supply.dm, line 188
+	// Unfortunately, in order to support complete functionality, the whole thing is necessary
+	if(href_list["pack_ref"])
+		var/datum/supply_pack/S = locate(href_list["pack_ref"])
+
+		// Invalid ref
+		if(!istype(S))
+			return
+
+		// Expand the supply pack's contents
+		if(href_list["expand"])
+			internal_data["supply_pack_expanded"] ^= S
+
+		// Make a request for the pack
+		if(href_list["request"])
+			var/mob/user = locate(href_list["user"])
+			if(!istype(user)) // Invalid ref
+				return
+
+			if(world.time < internal_data["supply_reqtime"])
+				visible_message("<span class='warning'>[src] flashes, \"[internal_data["supply_reqtime"] - world.time] seconds remaining until another requisition form may be printed.\"</span>")
+				return
+
+			var/timeout = world.time + 600
+			var/reason = sanitize(input(user, "Reason:","Why do you require this item?","") as null|text)
+			if(world.time > timeout)
+				to_chat(user, "<span class='warning'>Error. Request timed out.</span>")
+				return
+			if(!reason)
+				return
+
+			supply_controller.create_order(S, user, reason)
+			internal_data["supply_reqtime"] = (world.time + 5) % 1e5
+
+	if(href_list["order_ref"])
+		var/datum/supply_order/O = locate(href_list["order_ref"])
+
+		// Invalid ref
+		if(!istype(O))
+			return
+
+		var/mob/user = locate(href_list["user"])
+		if(!istype(user)) // Invalid ref
+			return
+
+		if(href_list["edit"])
+			var/new_val = sanitize(input(user, href_list["edit"], "Enter the new value for this field:", href_list["default"]) as null|text)
+			if(!new_val)
+				return
+
+			switch(href_list["edit"])
+				if("Supply Pack")
+					O.name = new_val
+
+				if("Cost")
+					var/num = text2num(new_val)
+					if(num)
+						O.cost = num
+
+				if("Index")
+					var/num = text2num(new_val)
+					if(num)
+						O.index = num
+
+				if("Reason")
+					O.comment = new_val
+
+				if("Ordered by")
+					O.ordered_by = new_val
+
+				if("Ordered at")
+					O.ordered_at = new_val
+
+				if("Approved by")
+					O.approved_by = new_val
+
+				if("Approved at")
+					O.approved_at = new_val
+
+		if(href_list["approve"])
+			supply_controller.approve_order(O, user)
+
+		if(href_list["deny"])
+			supply_controller.deny_order(O, user)
+
+		if(href_list["delete"])
+			supply_controller.delete_order(O, user)
+
+	if(href_list["clear_all_requests"])
+		var/mob/user = locate(href_list["user"])
+		if(!istype(user)) // Invalid ref
+			return
+
+		supply_controller.deny_all_pending(user)
+
+	if(href_list["export_ref"])
+		var/datum/exported_crate/E = locate(href_list["export_ref"])
+
+		// Invalid ref
+		if(!istype(E))
+			return
+
+		var/mob/user = locate(href_list["user"])
+		if(!istype(user)) // Invalid ref
+			return
+
+		if(href_list["index"])
+			var/list/L = E.contents[href_list["index"]]
+
+			if(href_list["edit"])
+				var/field = alert(user, "Select which field to edit", , "Name", "Quantity", "Value")
+
+				var/new_val = sanitize(input(user, href_list["edit"], "Enter the new value for this field:", href_list["default"]) as null|text)
+				if(!new_val)
+					return
+
+				switch(field)
+					if("Name")
+						L["object"] = new_val
+
+					if("Quantity")
+						var/num = text2num(new_val)
+						if(num)
+							L["quantity"] = num
+
+					if("Value")
+						var/num = text2num(new_val)
+						if(num)
+							L["value"] = num
+
+			if(href_list["delete"])
+				E.contents.Cut(href_list["index"], href_list["index"] + 1)
+
+		// Else clause means they're editing/deleting the whole export report, rather than a specific item in it
+		else if(href_list["edit"])
+			var/new_val = sanitize(input(user, href_list["edit"], "Enter the new value for this field:", href_list["default"]) as null|text)
+			if(!new_val)
+				return
+
+			switch(href_list["edit"])
+				if("Name")
+					E.name = new_val
+
+				if("Value")
+					var/num = text2num(new_val)
+					if(num)
+						E.value = num
+
+		else if(href_list["delete"])
+			supply_controller.delete_export(E, user)
+
+		else if(href_list["add_item"])
+			supply_controller.add_export_item(E, user)
+
+	if(supply_controller && supply_controller.shuttle)
+		switch(href_list["send_shuttle"])
+			if("send_away")
+				if(supply_controller.shuttle.forbidden_atoms_check())
+					to_chat(usr, "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>")
+				else
+					supply_controller.shuttle.launch(src)
+					to_chat(usr, "<span class='notice'>Initiating launch sequence.</span>")
+
+			if("send_to_station")
+				supply_controller.shuttle.launch(src)
+				to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.</span>")
+
+			if("cancel_shuttle")
+				supply_controller.shuttle.cancel_launch(src)
+
+			if("force_shuttle")
+				supply_controller.shuttle.force_launch(src)
+
+	switch(href_list["stat_display"])
+		if("message")
+			post_status("message", internal_data["stat_display_line1"], internal_data["stat_display_line2"])
+			internal_data["stat_display_special"] = "message"
+		if("alert")
+			post_status("alert", href_list["alert"])
+			internal_data["stat_display_special"] = href_list["alert"]
+		if("setmsg")
+			internal_data["stat_display_line[href_list["line"]]"] = reject_bad_text(sanitize(input("Line 1", "Enter Message Text", internal_data["stat_display_line[href_list["line"]]"]) as text|null, 40), 40)
+		else
+			post_status(href_list["stat_display"])
+			internal_data["stat_display_special"] = href_list["stat_display"]
+
+
+// Updates status displays with a new message
+// Copied from /obj/itme/weapon/cartridge/proc/post_status(),
+// code\game\objects\items\devices\PDA\cart.dm, line 251
+/obj/item/weapon/commcard/proc/post_status(var/command, var/data1, var/data2)
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	if(!frequency)
+		return
+
+	var/datum/signal/status_signal = new
+	status_signal.source = src
+	status_signal.transmission_method = 1
+	status_signal.data["command"] = command
+
+	switch(command)
+		if("message")
+			status_signal.data["msg1"] = data1
+			status_signal.data["msg2"] = data2
+			if(loc)
+				var/obj/item/PDA = loc
+				var/mob/user = PDA.fingerprintslast
+				log_admin("STATUS: [user] set status screen with [src]. Message: [data1] [data2]")
+				message_admins("STATUS: [user] set status screen with [src]. Message: [data1] [data2]")
+
+		if("alert")
+			status_signal.data["picture_state"] = data1
+
+	frequency.post_signal(src, status_signal)
+
+// Receives updates by external devices to the status displays
+/obj/item/weapon/commcard/receive_signal(var/datum/signal/signal, var/receive_method, var/receive_param)
+	// Putting it inside a frequency switch in case future uses also need to use the radio controller, and they use similar commands, different freq's
+	switch(signal.frequency)
+		if(1435)
+			internal_data["stat_display_special"] = signal.data["command"]
+			switch(signal.data["command"])
+				if("message")
+					internal_data["stat_display_line1"] = signal.data["msg1"]
+					internal_data["stat_display_line2"] = signal.data["msg2"]
+				if("alert")
+					internal_data["stat_display_special"] = signal.data["picture_state"]
 
 
 // Engineering Cartridge:
@@ -215,9 +441,6 @@
 			list("name" = "Security Records", "template" = "sec_records.tmpl")
 		)
 
-/obj/item/weapon/commcard/int_aff/New()
-	..()
-
 /obj/item/weapon/commcard/int_aff/get_data()
 	return list(
 			list("field" = "emp_records", "value" = get_emp_records()),
@@ -234,11 +457,8 @@
 	icon_state = "cart-s"
 	ui_templates = list(
 			list("name" = "Security Records", "template" = "sec_records.tmpl"),
-			list("name" = "Security Bot Controller", "template" = "sec_bot_access.tmpl")
+			list("name" = "Security Bot Control", "template" = "sec_bot_access.tmpl")
 		)
-
-/obj/item/weapon/commcard/security/New()
-	..()
 
 /obj/item/weapon/commcard/security/get_data()
 	return list(
@@ -278,7 +498,6 @@
 /obj/item/weapon/commcard/signal/New()
 	..()
 	internal_devices |= new /obj/item/device/assembly/signaler(src)
-	// I'm probably gonna regret this too
 
 /obj/item/weapon/commcard/signal/get_data()
 	return list(
@@ -307,16 +526,47 @@
 
 // Supply Cartridge:
 // Templates
-//  -- Supply Records
-//  -- Supply Bot Access
+//  *- Supply Records
+//  ?- Supply Bot Access
 /obj/item/weapon/commcard/supply
 	name = "\improper Space Parts & Space Vendors cartridge"
 	desc = "Perfect for the Quartermaster on the go!"
 	icon_state = "cart-q"
+	ui_templates = list(
+			list("name" = "Supply Records", "template" = "supply_records.tmpl"),
+			list("name" = "Supply Bot Control", "template" = "supply_bot_access.tmpl")
+		)
+
+/obj/item/weapon/commcard/supply/New()
+	..()
+	internal_data["supply_category"] = null
+	internal_data["supply_controls"] = FALSE // Cannot control the supply shuttle, cannot accept orders
+	internal_data["supply_pack_expanded"] = list()
+	internal_data["supply_reqtime"] = -1
 
 /obj/item/weapon/commcard/supply/get_data()
-	// Add supply records to ui template
-	// Add supply bot access to ui template
+	// Supply records data
+	var/list/shuttle_status = get_supply_shuttle_status()
+	var/list/orders = get_supply_orders()
+	var/list/receipts = get_supply_receipts()
+	var/list/misc_supply_data = get_misc_supply_data() // Packaging this stuff externally so it's less hardcoded into the specific cartridge
+	var/list/pack_list = list() // List of supply packs within the currently selected category
+
+	if(internal_data["supply_category"])
+		pack_list = get_supply_pack_list()
+
+	return list(
+			list("field" = "shuttle_auth",		"value" = misc_supply_data["shuttle_auth"]),
+			list("field" = "order_auth", 		"value" = misc_supply_data["order_auth"]),
+			list("field" = "supply_points",		"value" = misc_supply_data["supply_points"]),
+			list("field" = "categories",		"value" = misc_supply_data["supply_categories"]),
+			list("field" = "contraband",		"value" = misc_supply_data["contraband"]),
+			list("field" = "active_category",	"value" = internal_data["supply_category"]),
+			list("field" = "shuttle",			"value" = shuttle_status),
+			list("field" = "orders",			"value" = orders),
+			list("field" = "receipts",			"value" = receipts),
+			list("field" = "supply_packs",		"value" = pack_list)
+		)
 
 
 // Command Cartridge:
@@ -326,20 +576,46 @@
 /obj/item/weapon/commcard/head
 	name = "\improper Easy-Record DELUXE"
 	icon_state = "cart-h"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl")
+		)
+
+/obj/item/weapon/commcard/head/New()
+	..()
+	internal_data["stat_display_line1"] = null
+	internal_data["stat_display_line2"] = null
+	internal_data["stat_display_special"] = null
+
+/obj/item/weapon/commcard/head/initialize()
+	// Have to register the commcard with the Radio controller to receive updates to the status displays
+	radio_controller.add_object(src, 1435)
+	..()
+
+/obj/item/weapon/commcard/head/Destroy()
+	// Have to unregister the commcard for proper bookkeeping
+	radio_controller.remove_object(src, 1435)
+	..()
 
 /obj/item/weapon/commcard/head/get_data()
-	// Add status display to ui template
-	// Add employment records to ui template
+	var/list/status_message = list(
+			"line1" = internal_data["stat_display_line1"],
+			"line2" = internal_data["stat_display_line2"],
+			"active" = internal_data["stat_display_special"]
+		)
 
+	return list(
+			list("field" = "emp_records", "value" = get_emp_records()),
+			list("field" = "stat_display", "value" = status_message)
+		)
 
 // Head of Personnel Cartridge:
 // Templates
 //  -- Status Display Access
 //  *- Employment Records
 //  *- Security Records
-//  -- Supply Records
-//  -- Supply Bot Access
-//  X- Recipe Lists - See service cartridge
+//  *- Supply Records
+//  ?- Supply Bot Access
 //  *- Janitorial Locator Magicbox
 /obj/item/weapon/commcard/head/hop
 	name = "\improper HumanResources9001 cartridge"
@@ -460,7 +736,7 @@
 //  *- Medical Records
 //  *- Security Records
 //  *- Power Monitoring
-//  -- Supply Records
+//  *- Supply Records
 //  -- Supply Bot Access
 //  *- Security Bot Access
 //  *- Janitorial Locator Magicbox
@@ -499,6 +775,7 @@
 
 // IMPORTANT: NOT MAPPED IN DUE TO BALANCE CONCERNS RE: FINDING THE VICTIMS OF ANTAGS.
 // See suit sensors, specifically ease of turning them off, and variable level of settings which may or may not give location
+// A GPS in your phone that is either broadcasting position or totally off, and can be hidden in pockets, coats, bags, boxes, etc, is much harder to disable
 /obj/item/weapon/commcard/explorer
 	name = "\improper Explorator cartridge"
 	icon_state = "cart-tox"
