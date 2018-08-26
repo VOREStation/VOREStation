@@ -150,7 +150,7 @@
 	log_client_to_db()
 
 	send_resources()
-	nanomanager.send_resources(src)
+	GLOB.nanomanager.send_resources(src)
 
 	if(!void)
 		void = new()
@@ -163,8 +163,11 @@
 		if(config.aggressive_changelog)
 			src.changes()
 
+<<<<<<< HEAD
 	hook_vr("client_new",list(src)) //VOREStation Code
 	
+=======
+>>>>>>> 0173b08... Merge pull request #5521 from Atermonera/nanoUI_on_GLOB
 	if(config.paranoia_logging)
 		if(isnum(player_age) && player_age == 0)
 			log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
