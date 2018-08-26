@@ -744,7 +744,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 	uncommon_loot = list(
 		/obj/item/mecha_parts/mecha_equipment/shocker,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
 		/obj/item/device/kit/paint/gygax,
@@ -784,7 +784,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 	uncommon_loot = list(
 		/obj/item/mecha_parts/mecha_equipment/shocker,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser,
 		/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster,
 		/obj/item/device/kit/paint/durand,

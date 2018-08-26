@@ -14,7 +14,12 @@
 	var/range = MELEE //bitflags
 	var/salvageable = 1
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
+<<<<<<< HEAD
 
+=======
+	var/equip_type = null //mechaequip2
+	var/allow_duplicate = FALSE
+>>>>>>> abe2f2c... Merge pull request #5519 from Mechoid/Mech_Equipment_Carepackage1
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
 	sleep(equip_cooldown)
@@ -85,14 +90,39 @@
 		return 0
 	return 1
 
+/obj/item/mecha_parts/mecha_equipment/proc/handle_movement_action() //Any modules that have special effects or needs when taking a step or floating through space.
+	return
+
 /obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/can_attach(obj/mecha/M as obj)
+<<<<<<< HEAD
 	if(M.equipment.len >= M.max_equip)
 		return 0
 
 	if (ispath(required_type))
+=======
+	//if(M.equipment.len >= M.max_equip)
+	//	return 0
+	if(!allow_duplicate)
+		for(var/obj/item/mecha_parts/mecha_equipment/ME in M.equipment) //Exact duplicate components aren't allowed.
+			if(ME.type == src.type)
+				return 0
+	if(equip_type == EQUIP_HULL && M.hull_equipment.len < M.max_hull_equip)
+		return 1
+	if(equip_type == EQUIP_WEAPON && M.weapon_equipment.len < M.max_weapon_equip)
+		return 1
+	if(equip_type == EQUIP_UTILITY && M.utility_equipment.len < M.max_utility_equip)
+		return 1
+	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len < M.max_special_equip)
+		return 1
+	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
+		if(equip_type == EQUIP_WEAPON && !istype(M, /obj/mecha/combat))
+			return 0
+		return 1
+	/*if (ispath(required_type))
+>>>>>>> abe2f2c... Merge pull request #5519 from Mechoid/Mech_Equipment_Carepackage1
 		return istype(M, required_type)
 
 	for (var/path in required_type)
