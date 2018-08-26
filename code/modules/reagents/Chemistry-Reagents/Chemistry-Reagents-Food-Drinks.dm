@@ -2148,7 +2148,7 @@
 	color = "#FFD300"
 	strength = 50
 	adj_temp = -20
-	targ_temp = 270
+	targ_temp = 280
 
 	glass_name = "iced beer"
 	glass_desc = "A beer so frosty, the air around it freezes."
