@@ -114,7 +114,7 @@
 	data["injection"] = injection
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -250,5 +250,5 @@
 		fon = !fon
 		set_light(fon * flum)
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	add_fingerprint(usr)

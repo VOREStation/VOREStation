@@ -173,7 +173,7 @@
 			vend(currently_vending, usr)
 			return
 		else if(handled)
-			nanomanager.update_uis(src)
+			GLOB.nanomanager.update_uis(src)
 			return // don't smack that machine with your 2 thalers
 
 	if(I || istype(W, /obj/item/weapon/spacecash))
@@ -187,7 +187,7 @@
 		if(panel_open)
 			overlays += image(icon, "[initial(icon_state)]-panel")
 
-		nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+		GLOB.nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 		return
 	else if(istype(W, /obj/item/device/multitool) || W.is_wirecutter())
 		if(panel_open)
@@ -199,7 +199,7 @@
 		coin = W
 		categories |= CAT_COIN
 		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 		return
 	else if(W.is_wrench())
 		playsound(src, W.usesound, 100, 1)
@@ -403,7 +403,7 @@
 	else
 		data["panel"] = 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "vending_machine.tmpl", name, 440, 600)
 		ui.set_initial_data(data)
@@ -463,7 +463,7 @@
 			shut_up = !shut_up
 
 		add_fingerprint(usr)
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
@@ -474,7 +474,7 @@
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Vending..."
 	status_error = 0
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 	if(R.category & CAT_COIN)
 		if(!coin)
@@ -516,7 +516,7 @@
 		status_error = 0
 		vend_ready = 1
 		currently_vending = null
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 
 	return 1
 
@@ -572,7 +572,7 @@
 	if(has_logs)
 		do_logging(R, user)
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/vending/process()
 	if(stat & (BROKEN|NOPOWER))
