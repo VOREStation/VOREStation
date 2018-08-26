@@ -523,3 +523,20 @@
 			"supply_points" = supply_controller.points,
 			"supply_categories" = all_supply_groups
 		)
+
+/obj/item/weapon/commcard/proc/get_status_display()
+	return list(
+			"line1" = internal_data["stat_display_line1"],
+			"line2" = internal_data["stat_display_line2"],
+			"active_line1" = internal_data["stat_display_active1"],
+			"active_line2" = internal_data["stat_display_active2"],
+			"active" = internal_data["stat_display_special"]
+		)
+
+/obj/item/weapon/commcard/proc/find_blast_doors()
+	var/target_doors[0]
+	for(var/obj/machinery/door/blast/B in machines)
+		if(B.id == internal_data["shuttle_door_code"])
+			target_doors += B
+
+	return target_doors

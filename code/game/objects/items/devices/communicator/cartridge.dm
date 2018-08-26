@@ -11,8 +11,8 @@
 
 	var/list/internal_devices = list() // Devices that can be toggled on to trigger on attack()
 	var/list/active_devices = list()   // Devices that will be triggered on attack()
-	var/list/ui_templates = list()     // List of lists for when multiple templates
-	var/list/internal_data = list()	   // Data that shouldn't be updated every time nanoUI updates, due to the time complexity of regenerating it, will be stored within the device. I'd really rather not have to, but powernet monitor iterates over machine
+	var/list/ui_templates = list()     // List of ui templates the commcard can access
+	var/list/internal_data = list()	   // Data that shouldn't be updated every time nanoUI updates, or needs to persist between updates
 
 
 /obj/item/weapon/commcard/proc/get_device_status()
@@ -282,6 +282,7 @@
 			if("force_shuttle")
 				supply_controller.shuttle.force_launch(src)
 
+	// Status display
 	switch(href_list["stat_display"])
 		if("message")
 			post_status("message", internal_data["stat_display_line1"], internal_data["stat_display_line2"])
@@ -294,6 +295,28 @@
 		else
 			post_status(href_list["stat_display"])
 			internal_data["stat_display_special"] = href_list["stat_display"]
+
+	// Merc shuttle blast door controls
+	switch(href_list["all_blast_doors"])
+		if("open")
+			for(var/obj/machinery/door/blast/B in internal_data["shuttle_doors"])
+				B.open()
+		if("close")
+			for(var/obj/machinery/door/blast/B in internal_data["shuttle_doors"])
+				B.close()
+
+	if(href_list["scan_blast_doors"])
+		internal_data["shuttle_doors"] = find_blast_doors()
+
+	if(href_list["toggle_blast_door"])
+		var/obj/machinery/door/blast/B = locate(href_list["toggle_blast_door"])
+		if(!B)
+			return
+		spawn(0)
+			if(B.density)
+				B.open()
+			else
+				B.close()
 
 
 // Updates status displays with a new message
@@ -313,6 +336,8 @@
 		if("message")
 			status_signal.data["msg1"] = data1
 			status_signal.data["msg2"] = data2
+			internal_data["stat_display_active1"] = data1 // Update the internally stored message, we won't get receive_signal if we're the sender
+			internal_data["stat_display_active2"] = data2
 			if(loc)
 				var/obj/item/PDA = loc
 				var/mob/user = PDA.fingerprintslast
@@ -326,16 +351,18 @@
 
 // Receives updates by external devices to the status displays
 /obj/item/weapon/commcard/receive_signal(var/datum/signal/signal, var/receive_method, var/receive_param)
-	// Putting it inside a frequency switch in case future uses also need to use the radio controller, and they use similar commands, different freq's
-	switch(signal.frequency)
-		if(1435)
-			internal_data["stat_display_special"] = signal.data["command"]
-			switch(signal.data["command"])
-				if("message")
-					internal_data["stat_display_line1"] = signal.data["msg1"]
-					internal_data["stat_display_line2"] = signal.data["msg2"]
-				if("alert")
-					internal_data["stat_display_special"] = signal.data["picture_state"]
+	internal_data["stat_display_special"] = signal.data["command"]
+	switch(signal.data["command"])
+		if("message")
+			internal_data["stat_display_active1"] = signal.data["msg1"]
+			internal_data["stat_display_active2"] = signal.data["msg2"]
+		if("alert")
+			internal_data["stat_display_special"] = signal.data["picture_state"]
+
+
+///////////////////////////
+// SUBTYPES
+///////////////////////////
 
 
 // Engineering Cartridge:
@@ -351,6 +378,8 @@
 /obj/item/weapon/commcard/engineering/New()
 	..()
 	internal_devices |= new /obj/item/device/halogen_counter(src)
+
+/obj/item/weapon/commcard/engineering/initialize()
 	internal_data["grid_sensors"] = find_powernet_sensors()
 	internal_data["powernet_target"] = ""
 
@@ -571,7 +600,7 @@
 
 // Command Cartridge:
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 /obj/item/weapon/commcard/head
 	name = "\improper Easy-Record DELUXE"
@@ -585,6 +614,8 @@
 	..()
 	internal_data["stat_display_line1"] = null
 	internal_data["stat_display_line2"] = null
+	internal_data["stat_display_active1"] = null
+	internal_data["stat_display_active2"] = null
 	internal_data["stat_display_special"] = null
 
 /obj/item/weapon/commcard/head/initialize()
@@ -598,20 +629,14 @@
 	..()
 
 /obj/item/weapon/commcard/head/get_data()
-	var/list/status_message = list(
-			"line1" = internal_data["stat_display_line1"],
-			"line2" = internal_data["stat_display_line2"],
-			"active" = internal_data["stat_display_special"]
-		)
-
 	return list(
 			list("field" = "emp_records", "value" = get_emp_records()),
-			list("field" = "stat_display", "value" = status_message)
+			list("field" = "stat_display", "value" = get_status_display())
 		)
 
 // Head of Personnel Cartridge:
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 //  *- Security Records
 //  *- Supply Records
@@ -620,31 +645,70 @@
 /obj/item/weapon/commcard/head/hop
 	name = "\improper HumanResources9001 cartridge"
 	icon_state = "cart-h"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl"),
+			list("name" = "Security Records", "template" = "sec_records.tmpl"),
+			list("name" = "Supply Records", "template" = "supply_records.tmpl"),
+			list("name" = "Janitorial Supply Locator", "template" = "janitorialLocator.tmpl")
+		)
+
 
 /obj/item/weapon/commcard/head/hop/get_data()
 	var/list/data = ..()
+
 	// Sec records
-	// Supply records
-	// Supply bot access
+	data[++data.len] = list("field" = "sec_records", "value" = get_sec_records())
+
+	// Supply records data
+	var/list/shuttle_status = get_supply_shuttle_status()
+	var/list/orders = get_supply_orders()
+	var/list/receipts = get_supply_receipts()
+	var/list/misc_supply_data = get_misc_supply_data() // Packaging this stuff externally so it's less hardcoded into the specific cartridge
+	var/list/pack_list = list() // List of supply packs within the currently selected category
+
+	if(internal_data["supply_category"])
+		pack_list = get_supply_pack_list()
+
+	data[++data.len] = list("field" = "shuttle_auth",	 "value" = misc_supply_data["shuttle_auth"])
+	data[++data.len] = list("field" = "order_auth",		 "value" = misc_supply_data["order_auth"])
+	data[++data.len] = list("field" = "supply_points",	 "value" = misc_supply_data["supply_points"])
+	data[++data.len] = list("field" = "categories",		 "value" = misc_supply_data["supply_categories"])
+	data[++data.len] = list("field" = "contraband",		 "value" = misc_supply_data["contraband"])
+	data[++data.len] = list("field" = "active_category", "value" = internal_data["supply_category"])
+	data[++data.len] = list("field" = "shuttle",		 "value" = shuttle_status)
+	data[++data.len] = list("field" = "orders",			 "value" = orders)
+	data[++data.len] = list("field" = "receipts",		 "value" = receipts)
+	data[++data.len] = list("field" = "supply_packs",	 "value" = pack_list)
+
 	// Janitorial locator magicbox
-	// Recipe lists
+	data[++data.len] = list("field" = "janidata", "value" = get_janitorial_locations())
+
 	return data
 
 
-// Head pf Security Cartridge:
+// Head of Security Cartridge:
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 //  *- Security Records
 //  *- Security Bot Access
 /obj/item/weapon/commcard/head/hos
 	name = "\improper R.O.B.U.S.T. DELUXE"
 	icon_state = "cart-hos"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl"),
+			list("name" = "Security Records", "template" = "sec_records.tmpl"),
+			list("name" = "Security Bot Control", "template" = "sec_bot_access.tmpl")
+		)
 
 /obj/item/weapon/commcard/head/hos/get_data()
 	var/list/data = ..()
-	// Add sec records to ui template
-	// Add sec bot access to ui template
+	// Sec records
+	data[++data.len] = list("field" = "sec_records", "value" = get_sec_records())
+	// Sec bot access
+	data[++data.len] = list("field" = "sec_bot_access", "value" = get_sec_bot_access())
 	return data
 
 
@@ -654,12 +718,17 @@
 //  *- Gas Scanner
 //  *- Reagent Scanner
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 //  *- Signaler Access
 /obj/item/weapon/commcard/head/rd
 	name = "\improper Signal Ace DELUXE"
 	icon_state = "cart-rd"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl"),
+			list("name" = "Integrated Signaler Control", "template" = "signaler_access.tmpl")
+		)
 
 /obj/item/weapon/commcard/head/rd/New()
 	..()
@@ -669,9 +738,8 @@
 
 /obj/item/weapon/commcard/head/rd/get_data()
 	var/list/data = ..()
-	// Status Display
-	// Employment Records
-	// Signaler Access
+	// Signaler access
+	data[++data.len] = list("field" = "signaler_access", "value" = get_int_signalers())
 	return data
 
 
@@ -681,12 +749,17 @@
 //  *- Reagent Scanner
 //  *- Halogen Counter
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 //  *- Medical Records
 /obj/item/weapon/commcard/head/cmo
 	name = "\improper Med-U DELUXE"
 	icon_state = "cart-cmo"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl"),
+			list("name" = "Medical Records", "template" = "med_records.tmpl")
+		)
 
 /obj/item/weapon/commcard/head/cmo/New()
 	..()
@@ -697,6 +770,7 @@
 /obj/item/weapon/commcard/head/cmo/get_data()
 	var/list/data = ..()
 	// Med records
+	data[++data.len] = list("field" = "med_records", "value" = get_med_records())
 	return data
 
 // Chief Engineer Cartridge:
@@ -704,21 +778,32 @@
 //  *- Gas Scanner
 //  *- Halogen Counter
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 //  *- Power Monitoring
 /obj/item/weapon/commcard/head/ce
 	name = "\improper Power-On DELUXE"
 	icon_state = "cart-ce"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl"),
+			list("name" = "Power Monitor", "template" = "comm_power_monitor.tmpl")
+		)
 
 /obj/item/weapon/commcard/head/ce/New()
 	..()
 	internal_devices |= new /obj.item/device/analyzer(src)
 	internal_devices |= new /obj/item/device/halogen_counter(src)
 
+/obj/item/weapon/commcard/head/ce/initialize()
+	internal_data["grid_sensors"] = find_powernet_sensors()
+	internal_data["powernet_target"] = ""
+
 /obj/item/weapon/commcard/head/ce/get_data()
 	var/list/data = ..()
-	// Add power monitor to ui template
+	// Add power monitoring data
+	data[++data.len] = list("field" = "powernet_monitoring", "value" = get_powernet_monitoring_list())
+	data[++data.len] = list("field" = "powernet_target", "value" = get_powernet_target(internal_data["powernet_target"]))
 	return data
 
 
@@ -731,13 +816,13 @@
 //  X- GPS - Balance
 //  *- Signaler
 // Templates
-//  -- Status Display Access
+//  *- Status Display Access
 //  *- Employment Records
 //  *- Medical Records
 //  *- Security Records
 //  *- Power Monitoring
 //  *- Supply Records
-//  -- Supply Bot Access
+//  ?- Supply Bot Access
 //  *- Security Bot Access
 //  *- Janitorial Locator Magicbox
 //  X- GPS Access - Balance
@@ -746,6 +831,17 @@
 	name = "\improper Value-PAK cartridge"
 	desc = "Now with 200% more value!"
 	icon_state = "cart-c"
+	ui_templates = list(
+			list("name" = "Status Display Access", "template" = "stat_display_access.tmpl"),
+			list("name" = "Employment Records", "template" = "emp_records.tmpl"),
+			list("name" = "Medical Records", "template" = "med_records.tmpl"),
+			list("name" = "Security Records", "template" = "sec_records.tmpl"),
+			list("name" = "Security Bot Control", "template" = "sec_bot_access.tmpl"),
+			list("name" = "Power Monitor", "template" = "comm_power_monitor.tmpl"),
+			list("name" = "Supply Records", "template" = "supply_records.tmpl"),
+			list("name" = "Janitorial Supply Locator", "template" = "janitorialLocator.tmpl"),
+			list("name" = "Integrated Signaler Control", "template" = "signaler_access.tmpl")
+		)
 
 /obj/item/weapon/commcard/head/captain/New()
 	..()
@@ -753,18 +849,79 @@
 	internal_devices |= new /obj/item/device/healthanalyzer(src)
 	internal_devices |= new /obj/item/device/reagent_scanner(src)
 	internal_devices |= new /obj/item/device/halogen_counter(src)
+	internal_devices |= new /obj/item/device/assembly/signaler(src)
+
+/obj/item/weapon/commcard/head/captain/get_data()
+	var/list/data = ..()
+	//Med records
+	data[++data.len] = list("field" = "med_records", "value" = get_med_records())
+
+	// Sec records
+	data[++data.len] = list("field" = "sec_records", "value" = get_sec_records())
+
+	// Sec bot access
+	data[++data.len] = list("field" = "sec_bot_access", "value" = get_sec_bot_access())
+
+	// Power Monitoring
+	data[++data.len] = list("field" = "powernet_monitoring", "value" = get_powernet_monitoring_list())
+	data[++data.len] = list("field" = "powernet_target", "value" = get_powernet_target(internal_data["powernet_target"]))
+
+	// Supply records data
+	var/list/shuttle_status = get_supply_shuttle_status()
+	var/list/orders = get_supply_orders()
+	var/list/receipts = get_supply_receipts()
+	var/list/misc_supply_data = get_misc_supply_data() // Packaging this stuff externally so it's less hardcoded into the specific cartridge
+	var/list/pack_list = list() // List of supply packs within the currently selected category
+
+	if(internal_data["supply_category"])
+		pack_list = get_supply_pack_list()
+
+	data[++data.len] = list("field" = "shuttle_auth",	 "value" = misc_supply_data["shuttle_auth"])
+	data[++data.len] = list("field" = "order_auth",		 "value" = misc_supply_data["order_auth"])
+	data[++data.len] = list("field" = "supply_points",	 "value" = misc_supply_data["supply_points"])
+	data[++data.len] = list("field" = "categories",		 "value" = misc_supply_data["supply_categories"])
+	data[++data.len] = list("field" = "contraband",		 "value" = misc_supply_data["contraband"])
+	data[++data.len] = list("field" = "active_category", "value" = internal_data["supply_category"])
+	data[++data.len] = list("field" = "shuttle",		 "value" = shuttle_status)
+	data[++data.len] = list("field" = "orders",			 "value" = orders)
+	data[++data.len] = list("field" = "receipts",		 "value" = receipts)
+	data[++data.len] = list("field" = "supply_packs",	 "value" = pack_list)
+
+	// Janitorial locator magicbox
+	data[++data.len] = list("field" = "janidata", "value" = get_janitorial_locations())
+
+	// Signaler access
+	data[++data.len] = list("field" = "signaler_access", "value" = get_int_signalers())
+
+	return data
 
 
 // Mercenary Cartridge
 // Templates
-//  -- Syndicate Shuttle Door Controller
+//  -- Merc Shuttle Door Controller
 /obj/item/weapon/commcard/mercenary
 	name = "\improper Detomatix cartridge"
 	icon_state = "cart"
+	ui_templates = list(
+			list("name" = "Shuttle Blast Door Control", "template" = "merc_blast_door_control.tmpl")
+		)
+
+/obj/item/weapon/commcard/mercenary/initialize()
+	internal_data["shuttle_door_code"] = "smindicate" // Copied from PDA code
+	internal_data["shuttle_doors"] = find_blast_doors()
 
 /obj/item/weapon/commcard/mercenary/get_data()
-	// Syndi shuttle door controller
-	// Fuck if I know how that thing works
+	var/door_status[0]
+	for(var/obj/machinery/door/blast/B in internal_data["shuttle_doors"])
+		door_status[++door_status.len] += list(
+				"open" = B.density,
+				"name" = B.name,
+				"ref" = "\ref[B]"
+			)
+
+	return list(
+			list("field" = "blast_door", "value" = door_status)
+		)
 
 
 // Explorer Cartridge
