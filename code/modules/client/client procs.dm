@@ -150,7 +150,7 @@
 	log_client_to_db()
 
 	send_resources()
-	nanomanager.send_resources(src)
+	GLOB.nanomanager.send_resources(src)
 
 	if(!void)
 		void = new()
@@ -162,7 +162,7 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
-	
+
 	if(config.paranoia_logging)
 		if(isnum(player_age) && player_age == 0)
 			log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")

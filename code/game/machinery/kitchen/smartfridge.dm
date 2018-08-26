@@ -215,7 +215,7 @@
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, icon_panel)
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 		return
 
 	if(wrenchable && default_unfasten_wrench(user, O, 20))
@@ -281,11 +281,11 @@
 		var/datum/stored_item/item = new/datum/stored_item(src, O.type, O.name)
 		item.add_product(O)
 		item_records.Add(item)
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/smartfridge/proc/vend(datum/stored_item/I)
 	I.get_product(get_turf(src))
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/smartfridge/attack_ai(mob/user as mob)
 	attack_hand(user)
@@ -320,7 +320,7 @@
 	if(items.len > 0)
 		data["contents"] = items
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 400, 500)
 		ui.set_initial_data(data)
@@ -330,7 +330,7 @@
 	if(..()) return 0
 
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(user, src, "main")
 
 	src.add_fingerprint(user)
 
