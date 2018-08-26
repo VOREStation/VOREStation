@@ -1,3 +1,4 @@
+
 /obj/item/weapon/grenade/explosive
 	name = "fragmentation grenade"
 	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
@@ -63,3 +64,12 @@
 				P.attack_mob(M, 0, 25) //you're holding a grenade, dude!
 			else
 				P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
+
+/obj/item/weapon/grenade/explosive/mini
+	name = "mini fragmentation grenade"
+	desc = "A miniaturized fragmentation grenade, this one poses relatively little threat on its own."
+	icon_state = "minifrag"
+	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment/weak, /obj/item/projectile/bullet/pellet/fragment/weak, /obj/item/projectile/bullet/pellet/fragment, /obj/item/projectile/bullet/pellet/fragment/strong)
+	num_fragments = 20
+	spread_range = 3
+	explosion_size = 1

@@ -76,6 +76,10 @@
 	damage = 15
 	armor_penetration = 20
 
+/obj/item/projectile/bullet/pellet/fragment/weak
+	damage = 4
+	armor_penetration = 40
+
 // Tank rupture fragments
 /obj/item/projectile/bullet/pellet/fragment/tank
 	name = "metal fragment"

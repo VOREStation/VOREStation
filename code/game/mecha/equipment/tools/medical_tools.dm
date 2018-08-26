@@ -12,6 +12,7 @@
 	var/inject_amount = 5
 	required_type = /obj/mecha/medical
 	salvageable = 0
+	allow_duplicate = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/New()
 	..()
