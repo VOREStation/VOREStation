@@ -166,7 +166,7 @@
 	description_fluff = "Essentially an Orion mounted inside a modified Gaia case."
 	icon_state = "mecha_phase"
 	energy_drain = 25
-	projectile = /obj/item/projectile/energy/phase
+	projectile = /obj/item/projectile/energy/phase/heavy
 	fire_sound = 'sound/weapons/Taser.ogg'
 
 	equip_type = EQUIP_UTILITY

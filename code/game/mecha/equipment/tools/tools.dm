@@ -866,7 +866,7 @@
 /obj/item/mecha_parts/mecha_equipment/combat_shield/attach(obj/mecha/M as obj)
 	..()
 	if(chassis)
-		my_shield.shield_health = my_shield.shield_health / 2
+		my_shield.shield_health = 0
 		my_shield.my_mecha = chassis
 		my_shield.forceMove(chassis)
 
@@ -1153,7 +1153,7 @@
 	var/mob/living/carbon/occupant = null
 	var/door_locked = 1
 	salvageable = 0
-	allow_duplicate = 1
+	allow_duplicate = TRUE
 
 	equip_type = EQUIP_HULL
 
