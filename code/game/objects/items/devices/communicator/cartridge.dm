@@ -320,8 +320,8 @@
 
 
 // Updates status displays with a new message
-// Copied from /obj/itme/weapon/cartridge/proc/post_status(),
-// code\game\objects\items\devices\PDA\cart.dm, line 251
+// Copied from /obj/item/weapon/cartridge/proc/post_status(),
+// code/game/objects/items/devices/PDA/cart.dm, line 251
 /obj/item/weapon/commcard/proc/post_status(var/command, var/data1, var/data2)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 	if(!frequency)
