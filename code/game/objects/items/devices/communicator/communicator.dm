@@ -103,7 +103,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/examine(mob/user)
 	. = ..(user, 1)
 	if(. && video_source)
-		user << "<span class='notice'>It looks like it's on a video call: <a href='?src=\ref[src];watchvideo=1'>\[view\]</a></span>"
+		to_chat(user, "<span class='notice'>It looks like it's on a video call: <a href='?src=\ref[src];watchvideo=1'>\[view\]</a></span>")
 
 // Proc: initialize_exonet()
 // Parameters: 1 (user - the person the communicator belongs to)
@@ -144,7 +144,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		else
 			msg += "<span class='notice'>The device doesn't appear to be transmitting any data.</span>\n"
 		msg += "</span>"
-	user << msg
+	to_chat(user, msg)
 	return
 
 // Proc: emp_act()
@@ -234,7 +234,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		cartridge.forceMove(src)
 		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
 		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
-		nanomanager.update_uis(src) // update all UIs attached to src
+		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
 	return
 
 // Proc: attack_self()

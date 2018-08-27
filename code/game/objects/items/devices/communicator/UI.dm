@@ -195,7 +195,7 @@
 
 	if(href_list["message"])
 		if(!get_connection_to_tcomms())
-			usr << "<span class='danger'>Error: Cannot connect to Exonet node.</span>"
+			to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
 			return
 		var/their_address = href_list["message"]
 		var/text = sanitizeSafe(input(usr,"Enter your message.","Text Message"))
@@ -261,10 +261,9 @@
 			notehtml = note
 
 	if(href_list["switch_template"])
-		var/datum/nanoui/ui = nanomanager.get_open_ui(usr, src, "main")
+		var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(usr, src, "main")
 		if(ui)
-			usr << "Switching to template [href_list["switch_template"]]"
-			ui.append_template("Body", href_list["switch_template"])
+			ui.add_template("Body", href_list["switch_template"])
 
 	if(href_list["Light"])
 		fon = !fon
