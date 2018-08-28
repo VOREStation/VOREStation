@@ -8,10 +8,6 @@
 	if(!effective_force || blocked >= 100)
 		return 0
 
-	//Hulk modifier
-	if(HULK in user.mutations)
-		effective_force *= 2
-
 	//If the armor soaks all of the damage, it just skips the rest of the checks
 	if(effective_force <= soaked)
 		return 0
