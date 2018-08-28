@@ -71,13 +71,7 @@
 	if(!istype(P))
 		return
 
-	// Certain statuses make it harder to aim, blindness especially.  Same chances as melee, however guns accuracy uses multiples of 15.
-	if(user.eye_blind)
-		P.accuracy -= 75
-	if(user.eye_blurry)
-		P.accuracy -= 30
-	if(user.confused)
-		P.accuracy -= 45
+	P.accuracy -= user.get_accuracy_penalty()
 
 	// Some modifiers make it harder or easier to hit things.
 	for(var/datum/modifier/M in user.modifiers)

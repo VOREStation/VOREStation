@@ -590,13 +590,7 @@
 	P.accuracy = accuracy + acc_mod
 	P.dispersion = disp_mod
 
-	// Certain statuses make it harder to aim, blindness especially.  Same chances as melee, however guns accuracy uses multiples of 15.
-	if(user.eye_blind)
-		P.accuracy -= 75
-	if(user.eye_blurry)
-		P.accuracy -= 30
-	if(user.confused)
-		P.accuracy -= 45
+	P.accuracy -= user.get_accuracy_penalty()
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
