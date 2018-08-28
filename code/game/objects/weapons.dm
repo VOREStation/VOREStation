@@ -34,11 +34,9 @@
 			continue
 		if(SA == target) // We (presumably) already hit the target before cleave() was called.  orange() should prevent this but just to be safe...
 			continue
-		if(user.faction == SA.faction) // Avoid friendly fire.
-			continue
 		if(!SA.Adjacent(user) || !SA.Adjacent(target)) // Cleaving only hits mobs near the target mob and user.
 			continue
-		if(resolve_attackby(SA, user)) // Hit them with the weapon.  This won't cause recursive cleaving due to the cleaving variable being set to true.
+		if(resolve_attackby(SA, user, attack_modifier = 0.5)) // Hit them with the weapon.  This won't cause recursive cleaving due to the cleaving variable being set to true.
 			hit_mobs++
 
 	cleave_visual(user, target)
