@@ -74,7 +74,7 @@
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/gunshot_heavy.ogg'
-	ammo_type = /obj/item/ammo_casing/a45r
+	ammo_type = /obj/item/ammo_casing/a45/rubber
 	max_shells = 7
 
 

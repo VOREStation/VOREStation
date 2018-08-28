@@ -27,7 +27,11 @@
 				var/grass_path = pick(typesof(/obj/structure/flora/grass)-/obj/structure/flora/grass)
 				new grass_path(T)
 			if(prob(5))
+<<<<<<< HEAD
 				var/mob_type = pick(list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse))
+=======
+				var/mob_type = pick(list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse))
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 				new mob_type(T)
 		if(5 to 6)
 			if(prob(20))

@@ -10,6 +10,13 @@
 	damage_absorption = list("brute"=0.7,"fire"=1,"bullet"=0.7,"laser"=0.85,"energy"=1,"bomb"=0.8)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
 
+	max_hull_equip = 2
+	max_weapon_equip = 2
+	max_utility_equip = 1
+	max_universal_equip = 1
+	max_special_equip = 1
+	cargo_capacity = 1
+
 /*
 /obj/mecha/combat/range_action(target as obj|mob|turf)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)

@@ -6,7 +6,11 @@
 	w_class = ITEMSIZE_SMALL
 	matter = list("glass" = 200)
 	flags = NOBLUDGEON
+<<<<<<< HEAD
 	var/list/accept_mobs = list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse)
+=======
+	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse)
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
 
 /obj/item/glass_jar/New()

@@ -291,8 +291,12 @@
 		if(istype(mob.buckled))// VOREStation Removal - , /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
+<<<<<<< HEAD
 			move_delay = world.time + tickcomp
 			//drunk driving
+=======
+			mob.move_delay = world.time + tickcomp			//drunk driving
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 			if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
 				direct = turn(direct, pick(90, -90))
 			return mob.buckled.relaymove(mob,direct)
@@ -561,4 +565,25 @@
 
 /obj/item/weapon/storage/on_loc_moved(atom/oldloc)
 	for(var/obj/O in contents)
+<<<<<<< HEAD
 		O.on_loc_moved(oldloc)
+=======
+		O.on_loc_moved(oldloc)
+
+/client/verb/moveup()
+	set name = ".moveup"
+	set instant = 1
+	Move(get_step(mob, NORTH), NORTH)
+/client/verb/movedown()
+	set name = ".movedown"
+	set instant = 1
+	Move(get_step(mob, SOUTH), SOUTH)
+/client/verb/moveright()
+	set name = ".moveright"
+	set instant = 1
+	Move(get_step(mob, EAST), EAST)
+/client/verb/moveleft()
+	set name = ".moveleft"
+	set instant = 1
+	Move(get_step(mob, WEST), WEST)
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)

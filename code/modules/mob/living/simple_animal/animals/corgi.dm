@@ -207,6 +207,7 @@
 					set_dir(i)
 					sleep(1)
 
+
 //Technically this should be like, its own file or something or a subset of dog but whatever. Not a coder.
 /mob/living/simple_animal/corgi/tamaskan
 	name = "tamaskan"

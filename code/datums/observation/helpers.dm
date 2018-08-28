@@ -11,8 +11,8 @@
 
 /proc/register_all_movement(var/event_source, var/listener)
 	moved_event.register(event_source, listener, /atom/movable/proc/recursive_move)
-	dir_set_event.register(event_source, listener, /atom/proc/recursive_dir_set)
+	GLOB.dir_set_event.register(event_source, listener, /atom/proc/recursive_dir_set)
 
 /proc/unregister_all_movement(var/event_source, var/listener)
 	moved_event.unregister(event_source, listener, /atom/movable/proc/recursive_move)
-	dir_set_event.unregister(event_source, listener, /atom/proc/recursive_dir_set)
+	GLOB.dir_set_event.unregister(event_source, listener, /atom/proc/recursive_dir_set)
