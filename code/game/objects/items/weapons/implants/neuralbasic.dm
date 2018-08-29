@@ -8,8 +8,8 @@
 /obj/item/weapon/implant/neural/post_implant(var/mob/source)
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
-		if(H.species.has_organ["brain"])
-			var/obj/item/organ/internal/brain/possible_brain = H.internal_organs_by_name["brain"]
+		if(H.species.has_organ[O_BRAIN])
+			var/obj/item/organ/internal/brain/possible_brain = H.internal_organs_by_name[O_BRAIN]
 			my_brain = possible_brain //Organs will take damage all the same.
 			if(istype(possible_brain) && my_brain.can_assist())		//If the brain is infact a brain, and not something special like an MMI.
 				my_brain.implant_assist(target_state)
