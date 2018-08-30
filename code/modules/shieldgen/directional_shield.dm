@@ -360,7 +360,7 @@
 		forceMove(my_tool)
 	if(active)
 		my_tool.set_ready_state(0)
-		if(my_mecha.has_charge(my_tool.energy_drain * 100)) //Stops at around 2000 charge.
+		if(my_mecha.has_charge(my_tool.energy_drain * 50)) //Stops at around 1000 charge.
 			my_mecha.use_power(my_tool.energy_drain)
 		else
 			destroy_shields()
