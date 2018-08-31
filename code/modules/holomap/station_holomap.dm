@@ -123,7 +123,7 @@
 			user.client.images |= holomap_datum.station_map
 
 			watching_mob = user
-			moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
+			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
 			update_use_power(2)
@@ -152,7 +152,7 @@
 			var/mob/M = watching_mob
 			spawn(5) //we give it time to fade out
 				M.client.images -= holomap_datum.station_map
-		moved_event.unregister(watching_mob, src)
+		GLOB.moved_event.unregister(watching_mob, src)
 		GLOB.dir_set_event.unregister(watching_mob, src)
 		destroyed_event.unregister(watching_mob, src)
 	watching_mob = null
