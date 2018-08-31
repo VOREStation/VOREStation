@@ -507,3 +507,15 @@
 		if(!isnull(M.evasion))
 			result += M.evasion
 	return result
+
+/mob/living/proc/get_accuracy_penalty()
+	// Certain statuses make it harder to score a hit.
+	var/accuracy_penalty = 0
+	if(eye_blind)
+		accuracy_penalty += 75
+	if(eye_blurry)
+		accuracy_penalty += 30
+	if(confused)
+		accuracy_penalty += 45
+
+	return accuracy_penalty
