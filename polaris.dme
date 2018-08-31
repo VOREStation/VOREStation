@@ -1005,6 +1005,7 @@
 #include "code\game\objects\items\weapons\implants\implantlanguage.dm"
 #include "code\game\objects\items\weapons\implants\implantpad.dm"
 #include "code\game\objects\items\weapons\implants\implantuplink.dm"
+#include "code\game\objects\items\weapons\implants\neuralbasic.dm"
 #include "code\game\objects\items\weapons\material\ashtray.dm"
 #include "code\game\objects\items\weapons\material\bats.dm"
 #include "code\game\objects\items\weapons\material\chainsaw.dm"
