@@ -20,7 +20,7 @@
 
 	var/list/preview = list()
 	template.preload_size(template.mappath, orientation)
-	for(var/S in template.get_affected_turfs(T,centered = TRUE, orientation))
+	for(var/S in template.get_affected_turfs(T,centered = TRUE, orientation=orientation))
 		preview += image('icons/misc/debug_group.dmi',S ,"red")
 	usr.client.images += preview
 	if(alert(usr,"Confirm location.", "Template Confirm","No","Yes") == "Yes")
@@ -29,7 +29,7 @@
 			usr.client.images -= preview
 			return
 
-		if(template.load(T, centered = TRUE, orientation))
+		if(template.load(T, centered = TRUE, orientation=orientation))
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] has placed a map template ([template.name]).</span>")
 		else
 			to_chat(usr, "Failed to place map")

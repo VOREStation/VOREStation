@@ -39,6 +39,7 @@ var/global/use_preloader = FALSE
 	//How I wish for RAII
 	if(!measureOnly)
 		Master.StartLoadingMap()
+		world << "/dmm_suite/load_map()\t\tPlacing at ([x_offset], [y_offset], [z_offset])"
 	space_key = null
 	#ifdef TESTING
 	turfsSkipped = 0
@@ -99,11 +100,6 @@ var/global/use_preloader = FALSE
 			var/ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
 			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
 
-			if(orientation & (EAST | WEST))
-				xcrd = ycrd // temp variable
-				ycrd = xcrdStart
-				xcrdStart = xcrd
-
 			var/zexpansion = zcrd > world.maxz
 			if(zexpansion && !measureOnly)
 				if(cropMap)
@@ -156,8 +152,6 @@ var/global/use_preloader = FALSE
 
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
-						if(!grid_models[model_key])
-							throw EXCEPTION("Undefined model key in DMM: [dmm_file], [model_key].")
 						line_keys[++line_keys.len] = model_key
 						#ifdef TESTING
 						else
@@ -175,28 +169,28 @@ var/global/use_preloader = FALSE
 				// If it's rotated 180 degrees, the dimensions are the same
 				if(orientation == NORTH)
 					new_key_list.len = num_rows
-					for(var/i in 1 to new_key_list.len)
+					for(var/i = 1 to new_key_list.len)
 						new_key_list[i] = list()
 						new_key_list[i].len = num_cols
 				// Else, the dimensions are swapped
 				else
 					new_key_list.len = num_cols
-					for(var/i in 1 to new_key_list.len)
+					for(var/i = 1 to new_key_list.len)
 						new_key_list[i] = list()
 						new_key_list[i].len = num_rows
 
 				num_rows++ // Buffering against the base index of 1
 				num_cols++
 				// Populate the new list
-				for(var/i in 1 to key_list.len)
-					for(var/j in 1 to key_list[i].len)
+				for(var/i = 1 to new_key_list.len)
+					for(var/j = 1 to new_key_list[i].len)
 						switch(orientation)
 							if(NORTH)
 								new_key_list[i][j] = key_list[num_rows - i][num_cols - j]
 							if(EAST)
-								new_key_list[i][j] = key_list[num_cols - i][j]
+								new_key_list[i][j] = key_list[num_rows - j][i]
 							if(WEST)
-								new_key_list[i][j] = key_list[j][num_rows - i]
+								new_key_list[i][j] = key_list[j][num_cols - i]
 
 				key_list = new_key_list
 
@@ -204,10 +198,10 @@ var/global/use_preloader = FALSE
 				for(var/list/line in key_list)
 					maxx = max(maxx, line.len)
 			else
-				for(var/i in 1 to key_list.len)
+				for(var/i = 1 to key_list.len)
 					if(ycrd <= world.maxy && ycrd >= 1)
 						xcrd = xcrdStart
-						for(var/j = 1 to key_list.len)
+						for(var/j = 1 to key_list[1].len)
 							if(xcrd > world.maxx)
 								if(cropMap)
 									break
@@ -218,7 +212,7 @@ var/global/use_preloader = FALSE
 								var/no_afterchange = no_changeturf || zexpansion
 								if(!no_afterchange || (key_list[i][j] != space_key))
 									if(!grid_models[key_list[i][j]])
-										throw EXCEPTION("Undefined model key in DMM.")
+										throw EXCEPTION("Undefined model key in DMM: [dmm_file], [key_list[i][j]]")
 									parse_grid(grid_models[key_list[i][j]], key_list[i][j], xcrd, ycrd, zcrd, no_afterchange, orientation)
 								#ifdef TESTING
 								else
@@ -303,7 +297,6 @@ var/global/use_preloader = FALSE
 
 			//transform the variables in text format into a list (e.g {var1="derp"; var2; var3=7} => list(var1="derp", var2, var3=7))
 			var/list/fields = list()
-			var/dir_found = FALSE // If dir isn't mapped, then we'll need to add an attribute entry to rotate it according to orientation
 
 			if(variables_start)//if there's any variable
 				full_def = copytext(full_def,variables_start+1,length(full_def))//removing the last '}'
@@ -316,15 +309,11 @@ var/global/use_preloader = FALSE
 						if(istext(value))
 							fields[I] = apply_text_macros(value)
 
-							// Rotate dir if orientation isn't south (default)
-							if(orientation != SOUTH && findtext(splittext(fields[I], "="), " dir ")) // Spaces are necessary, or we might catch other vars
-								var/list/L = splittext(fields[I], " ")
-								L[L.len] = turn(text2num(L.len), dir2angle(orientation) + 180) // South is 0 here, dir2angle assumes north is 0
-								fields[I] = jointext(L, " ")
-								dir_found = TRUE
-
-			if(!dir_found)
-				fields[++fields.len] = "dir = [num2text(orientation)]"
+			// Rotate dir if orientation isn't south (default)
+			if(fields["dir"])
+				fields["dir"] = turn(fields["dir"], dir2angle(orientation) + 180)
+			else
+				fields["dir"] = turn(SOUTH, dir2angle(orientation) + 180)
 
 			//then fill the members_attributes list with the corresponding variables
 			members_attributes.len++
