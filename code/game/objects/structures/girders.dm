@@ -317,12 +317,19 @@
 	return
 
 /obj/structure/girder/cult
+	name = "column"
 	icon= 'icons/obj/cult.dmi'
 	icon_state= "cultgirder"
 	health = 250
 	cover = 70
-	girder_material = DEFAULT_WALL_MATERIAL
+	girder_material = "cult"
 	applies_material_colour = 0
+
+/obj/structure/girder/cult/update_icon()
+	if(anchored)
+		icon_state = "cultgirder"
+	else
+		icon_state = "displaced"
 
 /obj/structure/girder/cult/dismantle()
 	new /obj/effect/decal/remains/human(get_turf(src))
