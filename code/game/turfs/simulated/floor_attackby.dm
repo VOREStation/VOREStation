@@ -9,8 +9,6 @@
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
 
-<<<<<<< HEAD
-=======
 	if(istype(C, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
 		var/turf/T = GetAbove(src)
@@ -55,7 +53,6 @@
 					break
 		return
 
->>>>>>> 14d8df2... Merge pull request #5424 from Neerti/outdoor_shuttle_fix
 	if(flooring)
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)
