@@ -108,9 +108,5 @@
 				lighting_build_overlay()
 			else
 				lighting_clear_overlay()
-<<<<<<< HEAD
-=======
-
 	if(preserve_outdoors)
 		outdoors = old_outdoors
->>>>>>> 14d8df2... Merge pull request #5424 from Neerti/outdoor_shuttle_fix
