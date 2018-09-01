@@ -51,7 +51,6 @@
 	siemens_coefficient = 0.2
 	phoronproof = 1
 	offline_slowdown = 5
-	slowdown = 2
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 
 	air_type = /obj/item/weapon/tank/vox
