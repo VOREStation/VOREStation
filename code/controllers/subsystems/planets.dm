@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(planets)
 	while(currentlist.len)
 		var/turf/simulated/OT = currentlist[currentlist.len]
 		currentlist.len--
-		if(istype(OT) && z_to_planet.len >= OT.z && z_to_planet[OT.z])
+		if(istype(OT) && OT.outdoors && z_to_planet.len >= OT.z && z_to_planet[OT.z])
 			var/datum/planet/P = z_to_planet[OT.z]
 			P.planet_floors |= OT
 			OT.vis_contents |= P.weather_holder.visuals
