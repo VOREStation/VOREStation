@@ -102,11 +102,9 @@ var/list/global/map_templates = list()
 	return TRUE
 
 /datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
-	world << "/datum/map_template/proc/load()\tPlacing at ([T.x], [T.y], [T.z])"
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
-		world << "\t\t\t\t\tCentered placement to ([T.x], [T.y], [T.z])"
 	if(!T)
 		return
 	if(T.x+width > world.maxx)
@@ -235,10 +233,8 @@ var/list/global/map_templates = list()
 			var/turf/T = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z_level)
 			var/valid = TRUE
 
-			world << "Attempting to place [chosen_template.name] at ([T.x], [T.y], [T.z])"
 			for(var/turf/check in chosen_template.get_affected_turfs(T,TRUE,orientation))
 				var/area/new_area = get_area(check)
-			//	world << "Checking ([check.x], [check.y], [check.z])\t area = [new_area.type]"
 				if(!(istype(new_area, whitelist)))
 					valid = FALSE // Probably overlapping something important.
 			//		world << "Invalid due to overlapping with area [new_area.type] at ([check.x], [check.y], [check.z]), when attempting to place at ([T.x], [T.y], [T.z])."

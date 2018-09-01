@@ -39,7 +39,6 @@ var/global/use_preloader = FALSE
 	//How I wish for RAII
 	if(!measureOnly)
 		Master.StartLoadingMap()
-		world << "/dmm_suite/load_map()\t\tPlacing at ([x_offset], [y_offset], [z_offset])"
 	space_key = null
 	#ifdef TESTING
 	turfsSkipped = 0
