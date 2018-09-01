@@ -94,6 +94,8 @@
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
 /obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!istype(W))
+		return
 	if(W.is_wirecutter())
 		if(!shock(user, 100))
 			playsound(src, W.usesound, 100, 1)
