@@ -1,15 +1,18 @@
 
 /datum/species
 	//var/vore_numbing = 0
-	var/gets_food_nutrition = 1 // If this is set to 0, the person can't get nutrition from food.
+	var/gets_food_nutrition = TRUE // If this is set to 0, the person can't get nutrition from food.
 	var/metabolism = 0.0015
-	var/lightweight = 0 //Oof! Nonhelpful bump stumbles.
-	var/trashcan = 0 //It's always sunny in the wrestling ring.
+	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.
+	var/trashcan = FALSE //It's always sunny in the wrestling ring.
+	var/base_species = null // Unused outside of a few species
+	var/selects_bodytype = FALSE // Allows the species to choose from body types intead of being forced to be just one.
 
 /datum/species/custom
 	name = SPECIES_CUSTOM
 	name_plural = "Custom"
-	var/base_species = "Human"
+	selects_bodytype = TRUE
+	base_species = SPECIES_HUMAN
 
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 
