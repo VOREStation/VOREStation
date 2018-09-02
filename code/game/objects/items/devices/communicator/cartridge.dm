@@ -556,14 +556,12 @@
 // Supply Cartridge:
 // Templates
 //  *- Supply Records
-//  ?- Supply Bot Access
 /obj/item/weapon/commcard/supply
 	name = "\improper Space Parts & Space Vendors cartridge"
 	desc = "Perfect for the Quartermaster on the go!"
 	icon_state = "cart-q"
 	ui_templates = list(
-			list("name" = "Supply Records", "template" = "supply_records.tmpl"),
-			list("name" = "Supply Bot Control", "template" = "supply_bot_access.tmpl")
+			list("name" = "Supply Records", "template" = "supply_records.tmpl")
 		)
 
 /obj/item/weapon/commcard/supply/New()
@@ -822,7 +820,7 @@
 //  *- Security Records
 //  *- Power Monitoring
 //  *- Supply Records
-//  ?- Supply Bot Access
+//  X- Supply Bot Access - Mulebots usually break when used
 //  *- Security Bot Access
 //  *- Janitorial Locator Magicbox
 //  X- GPS Access - Balance
@@ -898,7 +896,7 @@
 
 // Mercenary Cartridge
 // Templates
-//  -- Merc Shuttle Door Controller
+//  *- Merc Shuttle Door Controller
 /obj/item/weapon/commcard/mercenary
 	name = "\improper Detomatix cartridge"
 	icon_state = "cart"
