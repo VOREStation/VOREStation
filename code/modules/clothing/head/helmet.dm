@@ -142,8 +142,7 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state_slots = list(slot_r_hand_str = "vhelmet", slot_l_hand_str = "vhelmet")
-	flags = BLOCKHAIR
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	siemens_coefficient = 1
 	valid_accessory_slots = null
 

@@ -166,7 +166,7 @@ emp_act
 // Checked in borer code
 /mob/living/carbon/human/proc/check_head_coverage()
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
-	var/list/body_parts = H.get_covering_clothing()
+	var/list/body_parts = H.get_covering_clothing(EYES)
 	if(LAZYLEN(body_parts))
 		return 1
 	return 0
@@ -174,7 +174,7 @@ emp_act
 //Used to check if they can be fed food/drinks/pills
 /mob/living/carbon/human/proc/check_mouth_coverage()
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
-	var/list/protective_gear = H.get_covering_clothing()
+	var/list/protective_gear = H.get_covering_clothing(FACE)
 	for(var/obj/item/gear in protective_gear)
 		if(istype(gear) && (gear.body_parts_covered & FACE) && !(gear.item_flags & FLEXIBLEMATERIAL))
 			return gear
