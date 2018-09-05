@@ -37,8 +37,8 @@ var/list/global/map_templates = list()
 	if(rename)
 		name = rename
 
-/datum/map_template/proc/preload_size(path)
-	var/bounds = maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE)
+/datum/map_template/proc/preload_size(path, orientation = SOUTH)
+	var/bounds = maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
 		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
 		height = bounds[MAP_MAXY]
@@ -82,7 +82,7 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE)
+/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH)
 	var/x = 1
 	var/y = 1
 
@@ -90,7 +90,7 @@ var/list/global/map_templates = list()
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
-	var/list/bounds = maploader.load_map(file(mappath), x, y, no_changeturf = TRUE)
+	var/list/bounds = maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
 	if(!bounds)
 		return FALSE
 
@@ -102,10 +102,10 @@ var/list/global/map_templates = list()
 	on_map_loaded(world.maxz) //VOREStation Edit
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE)
+/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
 	var/old_T = T
 	if(centered)
-		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
+		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
 	if(!T)
 		return
 	if(T.x+width > world.maxx)
@@ -114,9 +114,9 @@ var/list/global/map_templates = list()
 		return
 
 	if(annihilate)
-		annihilate_bounds(old_T, centered)
+		annihilate_bounds(old_T, centered, orientation)
 
-	var/list/bounds = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE)
+	var/list/bounds = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
 	if(!bounds)
 		return
 
@@ -130,18 +130,18 @@ var/list/global/map_templates = list()
 	loaded++
 	return TRUE
 
-/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE)
+/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = SOUTH)
 	var/turf/placement = T
 	if(centered)
-		var/turf/corner = locate(placement.x - round(width/2), placement.y - round(height/2), placement.z)
+		var/turf/corner = locate(placement.x - round(((orientation & NORTH|SOUTH) ? width : height)/2), placement.y - round(((orientation & NORTH|SOUTH) ? height : width)/2), placement.z)
 		if(corner)
 			placement = corner
-	return block(placement, locate(placement.x+width-1, placement.y+height-1, placement.z))
+	return block(placement, locate(placement.x+((orientation & NORTH|SOUTH) ? width : height)-1, placement.y+((orientation & NORTH|SOUTH) ? height : width)-1, placement.z))
 
-/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE)
+/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
 	var/deleted_atoms = 0
 	admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
-	var/list/turfs_to_clean = get_affected_turfs(origin, centered)
+	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
@@ -152,9 +152,9 @@ var/list/global/map_templates = list()
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name)
+/proc/load_new_z_level(var/file, var/name, var/orientation = SOUTH)
 	var/datum/map_template/template = new(file, name)
-	template.load_new_z()
+	template.load_new_z(orientation)
 
 // Very similar to the /tg/ version.
 /proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
@@ -226,17 +226,19 @@ var/list/global/map_templates = list()
 		var/specific_sanity = 100 // A hundred chances to place the chosen submap.
 		while(specific_sanity > 0)
 			specific_sanity--
-			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(chosen_template.width / 2)
-			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(chosen_template.height / 2)
+			var/orientation = pick(cardinal)
+			chosen_template.preload_size(chosen_template.mappath, orientation)
+			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
+			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)
 			var/z_level = pick(z_levels)
 			var/turf/T = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z_level)
 			var/valid = TRUE
 
-			for(var/turf/check in chosen_template.get_affected_turfs(T,1))
+			for(var/turf/check in chosen_template.get_affected_turfs(T,TRUE,orientation))
 				var/area/new_area = get_area(check)
 				if(!(istype(new_area, whitelist)))
 					valid = FALSE // Probably overlapping something important.
-				//	world << "Invalid due to overlapping with area [new_area.type], when wanting area [whitelist]."
+			//		world << "Invalid due to overlapping with area [new_area.type] at ([check.x], [check.y], [check.z]), when attempting to place at ([T.x], [T.y], [T.z])."
 					break
 				CHECK_TICK
 
@@ -245,10 +247,10 @@ var/list/global/map_templates = list()
 			if(!valid)
 				continue
 
-			admin_notice("Submap \"[chosen_template.name]\" placed at ([T.x], [T.y], [T.z])", R_DEBUG)
+			admin_notice("Submap \"[chosen_template.name]\" placed at ([T.x], [T.y], [T.z])\n", R_DEBUG)
 
 			// Do loading here.
-			chosen_template.load(T, centered = TRUE) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
+			chosen_template.load(T, centered = TRUE, orientation=orientation) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
 
 			CHECK_TICK
 
