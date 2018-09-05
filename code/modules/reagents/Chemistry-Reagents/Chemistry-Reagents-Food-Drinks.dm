@@ -426,7 +426,7 @@
 		if(alien != IS_SLIME)
 			return
 	else if(eyes_covered)
-		to_chat(M, "<span class='warning'>Your [safe_thing] protect you from most of the pepperspray!</span>")
+		to_chat(M, "<span class='warning'>Your [safe_thing] protects you from most of the pepperspray!</span>")
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 3)
 		M.Blind(effective_strength)
 		M.Stun(5)
