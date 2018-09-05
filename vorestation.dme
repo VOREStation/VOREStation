@@ -2124,6 +2124,7 @@
 #include "code\modules\mob\living\silicon\pai\say.dm"
 #include "code\modules\mob\living\silicon\pai\software.dm"
 #include "code\modules\mob\living\silicon\pai\software_modules.dm"
+#include "code\modules\mob\living\silicon\pai\software_modules_vr.dm"
 #include "code\modules\mob\living\silicon\robot\analyzer.dm"
 #include "code\modules\mob\living\silicon\robot\component.dm"
 #include "code\modules\mob\living\silicon\robot\custom_sprites.dm"
