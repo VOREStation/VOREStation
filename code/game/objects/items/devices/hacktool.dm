@@ -62,7 +62,7 @@
 
 	if(hack_result && in_hack_mode)
 		user << "<span class='notice'>Your hacking attempt was succesful!</span>"
-		user.playsound_local(get_turf(src), 'sound/piano/A#6.ogg', 50)
+		user.playsound_local(get_turf(src), 'sound/instruments/piano/An6.ogg', 50)
 	else
 		user << "<span class='warning'>Your hacking attempt failed!</span>"
 		return 0
