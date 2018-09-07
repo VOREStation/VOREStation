@@ -161,3 +161,11 @@
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+
+/obj/item/clothing/glasses/hud/security/eyepatch
+    name = "Security Hudpatch"
+    desc = "An eyepatch with built in scanners, that analyzes those in view and provides accurate data about their ID status and security records."
+    icon_state = "eyepatch"
+    item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
+    body_parts_covered = 0
+    enables_planes = list(VIS_CH_ID,VIS_CH_WANTED,VIS_CH_IMPTRACK,VIS_CH_IMPLOYAL,VIS_CH_IMPCHEM)
