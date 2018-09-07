@@ -2,7 +2,7 @@
 "b" = (/turf/simulated/wall,/area/submap/cave/vault3)
 "c" = (/obj/effect/alien/weeds,/obj/random/multiple/minevault,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "d" = (/obj/structure/loot_pile/maint/technical,/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"e" = (/obj/effect/alien/weeds,/mob/living/simple_animal/hostile/alien/drone,/turf/simulated/floor/plating,/area/submap/cave/vault3)
+"e" = (/obj/effect/alien/weeds,/mob/living/simple_mob/animal/space/alien/drone,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "f" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "g" = (/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "h" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/effect/alien/weeds/node,/turf/simulated/floor/plating,/area/submap/cave/vault3)

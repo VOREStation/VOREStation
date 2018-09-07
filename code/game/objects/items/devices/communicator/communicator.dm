@@ -298,8 +298,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	all_communicators -= src
 	processing_objects -= src
 	listening_objects.Remove(src)
-	qdel_null(camera)
-	qdel_null(exonet)
+	QDEL_NULL(camera)
+	QDEL_NULL(exonet)
 
 	return ..()
 

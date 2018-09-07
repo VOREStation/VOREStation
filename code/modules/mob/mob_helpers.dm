@@ -539,7 +539,7 @@ proc/is_blind(A)
 	if(. == SAFE_PERP)
 		return SAFE_PERP
 
-	if(!istype(src, /mob/living/simple_animal/retaliate/goat))
+	if(!istype(src, /mob/living/simple_mob/goat))
 		if(hostile)
 			if(faction != "neutral") // Otherwise Runtime gets killed.
 				threatcount += 4

@@ -266,10 +266,10 @@
 /mob/living/simple_animal/parrot/can_fall() // Poly can fly.
 	return FALSE
 
-/mob/living/simple_animal/hostile/carp/can_fall() // So can carp apparently.
+/mob/living/simple_mob/space/carp/can_fall() // So can carp apparently.
 	return FALSE
 
-/mob/living/simple_animal/construct/can_fall() //As do Constructs.
+/mob/living/simple_mob/construct/can_fall() //As do Constructs.
 	return FALSE
 
 // Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.

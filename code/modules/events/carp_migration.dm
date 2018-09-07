@@ -37,7 +37,7 @@
 	while (i <= num_groups)
 		var/group_size = rand(group_size_min, group_size_max)
 		for (var/j = 1, j <= group_size, j++)
-			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(spawn_locations[i]))
+			spawned_carp.Add(new /mob/living/simple_mob/animal/space/carp(spawn_locations[i]))
 		i++
 
 /datum/event/carp_migration/end()

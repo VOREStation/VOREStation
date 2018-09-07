@@ -24,9 +24,10 @@
 	var/list/allowed_mobs = list(
 		/mob/living/bot,
 		/mob/living/simple_animal/cat,
-		/mob/living/simple_animal/chick,
-		/mob/living/simple_animal/chicken,
+		/mob/living/simple_mob/animal/passive/chick,
+		/mob/living/simple_mob/animal/passive/chicken,
 		/mob/living/simple_animal/corgi,
+<<<<<<< HEAD
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/crab,
 		/mob/living/simple_animal/lizard,
@@ -44,6 +45,26 @@
 		/mob/living/simple_animal/retaliate/diyaab, //Doubt these will get used but might as well,
 		/mob/living/simple_animal/hostile/savik,
 		/mob/living/simple_animal/hostile/shantak
+=======
+		/mob/living/simple_mob/animal/passive/cow,
+		/mob/living/simple_mob/animal/passive/crab,
+		/mob/living/simple_mob/animal/passive/lizard,
+		/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple_animal/parrot,
+		/mob/living/simple_animal/slime,
+		/mob/living/simple_mob/animal/passive/tindalos,
+		/mob/living/simple_mob/animal/passive/yithian,
+		/mob/living/simple_mob/animal/space/bear,
+		/mob/living/simple_mob/animal/space/carp,
+		/mob/living/simple_mob/animal/space/bats,
+		/mob/living/simple_mob/mechanical/viscerator,
+		/mob/living/simple_mob/mechanical/combat_drone,
+		/mob/living/simple_mob/animal/giant_spider,
+		/mob/living/simple_mob/mechanical/hivebot,
+		/mob/living/simple_mob/animal/sif/diyaab,
+		/mob/living/simple_mob/animal/sif/savik,
+		/mob/living/simple_mob/animal/sif/shantak
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 		)
 
 //This unfortunately is gonna be rather messy due to the various mobtypes involved.

@@ -77,7 +77,7 @@
 		src.set_dir(turn(src.dir, 90))
 		return
 	else
-		if(istype(usr,/mob/living/simple_animal/mouse))
+		if(istype(usr,/mob/living/simple_mob/animal/passive/mouse))
 			return
 		if(!usr || !isturf(usr.loc))
 			return

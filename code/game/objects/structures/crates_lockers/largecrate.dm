@@ -61,15 +61,15 @@
 
 /obj/structure/largecrate/animal/corgi
 	name = "corgi carrier"
-	starts_with = list(/mob/living/simple_animal/corgi)
+	starts_with = list(/mob/living/simple_mob/animal/passive/dog/corgi)
 
 /obj/structure/largecrate/animal/cow
 	name = "cow crate"
-	starts_with = list(/mob/living/simple_animal/cow)
+	starts_with = list(/mob/living/simple_mob/animal/passive/cow)
 
 /obj/structure/largecrate/animal/goat
 	name = "goat crate"
-	starts_with = list(/mob/living/simple_animal/retaliate/goat)
+	starts_with = list(/mob/living/simple_mob/goat)
 
 /obj/structure/largecrate/animal/cat
 	name = "cat carrier"
@@ -80,4 +80,4 @@
 
 /obj/structure/largecrate/animal/chick
 	name = "chicken crate"
-	starts_with = list(/mob/living/simple_animal/chick = 5)
+	starts_with = list(/mob/living/simple_mob/animal/passive/chick = 5)

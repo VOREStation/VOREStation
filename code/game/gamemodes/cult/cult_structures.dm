@@ -108,10 +108,17 @@
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
+<<<<<<< HEAD
 		/mob/living/simple_animal/hostile/scarybat,
 		/mob/living/simple_animal/hostile/creature/vore,
 		/mob/living/simple_animal/hostile/faithless
 	)   // Vorestation Edit
+=======
+		/mob/living/simple_mob/animal/space/bats,
+		/mob/living/simple_mob/creature,
+		/mob/living/simple_mob/faithless
+	)
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 
 /obj/effect/gateway/active/cult
 	light_range=5

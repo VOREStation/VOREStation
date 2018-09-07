@@ -16,15 +16,24 @@
 	desc = "Chitter chitter."
 	summoned_mob_type = null
 	summon_options = list(
+<<<<<<< HEAD
 		"Mouse"			=	/mob/living/simple_animal/mouse,
 		"Lizard"		=	/mob/living/simple_animal/lizard,
 		"Chicken"		=	/mob/living/simple_animal/chicken,
 		"Chick"			=	/mob/living/simple_animal/chick,
 		"Crab"			=	/mob/living/simple_animal/crab,
+=======
+		"Mouse"			=	/mob/living/simple_mob/animal/passive/mouse,
+		"Lizard"		=	/mob/living/simple_mob/animal/passive/lizard,
+		"Chicken"		=	/mob/living/simple_mob/animal/passive/chicken,
+		"Chick"			=	/mob/living/simple_mob/animal/passive/chick,
+		"Crab"			=	/mob/living/simple_mob/animal/passive/crab,
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 		"Parrot"		=	/mob/living/simple_animal/parrot,
-		"Goat"			=	/mob/living/simple_animal/retaliate/goat,
+		"Goat"			=	/mob/living/simple_mob/goat,
 		"Cat"			=	/mob/living/simple_animal/cat,
 		"Kitten"		=	/mob/living/simple_animal/cat/kitten,
+<<<<<<< HEAD
 		"Corgi"			=	/mob/living/simple_animal/corgi,
 		"Corgi Pup"		=	/mob/living/simple_animal/corgi/puppy,
 		"BAT"			=	/mob/living/simple_animal/hostile/scarybat,
@@ -34,6 +43,17 @@
 		"CARP"			=	/mob/living/simple_animal/hostile/carp,
 		"BEAR"			=	/mob/living/simple_animal/hostile/bear
 		) // Vorestation edits to add vore versions.
+=======
+		"Corgi"			=	/mob/living/simple_mob/animal/passive/dog/corgi,
+		"Corgi Pup"		=	/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+		"BAT"			=	/mob/living/simple_mob/animal/space/bats,
+		"SPIDER"		=	/mob/living/simple_mob/animal/giant_spider,
+		"SPIDER HUNTER"	=	/mob/living/simple_mob/animal/giant_spider/hunter,
+		"SPIDER NURSE"	=	/mob/living/simple_mob/animal/giant_spider/nurse,
+		"CARP"			=	/mob/living/simple_mob/space/carp,
+		"BEAR"			=	/mob/living/simple_mob/animal/space/bear
+		)
+>>>>>>> 0c0246e... Still more simple_mob conversions (#5523)
 	cooldown = 30
 	instability_cost = 10
 	energy_cost = 1000
