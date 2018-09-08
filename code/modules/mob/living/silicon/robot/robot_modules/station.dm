@@ -172,8 +172,10 @@ var/global/list/robot_modules = list(
 					"XI-ALP" = "heavyStandard",
 					"Basic" = "robot_old",
 					"Android" = "droid",
-					"Drone" = "drone-standard"
+					"Drone" = "drone-standard",
+					"Insekt" = "insekt-Default"
 					)
+
 
 /obj/item/weapon/robot_module/robot/standard/New()
 	..()
@@ -204,7 +206,8 @@ var/global/list/robot_modules = list(
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
 					"Drone" = "drone-surgery",
-					"Handy" = "handy-med"
+					"Handy" = "handy-med",
+					"Insekt" = "insekt-Med"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
@@ -274,7 +277,8 @@ var/global/list/robot_modules = list(
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
 					"Drone - Medical" = "drone-medical",
-					"Drone - Chemistry" = "drone-chemistry"
+					"Drone - Chemistry" = "drone-chemistry",
+					"Insekt" = "insekt-Med"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/crisis/New()
@@ -501,7 +505,8 @@ var/global/list/robot_modules = list(
 					"XI-ALP" = "heavySec",
 					"Basic" = "secborg",
 					"Black Knight" = "securityrobot",
-					"Drone" = "drone-sec"
+					"Drone" = "drone-sec",
+					"Insekt" = "insekt-Sec"
 					)
 
 /obj/item/weapon/robot_module/robot/security/general/New()
@@ -714,7 +719,8 @@ var/global/list/robot_modules = list(
 					"WTOperator" = "sleekscience",
 					"Droid" = "droid-science",
 					"Drone" = "drone-science",
-					"Handy" = "handy-science"
+					"Handy" = "handy-science",
+					"Insekt" = "insekt-Sci"
 					)
 
 /obj/item/weapon/robot_module/robot/research/New()
@@ -773,7 +779,8 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = 1
 	sprites = list(
 					"Haruka" = "marinaCB",
-					"Combat Android" = "droid-combat"
+					"Combat Android" = "droid-combat",
+					"Insekt" = "insekt-Combat"
 					)
 
 /obj/item/weapon/robot_module/robot/security/combat/New()
