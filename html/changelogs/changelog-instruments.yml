@@ -1,0 +1,5 @@
+author: "Poojawa"
+delete-after: True
+changes: 
+  - rscadd: "Ported /vg/ instrument code, improved the UI of instruments."
+  - rscadd: "Added a client side pref that mutes instruments being played for you."
