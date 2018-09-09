@@ -177,3 +177,24 @@
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Jumper kit crate"
 	access = access_robotics
+
+/datum/supply_pack/robotics/bike
+	name = "Spacebike Crate"
+	contains = list()
+	cost = 350
+	containertype = /obj/structure/largecrate/vehicle/bike
+	containername = "Spacebike Crate"
+
+/datum/supply_pack/robotics/quadbike
+	name = "ATV Crate"
+	contains = list()
+	cost = 300
+	containertype = /obj/structure/largecrate/vehicle/quadbike
+	containername = "ATV Crate"
+
+/datum/supply_pack/robotics/quadtrailer
+	name = "ATV Trailer Crate"
+	contains = list()
+	cost = 250
+	containertype = /obj/structure/largecrate/vehicle/quadtrailer
+	containername = "ATV Trailer Crate"
