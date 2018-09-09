@@ -398,7 +398,6 @@
 		if("send_to_station")
 			shuttle.launch(src)
 			to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.</span>")
-			post_signal("supply")
 
 		if("cancel_shuttle")
 			shuttle.cancel_launch(src)
