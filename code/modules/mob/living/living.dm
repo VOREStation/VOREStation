@@ -1278,3 +1278,7 @@ default behaviour is:
 
 /mob/living/proc/has_vision()
 	return !(eye_blind || (disabilities & BLIND) || stat || blinded)
+
+
+/mob/living/proc/dirties_floor()	// If we ever decide to add fancy conditionals for making dirty floors (floating, etc), here's the proc.
+	return makes_dirt

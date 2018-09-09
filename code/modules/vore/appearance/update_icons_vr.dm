@@ -40,6 +40,10 @@ var/global/list/wing_icon_cache = list()
 				qdel(overlay)
 
 		if(isTaurTail(tail_style))
+			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
+			if(taurtype.can_ride && !riding_datum)
+				riding_datum = new /datum/riding/taur(src)
+				verbs |= /mob/living/carbon/human/proc/taur_mount
 			return image(tail_s, "pixel_x" = -16)
 		else
 			return image(tail_s)

@@ -56,13 +56,14 @@ SUBSYSTEM_DEF(planets)
 			P.planet_floors -= T
 		else
 			P.planet_walls -= T
+		T.vis_contents -= P.weather_holder.visuals
 
 /datum/controller/subsystem/planets/proc/allocateTurfs(var/initial = FALSE)
 	var/list/currentlist = new_outdoor_turfs
 	while(currentlist.len)
 		var/turf/simulated/OT = currentlist[currentlist.len]
 		currentlist.len--
-		if(istype(OT) && z_to_planet.len >= OT.z && z_to_planet[OT.z])
+		if(istype(OT) && OT.outdoors && z_to_planet.len >= OT.z && z_to_planet[OT.z])
 			var/datum/planet/P = z_to_planet[OT.z]
 			P.planet_floors |= OT
 			OT.vis_contents |= P.weather_holder.visuals
@@ -113,9 +114,9 @@ SUBSYSTEM_DEF(planets)
 	while(currentrun.len)
 		var/datum/planet/P = currentrun[currentrun.len]
 		currentrun.len--
-		
+
 		P.process(last_fire)
-		
+
 		//Sun light needs changing
 		if(P.needs_work & PLANET_PROCESS_SUN)
 			P.needs_work &= ~PLANET_PROCESS_SUN

@@ -996,7 +996,6 @@
 /turf/simulated/floor/tiled,
 /area/security/brig)
 "bE" = (
-/obj/item/weapon/stool/padded,
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -1009,6 +1008,9 @@
 /obj/effect/floor_decal/corner/lightorange/bordercorner{
 	icon_state = "bordercolorcorner";
 	dir = 4
+	},
+/obj/structure/bed/chair{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
@@ -1723,6 +1725,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "cA" = (
@@ -2502,6 +2505,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "dM" = (
@@ -2826,6 +2830,7 @@
 /area/security/brig)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
 "ev" = (
@@ -3781,6 +3786,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 1
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "gX" = (

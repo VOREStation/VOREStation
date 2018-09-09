@@ -20,9 +20,9 @@ var/decl/observ/turf_changed/turf_changed_event = new()
 * Turf Changed Handling *
 ************************/
 
-/turf/ChangeTurf()
+/turf/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
 	var/old_density = density
 	var/old_opacity = opacity
-	. = ..()
+	. = ..(N, tell_universe, force_lighting_update, preserve_outdoors)
 	if(.)
 		turf_changed_event.raise_event(src, old_density, density, old_opacity, opacity)
