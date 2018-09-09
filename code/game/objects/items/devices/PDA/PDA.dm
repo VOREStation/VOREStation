@@ -1254,7 +1254,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(isnull(cartridge))
 		to_chat(usr, "<span class='notice'>There's no cartridge to eject.</span>")
-		return		
+		return
 
 	cartridge.forceMove(get_turf(src))
 	if(ismob(loc))
@@ -1382,7 +1382,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							to_chat(user, "<span class='notice'>Blood type: [C:blood_DNA[blood]]\nDNA: [blood]</span>")
 
 			if(4)
-				user.visible_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", 1)
+				user.visible_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", "<span class='notice'>You have analyzed [C]'s radiation levels!</span>")
 				to_chat(user, "<span class='notice'>Analyzing Results for [C]:</span>")
 				if(C.radiation)
 					to_chat(user, "<span class='notice'>Radiation Level: [C.radiation]</span>")

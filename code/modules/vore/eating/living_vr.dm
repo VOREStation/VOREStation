@@ -22,7 +22,7 @@
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
 	var/tail_alt = 0					// Tail layer toggle.
 	var/can_be_drop_prey = 0
-	var/can_be_drop_pred = 1	//Mobs are pred by default.
+	var/can_be_drop_pred = 1			// Mobs are pred by default.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -406,7 +406,7 @@
 
 	// Prepare messages
 	if(user == pred) //Feeding someone to yourself
-		attempt_msg = text("<span class='warning'>[] is attemping to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
+		attempt_msg = text("<span class='warning'>[] is attempting to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
 		success_msg = text("<span class='warning'>[] manages to [] [] into their []!</span>",pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
 	else //Feeding someone to another person
 		attempt_msg = text("<span class='warning'>[] is attempting to make [] [] [] into their []!</span>",user,pred,lowertext(belly.vore_verb),prey,lowertext(belly.name))
