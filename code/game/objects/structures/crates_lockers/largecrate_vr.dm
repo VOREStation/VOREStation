@@ -133,3 +133,8 @@
 	starts_with = list(pick(/mob/living/simple_animal/fennec,
 						/mob/living/simple_animal/retaliate/fennix;0.5))
 	return ..()
+
+/obj/structure/largecrate/animal/tabiranth
+	name = "Spirit's Cat Carrier"
+	desc = "Contains kitten."
+	starts_with = list(/mob/living/simple_animal/cat/fluff/tabiranth)
