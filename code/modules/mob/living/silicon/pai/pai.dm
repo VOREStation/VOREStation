@@ -35,7 +35,7 @@
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
-		"Bear" = "bear"  //VOREStation Edit
+		"Bear" = "pai-bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
