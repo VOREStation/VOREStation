@@ -41,11 +41,13 @@
 				I.gurgle_contaminate(src, cont_flavor)
 				items_preserved |= I
 				to_update = TRUE
+				did_an_item = TRUE
 			else
 				I.gurgle_contaminate(src, cont_flavor)
 				digest_item(I)
-			to_update = TRUE
-			did_an_item = TRUE
+				to_update = TRUE
+				if(I.digest_stage <= 0)
+					did_an_item = TRUE
 
 		//Handle eaten mobs
 		else if(isliving(A))
