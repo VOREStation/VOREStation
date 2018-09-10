@@ -31,7 +31,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg','sound/ambience/serspaceamb1.ogg')
 	base_turf = /turf/space
 
-area/space/atmosalert()
+/area/space/atmosalert()
 	return
 
 /area/space/fire_alert()
@@ -450,20 +450,6 @@ area/space/atmosalert()
 	name = "\improper Moon - Artifact"
 	icon_state = "cave"
 	sound_env = SMALL_ENCLOSED
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /area/planet/clown
 	name = "\improper Clown Planet"
@@ -906,9 +892,6 @@ area/space/atmosalert()
 /area/maintenance/substation/security // Security, Brig, Permabrig, etc.
 	name = "Security Substation"
 
-
-
-
 //Hallway
 
 /area/hallway/primary/
@@ -1115,7 +1098,7 @@ area/space/atmosalert()
 	name = "\improper Research Server Room"
 	icon_state = "server"
 
-//Crew
+//Civilian
 
 /area/crew_quarters
 	name = "\improper Dormitories"
@@ -1979,6 +1962,24 @@ area/space/atmosalert()
 	name = "\improper Vacant Office"
 	icon_state = "security"
 
+/area/janitor/
+	name = "\improper Custodial Closet"
+	icon_state = "janitor"
+
+/area/hydroponics
+	name = "\improper Hydroponics"
+	icon_state = "hydro"
+
+/area/hydroponics/cafegarden
+	name = "\improper Cafeteria Garden"
+	icon_state = "cafe_garden"
+
+/area/hydroponics/garden
+	name = "\improper Garden"
+	icon_state = "garden"
+
+// SUPPLY
+
 /area/quartermaster
 	name = "\improper Quartermasters"
 	icon_state = "quart"
@@ -2012,23 +2013,20 @@ area/space/atmosalert()
 	name = "\improper Cargo Mining Dock"
 	icon_state = "mining"
 
-/area/janitor/
-	name = "\improper Custodial Closet"
-	icon_state = "janitor"
+/area/supply/station
+	name = "Supply Shuttle"
+	icon_state = "shuttle3"
+	requires_power = 0
+	base_turf = /turf/space
 
-/area/hydroponics
-	name = "\improper Hydroponics"
-	icon_state = "hydro"
+/area/supply/dock
+	name = "Supply Shuttle"
+	icon_state = "shuttle3"
+	requires_power = 0
+	base_turf = /turf/space
 
-/area/hydroponics/cafegarden
-	name = "\improper Cafeteria Garden"
-	icon_state = "cafe_garden"
+// SCIENCE
 
-/area/hydroponics/garden
-	name = "\improper Garden"
-	icon_state = "garden"
-
-//rnd (Research and Development
 /area/rnd/research
 	name = "\improper Research and Development"
 	icon_state = "research"
