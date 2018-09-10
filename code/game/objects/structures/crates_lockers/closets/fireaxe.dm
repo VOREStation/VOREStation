@@ -16,7 +16,7 @@
 
 	starts_with = list(/obj/item/weapon/material/twohanded/fireaxe)
 
-/obj/structure/closet/fireaxecabinet/New()
+/obj/structure/closet/fireaxecabinet/initialize()
 	..()
 	fireaxe = locate() in contents
 
