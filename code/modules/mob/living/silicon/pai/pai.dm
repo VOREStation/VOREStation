@@ -27,17 +27,6 @@
 
 	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
-<<<<<<< HEAD
-		"Drone" = "repairbot",
-		"Cat" = "cat",
-		"Mouse" = "mouse",
-		"Monkey" = "monkey",
-		"Corgi" = "borgi",
-		"Fox" = "fox",
-		"Parrot" = "parrot",
-		"Rabbit" = "rabbit",
-		"Bear" = "bear"  //VOREStation Edit
-=======
 		"Drone" = "pai-repairbot",
 		"Cat" = "pai-cat",
 		"Mouse" = "pai-mouse",
@@ -45,8 +34,8 @@
 		"Corgi" = "pai-borgi",
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
-		"Rabbit" = "pai-rabbit"
->>>>>>> e714515... Merge pull request #5443 from PrismaticGynoid/somemorepaifixes
+		"Rabbit" = "pai-rabbit",
+		"Bear" = "bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
