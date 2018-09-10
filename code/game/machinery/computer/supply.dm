@@ -166,7 +166,7 @@
 	data["supply_packs"] = pack_list
 	data["orders"] = orders
 	data["receipts"] = receipts
-	data["contraband"] = can_order_contraband
+	data["contraband"] = can_order_contraband || (authorization & SUP_CONTRABAND)
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
