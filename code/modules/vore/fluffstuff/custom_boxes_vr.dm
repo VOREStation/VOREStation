@@ -221,11 +221,18 @@
 // Mewchild: Phi Vietsi
 /obj/item/weapon/storage/box/fluff/vietsi
 	name = "Phi's Personal Items"
-	desc = "A small box containing Phi's small things"
 	has_items = list(
 		/obj/item/clothing/accessory/medal/bronze_heart,
 		/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi)
 
+// Draycu: Schae Yonra
+/obj/item/weapon/storage/box/fluff/yonra
+	name = "Yonra's Starting Kit"
+	desc = "A small box containing Yonra's personal effects"
+	has_items = list(
+		item_path: /obj/item/weapon/melee/fluff/holochain/mass,
+		item_path: /obj/item/weapon/implanter/reagent_generator/yonra,
+		item_path: /obj/item/clothing/accessory/medal/silver/unity)
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */

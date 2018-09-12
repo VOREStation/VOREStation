@@ -188,3 +188,9 @@
 	can_hold = list(/obj/item/weapon/material/knife/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
+
+//Medals
+
+/obj/item/clothing/accessory/medal/silver/unity
+	name = "medal of unity"
+	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."
