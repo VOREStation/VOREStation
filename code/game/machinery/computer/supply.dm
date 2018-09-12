@@ -160,54 +160,6 @@
 	if (temp)
 		dat = temp
 	else
-<<<<<<< HEAD
-		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
-		if (shuttle)
-			dat += "<BR><B>Supply shuttle</B><HR>"
-			dat += "\nLocation: "
-			if (shuttle.has_arrive_time())
-				dat += "In transit ([shuttle.eta_minutes()] Mins.)<BR>"
-			else
-				if (shuttle.at_station())
-					if (shuttle.docking_controller)
-						switch(shuttle.docking_controller.get_docking_status())
-							if ("docked") dat += "Docked at station<BR>"
-							if ("undocked") dat += "Undocked from station<BR>"
-							if ("docking") dat += "Docking with station [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>" : ""]<BR>"
-							if ("undocking") dat += "Undocking from station [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>" : ""]<BR>"
-					else
-						dat += "Station<BR>"
-
-					if (shuttle.can_launch())
-						dat += "<A href='?src=\ref[src];send=1'>Send away</A>"
-					else if (shuttle.can_cancel())
-						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel launch</A>"
-					else
-						dat += "*Shuttle is busy*"
-					dat += "<BR>\n<BR>"
-				else
-					dat += "Away<BR>"
-					if (shuttle.can_launch())
-						dat += "<A href='?src=\ref[src];send=1'>Request supply shuttle</A>"
-					else if (shuttle.can_cancel())
-						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel request</A>"
-					else
-						dat += "*Shuttle is busy*"
-					dat += "<BR>\n<BR>"
-
-
-		dat += {"<HR>\nSupply points: [supply_controller.points]<BR>\n<BR>
-		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
-		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
-		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
-		\n<A href='?src=\ref[src];viewexport=1'>View export report</A><BR>\n<BR>
-		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
-
-
-	user << browse(dat, "window=computer;size=575x450")
-	onclose(user, "computer")
-	return
-=======
 		shuttle["mode"] = SUP_SHUTTLE_ERROR
 
 	for(var/pack_name in supply_controller.supply_pack)
@@ -285,9 +237,6 @@
 		ui.open()
 		// auto update every 20 Master Controller tick
 		ui.set_auto_update(20) // Longer term to reduce the rate of data collection and processing
-
-
->>>>>>> d8eb358... Merge pull request #5559 from Atermonera/supplycomp_cosntructable
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
 	if(!can_order_contraband)
