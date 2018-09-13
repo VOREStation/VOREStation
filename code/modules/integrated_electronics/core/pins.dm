@@ -28,7 +28,7 @@ D [1]/  ||
 /datum/integrated_io/New(var/newloc, var/name, var/new_data)
 	..()
 	src.name = name
-	if(new_data)
+	if(!isnull(new_data))
 		src.data = new_data
 	holder = newloc
 	if(!istype(holder))
