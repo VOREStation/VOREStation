@@ -230,9 +230,9 @@
 	name = "Yonra's Starting Kit"
 	desc = "A small box containing Yonra's personal effects"
 	has_items = list(
-		item_path: /obj/item/weapon/melee/fluff/holochain/mass,
-		item_path: /obj/item/weapon/implanter/reagent_generator/yonra,
-		item_path: /obj/item/clothing/accessory/medal/silver/unity)
+		/obj/item/weapon/melee/fluff/holochain/mass,
+		/obj/item/weapon/implanter/reagent_generator/yonra,
+		/obj/item/clothing/accessory/medal/silver/unity)
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */
