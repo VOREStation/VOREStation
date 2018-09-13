@@ -1000,6 +1000,18 @@
 		icon_state = "panels"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
+		
+	tentacle_head
+		name = "Squid Head"
+		icon_state = "tentaclehead"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+	
+	tentacle_mouth
+		name = "Tentacle Mouth"
+		icon_state = "tentaclemouth"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
 
 	heterochromia
 		name = "Heterochromia"
