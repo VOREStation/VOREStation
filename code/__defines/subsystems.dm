@@ -58,6 +58,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_HOLOMAPS	-5
 #define INIT_ORDER_OVERLAY	-6
 #define INIT_ORDER_XENOARCH	-20
+#define INIT_ORDER_CIRCUIT	-21
 
 
 // Subsystem fire priority, from lowest to highest priority

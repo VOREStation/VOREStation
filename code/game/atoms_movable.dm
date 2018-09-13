@@ -16,6 +16,7 @@
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 	var/icon_scale = 1 // Used to scale icons up or down in update_transform().
+	var/icon_rotation = 0 // Used to rotate icons in update_transform()
 	var/old_x = 0
 	var/old_y = 0
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
@@ -277,9 +278,14 @@
 /atom/movable/proc/update_transform()
 	var/matrix/M = matrix()
 	M.Scale(icon_scale)
+	M.Turn(icon_rotation)
 	src.transform = M
 
 // Use this to set the object's scale.
 /atom/movable/proc/adjust_scale(new_scale)
 	icon_scale = new_scale
+	update_transform()
+
+/atom/movable/proc/adjust_rotation(new_rotation)
+	icon_rotation = new_rotation
 	update_transform()

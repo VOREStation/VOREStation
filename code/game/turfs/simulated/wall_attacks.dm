@@ -150,6 +150,11 @@
 		if(is_hot(W))
 			burn(is_hot(W))
 
+	if(istype(W, /obj/item/device/electronic_assembly/wallmount))
+		var/obj/item/device/electronic_assembly/wallmount/IC = W
+		IC.mount_assembly(src, user)
+		return
+
 	if(istype(W, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
 		var/turf/T = GetAbove(src)

@@ -55,6 +55,12 @@
 	else
 		return 0
 
+/obj/machinery/power/proc/viewload()
+	if(powernet)
+		return powernet.viewload
+	else
+		return 0
+
 /obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 

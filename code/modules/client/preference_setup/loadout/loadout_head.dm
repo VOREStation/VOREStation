@@ -372,3 +372,7 @@
 /datum/gear/head/surgical/purple
 	display_name = "surgical cap, purple"
 	path = /obj/item/clothing/head/surgery/purple
+
+/datum/gear/head/circuitry
+	display_name = "headwear, circuitry (empty)"
+	path = /obj/item/clothing/head/circuitry
