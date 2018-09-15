@@ -86,7 +86,7 @@
 
 // Turns text into proper directions
 /proc/text2dir(direction)
-	switch (uppertext(direction))
+	switch (ruppertext(direction))
 		if ("NORTH")     return 1
 		if ("SOUTH")     return 2
 		if ("EAST")      return 4

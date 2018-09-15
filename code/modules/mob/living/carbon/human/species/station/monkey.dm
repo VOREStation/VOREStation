@@ -63,7 +63,7 @@
 		H.emote(pick("scratch","jump","roll","tail"))
 
 /datum/species/monkey/get_random_name()
-	return "[lowertext(name)] ([rand(100,999)])"
+	return "[rlowertext(name)] ([rand(100,999)])"
 
 /datum/species/monkey/tajaran
 	name = SPECIES_MONKEY_TAJ

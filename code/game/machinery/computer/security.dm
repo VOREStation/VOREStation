@@ -286,7 +286,7 @@ What a mess.*/
 				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
 					return
 				Perp = new/list()
-				t1 = lowertext(t1)
+				t1 = rlowertext(t1)
 				var/list/components = splittext(t1, " ")
 				if(components.len > 5)
 					return //Lets not let them search too greedily.
@@ -329,9 +329,9 @@ What a mess.*/
 					return
 				active1 = null
 				active2 = null
-				t1 = lowertext(t1)
+				t1 = rlowertext(t1)
 				for(var/datum/data/record/R in data_core.general)
-					if (lowertext(R.fields["fingerprint"]) == t1)
+					if (rlowertext(R.fields["fingerprint"]) == t1)
 						active1 = R
 				if (!( active1 ))
 					temp = text("Could not locate record [].", t1)
@@ -386,7 +386,7 @@ What a mess.*/
 				if (!( istype(active2, /datum/data/record) ))
 					return
 				var/a2 = active2
-				var/t1 = sanitize(input("Add Comment:", "Secure. records", null, null)  as message)
+				var/t1 = cp1251_to_utf8(sanitize(input("Add Comment:", "Secure. records", null, null)  as message))
 				if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active2 != a2))
 					return
 				var/counter = 1
@@ -428,7 +428,7 @@ What a mess.*/
 				switch(href_list["field"])
 					if("name")
 						if (istype(active1, /datum/data/record))
-							var/t1 = sanitizeName(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text)
+							var/t1 = sanitizeName(cp1251_to_utf8(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text))
 							if (!t1 || active1 != a1)
 								return
 							active1.fields["name"] = t1
@@ -482,7 +482,7 @@ What a mess.*/
 							active2.fields["ma_crim_d"] = t1
 					if("notes")
 						if (istype(active2, /datum/data/record))
-							var/t1 = sanitize(input("Please summarize notes:", "Secure. records", html_decode(active2.fields["notes"]), null)  as message, extra = 0, max_length = MAX_RECORD_LENGTH)
+							var/t1 = sanitize(input("Please summarize notes:", "Secure. records", rhtml_decode(active2.fields["notes"]), null)  as message, extra = 0, max_length = MAX_RECORD_LENGTH)
 							if (!t1 || active2 != a2)
 								return
 							active2.fields["notes"] = t1

@@ -211,6 +211,9 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+	var/list/proc/species_genitals = list()
+	var/genitals = 1
+	var/anus = 1
 	var/list/genders = list(MALE, FEMALE)
 	var/ambiguous_genders = FALSE // If true, people examining a member of this species whom are not also the same species will see them as gender neutral.	Because aliens.
 

@@ -287,7 +287,7 @@
 			travel_time = "[ (route.travel_time * travel_modifier) / (1 MINUTE)] minute\s"
 		else
 			travel_time = "[ (route.travel_time * travel_modifier) / (1 SECOND)] second\s"
-		routes.Add(list(list("name" = html_encode(capitalize(route.display_route(shuttle.web_master.current_destination) )), "index" = i, "travel_time" = travel_time)))
+		routes.Add(list(list("name" = rhtml_encode(capitalize(route.display_route(shuttle.web_master.current_destination) )), "index" = i, "travel_time" = travel_time)))
 
 
 	var/shuttle_location = shuttle.web_master.current_destination.name // Destination related, not loc.

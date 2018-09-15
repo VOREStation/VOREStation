@@ -41,7 +41,7 @@
 /proc/log_adminpm(text, client/source, client/dest)
 	admin_log.Add(text)
 	if (config.log_admin)
-		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
+		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [rhtml_decode(text)]")
 
 /proc/log_debug(text)
 	if (config.log_debug)
@@ -71,27 +71,27 @@
 
 /proc/log_say(text, mob/speaker)
 	if (config.log_say)
-		WRITE_LOG(diary, "SAY: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "SAY: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_ooc(text, client/user)
 	if (config.log_ooc)
-		WRITE_LOG(diary, "OOC: [user.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "OOC: [user.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_aooc(text, client/user)
 	if (config.log_ooc)
-		WRITE_LOG(diary, "AOOC: [user.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "AOOC: [user.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_looc(text, client/user)
 	if (config.log_ooc)
-		WRITE_LOG(diary, "LOOC: [user.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "LOOC: [user.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_whisper(text, mob/speaker)
 	if (config.log_whisper)
-		WRITE_LOG(diary, "WHISPER: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "WHISPER: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_emote(text, mob/speaker)
 	if (config.log_emote)
-		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_attack(attacker, defender, message)
 	if (config.log_attack)
@@ -99,31 +99,31 @@
 
 /proc/log_adminsay(text, mob/speaker)
 	if (config.log_adminchat)
-		WRITE_LOG(diary, "ADMINSAY: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "ADMINSAY: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_modsay(text, mob/speaker)
 	if (config.log_adminchat)
-		WRITE_LOG(diary, "MODSAY: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "MODSAY: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_eventsay(text, mob/speaker)
 	if (config.log_adminchat)
-		WRITE_LOG(diary, "EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "EVENTSAY: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_ghostsay(text, mob/speaker)
 	if (config.log_say)
-		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_ghostemote(text, mob/speaker)
 	if (config.log_emote)
-		WRITE_LOG(diary, "DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "DEADEMOTE: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_adminwarn(text)
 	if (config.log_adminwarn)
-		WRITE_LOG(diary, "ADMINWARN: [html_decode(text)]")
+		WRITE_LOG(diary, "ADMINWARN: [rhtml_decode(text)]")
 
 /proc/log_pda(text, mob/speaker)
 	if (config.log_pda)
-		WRITE_LOG(diary, "PDA: [speaker.simple_info_line()]: [html_decode(text)]")
+		WRITE_LOG(diary, "PDA: [speaker.simple_info_line()]: [rhtml_decode(text)]")
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime

@@ -229,11 +229,11 @@ var/global/list/round_voters = list() // Keeps track of the individuals voting f
 						choices.Add(antag.role_text)
 				choices.Add("None")
 			if(VOTE_CUSTOM)
-				question = sanitizeSafe(input(usr, "What is the vote for?") as text|null)
+				question = cp1251_to_utf8(rhtml_encode(input(usr, "What is the vote for?") as text|null))
 				if(!question)
 					return 0
 				for(var/i = 1 to 10)
-					var/option = capitalize(sanitize(input(usr, "Please enter an option or hit cancel to finish") as text|null))
+					var/option = cp1251_to_utf8(capitalize(sanitize(input(usr, "Please enter an option or hit cancel to finish") as text|null)))
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
@@ -245,13 +245,13 @@ var/global/list/round_voters = list() // Keeps track of the individuals voting f
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator]."
 		if(mode == VOTE_CUSTOM)
-			text += "\n[question]"
+			text += "\n[utf8_to_cp1251(question)]"
 
 		log_vote(text)
 
 		world << "<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.</font>"
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
-			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+			world << sound('sound/ambience/voteDJ.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 		if(mode == VOTE_GAMEMODE && round_progressing)
 			round_progressing = 0

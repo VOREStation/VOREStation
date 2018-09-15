@@ -237,7 +237,7 @@
 		var/n = input(usr, "Please enter message", name, notehtml)
 		n = sanitizeSafe(n, extra = 0)
 		if(n)
-			note = html_decode(n)
+			note = rhtml_decode(n)
 			notehtml = note
 			note = replacetext(note, "\n", "<br>")
 		else

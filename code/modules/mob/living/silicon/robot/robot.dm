@@ -270,8 +270,8 @@
 	transform_with_anim()	//VOREStation edit: sprite animation
 	new module_type(src)
 
-	hands.icon_state = lowertext(modtype)
-	feedback_inc("cyborg_[lowertext(modtype)]",1)
+	hands.icon_state = rlowertext(modtype)
+	feedback_inc("cyborg_[rlowertext(modtype)]",1)
 	updatename()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
 
@@ -1030,7 +1030,7 @@
 		return
 	switch(notifytype)
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
-			connected_ai << "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>"
+			connected_ai << "<br><br><span class='notice'>NOTICE - New [rlowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>"
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module
 			connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] module change detected: [name] has loaded the [first_arg].</span><br>"
 		if(ROBOT_NOTIFICATION_MODULE_RESET)

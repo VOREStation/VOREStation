@@ -319,7 +319,7 @@
 						src.active2.fields["cdi_d"] = t1
 				if("notes")
 					if(istype(src.active2, /datum/data/record))
-						var/t1 = sanitize(input("Please summarize notes:", "Med. records", html_decode(src.active2.fields["notes"]), null)  as message, extra = 0)
+						var/t1 = sanitize(input("Please summarize notes:", "Med. records", rhtml_decode(src.active2.fields["notes"]), null)  as message, extra = 0)
 						if(!t1 || !src.authenticated || usr.stat || usr.restrained() || (!interactable() && !issilicon(usr)) || src.active2 != a2)
 							return
 						src.active2.fields["notes"] = t1
@@ -468,9 +468,9 @@
 				return
 			src.active1 = null
 			src.active2 = null
-			t1 = lowertext(t1)
+			t1 = rlowertext(t1)
 			for(var/datum/data/record/R in data_core.medical)
-				if(lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"]))
+				if(rlowertext(R.fields["name"]) == t1 || t1 == rlowertext(R.fields["id"]) || t1 == rlowertext(R.fields["b_dna"]))
 					src.active2 = R
 			if (!src.active2)
 				src.temp = text("Could not locate record [].", t1)

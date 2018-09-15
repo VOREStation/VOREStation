@@ -181,13 +181,13 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	//message badmins that a fax has arrived
 	if (destination == using_map.boss_name)
-		message_admins(sender, "[uppertext(using_map.boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
+		message_admins(sender, "[ruppertext(using_map.boss_short)] FAX", rcvdcopy, "CentComFaxReply", "#006100")
 	else if (destination == "Virgo-Prime Governmental Authority") // Vorestation Edit
 		message_admins(sender, "VIRGO GOVERNMENT FAX", rcvdcopy, "CentComFaxReply", "#1F66A0")
 	else if (destination == "Supply")
-		message_admins(sender, "[uppertext(using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
+		message_admins(sender, "[ruppertext(using_map.boss_short)] SUPPLY FAX", rcvdcopy, "CentComFaxReply", "#5F4519")
 	else
-		message_admins(sender, "[uppertext(destination)] FAX", rcvdcopy, "UNKNOWN")
+		message_admins(sender, "[ruppertext(destination)] FAX", rcvdcopy, "UNKNOWN")
 
 
 	sendcooldown = 1800

@@ -13,14 +13,6 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
 	build_path = /obj/item/weapon/implantcase/backup
 
-/datum/design/item/weapon/sizegun
-	name = "Size gun"
-	id = "sizegun"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, "uranium" = 2000)
-	build_path = /obj/item/weapon/gun/energy/sizegun
-	sort_string = "TAAAB"
-
 /datum/design/item/bluespace_jumpsuit
 	name = "Bluespace jumpsuit"
 	id = "bsjumpsuit"

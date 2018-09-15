@@ -136,7 +136,7 @@ research holder datum.
 			if(IC.spawn_flags & IC_SPAWN_RESEARCH)
 				var/datum/design/D = new /datum/design/circuit(src)
 				D.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
-				D.id = "ic-[lowertext(IC.name)]"
+				D.id = "ic-[rlowertext(IC.name)]"
 				if(IC.origin_tech && IC.origin_tech.len)
 					D.req_tech = IC.origin_tech.Copy()
 				else

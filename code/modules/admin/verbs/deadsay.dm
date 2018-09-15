@@ -15,7 +15,7 @@
 		src << "<span class='warning'>You have deadchat muted.</span>"
 		return
 
-	var/stafftype = uppertext(holder.rank)
+	var/stafftype = ruppertext(holder.rank)
 
 	msg = sanitize(msg)
 	log_admin("DSAY: [key_name(src)] : [msg]")

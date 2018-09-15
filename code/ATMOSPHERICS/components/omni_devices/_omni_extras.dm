@@ -72,14 +72,14 @@
 			string = "West"
 	
 	if(!capitalize && string)
-		string = lowertext(string)
+		string = rlowertext(string)
 	
 	return string
 
 //returns a direction flag based on the string passed to it
 // case insensitive
 /proc/dir_flag(var/dir)
-	dir = lowertext(dir)
+	dir = rlowertext(dir)
 	switch(dir)
 		if("north")
 			return NORTH

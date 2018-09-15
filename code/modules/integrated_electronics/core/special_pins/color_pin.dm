@@ -12,7 +12,7 @@
 	// Since this is storing the color as a string hex color code, we need to make sure it's actually one.
 	if(isnull(new_data) || istext(new_data))
 		if(istext(new_data))
-			new_data = uppertext(new_data)
+			new_data = ruppertext(new_data)
 			if(length(new_data) != 7)						// We can hex if we want to, we can leave your strings behind
 				return 										// Cause your strings don't hex and if they don't hex
 			var/friends = copytext(new_data, 2, 8)			// Well they're are no strings of mine

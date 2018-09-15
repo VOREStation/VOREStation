@@ -1,7 +1,6 @@
-/*
 /datum/species/human/gravworlder
-	name = "grav-adapted Human"
-	name_plural = "grav-adapted Humans"
+	name = "Grav-Adapted Human"
+	name_plural = "Grav-Adapted Humans"
 	blurb = "Heavier and stronger than a baseline human, gravity-adapted people have \
 	thick radiation-resistant skin with a high lead content, denser bones, and recessed \
 	eyes beneath a prominent brow in order to shield them from the glare of a dangerously \
@@ -14,12 +13,10 @@
 	radiation_mod = 0.5
 	brute_mod =     0.85
 	slowdown =      1
-*/
 
-/*
 /datum/species/human/spacer
-	name = "space-adapted Human"
-	name_plural = "space-adapted Humans"
+	name = "Space-Adapted Human"
+	name_plural = "Space-Adapted Humans"
 	blurb = "Lithe and frail, these sickly folk were engineered for work in environments that \
 	lack both light and atmosphere. As such, they're quite resistant to asphyxiation as well as \
 	toxins, but they suffer from weakened bone structure and a marked vulnerability to bright lights."
@@ -30,10 +27,9 @@
 	flash_mod = 1.2
 	brute_mod = 1.1
 	burn_mod =  1.1
-*/
 
 /datum/species/human/vatgrown
-	name = SPECIES_HUMAN_VATBORN
+	name = "Vat-Grown Human"
 	name_plural = "Vatborn"
 	blurb = "With cloning on the forefront of human scientific advancement, cheap mass production \
 	of bodies is a very real and rather ethically grey industry. Vat-grown or Vatborn humans tend to be \
@@ -51,6 +47,7 @@
 		O_BRAIN =    /obj/item/organ/internal/brain,
 		O_EYES =     /obj/item/organ/internal/eyes
 		)
+	spawn_flags = SPECIES_CAN_JOIN
 
 /*
 // These guys are going to need full resprites of all the suits/etc so I'm going to

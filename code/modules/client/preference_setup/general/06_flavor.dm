@@ -59,11 +59,11 @@
 		switch(href_list["flavor_text"])
 			if("open")
 			if("general")
-				var/msg = sanitize(input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
+				var/msg = input_cp1251(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",rhtml_decode(pref.flavor_texts[href_list["flavor_text"]]))
 				if(CanUseTopic(user))
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 			else
-				var/msg = sanitize(input(usr,"Set the flavor text for your [href_list["flavor_text"]].","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
+				var/msg = input_cp1251(usr,"Set the flavor text for your [href_list["flavor_text"]].","Flavor Text",rhtml_decode(pref.flavor_texts[href_list["flavor_text"]]))
 				if(CanUseTopic(user))
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 		SetFlavorText(user)
@@ -73,11 +73,11 @@
 		switch(href_list["flavour_text_robot"])
 			if("open")
 			if("Default")
-				var/msg = sanitize(input(usr,"Set the default flavour text for your robot. It will be used for any module without individual setting.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"])) as message, extra = 0)
+				var/msg = input_cp1251(usr,"Set the default flavour text for your robot. It will be used for any module without individual setting.","Flavour Text",rhtml_decode(pref.flavour_texts_robot["Default"]))
 				if(CanUseTopic(user))
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 			else
-				var/msg = sanitize(input(usr,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this empty, default flavour text will be used for this module.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]])) as message, extra = 0)
+				var/msg = input_cp1251(usr,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this empty, default flavour text will be used for this module.","Flavour Text",rhtml_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]))
 				if(CanUseTopic(user))
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)
@@ -91,31 +91,31 @@
 	HTML += "<b>Set Flavour Text</b> <hr />"
 	HTML += "<br></center>"
 	HTML += "<a href='?src=\ref[src];flavor_text=general'>General:</a> "
-	HTML += TextPreview(pref.flavor_texts["general"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["general"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=head'>Head:</a> "
-	HTML += TextPreview(pref.flavor_texts["head"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["head"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=face'>Face:</a> "
-	HTML += TextPreview(pref.flavor_texts["face"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["face"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=eyes'>Eyes:</a> "
-	HTML += TextPreview(pref.flavor_texts["eyes"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["eyes"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=torso'>Body:</a> "
-	HTML += TextPreview(pref.flavor_texts["torso"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["torso"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=arms'>Arms:</a> "
-	HTML += TextPreview(pref.flavor_texts["arms"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["arms"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=hands'>Hands:</a> "
-	HTML += TextPreview(pref.flavor_texts["hands"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["hands"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=legs'>Legs:</a> "
-	HTML += TextPreview(pref.flavor_texts["legs"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["legs"]))
 	HTML += "<br>"
 	HTML += "<a href='?src=\ref[src];flavor_text=feet'>Feet:</a> "
-	HTML += TextPreview(pref.flavor_texts["feet"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavor_texts["feet"]))
 	HTML += "<br>"
 	HTML += "<hr />"
 	HTML += "<tt>"
@@ -128,11 +128,11 @@
 	HTML += "<b>Set Robot Flavour Text</b> <hr />"
 	HTML += "<br></center>"
 	HTML += "<a href='?src=\ref[src];flavour_text_robot=Default'>Default:</a> "
-	HTML += TextPreview(pref.flavour_texts_robot["Default"])
+	HTML += TextPreview(cp1251_to_utf8(pref.flavour_texts_robot["Default"]))
 	HTML += "<hr />"
 	for(var/module in robot_module_types)
 		HTML += "<a href='?src=\ref[src];flavour_text_robot=[module]'>[module]:</a> "
-		HTML += TextPreview(pref.flavour_texts_robot[module])
+		HTML += TextPreview(cp1251_to_utf8(pref.flavour_texts_robot[module]))
 		HTML += "<br>"
 	HTML += "<hr />"
 	HTML += "<tt>"

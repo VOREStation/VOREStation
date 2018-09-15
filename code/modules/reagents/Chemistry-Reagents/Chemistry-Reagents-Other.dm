@@ -136,8 +136,8 @@
 	var/list/colors = list(0, 0, 0, 0)
 	var/tot_w = 0
 
-	var/hex1 = uppertext(color)
-	var/hex2 = uppertext(newdata)
+	var/hex1 = ruppertext(color)
+	var/hex2 = ruppertext(newdata)
 	if(length(hex1) == 7)
 		hex1 += "FF"
 	if(length(hex2) == 7)

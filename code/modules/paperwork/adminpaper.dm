@@ -90,7 +90,7 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 
 		var last_fields_value = fields
 
-		//t = html_encode(t)
+		//t = rhtml_encode(t)
 		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t,,, isCrayon) // Encode everything from pencode to html
 

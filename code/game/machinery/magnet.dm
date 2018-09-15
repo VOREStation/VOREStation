@@ -349,7 +349,7 @@
 		if(pathpos > rpath.len) // if the position is greater than the length, we just loop through the list!
 			pathpos = 1
 
-		var/nextmove = uppertext(rpath[pathpos]) // makes it un-case-sensitive
+		var/nextmove = ruppertext(rpath[pathpos]) // makes it un-case-sensitive
 
 		if(!(nextmove in list("N","S","E","W","C","R")))
 			// N, S, E, W are directional

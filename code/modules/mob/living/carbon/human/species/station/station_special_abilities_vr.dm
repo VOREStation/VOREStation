@@ -764,7 +764,7 @@
 				visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
 			else if(B)
 				T_ext.forceMove(B)
-				visible_message("<span class='warning'>[src] swallows [T]'s [T_ext.name] into their [lowertext(B.name)]!</span>")
+				visible_message("<span class='warning'>[src] swallows [T]'s [T_ext.name] into their [rlowertext(B.name)]!</span>")
 			else
 				T_ext.forceMove(T.loc)
 				visible_message("<span class='warning'>[src] tears off [T]'s [T_ext.name]!</span>","<span class='warning'>You tear off [T]'s [T_ext.name]!</span>")

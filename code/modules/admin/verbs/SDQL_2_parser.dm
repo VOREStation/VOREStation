@@ -94,7 +94,7 @@
 		return null
 
 /datum/SDQL_parser/proc/tokenl(i)
-	return lowertext(token(i))
+	return rlowertext(token(i))
 
 
 
