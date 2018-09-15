@@ -25,6 +25,7 @@
 		return 0
 	return 1
 
+/obj/item/device/megaphone/proc/do_broadcast(var/mob/living/user, var/message)
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)
 		return
