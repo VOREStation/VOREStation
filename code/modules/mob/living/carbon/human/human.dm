@@ -1148,6 +1148,15 @@
 
 	maxHealth = species.total_health
 
+	if(LAZYLEN(descriptors))
+		descriptors = null
+
+	if(LAZYLEN(species.descriptors))
+		descriptors = list()
+		for(var/desctype in species.descriptors)
+			var/datum/mob_descriptor.descriptor = species.descriptors[desctype]
+			descriptors[desctype] = descriptor.default_value
+
 	spawn(0)
 		if(regen_icons) regenerate_icons()
 		make_blood()
