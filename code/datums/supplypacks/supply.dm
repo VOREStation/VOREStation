@@ -124,14 +124,14 @@
 */ //VOREStation Edit
 /datum/supply_packs/supply/cargotrain
 	name = "Cargo Train Tug"
-	contains = list(/obj/vehicle/train/cargo/engine)
+	contains = list(/obj/vehicle/train/engine)
 	cost = 35
 	containertype = /obj/structure/largecrate
 	containername = "Cargo Train Tug Crate"
 
 /datum/supply_packs/supply/cargotrailer
 	name = "Cargo Train Trolley"
-	contains = list(/obj/vehicle/train/cargo/trolley)
+	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
 	containertype = /obj/structure/largecrate
 	containername = "Cargo Train Trolley Crate"
