@@ -565,3 +565,28 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 562, "glass" = 562)
 	build_path = /obj/item/device/flash/synthetic
 	category = "Misc"
+
+/*
+ * Non-Mech Vehicles
+ */
+
+/datum/design/item/mechfab/vehicle
+	build_type = MECHFAB
+	category = "Vehicle"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6)
+
+/datum/design/item/mechfab/vehicle/spacebike_chassis
+	name = "Spacebike Chassis"
+	desc = "A space-bike's un-assembled frame."
+	id = "vehicle_chassis_spacebike"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 12000, "silver" = 3000, "phoron" = 3000, "osmium" = 1000)
+	build_path = /obj/item/weapon/vehicle_assembly/spacebike
+
+/datum/design/item/mechfab/vehicle/quadbike_chassis
+	name = "Quadbike Chassis"
+	desc = "A space-bike's un-assembled frame."
+	id = "vehicle_chassis_quadbike"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 15000, "silver" = 3000, "plastic" = 3000, "osmium" = 1000)
+	build_path = /obj/item/weapon/vehicle_assembly/quadbike
