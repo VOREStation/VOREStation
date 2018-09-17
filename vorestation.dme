@@ -2042,7 +2042,14 @@
 #include "code\modules\mob\living\carbon\human\stripping.dm"
 #include "code\modules\mob\living\carbon\human\unarmed_attack.dm"
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\carbon\human\update_icons_vr.dm"
+=======
+#include "code\modules\mob\living\carbon\human\descriptors\_descriptors.dm"
+#include "code\modules\mob\living\carbon\human\descriptors\descriptors_generic.dm"
+#include "code\modules\mob\living\carbon\human\descriptors\descriptors_skrell.dm"
+#include "code\modules\mob\living\carbon\human\descriptors\descriptors_vox.dm"
+>>>>>>> f2ac15b... Merge pull request #5511 from Anewbe/descriptors:polaris.dme
 #include "code\modules\mob\living\carbon\human\species\species.dm"
 #include "code\modules\mob\living\carbon\human\species\species_attack.dm"
 #include "code\modules\mob\living\carbon\human\species\species_attack_vr.dm"
