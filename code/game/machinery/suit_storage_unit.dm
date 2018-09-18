@@ -643,6 +643,20 @@
 	departments = list("Mercenary", "Charring")
 	can_repair = 1
 
+/obj/machinery/suit_cycler/exploration
+	name = "Explorer suit cycler"
+	model_text = "Exploration"
+	departments = list("Exploration","Old Exploration")
+
+/obj/machinery/suit_cycler/exploreration/initialize()
+	species -= SPECIES_TESHARI
+	return ..()
+
+/obj/machinery/suit_cycler/pilot
+	name = "Pilot suit cycler"
+	model_text = "Pilot"
+	departments = list("Pilot Blue","Pilot")
+
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
@@ -1106,6 +1120,51 @@
 				suit.icon_state = "rig-firebug"
 				suit.item_state_slots[slot_r_hand_str] = "rig-firebug"
 				suit.item_state_slots[slot_l_hand_str] = "rig-firebug"
+		if("Exploration")
+			if(helmet)
+				helmet.name = "exploration voidsuit helmet"
+				helmet.icon_state = "helm_explorer"
+				helmet.item_state = "helm_explorer"
+			if(suit)
+				suit.name = "exploration voidsuit"
+				suit.icon_state = "void_explorer"
+				suit.item_state = "void_explorer"
+				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+		if("Old Exploration")
+			if(helmet)
+				helmet.name = "exploration voidsuit helmet"
+				helmet.icon_state = "helm_explorer2"
+				helmet.item_state = "helm_explorer2"
+			if(suit)
+				suit.name = "exploration voidsuit"
+				suit.icon_state = "void_explorer2"
+				suit.item_state = "void_explorer2"
+				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+		if("Pilot")
+			if(helmet)
+				helmet.name = "pilot voidsuit helmet"
+				helmet.icon_state = "rig0_pilot"
+				helmet.item_state = "pilot_helm"
+			if(suit)
+				suit.name = "pilot voidsuit"
+				suit.icon_state = "rig-pilot"
+				suit.item_state = "rig-pilot"
+				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
+				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+		if("Pilot Blue")
+			if(helmet)
+				helmet.name = "pilot voidsuit helmet"
+				helmet.icon_state = "rig0_pilot2"
+				helmet.item_state = "pilot_helm2"
+			if(suit)
+				suit.name = "pilot voidsuit"
+				suit.icon_state = "rig-pilot2"
+				suit.item_state = "rig-pilot2"
+				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
+				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+
 
 	if(helmet) helmet.name = "refitted [helmet.name]"
 	if(suit) suit.name = "refitted [suit.name]"
