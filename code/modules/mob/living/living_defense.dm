@@ -163,7 +163,7 @@
 	..()
 
 /mob/living/blob_act(var/obj/structure/blob/B)
-	if(stat == DEAD)
+	if(stat == DEAD || faction == "blob")
 		return
 
 	var/damage = rand(30, 40)
