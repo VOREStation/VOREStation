@@ -1389,6 +1389,8 @@
 //	if (!istype(target, /turf))
 //		qdel(A)
 //		return
+
+	A.firer = src
 	A.launch(target)
 	return
 
