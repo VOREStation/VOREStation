@@ -122,6 +122,11 @@
 		/mob/living/proc/hide
 		)
 
+	descriptors = list(
+		/datum/mob_descriptor/height = -3,
+		/datum/mob_descriptor/build = -3
+		)
+
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
