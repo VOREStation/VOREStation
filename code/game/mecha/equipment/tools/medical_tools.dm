@@ -28,6 +28,7 @@
 	Exit(atom/movable/O)
 		return 0
 
+<<<<<<< HEAD
 	action(var/mob/living/carbon/human/target)
 		if(!action_checks(target))
 			return
@@ -35,6 +36,28 @@
 			return
 		if(target.buckled)
 			occupant_message("[target] will not fit into the sleeper because they are buckled to [target.buckled].")
+=======
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(var/mob/living/carbon/human/target)
+	if(!action_checks(target))
+		return
+	if(!istype(target))
+		return
+	if(target.buckled)
+		occupant_message("[target] will not fit into the sleeper because they are buckled to [target.buckled].")
+		return
+	if(occupant)
+		occupant_message("The sleeper is already occupied")
+		return
+	if(target.has_buckled_mobs())
+		occupant_message(span("warning", "\The [target] has other entities attached to it. Remove them first."))
+		return
+	occupant_message("You start putting [target] into [src].")
+	chassis.visible_message("[chassis] starts putting [target] into the [src].")
+	var/C = chassis.loc
+	var/T = target.loc
+	if(do_after_cooldown(target))
+		if(chassis.loc!=C || target.loc!=T)
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 			return
 		if(occupant)
 			occupant_message("The sleeper is already occupied")

@@ -286,8 +286,8 @@
 /mob/living/bot/secbot/slime/UnarmedAttack(var/mob/living/L, var/proximity)
 	..()
 
-	if(istype(L, /mob/living/simple_animal/slime))
-		var/mob/living/simple_animal/slime/S = L
+	if(istype(L, /mob/living/simple_mob/slime/xenobio))
+		var/mob/living/simple_mob/slime/xenobio/S = L
 		S.adjust_discipline(2)
 
 

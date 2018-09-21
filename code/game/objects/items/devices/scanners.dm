@@ -451,15 +451,15 @@ HALOGEN COUNTER	- Radcount on mobs
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
-	if(!isslime(M))
-		to_chat(user, "<B>This device can only scan slimes!</B>")
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
 		return
-	var/mob/living/simple_animal/slime/S = M
+	var/mob/living/simple_mob/slime/xenobio/S = M
 	user.show_message("Slime scan results:<br>[S.slime_color] [S.is_adult ? "adult" : "baby"] slime<br>Health: [S.health]<br>Mutation Probability: [S.mutation_chance]")
 
 	var/list/mutations = list()
 	for(var/potential_color in S.slime_mutation)
-		var/mob/living/simple_animal/slime/slime = potential_color
+		var/mob/living/simple_mob/slime/xenobio/slime = potential_color
 		mutations.Add(initial(slime.slime_color))
 	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.get_max_nutrition()]")
 
@@ -469,12 +469,14 @@ HALOGEN COUNTER	- Radcount on mobs
 		user.show_message("<span class='warning'>Warning: Subject is hungry.</span>")
 	user.show_message("Electric change strength: [S.power_charge]")
 
-	if(S.resentment)
-		user.show_message("<span class='warning'>Warning: Subject is harboring resentment.</span>")
-	if(S.docile)
+	if(S.has_AI())
+		var/datum/ai_holder/simple_mob/xenobio_slime/AI = S.ai_holder
+		if(AI.resentment)
+			user.show_message("<span class='warning'>Warning: Subject is harboring resentment.</span>")
+		if(AI.rabid)
+			user.show_message("<span class='danger'>Subject is enraged and extremely dangerous!</span>")
+	if(S.harmless)
 		user.show_message("Subject has been pacified.")
-	if(S.rabid)
-		user.show_message("<span class='danger'>Subject is enraged and extremely dangerous!</span>")
 	if(S.unity)
 		user.show_message("Subject is friendly to other slime colors.")
 

@@ -321,3 +321,7 @@ var/const/enterloopsanity = 100
 
 /turf/AllowDrop()
 	return TRUE
+
+// Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
+/turf/proc/is_safe_to_enter(mob/living/L)
+	return TRUE

@@ -199,10 +199,16 @@
 			return
 		if(occupant)
 			to_chat(user,"<span class='warning'>\The [src] is already occupied by [occupant].</span>")
+<<<<<<< HEAD
 		for(var/mob/living/simple_animal/slime/M in range(1,grab.affecting))
 			if(M.victim == grab.affecting)
 				usr << "[grab.affecting.name] will not fit into the cryo because they have a slime latched onto their head."
 				return
+=======
+		if(grab.affecting.has_buckled_mobs())
+			to_chat(user, span("warning", "\The [grab.affecting] has other entities attached to it. Remove them first."))
+			return
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 		var/mob/M = grab.affecting
 		qdel(grab)
 		put_mob(M)
@@ -349,14 +355,20 @@
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)
+<<<<<<< HEAD
 	for(var/mob/living/simple_animal/slime/M in range(1,usr))
 		if(M.victim == usr)
 			usr << "You're too busy getting your life sucked out of you."
+=======
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 			return
-	if(usr.stat != 0)
-		return
-	put_mob(usr)
-	return
+		if(L.stat != CONSCIOUS)
+			return
+		put_mob(L)
 
 /atom/proc/return_air_for_internal_lifeform(var/mob/living/lifeform)
 	return return_air()

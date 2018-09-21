@@ -21,6 +21,7 @@
 
 	//33% chance to spawn nasties
 	if(prob(33))
+<<<<<<< HEAD
 		spawn_type = pick(\
 		/mob/living/simple_animal/hostile/giant_spider/nurse,\
 		/mob/living/simple_animal/hostile/alien,\
@@ -28,6 +29,14 @@
 		/mob/living/simple_animal/hostile/carp,\
 		/mob/living/simple_animal/hostile/creature\
 		) // Vorestation Edits
+=======
+		spawn_type = pick(
+		/mob/living/simple_mob/animal/giant_spider/nurse,
+		/mob/living/simple_mob/animal/space/alien,
+		/mob/living/simple_mob/animal/space/bear,
+		/mob/living/simple_mob/creature,
+		/mob/living/simple_mob/slime/xenobio)
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 	else
 		spawn_type = pick(\
 		/mob/living/simple_animal/cat,
@@ -36,10 +45,16 @@
 		/mob/living/simple_animal/chicken,
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/parrot,
+<<<<<<< HEAD
 		/mob/living/simple_animal/slime,
 		/mob/living/simple_animal/crab,
 		/mob/living/simple_animal/mouse,
 		/mob/living/simple_animal/retaliate/goat)
+=======
+		/mob/living/simple_mob/animal/passive/crab,
+		/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple_mob/goat)
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 
 //todo: how the hell is the asteroid permanently powered?
 /obj/machinery/auto_cloner/process()

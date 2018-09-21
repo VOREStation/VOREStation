@@ -78,6 +78,12 @@
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			src.playsound_local(source, speech_sound, sound_vol, 1)
 
+// Done here instead of on_hear_say() since that is NOT called if the mob is clientless (which includes most AI mobs).
+/mob/living/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+	..()
+	if(has_AI()) // Won't happen if no ai_holder exists or there's a player inside w/o autopilot active.
+		ai_holder.on_hear_say(speaker, message)
+
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
 	if(teleop)

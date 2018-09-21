@@ -34,6 +34,23 @@
 #define STANCE_TIRED     5	// Bears
 #define STANCE_FOLLOW    6	// Following somone
 #define STANCE_BUSY      7	// Do nothing on life ticks (Other code is running)
+<<<<<<< HEAD
+=======
+*/
+#define STANCE_SLEEP        0	// Doing (almost) nothing, to save on CPU because nobody is around to notice or the mob died.
+#define STANCE_IDLE         1	// The more or less default state. Wanders around, looks for baddies, and spouts one-liners.
+#define STANCE_ALERT        2	// A baddie is visible but not too close, and essentially we tell them to go away or die.
+#define STANCE_APPROACH     3	// Attempting to get into range to attack them.
+#define STANCE_FIGHT	    4	// Actually fighting, with melee or ranged.
+#define STANCE_BLINDFIGHT   5	// Fighting something that cannot be seen by the mob, from invisibility or out of sight.
+#define STANCE_REPOSITION   6	// Relocating to a better position while in combat. Also used when moving away from a danger like grenades.
+#define STANCE_MOVE         7	// Similar to above but for out of combat. If a baddie is seen, they'll cancel and fight them.
+#define STANCE_FOLLOW       8	// Following somone, without trying to murder them.
+#define STANCE_FLEE         9	// Run away from the target because they're too spooky/we're dying/some other reason.
+#define STANCE_DISABLED     10	// Used when the holder is afflicted with certain status effects, such as stuns or confusion.
+
+#define STANCES_COMBAT      list(STANCE_ALERT, STANCE_APPROACH, STANCE_FIGHT, STANCE_BLINDFIGHT, STANCE_REPOSITION)
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 
 #define LEFT  0x1
 #define RIGHT 0x2

@@ -546,7 +546,7 @@ proc/is_blind(A)
 	return threatcount
 
 // Beepsky will (try to) only beat 'bad' slimes.
-/mob/living/simple_animal/slime/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_mob/slime/xenobio/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = 0
 
 	if(stat == DEAD)
@@ -565,8 +565,10 @@ proc/is_blind(A)
 	if(victim)
 		threatcount += 4
 */
-	if(rabid)
-		threatcount = 10
+	if(has_AI())
+		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
+		if(AI.rabid)
+			threatcount = 10
 
 	return threatcount
 
