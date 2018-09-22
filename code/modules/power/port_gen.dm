@@ -282,6 +282,7 @@
 				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			anchored = !anchored
+			return
 		else if(default_deconstruction_screwdriver(user, O))
 			return
 		else if(default_deconstruction_crowbar(user, O))
