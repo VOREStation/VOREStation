@@ -38,7 +38,8 @@
 	..()
 
 /datum/mob_descriptor/proc/get_third_person_message_start(var/datum/gender/my_gender)
-	return "[my_gender.He] [my_gender.is]"
+	return "They are"
+//	return "[my_gender.He] [my_gender.is]"	// Doesn't respect ambiguous_genders species var, can't figure out a fix at the moment
 
 /datum/mob_descriptor/proc/get_first_person_message_start()
 	return "You are"

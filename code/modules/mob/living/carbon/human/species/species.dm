@@ -237,6 +237,7 @@
 		var/list/descriptor_datums = list()
 		for(var/desctype in descriptors)
 			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor.comparison_offset = descriptors[desctype]
 			descriptor_datums[descriptor.name] = descriptor
 		descriptors = descriptor_datums
 
