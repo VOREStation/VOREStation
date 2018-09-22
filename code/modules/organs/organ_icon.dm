@@ -110,7 +110,7 @@ var/global/list/limb_icon_cache = list()
 			res.add_overlay(facial_s)
 
 	//Head hair
-	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
+	if(owner.h_style)
 		var/style = owner.h_style
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[style]
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))

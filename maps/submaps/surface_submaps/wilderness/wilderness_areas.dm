@@ -1,6 +1,15 @@
 /area/submap
 	name = "Submap Area"
 	icon_state = "submap"
+<<<<<<< HEAD
+=======
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_RUINS
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
+
+/area/submap/event //To be used for Events not for regular PoIs
+	name = "Unknown"
+	requires_power = FALSE
 
 /area/submap/spider1
 	name = "spider nest"

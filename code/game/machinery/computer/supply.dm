@@ -4,6 +4,7 @@
 	icon_screen = "supply"
 	light_color = "#b88b2e"
 	req_access = list(access_cargo)
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
@@ -20,6 +21,10 @@
 
 /obj/machinery/computer/ordercomp/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
+=======
+	circuit = /obj/item/weapon/circuitboard/supplycomp/control
+	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 
 /obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
@@ -54,6 +59,7 @@
 	if( isturf(loc) && (in_range(src, usr) || istype(usr, /mob/living/silicon)) )
 		usr.set_machine(src)
 
+<<<<<<< HEAD
 	if(href_list["order"])
 		if(href_list["order"] == "categories")
 			//all_supply_groups
@@ -64,6 +70,22 @@
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
+=======
+/obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
+	var/data[0]
+	var/shuttle_status[0]	// Supply shuttle status
+	var/pack_list[0]		// List of supply packs within the active_category
+	var/orders[0]
+	var/receipts[0]
+
+	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	if(shuttle)
+		if(shuttle.has_arrive_time())
+			shuttle_status["location"] = "In transit"
+			shuttle_status["mode"] = SUP_SHUTTLE_TRANSIT
+			shuttle_status["time"] = shuttle.eta_minutes()
+
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 		else
 			last_viewed_group = href_list["order"]
 			temp = "<b>Supply points: [supply_controller.points]</b><BR>"
@@ -160,6 +182,7 @@
 	if (temp)
 		dat = temp
 	else
+<<<<<<< HEAD
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
 			dat += "<BR><B>Supply shuttle</B><HR>"
@@ -213,6 +236,86 @@
 		can_order_contraband = 1
 		req_access = list()
 		return 1
+=======
+		shuttle["mode"] = SUP_SHUTTLE_ERROR
+
+	for(var/pack_name in supply_controller.supply_pack)
+		var/datum/supply_pack/P = supply_controller.supply_pack[pack_name]
+		if(P.group == active_category)
+			var/list/pack = list(
+					"name" = P.name,
+					"cost" = P.cost,
+					"contraband" = P.contraband,
+					"manifest" = uniquelist(P.manifest),
+					"random" = P.num_contained,
+					"expand" = 0,
+					"ref" = "\ref[P]"
+				)
+
+			if(P in expanded_packs)
+				pack["expand"] = 1
+
+			pack_list[++pack_list.len] = pack
+
+	// Compile user-side orders
+	// Status determines which menus the entry will display in
+	// Organized in field-entry list for iterative display
+	// List is nested so both the list of orders, and the list of elements in each order, can be iterated over
+	for(var/datum/supply_order/S in supply_controller.order_history)
+		orders[++orders.len] = list(
+				"ref" = "\ref[S]",
+				"status" = S.status,
+				"entries" = list(
+						list("field" = "Supply Pack", "entry" = S.name),
+						list("field" = "Cost", "entry" = S.cost),
+						list("field" = "Index", "entry" = S.index),
+						list("field" = "Reason", "entry" = S.comment),
+						list("field" = "Ordered by", "entry" = S.ordered_by),
+						list("field" = "Ordered at", "entry" = S.ordered_at),
+						list("field" = "Approved by", "entry" = S.approved_by),
+						list("field" = "Approved at", "entry" = S.approved_at)
+					)
+			)
+
+	// Compile exported crates
+	for(var/datum/exported_crate/E in supply_controller.exported_crates)
+		receipts[++receipts.len] = list(
+				"ref" = "\ref[E]",
+				"contents" = E.contents,
+				"error" = E.contents["error"],
+				"title" = list(
+						list("field" = "Name", "entry" = E.name),
+						list("field" = "Value", "entry" = E.value)
+					)
+			)
+
+	data["user"] = "\ref[user]"
+	data["currentTab"] = menu_tab // Communicator compatibility, controls which menu is in use
+	data["shuttle_auth"] = (authorization & SUP_SEND_SHUTTLE) // Whether this ui is permitted to control the supply shuttle
+	data["order_auth"] = (authorization & SUP_ACCEPT_ORDERS)   // Whether this ui is permitted to accept/deny requested orders
+	data["shuttle"] = shuttle_status
+	data["supply_points"] = supply_controller.points
+	data["categories"] = all_supply_groups
+	data["active_category"] = active_category
+	data["supply_packs"] = pack_list
+	data["orders"] = orders
+	data["receipts"] = receipts
+	data["contraband"] = can_order_contraband || (authorization & SUP_CONTRABAND)
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "supply_records.tmpl", "Supply Console", 475, 700, state = key_state)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+		// auto update every 20 Master Controller tick
+		ui.set_auto_update(20) // Longer term to reduce the rate of data collection and processing
+
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(!supply_controller)
@@ -238,8 +341,12 @@
 				temp = "Initiating launch sequence. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		else
 			shuttle.launch(src)
+<<<<<<< HEAD
 			temp = "The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			post_signal("supply")
+=======
+			to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.</span>")
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 
 	if (href_list["force_send"])
 		shuttle.force_launch(src)
