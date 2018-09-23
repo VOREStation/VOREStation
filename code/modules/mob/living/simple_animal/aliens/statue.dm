@@ -58,12 +58,23 @@
 
 	melee_miss_chance = 0
 
+	armor = list(
+				"melee" = 30,
+				"bullet" = 60,
+				"laser" = 80,
+				"energy" = 30,
+				"bomb" = 30,
+				"bio" = 100,
+				"rad" = 100)
+
+	resistance = 20
 
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	var/last_hit = 0
 	var/cannot_be_seen = 1
 	var/mob/living/creator = null
+	var/drilled = FALSE
 
 
 // No movement while seen code.
@@ -92,13 +103,13 @@
 			else
 				visible_message("<span class='warning'>[src] is too strong to be banished!</span>")
 				Paralyse(rand(8,15))
-	if(istype(O, /obj/item/weapon/pickaxe) || istype(O, /obj/item/weapon/pickaxe/plasmacutter) || (O.force >= 20 && O.damtype == BRUTE)) //Heavy objects or distinctly rock-breaking tools.
-		..()
-
-/mob/living/simple_animal/hostile/statue/bullet_act(var/obj/item/projectile/Proj)
-	if((Proj.damage_type == BRUTE && Proj.damage >= 10) || (Proj.damage_type == BURN && Proj.damage >= 50))
-		..(Proj)
-	return
+	if(istype(O, /obj/item/weapon/pickaxe) || istype(O, /obj/item/weapon/pickaxe/plasmacutter) && !drilled)
+		drilled = TRUE
+		resistance = 0
+		spawn(300)
+			drilled = FALSE
+			resistance = initial(resistance)
+	..()
 
 /mob/living/simple_animal/hostile/statue/death()
 	var/chunks_to_spawn = rand(2,5)
@@ -120,6 +131,8 @@
 	handleAnnoyance()
 	if(target_mob) //if there's a victim, statue will use its powers
 		if((annoyance + 4) < 800)
+			annoyance += 4
+		if(drilled && (annoyance + 4) < 800) //Being hit with a drill makes them weaker, and angrier.
 			annoyance += 4
 	else if ((annoyance - 2) > 0)
 		annoyance -= 2
