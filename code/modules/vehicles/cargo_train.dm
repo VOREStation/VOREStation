@@ -41,7 +41,11 @@
 /obj/vehicle/train/cargo/engine/New()
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
+<<<<<<< HEAD
 	key = new(src)
+=======
+	key = new key_type(src)
+>>>>>>> 073597f... Merge pull request #5604 from Mechoid/Fix_My_Idiocy
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
 	overlays += I
 	turn_off()	//so engine verbs are correctly set
