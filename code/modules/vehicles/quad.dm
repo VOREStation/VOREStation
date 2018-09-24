@@ -27,11 +27,11 @@
 
 /obj/vehicle/train/engine/quadbike/New()
 	cell = new /obj/item/weapon/cell/high(src)
-	key = new(key_type)
+	key = new key_type(src)
 	turn_off()
 
 /obj/vehicle/train/engine/quadbike/built/New()
-	key = new(key_type)
+	key = new key_type(src)
 	turn_off()
 
 /obj/vehicle/train/engine/quadbike/random/New()
