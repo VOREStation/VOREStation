@@ -177,6 +177,15 @@
 		// 	new /obj/item/twohanded/required/mining_hammer(drop_location)
 	qdel(voucher)
 
+/obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for FUN and PROFIT.
+	if(!cost)
+		cost = 100
+	if(!path)
+		path = /obj/item/stack/marker_beacon
+	if(!name)
+		name = "Generic Entry"
+	prize_list += new /datum/data/mining_equipment(name, path, cost)
+
 /obj/machinery/mineral/equipment_vendor/ex_act(severity, target)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
