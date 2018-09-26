@@ -201,6 +201,18 @@ Drinks Data
 /datum/reagent/drink/nothing
 	glass_icon_state = "nothing"
 
+/datum/reagent/drink/oilslick
+	glass_icon_state = "jar_oil"
+	glass_center_of_mass = list("x"=15, "y"=12)
+
+/datum/reagent/drink/nuclearwaste
+	glass_icon_state = "jar_rad"
+	glass_center_of_mass = list("x"=15, "y"=12)
+
+/datum/reagent/drink/sodaoil
+	glass_icon_state = "jar_water"
+	glass_center_of_mass = list("x"=15, "y"=12)
+
 /datum/reagent/ethanol/absinthe
 	glass_icon_state = "absintheglass"
 	glass_center_of_mass = list("x"=16, "y"=5)
@@ -242,7 +254,11 @@ Drinks Data
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/sake
-	glass_icon_state = "ginvodkaglass"
+	glass_icon_state = "sakecup"
+	glass_center_of_mass = list("x"=16, "y"=12)
+
+/datum/reagent/ethanol/godsake
+	glass_icon_state = "sakeporcelain"
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/tequila
@@ -503,3 +519,26 @@ Drinks Data
 /datum/reagent/ethanol/specialwhiskey
 	glass_icon_state = "whiskeyglass"
 	glass_center_of_mass = list("x"=16, "y"=12)
+
+/datum/reagent/ethanol/godka
+	glass_icon_state = "godkabottle"
+	glass_center_of_mass = list("x"=17, "y"=15)
+
+/datum/reagent/ethanol/holywine
+	glass_icon_state = "holywineglass"
+	glass_center_of_mass = list("x"=15, "y"=7)
+
+/datum/reagent/ethanol/holy_mary
+	glass_icon_state = "holymaryglass"
+
+/datum/reagent/ethanol/angelswrath
+	glass_icon_state = "angelswrath"
+	glass_center_of_mass = list("x"=16, "y"=2)
+
+/datum/reagent/ethanol/angelskiss
+	glass_icon_state = "angelskiss"
+	glass_center_of_mass = list("x"=16, "y"=8)
+
+/datum/reagent/ethanol/ichor_mead
+	glass_icon_state = "ichor_meadglass"
+	glass_center_of_mass = list("x"=17, "y"=10)
