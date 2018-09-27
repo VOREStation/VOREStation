@@ -11,7 +11,12 @@
 	density = TRUE
 	anchored = TRUE
 
+<<<<<<< HEAD
 	var/obj/item/weapon/card/id/inserted_id // VOREStation Edit - Inserted Id card
+=======
+	var/obj/item/weapon/card/id/inserted_id	// Inserted ID card, for points
+
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
 
@@ -24,12 +29,16 @@
 		log_debug("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
 		qdel(src)
 
+<<<<<<< HEAD
 // VOREStation Add Start
+=======
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 /obj/machinery/mineral/processing_unit_console/Destroy()
 	if(inserted_id)
 		inserted_id.forceMove(loc) //Prevents deconstructing from deleting whatever ID was inside it.
 	. = ..()
 
+<<<<<<< HEAD
 /obj/machinery/mineral/processing_unit_console/attackby(var/obj/item/I, var/mob/user)	
 	if(istype(I, /obj/item/weapon/card/id))
 		if(!powered())
@@ -42,10 +51,23 @@
 	..()
 // VOREStation Add End
 
+=======
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 /obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
 	if(..())
 		return
 	interact(user)
+
+/obj/machinery/mineral/processing_unit_console/attackby(var/obj/item/I, var/mob/user)
+	if(istype(I, /obj/item/weapon/card/id))
+		if(!powered())
+			return
+		if(!inserted_id && user.unEquip(I))
+			I.forceMove(src)
+			inserted_id = I
+			interact(user)
+		return
+	..()
 
 /obj/machinery/mineral/processing_unit_console/interact(mob/user)
 	if(..())
@@ -66,6 +88,13 @@
 	else
 		dat += "No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>"
 	// VOREStation Add End
+
+	dat += "Current unclaimed points: [machine.points]<br>"
+	if(istype(inserted_id))
+		dat += "You have [inserted_id.mining_points] mining points collected. <A href='?src=\ref[src];choice=eject'>Eject ID.</A><br>"
+		dat += "<A href='?src=\ref[src];choice=claim'>Claim points.</A><br>"
+	else
+		dat += "No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>"
 
 	dat += "<hr><table>"
 
@@ -123,7 +152,10 @@
 
 		show_all_ores = !show_all_ores
 
+<<<<<<< HEAD
 	// VOREStation Add Start
+=======
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 	if(href_list["choice"])
 		if(istype(inserted_id))
 			if(href_list["choice"] == "eject")
@@ -138,13 +170,20 @@
 		else if(href_list["choice"] == "insert")
 			var/obj/item/weapon/card/id/I = usr.get_active_hand()
 			if(istype(I))
+<<<<<<< HEAD
 				if(!usr.drop_item())
 					return 1
+=======
+				usr.drop_item()
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 				I.forceMove(src)
 				inserted_id = I
 			else
 				to_chat(usr, "<span class='warning'>No valid ID.</span>")
+<<<<<<< HEAD
 	// VOREStation Add End
+=======
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 
 	src.updateUsrDialog()
 	return
@@ -182,6 +221,19 @@
 		"mhydrogen" = 40)
 	// VOREStation Add End
 
+	var/points = 0
+	var/static/list/ore_values = list(
+		"sand" = 1,
+		"hematite" = 1,
+		"carbon" = 1,
+		"phoron" = 15,
+		"silver" = 16,
+		"gold" = 18,
+		"uranium" = 30,
+		"diamond" = 50,
+		"platinum" = 40,
+		"mhydrogen" = 40)
+
 /obj/machinery/mineral/processing_unit/New()
 	..()
 	// initialize static alloy_data list
@@ -211,8 +263,17 @@
 	return
 
 /obj/machinery/mineral/processing_unit/process()
+<<<<<<< HEAD
 	if(!src.output || !src.input) return
 	if(panel_open || !powered()) return // VOREStation Edit - Don't work when unpowered
+=======
+
+	if (!src.output || !src.input)
+		return
+
+	if(panel_open || !powered())
+		return
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 
 	var/list/tick_alloys = list()
 
@@ -222,8 +283,12 @@
 		if(!O) break
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
+<<<<<<< HEAD
 			points += ore_values[O.material] // VOREStation Edit - Give Points!
 
+=======
+			points += ore_values[O.material] // Give Points!
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys
 		qdel(O)
 
 	if(!active)

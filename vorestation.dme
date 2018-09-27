@@ -921,8 +921,13 @@
 #include "code\game\objects\effects\decals\posters\polarisposters.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\effects\temporary_visuials\miscellaneous.dm"
 #include "code\game\objects\effects\temporary_visuials\temproary_visual.dm"
+=======
+#include "code\game\objects\effects\temporary_visuals\miscellaneous.dm"
+#include "code\game\objects\effects\temporary_visuals\temproary_visual.dm"
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys:polaris.dme
 #include "code\game\objects\items\antag_spawners.dm"
 #include "code\game\objects\items\apc_frame.dm"
 #include "code\game\objects\items\blueprints.dm"
@@ -1887,9 +1892,15 @@
 #include "code\modules\mining\shelters.dm"
 #include "code\modules\mining\drilling\drill.dm"
 #include "code\modules\mining\drilling\scanner.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mining\orm_vr\construction.dm"
 #include "code\modules\mining\orm_vr\equipment_vendor.dm"
 #include "code\modules\mining\orm_vr\mine_point_items.dm"
+=======
+#include "code\modules\mining\ore_redemption_machine\construction.dm"
+#include "code\modules\mining\ore_redemption_machine\equipment_vendor.dm"
+#include "code\modules\mining\ore_redemption_machine\mine_point_items.dm"
+>>>>>>> 46f1517... Merge pull request #5581 from Anewbe/mining_toys:polaris.dme
 #include "code\modules\mob\animations.dm"
 #include "code\modules\mob\death.dm"
 #include "code\modules\mob\emote.dm"
