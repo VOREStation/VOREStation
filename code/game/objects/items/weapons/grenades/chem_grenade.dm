@@ -91,8 +91,13 @@
 				stage = 2
 			else if(stage == 2)
 				if(active && prob(95))
+<<<<<<< HEAD
 					user << "<span class='warning'>You trigger the assembly!</span>"
 					prime()
+=======
+					to_chat(user, "<span class='warning'>You trigger the assembly!</span>")
+					detonate()
+>>>>>>> e050f4c... Merge pull request #5496 from Anewbe/supermatter_grenade
 					return
 				else
 					user << "<span class='notice'>You unlock the assembly.</span>"
@@ -144,7 +149,7 @@
 		if(active)
 			icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
-	prime()
+	detonate()
 		if(!stage || stage<2) return
 
 		var/has_reagents = 0

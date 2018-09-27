@@ -6,7 +6,7 @@
 	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 
-/obj/item/weapon/grenade/flashbang/prime()
+/obj/item/weapon/grenade/flashbang/detonate()
 	..()
 	for(var/obj/structure/closet/L in hear(max_range, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
@@ -105,8 +105,13 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang"
 
+<<<<<<< HEAD
 /obj/item/weapon/grenade/flashbang/clusterbang/prime()
 	var/numspawned = rand(4,8)
+=======
+/obj/item/weapon/grenade/flashbang/clusterbang/detonate()
+	var/numspawned = rand(min_banglets, max_banglets)
+>>>>>>> e050f4c... Merge pull request #5496 from Anewbe/supermatter_grenade
 	var/again = 0
 	for(var/more = numspawned,more > 0,more--)
 		if(prob(35))
@@ -140,7 +145,16 @@
 	walk_away(src,temploc,stepdist)//I must go, my people need me
 	var/dettime = rand(15,60)
 	spawn(dettime)
+<<<<<<< HEAD
 		prime()
+=======
+		detonate()
+
+/obj/item/weapon/grenade/flashbang/cluster
+	banglet = TRUE
+
+/obj/item/weapon/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
+>>>>>>> e050f4c... Merge pull request #5496 from Anewbe/supermatter_grenade
 	..()
 
 /obj/item/weapon/grenade/flashbang/clusterbang/segment/prime()
@@ -156,6 +170,7 @@
 	qdel(src)
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
 	spawn(0)
 		icon_state = "flashbang_active"
@@ -168,3 +183,8 @@
 		spawn(dettime)
 		prime()
 	..()
+=======
+	var/dettime = rand(15,60)
+	spawn(dettime)
+		detonate()
+>>>>>>> e050f4c... Merge pull request #5496 from Anewbe/supermatter_grenade

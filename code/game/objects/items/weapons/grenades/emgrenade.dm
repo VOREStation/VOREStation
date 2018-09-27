@@ -8,11 +8,11 @@
 	var/emp_light = 7
 	var/emp_long = 10
 
-	prime()
-		..()
-		if(empulse(src, emp_heavy, emp_med, emp_light, emp_long))
-			qdel(src)
-		return
+/obj/item/weapon/grenade/empgrenade/detonate()
+	..()
+	if(empulse(src, emp_heavy, emp_med, emp_light, emp_long))
+		qdel(src)
+	return
 
 /obj/item/weapon/grenade/empgrenade/low_yield
 	name = "low yield emp grenade"
