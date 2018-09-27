@@ -153,7 +153,7 @@
 		return 0
 
 	if(build_turf)
-		T.ChangeTurf(build_turf)
+		T.ChangeTurf(build_turf, preserve_outdoors = TRUE)
 	else if(build_other)
 		new build_other(T)
 	else

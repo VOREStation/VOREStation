@@ -63,55 +63,64 @@
 
 /obj/item/weapon/robot_module/robot/medical/surgeon //VOREStation sprites
 	vr_sprites = list(
-						"Acheron" = "mechoid-Medical"
+						"Acheron" = "mechoid-Medical",
+						"Shellguard Noble" = "Noble-MED"
 					 )
 
 /obj/item/weapon/robot_module/robot/medical/crisis //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-med",
-						"Acheron" = "mechoid-Medical"
+						"Acheron" = "mechoid-Medical",
+						"Shellguard Noble" = "Noble-MED"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/butler //VOREStation sprites
 	vr_sprites = list(
 						"Handy - Service" = "handy-service",
 						"Handy - Hydro" = "handy-hydro",
-						"Acheron" = "mechoid-Service"
+						"Acheron" = "mechoid-Service",
+						"Shellguard Noble" = "Noble-SRV"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/general //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-clerk",
-						"Acheron" = "mechoid-Service"
+						"Acheron" = "mechoid-Service",
+						"Shellguard Noble" = "Noble-SRV"
 					 )
 
 /obj/item/weapon/robot_module/robot/janitor //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-janitor",
-						"Acheron" = "mechoid-Janitor"
+						"Acheron" = "mechoid-Janitor",
+						"Shellguard Noble" = "Noble-CLN"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/general //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-sec",
-						"Acheron" = "mechoid-Security"
+						"Acheron" = "mechoid-Security",
+						"Shellguard Noble" = "Noble-SEC"
 					 )
 
 /obj/item/weapon/robot_module/robot/miner //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-miner",
-						"Acheron" = "mechoid-Miner"
+						"Acheron" = "mechoid-Miner",
+						"Shellguard Noble" = "Noble-DIG"
 					 )
 
 /obj/item/weapon/robot_module/robot/standard //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-standard",
-						"Acheron" = "mechoid-Standard"
+						"Acheron" = "mechoid-Standard",
+						"Shellguard Noble" = "Noble-STD"
 					 )
 
 /obj/item/weapon/robot_module/robot/engineering/general //VOREStation sprites
 	vr_sprites = list(
-						"Acheron" = "mechoid-Engineering"
+						"Acheron" = "mechoid-Engineering",
+						"Shellguard Noble" = "Noble-ENG"
 					 )
 
 /obj/item/weapon/robot_module/robot/research //VOREStation sprites
@@ -170,6 +179,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
@@ -243,6 +253,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
@@ -289,6 +300,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
@@ -369,6 +381,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
@@ -415,6 +428,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
@@ -540,6 +554,7 @@
 	R.dogborg = TRUE
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	..()
 
@@ -553,5 +568,6 @@
 	R.default_pixel_x = initial(pixel_x)
 	R.scrubbing = FALSE
 	R.verbs -= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs -= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs -= /mob/living/proc/shred_limb
 	..()

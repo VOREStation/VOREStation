@@ -16,6 +16,10 @@
 
 	starts_with = list(/obj/item/weapon/material/twohanded/fireaxe)
 
+/obj/structure/closet/fireaxecabinet/initialize()
+	..()
+	fireaxe = locate() in contents
+
 /obj/structure/closet/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
 
@@ -115,6 +119,7 @@
 	if(src.locked)
 		to_chat(user, "<span class='warning'>The cabinet won't budge!</span>")
 		return
+
 	if(localopened)
 		if(fireaxe)
 			user.put_in_hands(fireaxe)
