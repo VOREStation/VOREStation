@@ -227,6 +227,18 @@
 	else
 		hud = new()
 
+<<<<<<< HEAD
+=======
+	// Prep the descriptors for the species
+	if(LAZYLEN(descriptors))
+		var/list/descriptor_datums = list()
+		for(var/desctype in descriptors)
+			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor.comparison_offset = descriptors[desctype]
+			descriptor_datums[descriptor.name] = descriptor
+		descriptors = descriptor_datums
+
+>>>>>>> 6289e91... Merge pull request #5586 from Anewbe/height
 	//If the species has eyes, they are the default vision organ
 	if(!vision_organ && has_organ[O_EYES])
 		vision_organ = O_EYES
