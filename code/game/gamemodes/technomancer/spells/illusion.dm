@@ -62,7 +62,7 @@
 					illusion.emote(what_to_emote)
 
 /obj/item/weapon/spell/illusion/Destroy()
-	qdel_null(illusion)
+	QDEL_NULL(illusion)
 	copied = null
 	return ..()
 

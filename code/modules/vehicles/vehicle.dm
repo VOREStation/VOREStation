@@ -50,7 +50,7 @@
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/Destroy()
-	qdel_null(riding_datum)
+	QDEL_NULL(riding_datum)
 	return ..()
 
 //BUCKLE HOOKS

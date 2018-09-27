@@ -28,7 +28,7 @@
 	update_icon()
 
 /obj/machinery/pipelayer/Destroy()
-	qdel_null(W)
+	QDEL_NULL(W)
 	. = ..()
 
 /obj/machinery/pipelayer/RefreshParts()

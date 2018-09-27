@@ -1467,6 +1467,7 @@ var/mob/dview/dview_mob = new
 		if(337.5)
 			return "North-Northwest"
 
+<<<<<<< HEAD
 //This is used to force compiletime errors if you incorrectly supply variable names. Crafty!
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
@@ -1485,3 +1486,7 @@ var/mob/dview/dview_mob = new
 		return
 	var/datum/D = list_or_datum
 	D.vars[var_name] = var_value
+=======
+/proc/pass()
+	return
+>>>>>>> 50efc3c... Merge pull request #5502 from Anewbe/glob_is_hungry_for_souls

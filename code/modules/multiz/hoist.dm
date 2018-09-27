@@ -110,7 +110,7 @@
 /obj/structure/hoist/Destroy()
 	if(hoistee)
 		release_hoistee()
-	qdel_null(src.source_hook)
+	QDEL_NULL(src.source_hook)
 	return ..()
 
 /obj/effect/hoist_hook/Destroy()
@@ -139,7 +139,7 @@
 	desc += " It looks broken, and the clamp has retracted back into the hoist. Seems like you'd have to re-deploy it to get it to work again."
 	if(hoistee)
 		release_hoistee()
-	qdel_null(source_hook)
+	QDEL_NULL(source_hook)
 
 /obj/structure/hoist/ex_act(severity)
 	switch(severity)
