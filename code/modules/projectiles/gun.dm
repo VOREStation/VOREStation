@@ -181,11 +181,11 @@
 	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
 			if(attached_lock.safety_level == 0)
-				M << "<span class='danger'>\The [src] buzzes in dissapoint and displays an invalid DNA symbol.</span>"
+				to_chat(M, "<span class='danger'>\The [src] buzzes in dissapoint and displays an invalid DNA symbol.</span>")
 				return 0
 			if(!attached_lock.exploding)
 				if(attached_lock.safety_level == 1)
-					M << "<span class='danger'>\The [src] hisses in dissapointment.</span>"
+					to_chat(M, "<span class='danger'>\The [src] hisses in dissapointment.</span>")
 					visible_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>", "<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>")
 					spawn(100)
 						explosion(src, 0, 0, 3, 4)
@@ -194,7 +194,7 @@
 						qdel(src)
 					return 0
 	if(HULK in M.mutations)
-		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
+		to_chat(M, "<span class='danger'>Your fingers are much too large for the trigger guard!</span>")
 		return 0
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
@@ -227,7 +227,7 @@
 		return
 
 	if(user && user.a_intent == I_HELP && user.is_preference_enabled(/datum/client_preference/safefiring)) //regardless of what happens, refuse to shoot if help intent is on
-		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
+		to_chat(user, "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>")
 		return
 
 	else
@@ -267,9 +267,9 @@
 /obj/item/weapon/gun/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/dnalockingchip))
 		if(dna_lock)
-			user << "<span class='notice'>\The [src] already has a [attached_lock].</span>"
+			to_chat(user, "<span class='notice'>\The [src] already has a [attached_lock].</span>")
 			return
-		user << "<span class='notice'>You insert \the [A] into \the [src].</span>"
+		to_chat(user, "<span class='notice'>You insert \the [A] into \the [src].</span>")
 		user.drop_item()
 		A.loc = src
 		attached_lock = A
@@ -279,12 +279,12 @@
 		verbs += /obj/item/weapon/gun/verb/allow_dna
 		return
 
-	if(istype(A, /obj/item/weapon/screwdriver))
+	if(A.is_screwdriver())
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
-			user << "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>"
+			to_chat(user, "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>")
 			playsound(src, A.usesound, 50, 1)
 			if(do_after(user, 25 * A.toolspeed))
-				user << "<span class='notice'>You remove \the [attached_lock] from \the [src].</span>"
+				to_chat(user, "<span class='notice'>You remove \the [attached_lock] from \the [src].</span>")
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
 				attached_lock = null
@@ -292,12 +292,12 @@
 				verbs -= /obj/item/weapon/gun/verb/give_dna
 				verbs -= /obj/item/weapon/gun/verb/allow_dna
 		else
-			user << "<span class='warning'>\The [src] is not accepting modifications at this time.</span>"
+			to_chat(user, "<span class='warning'>\The [src] is not accepting modifications at this time.</span>")
 	..()
 
 /obj/item/weapon/gun/emag_act(var/remaining_charges, var/mob/user)
 	if(dna_lock && attached_lock.controller_lock)
-		user << "<span class='notice'>You short circuit the internal locking mechanisms of \the [src]!</span>"
+		to_chat(user, "<span class='notice'>You short circuit the internal locking mechanisms of \the [src]!</span>")
 		attached_lock.controller_dna = null
 		attached_lock.controller_lock = 0
 		attached_lock.stored_dna = list()
@@ -348,7 +348,7 @@
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
-			user << "<span class='warning'>[src] is not ready to fire again!</span>"
+			to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
@@ -407,9 +407,11 @@
 
 		last_shot = world.time
 
-/*	// Commented out for quality control and testing.
+/*
+	// Commented out for quality control and testing.
 	shooting = 0
 */
+
 	// We do this down here, so we don't get the message if we fire an empty gun.
 	if(user.item_is_in_hands(src) && user.hands_are_full())
 		if(one_handed_penalty >= 20)
@@ -514,8 +516,6 @@
 	if(muzzle_flash)
 		set_light(0)
 
-
-
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
 	return null
@@ -587,7 +587,6 @@
 			shake_camera(user, recoil+1, recoil)
 	update_icon()
 
-
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
@@ -626,13 +625,7 @@
 	P.accuracy = accuracy + acc_mod
 	P.dispersion = disp_mod
 
-	// Certain statuses make it harder to aim, blindness especially.  Same chances as melee, however guns accuracy uses multiples of 15.
-	if(user.eye_blind)
-		P.accuracy -= 75
-	if(user.eye_blurry)
-		P.accuracy -= 30
-	if(user.confused)
-		P.accuracy -= 45
+	P.accuracy -= user.get_accuracy_penalty()
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
@@ -676,7 +669,6 @@
 
 	return launched
 
-
 /obj/item/weapon/gun/proc/play_fire_sound(var/mob/user, var/obj/item/projectile/P)
 	var/shot_sound = (istype(P) && P.fire_sound)? P.fire_sound : fire_sound
 	if(silenced)
@@ -717,7 +709,7 @@
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 		else
-			user << "<span class = 'notice'>Ow...</span>"
+			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
 		mouthshoot = 0

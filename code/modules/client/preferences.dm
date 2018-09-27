@@ -60,7 +60,7 @@ datum/preferences
 	var/r_synth							//Used with synth_color to color synth parts that normaly can't be colored.
 	var/g_synth							//Same as above
 	var/b_synth							//Same as above
-	var/synth_markings = 1				//VOREStation edit. Enable/disable markings on synth parts.
+	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
@@ -103,6 +103,8 @@ datum/preferences
 
 	var/list/flavor_texts = list()
 	var/list/flavour_texts_robot = list()
+
+	var/list/body_descriptors = list()
 
 	var/med_record = ""
 	var/sec_record = ""
@@ -299,6 +301,10 @@ datum/preferences
 		character.update_mutations()
 		character.update_underwear()
 		character.update_hair()
+
+	if(LAZYLEN(character.descriptors))
+		for(var/entry in body_descriptors)
+			character.descriptors[entry] = body_descriptors[entry]
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"

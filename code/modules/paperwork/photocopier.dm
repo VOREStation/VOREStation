@@ -50,7 +50,7 @@
 	else
 		data["isSilicon"] = null
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "photocopier.tmpl", src.name, 300, 250)
 		ui.set_initial_data(data)
@@ -80,7 +80,7 @@
 				var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
 				sleep(11*B.pages.len)
 			else
-				usr << "<span class='warning'>\The [copyitem] can't be copied by \the [src].</span>"
+				to_chat(usr, "<span class='warning'>\The [copyitem] can't be copied by \the [src].</span>")
 				break
 
 			use_power(active_power_usage)
@@ -88,7 +88,7 @@
 		if(copyitem)
 			copyitem.loc = usr.loc
 			usr.put_in_hands(copyitem)
-			usr << "<span class='notice'>You take \the [copyitem] out of \the [src].</span>"
+			to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
 			copyitem = null
 	else if(href_list["min"])
 		if(copies > 1)
@@ -118,7 +118,7 @@
 			toner -= 5
 			sleep(15)
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))
@@ -126,24 +126,24 @@
 			user.drop_item()
 			copyitem = O
 			O.loc = src
-			user << "<span class='notice'>You insert \the [O] into \the [src].</span>"
+			to_chat(user, "<span class='notice'>You insert \the [O] into \the [src].</span>")
 			playsound(loc, "sound/machines/click.ogg", 100, 1)
 			flick(insert_anim, src)
 		else
-			user << "<span class='notice'>There is already something in \the [src].</span>"
+			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 	else if(istype(O, /obj/item/device/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
-			user << "<span class='notice'>You insert the toner cartridge into \the [src].</span>"
+			to_chat(user, "<span class='notice'>You insert the toner cartridge into \the [src].</span>")
 			var/obj/item/device/toner/T = O
 			toner += T.toner_amount
 			qdel(O)
 		else
-			user << "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>"
-	else if(istype(O, /obj/item/weapon/wrench))
+			to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
+	else if(O.is_wrench())
 		playsound(loc, O.usesound, 50, 1)
 		anchored = !anchored
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 	else if(default_deconstruction_screwdriver(user, O))
 		return

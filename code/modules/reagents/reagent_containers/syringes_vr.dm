@@ -13,7 +13,7 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/Destroy()
-	qdel_null_list(viruses)
+	QDEL_NULL_LIST(viruses)
 	LAZYCLEARLIST(targets)
 	return ..()
 

@@ -20,7 +20,7 @@
 
 	var/hibernate = 0 //Do we even process?
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
-	var/list/scrubbing_gas = list("carbon_dioxide", "phoron")
+	var/list/scrubbing_gas = list("carbon_dioxide")
 
 	var/panic = 0 //is this scrubber panicked?
 
@@ -264,7 +264,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!W.is_wrench())
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>")

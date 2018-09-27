@@ -51,7 +51,7 @@
 
 /obj/item/clothing/gloves/ring/reagent/sleepy/New()
 	..()
-	reagents.add_reagent(/datum/reagent/chloralhydrate, 15) // Less than a sleepy-pen, but still enough to knock someone out
+	reagents.add_reagent("chloralhydrate", 15) // Less than a sleepy-pen, but still enough to knock someone out
 
 /////////////////////////////////////////
 //Seals and Signet Rings

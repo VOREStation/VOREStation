@@ -40,14 +40,14 @@
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
-	qdel_null(boxes)
-	qdel_null(src.storage_start)
-	qdel_null(src.storage_continue)
-	qdel_null(src.storage_end)
-	qdel_null(src.stored_start)
-	qdel_null(src.stored_continue)
-	qdel_null(src.stored_end)
-	qdel_null(closer)
+	QDEL_NULL(boxes)
+	QDEL_NULL(src.storage_start)
+	QDEL_NULL(src.storage_continue)
+	QDEL_NULL(src.storage_end)
+	QDEL_NULL(src.stored_start)
+	QDEL_NULL(src.stored_continue)
+	QDEL_NULL(src.stored_end)
+	QDEL_NULL(closer)
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
@@ -354,7 +354,7 @@
 //such as when picking up all the items on a tile with one click.
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
-	
+
 	if(usr)
 		usr.remove_from_mob(W,target = src) //If given a target, handles forceMove()
 		W.on_enter_storage(src)

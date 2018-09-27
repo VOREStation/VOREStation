@@ -28,8 +28,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg','sound/ambience/serspaceamb1.ogg')
 	base_turf = /turf/space
+	ambience = AMBIENCE_SPACE
 
 /area/space/atmosalert()
 	return
@@ -74,6 +74,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/arrival
 	name = "\improper Arrival Shuttle"
+	ambience = AMBIENCE_ARRIVALS
 
 /area/shuttle/arrival/pre_game
 	icon_state = "shuttle2"
@@ -81,6 +82,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/arrival/station
 	icon_state = "shuttle"
 	dynamic_lighting = 0
+	ambience = AMBIENCE_ARRIVALS
 
 /area/shuttle/escape
 	name = "\improper Emergency Shuttle"
@@ -384,9 +386,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/centcom/terminal
 	name = "\improper Docking Terminal"
 	icon_state = "centcom_dock"
+	ambience = AMBIENCE_ARRIVALS
 
 /area/centcom/tram
 	name = "\improper Tram Station"
+	ambience = AMBIENCE_ARRIVALS
 
 /area/centcom/security
 	name = "\improper CentCom Security"
@@ -399,6 +403,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/centcom/command
 	name = "\improper CentCom Command" //Central Command Command totally isn't RAS Syndrome in action.
 	icon_state = "centcom_command"
+	ambience = AMBIENCE_HIGHSEC
 
 /area/centcom/main_hall
 	name = "\improper Main Hallway"
@@ -423,6 +428,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
+	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"
@@ -488,6 +494,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	requires_power = 0
 	flags = RAD_SHIELDED
 	base_turf = /turf/space
+	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_station/start
 	name = "\improper Mercenary Forward Operating Base"
@@ -542,12 +549,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0
+	ambience = AMBIENCE_OTHERWORLDLY
 
 /area/skipjack_station
 	name = "\improper Skipjack"
 	icon_state = "yellow"
 	requires_power = 0
 	base_turf = /turf/space
+	ambience = AMBIENCE_HIGHSEC
 
 /area/skipjack_station/start
 	name = "\improper Skipjack"
@@ -581,6 +590,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/prison
 	name = "\improper Prison Station"
 	icon_state = "brig"
+	ambience = AMBIENCE_HIGHSEC
 
 /area/prison/arrival_airlock
 	name = "\improper Prison Station Airlock"
@@ -664,12 +674,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //SPACE STATION 13//
 ////////////////////
 
+/area
+	ambience = AMBIENCE_GENERIC
+
 //Maintenance
 
 /area/maintenance
 	flags = RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
+	ambience = AMBIENCE_MAINTENANCE
 
 /area/maintenance/aft
 	name = "Aft Maintenance"
@@ -896,6 +910,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/hallway/primary/
 	sound_env = LARGE_ENCLOSED
+	ambience = AMBIENCE_GENERIC
 
 /area/hallway/primary/fore
 	name = "\improper Fore Primary Hallway"
@@ -1104,6 +1119,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
+	ambience = AMBIENCE_GENERIC
 
 /area/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
@@ -1363,10 +1379,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
  	name = "\improper Library Conference Room"
  	icon_state = "library_conference_room"
 
+/area/chapel
+	ambience = AMBIENCE_CHAPEL
+
 /area/chapel/main
 	name = "\improper Chapel"
 	icon_state = "chapel"
-	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg','sound/music/traitor.ogg')
 	sound_env = LARGE_ENCLOSED
 
 /area/chapel/office
@@ -1470,7 +1488,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/engineering/
 	name = "\improper Engineering"
 	icon_state = "engineering"
-	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
+	ambience = AMBIENCE_ENGINEERING
 
 /area/engineering/atmos
  	name = "\improper Atmospherics"
@@ -1554,6 +1572,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	requires_power = 1
 	always_unpowered = 1
 	dynamic_lighting = 0
+	ambience = AMBIENCE_SPACE
 
 	auxport
 		name = "\improper Fore Port Solar Array"
@@ -1639,7 +1658,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper AI Satellite Teleporter Room"
 	icon_state = "teleporter"
 	music = "signal"
-	ambience = list('sound/ambience/ambimalf.ogg')
 
 //MedBay
 
@@ -1749,7 +1767,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/morgue
 	name = "\improper Morgue"
 	icon_state = "morgue"
-	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg','sound/music/main.ogg')
 
 /area/medical/chemistry
 	name = "\improper Chemistry"
@@ -1850,6 +1867,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/armoury
 	name = "\improper Security - Armory"
 	icon_state = "armory"
+	ambience = AMBIENCE_HIGHSEC
 
 /area/security/briefing_room
 	name = "\improper Security - Briefing Room"
@@ -1907,6 +1925,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/tactical
 	name = "\improper Security - Tactical Equipment"
 	icon_state = "Tactical"
+	ambience = AMBIENCE_HIGHSEC
 
 
 /*
@@ -1929,6 +1948,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/nuke_storage
 	name = "\improper Vault"
 	icon_state = "nuke_storage"
+	ambience = AMBIENCE_HIGHSEC
 
 /area/security/checkpoint
 	name = "\improper Security Checkpoint"
@@ -1937,6 +1957,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/checkpoint2
 	name = "\improper Security - Arrival Checkpoint"
 	icon_state = "security"
+	ambience = AMBIENCE_ARRIVALS
 
 /area/security/checkpoint/supply
 	name = "Security Post - Cargo Bay"
@@ -2167,16 +2188,19 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/djstation
 	name = "\improper Listening Post"
 	icon_state = "LP"
+	ambience = AMBIENCE_TECH_RUINS
 
 /area/djstation/solars
 	name = "\improper Listening Post Solars"
 	icon_state = "LPS"
+	ambience = AMBIENCE_TECH_RUINS
 
 //DERELICT
 
 /area/derelict
 	name = "\improper Derelict Station"
 	icon_state = "storage"
+	ambience = AMBIENCE_RUINS
 
 /area/derelict/hallway/primary
 	name = "\improper Derelict Primary Hallway"
@@ -2375,6 +2399,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/ai_monitored/storage/secure
 	name = "Secure Storage"
 	icon_state = "storage"
+	ambience = AMBIENCE_HIGHSEC
 
 /area/ai_monitored/storage/emergency
 	name = "Emergency Storage"
@@ -2387,74 +2412,85 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/ai_upload
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
-	ambience = list('sound/ambience/ambimalf.ogg')
+	ambience = AMBIENCE_AI
 
 /area/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
-	ambience = list('sound/ambience/ambimalf.ogg')
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_AI
 
 /area/ai_server_room
 	name = "Messaging Server Room"
 	icon_state = "ai_server"
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_AI
 
 /area/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
-	ambience = list('sound/ambience/ambimalf.ogg')
+	ambience = AMBIENCE_AI
 
 /area/ai_cyborg_station
 	name = "\improper Cyborg Station"
 	icon_state = "ai_cyborg"
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_AI
 
 /area/aisat
 	name = "\improper AI Satellite"
 	icon_state = "ai"
+	ambience = AMBIENCE_AI
 
 /area/aisat_interior
 	name = "\improper AI Satellite"
 	icon_state = "ai"
+	ambience = AMBIENCE_AI // The lack of inheritence hurts my soul.
 
 /area/AIsatextFP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	dynamic_lighting = 0
+	ambience = AMBIENCE_AI
 
 /area/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	dynamic_lighting = 0
+	ambience = AMBIENCE_AI
 
 /area/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	dynamic_lighting = 0
+	ambience = AMBIENCE_AI
 
 /area/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	dynamic_lighting = 0
+	ambience = AMBIENCE_AI
 
 /area/NewAIMain
 	name = "\improper AI Main New"
 	icon_state = "storage"
+	ambience = AMBIENCE_AI
 
 
 
 //Misc
 
-
+/area/wreck
+	ambience = AMBIENCE_RUINS
 
 /area/wreck/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai"
+	ambience = AMBIENCE_TECH_RUINS
 
 /area/wreck/main
 	name = "\improper Wreck"
@@ -2463,10 +2499,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/wreck/engineering
 	name = "\improper Power Room"
 	icon_state = "engine"
+	ambience = AMBIENCE_TECH_RUINS
 
 /area/wreck/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
+	ambience = AMBIENCE_TECH_RUINS
 
 /area/generic
 	name = "Unknown"
@@ -2476,7 +2514,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 // Telecommunications Satellite
 /area/tcommsat/
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = AMBIENCE_ENGINEERING
 
 /area/tcommsat/entrance
 	name = "\improper Telecomms Teleporter"
@@ -2489,22 +2527,22 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/tcomsat
 	name = "\improper Telecomms Satellite"
 	icon_state = "tcomsatlob"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = AMBIENCE_ENGINEERING
 
 /area/tcomfoyer
 	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatfoyer"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = AMBIENCE_ENGINEERING
 
 /area/tcomwest
 	name = "\improper Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = AMBIENCE_ENGINEERING
 
 /area/tcomeast
 	name = "\improper Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = AMBIENCE_ENGINEERING
 
 /area/tcommsat/computer
 	name = "\improper Telecomms Control Room"
@@ -2523,6 +2561,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/awaymission
 	name = "\improper Strange Location"
 	icon_state = "away"
+	ambience = AMBIENCE_FOREBODING
 
 /area/awaymission/gateway
 	name = "\improper Gateway"
@@ -2621,57 +2660,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	dynamic_lighting = 0
 	requires_power = 0
-	ambience = list()
-// Vorestation Removal - This is very broken. Sounds do not stop when you leave the area.
-/*	var/sound/mysound = null
-
-	New()
-		..()
-		var/sound/S = new/sound()
-		mysound = S
-		S.file = 'sound/ambience/shore.ogg'
-		S.repeat = 1
-		S.wait = 0
-		S.channel = 123
-		S.volume = 100
-		S.priority = 255
-		S.status = SOUND_UPDATE
-		process()
-
-	Entered(atom/movable/Obj,atom/OldLoc)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_UPDATE
-				Obj << mysound
-		return
-
-	Exited(atom/movable/Obj)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
-				Obj << mysound
-
-	proc/process()
-		set background = 1
-
-		var/sound/S = null
-		var/sound_delay = 0
-		if(prob(25))
-			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
-			sound_delay = rand(0, 50)
-
-		for(var/mob/living/carbon/human/H in src)
-			if(H.s_tone > -55)
-				H.s_tone--
-				H.update_icons_body()
-			if(H.client)
-				mysound.status = SOUND_UPDATE
-				H << mysound
-				if(S)
-					spawn(sound_delay)
-						H << S
-
-		spawn(60) .()*/
 
 /////////////////////////////////////////////////////////////////////
 /*
@@ -2744,53 +2732,3 @@ var/list/the_station_areas = list (
 	luminosity = 1
 	dynamic_lighting = 0
 	requires_power = 0
-	var/sound/mysound = null
-/*
-	New()
-		..()
-		var/sound/S = new/sound()
-		mysound = S
-		S.file = 'sound/ambience/shore.ogg'
-		S.repeat = 1
-		S.wait = 0
-		S.channel = 123
-		S.volume = 100
-		S.priority = 255
-		S.status = SOUND_UPDATE
-		process()
-
-	Entered(atom/movable/Obj,atom/OldLoc)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_UPDATE
-				Obj << mysound
-		return
-
-	Exited(atom/movable/Obj)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
-				Obj << mysound
-
-	proc/process()
-		set background = 1
-
-		var/sound/S = null
-		var/sound_delay = 0
-		if(prob(25))
-			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
-			sound_delay = rand(0, 50)
-
-		for(var/mob/living/carbon/human/H in src)
-//			if(H.s_tone > -55)	//ugh...nice/novel idea but please no.
-//				H.s_tone--
-//				H.update_icons_body()
-			if(H.client)
-				mysound.status = SOUND_UPDATE
-				H << mysound
-				if(S)
-					spawn(sound_delay)
-						H << S
-
-		spawn(60) .()
-*/

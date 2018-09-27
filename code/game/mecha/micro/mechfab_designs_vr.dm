@@ -124,7 +124,7 @@
 	name = "\improper FP-20 mounted grenade launcher"
 	id = "micro_flashbang_launcher"
 //	req_tech = list(TECH_COMBAT = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/microflashbang
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/microflashbang
 
 /datum/design/item/mecha/weapon/scattershot/micro
 	name = "\improper Remington C-12 \"Boomstick\""

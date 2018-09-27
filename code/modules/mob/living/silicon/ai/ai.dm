@@ -119,7 +119,7 @@ var/list/ai_verbs_default = list(
 	canmove = 0
 	density = 1
 	loc = loc
-	
+
 	if(!is_dummy)
 		aiCommunicator = new /obj/item/device/communicator/integrated(src)
 
@@ -214,14 +214,14 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
 
-	qdel_null(announcement)
-	qdel_null(eyeobj)
-	qdel_null(psupply)
-	qdel_null(aiPDA)
-	qdel_null(aiCommunicator)
-	qdel_null(aiMulti)
-	qdel_null(aiRadio)
-	qdel_null(aiCamera)
+	QDEL_NULL(announcement)
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(psupply)
+	QDEL_NULL(aiPDA)
+	QDEL_NULL(aiCommunicator)
+	QDEL_NULL(aiMulti)
+	QDEL_NULL(aiRadio)
+	QDEL_NULL(aiCamera)
 	hack = null
 
 	return ..()
@@ -694,7 +694,7 @@ var/list/ai_verbs_default = list(
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		if(user == controlling_drone)
 			to_chat(user, "<span class='notice'>The drone's subsystems resist your efforts to tamper with your bolts.</span>")
 			return
@@ -809,7 +809,7 @@ var/list/ai_verbs_default = list(
 //Special subtype kept around for global announcements
 /mob/living/silicon/ai/announcer/
 	is_dummy = 1
-	
+
 /mob/living/silicon/ai/announcer/initialize()
 	. = ..()
 	mob_list -= src

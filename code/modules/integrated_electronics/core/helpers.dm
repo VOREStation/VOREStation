@@ -1,7 +1,8 @@
 /obj/item/integrated_circuit/proc/setup_io(var/list/io_list, var/io_type, var/list/io_default_list)
 	var/list/io_list_copy = io_list.Copy()
 	io_list.Cut()
-	var/i = 0
+	var/i = 1
+
 	for(var/io_entry in io_list_copy)
 		var/default_data = null
 		var/io_type_override = null
@@ -13,10 +14,10 @@
 			io_type_override = io_list_copy[io_entry]
 
 		if(io_type_override)
-	//		world << "io_type_override is now [io_type_override] on [src]."
 			io_list.Add(new io_type_override(src, io_entry, default_data))
 		else
 			io_list.Add(new io_type(src, io_entry, default_data))
+		i++
 
 /obj/item/integrated_circuit/proc/set_pin_data(var/pin_type, var/pin_number, datum/new_data)
 	if (istype(new_data) && !isweakref(new_data))

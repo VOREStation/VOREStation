@@ -5,9 +5,6 @@
 #undef DATA_CHANNEL
 #undef PULSE_CHANNEL
 
-#undef IC_SPAWN_DEFAULT
-//#undef IC_SPAWN_RESEARCH // Research designs depend on this unfortunately.
-
 #undef IC_FORMAT_ANY
 #undef IC_FORMAT_STRING
 #undef IC_FORMAT_CHAR

@@ -18,12 +18,12 @@
 		arscreen = new arscreen_path(src)
 
 /obj/item/clothing/glasses/omnihud/Destroy()
-	qdel_null(arscreen)
+	QDEL_NULL(arscreen)
 	. = ..()
 
 /obj/item/clothing/glasses/omnihud/dropped()
 	if(arscreen)
-		nanomanager.close_uis(src)
+		GLOB.nanomanager.close_uis(src)
 	..()
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)

@@ -1,56 +1,29 @@
 #define IC_COMPONENTS_BASE		20
 #define IC_COMPLEXITY_BASE		60
 
+// Here is where the base definition lives.
+// Specific subtypes are in their own folder.
+
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
 	desc = "It's a case, for building small electronics with."
 	w_class = ITEMSIZE_SMALL
-	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
 	icon_state = "setup_small"
 	show_messages = TRUE
 	var/max_components = IC_COMPONENTS_BASE
 	var/max_complexity = IC_COMPLEXITY_BASE
-	var/opened = 0
+	var/opened = FALSE
+	var/can_anchor = FALSE // If true, wrenching it will anchor it.
 	var/obj/item/weapon/cell/device/battery = null // Internal cell which most circuits need to work.
+	var/net_power = 0 // Set every tick, to display how much power is being drawn in total.
+	var/detail_color = COLOR_ASSEMBLY_BLACK
 
 
-/obj/item/device/electronic_assembly/medium
-	name = "electronic mechanism"
-	icon_state = "setup_medium"
-	desc = "It's a case, for building medium-sized electronics with."
-	w_class = ITEMSIZE_NORMAL
-	max_components = IC_COMPONENTS_BASE * 2
-	max_complexity = IC_COMPLEXITY_BASE * 2
-
-/obj/item/device/electronic_assembly/large
-	name = "electronic machine"
-	icon_state = "setup_large"
-	desc = "It's a case, for building large electronics with."
-	w_class = ITEMSIZE_LARGE
-	max_components = IC_COMPONENTS_BASE * 4
-	max_complexity = IC_COMPLEXITY_BASE * 4
-
-/obj/item/device/electronic_assembly/drone
-	name = "electronic drone"
-	icon_state = "setup_drone"
-	desc = "It's a case, for building mobile electronics with."
-	w_class = ITEMSIZE_NORMAL
-	max_components = IC_COMPONENTS_BASE * 1.5
-	max_complexity = IC_COMPLEXITY_BASE * 1.5
-
-/obj/item/device/electronic_assembly/implant
-	name = "electronic implant"
-	icon_state = "setup_implant"
-	desc = "It's a case, for building very tiny electronics with."
-	w_class = ITEMSIZE_TINY
-	max_components = IC_COMPONENTS_BASE / 2
-	max_complexity = IC_COMPLEXITY_BASE / 2
-	var/obj/item/weapon/implant/integrated_circuit/implant = null
-
-/obj/item/device/electronic_assembly/New()
-	..()
+/obj/item/device/electronic_assembly/initialize()
 	battery = new(src)
 	processing_objects |= src
+	return ..()
 
 /obj/item/device/electronic_assembly/Destroy()
 	battery = null // It will be qdel'd by ..() if still in our contents
@@ -61,34 +34,31 @@
 	handle_idle_power()
 
 /obj/item/device/electronic_assembly/proc/handle_idle_power()
-	// First we generate power.
-	for(var/obj/item/integrated_circuit/passive/power/P in contents)
-		P.make_energy()
+	net_power = 0 // Reset this. This gets increased/decreased with [give/draw]_power() outside of this loop.
 
-	// Now spend it.
+	// First we handle passive sources. Most of these make power so they go first.
+	for(var/obj/item/integrated_circuit/passive/power/P in contents)
+		P.handle_passive_energy()
+
+	// Now we handle idle power draw.
 	for(var/obj/item/integrated_circuit/IC in contents)
 		if(IC.power_draw_idle)
 			if(!draw_power(IC.power_draw_idle))
 				IC.power_fail()
 
-/obj/item/device/electronic_assembly/implant/update_icon()
-	..()
-	implant.icon_state = icon_state
 
 
-/obj/item/device/electronic_assembly/implant/nano_host()
-	return implant
 
 /obj/item/device/electronic_assembly/proc/resolve_nano_host()
 	return src
-
-/obj/item/device/electronic_assembly/implant/resolve_nano_host()
-	return implant
 
 /obj/item/device/electronic_assembly/proc/check_interactivity(mob/user)
 	if(!CanInteract(user, physical_state))
 		return 0
 	return 1
+
+/obj/item/device/electronic_assembly/get_cell()
+	return battery
 
 /obj/item/device/electronic_assembly/interact(mob/user)
 	if(!check_interactivity(user))
@@ -107,7 +77,8 @@
 	HTML += "[total_parts]/[max_components] ([round((total_parts / max_components) * 100, 0.1)]%) space taken up in the assembly.<br>"
 	HTML += "[total_complexity]/[max_complexity] ([round((total_complexity / max_complexity) * 100, 0.1)]%) maximum complexity.<br>"
 	if(battery)
-		HTML += "[round(battery.charge, 0.1)]/[battery.maxcharge] ([round(battery.percent(), 0.1)]%) cell charge. <a href='?src=\ref[src];remove_cell=1'>\[Remove\]</a>"
+		HTML += "[round(battery.charge, 0.1)]/[battery.maxcharge] ([round(battery.percent(), 0.1)]%) cell charge. <a href='?src=\ref[src];remove_cell=1'>\[Remove\]</a><br>"
+		HTML += "Net energy: [format_SI(net_power / CELLRATE, "W")]."
 	else
 		HTML += "<span class='danger'>No powercell detected!</span>"
 	HTML += "<br><br>"
@@ -175,14 +146,18 @@
 /obj/item/device/electronic_assembly/proc/can_move()
 	return FALSE
 
-/obj/item/device/electronic_assembly/drone/can_move()
-	return TRUE
-
 /obj/item/device/electronic_assembly/update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else
 		icon_state = initial(icon_state)
+	cut_overlays()
+	if(detail_color == COLOR_ASSEMBLY_BLACK) //Black colored overlay looks almost but not exactly like the base sprite, so just cut the overlay and avoid it looking kinda off.
+		return
+	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/integrated_electronics/electronic_setups.dmi', "[icon_state]-color")
+	detail_overlay.color = detail_color
+	add_overlay(detail_overlay)
+
 
 /obj/item/device/electronic_assembly/GetAccess()
 	. = list()
@@ -244,6 +219,11 @@
 
 	return TRUE
 
+// Non-interactive version of above that always succeeds, intended for build-in circuits that get added on assembly initialization.
+/obj/item/device/electronic_assembly/proc/force_add_circuit(var/obj/item/integrated_circuit/IC)
+	IC.forceMove(src)
+	IC.assembly = src
+
 /obj/item/device/electronic_assembly/afterattack(atom/target, mob/user, proximity)
 	if(proximity)
 		var/scanned = FALSE
@@ -256,7 +236,17 @@
 			visible_message("<span class='notice'>\The [user] waves \the [src] around [target].</span>")
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/integrated_circuit))
+	if(can_anchor && I.is_wrench())
+		anchored = !anchored
+		to_chat(user, span("notice", "You've [anchored ? "" : "un"]secured \the [src] to \the [get_turf(src)]."))
+		if(anchored)
+			on_anchored()
+		else
+			on_unanchored()
+		playsound(src, I.usesound, 50, 1)
+		return TRUE
+
+	else if(istype(I, /obj/item/integrated_circuit))
 		if(!user.unEquip(I))
 			return FALSE
 		if(add_circuit(I, user))
@@ -264,18 +254,26 @@
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
 			return TRUE
-	else if(istype(I, /obj/item/weapon/crowbar))
+
+	else if(I.is_crowbar())
 		playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
 		update_icon()
 		return TRUE
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/screwdriver))
+
+	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.is_screwdriver())
 		if(opened)
 			interact(user)
 		else
 			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
 			Try using a crowbar.</span>")
+
+	else if(istype(I, /obj/item/device/integrated_electronics/detailer))
+		var/obj/item/device/integrated_electronics/detailer/D = I
+		detail_color = D.detail_color
+		update_icon()
+
 	else if(istype(I, /obj/item/weapon/cell/device))
 		if(!opened)
 			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>")
@@ -291,6 +289,7 @@
 		to_chat(user, "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>")
 		interact(user)
 		return TRUE
+
 	else
 		return ..()
 
@@ -331,13 +330,32 @@
 
 // Returns true if power was successfully drawn.
 /obj/item/device/electronic_assembly/proc/draw_power(amount)
-	if(battery && battery.checked_use(amount * CELLRATE))
+	if(battery)
+		var/lost = battery.use(amount * CELLRATE)
+		net_power -= lost
 		return TRUE
 	return FALSE
 
 // Ditto for giving.
 /obj/item/device/electronic_assembly/proc/give_power(amount)
-	if(battery && battery.give(amount * CELLRATE))
+	if(battery)
+		var/gained = battery.give(amount * CELLRATE)
+		net_power += gained
 		return TRUE
 	return FALSE
 
+/obj/item/device/electronic_assembly/on_loc_moved(oldloc)
+	for(var/obj/O in contents)
+		O.on_loc_moved(oldloc)
+
+/obj/item/device/electronic_assembly/Moved(var/oldloc)
+	for(var/obj/O in contents)
+		O.on_loc_moved(oldloc)
+
+/obj/item/device/electronic_assembly/proc/on_anchored()
+	for(var/obj/item/integrated_circuit/IC in contents)
+		IC.on_anchored()
+
+/obj/item/device/electronic_assembly/proc/on_unanchored()
+	for(var/obj/item/integrated_circuit/IC in contents)
+		IC.on_unanchored()

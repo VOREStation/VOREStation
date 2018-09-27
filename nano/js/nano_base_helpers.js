@@ -60,6 +60,9 @@ NanoBaseHelpers = function ()
 			ceil: function(number) {
 				return Math.ceil(number);
 			},
+			abs: function(number) {
+				return Math.abs(number);
+			},
 			// Format a string (~string("Hello {0}, how are {1}?", 'Martin', 'you') becomes "Hello Martin, how are you?")
 			string: function() {
 				if (arguments.length == 0)

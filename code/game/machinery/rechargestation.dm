@@ -126,7 +126,7 @@
 
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
-	user << "The charge meter reads: [round(chargepercentage())]%"
+	to_chat(user, "The charge meter reads: [round(chargepercentage())]%")
 
 /obj/machinery/recharge_station/proc/chargepercentage()
 	if(!cell)
@@ -292,7 +292,7 @@
 
 	if(usr.incapacitated() || !isliving(usr))
 		return
-	
+
 	go_in(usr)
 
 /obj/machinery/recharge_station/ghost_pod_recharger

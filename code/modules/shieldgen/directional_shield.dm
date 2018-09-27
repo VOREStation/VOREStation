@@ -345,3 +345,48 @@
 	// Finished.
 	update_shield_colors()
 	return TRUE
+
+/obj/item/shield_projector/line/exosuit //Variant for Exosuit design.
+	name = "linear exosuit shield projector"
+	offset_from_center = 1 //Snug against the exosuit.
+	max_shield_health = 200
+
+	var/obj/mecha/my_mecha = null
+	var/obj/item/mecha_parts/mecha_equipment/combat_shield/my_tool = null
+
+/obj/item/shield_projector/line/exosuit/process()
+	..()
+	if((my_tool && loc != my_tool) && (my_mecha && loc != my_mecha))
+		forceMove(my_tool)
+	if(active)
+		my_tool.set_ready_state(0)
+		if(my_mecha.has_charge(my_tool.energy_drain * 50)) //Stops at around 1000 charge.
+			my_mecha.use_power(my_tool.energy_drain)
+		else
+			destroy_shields()
+			my_tool.set_ready_state(1)
+			my_tool.log_message("Power lost.")
+	else
+		my_tool.set_ready_state(1)
+
+/obj/item/shield_projector/line/exosuit/attack_self(var/mob/living/user)
+	if(active)
+		if(always_on)
+			to_chat(user, "<span class='warning'>You can't seem to deactivate \the [src].</span>")
+			return
+
+		destroy_shields()
+	else
+		if(istype(user.loc, /obj/mecha))
+			set_dir(user.loc.dir)
+		else
+			set_dir(user.dir)
+		create_shields()
+	visible_message("<span class='notice'>\The [user] [!active ? "de":""]activates \the [src].</span>")
+
+/obj/item/shield_projector/line/exosuit/adjust_health(amount)
+	..()
+	my_mecha.use_power(my_tool.energy_drain)
+	if(!active && shield_health < shield_regen_amount)
+		my_tool.log_message("Shield overloaded.")
+		my_mecha.use_power(my_tool.energy_drain * 4)

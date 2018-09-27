@@ -133,7 +133,7 @@
 				repairing = null
 		return 1
 
-	if(reinforcing && istype(I, /obj/item/weapon/crowbar))
+	if(reinforcing && I.is_crowbar())
 		user << "<span class='notice'>You remove \the [reinforcing].</span>"
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		reinforcing.loc = user.loc

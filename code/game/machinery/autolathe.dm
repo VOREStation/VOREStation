@@ -51,7 +51,7 @@
 	update_recipe_list()
 
 	if(..() || (disabled && !panel_open))
-		user << "<span class='danger'>\The [src] is disabled!</span>"
+		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
 		return
 
 	if(shocked)
@@ -119,7 +119,7 @@
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(default_deconstruction_screwdriver(user, O))
@@ -135,7 +135,7 @@
 
 	if(panel_open)
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/wirecutters))
+		if(istype(O, /obj/item/device/multitool) || O.is_wirecutter())
 			attack_hand(user)
 			return
 
@@ -146,25 +146,25 @@
 		return 0
 
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
-		user << "\The [O] is too hazardous to recycle with the autolathe!"
+		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
 		return
 		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
 		var/obj/item/ammo_magazine/speedloader = O
 		if(speedloader.stored_ammo)
-			user << "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			to_chat(user, "\The [speedloader] is too hazardous to put back into the autolathe while there's ammunition inside of it!")
 			return
 		else
 			speedloader.matter = list(DEFAULT_WALL_MATERIAL = 75) // It's just a hunk of scrap metal now.
 	if(istype(O,/obj/item/ammo_magazine)) // This was just for immersion consistency with above.
 		var/obj/item/ammo_magazine/mag = O
 		if(mag.stored_ammo)
-			user << "\The [mag] is too hazardous to put back into the autolathe while there's ammunition inside of it!"
+			to_chat(user, "\The [mag] is too hazardous to put back into the autolathe while there's ammunition inside of it!")
 			return*/
 
 	//Resources are being loaded.
 	var/obj/item/eating = O
 	if(!eating.matter)
-		user << "\The [eating] does not contain significant amounts of useful materials and cannot be accepted."
+		to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return
 
 	var/filltype = 0       // Used to determine message.
@@ -197,12 +197,12 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		user << "<span class='notice'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
 		return
 	else if(filltype == 1)
-		user << "You fill \the [src] to capacity with \the [eating]."
+		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
 	else
-		user << "You fill \the [src] with \the [eating]."
+		to_chat(user, "You fill \the [src] with \the [eating].")
 
 	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
@@ -228,7 +228,7 @@
 	add_fingerprint(usr)
 
 	if(busy)
-		usr << "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>"
+		to_chat(usr, "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(href_list["change_category"])

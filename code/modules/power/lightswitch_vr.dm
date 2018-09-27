@@ -83,7 +83,7 @@
 
 /obj/structure/construction/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(iswelder(W))
+	if(W.is_welder())
 		if(stage == FRAME_UNFASTENED)
 			var/obj/item/weapon/weldingtool/WT = W
 			if(!WT.remove_fuel(0, user))
@@ -106,7 +106,7 @@
 			to_chat(user, "You have to remove the wires first.")
 		return
 
-	else if(iswirecutter(W))
+	else if(W.is_wirecutter())
 		if (stage == FRAME_WIRED)
 			stage = FRAME_FASTENED
 			user.update_examine_panel(src)
@@ -117,7 +117,7 @@
 			update_icon()
 		return
 
-	else if(iscoil(W))
+	else if(W.is_cable_coil())
 		if (stage == FRAME_FASTENED)
 			var/obj/item/stack/cable_coil/coil = W
 			if (coil.use(1))
@@ -129,7 +129,7 @@
 				update_icon()
 		return
 
-	else if(isscrewdriver(W))
+	else if(W.is_screwdriver())
 		if (stage == FRAME_UNFASTENED)
 			stage = FRAME_FASTENED
 			user.update_examine_panel(src)

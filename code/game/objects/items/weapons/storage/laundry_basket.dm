@@ -65,7 +65,7 @@
 		return ..()
 
 /obj/item/weapon/storage/laundry_basket/dropped(mob/user as mob)
-	qdel_null(linked)
+	QDEL_NULL(linked)
 	return ..()
 
 /obj/item/weapon/storage/laundry_basket/show_to(mob/user as mob)

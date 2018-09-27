@@ -110,7 +110,7 @@ var/global/list/limb_icon_cache = list()
 			res.add_overlay(facial_s)
 
 	//Head hair
-	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
+	if(owner.h_style)
 		var/style = owner.h_style
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[style]
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
@@ -179,7 +179,6 @@ var/global/list/limb_icon_cache = list()
 	if(model)
 		icon_cache_key += "_model_[model]"
 		apply_colouration(mob_icon)
-		// VOREStation edit to enable markings on synths
 		if(owner && owner.synth_markings)
 			for(var/M in markings)
 				var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]

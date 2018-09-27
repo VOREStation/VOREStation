@@ -56,7 +56,7 @@
 	if(nif)
 		uninstall()
 		nif = null
-	qdel_null(stat_line)
+	QDEL_NULL(stat_line)
 	return ..()
 
 //Called when the software is installed in the NIF

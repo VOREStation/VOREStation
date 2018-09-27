@@ -15,17 +15,23 @@
 		if(I.density || I.anchored || I == src || !I.simulated)
 			continue
 		I.forceMove(src)
+	update_icon()
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
-	user << "<span class='notice'>You need a crowbar to pry this open!</span>"
+	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 	return
 
 /obj/structure/largecrate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/crowbar))
+	var/turf/T = get_turf(src)
+	if(!T)
+		to_chat(user, "<span class='notice'>You can't open this here!</span>")
+	if(W.is_crowbar())
 		new /obj/item/stack/material/wood(src)
-		var/turf/T = get_turf(src)
+
 		for(var/atom/movable/AM in contents)
-			if(AM.simulated) AM.forceMove(T)
+			if(AM.simulated)
+				AM.forceMove(T)
+
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
@@ -42,7 +48,7 @@
 	icon_state = "mulecrate"
 
 /obj/structure/largecrate/hoverpod/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		var/obj/item/mecha_parts/mecha_equipment/ME
 		var/obj/mecha/working/hoverpod/H = new (loc)
 
@@ -51,6 +57,29 @@
 		ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 		ME.attach(H)
 	..()
+
+/obj/structure/largecrate/vehicle
+	name = "vehicle crate"
+	desc = "It comes in a box for the consumer's sake. ..How is this lighter?"
+	icon_state = "vehiclecrate"
+
+/obj/structure/largecrate/vehicle/initialize()
+	..()
+	spawn(1)
+		for(var/obj/O in contents)
+			O.update_icon()
+
+/obj/structure/largecrate/vehicle/bike
+	name = "spacebike crate"
+	starts_with = list(/obj/structure/vehiclecage/spacebike)
+
+/obj/structure/largecrate/vehicle/quadbike
+	name = "\improper ATV crate"
+	starts_with = list(/obj/structure/vehiclecage/quadbike)
+
+/obj/structure/largecrate/vehicle/quadtrailer
+	name = "\improper ATV trailer crate"
+	starts_with = list(/obj/structure/vehiclecage/quadtrailer)
 
 /obj/structure/largecrate/animal
 	icon_state = "mulecrate"

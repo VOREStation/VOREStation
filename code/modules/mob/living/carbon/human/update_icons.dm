@@ -418,8 +418,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+	if(h_style)
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
+		if(head && (head.flags_inv & BLOCKHEADHAIR))
+			if(!(hair_style.flags & HAIR_VERY_SHORT))
+				hair_style = hair_styles_list["Short Hair"]
+
 		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")

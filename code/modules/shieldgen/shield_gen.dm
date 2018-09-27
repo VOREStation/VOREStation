@@ -42,7 +42,7 @@
 	return ..()
 
 /obj/machinery/shield_gen/Destroy()
-	qdel_null_list(field)
+	QDEL_NULL_LIST(field)
 	return ..()
 
 /obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
@@ -64,7 +64,7 @@
 			updateDialog()
 		else
 			user << "<font color='red'>Access denied.</font>"
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
 		src.visible_message("<font color='blue'>\icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</font>")
