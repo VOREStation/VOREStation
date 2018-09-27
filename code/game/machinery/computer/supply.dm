@@ -4,6 +4,7 @@
 	icon_screen = "supply"
 	light_color = "#b88b2e"
 	req_access = list(access_cargo)
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
@@ -20,6 +21,10 @@
 
 /obj/machinery/computer/ordercomp/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
+=======
+	circuit = /obj/item/weapon/circuitboard/supplycomp/control
+	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS
+>>>>>>> ef48816... Merge pull request #5558 from Atermonera/supplycomp_cosntructable
 
 /obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
