@@ -445,11 +445,19 @@
 	// VOREStation End
 	msg += "*---------*</span><br>"
 	msg += applying_pressure
+
+<<<<<<< HEAD
+=======
+	var/show_descs = show_descriptors_to(user)
+	if(show_descs)
+		msg += "<span class='notice'>[jointext(show_descs, "<br>")]</span>"
+
 	if(pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		msg += "[T.He] [pose]"
+		msg += "<br>[T.He] [pose]"
 
+>>>>>>> c0e43d9... Merge pull request #5607 from Anewbe/pose
 	to_chat(user, jointext(msg, null))
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
