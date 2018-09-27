@@ -189,6 +189,11 @@
 	range_step = 1
 	spread_step = 10
 
+/obj/item/projectile/bullet/pellet/shotgun/flak
+	damage = 2 //The main weapon using these fires four at a time, usually with different destinations. Usually.
+	range_step = 2
+	spread_step = 30
+	armor_penetration = 10
 
 //EMP shotgun 'slug', it's basically a beanbag that pops a tiny emp when it hits. //Not currently used
 /obj/item/projectile/bullet/shotgun/ion

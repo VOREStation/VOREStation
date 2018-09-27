@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //obj/item/weapon/grenade/explosive
 	//desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
 	//name = "frag grenade"
@@ -30,6 +31,8 @@
 /obj/item/projectile/bullet/pellet/fragment/strong
 	damage = 15
 	armor_penetration = 20
+=======
+>>>>>>> abe2f2c... Merge pull request #5519 from Mechoid/Mech_Equipment_Carepackage1
 
 /obj/item/weapon/grenade/explosive
 	name = "fragmentation grenade"
@@ -82,6 +85,7 @@
 			else
 				P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
 
+<<<<<<< HEAD
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/O)
 	if(explosion_size)
@@ -98,3 +102,13 @@
 	num_fragments = 200  //total number of fragments produced by the grenade
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
+=======
+/obj/item/weapon/grenade/explosive/mini
+	name = "mini fragmentation grenade"
+	desc = "A miniaturized fragmentation grenade, this one poses relatively little threat on its own."
+	icon_state = "minifrag"
+	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment/weak, /obj/item/projectile/bullet/pellet/fragment/weak, /obj/item/projectile/bullet/pellet/fragment, /obj/item/projectile/bullet/pellet/fragment/strong)
+	num_fragments = 20
+	spread_range = 3
+	explosion_size = 1
+>>>>>>> abe2f2c... Merge pull request #5519 from Mechoid/Mech_Equipment_Carepackage1
