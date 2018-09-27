@@ -4696,7 +4696,7 @@
 	},
 /area/tdome/tdome1)
 "iC" = (
-/obj/machinery/computer/supplycomp{
+/obj/machinery/computer/ordercomp{
 	dir = 4
 	},
 /turf/unsimulated/floor/steel,
