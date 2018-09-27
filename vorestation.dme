@@ -1241,6 +1241,7 @@
 #include "code\game\objects\structures\ghost_pods\silicon.dm"
 #include "code\game\objects\structures\props\alien_props.dm"
 #include "code\game\objects\structures\props\beam_prism.dm"
+#include "code\game\objects\structures\props\nest.dm"
 #include "code\game\objects\structures\props\projectile_lock.dm"
 #include "code\game\objects\structures\props\prop.dm"
 #include "code\game\objects\structures\props\puzzledoor.dm"
@@ -2492,7 +2493,11 @@
 #include "code\modules\projectiles\projectile\animate.dm"
 #include "code\modules\projectiles\projectile\arc.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\projectiles\projectile\beams_vr.dm"
+=======
+#include "code\modules\projectiles\projectile\blob.dm"
+>>>>>>> c8dc627... Merge pull request #5573 from Mechoid/Blob2_Revenge_Of_The_Blob:polaris.dme
 #include "code\modules\projectiles\projectile\bullets.dm"
 #include "code\modules\projectiles\projectile\bullets_vr.dm"
 #include "code\modules\projectiles\projectile\change.dm"

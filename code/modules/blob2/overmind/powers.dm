@@ -45,7 +45,7 @@
 	create_shield()
 
 /mob/observer/blob/proc/create_shield(turf/T)
-	createSpecial(15, /obj/structure/blob/shield, 0, 0, T)
+	createSpecial(15, blob_type.shield_type, 0, 0, T)
 
 /mob/observer/blob/verb/create_resource()
 	set category = "Blob"
@@ -55,7 +55,7 @@
 	if(!blob_type.can_build_resources)
 		return FALSE
 
-	createSpecial(40, /obj/structure/blob/resource, 4, 1)
+	createSpecial(40, blob_type.resource_type, 4, 1)
 
 /mob/observer/blob/verb/auto_resource()
 	set category = "Blob"
@@ -85,7 +85,7 @@
 
 	if(B)
 		forceMove(B.loc)
-		return createSpecial(40, /obj/structure/blob/resource, 4, 1, B.loc)
+		return createSpecial(40, blob_type.resource_type, 4, 1, B.loc)
 
 
 /mob/observer/blob/verb/create_factory()
@@ -96,7 +96,7 @@
 	if(!blob_type.can_build_factories)
 		return FALSE
 
-	createSpecial(60, /obj/structure/blob/factory, 7, 1)
+	createSpecial(60, blob_type.factory_type, 7, 1)
 
 /mob/observer/blob/verb/auto_factory()
 	set category = "Blob"
@@ -126,7 +126,7 @@
 
 	if(B)
 		forceMove(B.loc)
-		return createSpecial(60, /obj/structure/blob/factory, 7, 1, B.loc)
+		return createSpecial(60, blob_type.factory_type, 7, 1, B.loc)
 
 
 
@@ -138,7 +138,7 @@
 	if(!blob_type.can_build_nodes)
 		return FALSE
 
-	createSpecial(100, /obj/structure/blob/node, 5, 0)
+	createSpecial(100, blob_type.node_type, 5, 0)
 
 /mob/observer/blob/verb/auto_node()
 	set category = "Blob"
@@ -166,7 +166,7 @@
 
 	if(B)
 		forceMove(B.loc)
-		return createSpecial(100, /obj/structure/blob/node, 5, 0, B.loc)
+		return createSpecial(100, blob_type.node_type, 5, 0, B.loc)
 
 
 
