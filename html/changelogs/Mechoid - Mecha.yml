@@ -1,0 +1,7 @@
+
+author: Mechoid
+
+delete-after: True
+
+changes: 
+  - rscadd: "Mechs now have multiple equipment slot types, and more slots in total for greater customization."
