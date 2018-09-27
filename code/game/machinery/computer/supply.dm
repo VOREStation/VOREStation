@@ -238,8 +238,12 @@
 				temp = "Initiating launch sequence. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		else
 			shuttle.launch(src)
+<<<<<<< HEAD
 			temp = "The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			post_signal("supply")
+=======
+			to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.</span>")
+>>>>>>> 74f70c9... Merge pull request #5522 from Atermonera/PDA_comms2
 
 	if (href_list["force_send"])
 		shuttle.force_launch(src)
