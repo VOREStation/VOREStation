@@ -160,6 +160,7 @@
 	if (temp)
 		dat = temp
 	else
+<<<<<<< HEAD
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
 			dat += "<BR><B>Supply shuttle</B><HR>"
@@ -206,6 +207,87 @@
 	user << browse(dat, "window=computer;size=575x450")
 	onclose(user, "computer")
 	return
+=======
+		shuttle["mode"] = SUP_SHUTTLE_ERROR
+
+	for(var/pack_name in supply_controller.supply_pack)
+		var/datum/supply_pack/P = supply_controller.supply_pack[pack_name]
+		if(P.group == active_category)
+			var/list/pack = list(
+					"name" = P.name,
+					"cost" = P.cost,
+					"contraband" = P.contraband,
+					"manifest" = uniquelist(P.manifest),
+					"random" = P.num_contained,
+					"expand" = 0,
+					"ref" = "\ref[P]"
+				)
+
+			if(P in expanded_packs)
+				pack["expand"] = 1
+
+			pack_list[++pack_list.len] = pack
+
+	// Compile user-side orders
+	// Status determines which menus the entry will display in
+	// Organized in field-entry list for iterative display
+	// List is nested so both the list of orders, and the list of elements in each order, can be iterated over
+	for(var/datum/supply_order/S in supply_controller.order_history)
+		orders[++orders.len] = list(
+				"ref" = "\ref[S]",
+				"status" = S.status,
+				"entries" = list(
+						list("field" = "Supply Pack", "entry" = S.name),
+						list("field" = "Cost", "entry" = S.cost),
+						list("field" = "Index", "entry" = S.index),
+						list("field" = "Reason", "entry" = S.comment),
+						list("field" = "Ordered by", "entry" = S.ordered_by),
+						list("field" = "Ordered at", "entry" = S.ordered_at),
+						list("field" = "Approved by", "entry" = S.approved_by),
+						list("field" = "Approved at", "entry" = S.approved_at)
+					)
+			)
+
+	// Compile exported crates
+	for(var/datum/exported_crate/E in supply_controller.exported_crates)
+		receipts[++receipts.len] = list(
+				"ref" = "\ref[E]",
+				"contents" = E.contents,
+				"error" = E.contents["error"],
+				"title" = list(
+						list("field" = "Name", "entry" = E.name),
+						list("field" = "Value", "entry" = E.value)
+					)
+			)
+
+	data["user"] = "\ref[user]"
+	data["currentTab"] = menu_tab // Communicator compatibility, controls which menu is in use
+	data["shuttle_auth"] = (authorization & SUP_SEND_SHUTTLE) // Whether this ui is permitted to control the supply shuttle
+	data["order_auth"] = (authorization & SUP_ACCEPT_ORDERS)   // Whether this ui is permitted to accept/deny requested orders
+	data["shuttle"] = shuttle_status
+	data["supply_points"] = supply_controller.points
+	data["categories"] = all_supply_groups
+	data["active_category"] = active_category
+	data["supply_packs"] = pack_list
+	data["orders"] = orders
+	data["receipts"] = receipts
+	data["contraband"] = can_order_contraband
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "supply_records.tmpl", "Supply Console", 475, 700, state = key_state)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+		// auto update every 20 Master Controller tick
+		ui.set_auto_update(20) // Longer term to reduce the rate of data collection and processing
+
+
+>>>>>>> 0173b08... Merge pull request #5521 from Atermonera/nanoUI_on_GLOB
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
 	if(!can_order_contraband)
