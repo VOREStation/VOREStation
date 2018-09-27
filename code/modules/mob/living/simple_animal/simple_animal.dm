@@ -686,7 +686,6 @@
 	return ..()
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
-	effective_force = O.force
 
 	//Animals can't be stunned(?)
 	if(O.damtype == HALLOSS)
@@ -1389,6 +1388,8 @@
 //	if (!istype(target, /turf))
 //		qdel(A)
 //		return
+
+	A.firer = src
 	A.launch(target)
 	return
 

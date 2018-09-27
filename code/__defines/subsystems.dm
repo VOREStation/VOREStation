@@ -34,7 +34,12 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_PLANETS	-4
 #define INIT_ORDER_OVERLAY	-6
 #define INIT_ORDER_XENOARCH	-20
+<<<<<<< HEAD
  
+=======
+#define INIT_ORDER_CIRCUIT	-21
+
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)

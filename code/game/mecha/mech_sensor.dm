@@ -45,8 +45,8 @@
 		var/obj/mecha/R = O
 		if(R && R.occupant)
 			R.occupant << block_message
-	else if(istype(O, /obj/vehicle/train/cargo/engine))
-		var/obj/vehicle/train/cargo/engine/E = O
+	else if(istype(O, /obj/vehicle/train/engine))
+		var/obj/vehicle/train/engine/E = O
 		if(E && E.load && E.is_train_head())
 			E.load << block_message
 

@@ -52,6 +52,23 @@
 	var/obj/item/projectile/P = A
 	P.launch(target)
 
+<<<<<<< HEAD
+=======
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/process_accuracy(obj/projectile, mob/living/user, atom/target)
+	var/obj/item/projectile/P = projectile
+	if(!istype(P))
+		return
+
+	P.accuracy -= user.get_accuracy_penalty()
+
+	// Some modifiers make it harder or easier to hit things.
+	for(var/datum/modifier/M in user.modifiers)
+		if(!isnull(M.accuracy))
+			P.accuracy += M.accuracy
+		if(!isnull(M.accuracy_dispersion))
+			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
+
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
 	auto_rearm = 1
@@ -268,11 +285,28 @@
 	equip_cooldown = 60
 	var/det_time = 20
 
+<<<<<<< HEAD
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	..()
 	var/obj/item/weapon/grenade/flashbang/F = AM
 	spawn(det_time)
 		F.prime()
+=======
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/rigged
+	name = "jury-rigged pneumatic flashlauncher"
+	desc = "A grenade launcher constructed out of estranged blueprints; fires flashbangs."
+	icon_state = "mecha_grenadelnchr-rig"
+	projectiles = 3
+	missile_speed = 1
+	det_time = 25
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/Fire(atom/movable/AM, atom/target, turf/aimloc)
+	var/obj/item/weapon/grenade/G = AM
+	if(istype(G))
+		G.det_time = det_time
+		G.activate(chassis.occupant) //Grenades actually look primed and dangerous, handle their own stuff.
+	AM.throw_at(target,missile_range, missile_speed, chassis)
+>>>>>>> f98e9bf... Updates AI branch to Master (#5591)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "\improper SOP-6 grenade launcher"
