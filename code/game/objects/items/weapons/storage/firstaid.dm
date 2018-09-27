@@ -133,8 +133,14 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
+<<<<<<< HEAD
 		/obj/item/stack/nanopaste
 		// /obj/item/device/healthanalyzer/advanced //VOREStation Removal
+=======
+		/obj/item/stack/nanopaste,
+		/obj/item/device/healthanalyzer/advanced,
+		/obj/item/weapon/autopsy_scanner
+>>>>>>> 2187852... Adds the Biopsy Scanner to the Surgery Kit (#5589)
 		)
 
 	starts_with = list(
@@ -148,7 +154,12 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
+<<<<<<< HEAD
 		///obj/item/device/healthanalyzer/advanced //VOREStation Removal
+=======
+		/obj/item/device/healthanalyzer/advanced,
+		/obj/item/weapon/autopsy_scanner
+>>>>>>> 2187852... Adds the Biopsy Scanner to the Surgery Kit (#5589)
 		)
 
 /obj/item/weapon/storage/firstaid/clotting
