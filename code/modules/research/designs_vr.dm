@@ -10,8 +10,15 @@
 	name = "Backup implant"
 	id = "implant_backup"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_DATA = 4, TECH_ENGINEERING = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000) //2Metal 2Glass - One Implant
 	build_path = /obj/item/weapon/implantcase/backup
+
+/datum/design/item/backup_implanter
+	name = "Backup Implanter"
+	id = "implanter_backup"
+	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_DATA = 4, TECH_ENGINEERING = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "glass" = 8000) //8Metal 8Glass - Four Implants
+	build_path = /obj/item/weapon/backup_implanter
 
 /datum/design/item/weapon/sizegun
 	name = "Size gun"
