@@ -1530,7 +1530,11 @@
 #include "code\modules\clothing\head\flowercrowns.dm"
 #include "code\modules\clothing\head\hardhat.dm"
 #include "code\modules\clothing\head\helmet.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\head\helmet_vr.dm"
+=======
+#include "code\modules\clothing\head\hood.dm"
+>>>>>>> c5d0559... Slightly cleans up hooded suit code (#5471):polaris.dme
 #include "code\modules\clothing\head\jobs.dm"
 #include "code\modules\clothing\head\misc.dm"
 #include "code\modules\clothing\head\misc_special.dm"
@@ -1590,14 +1594,17 @@
 #include "code\modules\clothing\suits\armor.dm"
 #include "code\modules\clothing\suits\armor_vr.dm"
 #include "code\modules\clothing\suits\bio.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\suits\bio_vr.dm"
+=======
+#include "code\modules\clothing\suits\hooded.dm"
+>>>>>>> c5d0559... Slightly cleans up hooded suit code (#5471):polaris.dme
 #include "code\modules\clothing\suits\jobs.dm"
 #include "code\modules\clothing\suits\labcoat.dm"
 #include "code\modules\clothing\suits\miscellaneous.dm"
 #include "code\modules\clothing\suits\solgov.dm"
 #include "code\modules\clothing\suits\solgov_vr.dm"
 #include "code\modules\clothing\suits\storage.dm"
-#include "code\modules\clothing\suits\toggles.dm"
 #include "code\modules\clothing\suits\utility.dm"
 #include "code\modules\clothing\suits\utility_vr.dm"
 #include "code\modules\clothing\suits\wiz_robe.dm"
