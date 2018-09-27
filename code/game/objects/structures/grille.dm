@@ -94,7 +94,13 @@
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
 /obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
+<<<<<<< HEAD
 	if(iswirecutter(W))
+=======
+	if(!istype(W))
+		return
+	if(W.is_wirecutter())
+>>>>>>> 6acab6f... Merge pull request #5544 from Anewbe/grilles
 		if(!shock(user, 100))
 			playsound(src, W.usesound, 100, 1)
 			new /obj/item/stack/rods(get_turf(src), destroyed ? 1 : 2)
