@@ -2900,6 +2900,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+<<<<<<< HEAD:vorestation.dme
 #include "maps\RandomZLevels\blackmarketpackers.dm"
 #include "maps\RandomZLevels\carpfarm.dm"
 #include "maps\RandomZLevels\listeningpost.dm"
@@ -2924,6 +2925,9 @@
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
+=======
+#include "maps\southern_cross\southern_cross.dm"
+>>>>>>> 3de28fa... Ambience Refactor (#5476):polaris.dme
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains_areas.dm"
