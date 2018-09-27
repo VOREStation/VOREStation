@@ -488,3 +488,18 @@
 				/obj/item/toy/prize/mauler,
 				/obj/item/toy/prize/odysseus,
 				/obj/item/toy/prize/phazon)
+
+/obj/random/mouseremains
+	name = "random mouseremains"
+	desc = "For use with mouse spawners."
+	icon = 'icons/obj/assemblies/new_assemblies.dmi'
+	icon_state = "mousetrap"
+
+/obj/random/mouseremains/item_to_spawn()
+	return pick(/obj/item/device/assembly/mousetrap,
+				/obj/item/device/assembly/mousetrap/armed,
+				/obj/effect/decal/cleanable/spiderling_remains,
+				/obj/effect/decal/cleanable/ash,
+				/obj/item/weapon/cigbutt,
+				/obj/item/weapon/cigbutt/cigarbutt,
+				/obj/effect/decal/remains/mouse)
