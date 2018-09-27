@@ -77,7 +77,7 @@
 
 /datum/chemical_reaction/slime/grey_new_slime/on_reaction(var/datum/reagents/holder)
 	holder.my_atom.visible_message("<span class='warning'>Infused with phoron, the core begins to quiver and grow, and soon a new baby slime emerges from it!</span>")
-	new /mob/living/simple_animal/slime(get_turf(holder.my_atom))
+	new /mob/living/simple_mob/slime/xenobio(get_turf(holder.my_atom))
 	..()
 
 /datum/chemical_reaction/slime/grey_monkey
@@ -495,16 +495,16 @@
 		if(!(their_turf in Z.contents)) // Not in the same zone.
 			continue
 
-		if(istype(L, /mob/living/simple_animal/slime))
-			var/mob/living/simple_animal/slime/S = L
-			if(S.cold_damage_per_tick <= 0) // Immune to cold.
+		if(istype(L, /mob/living/simple_mob/slime))
+			var/mob/living/simple_mob/slime/S = L
+			if(S.cold_resist >= 1) // Immune to cold.
 				to_chat(S, "<span class='warning'>A chill is felt around you, however it cannot harm you.</span>")
 				continue
 			if(S.client) // Don't instantly kill player slimes.
 				to_chat(S, "<span class='danger'>You feel your body crystalize as an intense chill overwhelms you!</span>")
-				S.adjustToxLoss(S.cold_damage_per_tick * 2)
+				S.inflict_cold_damage(100)
 			else
-				S.adjustToxLoss(S.cold_damage_per_tick * 5) // Metal slimes can survive this 'slime nuke'.
+				S.inflict_cold_damage(200) // Metal slimes can survive this 'slime nuke'.
 			continue
 
 		if(ishuman(L))
@@ -552,17 +552,21 @@
 	required = /obj/item/slime_extract/red
 
 /datum/chemical_reaction/slime/red_enrage/on_reaction(var/datum/reagents/holder)
-	for(var/mob/living/simple_animal/slime/S in view(get_turf(holder.my_atom)))
-		if(S.stat || S.docile || S.rabid)
+	for(var/mob/living/simple_mob/slime/S in view(get_turf(holder.my_atom)))
+		if(S.stat)
 			continue
+
+		if(istype(S, /mob/living/simple_mob/slime/xenobio))
+			var/mob/living/simple_mob/slime/xenobio/X = S
+			if(X.harmless)
+				continue
+			if(!X.client)
+				X.enrage()
 
 		S.add_modifier(/datum/modifier/berserk, 30 SECONDS)
 
 		if(S.client) // Player slimes always have free will.
 			to_chat(S, "<span class='warning'>An intense wave of rage is felt from inside, but you remain in control of yourself.</span>")
-			continue
-
-		S.enrage()
 
 	for(var/mob/living/carbon/human/H in view(get_turf(holder.my_atom)))
 		if(H.species.name == SPECIES_PROMETHEAN)
@@ -957,8 +961,8 @@
 
 
 /datum/chemical_reaction/slime/rainbow_random_slime/on_reaction(var/datum/reagents/holder)
-	var/mob/living/simple_animal/slime/S
-	var/list/slime_types = typesof(/mob/living/simple_animal/slime)
+	var/mob/living/simple_mob/slime/xenobio/S
+	var/list/slime_types = typesof(/mob/living/simple_mob/slime/xenobio)
 
 	while(slime_types.len)
 		S = pick(slime_types)

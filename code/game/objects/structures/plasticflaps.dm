@@ -10,8 +10,13 @@
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
 		/mob/living/bot,
+<<<<<<< HEAD
 		/mob/living/simple_animal/slime,
 		/mob/living/simple_animal/mouse,
+=======
+		/mob/living/simple_mob/slime/xenobio,
+		/mob/living/simple_mob/animal/passive/mouse,
+>>>>>>> b01183e... Merge pull request #5580 from Neerti/slimes_and_things
 		/mob/living/silicon/robot/drone
 		)
 

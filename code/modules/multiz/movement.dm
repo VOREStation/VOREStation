@@ -259,6 +259,11 @@
 	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
 		return FALSE
 
+/mob/living/can_fall()
+	if(hovering)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/can_fall()
 	if(..())
 		return species.can_fall(src)

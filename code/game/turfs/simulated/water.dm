@@ -142,3 +142,7 @@ var/list/shoreline_icon_cache = list()
 		shoreline_icon_cache[cache_string] = shoreline_water
 		add_overlay(shoreline_icon_cache[cache_string])
 
+/turf/simulated/floor/water/is_safe_to_enter(mob/living/L)
+	if(L.get_water_protection() < 1)
+		return FALSE
+	return ..()

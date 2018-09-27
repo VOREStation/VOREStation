@@ -79,8 +79,8 @@
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 
 /obj/machinery/processor/proc/extract(var/atom/movable/AM)
-	if(istype(AM, /mob/living/simple_animal/slime))
-		var/mob/living/simple_animal/slime/S = AM
+	if(istype(AM, /mob/living/simple_mob/slime))
+		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
 			new S.coretype(get_turf(src))
 			playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
@@ -98,8 +98,8 @@
 		sleep(1 SECOND)
 
 /obj/machinery/processor/proc/can_insert(var/atom/movable/AM)
-	if(istype(AM, /mob/living/simple_animal/slime))
-		var/mob/living/simple_animal/slime/S = AM
+	if(istype(AM, /mob/living/simple_mob/slime))
+		var/mob/living/simple_mob/slime/S = AM
 		if(S.stat != DEAD)
 			return FALSE
 		return TRUE

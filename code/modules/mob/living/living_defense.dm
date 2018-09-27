@@ -426,6 +426,15 @@
 	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
 	return max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700)
 
+// Called when struck by lightning.
+/mob/living/proc/lightning_act()
+	// The actual damage/electrocution is handled by the tesla_zap() that accompanies this.
+	Paralyse(5)
+	stuttering += 20
+	make_jittery(150)
+	emp_act(1)
+	to_chat(src, span("critical", "You've been struck by lightning!"))
+
 /mob/living/proc/reagent_permeability()
 	return 1
 	return round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2)
