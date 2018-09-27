@@ -52,6 +52,23 @@
 	var/obj/item/projectile/P = A
 	P.launch(target)
 
+<<<<<<< HEAD
+=======
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/process_accuracy(obj/projectile, mob/living/user, atom/target)
+	var/obj/item/projectile/P = projectile
+	if(!istype(P))
+		return
+
+	P.accuracy -= user.get_accuracy_penalty()
+
+	// Some modifiers make it harder or easier to hit things.
+	for(var/datum/modifier/M in user.modifiers)
+		if(!isnull(M.accuracy))
+			P.accuracy += M.accuracy
+		if(!isnull(M.accuracy_dispersion))
+			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
+
+>>>>>>> a5fdbb6... Merge pull request #5526 from Anewbe/throwing
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
 	auto_rearm = 1
