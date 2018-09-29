@@ -70,7 +70,7 @@
 
 	if(stat == DEAD)
 		return 0
-	if(src.loc && istype(loc,/obj/belly)) deathmessage = "no message" //VOREStation Add - Prevents death messages from inside mobs
+	if(src.loc && istype(loc,/obj/belly) || istype(loc,/obj/item/device/dogborg/sleeper)) deathmessage = "no message" //VOREStation Add - Prevents death messages from inside mobs
 	facing_dir = null
 
 	if(!gibbed && deathmessage != "no message") // This is gross, but reliable. Only brains use it.
