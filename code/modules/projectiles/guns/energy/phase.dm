@@ -37,6 +37,7 @@ obj/item/weapon/gun/energy/phasegun/rifle
 	icon_state = "phaserifle"
 	item_state = "phaserifle"
 	wielded_item_state = "phaserifle-wielded"
+	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
 	charge_cost = 150
 	projectile_type = /obj/item/projectile/energy/phase/heavy
