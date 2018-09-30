@@ -17,6 +17,7 @@
 	preserve_item = 1
 	var/filled = 0
 	var/list/filled_reagents = list()
+	var/hyposound	// What sound do we play on use?
 
 /obj/item/weapon/reagent_containers/hypospray/New()
 	..()
@@ -55,8 +56,9 @@
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	to_chat(user, "<span class='notice'>You inject [M] with \the [src].</span>")
 	to_chat(M, "<span class='notice'>You feel a tiny prick!</span>")
-	
-	playsound(src, 'sound/effects/hypospray.ogg',25)
+
+	if(hyposound)
+		playsound(src, hyposound,25)
 
 	if(M.reagents)
 		var/contained = reagentlist()
@@ -126,6 +128,7 @@
 	filled = 1
 	filled_reagents = list("inaprovaline" = 5)
 	preserve_item = 0
+	hyposound = 'sound/effects/hypospray.ogg'
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
