@@ -198,10 +198,10 @@
 	matstack.use(Ceiling(actually_added/matstack.perunit))
 	if(actually_added && actually_added < howmuch)
 		to_chat(src,"<span class='warning'>Your refactory module is now full, so only [actually_added] units were stored.</span>")
-		visible_message(src,"<span class='notice'>[src] nibbles some of the [substance] right off the stack!</span>")
+		visible_message("<span class='notice'>[src] nibbles some of the [substance] right off the stack!</span>")
 	else if(actually_added)
 		to_chat(src,"<span class='notice'>You store [actually_added] units of [substance].</span>")
-		visible_message(src,"<span class='notice'>[src] devours some of the [substance] right off the stack!</span>")
+		visible_message("<span class='notice'>[src] devours some of the [substance] right off the stack!</span>")
 	else
 		to_chat(src,"<span class='notice'>You're completely capped out on [substance]!</span>")
 
