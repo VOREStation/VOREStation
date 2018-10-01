@@ -128,14 +128,14 @@
 	if(CE_SLOWDOWN in chem_effects)
 		if (tally >= 0 )
 			tally = (tally + tally/4) //Add a quarter of penalties on top.
-		tally += 1
+		tally += chem_effects[CE_SLOWDOWN]
 
 	if(CE_SPEEDBOOST in chem_effects)
 		if (tally >= 0)	// cut any penalties in half
 			tally = tally/2
-		tally -= 1	// give 'em a buff on top.
+		tally -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	return (tally+config.human_delay)
+	return max(-3, tally+config.human_delay)	// Minimum return should be the same as force_max_speed
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?

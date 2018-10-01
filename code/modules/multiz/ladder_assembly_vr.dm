@@ -21,7 +21,7 @@
 			created_name = t
 		return
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
 				state = CONSTRUCTION_WRENCHED

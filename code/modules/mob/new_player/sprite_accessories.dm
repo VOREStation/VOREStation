@@ -133,7 +133,7 @@
 	ponytail1
 		name = "Ponytail 1"
 		icon_state = "hair_ponytail"
-		flags = HAIR_TIEABLE
+		flags = HAIR_TIEABLE|HAIR_VERY_SHORT
 
 	ponytail2
 		name = "Ponytail 2"
@@ -158,12 +158,12 @@
 	ponytail6
 		name = "Ponytail 6"
 		icon_state = "hair_ponytail6"
-		flags = HAIR_TIEABLE
+		flags = HAIR_TIEABLE|HAIR_VERY_SHORT
 
 	fringetail
 		name = "Fringetail"
 		icon_state = "hair_fringetail"
-		flags = HAIR_TIEABLE
+		flags = HAIR_TIEABLE|HAIR_VERY_SHORT
 
 	sideponytail
 		name = "Side Ponytail"
@@ -739,6 +739,22 @@
 	mohawkunshaven
 		name = "Unshaven Mohawk"
 		icon_state = "hair_unshaven_mohawk"
+
+	belenko
+		name = "Belenko"
+		icon_state = "hair_belenko"
+		flags = HAIR_TIEABLE
+
+	belenkotied
+		name = "Belenko Tied"
+		icon_state = "hair_belenkotied"
+		flags = HAIR_TIEABLE
+
+	belenkotied
+		name = "Supernova"
+		icon_state = "hair_supernova"
+		flags = HAIR_TIEABLE
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /

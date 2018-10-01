@@ -11,6 +11,8 @@
 	var/icon_state_override = null // Used for special slime appearances like the rainbow slime.
 	pass_flags = PASSTABLE
 
+	makes_dirt = FALSE	// Goop
+
 	speak_emote = list("chirps")
 
 	maxHealth = 150

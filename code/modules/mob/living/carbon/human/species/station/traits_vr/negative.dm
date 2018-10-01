@@ -120,7 +120,7 @@
 
 /datum/trait/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.add_modifier(/datum/modifier/trait/colorblind_mono)
+	H.add_modifier(/datum/modifier/trait/colorblind_monochrome)
 
 /datum/trait/colorblind/para_vulp
 	name = "Colorblindness (Para Vulp)"

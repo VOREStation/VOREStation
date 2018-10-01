@@ -65,7 +65,7 @@
 		turn_off(1)
 	else
 		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
+			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
 	if(open && cell)
@@ -82,7 +82,7 @@
 		cell = null
 		on = 0
 		set_light(0)
-		user << "You remove the power cell"
+		to_chat(user, "You remove the power cell")
 		update_icon()
 		return
 
@@ -90,38 +90,38 @@
 		turn_off(1)
 	else
 		if(!turn_on(1))
-			user << "You try to turn on \the [src] but it does not work."
+			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
 	update_icon()
 
 /obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		if(!open)
 			if(unlocked)
 				unlocked = 0
-				user << "You screw the battery panel in place."
+				to_chat(user, "You screw the battery panel in place.")
 			else
 				unlocked = 1
-				user << "You unscrew the battery panel."
+				to_chat(user, "You unscrew the battery panel.")
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		if(unlocked)
 			if(open)
 				open = 0
 				overlays = null
-				user << "You crowbar the battery panel in place."
+				to_chat(user, "You crowbar the battery panel in place.")
 			else
 				if(unlocked)
 					open = 1
-					user << "You remove the battery panel."
+					to_chat(user, "You remove the battery panel.")
 
 	if(istype(W, /obj/item/weapon/cell))
 		if(open)
 			if(cell)
-				user << "There is a power cell already installed."
+				to_chat(user, "There is a power cell already installed.")
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				user << "You insert the power cell."
+				to_chat(user, "You insert the power cell.")
 	update_icon()

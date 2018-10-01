@@ -186,3 +186,16 @@
 				prob(5);/mob/living/simple_animal/hostile/hivebot/range/laser,
 				prob(5);/mob/living/simple_animal/hostile/hivebot/range/strong,
 				prob(5);/mob/living/simple_animal/hostile/hivebot/range/guard)
+
+//Mice
+
+/obj/random/mob/mouse
+	name = "Random Mouse"
+	desc = "This is a random boring maus."
+	icon_state = "mouse_gray"
+
+/obj/random/mob/mouse/item_to_spawn()
+	return pick(prob(15);/mob/living/simple_animal/mouse/white,
+				prob(30);/mob/living/simple_animal/mouse/brown,
+				prob(30);/mob/living/simple_animal/mouse/gray,
+				prob(25);/obj/random/mouseremains) //because figuring out how to come up with it picking nothing is beyond my coding ability.

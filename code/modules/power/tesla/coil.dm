@@ -18,6 +18,9 @@
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
 
+/obj/machinery/power/tesla_coil/pre_mapped
+	anchored = TRUE
+
 /obj/machinery/power/tesla_coil/New()
 	..()
 	wires = new(src)
@@ -27,7 +30,7 @@
 	default_apply_parts()
 
 /obj/machinery/power/tesla_coil/Destroy()
-	qdel_null(wires)
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/power/tesla_coil/RefreshParts()
@@ -102,6 +105,9 @@
 
 	can_buckle = TRUE
 	buckle_lying = FALSE
+
+/obj/machinery/power/grounding_rod/pre_mapped
+	anchored = TRUE
 
 /obj/machinery/power/grounding_rod/update_icon()
 	if(panel_open)

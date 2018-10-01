@@ -16,7 +16,7 @@
 		)
 
 /obj/structure/plasticflaps/attackby(obj/item/P, mob/user)
-	if(istype(P, /obj/item/weapon/wirecutters))
+	if(P.is_wirecutter())
 		playsound(src, P.usesound, 50, 1)
 		user << "<span class='notice'>You start to cut the plastic flaps.</span>"
 		if(do_after(user, 10 * P.toolspeed))

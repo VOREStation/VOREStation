@@ -18,6 +18,8 @@ var/list/mining_overlay_cache = list()
 	blocks_air = 1
 	temperature = T0C
 
+	can_dirty = FALSE
+
 	var/ore/mineral
 	var/sand_dug
 	var/mined_ore = 0
@@ -206,7 +208,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 
 	// Emitter blasts
-	if(istype(Proj, /obj/item/projectile/beam/emitter))
+	if(istype(Proj, /obj/item/projectile/beam/emitter) || istype(Proj, /obj/item/projectile/beam/heavylaser/fakeemitter))
 		emitter_blasts_taken++
 		if(emitter_blasts_taken > 2) // 3 blasts per tile
 			mined_ore = 1

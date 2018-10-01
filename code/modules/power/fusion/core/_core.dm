@@ -120,7 +120,7 @@ var/list/fusion_cores = list()
 	if(default_part_replacement(user, W))
 		return
 
-	if(ismultitool(W))
+	if(istype(W, /obj/item/device/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Fusion Core", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident

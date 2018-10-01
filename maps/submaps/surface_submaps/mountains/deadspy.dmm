@@ -8,7 +8,7 @@
 "h" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/random/landmine,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "i" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/molten_item,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "j" = (/obj/item/weapon/material/butterfly,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
-"k" = (/obj/effect/decal/remains/human,/obj/item/weapon/wrench,/obj/item/clothing/head/hardhat,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
+"k" = (/obj/effect/decal/remains/human,/obj/item/weapon/tool/wrench,/obj/item/clothing/head/hardhat,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "l" = (/obj/item/weapon/flame/lighter/zippo,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "m" = (/obj/effect/decal/remains/human,/obj/item/clothing/mask/balaclava,/obj/item/clothing/under/suit_jacket/really_black,/obj/effect/decal/cleanable/ash,/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/ash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "n" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/ash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)

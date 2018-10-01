@@ -57,9 +57,9 @@ var/global/list/grub_machine_overlays = list()
 	return ..()
 
 /mob/living/simple_animal/solargrub_larva/Destroy()
-	qdel_null(powermachine)
-	qdel_null(sparks)
-	qdel_null(machine_effect)
+	QDEL_NULL(powermachine)
+	QDEL_NULL(sparks)
+	QDEL_NULL(machine_effect)
 	target_vent = null
 	return ..()
 
@@ -67,7 +67,7 @@ var/global/list/grub_machine_overlays = list()
 	. = ..()
 
 	if(machine_effect && !istype(loc, /obj/machinery))
-		qdel_null(machine_effect)
+		QDEL_NULL(machine_effect)
 
 	if(!. || ai_inactive)
 		return
@@ -156,7 +156,7 @@ var/global/list/grub_machine_overlays = list()
 	forceMove(get_turf(M))
 	sparks.start()
 	if(machine_effect)
-		qdel_null(machine_effect)
+		QDEL_NULL(machine_effect)
 	forced_out += rand(5,15)
 	powermachine.draining = 1
 

@@ -130,6 +130,7 @@
 	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
 	valid_accessory_slots = null
 	show_examine = FALSE
+	flags_inv = null
 
 /obj/item/clothing/head/det
 	name = "fedora"

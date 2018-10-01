@@ -83,7 +83,7 @@
 		update_connected_network()
 
 /obj/machinery/portable_atmospherics/powered/pump/huge/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(I.is_wrench())
 		if(on)
 			user << "<span class='warning'>Turn \the [src] off first!</span>"
 			return
@@ -97,7 +97,7 @@
 	//doesn't use power cells
 	if(istype(I, /obj/item/weapon/cell))
 		return
-	if (istype(I, /obj/item/weapon/screwdriver))
+	if (I.is_screwdriver())
 		return
 
 	//doesn't hold tanks
@@ -111,7 +111,7 @@
 	name = "Stationary Air Pump"
 
 /obj/machinery/portable_atmospherics/powered/pump/huge/stationary/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(I.is_wrench())
 		user << "<span class='warning'>The bolts are too tight for you to unscrew!</span>"
 		return
 

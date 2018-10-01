@@ -10,7 +10,7 @@
 	var/frequency = 1
 	hitscan = 1
 	embed_chance = 0
-	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
+	invisibility = 99	//beam projectiles are invisible as they are rendered by the effect engine
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FF0D00"
@@ -57,6 +57,16 @@
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
 	impact_type = /obj/effect/projectile/laser_heavy/impact
+
+/obj/item/projectile/beam/heavylaser/fakeemitter
+	name = "emitter beam"
+	icon_state = "emitter"
+	fire_sound = 'sound/weapons/emitter.ogg'
+	light_color = "#00CC33"
+
+	muzzle_type = /obj/effect/projectile/emitter/muzzle
+	tracer_type = /obj/effect/projectile/emitter/tracer
+	impact_type = /obj/effect/projectile/emitter/impact
 
 /obj/item/projectile/beam/heavylaser/cannon
 	damage = 80

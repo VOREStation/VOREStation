@@ -36,7 +36,7 @@
 	if(!isnull(infomorph))
 		infomorph.death(0)
 		infomorph = null
-	qdel_null(radio)
+	QDEL_NULL(radio)
 	return ..()
 
 /obj/item/device/sleevecard/attack_self(mob/user)

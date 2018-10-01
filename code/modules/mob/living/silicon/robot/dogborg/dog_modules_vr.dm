@@ -177,6 +177,14 @@
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 
+/obj/item/device/dogborg/tongue/examine(user)
+	if(!..(user, 1))
+		return
+	if(water.energy)
+		user <<"<span class='notice'>[src] is wet. Just like it should be.</span>"
+	if(water.energy < 5)
+		user <<"<span class='notice'>[src] is dry.</span>"
+
 /obj/item/device/dogborg/tongue/attack_self(mob/user)
 	var/mob/living/silicon/robot.R = user
 	if(R.emagged || R.emag_items)
@@ -205,7 +213,7 @@
 		if(do_after (user, 50))
 			water.add_charge(50)
 	else if(water.energy < 5)
-		to_chat(user, "<span class='notice'>Your mouth feels dry.</span>")
+		to_chat(user, "<span class='notice'>Your mouth feels dry. You should drink up some water .</span>")
 		return
 	else if(istype(target,/obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to lick off \the [target.name].", "<span class='notice'>You begin to lick off \the [target.name]...</span>")

@@ -32,16 +32,16 @@
 /obj/machinery/slime/extractor/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
-	if(istype(W, /obj/item/weapon/screwdriver) && !inuse)
+	if(W.is_screwdriver() && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		default_deconstruction_crowbar(user, W)
 		return
 
 	if(panel_open)
-		user << "<span class='warning'>Close the panel first!</span>"
+		to_chat(user, "<span class='warning'>Close the panel first!</span>")
 
 	var/obj/item/weapon/grab/G = W
 
@@ -49,7 +49,7 @@
 		return ..()
 
 	if(G.state < 2)
-		user << "<span class='danger'>You need a better grip to do that!</span>"
+		to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
 		return
 
 	move_into_extractor(user,G.affecting)
@@ -62,20 +62,20 @@
 /obj/machinery/slime/extractor/proc/move_into_extractor(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
-		user << "<span class='danger'>The core extractor is full, empty it first!</span>"
+		to_chat(user, "<span class='danger'>The core extractor is full, empty it first!</span>")
 		return
 
 	if(inuse)
-		user << "<span class='danger'>The core extractor is locked and running, wait for it to finish.</span>"
+		to_chat(user, "<span class='danger'>The core extractor is locked and running, wait for it to finish.</span>")
 		return
 
-	if(!(istype(victim, /mob/living/simple_animal/xeno/slime)) )
-		user << "<span class='danger'>This is not a suitable subject for the core extractor!</span>"
+	if(!(istype(victim, /mob/living/simple_animal/xeno/slime)))
+		to_chat(user, "<span class='danger'>This is not a suitable subject for the core extractor!</span>")
 		return
 
 	var/mob/living/simple_animal/xeno/slime/S = victim
 	if(S.is_child)
-		user << "<span class='danger'>This subject is not developed enough for the core extractor!</span>"
+		to_chat(user, "<span class='danger'>This subject is not developed enough for the core extractor!</span>")
 		return
 
 	user.visible_message("<span class='danger'>[user] starts to put [victim] into the core extractor!</span>")

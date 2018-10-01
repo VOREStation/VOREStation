@@ -52,7 +52,7 @@
 
 /obj/machinery/holoplant/proc/deactivate()
 	overlays -= plant
-	qdel_null(plant)
+	QDEL_NULL(plant)
 	set_light(0)
 	use_power = 0
 

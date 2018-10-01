@@ -139,21 +139,21 @@
 "aF" = (
 /obj/structure/closet/crate,
 /obj/item/device/multitool,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/item/device/radio,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aG" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/weapon/weldingtool,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aH" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wirecutters,
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/storage/firstaid,
 /turf/simulated/shuttle/floor/alienplating,
@@ -166,21 +166,21 @@
 "aJ" = (
 /obj/structure/closet/crate,
 /obj/item/device/multitool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wirecutters,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aK" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/crowbar/power,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/crowbar/power,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aL" = (
 /obj/structure/closet/crate,
 /obj/item/device/multitool,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/storage/firstaid/regular,
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood,
@@ -189,15 +189,15 @@
 /area/tether_away/alienship)
 "aM" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/screwdriver/power,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/screwdriver/power,
+/obj/item/weapon/tool/wirecutters,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aN" = (
 /obj/structure/closet/crate,
 /obj/item/device/multitool,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /obj/item/device/radio,
 /obj/item/weapon/weldingtool,
 /turf/simulated/shuttle/floor/alienplating,
@@ -504,11 +504,11 @@
 /area/tether_away/alienship)
 "cL" = (
 /obj/structure/table/alien,
-/obj/item/weapon/crowbar/alien,
+/obj/item/weapon/tool/crowbar/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cM" = (
-/obj/item/weapon/screwdriver/alien,
+/obj/item/weapon/tool/screwdriver/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cO" = (

@@ -126,7 +126,7 @@ var/list/_client_preferences_by_type
 	description ="Mob tooltips"
 	key = "MOB_TOOLTIPS"
 	enabled_description = "Show"
-	disabled_description = "Hide"	
+	disabled_description = "Hide"
 
 /datum/client_preference/attack_icons
 	description ="Attack icons"
@@ -206,6 +206,10 @@ var/list/_client_preferences_by_type
 		var/datum/plane_holder/PH = preference_mob.plane_holder
 		PH.set_ao(VIS_OBJS, enabled)
 		PH.set_ao(VIS_MOBS, enabled)
+
+/datum/client_preference/instrument_toggle
+	description ="Hear In-game Instruments"
+	key = "SOUND_INSTRUMENT"
 
 /********************
 * Staff Preferences *
