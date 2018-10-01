@@ -1,4 +1,4 @@
-/datum/supply_packs/robotics/mecha_gopher
+/datum/supply_pack/robotics/mecha_gopher
 	name = "Circuit Crate (\"Gopher\" APLU)"
 	contains = list(
 			/obj/item/weapon/circuitboard/mecha/gopher/main,
@@ -8,8 +8,8 @@
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "APLU \"Gopher\" Circuit Crate"
 	access = access_robotics
-  
-/datum/supply_packs/robotics/mecha_polecat
+
+/datum/supply_pack/robotics/mecha_polecat
 	name = "Circuit Crate (\"Polecat\" APLU)"
 	contains = list(
 			/obj/item/weapon/circuitboard/mecha/polecat/main,
@@ -21,7 +21,7 @@
 	containername = "APLU \"Polecat\" Circuit Crate"
 	access = access_robotics
 
-/datum/supply_packs/robotics/mecha_weasel
+/datum/supply_pack/robotics/mecha_weasel
 	name = "Circuit Crate (\"Weasel\" APLU)"
 	contains = list(
 			/obj/item/weapon/circuitboard/mecha/weasel/main,
@@ -33,7 +33,7 @@
 	containername = "APLU \"Weasel\" Circuit Crate"
 	access = access_robotics
 
-/datum/supply_packs/robotics/some_robolimbs
+/datum/supply_pack/robotics/some_robolimbs
 	name = "Basic Robolimb Blueprints"
 	contains = list(
 			/obj/item/weapon/disk/limb/morpheus,
@@ -45,7 +45,7 @@
 	containername = "Basic Robolimb Blueprint Crate"
 	access = access_robotics
 
-/datum/supply_packs/robotics/all_robolimbs
+/datum/supply_pack/robotics/all_robolimbs
 	name = "Advanced Robolimb Blueprints"
 	contains = list(
 			/obj/item/weapon/disk/limb/bishop,

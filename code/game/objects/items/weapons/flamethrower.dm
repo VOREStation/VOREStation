@@ -27,9 +27,9 @@
 
 
 /obj/item/weapon/flamethrower/Destroy()
-	qdel_null(weldtool)
-	qdel_null(igniter)
-	qdel_null(ptank)
+	QDEL_NULL(weldtool)
+	QDEL_NULL(igniter)
+	QDEL_NULL(ptank)
 	. = ..()
 
 /obj/item/weapon/flamethrower/process()
@@ -70,7 +70,7 @@
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
-	if(iswrench(W) && !status)//Taking this apart
+	if(W.is_wrench() && !status)//Taking this apart
 		var/turf/T = get_turf(src)
 		if(weldtool)
 			weldtool.loc = T
@@ -85,7 +85,7 @@
 		qdel(src)
 		return
 
-	if(isscrewdriver(W) && igniter && !lit)
+	if(W.is_screwdriver() && igniter && !lit)
 		status = !status
 		user << "<span class='notice'>[igniter] is now [status ? "secured" : "unsecured"]!</span>"
 		update_icon()

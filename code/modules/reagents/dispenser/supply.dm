@@ -1,4 +1,4 @@
-/datum/supply_packs/chemistry_dispenser
+/datum/supply_pack/chemistry_dispenser
 	name = "Reagent dispenser"
 	contains = list(
 			/obj/machinery/chemical_dispenser{anchored = 0}
@@ -8,7 +8,7 @@
 	containername = "reagent dispenser crate"
 	group = "Reagents"
 
-/datum/supply_packs/beer_dispenser
+/datum/supply_pack/beer_dispenser
 	name = "Booze dispenser"
 	contains = list(
 			/obj/machinery/chemical_dispenser/bar_alc{anchored = 0}
@@ -18,7 +18,7 @@
 	containername = "booze dispenser crate"
 	group = "Reagents"
 
-/datum/supply_packs/soda_dispenser
+/datum/supply_pack/soda_dispenser
 	name = "Soda dispenser"
 	contains = list(
 			/obj/machinery/chemical_dispenser/bar_soft{anchored = 0}
@@ -28,7 +28,7 @@
 	containername = "soda dispenser crate"
 	group = "Reagents"
 
-/datum/supply_packs/reagents
+/datum/supply_pack/reagents
 	name = "Chemistry dispenser refill"
 	contains = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrogen,
@@ -60,7 +60,7 @@
 	access = list(access_chemistry)
 	group = "Reagents"
 
-/datum/supply_packs/alcohol_reagents
+/datum/supply_pack/alcohol_reagents
 	name = "Bar alcoholic dispenser refill"
 	contains = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/beer,
@@ -83,7 +83,7 @@
 	access = list(access_bar)
 	group = "Reagents"
 
-/datum/supply_packs/softdrink_reagents
+/datum/supply_pack/softdrink_reagents
 	name = "Bar soft drink dispenser refill"
 	contains = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/water,
@@ -110,7 +110,7 @@
 	containername = "soft drinks crate"
 	group = "Reagents"
 
-/datum/supply_packs/coffee_reagents
+/datum/supply_pack/coffee_reagents
 	name = "Coffee machine dispenser refill"
 	contains = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
@@ -127,7 +127,7 @@
 	containername = "coffee drinks crate"
 	group = "Reagents"
 
-/datum/supply_packs/dispenser_cartridges
+/datum/supply_pack/dispenser_cartridges
 	name = "Empty dispenser cartridges"
 	contains = list(
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge,
@@ -147,7 +147,7 @@
 	group = "Reagents"
 
 #define SEC_PACK(_tname, _type, _name, _cname, _cost, _access)\
-	datum/supply_packs/dispenser_cartridges{\
+	datum/supply_pack/dispenser_cartridges{\
 		_tname {\
 			name = _name ;\
 			containername = _cname ;\
@@ -159,7 +159,7 @@
 		}\
 	}
 #define PACK(_tname, _type, _name, _cname, _cost)\
-	datum/supply_packs/dispenser_cartridges{\
+	datum/supply_pack/dispenser_cartridges{\
 		_tname {\
 			name = _name ;\
 			containername = _cname ;\

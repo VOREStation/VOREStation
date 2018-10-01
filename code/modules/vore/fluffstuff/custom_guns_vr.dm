@@ -618,6 +618,7 @@
 	name = "\improper SMG magazine (9mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
 
+/* Seems to have been de-coded?
 /obj/item/ammo_magazine/m9mml/flash
 	name = "\improper SMG magazine (9mm flash)"
 	ammo_type = /obj/item/ammo_casing/a9mmf
@@ -629,6 +630,7 @@
 /obj/item/ammo_magazine/m9mml/practice
 	name = "\improper SMG magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/a9mmp
+*/
 
 //.357 special ammo
 /obj/item/ammo_magazine/s357/stun

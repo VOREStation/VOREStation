@@ -40,26 +40,26 @@
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
-	user << "Large machine with heavy duty switching circuits used for advanced grid control"
+	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
 	if(on)
-		user << "<font color='green'>It seems to be online.</font>"
+		to_chat(user, "<font color='green'>It seems to be online.</font>")
 	else
-		user << "<font color='red'>It seems to be offline.</font>"
+		to_chat(user, "<font color='red'>It seems to be offline.</font>")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
-		user << "<font color='red'>System locked. Please try again later.</font>"
+		to_chat(user, "<font color='red'>System locked. Please try again later.</font>")
 		return
 
 	if(busy)
-		user << "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>"
+		to_chat(user, "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>")
 		return
 
 	busy = 1
-	user << "<font color='green'>Updating power settings...</font>"
+	to_chat(user, "<font color='green'>Updating power settings...</font>")
 	if(do_after(user, 50))
 		set_state(!on)
-		user << "<font color='green'>Update Completed. New setting:[on ? "on": "off"]</font>"
+		to_chat(user, "<font color='green'>Update Completed. New setting:[on ? "on": "off"]</font>")
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -68,11 +68,11 @@
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 	if(update_locked)
-		user << "<font color='red'>System locked. Please try again later.</font>"
+		to_chat(user, "<font color='red'>System locked. Please try again later.</font>")
 		return
 
 	if(busy)
-		user << "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>"
+		to_chat(user, "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>")
 		return
 
 	busy = 1
@@ -94,7 +94,7 @@
 		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
 			RCon_tag = newtag
-			user << "<span class='notice'>You changed the RCON tag to: [newtag]</span>"
+			to_chat(user, "<span class='notice'>You changed the RCON tag to: [newtag]</span>")
 	if(on)
 		to_chat(user, "<font color='red'>Disable the breaker before performing maintenance.</font>")
 		return

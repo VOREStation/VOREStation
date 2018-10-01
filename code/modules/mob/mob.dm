@@ -13,7 +13,7 @@
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
-	qdel_null(plane_holder)
+	QDEL_NULL(plane_holder)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -1154,8 +1154,13 @@ mob/proc/yank_out_object()
 /mob/proc/throw_item(atom/target)
 	return
 
+/mob/proc/will_show_tooltip()
+	if(alpha <= EFFECTIVE_INVIS)
+		return FALSE
+	return TRUE
+
 /mob/MouseEntered(location, control, params)
-	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips))
+	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips) && src.will_show_tooltip())
 		openToolTip(user = usr, tip_src = src, params = params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
 
 	..()

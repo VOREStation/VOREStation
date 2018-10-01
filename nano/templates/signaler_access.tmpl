@@ -1,0 +1,24 @@
+<H2>Signaler Control</H2>
+
+<!-- List signalers -->
+{{for data.signaler_access}}
+	<div class="item">
+		<div class="itemLabel">
+			{{:index}}
+		</div>
+		<div class="itemContent">
+			{{:helper.link('Pulse', 'arrowstop-1-n', {'cartridge_topic' : "1", 'signaler_target' : value.ref, 'signaler_action' : "Pulse"})}}
+		</div>
+	</div>
+	{{for value.status :statVal:statIndex}}
+		<div class="item">
+			<div class="itemLabel">	
+				{{:statVal.tab}}
+			</div>
+			<div class="itemContent">
+				<div style="display:inline; float:left; margin-right:10px;">{{:statVal.val}}</div>
+				<div style="display:inline">{{:helper.link('Edit', 'gear', {'cartridge_topic' : "1", 'signaler_target' : value.ref, 'signaler_action' : "Edit", 'signaler_value' : statVal.tab, 'user' : data.user})}}</div>
+			</div>
+		</div>
+	{{/for}}
+{{/for}}

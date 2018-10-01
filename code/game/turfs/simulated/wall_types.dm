@@ -23,7 +23,7 @@
 /turf/simulated/wall/cult
 	icon_state = "cult"
 /turf/simulated/wall/cult/New(var/newloc)
-	..(newloc,"cult","cult2")
+	..(newloc,"cult","cult2","cult")
 /turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."

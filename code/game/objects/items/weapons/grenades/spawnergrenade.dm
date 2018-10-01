@@ -9,8 +9,8 @@
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
 
-// Prime now just handles the two loops that query for people in lockers and people who can see it.
-/obj/item/weapon/grenade/spawnergrenade/prime()
+// Detonate now just handles the two loops that query for people in lockers and people who can see it.
+/obj/item/weapon/grenade/spawnergrenade/detonate()
 
 	if(spawner_type && deliveryamt)
 		// Make a quick flash

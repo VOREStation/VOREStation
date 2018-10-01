@@ -20,9 +20,10 @@
 /datum/surgery_step/internal/remove_embryo
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
 	/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
+
+	allowed_procs = list(IS_WIRECUTTER = 75)
 	blood_level = 2
 
 	min_duration = 80
@@ -212,9 +213,10 @@
 
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
 	/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
+
+	allowed_procs = list(IS_WIRECUTTER = 75)
 
 	min_duration = 60
 	max_duration = 80

@@ -825,6 +825,12 @@ character_name: Tony Bingham
 item_path: /obj/item/clothing/head/fluff/runac
 }
 
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
+}
+
 # ######## U CKEYS
 # ######## V CKEYS
 {

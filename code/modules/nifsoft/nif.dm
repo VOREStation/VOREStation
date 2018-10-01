@@ -33,7 +33,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/list/nifsofts_life = list()			// Ones that want to be talked to on life()
 	var/owner									// Owner character name
 	var/examine_msg								//Message shown on examine.
-	
+
 	var/tmp/vision_flags = 0		// Flags implants set for faster lookups
 	var/tmp/health_flags = 0
 	var/tmp/combat_flags = 0
@@ -72,9 +72,9 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Put loaded data here if we loaded any
 	save_data = islist(load_data) ? load_data.Copy() : list()
 	var/saved_examine_msg = save_data["examine_msg"]
-	
+
 	//If it's an empty string, they want it blank. If null, it's never been saved, give default.
-	if(isnull(saved_examine_msg)) 
+	if(isnull(saved_examine_msg))
 		saved_examine_msg = "There's a certain spark to their eyes."
 	examine_msg = saved_examine_msg
 
@@ -104,8 +104,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
 	human = null
-	qdel_null_list(nifsofts)
-	qdel_null(comm)
+	QDEL_NULL_LIST(nifsofts)
+	QDEL_NULL(comm)
 	nifsofts_life.Cut()
 	return ..()
 
@@ -114,7 +114,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
 	if(istype(brain))
 		should_be_in = brain.parent_organ
-	
+
 	if(istype(H) && !H.nif && H.species && (loc == H.get_organ(should_be_in)))
 		if(!bioadap && (H.species.flags & NO_SCAN)) //NO_SCAN is the default 'too complicated' flag
 			return FALSE
@@ -135,7 +135,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
 		if(istype(brain))
 			should_be_in = brain.parent_organ
-		
+
 		parent = H.get_organ(should_be_in)
 		//Ok, nevermind then!
 		if(!istype(parent))
@@ -154,7 +154,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/unimplant(var/mob/living/carbon/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
-		qdel_null_list(SC.brainmobs)
+		QDEL_NULL_LIST(SC.brainmobs)
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
@@ -195,7 +195,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Attackby proc, for maintenance
 /obj/item/device/nif/attackby(obj/item/weapon/W, mob/user as mob)
-	if(open == 0 && istype(W,/obj/item/weapon/screwdriver))
+	if(open == 0 && W.is_screwdriver())
 		if(do_after(user, 4 SECONDS, src) && open == 0)
 			user.visible_message("[user] unscrews and pries open \the [src].","<span class='notice'>You unscrew and pry open \the [src].</span>")
 			playsound(user, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -216,7 +216,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
 			open = 3
 			update_icon()
-	else if(open == 3 && istype(W,/obj/item/weapon/screwdriver))
+	else if(open == 3 && W.is_screwdriver())
 		if(do_after(user, 3 SECONDS, src) && open == 3)
 			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.</span>")
 			playsound(user, 'sound/items/Screwdriver.ogg', 50, 1)

@@ -36,8 +36,8 @@
 		visible_message("<span class='notice'>The mask rapidly retracts just before /the [src] is destroyed!</span>")
 		breather = null
 
-	qdel_null(tank)
-	qdel_null(contained)
+	QDEL_NULL(tank)
+	QDEL_NULL(contained)
 	return ..()
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
@@ -128,7 +128,7 @@
 	return 1
 
 /obj/machinery/oxygen_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		stat ^= MAINT
 		user.visible_message("<span class='notice'>\The [user] [stat & MAINT ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [stat & MAINT ? "open" : "close"] \the [src].</span>")
 		if(stat & MAINT)
@@ -205,7 +205,7 @@
 
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

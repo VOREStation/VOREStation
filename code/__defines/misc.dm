@@ -282,3 +282,9 @@ var/global/list/##LIST_NAME = list();\
 #define MATRIX_Achromatomaly 	list(0.62,	0.32, 	0.06, 	0.16, 	0.78, 	0.06, 	0.16, 	0.32, 	0.52)
 #define MATRIX_Vulp_Colorblind 	list(0.50,	0.40,	0.10,	0.50,	0.40,	0.10,	0,		0.20,	0.80)
 #define MATRIX_Taj_Colorblind 	list(0.40,	0.20,	0.40,	0.40,	0.60,	0,		0.20,	0.20,	0.60)
+
+// Tool substitution defines
+#define IS_SCREWDRIVER		"screwdriver"
+#define IS_CROWBAR			"crowbar"
+#define IS_WIRECUTTER		"wirecutter"
+#define IS_WRENCH			"wrench"

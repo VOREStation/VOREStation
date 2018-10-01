@@ -2146,6 +2146,24 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
+/obj/item/device/radio/intercom/locked/ai_private{
+	dir = 4;
+	icon_state = "intercom";
+	pixel_x = 32
+	},
+/obj/item/device/radio/intercom{
+	broadcasting = 1;
+	dir = 8;
+	listening = 1;
+	name = "Common Channel";
+	pixel_x = -21;
+	pixel_y = 0
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 21
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "dI" = (
@@ -2361,6 +2379,7 @@
 	req_access = list(16)
 	},
 /obj/machinery/light/small,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/ai)
 "ea" = (
@@ -2863,6 +2882,10 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 1
+	},
+/obj/machinery/hologram/holopad,
+/obj/machinery/status_display{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
@@ -3489,6 +3512,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/machinery/porta_turret/ai_defense,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "fR" = (
@@ -3550,6 +3574,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
+/obj/machinery/porta_turret/ai_defense,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "fW" = (
@@ -4788,8 +4813,8 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/wrench,
 /obj/item/weapon/hand_labeler,
 /obj/structure/sign/department/armory{
 	color = "#3385ff";
@@ -7122,11 +7147,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "lP" = (
 /obj/machinery/ai_slipper{
 	icon_state = "motion0"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
@@ -7136,8 +7165,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai/foyer)
 "lR" = (
@@ -7148,6 +7181,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "lS" = (
@@ -7306,12 +7340,12 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
@@ -7458,14 +7492,15 @@
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "ms" = (
-/obj/structure/ladder{
-	pixel_y = 16
-	},
 /obj/structure/cable/cyan{
 	icon_state = "32-1"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/supply{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai/foyer)
 "mt" = (
@@ -7757,34 +7792,16 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/cargo)
-"mW" = (
+"mY" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"mX" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"mY" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/railing{
+	dir = 8
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "mZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /obj/effect/floor_decal/techfloor,
 /obj/machinery/camera/network/command{
 	dir = 1
@@ -7792,23 +7809,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai/foyer)
 "na" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"nb" = (
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/bluegrid,
-/area/ai/foyer)
-"nc" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/zpipe/down/supply{
-	dir = 8
+/obj/structure/railing{
+	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
@@ -12678,7 +12683,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "uB" = (
-/obj/machinery/computer/ordercomp,
+/obj/machinery/computer/supplycomp,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
@@ -18914,7 +18919,7 @@
 /area/quartermaster/qm)
 "Et" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -19309,7 +19314,7 @@
 /area/quartermaster/warehouse)
 "Fk" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /obj/machinery/alarm{
 	dir = 4;
 	icon_state = "alarm0";
@@ -19605,7 +19610,7 @@
 /area/medical/chemistry)
 "FJ" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
@@ -19858,7 +19863,7 @@
 /area/quartermaster/warehouse)
 "Gd" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -20221,7 +20226,7 @@
 /area/quartermaster/warehouse)
 "GK" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -23392,7 +23397,7 @@
 /area/medical/sleeper)
 "LR" = (
 /obj/structure/table/glass,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/storage/pill_bottle/tramadol,
 /obj/item/weapon/storage/pill_bottle/antitox,
 /obj/item/weapon/reagent_containers/syringe/antiviral,
@@ -27318,9 +27323,32 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"SD" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
 "SW" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
+"TL" = (
+/obj/machinery/ai_slipper{
+	icon_state = "motion0"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"TP" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
 "Un" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -27374,6 +27402,29 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
+"Vr" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/item/device/radio/intercom/locked/ai_private{
+	dir = 1;
+	icon_state = "intercom";
+	pixel_y = 32
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
+"VM" = (
+/turf/simulated/open,
+/area/ai/foyer)
+"VQ" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
 "WY" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
@@ -27382,6 +27433,15 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"XL" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai/foyer)
 "ZO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
@@ -38798,8 +38858,8 @@ bY
 fQ
 lk
 lO
-lk
-mW
+VM
+VM
 fP
 ab
 iV
@@ -38938,10 +38998,10 @@ eO
 fg
 bY
 fR
-ll
-ll
 mr
-mX
+SD
+VM
+VM
 fP
 ab
 iV
@@ -39082,7 +39142,7 @@ bY
 fS
 ll
 lP
-ll
+XL
 mY
 fP
 ab
@@ -39363,10 +39423,10 @@ dk
 eP
 fj
 bY
-fR
+Vr
 ll
-lP
-ll
+TL
+VQ
 na
 fP
 hy
@@ -39506,10 +39566,10 @@ eR
 dj
 bY
 fU
-ll
-ll
 mt
-nb
+TP
+VM
+VM
 fP
 hy
 eM
@@ -39650,8 +39710,8 @@ bY
 fV
 ln
 lR
-ln
-nc
+VM
+VM
 fP
 hy
 gJ

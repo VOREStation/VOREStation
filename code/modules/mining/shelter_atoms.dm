@@ -51,12 +51,12 @@
 		var/turf/above_location = GetAbove(deploy_location)
 		if(above_location && status == SHELTER_DEPLOY_ALLOWED)
 			status = template.check_deploy(above_location)
-		
+
 		switch(status)
 			//Not allowed due to /area technical reasons
 			if(SHELTER_DEPLOY_BAD_AREA)
 				src.loc.visible_message("<span class='warning'>\The [src] will not function in this area.</span>")
-			
+
 			//Anchored objects or no space
 			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
 				var/width = template.width
@@ -179,7 +179,7 @@
 	pixel_y = -32
 
 /obj/item/device/gps/computer/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(I.is_wrench())
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
 		if(do_after(user,4 SECONDS,src))
@@ -226,7 +226,7 @@
 		var/obj/item/weapon/storage/pill_bottle/dice/D = new(src)
 		stock(D)
 	else
-		var/obj/item/device/violin/V = new(src)
+		var/obj/item/device/instrument/violin/V = new(src)
 		stock(V)
 
 /obj/machinery/smartfridge/survival_pod/accept_check(obj/item/O)
@@ -258,7 +258,7 @@
 	qdel(src)
 
 /obj/structure/fans/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(I.is_wrench())
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
 		if(do_after(user,4 SECONDS,src))

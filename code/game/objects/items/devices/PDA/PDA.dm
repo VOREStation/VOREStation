@@ -467,7 +467,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	ui_tick++
-	var/datum/nanoui/old_ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/old_ui = GLOB.nanomanager.get_open_ui(user, src, "main")
 	var/auto_update = 1
 	if(mode in no_auto_update)
 		auto_update = 0
@@ -647,7 +647,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	nanoUI = data
 	// update the ui if it exists, returns null if no ui is passed/found
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
@@ -655,6 +655,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state = inventory_state)
 		// add templates for screens in common with communicator.
 		ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")
+		ui.add_template("crewManifest", "crew_manifest.tmpl")
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -684,7 +685,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	..()
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(user, src, "main")
 	var/mob/living/U = usr
 	//Looking for master was kind of pointless since PDAs don't appear to have one.
 	//if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ) )
@@ -1129,7 +1130,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
 
 		P.new_message_from_pda(src, t)
-		nanomanager.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message
+		GLOB.nanomanager.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message
 	else
 		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
 
@@ -1149,7 +1150,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(L)
 		if(reception_message)
 			L << reception_message
-		nanomanager.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
+		GLOB.nanomanager.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
 /obj/item/device/pda/proc/new_news(var/message)
 	new_info(news_silent, newstone, news_silent ? "" : "\icon[src] <b>[message]</b>")
@@ -1195,7 +1196,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(can_use(usr))
 		mode = 0
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 		to_chat(usr, "<span class='notice'>You press the reset button on \the [src].</span>")
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
@@ -1296,7 +1297,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		user.drop_item()
 		cartridge.loc = src
 		to_chat(usr, "<span class='notice'>You insert [cartridge] into [src].</span>")
-		nanomanager.update_uis(src) // update all UIs attached to src
+		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
@@ -1324,7 +1325,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		C.loc = src
 		pai = C
 		to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
-		nanomanager.update_uis(src) // update all UIs attached to src
+		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
 	else if(istype(C, /obj/item/weapon/pen))
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
@@ -1470,15 +1471,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/Destroy()
 	PDAs -= src
-	// VOREStation Edit - Always destroy IDs
-	// if (src.id && prob(90)) //IDs are kept in 90% of the cases
-	// 	src.id.forceMove(get_turf(src.loc))
-	// else
-	// 	qdel_null(src.id)
-	qdel_null(src.id)
-	// VOREStation Edit End
-	qdel_null(src.cartridge)
-	qdel_null(src.pai)
+	if (src.id && prob(100)) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases
+		src.id.forceMove(get_turf(src.loc))
+	else
+		QDEL_NULL(src.id)
+	QDEL_NULL(src.cartridge)
+	QDEL_NULL(src.pai)
 	return ..()
 
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.

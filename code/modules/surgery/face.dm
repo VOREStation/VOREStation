@@ -88,9 +88,11 @@
 
 /datum/surgery_step/face/fix_face
 	allowed_tools = list(
-	/obj/item/weapon/surgical/retractor = 100, 	\
-	/obj/item/weapon/crowbar = 55,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 75)
+		/obj/item/weapon/surgical/retractor = 100, 	\
+		/obj/item/weapon/material/kitchen/utensil/fork = 75
+	)
+
+	allowed_procs = list(IS_CROWBAR = 55)
 
 	min_duration = 80
 	max_duration = 100

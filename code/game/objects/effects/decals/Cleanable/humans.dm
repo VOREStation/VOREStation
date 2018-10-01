@@ -216,17 +216,17 @@ var/global/list/image/splatter_cache=list()
 
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
-        spawn (0)
-                var/direction = pick(directions)
-                for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-                        sleep(3)
-                        if (i > 0)
-                                var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
-                                b.basecolor = src.basecolor
-                                b.update_icon()
+	spawn (0)
+		var/direction = pick(directions)
+		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
+			sleep(3)
+			if (i > 0)
+				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
+				b.basecolor = src.basecolor
+				b.update_icon()
 
-                        if (step_to(src, get_step(src, direction), 0))
-                                break
+			if (step_to(src, get_step(src, direction), 0))
+				break
 
 
 /obj/effect/decal/cleanable/mucus
@@ -249,5 +249,5 @@ var/global/list/image/splatter_cache=list()
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
 /obj/effect/decal/cleanable/mucus/mapped/New()
 	..()
-	virus2 = new /datum/disease2/disease
+	virus2 |= new /datum/disease2/disease
 	virus2.makerandom()

@@ -28,35 +28,35 @@
 		if (integrity < 100)               								//Damaged, let's repair!
 			if (T.use(1))
 				integrity = between(0, integrity + rand(10,20), 100)
-				usr << "You apply the Nanopaste to [src], repairing some of the damage."
+				to_chat(usr, "You apply the Nanopaste to [src], repairing some of the damage.")
 		else
-			usr << "This machine is already in perfect condition."
+			to_chat(usr, "This machine is already in perfect condition.")
 		return
 
 
 	switch(construct_op)
 		if(0)
-			if(istype(P, /obj/item/weapon/screwdriver))
-				user << "You unfasten the bolts."
+			if(P.is_screwdriver())
+				to_chat(user, "You unfasten the bolts.")
 				playsound(src.loc, P.usesound, 50, 1)
 				construct_op ++
 		if(1)
-			if(istype(P, /obj/item/weapon/screwdriver))
-				user << "You fasten the bolts."
+			if(P.is_screwdriver())
+				to_chat(user, "You fasten the bolts.")
 				playsound(src.loc, P.usesound, 50, 1)
 				construct_op --
-			if(istype(P, /obj/item/weapon/wrench))
-				user << "You dislodge the external plating."
+			if(P.is_wrench())
+				to_chat(user, "You dislodge the external plating.")
 				playsound(src.loc, P.usesound, 75, 1)
 				construct_op ++
 		if(2)
-			if(istype(P, /obj/item/weapon/wrench))
-				user << "You secure the external plating."
+			if(P.is_wrench())
+				to_chat(user, "You secure the external plating.")
 				playsound(src.loc, P.usesound, 75, 1)
 				construct_op --
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(P.is_wirecutter())
 				playsound(src.loc, P.usesound, 50, 1)
-				user << "You remove the cables."
+				to_chat(user, "You remove the cables.")
 				construct_op ++
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
 				A.amount = 5
@@ -65,16 +65,16 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
-					user << "<span class='notice'>You insert the cables.</span>"
+					to_chat(user, "<span class='notice'>You insert the cables.</span>")
 					construct_op--
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else
-					user << "<span class='warning'>You need five coils of wire for this.</span>"
-			if(istype(P, /obj/item/weapon/crowbar))
-				user << "You begin prying out the circuit board other components..."
+					to_chat(user, "<span class='warning'>You need five coils of wire for this.</span>")
+			if(P.is_crowbar())
+				to_chat(user, "You begin prying out the circuit board other components...")
 				playsound(src.loc, P.usesound, 50, 1)
 				if(do_after(user,60 * P.toolspeed))
-					user << "You finish prying out the components."
+					to_chat(user, "You finish prying out the components.")
 
 					// Drop all the component stuff
 					if(contents.len > 0)
@@ -172,7 +172,7 @@
 
 	dat += "</font>"
 	temp = ""
-	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
+	to_chat(user, browse(dat, "window=tcommachine;size=520x500;can_resize=0"))
 	onclose(user, "dormitory")
 
 

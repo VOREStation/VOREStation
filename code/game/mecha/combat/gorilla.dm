@@ -64,6 +64,7 @@
 	pixel_x = -16
 	step_in = 10
 	health = 5000
+	maxhealth = 5000
 	opacity = 0 // Because there's big tall legs to look through. Also it looks fucky if this is set to 1.
 	deflect_chance = 50
 	damage_absorption = list("brute"=0.1,"fire"=0.8,"bullet"=0.1,"laser"=0.6,"energy"=0.7,"bomb"=0.7) //values show how much damage will pass through, not how much will be absorbed.
@@ -79,6 +80,12 @@
 	internal_damage_threshold = 25
 	force = 60
 	max_equip = 5
+//This will (Should) never be in the hands of players. If it is, the one who inflicted this monster upon the server can edit these vars to not be insane.
+	max_hull_equip = 5
+	max_weapon_equip = 5
+	max_utility_equip = 5
+	max_universal_equip = 5
+	max_special_equip = 2
 
 /obj/mecha/combat/gorilla/New()
 	..()

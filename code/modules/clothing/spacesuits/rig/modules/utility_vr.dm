@@ -38,7 +38,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>You activate the P.A.T. module.</span>")
-	moved_event.register(H, src, /obj/item/rig_module/pat_module/proc/boop)
+	GLOB.moved_event.register(H, src, /obj/item/rig_module/pat_module/proc/boop)
 
 /obj/item/rig_module/pat_module/deactivate()
 	if(!..())
@@ -46,7 +46,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>Your disable the P.A.T. module.</span>")
-	moved_event.unregister(H, src)
+	GLOB.moved_event.unregister(H, src)
 
 /obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
 	if(!istype(user) || !istype(To) || !istype(Tn))
@@ -109,7 +109,7 @@
 
 	charges = list(
 		list("inaprovaline",  "inaprovaline",  0, 20),
-		list("dylovene",  "dylovene",  0, 20),
+		list("anti_toxin",  "anti_toxin",  0, 20),
 		list("paracetamol",      "paracetamol",      0, 20),
 		list("dexalin",  "dexalin",      0, 20)
 		)

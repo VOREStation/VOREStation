@@ -58,6 +58,16 @@
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
+/obj/item/projectile/beam/heavylaser/fakeemitter
+	name = "emitter beam"
+	icon_state = "emitter"
+	fire_sound = 'sound/weapons/emitter.ogg'
+	light_color = "#00CC33"
+
+	muzzle_type = /obj/effect/projectile/emitter/muzzle
+	tracer_type = /obj/effect/projectile/emitter/tracer
+	impact_type = /obj/effect/projectile/emitter/impact
+
 /obj/item/projectile/beam/heavylaser/cannon
 	damage = 80
 	armor_penetration = 50

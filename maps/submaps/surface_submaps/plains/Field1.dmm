@@ -4,8 +4,8 @@
 "d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
 "e" = (/obj/structure/ore_box,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
 "f" = (/obj/item/device/radio,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"g" = (/obj/vehicle/train/cargo/trolley,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"h" = (/obj/vehicle/train/cargo/engine,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"g" = (/obj/vehicle/train/trolley,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"h" = (/obj/vehicle/train/engine,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
 "i" = (/obj/item/device/flashlight,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
 
 (1,1,1) = {"

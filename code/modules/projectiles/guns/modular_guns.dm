@@ -50,12 +50,12 @@
 	FireModeModify()
 
 /obj/item/weapon/gun/energy/modular/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(O.is_screwdriver())
 		to_chat(user, "<span class='notice'>You [assembled ? "disassemble" : "assemble"] the gun.</span>")
 		assembled = !assembled
 		playsound(src, O.usesound, 50, 1)
 		return
-	if(istype(O, /obj/item/weapon/crowbar))
+	if(O.is_crowbar())
 		if(assembled == 1)
 			to_chat(user, "<span class='warning'>Disassemble the [src] first!</span>")
 			return
@@ -130,11 +130,11 @@
 /obj/item/weapon/gun/energy/modular/load_ammo(var/obj/item/C, mob/user)
 	if(istype(C, cell_type))
 		if(self_recharge || battery_lock)
-			user << "<span class='notice'>[src] does not have a battery port.</span>"
+			to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
 			return
 		var/obj/item/weapon/cell/P = C
 		if(power_supply)
-			user << "<span class='notice'>[src] already has a power cell.</span>"
+			to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
 		else
 			user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
 			if(do_after(user, 10))

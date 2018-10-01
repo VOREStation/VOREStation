@@ -38,6 +38,9 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/grey_goo
 	desired_blob_type = /datum/blob_type/grey_goo
 
+/obj/structure/blob/core/fabrication_swarm
+	desired_blob_type = /datum/blob_type/fabrication_swarm
+
 /obj/structure/blob/core/electromagnetic_web
 	desired_blob_type = /datum/blob_type/electromagnetic_web
 
@@ -70,6 +73,9 @@ var/list/blob_cores = list()
 
 /obj/structure/blob/core/radioactive_ooze
 	desired_blob_type = /datum/blob_type/radioactive_ooze
+
+/obj/structure/blob/core/volatile_alluvium
+	desired_blob_type = /datum/blob_type/volatile_alluvium
 
 /obj/structure/blob/core/classic
 	desired_blob_type = /datum/blob_type/classic
