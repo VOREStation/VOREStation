@@ -560,6 +560,9 @@
 					if(T.reagents)
 						volume = T.reagents.total_volume
 						water.add_charge(volume)
+					if(patient == T)
+						patient_laststat = null
+						patient = null
 					qdel(T)
 
 		//Pick a random item to deal with (if there are any)
