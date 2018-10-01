@@ -228,6 +228,30 @@
 	//Create our new blob
 	var/mob/living/simple_animal/protean_blob/blob = new(creation_spot,src)
 
+	//Drop all our things
+	var/list/things_to_drop = contents.Copy()
+	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
+	
+	/* No for now, because insta-pepperspray or flash on unblob
+	if(l_hand && l_hand.w_class <= ITEMSIZE_SMALL) //Hands but only if small or smaller
+		things_to_not_drop += l_hand
+	if(r_hand && r_hand.w_class <= ITEMSIZE_SMALL)
+		things_to_not_drop += r_hand
+	*/
+
+	things_to_drop -= things_to_not_drop //Crunch the lists
+	things_to_drop -= organs //Mah armbs
+	things_to_drop -= internal_organs //Mah sqeedily spooch
+	
+	for(var/obj/item/I in things_to_drop) //rip hoarders
+		drop_from_inventory(I)
+
+	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
+		var/obj/item/clothing/uniform = w_uniform
+		if(LAZYLEN(uniform.accessories))
+			for(var/obj/item/clothing/accessory/A in uniform.accessories)
+				uniform.remove_accessory(null,A) //First param is user, but adds fingerprints and messages
+
 	//Size update
 	blob.transform = matrix()*size_multiplier
 	blob.size_multiplier = size_multiplier
