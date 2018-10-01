@@ -14,6 +14,6 @@
 	display_name = "science goggles (no overlay)"
 	path = /obj/item/clothing/glasses/fluff/science_proper
 
-/datum/gear/eyes/secpatch
+/datum/gear/eyes/security/secpatch
 	display_name = "security hudpatch"
 	path = /obj/item/clothing/glasses/hud/security/eyepatch
