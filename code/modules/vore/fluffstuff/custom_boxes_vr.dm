@@ -226,6 +226,12 @@
 		/obj/item/clothing/accessory/medal/bronze_heart,
 		/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi)
 
+// Tabiranth: Ascian
+/obj/item/weapon/grenade/spawnergrenade/spirit
+	name = "spirit's pet carrier"
+	desc = "Contains kitten."
+	spawner_type = /mob/living/simple_animal/cat/fluff/tabiranth
+	deliveryamt = 1
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */

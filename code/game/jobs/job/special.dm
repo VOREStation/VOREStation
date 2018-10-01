@@ -109,8 +109,10 @@
 
 		if(H.backbag > 0)
 			H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H.back), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H.back), slot_in_backpack) //VOREStation Edit
 		else
 			H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H.back), slot_l_hand) //VOREStation Edit
 
 		return 1
 

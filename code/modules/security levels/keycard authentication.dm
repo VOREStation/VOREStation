@@ -27,7 +27,7 @@
 
 /obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
+		to_chat(user, "This device is not powered.")
 		return
 	if(istype(W,/obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = W
@@ -41,11 +41,11 @@
 				event_triggered_by = usr
 				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
-	if(istype(W, /obj/item/weapon/screwdriver))
-		user << "You begin removing the faceplate from the [src]"
+	if(W.is_screwdriver())
+		to_chat(user, "You begin removing the faceplate from the [src]")
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 10 * W.toolspeed))
-			user << "You remove the faceplate from the [src]"
+			to_chat(user, "You remove the faceplate from the [src]")
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
 			var/obj/item/weapon/circuitboard/M = new circuit(A)
 			A.frame_type = M.board_type
@@ -70,12 +70,12 @@
 
 /obj/machinery/keycard_auth/attack_hand(mob/user as mob)
 	if(user.stat || stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
+		to_chat(user, "This device is not powered.")
 		return
 	if(!user.IsAdvancedToolUser())
 		return 0
 	if(busy)
-		user << "This device is busy."
+		to_chat(user, "This device is busy.")
 		return
 
 	user.set_machine(src)
@@ -105,10 +105,10 @@
 /obj/machinery/keycard_auth/Topic(href, href_list)
 	..()
 	if(busy)
-		usr << "This device is busy."
+		to_chat(usr, "This device is busy.")
 		return
 	if(usr.stat || stat & (BROKEN|NOPOWER))
-		usr << "This device is without power."
+		to_chat(usr, "This device is without power.")
 		return
 	if(href_list["triggerevent"])
 		event = href_list["triggerevent"]
@@ -174,7 +174,7 @@
 			feedback_inc("alert_keycard_auth_maintRevoke",1)
 		if("Emergency Response Team")
 			if(is_ert_blocked())
-				usr << "<font color='red'>All emergency response teams are dispatched and can not be called at this time.</font>"
+				to_chat(usr, "<font color='red'>All emergency response teams are dispatched and can not be called at this time.</font>")
 				return
 
 			trigger_armed_response_team(1)

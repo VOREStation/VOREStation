@@ -330,6 +330,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			to_chat(usr, "<span class='warning'>\The [src] seems to be permanently attached to the case.</span>")
 			return
 		var/obj/item/device/electronic_assembly/ea = loc
+		power_fail()
 		disconnect_all()
 		var/turf/T = get_turf(src)
 		forceMove(T)
@@ -394,3 +395,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		O.disconnect()
 	for(var/datum/integrated_io/activate/A in activators)
 		A.disconnect()
+
+/obj/item/integrated_circuit/proc/on_anchored()
+	return
+
+/obj/item/integrated_circuit/proc/on_unanchored()
+	return

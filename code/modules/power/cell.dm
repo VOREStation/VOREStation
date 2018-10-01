@@ -106,6 +106,10 @@
 /obj/item/weapon/cell/proc/check_charge(var/amount)
 	return (charge >= amount)
 
+// Returns how much charge is missing from the cell, useful to make sure not overdraw from the grid when recharging.
+/obj/item/weapon/cell/proc/amount_missing()
+	return max(maxcharge - charge, 0)
+
 // use power from a cell, returns the amount actually used
 /obj/item/weapon/cell/proc/use(var/amount)
 	if(rigged && amount > 0)

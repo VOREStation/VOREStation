@@ -30,7 +30,7 @@
 	sort_string = "TAAAC"
 
 /datum/design/item/sleevemate
-	name = "SleeveMate 3200"
+	name = "SleeveMate 3700"
 	id = "sleevemate"
 	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)

@@ -6,10 +6,6 @@
 #define DATA_CHANNEL "data channel"
 #define PULSE_CHANNEL "pulse channel"
 
-// Methods of obtaining a circuit.
-#define IC_SPAWN_DEFAULT			1 // If the circuit comes in the default circuit box and able to be printed in the IC printer.
-#define IC_SPAWN_RESEARCH 			2 // If the circuit design will be available in the IC printer after upgrading it.
-
 // Displayed along with the pin name to show what type of pin it is.
 #define IC_FORMAT_ANY			"\<ANY\>"
 #define IC_FORMAT_STRING		"\<TEXT\>"
@@ -49,7 +45,7 @@ var/list/all_integrated_circuits = list()
 /obj/item/integrated_circuit
 	name = "integrated circuit"
 	desc = "It's a tiny chip!  This one doesn't seem to do much, however."
-	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon = 'icons/obj/integrated_electronics/electronic_components.dmi'
 	icon_state = "template"
 	w_class = ITEMSIZE_TINY
 	var/obj/item/device/electronic_assembly/assembly = null // Reference to the assembly holding this circuit, if any.

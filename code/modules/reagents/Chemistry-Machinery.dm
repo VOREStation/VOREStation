@@ -50,24 +50,24 @@
 	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 
 		if(src.beaker)
-			user << "\A [beaker] is already loaded into the machine."
+			to_chat(user, "\A [beaker] is already loaded into the machine.")
 			return
 		src.beaker = B
 		user.drop_item()
 		B.loc = src
-		user << "You add \the [B] to the machine!"
+		to_chat(user, "You add \the [B] to the machine!")
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
-			user << "A \the [loaded_pill_bottle] s already loaded into the machine."
+			to_chat(user, "A \the [loaded_pill_bottle] s already loaded into the machine.")
 			return
 
 		src.loaded_pill_bottle = B
 		user.drop_item()
 		B.loc = src
-		user << "You add \the [loaded_pill_bottle] into the dispenser slot!"
+		to_chat(user, "You add \the [loaded_pill_bottle] into the dispenser slot!")
 
 	else if(default_unfasten_wrench(user, B, 20))
 		return
@@ -133,7 +133,7 @@
 
 	data["bottleSpritesAmount"] = list(1, 2, 3, 4) //how many bottle sprites there are. Sprites are taken from chemical.dmi and can be found in nano/images/pill.png
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "chem_master.tmpl", src.name, 575, 400)
 		ui.set_initial_data(data)
@@ -269,7 +269,7 @@
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/chem_master/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -352,7 +352,7 @@
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
-		usr << "The machine cannot hold anymore items."
+		to_chat(user, "The machine cannot hold anymore items.")
 		return 1
 
 	if(!istype(O))
@@ -371,13 +371,13 @@
 				break
 
 		if(failed)
-			user << "Nothing in the plant bag is usable."
+			to_chat(user, "Nothing in the plant bag is usable.")
 			return 1
 
 		if(!O.contents.len)
-			user << "You empty \the [O] into \the [src]."
+			to_chat(user, "You empty \the [O] into \the [src].")
 		else
-			user << "You fill \the [src] from \the [O]."
+			to_chat(user, "You fill \the [src] from \the [O].")
 
 		src.updateUsrDialog()
 		return 0
@@ -385,16 +385,16 @@
 	if(istype(O,/obj/item/weapon/gripper))
 		var/obj/item/weapon/gripper/B = O	//B, for Borg.
 		if(!B.wrapped)
-			user << "\The [B] is not holding anything."
+			to_chat(user, "\The [B] is not holding anything.")
 			return 0
 		else
 			var/B_held = B.wrapped
-			user << "You use \the [B] to load \the [src] with \the [B_held]."
+			to_chat(user, "You use \the [B] to load \the [src] with \the [B_held].")
 
 		return 0
 
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
-		user << "\The [O] is not suitable for blending."
+		to_chat(user, "\The [O] is not suitable for blending.")
 		return 1
 
 	user.remove_from_mob(O)

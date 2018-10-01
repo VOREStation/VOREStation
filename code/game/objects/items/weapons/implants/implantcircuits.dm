@@ -1,7 +1,7 @@
 /obj/item/weapon/implant/integrated_circuit
 	name = "electronic implant"
 	desc = "It's a case, for building very tiny electronics with."
-	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
 	icon_state = "setup_implant"
 	var/obj/item/device/electronic_assembly/implant/IC = null
 
@@ -39,7 +39,7 @@
 	IC.examine(user)
 
 /obj/item/weapon/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/crowbar) || istype(O, /obj/item/device/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || istype(O, /obj/item/weapon/screwdriver) || istype(O, /obj/item/weapon/cell/device) )
+	if(O.is_crowbar() || istype(O, /obj/item/device/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || O.is_screwdriver() || istype(O, /obj/item/weapon/cell/device) )
 		IC.attackby(O, user)
 	else
 		..()

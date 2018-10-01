@@ -1,0 +1,226 @@
+<H2>Supply Records</H2>
+
+<!-- Supply points and shuttle status -->
+<div class='statusDisplay'>
+	<!-- List points -->
+	Supply points: {{:data.supply_points}}<br>
+	
+	<!-- Shuttle status -->
+	<div class='item'>
+		<H4>Supply Shuttle</H4>
+		<div class='itemLabelNarrow'>
+			Location:<br>
+			Engines:
+		</div>
+		<div class='itemContent'>
+			{{:data.shuttle.location}}<br>
+			{{:data.shuttle.engine}}
+		</div>
+		{{if data.shuttle.mode == 4}}
+			<div class='itemLabelNarrow'>
+				ETA:
+			</div>
+			<div class='itemContent'>
+				{{:data.shuttle.time}} minutes
+			</div>
+		{{/if}}
+		{{if data.shuttle_auth}}
+			<!-- Shuttle control -->
+			{{if data.shuttle.launch == 1 && data.shuttle.mode == 0}} <!-- Shuttle must be docked -->
+				{{:helper.link('Send away', 'suitcase', {'send_shuttle' : 'send_away'})}}
+			{{else data.shuttle.launch == 2 && (data.shuttle.mode == 3 || data.shuttle.mode == 1)}} <!-- Shuttle must be departing, but not have left yet -->
+				{{:helper.link('Cancel launch', 'stop', {'send_shuttle' : 'cancel_shuttle'})}}
+			{{else data.shuttle.launch == 1 && data.shuttle.mode == 5}} <!-- Shuttle has reached the other destination, and can be sent back to station -->
+				{{:helper.link('Send shuttle', 'suitcase', {'send_shuttle' : 'send_to_station'})}}
+			{{/if}}
+			{{if data.shuttle.force}}
+				{{:helper.link('Force launch', 'alert', {'send_shuttle' : 'force_shuttle'})}}
+			{{/if}}
+		{{/if}}
+	</div>
+</div>
+
+<!-- Menu -->
+{{if data.currentTab == 0}}
+	<div>	
+		<!-- List supply packs -->
+		<div class='item'>
+			{{:helper.link('Request items', 'note', {'switch_tab' : 1})}}
+		</div>
+		
+		<!-- Accepted orders -->
+		<div class='item'>
+			{{:helper.link('View accepted orders', 'cart', {'switch_tab' : "Approved"})}}
+		</div>
+		
+		<!-- Pending orders -->
+		<div class='item'>
+			{{:helper.link('View pending requests', 'cart', {'switch_tab' : "Requested"})}}
+		</div>
+		
+		<!-- Order history -->
+		{{:helper.link('View order history', 'document', {'switch_tab' : "All"})}}
+		
+		<!-- Receipt history -->
+		<div class='item'>
+			{{:helper.link('View export history', 'document', {'switch_tab' : "Export"})}}
+		</div>
+	</div>
+	
+{{else}}
+	{{:helper.link('Back to menu', 'arrowreturn-1-w', {'switch_tab' : 0})}}
+
+	
+	<!-- List supply pack categories -->
+	{{if data.currentTab == 1}}
+		{{for data.categories}}
+			<div class='item'>
+				{{:helper.link(value, 'bookmark', {'switch_tab' : value, 'active_category' : value})}}
+			</div>
+		{{/for}}
+	
+	<!-- List exported crates, their contents, and their values -->
+	{{else data.currentTab == "Export"}}
+		<H3>Exported Crates</H3>
+		{{for data.receipts}}
+			<hr>
+			<div class='item'>
+				{{for value.title :titleVal:titleIndex}}
+					<div class='itemLabelNarrow'>
+						{{:titleVal.field}}
+					</div>
+					<div class='itemContent'>
+						{{:titleVal.entry}}
+						{{if data.order_auth}}
+							<span style='float:right; width:64px;'>
+								{{:helper.link('Edit', 'wrench', {'order_ref' : value.ref, 'edit' : titleVal.field, 'default' : titleVal.entry, 'user' : data.user})}}
+							</span>
+						{{/if}}
+					</div>
+				{{/for}}
+				
+				{{if value.error}}
+					<div class='itemLabelNarrow'>
+						<span class='bad'>
+							Error
+						</span>
+					</div>
+					<div class='itemContent'>
+						{{:value.error}}
+					</div>
+				{{else}}
+					{{for value.contents :contentVal:contentIndex}}
+						<div class='itemContent'>
+							{{:contentVal.quantity}}x {{:contentVal.object}} - {{:contentVal.value}} points
+						</div>
+						{{if data.order_auth}}
+							<div class='itemContent'>
+								{{:helper.link('Edit Quantity','wrench', {'export_ref' : value.ref, 'edit' : 1, 'default' : contentVal.quantity, 'index' : contentIndex, 'user' : data.user})}}
+								{{:helper.link('Delete Entry', 'trash', {'export_ref' : value.ref, 'delete' : 1, 'index' : contentIndex, 'user' : data.user})}}
+							</div>
+						{{/if}}
+					{{/for}}
+				{{/if}}
+				
+				{{if data.order_auth}}
+					<br>{{:helper.link('Add item to record', 'plus', {'export_ref' : value.ref, 'add_item' : 1, 'user' : data.user})}}
+					<br>{{:helper.link('Delete record', 'trash', {'export_ref' : value.ref, 'delete' : 1, 'user' : data.user})}}
+				{{/if}}
+			</div>
+		{{empty}}
+			<div class='average'>No receipts on record!</div>
+		{{/for}}
+	
+	<!-- Browse orders -->
+	<!-- currentTab == "Approved": Orders waiting to be shipped -->
+	<!-- currentTab == "Requested": Orders waiting to be accepted -->
+	<!-- currentTab == "All": All orders -->	
+	{{else data.currentTab == "Approved" || data.currentTab == "Requested" || data.currentTab == "All"}}
+		<H3>{{:data.currentTab}} Orders</H3>
+		{{for data.orders}}
+			{{if (value.status == data.currentTab) || (data.currentTab == "All")}}
+				<hr>
+				<div class='item'>
+					{{for value.entries :entryVal:entryIndex}}
+						<!-- Hide null entries -->
+						{{if entryVal.entry}}
+							<div class='itemLabelNarrow'>
+								{{:entryVal.field}}
+							</div>
+							<div class='itemContent'>
+								{{:entryVal.entry}}
+								{{if data.order_auth}}
+									<span style='float:right; width:64px;'>
+										{{:helper.link('Edit', 'wrench', {'order_ref' : value.ref, 'edit' : entryVal.field, 'default' : entryVal.entry, 'user' : data.user})}}
+									</span>
+								{{/if}}
+							</div>
+						{{/if}}
+					{{/for}}
+					
+					{{if data.currentTab == "All"}}
+						<div class='itemLabelNarrow'>
+							Status
+						</div>
+						<div class='itemContent'>
+							{{:value.status}}
+						</div>
+						{{if data.order_auth}}
+							<br>{{:helper.link('Delete record', 'trash', {'order_ref' : value.ref, 'delete' : 1, 'user' : data.user})}}
+						{{/if}}
+					{{/if}}
+					
+					{{if data.order_auth && data.currentTab == "Requested"}}
+						{{:helper.link('Approve', 'check', {'order_ref' : value.ref, 'approve' : 1, 'user' : data.user})}}
+						{{:helper.link('Deny',   'cancel', {'order_ref' : value.ref, 'deny' : 1,    'user' : data.user})}}
+					{{/if}}
+				</div>
+			{{/if}}
+		{{empty}}
+			<div class='average'>No orders on record!</div>
+		{{/for}}
+		
+		{{if data.currentTab == "Requested" && data.order_auth}}
+			{{:helper.link('Clear all requests', 'trash', {'clear_all_requests' : 1, 'user' : data.user})}}
+		{{/if}}
+	
+	<!-- List supplypacks from individual category -->
+	<!-- currentTab will be set to the category name -->
+	{{else}}
+		<div class='item'>
+			{{:helper.link('Back to categories', 'arrow-return-1-w', {'switch_tab' : 1})}}
+		</div>
+		
+		<h4>
+			{{:data.active_category}}
+		</h4>
+		
+		{{for data.supply_packs :packValue:packIndex}}
+			{{if !packValue.contraband || data.contraband}}
+				<div class='item'>
+					<!-- Sending 'expand' will toggle the value of packValue.expand -->
+					{{:helper.link(packValue.name + ' - ' + packValue.cost, packValue.expand ? 'folder-open' : 'folder-collapsed', {'cartridge_topic' : 1, 'pack_ref' : packValue.ref, 'expand' : 1})}}
+				</div>
+			
+				{{if packValue.expand}}
+					<div class='item'>
+						<div class='itemLabel'>
+							{{if packValue.random}}
+								Contains any {{:packValue.random}} of:<br>
+							{{/if}}
+						
+							{{for packValue.manifest :manifestElem:manifestIndex}}
+								{{:manifestElem}}<br>
+							{{/for}}
+						</div>
+							
+						<div class='itemContent'>
+							{{:helper.link('Request', 'cart', {'cartridge_topic' : 1, 'pack_ref' : packValue.ref, 'request' : 1, 'user' : data.user})}}
+						</div>
+					</div>
+					<hr>
+				{{/if}}
+			{{/if}}
+		{{/for}}
+	{{/if}}		
+{{/if}}

@@ -832,7 +832,7 @@
 
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
-				if(I.contaminated || I.gurgled) //VOREStation Edit
+				if(I.contaminated)
 					if(check_belly(I)) continue //VOREStation Edit
 					if(src.species && src.species.get_bodytype() != "Vox")
 						// This is hacky, I'm so sorry.

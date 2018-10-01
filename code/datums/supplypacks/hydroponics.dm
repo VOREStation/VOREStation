@@ -4,45 +4,45 @@
 */
 
 
-/datum/supply_packs/hydro
+/datum/supply_pack/hydro
 	group = "Hydroponics"
 
-/datum/supply_packs/hydro/monkey
+/datum/supply_pack/hydro/monkey
 	name = "Monkey crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Monkey crate"
 
-/datum/supply_packs/hydro/farwa
+/datum/supply_pack/hydro/farwa
 	name = "Farwa crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/farwacubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Farwa crate"
 
-/datum/supply_packs/hydro/neara
+/datum/supply_pack/hydro/neara
 	name = "Neaera crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Neaera crate"
 
-/datum/supply_packs/hydro/stok
+/datum/supply_pack/hydro/stok
 	name = "Stok crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/stokcubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Stok crate"
 
-/datum/supply_packs/hydro/lisa
+/datum/supply_pack/hydro/lisa
 	name = "Corgi Crate"
 	contains = list()
 	cost = 50
 	containertype = /obj/structure/largecrate/animal/corgi
 	containername = "Corgi Crate"
 
-/datum/supply_packs/hydro/hydroponics
+/datum/supply_pack/hydro/hydroponics
 	name = "Hydroponics Supply Crate"
 	contains = list(
 			/obj/item/weapon/reagent_containers/spray/plantbgone = 4,
@@ -60,28 +60,28 @@
 	containername = "Hydroponics crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/cow
+/datum/supply_pack/hydro/cow
 	name = "Cow crate"
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/cow
 	containername = "Cow crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/goat
+/datum/supply_pack/hydro/goat
 	name = "Goat crate"
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/goat
 	containername = "Goat crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/chicken
+/datum/supply_pack/hydro/chicken
 	name = "Chicken crate"
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/chick
 	containername = "Chicken crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/seeds
+/datum/supply_pack/hydro/seeds
 	name = "Seeds crate"
 	contains = list(
 			/obj/item/seeds/chiliseed,
@@ -107,7 +107,7 @@
 	containername = "Seeds crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/weedcontrol
+/datum/supply_pack/hydro/weedcontrol
 	name = "Weed control crate"
 	contains = list(
 			/obj/item/weapon/material/knife/machete/hatchet = 2,
@@ -121,14 +121,14 @@
 	containername = "Weed control crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/watertank
+/datum/supply_pack/hydro/watertank
 	name = "Water tank crate"
 	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 10
 	containertype = /obj/structure/largecrate
 	containername = "water tank crate"
 
-/datum/supply_packs/hydro/bee_keeper
+/datum/supply_pack/hydro/bee_keeper
 	name = "Beekeeping crate"
 	contains = list(
 			/obj/item/beehive_assembly,
@@ -141,7 +141,7 @@
 	containername = "Beekeeping crate"
 	access = access_hydroponics
 
-/datum/supply_packs/hydro/tray
+/datum/supply_pack/hydro/tray
 	name = "Empty hydroponics trays"
 	cost = 50
 	containertype = /obj/structure/closet/crate/hydroponics

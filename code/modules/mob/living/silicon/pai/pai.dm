@@ -1,11 +1,13 @@
 /mob/living/silicon/pai
 	name = "pAI"
 	icon = 'icons/mob/pai.dmi'
-	icon_state = "repairbot"
+	icon_state = "pai-repairbot"
 
 	emote_type = 2		// pAIs emotes are heard, not seen, so they can be seen through a container (eg. person)
 	pass_flags = 1
 	mob_size = MOB_SMALL
+
+	holder_type = /obj/item/weapon/holder/pai
 
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
@@ -23,17 +25,17 @@
 	var/obj/item/device/radio/radio		// Our primary radio
 	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
 
-	var/chassis = "repairbot"   // A record of your chosen chassis.
+	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
-		"Drone" = "repairbot",
-		"Cat" = "cat",
-		"Mouse" = "mouse",
-		"Monkey" = "monkey",
-		"Corgi" = "borgi",
-		"Fox" = "fox",
-		"Parrot" = "parrot",
-		"Rabbit" = "rabbit",
-		"Bear" = "bear"  //VOREStation Edit
+		"Drone" = "pai-repairbot",
+		"Cat" = "pai-cat",
+		"Mouse" = "pai-mouse",
+		"Monkey" = "pai-monkey",
+		"Corgi" = "pai-borgi",
+		"Fox" = "pai-fox",
+		"Parrot" = "pai-parrot",
+		"Rabbit" = "pai-rabbit",
+		"Bear" = "pai-bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -199,7 +201,7 @@
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	usr << "<span class='notice'>You reset your record-viewing software.</span>"
 
 /mob/living/silicon/pai/cancel_camera()
@@ -431,7 +433,8 @@
 	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
-	H.icon_state = "pai-[icon_state]"
+
+	H.icon_state = "[chassis]"
 	grabber.update_inv_l_hand()
 	grabber.update_inv_r_hand()
 	return H

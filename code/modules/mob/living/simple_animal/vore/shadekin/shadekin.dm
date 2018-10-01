@@ -138,7 +138,7 @@
 	return ..()
 
 /mob/living/simple_animal/shadekin/Destroy()
-	qdel_null_list(shadekin_abilities)
+	QDEL_NULL_LIST(shadekin_abilities)
 	. = ..()
 
 /mob/living/simple_animal/shadekin/init_vore()

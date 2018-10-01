@@ -91,7 +91,7 @@
 	else if(lit && detonator_mode)
 		switch(alert(user, "What would you like to do?", "Lighter", "Press the button.", "Close the lighter."))
 			if("Press the button.")
-				user << "<span class='warning'>You press the button.</span>"
+				to_chat(user, "<span class='warning'>You press the button.</span>")
 				icon_state = "[base_state]click"
 				if(src.bomb)
 					src.bomb.detonate()
@@ -106,7 +106,7 @@
 
 
 /obj/item/weapon/flame/lighter/zippo/c4detonator/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		detonator_mode = !detonator_mode
 		playsound(src, W.usesound, 50, 1)
-		user << "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>"
+		to_chat(user, "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>")

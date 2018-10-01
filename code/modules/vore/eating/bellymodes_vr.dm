@@ -38,10 +38,14 @@
 		if(isitem(A) && !did_an_item)
 			var/obj/item/I = A
 			if(mode_flags & DM_FLAG_ITEMWEAK)
-				I.gurgle_contaminate(src, cont_flavor)
-				items_preserved |= I
-				to_update = TRUE
-				did_an_item = TRUE
+				if(digest_mode == DM_HOLD)
+					if(istype(I,/obj/item/weapon/reagent_containers/food))
+						digest_item(I)
+					else
+						items_preserved |= I
+				else
+					I.gurgle_contaminate(src, cont_flavor)
+					items_preserved |= I
 			else
 				I.gurgle_contaminate(src, cont_flavor)
 				if(I.digest_stage && I.digest_stage > 0)

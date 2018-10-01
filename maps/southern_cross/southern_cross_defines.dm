@@ -19,6 +19,11 @@
 	lobby_icon = 'icons/misc/title.dmi'
 	lobby_screens = list("mockingjay00") // New lobby screen if possible.
 
+	holomap_smoosh = list(list(
+		Z_LEVEL_STATION_ONE,
+		Z_LEVEL_STATION_TWO,
+		Z_LEVEL_STATION_THREE))
+
 	zlevel_datum_type = /datum/map_z_level/southern_cross
 
 	station_name  = "NLS Southern Cross"
@@ -32,11 +37,11 @@
 
 	shuttle_docked_message = "The scheduled shuttle to the %dock_name% has docked with the station at docks one and two. It will depart in approximately %ETD%."
 	shuttle_leaving_dock = "The Crew Transfer Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
-	shuttle_called_message = "A crew transfer to %Dock_name% has been scheduled. The shuttle has been called. Those leaving should procede to docks one and two in approximately %ETA%"
+	shuttle_called_message = "A crew transfer to %Dock_name% has been scheduled. The shuttle has been called. Those leaving should proceed to docks one and two in approximately %ETA%."
 	shuttle_recall_message = "The scheduled crew transfer has been cancelled."
 	emergency_shuttle_docked_message = "The Emergency Shuttle has docked with the station at docks one and two. You have approximately %ETD% to board the Emergency Shuttle."
 	emergency_shuttle_leaving_dock = "The Emergency Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
-	emergency_shuttle_called_message = "An emergency evacuation shuttle has been called. It will arrive at docks one and two in approximately %ETA%"
+	emergency_shuttle_called_message = "An emergency evacuation shuttle has been called. It will arrive at docks one and two in approximately %ETA%."
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled."
 
 	// Networks that will show up as options in the camera monitor program
@@ -105,26 +110,40 @@
 	// Todo: Forest generation.
 	return 1
 
+// For making the 6-in-1 holomap, we calculate some offsets
+#define SOUTHERN_CROSS_MAP_SIZE 160 // Width and height of compiled in Southern Cross z levels.
+#define SOUTHERN_CROSS_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
+#define SOUTHERN_CROSS_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*SOUTHERN_CROSS_MAP_SIZE) - SOUTHERN_CROSS_HOLOMAP_CENTER_GUTTER) / 2) // 100
+#define SOUTHERN_CROSS_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*SOUTHERN_CROSS_MAP_SIZE)) / 2) // 60
+
 /datum/map_z_level/southern_cross/station
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES
+	holomap_legend_x = 220
+	holomap_legend_y = 160
 
 /datum/map_z_level/southern_cross/station/station_one
 	z = Z_LEVEL_STATION_ONE
 	name = "Deck 1"
 	base_turf = /turf/space
 	transit_chance = 6
+	holomap_offset_x = SOUTHERN_CROSS_HOLOMAP_MARGIN_X - 40
+	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*0
 
 /datum/map_z_level/southern_cross/station/station_two
 	z = Z_LEVEL_STATION_TWO
 	name = "Deck 2"
 	base_turf = /turf/simulated/open
 	transit_chance = 6
+	holomap_offset_x = SOUTHERN_CROSS_HOLOMAP_MARGIN_X - 40
+	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*1
 
 /datum/map_z_level/southern_cross/station/station_three
 	z = Z_LEVEL_STATION_THREE
 	name = "Deck 3"
 	base_turf = /turf/simulated/open
 	transit_chance = 6
+	holomap_offset_x = HOLOMAP_ICON_SIZE - SOUTHERN_CROSS_HOLOMAP_MARGIN_X - SOUTHERN_CROSS_MAP_SIZE - 40
+	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*1
 
 /datum/map_z_level/southern_cross/empty_space
 	z = Z_LEVEL_EMPTY_SPACE
@@ -242,3 +261,16 @@
 		Z_LEVEL_SURFACE_WILD,
 		Z_LEVEL_TRANSIT
 	)
+
+//Suit Storage Units
+
+/obj/machinery/suit_cycler/exploration
+	name = "Explorer suit cycler"
+	model_text = "Exploration"
+	req_one_access = list(access_pilot,access_explorer)
+
+/obj/machinery/suit_cycler/pilot
+	name = "Pilot suit cycler"
+	model_text = "Pilot"
+	req_access = null
+	req_one_access = list(access_pilot,access_explorer)

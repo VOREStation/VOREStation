@@ -15,7 +15,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice // For target practice
 	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. Comes shipped with practice rounds pre-loaded into the gun. Popular among professional marksmen. Uses 7.62mm rounds."
-	ammo_type = /obj/item/ammo_casing/a762p
+	ammo_type = /obj/item/ammo_casing/a762/practice
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial
 	name = "ceremonial bolt-action rifle"

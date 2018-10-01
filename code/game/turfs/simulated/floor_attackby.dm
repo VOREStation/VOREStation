@@ -33,7 +33,7 @@
 
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
-					T.ChangeTurf(/turf/simulated/floor)
+					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
 					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 					user.visible_message("<span class='notice'>[user] patches a hole in the ceiling.</span>", "<span class='notice'>You patch a hole in the ceiling.</span>")
 					expended_tile = TRUE
@@ -115,7 +115,7 @@
 						to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		if(broken || burnt)
 			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
 			make_plating()
@@ -129,14 +129,14 @@
 			return 0
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(istype(W, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+	else if(W.is_screwdriver() && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)
 			return 0
 		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(istype(W, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
+	else if(W.is_wrench() && (flooring.flags & TURF_REMOVE_WRENCH))
 		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)

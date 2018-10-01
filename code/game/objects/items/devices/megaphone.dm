@@ -91,12 +91,12 @@
 			to_chat(user, "<span class='warning'>You re-scramble \the [src]'s voice synthesizer.</span>")
 		return 1
 
-/obj/item/device/megaphone/super/verb/turn_volume_dial(mob/living/user)
+/obj/item/device/megaphone/super/verb/turn_volume_dial()
 	set name = "Change Volume"
 	set desc = "Allows you to change the megaphone's volume."
 	set category = "Object"
 
-	adjust_volume(user)
+	adjust_volume(usr)
 
 /obj/item/device/megaphone/super/proc/adjust_volume(var/mob/living/user)
 	var/new_volume = input(user, "Set Volume") as null|anything in volume_options
@@ -104,12 +104,12 @@
 	if(new_volume && Adjacent(user))
 		broadcast_size = new_volume
 
-/obj/item/device/megaphone/super/verb/change_font(mob/living/user)
+/obj/item/device/megaphone/super/verb/change_font()
 	set name = "Change... Pronunciation?"
 	set desc = "Allows you to change the megaphone's font."
 	set category = "Object"
 
-	adjust_font(user)
+	adjust_font(usr)
 
 /obj/item/device/megaphone/super/proc/adjust_font(var/mob/living/user)
 	var/new_font = input(user, "Set Volume") as null|anything in font_options
@@ -117,12 +117,12 @@
 	if(new_font && Adjacent(user))
 		broadcast_font = new_font
 
-/obj/item/device/megaphone/super/verb/change_color(mob/living/user)
+/obj/item/device/megaphone/super/verb/change_color()
 	set name = "Change... Tune?"
 	set desc = "Allows you to change the megaphone's color."
 	set category = "Object"
 
-	adjust_color(user)
+	adjust_color(usr)
 
 /obj/item/device/megaphone/super/proc/adjust_color(var/mob/living/user)
 	var/new_color = input(user, "Set Volume") as null|anything in color_options

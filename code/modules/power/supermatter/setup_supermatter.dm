@@ -263,6 +263,34 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	F.update_icon()
 	return SETUP_OK
 
+// Closes the monitoring room shutters so the first Engi to show up doesn't get microwaved
+/obj/effect/engine_setup/shutters/
+	name = "Shutter Button Marker"
+	var/target_button = "Engine Monitoring Room Blast Doors"	// This needs to be set to whatever the shutter button is called
+
+/obj/effect/engine_setup/shutters/activate()
+	if(!target_button)
+		log_and_message_admins("## WARNING: No button type set at [x] [y] [z]!")
+		return SETUP_WARNING
+
+	var/obj/machinery/button/remote/blast_door/found = null
+	var/turf/T = get_turf(src)
+	for(var/obj/machinery/button/remote/blast_door/B in T.contents)
+		if(B.name == target_button)
+			found = B
+			break
+
+	if(!found)
+		log_and_message_admins("## WARNING: Unable to locate button at [x] [y] [z]!")
+		return SETUP_WARNING
+
+	found.trigger()
+	found.update_icon()
+	return SETUP_OK
+
+
+
+
 
 #undef SETUP_OK
 #undef SETUP_WARNING

@@ -649,6 +649,17 @@
 		icon_state = "jagged"
 		body_parts = list(BP_HEAD)
 
+	blank_face
+		name = "Blank round face (use with monster mouth)"
+		icon_state = "blankface"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	monster_mouth
+		name = "Monster mouth"
+		icon_state = "monster"
+		body_parts = list(BP_HEAD)
+
 	saber_teeth
 		name = "Saber teeth"
 		icon_state = "saber"

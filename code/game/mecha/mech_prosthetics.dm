@@ -113,7 +113,7 @@
 	if(current)
 		data["builtperc"] = round((progress / current.time) * 100)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "mechfab.tmpl", "Prosthetics Fab UI", 800, 600)
 		ui.set_initial_data(data)
@@ -150,7 +150,7 @@
 
 /obj/machinery/pros_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return 1
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -162,20 +162,20 @@
 	if(istype(I,/obj/item/weapon/disk/limb))
 		var/obj/item/weapon/disk/limb/D = I
 		if(!D.company || !(D.company in all_robolimbs))
-			user << "<span class='warning'>This disk seems to be corrupted!</span>"
+			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
 		else
-			user << "<span class='notice'>Installing blueprint files for [D.company]...</span>"
+			to_chat(user, "<span class='notice'>Installing blueprint files for [D.company]...</span>")
 			if(do_after(user,50,src))
 				var/datum/robolimb/R = all_robolimbs[D.company]
 				R.unavailable_to_build = 0
-				user << "<span class='notice'>Installed [D.company] blueprints!</span>"
+				to_chat(user, "<span class='notice'>Installed [D.company] blueprints!</span>")
 				qdel(I)
 		return
 
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!(S.material.name in materials))
-			user << "<span class='warning'>The [src] doesn't accept [S.material]!</span>"
+			to_chat(user, "<span class='warning'>The [src] doesn't accept [S.material]!</span>")
 			return
 
 		var/sname = "[S.name]"
@@ -190,10 +190,10 @@
 					materials[S.material.name] += amnt
 					S.use(1)
 					count++
-				user << "You insert [count] [sname] into the fabricator."
+				to_chat(user, "You insert [count] [sname] into the fabricator.")
 				update_busy()
 		else
-			user << "The fabricator cannot hold more [sname]."
+			to_chat(user, "The fabricator cannot hold more [sname].")
 
 		return
 
