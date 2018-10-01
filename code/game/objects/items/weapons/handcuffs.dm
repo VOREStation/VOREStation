@@ -295,6 +295,7 @@ var/last_chew = 0
 			if(user.hud_used && user.hud_used.move_intent)
 				user.hud_used.move_intent.icon_state = "walking"
 
+
 /obj/item/weapon/handcuffs/legcuffs/bola
 	name = "bola"
 	desc = "Keeps prey in line."
