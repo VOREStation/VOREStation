@@ -219,9 +219,19 @@
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_shape
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_colour
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_eye_colour
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair_colors
 		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_gender
-		M.verbs -=  /mob/living/carbon/human/proc/regenerate
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_wings
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_tail
+		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_ears
 		M.verbs -=  /mob/living/proc/set_size
+		M.verbs -=  /mob/living/carbon/human/proc/succubus_drain
+		M.verbs -=  /mob/living/carbon/human/proc/succubus_drain_finalize
+		M.verbs -=  /mob/living/carbon/human/proc/succubus_drain_lethal
+		M.verbs -=  /mob/living/carbon/human/proc/slime_feed
+		M.verbs -=  /mob/living/proc/eat_trash
+		M.verbs -=  /mob/living/carbon/human/proc/regenerate
 
 	M.species = O.species
 	M.custom_species = O.custom_species
@@ -242,9 +252,19 @@
 		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_shape
 		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_colour
 		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_eye_colour
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair_colors
 		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_gender
-		M.verbs +=  /mob/living/carbon/human/proc/regenerate
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_wings
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_tail
+		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_ears
 		M.verbs +=  /mob/living/proc/set_size
+		M.verbs +=  /mob/living/carbon/human/proc/succubus_drain
+		M.verbs +=  /mob/living/carbon/human/proc/succubus_drain_finalize
+		M.verbs +=  /mob/living/carbon/human/proc/succubus_drain_lethal
+		M.verbs +=  /mob/living/carbon/human/proc/slime_feed
+		M.verbs +=  /mob/living/proc/eat_trash
+		M.verbs +=  /mob/living/carbon/human/proc/regenerate
 		M.shapeshifter_select_shape()
 
 /obj/belly/proc/put_in_egg(var/atom/movable/M, message=0)

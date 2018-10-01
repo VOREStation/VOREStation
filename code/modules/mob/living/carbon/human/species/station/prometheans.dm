@@ -99,9 +99,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings, //VOREStation Add,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail, //VOREStation Add,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears, //VOREStation Add,
+		/mob/living/carbon/human/proc/shapeshifter_select_wings, //VOREStation Add Start,
+		/mob/living/carbon/human/proc/shapeshifter_select_tail, 
+		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/proc/set_size,
+		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/carbon/human/proc/succubus_drain_finalize,
+		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/carbon/human/proc/slime_feed,
+		/mob/living/proc/eat_trash, //VOREStation Add End,
 		/mob/living/carbon/human/proc/regenerate
 		)
 
