@@ -29,7 +29,7 @@
 	containername = "Virology biohazard equipment"
 	access = access_medical_equip
 
-/datum/supply_packs/med/compactdefib
+/datum/supply_pack/med/compactdefib
 	name = "Compact Defibrillator crate"
 	contains = list(/obj/item/device/defib_kit/compact = 1)
 	cost = 90
