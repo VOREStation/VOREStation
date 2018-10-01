@@ -143,7 +143,7 @@
 		safetycatch = 1
 		return
 
-	if(istype(A, /obj/item/weapon/screwdriver))
+	if(istype(A, /obj/item/weapon/tool/screwdriver))
 		if(safetycatch && attached_safety)
 			user << "<span class='notice'>You begin removing \the [attached_safety] from \the [src].</span>"
 			if(do_after(user, 25))

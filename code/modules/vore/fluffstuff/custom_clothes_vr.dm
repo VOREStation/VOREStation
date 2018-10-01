@@ -79,7 +79,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/RemoveHood_roiz()
 	icon_state = "coatroiz"
 	item_state = "coatroiz_mob"
-	suittoggled = 0
+	hood_up = 0
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
 		H.unEquip(hood, 1)
@@ -87,7 +87,7 @@
 	hood.loc = src
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz/proc/ToggleHood_roiz()
-	if(!suittoggled)
+	if(!hood_up)
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_suit != src)
@@ -98,7 +98,7 @@
 				return
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				suittoggled = 1
+				hood_up = 1
 				icon_state = "coatroiz_t"
 				item_state = "coatroiz_mob_t"
 				H.update_inv_wear_suit()
@@ -730,11 +730,11 @@
 
 /obj/item/weapon/storage/belt/utility/fluff/vulpine/New()
 	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/tool/screwdriver(src)
+	new /obj/item/weapon/tool/wrench(src)
 	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/device/multitool(src)
 	new /obj/item/stack/cable_coil(src, 30, "red")
 
@@ -1546,7 +1546,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/RemoveHood_kilano()
 	icon_state = "kilanocoat"
 	item_state = "kilanocoat_mob"
-	suittoggled = 0
+	hood_up = 0
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
 		H.unEquip(hood, 1)
@@ -1554,7 +1554,7 @@ Departamental Swimsuits, for general use
 	hood.loc = src
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/proc/ToggleHood_kilano()
-	if(!suittoggled)
+	if(!hood_up)
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_suit != src)
@@ -1565,7 +1565,7 @@ Departamental Swimsuits, for general use
 				return
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
-				suittoggled = 1
+				hood_up = 1
 				icon_state = "kilanocoat_t"
 				item_state = "kilanocoat_mob_t"
 				H.update_inv_wear_suit()
@@ -1683,7 +1683,7 @@ Departamental Swimsuits, for general use
 	name = "Phi Vietsi's Bone Signet Ring"
 	desc = "A signet ring belonging to Phi Vietsi, carved from the bones of something long extinct, as a ward against bad luck."
 	var/signet_name = "Phi Vietsi"
-	
+
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "vietsi_ring"
 

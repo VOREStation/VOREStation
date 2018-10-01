@@ -32,8 +32,8 @@
 
 /obj/item/device/defib_kit/Destroy()
 	. = ..()
-	qdel_null(paddles)
-	qdel_null(bcell)
+	QDEL_NULL(paddles)
+	QDEL_NULL(bcell)
 
 /obj/item/device/defib_kit/loaded //starts with a cell
 	bcell = /obj/item/weapon/cell/apc
@@ -94,7 +94,7 @@
 			to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
 			update_icon()
 
-	else if(isscrewdriver(W))
+	else if(W.is_screwdriver())
 		if(bcell)
 			bcell.update_icon()
 			bcell.forceMove(get_turf(src.loc))

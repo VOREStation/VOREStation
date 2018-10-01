@@ -634,7 +634,6 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 The _flatIcons list is a cache for generated icon files.
 */
 
-// Creates a single icon from a given /atom or /image.  Only the first argument is required.
 /proc/getFlatIcon(image/A, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE)
 	// We start with a blank canvas, otherwise some icon procs crash silently
 	var/icon/flat = icon('icons/effects/effects.dmi', "nothing") // Final flattened icon
@@ -677,7 +676,7 @@ The _flatIcons list is a cache for generated icon files.
 
 	var/curdir
 	var/base_icon_dir	//We'll use this to get the icon state to display if not null BUT NOT pass it to overlays as the dir we have
-	
+
 	//These should use the parent's direction (most likely)
 	if(!A.dir || A.dir == SOUTH)
 		curdir = defdir
@@ -686,7 +685,7 @@ The _flatIcons list is a cache for generated icon files.
 
 	//Let's check if the icon actually contains any diagonals, just skip if it's south to save (lot of) time
 	if(curdir != SOUTH)
-		var/icon/test_icon 
+		var/icon/test_icon
 		var/directionals_exist = FALSE
 		var/list/dirs_to_check = cardinal - SOUTH
 		outer:
@@ -824,6 +823,9 @@ The _flatIcons list is a cache for generated icon files.
 	else
 		return icon(flat, "", SOUTH)
 
+
+
+
 /proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.
 	for(var/I in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
@@ -874,10 +876,13 @@ The _flatIcons list is a cache for generated icon files.
 			if(4)	I.pixel_y++
 		overlays += I//And finally add the overlay.
 
-/proc/getHologramIcon(icon/A, safety=1)//If safety is on, a new icon is not created.
+/proc/getHologramIcon(icon/A, safety=1, no_color = FALSE)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
-	//flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish. //VOREStation Removal for AI Vore effects
-	//flat_icon.ChangeOpacity(0.5)//Make it half transparent. //VOREStation Removal for AI Vore effects
+	/* VOREStation Removal - For AI Vore effects
+	if(!no_color)
+		flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
+	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
+	*/ //VOREStation Removal End
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon

@@ -132,6 +132,9 @@
 			if ("mechstep") soundin = pick('sound/mecha/mechstep1.ogg', 'sound/mecha/mechstep2.ogg')
 			if ("geiger") soundin = pick('sound/items/geiger1.ogg', 'sound/items/geiger2.ogg', 'sound/items/geiger3.ogg', 'sound/items/geiger4.ogg', 'sound/items/geiger5.ogg')
 			if ("geiger_weak") soundin = pick('sound/items/geiger_weak1.ogg', 'sound/items/geiger_weak2.ogg', 'sound/items/geiger_weak3.ogg', 'sound/items/geiger_weak4.ogg')
+			if ("thunder") soundin = pick('sound/effects/thunder/thunder1.ogg', 'sound/effects/thunder/thunder2.ogg', 'sound/effects/thunder/thunder3.ogg', 'sound/effects/thunder/thunder4.ogg',
+			'sound/effects/thunder/thunder5.ogg', 'sound/effects/thunder/thunder6.ogg', 'sound/effects/thunder/thunder7.ogg', 'sound/effects/thunder/thunder8.ogg', 'sound/effects/thunder/thunder9.ogg',
+			'sound/effects/thunder/thunder10.ogg')
 	return soundin
 
 //Are these even used?

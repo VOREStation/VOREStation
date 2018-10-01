@@ -50,12 +50,12 @@
 	icon_state = "welder"
 
 /obj/random/tool/item_to_spawn()
-	return pick(/obj/item/weapon/screwdriver,
-				/obj/item/weapon/wirecutters,
+	return pick(/obj/item/weapon/tool/screwdriver,
+				/obj/item/weapon/tool/wirecutters,
 				/obj/item/weapon/weldingtool,
 				/obj/item/weapon/weldingtool/largetank,
-				/obj/item/weapon/crowbar,
-				/obj/item/weapon/wrench,
+				/obj/item/weapon/tool/crowbar,
+				/obj/item/weapon/tool/wrench,
 				/obj/item/device/flashlight,
 				/obj/item/device/multitool)
 
@@ -65,8 +65,8 @@
 	icon_state = "jaws_pry"
 
 /obj/random/tool/power/item_to_spawn()
-	return pick(/obj/item/weapon/screwdriver/power,
-				/obj/item/weapon/wirecutters/power,
+	return pick(/obj/item/weapon/tool/screwdriver/power,
+				/obj/item/weapon/tool/wirecutters/power,
 				/obj/item/weapon/weldingtool/electric,
 				/obj/item/weapon/weldingtool/experimental)
 
@@ -77,11 +77,11 @@
 	icon_state = "welder"
 
 /obj/random/tool/alien/item_to_spawn()
-	return pick(/obj/item/weapon/screwdriver/alien,
-				/obj/item/weapon/wirecutters/alien,
+	return pick(/obj/item/weapon/tool/screwdriver/alien,
+				/obj/item/weapon/tool/wirecutters/alien,
 				/obj/item/weapon/weldingtool/alien,
-				/obj/item/weapon/crowbar/alien,
-				/obj/item/weapon/wrench/alien,
+				/obj/item/weapon/tool/crowbar/alien,
+				/obj/item/weapon/tool/wrench/alien,
 				/obj/item/stack/cable_coil/alien,
 				/obj/item/device/multitool/alien)
 

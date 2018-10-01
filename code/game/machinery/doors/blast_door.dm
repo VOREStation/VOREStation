@@ -125,7 +125,7 @@
 			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
 				var/obj/item/weapon/material/twohanded/fireaxe/F = C
 				if(!F.wielded)
-					user << "<span class='warning'>You need to be wielding \the [F] to do that.</span>"
+					to_chat(user, "<span class='warning'>You need to be wielding \the [F] to do that.</span>")
 					return
 
 			// If we're at this point, it's a fireaxe in both hands or something else that doesn't care for twohanding.
@@ -133,7 +133,7 @@
 				force_toggle(1, user)
 
 			else
-				usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
+				to_chat(user, "<span class='notice'>[src]'s motors resist your effort.</span>")
 			return
 
 
@@ -153,19 +153,19 @@
 	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel") // Repairing.
 		var/amt = Ceiling((maxhealth - health)/150)
 		if(!amt)
-			usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
+			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
 		var/obj/item/stack/P = C
 		if(P.amount < amt)
-			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 			return
-		usr << "<span class='notice'>You begin repairing [src]...</span>"
+		to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 		if(do_after(usr, 30))
 			if(P.use(amt))
-				usr << "<span class='notice'>You have repaired \The [src]</span>"
+				to_chat(user, "<span class='notice'>You have repaired \The [src]</span>")
 				src.repair()
 			else
-				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 
 	else if(src.density && (user.a_intent == I_HURT)) //If we can't pry it open and it's not a weapon.... Eh, let's attack it anyway.
 		var/obj/item/weapon/W = C

@@ -99,6 +99,9 @@
 	cuffs.loc = target
 	target.handcuffed = cuffs
 	target.update_inv_handcuffed()
+	target.drop_r_hand()
+	target.drop_l_hand()
+	target.stop_pulling()
 	return 1
 
 /obj/item/weapon/handcuffs/equipped(var/mob/living/user,var/slot)
@@ -212,49 +215,11 @@ var/last_chew = 0
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
-/obj/item/weapon/handcuffs/legcuffs/bola
-	name = "bola"
-	desc = "Keeps prey in line."
-	elastic = 1
-	use_time = 0
-	breakouttime = 30
-	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
-
 /obj/item/weapon/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_legcuffed_str)
 		return "legcuff1"
 
 	return ..()
-
-/obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
-	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
-		return 1
-
-/obj/item/weapon/handcuffs/legcuffs/bola/dropped()
-	visible_message("<span class='notice'>\The [src] falls apart!</span>")
-	qdel(src)
-
-/obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
-
-	var/mob/living/carbon/human/H = target
-	if(!istype(H))
-		src.dropped()
-		return 0
-
-	if(!H.has_organ_for_slot(slot_legcuffed))
-		H.visible_message("<span class='notice'>\The [src] slams into [H], but slides off!</span>")
-		src.dropped()
-		return 0
-
-	H.visible_message("<span class='danger'>\The [H] has been snared by \the [src]!</span>")
-
-	// Apply cuffs.
-	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
-	lcuffs.loc = target
-	target.legcuffed = lcuffs
-	target.update_inv_legcuffed()
-	return 1
 
 /obj/item/weapon/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 	if(!user.IsAdvancedToolUser())
@@ -316,6 +281,10 @@ var/last_chew = 0
 	lcuffs.loc = target
 	target.legcuffed = lcuffs
 	target.update_inv_legcuffed()
+	if(target.m_intent != "walk")
+		target.m_intent = "walk"
+		if(target.hud_used && user.hud_used.move_intent)
+			target.hud_used.move_intent.icon_state = "walking"
 	return 1
 
 /obj/item/weapon/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
@@ -325,3 +294,46 @@ var/last_chew = 0
 			user.m_intent = "walk"
 			if(user.hud_used && user.hud_used.move_intent)
 				user.hud_used.move_intent.icon_state = "walking"
+
+
+/obj/item/weapon/handcuffs/legcuffs/bola
+	name = "bola"
+	desc = "Keeps prey in line."
+	elastic = 1
+	use_time = 0
+	breakouttime = 30
+	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
+
+/obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
+	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
+		return 1
+
+/obj/item/weapon/handcuffs/legcuffs/bola/dropped()
+	visible_message("<span class='notice'>\The [src] falls apart!</span>")
+	qdel(src)
+
+/obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+	playsound(src.loc, cuff_sound, 30, 1, -2)
+
+	var/mob/living/carbon/human/H = target
+	if(!istype(H))
+		src.dropped()
+		return 0
+
+	if(!H.has_organ_for_slot(slot_legcuffed))
+		H.visible_message("<span class='notice'>\The [src] slams into [H], but slides off!</span>")
+		src.dropped()
+		return 0
+
+	H.visible_message("<span class='danger'>\The [H] has been snared by \the [src]!</span>")
+
+	// Apply cuffs.
+	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
+	lcuffs.loc = target
+	target.legcuffed = lcuffs
+	target.update_inv_legcuffed()
+	if(target.m_intent != "walk")
+		target.m_intent = "walk"
+		if(target.hud_used && user.hud_used.move_intent)
+			target.hud_used.move_intent.icon_state = "walking"
+	return 1

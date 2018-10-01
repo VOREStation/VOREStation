@@ -4788,8 +4788,8 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/wrench,
 /obj/item/weapon/hand_labeler,
 /obj/structure/sign/department/armory{
 	color = "#3385ff";
@@ -7306,12 +7306,12 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
@@ -12678,7 +12678,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "uB" = (
-/obj/machinery/computer/ordercomp,
+/obj/machinery/computer/supplycomp,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
@@ -18914,7 +18914,7 @@
 /area/quartermaster/qm)
 "Et" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -19309,7 +19309,7 @@
 /area/quartermaster/warehouse)
 "Fk" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /obj/machinery/alarm{
 	dir = 4;
 	icon_state = "alarm0";
@@ -19605,7 +19605,7 @@
 /area/medical/chemistry)
 "FJ" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
@@ -19858,7 +19858,7 @@
 /area/quartermaster/warehouse)
 "Gd" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -20221,7 +20221,7 @@
 /area/quartermaster/warehouse)
 "GK" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -23392,7 +23392,7 @@
 /area/medical/sleeper)
 "LR" = (
 /obj/structure/table/glass,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/storage/pill_bottle/tramadol,
 /obj/item/weapon/storage/pill_bottle/antitox,
 /obj/item/weapon/reagent_containers/syringe/antiviral,

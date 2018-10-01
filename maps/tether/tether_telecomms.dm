@@ -68,7 +68,7 @@
 // Telecommunications Satellite
 /area/tether/surfacebase/tcomms
 	name = "\improper Telecomms"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg')
 
 /area/tether/surfacebase/tcomms/entrance
 	name = "\improper Telecomms Teleporter"

@@ -14,7 +14,7 @@
 		/obj/item/clothing/under/syndicate,
 		/obj/item/clothing/head/helmet/space/void/merc,
 		/obj/item/clothing/suit/space/void/merc,
-		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/tool/crowbar/red,
 		/obj/item/weapon/cell/high,
 		/obj/item/weapon/card/id/syndicate,
 		/obj/item/device/multitool,
@@ -24,7 +24,7 @@
 
 /obj/structure/closet/syndicate/suit
 	desc = "It's a storage unit for voidsuits."
-	
+
 	starts_with = list(
 		/obj/item/weapon/tank/jetpack/oxygen,
 		/obj/item/clothing/shoes/magboots,

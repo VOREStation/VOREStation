@@ -34,6 +34,8 @@
 	var/obj/item/weapon/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
+	var/paint_color = "#666666" //For vehicles with special paint overlays.
+
 	var/atom/movable/load		//all vehicles can take a load, since they should all be a least drivable
 	var/load_item_visible = 1	//set if the loaded item should be overlayed on the vehicle sprite
 	var/load_offset_x = 0		//pixel_x offset for item overlay
@@ -50,7 +52,7 @@
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/Destroy()
-	qdel_null(riding_datum)
+	QDEL_NULL(riding_datum)
 	return ..()
 
 //BUCKLE HOOKS
@@ -118,13 +120,13 @@
 	if(istype(W, /obj/item/weapon/hand_labeler))
 		return
 	if(mechanical)
-		if(istype(W, /obj/item/weapon/screwdriver))
+		if(W.is_screwdriver())
 			if(!locked)
 				open = !open
 				update_icon()
-				user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+				to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 				playsound(src, W.usesound, 50, 1)
-		else if(istype(W, /obj/item/weapon/crowbar) && cell && open)
+		else if(W.is_crowbar() && cell && open)
 			remove_cell(user)
 
 		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
@@ -139,11 +141,11 @@
 						playsound(src, T.usesound, 50, 1)
 						user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
 					else
-						user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+						to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 				else
-					user << "<span class='notice'>[src] does not need a repair.</span>"
+					to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
 			else
-				user << "<span class='notice'>Unable to repair while [src] is off.</span>"
+				to_chat(user, "<span class='notice'>Unable to repair while [src] is off.</span>")
 
 	else if(hasvar(W,"force") && hasvar(W,"damtype"))
 		user.setClickCooldown(user.get_attack_speed(W))
@@ -237,7 +239,7 @@
 		emagged = 1
 		if(locked)
 			locked = 0
-			user << "<span class='warning'>You bypass [src]'s controls.</span>"
+			to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 		return TRUE
 
 /obj/vehicle/proc/explode()
@@ -300,7 +302,7 @@
 	C.forceMove(src)
 	cell = C
 	powercheck()
-	usr << "<span class='notice'>You install [C] in [src].</span>"
+	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!mechanical)
@@ -308,7 +310,7 @@
 	if(!cell)
 		return
 
-	usr << "<span class='notice'>You remove [cell] from [src].</span>"
+	to_chat(usr, "<span class='notice'>You remove [cell] from [src].</span>")
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null

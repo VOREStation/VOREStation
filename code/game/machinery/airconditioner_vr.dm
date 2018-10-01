@@ -29,13 +29,13 @@
 		to_chat(user, "There is a small display that reads \"[convert_k2c(target_temp)]C\".")
 
 /obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
-	if(isscrewdriver(I))
+	if(I.is_screwdriver())
 		if(default_deconstruction_screwdriver(user,I))
 			return
-	if(iscrowbar(I))
+	if(I.is_crowbar())
 		if(default_deconstruction_crowbar(user,I))
 			return
-	if(iswrench(I))
+	if(I.is_wrench())
 		anchored = !anchored
 		visible_message("<span class='notice'>\The [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 		playsound(src, I.usesound, 75, 1)
@@ -45,7 +45,7 @@
 			disconnect_from_network()
 			turn_off()
 		return
-	if(ismultitool(I))
+	if(I.is_multitool())
 		var/new_temp = input("Input a new target temperature, in degrees C.","Target Temperature", 20) as num
 		if(!Adjacent(user) || user.incapacitated())
 			return

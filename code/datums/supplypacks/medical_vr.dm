@@ -1,4 +1,4 @@
-/datum/supply_packs/med/medicalbiosuits
+/datum/supply_pack/med/medicalbiosuits
 	contains = list(
 			/obj/item/clothing/head/bio_hood/scientist = 3,
 			/obj/item/clothing/suit/bio_suit/scientist = 3,
@@ -14,7 +14,7 @@
 			)
 	cost = 40
 
-/datum/supply_packs/med/virologybiosuits
+/datum/supply_pack/med/virologybiosuits
 	name = "Virology biohazard gear"
 	contains = list(
 			/obj/item/clothing/suit/bio_suit/virology = 3,

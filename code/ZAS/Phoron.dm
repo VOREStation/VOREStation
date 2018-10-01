@@ -40,14 +40,10 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 obj/var/contaminated = 0
 
-obj/var/phoronproof = 0
-
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
 	if(flags & PHORONGUARD)
-		return 0
-	else if(phoronproof == 1)
 		return 0
 	else if(istype(src,/obj/item/weapon/storage/backpack))
 		return 0 //Cannot be washed :(
@@ -148,7 +144,7 @@ obj/var/phoronproof = 0
 	//Checks if the head is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	if(head)
 		if(vsc.plc.PHORONGUARD_ONLY)
-			if(head.flags & PHORONGUARD || head.phoronproof)
+			if(head.flags & PHORONGUARD)
 				return 1
 		else if(head.body_parts_covered & EYES)
 			return 1
@@ -160,7 +156,7 @@ obj/var/phoronproof = 0
 	for(var/obj/item/protection in list(wear_suit, gloves, shoes))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
 		if(!protection)
 			continue
-		if(vsc.plc.PHORONGUARD_ONLY && !(protection.flags & PHORONGUARD) && !protection.phoronproof)
+		if(vsc.plc.PHORONGUARD_ONLY && !(protection.flags & PHORONGUARD))
 			return 0
 		coverage |= protection.body_parts_covered
 

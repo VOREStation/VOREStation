@@ -59,14 +59,31 @@
 	siemens_coefficient = 0.7
 	body_parts_covered = FACE|EYES
 
+// Vox mask, has special code for eating
 /obj/item/clothing/mask/gas/swat/vox
 	name = "\improper alien mask"
 	desc = "Clearly not designed for a human face."
-	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask.
-	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | PHORONGUARD
-	phoronproof = 1
+	flags = PHORONGUARD
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	species_restricted = list(SPECIES_VOX)
 	filtered_gases = list("oxygen", "sleeping_agent")
+	var/mask_open = FALSE	// Controls if the Vox can eat through this mask
+	action_button_name = "Toggle Feeding Port"
+
+/obj/item/clothing/mask/gas/swat/vox/proc/feeding_port(mob/user)
+	if(user.canmove && !user.stat)
+		mask_open = !mask_open
+		if(mask_open)
+			body_parts_covered = EYES
+			to_chat(user, "Your mask moves to allow you to eat.")
+		else
+			body_parts_covered = FACE|EYES
+			to_chat(user, "Your mask moves to cover your mouth.")
+	return
+
+/obj/item/clothing/mask/gas/swat/vox/attack_self(mob/user)
+	feeding_port(user)
+	..()
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"

@@ -78,7 +78,7 @@
 "bz" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/airless,/area/tcomsat)
 "bA" = (/obj/structure/disposaloutlet{dir = 4},/obj/structure/disposalpipe/trunk{dir = 8},/turf/simulated/floor/airless,/area/tcomsat)
 "bB" = (/obj/structure/table/standard,/obj/item/device/radio/off,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
-"bC" = (/obj/structure/table/standard,/obj/item/weapon/screwdriver,/obj/machinery/light,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
+"bC" = (/obj/structure/table/standard,/obj/item/weapon/tool/screwdriver,/obj/machinery/light,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "bN" = (/obj/item/trash/cheesie,/turf/space,/area/space)
 "bO" = (/obj/machinery/door/blast/regular{id = "oldship_gun"; name = "Pod Bay Door"},/turf/simulated/shuttle/plating,/area/derelict/ship)
 "bP" = (/obj/machinery/mass_driver{dir = 8; icon_state = "mass_driver"; id = "oldship_gun"},/turf/simulated/shuttle/plating,/area/derelict/ship)

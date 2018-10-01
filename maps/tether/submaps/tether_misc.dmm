@@ -3769,7 +3769,7 @@
 	base_turf = /turf/unsimulated/floor/techfloor_grid
 	})
 "js" = (
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/effect/spawner/newbomb/timer/syndicate,
 /obj/structure/table/reinforced,
 /turf/simulated/shuttle/floor{
@@ -8071,11 +8071,11 @@
 /area/antag/antag_base)
 "rJ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
 	},
@@ -9146,7 +9146,7 @@
 /obj/item/device/defib_kit,
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -9466,7 +9466,7 @@
 	},
 /area/antag/antag_base)
 "tT" = (
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/storage/box/beakers,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
