@@ -109,7 +109,7 @@
 
 	charges = list(
 		list("inaprovaline",  "inaprovaline",  0, 20),
-		list("dylovene",  "dylovene",  0, 20),
+		list("anti_toxin",  "anti_toxin",  0, 20),
 		list("paracetamol",      "paracetamol",      0, 20),
 		list("dexalin",  "dexalin",      0, 20)
 		)

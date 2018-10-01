@@ -29,3 +29,38 @@
 		"Runtime purrs happily as you slowly slip away inside of her gut, your body's nutrients are then used to put a layer of padding on the now pudgy cat.",
 		"The acids inside of Runtime's stomach, aided by the constant motions of the smooth walls surrounding you finally manage to melt you away into nothing more mush. She curls up on the floor, slowly kneading the air as her stomach moves its contents — including you — deeper into her digestive system.",
 		"Your form begins to slowly soften and break apart, rounding out Runtime's swollen belly. The carnivorous cat rumbles and purrs happily at the feeling of such a filling meal.")
+
+// Ascian's Tactical Kitten
+/obj/item/weapon/holder/cat/fluff/tabiranth
+	name = "Spirit"
+	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
+	gender = MALE
+	icon_state = "kitten"
+	w_class = ITEMSIZE_SMALL
+
+/mob/living/simple_animal/cat/fluff/tabiranth
+	name = "Spirit"
+	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
+	icon = 'icons/mob/custom_items_mob.dmi'
+	icon_state = "kitten"
+	item_state = "kitten"
+	icon_living = "kitten"
+	icon_dead = "kitten" //Teleports out
+	gender = MALE
+	holder_type = /obj/item/weapon/holder/cat/fluff/tabiranth
+	var/friend_name = "Ascian"
+	digestable = 0
+	meat_amount = 0
+	maxHealth = 50
+	health = 50
+
+//Emergency teleport - Until a spriter makes something better
+/mob/living/simple_animal/cat/fluff/tabiranth/death(gibbed, deathmessage = "teleports away!")
+	overlays = list()
+	icon_state = ""
+	flick("kphaseout",src)
+	spawn(1 SECOND)
+		qdel(src) //Back from whence you came!
+
+	. = ..(FALSE, deathmessage)
+
