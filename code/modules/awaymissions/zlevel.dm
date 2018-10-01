@@ -44,14 +44,22 @@ proc/createRandomZlevel()
 			var/datum/map_template/template = new(file, "away mission")
 			template.load_new_z()
 			world.log << "away mission loaded: [map]"
-
+		/* VOREStation Removal - We do this in the special landmark init instead.
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if (L.name != "awaystart")
 				continue
 			awaydestinations.Add(L)
-
+		*/ //VOREStation Removal End
 		admin_notice("<font color='red'><B>Away mission loaded.</B></font>", R_DEBUG)
 
 	else
 		admin_notice("<font color='red'><B>No away missions found.</B></font>", R_DEBUG)
 		return
+
+//VOREStation Add - This landmark type so it's not so ghetto.
+/obj/effect/landmark/gateway_scatter
+	name = "uncalibrated gateway destination"
+/obj/effect/landmark/gateway_scatter/initialize()
+	. = ..()
+	awaydestinations += src
+//VOREStation Add End
