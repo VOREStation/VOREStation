@@ -2250,7 +2250,6 @@
 #include "code\modules\mob\living\simple_animal\constructs\soulstone.dm"
 #include "code\modules\mob\living\simple_animal\humanoids\clown.dm"
 #include "code\modules\mob\living\simple_animal\humanoids\head.dm"
-#include "code\modules\mob\living\simple_animal\humanoids\kobold.dm"
 #include "code\modules\mob\living\simple_animal\humanoids\mechamobs.dm"
 #include "code\modules\mob\living\simple_animal\humanoids\pirate.dm"
 #include "code\modules\mob\living\simple_animal\humanoids\russian.dm"
