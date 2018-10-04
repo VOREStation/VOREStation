@@ -61,6 +61,6 @@
 	vore_digest_chance = 10
 	vore_escape_chance = 20
 	vore_pounce_chance = 35 //it's hippo sized it doesn't care it just eats you
-	vore_stomach_name = "paunch"
-	vore_stomach_flavor	= "You are squeezed into the tight embrace of the alien creature's warm and cozy insides."
+	vore_stomach_name = "rumen" //First stomach of a ruminant. It's where the pre digestion bacteria stuff happens. Very warm.
+	vore_stomach_flavor	= "You are squeezed into the sweltering insides of the herbivore rumen."
 	vore_icons = SA_ICON_LIVING
