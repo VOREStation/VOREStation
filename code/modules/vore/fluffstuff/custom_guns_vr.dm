@@ -744,8 +744,8 @@
 
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
 		)
 
 /obj/item/weapon/gun/energy/frontier/unload_ammo(var/mob/user)
