@@ -17,7 +17,7 @@
 	volume = 15
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
-	sharp = 1
+	sharp = 0 //this is to prevent them from slicing apples and so on.
 	unacidable = 1 //glass
 	var/mode = SYRINGE_DRAW
 	var/image/filling //holds a reference to the current filling overlay
