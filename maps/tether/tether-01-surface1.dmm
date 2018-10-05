@@ -1802,7 +1802,7 @@
 /area/tether/surfacebase/mining_main/storage)
 "adU" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe/hammer,
+/obj/item/weapon/pickaxe,
 /obj/item/weapon/tool/wrench,
 /obj/item/weapon/tool/crowbar,
 /obj/item/weapon/shovel,

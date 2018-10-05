@@ -1511,7 +1511,7 @@
 "Dc" = (/obj/structure/cable/blue{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "Dd" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 1},/obj/structure/cable/blue{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "De" = (/obj/item/device/radio/intercom{name = "Station Intercom (General)"; pixel_y = -21},/turf/simulated/floor/plating,/area/outpost/engineering/mining/atmospherics)
-"Df" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe/hammer,/obj/item/weapon/wrench,/obj/item/weapon/crowbar,/obj/item/weapon/shovel,/turf/simulated/floor/tiled/dark,/area/outpost/mining_main/storage)
+"Df" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe,/obj/item/weapon/wrench,/obj/item/weapon/crowbar,/obj/item/weapon/shovel,/turf/simulated/floor/tiled/dark,/area/outpost/mining_main/storage)
 "Dg" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe,/obj/item/weapon/wrench,/obj/item/weapon/crowbar,/obj/item/weapon/shovel,/obj/machinery/light,/turf/simulated/floor/tiled/dark,/area/outpost/mining_main/storage)
 "Dh" = (/turf/simulated/wall,/area/outpost/mining_main/storage)
 "Di" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/obj/item/device/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_x = 21},/turf/simulated/floor/tiled/freezer,/area/outpost/mining_main/dorms)
