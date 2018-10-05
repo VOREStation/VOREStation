@@ -96,8 +96,6 @@
 	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
 		/mob/living/simple_animal/snake
-		// /mob/living/simple_animal/hostile/giant_snake = 3, //Snakes are 3x more likely to spawn than,
-		// /mob/living/simple_animal/hostile/frog = 1 //these frogs are, with these values
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly
