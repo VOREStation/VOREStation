@@ -743,10 +743,6 @@
 	var/recharging = 0
 
 	projectile_type = /obj/item/projectile/beam
-	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
-		)
 
 /obj/item/weapon/gun/energy/frontier/unload_ammo(var/mob/user)
 	if(recharging)
@@ -778,6 +774,13 @@
 /obj/item/weapon/gun/energy/frontier/ex_act() //|rugged|
 	return
 
+//Needed to fix a bug with the holdout phaser
+/obj/item/weapon/gun/energy/frontier/basic
+	firemodes = list(
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
+	)
+
 /obj/item/weapon/gun/energy/frontier/locked
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
 	req_access = list(access_armory) //for toggling safety
@@ -807,6 +810,13 @@
 			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
 			return 0
 	return ..()
+
+//Needed to fix a bug with the holdout phaser
+/obj/item/weapon/gun/energy/frontier/locked/basic
+	firemodes = list(
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
+	)
 
 //Expeditionary Holdout Phaser
 /obj/item/weapon/gun/energy/frontier/locked/holdout
