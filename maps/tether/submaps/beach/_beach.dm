@@ -118,7 +118,7 @@
 	guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_animal/hostile/frog = 3, //Frogs are 3x more likely to spawn than,
-		/mob/living/simple_animal/hostile/deathclaw = 1, //these deathclaws are, with these values
+		/mob/living/simple_animal/hostile/deathclaw = 1, //these deathclaws are, with these values,
 		/mob/living/simple_animal/hostile/giant_spider = 3,
 		/mob/living/simple_animal/hostile/giant_snake = 1,
 		/mob/living/simple_animal/hostile/giant_spider/ion = 2
