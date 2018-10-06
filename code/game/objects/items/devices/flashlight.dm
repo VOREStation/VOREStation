@@ -68,7 +68,7 @@
 					cell.charge = 0
 					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
 					set_light(0)
-					playsound(src.loc, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket.
+					playsound(src.loc, 'sound/effects/sparks3.ogg', 10, 1, -3) //Vorestation edit. Small cue that your light went dull in your pocket.
 					on = 0
 					update_icon()
 
