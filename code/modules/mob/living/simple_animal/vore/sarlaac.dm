@@ -2,7 +2,7 @@
 
 
 
-/mob/living/simple_animal/retaliate/testmob
+/mob/living/simple_animal/retaliate/sarlaac
 	name = "Sarlacc"	//Need a new name so no suing.
 	desc = "Some sort of massive maw sticking out of the ground. Seems safe." //Placeholder plz suggest better.
 	//tt_desc = "Semaeostomeae virginus" //No idea what name it should have
@@ -51,7 +51,7 @@
 	run_at_them = 0
 
 // Activate Noms!
-/mob/living/simple_animal/retaliate/testmob
+/mob/living/simple_animal/retaliate/sarlaac 
 	vore_active = 1
 	vore_capacity = 3
 	vore_bump_chance = 100 //How did you not see this coming
