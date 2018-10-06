@@ -96,6 +96,12 @@
 	cost = -1
 	var_changes = list("flash_mod" = 2.0)
 
+/datum/trait/haemophilia
+	name = "Haemophilia"
+	desc = "When you bleed, you bleed a LOT."
+	cost = -2
+	var_changes = list("bloodloss_rate" = 2) //This does in fact, work.
+
 /datum/trait/hollow
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
