@@ -395,7 +395,7 @@
 		return 0
 
 	// Do after stuff here
-	user << "<span class='notice'>You start to weld the [src]..</span>"
+	user << "<span class='notice'>You start to weld [src]..</span>"
 	playsound(src.loc, WT.usesound, 50, 1)
 	WT.eyecheck(user)
 	busy = 1
