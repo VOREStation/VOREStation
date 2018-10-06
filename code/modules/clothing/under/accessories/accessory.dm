@@ -156,6 +156,19 @@
 
 /obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
+		var/message_holder	//Holds pervy message
+		var/beat_size = ""	//Small prey = quiet
+		for(var/belly in M.vore_organs) //Pervy edit.
+			var/obj/belly/B = belly
+			for(var/mob/living/carbon/human/H in B)
+				if(H.size_multiplier < 0.49)
+					beat_size = pick("quiet ", "hushed " ,"low " ,"hushed ")
+				if(H.stat == DEAD)	//dead
+					message_holder = pick("Your listening is troubled by the occasional groaning of their body.", "There is some moderate burbling in the background.", "They seem to have a healthy metabolism as well.")
+				else //not dead
+					message_holder = pick("You can hear disparate heartbeats as well.", "You can hear a different [beat_size]heartbeat too.", "It sounds like there is more than one heartbeat." ,"You can pick up a [beat_size]heatbeat along with everything else.")
+
+
 		if(user.a_intent == I_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)
 			if(body_part)
@@ -182,7 +195,7 @@
 								if(heart.is_bruised() || M.getOxyLoss() > 50)
 									sound = "[pick("odd noises in","weak")] heartbeat"
 								else
-									sound = "healthy heartbeat"
+									sound = "an healthy heartbeat"
 
 							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
@@ -199,8 +212,12 @@
 								sound_strength = "hear a weak"
 								sound = "pulse"
 
-				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
+				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound]. [message_holder]")
 				return
+
+
+
+
 	return ..(M,user)
 
 //Medals
