@@ -33,6 +33,16 @@
 	var_changes = list("cold_discomfort_level" = T0C+21)
 	excludes = list(/datum/trait/cold_discomfort)
 
+/datum/trait/winged_flight
+	name = "Winged Flight"
+	desc = "Allows you to fly by using your wings."
+	cost = 2 //Some in game value.
+
+/datum/trait/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/flying_toggle
+	H.verbs |= /mob/living/proc/start_wings_hovering
+
 /datum/trait/autohiss_unathi
 	name = "Autohiss (Unathi)"
 	desc = "You roll your S's and x's"

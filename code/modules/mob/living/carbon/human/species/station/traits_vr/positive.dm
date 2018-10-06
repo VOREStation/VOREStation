@@ -94,16 +94,6 @@
 	cost = 1
 	var_changes = list("flash_mod" = 0.5)
 
-/datum/trait/winged_flight
-	name = "Winged Flight"
-	desc = "Allows you to fly by using your wings."
-	cost = 2 //Some in game value.
-
-/datum/trait/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
-	H.verbs |= /mob/living/proc/flying_toggle
-	H.verbs |= /mob/living/proc/start_wings_hovering
-
 /datum/trait/hardfeet
 	name = "Hard Feet"
 	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
