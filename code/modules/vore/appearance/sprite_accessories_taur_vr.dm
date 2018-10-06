@@ -11,7 +11,9 @@
 		else
 			ridden.layer = initial(ridden.layer)
 	else
-		ridden.layer = initial(ridden.layer)
+		var/mob/living/L = ridden
+		if(!(istype(L) && (L.status_flags & HIDING)))
+			ridden.layer = initial(ridden.layer)
 
 /datum/riding/taur/ride_check(mob/living/M)
 	var/mob/living/L = ridden
