@@ -41,7 +41,7 @@
 
 //a vampiric statuette
 //todo: cult integration
-/obj/item/weapon/vampiric
+/obj/item/weapon/statuette
 	name = "statuette"
 	icon_state = "statuette"
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -54,11 +54,11 @@
 	var/wight_check_index = 1
 	var/list/shadow_wights = list()
 
-/obj/item/weapon/vampiric/New()
+/obj/item/weapon/statuette/New()
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/vampiric/process()
+/obj/item/weapon/statuette/process()
 	//see if we've identified anyone nearby
 	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
 		var/mob/living/carbon/human/M = pop(nearby_mobs)
@@ -116,12 +116,12 @@
 		else if(get_dist(W, src) > 10)
 			shadow_wights.Remove(wight_check_index)
 
-/obj/item/weapon/vampiric/hear_talk(mob/M as mob, text)
+/obj/item/weapon/statuette/hear_talk(mob/M as mob, text)
 	..()
 	if(world.time - last_bloodcall >= bloodcall_interval && M in view(7, src))
 		bloodcall(M)
 
-/obj/item/weapon/vampiric/proc/bloodcall(var/mob/living/carbon/human/M)
+/obj/item/weapon/statuette/proc/bloodcall(var/mob/living/carbon/human/M)
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(src.loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)

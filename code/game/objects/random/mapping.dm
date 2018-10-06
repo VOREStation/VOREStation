@@ -347,8 +347,8 @@
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
-				/obj/item/weapon/vampiric,
-				/obj/item/weapon/vampiric,
+				/obj/item/weapon/statuette,
+				/obj/item/weapon/statuette,
 				/obj/structure/closet/crate/science
 			),
 			prob(1);list(
