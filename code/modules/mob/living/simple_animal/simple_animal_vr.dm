@@ -24,8 +24,11 @@
 	var/vore_stomach_name				// The name for the first belly if not "stomach"
 	var/vore_stomach_flavor				// The flavortext for the first belly if not the default
 
-	var/vore_fullness = 0				// How "full" the belly is (controls icons)
+	var/vore_fullness = 0				// How "full" the belly is (controls icons). Don't fill in.
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
+
+	var/vore_transfer_chance = 0		//Used for multi belly NPC's currently. Thanks to Haery70 for helping out
+	var/vore_transfer_location = null	//Just type the NAME OF THE STOMACH. Like "internal chamber"
 
 // Release belly contents before being gc'd!
 /mob/living/simple_animal/Destroy()

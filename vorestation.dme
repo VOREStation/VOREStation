@@ -2279,6 +2279,7 @@
 #include "code\modules\mob\living\simple_animal\vore\panther.dm"
 #include "code\modules\mob\living\simple_animal\vore\rat.dm"
 #include "code\modules\mob\living\simple_animal\vore\redpanda.dm"
+#include "code\modules\mob\living\simple_animal\vore\sarlaac.dm"
 #include "code\modules\mob\living\simple_animal\vore\snake.dm"
 #include "code\modules\mob\living\simple_animal\vore\solargrub.dm"
 #include "code\modules\mob\living\simple_animal\vore\solargrub_larva.dm"
