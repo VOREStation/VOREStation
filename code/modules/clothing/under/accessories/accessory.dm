@@ -156,6 +156,7 @@
 
 /obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
+		//Vorestation edit start
 		var/message_holder	//Holds pervy message
 		var/beat_size = ""	//Small prey = quiet
 		for(var/belly in M.vore_organs) //Pervy edit.
@@ -167,7 +168,7 @@
 					message_holder = pick("Your listening is troubled by the occasional groaning of their body.", "There is some moderate burbling in the background.", "They seem to have a healthy metabolism as well.")
 				else //not dead
 					message_holder = pick("You can hear disparate heartbeats as well.", "You can hear a different [beat_size]heartbeat too.", "It sounds like there is more than one heartbeat." ,"You can pick up a [beat_size]heatbeat along with everything else.")
-
+		//Vorestation edit end
 
 		if(user.a_intent == I_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)
