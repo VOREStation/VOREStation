@@ -13671,9 +13671,6 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/office)
 "wb" = (
-/obj/machinery/computer/supplycomp{
-	dir = 1
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -13684,6 +13681,9 @@
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 8
+	},
+/obj/machinery/computer/supplycomp/control{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
