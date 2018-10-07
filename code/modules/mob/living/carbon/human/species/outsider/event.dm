@@ -112,7 +112,7 @@ Variables you may want to make use of are:
 		)
 
 	var/use_bodyshape = SPECIES_HUMAN
-	var/waterbreathing = 0
+	waterbreathing = 1 //Vorestation edit
 	var/overcome_gravity = 0
 	var/hover = 0
 
@@ -212,7 +212,7 @@ Variables you may want to make use of are:
 /datum/species/event1/get_bodytype(var/mob/living/carbon/human/H) //Default to human sprites, if they're based on another species, var edit use_bodyshape to the correct thing in _defines/mobs.dm of the species you want to use.
 	return use_bodyshape
 
-/datum/species/event1/can_breathe_water()
+/datum/species/event1/can_breathe_water() //Not sure if Vorestation edit.
 	return waterbreathing
 
 /datum/species/event1/can_overcome_gravity(var/mob/living/carbon/human/H)

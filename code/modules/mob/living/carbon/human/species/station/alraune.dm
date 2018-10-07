@@ -16,6 +16,8 @@
 	base_species = SPECIES_ALRAUNE
 	selects_bodytype = TRUE
 
+	waterbreathing = 1 //Vorestation edit
+
 	body_temperature = T20C
 	breath_type = "carbon_dioxide"
 	poison_type = "phoron"
@@ -92,8 +94,7 @@
 		)
 
 /datum/species/alraune/can_breathe_water()
-	return TRUE //eh, why not? Aquatic plants are a thing.
-
+	return waterbreathing //eh, why not? Aquatic plants are a thing.
 
 /datum/species/alraune/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.inStasisNow()) // if they're in stasis, they won't need this stuff.

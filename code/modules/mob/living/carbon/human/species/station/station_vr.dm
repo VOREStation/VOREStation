@@ -78,6 +78,8 @@
 	color_mult = 1
 	inherent_verbs = list(/mob/living/proc/shred_limb)
 
+	waterbreathing = 1
+
 	min_age = 18
 	max_age = 80
 
@@ -100,8 +102,8 @@
 
 	reagent_tag = IS_AKULA
 
-/datum/species/akula/can_breathe_water()
-	return TRUE // Surprise, SHERKS.
+/datum/species/Akula/can_breathe_water()
+	return waterbreathing //Surprise, sherks.
 
 /datum/species/nevrean
 	name = SPECIES_NEVREAN

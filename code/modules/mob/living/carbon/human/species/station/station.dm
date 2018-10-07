@@ -266,6 +266,8 @@
 
 	bloodloss_rate = 1.5
 
+	waterbreathing = 1 //Vorestation edit
+
 	ambiguous_genders = TRUE
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -308,7 +310,7 @@
 		)
 
 /datum/species/skrell/can_breathe_water()
-	return TRUE
+	return waterbreathing
 
 /datum/species/diona
 	name = SPECIES_DIONA

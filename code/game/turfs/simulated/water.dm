@@ -96,7 +96,7 @@
 
 /mob/living/carbon/human/can_breathe_water()
 	if(species)
-		return species.can_breathe_water()
+		return species.waterbreathing
 	return ..()
 
 /mob/living/proc/check_submerged()

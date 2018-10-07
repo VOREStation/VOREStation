@@ -172,6 +172,7 @@
 	var/has_glowing_eyes = 0								// Whether the eyes are shown above all lighting
 	var/water_movement = 0									// How much faster or slower the species is in water
 	var/snow_movement = 0									// How much faster or slower the species is on snow
+	var/waterbreathing = 0									// Vorestation edit. Allows for what you think.
 
 
 	var/item_slowdown_mod = 1								// How affected by item slowdown the species is.

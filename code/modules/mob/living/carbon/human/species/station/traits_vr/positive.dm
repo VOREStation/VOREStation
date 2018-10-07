@@ -133,3 +133,11 @@
 	desc = "Skrell tier." //I have no idea for a description help
 	cost = 3
 	var_changes = list("water_movement" = -4)//Lower is less slowdown.
+
+/datum/trait/Waterbreathing
+	name = "Waterbreathing"
+	desc = "You can breathe underwater! Extremely situational, but who's going to be laughing when the great flood comes through? You are. Because everyone else is dead." //I have no idea for a description help
+	cost = 2
+	var_changes = list("waterbreathing" = 1)//Lower is less slowdown.
+
+
