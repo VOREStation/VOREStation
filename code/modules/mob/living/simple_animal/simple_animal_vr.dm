@@ -14,6 +14,7 @@
 	var/vore_pounce_chance = 5			// Chance of this mob knocking down an opponent
 	var/vore_standing_too = 0			// Can also eat non-stunned mobs
 	var/vore_ignores_undigestable = 1	// Refuse to eat mobs who are undigestable by the prefs toggle.
+	var/swallowsound = null				// What noise plays when you succeed in eating the mob.
 
 	var/vore_default_mode = DM_DIGEST	// Default bellymode (DM_DIGEST, DM_HOLD, DM_ABSORB)
 	var/vore_default_flags = DM_FLAG_ITEMWEAK // Itemweak by default
@@ -114,7 +115,9 @@
 	var/old_target = target_mob
 	handle_stance(STANCE_BUSY)
 	. = animal_nom(target_mob)
+	playsound(src, swallowsound, 50, 1)
 	update_icon()
+	
 	if(.)
 		// If we succesfully ate them, lose the target
 		LoseTarget()
