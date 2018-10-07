@@ -125,13 +125,13 @@
 /datum/trait/puddlecrawl
 	name = "Puddle Crawl"
 	desc = "You know how not to drown. Mostly."
-	cost = 2
+	cost = 1
 	var_changes = list("water_movement" = -2)//Lower is less slowdown.
 
 /datum/trait/basinglide
 	name = "Basin Glide"
 	desc = "Skrell tier." //I have no idea for a description help
-	cost = 3
+	cost = 2
 	var_changes = list("water_movement" = -4)//Lower is less slowdown.
 
 /datum/trait/Waterbreathing
