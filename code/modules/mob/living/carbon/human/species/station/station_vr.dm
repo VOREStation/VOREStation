@@ -103,7 +103,7 @@
 	reagent_tag = IS_AKULA
 
 /datum/species/akula/can_breathe_water()
-	return waterbreathing //Surprise, sherks.
+	return waterbreathing //Surprise, sHe Rks.
 
 /datum/species/nevrean
 	name = SPECIES_NEVREAN
