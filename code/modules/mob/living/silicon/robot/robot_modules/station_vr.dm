@@ -158,7 +158,7 @@
 	water.name = "Water reserves"
 	water.recharge_rate = 0
 	water.max_energy = 500
-	water.energy = 0
+	water.energy = 500	//Start full.
 	R.water_res = water
 	synths += water
 
@@ -228,7 +228,7 @@
 	water.name = "Water reserves"
 	water.recharge_rate = 0
 	water.max_energy = 500
-	water.energy = 0
+	water.energy = 500	//Start full.
 	R.water_res = water
 	synths += water
 
@@ -279,7 +279,7 @@
 	water.name = "Water reserves"
 	water.recharge_rate = 0
 	water.max_energy = 500
-	water.energy = 0
+	water.energy = 500	//Start full.
 	R.water_res = water
 	synths += water
 
@@ -333,7 +333,7 @@
 	water.name = "Water reserves"
 	water.recharge_rate = 0
 	water.max_energy = 500
-	water.energy = 0
+	water.energy = 500	//Start full.
 	R.water_res = water
 
 	synths += metal
@@ -407,7 +407,7 @@
 	water.name = "Water reserves"
 	water.recharge_rate = 0
 	water.max_energy = 500
-	water.energy = 0
+	water.energy = 500	//Start full.
 	R.water_res = water
 	synths += water
 
@@ -482,7 +482,7 @@
 	water.name = "Water reserves"
 	water.recharge_rate = 0
 	water.max_energy = 500
-	water.energy = 0
+	water.energy = 500	//Start full.
 	R.water_res = water
 
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
