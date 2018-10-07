@@ -31,8 +31,8 @@
 
 /obj/machinery/chem_master/New()
 	..()
-	var/datum/reagents/R = new/datum/reagents(120)
-	reagents = R
+	var/datum/reagents/R = new/datum/reagents(900)	//Just a huge random number so the buffer should (probably) never dump your reagents. 
+	reagents = R	//There should be a nano ui thingy to warn of this.
 	R.my_atom = src
 
 /obj/machinery/chem_master/ex_act(severity)
