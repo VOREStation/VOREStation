@@ -317,6 +317,7 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
+		if(H.nif && H.nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION)) return //VOREStation Add - NIF
 		switch(safety)
 			if(1)
 				to_chat(usr, "<span class='warning'>Your eyes sting a little.</span>")
