@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #define WELDER_FUEL_BURN_INTERVAL 13
 /*
  * Welding Tool
@@ -1224,4 +1223,3 @@
 	toolspeed = 0.5
 
 #undef WELDER_FUEL_BURN_INTERVAL
->>>>>>> 3398513... Merge pull request #5628 from lbnesquik/Kates-Simple-The
