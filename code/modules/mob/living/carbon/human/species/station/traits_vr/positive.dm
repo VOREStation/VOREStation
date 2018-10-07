@@ -109,3 +109,16 @@
 	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
 	cost = 1
 	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
+
+/datum/trait/snowymarch //Oh my god those names are all awful.
+	name = "Snowy March"
+	desc = "Makes it easier to traverse snowy terrain."
+	cost = 2
+	var_changes = list("snow_movement" = -1)//Lower is less slowdown.
+
+/datum/trait/snowstride
+	name = "Snowy Stride"
+	desc = "It makes little difference to you whether the ground is snow or hard plating."
+	cost = 3
+	var_changes = list("snow_movement" = -2)//Lower is less slowdown.
+
