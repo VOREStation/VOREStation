@@ -2225,6 +2225,7 @@
 #include "code\modules\mob\living\simple_animal\animals\fluffy_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\fox_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\giant_spider.dm"
+#include "code\modules\mob\living\simple_animal\animals\giant_spider_vr.dm"
 #include "code\modules\mob\living\simple_animal\animals\goose.dm"
 #include "code\modules\mob\living\simple_animal\animals\lizard.dm"
 #include "code\modules\mob\living\simple_animal\animals\miscellaneous.dm"
