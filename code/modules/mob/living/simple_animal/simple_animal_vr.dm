@@ -118,11 +118,9 @@
 	var/old_target = target_mob
 	handle_stance(STANCE_BUSY)
 	. = animal_nom(target_mob)
-	if(vore_animation)//This affects all bolt action and shotguns. 
-		flick("[icon_state]-eating", src)//This plays any pumping
 	update_icon()
 	if(.)
-		// If we succesfully ate them, lose the target
+		// If we succesfully ate them, lose the target	
 		LoseTarget()
 		return old_target
 	else if(old_target == target_mob)
@@ -135,6 +133,8 @@
 /mob/living/simple_animal/death()
 	release_vore_contents()
 	. = ..()
+
+
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
 /mob/living/simple_animal/init_vore()

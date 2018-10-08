@@ -19,6 +19,9 @@
 		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
 		return
 	feed_grabbed_to_self(src,T)
+	
+	if(vore_animation)//This affects all bolt action and shotguns. 
+		flick("[icon_state]-eating", src)//This plays any pumping
 	update_icon()
 	return
 

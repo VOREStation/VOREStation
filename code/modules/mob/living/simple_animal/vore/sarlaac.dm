@@ -67,8 +67,9 @@
 
 // Activate Noms!
 /mob/living/simple_animal/hostile/testmob
-		vore_active = 1
+	vore_active = 1
 	vore_capacity = 3
+	vore_animation = 1
 	vore_bump_chance = 100 //How did you not see this coming
 	vore_bump_emote = "wraps its tentacles around"
 	vore_default_mode = DM_DRAIN
@@ -98,7 +99,7 @@
 	// Teleport attack.
 	if(!target_mob)
 		to_chat(src, "<span class='warning'>There's nothing to teleport to.</span>")
-		return FALSE	
+		return FALSE
 	var/list/nearby_things = range(1, target_mob)
 	var/list/valid_turfs = list()
 
