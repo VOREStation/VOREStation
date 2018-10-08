@@ -19,6 +19,6 @@ var/const/PATHFINDER 		=(1<<13) //VOREStation Edit - Added Pathfinder
 	idtype = /obj/item/weapon/card/id/science/head/pathfinder
 	economic_modifier = 7
 	
-	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_research)
-	minimal_access = list(access_eva, access_pilot, access_explorer, access_research)
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_research, access_gateway)
+	minimal_access = list(access_eva, access_pilot, access_explorer, access_research, access_gateway)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
