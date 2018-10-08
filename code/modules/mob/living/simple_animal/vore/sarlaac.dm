@@ -122,13 +122,14 @@
 	if(!target_turf)
 		to_chat(src, "<span class='warning'>no</span>")
 	playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-	target_mob.Weaken(20)
+	visible_message("<span class='danger'>[target_mob] has been throw by [src] tentacles closer to itself!</span>")
+	target_mob.Weaken(10)
 	if(prob(30))
-		target_mob.Stun(10)
+		target_mob.Stun(100)
+	target_mob.adjustBruteLoss(rand(10,15))
 	target_mob.throw_at(pick(target_turf), 10, 3)	//All this to throw them near mouth.
 	sleep(20)	//Grab ur friend
 	lastspecialattack = world.time
-
 
 /*
 /mob/living/simple_animal/hostile/testmob/proc/handle_preattack()
