@@ -40,13 +40,13 @@
 	maxbodytemp = 350
 
 	min_oxy = 0
-	max_oxy = 60 // Does not like oxygen very much.
-	min_tox = 0 // Needs phoron to survive.
-	max_tox = 60
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
 	min_co2 = 0
-	max_co2 = 60
+	max_co2 = 0
 	min_n2 = 0
-	max_n2 = 60
+	max_n2 = 0
 
 	armor = list(			// Values for normal getarmor() checks
 				"melee" = 40,		//Insides are underground
