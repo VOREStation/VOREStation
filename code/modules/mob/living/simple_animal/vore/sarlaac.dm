@@ -67,7 +67,7 @@
 
 // Activate Noms!
 /mob/living/simple_animal/hostile/testmob
-		vore_active = 1
+	vore_active = 1
 	vore_capacity = 3
 	vore_bump_chance = 100 //How did you not see this coming
 	vore_bump_emote = "wraps its tentacles around"
