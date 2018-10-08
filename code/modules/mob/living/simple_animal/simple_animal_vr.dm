@@ -26,6 +26,7 @@
 
 	var/vore_fullness = 0				// How "full" the belly is (controls icons). Don't fill in.
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
+	var/vore_animation = 0				// Is there a eating animation? Entierely optional.
 
 	var/vore_transfer_chance = 0		//Used for multi belly NPC's currently. Thanks to Haery70 for helping out
 	var/vore_transfer_location = null	//Just type the NAME OF THE STOMACH. Like "internal chamber"
@@ -117,6 +118,8 @@
 	var/old_target = target_mob
 	handle_stance(STANCE_BUSY)
 	. = animal_nom(target_mob)
+	if(vore_animation)//This affects all bolt action and shotguns. 
+		flick("[icon_state]-eating", src)//This plays any pumping
 	update_icon()
 	if(.)
 		// If we succesfully ate them, lose the target
