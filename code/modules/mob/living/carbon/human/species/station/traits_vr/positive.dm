@@ -61,6 +61,7 @@
 	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/bite/sharp/numbing))
+	excludes = list(/datum/trait/melee_attack_fangs,/datum/trait/melee_attack)//Take the menu if you want both.
 
 /datum/trait/melee_attack_fangs
 	name = "Sharp Melee & Numbing Fangs"
