@@ -102,7 +102,7 @@
 
 	// If target is standing we might pounce and knock them down instead of attacking
 	if(target_mob.canmove && prob(vore_pounce_chance) && !issilicon(target_mob) && (world.time > vore_pounce_cooldown)) //pouncing is worth doing, we want to pounce and are not in cooldown. So attempt a pounce!
-		if(vore_standing_too) //creatures that can eat you on the spot don't care how healthy you are and get an autohit
+		if(will_eat(target_mob) && vore_standing_too) //creatures that can eat you on the spot don't care how healthy you are and get an autohit
 			return PounceTarget()
 
 		var/TargetHealthPercent = (target_mob.health/target_mob.maxHealth)*100
