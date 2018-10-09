@@ -142,7 +142,7 @@
 // -- Turfs -- //
 
 //These are just some special turfs for the beach water
-/turf/simulated/floor/beach/coastwater
+/turf/simulated/floor/beach/coastwater //Old water
 	name = "Water"
 	icon_state = "water"
 
@@ -150,16 +150,16 @@
 	..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1))
 
-
-/turf/simulated/floor/water/coastline
+/turf/simulated/floor/water/coastline //Old coast
 	name = "Water"
 	water_state = "seashallow"
 	under_state = "sand"
 
+
 /turf/simulated/floor/water/shoreline/beach //The coast.
 	desc = "The waves look calm and inviting."
 	depth = 1
-	icon_state = "sand"
+	icon_state = "beach"
 	under_state = "seadeep"
 	water_state = "sand"
 
