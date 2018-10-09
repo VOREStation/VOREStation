@@ -17,7 +17,7 @@
 
 	eye_desc = "red eyes"
 
-	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, \
+	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, \
 	slippery gullet of the creature. It's warm, and the air is thick. You can hear \
 	its body squelch and shift around you as you settle into its stomach! Thick digestive \
 	enzymes cling to you within that dark space, tingling and stinging immediately! The weight of \
@@ -64,7 +64,7 @@
 	eye_desc = "blue eyes"
 	shy_approach = TRUE
 	stalker = TRUE
-	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, \
+	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, \
 	slippery gullet of the creature. It's warm, and the air is thick. You can hear its body \
 	squelch and shift around you as you settle into its stomach! It's oddly calm, and very dark. \
 	The doughy flesh rolls across your form in gentle waves. The aches and pains across your form slowly begin to \
@@ -106,7 +106,7 @@
 	eye_desc = "purple eyes"
 	shy_approach = TRUE
 	stalker = TRUE
-	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, slippery gullet of the creature. \
+	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet of the creature. \
 	It's warm, and the air is thick. You can hear its body squelch and shift around you as you settle into its stomach! \
 	It’s relatively calm inside the dark organ. Wet and almost molten for how gooey your surroundings feel. \
 	You can feel the doughy walls cling to you posessively... It’s almost like you could sink into them. \
@@ -147,7 +147,7 @@
 
 	eye_desc = "yellow eyes"
 	stalker = FALSE
-	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, slippery gullet \
+	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet \
 	of the creature. It's warm, and the air is thick. You can hear its body squelch and shift around you \
 	as you settle into its stomach! The doughy walls within cling to you heavily, churning down on you, wearing \
 	you out!! There doesn’t appear to be any actual danger here, harmless slime clings to you, but it’s getting \
@@ -187,7 +187,7 @@
 
 	eye_desc = "green eyes"
 	stalker = TRUE
-	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, slippery gullet \
+	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet \
 	of the creature. It's warm, and the air is thick. You can hear its body squelch and shift around you \
 	as you settle into its stomach! The doughy walls within cling to you heavily, churning down on you, wearing \
 	you out!! There doesn’t appear to be any actual danger here, harmless slime clings to you, but it’s getting \
@@ -224,7 +224,7 @@
 
 	eye_desc = "orange eyes"
 
-	vore_stomach_flavor = "You slip passed pointy triangle teeth and down the slick, \
+	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, \
 	slippery gullet of the creature. It's warm, and the air is thick. You can hear \
 	its body squelch and shift around you as you settle into its stomach! Thick digestive \
 	enzymes cling to you within that dark space, tingling and stinging immediately! The weight of \
