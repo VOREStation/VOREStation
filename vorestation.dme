@@ -1610,7 +1610,6 @@
 #include "code\modules\clothing\spacesuits\void\merc.dm"
 #include "code\modules\clothing\spacesuits\void\military_vr.dm"
 #include "code\modules\clothing\spacesuits\void\station.dm"
-#include "code\modules\clothing\spacesuits\void\station_vr.dm"
 #include "code\modules\clothing\spacesuits\void\void.dm"
 #include "code\modules\clothing\spacesuits\void\void_vr.dm"
 #include "code\modules\clothing\spacesuits\void\wizard.dm"

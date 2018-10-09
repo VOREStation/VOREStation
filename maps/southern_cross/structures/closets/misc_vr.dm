@@ -7,7 +7,7 @@
 	icon_opened = "secureexpopen"
 	icon_broken = "secureexpbroken"
 	icon_off = "secureexpoff"
-	req_access = list(access_explorer)
+	req_access = list(access_gateway)
 
 	starts_with = list(
 		/obj/item/clothing/under/explorer,

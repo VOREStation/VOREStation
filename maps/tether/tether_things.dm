@@ -395,7 +395,7 @@ var/global/list/latejoin_tram   = list()
 /obj/structure/closet/secure_closet/guncabinet/excursion/New()
 	..()
 	for(var/i = 1 to 4)
-		new /obj/item/weapon/gun/energy/frontier/locked/basic(src)
+		new /obj/item/weapon/gun/energy/frontier/locked(src)
 	for(var/i = 1 to 4)
 		new /obj/item/weapon/gun/energy/frontier/locked/holdout(src)
 
