@@ -33,6 +33,7 @@
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
 
+	virus_immune = 1 // They practically ARE one.
 	min_age = 18
 	max_age = 80
 
@@ -50,6 +51,16 @@
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
 	flags = NO_SCAN | NO_INFECT //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	has_organ = list(    //Same organ list as tajarans.
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_VOICE = 		/obj/item/organ/internal/voicebox,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
+		)
 
 	flesh_color = "#AFA59E"
 	base_color 	= "#333333"
