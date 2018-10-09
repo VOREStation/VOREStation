@@ -150,6 +150,27 @@
 	..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1))
 
+
+/turf/simulated/floor/water/coastline
+	name = "Water"
+	water_state = "seashallow"
+	under_state = "sand"
+
+/turf/simulated/floor/water/shoreline/beach //The coast.
+	desc = "The waves look calm and inviting."
+	depth = 1
+	icon_state = "sand"
+	under_state = "seadeep"
+	water_state = "sand"
+
+/turf/simulated/floor/water/deep/beach //The deep water.
+	name = "deep water"
+	icon_state = "seadeep"
+	water_state = "seadeep"
+	under_state = "sand"
+
+
+update_icon
 // -- Areas -- //
 
 //And some special areas, including our shuttle landing spot (must be unique)
@@ -173,12 +194,12 @@
 /area/tether_away/beach/coast
 	name = "\improper Away Mission - Virgo 4 Coast"
 	icon_state = "blue2"
-	base_turf = /turf/simulated/floor/beach/coastline
+	base_turf = /turf/simulated/floor/water/shoreline/beach
 
 /area/tether_away/beach/water
 	name = "\improper Away Mission - Virgo 4 Water"
 	icon_state = "bluenew"
-	base_turf = /turf/simulated/floor/beach/coastwater
+	base_turf = /turf/simulated/floor/water/deep
 
 /area/tether_away/beach/jungle
 	name = "\improper Away Mission - Virgo 4 Desert"
