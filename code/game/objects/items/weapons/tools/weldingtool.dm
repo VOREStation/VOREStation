@@ -3,7 +3,7 @@
  * Welding Tool
  */
 /obj/item/weapon/weldingtool
-	name = "welding tool"
+	name = "\improper welding tool"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	item_state = "welder"
