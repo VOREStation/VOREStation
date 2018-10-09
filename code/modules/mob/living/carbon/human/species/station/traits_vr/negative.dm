@@ -80,15 +80,15 @@
 
 /datum/trait/conductive
 	name = "Conductive"
-	desc = "Increases your susceptibility to electric shocks by 50%"
+	desc = "Increases your susceptibility to electric shocks by 75%"
 	cost = -1
-	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
+	var_changes = list("siemens_coefficient" = 1.75) //This makes you a lot weaker to tasers.
 
 /datum/trait/conductive_plus
 	name = "Major Conductive"
-	desc = "Increases your susceptibility to electric shocks by 100%"
+	desc = "Increases your susceptibility to electric shocks by 150%"
 	cost = -2
-	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
+	var_changes = list("siemens_coefficient" = 2.5) //This makes you extremely weak to tasers.
 
 /datum/trait/photosensitive
 	name = "Photosensitive"

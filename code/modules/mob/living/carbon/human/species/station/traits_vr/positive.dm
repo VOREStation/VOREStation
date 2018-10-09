@@ -47,7 +47,7 @@
 /datum/trait/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
-	cost = 2
+	cost = 3
 	var_changes = list("darksight" = 7)
 
 /datum/trait/melee_attack
@@ -55,6 +55,13 @@
 	desc = "Provides sharp melee attacks that do slightly more damage."
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp))
+
+/datum/trait/numbingfangs
+	name = "Numbing Fangs"
+	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
+	cost = 1
+	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/bite/sharp/numbing))
+	excludes = list(/datum/trait/melee_attack_fangs,/datum/trait/melee_attack)//Take the menu if you want both.
 
 /datum/trait/melee_attack_fangs
 	name = "Sharp Melee & Numbing Fangs"
