@@ -21,6 +21,7 @@
 	name = "Atmospherics Laptop"
 	desc = "A cheap laptop."
 	icon_state = "laptop"
+	icon_screen = "atmoslaptop"
 	icon_keyboard = "laptop_key"
 	density = 0
 
