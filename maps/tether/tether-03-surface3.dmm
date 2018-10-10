@@ -19637,6 +19637,9 @@
 /obj/item/stack/material/steel{
 	amount = 50
 	},
+/obj/item/stack/material/plastic{
+	amount = 10
+	},
 /obj/item/stack/material/glass{
 	amount = 50;
 	pixel_x = -2;

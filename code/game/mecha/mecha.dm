@@ -1117,6 +1117,11 @@
 		to_chat(usr,"<span class='warning'>You can't climb into the exosuit while buckled!</span>")
 		return
 
+	var/mob/living/carbon/B = usr //Vorestation edit.
+	if (B.size_multiplier < 0.5)
+		B << "<span class='warning'>You can't fit in this suit!</span>"
+		return
+
 	src.log_message("[usr] tries to move in.")
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
