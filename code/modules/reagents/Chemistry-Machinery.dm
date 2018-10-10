@@ -55,7 +55,7 @@
 		src.beaker = B
 		user.drop_item()
 		B.loc = src
-		to_chat(user, "You add \the [B] to the machine!")
+		to_chat(user, "You add \the [B] to the machine.")
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
@@ -67,7 +67,7 @@
 		src.loaded_pill_bottle = B
 		user.drop_item()
 		B.loc = src
-		to_chat(user, "You add \the [loaded_pill_bottle] into the dispenser slot!")
+		to_chat(user, "You add \the [loaded_pill_bottle] into the dispenser slot.")
 
 	else if(default_unfasten_wrench(user, B, 20))
 		return
