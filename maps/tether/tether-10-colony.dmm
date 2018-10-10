@@ -199,6 +199,7 @@
 /obj/item/weapon/gun/energy/gun/nuclear,
 /obj/item/weapon/gun/energy/gun/nuclear,
 /obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/weapon/gun/energy/gun/nuclear,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -413,6 +414,18 @@
 /area/centcom/specops)
 "aI" = (
 /obj/structure/closet/crate/medical,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -963,14 +976,26 @@
 /area/centcom/specops)
 "bu" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
-/obj/item/weapon/cell/device/weapon/recharge,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1059,6 +1084,10 @@
 	pixel_y = 2
 	},
 /obj/item/weapon/storage/box/bodybags,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/extinguisher/mini,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -1772,10 +1801,18 @@
 "cM" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/industrial/outline/blue,
-/obj/item/weapon/cell/recharging,
-/obj/item/weapon/cell/recharging,
-/obj/item/weapon/cell/recharging,
-/obj/item/weapon/cell/recharging,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16821,6 +16858,30 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"EJ" = (
+/obj/structure/table/rack,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
 "JC" = (
 /obj/machinery/power/thermoregulator,
 /turf/unsimulated/floor{
@@ -31695,7 +31756,7 @@ ac
 ah
 aq
 aG
-aG
+EJ
 aG
 bI
 ah
