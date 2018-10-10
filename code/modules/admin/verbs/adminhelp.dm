@@ -184,7 +184,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>")
-
+	send2adminchat() //VOREStation Add
 	GLOB.ahelp_tickets.active_tickets += src
 
 /datum/admin_help/Destroy()
@@ -550,7 +550,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in admins)
 		.["total"] += X
-		if(requiredflags != 0 && !check_rights(X))
+		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X)) //VOREStation Edit
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X
@@ -652,60 +652,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							founds += "Name: [found.name]([found.real_name]) Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
 							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;adminmoreinfo=\ref[found]'>?</A>|<A HREF='?_src_=holder;adminplayerobservefollow=\ref[found]'>F</A>)</font> "
 							continue
-<<<<<<< HEAD
-			msg += "[original_word] "
-
-	if(!mob) //this doesn't happen
-		return
-
-	var/ai_cl
-	if(ai_found)
-		ai_cl = " (<A HREF='?_src_=holder;adminchecklaws=\ref[mob]'>CL</A>)"
-
-			//Options bar:  mob, details ( admin = 2, dev = 3, event manager = 4, character name (0 = just ckey, 1 = ckey and character name), link? (0 no don't make it a link, 1 do so),
-			//		highlight special roles (0 = everyone has same looking name, 1 = antags / special roles get a golden name)
-
-	msg = "<b><font color=red>Request for Help: </font></b><font color='blue'><b>[get_options_bar(mob, 2, 1, 1)][ai_cl]</b> [msg]</font>"
-
-	var/admin_number_afk = 0
-
-	for(var/client/X in admins)
-		if((R_ADMIN|R_MOD|R_EVENT|R_SERVER) & X.holder.rights)
-			if(X.is_afk())
-				admin_number_afk++
-			X << msg
-			if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
-				X << 'sound/effects/adminhelp.ogg'
-
-	//show it to the person adminhelping too
-	src << "<font color='blue'>PM to-<b>Staff </b>: [original_msg]</font>"
-
-	var/admin_number_present = admins.len - admin_number_afk
-	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
-	if(admin_number_present <= 0)
-		send2adminirc("Request for Help from [key_name(src)]: [html_decode(original_msg)] - !![admin_number_afk ? "All admins AFK ([admin_number_afk])" : "No admins online"]!!")
-	else
-		send2adminirc("Request for Help from [key_name(src)]: [html_decode(original_msg)]")
-	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	// VoreStation Edit Start
-	if (config.chat_webhook_url)
-		spawn(0)
-			var/query_string = "type=adminhelp"
-			query_string += "&key=[url_encode(config.chat_webhook_key)]"
-			query_string += "&from=[url_encode(key_name(src))]"
-			query_string += "&msg=[url_encode(html_decode(original_msg))]"
-			query_string += "&admin_number=[admins.len]"
-			query_string += "&admin_number_afk=[admin_number_afk]"
-			world.Export("[config.chat_webhook_url]?[query_string]")
-	// VoreStation Edit End
-	return
-=======
 		msg += "[original_word] "
 	if(irc)
 		if(founds == "")
 			return "Search Failed"
 		else
 			return founds
->>>>>>> 039d34c... Merge pull request #5617 from Poojawa/admin_reforms
 
 	return msg
