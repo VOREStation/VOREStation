@@ -85,6 +85,9 @@
 								digest_item(I)
 							to_update = TRUE
 							break
+		//get rid of things like blood drops and gibs that end up in there
+		else if(istype(A,/obj/effect/decal/cleanable/))
+			qdel(A)
 
 ///////////////////////////// DM_HOLD /////////////////////////////
 	if(digest_mode == DM_HOLD)
