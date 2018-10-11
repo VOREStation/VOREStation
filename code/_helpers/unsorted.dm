@@ -519,6 +519,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return "[round((powerused * 0.000001),0.001)] MW"
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
+/proc/get_mob_by_ckey(key)
+	if(!key)
+		return
+	var/list/mobs = sortmobs()
+	for(var/mob/M in mobs)
+		if(M.ckey == key)
+			return M
+
 //Forces a variable to be posative
 /proc/modulus(var/M)
 	if(M >= 0)

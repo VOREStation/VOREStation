@@ -57,7 +57,7 @@
 		if(mute_irc)
 			usr << "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>"
 			return
-		cmd_admin_irc_pm(href_list["irc_msg"])
+		send2adminirc(href_list["irc_msg"])
 		return
 
 
@@ -110,6 +110,8 @@
 
 	clients += src
 	directory[ckey] = src
+
+	GLOB.ahelp_tickets.ClientLogin(src)
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
@@ -178,6 +180,7 @@
 	if(holder)
 		holder.owner = null
 		admins -= src
+	GLOB.ahelp_tickets.ClientLogout(src)
 	directory -= ckey
 	clients -= src
 	return ..()
