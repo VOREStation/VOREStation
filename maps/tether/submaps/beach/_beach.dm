@@ -162,7 +162,7 @@
 	base_icon_state = "beach"
 	icon_state = "beach"
 	under_state = "beach"
-	water_state = "seashallow"
+	water_state = "beach"
 
 /turf/simulated/floor/water/deep/beach //The deep water.
 	name = "deep water"
@@ -175,6 +175,7 @@
 	icon_state = "seadeep"
 	water_state = "seadeep"
 	under_state = "sand"
+	depth = 3
 
 
 // -- Areas -- //

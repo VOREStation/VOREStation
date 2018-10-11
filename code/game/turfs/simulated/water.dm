@@ -152,7 +152,7 @@ var/list/shoreline_icon_cache = list()
 	under_state = "abyss"
 	edge_blending_priority = -2
 	movement_cost = 8
-	depth = 4
+	depth = 3
 
 /turf/simulated/floor/water/deep/ocean/return_air_for_internal_lifeform(var/mob/living/L) //It's working correctly. Which is surprising.
 	if(L)
