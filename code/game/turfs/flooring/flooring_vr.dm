@@ -17,3 +17,8 @@
 	desc = "This slick flesh ripples and squishes under your touch"
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_base = "flesh_floor"
+
+/turf/simulated/floor/log
+	name = "logs"
+	icon = 'icons/turf/floors_vr.dmi'
+	icon_state = "log_floor"
