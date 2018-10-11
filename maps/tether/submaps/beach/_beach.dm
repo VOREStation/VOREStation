@@ -159,9 +159,10 @@
 /turf/simulated/floor/water/shoreline/beach //The coast.
 	desc = "The waves look calm and inviting."
 	depth = 1
+	base_icon_state = "beach"
 	icon_state = "beach"
-	under_state = "seadeep"
-	water_state = "sand"
+	under_state = "beach"
+	water_state = "seashallow"
 
 /turf/simulated/floor/water/deep/beach //The deep water.
 	name = "deep water"
@@ -169,8 +170,13 @@
 	water_state = "seadeep"
 	under_state = "sand"
 
+/turf/simulated/floor/water/deep/ocean //Deep+ water.
+	name = "deeper water"
+	icon_state = "seadeep"
+	water_state = "seadeep"
+	under_state = "sand"
 
-update_icon
+
 // -- Areas -- //
 
 //And some special areas, including our shuttle landing spot (must be unique)

@@ -144,3 +144,34 @@ var/list/shoreline_icon_cache = list()
 		shoreline_icon_cache[cache_string] = shoreline_water
 		add_overlay(shoreline_icon_cache[cache_string])
 
+
+/turf/simulated/floor/water/deep/ocean //Vorestation edit
+	name = "deep water"
+	desc = "A body of water.  It seems quite deep."
+	icon_state = "seadeep" // So it shows up in the map editor as water.
+	under_state = "abyss"
+	edge_blending_priority = -2
+	movement_cost = 8
+	depth = 4
+
+/turf/simulated/floor/water/deep/ocean/return_air_for_internal_lifeform(var/mob/living/L) //It's working correctly. Which is surprising.
+	if(L)
+		if(L.can_breathe_water())
+			var/datum/gas_mixture/water_breath = new()
+			var/datum/gas_mixture/above_air = return_air()
+			var/amount = 300
+			water_breath.adjust_gas("oxygen", amount) // Assuming water breathes just extract the oxygen directly from the water.
+			water_breath.temperature = above_air.temperature
+			return water_breath
+		else
+			var/gasid = "carbon_dioxide"
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(H.species && H.species.exhale_type)
+					gasid = H.species.exhale_type
+			var/datum/gas_mixture/water_breath = new()
+			var/datum/gas_mixture/above_air = return_air()
+			water_breath.adjust_gas(gasid, BREATH_MOLES) // They have no oxygen, but non-zero moles and temp
+			water_breath.temperature = above_air.temperature
+			return water_breath
+	return return_air() //Then they are dead.

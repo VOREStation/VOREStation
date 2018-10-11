@@ -26,7 +26,7 @@
 
 	var/list/decals
 
-	var/movement_cost = 0       // How much the turf slows down movement, if any.
+	var/movement_cost = 0       // How much the turf slows down movement, if any. Higher means more slowdown.
 
 	var/list/footstep_sounds = null
 
