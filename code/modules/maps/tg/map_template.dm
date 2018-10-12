@@ -158,6 +158,12 @@ var/list/global/map_templates = list()
 
 // Very similar to the /tg/ version.
 /proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
+	//VOREStation Add - Annoyed with this during tests.
+	#if UNIT_TEST
+	log_unit_test("Skipping submap seeding on: [english_list(z_levels)] due to unit testing.")
+	return
+	#endif
+	//VOREStation Add End
 	set background = TRUE
 
 	if(!z_levels || !z_levels.len)
