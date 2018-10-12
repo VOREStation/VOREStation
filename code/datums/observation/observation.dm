@@ -63,7 +63,7 @@
 	var/list/global_listeners = list()  // Associative list of instances that listen to all events of this type (as opposed to events belonging to a specific source) and the proc to call.
 
 /decl/observ/New()
-	all_observable_events.events += src
+	//all_observable_events.events += src //VOREStation Edit - Only used for human debugging, and causes startup order crisis at the moment.
 	. = ..()
 
 /decl/observ/proc/is_listening(var/event_source, var/datum/listener, var/proc_call)
