@@ -94,6 +94,12 @@
 	cost = 1
 	var_changes = list("flash_mod" = 0.5)
 
+/datum/trait/hardfeet
+	name = "Hard Feet"
+	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
+	cost = 1
+	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
+
 /datum/trait/winged_flight
 	name = "Winged Flight"
 	desc = "Allows you to fly by using your wings. Make sure you have wings!"
@@ -103,9 +109,3 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/flying_toggle
 	H.verbs |= /mob/living/proc/start_wings_hovering
-
-/datum/trait/hardfeet
-	name = "Hard Feet"
-	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
-	cost = 1
-	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
