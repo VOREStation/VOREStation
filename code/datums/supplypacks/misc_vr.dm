@@ -18,17 +18,37 @@
 	contains = list(
 			/obj/item/weapon/rig/eva = 1
 			)
-	cost = 150
+	cost = 120
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "eva hardsuit crate"
-	access = access_mining
+	access = access_tech_storage
 
 /datum/supply_pack/misc/mining_rig
 	name = "industrial hardsuit (empty)"
 	contains = list(
 			/obj/item/weapon/rig/industrial = 1
 			)
-	cost = 150
+	cost = 120
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "industrial hardsuit crate"
 	access = access_mining
+
+/datum/supply_pack/misc/medical_rig
+	name = "medical hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/medical = 1
+			)
+	cost = 120
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "medical hardsuit crate"
+	access = access_medical
+
+/datum/supply_pack/misc/security_rig
+	name = "hazard hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/hazard = 1
+			)
+	cost = 120
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "hazard hardsuit crate"
+	access = access_armory
