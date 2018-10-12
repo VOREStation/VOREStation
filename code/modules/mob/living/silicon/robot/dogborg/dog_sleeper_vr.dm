@@ -388,7 +388,7 @@
 				to_chat(hound, "<span class='notice'>Your stomach is currently too full of fluids to secrete more fluids of this kind.</span>")
 			else if(patient.reagents.get_reagent_amount(chem) + 10 <= 20) //No overdoses for you
 				patient.reagents.add_reagent(chem, inject_amount)
-				drain(750) //-750 charge per injection
+				drain(50) //-50 charge per injection
 			var/units = round(patient.reagents.get_reagent_amount(chem))
 			to_chat(hound, "<span class='notice'>Injecting [units] unit\s of [chemical_reagents_list[chem]] into occupant.</span>") //If they were immersed, the reagents wouldn't leave with them.
 
