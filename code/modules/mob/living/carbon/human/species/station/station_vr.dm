@@ -326,6 +326,7 @@
 	deform = 'icons/mob/human_races/r_def_skrell_vr.dmi'
 	color_mult = 1
 	min_age = 18
+	reagent_tag = 0
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
