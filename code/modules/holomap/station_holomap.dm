@@ -125,7 +125,7 @@
 			watching_mob = user
 			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
-			destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
+			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching) //VOREStation Edit
 			update_use_power(2)
 
 			if(bogus)
@@ -154,7 +154,7 @@
 				M.client.images -= holomap_datum.station_map
 		GLOB.moved_event.unregister(watching_mob, src)
 		GLOB.dir_set_event.unregister(watching_mob, src)
-		destroyed_event.unregister(watching_mob, src)
+		GLOB.destroyed_event.unregister(watching_mob, src) //VOREStation Edit
 	watching_mob = null
 	update_use_power(1)
 
