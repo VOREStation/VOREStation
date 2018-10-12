@@ -111,7 +111,7 @@
 		/obj/item/weapon/storage/pill_bottle/spaceacillin,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting,
 		/obj/item/stack/medical/splint,
-		/obj/item/device/healthanalyzer/phasic //VOREStation Edit
+		/obj/item/device/healthanalyzer/improved //VOREStation Edit
 	)
 
 /obj/item/weapon/storage/firstaid/surgery

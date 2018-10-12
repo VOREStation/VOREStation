@@ -870,7 +870,7 @@
 "bn" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box,
-/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -1082,7 +1082,7 @@
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
-/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -9125,7 +9125,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -9981,7 +9981,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -16787,7 +16787,7 @@
 /area/centcom/security)
 "DC" = (
 /obj/structure/table/glass,
-/obj/item/device/healthanalyzer/phasic,
+/obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},

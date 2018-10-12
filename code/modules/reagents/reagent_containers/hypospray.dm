@@ -18,6 +18,7 @@
 	var/filled = 0
 	var/list/filled_reagents = list()
 	var/hyposound	// What sound do we play on use?
+	var/prototype = 0 //VOREStation Edit - Prototype Hypospray
 
 /obj/item/weapon/reagent_containers/hypospray/New()
 	..()
@@ -44,8 +45,15 @@
 		else if(affected.robotic >= ORGAN_ROBOT)
 			to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 			return
-
-		if(!H.stat)
+		
+		//VOREStation Add Start - Adds Prototype Hypo functionality
+		if(H != user && prototype)
+			to_chat(user, "<span class='notice'>You begin injecting [H] with \the [src].</span>")
+			to_chat(H, "<span class='danger'> [user] is trying to inject you with \the [src]!</span>")
+			if(!do_after(user, 30, H))
+				return
+		//VOREstation Add End
+		else if(!H.stat && !prototype) //VOREStation Edit
 			if(H != user)
 				if(H.a_intent != I_HELP)
 					to_chat(user, "<span class='notice'>[H] is resisting your attempt to inject them with \the [src].</span>")
