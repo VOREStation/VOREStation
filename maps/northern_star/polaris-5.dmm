@@ -1587,7 +1587,7 @@
 "EA" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 1},/obj/structure/cable/blue{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "EB" = (/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 24},/obj/structure/cable/blue{d2 = 8; icon_state = "0-8"},/obj/item/device/radio/intercom{name = "Station Intercom (General)"; pixel_y = -21},/turf/simulated/floor/tiled,/area/outpost/mining_main/eva)
 "EC" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe,/obj/item/weapon/tool/wrench,/obj/item/weapon/tool/crowbar,/obj/item/weapon/shovel,/obj/machinery/light,/turf/simulated/floor/tiled/dark,/area/outpost/mining_main/storage)
-"ED" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe/hammer,/obj/item/weapon/tool/wrench,/obj/item/weapon/tool/crowbar,/obj/item/weapon/shovel,/turf/simulated/floor/tiled/dark,/area/outpost/mining_main/storage)
+"ED" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe,/obj/item/weapon/tool/wrench,/obj/item/weapon/tool/crowbar,/obj/item/weapon/shovel,/turf/simulated/floor/tiled/dark,/area/outpost/mining_main/storage)
 "EE" = (/turf/simulated/wall,/area/outpost/mining_main/storage)
 "EF" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/obj/machinery/camera/network/mining{c_tag = "OPM - Mining Hallway Aft"; dir = 4},/obj/item/device/radio/intercom{dir = 8; name = "Station Intercom (General)"; pixel_x = -21},/turf/simulated/floor/tiled,/area/outpost/mining_main/south_hall)
 "EG" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/turf/simulated/floor/tiled,/area/outpost/mining_main/south_hall)
