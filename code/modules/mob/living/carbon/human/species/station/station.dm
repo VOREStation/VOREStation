@@ -289,7 +289,7 @@
 	breath_heat_level_2 = 500	//Default 450
 	breath_heat_level_3 = 1350	//Default 1250
 
-	reagent_tag = IS_SKRELL
+	//reagent_tag = IS_SKRELL //VOREStation Edit
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
