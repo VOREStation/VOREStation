@@ -118,7 +118,7 @@
 		return FALSE
 	if(will_eat(target_mob) && vore_standing_too) //100% chance of hitting people we can eat on the spot
 		return 100
-	var/TargetHealthPercent = (target_mob.health/target_mob.maxHealth)*100 //now we start looking at the target itself
+	var/TargetHealthPercent = (target_mob.health/target_mob.getMaxHealth())*100 //now we start looking at the target itself
 	if (TargetHealthPercent > vore_pounce_maxhealth) //target is too healthy to pounce
 		return FALSE
 	else
