@@ -74,7 +74,7 @@
 			[pick("alien figure","rodent-like creature","reptilian alien","primate","unidentifiable object")] \
 			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]."
 			if(prob(25))
-				new_item = new /obj/item/weapon/vampiric(src.loc)
+				new_item = new /obj/item/weapon/statuette(src.loc)
 		if(5)
 			name = "instrument"
 			icon = 'icons/obj/xenoarchaeology.dmi'

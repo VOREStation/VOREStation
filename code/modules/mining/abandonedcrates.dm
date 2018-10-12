@@ -134,7 +134,7 @@
 			new/obj/item/weapon/pen/crayon/mime(src)
 			new/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(src)
 		if(96)
-			new/obj/item/weapon/vampiric(src)
+			new/obj/item/weapon/statuette(src)
 		if(97)
 			new/obj/item/weapon/archaeological_find(src)
 		if(98)
