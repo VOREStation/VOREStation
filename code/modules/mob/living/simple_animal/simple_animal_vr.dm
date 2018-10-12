@@ -101,19 +101,9 @@
 		return ..()
 
 	// If target is standing we might pounce and knock them down instead of attacking
-	if(target_mob.canmove && prob(vore_pounce_chance) && !issilicon(target_mob) && (world.time > vore_pounce_cooldown)) //pouncing is worth doing, we want to pounce and are not in cooldown. So attempt a pounce!
-		if(will_eat(target_mob) && vore_standing_too) //creatures that can eat you on the spot don't care how healthy you are and get an autohit
-			return PounceTarget()
-
-		var/TargetHealthPercent = (target_mob.health/target_mob.maxHealth)*100
-		if (TargetHealthPercent <= vore_pounce_maxhealth) //check they're weak enough to bother pouncing
-			if(prob(vore_pounce_successrate - (vore_pounce_falloff * TargetHealthPercent))) // pounce success!
-				return PounceTarget()
-			else // pounce misses!
-				target_mob.visible_message("<span class='danger'>\the [src] attempts to pounce \the [target_mob] but misses!</span>!")
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
-				return // no you don't get to attack as well, you missed your chance
+	var/pouncechance = CanPounceTarget()
+	if(pouncechance)
+		return PounceTarget(pouncechance)
 
 	// We're not attempting a pounce, if they're down or we can eat standing, do it as long as they're edible. Otherwise, hit normally.
 	if(will_eat(target_mob) && (!target_mob.canmove || vore_standing_too))
@@ -121,13 +111,33 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/proc/PounceTarget()
-	target_mob.Weaken(5)
-	target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
-	if(will_eat(target_mob)) //if they're edible then eat them too
+/mob/living/simple_animal/proc/CanPounceTarget() //returns either FALSE or a %chance of success
+	if(!target_mob.canmove || issilicon(target_mob) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
+		return FALSE
+	if(!prob(vore_pounce_chance)) //mob doesn't want to pounce
+		return FALSE
+	if(will_eat(target_mob) && vore_standing_too) //100% chance of hitting people we can eat on the spot
+		return 100
+	var/TargetHealthPercent = (target_mob.health/target_mob.maxHealth)*100 //now we start looking at the target itself
+	if (TargetHealthPercent > vore_pounce_maxhealth) //target is too healthy to pounce
+		return FALSE
+	else
+		return max(0,(vore_pounce_successrate - (vore_pounce_falloff * TargetHealthPercent)))
+
+
+/mob/living/simple_animal/proc/PounceTarget(var/successrate = 100)
+	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
+	if(prob(successrate)) // pounce success!
+		target_mob.Weaken(5)
+		target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
+	else // pounce misses!
+		target_mob.visible_message("<span class='danger'>\the [src] attempts to pounce \the [target_mob] but misses!</span>!")
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+
+	if(will_eat(target_mob) && (!target_mob.canmove || vore_standing_too)) //if they're edible then eat them too
 		return EatTarget()
 	else
-		return //just leave them on the ground
+		return //just leave them
 
 // Attempt to eat target
 // TODO - Review this.  Could be some issues here
