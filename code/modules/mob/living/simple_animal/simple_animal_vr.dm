@@ -12,6 +12,10 @@
 	var/vore_bump_chance = 0			// Chance of trying to eat anyone that bumps into them, regardless of hostility
 	var/vore_bump_emote	= "grabs hold of"				// Allow messages for bumpnom mobs to have a flavorful bumpnom
 	var/vore_pounce_chance = 5			// Chance of this mob knocking down an opponent
+	var/vore_pounce_cooldown = 0		// Cooldown timer - if it fails a pounce it won't pounce again for a while
+	var/vore_pounce_successrate	= 100	// Chance of a pounce succeeding against a theoretical 0-health opponent
+	var/vore_pounce_falloff = 1			// Success rate falloff per %health of target mob.
+	var/vore_pounce_maxhealth = 80		// Mob will not attempt to pounce targets above this %health
 	var/vore_standing_too = 0			// Can also eat non-stunned mobs
 	var/vore_ignores_undigestable = 1	// Refuse to eat mobs who are undigestable by the prefs toggle.
 	var/swallowsound = null				// What noise plays when you succeed in eating the mob.
@@ -92,20 +96,48 @@
 /mob/living/simple_animal/PunchTarget()
 	ai_log("vr/PunchTarget() [target_mob]", 3)
 
-	// For things we don't want to eat, call the sideways "parent" to do normal punching
-	if(!vore_active || !will_eat(target_mob))
+	// If we're not hungry, call the sideways "parent" to do normal punching
+	if(!vore_active)
 		return ..()
 
-	// If target is standing we might pounce and eat them
-	if(target_mob.canmove && prob(vore_pounce_chance))
-		target_mob.Weaken(5)
-		target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
+	// If target is standing we might pounce and knock them down instead of attacking
+	var/pouncechance = CanPounceTarget()
+	if(pouncechance)
+		return PounceTarget(pouncechance)
 
-	// If they're down or we can eat standing, do it
-	if(!target_mob.canmove || vore_standing_too)
+	// We're not attempting a pounce, if they're down or we can eat standing, do it as long as they're edible. Otherwise, hit normally.
+	if(will_eat(target_mob) && (!target_mob.canmove || vore_standing_too))
 		return EatTarget()
 	else
 		return ..()
+
+/mob/living/simple_animal/proc/CanPounceTarget() //returns either FALSE or a %chance of success
+	if(!target_mob.canmove || issilicon(target_mob) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
+		return FALSE
+	if(!prob(vore_pounce_chance)) //mob doesn't want to pounce
+		return FALSE
+	if(will_eat(target_mob) && vore_standing_too) //100% chance of hitting people we can eat on the spot
+		return 100
+	var/TargetHealthPercent = (target_mob.health/target_mob.getMaxHealth())*100 //now we start looking at the target itself
+	if (TargetHealthPercent > vore_pounce_maxhealth) //target is too healthy to pounce
+		return FALSE
+	else
+		return max(0,(vore_pounce_successrate - (vore_pounce_falloff * TargetHealthPercent)))
+
+
+/mob/living/simple_animal/proc/PounceTarget(var/successrate = 100)
+	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
+	if(prob(successrate)) // pounce success!
+		target_mob.Weaken(5)
+		target_mob.visible_message("<span class='danger'>\the [src] pounces on \the [target_mob]!</span>!")
+	else // pounce misses!
+		target_mob.visible_message("<span class='danger'>\the [src] attempts to pounce \the [target_mob] but misses!</span>!")
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+
+	if(will_eat(target_mob) && (!target_mob.canmove || vore_standing_too)) //if they're edible then eat them too
+		return EatTarget()
+	else
+		return //just leave them
 
 // Attempt to eat target
 // TODO - Review this.  Could be some issues here
@@ -117,7 +149,7 @@
 	. = animal_nom(target_mob)
 	playsound(src, swallowsound, 50, 1)
 	update_icon()
-	
+
 	if(.)
 		// If we succesfully ate them, lose the target
 		LoseTarget()
