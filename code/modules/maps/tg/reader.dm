@@ -157,7 +157,7 @@ var/global/use_preloader = FALSE
 							++turfsSkipped
 						#endif
 						CHECK_TICK
-					maxx = max(maxx, ++xcrd)
+					maxx = max(maxx, xcrd++)
 				key_list[++key_list.len] = line_keys
 
 			// Rotate the list according to orientation
