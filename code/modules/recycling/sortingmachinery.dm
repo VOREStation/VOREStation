@@ -284,7 +284,7 @@
 			if (src.amount > 3 && !O.opened)
 				var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
 				P.wrapped = O
-				O.welded = 1
+				O.sealed = 1
 				O.loc = P
 				src.amount -= 3
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
@@ -311,7 +311,7 @@
 		wrapped.forceMove(get_turf(src))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
-			O.welded = 0
+			O.sealed = 0
 		wrapped = null
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
