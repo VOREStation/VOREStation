@@ -12,6 +12,7 @@
 	species_language = LANGUAGE_SOL_COMMON
 	secondary_langs = list(LANGUAGE_SOL_COMMON, LANGUAGE_TERMINUS)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_SKRELLIANFAR, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	min_age = 17
 	max_age = 130
@@ -46,7 +47,7 @@
 	brute_mod = 0.85
 	burn_mod = 0.85
 	metabolic_rate = 0.85
-	item_slowdown_mod = 0.5
+	item_slowdown_mod = 0.25
 	mob_size = MOB_LARGE
 	blood_volume = 840
 	bloodloss_rate = 0.75
@@ -135,6 +136,11 @@
 		"Your scales bristle against the cold."
 		)
 
+	descriptors = list(
+		/datum/mob_descriptor/height = 2,
+		/datum/mob_descriptor/build = 2
+		)
+
 /datum/species/unathi/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -217,6 +223,7 @@
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart,
 		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		O_BRAIN =    /obj/item/organ/internal/brain,
@@ -243,6 +250,7 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
 	name_language = LANGUAGE_SKRELLIAN
 	species_language = LANGUAGE_SKRELLIAN
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_TERMINUS, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	health_hud_intensity = 2
 
 	water_movement = -3
@@ -317,13 +325,14 @@
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3
 	show_ssd = "completely quiescent"
+	health_hud_intensity = 2.5
+	item_slowdown_mod = 0.1
+
 	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
 	name_language = LANGUAGE_ROOTLOCAL
 	species_language = LANGUAGE_ROOTLOCAL
-	health_hud_intensity = 2.5
-	item_slowdown_mod = 0.25
-
+	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
+	assisted_langs = list(LANGUAGE_VOX)	// Diona are weird, let's just assume they can use basically any language.
 	min_age = 1
 	max_age = 300
 

@@ -37,7 +37,7 @@
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
-		nanomanager.update_uis(src) // update all UIs attached to src
+		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
 	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
@@ -58,7 +58,7 @@
 		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
-		nanomanager.update_uis(src) // update all UIs attached to src
+		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
 	return
 
 
@@ -81,7 +81,7 @@
 	data["valveOpen"] = valve_open ? 1 : 0
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -150,7 +150,7 @@
 		tank_two = null
 	else
 		return
-	
+
 	T.loc = get_turf(src)
 	update_icon()
 
@@ -166,18 +166,18 @@
 /obj/item/device/transfer_valve/proc/split_gases()
 	if(!valve_open)
 		return
-	
+
 	valve_open = 0
-	
+
 	if(QDELETED(tank_one) || QDELETED(tank_two))
 		return
-	
+
 	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
 	var/datum/gas_mixture/temp
 	temp = tank_two.air_contents.remove_ratio(ratio1)
 	tank_one.air_contents.merge(temp)
 	tank_two.air_contents.volume -=  tank_one.air_contents.volume
-	
+
 
 	/*
 	Exadv1: I know this isn't how it's going to work, but this was just to check

@@ -14,6 +14,8 @@ var/list/turf_edge_cache = list()
 	icon_state = null
 	edge_blending_priority = 1
 	outdoors = TRUE					// This variable is used for weather effects.
+	can_dirty = FALSE				// Looks hideous with dirt on it.
+
 	// When a turf gets demoted or promoted, this list gets adjusted.  The top-most layer is the layer on the bottom of the list, due to how pop() works.
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 
@@ -54,8 +56,8 @@ var/list/turf_edge_cache = list()
 			if(istype(T) && T.edge_blending_priority && edge_blending_priority < T.edge_blending_priority && icon_state != T.icon_state)
 				var/cache_key = "[T.get_edge_icon_state()]-[checkdir]"
 				if(!turf_edge_cache[cache_key])
-					var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir)
-					I.plane = 0
+					var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir, layer = ABOVE_TURF_LAYER)
+					I.plane = TURF_PLANE
 					turf_edge_cache[cache_key] = I
 				add_overlay(turf_edge_cache[cache_key])
 

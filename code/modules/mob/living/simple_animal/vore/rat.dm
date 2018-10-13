@@ -110,7 +110,9 @@
 								   "almost sinks its teeth into [food], just stopping to give them another chance."))
 				hunger += 5
 		else if(hunger < 50)
-			visible_emote("appears to have had enough and prepares to strike!")
+			if(prob(25))
+				visible_emote("appears to have had enough and prepares to strike!")
+				hunger += 5
 		else
 			food.Weaken(5)
 			food.visible_message("<span class='danger'>\the [src] pounces on \the [food]!</span>!")

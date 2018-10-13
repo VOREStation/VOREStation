@@ -457,3 +457,7 @@
 /datum/gear/uniform/westernbustle
 	display_name = "western bustle"
 	path = /obj/item/clothing/under/dress/westernbustle
+
+/datum/gear/uniform/circuitry
+	display_name = "jumpsuit, circuitry (empty)"
+	path = /obj/item/clothing/under/circuitry

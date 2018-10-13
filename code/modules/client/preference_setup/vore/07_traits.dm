@@ -73,18 +73,24 @@
 			if(!(path in negative_traits))
 				pref.neg_traits -= path
 
-	if(pref.species == pref.custom_base && pref.species != SPECIES_CUSTOM)
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		// Allowed!
 	else if(!pref.custom_base || !(pref.custom_base in custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	if(pref.species == SPECIES_CUSTOM || pref.species == SPECIES_XENOCHIMERA)
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		var/datum/species/custom/CS = character.species
 		var/S = pref.custom_base ? pref.custom_base : "Human"
 		var/datum/species/custom/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
 
+		//Statistics for this would be nice
+		var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
+		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
+		
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
 
@@ -92,7 +98,8 @@
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
-	if(pref.species == SPECIES_CUSTOM || pref.species == SPECIES_XENOCHIMERA)
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 

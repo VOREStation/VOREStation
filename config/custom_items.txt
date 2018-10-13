@@ -232,13 +232,7 @@ item_desc: An engraved coin made of diamond. On the side for heads is printed th
 {
 ckey: draycu
 character_name: Schae Yonra
-item_path: /obj/item/weapon/melee/fluff/holochain/mass
-}
-
-{
-ckey: draycu
-character_name: Schae Yonra
-item_path: /obj/item/weapon/implanter/reagent_generator/yonra
+item_path: /obj/item/weapon/storage/box/fluff/yonra
 }
 
 # ######## E CKEYS
@@ -474,6 +468,18 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 
 # ######## K CKEYS
 {
+ckey: kazkin
+character_name: Ahzrukhal Ahkeen
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
+ckey: keekenox
+character_name: SMU-453
+item_path: /obj/item/clothing/accessory/medal/nobel_science
+}
+
+{
 ckey: ketrai
 character_name: Ketrai
 item_path: /obj/item/clothing/head/fluff/ketrai
@@ -498,6 +504,12 @@ item_path: /obj/item/clothing/accessory/storage/knifeharness
 }
 
 {
+ckey: kitchifox
+character_name: Rana Uma
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
 ckey: KiwiDaNinja
 character_name: Chakat Taiga
 item_path: /obj/item/clothing/under/fluff/taiga
@@ -513,6 +525,12 @@ item_path: /obj/item/clothing/under/fluff/taiga
 ckey: konabird
 character_name: Rischi
 item_path: /obj/item/weapon/implanter/reagent_generator/rischi
+}
+
+{
+ckey: knightfall5
+character_name: Ashley Kifer
+item_path: /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
 }
 
 # ######## L CKEYS
@@ -614,12 +632,6 @@ item_path: /obj/item/clothing/under/fluff/aluranevines
 }
 
 {
-ckey: natje
-character_name: Pumila
-item_path: /obj/item/weapon/implanter/reagent_generator/pumila_apple
-}
-
-{
 ckey: nepox
 character_name: Annie Rose
 item_path: /obj/item/clothing/accessory/sweater/fluff/annie
@@ -645,6 +657,12 @@ ckey: pawoverlord
 character_name: Sorrel Cavalet
 item_path: /obj/item/weapon/gun/projectile/colt
 item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
+}
+
+{
+ckey: phoaly
+character_name: Lily Maximus
+item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
 {
@@ -814,15 +832,33 @@ item_path: /obj/item/clothing/under/sexymime
 
 # ######## T CKEYS
 {
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
 ckey: techtypes
 character_name: Lasshseeki Korss
 item_path: /obj/item/weapon/implant/language/eal
 }
 
 {
+ckey: tinydude16
+character_name: Konor Foxe
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
 ckey: tonyvld
 character_name: Tony Bingham
 item_path: /obj/item/clothing/head/fluff/runac
+}
+
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
 }
 
 # ######## U CKEYS
@@ -962,6 +998,12 @@ item_path: /obj/item/weapon/storage/box/fluff/penelope
 ckey: Xennith
 character_name: Amy Lessen
 item_path: /obj/item/weapon/card/id/fluff/xennith
+}
+
+{
+ckey: Xonkon
+character_name: Ali
+item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
 # ######## Y CKEYS

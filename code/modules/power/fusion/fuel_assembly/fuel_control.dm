@@ -2,6 +2,7 @@
 	name = "fuel injection control computer"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel"
+	circuit = /obj/item/weapon/circuitboard/fusion_fuel_control
 
 	var/id_tag
 	var/scan_range = 25
@@ -94,9 +95,25 @@
 
 
 /obj/machinery/computer/fusion_fuel_control/attackby(var/obj/item/W, var/mob/user)
-	if(ismultitool(W))
+	..()
+	if(W.is_multitool()) //VOREStation Edit
 		var/new_ident = input("Enter a new ident tag.", "Fuel Control", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return
-	return ..()
+
+/obj/machinery/computer/fusion_fuel_control/update_icon()
+	if(stat & (BROKEN))
+		icon = 'icons/obj/computer.dmi'
+		icon_state = "broken"
+		set_light(0)
+
+	if(stat & (NOPOWER))
+		icon = 'icons/obj/computer.dmi'
+		icon_state = "computer"
+		set_light(0)
+
+	if(!stat & (BROKEN|NOPOWER))
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+		set_light(light_range_on, light_power_on)

@@ -168,15 +168,19 @@
 #define MODIFIER_GENETIC	1	// Modifiers with this flag will be copied to mobs who get cloned.
 
 // Bodyparts and organs.
-#define O_MOUTH    "mouth"
 #define O_EYES     "eyes"
 #define O_HEART    "heart"
-#define O_CELL     "cell"
 #define O_LUNGS    "lungs"
 #define O_BRAIN    "brain"
 #define O_LIVER    "liver"
 #define O_KIDNEYS  "kidneys"
 #define O_APPENDIX "appendix"
+#define O_VOICE    "voicebox"
+#define O_STANDARD list(O_EYES, O_HEART, O_LUNGS, O_BRAIN, O_LIVER, O_KIDNEYS, O_APPENDIX, O_VOICE)
+
+// Non-Standard organs
+#define O_MOUTH    "mouth"
+#define O_CELL     "cell"
 #define O_PLASMA   "plasma vessel"
 #define O_HIVE     "hive node"
 #define O_NUTRIENT "nutrient vessel"
@@ -188,7 +192,9 @@
 #define O_ACID     "acid gland"
 #define O_EGG      "egg sac"
 #define O_RESIN    "resin spinner"
+#define O_ALL list(O_STANDARD, O_MOUTH, O_CELL, O_PLASMA, O_HIVE, O_NUTRIENT, O_STRATA, O_RESPONSE, O_GBLADDER, O_POLYP, O_ANCHOR, O_ACID, O_EGG, O_RESIN)
 
+// External organs, aka limbs
 #define BP_L_FOOT "l_foot"
 #define BP_R_FOOT "r_foot"
 #define BP_L_LEG  "l_leg"

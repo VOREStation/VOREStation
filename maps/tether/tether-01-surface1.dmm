@@ -1802,9 +1802,9 @@
 /area/tether/surfacebase/mining_main/storage)
 "adU" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe/hammer,
-/obj/item/weapon/wrench,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
 /obj/item/weapon/shovel,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -1815,8 +1815,8 @@
 "adV" = (
 /obj/structure/table/rack,
 /obj/item/weapon/pickaxe,
-/obj/item/weapon/wrench,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
 /obj/item/weapon/shovel,
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloor,
@@ -6079,7 +6079,7 @@
 "aoO" = (
 /obj/item/weapon/storage/excavation,
 /obj/item/weapon/pickaxe,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/item/device/measuring_tape,
 /obj/item/stack/flag/yellow,
 /obj/structure/table/steel,
@@ -6089,7 +6089,7 @@
 "aoP" = (
 /obj/item/weapon/storage/excavation,
 /obj/item/weapon/pickaxe,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/item/device/measuring_tape,
 /obj/item/stack/flag/yellow,
 /obj/structure/table/steel,
@@ -12948,11 +12948,11 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
-/obj/item/weapon/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red,
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
 /obj/item/device/radio/off,
@@ -14098,7 +14098,7 @@
 "aHw" = (
 /obj/structure/table/rack,
 /obj/item/bodybag/cryobag,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -17539,7 +17539,7 @@
 	pixel_x = -6;
 	pixel_y = 2
 	},
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled,
 /area/rnd/anomaly_lab)
 "bdZ" = (
@@ -17570,7 +17570,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /turf/simulated/floor/tiled,
 /area/rnd/anomaly_lab)
 "bee" = (
@@ -27791,6 +27791,14 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"kCO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_3/holo)
 "kOB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -28023,6 +28031,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"oUC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_1/holo)
 "piN" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -28082,6 +28098,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"qBH" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_7/holo)
 "qGm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28475,6 +28499,14 @@
 /obj/random/maintenance/research,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
+"wUS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_5/holo)
 "wYi" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
@@ -41690,19 +41722,19 @@ aCI
 aCI
 cgS
 cgY
-cgY
+qBH
 cgY
 cgS
 chL
-chL
+wUS
 chL
 chM
 ciz
-ciz
+kCO
 ciz
 ciA
 cjl
-cjl
+oUC
 cjl
 cjm
 aah

@@ -33,6 +33,15 @@
 	var/can_build_nodes = TRUE			// Ditto, for nodes.
 
 	var/spore_type = /mob/living/simple_animal/hostile/blob/spore
+	var/ranged_spores = FALSE			// For proper spores of the type above.
+	var/spore_firesound = 'sound/effects/slime_squish.ogg'
+	var/spore_range = 7					// The range the spore can fire.
+	var/spore_projectile = /obj/item/projectile/energy/blob
+
+	var/factory_type = /obj/structure/blob/factory
+	var/resource_type = /obj/structure/blob/resource
+	var/node_type = /obj/structure/blob/node
+	var/shield_type = /obj/structure/blob/shield
 
 // Called when a blob receives damage.  This needs to return the final damage or blobs will be immortal.
 /datum/blob_type/proc/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
@@ -82,13 +91,49 @@
 	slow_spread_with_size = FALSE
 	ai_aggressiveness = 80
 	can_build_resources = TRUE
-	attack_message = "The tide tries to shallow you"
+	attack_message = "The tide tries to swallow you"
 	attack_message_living = ", and you feel your skin dissolve"
 	attack_message_synth = ", and your external plating dissolves"
 
 /datum/blob_type/grey_goo/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(20 / severity))
 
+// Slow, tanky blobtype which uses not spores, but hivebots, as its soldiers.
+/datum/blob_type/fabrication_swarm
+	name = "iron tide"
+	desc = "A swarm of self replicating construction nanites. Incredibly illegal, but only mildly dangerous."
+	effect_desc = "Slow-spreading, but incredibly resiliant. It has a chance to harden itself against attacks automatically for no resource cost, and uses cheaply-constructed hivebots as soldiers."
+	ai_desc = "defensive"
+	difficulty = BLOB_DIFFICULTY_MEDIUM // Emitters are okay, EMP is great.
+	color = "#666666"
+	complementary_color = "#B7410E"
+	spread_modifier = 0.2
+	can_build_factories = TRUE
+	can_build_resources = TRUE
+	attack_message = "The tide tries to shove you away"
+	attack_message_living = ", and your skin itches"
+	attack_message_synth = ", and your external plating dulls"
+	attack_verb = "shoves"
+	armor_pen = 40
+	damage_lower = 10
+	damage_upper = 25
+	brute_multiplier = 0.25
+	burn_multiplier = 0.6
+	ai_aggressiveness = 50 //Really doesn't like you near it.
+	spore_type = /mob/living/simple_animal/hostile/hivebot/swarm
+
+/datum/blob_type/fabrication_swarm/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+	if(istype(B, /obj/structure/blob/normal))
+		if(damage > 0)
+			var/reinforce_probability = min(damage, 70)
+			if(prob(reinforce_probability))
+				B.visible_message("<span class='danger'>The [name] quakes, before rapidly hardening!</span>")
+				new/obj/structure/blob/shield(get_turf(B), B.overmind)
+				qdel(B)
+	return ..()
+
+/datum/blob_type/fabrication_swarm/on_emp(obj/structure/blob/B, severity)
+	B.adjust_integrity(-(30 / severity))
 
 // A blob meant to be fought like a fire.
 /datum/blob_type/blazing_oil
@@ -218,17 +263,23 @@
 /datum/blob_type/fulminant_organism/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
 	if(prob(10)) // 10% chance to make a weak spore when expanding.
 		var/mob/living/simple_animal/hostile/blob/S = new spore_type(T)
-		S.overmind = O
+		if(istype(S))
+			S.overmind = O
+			O.blob_mobs.Add(S)
+		else
+			S.faction = "blob"
 		S.update_icons()
-		O.blob_mobs.Add(S)
 
 /datum/blob_type/fulminant_organism/on_death(obj/structure/blob/B)
 	if(prob(33)) // 33% chance to make a spore when dying.
 		var/mob/living/simple_animal/hostile/blob/S = new spore_type(get_turf(B))
-		B.visible_message("<span class='danger'>A spore floats free from the [name]!</span>")
-		S.overmind = B.overmind
+		B.visible_message("<span class='danger'>\The [S] floats free from the [name]!</span>")
+		if(istype(S))
+			S.overmind = B.overmind
+			B.overmind.blob_mobs.Add(S)
+		else
+			S.faction = "blob"
 		S.update_icons()
-		B.overmind.blob_mobs.Add(S)
 
 
 // Auto-retaliates against melee attacks.  Weak to projectiles.
@@ -543,3 +594,51 @@
 
 /datum/blob_type/radioactive_ooze/on_pulse(var/obj/structure/blob/B)
 	radiation_repository.radiate(B, 200)
+
+/datum/blob_type/volatile_alluvium
+	name = "volatile alluvium"
+	desc = "A churning, earthy mass that moves in waves."
+	ai_desc = "earthen"
+	effect_desc = "Moves slowly, producing weak ranged spores to defend itself, and inflicts brute attacks. Attempts to disarm nearby attackers. Weak to water."
+	difficulty = BLOB_DIFFICULTY_HARD //Slow-starting, but can be overwhelming if left alone.
+	color = "#6B481E"
+	complementary_color = "#7F471F"
+	damage_lower = 10
+	damage_upper = 20
+	armor_pen = 40
+	brute_multiplier = 0.7
+	burn_multiplier = 0.5
+	spread_modifier = 0.5
+	ai_aggressiveness = 50
+	attack_message = "The alluvium crashes against you"
+	attack_verb = "crashes against"
+	can_build_factories = TRUE
+	can_build_resources = TRUE
+	spore_type = /mob/living/simple_animal/hostile/blob/spore/weak
+	ranged_spores = TRUE
+	spore_range = 3
+	spore_projectile = /obj/item/projectile/energy/blob/splattering
+	factory_type = /obj/structure/blob/factory/sluggish
+	resource_type = /obj/structure/blob/resource/sluggish
+
+/datum/blob_type/volatile_alluvium/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+	if(damage > 0 && attacker && get_dist(B, attacker) <= 2 && prob(min(damage, 70)) && istype(attacker, /mob/living/carbon/human)) // Melee weapons of any type carried by a human will have a high chance of being stolen.
+		var/mob/living/carbon/human/H = attacker
+		var/obj/item/I = H.get_active_hand()
+		H.drop_item()
+		if(I)
+			if((I.sharp || I.edge) && !istype(I, /obj/item/weapon/gun))
+				I.forceMove(get_turf(B)) // Disarmed entirely.
+				B.visible_message("<span class='danger'>The [name] heaves, \the [attacker]'s weapon becoming stuck in the churning mass!</span>")
+			else
+				I.throw_at(B, 2, 4) // Just yoinked.
+				B.visible_message("<span class='danger'>The [name] heaves, pulling \the [attacker]'s weapon from their hands!</span>")
+		B.blob_attack_animation(attacker, B.overmind)
+	return ..()
+
+/datum/blob_type/volatile_alluvium/on_water(obj/structure/blob/B, amount)
+	spawn(1)
+		var/damage = amount * 2
+		B.adjust_integrity(-(damage))
+		if(B && prob(damage))
+			B.visible_message("<span class='danger'>The [name] begins to crumble!</span>")

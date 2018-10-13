@@ -79,7 +79,9 @@
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those without explicit exceptions apply to antagonists.</b>"
 
-	var/can_use_aooc = TRUE                // If true, will be given the AOOC verb, along with the ability to use it.
+//	var/can_use_aooc = TRUE                // If true, will be given the AOOC verb, along with the ability to use it.
+	var/can_hear_aooc = TRUE		// If FALSE, the antag can neither speak nor hear AOOC. If TRUE, they can at least hear it.
+	var/can_speak_aooc = TRUE		// If TRUE, the antag can freely spean in AOOC.
 
 /datum/antagonist/New()
 	..()

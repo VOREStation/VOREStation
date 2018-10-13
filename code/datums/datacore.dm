@@ -84,10 +84,8 @@
 
 	for(var/mob/living/silicon/robot/robot in mob_list)
 		// No combat/syndicate cyborgs, no drones.
-		if(robot.module && robot.module.hide_on_manifest)
-			continue
-
-		bot[robot.name] = "[robot.modtype] [robot.braintype]"
+		if(!robot.scrambledcodes && !(robot.module && robot.module.hide_on_manifest))
+			bot[robot.name] = "[robot.modtype] [robot.braintype]"
 
 
 	if(heads.len > 0)

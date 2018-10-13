@@ -1497,12 +1497,12 @@
 /area/centcom/specops)
 "cr" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/device/radio/off,
 /obj/item/device/radio/off,
 /obj/item/device/radio/off,
@@ -1923,12 +1923,12 @@
 /area/centcom/specops)
 "cZ" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wrench,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wrench,
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -2911,7 +2911,7 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/weapon/storage/belt/utility,
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
@@ -4696,7 +4696,7 @@
 	},
 /area/tdome/tdome1)
 "iC" = (
-/obj/machinery/computer/ordercomp{
+/obj/machinery/computer/supplycomp{
 	dir = 4
 	},
 /turf/unsimulated/floor/steel,
@@ -6893,7 +6893,7 @@
 	pixel_x = 7;
 	pixel_y = 1
 	},
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -7693,13 +7693,25 @@
 	dir = 1
 	},
 /obj/machinery/camera/network/crescent,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
 /area/centcom/medical)
 "nW" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = 3;
+	pixel_y = 5
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -7712,10 +7724,8 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 1
 	},
-/turf/unsimulated/floor/steel{
-	icon_state = "white"
-	},
-/area/centcom/medical)
+/turf/simulated/floor/tiled/white,
+/area/space)
 "nX" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -7802,7 +7812,7 @@
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
 	},
-/obj/machinery/clonepod/transhuman,
+/obj/machinery/clonepod/transhuman/full,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -8197,12 +8207,12 @@
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
 	pixel_y = 26

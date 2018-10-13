@@ -1,5 +1,5 @@
 
-/datum/supply_packs/misc/beltminer
+/datum/supply_pack/misc/beltminer
 	name = "Belt-miner gear crate"
 	contains = list(
 			/obj/item/weapon/gun/energy/particle = 2,
@@ -13,7 +13,7 @@
 	containername = "Belt-miner gear crate"
 	access = access_mining
 
-/datum/supply_packs/misc/eva_rig
+/datum/supply_pack/misc/eva_rig
 	name = "eva hardsuit (empty)"
 	contains = list(
 			/obj/item/weapon/rig/eva = 1
@@ -23,7 +23,7 @@
 	containername = "eva hardsuit crate"
 	access = access_mining
 
-/datum/supply_packs/misc/mining_rig
+/datum/supply_pack/misc/mining_rig
 	name = "industrial hardsuit (empty)"
 	contains = list(
 			/obj/item/weapon/rig/industrial = 1

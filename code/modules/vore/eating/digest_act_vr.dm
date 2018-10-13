@@ -4,38 +4,59 @@
 
 // Ye default implementation.
 /obj/item/proc/digest_act(var/atom/movable/item_storage = null)
-	for(var/obj/item/O in contents)
-		if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
-			for(var/obj/item/SO in O)
-				if(item_storage)
-					SO.forceMove(item_storage)
-				qdel(O)
-		else if(item_storage)
-			O.forceMove(item_storage)
-
-	qdel(src)
-	return w_class
+	if(istype(item_storage,/obj/item/device/dogborg/sleeper))
+		for(var/obj/item/O in contents)
+			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
+				for(var/obj/item/SO in O)
+					if(item_storage)
+						SO.forceMove(item_storage)
+					qdel(O)
+			else if(item_storage)
+				O.forceMove(item_storage)
+		qdel(src)
+		return w_class
+	var/g_damage = 1
+	if(digest_stage == null)
+		digest_stage = w_class
+	if(isbelly(item_storage))
+		var/obj/belly/B = item_storage
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
+	if(digest_stage > 0)
+		if(g_damage > digest_stage)
+			g_damage = digest_stage
+		digest_stage -= g_damage
+	else
+		for(var/obj/item/O in contents)
+			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
+				for(var/obj/item/SO in O)
+					if(item_storage)
+						SO.forceMove(item_storage)
+					qdel(O)
+			else if(item_storage)
+				O.forceMove(item_storage)
+		qdel(src)
+	return g_damage
 
 /////////////
 // Some indigestible stuff
 /////////////
-/obj/item/weapon/hand_tele/digest_act(...)
+/obj/item/weapon/hand_tele/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/weapon/card/id/gold/captain/spare/digest_act(...)
+/obj/item/weapon/card/id/gold/captain/spare/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/device/aicard/digest_act(...)
+/obj/item/device/aicard/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/device/paicard/digest_act(...)
+/obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/weapon/gun/digest_act(...)
+/obj/item/weapon/gun/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/weapon/pinpointer/digest_act(...)
+/obj/item/weapon/pinpointer/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/blueprints/digest_act(...)
+/obj/item/blueprints/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/weapon/disk/nuclear/digest_act(...)
+/obj/item/weapon/disk/nuclear/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/device/perfect_tele_beacon/digest_act(...)
+/obj/item/device/perfect_tele_beacon/digest_act(var/atom/movable/item_storage = null)
 	return FALSE //Sorta important to not digest your own beacons.
 
 /////////////
@@ -91,3 +112,7 @@
 /obj/item/device/mmi/digital/posibrain/digest_act(var/atom/movable/item_storage = null)
 	//Replace this with a VORE setting so all types of posibrains can/can't be digested on a whim
 	return FALSE
+
+// Gradual damage measurement
+/obj/item
+	var/digest_stage = null

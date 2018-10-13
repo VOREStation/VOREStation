@@ -17,7 +17,7 @@
 	if(!T.is_plating())
 		return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		usr << "<font color='blue'>These cables are too tough to be cut with those [W.name].</font>"
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))

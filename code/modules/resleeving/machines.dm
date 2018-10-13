@@ -538,14 +538,8 @@
 
 	//Give them a backup implant
 	var/obj/item/weapon/implant/backup/new_imp = new()
-	if(new_imp.implanted(occupant))
-		new_imp.loc = occupant
-		new_imp.imp_in = occupant
-		new_imp.implanted = 1
-		//Put it in the head! Makes sense.
-		var/obj/item/organ/external/affected = occupant.get_organ(BP_HEAD)
-		affected.implants += new_imp
-		new_imp.part = affected
+	if(new_imp.handle_implant(occupant, BP_HEAD))
+		new_imp.post_implant(occupant)
 
 	//Inform them and make them a little dizzy.
 	if(confuse_amount + blur_amount <= 16)

@@ -138,7 +138,7 @@
 	return ..()
 
 /mob/living/simple_animal/shadekin/Destroy()
-	qdel_null_list(shadekin_abilities)
+	QDEL_NULL_LIST(shadekin_abilities)
 	. = ..()
 
 /mob/living/simple_animal/shadekin/init_vore()
@@ -161,7 +161,7 @@
 	// TODO - Customizable per mob
 	B.emote_lists[DM_HOLD] = list(
 		"The walls gently squeeze against you. The wet sounds of shifting flesh against your form fill the air.",
-		"The hot, humid air rushes around you for a moment as the creature urps. The walls clench in around you for a moment, before relaxxing again.",
+		"The hot, humid air rushes around you for a moment as the creature urps. The walls clench in around you for a moment, before relaxing again.",
 		"Your body is soaked in the fluids that cling to the churning walls. They squeeze across your form gently, conforming to your shape.",
 		"You can feel the world around you shift and sway as the creature moves! The flesh is stretchy, doughy. You can sink into it a little ways before it bounces back, curling you into a small shape."
 		)
@@ -200,7 +200,7 @@
 	. = ..()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		density = FALSE
-	
+
 	//Convert spare nutrition into energy at a certain ratio
 	if(. && nutrition > initial(nutrition) && energy < 100)
 		nutrition = max(0, nutrition-5)
@@ -208,7 +208,7 @@
 
 /mob/living/simple_animal/shadekin/update_icon()
 	. = ..()
-	
+
 	cut_overlay(tailimage)
 
 	tailimage.icon_state = icon_state
@@ -241,7 +241,7 @@
 	if(specific_targets && isliving(A)) //Healing!
 		var/mob/living/L = A
 		var/health_percent = (L.health/L.maxHealth)*100
-		if(health_percent <= 50)
+		if(health_percent <= 50 && will_eat(A))
 			return A
 	. = ..()
 

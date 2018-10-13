@@ -122,7 +122,7 @@ var/global/repository/radiation/radiation_repository = new()
 
 /turf/simulated/wall/calc_rad_resistance()
 	radiation_repository.resistance_cache[src] = (length(contents) + 1)
-	cached_rad_resistance = (density ? material.weight : 0)
+	cached_rad_resistance = (density ? material.weight + material.radiation_resistance : 0)
 
 /obj
 	var/rad_resistance = 0  // Allow overriding rad resistance

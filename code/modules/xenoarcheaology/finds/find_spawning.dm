@@ -146,11 +146,11 @@
 		if(13)
 			item_type = "tool"
 			if(prob(25))
-				new_item = new /obj/item/weapon/wrench(src.loc)
+				new_item = new /obj/item/weapon/tool/wrench(src.loc)
 			else if(prob(25))
-				new_item = new /obj/item/weapon/crowbar(src.loc)
+				new_item = new /obj/item/weapon/tool/crowbar(src.loc)
 			else
-				new_item = new /obj/item/weapon/screwdriver(src.loc)
+				new_item = new /obj/item/weapon/tool/screwdriver(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
 			"You wonder what it was used for",\
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains on it")]."
@@ -417,11 +417,11 @@
 			var/list/alien_stuff = list(
 				/obj/item/device/multitool/alien,
 				/obj/item/stack/cable_coil/alien,
-				/obj/item/weapon/crowbar/alien,
-				/obj/item/weapon/screwdriver/alien,
+				/obj/item/weapon/tool/crowbar/alien,
+				/obj/item/weapon/tool/screwdriver/alien,
 				/obj/item/weapon/weldingtool/alien,
-				/obj/item/weapon/wirecutters/alien,
-				/obj/item/weapon/wrench/alien,
+				/obj/item/weapon/tool/wirecutters/alien,
+				/obj/item/weapon/tool/wrench/alien,
 				/obj/item/weapon/surgical/FixOVein/alien,
 				/obj/item/weapon/surgical/bone_clamp/alien,
 				/obj/item/weapon/surgical/cautery/alien,

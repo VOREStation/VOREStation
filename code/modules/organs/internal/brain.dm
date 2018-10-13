@@ -17,6 +17,21 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/clone_source = FALSE
 	var/mob/living/carbon/brain/brainmob = null
+	var/can_assist = TRUE
+
+/obj/item/organ/internal/brain/proc/can_assist()
+	return can_assist
+
+/obj/item/organ/internal/brain/proc/implant_assist(var/targ_icon_state = null)
+	name = "[owner.real_name]'s assisted [initial(name)]"
+	if(targ_icon_state)
+		icon_state = targ_icon_state
+		if(dead_icon)
+			dead_icon = "[targ_icon_state]_dead"
+	else
+		icon_state = "[initial(icon_state)]_assisted"
+	if(dead_icon)
+		dead_icon = "[initial(dead_icon)]_assisted"
 
 /obj/item/organ/internal/brain/robotize()
 	replace_self_with(/obj/item/organ/internal/mmi_holder/posibrain)
@@ -55,7 +70,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			brainmob.client.screen.len = null //clear the hud
 
 /obj/item/organ/internal/brain/Destroy()
-	qdel_null(brainmob)
+	QDEL_NULL(brainmob)
 	. = ..()
 
 /obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
@@ -115,7 +130,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			target.key = brainmob.key
 	..()
 
-/obj/item/organ/internal/pariah_brain
+/obj/item/organ/internal/brain/pariah_brain
 	name = "brain remnants"
 	desc = "Did someone tread on this? It looks useless for cloning or cyborgification."
 	organ_tag = "brain"
@@ -123,18 +138,20 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
 	vital = 1
+	can_assist = FALSE
 
 /obj/item/organ/internal/brain/xeno
 	name = "thinkpan"
 	desc = "It looks kind of like an enormous wad of purple bubblegum."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
+	can_assist = FALSE
 
 /obj/item/organ/internal/brain/slime
+	icon = 'icons/obj/surgery_vr.dmi' // Vorestation edit
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
-	icon = 'icons/mob/slimes.dmi'
-	icon_state = "green slime extract"
+	icon_state = "core"
 	parent_organ = BP_TORSO
 	clone_source = TRUE
 	flags = OPENCONTAINER
@@ -145,6 +162,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/slime/New()
 	..()
 	create_reagents(50)
+	var/mob/living/carbon/human/H = null
+	spawn(15) //Match the core to the Promethean's starting color.
+		if(ishuman(owner))
+			H = owner
+			color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
 
 /obj/item/organ/internal/brain/slime/proc/reviveBody()
 	var/datum/dna2/record/R = new /datum/dna2/record()
@@ -239,6 +261,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	desc = "A tightly furled roll of paper, covered with indecipherable runes."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
+	can_assist = FALSE
 
 /obj/item/organ/internal/brain/grey
 	desc = "A piece of juicy meat found in a person's head. This one is strange."

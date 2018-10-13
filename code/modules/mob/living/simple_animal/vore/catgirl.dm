@@ -16,15 +16,20 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 
+	response_help = "pets the"
+	response_disarm = "gently baps the"
+	response_harm = "hits the"
+
 	speak_chance = 2
 	speak = list("Meow!","Esp!","Purr!","HSSSSS","Mew?","Nya~")
 	speak_emote = list("purrs","meows")
 	emote_hear = list("meows","mews")
-	emote_see = list("shakes her head","shivers")
-	attacktext = list("swatted")
+	emote_see = list("shakes her head","shivers","stretches","grooms herself")
+	attacktext = list("swatted","bapped")
 
 	var/random_skin = 1
 	var/list/skins = list(
+		"catgirl",
 		"catgirlnude",
 		"catgirlbikini",
 		"catgirlrednude",

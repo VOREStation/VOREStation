@@ -72,7 +72,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed
 
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(I.is_screwdriver())
 		open = !open
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
@@ -83,12 +83,12 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 		if(open)
 			if(allowed(user))
 				locked = !locked
-				user << "Controls are now [locked ? "locked." : "unlocked."]"
+				to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
 			else
-				user << "<span class='warning'>Access denied.</span>"
+				to_chat(user, "<span class='warning'>Access denied.</span>")
 			updateDialog()
 		else
-			user << "You must open the cover first!"
+			to_chat(user, "You must open the cover first!")
 	return
 
 /obj/machinery/navbeacon/attack_ai(var/mob/user)
@@ -107,7 +107,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 		return		// prevent intraction when T-scanner revealed
 
 	if(!open && !ai)	// can't alter controls if not open, unless you're an AI
-		user << "The beacon's control cover is closed."
+		to_chat(user, "The beacon's control cover is closed.")
 		return
 
 

@@ -39,6 +39,8 @@
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 
+	showvoreprefs = 0 //VOREStation Edit - Hides mechanical vore prefs for mimics. You can't see their gaping maws when they're just sitting idle.
+
 /mob/living/simple_animal/hostile/mimic/set_target()
 	. = ..()
 	if(.)
@@ -48,8 +50,9 @@
 	..()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/mimic/MouseEntered(location, control, params)
-	return // Do not call parent: Mimics shouldn't have tooltips!
+/mob/living/simple_animal/hostile/mimic/will_show_tooltip()
+	return FALSE
+
 
 //
 // Crate Mimic

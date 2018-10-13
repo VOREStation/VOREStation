@@ -63,6 +63,8 @@ var/global/datum/global_init/init = new ()
 	// if(config && config.log_runtime)
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
+	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+
 	callHook("startup")
 	//Emergency Fix
 	load_mods()
@@ -171,7 +173,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 			s["players"] = players.len
 			s["playerlist"] = list2params(players)
-			s["admins"] = admins.len
+			var/list/adm = get_admin_counts()
+			var/list/presentmins = adm["present"]
+			var/list/afkmins = adm["afk"]
+			s["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
 			s["adminlist"] = list2params(admins)
 		else
 			var/n = 0

@@ -24,7 +24,7 @@ var/datum/antagonist/trader/traders
 	initial_spawn_req = 5
 	initial_spawn_target = 7
 
-	can_use_aooc = FALSE // They're not real antags.
+	can_speak_aooc = FALSE // They're not real antags.
 
 /datum/antagonist/trader/create_default(var/mob/source)
 	var/mob/living/carbon/human/M = ..()

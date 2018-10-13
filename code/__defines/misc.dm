@@ -4,7 +4,7 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-// Invisibility constants.
+// Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
 #define INVISIBILITY_LEVEL_TWO            45
@@ -20,6 +20,9 @@
 
 #define SEE_INVISIBLE_MINIMUM 5
 #define INVISIBILITY_MAXIMUM 100
+
+// Pseudo-Invis, like Ninja, Ling, Etc.
+#define EFFECTIVE_INVIS					  50		// Below this, can't be examined, may as well be invisible to the game
 
 // For the client FPS pref and anywhere else
 #define MAX_CLIENT_FPS	200
@@ -146,6 +149,7 @@
 #define MAT_GLASS			"glass"
 #define MAT_SILVER			"silver"
 #define MAT_GOLD			"gold"
+#define MAT_URANIUM			"uranium" //Did it
 #define MAT_TITANIUM		"titanium"
 #define MAT_PHORON			"phoron"
 #define MAT_DIAMOND			"diamond"
@@ -279,3 +283,9 @@ var/global/list/##LIST_NAME = list();\
 #define MATRIX_Achromatomaly 	list(0.62,	0.32, 	0.06, 	0.16, 	0.78, 	0.06, 	0.16, 	0.32, 	0.52)
 #define MATRIX_Vulp_Colorblind 	list(0.50,	0.40,	0.10,	0.50,	0.40,	0.10,	0,		0.20,	0.80)
 #define MATRIX_Taj_Colorblind 	list(0.40,	0.20,	0.40,	0.40,	0.60,	0,		0.20,	0.20,	0.60)
+
+// Tool substitution defines
+#define IS_SCREWDRIVER		"screwdriver"
+#define IS_CROWBAR			"crowbar"
+#define IS_WIRECUTTER		"wirecutter"
+#define IS_WRENCH			"wrench"

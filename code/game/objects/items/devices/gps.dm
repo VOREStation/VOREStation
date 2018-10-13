@@ -68,6 +68,55 @@ var/list/GPS_list = list()
 /obj/item/device/gps/attack_self(mob/user)
 	display(user)
 
+ // Compiles all the data not available directly from the GPS
+ // Like the positions and directions to all other GPS units
+/obj/item/device/gps/proc/display_list()
+	var/list/dat = list()
+
+	var/turf/curr = get_turf(src)
+	var/area/my_area = get_area(src)
+
+	dat["my_area_name"] = my_area.name
+	dat["curr_x"] = curr.x
+	dat["curr_y"] = curr.y
+	dat["curr_z"] = curr.z
+	dat["curr_z_name"] = using_map.get_zlevel_name(curr.z)
+	dat["gps_list"] = list()
+	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
+
+	for(var/obj/item/device/gps/G in GPS_list - src)
+		if(!G.tracking || G.emped || G.hide_signal)
+			continue
+
+		var/turf/T = get_turf(G)
+		if(local_mode && curr.z != T.z)
+			continue
+		if(!(T.z in dat["z_level_detection"]))
+			continue
+
+		var/gps_data[0]
+		gps_data["ref"] = G
+		gps_data["gps_tag"] = G.gps_tag
+
+		var/area/A = get_area(G)
+		gps_data["area_name"] = A.name
+		if(istype(A, /area/submap))
+			gps_data["area_name"] = "Unknown Area" // Avoid spoilers.
+
+		gps_data["z_name"] = using_map.get_zlevel_name(T.z)
+		gps_data["direction"] = get_adir(curr, T)
+		gps_data["degrees"] = round(Get_Angle(curr,T))
+		gps_data["distX"] = T.x - curr.x
+		gps_data["distY"] = T.y - curr.y
+		gps_data["distance"] = get_dist(curr, T)
+		gps_data["local"] = (curr.z == T.z)
+		gps_data["x"] = T.x
+		gps_data["y"] = T.y
+
+		dat["gps_list"][++dat["gps_list"].len] = gps_data
+
+	return dat
+
 /obj/item/device/gps/proc/display(mob/user)
 	if(!tracking)
 		to_chat(user, "The device is off. Alt-click it to turn it on.")
@@ -77,48 +126,20 @@ var/list/GPS_list = list()
 		return
 
 	var/list/dat = list()
+	var/list/gps_data = display_list()
 
-	var/turf/curr = get_turf(src)
-	var/area/my_area = get_area(src)
-	dat += "Current location: [my_area.name] <b>([curr.x], [curr.y], [using_map.get_zlevel_name(curr.z)])</b>"
+	dat += "Current location: [gps_data["my_area_name"]] <b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b>"
 	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='?src=\ref[src];tag=1'>\[Change Tag\]</a> \
 	<a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
 	[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
 
-	var/list/signals = list()
-
-	for(var/gps in GPS_list)
-		var/obj/item/device/gps/G = gps
-		if(G.emped || !G.tracking || G.hide_signal || G == src) // Their GPS isn't on or functional.
-			continue
-		var/turf/T = get_turf(G)
-		var/z_level_detection = using_map.get_map_levels(curr.z, long_range)
-
-		if(local_mode && T.z != curr.z) // Only care about the current z-level.
-			continue
-		else if(!(T.z in z_level_detection)) // Too far away.
-			continue
-
-		var/area/their_area = get_area(G)
-		var/area_name = their_area.name
-		if(istype(their_area, /area/submap))
-			area_name = "Unknown Area" // Avoid spoilers.
-		var/Z_name = using_map.get_zlevel_name(T.z)
-		var/direction = get_adir(curr, T)
-		var/distX = T.x - curr.x
-		var/distY = T.y - curr.y
-		var/distance = get_dist(curr, T)
-		var/local = curr.z == T.z ? TRUE : FALSE
-
-		if(istype(gps, /obj/item/device/gps/internal/poi))
-			signals += "    [G.gps_tag]: [area_name] - [local ? "[direction] Dist: [round(distance, 10)]m" : "in \the [Z_name]"]"
-		else
-			signals += "    [G.gps_tag]: [area_name], ([T.x], [T.y]) - [local ? "[direction] Dist: [distX ? "[abs(round(distX, 1))]m [(distX > 0) ? "E" : "W"], " : ""][distY ? "[abs(round(distY, 1))]m [(distY > 0) ? "N" : "S"]" : ""]" : "in \the [Z_name]"]"
-
-	if(signals.len)
+	if(gps_data["gps_list"].len)
 		dat += "Detected signals;"
-		for(var/line in signals)
-			dat += line
+		for(var/gps in gps_data["gps_list"])
+			if(istype(gps_data["ref"], /obj/item/device/gps/internal/poi))
+				dat += "    [gps["gps_tag"]]: [gps["area_name"]] - [gps["local"] ? "[gps["direction"]] Dist: [round(gps["distance"], 10)]m" : "in \the [gps["z_name"]]"]"
+			else
+				dat += "    [gps["gps_tag"]]: [gps["area_name"]], ([gps["x"]], [gps["y"]]) - [gps["local"] ? "[gps["direction"]] Dist: [gps["distX"] ? "[abs(round(gps["distX"], 1))]m [(gps["distX"] > 0) ? "E" : "W"], " : ""][gps["distY"] ? "[abs(round(gps["distY"], 1))]m [(gps["distY"] > 0) ? "N" : "S"]" : ""]" : "in \the [gps["z_name"]]"]"
 	else
 		dat += "No other signals detected."
 
@@ -221,45 +242,17 @@ var/list/GPS_list = list()
 		return
 
 	var/list/dat = list()
+	var/list/gps_data = display_list()
 
-	var/turf/curr = get_turf(src)
-	var/area/my_area = get_area(src)
-	dat += "Current location: [my_area.name] <b>([curr.x], [curr.y], [using_map.get_zlevel_name(curr.z)])</b>"
+	dat += "Current location: [gps_data["my_area_name"]] <b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b>"
 	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='?src=\ref[src];tag=1'>\[Change Tag\]</a> \
 	<a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
 	[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
 
-	var/list/signals = list()
-
-	for(var/gps in GPS_list)
-		var/obj/item/device/gps/G = gps
-		if(G.emped || !G.tracking || G.hide_signal || G == src) // Their GPS isn't on or functional.
-			continue
-		var/turf/T = get_turf(G)
-		var/z_level_detection = using_map.get_map_levels(curr.z, long_range)
-
-		if(local_mode && T.z != curr.z) // Only care about the current z-level.
-			continue
-		else if(!(T.z in z_level_detection)) // Too far away.
-			continue
-
-		var/area/their_area = get_area(G)
-		var/area_name = their_area.name
-		if(istype(their_area, /area/submap))
-			area_name = "Unknown Area" // Avoid spoilers.
-		var/Z_name = using_map.get_zlevel_name(T.z)
-		var/coord = "[T.x], [T.y], [Z_name]"
-		var/degrees = round(Get_Angle(curr, T))
-		var/direction = get_adir(curr, T)
-		var/distance = get_dist(curr, T)
-		var/local = curr.z == T.z ? TRUE : FALSE
-
-		signals += "     [G.gps_tag]: [area_name] ([coord]) [local ? "Dist: [distance]m Dir: [degrees]° ([direction])":""]"
-
-	if(signals.len)
+	if(gps_data["gps_list"].len)
 		dat += "Detected signals;"
-		for(var/line in signals)
-			dat += line
+		for(var/gps in gps_data["gps_list"])
+			dat += "     [gps["gps_tag"]]: [gps["area_name"]] ([gps["x"]], [gps["y"]], [gps["z_name"]]) [gps["local"] ? "Dist: [gps["distance"]]m Dir: [gps["degrees"]]° ([gps["direction"]])" :""]"
 	else
 		dat += "No other signals detected."
 

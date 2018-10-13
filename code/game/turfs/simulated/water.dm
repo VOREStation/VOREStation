@@ -9,6 +9,8 @@
 	edge_blending_priority = -1
 	movement_cost = 4
 	outdoors = TRUE
+	can_dirty = FALSE	// It's water
+
 	var/depth = 1 // Higher numbers indicates deeper water.
 
 /turf/simulated/floor/water/initialize()
@@ -19,6 +21,7 @@
 	..() // To get the edges.
 	icon_state = water_state
 	var/image/floorbed_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = under_state)
+	underlays.Cut() // To clear the old underlay, so the list doesn't expand infinitely
 	underlays.Add(floorbed_sprite)
 	update_icon_edge()
 

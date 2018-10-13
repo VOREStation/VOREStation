@@ -5,3 +5,30 @@
 	robot_module_types += "Sci-borg"
 	robot_module_types += "Pupdozer"
 	return 1
+
+var/global/list/acceptable_fruit_types= list(
+											"ambrosia",
+											"apple",
+											"banana",
+											"berry",
+											"cabbage",
+											"carrot",
+											"cherry",
+											"chili",
+											"eggplant",
+											"grape",
+											"greengrapes",
+											"lemon",
+											"lime",
+											"onion",
+											"orange",
+											"peanut",
+											"potato",
+											"pumpkin",
+											"rice",
+											"soybean",
+											"sugarcane",
+											"tomato",
+											"watermelon",
+											"wheat",
+											"whitebeet")

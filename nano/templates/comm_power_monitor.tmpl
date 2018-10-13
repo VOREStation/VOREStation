@@ -1,0 +1,76 @@
+<h2>Powernet Monitoring</h2>
+
+{{if data.currentTab == 0}}
+
+	<!-- List powernets -->
+	
+	<div class="notice" style="height: 22px">
+		{{:helper.link('Scan For Sensors', 'refresh', {'cartridge_topic' : 1, 'powernet_refresh' : 1})}}   No active sensor. Printing sensor list.
+	</div>
+	<br>
+	<table>
+		{{for data.powernet_monitoring}}
+			<tr><td>
+				{{if value.alarm}}
+					{{:helper.link(value.name, 'alert', {'switch_tab' : value.name, 'powernet_target' : value.name})}}
+				{{else}}
+					{{:helper.link(value.name, '' , {'switch_tab' : value.name, 'cartridge_topic' : 1, 'powernet_target' : value.name})}}
+				{{/if}}
+			</td></tr>
+		{{empty}}
+			<b>WARNING: No Sensors Detected!</b>
+		{{/for}}
+	</table>
+{{else}}
+
+	<!-- Detailed info on one powernet -->
+
+	<div class="notice" style="height: 22px">
+		{{:helper.link('Show List', 'cancel', { 'switch_tab' : 0})}}   Sensor selected: {{:data.currentTab}} 
+	</div>
+	{{if data.powernet_target.error}}
+		{{:data.powernet_target.error}}
+	{{else}}
+		<!-- Powernet information -->
+		<h3>Network Information</h3>
+		{{for data.powernet_target.status :nodeValue:nodeIndex}}
+			<div class="item">
+				<div class="itemLabel">{{:nodeValue.field}}</div>
+				<div class="itemContent">{{:nodeValue.statval}}</div>
+			</div>
+		{{/for}}
+
+		<!-- APC information -->
+		<h3>Sensor Readings</h3>
+		<table>
+			<tr>
+				<th>APC Name</th>
+				<th>Equipment</th>
+				<th>Lighting</th>
+				<th>Environment</th>
+				<th>Cell Status</th>
+				<th>APC Load</th>
+			</tr>
+			{{for data.powernet_target.apc_data :apcValue:apcIndex}}
+				<tr>
+					<td>{{:apcValue.name}}</td>
+					<td>{{:apcValue.s_equipment}}</td>
+					<td>{{:apcValue.s_lighting}}</td>
+					<td>{{:apcValue.s_environment}}</td>
+					<td>
+						{{if apcValue.cell_status == "N"}}
+							{{:helper.link(apcValue.cell_charge + '%', 'batt_disc', null,'disabled', 'width75btn')}}
+						{{else apcValue.cell_status == "C"}}
+							{{:helper.link(apcValue.cell_charge + '%', 'batt_chrg', null,'disabled', 'width75btn')}}
+						{{else}}
+							{{:helper.link(apcValue.cell_charge + '%', 'batt_full', null,'disabled', 'width75btn')}}
+						{{/if}}
+					</td>
+					<td>{{:apcValue.total_load}}</td>
+				</tr>
+			{{empty}}
+				<tr><td>No APCs detected in connected powernet.</td></tr>
+			{{/for}}
+		</table>
+	{{/if}}
+{{/if}}

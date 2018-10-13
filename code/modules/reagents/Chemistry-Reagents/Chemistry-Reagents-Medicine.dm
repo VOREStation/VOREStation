@@ -316,10 +316,9 @@
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 		M.stuttering = min(50, max(0, M.stuttering + 5)) //If you can't feel yourself, and your main mode of speech is resonation, there's a problem.
-		M.add_chemical_effect(CE_SLOWDOWN, 1)
 	M.add_chemical_effect(CE_PAINKILLER, 200 * chem_effective)
+	M.add_chemical_effect(CE_SLOWDOWN, 1)
 	M.eye_blurry = min(M.eye_blurry + 10, 250 * chem_effective)
-	M.Confuse(5)
 
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -816,6 +815,7 @@
 	reagent_state = LIQUID
 	color = "#BF80BF"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 
@@ -838,6 +838,7 @@
 	reagent_state = LIQUID
 	color = "#FF80FF"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 
@@ -860,6 +861,7 @@
 	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 
@@ -886,6 +888,7 @@
 	reagent_state = LIQUID
 	color = "#e6efe3"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 

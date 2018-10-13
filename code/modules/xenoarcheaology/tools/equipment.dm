@@ -4,6 +4,7 @@
 	icon = 'icons/obj/clothing/spacesuits.dmi'
 	icon_state = "engspace_suit"
 	item_state = "engspace_suit"
+	update_icon_define = "icons/mob/spacesuit.dmi"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 100)
 
 /obj/item/clothing/head/bio_hood/anomaly

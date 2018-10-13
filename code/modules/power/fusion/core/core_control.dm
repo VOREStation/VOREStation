@@ -3,21 +3,20 @@
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "core_control"
 	light_color = COLOR_ORANGE
-
+	circuit = /obj/item/weapon/circuitboard/fusion_core_control
 	var/id_tag
 	var/scan_range = 25
 	var/list/connected_devices = list()
 	var/obj/machinery/power/fusion_core/cur_viewed_device
 
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
-	if(ismultitool(thing))
+	..()
+	if(thing.is_multitool()) //VOREStation Edit
 		var/new_ident = input("Enter a new ident tag.", "Core Control", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 			cur_viewed_device = null
 		return
-	else
-		return ..()
 
 /obj/machinery/computer/fusion_core_control/attack_ai(mob/user)
 	attack_hand(user)
@@ -27,6 +26,11 @@
 	interact(user)
 
 /obj/machinery/computer/fusion_core_control/interact(mob/user)
+
+	if(stat & (BROKEN|NOPOWER))
+		user.unset_machine()
+		user << browse(null, "window=fusion_control")
+		return
 
 	if(!cur_viewed_device || !check_core_status(cur_viewed_device))
 		cur_viewed_device = null
@@ -174,3 +178,19 @@
 	if(C.idle_power_usage > C.avail())
 		return
 	. = 1
+
+/obj/machinery/computer/fusion_core_control/update_icon()
+	if(stat & (BROKEN))
+		icon = 'icons/obj/computer.dmi'
+		icon_state = "broken"
+		set_light(0)
+
+	if(stat & (NOPOWER))
+		icon = 'icons/obj/computer.dmi'
+		icon_state = "computer"
+		set_light(0)
+
+	if(!stat & (BROKEN|NOPOWER))
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+		set_light(light_range_on, light_power_on)

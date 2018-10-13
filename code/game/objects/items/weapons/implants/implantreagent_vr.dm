@@ -30,7 +30,7 @@
 	update()
 	return
 
-/obj/item/weapon/implant/reagent_generator/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/reagent_generator/post_implant(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	assigned_proc = new assigned_proc(source, verb_name, verb_desc)
