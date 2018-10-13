@@ -2445,7 +2445,6 @@
 #include "code\modules\power\antimatter\shielding.dm"
 #include "code\modules\power\cells\device_cells.dm"
 #include "code\modules\power\cells\power_cells.dm"
-#include "code\modules\power\cells\power_cells_vr.dm"
 #include "code\modules\power\fusion\_setup.dm"
 #include "code\modules\power\fusion\fusion_circuits.dm"
 #include "code\modules\power\fusion\fusion_particle_catcher.dm"
