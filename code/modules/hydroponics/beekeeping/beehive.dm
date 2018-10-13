@@ -179,7 +179,7 @@
 		qdel(H)
 		spawn(50)
 			new /obj/item/honey_frame(loc)
-			new /obj/item/stack/wax(loc)
+			new /obj/item/stack/material/wax(loc)
 			honey += processing
 			processing = 0
 			icon_state = "centrifuge"
@@ -234,14 +234,14 @@
 		qdel(src)
 	return
 
-/obj/item/stack/wax
+/obj/item/stack/material/wax
 	name = "wax"
 	singular_name = "wax piece"
 	desc = "Soft substance produced by bees. Used to make candles."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "wax"
 
-/obj/item/stack/wax/New()
+/obj/item/stack/material/wax/New()
 	..()
 	recipes = wax_recipes
 
