@@ -14,7 +14,7 @@ var/global/list/ashtray_cache = list()
 	if(!material)
 		qdel(src)
 		return
-	max_butts = round(material.hardness/10) //This is arbitrary but whatever.
+	max_butts = round(material.hardness/5) //This is arbitrary but whatever.
 	src.pixel_y = rand(-5, 5)
 	src.pixel_x = rand(-6, 6)
 	update_icon()
