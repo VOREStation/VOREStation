@@ -56,4 +56,4 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		var/end_tick = world.time
 		if(end_tick - start_tick)
 			warning("Global [I] slept during initialization!")
-	QDEL_NULL(exclude_these)
+	//QDEL_NULL(exclude_these) //VOREStation Edit
