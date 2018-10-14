@@ -20,10 +20,13 @@
 		return
 	feed_grabbed_to_self(src,T)
 	
-	if(vore_animation)//This affects all bolt action and shotguns. 
-		flick("[icon_state]-eating", src)//This plays any pumping
+	if(vore_animation)
+		handle_vore_animation()
 	update_icon()
 	return
+
+/mob/living/simple_animal/proc/handle_vore_animation
+	flick("[icon_state]-eating", src)
 
 //
 // Simple proc for animals to have their digestion toggled on/off externally
