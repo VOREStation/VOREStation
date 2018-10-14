@@ -43,8 +43,8 @@
 
 		overlays += icon(src.icon, "door")
 
-		if(welded)
-			overlays += icon(src.icon,"welded")
+		if(sealed)
+			overlays += icon(src.icon,"sealed")
 
 		if(broken)
 			overlays += icon(src.icon,"broken")
