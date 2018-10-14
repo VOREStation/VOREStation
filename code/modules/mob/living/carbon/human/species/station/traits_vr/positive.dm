@@ -113,13 +113,13 @@
 /datum/trait/snowymarch //Oh my god those names are all awful.
 	name = "Snowy March"
 	desc = "Makes it easier to traverse snowy terrain."
-	cost = 2
+	cost = 1
 	var_changes = list("snow_movement" = -1)//Lower is less slowdown.
 
 /datum/trait/snowstride
 	name = "Snowy Stride"
 	desc = "It makes little difference to you whether the ground is snow or hard plating."
-	cost = 3
+	cost = 2
 	var_changes = list("snow_movement" = -2)//Lower is less slowdown.
 
 /datum/trait/puddlecrawl
