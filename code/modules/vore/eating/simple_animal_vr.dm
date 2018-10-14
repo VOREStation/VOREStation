@@ -19,13 +19,13 @@
 		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
 		return
 	feed_grabbed_to_self(src,T)
-	
+
 	if(vore_animation)
 		handle_vore_animation()
 	update_icon()
 	return
 
-/mob/living/simple_animal/proc/handle_vore_animation
+/mob/living/simple_animal/proc/handle_vore_animation()
 	flick("[icon_state]-eating", src)
 
 //

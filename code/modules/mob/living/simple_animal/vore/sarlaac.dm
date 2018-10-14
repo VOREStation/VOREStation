@@ -79,7 +79,7 @@
 	vore_digest_chance = 0			// Chance to switch to digest mode if resisted
 	vore_absorb_chance = 0
 	vore_pounce_chance = 0			// Testing.
-	vore_standing_too = 1
+	vore_standing_too = 0
 	vore_ignores_undigestable = 1	// If you come close to something that big you deserve it.
 
 //////////////////////////////////////////////////////////////////////////////
@@ -178,7 +178,7 @@
 
 	B1.human_prey_swallow_time = swallowTime
 	B1.nonhuman_prey_swallow_time = swallowTime
-	B1.vore_verb = "swallow"
+	B1.vore_verb = "drag inside of"
 	B1.emote_lists[DM_HOLD] = list( //Please change them they suck.
 		"The insides knead at you for a moment.",
 		"The guts glorp wetly around you as some air shifts.",
@@ -215,7 +215,7 @@
 
 	B2.human_prey_swallow_time = 10
 	B2.nonhuman_prey_swallow_time = 10
-	B2.vore_verb = "swallow"
+	B2.vore_verb = "squeeze"
 	B2.emote_lists[DM_DRAIN] = list( // We need more that aren't repetitive. I suck at endo. -Ace
 		"The insides knead at you for a moment.",
 		"The guts glorp wetly around you as some air shifts.",
