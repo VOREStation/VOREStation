@@ -160,7 +160,7 @@
 
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
-/mob/living/simple_animal/init_vore()
+/mob/living/simple_animal/hostile/testmob/init_vore()
 
 	var/obj/belly/B1 = new /obj/belly(src)
 	vore_selected = B1
