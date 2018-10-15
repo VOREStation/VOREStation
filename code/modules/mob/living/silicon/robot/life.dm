@@ -18,6 +18,7 @@
 
 	if(client)
 		handle_regular_hud_updates()
+		handle_vision()
 		update_items()
 	if (src.stat != DEAD) //still using power
 		use_power()
