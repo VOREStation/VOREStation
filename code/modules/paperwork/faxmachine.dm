@@ -78,6 +78,9 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	else if(href_list["remove"])
 		if(copyitem)
+			if(get_dist(usr, src) >= 2)
+				to_chat(usr, "\The [copyitem] is too far away for you to remove it.")
+				return
 			copyitem.loc = usr.loc
 			usr.put_in_hands(copyitem)
 			to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
