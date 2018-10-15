@@ -158,16 +158,16 @@
 	if(isliving(user))
 		//Vorestation edit start
 		var/message_holder	//Holds pervy message
+		var/message_holder2	//Hods the nutrition related message.
 		var/beat_size = ""	//Small prey = quiet
 		for(var/belly in M.vore_organs) //Pervy edit.
 			var/obj/belly/B = belly
 			for(var/mob/living/carbon/human/H in B)
 				if(H.size_multiplier < 0.5)
 					beat_size = pick("quiet ", "hushed " ,"low " ,"hushed ")
-				if(H.stat == DEAD)	//dead
-					message_holder = pick("Your listening is troubled by the occasional groaning of their body.", "There is some moderate burbling in the background.", "They seem to have a healthy metabolism as well.")
-				else //not dead
-					message_holder = pick("You can hear disparate heartbeats as well.", "You can hear a different [beat_size]heartbeat too.", "It sounds like there is more than one heartbeat." ,"You can pick up a [beat_size]heatbeat along with everything else.")
+				message_holder = pick("You can hear disparate heartbeats as well.", "You can hear a different [beat_size]heartbeat too.", "It sounds like there is more than one heartbeat." ,"You can pick up a [beat_size]heatbeat along with everything else.")
+		if(M.nutrition > 900)	//dead
+			message_holder2 = pick("Your listening is troubled by the occasional deep groan of their body.", "There is some moderate bubbling in the background.", "They seem to have a healthy metabolism as well.")
 		//Vorestation edit end
 
 		if(user.a_intent == I_HELP)
@@ -213,7 +213,7 @@
 								sound_strength = "hear a weak"
 								sound = "pulse"
 
-				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound]. [message_holder]") //Vorestation edit. ([message holder])
+				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound]. [message_holder][message_holder2]") //Vorestation edit. ([message holder] & [message_holder2])
 				return
 
 	return ..(M,user)
