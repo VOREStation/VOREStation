@@ -147,6 +147,11 @@
 			to_chat(user, "<span class='notice'>[src] is already empty!</span>")
 			return
 		to_chat(user, "<span class='notice'>You empty [src].</span>")
+		playsound(user.loc, "casing_sound", 50, 1)
+		spawn(7)
+			playsound(user.loc, "casing_sound", 50, 1)
+		spawn(10)
+			playsound(user.loc, "casing_sound", 50, 1)
 		for(var/obj/item/ammo_casing/C in stored_ammo)
 			C.loc = user.loc
 			C.set_dir(pick(cardinal))
