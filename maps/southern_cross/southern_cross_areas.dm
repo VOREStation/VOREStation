@@ -898,6 +898,14 @@
 	name = "\improper Research - Toxins Launch Room"
 	icon_state = "toxtest"
 
+/area/rnd/research/firstdeck/hallway
+	name = "\improper Research - First Deck Hallway"
+	icon_state = "research"
+
+/area/rnd/xenobiology/xenoflora_isolation
+	name = "\improper Xenoflora Isolation"
+	icon_state = "xeno_f_store"
+
 /area/quartermaster/lockerroom
 	name = "\improper Cargo Locker Room"
 	icon_state = "quart"
