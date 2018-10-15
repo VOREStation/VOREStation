@@ -266,6 +266,7 @@
 	if(..())
 		return species.can_fall(src)
 
+<<<<<<< HEAD
 /mob/living/simple_animal/parrot/can_fall() // Poly can fly.
 	return FALSE
 
@@ -275,6 +276,8 @@
 /mob/living/simple_animal/construct/can_fall() //As do Constructs.
 	return FALSE
 
+=======
+>>>>>>> a7c4ac2... Merge pull request #5672 from Neerti/more_ai
 // Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.
 /obj/proc/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(!isturf(mover.loc)) // VORESTATION EDIT. We clearly didn't have enough backup checks.

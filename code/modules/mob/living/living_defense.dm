@@ -324,7 +324,6 @@
 // End BS12 momentum-transfer code.
 
 /mob/living/attack_generic(var/mob/user, var/damage, var/attack_message)
-
 	if(!damage)
 		return
 
@@ -412,6 +411,18 @@
 /mob/living/proc/get_heat_protection()
 	return 0
 
+<<<<<<< HEAD
+=======
+/mob/living/proc/get_shock_protection()
+	return 0
+
+/mob/living/proc/get_water_protection()
+	return 1 // Water won't hurt most things.
+
+/mob/living/proc/get_poison_protection()
+	return 0
+
+>>>>>>> a7c4ac2... Merge pull request #5672 from Neerti/more_ai
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
 	if (fire_stacks <= 0)
