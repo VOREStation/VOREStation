@@ -32,7 +32,7 @@
 	var/can_build_resources = FALSE		// Ditto, for resource blobs.
 	var/can_build_nodes = TRUE			// Ditto, for nodes.
 
-	var/spore_type = /mob/living/simple_animal/hostile/blob/spore
+	var/spore_type = /mob/living/simple_mob/blob/spore
 	var/ranged_spores = FALSE			// For proper spores of the type above.
 	var/spore_firesound = 'sound/effects/slime_squish.ogg'
 	var/spore_range = 7					// The range the spore can fire.
@@ -227,9 +227,9 @@
 	burn_multiplier = 3
 	ai_aggressiveness = 40
 	can_build_factories = TRUE
-	spore_type = /mob/living/simple_animal/hostile/blob/spore/infesting
+	spore_type = /mob/living/simple_mob/blob/spore/infesting
 
-/datum/blob_type/fungal_bloom/on_spore_death(mob/living/simple_animal/hostile/blob/spore/S)
+/datum/blob_type/fungal_bloom/on_spore_death(mob/living/simple_mob/blob/spore/S)
 	if(S.is_infesting)
 		return // Don't make blobs if they were on someone's head.
 	var/turf/T = get_turf(S)
@@ -258,11 +258,11 @@
 	brute_multiplier = 1.5
 	ai_aggressiveness = 30 // The spores do most of the fighting.
 	can_build_factories = TRUE
-	spore_type = /mob/living/simple_animal/hostile/blob/spore/weak
+	spore_type = /mob/living/simple_mob/blob/spore/weak
 
 /datum/blob_type/fulminant_organism/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
 	if(prob(10)) // 10% chance to make a weak spore when expanding.
-		var/mob/living/simple_animal/hostile/blob/S = new spore_type(T)
+		var/mob/living/simple_mob/blob/spore/S = new spore_type(T)
 		if(istype(S))
 			S.overmind = O
 			O.blob_mobs.Add(S)
@@ -272,7 +272,7 @@
 
 /datum/blob_type/fulminant_organism/on_death(obj/structure/blob/B)
 	if(prob(33)) // 33% chance to make a spore when dying.
-		var/mob/living/simple_animal/hostile/blob/S = new spore_type(get_turf(B))
+		var/mob/living/simple_mob/blob/spore/S = new spore_type(get_turf(B))
 		B.visible_message("<span class='danger'>\The [S] floats free from the [name]!</span>")
 		if(istype(S))
 			S.overmind = B.overmind
@@ -614,7 +614,7 @@
 	attack_verb = "crashes against"
 	can_build_factories = TRUE
 	can_build_resources = TRUE
-	spore_type = /mob/living/simple_animal/hostile/blob/spore/weak
+	spore_type = /mob/living/simple_mob/blob/spore/weak
 	ranged_spores = TRUE
 	spore_range = 3
 	spore_projectile = /obj/item/projectile/energy/blob/splattering

@@ -25,6 +25,7 @@
 		"Goat"			=	/mob/living/simple_animal/retaliate/goat,
 		"Cat"			=	/mob/living/simple_animal/cat,
 		"Kitten"		=	/mob/living/simple_animal/cat/kitten,
+<<<<<<< HEAD
 		"Corgi"			=	/mob/living/simple_animal/corgi,
 		"Corgi Pup"		=	/mob/living/simple_animal/corgi/puppy,
 		"BAT"			=	/mob/living/simple_animal/hostile/scarybat,
@@ -34,6 +35,17 @@
 		"CARP"			=	/mob/living/simple_animal/hostile/carp,
 		"BEAR"			=	/mob/living/simple_animal/hostile/bear
 		) // Vorestation edits to add vore versions.
+=======
+		"Corgi"			=	/mob/living/simple_mob/animal/passive/dog/corgi,
+		"Corgi Pup"		=	/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+		"BAT"			=	/mob/living/simple_mob/animal/space/bats,
+		"SPIDER"		=	/mob/living/simple_mob/animal/giant_spider,
+		"SPIDER HUNTER"	=	/mob/living/simple_mob/animal/giant_spider/hunter,
+		"SPIDER NURSE"	=	/mob/living/simple_mob/animal/giant_spider/nurse,
+		"CARP"			=	/mob/living/simple_mob/animal/space/carp,
+		"BEAR"			=	/mob/living/simple_mob/animal/space/bear
+		)
+>>>>>>> a7c4ac2... Merge pull request #5672 from Neerti/more_ai
 	cooldown = 30
 	instability_cost = 10
 	energy_cost = 1000
