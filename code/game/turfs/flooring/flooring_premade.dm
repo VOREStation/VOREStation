@@ -298,7 +298,7 @@
 	initial_flooring = /decl/flooring/tiling/asteroidfloor
 
 /turf/simulated/floor/tiled/asteroid_steel/airless
-	name = "airless plating"
+	name = "plating"
 	oxygen = 0
 	nitrogen = 0
 
@@ -332,25 +332,25 @@
 	temperature = TCMB
 
 /turf/simulated/floor/airless
-	name = "airless plating"
+	name = "plating"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/tiled/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/bluegrid/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/greengrid/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
@@ -359,7 +359,7 @@
 	oxygen = 0
 
 /turf/simulated/floor/tiled/white/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB

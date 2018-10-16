@@ -353,3 +353,54 @@
 		to_chat(user, "<span class='notice'>You drill through the girder!</span>")
 		new /obj/effect/decal/remains/human(get_turf(src))
 		dismantle()
+
+
+/obj/structure/girder/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	var/turf/simulated/T = get_turf(src)
+	if(!istype(T) || T.density)
+		return FALSE
+
+	switch(passed_mode)
+		if(RCD_FLOORWALL)
+			// Finishing a wall costs two sheets.
+			var/cost = RCD_SHEETS_PER_MATTER_UNIT * 2
+			// Rwalls cost three to finish.
+			if(the_rcd.make_rwalls)
+				cost += RCD_SHEETS_PER_MATTER_UNIT * 1
+			return list(
+				RCD_VALUE_MODE = RCD_FLOORWALL,
+				RCD_VALUE_DELAY = 2 SECONDS,
+				RCD_VALUE_COST = cost
+			)
+		if(RCD_DECONSTRUCT)
+			return list(
+				RCD_VALUE_MODE = RCD_DECONSTRUCT,
+				RCD_VALUE_DELAY = 2 SECONDS,
+				RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 5
+			)
+	return FALSE
+
+/obj/structure/girder/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	var/turf/simulated/T = get_turf(src)
+	if(!istype(T) || T.density) // Should stop future bugs of people bringing girders to centcom and RCDing them, or somehow putting a girder on a durasteel wall and deconning it.
+		return FALSE
+
+	switch(passed_mode)
+		if(RCD_FLOORWALL)
+			to_chat(user, span("notice", "You finish a wall."))
+			// This is mostly the same as using on a floor. The girder's material is preserved, however.
+			T.ChangeTurf(/turf/simulated/wall)
+			var/turf/simulated/wall/new_T = get_turf(src) // Ref to the wall we just built.
+			// Apparently set_material(...) for walls requires refs to the material singletons and not strings.
+			// This is different from how other material objects with their own set_material(...) do it, but whatever.
+			var/material/M = name_to_material[the_rcd.material_to_use]
+			new_T.set_material(M, the_rcd.make_rwalls ? M : null, girder_material)
+			new_T.add_hiddenprint(user)
+			qdel(src)
+			return TRUE
+
+		if(RCD_DECONSTRUCT)
+			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			qdel(src)
+			return TRUE
+

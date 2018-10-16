@@ -423,7 +423,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
 	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
 	src.modules += new /obj/item/device/geiger(src)
-	src.modules += new /obj/item/weapon/rcd/borg(src)
+	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 
@@ -890,7 +890,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone/construction/New()
 	..()
-	src.modules += new /obj/item/weapon/rcd/borg(src)
+	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg/lesser(src)
 
 /obj/item/weapon/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules

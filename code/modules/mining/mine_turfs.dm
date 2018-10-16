@@ -62,6 +62,7 @@ var/list/mining_overlay_cache = list()
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	can_build_into_floor = TRUE
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -72,6 +73,7 @@ var/list/mining_overlay_cache = list()
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	can_build_into_floor = TRUE
 	update_general()
 
 /turf/simulated/mineral/proc/make_wall()
@@ -80,6 +82,7 @@ var/list/mining_overlay_cache = list()
 	density = 1
 	opacity = 1
 	blocks_air = 1
+	can_build_into_floor = FALSE
 	update_general()
 
 /turf/simulated/mineral/proc/update_general()

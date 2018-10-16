@@ -96,7 +96,9 @@
 /obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W))
 		return
-	if(W.is_wirecutter())
+	if(istype(W, /obj/item/weapon/rcd)) // To stop us from hitting the grille when building windows, because grilles don't let parent handle it properly.
+		return FALSE
+	else if(W.is_wirecutter())
 		if(!shock(user, 100))
 			playsound(src, W.usesound, 100, 1)
 			new /obj/item/stack/rods(get_turf(src), destroyed ? 1 : 2)
@@ -252,3 +254,38 @@
 
 /obj/structure/grille/broken/rustic
 	icon_state = "grillerustic-b"
+
+
+/obj/structure/grille/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_WINDOWGRILLE)
+			// A full tile window costs 4 glass sheets.
+			return list(
+				RCD_VALUE_MODE = RCD_WINDOWGRILLE,
+				RCD_VALUE_DELAY = 2 SECONDS,
+				RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4
+			)
+
+		if(RCD_DECONSTRUCT)
+			return list(
+				RCD_VALUE_MODE = RCD_DECONSTRUCT,
+				RCD_VALUE_DELAY = 2 SECONDS,
+				RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 2
+			)
+	return FALSE
+
+/obj/structure/grille/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			qdel(src)
+			return TRUE
+		if(RCD_WINDOWGRILLE)
+			if(locate(/obj/structure/window) in loc)
+				return FALSE
+			to_chat(user, span("notice", "You construct a window."))
+			var/obj/structure/window/WD = new the_rcd.window_type(loc)
+			WD.anchored = TRUE
+			return TRUE
+	return FALSE
+
