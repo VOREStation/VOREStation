@@ -769,6 +769,7 @@ var/global/list/default_medbay_channels = list(
 	icon_state = "red_phone"
 	listening = 1
 	name = "phone"
+	anchored = FALSE
 
 /obj/item/device/radio/phone/medbay
 	frequency = MED_I_FREQ
