@@ -743,6 +743,10 @@
 	var/recharging = 0
 
 	projectile_type = /obj/item/projectile/beam
+	firemodes = list(
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
+	)
 
 /obj/item/weapon/gun/energy/frontier/unload_ammo(var/mob/user)
 	if(recharging)
@@ -774,13 +778,6 @@
 /obj/item/weapon/gun/energy/frontier/ex_act() //|rugged|
 	return
 
-//Needed to fix a bug with the holdout phaser
-/obj/item/weapon/gun/energy/frontier/basic
-	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
-	)
-
 /obj/item/weapon/gun/energy/frontier/locked
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
 	req_access = list(access_armory) //for toggling safety
@@ -811,13 +808,6 @@
 			return 0
 	return ..()
 
-//Needed to fix a bug with the holdout phaser
-/obj/item/weapon/gun/energy/frontier/locked/basic
-	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
-	)
-
 //Expeditionary Holdout Phaser
 /obj/item/weapon/gun/energy/frontier/locked/holdout
 	name = "holdout frontier phaser"
@@ -826,9 +816,10 @@
 	icon_state = "PDW"
 	item_state = "gun"
 	w_class = ITEMSIZE_SMALL
+	charge_cost = 600
 	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 1200),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 240),
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
 	)
 
 /obj/item/weapon/gun/energy/frontier/locked/holdout/proc/update_mode()
