@@ -223,6 +223,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/weapon/storage/belt,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "aR" = (
@@ -1274,9 +1275,6 @@
 	},
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/storage/excavation,
-/obj/item/weapon/storage/excavation,
-/obj/item/weapon/storage/belt,
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
@@ -1368,7 +1366,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/item/weapon/storage/bag/ore,
 /obj/structure/closet/secure_closet/miner,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
@@ -1403,7 +1400,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/item/weapon/storage/bag/ore,
 /obj/structure/closet/secure_closet/miner,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
