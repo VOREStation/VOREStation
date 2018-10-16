@@ -267,7 +267,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
 	if(initiator)
-		to_chat(initiator, "<font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [key_name(usr)].</font>")
+		to_chat(initiator, "<font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [key_name(usr,FALSE,FALSE)].</font>")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
 	message_admins(msg)
 	log_admin(msg)
@@ -293,7 +293,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ListInsert(src)
 	AddInteraction("<font color='red'>Closed by [key_name_admin(usr)].</font>")
 	if(initiator)
-		to_chat(initiator, "<font color='red'>Ticket [TicketHref("#[id]")] was closed by [key_name(usr)].</font>")
+		to_chat(initiator, "<font color='red'>Ticket [TicketHref("#[id]")] was closed by [key_name(usr,FALSE,FALSE)].</font>")
 	if(!silent)
 		feedback_inc("ahelp_close")
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name_admin(usr)]."
@@ -310,7 +310,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	AddInteraction("<font color='green'>Resolved by [key_name_admin(usr)].</font>")
 	if(initiator)
-		to_chat(initiator, "<font color='green'>Ticket [TicketHref("#[id]")] was marked resolved by [key_name(usr)].</font>")
+		to_chat(initiator, "<font color='green'>Ticket [TicketHref("#[id]")] was marked resolved by [key_name(usr,FALSE,FALSE)].</font>")
 	if(!silent)
 		feedback_inc("ahelp_resolve")
 		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name_admin(usr)]"
@@ -360,13 +360,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/msg = "<font color='red'>Your AdminHelp is being handled by [key_name(usr)] please be patient.</font>"
+	var/msg = "<font color='red'>Your AdminHelp is being handled by [key_name(usr,FALSE,FALSE)] please be patient.</font>"
 
 	if(initiator)
 		to_chat(initiator, msg)
 
 	feedback_inc("ahelp_icissue")
-	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr)]"
+	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr,FALSE,FALSE)]"
 	message_admins(msg)
 	log_admin(msg)
 	AddInteraction("[key_name_admin(usr)] is now handling this ticket.")
@@ -550,7 +550,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in admins)
 		.["total"] += X
-		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X)) //VOREStation Edit
+		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X))
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X
