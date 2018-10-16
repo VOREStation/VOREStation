@@ -550,11 +550,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in admins)
 		.["total"] += X
-<<<<<<< HEAD
-		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X)) //VOREStation Edit
-=======
 		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X))
->>>>>>> 7b1db0e... Merge pull request #5670 from VOREStation/pol-ticketpriv
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X
