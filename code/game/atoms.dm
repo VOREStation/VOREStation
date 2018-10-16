@@ -209,6 +209,16 @@
 /atom/proc/fire_act()
 	return
 
+
+// Returns an assoc list of RCD information.
+// Example would be: list(RCD_VALUE_MODE = RCD_DECONSTRUCT, RCD_VALUE_DELAY = 50, RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4)
+// This occurs before rcd_act() is called, and it won't be called if it returns FALSE.
+/atom/proc/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	return FALSE
+
+/atom/proc/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	return
+
 /atom/proc/melt()
 	return
 
