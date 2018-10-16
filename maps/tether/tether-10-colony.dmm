@@ -718,6 +718,18 @@
 /obj/item/ammo_magazine/s45,
 /obj/item/ammo_magazine/s45,
 /obj/item/ammo_magazine/s45,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16858,30 +16870,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"EJ" = (
-/obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/ammo_magazine/m9mm/large/preban,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/specops)
 "JC" = (
 /obj/machinery/power/thermoregulator,
 /turf/unsimulated/floor{
@@ -31756,7 +31744,7 @@ ac
 ah
 aq
 aG
-EJ
+aG
 aG
 bI
 ah
