@@ -211,6 +211,7 @@
 	pixel_y = -4
 	max_n_of_items = 10
 	var/empty = FALSE
+	var/luxury = FALSE
 
 /obj/machinery/smartfridge/survival_pod/initialize(mapload)
 	. = ..()
@@ -219,15 +220,27 @@
 	for(var/i in 1 to 5)
 		var/obj/item/weapon/reagent_containers/food/snacks/liquidfood/W = new(src)
 		stock(W)
-	for(var/i in 1 to 2)
+	for(var/i in 1 to 5)
 		var/obj/item/device/fbp_backup_cell/W = new(src)
 		stock(W)
-	if(prob(50))
-		var/obj/item/weapon/storage/pill_bottle/dice/D = new(src)
+	for(var/i in 1 to 1)
+		var/obj/item/weapon/storage/pill_bottle/dice_nerd/D = new(src)
 		stock(D)
-	else
-		var/obj/item/device/instrument/violin/V = new(src)
-		stock(V)
+	if(luxury)
+		for(var/i in 1 to 5)
+			var/obj/item/weapon/reagent_containers/food/snacks/liquidfood/W = new(src)
+			stock(W)
+		for(var/i in 1 to 1)
+			var/obj/item/weapon/storage/firstaid/regular/B = new(src)
+			stock(B)
+			var/obj/item/weapon/storage/firstaid/fire/F = new(src)
+			stock(F)
+			var/obj/item/weapon/storage/firstaid/toxin/T = new(src)
+			stock(T)
+			var/obj/item/weapon/storage/firstaid/o2/O = new(src)
+			stock(O)
+			var/obj/item/weapon/storage/firstaid/adv/A = new(src)
+			stock(A)
 
 /obj/machinery/smartfridge/survival_pod/accept_check(obj/item/O)
 	return isitem(O)
@@ -236,6 +249,9 @@
 	name = "dusty survival pod storage"
 	desc = "A heated storage unit. This one's seen better days."
 	empty = TRUE
+
+/obj/machinery/smartfridge/survival_pod/luxury
+	luxury = TRUE
 
 //Fans
 /obj/structure/fans
