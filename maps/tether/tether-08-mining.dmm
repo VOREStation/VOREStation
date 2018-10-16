@@ -487,6 +487,16 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/airlock)
+"el" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/mine/explored)
 "hK" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/dorms)
@@ -771,6 +781,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/mining_main/airlock)
+"wN" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/mine/explored)
 "xA" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -903,6 +923,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/engineering/atmospherics)
+"EH" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/mine/explored)
 "Fa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -6692,7 +6719,7 @@ af
 al
 ab
 af
-Il
+el
 ab
 ab
 ab
@@ -6834,7 +6861,7 @@ al
 al
 ab
 af
-Il
+EH
 ab
 ab
 ab
@@ -6976,7 +7003,7 @@ al
 ck
 al
 af
-Il
+EH
 ab
 ab
 ab
@@ -7118,7 +7145,7 @@ al
 cl
 al
 af
-Il
+EH
 ab
 ab
 ab
@@ -7260,7 +7287,7 @@ al
 al
 ab
 af
-Il
+EH
 ab
 ab
 ab
@@ -7402,7 +7429,7 @@ al
 al
 ab
 al
-Il
+EH
 ab
 ab
 ab
@@ -7544,7 +7571,7 @@ al
 af
 ab
 al
-Il
+EH
 ab
 ab
 ab
@@ -7686,7 +7713,7 @@ af
 al
 al
 al
-Il
+EH
 ab
 ab
 ab
@@ -7828,7 +7855,7 @@ af
 al
 al
 al
-Il
+wN
 ab
 ab
 ab
