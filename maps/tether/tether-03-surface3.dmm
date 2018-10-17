@@ -9670,7 +9670,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
 "qY" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
 "qZ" = (
