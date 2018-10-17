@@ -11,7 +11,7 @@
 		return
 
 	if(href_list["ahelp"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 			return
 
 		var/ahelp_ref = href_list["ahelp"]
