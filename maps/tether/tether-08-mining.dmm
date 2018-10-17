@@ -34,27 +34,26 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
 "ai" = (
-/obj/machinery/conveyor_switch{
-	id = "mining_external"
-	},
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
+/obj/machinery/mining/drill,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
 "aj" = (
-/obj/structure/ore_box,
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
+/obj/machinery/mining/brace,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
 "ak" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 5
 	},
+/obj/machinery/mining/brace,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
 "al" = (
@@ -113,14 +112,6 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
-"av" = (
-/obj/structure/table/steel,
-/obj/item/weapon/cell/high,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/mining_main/storage)
 "aw" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -131,6 +122,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
+/obj/item/weapon/cell/high,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
 "ay" = (
@@ -647,6 +639,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/outpost/engineering/atmospherics)
+"qx" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/outpost/mining_main/storage)
 "rp" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -767,8 +763,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/engineering/atmospherics)
 "vx" = (
-/obj/machinery/mech_recharger,
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/bluegrid,
 /area/outpost/mining_main/airlock)
 "vG" = (
 /obj/effect/floor_decal/borderfloorblack/cee{
@@ -1031,6 +1026,13 @@
 /obj/machinery/status_display,
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/airlock)
+"Hi" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/structure/ore_box,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/outpost/mining_main/storage)
 "Hl" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4573,8 +4575,8 @@ ab
 ah
 an
 an
+Hi
 au
-av
 ax
 cv
 aI
@@ -4855,10 +4857,10 @@ ab
 ab
 ab
 aj
-am
-ar
 at
 ar
+at
+at
 aD
 az
 aK
@@ -4997,10 +4999,10 @@ ab
 ab
 ab
 ai
-am
-aq
 at
 aq
+at
+qx
 aC
 aE
 bg
@@ -5142,7 +5144,7 @@ ak
 ao
 as
 ao
-as
+ao
 ao
 VK
 aM
