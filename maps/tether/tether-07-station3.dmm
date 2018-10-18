@@ -7130,6 +7130,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "lN" = (
@@ -14617,6 +14618,11 @@
 	dir = 5
 	},
 /obj/structure/table/reinforced,
+/obj/item/weapon/stamp/internalaffairs,
+/obj/item/weapon/stamp/denied{
+	pixel_x = 4;
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "xB" = (
@@ -14660,6 +14666,11 @@
 	dir = 9
 	},
 /obj/structure/table/reinforced,
+/obj/item/weapon/stamp/internalaffairs,
+/obj/item/weapon/stamp/denied{
+	pixel_x = 4;
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "xF" = (
@@ -27301,10 +27312,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/security/eva)
-"Rm" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/simulated/wall/r_wall,
-/area/security/lobby)
 "RB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -34330,7 +34337,7 @@ uP
 uP
 uP
 uP
-Rm
+uP
 uP
 uP
 Ag

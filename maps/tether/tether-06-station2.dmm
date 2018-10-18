@@ -1833,11 +1833,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
 "cL" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -1986,10 +1986,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/recstorage)
 "cW" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -2226,11 +2226,11 @@
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "dm" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -3430,7 +3430,7 @@
 "gn" = (
 /obj/effect/floor_decal/techfloor,
 /obj/machinery/light,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/simulated/floor/bluegrid,
@@ -17409,10 +17409,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor,
 /area/maintenance/evahallway)
-"JO" = (
-/obj/machinery/door/airlock/maintenance/common,
-/turf/simulated/floor,
-/area/maintenance/station/sec_lower)
 "Kg" = (
 /obj/structure/closet,
 /obj/effect/floor_decal/techfloor{
@@ -17646,7 +17642,7 @@
 "Me" = (
 /obj/effect/floor_decal/techfloor,
 /obj/machinery/light,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/simulated/floor/bluegrid,
@@ -24321,7 +24317,7 @@ at
 at
 at
 at
-JO
+Ln
 at
 at
 at
@@ -24330,7 +24326,7 @@ at
 at
 at
 at
-JO
+Ln
 at
 at
 at
@@ -25307,7 +25303,7 @@ RS
 at
 Qk
 UV
-JO
+Ln
 bf
 DK
 at
@@ -32033,7 +32029,7 @@ zF
 zZ
 ac
 ac
-ac
+aP
 aP
 aP
 aP
@@ -32175,7 +32171,7 @@ wo
 wo
 ac
 ac
-ac
+aP
 aP
 aP
 aP

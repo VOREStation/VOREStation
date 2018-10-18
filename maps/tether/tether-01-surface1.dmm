@@ -12766,7 +12766,7 @@
 "aEk" = (
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Trash Pit Access";
-	req_one_access = list(48)
+	req_one_access = list(26,48)
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
@@ -19827,6 +19827,12 @@
 /obj/machinery/door/window{
 	dir = 8;
 	req_one_access = list(25)
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "cafe";
+	layer = 3.1;
+	name = "Cafe Shutters"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
@@ -27834,6 +27840,18 @@
 /obj/structure/railing,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_one)
+"lHO" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "cafe";
+	layer = 3.1;
+	name = "Cafe Shutters"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/visitor_dining)
 "lJJ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -44267,9 +44285,9 @@ apP
 aFc
 aFc
 brv
-cfg
-cfg
-cfg
+lHO
+lHO
+lHO
 aFc
 bdk
 cgr
