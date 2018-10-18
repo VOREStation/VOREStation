@@ -6,6 +6,7 @@
 	icon_state = "awoo"
 	icon_living = "awoo"
 	icon_dead = "awoo-dead"
+	intelligence_level = SA_HUMANOID
 
 	faction = "awoo"
 	maxHealth = 30

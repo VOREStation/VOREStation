@@ -6,6 +6,7 @@
 	icon_living = "map_example"
 	faction = "shadekin"
 	ui_icons = 'icons/mob/shadekin_hud.dmi'
+	intelligence_level = SA_HUMANOID
 
 	maxHealth = 200
 	health = 200
