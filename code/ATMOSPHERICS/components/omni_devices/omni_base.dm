@@ -80,7 +80,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/omni/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(!istype(W, /obj/item/weapon/wrench))
+	if(!W.is_wrench())
 		return ..()
 
 	if(!can_unwrench())

@@ -13,23 +13,6 @@
 	if(prob(30))
 		icon_state = "crystal2"
 		set_light(3, 3, "#CC00CC")
-	else if(prob(30))
-		icon_state = "crystal3"
-		set_light(3, 3, "#FF003B")
-	else
-		set_light(3, 3, "#33CC33")
-
-/obj/machinery/crystal/alt
-	name = "Crystal"
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "crystal"
-	density = TRUE
-	anchored = TRUE
-
-/obj/machinery/crystal/alt/New()
-	if(prob(50))
-		icon_state = "crystal2"
-		set_light(3, 3, "#CC00CC")
 	else
 		set_light(3, 3, "#33CC33")
 

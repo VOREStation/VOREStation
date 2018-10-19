@@ -35,7 +35,7 @@
 			user << "<span class='notice'>You place [O] in [src].</span>"
 		else
 			opened = !opened
-	if(istype(O, /obj/item/weapon/wrench))
+	if(O.is_wrench())
 		if(!has_extinguisher)
 			user << "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>"
 			playsound(src.loc, O.usesound, 50, 1)

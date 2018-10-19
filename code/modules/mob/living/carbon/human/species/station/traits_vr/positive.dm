@@ -96,8 +96,8 @@
 
 /datum/trait/winged_flight
 	name = "Winged Flight"
-	desc = "Allows you to fly by using your wings."
-	cost = 2 //Some in game value.
+	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
+	cost = 1
 
 /datum/trait/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)

@@ -107,7 +107,7 @@
 	return ..()
 
 /obj/machinery/meter/attackby(var/obj/item/W, var/mob/user)
-	if(iswrench(W))
+	if(W.is_wrench())
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 		if(do_after(user, 40 * W.toolspeed))
@@ -119,7 +119,7 @@
 			qdel(src)
 			return
 
-	if(ismultitool(W))
+	if(istype(W, /obj/item/device/multitool))
 		for(var/obj/machinery/atmospherics/pipe/P in loc)
 			pipes_on_turf |= P
 		if(!pipes_on_turf.len)

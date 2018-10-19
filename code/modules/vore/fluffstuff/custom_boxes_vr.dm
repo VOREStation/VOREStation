@@ -1,3 +1,5 @@
+// ToDo: Alphabetize by ckey.
+
 // BEGIN - DO NOT EDIT PROTOTYPE
 /obj/item/weapon/storage/box/fluff
 	name = "Undefined Fluff Box"
@@ -109,8 +111,6 @@
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
 
-
-
 //joanrisu:Katarina Eine
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	name = "Katarina's Workbag"
@@ -137,6 +137,15 @@
 		/obj/item/clothing/head/caphat/formal/fedcover/fedcoversec,
 		/obj/item/clothing/gloves/white,
 		)
+
+// Draycu: Schae Yonra
+/obj/item/weapon/storage/box/fluff/yonra
+	name = "Yonra's Starting Kit"
+	desc = "A small box containing Yonra's personal effects"
+	has_items = list(
+		/obj/item/weapon/melee/fluff/holochain/mass,
+		/obj/item/weapon/implanter/reagent_generator/yonra,
+		/obj/item/clothing/accessory/medal/silver/unity)
 
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
@@ -221,10 +230,16 @@
 // Mewchild: Phi Vietsi
 /obj/item/weapon/storage/box/fluff/vietsi
 	name = "Phi's Personal Items"
-	desc = "A small box containing Phi's small things"
 	has_items = list(
 		/obj/item/clothing/accessory/medal/bronze_heart,
 		/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi)
+
+// Tabiranth: Ascian
+/obj/item/weapon/grenade/spawnergrenade/spirit
+	name = "spirit's pet carrier"
+	desc = "Contains kitten."
+	spawner_type = /mob/living/simple_animal/cat/fluff/tabiranth
+	deliveryamt = 1
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

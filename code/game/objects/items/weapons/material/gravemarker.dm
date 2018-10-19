@@ -12,7 +12,7 @@
 	var/epitaph = ""		//A quick little blurb
 
 /obj/item/weapon/material/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
 		if(carving_1)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
@@ -27,7 +27,7 @@
 				user.visible_message("[user] carves something into \the [src.name].", "You carve your message into \the [src.name].")
 				epitaph += carving_2
 				update_icon()
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
 		if(do_after(user, material.hardness * W.toolspeed))
 			material.place_dismantled_product(get_turf(src))
@@ -76,5 +76,5 @@
 		G.epitaph = epitaph
 		G.add_fingerprint(usr)
 		G.dir = user.dir
-		qdel_null(src)
+		QDEL_NULL(src)
 	return

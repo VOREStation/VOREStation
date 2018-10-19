@@ -353,22 +353,18 @@
 		sols[initial(sol.name)] = sol
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sols))*/ // Vorestation removal.
 
-/datum/gear/head/surgical/black
-	display_name = "surgical cap, black"
-	path = /obj/item/clothing/head/surgery/black
+/datum/gear/head/surgical
+	display_name = "surgical cap selection"
+	path = /obj/item/clothing/head/surgery
 
-/datum/gear/head/surgical/blue
-	display_name = "surgical cap, blue"
-	path = /obj/item/clothing/head/surgery/blue
+/datum/gear/head/surgical/New()
+	..()
+	var/list/caps = list()
+	for(var/surgery in typesof(/obj/item/clothing/head/surgery))
+		var/obj/item/clothing/head/surgery/cap_type = caps
+		caps[initial(cap_type.name)] = cap_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(caps))
 
-/datum/gear/head/surgical/green
-	display_name = "surgical cap, green"
-	path = /obj/item/clothing/head/surgery/green
-
-/datum/gear/head/surgical/navyblue
-	display_name = "surgical cap, navy blue"
-	path = /obj/item/clothing/head/surgery/navyblue
-
-/datum/gear/head/surgical/purple
-	display_name = "surgical cap, purple"
-	path = /obj/item/clothing/head/surgery/purple
+/datum/gear/head/circuitry
+	display_name = "headwear, circuitry (empty)"
+	path = /obj/item/clothing/head/circuitry

@@ -14,6 +14,9 @@ var/list/turf_edge_cache = list()
 	icon_state = null
 	edge_blending_priority = 1
 	outdoors = TRUE					// This variable is used for weather effects.
+	can_dirty = FALSE				// Looks hideous with dirt on it.
+	can_build_into_floor = TRUE
+
 	// When a turf gets demoted or promoted, this list gets adjusted.  The top-most layer is the layer on the bottom of the list, due to how pop() works.
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 

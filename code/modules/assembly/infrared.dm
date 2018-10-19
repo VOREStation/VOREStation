@@ -254,4 +254,4 @@
 	if(master.first == src)
 		master.first = null
 	if(next && !next.gc_destroyed)
-		qdel_null(next)
+		QDEL_NULL(next)

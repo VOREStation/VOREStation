@@ -81,7 +81,7 @@
 		data["occupantHealth"] = null
 		data["occupantHealthMax"] = null
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "xenobio_computer.tmpl", "Injector Control Console UI", 470, 450)
 		ui.set_initial_data(data)

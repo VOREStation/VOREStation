@@ -29,6 +29,7 @@
 
 	var/random_skin = 1
 	var/list/skins = list(
+		"catgirl",
 		"catgirlnude",
 		"catgirlbikini",
 		"catgirlrednude",

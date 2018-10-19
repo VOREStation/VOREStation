@@ -1,6 +1,6 @@
 /datum/category_item/autolathe/tools/crowbar
 	name = "crowbar"
-	path =/obj/item/weapon/crowbar
+	path =/obj/item/weapon/tool/crowbar
 
 /datum/category_item/autolathe/tools/multitool
 	name = "multitool"
@@ -21,15 +21,15 @@
 
 /datum/category_item/autolathe/tools/screwdriver
 	name = "screwdriver"
-	path =/obj/item/weapon/screwdriver
+	path =/obj/item/weapon/tool/screwdriver
 
 /datum/category_item/autolathe/tools/wirecutters
 	name = "wirecutters"
-	path =/obj/item/weapon/wirecutters
+	path =/obj/item/weapon/tool/wirecutters
 
 /datum/category_item/autolathe/tools/wrench
 	name = "wrench"
-	path =/obj/item/weapon/wrench
+	path =/obj/item/weapon/tool/wrench
 
 /datum/category_item/autolathe/tools/hatchet
 	name = "hatchet"

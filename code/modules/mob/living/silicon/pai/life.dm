@@ -14,6 +14,7 @@
 			src.cable = null
 
 	handle_regular_hud_updates()
+	handle_vision()
 
 	if(silence_time)
 		if(world.timeofday >= silence_time)

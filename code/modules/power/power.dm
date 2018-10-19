@@ -55,6 +55,12 @@
 	else
 		return 0
 
+/obj/machinery/power/proc/viewload()
+	if(powernet)
+		return powernet.viewload
+	else
+		return 0
+
 /obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 
@@ -139,7 +145,7 @@
 	return
 
 // Power machinery should also connect/disconnect from the network.
-/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/wrench/W, var/time = 20)
+/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time = 20)
 	if((. = ..()))
 		if(anchored)
 			connect_to_network()

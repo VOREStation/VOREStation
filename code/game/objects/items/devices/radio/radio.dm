@@ -119,7 +119,7 @@ var/global/list/default_medbay_channels = list(
 	if(syndie)
 		data["useSyndMode"] = 1
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
@@ -230,7 +230,7 @@ var/global/list/default_medbay_channels = list(
 		return 1
 
 	if(.)
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
@@ -561,7 +561,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	user.set_machine(src)
-	if (!( istype(W, /obj/item/weapon/screwdriver) ))
+	if (!W.is_screwdriver())
 		return
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
@@ -613,10 +613,10 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if (!( istype(W, /obj/item/weapon/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!(W.is_screwdriver() || istype(W, /obj/item/device/encryptionkey)))
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		if(keyslot)
 
 
@@ -632,15 +632,15 @@ var/global/list/default_medbay_channels = list(
 					keyslot = null
 
 			recalculateChannels()
-			user << "You pop out the encryption key in the radio!"
+			to_chat(user, "You pop out the encryption key in the radio!")
 			playsound(src, W.usesound, 50, 1)
 
 		else
-			user << "This radio doesn't have any encryption keys!"
+			to_chat(user, "This radio doesn't have any encryption keys!")
 
 	if(istype(W, /obj/item/device/encryptionkey/))
 		if(keyslot)
-			user << "The radio can't hold another key!"
+			to_chat(user, "The radio can't hold another key!")
 			return
 
 		if(!keyslot)
@@ -692,9 +692,9 @@ var/global/list/default_medbay_channels = list(
 		if(enable_subspace_transmission != subspace_transmission)
 			subspace_transmission = !subspace_transmission
 			if(subspace_transmission)
-				usr << "<span class='notice'>Subspace Transmission is enabled</span>"
+				to_chat(usr, "<span class='notice'>Subspace Transmission is enabled</span>")
 			else
-				usr << "<span class='notice'>Subspace Transmission is disabled</span>"
+				to_chat(usr, "<span class='notice'>Subspace Transmission is disabled</span>")
 
 			if(subspace_transmission == 0)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
 				channels = list()
@@ -707,14 +707,14 @@ var/global/list/default_medbay_channels = list(
 			shut_up = !shut_up
 			if(shut_up)
 				canhear_range = 0
-				usr << "<span class='notice'>Loadspeaker disabled.</span>"
+				to_chat(usr, "<span class='notice'>Loadspeaker disabled.</span>")
 			else
 				canhear_range = 3
-				usr << "<span class='notice'>Loadspeaker enabled.</span>"
+				to_chat(usr, "<span class='notice'>Loadspeaker enabled.</span>")
 		. = 1
 
 	if(.)
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 
 /obj/item/device/radio/borg/interact(mob/user as mob)
 	if(!on)
@@ -743,7 +743,7 @@ var/global/list/default_medbay_channels = list(
 	data["has_subspace"] = 1
 	data["subspace"] = subspace_transmission
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
@@ -769,6 +769,7 @@ var/global/list/default_medbay_channels = list(
 	icon_state = "red_phone"
 	listening = 1
 	name = "phone"
+	anchored = FALSE
 
 /obj/item/device/radio/phone/medbay
 	frequency = MED_I_FREQ

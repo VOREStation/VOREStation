@@ -11,7 +11,9 @@
 		else
 			ridden.layer = initial(ridden.layer)
 	else
-		ridden.layer = initial(ridden.layer)
+		var/mob/living/L = ridden
+		if(!(istype(L) && (L.status_flags & HIDING)))
+			ridden.layer = initial(ridden.layer)
 
 /datum/riding/taur/ride_check(mob/living/M)
 	var/mob/living/L = ridden
@@ -32,8 +34,8 @@
 	var/list/values = list(
 		"[NORTH]" = list(0, 8*scale, ABOVE_MOB_LAYER),
 		"[SOUTH]" = list(0, 8*scale, BELOW_MOB_LAYER),
-		"[EAST]" = list(-10*scale, 8*scale, BELOW_MOB_LAYER),
-		"[WEST]" = list(10*scale, 8*scale, BELOW_MOB_LAYER))
+		"[EAST]" = list(-10*scale, 8*scale, ABOVE_MOB_LAYER),
+		"[WEST]" = list(10*scale, 8*scale, ABOVE_MOB_LAYER))
 
 	return values
 
@@ -43,10 +45,6 @@
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
-
-/mob/living/carbon/human/New()
-	..()
-	riding_datum = new /datum/riding/taur(src)
 
 /mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
@@ -61,25 +59,44 @@
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
-	if(M.size_multiplier > size_multiplier)
-		to_chat(M,"<span class='warning'>This isn't a pony show! They need to be bigger to ride.</span>")
+	if(M in buckled_mobs)
 		return FALSE
+	if(M.size_multiplier > size_multiplier * 1.2)
+		to_chat(M,"<span class='warning'>This isn't a pony show! You need to be bigger for them to ride.</span>")
+		return FALSE
+	if(M.loc != src.loc)
+		if(M.Adjacent(src))
+			M.forceMove(get_turf(src))
 
 	var/mob/living/carbon/human/H = M
 
 	if(isTaurTail(H.tail_style))
-		to_chat(H,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
+		to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
 
 	. = ..()
 	if(.)
 		buckled_mobs[M] = "riding"
 
-/mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user)
-	if(can_buckle && istype(M))
-		if(user_buckle_mob(M, user, silent = TRUE))
-			visible_message("<span class='notice'>[M] starts riding [name]!</span>")
-			return TRUE
+/mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
+	return
+
+/mob/living/carbon/human/proc/taur_mount(var/mob/living/M in living_mobs(1))
+	set name = "Taur Mount/Dismount"
+	set category = "Abilities"
+	set desc = "Let people ride on you."
+
+	if(LAZYLEN(buckled_mobs))
+		var/datum/riding/R = riding_datum
+		for(var/rider in buckled_mobs)
+			R.force_dismount(rider)
+		return
+	if (stat != CONSCIOUS)
+		return
+	if(!can_buckle || !istype(M) || !M.Adjacent(src) || M.buckled)
+		return
+	if(buckle_mob(M))
+		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
 
 /mob/living/carbon/human/attack_hand(mob/user as mob)
 	if(LAZYLEN(buckled_mobs))

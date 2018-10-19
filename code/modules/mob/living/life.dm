@@ -62,6 +62,8 @@
 
 	handle_regular_hud_updates()
 
+	handle_vision()
+
 /mob/living/proc/handle_breathing()
 	return
 
@@ -172,9 +174,6 @@
 	handle_hud_icons()
 
 	return 1
-
-/mob/living/proc/handle_vision()
-	return
 
 /mob/living/proc/update_sight()
 	if(!seedarkness)

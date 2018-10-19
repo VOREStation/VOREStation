@@ -106,7 +106,7 @@
 		/obj/item/weapon/storage/box/holobadge/hos,
 		/obj/item/clothing/accessory/badge/holo/hos,
 		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/tool/crowbar/red,
 		/obj/item/weapon/storage/box/flashbangs,
 		/obj/item/weapon/storage/belt/security,
 		/obj/item/device/flash,

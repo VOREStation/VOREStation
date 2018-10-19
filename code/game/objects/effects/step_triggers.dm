@@ -158,7 +158,14 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 /obj/effect/step_trigger/teleporter/planetary_fall
 	var/datum/planet/planet = null
 
+// First time setup, which planet are we aiming for?
+/obj/effect/step_trigger/teleporter/planetary_fall/proc/find_planet()
+	return
+
 /obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
+	if(!planet)
+		find_planet()
+
 	if(planet)
 		if(!planet.planet_floors.len)
 			message_admins("ERROR: planetary_fall step trigger's list of outdoor floors was empty.")

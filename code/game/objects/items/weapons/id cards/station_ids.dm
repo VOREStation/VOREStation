@@ -8,7 +8,6 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi'
 		)
 
-	var/mining_points = 0 // VOREStation Edit - For redeeming at mining equipment lockers
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	slot_flags = SLOT_ID | SLOT_EARS
@@ -30,6 +29,8 @@
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0			// determines if this ID has claimed a dorm already
+
+	var/mining_points = 0	// For redeeming at mining equipment vendors
 
 /obj/item/weapon/card/id/examine(mob/user)
 	set src in oview(1)

@@ -138,7 +138,7 @@
 	return ..()
 
 /mob/living/simple_animal/shadekin/Destroy()
-	qdel_null_list(shadekin_abilities)
+	QDEL_NULL_LIST(shadekin_abilities)
 	. = ..()
 
 /mob/living/simple_animal/shadekin/init_vore()
@@ -241,7 +241,7 @@
 	if(specific_targets && isliving(A)) //Healing!
 		var/mob/living/L = A
 		var/health_percent = (L.health/L.maxHealth)*100
-		if(health_percent <= 50)
+		if(health_percent <= 50 && will_eat(A))
 			return A
 	. = ..()
 

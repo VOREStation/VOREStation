@@ -221,7 +221,7 @@
 			else
 				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
 
-			dirty(target,affected) //VOREStation Add
+//		dirty(target,affected) //VOREStation Add -- Removed by Request
 
 	return
 /* VOREStation Edit - See syringes_vr.dm

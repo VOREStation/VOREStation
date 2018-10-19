@@ -163,7 +163,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "E" = (
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "F" = (

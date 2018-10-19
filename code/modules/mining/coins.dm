@@ -57,7 +57,7 @@
 		else
 			user << "<span class='notice'>This cable coil appears to be empty.</span>"
 		return
-	else if(istype(W,/obj/item/weapon/wirecutters))
+	else if(W.is_wirecutter())
 		if(!string_attached)
 			..()
 			return

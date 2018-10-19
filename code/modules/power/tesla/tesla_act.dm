@@ -45,7 +45,10 @@
 /obj/machinery/light/tesla_act(power, explosive = FALSE)
 	if(explosive)
 		explosion(loc, 0, 0, 0/*, flame_range = 5*/, adminlog = FALSE)
-	qdel(src)
+		qdel(src)
+		return
+	on = TRUE
+	broken()
 
 /obj/structure/closet/tesla_act(var/power)
 	..() //extend the zap
