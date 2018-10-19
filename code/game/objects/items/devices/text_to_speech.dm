@@ -1,7 +1,7 @@
 /obj/item/device/text_to_speech
 	name = "TTS device"
 	desc = "A device that speaks an inputted message. Given to crew which can not speak properly or at all."
-	icon = 'icons/obj/electronic_assemblies.dmi'
+	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
 	icon_state = "setup_small"
 	w_class = ITEMSIZE_SMALL
 	var/named

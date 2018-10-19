@@ -1,14 +1,15 @@
-#define MC_TICK_CHECK ( ( TICK_USAGE > Master.current_ticklimit || src.state != SS_RUNNING ) ? pause() : 0 )
+#define MC_TICK_CHECK ( ( TICK_USAGE > GLOB.CURRENT_TICKLIMIT || src.state != SS_RUNNING ) ? pause() : 0 )
 
 // Used for splitting up your remaining time into phases, if you want to evenly divide it.
-#define MC_SPLIT_TICK_INIT(phase_count) var/original_tick_limit = Master.current_ticklimit; var/split_tick_phases = ##phase_count
+#define MC_SPLIT_TICK_INIT(phase_count) var/original_tick_limit = GLOB.CURRENT_TICKLIMIT; var/split_tick_phases = ##phase_count
+
 #define MC_SPLIT_TICK \
-    if(split_tick_phases > 1){\
-        Master.current_ticklimit = ((original_tick_limit - TICK_USAGE) / split_tick_phases) + TICK_USAGE;\
-        --split_tick_phases;\
-    } else {\
-        Master.current_ticklimit = original_tick_limit;\
-    }
+	if(split_tick_phases > 1){\
+		GLOB.CURRENT_TICKLIMIT = ((original_tick_limit - world.tick_usage) / split_tick_phases) + world.tick_usage;\
+		--split_tick_phases;\
+	} else {\
+        GLOB.CURRENT_TICKLIMIT = original_tick_limit;\
+	}
 
 // Boilerplate code for multi-step processors. See machines.dm for example use.
 #define INTERNAL_PROCESS_STEP(this_step, initial_step, proc_to_call, cost_var, next_step)\
@@ -78,9 +79,15 @@ if(current_step == this_step || (initial_step && !resumed)) /* So we start at st
 #define SS_PAUSING 5 	//in the middle of pausing
 
 // Standard way to define a global subsystem, keep boilerplate organized here!
-#define SUBSYSTEM_DEF(X) var/datum/controller/subsystem/##X/SS##X;\
+#define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
     NEW_SS_GLOBAL(SS##X);\
     PreInit();\
 }\
 /datum/controller/subsystem/##X
+ #define PROCESSING_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/processing/##X);\
+/datum/controller/subsystem/processing/##X/New(){\
+    NEW_SS_GLOBAL(SS##X);\
+    PreInit();\
+}\
+/datum/controller/subsystem/processing/##X

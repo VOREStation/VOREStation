@@ -617,6 +617,10 @@ var/list/global/organ_rel_size = list(
 /mob/proc/handle_regular_hud_updates()
 	return
 
+//Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
+/mob/proc/handle_vision()
+	return
+
 //Icon is used to occlude things like huds from the faulty byond context menu.
 //   http://www.byond.com/forum/?post=2336679
 var/global/image/backplane

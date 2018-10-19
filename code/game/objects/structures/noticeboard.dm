@@ -41,7 +41,7 @@
 			user << "<span class='notice'>You pin the paper to the noticeboard.</span>"
 		else
 			user << "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>"
-	if(istype(O, /obj/item/weapon/wrench))
+	if(O.is_wrench())
 		user << "<span class='notice'>You start to unwrench the noticeboard.</span>"
 		playsound(src.loc, O.usesound, 50, 1)
 		if(do_after(user, 15 * O.toolspeed))

@@ -4,45 +4,45 @@
 */
 
 
-/datum/supply_packs/atmos
+/datum/supply_pack/atmos
 	group = "Atmospherics"
 
-/datum/supply_packs/atmos/inflatable
+/datum/supply_pack/atmos/inflatable
 	name = "Inflatable barriers"
 	contains = list(/obj/item/weapon/storage/briefcase/inflatable = 3)
 	cost = 20
 	containertype = /obj/structure/closet/crate/engineering
 	containername = "Inflatable Barrier Crate"
 
-/datum/supply_packs/atmos/canister_empty
+/datum/supply_pack/atmos/canister_empty
 	name = "Empty gas canister"
 	cost = 7
 	containername = "Empty gas canister crate"
 	containertype = /obj/structure/largecrate
 	contains = list(/obj/machinery/portable_atmospherics/canister)
 
-/datum/supply_packs/atmos/canister_air
+/datum/supply_pack/atmos/canister_air
 	name = "Air canister"
 	cost = 10
 	containername = "Air canister crate"
 	containertype = /obj/structure/largecrate
 	contains = list(/obj/machinery/portable_atmospherics/canister/air)
 
-/datum/supply_packs/atmos/canister_oxygen
+/datum/supply_pack/atmos/canister_oxygen
 	name = "Oxygen canister"
 	cost = 15
 	containername = "Oxygen canister crate"
 	containertype = /obj/structure/largecrate
 	contains = list(/obj/machinery/portable_atmospherics/canister/oxygen)
 
-/datum/supply_packs/atmos/canister_nitrogen
+/datum/supply_pack/atmos/canister_nitrogen
 	name = "Nitrogen canister"
 	cost = 10
 	containername = "Nitrogen canister crate"
 	containertype = /obj/structure/largecrate
 	contains = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
 
-/datum/supply_packs/atmos/canister_phoron
+/datum/supply_pack/atmos/canister_phoron
 	name = "Phoron gas canister"
 	cost = 60
 	containername = "Phoron gas canister crate"
@@ -50,7 +50,7 @@
 	access = access_atmospherics
 	contains = list(/obj/machinery/portable_atmospherics/canister/phoron)
 
-/datum/supply_packs/atmos/canister_sleeping_agent
+/datum/supply_pack/atmos/canister_sleeping_agent
 	name = "N2O gas canister"
 	cost = 15
 	containername = "N2O gas canister crate"
@@ -58,7 +58,7 @@
 	access = access_atmospherics
 	contains = list(/obj/machinery/portable_atmospherics/canister/sleeping_agent)
 
-/datum/supply_packs/atmos/canister_carbon_dioxide
+/datum/supply_pack/atmos/canister_carbon_dioxide
 	name = "Carbon dioxide gas canister"
 	cost = 15
 	containername = "CO2 canister crate"
@@ -66,7 +66,7 @@
 	access = access_atmospherics
 	contains = list(/obj/machinery/portable_atmospherics/canister/carbon_dioxide)
 
-/datum/supply_packs/atmos/air_dispenser
+/datum/supply_pack/atmos/air_dispenser
 	contains = list(/obj/machinery/pipedispenser/orderable)
 	name = "Pipe Dispenser"
 	cost = 25
@@ -74,7 +74,7 @@
 	containername = "Pipe Dispenser Crate"
 	access = access_atmospherics
 
-/datum/supply_packs/atmos/disposals_dispenser
+/datum/supply_pack/atmos/disposals_dispenser
 	contains = list(/obj/machinery/pipedispenser/disposal/orderable)
 	name = "Disposals Pipe Dispenser"
 	cost = 25
@@ -82,7 +82,7 @@
 	containername = "Disposal Dispenser Crate"
 	access = access_atmospherics
 
-/datum/supply_packs/atmos/internals
+/datum/supply_pack/atmos/internals
 	name = "Internals crate"
 	contains = list(
 			/obj/item/clothing/mask/gas = 3,
@@ -92,7 +92,7 @@
 	containertype = /obj/structure/closet/crate/internals
 	containername = "Internals crate"
 
-/datum/supply_packs/atmos/evacuation
+/datum/supply_pack/atmos/evacuation
 	name = "Emergency equipment"
 	contains = list(
 			/obj/item/weapon/storage/toolbox/emergency = 2,

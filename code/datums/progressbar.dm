@@ -15,6 +15,7 @@
 	bar = image('icons/effects/progessbar.dmi', target, "prog_bar_0")
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	bar.pixel_y = 32
+	bar.plane = PLANE_PLAYER_HUD
 	src.user = user
 	if(user)
 		client = user.client
@@ -22,7 +23,7 @@
 /datum/progressbar/Destroy()
 	if (client)
 		client.images -= bar
-	qdel_null(bar)
+	QDEL_NULL(bar)
 	user = null
 	client = null
 	return ..()

@@ -618,6 +618,7 @@
 	name = "\improper SMG magazine (9mm armor-piercing)"
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
 
+/* Seems to have been de-coded?
 /obj/item/ammo_magazine/m9mml/flash
 	name = "\improper SMG magazine (9mm flash)"
 	ammo_type = /obj/item/ammo_casing/a9mmf
@@ -629,6 +630,7 @@
 /obj/item/ammo_magazine/m9mml/practice
 	name = "\improper SMG magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/a9mmp
+*/
 
 //.357 special ammo
 /obj/item/ammo_magazine/s357/stun
@@ -744,7 +746,7 @@
 	firemodes = list(
 		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
-		)
+	)
 
 /obj/item/weapon/gun/energy/frontier/unload_ammo(var/mob/user)
 	if(recharging)
@@ -814,9 +816,10 @@
 	icon_state = "PDW"
 	item_state = "gun"
 	w_class = ITEMSIZE_SMALL
+	charge_cost = 600
 	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 1200),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 240),
+		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
 	)
 
 /obj/item/weapon/gun/energy/frontier/locked/holdout/proc/update_mode()

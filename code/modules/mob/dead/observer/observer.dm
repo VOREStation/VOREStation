@@ -156,6 +156,7 @@ Works together with spawning an observer, noted above.
 	if(!client) return 0
 
 	handle_regular_hud_updates()
+	handle_vision()
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)

@@ -154,6 +154,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/door/window/attack_hand(mob/user as mob)
+	src.add_fingerprint(user)
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -164,7 +165,17 @@
 			user.setClickCooldown(user.get_attack_speed())
 			take_damage(25)
 			return
-	return src.attackby(user, user)
+
+	if (src.allowed(user))
+		if (src.density)
+			open()
+		else
+			close()
+
+	else if (src.density)
+		flick(text("[]deny", src.base_state), src)
+
+	return
 
 /obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
 	if (density && operable())
@@ -174,85 +185,86 @@
 		open()
 		return 1
 
-/obj/machinery/door/window/attackby(obj/item/weapon/I as obj, mob/user as mob)
+/obj/machinery/door/window/attackby(obj/item/I as obj, mob/user as mob)
 
 	//If it's in the process of opening/closing, ignore the click
 	if (src.operating == 1)
 		return
 
-	// Fixing.
-	if(istype(I, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
-		var/obj/item/weapon/weldingtool/WT = I
-		if(health < maxhealth)
-			if(WT.remove_fuel(1 ,user))
-				to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
-				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 40 * WT.toolspeed, target = src))
-					health = maxhealth
-					update_icon()
-					to_chat(user, "<span class='notice'>You repair [src].</span>")
-		else
-			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
-		return
-
-	//Emags and ninja swords? You may pass.
-	if (istype(I, /obj/item/weapon/melee/energy/blade))
-		if(emag_act(10, user))
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-			spark_system.set_up(5, 0, src.loc)
-			spark_system.start()
-			playsound(src.loc, "sparks", 50, 1)
-			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
-			visible_message("<span class='warning'>The glass door was sliced open by [user]!</span>")
-		return 1
-
-	//If it's opened/emagged, crowbar can pry it out of its frame.
-	if (!density && istype(I, /obj/item/weapon/crowbar))
-		playsound(src, I.usesound, 50, 1)
-		user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
-		if (do_after(user,40 * I.toolspeed))
-			to_chat(user,"<span class='notice'>You pried the windoor out of the frame!</span>")
-
-			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
-			if (istype(src, /obj/machinery/door/window/brigdoor))
-				wa.secure = "secure_"
-			if (src.base_state == "right" || src.base_state == "rightsecure")
-				wa.facing = "r"
-			wa.set_dir(src.dir)
-			wa.anchored = 1
-			wa.created_name = name
-			wa.state = "02"
-			wa.step = 2
-			wa.update_state()
-
-			if(operating == -1)
-				wa.electronics = new/obj/item/weapon/circuitboard/broken()
+	if(istype(I))
+		// Fixing.
+		if(istype(I, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
+			var/obj/item/weapon/weldingtool/WT = I
+			if(health < maxhealth)
+				if(WT.remove_fuel(1 ,user))
+					to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+					playsound(src, WT.usesound, 50, 1)
+					if(do_after(user, 40 * WT.toolspeed, target = src))
+						health = maxhealth
+						update_icon()
+						to_chat(user, "<span class='notice'>You repair [src].</span>")
 			else
-				if(!electronics)
-					wa.electronics = new/obj/item/weapon/airlock_electronics()
-					if(!src.req_access)
-						src.check_access()
-					if(src.req_access.len)
-						wa.electronics.conf_access = src.req_access
-					else if (src.req_one_access.len)
-						wa.electronics.conf_access = src.req_one_access
-						wa.electronics.one_access = 1
-				else
-					wa.electronics = electronics
-					electronics = null
-			operating = 0
-			qdel(src)
+				to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
 			return
 
-	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
-	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
-		user.setClickCooldown(user.get_attack_speed(I))
-		var/aforce = I.force
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-		visible_message("<span class='danger'>[src] was hit by [I].</span>")
-		if(I.damtype == BRUTE || I.damtype == BURN)
-			take_damage(aforce)
-		return
+		//Emags and ninja swords? You may pass.
+		if (istype(I, /obj/item/weapon/melee/energy/blade))
+			if(emag_act(10, user))
+				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				spark_system.set_up(5, 0, src.loc)
+				spark_system.start()
+				playsound(src.loc, "sparks", 50, 1)
+				playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
+				visible_message("<span class='warning'>The glass door was sliced open by [user]!</span>")
+			return 1
+
+		//If it's opened/emagged, crowbar can pry it out of its frame.
+		if (!density && I.is_crowbar())
+			playsound(src, I.usesound, 50, 1)
+			user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
+			if (do_after(user,40 * I.toolspeed))
+				to_chat(user,"<span class='notice'>You pried the windoor out of the frame!</span>")
+
+				var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
+				if (istype(src, /obj/machinery/door/window/brigdoor))
+					wa.secure = "secure_"
+				if (src.base_state == "right" || src.base_state == "rightsecure")
+					wa.facing = "r"
+				wa.set_dir(src.dir)
+				wa.anchored = 1
+				wa.created_name = name
+				wa.state = "02"
+				wa.step = 2
+				wa.update_state()
+
+				if(operating == -1)
+					wa.electronics = new/obj/item/weapon/circuitboard/broken()
+				else
+					if(!electronics)
+						wa.electronics = new/obj/item/weapon/airlock_electronics()
+						if(!src.req_access)
+							src.check_access()
+						if(src.req_access.len)
+							wa.electronics.conf_access = src.req_access
+						else if (src.req_one_access.len)
+							wa.electronics.conf_access = src.req_one_access
+							wa.electronics.one_access = 1
+					else
+						wa.electronics = electronics
+						electronics = null
+				operating = 0
+				qdel(src)
+				return
+
+		//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
+		if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
+			user.setClickCooldown(user.get_attack_speed(I))
+			var/aforce = I.force
+			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			visible_message("<span class='danger'>[src] was hit by [I].</span>")
+			if(I.damtype == BRUTE || I.damtype == BURN)
+				take_damage(aforce)
+			return
 
 
 	src.add_fingerprint(user)
@@ -268,8 +280,6 @@
 
 	return
 
-
-
 /obj/machinery/door/window/brigdoor
 	name = "secure door"
 	icon = 'icons/obj/doors/windoor.dmi'
@@ -283,7 +293,6 @@
 /obj/machinery/door/window/brigdoor/shatter()
 	new /obj/item/stack/rods(src.loc, 2)
 	..()
-
 
 /obj/machinery/door/window/northleft
 	dir = NORTH

@@ -1,5 +1,5 @@
 /mob/Logout()
-	nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	GLOB.nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
 	player_list -= src
 	disconnect_time = world.realtime
 	log_access_out(src)

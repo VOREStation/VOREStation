@@ -434,6 +434,7 @@ var/global/datum/controller/occupations/job_master
 
 		H.job = rank
 		log_game("JOINED [key_name(H)] as \"[rank]\"")
+		log_game("SPECIES [key_name(H)] is a: \"[H.species.name]\"") //VOREStation Add
 
 		// If they're head, give them the account info for their department
 		if(H.mind && job.head_position)

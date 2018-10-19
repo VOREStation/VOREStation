@@ -1,0 +1,23 @@
+<H2>Shuttle Blast Door Control</H2>
+
+<div>
+	{{:helper.link('Open all doors',  'radio-on', {'cartridge_topic' : 1, 'all_blast_doors' : "open"})}}
+	{{:helper.link('Close all doors', 'radio-off', {'cartridge_topic' : 1, 'all_blast_doors' : "close"})}}
+</div>
+<div>
+	{{:helper.link('Scan for doors',  'refresh', {'cartridge_topic' : 1, 'scan_blast_doors' : 1})}}
+</div>
+
+{{for data.blast_door}}
+	<div class="item">
+		<div class="itemLabel">
+			{{:value.name}} #{{:index}}
+		</div>
+		<div class="itemContent">
+			{{:helper.link('On', 'radio-on', {'cartridge_topic' : 1, 'toggle_blast_door' : value.ref}, value.open ? 'selected' : null)}}
+			{{:helper.link('Off', 'radio-off', {'cartridge_topic' : 1, 'toggle_blast_door' : value.ref}, value.open ? null : 'selected')}}
+		</div>
+	</div>
+{{empty}}
+	<h3><span class="warning">No doors detected!</span></h3>
+{{/for}}

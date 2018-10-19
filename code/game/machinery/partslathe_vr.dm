@@ -1,6 +1,6 @@
 /*
 ** The Parts Lathe! Able to produce all tech level 1 stock parts for building machines!
-** 
+**
 ** The idea is that engineering etc should be able to build/repair basic technology machines
 ** without having to use a protolathe to print what are not prototype technologies.
 ** Some felt having an autolathe do this might be OP, so its a separate machine.
@@ -12,7 +12,7 @@
 ** Leshana says:
 ** - Phase 1 of this project adds the machine and basic operation.
 ** - Phase 2 will enhance usability by making & labeling boxes with a set of parts.
-** 
+**
 ** TODO - Implement phase 2 by adding cardboard boxes
 */
 
@@ -280,7 +280,7 @@
 		recipies_ui[++recipies_ui.len] = list("name" = R.name, "type" = "[T]")
 	data["recipies"] = recipies_ui
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "partslathe.tmpl", "Parts Lathe UI", 500, 450)
 		ui.set_initial_data(data)

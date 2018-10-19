@@ -1317,7 +1317,7 @@
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cS" = (
@@ -1762,7 +1762,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/device/assembly_holder/timer_igniter,
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
@@ -2894,14 +2894,14 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/wrench{
+/obj/item/weapon/tool/wrench{
 	pixel_x = 2;
 	pixel_y = 2
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
-/obj/item/weapon/wrench{
+/obj/item/weapon/tool/wrench{
 	pixel_x = -2;
 	pixel_y = -2
 	},
@@ -3443,7 +3443,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/standard,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/machinery/camera/network/research_outpost{
 	dir = 8
 	},
@@ -3460,7 +3460,7 @@
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/heating)
 "gB" = (

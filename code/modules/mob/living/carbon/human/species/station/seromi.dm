@@ -43,6 +43,7 @@
 
 	slowdown = -1
 	snow_movement = -2	// Ignores light snow
+	item_slowdown_mod = 2	// Tiny birds don't like heavy things
 	total_health = 50
 	brute_mod = 1.35
 	burn_mod =  1.35
@@ -120,6 +121,11 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/proc/hide
+		)
+
+	descriptors = list(
+		/datum/mob_descriptor/height = -3,
+		/datum/mob_descriptor/build = -3
 		)
 
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)

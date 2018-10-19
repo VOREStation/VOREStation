@@ -139,7 +139,7 @@
 	data["enemyHP"] = enemy_hp
 	data["gameOver"] = gameover
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "arcade_battle.tmpl", src.name, 400, 300)
 		ui.set_initial_data(data)
@@ -201,7 +201,7 @@
 			emagged = 0
 
 	src.add_fingerprint(usr)
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	return
 
 /obj/machinery/computer/arcade/battle/proc/arcade_action()

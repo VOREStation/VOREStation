@@ -1,0 +1,18 @@
+<div class="statusDisplayComm">
+	<div class="item" style="align: center; width: 100%; display: flex; flex: 1; justify-content: center">
+		<div>
+			<span class="average">{{:data.time}} | </span>
+			{{if data.connectionStatus == 1}}
+				<img class='uiIcon16 icon-signal-green' style='float: none; vertical-align: top'></img>
+			{{else}}
+				<img class='uiIcon16 icon-alert-red' style='float: none; vertical-align: top'></img>
+			{{/if}}
+			<span class="average"> | {{:data.owner}} | {{:data.occupation}} |</span>
+		</div>
+		<div style="padding-bottom: -4px; padding-left: 10px">
+			{{:helper.link('Home', 'home', {'switch_tab' : 1, 'switch_template' : 'communicator.tmpl'})}}
+		</div>
+	</div>
+</div>
+
+{{#def.Body}}

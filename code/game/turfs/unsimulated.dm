@@ -15,3 +15,10 @@
 	..()
 	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 //VOREStation Add End
+
+// Better nip this just in case.
+/turf/unsimulated/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	return FALSE
+
+/turf/unsimulated/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	return FALSE

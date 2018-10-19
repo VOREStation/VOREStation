@@ -207,6 +207,9 @@
 
 /obj/item/attack_hand(mob/living/user as mob)
 	if (!user) return
+	if(anchored)
+		to_chat(user, span("notice", "\The [src] won't budge, you can't pick it up!"))
+		return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -626,7 +629,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
+	if((usr.stat && !zoom) || !(istype(usr,/mob/living/carbon/human)))
 		usr << "You are unable to focus through the [devicename]"
 		cannotzoom = 1
 	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
@@ -636,39 +639,46 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		usr << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
 		cannotzoom = 1
 
+	//We checked above if they are a human and returned already if they weren't.
+	var/mob/living/carbon/human/H = usr
+
 	if(!zoom && !cannotzoom)
-		if(usr.hud_used.hud_shown)
-			usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.client.view = viewsize
+		if(H.hud_used.hud_shown)
+			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+		H.client.view = viewsize
 		zoom = 1
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
 
-		switch(usr.dir)
+		switch(H.dir)
 			if (NORTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				H.client.pixel_x = 0
+				H.client.pixel_y = viewoffset
 			if (SOUTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				H.client.pixel_x = 0
+				H.client.pixel_y = -viewoffset
 			if (EAST)
-				usr.client.pixel_x = viewoffset
-				usr.client.pixel_y = 0
+				H.client.pixel_x = viewoffset
+				H.client.pixel_y = 0
 			if (WEST)
-				usr.client.pixel_x = -viewoffset
-				usr.client.pixel_y = 0
+				H.client.pixel_x = -viewoffset
+				H.client.pixel_y = 0
 
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
+		H.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
+		H.looking_elsewhere = TRUE
+		H.handle_vision()
 
 	else
-		usr.client.view = world.view
-		if(!usr.hud_used.hud_shown)
-			usr.toggle_zoom_hud()
+		H.client.view = world.view
+		if(!H.hud_used.hud_shown)
+			H.toggle_zoom_hud()
 		zoom = 0
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		H.client.pixel_x = 0
+		H.client.pixel_y = 0
+		H.looking_elsewhere = FALSE
+		H.handle_vision()
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].")
@@ -813,3 +823,27 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/apply_accessories(var/image/standing)
 	return standing
 
+/*
+ *	Assorted tool procs, so any item can emulate any tool, if coded
+*/
+/obj/item/proc/is_screwdriver()
+	return FALSE
+
+/obj/item/proc/is_wrench()
+	return FALSE
+
+/obj/item/proc/is_crowbar()
+	return FALSE
+
+/obj/item/proc/is_wirecutter()
+	return FALSE
+
+// These next three might bug out or runtime, unless someone goes back and finds a way to generalize their specific code
+/obj/item/proc/is_cable_coil()
+	return FALSE
+
+/obj/item/proc/is_multitool()
+	return FALSE
+
+/obj/item/proc/is_welder()
+	return FALSE

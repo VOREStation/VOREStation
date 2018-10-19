@@ -140,7 +140,8 @@
 							affected.update_damages()
 
 				H.restore_blood()
-				H.apply_effect(15, AGONY)
+				if(!iscultist(H))
+					H.apply_effect(2, AGONY)
 				if(prob(10))
 					to_chat(H, "<span class='danger'>It feels as though your body is being torn apart!</span>")
 			L.updatehealth()

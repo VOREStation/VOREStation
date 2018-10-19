@@ -47,7 +47,7 @@
 	brute_mod = 0.85
 	burn_mod = 0.85
 	metabolic_rate = 0.85
-	item_slowdown_mod = 0.5
+	item_slowdown_mod = 0.25
 	mob_size = MOB_LARGE
 	blood_volume = 840
 	bloodloss_rate = 0.75
@@ -134,6 +134,11 @@
 		"You feel chilly.",
 		"You feel sluggish and cold.",
 		"Your scales bristle against the cold."
+		)
+
+	descriptors = list(
+		/datum/mob_descriptor/height = 2,
+		/datum/mob_descriptor/build = 2
 		)
 
 /datum/species/unathi/equip_survival_gear(var/mob/living/carbon/human/H)
@@ -321,7 +326,7 @@
 	siemens_coefficient = 0.3
 	show_ssd = "completely quiescent"
 	health_hud_intensity = 2.5
-	item_slowdown_mod = 0.25
+	item_slowdown_mod = 0.1
 
 	num_alternate_languages = 2
 	name_language = LANGUAGE_ROOTLOCAL

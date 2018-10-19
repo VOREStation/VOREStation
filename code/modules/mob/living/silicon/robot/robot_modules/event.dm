@@ -21,9 +21,9 @@
 
 	// Engi
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
-	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool(src)
 
 	// Sci
@@ -55,8 +55,8 @@
 
 	// For repairing gravemarkers
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
-	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 
 	// For growing flowers
 	src.modules += new /obj/item/weapon/material/minihoe(src)
@@ -78,4 +78,3 @@
 	var/obj/item/stack/material/cyborg/wood/W = new (src)
 	W.synths = list(wood)
 	src.modules += W
-

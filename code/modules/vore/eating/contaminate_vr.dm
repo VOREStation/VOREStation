@@ -25,8 +25,6 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 /obj/item/proc/can_gurgle()
 	if(flags & PHORONGUARD)
 		return FALSE
-	else if(phoronproof == TRUE)
-		return FALSE
 	else if(unacidable)
 		return FALSE
 	else

@@ -6,7 +6,7 @@
 	if(config.wikiurl)
 		if(query)
 			if(config.wikisearchurl)
-				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))	
+				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))
 				src << link(output)
 			else
 				src << "<span class='warning'> The wiki search URL is not set in the server configuration.</span>"

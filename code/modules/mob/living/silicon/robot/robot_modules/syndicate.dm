@@ -78,12 +78,12 @@
 	// General engineering/hacking.
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
-	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool/ai_detector(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.modules += new /obj/item/weapon/rcd/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
+	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
 	src.modules += new /obj/item/weapon/melee/energy/sword/ionic_rapier(src)
 
 	// FBP repair.

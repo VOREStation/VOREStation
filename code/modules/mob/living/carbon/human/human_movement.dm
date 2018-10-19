@@ -36,6 +36,16 @@
 		if(shock_stage >= 10) tally -= 1.5 //this gets a +3 later, feral critters take reduced penalty
 	if(reagents.has_reagent("numbenzyme"))
 		tally += 1.5 //A tad bit of slowdown.
+	if(riding_datum) //Bit of slowdown for taur rides if rider is bigger or fatter than mount.
+		var/datum/riding/R = riding_datum
+		var/mob/living/L = R.ridden
+		for(var/mob/living/M in L.buckled_mobs)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(H.size_multiplier > L.size_multiplier)
+					tally += 1
+				if(H.weight > L.weight)
+					tally += 1
 	//VOREstation end
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
@@ -118,14 +128,14 @@
 	if(CE_SLOWDOWN in chem_effects)
 		if (tally >= 0 )
 			tally = (tally + tally/4) //Add a quarter of penalties on top.
-		tally += 1
+		tally += chem_effects[CE_SLOWDOWN]
 
 	if(CE_SPEEDBOOST in chem_effects)
 		if (tally >= 0)	// cut any penalties in half
 			tally = tally/2
-		tally -= 1	// give 'em a buff on top.
+		tally -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	return (tally+config.human_delay)
+	return max(-3, tally+config.human_delay)	// Minimum return should be the same as force_max_speed
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?

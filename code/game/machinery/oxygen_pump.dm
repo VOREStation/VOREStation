@@ -33,11 +33,11 @@
 		if(breather.internals)
 			breather.internals.icon_state = "internal0"
 		breather.remove_from_mob(contained)
-		visible_message("<span class='notice'>The mask rapidly retracts just before /the [src] is destroyed!</span>")
+		visible_message("<span class='notice'>\The [contained] rapidly retracts just before /the [src] is destroyed!</span>")
 		breather = null
 
-	qdel_null(tank)
-	qdel_null(contained)
+	QDEL_NULL(tank)
+	QDEL_NULL(contained)
 	return ..()
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
@@ -45,11 +45,11 @@
 	if(istype(target) && CanMouseDrop(target))
 		if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
 			return
-		usr.visible_message("\The [usr] begins placing the mask onto [target]..")
+		usr.visible_message("\The [usr] begins placing \the [contained] onto [target].")
 		if(!do_mob(usr, target, 25) || !can_apply_to_target(target, usr))
 			return
 		// place mask and add fingerprints
-		usr.visible_message("\The [usr] has placed \the mask on [target]'s mouth.")
+		usr.visible_message("\The [usr] has placed \the [contained] on [target]'s mouth.")
 		attach_mask(target)
 		src.add_fingerprint(usr)
 
@@ -69,7 +69,7 @@
 			tank.forceMove(src)
 		breather.remove_from_mob(contained)
 		contained.forceMove(src)
-		src.visible_message("<span class='notice'>\The [user] makes \The [contained] rapidly retracts back into \the [src]!</span>")
+		src.visible_message("<span class='notice'>\The [user] makes \the [contained] rapidly retract back into \the [src]!</span>")
 		if(breather.internals)
 			breather.internals.icon_state = "internal0"
 		breather = null
@@ -112,7 +112,7 @@
 		to_chat(user, "<span class='warning'>There is no tank in \the [src].</span>")
 		return
 	if(stat & MAINT)
-		to_chat(user, "<span class='warning'>Please close \the maintenance hatch first.</span>")
+		to_chat(user, "<span class='warning'>Please close the maintenance hatch first.</span>")
 		return
 	if(!Adjacent(target))
 		to_chat(user, "<span class='warning'>Please stay close to \the [src].</span>")
@@ -123,18 +123,15 @@
 		return
 	//Checking if breather is still valid
 	if(target == breather && target.wear_mask != contained)
-		to_chat(user, "<span class='warning'>\The [target] is not using the supplied mask.</span>")
+		to_chat(user, "<span class='warning'>\The [target] is not using the supplied [contained].</span>")
 		return
 	return 1
 
 /obj/machinery/oxygen_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		stat ^= MAINT
-		user.visible_message("<span class='notice'>\The [user] [stat & MAINT ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [stat & MAINT ? "open" : "close"] \the [src].</span>")
-		if(stat & MAINT)
-			icon_state = icon_state_open
-		if(!stat)
-			icon_state = icon_state_closed
+		user.visible_message("<span class='notice'>\The [user] [(stat & MAINT) ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [(stat & MAINT) ? "open" : "close"] \the [src].</span>")
+		icon_state = (stat & MAINT) ? icon_state_open : icon_state_closed
 		//TO-DO: Open icon
 	if(istype(W, /obj/item/weapon/tank) && (stat & MAINT))
 		if(tank)
@@ -151,7 +148,7 @@
 /obj/machinery/oxygen_pump/examine(var/mob/user)
 	. = ..()
 	if(tank)
-		to_chat(user, "The meter shows [round(tank.air_contents.return_pressure())]")
+		to_chat(user, "The meter shows [round(tank.air_contents.return_pressure())] kPa.")
 	else
 		to_chat(user, "<span class='warning'>It is missing a tank!</span>")
 
@@ -205,7 +202,7 @@
 
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

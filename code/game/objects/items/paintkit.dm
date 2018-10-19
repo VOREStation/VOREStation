@@ -149,6 +149,52 @@
 		return
 	return ..()
 
+/obj/item/device/kit/suit/rig
+	name = "rig modification kit"
+	desc = "A kit for modifying a rigsuit."
+	uses = 1
+
+/obj/item/device/kit/suit/rig/customize(var/obj/item/I, var/mob/user)
+	var/obj/item/weapon/rig/RIG = I
+	RIG.suit_state = new_icon
+	RIG.suit_type = "customized [initial(RIG.suit_type)]"
+	RIG.name = "[new_name]"
+	RIG.desc = new_desc
+	RIG.icon = new_icon_file
+	RIG.icon_state = new_icon
+	RIG.icon_override = new_icon_override_file
+	for(var/obj/item/piece in list(RIG.gloves,RIG.helmet,RIG.boots,RIG.chest))
+		if(!istype(piece))
+			continue
+		piece.name = "[RIG.suit_type] [initial(piece.name)]"
+		piece.desc = "It seems to be part of a [RIG.name]."
+		piece.icon_state = "[RIG.suit_state]"
+		if(istype(piece, /obj/item/clothing/shoes))
+			icon = 'icons/mob/custom_items_rig_boots.dmi'
+			icon_override = 'icons/mob/custom_items_rig_boots.dmi'
+		if(istype(piece, /obj/item/clothing/suit))
+			icon = 'icons/mob/custom_items_rig_suit.dmi'
+			icon_override = 'icons/mob/custom_items_rig_suit.dmi'
+		if(istype(piece, /obj/item/clothing/head))
+			icon = 'icons/mob/custom_items_rig_helmet.dmi'
+			icon_override = 'icons/mob/custom_items_rig_helmet.dmi'
+		if(istype(piece, /obj/item/clothing/gloves))
+			icon = 'icons/mob/custom_items_rig_gloves.dmi'
+			icon_override = 'icons/mob/custom_items_rig_gloves.dmi'
+	if(RIG.helmet && istype(RIG.helmet, /obj/item/clothing/head/helmet) && new_light_overlay)
+		var/obj/item/clothing/head/helmet/H = RIG.helmet
+		H.light_overlay = new_light_overlay
+	use(1,user)
+
+/obj/item/device/kit/suit/rig/can_customize(var/obj/item/I)
+	return istype(I, /obj/item/weapon/rig)
+
+/obj/item/weapon/rig/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O,/obj/item/device/kit/suit))
+		var/obj/item/device/kit/suit/rig/kit = O
+		kit.customize(src, user)
+		return
+	return ..()
 
 /obj/item/device/kit/paint
 	name = "mecha customisation kit"

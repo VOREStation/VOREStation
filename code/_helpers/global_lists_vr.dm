@@ -106,11 +106,12 @@ var/global/list/global_egg_types = list(
 		"Tajaran" 		= TAJARAN_EGG,
 		"Akula" 		= AKULA_EGG,
 		"Skrell" 		= SKRELL_EGG,
+		"Nevrean"		= NEVREAN_EGG,
 		"Sergal" 		= SERGAL_EGG,
 		"Human"			= HUMAN_EGG,
 		"Slime"			= SLIME_EGG,
 		"Egg"			= EGG_EGG,
-		"Xenochimera" 	= XENOCHIMERA_EGG,
+		"Xenochimera" 		= XENOCHIMERA_EGG,
 		"Xenomorph"		= XENOMORPH_EGG)
 
 var/global/list/tf_egg_types = list(
@@ -119,10 +120,11 @@ var/global/list/tf_egg_types = list(
 	"Akula" 		= /obj/structure/closet/secure_closet/egg/shark,
 	"Skrell" 		= /obj/structure/closet/secure_closet/egg/skrell,
 	"Sergal"		= /obj/structure/closet/secure_closet/egg/sergal,
+	"Nevrean"		= /obj/structure/closet/secure_closet/egg/nevrean,
 	"Human"			= /obj/structure/closet/secure_closet/egg/human,
 	"Slime"			= /obj/structure/closet/secure_closet/egg/slime,
 	"Egg"			= /obj/structure/closet/secure_closet/egg,
-	"Xenochimera"	= /obj/structure/closet/secure_closet/egg/scree,
+	"Xenochimera"		= /obj/structure/closet/secure_closet/egg/scree,
 	"Xenomorph"		= /obj/structure/closet/secure_closet/egg/xenomorph)
 
 var/global/list/edible_trash = list(/obj/item/trash,

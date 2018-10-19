@@ -16,7 +16,7 @@
 	uninstall()
 		var/obj/item/device/nif/lnif = nif //Awkward. Parent clears it in an attempt to clean up.
 		if((. = ..()) && lnif)
-			qdel_null(lnif.comm)
+			QDEL_NULL(lnif.comm)
 
 	activate()
 		if((. = ..()))
@@ -43,7 +43,7 @@
 		..()
 		nif = newloc
 		nifsoft = soft
-		qdel_null(camera) //Not supported on internal one.
+		QDEL_NULL(camera) //Not supported on internal one.
 
 	Destroy()
 		if(nif)

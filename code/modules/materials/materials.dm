@@ -863,7 +863,7 @@ var/list/name_to_material
 	sheet_plural_name = "bricks"
 
 /material/cult/place_dismantled_girder(var/turf/target)
-	new /obj/structure/girder/cult(target)
+	new /obj/structure/girder/cult(target, "cult")
 
 /material/cult/place_dismantled_product(var/turf/target)
 	new /obj/effect/decal/cleanable/blood(target)

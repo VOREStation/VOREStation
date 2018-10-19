@@ -163,7 +163,7 @@
 	..()
 
 /mob/living/blob_act(var/obj/structure/blob/B)
-	if(stat == DEAD)
+	if(stat == DEAD || faction == "blob")
 		return
 
 	var/damage = rand(30, 40)
@@ -221,11 +221,6 @@
 /mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
-
-	//Hulk modifier
-	if(HULK in user.mutations)
-		effective_force *= 2
-
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
@@ -507,3 +502,15 @@
 		if(!isnull(M.evasion))
 			result += M.evasion
 	return result
+
+/mob/living/proc/get_accuracy_penalty()
+	// Certain statuses make it harder to score a hit.
+	var/accuracy_penalty = 0
+	if(eye_blind)
+		accuracy_penalty += 75
+	if(eye_blurry)
+		accuracy_penalty += 30
+	if(confused)
+		accuracy_penalty += 45
+
+	return accuracy_penalty

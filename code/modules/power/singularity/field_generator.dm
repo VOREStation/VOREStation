@@ -103,7 +103,7 @@ field_generator power level display
 	if(active)
 		user << "The [src] needs to be off."
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		switch(state)
 			if(0)
 				state = 1

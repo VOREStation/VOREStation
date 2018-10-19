@@ -78,7 +78,25 @@
 	else
 		if(assembly)
 			assembly.set_light(0)
-	power_draw_idle = light_toggled ? light_brightness * 2 : 0
+	power_draw_idle = light_toggled ? light_brightness * light_brightness : 0 // Should be the same draw as regular lights.
+
+/obj/item/integrated_circuit/output/light/power_fail() // Turns off the flashlight if there's no power left.
+	light_toggled = FALSE
+	update_lighting()
+
+/obj/item/integrated_circuit/output/light/advanced
+	name = "advanced light"
+	desc = "This light can turn on and off on command, in any color, and in various brightness levels."
+	extended_desc = "The brightness is limited to values between 1 and 6."
+	icon_state = "light_adv"
+	complexity = 8
+	inputs = list(
+		"color" = IC_PINTYPE_COLOR,
+		"brightness" = IC_PINTYPE_NUMBER
+	)
+	outputs = list()
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
 /obj/item/integrated_circuit/output/light/advanced/update_lighting()
 	var/new_color = get_pin_data(IC_INPUT, 1)
@@ -91,41 +109,8 @@
 
 	..()
 
-/obj/item/integrated_circuit/output/light/power_fail() // Turns off the flashlight if there's no power left.
-	light_toggled = FALSE
-	update_lighting()
-
-/obj/item/integrated_circuit/output/light/advanced
-	name = "advanced light"
-	desc = "This light can turn on and off on command, in any color, and in various brightness levels."
-	icon_state = "light_adv"
-	complexity = 8
-	inputs = list(
-		"color" = IC_PINTYPE_COLOR,
-		"brightness" = IC_PINTYPE_NUMBER
-	)
-	outputs = list()
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
-
 /obj/item/integrated_circuit/output/light/advanced/on_data_written()
 	update_lighting()
-
-/obj/item/integrated_circuit/output/sound
-	name = "speaker circuit"
-	desc = "A miniature speaker is attached to this component."
-	icon_state = "speaker"
-	complexity = 8
-	cooldown_per_use = 4 SECONDS
-	inputs = list(
-		"sound ID" = IC_PINTYPE_STRING,
-		"volume" = IC_PINTYPE_NUMBER,
-		"frequency" = IC_PINTYPE_BOOLEAN
-	)
-	outputs = list()
-	activators = list("play sound" = IC_PINTYPE_PULSE_IN)
-	power_draw_per_use = 20
-	var/list/sounds = list()
 
 /obj/item/integrated_circuit/output/text_to_speech
 	name = "text-to-speech circuit"
@@ -145,6 +130,22 @@
 	if(!isnull(text))
 		var/obj/O = assembly ? loc : assembly
 		audible_message("\icon[O] \The [O.name] states, \"[text]\"")
+
+/obj/item/integrated_circuit/output/sound
+	name = "speaker circuit"
+	desc = "A miniature speaker is attached to this component."
+	icon_state = "speaker"
+	complexity = 8
+	cooldown_per_use = 4 SECONDS
+	inputs = list(
+		"sound ID" = IC_PINTYPE_STRING,
+		"volume" = IC_PINTYPE_NUMBER,
+		"frequency" = IC_PINTYPE_BOOLEAN
+	)
+	outputs = list()
+	activators = list("play sound" = IC_PINTYPE_PULSE_IN)
+	power_draw_per_use = 20
+	var/list/sounds = list()
 
 /obj/item/integrated_circuit/output/sound/New()
 	..()
@@ -246,7 +247,7 @@
 	on_data_written()
 
 /obj/item/integrated_circuit/output/video_camera/Destroy()
-	qdel_null(camera)
+	QDEL_NULL(camera)
 	return ..()
 
 /obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)
@@ -337,3 +338,147 @@
 /obj/item/integrated_circuit/output/led/pink
 	name = "pink LED"
 	led_color = COLOR_PINK
+
+
+
+/obj/item/integrated_circuit/output/holographic_projector
+	name = "holographic projector"
+	desc = "This projects a holographic copy of an object."
+	extended_desc = "If the assembly moves, the hologram will also move.<br>\
+	Position coordinates are relative to the assembly, and are capped between -7 and 7.<br>\
+	The assembly must be able to see the object to make a holographic copy of it.<br>\
+	Scaling is capped between -2 and 2.<br>\
+	The rotation pin uses degrees.<br>\
+	Imitated object cannot be changed while projecting. Position, \
+	scale, and rotation can be updated without restarting by pulsing the update hologram pin."
+	complexity = 40
+	icon_state = "holo_projector"
+	inputs = list(
+		"project hologram" = IC_PINTYPE_BOOLEAN,
+		"object to copy" = IC_PINTYPE_REF,
+		"hologram color" = IC_PINTYPE_COLOR,
+		"hologram X pos" = IC_PINTYPE_NUMBER,
+		"hologram Y pos" = IC_PINTYPE_NUMBER,
+		"hologram scale" = IC_PINTYPE_NUMBER,
+		"hologram rotation" = IC_PINTYPE_NUMBER
+		)
+	inputs_default = list(
+		"3" = "#7DB4E1",
+		"4" = 0,
+		"5" = 0,
+		"6" = 1,
+		"7" = 0
+		)
+	outputs = list()
+	activators = list(
+		"update hologram" = IC_PINTYPE_PULSE_IN,
+		"on drawn hologram" = IC_PINTYPE_PULSE_OUT
+		)
+	power_draw_idle = 0 // Raises to 500 when active, like a regular holopad.
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	var/obj/effect/overlay/holographic/hologram = null // Reference to the hologram effect, and also used to see if component is active.
+	var/icon/holo_base = null // Uncolored holographic icon.
+//	var/datum/beam/holo_beam = null // A visual effect, to make it easy to know where a hologram is coming from.
+	// It is commented out due to picking up the assembly killing the beam.
+
+/obj/item/integrated_circuit/output/holographic_projector/Destroy()
+	destroy_hologram()
+	return ..()
+
+/obj/item/integrated_circuit/output/holographic_projector/do_work()
+	var/toggled = get_pin_data(IC_INPUT, 1)
+
+	if(hologram) // Currently active.
+		if(!toggled) // Being turned off.
+			destroy_hologram()
+
+		else // Updating position/dir/etc.
+			update_hologram()
+
+	else // Currently not active.
+		if(toggled) // We're gonna turn on.
+			create_hologram()
+
+	activate_pin(2)
+
+// Updates some changable aspects of the hologram like the size or position.
+/obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram()
+	if(!hologram)
+		return FALSE
+
+	var/holo_scale = get_pin_data(IC_INPUT, 6)
+	var/holo_rotation = get_pin_data(IC_INPUT, 7)
+
+	if(!isnum(holo_scale) || !isnum(holo_rotation) )
+		return FALSE // Invalid.
+
+	hologram.adjust_scale(between(-2, holo_scale, 2) )
+	hologram.adjust_rotation(holo_rotation)
+	update_hologram_position()
+
+	return TRUE
+
+// This is a seperate function because other things besides do_work() might warrant updating position, like movement, without bothering with other parts.
+/obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram_position()
+	var/holo_x = get_pin_data(IC_INPUT, 4)
+	var/holo_y = get_pin_data(IC_INPUT, 5)
+	if(!isnum(holo_x) || !isnum(holo_y) )
+		return FALSE
+
+	holo_x = between(-7, holo_x, 7)
+	holo_y = between(-7, holo_y, 7)
+
+	var/turf/T = get_turf(src)
+	if(T)
+		// Absolute coordinates.
+		var/holo_abs_x = T.x + holo_x
+		var/holo_abs_y = T.y + holo_y
+		var/turf/W = locate(holo_abs_x, holo_abs_y, T.z)
+		if(W) // Make sure we're not out of bounds.
+			hologram.forceMove(W)
+		return TRUE
+	return FALSE
+
+/obj/item/integrated_circuit/output/holographic_projector/proc/create_hologram()
+	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 2, /atom/movable)
+	var/holo_color = get_pin_data(IC_INPUT, 3)
+
+	if(istype(AM) && assembly)
+		if(AM in view(get_turf(src))) // It must be able to 'see' the object it will copy.
+			hologram = new(src)
+			var/icon/holo_icon = getHologramIcon(getFlatIcon(AM), no_color = TRUE)
+		//	holo_icon.GrayScale() // So it looks better colored.
+			if(holo_color) // The color pin should ensure that it is a valid hex.
+				holo_icon.ColorTone(holo_color)
+			hologram.icon = holo_icon
+			hologram.name = "[AM.name] (Hologram)"
+			update_hologram()
+
+	//		holo_beam = assembly.Beam(hologram, icon_state = "holo_beam", time = INFINITY, maxdistance = world.view)
+			power_draw_idle = 500
+			return TRUE
+	return FALSE
+
+
+
+/obj/item/integrated_circuit/output/holographic_projector/proc/destroy_hologram()
+	hologram.forceMove(src)
+	qdel(hologram)
+
+//	holo_beam.End()
+//	QDEL_NULL(holo_beam)
+
+	power_draw_idle = 0
+
+/obj/item/integrated_circuit/output/holographic_projector/on_data_written()
+	if(hologram)
+		update_hologram()
+
+/obj/item/integrated_circuit/output/holographic_projector/on_loc_moved(atom/oldloc)
+	if(hologram)
+		update_hologram_position()
+
+/obj/item/integrated_circuit/output/holographic_projector/power_fail()
+	if(hologram)
+		destroy_hologram()
+		set_pin_data(IC_INPUT, 1, FALSE)

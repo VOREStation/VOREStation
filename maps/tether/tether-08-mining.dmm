@@ -105,9 +105,9 @@
 /area/outpost/mining_main/storage)
 "au" = (
 /obj/structure/table/steel,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/crowbar,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/wrench,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},

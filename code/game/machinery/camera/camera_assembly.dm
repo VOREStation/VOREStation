@@ -29,7 +29,7 @@
 
 		if(0)
 			// State 0
-			if(iswrench(W) && isturf(src.loc))
+			if(W.is_wrench() && isturf(src.loc))
 				playsound(src, W.usesound, 50, 1)
 				user << "You wrench the assembly into place."
 				anchored = 1
@@ -40,14 +40,14 @@
 
 		if(1)
 			// State 1
-			if(iswelder(W))
+			if(istype(W, /obj/item/weapon/weldingtool))
 				if(weld(W, user))
 					user << "You weld the assembly securely into place."
 					anchored = 1
 					state = 2
 				return
 
-			else if(iswrench(W))
+			else if(W.is_wrench())
 				playsound(src, W.usesound, 50, 1)
 				user << "You unattach the assembly from its place."
 				anchored = 0
@@ -57,7 +57,7 @@
 
 		if(2)
 			// State 2
-			if(iscoil(W))
+			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(2))
 					user << "<span class='notice'>You add wires to the assembly.</span>"
@@ -66,7 +66,7 @@
 					user << "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>"
 				return
 
-			else if(iswelder(W))
+			else if(istype(W, /obj/item/weapon/weldingtool))
 
 				if(weld(W, user))
 					user << "You unweld the assembly from its place."
@@ -77,7 +77,7 @@
 
 		if(3)
 			// State 3
-			if(isscrewdriver(W))
+			if(W.is_screwdriver())
 				playsound(src.loc, W.usesound, 50, 1)
 
 				var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: "+using_map.station_short+",Security,Secret ", "Set Network", camera_network ? camera_network : NETWORK_DEFAULT))
@@ -115,7 +115,7 @@
 							break
 				return
 
-			else if(iswirecutter(W))
+			else if(W.is_wirecutter())
 
 				new/obj/item/stack/cable_coil(get_turf(src), 2)
 				playsound(src.loc, W.usesound, 50, 1)
@@ -132,7 +132,7 @@
 		return
 
 	// Taking out upgrades
-	else if(iscrowbar(W) && upgrades.len)
+	else if(W.is_crowbar() && upgrades.len)
 		var/obj/U = locate(/obj) in upgrades
 		if(U)
 			user << "You unattach an upgrade from the assembly."

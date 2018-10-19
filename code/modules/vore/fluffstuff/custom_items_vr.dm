@@ -1225,8 +1225,8 @@
 	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
 		B.tele_hand = null
 	beacons.Cut()
-	qdel_null(power_source)
-	qdel_null(spk)
+	QDEL_NULL(power_source)
+	QDEL_NULL(spk)
 	return ..()
 
 /obj/item/device/perfect_tele/update_icon()

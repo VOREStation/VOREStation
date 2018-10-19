@@ -121,3 +121,7 @@
 /datum/gear/eyes/sun/prescriptionsun
 	display_name = "sunglasses, presciption (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
+
+/datum/gear/eyes/circuitry
+	display_name = "goggles, circuitry (empty)"
+	path = /obj/item/clothing/glasses/circuitry

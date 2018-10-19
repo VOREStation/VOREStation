@@ -30,20 +30,20 @@
 	update_icon()
 
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		if(!BB)
-			user << "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>"
+			to_chat(user, "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>")
 			return
 
 		var/tmp_label = ""
 		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
 		if(length(label_text) > 20)
-			user << "<font color='red'>The inscription can be at most 20 characters long.</font>"
+			to_chat(user, "<font color='red'>The inscription can be at most 20 characters long.</font>")
 		else if(!label_text)
-			user << "<font color='blue'>You scratch the inscription off of [initial(BB)].</font>"
+			to_chat(user, "<font color='blue'>You scratch the inscription off of [initial(BB)].</font>")
 			BB.name = initial(BB.name)
 		else
-			user << "<font color='blue'>You inscribe \"[label_text]\" into \the [initial(BB.name)].</font>"
+			to_chat(user, "<font color='blue'>You inscribe \"[label_text]\" into \the [initial(BB.name)].</font>")
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 
 /obj/item/ammo_casing/update_icon()
@@ -55,7 +55,7 @@
 /obj/item/ammo_casing/examine(mob/user)
 	..()
 	if (!BB)
-		user << "This one is spent."
+		to_chat(user, "This one is spent.")
 
 //Gun loading types
 #define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.
@@ -86,6 +86,8 @@
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo = null
 
+	var/can_remove_ammo = TRUE	// Can this thing have bullets removed one-by-one? As of first implementation, only affects smart magazines
+
 	var/multiple_sprites = 0
 	//because BYOND doesn't support numbers as keys in associative lists
 	var/list/icon_keys = list()		//keys
@@ -110,25 +112,25 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
-			user << "<span class='warning'>[C] does not fit into [src].</span>"
+			to_chat(user, "<span class='warning'>[C] does not fit into [src].</span>")
 			return
 		if(stored_ammo.len >= max_ammo)
-			user << "<span class='warning'>[src] is full!</span>"
+			to_chat(user, "<span class='warning'>[src] is full!</span>")
 			return
 		user.remove_from_mob(C)
 		C.loc = src
-		stored_ammo.Insert(1, C) //add to the head of the list
+		stored_ammo.Add(C)
 		update_icon()
 	if(istype(W, /obj/item/ammo_magazine/clip))
 		var/obj/item/ammo_magazine/clip/L = W
 		if(L.caliber != caliber)
-			user << "<span class='warning'>The ammo in [L] does not fit into [src].</span>"
+			to_chat(user, "<span class='warning'>The ammo in [L] does not fit into [src].</span>")
 			return
 		if(!L.stored_ammo.len)
-			user << "<span class='warning'>There's no more ammo [L]!</span>"
+			to_chat(user, "<span class='warning'>There's no more ammo [L]!</span>")
 			return
 		if(stored_ammo.len >= max_ammo)
-			user << "<span class='warning'>[src] is full!</span>"
+			to_chat(user, "<span class='warning'>[src] is full!</span>")
 			return
 		var/obj/item/ammo_casing/AC = L.stored_ammo[1] //select the next casing.
 		L.stored_ammo -= AC //Remove this casing from loaded list of the clip.
@@ -138,16 +140,39 @@
 	playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
 	update_icon()
 
+// This dumps all the bullets right on the floor
 /obj/item/ammo_magazine/attack_self(mob/user)
-	if(!stored_ammo.len)
-		user << "<span class='notice'>[src] is already empty!</span>"
+	if(can_remove_ammo)
+		if(!stored_ammo.len)
+			to_chat(user, "<span class='notice'>[src] is already empty!</span>")
+			return
+		to_chat(user, "<span class='notice'>You empty [src].</span>")
+		playsound(user.loc, "casing_sound", 50, 1)
+		spawn(7)
+			playsound(user.loc, "casing_sound", 50, 1)
+		spawn(10)
+			playsound(user.loc, "casing_sound", 50, 1)
+		for(var/obj/item/ammo_casing/C in stored_ammo)
+			C.loc = user.loc
+			C.set_dir(pick(cardinal))
+		stored_ammo.Cut()
+		update_icon()
+	else
+		to_chat(user, "<span class='notice'>\The [src] is not designed to be unloaded.</span>")
 		return
-	user << "<span class='notice'>You empty [src].</span>"
-	for(var/obj/item/ammo_casing/C in stored_ammo)
-		C.loc = user.loc
-		C.set_dir(pick(cardinal))
-	stored_ammo.Cut()
-	update_icon()
+
+// This puts one bullet from the magazine into your hand
+/obj/item/ammo_magazine/attack_hand(mob/user)
+	if(can_remove_ammo)	// For Smart Magazines
+		if(user.get_inactive_hand() == src)
+			if(stored_ammo.len)
+				var/obj/item/ammo_casing/C = stored_ammo[stored_ammo.len]
+				stored_ammo-=C
+				user.put_in_hands(C)
+				user.visible_message("\The [user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+				update_icon()
+				return
+	..()
 
 /obj/item/ammo_magazine/update_icon()
 	if(multiple_sprites)
@@ -162,7 +187,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
-	user << "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!"
+	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
 
 //magazine icon state caching
 /var/global/list/magazine_icondata_keys = list()

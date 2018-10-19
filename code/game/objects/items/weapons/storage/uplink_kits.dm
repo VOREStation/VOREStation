@@ -223,19 +223,19 @@
 /obj/item/weapon/storage/box/syndie_kit/demolitions
 	starts_with = list(
 		/obj/item/weapon/syndie/c4explosive,
-		/obj/item/weapon/screwdriver
+		/obj/item/weapon/tool/screwdriver
 	)
 
 /obj/item/weapon/storage/box/syndie_kit/demolitions_heavy
 	starts_with = list(
 		/obj/item/weapon/syndie/c4explosive/heavy,
-		/obj/item/weapon/screwdriver
+		/obj/item/weapon/tool/screwdriver
 	)
 
 /obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy
 	starts_with = list(
 		/obj/item/weapon/syndie/c4explosive/heavy/super_heavy,
-		/obj/item/weapon/screwdriver
+		/obj/item/weapon/tool/screwdriver
 	)
 
 /obj/item/weapon/storage/secure/briefcase/rifle
@@ -253,8 +253,8 @@
 	description_fluff = "The container, upon opening, looks to have a few oddly shaped indentations in its packing."
 	description_antag = "This case will likely contain a charged fuel rod gun, and a few fuel rods to go with it. It can only hold the fuel rod gun, fuel rods, batteries, a screwdriver, and stock machine parts."
 	force = 12 //Anti-rad lined i.e. Lead, probably gonna hurt a bit if you get bashed with it.
-	can_hold = list(/obj/item/weapon/gun/magnetic/fuelrod, /obj/item/weapon/fuel_assembly, /obj/item/weapon/cell, /obj/item/weapon/stock_parts, /obj/item/weapon/screwdriver)
-	cant_hold = list(/obj/item/weapon/screwdriver/power)
+	can_hold = list(/obj/item/weapon/gun/magnetic/fuelrod, /obj/item/weapon/fuel_assembly, /obj/item/weapon/cell, /obj/item/weapon/stock_parts, /obj/item/weapon/tool/screwdriver)
+	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	starts_with = list(
 		/obj/item/weapon/gun/magnetic/fuelrod,
 		/obj/item/weapon/fuel_assembly/deuterium,
@@ -262,5 +262,5 @@
 		/obj/item/weapon/fuel_assembly/tritium,
 		/obj/item/weapon/fuel_assembly/tritium,
 		/obj/item/weapon/fuel_assembly/phoron,
-		/obj/item/weapon/screwdriver
+		/obj/item/weapon/tool/screwdriver
 	)
