@@ -127,7 +127,7 @@
 /area/outpost/mining_main/storage)
 "ay" = (
 /turf/simulated/wall/r_wall,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "az" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/break_room)
@@ -230,7 +230,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "aW" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -535,7 +535,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "jV" = (
 /obj/machinery/atmospherics/omni/atmos_filter{
 	tag_east = 1;
@@ -543,7 +543,7 @@
 	tag_south = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "kc" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/atmospherics/binary/pump/on{
@@ -551,7 +551,7 @@
 	name = "Air to Supply"
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "kB" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -591,14 +591,14 @@
 	use_power = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "mH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "ng" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -621,7 +621,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "om" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	frequency = 1379;
@@ -638,7 +638,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "qx" = (
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -663,7 +663,7 @@
 	tag_west = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "si" = (
 /obj/structure/cable/green{
 	icon_state = "0-8"
@@ -680,7 +680,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "so" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -694,7 +694,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "tk" = (
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -742,7 +742,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "uE" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -761,7 +761,7 @@
 	},
 /obj/structure/grille,
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "vx" = (
 /turf/simulated/floor/bluegrid,
 /area/outpost/mining_main/airlock)
@@ -795,7 +795,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "xC" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -804,7 +804,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "BD" = (
 /obj/machinery/embedded_controller/radio/airlock/phoron{
 	id_tag = "mining_outpost_airlock";
@@ -838,7 +838,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Cx" = (
 /turf/simulated/mineral/floor/virgo3b{
 	color = "#AAAAAA"
@@ -861,7 +861,7 @@
 	name = "Utility Room"
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "DV" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -918,7 +918,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "EH" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -981,7 +981,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "FG" = (
 /obj/structure/cable/ender{
 	icon_state = "1-2";
@@ -1021,7 +1021,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "GU" = (
 /obj/machinery/status_display,
 /turf/simulated/wall/r_wall,
@@ -1040,7 +1040,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "HP" = (
 /obj/effect/floor_decal/rust/steel_decals_rusted1{
 	dir = 8
@@ -1054,7 +1054,7 @@
 "HS" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Il" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -1073,7 +1073,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "IA" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -1096,7 +1096,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "IY" = (
 /obj/effect/step_trigger/teleporter/to_underdark{
 	dir = 4;
@@ -1125,7 +1125,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "KF" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -1135,7 +1135,7 @@
 "KJ" = (
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Ma" = (
 /obj/machinery/door/airlock/mining{
 	name = "Quarters"
@@ -1156,7 +1156,7 @@
 /area/outpost/mining_main/dorms)
 "MV" = (
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Nh" = (
 /obj/structure/railing{
 	icon_state = "railing0";
@@ -1172,7 +1172,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Px" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/airlock)
@@ -1187,7 +1187,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "QI" = (
 /obj/structure/sign/mining,
 /turf/simulated/wall/r_wall,
@@ -1218,7 +1218,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Sq" = (
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -1237,7 +1237,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "SQ" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -1251,7 +1251,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "SW" = (
 /obj/structure/railing,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
@@ -1264,7 +1264,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Uk" = (
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
@@ -1302,7 +1302,7 @@
 	},
 /obj/machinery/telecomms/relay/preset/mining,
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "VG" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -1378,7 +1378,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "XR" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -1388,7 +1388,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "YA" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -1415,7 +1415,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "Zn" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/borderfloorblack{
@@ -1440,7 +1440,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "ZC" = (
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
@@ -1452,7 +1452,7 @@
 	},
 /obj/structure/grille,
 /turf/simulated/floor/plating,
-/area/outpost/engineering/atmospherics)
+/area/outpost/mining_main/maintenance)
 "ZV" = (
 /obj/structure/cable/green{
 	d1 = 1;
