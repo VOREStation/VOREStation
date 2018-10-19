@@ -1632,13 +1632,15 @@
 	id = "brigouter";
 	name = "Outer Brig Doors";
 	pixel_x = 6;
-	pixel_y = -24
+	pixel_y = -24;
+	req_access = list(2)
 	},
 /obj/machinery/button/remote/airlock{
 	id = "briginner";
 	name = "Inner Brig Doors";
 	pixel_x = -6;
-	pixel_y = -24
+	pixel_y = -24;
+	req_access = list(2)
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -7206,7 +7208,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance/engi,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 1;
@@ -7215,6 +7216,7 @@
 	name = "Engineering Lockdown";
 	opacity = 0
 	},
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
 "nF" = (
@@ -18090,6 +18092,11 @@
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)

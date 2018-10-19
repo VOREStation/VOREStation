@@ -749,6 +749,11 @@
 	icon_state = "camera";
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "bo" = (
@@ -4278,6 +4283,11 @@
 /obj/item/ammo_magazine/clip/c762/practice,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/item/ammo_magazine/clip/c762/practice,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/range)
 "hm" = (
@@ -4384,6 +4394,11 @@
 	dir = 9
 	},
 /obj/machinery/light,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/red)
 "hE" = (
@@ -6172,6 +6187,10 @@
 	icon_state = "borderfloorcorner_black";
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "kd" = (
@@ -7579,7 +7598,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "mA" = (
@@ -8645,6 +8664,12 @@
 	dir = 9
 	},
 /obj/structure/table/steel,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
+/obj/item/device/taperecorder,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oC" = (
@@ -8656,7 +8681,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/table/steel,
+/obj/machinery/computer/secure_data,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oD" = (
@@ -8671,6 +8696,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/weapon/pen,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oE" = (
@@ -8682,7 +8712,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/computer/secure_data,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oF" = (
@@ -8693,11 +8723,6 @@
 	dir = 5
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/weapon/pen,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oG" = (
@@ -8747,6 +8772,10 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
 /obj/machinery/light,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)
 "oK" = (
@@ -9196,13 +9225,20 @@
 	icon_state = "camera";
 	dir = 4
 	},
+/obj/structure/table/steel,
+/obj/item/weapon/folder/red,
+/obj/item/weapon/folder/red{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/machinery/recharger,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/structure/bed/chair{
+/obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -9220,7 +9256,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/bed/chair/office/dark{
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -9233,11 +9269,6 @@
 	dir = 4
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/folder/red{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/item/weapon/folder/red,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pq" = (
@@ -9479,9 +9510,6 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 5
 	},
-/obj/structure/table/steel,
-/obj/item/device/taperecorder,
-/obj/machinery/recharger,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pQ" = (
@@ -9901,6 +9929,12 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 10;
+	pixel_y = 36
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
 "qC" = (
@@ -10469,6 +10503,11 @@
 /obj/structure/closet{
 	name = "Evidence Closet"
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/evidence_storage)
 "ru" = (
@@ -10488,12 +10527,12 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 10
 	},
-/obj/structure/table/steel,
 /obj/machinery/alarm{
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
+/obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "rw" = (
@@ -10521,6 +10560,7 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/red/bordercorner2,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "rz" = (
@@ -15158,6 +15198,11 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
 "yr" = (
@@ -18598,12 +18643,6 @@
 /area/security/hallway)
 "DP" = (
 /obj/structure/table/steel,
-/obj/machinery/button/windowtint{
-	id = "sec_processing";
-	pixel_x = 6;
-	pixel_y = -2;
-	req_access = list(1)
-	},
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "DQ" = (
@@ -27300,6 +27339,17 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"Rs" = (
+/obj/machinery/button/windowtint{
+	step_x = 20;
+	step_y = 8;
+	pixel_x = 6;
+	pixel_y = -2;
+	req_access = list(1);
+	id = "sec_processing"
+	},
+/turf/simulated/floor/tiled,
+/area/security/security_processing)
 "RB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -34740,7 +34790,7 @@ jk
 og
 oC
 pm
-pM
+Rs
 qi
 qN
 rw
