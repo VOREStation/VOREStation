@@ -27345,8 +27345,7 @@
 	pixel_x = 26;
 	pixel_y = 6;
 	req_access = list(1);
-	step_x = 0;
-	step_y = 0
+	
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
