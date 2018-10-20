@@ -44,10 +44,7 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/title2.ogg',\
 	'sound/music/clouds.s3m',\
 	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
-<<<<<<< HEAD
-	*/
-=======
->>>>>>> eee9c50... Merge pull request #5675 from kevinz000/PS_PORT_VOTE
+	*/ //VOREStation Edit End
 
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
 

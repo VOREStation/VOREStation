@@ -131,7 +131,6 @@
 			debug_variables(chemistryProcess)
 			feedback_add_details("admin_verb", "DChem")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
-<<<<<<< HEAD
 	return
 
 /client/proc/debug_process_scheduler()
@@ -156,5 +155,3 @@
 	debug_variables(P)
 	feedback_add_details("admin_verb", "DProcCtrl")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
-=======
->>>>>>> eee9c50... Merge pull request #5675 from kevinz000/PS_PORT_VOTE

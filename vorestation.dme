@@ -231,11 +231,8 @@
 #include "code\controllers\subsystems\persist_vr.dm"
 #include "code\controllers\subsystems\planets.dm"
 #include "code\controllers\subsystems\shuttles.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\transcore_vr.dm"
-=======
 #include "code\controllers\subsystems\vote.dm"
->>>>>>> eee9c50... Merge pull request #5675 from kevinz000/PS_PORT_VOTE:polaris.dme
 #include "code\controllers\subsystems\xenoarch.dm"
 #include "code\datums\ai_law_sets.dm"
 #include "code\datums\ai_laws.dm"
