@@ -17466,10 +17466,10 @@
 /turf/simulated/floor/tiled,
 /area/maintenance/station/cargo)
 "BL" = (
-/obj/machinery/computer/supplycomp{
+/obj/machinery/camera/network/cargo{
 	dir = 4
 	},
-/obj/machinery/camera/network/cargo{
+/obj/machinery/computer/supplycomp/control{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
