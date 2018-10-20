@@ -2562,8 +2562,8 @@
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "afV" = (
-/turf/simulated/floor/reinforced,
 /obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
 "afX" = (
@@ -19977,6 +19977,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_grid,
 /area/teleporter)
 "bJY" = (

@@ -7146,6 +7146,7 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 4
 	},
+/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "oT" = (

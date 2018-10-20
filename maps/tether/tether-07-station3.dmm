@@ -749,6 +749,11 @@
 	icon_state = "camera";
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "bo" = (
@@ -4278,6 +4283,11 @@
 /obj/item/ammo_magazine/clip/c762/practice,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/item/ammo_magazine/clip/c762/practice,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/range)
 "hm" = (
@@ -4384,6 +4394,11 @@
 	dir = 9
 	},
 /obj/machinery/light,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/red)
 "hE" = (
@@ -6172,6 +6187,10 @@
 	icon_state = "borderfloorcorner_black";
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "kd" = (
@@ -7130,6 +7149,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "lN" = (
@@ -7578,7 +7598,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "mA" = (
@@ -8644,6 +8664,12 @@
 	dir = 9
 	},
 /obj/structure/table/steel,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
+/obj/item/device/taperecorder,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oC" = (
@@ -8655,7 +8681,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/table/steel,
+/obj/machinery/computer/secure_data,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oD" = (
@@ -8670,6 +8696,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/weapon/pen,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oE" = (
@@ -8681,7 +8712,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/computer/secure_data,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oF" = (
@@ -8692,11 +8723,6 @@
 	dir = 5
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/weapon/pen,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "oG" = (
@@ -8746,6 +8772,10 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
 /obj/machinery/light,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)
 "oK" = (
@@ -9195,13 +9225,20 @@
 	icon_state = "camera";
 	dir = 4
 	},
+/obj/structure/table/steel,
+/obj/item/weapon/folder/red,
+/obj/item/weapon/folder/red{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/machinery/recharger,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/structure/bed/chair{
+/obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -9219,7 +9256,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/bed/chair/office/dark{
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -9232,11 +9269,6 @@
 	dir = 4
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/folder/red{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/item/weapon/folder/red,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pq" = (
@@ -9478,9 +9510,6 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 5
 	},
-/obj/structure/table/steel,
-/obj/item/device/taperecorder,
-/obj/machinery/recharger,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pQ" = (
@@ -9900,6 +9929,12 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 10;
+	pixel_y = 36
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
 "qC" = (
@@ -10468,6 +10503,11 @@
 /obj/structure/closet{
 	name = "Evidence Closet"
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/evidence_storage)
 "ru" = (
@@ -10487,12 +10527,12 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 10
 	},
-/obj/structure/table/steel,
 /obj/machinery/alarm{
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
+/obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "rw" = (
@@ -10520,6 +10560,7 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/red/bordercorner2,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "rz" = (
@@ -11960,17 +12001,6 @@
 	dir = 8
 	},
 /obj/machinery/vending/snack,
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
-	id_tag = "sec_fore_airlock";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_airpump = "sec_fore_pump";
-	tag_chamber_sensor = "sec_fore_sensor";
-	tag_exterior_door = "sec_fore_outer";
-	tag_interior_door = "sec_fore_inner"
-	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "tt" = (
@@ -14617,6 +14647,11 @@
 	dir = 5
 	},
 /obj/structure/table/reinforced,
+/obj/item/weapon/stamp/internalaffairs,
+/obj/item/weapon/stamp/denied{
+	pixel_x = 4;
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "xB" = (
@@ -14660,6 +14695,11 @@
 	dir = 9
 	},
 /obj/structure/table/reinforced,
+/obj/item/weapon/stamp/internalaffairs,
+/obj/item/weapon/stamp/denied{
+	pixel_x = 4;
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "xF" = (
@@ -15158,6 +15198,11 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/machinery/light_switch{
+	dir = 4;
+	icon_state = "light1";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
 "yr" = (
@@ -17448,7 +17493,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/cargo)
 "BI" = (
-/obj/machinery/light/small,
 /obj/structure/mopbucket,
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/mop,
@@ -18599,12 +18643,6 @@
 /area/security/hallway)
 "DP" = (
 /obj/structure/table/steel,
-/obj/machinery/button/windowtint{
-	id = "sec_processing";
-	pixel_x = 6;
-	pixel_y = -2;
-	req_access = list(1)
-	},
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "DQ" = (
@@ -27301,10 +27339,16 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/security/eva)
-"Rm" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/simulated/wall/r_wall,
-/area/security/lobby)
+"Rs" = (
+/obj/machinery/button/windowtint{
+	id = "sec_processing";
+	pixel_x = 26;
+	pixel_y = 6;
+	req_access = list(1);
+	
+	},
+/turf/simulated/floor/tiled,
+/area/security/security_processing)
 "RB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -34330,7 +34374,7 @@ uP
 uP
 uP
 uP
-Rm
+uP
 uP
 uP
 Ag
@@ -34745,7 +34789,7 @@ jk
 og
 oC
 pm
-pM
+Rs
 qi
 qN
 rw
