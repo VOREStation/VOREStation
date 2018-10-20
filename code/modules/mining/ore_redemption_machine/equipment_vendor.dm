@@ -10,7 +10,10 @@
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
 	var/icon_deny = "mining-deny"
 	var/obj/item/weapon/card/id/inserted_id
+<<<<<<< HEAD
 	//VOREStation Edit - Heavily modified list
+=======
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 	var/list/prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
@@ -21,6 +24,7 @@
 		new /datum/data/mining_equipment("Soap",						/obj/item/weapon/soap/nanotrasen,									200),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/device/laser_pointer,										900),
 		new /datum/data/mining_equipment("Plush Toy",					/obj/random/plushie,												300),
+<<<<<<< HEAD
 		// TODO new /datum/data/mining_equipment("Advanced Scanner",	/obj/item/device/t_scanner/adv_mining_scanner,						800),
 		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												500),
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/device/survivalcapsule,									500),
@@ -55,6 +59,21 @@
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000)
 		)
 	//VOREStation Edit End
+=======
+//		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												500),
+		new /datum/data/mining_equipment("Point Transfer Card",			/obj/item/weapon/card/mining_point_card,							500),
+//		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1200),
+		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
+//		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c1000,									2000),
+//		new /datum/data/mining_equipment("Industrial Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,						2000),
+//		new /datum/data/mining_equipment("Industrial Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,				800),
+//		new /datum/data/mining_equipment("Industrial Hardsuit - Drill",				/obj/item/rig_module/device/drill,						2000),
+//		new /datum/data/mining_equipment("Industrial Hardsuit - Ore Scanner",		/obj/item/rig_module/device/orescanner,					1000),
+//		new /datum/data/mining_equipment("Industrial Hardsuit - Material Scanner",	/obj/item/rig_module/vision/material,					500),
+//		new /datum/data/mining_equipment("Industrial Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,					1250),
+//		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/weapon/pickaxe/diamond,									2000),
+		)
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
@@ -185,6 +204,7 @@
 	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher")
 	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)
 		return
+<<<<<<< HEAD
 	//VOREStation Edit Start - Uncommented these
 	var/drop_location = drop_location()
 	switch(selection)
@@ -193,6 +213,14 @@
 		if("Resonator")
 			new /obj/item/resonator(drop_location)
 	//VOREStation Edit End
+=======
+//	var/drop_location = drop_location()
+//	switch(selection)
+//		if("Kinetic Accelerator")
+//			new /obj/item/weapon/gun/energy/kinetic_accelerator(drop_location)
+//		if("Resonator")
+//			new /obj/item/resonator(drop_location)
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 		// if("Mining Drone")
 		// 	new /obj/item/storage/box/drone_kit(drop_location)
 		// if("Advanced Scanner")

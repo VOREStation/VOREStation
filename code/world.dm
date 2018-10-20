@@ -65,6 +65,8 @@ var/global/datum/global_init/init = new ()
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
+	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+
 	callHook("startup")
 	//Emergency Fix
 	load_mods()

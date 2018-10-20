@@ -195,7 +195,13 @@
 	icon_state = "mouse_gray"
 
 /obj/random/mob/mouse/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(15);/mob/living/simple_animal/mouse/white,
 				prob(30);/mob/living/simple_animal/mouse/brown,
 				prob(30);/mob/living/simple_animal/mouse/gray,
+=======
+	return pick(prob(15);/mob/living/simple_mob/animal/passive/mouse/white,
+				prob(30);/mob/living/simple_mob/animal/passive/mouse/brown,
+				prob(30);/mob/living/simple_mob/animal/passive/mouse/gray,
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 				prob(25);/obj/random/mouseremains) //because figuring out how to come up with it picking nothing is beyond my coding ability.

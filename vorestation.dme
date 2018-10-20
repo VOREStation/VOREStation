@@ -1747,7 +1747,10 @@
 #include "code\modules\food\food.dm"
 #include "code\modules\food\recipe_dump.dm"
 #include "code\modules\food\recipes_microwave.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\food\recipes_microwave_vr.dm"
+=======
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682):polaris.dme
 #include "code\modules\food\drinkingglass\drinkingglass.dm"
 #include "code\modules\food\drinkingglass\extras.dm"
 #include "code\modules\food\drinkingglass\glass_boxes.dm"
@@ -1760,8 +1763,11 @@
 #include "code\modules\food\food\lunch.dm"
 #include "code\modules\food\food\sandwich.dm"
 #include "code\modules\food\food\snacks.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\food\food\snacks_vr.dm"
 #include "code\modules\food\food\z_custom_food_vr.dm"
+=======
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682):polaris.dme
 #include "code\modules\food\food\drinks\bottle.dm"
 #include "code\modules\food\food\drinks\cup.dm"
 #include "code\modules\food\food\drinks\drinkingglass.dm"

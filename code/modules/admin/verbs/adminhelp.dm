@@ -184,7 +184,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>")
+<<<<<<< HEAD
 	send2adminchat() //VOREStation Add
+=======
+
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 	GLOB.ahelp_tickets.active_tickets += src
 
 /datum/admin_help/Destroy()
@@ -503,7 +507,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "Show Ticket List"
 	set category = "Admin"
 
+<<<<<<< HEAD
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG, TRUE))
+=======
+	if(!check_rights(R_ADMIN, TRUE))
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 		return
 
 	var/browse_to
@@ -659,4 +667,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		else
 			return founds
 
+<<<<<<< HEAD
 	return msg
+=======
+	return msg
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)

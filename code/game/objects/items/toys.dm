@@ -1071,6 +1071,59 @@
 	name = "tuxedo cat plushie"
 	icon_state = "tuxedocat"
 	pokephrase = "Mrowww!!"
+<<<<<<< HEAD
+=======
+
+// nah, squids are better than foxes :>
+
+/obj/item/toy/plushie/squid/green
+	name = "green squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is green."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "greensquid"
+	slot_flags = SLOT_HEAD
+	pokephrase = "Squrr!"
+
+/obj/item/toy/plushie/squid/mint
+	name = "mint squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is mint coloured."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "mintsquid"
+	slot_flags = SLOT_HEAD
+	pokephrase = "Blurble!"
+
+/obj/item/toy/plushie/squid/blue
+	name = "blue squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is blue."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "bluesquid"
+	slot_flags = SLOT_HEAD
+	pokephrase = "Blob!"
+
+/obj/item/toy/plushie/squid/orange
+	name = "orange squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is orange."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "orangesquid"
+	slot_flags = SLOT_HEAD
+	pokephrase = "Squash!"
+
+/obj/item/toy/plushie/squid/yellow
+	name = "yellow squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is yellow."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "yellowsquid"
+	slot_flags = SLOT_HEAD
+	pokephrase = "Glorble!"
+
+/obj/item/toy/plushie/squid/pink
+	name = "pink squid plushie"
+	desc = "A small, cute and loveable squid friend. This one is pink."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "pinksquid"
+	slot_flags = SLOT_HEAD
+	pokephrase = "Wobble!"
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 
 // nah, squids are better than foxes :>
 

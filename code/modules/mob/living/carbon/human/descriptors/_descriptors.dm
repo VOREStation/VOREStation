@@ -106,3 +106,4 @@
 	var/maxval = LAZYLEN(comparative_value_descriptors_larger)
 	value = Clamp(ceil(value * maxval), 1, maxval)
 	return comparative_value_descriptors_larger[value]
+

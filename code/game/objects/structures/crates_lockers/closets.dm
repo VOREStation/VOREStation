@@ -459,4 +459,8 @@
 	if(src.loc)
 		if(istype(src.loc, /obj/structure/closet))
 			return (loc.return_air_for_internal_lifeform(L))
+<<<<<<< HEAD
 	return return_air()
+=======
+	return return_air()
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)

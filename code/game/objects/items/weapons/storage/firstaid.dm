@@ -134,7 +134,11 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
+<<<<<<< HEAD
 		///obj/item/device/healthanalyzer/advanced, //VOREStation Removal,
+=======
+		/obj/item/device/healthanalyzer/advanced,
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 		/obj/item/weapon/autopsy_scanner
 		)
 
@@ -149,7 +153,11 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
+<<<<<<< HEAD
 		///obj/item/device/healthanalyzer/advanced, //VOREStation Removal,
+=======
+		/obj/item/device/healthanalyzer/advanced,
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 		/obj/item/weapon/autopsy_scanner
 		)
 

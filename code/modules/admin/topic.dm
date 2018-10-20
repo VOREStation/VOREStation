@@ -11,7 +11,11 @@
 		return
 
 	if(href_list["ahelp"])
+<<<<<<< HEAD
 		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+=======
+		if(!check_rights(R_ADMIN))
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
 			return
 
 		var/ahelp_ref = href_list["ahelp"]

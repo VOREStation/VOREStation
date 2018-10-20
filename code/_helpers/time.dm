@@ -239,4 +239,8 @@ var/round_start_time = 0
 	else
 		day = "[truncate ? "day" : "1 day"]"
 
+<<<<<<< HEAD
 	return "[day][hour][minute][second]"
+=======
+	return "[day][hour][minute][second]"
+>>>>>>> 8839877... Master to ai electric boogaloo (#5682)
