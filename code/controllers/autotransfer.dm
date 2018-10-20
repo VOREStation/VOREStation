@@ -16,6 +16,7 @@ datum/controller/transfer_controller/Destroy()
 
 datum/controller/transfer_controller/proc/process()
 	currenttick = currenttick + 1
+<<<<<<< HEAD
 	if (round_duration_in_ticks >= shift_last_vote - 2 MINUTES) //VOREStation Edit START
 		shift_last_vote = 999999999999 //Setting to a stupidly high number since it'll be not used again.
 		to_world("<b>Warning: This upcoming round-extend vote will be your ONLY extend vote. Wrap up your scenes in the next 60 minutes if the round is extended.</b>") //VOREStation Edit
@@ -25,4 +26,8 @@ datum/controller/transfer_controller/proc/process()
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval //Just to make sure a vote doesn't occur immediately afterwords.
 	else if (round_duration_in_ticks >= timerbuffer - 1 MINUTE) //VOREStation Edit END
 		vote.autotransfer()
+=======
+	if (round_duration_in_ticks >= timerbuffer - 1 MINUTE)
+		SSvote.autotransfer()
+>>>>>>> eee9c50... Merge pull request #5675 from kevinz000/PS_PORT_VOTE
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval
