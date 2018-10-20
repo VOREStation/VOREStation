@@ -7,6 +7,7 @@
 	icon_dead = "badboi-dead"
 	icon_rest = "badboi_rest"
 	faction = "corrupt"
+	intelligence_level = SA_ROBOTIC
 
 	maxHealth = 200
 	health = 200
