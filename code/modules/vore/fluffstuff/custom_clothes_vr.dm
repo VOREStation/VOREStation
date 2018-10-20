@@ -25,36 +25,36 @@
 */
 
 //Natje: Awen Henry
-/obj/item/clothing/head/fluff/awoo
+/obj/item/clothing/head/fluff/wolfgirl
     name = "Wolfgirl Hat"
     desc = "An odd, small hat with two strings attached to it."
 
-    icon_state = "awoohat"
+    icon_state = "wolfgirlhat"
     icon = 'icons/vore/custom_clothes_vr.dmi'
     icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
 //Natje: Awen Henry
-/obj/item/clothing/shoes/fluff/awoo
+/obj/item/clothing/shoes/fluff/wolfgirl
     name = "Red Sandals"
     desc = "A pair of sandals that make you want to awoo!"
 
-    icon_state = "awoosandals"
+    icon_state = "wolfgirlsandals"
     icon = 'icons/vore/custom_clothes_vr.dmi'
     icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
 //Natje: Awen Henry
-/obj/item/clothing/under/fluff/awoo
+/obj/item/clothing/under/fluff/wolfgirl
 	name = "Wolfgirl Clothes"
 	desc = "A set of clothes almost identical to those Wolf Girls always wear..."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "awoouni"
-	worn_state = "awoouni_mob"
+	icon_state = "wolfgirluni"
+	worn_state = "wolfgirluni_mob"
 	rolled_sleeves = 0
 	rolled_down = 0
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "awoouni_mob"
+	item_state = "wolfgirluni_mob"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 //SpoopyLizz: Roiz Lizden

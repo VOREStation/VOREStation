@@ -122,7 +122,7 @@
 /obj/structure/largecrate/animal/wolfgirl
 	name = "Wolfgirl Crate"
 	desc = "A sketchy looking crate with airholes that shakes and thuds every now and then. Someone seems to be demanding they be let out."
-	starts_with = list(/mob/living/simple_animal/retaliate/awoo)
+	starts_with = list(/mob/living/simple_animal/retaliate/wolfgirl)
 
 /obj/structure/largecrate/animal/fennec
 	name = "Fennec Crate"
