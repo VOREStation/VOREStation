@@ -1,4 +1,4 @@
-/mob/living/simple_animal/retaliate/awoo
+/mob/living/simple_animal/retaliate/wolfgirl
 	name = "wolfgirl"
 	desc = "AwooOOOOoooo!"
 	tt_desc = "Homo lupus"
@@ -8,7 +8,7 @@
 	icon_dead = "awoo-dead"
 	intelligence_level = SA_HUMANOID
 
-	faction = "awoo"
+	faction = "wolfgirl"
 	maxHealth = 30
 	health = 30
 
@@ -48,7 +48,7 @@
 
 	var/loopstop = 0 //To prevent circular awoooos.
 
-/mob/living/simple_animal/retaliate/awoo/hear_say()
+/mob/living/simple_animal/retaliate/wolfgirl/hear_say()
 	if(world.time - loopstop < 5 SECONDS)
 		return
 	else
@@ -56,7 +56,7 @@
 		..()
 
 // Activate Noms!
-/mob/living/simple_animal/retaliate/awoo
+/mob/living/simple_animal/retaliate/wolfgirl
 	vore_active = 1
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
