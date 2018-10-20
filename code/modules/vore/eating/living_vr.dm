@@ -611,8 +611,8 @@
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
 
-/mob/living/examine(mob/user)
-	. = ..()
+/mob/living/examine(mob/user, distance, infix, suffix)
+	. = ..(user, distance, infix, suffix)
 	if(showvoreprefs)
 		to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
 
