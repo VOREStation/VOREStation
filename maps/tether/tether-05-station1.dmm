@@ -22208,7 +22208,6 @@
 	pixel_x = 26;
 	pixel_y = -26
 	},
-/obj/item/device/binoculars,
 /turf/simulated/floor/tiled,
 /area/tether/station/pathfinder_office)
 "rhA" = (
