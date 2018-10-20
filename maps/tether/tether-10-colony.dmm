@@ -12,11 +12,11 @@
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/centcom/specops)
 "ae" = (
-/turf/unsimulated/floor/shuttle_ceiling,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_l";
 	dir = 8
 	},
+/turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/specops/centcom{
 	base_turf = /turf/unsimulated/floor/shuttle_ceiling
@@ -35,11 +35,11 @@
 /turf/unsimulated/wall,
 /area/centcom/specops)
 "ai" = (
-/turf/unsimulated/floor/shuttle_ceiling,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion";
 	dir = 8
 	},
+/turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/specops/centcom{
 	base_turf = /turf/unsimulated/floor/shuttle_ceiling
@@ -136,14 +136,12 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/item/weapon/gun/energy/ionrifle/pistol,
+/obj/item/weapon/gun/energy/ionrifle/pistol,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -153,9 +151,6 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
 /obj/item/weapon/gun/energy/netgun,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/unsimulated/floor{
@@ -167,7 +162,6 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/laser,
 /obj/item/weapon/gun/energy/laser,
 /obj/item/weapon/gun/energy/laser,
 /obj/item/weapon/gun/energy/laser,
@@ -184,16 +178,14 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/m545saw,
-/obj/item/ammo_magazine/m545saw,
-/obj/item/ammo_magazine/m545saw,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/ammo_magazine/m545saw/ap,
-/obj/item/ammo_magazine/m545saw/ap,
-/obj/item/weapon/gun/projectile/automatic/l6_saw,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -206,6 +198,8 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/item/weapon/gun/energy/gun/nuclear,
 /obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/weapon/gun/energy/gun/nuclear,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -215,21 +209,20 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/ammo_magazine/m762/ap,
-/obj/item/ammo_magazine/m762/ap,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -239,18 +232,17 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
-/obj/item/ammo_magazine/m762m,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/ammo_magazine/m762/ap,
-/obj/item/ammo_magazine/m762/ap,
-/obj/item/weapon/gun/projectile/automatic/z8,
-/obj/item/weapon/gun/projectile/automatic/z8,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -260,9 +252,11 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/xray,
-/obj/item/weapon/gun/energy/xray,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/item/weapon/gun/energy/taser,
+/obj/item/weapon/gun/energy/taser,
+/obj/item/weapon/gun/energy/taser,
+/obj/item/weapon/gun/energy/taser,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -293,12 +287,14 @@
 /area/centcom/specops)
 "az" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/launcher/grenade,
-/obj/item/weapon/gun/launcher/grenade,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/item/weapon/gun/energy/stunrevolver,
+/obj/item/weapon/gun/energy/stunrevolver,
+/obj/item/weapon/gun/energy/stunrevolver,
+/obj/item/weapon/gun/energy/stunrevolver,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -317,7 +313,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/storage/box/frags,
 /obj/item/weapon/storage/box/smokes,
 /obj/item/weapon/storage/box/smokes,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -383,7 +378,16 @@
 /obj/item/ammo_casing/rocket,
 /obj/item/weapon/gun/launcher/rocket,
 /obj/item/weapon/gun/launcher/rocket,
-/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/projectile/automatic/l6_saw,
+/obj/item/weapon/gun/projectile/automatic/l6_saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw/ap,
+/obj/item/ammo_magazine/m545saw/ap,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -395,33 +399,14 @@
 /area/centcom/specops)
 "aH" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/surgical/circular_saw,
-/obj/item/weapon/surgical/surgicaldrill,
-/obj/item/weapon/surgical/bonegel{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/weapon/surgical/bonesetter,
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/retractor{
-	pixel_x = 0;
-	pixel_y = 6
-	},
-/obj/item/weapon/surgical/hemostat{
-	pixel_y = 4
-	},
-/obj/item/weapon/surgical/cautery{
-	pixel_y = 4
-	},
-/obj/item/weapon/surgical/FixOVein{
-	pixel_x = -6;
-	pixel_y = 1
-	},
 /obj/item/stack/nanopaste,
 /obj/item/weapon/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/mask/surgical,
+/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste,
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -429,6 +414,18 @@
 /area/centcom/specops)
 "aI" = (
 /obj/structure/closet/crate/medical,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -449,12 +446,13 @@
 /area/centcom/specops)
 "aK" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
+/obj/item/weapon/storage/firstaid/clotting,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/nutriment,
+/obj/item/weapon/storage/pill_bottle/nutriment,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -513,6 +511,8 @@
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/device/defib_kit/compact/combat/loaded,
+/obj/item/device/defib_kit/compact/combat/loaded,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -597,8 +597,6 @@
 /area/centcom/specops)
 "aW" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/stunrevolver,
-/obj/item/weapon/gun/energy/stunrevolver,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /obj/item/clothing/accessory/storage/black_vest,
@@ -607,6 +605,14 @@
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/martin,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -629,6 +635,12 @@
 /obj/item/clothing/accessory/storage/white_vest,
 /obj/item/clothing/accessory/storage/white_vest,
 /obj/item/clothing/accessory/storage/white_vest,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -643,8 +655,6 @@
 "ba" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /turf/unsimulated/floor{
@@ -679,8 +689,11 @@
 "bd" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/gun/projectile/automatic/wt550/lethal,
-/obj/item/weapon/gun/projectile/automatic/wt550/lethal,
+/obj/item/weapon/gun/projectile/automatic/saber,
+/obj/item/ammo_magazine/m9mmR/saber,
+/obj/item/ammo_magazine/m9mmR/saber,
+/obj/item/ammo_magazine/m9mmR/saber,
+/obj/item/ammo_magazine/m9mmR/saber,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -688,7 +701,6 @@
 "be" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/gun/energy/sniperrifle,
 /obj/item/weapon/gun/energy/sniperrifle,
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -700,12 +712,24 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/ammo_magazine/s357,
-/obj/item/ammo_magazine/s357,
-/obj/item/ammo_magazine/s357,
-/obj/item/ammo_magazine/s357,
-/obj/item/weapon/gun/projectile/revolver/mateba,
-/obj/item/weapon/gun/projectile/revolver/mateba,
+/obj/item/weapon/gun/projectile/revolver/detective45,
+/obj/item/weapon/gun/projectile/revolver/detective45,
+/obj/item/ammo_magazine/s45,
+/obj/item/ammo_magazine/s45,
+/obj/item/ammo_magazine/s45,
+/obj/item/ammo_magazine/s45,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -729,11 +753,11 @@
 	},
 /area/centcom/specops)
 "bh" = (
-/turf/unsimulated/floor/shuttle_ceiling,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_r";
 	dir = 8
 	},
+/turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/specops/centcom{
 	base_turf = /turf/unsimulated/floor/shuttle_ceiling
@@ -869,7 +893,9 @@
 /area/centcom/specops)
 "bn" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box,
+/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/advanced,
 /obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor{
 	icon_state = "vault";
@@ -968,6 +994,20 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1043,20 +1083,7 @@
 	},
 /area/centcom/specops)
 "bB" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/pill_bottle/tramadol,
-/obj/item/weapon/storage/pill_bottle/tramadol,
-/obj/item/weapon/storage/pill_bottle/tramadol,
-/obj/item/weapon/storage/pill_bottle/dylovene,
-/obj/item/weapon/storage/pill_bottle/dylovene,
-/obj/item/weapon/storage/pill_bottle/dylovene,
-/obj/item/weapon/storage/pill_bottle/dermaline,
-/obj/item/weapon/storage/pill_bottle/dermaline,
-/obj/item/weapon/storage/pill_bottle/dermaline,
-/obj/item/weapon/storage/pill_bottle/spaceacillin,
-/obj/item/weapon/storage/pill_bottle/dexalin_plus,
-/obj/item/weapon/storage/pill_bottle/dexalin_plus,
-/obj/item/weapon/storage/pill_bottle/dexalin_plus,
+/obj/machinery/vending/medical,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -1069,6 +1096,10 @@
 	pixel_y = 2
 	},
 /obj/item/weapon/storage/box/bodybags,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/extinguisher/mini,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -1082,7 +1113,6 @@
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
-/obj/item/device/healthanalyzer/advanced,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -1114,7 +1144,6 @@
 /area/centcom/specops)
 "bG" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
 /obj/item/weapon/storage/backpack/dufflebag/syndie/med,
 /obj/item/weapon/storage/backpack/dufflebag/syndie/med,
 /obj/item/weapon/storage/backpack/dufflebag/syndie/med,
@@ -1491,6 +1520,12 @@
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
+/obj/item/clothing/accessory/storage/black_drop_pouches,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1641,14 +1676,26 @@
 	pixel_y = 3
 	},
 /obj/structure/table/steel_reinforced,
+/obj/item/stack/rods,
+/obj/item/stack/rods,
+/obj/item/stack/material/glass/phoronglass,
+/obj/item/stack/material/glass/phoronglass,
+/obj/item/stack/rods,
+/obj/item/stack/rods,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
 "cy" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box,
-/obj/item/weapon/storage/box,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1765,13 +1812,19 @@
 /area/centcom/specops)
 "cM" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
 /obj/effect/floor_decal/industrial/outline/blue,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1838,8 +1891,6 @@
 /area/centcom/specops)
 "cT" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/stunrevolver,
-/obj/item/weapon/gun/energy/stunrevolver,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /obj/item/clothing/accessory/storage/brown_vest,
@@ -1848,6 +1899,14 @@
 /obj/item/clothing/accessory/storage/brown_vest,
 /obj/item/clothing/accessory/storage/brown_vest,
 /obj/item/clothing/accessory/storage/brown_vest,
+/obj/item/clothing/accessory/storage/brown_drop_pouches,
+/obj/item/clothing/accessory/storage/brown_drop_pouches,
+/obj/item/clothing/accessory/storage/brown_drop_pouches,
+/obj/item/clothing/accessory/storage/brown_drop_pouches,
+/obj/item/clothing/accessory/storage/brown_drop_pouches,
+/obj/item/clothing/accessory/storage/brown_drop_pouches,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/martin,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1957,9 +2016,10 @@
 /area/centcom/specops)
 "dc" = (
 /obj/structure/table/rack,
-/obj/item/rig_module/grenade_launcher,
-/obj/item/rig_module/grenade_launcher,
 /obj/effect/floor_decal/industrial/outline/blue,
+/obj/item/rig_module/rescue_pharm,
+/obj/item/rig_module/sprinter,
+/obj/item/rig_module/sprinter,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16792,6 +16852,48 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"Ez" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"JC" = (
+/obj/machinery/power/thermoregulator,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"JF" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"Nt" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"OD" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
 "Rc" = (
 /obj/structure/table/glass,
 /obj/item/device/defib_kit/compact/loaded,
@@ -16799,6 +16901,45 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"Re" = (
+/obj/structure/table/reinforced,
+/obj/item/device/perfect_tele,
+/obj/item/device/binoculars,
+/obj/item/device/survivalcapsule,
+/obj/item/device/survivalcapsule,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"UC" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"Xa" = (
+/obj/machinery/space_heater,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
+"XA" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/smes_coil,
+/obj/item/weapon/smes_coil,
+/obj/item/device/t_scanner/advanced,
+/obj/item/device/t_scanner/advanced,
+/obj/item/stack/material/phoron,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
 
 (1,1,1) = {"
 aa
@@ -30333,8 +30474,8 @@ aX
 aX
 aX
 cg
-aG
-aG
+Nt
+JF
 aG
 cS
 dm
@@ -30617,7 +30758,7 @@ aX
 aX
 aX
 cg
-aG
+UC
 cx
 cH
 cU
@@ -30759,7 +30900,7 @@ aX
 aX
 aX
 cg
-aG
+XA
 cy
 cI
 cV
@@ -30901,7 +31042,7 @@ aX
 aX
 aX
 cg
-aG
+OD
 cz
 cJ
 cJ
@@ -31043,7 +31184,7 @@ aX
 aX
 aX
 cg
-aG
+Xa
 cA
 cK
 cK
@@ -31185,7 +31326,7 @@ bX
 aX
 ce
 ah
-aG
+JC
 cA
 cL
 cL
@@ -31469,7 +31610,7 @@ aX
 aX
 aX
 ah
-aG
+Ez
 cB
 cM
 cW
@@ -33031,7 +33172,7 @@ aX
 aX
 aX
 ah
-aG
+Re
 cC
 cN
 dh
