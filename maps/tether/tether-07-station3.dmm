@@ -21673,7 +21673,7 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/medical,
 /obj/random/junk,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/random/medical/lite,
 /obj/random/maintenance/medical,
 /obj/effect/decal/cleanable/dirt,

@@ -13945,8 +13945,8 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/random/tetheraid,
+/obj/random/tetheraid,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = -24
