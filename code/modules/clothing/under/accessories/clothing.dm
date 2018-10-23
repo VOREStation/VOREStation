@@ -257,31 +257,38 @@
 /obj/item/clothing/accessory/wcoat/red
 	name = "red waistcoat"
 	icon_state = "red_waistcoat"
+	item_state = "red_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/grey
 	name = "grey waistcoat"
 	icon_state = "grey_waistcoat"
+	item_state = "grey_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/brown
 	name = "brown waistcoat"
 	icon_state = "brown_waistcoat"
+	item_state = "brown_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/gentleman
 	name = "elegant waistcoat"
 	icon_state = "elegant_waistcoat"
+	item_state = "elegant_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/swvest
 	name = "black sweatervest"
 	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
 	icon_state = "sweatervest"
+	item_state = "sweatervest"
 
 /obj/item/clothing/accessory/wcoat/swvest/blue
 	name = "blue sweatervest"
 	icon_state = "sweatervest_blue"
+	item_state = "sweatervest_blue"
 
 /obj/item/clothing/accessory/wcoat/swvest/red
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
+	item_state = "sweatervest_red"
 
 //Sweaters.
 
