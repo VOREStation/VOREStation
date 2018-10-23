@@ -21,16 +21,30 @@ var/const/access_explorer = 43
 //SC IDs
 
 /obj/item/weapon/card/id/medical/sar
-	assignment = "Search and Rescue"
-	rank = "Search and Rescue"
+	//VOREStation Block Edit - Start
+	assignment = "Field Medic"
+	rank = "Field Medic"
+	icon_state = "cyan"
+	primary_color = rgb(47,189,189)
+	secondary_color = rgb(127,223,223)
+	//VOREStation Block Edit - End
 	job_access_type = /datum/job/sar
 
-/obj/item/weapon/card/id/civilian/pilot
+//VOREStation Block Edit - Start
+/obj/item/weapon/card/id/explorer
+	name = "identification card"
+	desc = "A card issued to station exploration staff."
+	icon_state = "green"
+	primary_color = rgb(47,189,0)
+	secondary_color = rgb(127,223,95)
+//VOREstation Block Edit - End
+
+/obj/item/weapon/card/id/explorer/pilot
 	assignment = "Pilot"
 	rank = "Pilot"
 	job_access_type = /datum/job/pilot
 
-/obj/item/weapon/card/id/civilian/explorer
+/obj/item/weapon/card/id/explorer/explorer
 	assignment = "Explorer"
 	rank = "Explorer"
 	job_access_type = /datum/job/explorer
@@ -79,7 +93,7 @@ var/const/access_explorer = 43
 	spawn_positions = 2
 	supervisors = "the pathfinder and the head of personnel" //VOREStation Edit
 	selection_color = "#515151"
-	idtype = /obj/item/weapon/card/id/civilian/pilot
+	idtype = /obj/item/weapon/card/id/explorer/pilot //VOREStation Edit
 	economic_modifier = 5 //VOREStation Edit
 	access = list(access_pilot) //VOREStation Edit
 	minimal_access = list(access_pilot) //VOREStation Edit
@@ -95,10 +109,10 @@ var/const/access_explorer = 43
 	spawn_positions = 2 //VOREStation Edit
 	supervisors = "the pathfinder and the research director" //VOREStation Edit
 	selection_color = "#633D63" //VOREStation Edit
-	idtype = /obj/item/weapon/card/id/civilian/explorer
+	idtype = /obj/item/weapon/card/id/explorer/explorer //VOREStation Edit
 	economic_modifier = 6 //VOREStation Edit
-	access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
-	minimal_access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
+	access = list(access_explorer, access_research) //VOREStation Edit
+	minimal_access = list(access_explorer, access_research) //VOREStation Edit
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 /*
 	alt_titles = list(
@@ -107,7 +121,7 @@ var/const/access_explorer = 43
 */
 
 /datum/job/sar
-	title = "Search and Rescue"
+	title = "Field Medic" //VOREStation Edit
 	flag = SAR
 	department = "Medical"
 	department_flag = MEDSCI
@@ -116,8 +130,8 @@ var/const/access_explorer = 43
 	spawn_positions = 2
 	supervisors = "the pathfinder and the chief medical officer" //VOREStation Edit
 	selection_color = "#013D3B" //VOREStation Edit
-	idtype = /obj/item/weapon/card/id/medical
+	idtype = /obj/item/weapon/card/id/medical/sar //VOREStation Edit
 	economic_modifier = 6 //VOREStation Edit
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist, access_explorer)
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_explorer)
+	access = list(access_medical, access_medical_equip, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_pilot) //VOREStation Edit
+	minimal_access = list(access_medical, access_medical_equip, access_pilot) //VOREStation Edit
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
