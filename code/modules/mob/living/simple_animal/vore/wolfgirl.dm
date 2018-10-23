@@ -6,6 +6,7 @@
 	icon_state = "wolfgirl"
 	icon_living = "wolfgirl"
 	icon_dead = "wolfgirl-dead"
+	intelligence_level = SA_HUMANOID
 
 	faction = "wolfgirl"
 	maxHealth = 30
