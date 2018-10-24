@@ -209,32 +209,13 @@
 	light_power = 1.2
 	light_color = "#DDFFD3"
 	pixel_y = -4
-	max_n_of_items = 10
-	var/empty = FALSE
-	var/luxury = FALSE
+	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/initialize(mapload)
+/obj/machinery/smartfridge/survival_pod/initialize()
 	. = ..()
-	if(empty)
-		return
-	for(var/i in 1 to 5)
-		var/obj/item/weapon/reagent_containers/food/snacks/liquidfood/W = new(src)
-		stock(W)
-	for(var/i in 1 to 5)
-		var/obj/item/device/fbp_backup_cell/W = new(src)
-		stock(W)
-	var/obj/item/weapon/storage/pill_bottle/dice_nerd/D = new(src)
-	stock(D)
-	if(luxury)
-		for(var/i in 1 to 5)
-			var/obj/item/weapon/reagent_containers/food/snacks/liquidfood/W = new(src)
-			stock(W)
-		var/obj/item/device/healthanalyzer/B = new(src)
-		stock(B)
-		var/obj/item/weapon/storage/firstaid/adv/A = new(src)
-		stock(A)
-		var/obj/item/weapon/storage/pill_bottle/antitox/F = new(src)
-		stock(F)
+	for(var/obj/item/O in loc)
+		if(accept_check(O))
+			stock(O)
 
 /obj/machinery/smartfridge/survival_pod/accept_check(obj/item/O)
 	return isitem(O)
@@ -242,10 +223,6 @@
 /obj/machinery/smartfridge/survival_pod/empty
 	name = "dusty survival pod storage"
 	desc = "A heated storage unit. This one's seen better days."
-	empty = TRUE
-
-/obj/machinery/smartfridge/survival_pod/luxury
-	luxury = TRUE
 
 //Fans
 /obj/structure/fans
