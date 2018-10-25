@@ -160,9 +160,9 @@
 		if(prev_right_hand) items += prev_right_hand
 		for(var/obj/object in items)
 			object.forceMove(drop_location())
-		qdel_null(humanform) //Don't leave it just sitting in nullspace
+		QDEL_NULL(humanform) //Don't leave it just sitting in nullspace
 
-animate(src,alpha = 0,time = 2 SECONDS)
+	animate(src,alpha = 0,time = 2 SECONDS)
 	sleep(2 SECONDS)
 	qdel(src)
 
