@@ -24,7 +24,7 @@
 		return
 
 	//Organ is missing, needs restoring
-	if(!organs_by_name[choice])
+	if(!organs_by_name[choice] || istype(organs_by_name[choice], /obj/item/organ/external/stump)) //allows limb stumps to regenerate like removed limbs.
 		if(refactory.get_stored_material(DEFAULT_WALL_MATERIAL) < PER_LIMB_STEEL_COST)
 			to_chat(src,"<span class='warning'>You're missing that limb, and need to store at least [PER_LIMB_STEEL_COST] steel to regenerate it.</span>")
 			return
@@ -33,6 +33,10 @@
 			return
 		if(!refactory.use_stored_material(DEFAULT_WALL_MATERIAL,PER_LIMB_STEEL_COST))
 			return
+		if(organs_by_name[choice])
+			var/obj/item/organ/external/oldlimb = organs_by_name[choice]
+			oldlimb.removed()
+			qdel(oldlimb)
 
 		var/mob/living/simple_animal/protean_blob/blob = nano_intoblob()
 		active_regen = TRUE
@@ -60,7 +64,7 @@
 		usable_manufacturers[company] = M
 	if(!usable_manufacturers.len)
 		return
-	var/manu_choice = input(src, "Which manufacturer do you wish to mimmic for this limb?", "Manufacturer for [choice]") as null|anything in usable_manufacturers
+	var/manu_choice = input(src, "Which manufacturer do you wish to mimic for this limb?", "Manufacturer for [choice]") as null|anything in usable_manufacturers
 
 	if(!manu_choice)
 		return //Changed mind
@@ -70,13 +74,13 @@
 		return //Lost it meanwhile
 
 	eo.robotize(manu_choice)
-	visible_message("<B>[src]</B>'s ")
+	visible_message("<B>[src]</B>'s [choice] loses its shape, then reforms.")
 	update_icons_body()
 
 ////
 //  Full Refactor
 ////
-/mob/living/carbon/human/proc/nano_regenerate()
+/mob/living/carbon/human/proc/nano_regenerate() //fixed the proc, it used to leave active_regen true.
 	set name = "Ref - Whole Body"
 	set desc = "Allows you to regrow limbs and replace organs, given you have enough materials."
 	set category = "Abilities"
@@ -97,7 +101,7 @@
 		to_chat(src, "<span class='warning'>You are already refactoring!</span>")
 		return
 
-	var/swap_not_rebuild = alert(src,"Do you want to rebuild, or reshape?","Rebuild or Reshape","Rebuild","Cancel","Reshape")
+	var/swap_not_rebuild = alert(src,"Do you want to rebuild, or reshape?","Rebuild or Reshape","Reshape","Cancel","Rebuild")
 	if(swap_not_rebuild == "Cancel")
 		return
 	if(swap_not_rebuild == "Reshape")
@@ -113,7 +117,7 @@
 			usable_manufacturers[company] = M
 		if(!usable_manufacturers.len)
 			return
-		var/manu_choice = input(src, "Which manufacturer do you wish to mimmic?", "Manufacturer") as null|anything in usable_manufacturers
+		var/manu_choice = input(src, "Which manufacturer do you wish to mimic?", "Manufacturer") as null|anything in usable_manufacturers
 
 		if(!manu_choice)
 			return //Changed mind
@@ -123,7 +127,7 @@
 		var/obj/item/organ/external/torso = organs_by_name[BP_TORSO]
 		to_chat(src, "<span class='danger'>Remain still while the process takes place! It will take 5 seconds.</span>")
 		visible_message("<B>[src]</B>'s form collapses into an amorphous blob of black ichor...")
-		
+
 		var/mob/living/simple_animal/protean_blob/blob = nano_intoblob()
 		active_regen = TRUE
 		if(do_after(blob,5 SECONDS))
@@ -145,13 +149,13 @@
 	visible_message("<B>[src]</B>'s form begins to shift and ripple as if made of oil...")
 	active_regen = TRUE
 
-	nano_intoblob()
-	if(do_after(src,delay_length))
+	var/mob/living/simple_animal/protean_blob/blob = nano_intoblob()
+	if(do_after(blob, delay_length, null, 0))
 		if(stat != DEAD && refactory)
 			var/list/holder = refactory.materials
 			species.create_organs(src)
 			var/obj/item/organ/external/torso = organs_by_name[BP_TORSO]
-			torso.robotize(synthetic.company)
+			torso.robotize() //synthetic wasn't defined here.
 			LAZYCLEARLIST(blood_DNA)
 			LAZYCLEARLIST(feet_blood_DNA)
 			blood_color = null
@@ -162,9 +166,15 @@
 				log_debug("[src] protean-regen'd but lacked a refactory when done.")
 			else
 				new_refactory.materials = holder
-			to_chat(src, "<span class='notice'>Your refactoring is complete!</span>")
+			to_chat(src, "<span class='notice'>Your refactoring is complete.</span>") //Guarantees the message shows no matter how bad the timing.
+			to_chat(blob, "<span class='notice'>Your refactoring is complete!</span>")
+		else
+			to_chat(src,  "<span class='critical'>Your refactoring has failed.</span>")
+			to_chat(blob, "<span class='critical'>Your refactoring has failed!</span>")
 	else
-		to_chat(src, "<span class='critical'>Your refactoring is interrupted!</span>")
+		to_chat(src,  "<span class='critical'>Your refactoring is interrupted.</span>")
+		to_chat(blob, "<span class='critical'>Your refactoring is interrupted!</span>")
+	active_regen = FALSE
 	nano_outofblob()
 
 
@@ -189,11 +199,19 @@
 		return
 
 	var/obj/item/stack/material/matstack = held
+	var/substance = matstack.material.name
+	var/list/edible_materials = list("steel", "plasteel", "diamond", "mhydrogen") //Can't eat all materials, just useful ones.
+	var allowed = FALSE
+	for(var/material in edible_materials)
+		if(material == substance) allowed = TRUE
+	if(!allowed)
+		to_chat(src,"<span class='warning'>You can't process [substance]!</span>")
+		return //Only a few things matter, the rest are best not cluttering the lists.
+
 	var/howmuch = input(src,"How much do you want to store? (0-[matstack.amount])","Select amount") as null|num
 	if(!howmuch || matstack != get_active_hand() || howmuch > matstack.amount)
 		return //Quietly fail
 
-	var/substance = matstack.material.name
 	var/actually_added = refactory.add_stored_material(substance,howmuch*matstack.perunit)
 	matstack.use(Ceiling(actually_added/matstack.perunit))
 	if(actually_added && actually_added < howmuch)
@@ -222,7 +240,7 @@
 			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
 		else
 			nano_outofblob(temporary_form)
-	
+
 	//Human form
 	else if(stat)
 		to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
@@ -241,7 +259,7 @@
 	if(stat)
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
-	
+
 	var/new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in playable_species
 	if(new_species)
 		impersonate_bodytype = new_species
@@ -269,7 +287,7 @@
 		return
 
 	var/size_factor = new_size/100
-	
+
 	//Will be: -1.75 for 200->25, and 1.75 for 25->200
 	var/sizediff = size_factor - user.size_multiplier
 
@@ -361,7 +379,7 @@
 	desc = "Rebuild or replace a single limb, assuming you have 2000 steel."
 	icon_state = "limb"
 	to_call = /mob/living/carbon/human/proc/nano_partswap
-	
+
 /obj/effect/protean_ability/reform_body
 	ability_name = "Ref - Whole Body"
 	desc = "Rebuild your entire body into whatever design you want, assuming you have 10,000 metal."
