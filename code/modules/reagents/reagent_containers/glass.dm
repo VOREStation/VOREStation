@@ -37,8 +37,13 @@
 		/obj/machinery/iv_drip,
 		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
+<<<<<<< HEAD
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/retaliate/goat,
+=======
+		/mob/living/simple_mob/animal/passive/cow,
+		/mob/living/simple_mob/animal/goat,
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,

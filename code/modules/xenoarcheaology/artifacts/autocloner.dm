@@ -30,6 +30,7 @@
 		) // Vorestation Edits
 	else
 		spawn_type = pick(\
+<<<<<<< HEAD
 		/mob/living/simple_animal/cat,
 		/mob/living/simple_animal/corgi,
 		/mob/living/simple_animal/corgi/puppy,
@@ -40,6 +41,17 @@
 		/mob/living/simple_animal/crab,
 		/mob/living/simple_animal/mouse,
 		/mob/living/simple_animal/retaliate/goat)
+=======
+		/mob/living/simple_mob/animal/passive/cat,
+		/mob/living/simple_mob/animal/passive/dog/corgi,
+		/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+		/mob/living/simple_mob/animal/passive/chicken,
+		/mob/living/simple_mob/animal/passive/cow,
+		/mob/living/simple_mob/animal/passive/bird/parrot,
+		/mob/living/simple_mob/animal/passive/crab,
+		/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple_mob/animal/goat)
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 
 //todo: how the hell is the asteroid permanently powered?
 /obj/machinery/auto_cloner/process()

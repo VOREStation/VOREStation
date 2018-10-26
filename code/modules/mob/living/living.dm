@@ -16,6 +16,8 @@
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
+	selected_image = image(icon = 'icons/mob/screen1.dmi', loc = src, icon_state = "centermarker")
+
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
 	dsoverlay = null
@@ -29,6 +31,7 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+	qdel(selected_image)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -891,7 +894,7 @@ default behaviour is:
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+			if(istype(A,/mob/living/simple_mob/animal/borer) || istype(A,/obj/item/weapon/holder))
 				return
 
 	else if(istype(H.loc,/obj/item/clothing/accessory/holster))

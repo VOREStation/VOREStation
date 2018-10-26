@@ -94,9 +94,6 @@
 	return
 
 
-/mob/living/simple_animal/construct/instantiate_hud(var/datum/hud/HUD)
-	..(HUD)
-
 //	HUD.construct_hud() //Archaic.
 /*
 /datum/hud/proc/construct_hud()

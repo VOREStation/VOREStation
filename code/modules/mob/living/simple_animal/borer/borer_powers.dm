@@ -1,4 +1,4 @@
-/mob/living/simple_animal/borer/verb/release_host()
+/mob/living/simple_mob/animal/borer/verb/release_host()
 	set category = "Abilities"
 	set name = "Release Host"
 	set desc = "Slither out of your host."
@@ -38,7 +38,7 @@
 		detatch()
 		leave_host()
 
-/mob/living/simple_animal/borer/verb/infest()
+/mob/living/simple_mob/animal/borer/verb/infest()
 	set category = "Abilities"
 	set name = "Infest"
 	set desc = "Infest a suitable humanoid host."
@@ -126,7 +126,7 @@
 		return
 
 /*
-/mob/living/simple_animal/borer/verb/devour_brain()
+/mob/living/simple_mob/animal/borer/verb/devour_brain()
 	set category = "Abilities"
 	set name = "Devour Brain"
 	set desc = "Take permanent control of a dead host."
@@ -152,7 +152,7 @@
 */
 
 // BRAIN WORM ZOMBIES AAAAH.
-/mob/living/simple_animal/borer/proc/replace_brain()
+/mob/living/simple_mob/animal/borer/proc/replace_brain()
 
 	var/mob/living/carbon/human/H = host
 
@@ -198,7 +198,7 @@
 	if(!H.lastKnownIP)
 		H.lastKnownIP = s2h_ip
 
-/mob/living/simple_animal/borer/verb/secrete_chemicals()
+/mob/living/simple_mob/animal/borer/verb/secrete_chemicals()
 	set category = "Abilities"
 	set name = "Secrete Chemicals"
 	set desc = "Push some chemicals into your host's bloodstream."
@@ -226,7 +226,7 @@
 	host.reagents.add_reagent(chem, 10)
 	chemicals -= 50
 
-/mob/living/simple_animal/borer/verb/dominate_victim()
+/mob/living/simple_mob/animal/borer/verb/dominate_victim()
 	set category = "Abilities"
 	set name = "Paralyze Victim"
 	set desc = "Freeze the limbs of a potential host with supernatural fear."
@@ -266,7 +266,7 @@
 
 	used_dominate = world.time
 
-/mob/living/simple_animal/borer/verb/bond_brain()
+/mob/living/simple_mob/animal/borer/verb/bond_brain()
 	set category = "Abilities"
 	set name = "Assume Control"
 	set desc = "Fully connect to the brain of your host."
@@ -335,20 +335,3 @@
 			host.verbs += /mob/living/carbon/proc/spawn_larvae
 
 			return
-
-/mob/living/carbon/human/proc/jumpstart()
-	set category = "Abilities"
-	set name = "Revive Host"
-	set desc = "Send a jolt of electricity through your host, reviving them."
-
-	if(stat != 2)
-		usr << "Your host is already alive."
-		return
-
-	verbs -= /mob/living/carbon/human/proc/jumpstart
-	visible_message("<span class='warning'>With a hideous, rattling moan, [src] shudders back to life!</span>")
-
-	rejuvenate()
-	restore_blood()
-	fixblood()
-	update_canmove()

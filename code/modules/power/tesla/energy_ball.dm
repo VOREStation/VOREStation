@@ -185,7 +185,6 @@
 										/obj/machinery/atmospherics,
 										/obj/machinery/power/emitter,
 										/obj/machinery/field_generator,
-										/mob/living/simple_animal,
 										/obj/machinery/door/blast,
 										/obj/machinery/particle_accelerator/control_box,
 										/obj/structure/particle_accelerator/fuel_chamber,

@@ -46,7 +46,7 @@
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
-	/mob/living/simple_animal/borer,
+	/mob/living/simple_mob/animal/borer,
 	/obj/item/device/mmi,
 	)
 

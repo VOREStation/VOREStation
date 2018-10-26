@@ -16,6 +16,7 @@
 	preserve_item = TRUE // RCDs are pretty important.
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
+<<<<<<< HEAD
 	var/max_stored_matter = RCD_MAX_CAPACITY
 	var/ranged = FALSE
 	var/busy = FALSE
@@ -29,6 +30,35 @@
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
 
 /obj/item/weapon/rcd/initialize()
+=======
+	var/max_stored_matter = 30
+	var/working = 0
+	var/mode = 1
+	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
+	var/canRwall = 0
+	var/disabled = 0
+
+/obj/item/weapon/rcd/attack()
+	return 0
+
+/obj/item/weapon/rcd/proc/can_use(var/mob/user,var/turf/T)
+	var/usable = 0
+	if(user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
+		usable = 1
+	if(!user.IsAdvancedToolUser() && istype(user, /mob/living/simple_mob))
+		var/mob/living/simple_mob/S = user
+		if(!S.IsHumanoidToolUser(src))
+			usable = 0
+	return usable
+
+/obj/item/weapon/rcd/examine()
+	..()
+	if(src.type == /obj/item/weapon/rcd && loc == usr)
+		usr << "It currently holds [stored_matter]/[max_stored_matter] matter-units."
+
+/obj/item/weapon/rcd/New()
+	..()
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)

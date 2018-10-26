@@ -72,7 +72,7 @@
 	return
 
 // Spore things
-/datum/blob_type/proc/on_spore_death(mob/living/simple_animal/hostile/blob/spore/S)
+/datum/blob_type/proc/on_spore_death(mob/living/simple_mob/blob/spore/S)
 	return
 
 

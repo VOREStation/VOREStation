@@ -60,7 +60,7 @@
 	var/damage_lower = 25
 	var/damage_upper = 75
 	if(isanimal(user))
-		var/mob/living/simple_animal/S = user
+		var/mob/living/simple_mob/S = user
 		playsound(src, S.attack_sound, 75, 1)
 		if(!(S.melee_damage_upper >= 10))
 			to_chat(user, "<span class='notice'>You bounce against the wall.</span>")
@@ -75,7 +75,7 @@
 	to_chat(user, "<span class='danger'>You smash through the wall!</span>")
 	user.do_attack_animation(src)
 	if(isanimal(user))
-		var/mob/living/simple_animal/S = user
+		var/mob/living/simple_mob/S = user
 		playsound(src, S.attack_sound, 75, 1)
 	spawn(1)
 		dismantle_wall(1)

@@ -27,16 +27,16 @@
 
 	cleaving = TRUE
 	var/hit_mobs = 0
-	for(var/mob/living/simple_animal/SA in range(get_turf(target), 1))
-		if(SA.stat == DEAD) // Don't beat a dead horse.
+	for(var/mob/living/simple_mob/SM in range(get_turf(target), 1))
+		if(SM.stat == DEAD) // Don't beat a dead horse.
 			continue
-		if(SA == user) // Don't hit ourselves.  Simple mobs shouldn't be able to do this but that might change later to be able to hit all mob/living-s.
+		if(SM == user) // Don't hit ourselves.  Simple mobs shouldn't be able to do this but that might change later to be able to hit all mob/living-s.
 			continue
-		if(SA == target) // We (presumably) already hit the target before cleave() was called.  orange() should prevent this but just to be safe...
+		if(SM == target) // We (presumably) already hit the target before cleave() was called.  orange() should prevent this but just to be safe...
 			continue
-		if(!SA.Adjacent(user) || !SA.Adjacent(target)) // Cleaving only hits mobs near the target mob and user.
+		if(!SM.Adjacent(user) || !SM.Adjacent(target)) // Cleaving only hits mobs near the target mob and user.
 			continue
-		if(resolve_attackby(SA, user, attack_modifier = 0.5)) // Hit them with the weapon.  This won't cause recursive cleaving due to the cleaving variable being set to true.
+		if(resolve_attackby(SM, user, attack_modifier = 0.5)) // Hit them with the weapon.  This won't cause recursive cleaving due to the cleaving variable being set to true.
 			hit_mobs++
 
 	cleave_visual(user, target)

@@ -10,7 +10,7 @@
 
 #define isalien(A) istype(A, /mob/living/carbon/alien)
 
-#define isanimal(A) istype(A, /mob/living/simple_animal)
+#define isanimal(A) istype(A, /mob/living/simple_mob)
 
 #define isairlock(A) istype(A, /obj/machinery/door/airlock)
 
@@ -18,7 +18,7 @@
 
 #define iscarbon(A) istype(A, /mob/living/carbon)
 
-#define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
+#define iscorgi(A) istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
 
 #define isEye(A) istype(A, /mob/observer/eye)
 
@@ -46,7 +46,7 @@
 
 #define isbot(A) istype(A, /mob/living/bot)
 
-#define isxeno(A) istype(A, /mob/living/simple_animal/xeno)
+#define isxeno(A) istype(A, /mob/living/simple_mob/animal/space/alien)
 
 #define isopenspace(A) istype(A, /turf/simulated/open)
 

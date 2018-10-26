@@ -329,7 +329,13 @@
 		return
 
 	adjustBruteLoss(damage)
+<<<<<<< HEAD
 	add_attack_logs(user,src,"Generic attack (probably animal)", admin_notify = FALSE) //Usually due to simple_animal attacks
+=======
+	add_attack_logs(user,src,"Generic attack (probably animal)", admin_notify = FALSE) //Usually due to simple_mob attacks
+	if(ai_holder)
+		ai_holder.react_to_attack(user)
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()

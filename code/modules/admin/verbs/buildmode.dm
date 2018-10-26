@@ -416,6 +416,79 @@
 			if(pa.Find("right"))
 				if(object)
 					object.set_light(0, 0, "#FFFFFF")
+<<<<<<< HEAD
+=======
+		if(9) // AI control
+			if(pa.Find("left"))
+				if(isliving(object))
+					var/mob/living/L = object
+					// Reset processes.
+					if(pa.Find("ctrl"))
+						if(!isnull(L.get_AI_stance())) // Null means there's no AI datum or it has one but is player controlled w/o autopilot on.
+							var/datum/ai_holder/AI = L.ai_holder
+							AI.forget_everything()
+							to_chat(user, span("notice", "\The [L]'s AI has forgotten its target/movement destination/leader."))
+						else
+							to_chat(user, span("warning", "\The [L] is not AI controlled."))
+						return
+
+					// Toggle hostility
+					if(pa.Find("alt"))
+						if(!isnull(L.get_AI_stance()))
+							var/datum/ai_holder/AI = L.ai_holder
+							AI.hostile = !AI.hostile
+							to_chat(user, span("notice", "\The [L] is now [AI.hostile ? "hostile" : "passive"]."))
+						else
+							to_chat(user, span("warning", "\The [L] is not AI controlled."))
+						return
+
+					// Select/Deselect
+					if(!isnull(L.get_AI_stance()))
+						if(L in holder.selected_mobs)
+							// Todo: Select graphic only the admin can see?
+							holder.selected_mobs -= L
+							user.client.images -= L.selected_image
+							to_chat(user, span("notice", "Deselected \the [L]."))
+						else
+							holder.selected_mobs += L
+							user.client.images += L.selected_image
+							to_chat(user, span("notice", "Selected \the [L]."))
+					else
+						to_chat(user, span("warning", "\The [L] is not AI controlled."))
+
+			if(pa.Find("right"))
+				if(istype(object, /atom/movable)) // Force attack.
+					var/atom/movable/AM = object
+
+					if(pa.Find("alt"))
+						for(var/thing in holder.selected_mobs)
+							var/mob/living/unit = thing
+							var/datum/ai_holder/AI = unit.ai_holder
+							AI.give_target(AM)
+							to_chat(user, span("notice", "Commanded [holder.selected_mobs.len] mob\s to attack \the [AM]."))
+
+				if(isliving(object)) // Follow or attack.
+					var/mob/living/L = object
+
+					for(var/thing in holder.selected_mobs)
+						var/mob/living/unit = thing
+						var/datum/ai_holder/AI = unit.ai_holder
+						if(L.IIsAlly(unit) || !AI.hostile || pa.Find("shift"))
+							AI.set_follow(L)
+						else
+							AI.give_target(L)
+					to_chat(user, span("notice", "Commanded [holder.selected_mobs.len] mob\s to attack or follow \the [L]."))
+
+				if(isturf(object)) // Move or reposition.
+					var/turf/T = object
+
+					for(var/thing in holder.selected_mobs)
+						var/mob/living/unit = thing
+						var/datum/ai_holder/AI = unit.ai_holder
+						AI.give_destination(T, 1, pa.Find("shift"))
+					to_chat(user, span("notice", "Commanded [holder.selected_mobs.len] mob\s to move to \the [T]."))
+
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
 	var/desired_path = input("Enter full or partial typepath.","Typepath","[default_path]")

@@ -117,9 +117,15 @@
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
+<<<<<<< HEAD
 		/mob/living/simple_animal/hostile/scarybat/cult,
 		/mob/living/simple_animal/hostile/creature/cult,
 		/mob/living/simple_animal/hostile/faithless/cult
+=======
+		/mob/living/simple_mob/animal/space/bats/cult,
+		/mob/living/simple_mob/creature/cult,
+		/mob/living/simple_mob/faithless/cult
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 	)
 
 /obj/effect/gateway/active/cult/cultify()

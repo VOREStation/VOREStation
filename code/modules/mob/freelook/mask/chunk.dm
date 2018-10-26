@@ -25,7 +25,7 @@
 /mob/living/silicon/seen_cult_turfs()
 	return list()
 
-/mob/living/simple_animal/seen_cult_turfs()
+/mob/living/simple_mob/seen_cult_turfs()
 	return seen_turfs_in_range(src, 1)
 
 /mob/living/simple_animal/shade/narsie/seen_cult_turfs()

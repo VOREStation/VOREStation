@@ -703,10 +703,10 @@
 					stat(null)
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
-						
+
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
-				
+
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null
@@ -1002,7 +1002,7 @@ mob/proc/yank_out_object()
 /mob/proc/has_brain_worms()
 
 	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
+		if(istype(I,/mob/living/simple_mob/animal/borer))
 			return I
 
 	return 0

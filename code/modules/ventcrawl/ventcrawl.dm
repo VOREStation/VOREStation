@@ -9,8 +9,12 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
+<<<<<<< HEAD
 	/mob/living/simple_animal/borer,
 	/obj/belly, //VOREStation Edit,
+=======
+	/mob/living/simple_mob/animal/borer,
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 	/obj/screen
 	)
 
@@ -67,11 +71,6 @@ var/list/ventcrawl_machinery = list(
 
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
-		return 1
-	return ..()
-
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if(carried_item == held_item)
 		return 1
 	return ..()
 

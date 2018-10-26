@@ -18,6 +18,7 @@
 	var/mob_retaliate = 0
 
 /obj/random/mob/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(10);/mob/living/simple_animal/lizard,
 				prob(6);/mob/living/simple_animal/retaliate/diyaab,
 				prob(10);/mob/living/simple_animal/cat/fluff,
@@ -36,6 +37,26 @@
 				prob(10);/mob/living/simple_animal/corgi/tamaskan,
 				prob(3);/mob/living/simple_animal/parrot,
 				prob(1);/mob/living/simple_animal/giant_crab)
+=======
+	return pick(prob(10);/mob/living/simple_mob/animal/passive/lizard,
+				prob(6);/mob/living/simple_mob/animal/sif/diyaab,
+				prob(10);/mob/living/simple_mob/animal/passive/cat,
+				prob(6);/mob/living/simple_mob/animal/passive/cat,
+				prob(10);/mob/living/simple_mob/animal/passive/dog/corgi,
+				prob(6);/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+				prob(10);/mob/living/simple_mob/animal/passive/crab,
+				prob(10);/mob/living/simple_mob/animal/passive/chicken,
+				prob(6);/mob/living/simple_mob/animal/passive/chick,
+				prob(10);/mob/living/simple_mob/animal/passive/cow,
+				prob(6);/mob/living/simple_mob/animal/goat,
+				prob(10);/mob/living/simple_mob/animal/passive/penguin,
+				prob(10);/mob/living/simple_mob/animal/passive/mouse,
+				prob(10);/mob/living/simple_mob/animal/passive/yithian,
+				prob(10);/mob/living/simple_mob/animal/passive/tindalos,
+				prob(10);/mob/living/simple_mob/animal/passive/dog/tamaskan,
+				prob(3);/mob/living/simple_mob/animal/passive/bird/parrot,
+				prob(1);/mob/living/simple_mob/animal/passive/crab)
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 
 /obj/random/mob/spawn_item() //These should only ever have simple mobs.
 	var/build_path = item_to_spawn()
@@ -158,6 +179,7 @@
 	mob_retaliate = 1
 
 /obj/random/mob/robotic/item_to_spawn() //Hivebots have a total number of 'lots' equal to the lesser drone, at 60.
+<<<<<<< HEAD
 	return pick(prob(60);/mob/living/simple_animal/hostile/malf_drone/lesser,
 				prob(50);/mob/living/simple_animal/hostile/malf_drone,
 				prob(15);/mob/living/simple_animal/hostile/mecha/malf_drone,
@@ -169,6 +191,20 @@
 				prob(5);/mob/living/simple_animal/hostile/hivebot/range/laser,
 				prob(5);/mob/living/simple_animal/hostile/hivebot/range/strong,
 				prob(5);/mob/living/simple_animal/hostile/hivebot/range/guard)
+=======
+	return pick(prob(60);/mob/living/simple_mob/mechanical/combat_drone/lesser,
+				prob(50);/mob/living/simple_mob/mechanical/combat_drone,
+				prob(15);/mob/living/simple_mob/mechanical/mecha/ripley,
+				prob(15);/mob/living/simple_mob/mechanical/mecha/odysseus,
+				prob(10);/mob/living/simple_mob/mechanical/hivebot,
+				prob(15);/mob/living/simple_mob/mechanical/hivebot/swarm,
+				prob(10);/mob/living/simple_mob/mechanical/hivebot/ranged_damage,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/rapid,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard)
+>>>>>>> 0b69beb... Merge pull request #5704 from Neerti/final_ai_work
 
 /obj/random/mob/robotic/hivebot
 	name = "Random Hivebot"
