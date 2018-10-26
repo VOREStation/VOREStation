@@ -13,7 +13,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/device/radio/headset/explorer
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
+	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
 	id_type = /obj/item/weapon/card/id/explorer/explorer //VOREStation Edit
 	id_pda_assignment = "Explorer"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
@@ -46,7 +46,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/device/radio/headset/pilot/alt
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
+	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
 	id_type = /obj/item/weapon/card/id/explorer/pilot //VOREStation Edit
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
@@ -60,7 +60,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/viro //VOREStation Add
+	pda_type = /obj/item/device/pda/sar //VOREStation Add
 	id_type = /obj/item/weapon/card/id/medical/sar
 	id_pda_assignment = "Field Medic" //VOREStation Edit
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
