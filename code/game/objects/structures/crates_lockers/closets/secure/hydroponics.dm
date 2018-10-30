@@ -16,7 +16,7 @@
 		/obj/item/clothing/head/greenbandana,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/knife/machete/hatchet,
-		/obj/item/weapon/tool/wirecutters/clippers,
+		/obj/item/weapon/tool/wirecutters/clippers/trimmers,
 		/obj/item/weapon/reagent_containers/spray/plantbgone,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,
 		/obj/item/clothing/shoes/boots/winter/hydro)
