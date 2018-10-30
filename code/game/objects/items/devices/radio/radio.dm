@@ -40,7 +40,6 @@ var/global/list/default_medbay_channels = list(
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
 	var/adhoc_fallback = FALSE //Falls back to 'radio' mode if subspace not available
-	var/bluespace_radio = FALSE //VOREStation Add - Long Range Radio
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
 	var/centComm = 0//Holder to see if it's a CentCom encrypted radio
 	flags = CONDUCT
@@ -475,18 +474,18 @@ var/global/list/default_medbay_channels = list(
 		// we're done here.
 		return 1
 
+	// Oh my god; the comms are down or something because the signal hasn't been broadcasted yet in our level.
+	// Send a mundane broadcast with limited targets:
+
+	//THIS IS TEMPORARY. YEAH RIGHT
+	if(!connection)	return 0	//~Carn
+
 //VOREStation Add Start
 	if(bluespace_radio)
 		return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
 					  0, signal.data["compression"], list(0), connection.frequency,verb,speaking)
 //VOREStation Add End
-
-	// Oh my god; the comms are down or something because the signal hasn't been broadcasted yet in our level.
-	// Send a mundane broadcast with limited targets:
-
-	//THIS IS TEMPORARY. YEAH RIGHT
-	if(!connection)	return 0	//~Carn
 
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
@@ -526,7 +525,7 @@ var/global/list/default_medbay_channels = list(
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
-			if(!bluespace_radio && !(src.bluespace_radio)) //VOREStation Edit
+			if(!bluespace_radio) //VOREStation Edit
 				return -1
 	if(freq in ANTAG_FREQS)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
