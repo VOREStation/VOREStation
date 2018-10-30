@@ -131,6 +131,7 @@
 			debug_variables(chemistryProcess)
 			feedback_add_details("admin_verb", "DChem")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
+<<<<<<< HEAD
 	return
 
 /client/proc/debug_process_scheduler()
@@ -155,3 +156,5 @@
 	debug_variables(P)
 	feedback_add_details("admin_verb", "DProcCtrl")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
+=======
+>>>>>>> 1e492e8... Master to AI - Reloaded (#5710)

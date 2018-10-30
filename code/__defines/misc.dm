@@ -302,4 +302,8 @@ var/global/list/##LIST_NAME = list();\
 
 
 #define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
+<<<<<<< HEAD
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
+=======
+#define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
+>>>>>>> 1e492e8... Master to AI - Reloaded (#5710)

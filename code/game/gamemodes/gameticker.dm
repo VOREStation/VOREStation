@@ -44,7 +44,10 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/title2.ogg',\
 	'sound/music/clouds.s3m',\
 	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
+<<<<<<< HEAD
 	*/ //VOREStation Edit End
+=======
+>>>>>>> 1e492e8... Master to AI - Reloaded (#5710)
 
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
 

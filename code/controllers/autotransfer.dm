@@ -16,6 +16,7 @@ datum/controller/transfer_controller/Destroy()
 
 datum/controller/transfer_controller/proc/process()
 	currenttick = currenttick + 1
+<<<<<<< HEAD
 	//VOREStation Edit START
 	if (round_duration_in_ticks >= shift_last_vote - 2 MINUTES) 
 		shift_last_vote = 999999999999 //Setting to a stupidly high number since it'll be not used again.
@@ -27,4 +28,8 @@ datum/controller/transfer_controller/proc/process()
 	else if (round_duration_in_ticks >= timerbuffer - 1 MINUTE)
 		SSvote.autotransfer()
 	//VOREStation Edit END
+=======
+	if (round_duration_in_ticks >= timerbuffer - 1 MINUTE)
+		SSvote.autotransfer()
+>>>>>>> 1e492e8... Master to AI - Reloaded (#5710)
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval
