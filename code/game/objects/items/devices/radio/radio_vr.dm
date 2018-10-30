@@ -1,5 +1,21 @@
+/obj/item/device/radio/phone
+	subspace_transmission = 1
+	canhear_range = 0
+	adhoc_fallback = TRUE
+
 /obj/item/device/radio
 	var/bluespace_radio = FALSE
+
+/obj/item/device/radio/emergency
+	name = "Medbay Emergency Radio Link"
+	icon_state = "med_walkietalkie"
+	frequency = MED_I_FREQ
+	subspace_transmission = 1
+	adhoc_fallback = TRUE
+
+/obj/item/device/radio/emergency/New()
+	..()
+	internal_channels = default_medbay_channels.Copy()
 
 //Pathfinder's Subspace Radio
 /obj/item/device/subspaceradio
