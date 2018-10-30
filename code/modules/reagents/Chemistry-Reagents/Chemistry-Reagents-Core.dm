@@ -42,12 +42,21 @@
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
 
+<<<<<<< HEAD
 	var/is_vampire = 0 //VOREStation Edit START
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.gets_food_nutrition == 0)
 			H.nutrition += removed
 			is_vampire = 1 //VOREStation Edit END
+=======
+	if(alien == IS_SLIME)	// Treat it like nutriment for the jello, but not equivalent.
+		M.heal_organ_damage(0.2 * removed * volume_mod, 0)	// More 'effective' blood means more usable material.
+		M.nutrition += 20 * removed * volume_mod
+		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
+		M.adjustToxLoss(removed / 2)	// Still has some water in the form of plasma.
+		return
+>>>>>>> cd628f1... Merge pull request #5698 from Mechoid/Blood_For_The_Blood_Promethean
 
 	if(effective_dose > 5)
 		if(is_vampire == 0) //VOREStation Edit.
@@ -68,6 +77,9 @@
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
 			return
+	if(alien == IS_SLIME)
+		affect_ingest(M, alien, removed)
+		return
 	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
@@ -79,6 +91,9 @@
 		M.antibodies |= data["antibodies"]
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)	//They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.
+		affect_ingest(M, alien, removed)
+		return
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
 
