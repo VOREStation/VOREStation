@@ -1,10 +1,10 @@
+/obj/item/device/radio
+	var/bluespace_radio = FALSE
+
 /obj/item/device/radio/phone
 	subspace_transmission = 1
 	canhear_range = 0
 	adhoc_fallback = TRUE
-
-/obj/item/device/radio
-	var/bluespace_radio = FALSE
 
 /obj/item/device/radio/emergency
 	name = "Medbay Emergency Radio Link"
