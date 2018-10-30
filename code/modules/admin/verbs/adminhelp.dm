@@ -323,7 +323,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(initiator)
-		initiator << 'sound/effects/adminhelp.ogg'
+		if(initiator.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			initiator << 'sound/effects/adminhelp.ogg'
 
 		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>")
 		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b></font>")
