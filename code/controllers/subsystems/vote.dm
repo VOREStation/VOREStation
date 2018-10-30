@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(vote)
 	if(mode)
 		time_remaining = round((started_time + duration - world.time)/10)
 		if(mode == VOTE_GAMEMODE && ticker.current_state >= GAME_STATE_SETTING_UP)
-			to_chat(world, "<b>Gamemode vote aborted: Game has alread ystarted.</b>")
+			to_chat(world, "<b>Gamemode vote aborted: Game has already started.</b>")
 			reset()
 			return
 		if(time_remaining <= 0)
