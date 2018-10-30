@@ -113,3 +113,9 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
+
+/datum/trait/photosensitive
+	name = "Photosensitive"
+	desc = "Increases stun duration from flashes and other light-based stuns."
+	cost = 0
+	var_changes = list("flash_mod" = 2.0)
