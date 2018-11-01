@@ -21,6 +21,7 @@
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
+	assisted_langs = list(LANGUAGE_EAL)
 	color_mult = TRUE
 
 	breath_type = null
@@ -115,7 +116,7 @@
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
 	var/obj/item/device/nif/saved_nif = H.nif
 	if(saved_nif)
-		H.nif.unimplant()
+		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
 		H.nif.forceMove(null)
 	..()
 	if(saved_nif)
@@ -162,13 +163,14 @@
 
 /datum/species/protean/handle_death(var/mob/living/carbon/human/H)
 	to_chat(H,"<span class='warning'>You died as a Protean. Please sit out of the round for at least 30 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
-	spawn(1)
+	spawn(1) //This spawn is here so that if the protean_blob calls qdel, it doesn't try to gib the humanform.
 		if(H)
 			H.gib()
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
 		H.nano_intoblob()
+		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
 	if(refactory && !(refactory.status & ORGAN_DEAD))
