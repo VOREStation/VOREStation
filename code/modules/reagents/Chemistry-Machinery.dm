@@ -28,6 +28,7 @@
 	var/tab = "home"
 	var/analyze_data[0]
 	flags = OPENCONTAINER
+	clicksound = "button"
 
 /obj/machinery/chem_master/New()
 	..()
