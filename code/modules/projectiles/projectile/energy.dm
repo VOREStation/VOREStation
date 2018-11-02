@@ -215,19 +215,21 @@
 	name = "phase wave"
 	icon_state = "phase"
 	kill_count = 6
-	damage = 5
-	SA_bonus_damage = 45	// 50 total on animals
-	SA_vulnerability = SA_ANIMAL
+	damage = 50 //VOREStation Edit
+	//SA_bonus_damage = 45	// 50 total on animals //VOREStation Edit - No bonus damage
+	//SA_vulnerability = SA_ANIMAL //VOREStation Edit
 
 /obj/item/projectile/energy/phase/light
 	kill_count = 4
-	SA_bonus_damage = 35	// 40 total on animals
+	damage = 40 //VOREStation Edit
+	//SA_bonus_damage = 35	// 40 total on animals //VOREStation Edit
 
 /obj/item/projectile/energy/phase/heavy
 	kill_count = 8
-	SA_bonus_damage = 55	// 60 total on animals
+	damage = 60 //VOREStation Edit
+	//SA_bonus_damage = 55	// 60 total on animals //VOREStation Edit
 
 /obj/item/projectile/energy/phase/heavy/cannon
 	kill_count = 10
-	damage = 15
-	SA_bonus_damage = 60	// 75 total on animals
+	damage = 75 //VOREStation Edit
+	//SA_bonus_damage = 60	// 75 total on animals //VOREStation Edit

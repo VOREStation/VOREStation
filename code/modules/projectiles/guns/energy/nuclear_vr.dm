@@ -12,3 +12,7 @@
 
 /obj/item/weapon/gun/energy/gun/nuclear
 	icon = 'icons/obj/gun.dmi'	//Points it back at the default file so eguns_vr.dmi doesn't need to mirror all the sprites
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="nucgunstun", charge_cost = 240),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="nucgunkill", charge_cost = 240),
+		)
