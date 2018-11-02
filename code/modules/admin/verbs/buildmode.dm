@@ -157,8 +157,23 @@
 	qdel(buildquit)
 	buildquit = null
 	throw_atom = null
+<<<<<<< HEAD
+=======
+	for(var/mob/living/unit in selected_mobs)
+		deselect_AI_mob(cl, unit)
+	selected_mobs.Cut()
+>>>>>>> d6f51de... Merge pull request #5727 from Neerti/ai_bugfixes
 	cl = null
 	return ..()
+
+/obj/effect/bmode/buildholder/proc/select_AI_mob(client/C, mob/living/unit)
+	selected_mobs += unit
+	C.images += unit.selected_image
+
+/obj/effect/bmode/buildholder/proc/deselect_AI_mob(client/C, mob/living/unit)
+	selected_mobs -= unit
+	C.images -= unit.selected_image
+
 
 /obj/effect/bmode/buildmode
 	icon_state = "buildmode1"
@@ -416,6 +431,89 @@
 			if(pa.Find("right"))
 				if(object)
 					object.set_light(0, 0, "#FFFFFF")
+<<<<<<< HEAD
+=======
+		if(9) // AI control
+			if(pa.Find("left"))
+				if(isliving(object))
+					var/mob/living/L = object
+					// Reset processes.
+					if(pa.Find("ctrl"))
+						if(!isnull(L.get_AI_stance())) // Null means there's no AI datum or it has one but is player controlled w/o autopilot on.
+							var/datum/ai_holder/AI = L.ai_holder
+							AI.forget_everything()
+							to_chat(user, span("notice", "\The [L]'s AI has forgotten its target/movement destination/leader."))
+						else
+							to_chat(user, span("warning", "\The [L] is not AI controlled."))
+						return
+
+					// Toggle hostility
+					if(pa.Find("alt"))
+						if(!isnull(L.get_AI_stance()))
+							var/datum/ai_holder/AI = L.ai_holder
+							AI.hostile = !AI.hostile
+							to_chat(user, span("notice", "\The [L] is now [AI.hostile ? "hostile" : "passive"]."))
+						else
+							to_chat(user, span("warning", "\The [L] is not AI controlled."))
+						return
+
+					// Select/Deselect
+					if(!isnull(L.get_AI_stance()))
+						if(L in holder.selected_mobs)
+							holder.deselect_AI_mob(user.client, L)
+							to_chat(user, span("notice", "Deselected \the [L]."))
+						else
+							holder.select_AI_mob(user.client, L)
+							to_chat(user, span("notice", "Selected \the [L]."))
+					else
+						to_chat(user, span("warning", "\The [L] is not AI controlled."))
+
+			if(pa.Find("right"))
+				if(istype(object, /atom)) // Force attack.
+					var/atom/A = object
+
+					if(pa.Find("alt"))
+						var/i = 0
+						for(var/mob/living/unit in holder.selected_mobs)
+							var/datum/ai_holder/AI = unit.ai_holder
+							AI.give_target(A)
+							i++
+						to_chat(user, span("notice", "Commanded [i] mob\s to attack \the [A]."))
+						return
+
+				if(isliving(object)) // Follow or attack.
+					var/mob/living/L = object
+					var/i = 0 // Attacking mobs.
+					var/j = 0 // Following mobs.
+					for(var/mob/living/unit in holder.selected_mobs)
+						var/datum/ai_holder/AI = unit.ai_holder
+						if(L.IIsAlly(unit) || !AI.hostile || pa.Find("shift"))
+							AI.set_follow(L)
+							j++
+						else
+							AI.give_target(L)
+							i++
+					var/message = "Commanded "
+					if(i)
+						message += "[i] mob\s to attack \the [L]"
+						if(j)
+							message += ", and "
+						else
+							message += "."
+					if(j)
+						message += "[j] mob\s to follow \the [L]."
+					to_chat(user, span("notice", message))
+
+				if(isturf(object)) // Move or reposition.
+					var/turf/T = object
+					var/i = 0
+					for(var/mob/living/unit in holder.selected_mobs)
+						var/datum/ai_holder/AI = unit.ai_holder
+						AI.give_destination(T, 1, pa.Find("shift")) // If shift is held, the mobs will not stop moving to attack a visible enemy.
+						i++
+					to_chat(user, span("notice", "Commanded [i] mob\s to move to \the [T]."))
+
+>>>>>>> d6f51de... Merge pull request #5727 from Neerti/ai_bugfixes
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
 	var/desired_path = input("Enter full or partial typepath.","Typepath","[default_path]")

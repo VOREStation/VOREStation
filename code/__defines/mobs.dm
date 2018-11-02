@@ -284,6 +284,12 @@
 #define SLIME_COMMAND_FACTION	2 // When in the same 'faction'.
 #define SLIME_COMMAND_FRIEND	3 // When befriended with a slime friendship agent.
 
+// Threshold for mobs being able to damage things like airlocks or reinforced glass windows.
+// If the damage is below this, nothing will happen besides a message saying that the attack was ineffective.
+// Generally, this was not a define but was commonly set to 10, however 10 may be too low now since simple_mobs now attack twice as fast,
+// at half damage compared to the old mob system, meaning mobs who could hurt structures may not be able to now, so now it is 5.
+#define STRUCTURE_MIN_DAMAGE_THRESHOLD 5
+
 //Vision flags, for dealing with plane visibility
 #define VIS_FULLBRIGHT		1
 #define VIS_LIGHTING		2

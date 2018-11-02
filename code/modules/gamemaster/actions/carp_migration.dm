@@ -52,7 +52,11 @@
 	while (i <= carp_amount)
 		var/group_size = rand(group_size_min, group_size_max)
 		for (var/j = 1, j <= group_size, j++)
+<<<<<<< HEAD
 			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(spawn_locations[i]))
+=======
+			spawned_carp.Add(new /mob/living/simple_mob/animal/space/carp/event(spawn_locations[i]))
+>>>>>>> d6f51de... Merge pull request #5727 from Neerti/ai_bugfixes
 		i++
 	message_admins("[spawned_carp.len] carp spawned by event.")
 

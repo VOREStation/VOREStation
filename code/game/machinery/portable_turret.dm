@@ -406,10 +406,17 @@ var/list/turret_icons
 					attacked = 0
 		..()
 
+<<<<<<< HEAD
 /obj/machinery/porta_turret/attack_generic(mob/user as mob, var/damage)
 	if(isanimal(user))
 		var/mob/living/simple_animal/S = user
 		if(damage >= 10)
+=======
+/obj/machinery/porta_turret/attack_generic(mob/living/L, damage)
+	if(isanimal(L))
+		var/mob/living/simple_mob/S = L
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
+>>>>>>> d6f51de... Merge pull request #5727 from Neerti/ai_bugfixes
 			var/incoming_damage = round(damage - (damage / 5)) //Turrets are slightly armored, assumedly.
 			visible_message("<span class='danger'>\The [S] [pick(S.attacktext)] \the [src]!</span>")
 			take_damage(incoming_damage)

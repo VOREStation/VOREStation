@@ -102,6 +102,8 @@
 /mob/living/proc/check_submerged()
 	if(buckled)
 		return 0
+	if(hovering)
+		return 0
 	var/turf/simulated/floor/water/T = loc
 	if(istype(T))
 		return T.depth

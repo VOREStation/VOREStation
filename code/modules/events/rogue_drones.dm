@@ -16,7 +16,11 @@
 	else
 		num = rand(2,6)
 	for(var/i=0, i<num, i++)
+<<<<<<< HEAD
 		var/mob/living/simple_animal/hostile/malf_drone/D = new(get_turf(pick(possible_spawns)))
+=======
+		var/mob/living/simple_mob/mechanical/combat_drone/event/D = new(get_turf(pick(possible_spawns)))
+>>>>>>> d6f51de... Merge pull request #5727 from Neerti/ai_bugfixes
 		drones_list.Add(D)
 		if(prob(25))
 			D.disabled = rand(15, 60)
