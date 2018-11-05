@@ -6509,14 +6509,8 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/hos,
-/obj/item/clothing/suit/space/void/security/fluff/hos{
-	armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 10);
-	species_restricted = null
-	},
-/obj/item/clothing/head/helmet/space/void/security/fluff/hos{
-	armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 10);
-	species_restricted = null
-	},
+/obj/item/clothing/suit/space/void/security/fluff/hos,
+/obj/item/clothing/head/helmet/space/void/security/fluff/hos,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "kI" = (
