@@ -28,13 +28,13 @@
 	icon_state = "exp_headset_alt"
 
 /obj/item/device/radio/headset/sar
-	name = "sar radio headset"
-	desc = "A headset for search and rescue."
+	name = "fm radio headset" //VOREStation Edit
+	desc = "A headset for field medics." //VOREStation Edit
 	icon_state = "sar_headset"
 	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/sar
 
 /obj/item/device/radio/headset/sar/alt
-	name = "sar radio bowman headset"
-	desc = "A bowman headset for search and rescue."
+	name = "fm radio bowman headset" //VOREStation Edit
+	desc = "A bowman headset for field medics." //VOREStation Edit
 	icon_state = "sar_headset_alt"

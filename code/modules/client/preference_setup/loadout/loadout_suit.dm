@@ -480,7 +480,7 @@ datum/gear/suit/duster
 /datum/gear/suit/snowsuit/medical
 	display_name = "snowsuit, medical"
 	path = /obj/item/clothing/suit/storage/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic") //VOREStation Edit
 
 /datum/gear/suit/snowsuit/science
 	display_name = "snowsuit, science"

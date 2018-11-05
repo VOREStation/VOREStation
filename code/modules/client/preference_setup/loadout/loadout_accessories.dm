@@ -150,17 +150,17 @@
 /datum/gear/accessory/brown_drop_pouches
 	display_name = "drop pouches, brown"
 	path = /obj/item/clothing/accessory/storage/brown_drop_pouches
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Field Medic") //VOREStation Edit
 
 /datum/gear/accessory/black_drop_pouches
 	display_name = "drop pouches, black"
 	path = /obj/item/clothing/accessory/storage/black_drop_pouches
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Field Medic") //VOREStation Edit
 
 /datum/gear/accessory/white_drop_pouches
 	display_name = "drop pouches, white"
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Field Medic") //VOREStation Edit
 
 /datum/gear/accessory/fannypack
 	display_name = "fannypack selection"
@@ -239,7 +239,7 @@
 /datum/gear/accessory/stethoscope
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Search and Rescue")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic") //VOREStation Edit
 
 /datum/gear/accessory/locket
 	display_name = "locket"
