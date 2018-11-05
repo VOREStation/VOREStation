@@ -59,6 +59,7 @@
 
 /area/surface/outside
 	ambience = AMBIENCE_SIF
+	always_unpowered = TRUE
 
 // The area near the outpost, so POIs don't show up right next to the outpost.
 /area/surface/outside/plains/outpost
@@ -107,13 +108,13 @@
 	icon_state = "bluenew"
 
 /area/surface/outside/river/faxalven
-	name = "Fax‰lven River"
+	name = "Fax√§lven River"
 
 /area/surface/outside/river/indalsalven
-	name = "Indals‰lven River"
+	name = "Indals√§lven River"
 
 /area/surface/outside/river/svartan
-	name = "SvartÂn River"
+	name = "Svart√•n River"
 
 /area/surface/outside/lake/romsele
 	name = "Romsele Lake"
@@ -123,6 +124,7 @@
 
 /area/surface/cave
 	flags = RAD_SHIELDED
+	always_unpowered = TRUE
 
 /area/surface/cave
 
