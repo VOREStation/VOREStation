@@ -584,7 +584,7 @@
 	icon_state = "escape_pod"
 
 /area/hallway/secondary/escape/firstdeck/ep_starboard1
-	name = "\improper Escape Pod 3 Starboard"
+	name = "\improper First Deck Research Access Hallway"
 	icon_state = "escape_pod"
 
 /area/hallway/secondary/escape/firstdeck/ep_starboard2
