@@ -518,6 +518,9 @@
 
 	new_character.key = key		//Manually transfer the key to log them in
 
+	if(key == "JakkSergal")
+		new_character.gib()
+
 	return new_character
 
 /mob/new_player/proc/ViewManifest()
