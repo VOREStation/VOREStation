@@ -513,8 +513,8 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', charge_cost = 600),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg', charge_cost = 1200),
 		)
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
@@ -735,7 +735,7 @@
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
 	fire_sound = 'sound/weapons/laser2.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_POWER = 4)
-	charge_cost = 240
+	charge_cost = 300
 
 	battery_lock = 1
 	unacidable = 1
@@ -744,7 +744,7 @@
 
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
-		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 240),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
 	)
 
@@ -819,7 +819,7 @@
 
 	modifystate = "carbinekill"
 	firemodes = list(
-		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="carbinekill", charge_cost = 240),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="carbinekill", charge_cost = 300),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, modifystate="carbinestun", charge_cost = 60),
 	)
 
@@ -839,10 +839,10 @@
 	item_state = null
 
 	w_class = ITEMSIZE_SMALL
-	charge_cost = 480
+	charge_cost = 600
 	modifystate = "holdoutkill"
 	firemodes = list(
-		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="holdoutkill", charge_cost = 480),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="holdoutkill", charge_cost = 600),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, modifystate="holdoutstun", charge_cost = 120),
-		list(mode_name="stun", fire_delay=12, projectile_type=/obj/item/projectile/beam/stun/med, modifystate="holdoutshock", charge_cost = 480),
+		list(mode_name="stun", fire_delay=12, projectile_type=/obj/item/projectile/beam/stun/med, modifystate="holdoutshock", charge_cost = 300),
 	)
