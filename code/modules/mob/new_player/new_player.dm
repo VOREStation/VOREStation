@@ -517,10 +517,10 @@
 	new_character.update_eyes()
 
 	new_character.key = key		//Manually transfer the key to log them in
-
+	//VOREStation Edit - I think this is a bot that keeps joining
 	if(key == "JakkSergal")
 		new_character.gib()
-
+	//VOREStation Edit End
 	return new_character
 
 /mob/new_player/proc/ViewManifest()
