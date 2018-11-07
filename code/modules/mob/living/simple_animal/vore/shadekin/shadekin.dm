@@ -444,4 +444,4 @@
 	exclaim_verb = "mars"
 	key = "m"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = WHITELISTED | HIVEMIND
