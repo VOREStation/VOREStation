@@ -120,6 +120,11 @@
 	ammo_type = /obj/item/ammo_casing/a12g/stunshell
 	max_shells = 6
 
+/* // jertheace : Jeremiah 'Ace' Acacius
+/obj/item/ammo_magazine/m9mm/large/preban/hp // Not yet implemented. Waiting on a PR to Polaris. -Ace
+	ammo_type = /obj/item/ammo_casing/a9mm/hp
+*/
+
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian //Now that it is actually Single-Action and not hacky broken SA, I see no reason to nerf this down to .38. --Joan Risu
 	name = "\improper \"Big Iron\" revolver"
