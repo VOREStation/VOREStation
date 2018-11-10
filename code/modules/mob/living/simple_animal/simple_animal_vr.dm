@@ -266,13 +266,13 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(M.loc != src.loc)
-		if(M.Adjacent(src))
-			M.forceMove(get_turf(src))
+	if(H.loc != src.loc)
+		if(H.Adjacent(src))
+			H.forceMove(get_turf(src))
 
 	. = ..()
 	if(.)
-		buckled_mobs[M] = "riding"
+		buckled_mobs[H] = "riding"
 
 /mob/living/simple_animal/attack_hand(mob/user as mob)
 	if(riding_datum && LAZYLEN(buckled_mobs))
