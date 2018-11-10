@@ -27,9 +27,24 @@
 	pixel_x = -16
 	pixel_y = 0
 
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+	mount_offset_y = 12
+
 // Activate Noms!
 /mob/living/simple_animal/hostile/panther
 	vore_active = 1
 	vore_capacity = 2
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
+
+/mob/living/simple_animal/hostile/panther/Login()
+	. = ..()
+	if(!riding_datum)
+		riding_datum = new /datum/riding/simple_animal(src)
+	verbs |= /mob/living/simple_animal/proc/animal_mount
+
+/mob/living/simple_animal/hostile/panther/MouseDrop_T(mob/living/M, mob/living/user)
+	return
