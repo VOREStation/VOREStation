@@ -390,7 +390,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/structure/closet/secure_closet/guncabinet/excursion
 	name = "expedition weaponry cabinet"
-	req_one_access = list(access_explorer,access_brig)
+	req_one_access = list(access_explorer,access_armory)
 
 /obj/structure/closet/secure_closet/guncabinet/excursion/New()
 	..()
