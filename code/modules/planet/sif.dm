@@ -400,38 +400,38 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/hail/process_effects()
 	..()
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/humie in human_mob_list)
+		var/mob/living/carbon/human/H = humie
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
 			if(!T.outdoors)
 				continue // They're indoors, so no need to pelt them with ice.
 
-			// If they have an open umbrella, it'll guard from rain
-			// Message plays every time the umbrella gets stolen, just so they're especially aware of what's happening
+			// If they have an open umbrella, it'll guard from hail
+			var/obj/item/weapon/melee/umbrella/U
 			if(istype(H.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = H.get_active_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(H, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
-					continue
+				U = H.get_active_hand()
 			else if(istype(H.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = H.get_inactive_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(H, "<span class='notice'>Hail patters gently onto your umbrella.</span>")
-					continue
-
+				U = H.get_inactive_hand()
+			if(U && U.open)
+				if(show_message)
+					to_chat(H, "<span class='notice'>Hail patters onto your umbrella.</span>")
+				continue
+		
 			var/target_zone = pick(BP_ALL)
 			var/amount_blocked = H.run_armor_check(target_zone, "melee")
 			var/amount_soaked = H.get_armor_soak(target_zone, "melee")
 
-			if(amount_blocked >= 100)
+			var/damage = rand(1,3)
+
+			if(amount_blocked >= 30)
+				continue // No need to apply damage. Hardhats are 30. They should probably protect you from hail on your head.
+				//Voidsuits are likewise 40, and riot, 80. Clothes are all less than 30.
+
+			if(amount_soaked >= damage)
 				continue // No need to apply damage.
 
-			if(amount_soaked >= 10)
-				continue // No need to apply damage.
-
-			H.apply_damage(rand(1, 3), BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+			H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
 			if(show_message)
 				to_chat(H, effect_message)
 
