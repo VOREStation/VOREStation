@@ -232,9 +232,17 @@
 			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 60) amount_per_pill = 60
 
-			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as null|text, MAX_NAME_LEN)
+			var/pill_cube = "pill"
+			if(condi)//For the condimaster
+				pill_cube = "cube"
+			else
+				pill_cube = "pill"
+
+			var/name = sanitizeSafe(input(usr,"Name:","Name your [pill_cube]!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as null|text, MAX_NAME_LEN)
+
 			if(!name) //Blank name (sanitized to nothing, or left empty) or cancel
 				return
+
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -244,7 +252,11 @@
 				P.name = "[name] pill"
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
-				P.icon_state = "pill"+pillsprite
+				if(!condi) //If normal
+					P.icon_state = "pill"+pillsprite
+				else //If condi is on
+					P.icon_state = "bouilloncube"//Reskinned monkey cube
+					P.desc = "A dissolvable cube."
 				reagents.trans_to_obj(P,amount_per_pill)
 				if(src.loaded_pill_bottle)
 					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
