@@ -554,15 +554,18 @@
 		return
 
 	if(is_type_in_list(I,edible_trash))
+		if(I.hidden_uplink)
+			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
+			return
 		if(istype(I,/obj/item/device/pda))
 			var/obj/item/device/pda/P = I
 			if(P.owner)
-				visible_message("<span class='warning'>[src] threatens to make [P] disappear!</span>")
+				visible_message("<span class='warning'>[src] is threatening to make [P] disappear!</span>")
 				if(P.id)
 					var/confirm = alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", "Definitely", "Cancel")
 					if(confirm != "Definitely")
 						return
-				if(!do_after(src, 50, P))
+				if(!do_after(src, 100, P))
 					return
 				visible_message("<span class='warning'>[src] successfully makes [P] disappear!</span>")
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of delicious technology.</span>")
@@ -570,6 +573,11 @@
 			I.forceMove(vore_selected)
 			updateVRPanel()
 			return
+		if(istype(I,/obj/item/clothing/shoes))
+			var/obj/item/clothing/shoes/S = I
+			if(S.holding)
+				to_chat(src, "<span class='warning'>There's something inside!</span>")
+				return
 
 		drop_item()
 		I.forceMove(vore_selected)

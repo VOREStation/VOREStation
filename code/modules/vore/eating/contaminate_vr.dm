@@ -115,7 +115,3 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	if((. = ..()))
 		name = "soggy [cleanname]"
 		desc = "This soggy box is about to fall apart any time."
-
-/obj/item/device/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
-	if((. = ..()))
-		desc = "This device seems completely unresponsive while drenched with sludge. Perhaps you could still wash it."
