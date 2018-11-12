@@ -27,7 +27,7 @@
 	icon_state = "collar_bell"
 	item_state = "collar_bell_overlay"
 	overlay_state = "collar_bell_overlay"
-	var/nospam = 0
+	var/jingled = 0
 	
 /obj/item/clothing/accessory/collar/bell/verb/jinglebell()
 	set name = "Jingle Bell"
@@ -36,11 +36,11 @@
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
 	
-	if(!nospam)
+	if(!jingled)
 		usr.audible_message("[usr] jingles the [src]'s bell.")
-		nospam = 1
+		jingled = 1
 		sleep(30)
-		nospam = 0
+		jingled = 0
 	return
 
 /obj/item/clothing/accessory/collar/shock
