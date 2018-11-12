@@ -27,6 +27,21 @@
 	icon_state = "collar_bell"
 	item_state = "collar_bell_overlay"
 	overlay_state = "collar_bell_overlay"
+	var/nospam = 0
+	
+/obj/item/clothing/accessory/collar/bell/verb/jinglebell()
+	set name = "Jingle Bell"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+	
+	if(!nospam)
+		usr.audible_message("[usr] jingles the [src]'s bell.")
+		nospam = 1
+		sleep(30)
+		nospam = 0
+	return
 
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
@@ -164,8 +179,11 @@
 	item_state = "collar_holo_overlay"
 	overlay_state = "collar_holo_overlay"
 
-/obj/item/clothing/accessory/collar/holo/attack_self(mob/user as mob)
-	to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
+/obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
+	if(istype(src,/obj/item/clothing/accessory/collar/holo))
+		to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
+	else
+		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
 
 	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
 
