@@ -39,8 +39,7 @@
 	if(!jingled)
 		usr.audible_message("[usr] jingles the [src]'s bell.")
 		jingled = 1
-		sleep(30)
-		jingled = 0
+		schedule_callback_in(5 SECONDS, VARSET_CALLBACK(src, jingled, 0))
 	return
 
 /obj/item/clothing/accessory/collar/shock
