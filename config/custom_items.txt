@@ -535,6 +535,13 @@ item_path: /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
 
 # ######## L CKEYS
 
+{
+ckey: lm40
+character_name: Kenzie Houser
+item_path: /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
+req_access: 5
+}
+
 #Weapon Box. Permit Expired
 #{
 #ckey: luminescentring
