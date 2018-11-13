@@ -1953,5 +1953,4 @@
 	name = "gold-trimmed hypospray"
 	desc = "A gold-trimmed MKII hypospray. The name 'Kenzie Houser' is engraved on the side."
 	icon = 'icons/vore/custom_items_vr.dmi'
-	item_state = "kenziehypo"
 	icon_state = "kenziehypo"
