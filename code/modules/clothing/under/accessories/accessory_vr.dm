@@ -184,6 +184,7 @@
 		to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
 	else
 		if(writtenon)
+			to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
 			return
 		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
 
