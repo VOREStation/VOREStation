@@ -561,14 +561,22 @@
 		if(istype(I,/obj/item/device/pda))
 			var/obj/item/device/pda/P = I
 			if(P.owner)
-				visible_message("<span class='warning'>[src] is threatening to make [P] disappear!</span>")
-				if(P.id)
-					var/confirm = alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", "Definitely", "Cancel")
-					if(confirm != "Definitely")
-						return
-				if(!do_after(src, 100, P))
+				var/watching = FALSE
+				for(var/mob/living/carbon/human/H in view(src))
+					if(H.real_name == P.owner && H.client)
+						watching = TRUE
+						break
+				if(!watching)
 					return
-				visible_message("<span class='warning'>[src] successfully makes [P] disappear!</span>")
+				else
+					visible_message("<span class='warning'>[src] is threatening to make [P] disappear!</span>")
+					if(P.id)
+						var/confirm = alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", "Definitely", "Cancel")
+						if(confirm != "Definitely")
+							return
+					if(!do_after(src, 100, P))
+						return
+					visible_message("<span class='warning'>[src] successfully makes [P] disappear!</span>")
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of delicious technology.</span>")
 			drop_item()
 			I.forceMove(vore_selected)
