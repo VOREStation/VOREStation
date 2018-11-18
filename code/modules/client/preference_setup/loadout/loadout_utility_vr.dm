@@ -54,4 +54,4 @@
 /datum/gear/utility/dufflebag/sci
     display_name = "science dufflebag"
     path = /obj/item/weapon/storage/backpack/dufflebag/sci
-    allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Explorer")
+    allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Explorer","Pathfinder")

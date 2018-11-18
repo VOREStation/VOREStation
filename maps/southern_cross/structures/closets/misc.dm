@@ -36,15 +36,6 @@
 
 /obj/structure/closet/secure_closet/explorer
 	name = "explorer locker"
-	//VOREStation Add begin
-	icon = 'icons/obj/closet_vr.dmi' //VOREStation Add
-	icon_state = "secureexp1"
-	icon_closed = "secureexp"
-	icon_locked = "secureexp1"
-	icon_opened = "secureexpopen"
-	icon_broken = "secureexpbroken"
-	icon_off = "secureexpoff"
-	//VOREStation Add end
 	req_access = list(access_explorer)
 
 	starts_with = list(
@@ -60,11 +51,7 @@
 		/obj/item/device/geiger,
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio,
-		/obj/item/stack/marker_beacon/thirty,
-		/obj/item/weapon/material/knife/tacknife/survival, //VOREStation Add,
-		/obj/item/weapon/material/knife/machete, //VOREStation Add,
-		/obj/item/clothing/accessory/holster/machete, //VOREStation Add,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2) //VOREStation Add
+		/obj/item/stack/marker_beacon/thirty)
 
 /obj/structure/closet/secure_closet/explorer/initialize()
 	if(prob(50))
@@ -82,7 +69,7 @@
 //SAR Lockers
 
 /obj/structure/closet/secure_closet/sar
-	name = "field medic locker" //VOREStation Edit
+	name = "search and rescue locker"
 	desc = "Supplies for a wilderness first responder."
 	icon_state = "medical1"
 	icon_closed = "medical"
@@ -99,12 +86,7 @@
 		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
 		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
 		/obj/item/weapon/storage/belt/medical/emt,
-		//VOREStation Block Edit - Start,
-		/obj/item/weapon/material/knife/tacknife/survival,
-		/obj/item/weapon/gun/energy/frontier/locked/holdout,
-		/obj/item/clothing/mask/gas/explorer,
-		/obj/item/clothing/suit/storage/hooded/explorer/medic,
-		//VOREStation Block Edit - End,
+		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar,
 		/obj/item/clothing/shoes/boots/winter/explorer,
 		/obj/item/device/radio/headset/sar,
@@ -115,7 +97,6 @@
 		/obj/item/device/healthanalyzer,
 		/obj/item/device/radio/off,
 		/obj/random/medical,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 3, //VOREStation Add,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/storage/box/freezer,
@@ -134,17 +115,15 @@
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/parachute,
 		/obj/item/weapon/material/knife/tacknife/survival,
-		/obj/item/weapon/gun/energy/frontier/locked/holdout, //VOREStation Add,
 		/obj/item/clothing/head/pilot,
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
-		/obj/item/clothing/shoes/boots/winter/explorer, //VOREStation Add,
 		/obj/item/clothing/mask/gas/half,
 		/obj/item/clothing/shoes/black,
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/device/radio/headset/pilot/alt,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2, //VOREStation Edit,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/weapon/storage/box/flare,
 		/obj/item/weapon/cell/device,
