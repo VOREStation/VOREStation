@@ -7,14 +7,14 @@ var/global/list/default_internal_channels = list(
 	num2text(ERT_FREQ) = list(access_cent_specops),
 	num2text(COMM_FREQ)= list(access_heads),
 	num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
-	num2text(MED_FREQ) = list(access_medical),
-	num2text(MED_I_FREQ)=list(access_medical),
+	num2text(MED_FREQ) = list(access_medical_equip),
+	num2text(MED_I_FREQ)=list(access_medical_equip),
 	num2text(SEC_FREQ) = list(access_security),
 	num2text(SEC_I_FREQ)=list(access_security),
-	num2text(SCI_FREQ) = list(access_research),
+	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology, access_explorer),
 	num2text(SUP_FREQ) = list(access_cargo, access_mining),
 	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
-	num2text(EXP_FREQ) = list(access_pilot, access_explorer, access_rd)
+	num2text(EXP_FREQ) = list(access_explorer, access_pilot, access_rd)
 )
 
 var/global/list/default_medbay_channels = list(
