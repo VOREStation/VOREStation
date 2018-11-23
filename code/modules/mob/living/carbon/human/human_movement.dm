@@ -31,6 +31,9 @@
 	if (hungry >= 70) tally += hungry/50
 
 	//VOREstation start
+	var/stuffed = round(nutrition)//Slowdown due to belly
+	if (stuffed >= 2500) tally += round(stuffed/2500) // Kind of random number. About 3 of slowdown with 7000 nutrition which is a *lot*.
+
 	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
 		tally = max(species.slowdown, species.slowdown+((tally-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
 		if(shock_stage >= 10) tally -= 1.5 //this gets a +3 later, feral critters take reduced penalty
