@@ -1,19 +1,19 @@
 /obj/item/weapon/storage/box/survival
 	starts_with = list(
-		/obj/item/weapon/tool/crowbar/red,
+		/obj/item/weapon/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles,
 		/obj/item/clothing/mask/breath
 	)
 
 /obj/item/weapon/storage/box/survival/synth
 	starts_with = list(
-		/obj/item/weapon/tool/crowbar/red,
+		/obj/item/weapon/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles
 	)
 
 /obj/item/weapon/storage/box/survival/comp
 	starts_with = list(
-		/obj/item/weapon/tool/crowbar/red,
+		/obj/item/weapon/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
