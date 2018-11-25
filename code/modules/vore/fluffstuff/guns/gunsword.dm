@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/energy/gun/fluff/gunsword
-	name = "top-loaded energy pistol"
+	name = "Sword Buster"
 	desc = "The Sword Buster gun is custom built using the science behind a Golden Empire pistol. The cell can be removed in close range and used as energy shortsword."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'

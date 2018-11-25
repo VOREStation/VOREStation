@@ -1,6 +1,6 @@
 // -------------- NSFW -------------
 /obj/item/weapon/gun/projectile/nsfw
-	name = "sleek energy pistol"
+	name = "cell-loaded revolver"
 	desc = "Variety is the spice of life! The KHI-102b 'Nanotech Selectable-Fire Weapon', or NSFW for short, is an unholy hybrid of an ammo-driven  \
 	energy weapon that allows the user to mix and match their own fire modes. Up to three combinations of \
 	energy beams can be configured at once. Ammo not included."
