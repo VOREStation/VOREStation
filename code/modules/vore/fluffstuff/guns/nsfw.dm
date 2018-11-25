@@ -1,7 +1,7 @@
 // -------------- NSFW -------------
 /obj/item/weapon/gun/projectile/nsfw
-	name = "KHI-102b \'NSFW\'"
-	desc = "Variety is the spice of life! The 'Nanotech Selectable-Fire Weapon' is an unholy hybrid of an ammo-driven \
+	name = "sleek ernergy pistol"
+	desc = "Variety is the spice of life! The KHI-102b 'Nanotech Selectable-Fire Weapon', Or NSFW for short, is an unholy hybrid of an ammo-driven \
 	energy weapon that allows the user to mix and match their own fire modes. Up to three combinations of \
 	energy beams can be configured at once. Ammo not included."
 

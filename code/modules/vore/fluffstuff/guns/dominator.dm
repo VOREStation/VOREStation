@@ -1,6 +1,6 @@
 // -------------- Dominator -------------
 /obj/item/weapon/gun/energy/gun/fluff/dominator
-	name = "\improper MWPSB Dominator"
+	name = "bulky energy gun"
 	desc = "A MWPSB's Dominator from the Federation. Like the basic Energy Gun, this gun has two settings. It is used by the United Federation Public Safety Bureau's Criminal Investigation Division. The weapon can only be fired by the owner and is alert-level locked."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
