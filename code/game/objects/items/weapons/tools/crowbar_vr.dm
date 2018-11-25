@@ -15,7 +15,7 @@
 	pry = 1
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 25)
+	matter = list(DEFAULT_WALL_MATERIAL = 30)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	usesound = 'sound/items/crowbar.ogg'
 	toolspeed = 1
