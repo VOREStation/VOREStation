@@ -9,24 +9,15 @@
 	icon_state = "prybar"
 	item_state = "crowbar"
 	force = 4
-	throwforce = 1
-	matter = list(DEFAULT_WALL_MATERIAL = 25)
+	throwforce = 5
+	pry = 1
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_ENGINEERING = 1)
+	matter = list(DEFAULT_WALL_MATERIAL = 30)
 	attack_verb = list("whapped", "smacked", "swatted", "thwacked", "hit")
 	usesound = 'sound/items/crowbar.ogg'
 	toolspeed = 1
 	var/random_color = TRUE
-
-// Todo: Prevent it from prying up floor boards. Only affect doors. I couldn't remember how to do this. -Ace
-/*
-/obj/item/weapon/tool/prybar/on_hit()
-	if(istype(/obj/machinery/door/airlock))
-		..()
-	else if(istype(/mob)
-		..()
-	else
-		// Tell the player that they can't use this on anything except airlocks.
-		return
-*/
 
 /obj/item/weapon/tool/prybar/red
 	icon_state = "prybar_red"
