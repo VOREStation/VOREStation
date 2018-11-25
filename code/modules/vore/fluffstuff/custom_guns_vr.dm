@@ -833,7 +833,7 @@
 //Expeditionary Holdout Phaser
 /obj/item/weapon/gun/energy/frontier/locked/holdout
 	name = "holdout frontier phaser"
-	desc = "A recently introduced weapon intended for self defense by expeditionary support. It includes the same crank charger as the frontier phaser."
+	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "holdoutkill"
 	item_state = null
