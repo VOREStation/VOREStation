@@ -18,21 +18,23 @@
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on February 16th, 2562."
 */
 
+/*
 // bwoincognito:Tasald Corlethian
 /obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian
 	name = "Tasald Ajax Corlethian's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on August 2nd, 2562."
+*/
 
 /* dhaeleena:Dhaeleena M'iar
 /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
 	name = "Dhaeleena M'iar's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm that uses less-than-lethal munitions. It is issued by CentCom, so it is valid until it expires on March 1st, 2562."
+	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on March 1st, 2562."
 */
 
 // jertheace:Jeremiah 'Ace' Acacius
 /obj/item/clothing/accessory/permit/gun/fluff/ace
-	name = "Ace's Shotgun Permit"
-	desc = "A card indicating that the owner is allowed to carry a firearm. It is issued by CentCom, so it is valid until it expires on October 1st, 2562."
+	name = "Jeremiah Acacius's Sidearm Permit"
+	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on November 10th, 2563."
 
 /* joanrisu:Joan Risu
 /obj/item/clothing/accessory/permit/gun/fluff/joanrisu
@@ -52,15 +54,17 @@
 	desc = "A card indicating that the owner is allowed to carry a sidearm that uses less-than-lethal munitions. It is issued by CentCom, so it is valid until it expires on April 24th, 2562."
 */
 
+/*
 // pawoverlord:Sorrel Cavalet
 /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
 	name = "Sorrel Cavalet's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on September 26th, 2562."
+*/
 
 /*  hzdonut:Jesse Soemmer
 /obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
 	name = "Jesse Soemmer's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on March 4, 2563."
+	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on March 4, 2563." // Apparently revoked? -Ace
 */
 
 /* Legacy Permits
