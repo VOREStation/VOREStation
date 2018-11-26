@@ -513,8 +513,8 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
-		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', charge_cost = 600),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg', charge_cost = 1200),
 		)
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
@@ -733,9 +733,9 @@
 	icon_state = "phaser"
 	item_state = "phaser"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
-	item_state_slots = list(slot_r_hand_str = "phaser", slot_l_hand_str = "phaser", "slot_belt" = "phaser")
 	fire_sound = 'sound/weapons/laser2.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_POWER = 4)
+	charge_cost = 300
 
 	battery_lock = 1
 	unacidable = 1
@@ -744,7 +744,7 @@
 
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 300),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
 	)
 
@@ -808,32 +808,41 @@
 			return 0
 	return ..()
 
+//Phaser Carbine - Reskinned phaser
+/obj/item/weapon/gun/energy/frontier/locked/carbine
+	name = "frontier carbine"
+	desc = "An ergonomically improved version of the venerable frontier phaser, the carbine is a fairly new weapon, and has only been produced in limited numbers so far. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "carbinekill"
+	item_state = "retro"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi')
+
+	modifystate = "carbinekill"
+	firemodes = list(
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="carbinekill", charge_cost = 300),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, modifystate="carbinestun", charge_cost = 60),
+	)
+
+/obj/item/weapon/gun/energy/frontier/locked/carbine/update_icon()
+	if(recharging)
+		icon_state = "[modifystate]_pump"
+		update_held_icon()
+		return
+	..()
+
 //Expeditionary Holdout Phaser
 /obj/item/weapon/gun/energy/frontier/locked/holdout
 	name = "holdout frontier phaser"
-	desc = "A recently introduced weapon intended for self defense by expeditionary support. It includes the same crank charger as the frontier phaser."
+	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "PDW"
-	item_state = "gun"
+	icon_state = "holdoutkill"
+	item_state = null
+
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600
+	modifystate = "holdoutkill"
 	firemodes = list(
-		list(mode_name="normal", fire_delay=12, projectile_type=/obj/item/projectile/beam, charge_cost = 600),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 120),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="holdoutkill", charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser, modifystate="holdoutstun", charge_cost = 120),
+		list(mode_name="stun", fire_delay=12, projectile_type=/obj/item/projectile/beam/stun/med, modifystate="holdoutshock", charge_cost = 300),
 	)
-
-/obj/item/weapon/gun/energy/frontier/locked/holdout/proc/update_mode()
-	var/datum/firemode/current_mode = firemodes[sel_mode]
-	switch(current_mode.name)
-		if("low-power") add_overlay("taser_pdw")
-		if("normal") add_overlay("lazer_pdw")
-
-/obj/item/weapon/gun/energy/frontier/locked/holdout/update_icon()
-	cut_overlays()
-	if(recharging)
-		icon_state = "[initial(icon_state)]_pump"
-		update_held_icon()
-		return
-	else
-		icon_state = "[initial(icon_state)]"
-		update_mode()
