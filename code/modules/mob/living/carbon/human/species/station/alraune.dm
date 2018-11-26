@@ -41,7 +41,7 @@
 	breath_heat_level_2 = 450
 	breath_heat_level_3 = 800 //lower incineration threshold though
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED // whitelist only while WIP
+	spawn_flags = SPECIES_CAN_JOIN
 	flags = NO_SCAN | IS_PLANT | NO_MINOR_CUT
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
