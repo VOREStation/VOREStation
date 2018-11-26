@@ -554,6 +554,40 @@
 		return
 
 	if(is_type_in_list(I,edible_trash))
+		if(I.hidden_uplink)
+			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
+			message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
+			return
+		if(istype(I,/obj/item/device/pda))
+			var/obj/item/device/pda/P = I
+			if(P.owner)
+				var/watching = FALSE
+				for(var/mob/living/carbon/human/H in view(src))
+					if(H.real_name == P.owner && H.client)
+						watching = TRUE
+						break
+				if(!watching)
+					return
+				else
+					visible_message("<span class='warning'>[src] is threatening to make [P] disappear!</span>")
+					if(P.id)
+						var/confirm = alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", "Definitely", "Cancel")
+						if(confirm != "Definitely")
+							return
+					if(!do_after(src, 100, P))
+						return
+					visible_message("<span class='warning'>[src] successfully makes [P] disappear!</span>")
+			to_chat(src, "<span class='notice'>You can taste the sweet flavor of delicious technology.</span>")
+			drop_item()
+			I.forceMove(vore_selected)
+			updateVRPanel()
+			return
+		if(istype(I,/obj/item/clothing/shoes))
+			var/obj/item/clothing/shoes/S = I
+			if(S.holding)
+				to_chat(src, "<span class='warning'>There's something inside!</span>")
+				return
+
 		drop_item()
 		I.forceMove(vore_selected)
 		updateVRPanel()
@@ -588,7 +622,7 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of really bad ideas.</span>")
-		else if(istype(I,/obj/item/toy/figure))
+		else if(istype(I,/obj/item/toy))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 		else if(istype(I,/obj/item/device/paicard) || istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
