@@ -73,7 +73,7 @@
 	
 /datum/language/bug
     name = LANGUAGE_VESPINAE
-    desc = "A jarring and stuttery language devised by the various arthropod species of the galaxy to communicate. It is exceedingly complex and practically impossible to learn if you lack the proper mouthparts."
+    desc = "A jarring and clicky language developed and used by Vasilissans, it is designed for use with mouthparts and as a result has become a common language for various arthropod species."
     speech_verb = "clicks"
     ask_verb = "chitters"
     exclaim_verb = "rasps"
