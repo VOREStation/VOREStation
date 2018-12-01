@@ -423,10 +423,11 @@ var/world_topic_spam_protect_time = world.timeofday
 			return "Database connection failed or not set up"
 
 
-/world/Reboot(var/reason)
+/world/Reboot(reason = 0, fast_track = FALSE)
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
+<<<<<<< HEAD
 
 	processScheduler.stop()
 	Master.Shutdown()	//run SS shutdowns
@@ -437,6 +438,25 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..(reason)
+=======
+	if (reason || fast_track) //special reboot, do none of the normal stuff
+		if (usr)
+			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
+			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
+			world << "<span class='boldannounce'>[key_name_admin(usr)] has requested an immediate world restart via client side debugging tools</span>"
+			
+		else
+			world << "<span class='boldannounce'>Rebooting world immediately due to host request</span>"
+	else
+		processScheduler.stop()
+		Master.Shutdown()	//run SS shutdowns
+		for(var/client/C in clients)
+			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+				C << link("byond://[config.server]")
+
+	log_world("World rebooted at [time_stamp()]")
+	..()
+>>>>>>> aa6f232... Adds logging to special world reboots, admins with debug access can now reboot while world is OOM'd (#5737)
 
 /hook/startup/proc/loadMode()
 	world.load_mode()
