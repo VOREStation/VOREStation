@@ -1948,3 +1948,9 @@
 	name = "nobel sciences award"
 	desc = "A bronze medal which represents significant contributions to the field of science or engineering, this one has Ashley Kifer engraved on it."
 
+//lm40 - Kenzie Houser
+/obj/item/weapon/reagent_containers/hypospray/vial/kenzie
+	name = "gold-trimmed hypospray"
+	desc = "A gold-trimmed MKII hypospray. The name 'Kenzie Houser' is engraved on the side."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "kenziehypo"
