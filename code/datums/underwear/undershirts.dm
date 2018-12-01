@@ -166,3 +166,15 @@
 /datum/category_item/underwear/undershirt/tiedye
 	name = "Tiedye Shirt"
 	icon_state = "tiedye"
+
+/datum/category_item/underwear/undershirt/longstripe_pink
+	name = "Longsleeve Striped Shirt, Pink"
+	icon_state = "longstripe_pink_s"
+
+/datum/category_item/underwear/undershirt/wingshirt
+	name = "Pink Wing Shirt"
+	icon_state = "wing_shirt_s"
+
+/datum/category_item/underwear/undershirt/pinkblack_tshirt
+	name = "Pink and Black T-Shirt"
+	icon_state = "pinkblack_tshirt"
