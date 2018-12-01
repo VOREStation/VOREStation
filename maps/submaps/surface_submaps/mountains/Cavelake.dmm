@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -53,6 +54,23 @@
 /obj/item/clothing/mask/snorkel,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/Cavelake)
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Cavelake)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Cavelake)
+"d" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"e" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"f" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Cavelake)
+"g" = (/mob/living/simple_mob/animal/sif/hooligan_crab,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"h" = (/turf/simulated/floor/water,/area/submap/Cavelake)
+"i" = (/mob/living/simple_mob/animal/passive/fish/perch,/turf/simulated/floor/water,/area/submap/Cavelake)
+"j" = (/obj/machinery/crystal,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"k" = (/mob/living/simple_mob/animal/passive/fish/trout,/turf/simulated/floor/water,/area/submap/Cavelake)
+"l" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"m" = (/obj/random/mob/sif,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"n" = (/obj/item/clothing/mask/snorkel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+"o" = (/obj/effect/decal/remains/mouse,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
+>>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 
 (1,1,1) = {"
 a

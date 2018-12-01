@@ -16,10 +16,10 @@
 	see_in_dark = 6
 	universal_understand = 1
 
-	mob_size = MOB_MINISCULE
+	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	can_pull_size = ITEMSIZE_TINY
-	can_pull_mobs = MOB_PULL_NONE
+//	can_pull_size = ITEMSIZE_TINY
+//	can_pull_mobs = MOB_PULL_NONE
 	layer = MOB_LAYER
 	density = 0
 

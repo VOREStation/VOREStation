@@ -9,8 +9,12 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
+<<<<<<< HEAD
 	/mob/living/simple_animal/borer,
 	/obj/belly, //VOREStation Edit,
+=======
+	/mob/living/simple_mob/animal/borer,
+>>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 	/obj/screen
 	)
 
@@ -38,7 +42,7 @@ var/list/ventcrawl_machinery = list(
 		add_ventcrawl(loc)
 		client.screen += global_hud.centermarker
 
-/mob/living/simple_animal/slime/can_ventcrawl()
+/mob/living/simple_mob/slime/xenobio/can_ventcrawl()
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while feeding.</span>")
 		return FALSE
@@ -67,11 +71,6 @@ var/list/ventcrawl_machinery = list(
 
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
-		return 1
-	return ..()
-
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if(carried_item == held_item)
 		return 1
 	return ..()
 

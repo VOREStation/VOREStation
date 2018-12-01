@@ -23,7 +23,7 @@
 
 	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
 	mymob.client.screen += mymob.client.void
-
+/*
 /datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
 	src.adding = list()
@@ -92,10 +92,7 @@
 	mymob.client.screen += mymob.client.void
 
 	return
-
-
-/mob/living/simple_animal/construct/instantiate_hud(var/datum/hud/HUD)
-	..(HUD)
+*/
 
 //	HUD.construct_hud() //Archaic.
 /*

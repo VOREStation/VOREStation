@@ -17,8 +17,8 @@
 
 	maxHealth = 150
 	var/maxHealth_adult = 200
-	melee_damage_lower = 5
-	melee_damage_upper = 25
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	melee_miss_chance = 0
 	gender = NEUTER
 

@@ -116,7 +116,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
 	var/boxtype = pick(typesof(/obj/item/weapon/storage/toolbox/lunchbox))
 	var/obj/item/weapon/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
-	var/mob/living/simple_animal/mouse/mouse = new (L)
+	var/mob/living/simple_mob/animal/passive/mouse/mouse = new (L)
 	var/obj/item/weapon/holder/holder = new (L)
 	mouse.forceMove(holder)
 	holder.sync(mouse)

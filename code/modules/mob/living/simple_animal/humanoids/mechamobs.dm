@@ -96,7 +96,7 @@
 	..()
 	playsound(src,'sound/mecha/mechstep.ogg',40,1)
 
-
+// This is a PoI mob, not the normal, floaty drones that hang out around windows
 /mob/living/simple_animal/hostile/mecha/malf_drone
 	name = "autonomous mechanized drone"
 	desc = "It appears to be an exosuit, piloted by a drone intelligence. It looks scary."

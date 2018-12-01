@@ -149,3 +149,12 @@
 /turf/simulated/open/is_space()
 	var/turf/below = GetBelow(src)
 	return !below || below.is_space()
+<<<<<<< HEAD
+=======
+
+/turf/simulated/open/is_safe_to_enter(mob/living/L)
+	if(L.can_fall())
+		if(!locate(/obj/structure/stairs) in GetBelow(src))
+			return FALSE
+	return ..()
+>>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync

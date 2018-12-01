@@ -284,7 +284,7 @@
 "fx" = (/obj/machinery/atmospherics/pipe/simple/visible/purple{dir = 6},/obj/machinery/light,/turf/simulated/floor/plating,/area/outpost/research/toxins_misc_lab)
 "fy" = (/obj/machinery/atmospherics/pipe/manifold/visible/purple{dir = 4},/obj/item/device/radio/intercom{name = "Station Intercom (General)"; pixel_y = -21},/turf/simulated/floor/plating,/area/outpost/research/toxins_misc_lab)
 "fz" = (/obj/machinery/atmospherics/pipe/simple/hidden/purple,/turf/simulated/wall/r_wall,/area/outpost/research/toxins_misc_lab)
-"fA" = (/mob/living/simple_animal/slime,/turf/simulated/floor/reinforced,/area/outpost/research/xenobiology)
+"fA" = (/mob/living/simple_mob/slime/xenobio,/turf/simulated/floor/reinforced,/area/outpost/research/xenobiology)
 "fB" = (/obj/structure/disposalpipe/segment,/obj/machinery/light/small{dir = 4},/turf/simulated/floor/reinforced,/area/outpost/research/xenobiology)
 "fC" = (/obj/machinery/portable_atmospherics/canister,/turf/simulated/floor/plating,/area/outpost/research/hallway/toxins_hallway)
 "fD" = (/obj/structure/closet/emcloset,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/obj/item/device/radio/intercom{dir = 8; name = "Station Intercom (General)"; pixel_x = -21},/turf/simulated/floor/tiled/white,/area/outpost/research/hallway/toxins_hallway)

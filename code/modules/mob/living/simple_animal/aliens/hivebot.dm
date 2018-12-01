@@ -1,6 +1,6 @@
 // Hivebots are tuned towards how many default lasers are needed to kill them.
 // As such, if laser damage is ever changed, you should change this define.
-#define LASERS_TO_KILL *30
+#define LASERS_TO_KILL * 40
 
 // Default hivebot is melee, and a bit more meaty, so it can meatshield for their ranged friends.
 /mob/living/simple_animal/hostile/hivebot
@@ -238,3 +238,5 @@
 /obj/item/projectile/bullet/hivebot
 	damage = 10
 	damage_type = BRUTE
+
+#undef LASERS_TO_KILL

@@ -10,7 +10,7 @@
 			src << "<font color='red'>You cannot speak in IC (muted).</font>"
 			return
 
-	if(istype(src.loc,/mob/living/simple_animal/borer))
+	if(istype(src.loc,/mob/living/simple_mob/animal/borer))
 
 		message = sanitize(message)
 		if (!message)
@@ -19,7 +19,7 @@
 		if (stat == 2)
 			return say_dead(message)
 
-		var/mob/living/simple_animal/borer/B = src.loc
+		var/mob/living/simple_mob/animal/borer/B = src.loc
 		src << "You whisper silently, \"[message]\""
 		B.host << "The captive mind of [src] whispers, \"[message]\""
 
@@ -34,8 +34,8 @@
 
 /mob/living/captive_brain/process_resist()
 	//Resisting control by an alien mind.
-	if(istype(src.loc,/mob/living/simple_animal/borer))
-		var/mob/living/simple_animal/borer/B = src.loc
+	if(istype(src.loc,/mob/living/simple_mob/animal/borer))
+		var/mob/living/simple_mob/animal/borer/B = src.loc
 		var/mob/living/captive_brain/H = src
 
 		H << "<span class='danger'>You begin doggedly resisting the parasite's control (this will take approximately sixty seconds).</span>"
