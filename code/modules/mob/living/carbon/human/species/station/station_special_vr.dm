@@ -323,7 +323,7 @@
 	burn_mod =  1.15	//15% burn damage increase. They're spiders. Aerosol can+lighter = dead spiders.
 
 	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_VESPINAE, "Sol Common")
+	secondary_langs = list(LANGUAGE_VESPINAE)
 	color_mult = 1
 	tail = "tail" //Spider tail.
 	icobase_tail = 1
