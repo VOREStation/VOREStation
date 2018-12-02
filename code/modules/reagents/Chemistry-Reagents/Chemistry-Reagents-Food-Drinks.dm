@@ -2668,7 +2668,7 @@
 
 /datum/reagent/ethanol/saketini
 	name = "Saketini"
-	id = "sakitini"
+	id = "saketini"
 	description = "For when you're too weeb for a real martini."
 	taste_description = "dry alcohol"
 	color = "#0064C8"
