@@ -224,7 +224,7 @@
 		dat += "<font color='red'>Cargo compartment slot: Fuel.</font><BR>"
 		dat += "<font color='red'>([list2text(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
 
-	if(analyzer && synced)
+	if(analyzer && !synced)
 		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
