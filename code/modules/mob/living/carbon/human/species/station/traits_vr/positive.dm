@@ -42,13 +42,13 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 3, "flash_mod" = 2.0)
+	var_changes = list("darksight" = 3)
 
 /datum/trait/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
-	var_changes = list("darksight" = 7, "flash_mod" = 3.0)
+	var_changes = list("darksight" = 7)
 
 /datum/trait/melee_attack
 	name = "Sharp Melee"
