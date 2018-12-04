@@ -21,6 +21,7 @@
 	var/shardtype = /obj/item/weapon/material/shard
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
+	var/fulltile = FALSE // Set to true on full-tile variants.
 
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
@@ -128,16 +129,10 @@
 /obj/structure/window/blob_act()
 	take_damage(50)
 
-//TODO: Make full windows a separate type of window.
-//Once a full window, it will always be a full window, so there's no point
-//having the same type for both.
-/obj/structure/window/proc/is_full_window()
-	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
-	if(is_full_window())
+	if(is_fulltile())
 		return 0	//full tile window, you can't move into it!
 	if(get_dir(loc, target) & dir)
 		return !density
@@ -388,8 +383,6 @@
 		anchored = 0
 		state = 0
 		update_verbs()
-		if(is_fulltile())
-			maxhealth *= 2
 
 	health = maxhealth
 
@@ -416,9 +409,7 @@
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()
-	if(dir & (dir - 1))
-		return 1
-	return 0
+	return fulltile
 
 //This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
 /obj/structure/window/proc/update_nearby_icons()
@@ -484,6 +475,10 @@
 	maxhealth = 12.0
 	force_threshold = 3
 
+/obj/structure/window/basic/full
+	maxhealth = 24
+	fulltile = TRUE
+
 /obj/structure/window/phoronbasic
 	name = "phoron window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
@@ -497,8 +492,8 @@
 	force_threshold = 5
 
 /obj/structure/window/phoronbasic/full
-	dir = SOUTHWEST
 	maxhealth = 80
+	fulltile = TRUE
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -514,8 +509,8 @@
 	force_threshold = 10
 
 /obj/structure/window/phoronreinforced/full
-	dir = SOUTHWEST
 	maxhealth = 160
+	fulltile = TRUE
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -530,9 +525,9 @@
 	force_threshold = 6
 
 /obj/structure/window/reinforced/full
-	dir = SOUTHWEST
 	icon_state = "fwindow"
 	maxhealth = 80
+	fulltile = TRUE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -567,9 +562,9 @@
 	var/id
 
 /obj/structure/window/reinforced/polarized/full
-	dir = SOUTHWEST
 	icon_state = "fwindow"
 	maxhealth = 80
+	fulltile = TRUE
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && !anchored) // Only allow programming if unanchored!
