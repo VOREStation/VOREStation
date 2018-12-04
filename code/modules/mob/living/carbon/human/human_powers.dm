@@ -293,6 +293,7 @@
 		// Replace completely missing limbs.
 		for(var/limb_type in src.species.has_limbs)
 			var/obj/item/organ/external/E = src.organs_by_name[limb_type]
+
 			if(E && E.disfigured)
 				E.disfigured = 0
 			if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
@@ -305,6 +306,10 @@
 				var/obj/item/organ/O = new limb_path(src)
 				organ_data["descriptor"] = O.name
 				to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
+
+				var/agony_to_apply = round(0.66 * O.max_damage) // 66% of the limb's health is converted into pain.
+				src.apply_damage(agony_to_apply, HALLOSS)
+
 		update_icons_body()
 		active_regen = FALSE
 	else

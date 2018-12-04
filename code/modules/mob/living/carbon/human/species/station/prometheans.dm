@@ -153,7 +153,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.gib()
 
 /datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
+<<<<<<< HEAD
 /* VOREStation Removal - Too crazy with our uncapped hunger and slowdown stuff.
+=======
+	var/regen_brute = 1
+	var/regen_burn = 1
+	var/regen_tox = 1
+	var/regen_oxy = 1
+
+>>>>>>> 927311c... Merge pull request #5723 from Mechoid/PrometheanTweakening_The_Agonizing_One
 	var/turf/T = H.loc
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
@@ -163,34 +171,63 @@ var/datum/species/shapeshifter/promethean/prometheans
 				var/turf/simulated/S = T
 				S.dirt = 0
 
+<<<<<<< HEAD
 			H.nutrition = min(500, max(0, H.nutrition + rand(15, 30)))
 VOREStation Removal End */
+=======
+	T = get_turf(H) // Swap over to an actual turf, because we need to get the pressure.
+	if(istype(T)) // Make sure it exists, and is a turf again.
+		var/datum/gas_mixture/environment = T.return_air()
+		var/pressure = environment.return_pressure()
+		var/affecting_pressure = H.calculate_affecting_pressure(pressure)
+		if(affecting_pressure <= hazard_low_pressure) // Dangerous low pressure stops the regeneration of physical wounds. Body is focusing on keeping them intact rather than sealing.
+			regen_brute = 0
+			regen_burn = 0
+
+>>>>>>> 927311c... Merge pull request #5723 from Mechoid/PrometheanTweakening_The_Agonizing_One
 	// Heal remaining damage.
 	if(H.fire_stacks >= 0)
 		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
 			var/nutrition_cost = 0
-			var/nutrition_debt = H.getBruteLoss()
+			var/nutrition_debt = 0
 			var/starve_mod = 1
 			if(H.nutrition <= 25)
 				starve_mod = 0.75
-			H.adjustBruteLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getBruteLoss()
 
-			nutrition_debt = H.getFireLoss()
-			H.adjustFireLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getFireLoss()
+			if(regen_brute)
+				nutrition_debt = H.getBruteLoss()
+				H.adjustBruteLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getBruteLoss()
 
-			nutrition_debt = H.getOxyLoss()
-			H.adjustOxyLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getOxyLoss()
+			if(regen_burn)
+				nutrition_debt = H.getFireLoss()
+				H.adjustFireLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getFireLoss()
 
-			nutrition_debt = H.getToxLoss()
-			H.adjustToxLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getToxLoss()
-			H.nutrition -= (2 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
+			if(regen_oxy)
+				nutrition_debt = H.getOxyLoss()
+				H.adjustOxyLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getOxyLoss()
+
+			if(regen_tox)
+				nutrition_debt = H.getToxLoss()
+				H.adjustToxLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getToxLoss()
+
+			H.nutrition -= (3 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
 			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
+<<<<<<< HEAD
 	//else//VOREStation Removal
 		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+=======
+
+			var/agony_to_apply = ((1 / starve_mod) * nutrition_cost) //Regenerating damage causes minor pain over time. Small injures will be no issue, large ones will cause problems.
+			if((H.getHalLoss() + agony_to_apply) <= 70) // Don't permalock, but make it far easier to knock them down.
+				H.apply_damage(agony_to_apply, HALLOSS)
+
+	else
+		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+>>>>>>> 927311c... Merge pull request #5723 from Mechoid/PrometheanTweakening_The_Agonizing_One
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
