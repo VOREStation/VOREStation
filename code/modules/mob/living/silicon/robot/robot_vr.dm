@@ -133,13 +133,7 @@
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
 
 /datum/riding/dogborg/handle_vehicle_layer()
-	if(ridden.has_buckled_mobs())
-		if(ridden.dir != NORTH)
-			ridden.layer = ABOVE_MOB_LAYER
-		else
-			ridden.layer = initial(ridden.layer)
-	else
-		ridden.layer = initial(ridden.layer)
+	ridden.layer = initial(ridden.layer)
 
 /datum/riding/dogborg/ride_check(mob/living/M)
 	var/mob/living/L = ridden
@@ -158,10 +152,10 @@
 	var/scale = L.size_multiplier
 
 	var/list/values = list(
-		"[NORTH]" = list(0, 8*scale, ABOVE_MOB_LAYER),
-		"[SOUTH]" = list(0, 8*scale, BELOW_MOB_LAYER),
-		"[EAST]" = list(-5*scale, 8*scale, ABOVE_MOB_LAYER),
-		"[WEST]" = list(5*scale, 8*scale, ABOVE_MOB_LAYER))
+		"[NORTH]" = list(0, 10*scale, ABOVE_MOB_LAYER),
+		"[SOUTH]" = list(0, 10*scale, BELOW_MOB_LAYER),
+		"[EAST]" = list(-5*scale, 10*scale, ABOVE_MOB_LAYER),
+		"[WEST]" = list(5*scale, 10*scale, ABOVE_MOB_LAYER))
 
 	return values
 
