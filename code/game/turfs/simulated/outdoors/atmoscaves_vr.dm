@@ -17,3 +17,8 @@
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	temperature	= T20C
+
+/turf/simulated/mineral/ignore_mapgen/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB

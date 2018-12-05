@@ -3,7 +3,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/mine/explored/upper_level)
 "ac" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -3988,7 +3988,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/range)
 "gJ" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/maintenance/station/ai)
 "gK" = (
 /turf/simulated/floor,
@@ -8075,7 +8075,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/maintenance/station/ai)
 "nz" = (
 /obj/structure/cable{
@@ -27338,8 +27338,7 @@
 	id = "sec_processing";
 	pixel_x = 26;
 	pixel_y = 6;
-	req_access = list(1);
-	
+	req_access = list(1)
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
@@ -27367,7 +27366,7 @@
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
 "SW" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/space)
 "TL" = (
 /obj/machinery/ai_slipper{

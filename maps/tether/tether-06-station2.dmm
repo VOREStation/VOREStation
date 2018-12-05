@@ -6,7 +6,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "ac" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/mine/explored/upper_level)
 "ad" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -17423,7 +17423,7 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "Ko" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/space)
 "Kv" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -17966,7 +17966,7 @@
 /turf/simulated/wall,
 /area/maintenance/evahallway)
 "OQ" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/maintenance/evahallway)
 "OY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -18189,7 +18189,7 @@
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "Qs" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/maintenance/station/sec_lower)
 "Qu" = (
 /obj/structure/catwalk,
@@ -18995,7 +18995,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
 "VL" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/chapel/chapel_morgue)
 "VU" = (
 /obj/effect/floor_decal/industrial/warning{

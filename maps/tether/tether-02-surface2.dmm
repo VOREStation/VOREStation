@@ -6,7 +6,7 @@
 /turf/simulated/open/virgo3b,
 /area/tether/surfacebase/outside/outside2)
 "ac" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/tether/surfacebase/outside/outside2)
 "ad" = (
 /turf/simulated/wall,
@@ -1189,7 +1189,7 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside2)
 "cW" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/maintenance/lower/north)
 "cX" = (
 /obj/effect/floor_decal/techfloor{
@@ -4326,7 +4326,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "jy" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/maintenance/lower/rnd)
 "jz" = (
 /obj/random/trash_pile,
@@ -4925,7 +4925,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "kR" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/maintenance/lower/bar)
 "kS" = (
 /obj/item/weapon/material/twohanded/baseballbat{
@@ -13601,7 +13601,7 @@
 /turf/simulated/floor,
 /area/engineering/atmos/storage)
 "zH" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/maintenance/lower/south)
 "zI" = (
 /obj/structure/cable/green{

@@ -26,7 +26,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/mining_main/external)
 "aah" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/tether/surfacebase/outside/outside1)
 "aai" = (
 /obj/structure/cable/green{
@@ -4729,7 +4729,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
 "akV" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/vacant/vacant_site)
 "akX" = (
 /turf/simulated/floor/plating,
@@ -14248,7 +14248,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/xenobiology/xenoflora_storage)
 "aHK" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/maintenance/lower/research)
 "aHL" = (
 /obj/effect/floor_decal/rust,
@@ -14439,7 +14439,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/drone_fabrication)
 "aIp" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/rnd/external)
 "aIq" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -14846,7 +14846,7 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
 "aJs" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/engineering/atmos/intake)
 "aJt" = (
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -28640,7 +28640,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "wFT" = (
-/turf/simulated/mineral,
+/turf/simulated/mineral/ignore_mapgen,
 /area/maintenance/lower/public_garden_maintenence)
 "wIm" = (
 /obj/structure/table/rack,

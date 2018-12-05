@@ -9,7 +9,7 @@
 /turf/space,
 /area/space)
 "aac" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/mine/explored/upper_level)
 "aad" = (
 /turf/simulated/wall/r_wall,
@@ -21275,7 +21275,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
 "cbM" = (
-/turf/simulated/mineral/vacuum,
+/turf/simulated/mineral/ignore_mapgen/vacuum,
 /area/space)
 "cbY" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
