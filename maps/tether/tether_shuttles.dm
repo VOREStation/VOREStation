@@ -190,7 +190,7 @@
 	current_area = /area/shuttle/excursion/tether
 	docking_controller_tag = "expshuttle_docker"
 	web_master_type = /datum/shuttle_web_master/excursion
-	var/abduct_chance = 0.5 //Prob
+	var/abduct_chance = 0 //Prob
 
 /datum/shuttle/web_shuttle/excursion/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
 	if(prob(abduct_chance))
