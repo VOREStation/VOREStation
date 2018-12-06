@@ -93,8 +93,11 @@
 #include "code\_helpers\icons_vr.dm"
 #include "code\_helpers\lists.dm"
 #include "code\_helpers\logging.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\_helpers\logging_vr.dm"
 #include "code\_helpers\maths.dm"
+=======
+>>>>>>> 8da11c1... Makes math helpers defines for performance (#5654):polaris.dme
 #include "code\_helpers\matrices.dm"
 #include "code\_helpers\mobs.dm"
 #include "code\_helpers\names.dm"

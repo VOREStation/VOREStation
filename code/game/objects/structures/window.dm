@@ -458,7 +458,7 @@
 
 	// Damage overlays.
 	var/ratio = health / maxhealth
-	ratio = Ceiling(ratio * 4) * 25
+	ratio = CEILING(ratio * 4, 1) * 25
 
 	if(ratio > 75)
 		return

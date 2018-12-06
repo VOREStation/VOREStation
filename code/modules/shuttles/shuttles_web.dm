@@ -88,7 +88,7 @@
 				if(autopilot_delay % 10 == 0) // Every ten ticks.
 					var/seconds_left = autopilot_delay * 2
 					if(seconds_left >= 60) // A minute
-						var/minutes_left = Floor(seconds_left / 60)
+						var/minutes_left = FLOOR(seconds_left / 60, 1)
 						seconds_left = seconds_left % 60
 						autopilot_say("Departing in [minutes_left] minute\s[seconds_left ? ", [seconds_left] seconds":""].")
 					else
