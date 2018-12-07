@@ -388,3 +388,8 @@
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)
+
+/mob/living/carbon/needs_to_breathe()
+	if(does_not_breathe)
+		return FALSE
+	return ..()
