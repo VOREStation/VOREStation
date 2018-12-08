@@ -174,8 +174,7 @@
 "p" = (
 /obj/structure/table/survival_pod,
 /obj/machinery/microwave{
-	pixel_y = 6;
-	step_x = 0
+	pixel_y = 6
 	},
 /obj/structure/sink/kitchen{
 	icon_state = "sink_alt";
