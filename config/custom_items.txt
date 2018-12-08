@@ -178,13 +178,13 @@ item_path: /obj/item/clothing/head/fluff/pink_tiara
 }
 
 {
-ckey: Cross_exonar
+ckey: cross_exonar
 character_name: Sari-U
 item_path: /obj/item/weapon/disk/limb/eggnerdltd
 }
 
 {
-ckey: Cross_exonar
+ckey: cross_exonar
 character_name: Sari-E
 item_path: /obj/item/weapon/disk/limb/eggnerdltd
 }
