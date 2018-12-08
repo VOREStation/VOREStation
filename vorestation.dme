@@ -784,7 +784,6 @@
 #include "code\game\machinery\computer3\computer3_notes.dm"
 #include "code\game\machinery\computer3\file.dm"
 #include "code\game\machinery\computer3\laptop.dm"
-#include "code\game\machinery\computer3\laptop_vr.dm"
 #include "code\game\machinery\computer3\lapvend.dm"
 #include "code\game\machinery\computer3\networking.dm"
 #include "code\game\machinery\computer3\NTOS.dm"

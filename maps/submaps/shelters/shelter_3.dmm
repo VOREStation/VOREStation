@@ -255,14 +255,6 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/survivalpod)
-"B" = (
-/obj/structure/table/steel,
-/obj/machinery/computer3/laptop/survival{
-	spawn_files = list(/datum/file/program/arcade,/datum/file/program/security,/datum/file/camnet_key/entertainment);
-	spawn_parts = list(/obj/item/part/computer/storage/hdd/big,/obj/item/part/computer/cardslot/dual,/obj/item/part/computer/storage/removable,/obj/item/part/computer/networking/radio,/obj/item/part/computer/networking/cameras,/obj/item/part/computer/networking/area)
-	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/survivalpod)
 "C" = (
 /obj/structure/sign/mining/survival,
 /turf/simulated/shuttle/wall/voidcraft/survival,
@@ -294,7 +286,7 @@ e
 k
 p
 s
-B
+y
 C
 "}
 (3,1,1) = {"
