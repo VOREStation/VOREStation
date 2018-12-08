@@ -22,7 +22,7 @@
 		/obj/item/clothing/accessory/armband = 3,
 		/obj/item/clothing/accessory/holster/waist = 3)
 
-/obj/structure/closet/wardrobe/red/initialize()
+/obj/structure/closet/wardrobe/red/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/security
 	else
@@ -223,7 +223,7 @@
 		/obj/item/weapon/storage/backpack/toxins,
 		/obj/item/weapon/storage/backpack/satchel/tox)
 
-/obj/structure/closet/wardrobe/science_white/initialize()
+/obj/structure/closet/wardrobe/science_white/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sci
 	else
@@ -249,7 +249,7 @@
 		/obj/item/weapon/storage/backpack/toxins,
 		/obj/item/weapon/storage/backpack/satchel/tox)
 
-/obj/structure/closet/wardrobe/robotics_black/initialize()
+/obj/structure/closet/wardrobe/robotics_black/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sci
 	else
@@ -401,7 +401,7 @@
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/under/pants/camo)
 
-/obj/structure/closet/wardrobe/tactical/initialize()
+/obj/structure/closet/wardrobe/tactical/Initialize()
 	if(prob(25))
 		starts_with += /obj/item/weapon/storage/belt/security/tactical/bandolier
 	else

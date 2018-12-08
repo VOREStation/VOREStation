@@ -92,7 +92,7 @@
 	syndie = 1
 	ks1type = /obj/item/device/encryptionkey/raider
 
-/obj/item/device/radio/headset/raider/initialize()
+/obj/item/device/radio/headset/raider/Initialize()
 	. = ..()
 	set_frequency(RAID_FREQ)
 

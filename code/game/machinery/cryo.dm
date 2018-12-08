@@ -30,7 +30,7 @@
 	icon_state = "base"
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/unary/cryo_cell/initialize()
+/obj/machinery/atmospherics/unary/cryo_cell/Initialize()
 	. = ..()
 	var/image/tank = image(icon,"tank")
 	tank.alpha = 200

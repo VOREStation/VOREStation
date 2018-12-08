@@ -8,7 +8,7 @@
 	var/duration = 10 //in deciseconds
 	var/randomdir = TRUE
 
-/obj/effect/temp_visual/initialize()
+/obj/effect/temp_visual/Initialize()
 	. = ..()
 	if(randomdir)
 		set_dir(pick(cardinal))

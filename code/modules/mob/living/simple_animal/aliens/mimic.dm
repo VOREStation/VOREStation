@@ -68,7 +68,7 @@
 	var/attempt_open = 0
 
 // Pickup loot
-/mob/living/simple_mob/hostile/mimic/crate/initialize()
+/mob/living/simple_animal/hostile/mimic/crate/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
 		I.forceMove(src)

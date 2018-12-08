@@ -57,7 +57,7 @@
 /obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"
 
-/obj/effect/spider/stickyweb/initialize()
+/obj/effect/spider/stickyweb/Initialize()
 	if(prob(50))
 		icon_state = "stickyweb2"
 	return ..()
@@ -83,7 +83,7 @@
 	var/spiders_max = 24
 	var/spider_type = /obj/effect/spider/spiderling
 
-/obj/effect/spider/eggcluster/initialize()
+/obj/effect/spider/eggcluster/Initialize()
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	processing_objects |= src

@@ -32,7 +32,7 @@
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
 
-/obj/machinery/door/blast/initialize()
+/obj/machinery/door/blast/Initialize()
 	. = ..()
 	implicit_material = get_material_by_name("plasteel")
 

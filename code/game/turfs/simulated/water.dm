@@ -16,7 +16,7 @@
 
 	var/depth = 1 // Higher numbers indicates deeper water.
 
-/turf/simulated/floor/water/initialize()
+/turf/simulated/floor/water/Initialize()
 	. = ..()
 	update_icon()
 

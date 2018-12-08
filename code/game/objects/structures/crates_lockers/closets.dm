@@ -32,7 +32,7 @@
 
 	var/list/starts_with
 
-/obj/structure/closet/initialize()
+/obj/structure/closet/Initialize()
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)

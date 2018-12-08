@@ -85,13 +85,13 @@
 /obj/item/weapon/flame/candle/everburn
 	wax = 99999
 
-/obj/item/weapon/flame/candle/everburn/initialize()
+/obj/item/weapon/flame/candle/everburn/Initialize()
 	. = ..()
 	light("<span class='notice'>\The [src] mysteriously lights itself!.</span>")
 
 /obj/item/weapon/flame/candle/candelabra/everburn
 	wax = 99999
 
-/obj/item/weapon/flame/candle/candelabra/everburn/initialize()
+/obj/item/weapon/flame/candle/candelabra/everburn/Initialize()
 	. = ..()
 	light("<span class='notice'>\The [src] mysteriously lights itself!.</span>")

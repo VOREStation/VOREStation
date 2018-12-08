@@ -30,7 +30,7 @@
 	var/pulses_remaining = 3
 	var/pulse_delay = 2 SECONDS
 
-/obj/effect/temporary_effect/pulse/initialize()
+/obj/effect/temporary_effect/pulse/Initialize()
 	spawn(0)
 		pulse_loop()
 	return ..()

@@ -128,7 +128,7 @@
 	var/obj/effect/landmark/the_landmark = null
 	var/landmark_id = null
 
-/obj/effect/step_trigger/teleporter/landmark/initialize()
+/obj/effect/step_trigger/teleporter/landmark/Initialize()
 	. = ..()
 	for(var/obj/effect/landmark/teleport_mark/mark in tele_landmarks)
 		if(mark.landmark_id == landmark_id)

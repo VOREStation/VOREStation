@@ -17,7 +17,7 @@
 	fuel_colour = _colour
 	..(newloc)
 
-/obj/item/weapon/fuel_assembly/initialize()
+/obj/item/weapon/fuel_assembly/Initialize()
 	. = ..()
 	var/material/material = get_material_by_name(fuel_type)
 	if(istype(material))

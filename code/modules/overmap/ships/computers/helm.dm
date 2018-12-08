@@ -10,7 +10,7 @@
 	var/dx		//desitnation
 	var/dy		//coordinates
 
-/obj/machinery/computer/helm/initialize()
+/obj/machinery/computer/helm/Initialize()
 	. = ..()
 	linked = map_sectors["[z]"]
 	if (linked)

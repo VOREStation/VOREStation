@@ -46,7 +46,7 @@
 
 // Variant that automatically commands nearby allies to follow it when created.
 // Useful to avoid having to manually set follow to a lot of hivebots that are gonna die in the next minute anyways.
-/mob/living/simple_mob/mechanical/hivebot/support/commander/autofollow/initialize()
+/mob/living/simple_mob/mechanical/hivebot/support/commander/autofollow/Initialize()
 	for(var/mob/living/L in hearers(7, src))
 		if(!L.ai_holder)
 			continue

@@ -124,7 +124,7 @@ Class Procs:
 	if(circuit)
 		circuit = new circuit(src)
 
-/obj/machinery/initialize()
+/obj/machinery/Initialize()
 	. = ..()
 	global.machines += src
 	START_MACHINE_PROCESSING(src)

@@ -66,7 +66,7 @@
 	src.equipment_path = path
 	src.cost = cost
 
-/obj/machinery/power/quantumpad/initialize()
+/obj/machinery/power/quantumpad/Initialize()
 	. = ..()
 	default_apply_parts()
 
