@@ -88,22 +88,6 @@
 	update()
 	return
 
-/obj/item/weapon/implanter/sizecontrol
-	name = "size control implant"
-	desc = "Implant which allows to control host size via voice commands."
-	description_info = {"Only accessable by those who implanted the victim. Self-implanting allows everyone to change host size. The following special commands are available:
-'Shrink' - host size decreases.
-'Grow' - host size increases.
-'Resize (NUMBER)' or 'Resize (NUMBER) centimeter(s)' - for accurate size control.
-'Ignore' - keywords in the speech won't have any effect.
-'Implant-toggle' - toggles implant."}
-
-/obj/item/weapon/implanter/sizecontrol/New()
-	src.imp = new /obj/item/weapon/implant/sizecontrol( src )
-	..()
-	update()
-	return
-
 /obj/item/weapon/implanter/adrenalin
 	name = "implanter-adrenalin"
 
