@@ -642,6 +642,7 @@
 #include "code\game\jobs\_access_defs.dm"
 #include "code\game\jobs\access.dm"
 #include "code\game\jobs\access_datum.dm"
+#include "code\game\jobs\access_datum_vr.dm"
 #include "code\game\jobs\job_controller.dm"
 #include "code\game\jobs\jobs.dm"
 #include "code\game\jobs\whitelist.dm"
