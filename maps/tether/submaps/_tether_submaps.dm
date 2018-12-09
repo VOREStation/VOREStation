@@ -44,6 +44,22 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)         // Create the mining ore distribution map.
 
+
+/datum/map_template/tether_lateload/tether_plains
+	name = "Tether - Plains"
+	desc = "The Virgo 3B away mission."
+	mappath = 'tether_plains.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/tether_plains
+
+/datum/map_z_level/tether_lateload/tether_plains
+	name = "Away Mission - Plains"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+
+/datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(z), 100, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
+
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
 #if AWAY_MISSION_TEST
@@ -52,6 +68,7 @@
 #include "alienship/alienship.dmm"
 #include "aerostat/aerostat.dmm"
 #include "aerostat/surface.dmm"
+#include "space/debrisfield.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -106,6 +123,17 @@
 
 /datum/map_z_level/tether_lateload/away_aerostat_surface
 	name = "Away Mission - Aerostat Surface"
+
+
+#include "space/_debrisfield.dm"
+/datum/map_template/tether_lateload/away_debrisfield
+	name = "Debris Field - Z1 Space"
+	desc = "The Virgo 3 Debris Field away mission."
+	mappath = 'space/debrisfield.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_debrisfield
+
+/datum/map_z_level/tether_lateload/away_debrisfield
+	name = "Away Mission - Debris Field"
 
 
 //////////////////////////////////////////////////////////////////////////////////////
