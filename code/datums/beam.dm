@@ -131,6 +131,48 @@
 	..()
 	A.ex_act(1)
 
+<<<<<<< HEAD
+=======
+// 'Reactive' beam parts do something when touched or stood in.
+/obj/effect/ebeam/reactive
+
+/obj/effect/ebeam/reactive/Initialize()
+	processing_objects += src
+	return ..()
+
+/obj/effect/ebeam/reactive/Destroy()
+	processing_objects -= src
+	return ..()
+
+/obj/effect/ebeam/reactive/on_drawn()
+	for(var/A in loc)
+		on_contact(A)
+
+/obj/effect/ebeam/reactive/Crossed(atom/A)
+	..()
+	on_contact(A)
+
+/obj/effect/ebeam/reactive/process()
+	for(var/A in loc)
+		on_contact(A)
+
+// Override for things to do when someone touches the beam.
+/obj/effect/ebeam/reactive/proc/on_contact(atom/movable/AM)
+	return
+
+
+// Shocks things that touch it.
+/obj/effect/ebeam/reactive/electric
+	var/shock_amount = 25 // Be aware that high numbers may stun and result in dying due to not being able to get out of the beam.
+
+/obj/effect/ebeam/reactive/electric/on_contact(atom/movable/AM)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		L.inflict_shock_damage(shock_amount)
+
+
+
+>>>>>>> 365d412... Merge pull request #5769 from Anewbe/capital_i_initialize
 /atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type,beam_sleep_time)
 	spawn(0)

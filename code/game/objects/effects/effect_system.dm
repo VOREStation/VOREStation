@@ -252,6 +252,75 @@ steam.start() -- spawns the effect
 */
 
 /////////////////////////////////////////////
+<<<<<<< HEAD
+=======
+// 'Elemental' smoke
+/////////////////////////////////////////////
+
+/obj/effect/effect/smoke/elemental
+	name = "cloud"
+	desc = "A cloud of some kind that seems really generic and boring."
+	opacity = FALSE
+	var/strength = 5 // How much damage to do inside each affect()
+
+/obj/effect/effect/smoke/elemental/Initialize()
+	processing_objects += src
+	return ..()
+
+/obj/effect/effect/smoke/elemental/Destroy()
+	processing_objects -= src
+	return ..()
+
+/obj/effect/effect/smoke/elemental/Move()
+	..()
+	for(var/mob/living/L in range(1, src))
+		affect(L)
+
+/obj/effect/effect/smoke/elemental/process()
+	for(var/mob/living/L in range(1, src))
+		affect(L)
+
+
+/obj/effect/effect/smoke/elemental/fire
+	name = "burning cloud"
+	desc = "A cloud of something that is on fire."
+	color = "#FF9933"
+	light_color = "#FF0000"
+	light_range = 2
+	light_power = 5
+
+/obj/effect/effect/smoke/elemental/fire/affect(mob/living/L)
+	L.inflict_heat_damage(strength)
+	L.add_modifier(/datum/modifier/fire, 6 SECONDS) // Around 15 damage per stack.
+
+/obj/effect/effect/smoke/elemental/frost
+	name = "freezing cloud"
+	desc = "A cloud filled with brutally cold mist."
+	color = "#00CCFF"
+
+/obj/effect/effect/smoke/elemental/frost/affect(mob/living/L)
+	L.inflict_cold_damage(strength)
+
+/obj/effect/effect/smoke/elemental/shock
+	name = "charged cloud"
+	desc = "A cloud charged with electricity."
+	color = "#4D4D4D"
+
+/obj/effect/effect/smoke/elemental/shock/affect(mob/living/L)
+	L.inflict_shock_damage(strength)
+
+/obj/effect/effect/smoke/elemental/mist
+	name = "misty cloud"
+	desc = "A cloud filled with water vapor."
+	color = "#CCFFFF"
+	alpha = 128
+	strength = 1
+
+/obj/effect/effect/smoke/elemental/mist/affect(mob/living/L)
+	L.water_act(strength)
+
+/////////////////////////////////////////////
+>>>>>>> 365d412... Merge pull request #5769 from Anewbe/capital_i_initialize
 // Smoke spread
 /////////////////////////////////////////////
 
