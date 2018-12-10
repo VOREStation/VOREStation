@@ -20,7 +20,7 @@
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
 
 /obj/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
@@ -57,10 +57,6 @@
 	// Nada
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
-
-/obj/proc/process()
-	processing_objects.Remove(src)
-	return 0
 
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)

@@ -45,7 +45,7 @@
 			))
 	update_sun()
 
-/datum/planet/proc/process(last_fire)
+/datum/planet/process(last_fire)
 	if(current_time)
 		var/difference = world.time - last_fire
 		current_time = current_time.add_seconds((difference / 10) * PLANET_TIME_MODIFIER)

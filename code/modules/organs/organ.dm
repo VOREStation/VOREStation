@@ -91,7 +91,7 @@ var/list/organ_cache = list()
 	if(robotic < ORGAN_ROBOT)
 		status |= ORGAN_DEAD
 	damage = max_damage
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	if(owner && vital)
 		owner.death()
 		owner.can_defib = 0
@@ -335,8 +335,13 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
+<<<<<<< HEAD
 	loc = owner.drop_location()
 	processing_objects |= src
+=======
+	loc = get_turf(owner)
+	START_PROCESSING(SSobj, src)
+>>>>>>> 2c4b5af... Merge pull request #5677 from kevinz000/PS_PORT_SCHEDULER
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
@@ -367,7 +372,7 @@ var/list/organ_cache = list()
 
 	owner = target
 	loc = owner
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src

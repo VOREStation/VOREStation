@@ -23,7 +23,7 @@
 /datum/event_manager/New()
 	allEvents = typesof(/datum/event) - /datum/event
 
-/datum/event_manager/proc/process()
+/datum/event_manager/process()
 	for(var/datum/event/E in event_manager.active_events)
 		E.process()
 

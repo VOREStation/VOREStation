@@ -40,7 +40,7 @@
 		our_planet.update_sun()
 	log_debug("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).")
 
-/datum/weather_holder/proc/process()
+/datum/weather_holder/process()
 	if(world.time >= next_weather_shift)
 		if(!current_weather) // Roundstart (hopefully).
 			initialize_weather()

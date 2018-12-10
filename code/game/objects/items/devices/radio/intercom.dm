@@ -60,7 +60,7 @@
 
 /obj/item/device/radio/intercom/New()
 	..()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	circuit = new circuit(src)
 
 /obj/item/device/radio/intercom/department/medbay/New()
@@ -104,7 +104,7 @@
 	internal_channels[num2text(RAID_FREQ)] = list(access_syndicate)
 
 /obj/item/device/radio/intercom/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)

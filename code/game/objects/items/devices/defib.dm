@@ -604,7 +604,7 @@
 /obj/item/weapon/shockpaddles/standalone/Destroy()
 	. = ..()
 	if(fail_counter)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/shockpaddles/standalone/check_charge(var/charge_amt)
 	return 1
@@ -617,7 +617,7 @@
 	if(fail_counter > 0)
 		radiation_repository.radiate(src, fail_counter--)
 	else
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/shockpaddles/standalone/emp_act(severity)
 	..()
@@ -632,7 +632,7 @@
 				to_chat(loc, "<span class='warning'>\The [src] feel pleasantly warm.</span>")
 
 	if(new_fail && !fail_counter)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	fail_counter = new_fail
 
 /* From the Bay port, this doesn't seem to have a sprite.

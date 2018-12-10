@@ -7,14 +7,18 @@ datum/controller/transfer_controller
 	var/shift_last_vote = 0 //VOREStation Edit
 datum/controller/transfer_controller/New()
 	timerbuffer = config.vote_autotransfer_initial
+<<<<<<< HEAD
 	shift_hard_end = config.vote_autotransfer_initial + (config.vote_autotransfer_interval * 1) //VOREStation Edit //Change this "1" to how many extend votes you want there to be.
 	shift_last_vote = shift_hard_end - config.vote_autotransfer_interval //VOREStation Edit
 	processing_objects += src
+=======
+	START_PROCESSING(SSobj, src)
+>>>>>>> 2c4b5af... Merge pull request #5677 from kevinz000/PS_PORT_SCHEDULER
 
 datum/controller/transfer_controller/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 
-datum/controller/transfer_controller/proc/process()
+datum/controller/transfer_controller/process()
 	currenttick = currenttick + 1
 	//VOREStation Edit START
 	if (round_duration_in_ticks >= shift_last_vote - 2 MINUTES) 

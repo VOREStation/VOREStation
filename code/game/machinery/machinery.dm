@@ -117,6 +117,8 @@ Class Procs:
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/weapon/circuitboard/circuit = null
 
+	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
+
 /obj/machinery/New(l, d=0)
 	..(l)
 	if(d)
@@ -127,10 +129,16 @@ Class Procs:
 /obj/machinery/Initialize()
 	. = ..()
 	global.machines += src
-	START_MACHINE_PROCESSING(src)
+	if(!speed_process)
+		START_MACHINE_PROCESSING(src)
+	else
+		START_PROCESSING(SSfastprocess, src)
 
 /obj/machinery/Destroy()
-	STOP_MACHINE_PROCESSING(src)
+	if(!speed_process)
+		STOP_MACHINE_PROCESSING(src)
+	else
+		STOP_PROCESSING(SSfastprocess, src)
 	global.machines -= src
 	if(component_parts)
 		for(var/atom/A in component_parts)
@@ -152,8 +160,6 @@ Class Procs:
 /obj/machinery/process()//If you dont use process or power why are you here
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
-
-	return
 
 /obj/machinery/emp_act(severity)
 	if(use_power && stat == 0)

@@ -5,11 +5,11 @@
 	var/radiation_power = 30 // Bigger numbers means more radiation.
 
 /obj/effect/map_effect/radiation_emitter/Initialize()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/process()

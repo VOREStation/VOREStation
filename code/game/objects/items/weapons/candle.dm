@@ -46,7 +46,7 @@
 		lit = TRUE
 		visible_message(flavor_text)
 		set_light(CANDLE_LUM)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/flame/candle/process()
 	if(!lit)

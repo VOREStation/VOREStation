@@ -34,11 +34,11 @@
 	charge = maxcharge
 	update_icon()
 	if(self_recharge)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/cell/Destroy()
 	if(self_recharge)
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/cell/get_cell()

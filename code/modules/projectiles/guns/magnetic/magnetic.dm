@@ -23,14 +23,14 @@
 	fire_sound = 'sound/weapons/railgun.ogg'
 
 /obj/item/weapon/gun/magnetic/New()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	if(capacitor)
 		power_per_tick = (power_cost*0.15) * capacitor.rating
 	update_icon()
 	. = ..()
 
 /obj/item/weapon/gun/magnetic/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(cell)
 	QDEL_NULL(loaded)
 	QDEL_NULL(capacitor)
