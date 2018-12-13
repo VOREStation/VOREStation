@@ -5,10 +5,10 @@
 	var/datum/map_template/template
 
 
-	var/map = input(usr, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template") as null|anything in map_templates
+	var/map = input(usr, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template") as null|anything in SSmapping.map_templates
 	if(!map)
 		return
-	template = map_templates[map]
+	template = SSmapping.map_templates[map]
 
 	var/orientation = text2dir(input(usr, "Choose an orientation for this Map Template.", "Orientation") as null|anything in list("North", "South", "East", "West"))
 	if(!orientation)
@@ -41,10 +41,10 @@
 
 	var/datum/map_template/template
 
-	var/map = input(usr, "Choose a Map Template to place on a new Z-level.","Place Map Template") as null|anything in map_templates
+	var/map = input(usr, "Choose a Map Template to place on a new Z-level.","Place Map Template") as null|anything in SSmapping.map_templates
 	if(!map)
 		return
-	template = map_templates[map]
+	template = SSmapping.map_templates[map]
 
 	var/orientation = text2dir(input(usr, "Choose an orientation for this Map Template.", "Orientation") as null|anything in list("North", "South", "East", "West"))
 	if(!orientation)
@@ -76,7 +76,7 @@
 	var/datum/map_template/M = new(map, "[map]")
 	if(M.preload_size(map))
 		to_chat(usr, "Map template '[map]' ready to place ([M.width]x[M.height])")
-		map_templates[M.name] = M
+		SSmapping.map_templates[M.name] = M
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has uploaded a map template ([map])</span>")
 	else
 		to_chat(usr, "Map template '[map]' failed to load properly")
