@@ -463,3 +463,12 @@
 
 	msg_owner_grab_fail = "You step down onto %prey with one of your vines, forcing them onto the ground!"
 	msg_prey_grab_fail = "%owner steps down onto you with one of their vines, squishing you and forcing you onto the ground!"
+
+/datum/sprite_accessory/tail/taur/alraune/alraune_2c
+	name = "Alraune (dual color)"
+	icon_state = "alraunecolor_s"
+	ani_state = "alraunecolor_closed_s"
+	ckeys_allowed = null
+	do_colouration = 1
+	extra_overlay = "alraunecolor_markings"
+	extra_overlay_w = "alraunecolor_closed_markings"
