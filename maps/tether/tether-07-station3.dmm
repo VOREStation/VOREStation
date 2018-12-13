@@ -10370,6 +10370,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
 "rm" = (
@@ -10382,6 +10385,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/lino,
@@ -10398,6 +10404,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/security/detectives_office)
 "ro" = (
@@ -10411,6 +10420,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/lino,
 /area/security/detectives_office)
@@ -10431,6 +10443,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/security/detectives_office)
 "rq" = (
@@ -10444,6 +10459,9 @@
 	id_tag = "detdoor";
 	name = "Detective";
 	req_access = list(4)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/security/detectives_office)
@@ -27338,8 +27356,7 @@
 	id = "sec_processing";
 	pixel_x = 26;
 	pixel_y = 6;
-	req_access = list(1);
-	
+	req_access = list(1)
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
