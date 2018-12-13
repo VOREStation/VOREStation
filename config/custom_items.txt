@@ -390,14 +390,14 @@ req_access = 3
 {
 ckey: jertheace
 character_name: Jeremiah Acacius
-item_path: /obj/item/weapon/gun/projectile/p92x/large/preban #Todo: Replace with HP version allowed in the application.
+item_path: /obj/item/weapon/gun/projectile/p92x/large/preban/hp
 req_access = 3
 }
 
 {
 ckey: jertheace
 character_name: Jeremiah Acacius
-item_path: /obj/item/ammo_magazine/m9mm/large/preban #Spare ammo. #Todo: Replace with HP version allowed in the application.
+item_path: /obj/item/ammo_magazine/m9mm/large/preban/hp
 req_access = 3
 }
 
