@@ -36,6 +36,12 @@
 	pixel_x = -16
 	pixel_y = 0
 
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+	mount_offset_y = 10
+
 	vore_active = TRUE
 	vore_capacity = 1
 	vore_pounce_chance = 45
@@ -159,3 +165,12 @@
 /mob/living/simple_animal/hostile/rat/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
+
+/mob/living/simple_animal/hostile/rat/Login()
+	. = ..()
+	if(!riding_datum)
+		riding_datum = new /datum/riding/simple_animal(src)
+	verbs |= /mob/living/simple_animal/proc/animal_mount
+
+/mob/living/simple_animal/hostile/rat/MouseDrop_T(mob/living/M, mob/living/user)
+	return

@@ -30,6 +30,13 @@
 	pixel_x = -16
 	pixel_y = 0
 
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+	mount_offset_x = -11
+	mount_offset_y = 16
+
 /mob/living/simple_animal/hostile/dragon/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space dragons!
 
@@ -49,3 +56,12 @@
 	maxHealth = 200
 	health = 200
 	faction = "virgo3b"
+
+/mob/living/simple_animal/hostile/dragon/Login()
+	. = ..()
+	if(!riding_datum)
+		riding_datum = new /datum/riding/simple_animal(src)
+	verbs |= /mob/living/simple_animal/proc/animal_mount
+
+/mob/living/simple_animal/hostile/dragon/MouseDrop_T(mob/living/M, mob/living/user)
+	return
