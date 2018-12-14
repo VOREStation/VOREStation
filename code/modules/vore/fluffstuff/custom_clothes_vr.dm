@@ -1689,16 +1689,15 @@ Departamental Swimsuits, for general use
 	icon_state = "kilanosuit_p"
 	item_state = "kilanosuit_p"
 
-//Mewchild: Phi Vietsi
-/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi
-	name = "Phi Vietsi's Bone Signet Ring"
-	desc = "A signet ring belonging to Phi Vietsi, carved from the bones of something long extinct, as a ward against bad luck."
-	var/signet_name = "Phi Vietsi"
+//Mewchild: Phi Ahkeen
+/obj/item/clothing/gloves/ring/seal/signet/fluff/phi
+	name = "Phi's Bone Signet Ring"
+	desc = "A signet ring belonging to Phi, carved from the bones of something long extinct, as a ward against bad luck."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "vietsi_ring"
+	icon_state = "phi_ring"
 
-/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi/change_name(var/signet_name = "Unknown")
+/obj/item/clothing/gloves/ring/seal/signet/fluff/phi/change_name(var/signet_name = "Unknown")
 	name = "[signet_name]'s Bone Signet Ring"
 	desc = "A signet ring belonging to [signet_name], carved from the bones of something long extinct, as a ward against bad luck."
 
