@@ -2518,6 +2518,7 @@
 #include "code\modules\projectiles\gun.dm"
 #include "code\modules\projectiles\projectile.dm"
 #include "code\modules\projectiles\ammunition\magazines.dm"
+#include "code\modules\projectiles\ammunition\magazines_vr.dm"
 #include "code\modules\projectiles\ammunition\magnetic.dm"
 #include "code\modules\projectiles\ammunition\rounds.dm"
 #include "code\modules\projectiles\ammunition\smartmag.dm"
