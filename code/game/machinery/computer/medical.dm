@@ -5,7 +5,6 @@
 	desc = "Used to view, edit and maintain medical records."
 	icon_keyboard = "med_key"
 	icon_screen = "medcomp"
-	density = 0 //Why does a laptop blocks peoples.
 	light_color = "#315ab4"
 	req_one_access = list(access_medical, access_forensics_lockers, access_robotics)
 	circuit = /obj/item/weapon/circuitboard/med_data
@@ -554,4 +553,8 @@
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "medlaptop"
+<<<<<<< HEAD
 	throwpass = 1 //VOREStation Edit - Really???
+=======
+	density = 0
+>>>>>>> d5b0840... Merge pull request #5777 from Heroman3003/laptop-refix
