@@ -4381,6 +4381,7 @@
 "jG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
+/obj/random/action_figure,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "jH" = (
@@ -4441,7 +4442,7 @@
 "jP" = (
 /obj/item/weapon/storage/fancy/cigar/havana,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/mimic/crate,
+/obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "jQ" = (
