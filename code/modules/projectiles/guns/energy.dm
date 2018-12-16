@@ -8,6 +8,7 @@
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 240 //How much energy is needed to fire.
 
+	var/accept_cell_type = /obj/item/weapon/cell/device
 	var/cell_type = /obj/item/weapon/cell/device/weapon
 	projectile_type = /obj/item/projectile/beam/practice
 
@@ -89,13 +90,13 @@
 		if(self_recharge || battery_lock)
 			user << "<span class='notice'>[src] does not have a battery port.</span>"
 			return
-		if(istype(C, /obj/item/weapon/cell/device))
-			var/obj/item/weapon/cell/device/P = C
+		if(istype(C, accept_cell_type))
+			var/obj/item/weapon/cell/P = C
 			if(power_supply)
 				user << "<span class='notice'>[src] already has a power cell.</span>"
 			else
 				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
-				if(do_after(user, 10))
+				if(do_after(user, 5 * P.w_class))
 					user.remove_from_mob(P)
 					power_supply = P
 					P.loc = src
@@ -175,6 +176,13 @@
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
+
+	else if(power_supply)
+		if(modifystate)
+			icon_state = "[modifystate]"
+		else
+			icon_state = "[initial(icon_state)]"
+
 	if(!ignore_inhands) update_held_icon()
 
 /obj/item/weapon/gun/energy/proc/start_recharge()

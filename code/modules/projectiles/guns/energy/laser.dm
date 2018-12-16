@@ -151,6 +151,42 @@
 
 	toggle_scope(2.0)
 
+/obj/item/weapon/gun/energy/monorifle
+	name = "antique mono-rifle"
+	desc = "An old laser rifle. This one can only fire once before requiring recharging."
+	description_fluff = "Modeled after ancient hunting rifles, this rifle was dubbed the 'Rainy Day Special' by some, due to its use as some barmens' fight-stopper of choice. One shot is all it takes, or so they say."
+	icon_state = "eshotgun"
+	item_state = "shotgun"
+	fire_sound = 'sound/weapons/gauss_shoot.ogg'
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
+	projectile_type = /obj/item/projectile/beam/sniper
+	slot_flags = SLOT_BACK
+	charge_cost = 1300
+	fire_delay = 20
+	force = 8
+	w_class = ITEMSIZE_LARGE
+	accuracy = 10
+	scoped_accuracy = 15
+	var/scope_multiplier = 1.5
+
+/obj/item/weapon/gun/energy/monorifle/verb/sights()
+	set category = "Object"
+	set name = "Aim Down Sights"
+	set popup_menu = 1
+
+	toggle_scope(scope_multiplier)
+
+/obj/item/weapon/gun/energy/monorifle/combat
+	name = "combat mono-rifle"
+	desc = "A modernized version of the mono-rifle. This one can fire twice before requiring recharging."
+	description_fluff = "A modern design produced by a company once working from Saint Columbia, based on the antique mono-rifle 'Rainy Day Special' design."
+	icon_state = "ecshotgun"
+	item_state = "cshotgun"
+	charge_cost = 1000
+	force = 12
+	accuracy = 0
+	scoped_accuracy = 20
+
 ////////Laser Tag////////////////////
 
 /obj/item/weapon/gun/energy/lasertag
