@@ -458,9 +458,9 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-    volume = 1000
+    volume = 2500
     temperature = 293.150
-    total_moles = 40
+    total_moles = 104
 
 /datum/gas_mixture/belly_air/New()
     . = ..()
