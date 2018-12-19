@@ -7938,6 +7938,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
 "axf" = (
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/monotile,
 /area/bridge_hallway)
 "axg" = (
@@ -14324,6 +14325,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/holodeck_control)
 "aXy" = (
@@ -21877,6 +21879,31 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/pathfinder_office)
+"mlD" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
+"mrA" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/monotile,
+/area/bridge_hallway)
 "mtd" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/folder/yellow,
@@ -22063,6 +22090,17 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_prep)
+"okw" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	icon_state = "bordercolor";
+	dir = 1
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/station/explorer_meeting)
 "oEH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -22217,6 +22255,12 @@
 /obj/machinery/camera/network/northern_star,
 /turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)
+"rBx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "rRn" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -22464,6 +22508,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/pathfinder_office)
+"vGZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_one)
 "vIv" = (
 /obj/structure/table/bench/padded,
 /obj/item/device/radio/intercom{
@@ -28173,7 +28223,7 @@ aFW
 aGz
 aDF
 aHt
-aDF
+vGZ
 aEl
 aEN
 aIy
@@ -29439,7 +29489,7 @@ axR
 azM
 aws
 aBa
-btu
+mlD
 aBZ
 aCJ
 aaa
@@ -31013,7 +31063,7 @@ aGb
 aGF
 aDK
 aHw
-aDK
+rBx
 aEn
 aEO
 aFt
@@ -33418,7 +33468,7 @@ bsN
 bsN
 bwn
 bxY
-bsN
+mrA
 bsN
 bBK
 bEN
@@ -36222,7 +36272,7 @@ ygn
 fpA
 pAD
 vEZ
-uDP
+okw
 mId
 wrg
 flX

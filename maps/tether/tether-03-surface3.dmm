@@ -15095,6 +15095,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/hydroponics)
 "AI" = (
@@ -19867,7 +19868,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "If" = (
@@ -21367,6 +21367,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Lt" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/rnd/rdoffice)
 "LP" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
@@ -21450,6 +21454,16 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"MK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "MO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -21654,6 +21668,19 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"OS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "OV" = (
 /obj/structure/table/woodentable,
 /obj/machinery/firealarm{
@@ -21804,6 +21831,14 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
+"QE" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/rnd/reception_desk)
+"QH" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "QN" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -22156,6 +22191,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Vg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/reading_room)
 "Vi" = (
 /obj/structure/closet/gmcloset{
 	icon_closed = "black";
@@ -22186,6 +22236,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"Vu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
 "VF" = (
 /obj/machinery/light{
 	dir = 1
@@ -22223,6 +22280,10 @@
 "VW" = (
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"Wh" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/lobby)
 "Ws" = (
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/grass,
@@ -22374,7 +22435,7 @@
 /area/tether/surfacebase/atrium_three)
 "Yz" = (
 /obj/item/device/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	dir = 8;
 	listening = 1;
 	name = "Common Channel";
@@ -22499,6 +22560,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"ZP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
 "ZQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -30110,7 +30177,7 @@ ac
 tC
 tU
 tU
-tU
+QH
 tU
 vS
 tU
@@ -30414,7 +30481,7 @@ EO
 FO
 Gz
 Hl
-HC
+Lt
 HC
 HC
 Ix
@@ -31263,7 +31330,7 @@ Dd
 DB
 Em
 ET
-FT
+ZP
 FT
 Ho
 HH
@@ -31820,7 +31887,7 @@ ux
 ud
 xa
 xN
-ys
+QE
 zb
 zI
 As
@@ -32261,7 +32328,7 @@ FX
 GG
 Da
 HO
-If
+Vu
 Io
 IJ
 Da
@@ -33535,7 +33602,7 @@ Dj
 DJ
 yx
 Fj
-Gb
+MK
 wf
 AO
 HT
@@ -33830,7 +33897,7 @@ yG
 yG
 yG
 Jl
-yG
+Kc
 yG
 yG
 yG
@@ -34513,7 +34580,7 @@ lY
 lY
 uI
 vk
-ka
+OS
 wm
 wJ
 wJ
@@ -35053,7 +35120,7 @@ ec
 eJ
 fz
 gk
-gX
+Wh
 hK
 ig
 jd
@@ -35665,7 +35732,7 @@ ya
 DR
 wR
 Fx
-Gb
+MK
 GT
 ts
 ac
@@ -37321,7 +37388,7 @@ bt
 cg
 cT
 cg
-eh
+Vg
 eR
 be
 gs

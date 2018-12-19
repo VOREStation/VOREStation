@@ -7919,13 +7919,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/hologram/holopad,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
 "aue" = (
@@ -12024,6 +12024,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva)
 "aCl" = (
@@ -28017,6 +28018,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"mZP" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_one)
 "ncL" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	name = "Public Gardens"
@@ -28165,6 +28176,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/techfloor/hole,
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
 "pxT" = (
@@ -34449,7 +34463,7 @@ ako
 aoo
 ako
 apv
-ako
+aiE
 ako
 ako
 ako
@@ -40260,6 +40274,11 @@ agM
 aic
 axT
 aAq
+aKA
+aBz
+aBz
+aBz
+aBz
 aBz
 aBz
 aBz
@@ -40268,11 +40287,6 @@ aBz
 aBz
 aBz
 aKA
-aBz
-aBz
-aBz
-aBz
-aBz
 aBz
 aBz
 aBz
@@ -42248,19 +42262,19 @@ agM
 awo
 ayl
 ajV
-ajV
-ajV
-ajV
-ajV
-ajV
-ajV
-ajV
 aoc
+ajV
+ajV
+ajV
+ajV
+ajV
+ajV
+ajV
 ajV
 ape
 apJ
 ark
-asB
+mZP
 asB
 ats
 ava

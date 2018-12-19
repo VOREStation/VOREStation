@@ -3427,6 +3427,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+/obj/machinery/turretid/stun{
+	control_area = "\improper AI Core Access";
+	name = "AI Core Access turret control";
+	pixel_x = -30;
+	pixel_y = 0
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "gn" = (
@@ -5175,6 +5181,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
+/obj/machinery/camera/network/northern_star{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
 "kh" = (
@@ -6574,6 +6583,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/camera/network/northern_star,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
 "mQ" = (
@@ -15302,6 +15312,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/camera/network/medbay{
+	c_tag = "MED - Chemistry";
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/hallway/secondary/escape/medical_escape_pod_hallway)
 "AF" = (
@@ -17105,6 +17119,24 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
+"Gk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/hallway/station/port)
 "Go" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
@@ -17283,6 +17315,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/station/public_meeting_room)
 "IO" = (
@@ -17292,6 +17325,20 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/airless,
 /area/space)
+"IR" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/camera/network/northern_star{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/port)
 "IX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -17649,6 +17696,12 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"Mk" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
 "Mn" = (
 /obj/structure/table/steel,
 /turf/simulated/floor,
@@ -26480,7 +26533,7 @@ oM
 pK
 qp
 re
-rP
+IR
 sw
 tc
 sw
@@ -26621,7 +26674,7 @@ oM
 oM
 pK
 qp
-re
+Gk
 rQ
 sw
 sw
@@ -31443,7 +31496,7 @@ lm
 lR
 mw
 ne
-nM
+Mk
 ot
 oW
 ps

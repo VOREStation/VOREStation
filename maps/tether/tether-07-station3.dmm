@@ -2157,7 +2157,7 @@
 	pixel_x = 32
 	},
 /obj/item/device/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	dir = 8;
 	listening = 1;
 	name = "Common Channel";
@@ -18440,6 +18440,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "Dw" = (
@@ -21254,6 +21255,7 @@
 	dir = 5
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/quartermaster/warehouse)
 "Io" = (
@@ -24209,6 +24211,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "MS" = (
@@ -27404,6 +27407,35 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
+"RT" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "Sa" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -37732,7 +37764,7 @@ MK
 Nq
 KV
 On
-OG
+RT
 Pi
 PE
 PY

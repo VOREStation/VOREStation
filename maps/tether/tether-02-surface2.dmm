@@ -6034,6 +6034,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "nb" = (
@@ -10411,6 +10412,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/hallway)
 "uE" = (
@@ -11289,17 +11291,12 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
 "vJ" = (
+/obj/machinery/hologram/holopad,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
@@ -12602,6 +12599,7 @@
 	pixel_x = -22;
 	pixel_y = 0
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/engineering/lower/atmos_lockers)
 "xW" = (
@@ -12679,6 +12677,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/hallway)
 "ye" = (
@@ -16191,6 +16190,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
@@ -17624,6 +17624,13 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"IQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
 "IT" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -17684,6 +17691,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Lf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
 "Lp" = (
 /obj/structure/frame{
 	anchored = 1
@@ -17734,6 +17747,9 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 9
 	},
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "Na" = (
@@ -17743,7 +17759,6 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 9
 	},
-/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "Nf" = (
@@ -17911,6 +17926,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Qx" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/carpet,
+/area/engineering/lower/breakroom)
 "Qz" = (
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled,
@@ -18127,6 +18146,9 @@
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -27675,7 +27697,7 @@ Cx
 CF
 CR
 Dd
-AB
+Bh
 AB
 Eg
 yW
@@ -29488,7 +29510,7 @@ jB
 jB
 jB
 jB
-jB
+Lf
 mV
 jR
 nZ
@@ -30175,7 +30197,7 @@ dY
 dY
 dY
 fg
-fG
+mQ
 fY
 gj
 gw
@@ -30632,7 +30654,7 @@ oK
 px
 ql
 ql
-px
+Qx
 su
 tq
 tt
@@ -32311,7 +32333,7 @@ gm
 gy
 gm
 gm
-gm
+IQ
 gm
 gm
 gm
