@@ -24,7 +24,7 @@
 	return ..()
 
 /obj/structure/closet/secure_closet/guncabinet/phase
-	name = "phase pistol cabinet"
+	name = "explorer weapon cabinet"
 	req_one_access = list(access_explorer,access_brig)
 
 	starts_with = list(
