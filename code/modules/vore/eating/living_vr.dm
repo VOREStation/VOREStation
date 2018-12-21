@@ -553,6 +553,10 @@
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
 
+	if(is_type_in_list(I,item_vore_blacklist))
+		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
+		return
+
 	if(is_type_in_list(I,edible_trash))
 		if(I.hidden_uplink)
 			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
