@@ -353,6 +353,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/range)
+"aF" = (
+/obj/machinery/door/airlock/maintenance/sec{
+	name = "Security Airlock Access";
+	req_access = list(1,2,18)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor,
+/area/security/eva)
 "aG" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -1579,6 +1587,7 @@
 	name = "Security Substation";
 	req_one_access = list(1,11,24)
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/substation/security)
 "cx" = (
@@ -4324,6 +4333,26 @@
 "hr" = (
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"hs" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
+"ht" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "hu" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
@@ -4355,6 +4384,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"hx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "hy" = (
 /turf/simulated/mineral/floor/cave,
 /area/maintenance/station/ai)
@@ -4528,6 +4568,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"hO" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "hP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -4664,13 +4717,6 @@
 	req_access = list(1,2,18)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/security/eva)
-"hZ" = (
-/obj/machinery/door/airlock/maintenance/sec{
-	name = "Security Airlock Access";
-	req_access = list(1,2,18)
-	},
-/turf/simulated/floor,
 /area/security/eva)
 "ia" = (
 /obj/structure/table/rack{
@@ -36280,7 +36326,7 @@ pr
 lC
 lC
 mH
-rD
+hO
 af
 tl
 ug
@@ -37269,7 +37315,7 @@ fc
 fc
 dw
 dw
-dw
+hx
 mR
 fc
 dw
@@ -37397,12 +37443,12 @@ bm
 bm
 bm
 iq
-dy
+hs
 aI
 ab
 ab
 aI
-dA
+ht
 QX
 lj
 lL
@@ -37533,7 +37579,7 @@ bc
 gZ
 ha
 hw
-hZ
+aF
 dA
 iq
 dA
