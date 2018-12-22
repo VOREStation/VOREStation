@@ -353,6 +353,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/range)
+"aF" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/table/rack{
+	dir = 1
+	},
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "aG" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -2824,11 +2836,11 @@
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "eM" = (
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/bone/skull,
-/mob/living/simple_animal/hostile/mimic/crate,
-/turf/simulated/mineral/floor/cave,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/random/junk,
+/turf/simulated/floor,
 /area/maintenance/station/ai)
 "eN" = (
 /obj/structure/cable{
@@ -4324,6 +4336,16 @@
 "hr" = (
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"hs" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/closet/crate,
+/obj/random/maintenance/research,
+/obj/random/maintenance/clean,
+/obj/random/cigarettes,
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "hu" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
@@ -8575,10 +8597,6 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/cargo)
-"oq" = (
-/obj/random/obstruction,
-/turf/simulated/floor,
-/area/maintenance/station/ai)
 "or" = (
 /obj/item/weapon/storage/laundry_basket,
 /turf/simulated/floor,
@@ -39397,8 +39415,8 @@ lQ
 ms
 mZ
 fP
-gJ
-gJ
+ab
+ab
 iV
 px
 pt
@@ -39539,8 +39557,8 @@ TL
 VQ
 na
 fP
-hy
-hy
+ab
+ab
 iV
 py
 pY
@@ -39681,8 +39699,8 @@ TP
 VM
 VM
 fP
-hy
-eM
+ab
+ab
 iV
 iV
 iV
@@ -39823,7 +39841,7 @@ lR
 VM
 VM
 fP
-hy
+ab
 gJ
 gJ
 gJ
@@ -39965,11 +39983,11 @@ fP
 fP
 fP
 fP
-hy
-oq
-cy
-cy
-cy
+ab
+gJ
+aF
+eM
+hs
 gJ
 qr
 rO
