@@ -29,7 +29,7 @@
 "aC" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'RADIOACTIVE AREA'"; icon_state = "radiation"; name = "RADIOACTIVE AREA"; pixel_x = 0; pixel_y = 0},/turf/simulated/wall/r_wall,/area/engineering/engine_room)
 "aD" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 1},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aE" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/yellow/border{dir = 4},/turf/simulated/floor/tiled,/area/engineering/engine_room)
-"aF" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/engineering,/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/floor,/area/engineering/engine_gas)
+"aF" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/engineering,/obj/machinery/atmospherics/pipe/simple/hidden,/obj/machinery/door/firedoor/glass,/turf/simulated/floor,/area/engineering/engine_gas)
 "aG" = (/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine charging port."; dir = 1; id = "SupermatterPort"; name = "Observation Blast Doors"; pixel_x = -4; pixel_y = -24; req_access = list(10)},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aH" = (/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine charging port."; id = "SupermatterPort"; name = "Observation Blast Doors"; pixel_x = -4; pixel_y = 24; req_access = list(10)},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aI" = (/obj/machinery/power/tesla_coil,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/airless,/area/space)
@@ -56,9 +56,10 @@
 "bd" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/door/firedoor/glass,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/obj/structure/window/reinforced,/obj/machinery/door/blast/regular{density = 0; icon_state = "pdoor0"; id = "EngineRadiatorViewport"; name = "Engine Radiator Viewport Shutter"; opacity = 0},/turf/simulated/floor,/area/submap/pa_room)
 "be" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "bf" = (/turf/simulated/floor/tiled,/area/submap/pa_room)
+"bg" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/glass_engineering,/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/submap/pa_room)
 "bh" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'RADIOACTIVE AREA'"; icon_state = "radiation"; name = "RADIOACTIVE AREA"; pixel_x = 0; pixel_y = 0},/turf/simulated/wall/r_wall,/area/submap/pa_room)
 "bi" = (/turf/simulated/wall/r_wall,/area/submap/pa_room)
-"bj" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/glass_engineering,/turf/simulated/floor/tiled,/area/submap/pa_room)
+"bj" = (/obj/machinery/door/airlock/glass_engineering,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/submap/pa_room)
 "bk" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "bl" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/yellow/border{dir = 4},/obj/effect/floor_decal/borderfloor/corner2{dir = 6},/obj/effect/floor_decal/corner/yellow/bordercorner2{dir = 6},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "bm" = (/turf/simulated/wall/r_wall,/area/template_noop)
@@ -132,7 +133,6 @@
 "cE" = (/obj/machinery/door/blast/regular{density = 0; dir = 2; icon_state = "pdoor0"; id = "SupermatterPort"; layer = 2.7; name = "Reactor Blast Door"; opacity = 0},/obj/machinery/door/firedoor/glass,/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor,/area/engineering/engine_room)
 "cF" = (/obj/machinery/power/emitter{anchored = 1; state = 1},/obj/structure/cable/cyan,/turf/simulated/floor/airless,/area/space)
 "cG" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled,/area/submap/pa_room)
-"cH" = (/obj/machinery/door/airlock/glass_engineering,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/submap/pa_room)
 "cI" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cK" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/airless,/area/space)
 "cL" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/airless,/area/space)
@@ -155,13 +155,13 @@ aaacababababadabababababadababaBafafaCaDaEaeaeaFaeaaaaaaaaaa
 aaacababababcDabababababcDabababababcEaJaKaLaMaNaOaaaaaaaaaa
 aaacababababadabababababadabababababcEaQaRaSaUaVaWaaaaaaaaaa
 aaacadadadajcocKcKaIcKcKaIcLababababcEaGbabbbcaZbeaaaaaaaaaa
-aaacabababajadadadadadadadcNabaYbPbPbhbibjbibibkblbmbmaaaaaa
+aaacabababajadadadadadadadcNabaYbPbPbhbibgbibibkblbmbmaaaaaa
 aaacabababajadaXadadadaXadcNabbnbobfbqbrbsbtbibkaEaabubvaaaa
 aaacabababajadadajajajadadcNadbnbwbxbybzbAbBbCbDaEaaaaaaaaaa
 aaacabababajadadajbEajadadaPcKbFbQbGbHbIbJbKbLbMbNaaaabOaaaa
 aaacabababajadadajajajadadcNadbnbWbRbSbTbUbVbCbDaEaaaaaaaaaa
 aaacabababajadaXadadadaXadcNabbnbXcacacdcGbYbibkaEaaaaaaaaaa
-aaacabababajadadadadadadadcNabbdcmcmbhbicHbibibkcbbmbmaaaaaa
+aaacabababajadadadadadadadcNabbdcmcmbhbibjbibibkcbbmbmaaaaaa
 aaacadadadajcocKcKaIcKcKaIcQababababcEaHcIcecfcgbaaaaaaaaaaa
 aaacababababadabababababadabababababcEccchaTcjckclaaaaaaaaaa
 aaacababababcDabababababcDabababababcEaJcncMcpcqcraaaaaaaaaa
