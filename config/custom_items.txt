@@ -177,6 +177,18 @@ character_name: Diana Kuznetsova
 item_path: /obj/item/clothing/head/fluff/pink_tiara
 }
 
+{
+ckey: cross_exonar
+character_name: Sari-U
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+
+{
+ckey: cross_exonar
+character_name: Sari-E
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
@@ -853,6 +865,18 @@ item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
 {
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
+}
+
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/device/survivalcapsule/tabiranth
+}
+
+{
 ckey: techtypes
 character_name: Lasshseeki Korss
 item_path: /obj/item/weapon/implant/language/eal
@@ -868,12 +892,6 @@ item_path: /obj/item/clothing/accessory/medal/silver/unity
 ckey: tonyvld
 character_name: Tony Bingham
 item_path: /obj/item/clothing/head/fluff/runac
-}
-
-{
-ckey: tabiranth
-character_name: Ascian
-item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
 }
 
 # ######## U CKEYS

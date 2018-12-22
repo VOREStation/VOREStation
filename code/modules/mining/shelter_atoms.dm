@@ -87,6 +87,11 @@
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
 
+/obj/item/device/survivalcapsule/tabiranth
+	name = "silver-trimmed surfluid shelter capsule"
+	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
+	template_id = "shelter_gamma"
+
 //Pod objects
 //Walls
 /turf/simulated/shuttle/wall/voidcraft/survival
@@ -196,6 +201,9 @@
 /obj/structure/bed/pod
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "bed"
+
+/obj/structure/bed/pod/New(var/newloc)
+	..(newloc,DEFAULT_WALL_MATERIAL,"cotton")
 
 //Survival Storage Unit
 /obj/machinery/smartfridge/survival_pod
