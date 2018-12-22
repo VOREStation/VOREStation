@@ -137,6 +137,7 @@
 	var/datum/callback/callback
 
 /datum/scheduled_task/callback/New(var/trigger_time, var/datum/callback, var/proc/task_after_process, var/list/task_after_process_args)
+	src.callback = callback
 	..(trigger_time = trigger_time, task_after_process = task_after_process, task_after_process_args = task_after_process_args)
 
 /datum/scheduled_task/callback/process()
