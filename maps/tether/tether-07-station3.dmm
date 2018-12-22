@@ -23893,55 +23893,23 @@
 /turf/simulated/open,
 /area/medical/surgery_hallway)
 "My" = (
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 26
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/bookcase,
+/obj/item/weapon/book/manual/resleeving,
+/obj/item/weapon/book/manual/standard_operating_procedure,
+/obj/item/weapon/book/manual/medical_diagnostics_manual,
+/obj/item/weapon/book/manual/stasis,
+/turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "Mz" = (
-/obj/structure/filingcabinet/chestdrawer{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/filingcabinet/chestdrawer{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "MA" = (
-/obj/structure/table/glass,
-/obj/machinery/computer/med_data/laptop{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/machinery/computer/skills{
-	pixel_x = -6;
-	pixel_y = -3
-	},
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Medical Officer's Desk";
@@ -23950,17 +23918,29 @@
 	pixel_x = 0;
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/table/glass,
+/obj/machinery/computer/skills{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/machinery/computer/med_data/laptop{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "MB" = (
 /obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
+	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
+	dir = 9
+	},
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "MC" = (
@@ -23993,6 +23973,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 5
 	},
+/obj/machinery/papershredder,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "ME" = (
@@ -24126,18 +24107,12 @@
 /turf/simulated/floor,
 /area/maintenance/station/medbay)
 "MN" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
-	},
 /obj/machinery/newscaster{
 	layer = 3.3;
 	pixel_x = -27;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "MO" = (
 /obj/structure/bed/chair/office/light{
@@ -24174,15 +24149,13 @@
 	pixel_x = -6;
 	pixel_y = -28
 	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "MP" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
-/obj/item/weapon/folder/white_cmo,
-/obj/item/weapon/stamp/cmo,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "MQ" = (
 /obj/structure/bed/chair{
@@ -24191,6 +24164,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
@@ -24721,33 +24700,32 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
 "Nx" = (
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
+"Ny" = (
+/obj/structure/table/glass,
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
+"Nz" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/item/weapon/folder/white_cmo,
+/obj/item/weapon/stamp/cmo,
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
+"NA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
-"Ny" = (
-/obj/structure/table/glass,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
-"Nz" = (
-/obj/structure/table/glass,
-/obj/machinery/photocopier/faxmachine{
-	department = "CMO's Office"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
-"NA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/mob/living/simple_animal/cat/fluff/Runtime,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "NB" = (
@@ -24875,29 +24853,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/medbay)
-"NO" = (
+"NQ" = (
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
+	dir = 8
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 10
+	dir = 8
 	},
-/obj/machinery/button/windowtint{
-	id = "cmooffice_b";
-	pixel_x = -20;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
-"NP" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
-"NQ" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/light,
+/mob/living/simple_animal/cat/fluff/Runtime,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "NR" = (
@@ -24913,14 +24876,17 @@
 /area/crew_quarters/heads/cmo)
 "NS" = (
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 6
 	},
-/obj/machinery/photocopier,
-/obj/machinery/keycard_auth{
-	pixel_y = -28
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
@@ -27386,6 +27352,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"Rr" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 10
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/heads/cmo)
 "Rs" = (
 /obj/machinery/button/windowtint{
 	id = "sec_processing";
@@ -27411,6 +27390,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"Sv" = (
+/obj/machinery/button/windowtint{
+	id = "cmooffice_b";
+	pixel_x = -20;
+	pixel_y = -25
+	},
+/obj/structure/bed/chair/comfy/black{
+	icon_state = "comfychair_preview";
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
 "SD" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27418,6 +27409,10 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
+"SS" = (
+/obj/structure/bed/psych,
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
 "SW" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
@@ -27478,6 +27473,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"UF" = (
+/obj/structure/flora/pottedplant/large,
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
 "Vn" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -27490,6 +27489,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
+"Vo" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/obj/machinery/photocopier,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/heads/cmo)
 "Vr" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -27521,6 +27530,9 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"XH" = (
+/turf/simulated/wall,
+/area/mine/explored/upper_level)
 "XL" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -27556,6 +27568,14 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"ZQ" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/heads/cmo)
 
 (1,1,1) = {"
 aa
@@ -33043,7 +33063,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -33330,8 +33350,8 @@ Me
 Me
 Nw
 Nw
+Nw
 Me
-aa
 aa
 aa
 aa
@@ -33471,9 +33491,9 @@ Me
 My
 MN
 Nx
-NO
+Nx
+Sv
 Ov
-aa
 aa
 aa
 aa
@@ -33613,9 +33633,9 @@ Me
 Mz
 MO
 Ny
-NP
+Nx
+SS
 Ov
-aa
 aa
 aa
 aa
@@ -33755,9 +33775,9 @@ Me
 MA
 MP
 Nz
-NP
+Nx
+UF
 Ov
-aa
 aa
 aa
 aa
@@ -33898,8 +33918,8 @@ MB
 MQ
 NA
 NQ
+Rr
 Me
-ab
 aa
 aa
 aa
@@ -34039,10 +34059,10 @@ Me
 MC
 MR
 NB
+ZQ
 NR
 Me
-ab
-ab
+aa
 aa
 aa
 aa
@@ -34182,9 +34202,9 @@ MD
 MS
 NC
 NS
+Vo
 Me
-ab
-ab
+aa
 aa
 aa
 aa
@@ -34325,8 +34345,8 @@ MT
 ME
 Me
 Me
-ab
-ab
+Me
+XH
 ab
 aa
 aa
