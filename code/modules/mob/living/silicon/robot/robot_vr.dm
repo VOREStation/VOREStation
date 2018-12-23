@@ -166,7 +166,7 @@
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 
-/mob/living/silicon/robot/New()
+/mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	..()
 	riding_datum = new /datum/riding/dogborg(src)
 
