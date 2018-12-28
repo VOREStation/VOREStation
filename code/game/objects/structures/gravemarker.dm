@@ -115,16 +115,21 @@
 	return
 
 
-/obj/structure/gravemarker/verb/rotate()
-	set name = "Rotate Grave Marker"
+/obj/structure/gravemarker/verb/rotate_clockwise()
+	set name = "Rotate Grave Marker Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if(anchored)
 		return
-	if(config.ghost_interaction)
-		src.set_dir(turn(src.dir, 90))
+
+	if(!usr || !isturf(usr.loc))
 		return
+	if(usr.stat || usr.restrained())
+		return
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+<<<<<<< HEAD
 	else
 		if(ismouse(usr))
 			return
@@ -132,6 +137,8 @@
 			return
 		if(usr.stat || usr.restrained())
 			return
+=======
+>>>>>>> 8ec3691... Merge pull request #5770 from Atermonera/standard_rotation
 
-		src.set_dir(turn(src.dir, 90))
-		return
+	src.set_dir(turn(src.dir, 270))
+	return

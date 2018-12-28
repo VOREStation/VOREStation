@@ -20,7 +20,7 @@
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
 		if(!SK.status)
-			user << "<span class='notice'>\The [SK] is not ready to be attached!</span>"
+			to_chat(user, "<span class='notice'>\The [SK] is not ready to be attached!</span>")
 			return
 		user.drop_item()
 		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
@@ -35,7 +35,7 @@
 	if(has_buckled_mobs())
 		..()
 	else
-		rotate()
+		rotate_clockwise()
 	return
 
 /obj/structure/bed/chair/post_buckle_mob()
@@ -68,14 +68,14 @@
 			var/mob/living/L = A
 			L.set_dir(dir)
 
-/obj/structure/bed/chair/verb/rotate()
-	set name = "Rotate Chair"
+/obj/structure/bed/chair/verb/rotate_clockwise()
+	set name = "Rotate Chair Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
-	if(config.ghost_interaction)
-		src.set_dir(turn(src.dir, 90))
+	if(!usr || !isturf(usr.loc))
 		return
+<<<<<<< HEAD
 	else
 		if(istype(usr,/mob/living/simple_mob/animal/passive/mouse))
 			return
@@ -85,7 +85,14 @@
 			return
 
 		src.set_dir(turn(src.dir, 90))
+=======
+	if(usr.stat || usr.restrained())
 		return
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+>>>>>>> 8ec3691... Merge pull request #5770 from Atermonera/standard_rotation
+		return
+
+	src.set_dir(turn(src.dir, 270))
 
 /obj/structure/bed/chair/shuttle
 	name = "chair"
