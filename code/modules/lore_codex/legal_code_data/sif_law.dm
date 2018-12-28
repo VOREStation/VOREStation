@@ -90,11 +90,11 @@
 /datum/lore/codex/page/law/drone_id_failure
 	name = "Failure to Present Drone ID"
 	definition = "Failing to carry or present an EIO-issued Drone Identification card as a Drone intelligence."
-	suggested_punishments = "200 thaler fine.  Give Drone a temporary paper stating that it is a drone, if the ID was lost.  Fax SifGov.  Inform owner of \
+	suggested_punishments = "200 thaler fine.  Give Drone a temporary paper stating that it is a drone, if the ID was lost.  Fax VirGov.  Inform owner of \
 	Drone if possible.  Instruct Drone to obtain new ID at its earliest opportunity, if it was lost."
 	notes = "This is only applicable to Drone intelligences which possess autonomous capability.  It must be proven that the offender is a Drone, which can be \
 	accomplished in various ways, generally with the expertise of a Roboticist.  Lawbound synthetics, maintenance drones, and \
-	simple bots do not require an ID card.  No fine or SifGov fax should be sent if the Drone's ID was lost due to theft and the ID is able to be recovered."
+	simple bots do not require an ID card.  No fine or VirGov fax should be sent if the Drone's ID was lost due to theft and the ID is able to be recovered."
 	mandated = TRUE
 
 /datum/lore/codex/page/law/slander
@@ -148,7 +148,7 @@
 /datum/lore/codex/page/law/embezzlement
 	name = "Embezzlement"
 	definition = "Stealing money that is entrusted to you by a corporation or person."
-	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled funds.  Fax Central Command and SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled funds.  Fax Central Command and VirGov."
 	notes = "This includes funneling Departmental, Facility, or Crew funds into the offender's account.  It also includes pocketing \
 	transactions directly that are meant to go to a seperate account."
 	mandated = TRUE
@@ -166,7 +166,7 @@
 /datum/lore/codex/page/law/manslaughter/add_content()
 	name = "Manslaughter"
 	definition = "To kill a sapient being without intent."
-	suggested_punishments = "Hold until Transfer, if unjustified.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer, if unjustified.  Fax VirGov."
 	notes = "Includes provoked manslaughter, negligent manslaughter, and impassioned killing.  The important distinction between this \
 	and [quick_link("Murder")] is intent.  Manslaughter can be justified if force was nessecary and it was intented to prevent further loss of life or \
 	grievous injury to self or others, however persons involved in the kill will still be required to answer to higher legal authority \
@@ -177,7 +177,7 @@
 /datum/lore/codex/page/law/murder/add_content()
 	name = "Murder"
 	definition = "To kill or attempt to kill a sapient being with malicious intent."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "The distinction between this and [quick_link("Manslaughter")] is intent.  Sapients held within synthetic bodies, lawbound or otherwise, which receive \
 	critical damage from someone can be considered a murder attempt."
 	mandated = TRUE
@@ -194,7 +194,7 @@
 	name = "Experimentation with Transgressive Technology"
 	keywords += list("Transgressive", "Illegal Technology")
 	definition = "Experimenting with technologies deemed unsafe or are otherwise federally restricted by the Solar Confederate Government."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov.  Delete, destroy, or otherwise remove the experiments."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov.  Delete, destroy, or otherwise remove the experiments."
 	notes = "Unsafe technologies include unrestricted nanomachinery, massive sapient body bio-augmentation, massive sapient brain augmentation, \
 	massively self-improving AI, and animal uplifting."
 	mandated = TRUE
@@ -225,14 +225,14 @@
 /datum/lore/codex/page/law/unlawful_law_changes
 	name = "Unlawful Alteration of Bound Synthetics"
 	definition = "Modifying a bound synthetic's lawset or chassis, in order to force it to do illegal, humiliating, dangerous, or other unlawful acts."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "If the synthetic is a cyborg or positronic, this is also an offense against the Sapient Rights laws federally mandated by the Solar Confederate Government."
 	mandated = TRUE
 
 /datum/lore/codex/page/law/grand_theft
 	name = "Grand Theft"
 	definition = "To steal items that are dangerous, of a high value, or a sensitive nature."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "This can include the following;\
 	<br><ul>\
 	<li>Deadly Weapons or Firearms.</li>\
@@ -259,7 +259,7 @@
 /datum/lore/codex/page/law/sabotage/add_content()
 	name = "Sabotage"
 	definition = "To deliberately damage, or attempt to damage the facility, or critical systems of the facility."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "This includes causing hull breaches, arson, sabotaging air supplies, stealing vital equipment, tampering with AI or telecomm systems, and sabotaging the \
 	Engine.  If someone has only caused minor damage, the [quick_link("Vandalism")] charge should be used instead."
 	mandated = TRUE
@@ -269,7 +269,7 @@
 	name = "Kidnapping / Hostage Taking"
 	keywords += list("Kidnapping", "Hostage Taking")
 	definition = "To unlawfully confine, transport, or hold a sapient being against that individual's will."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "Persons held for ransom or exchange are also considered to be hostages for this charge."
 	mandated = TRUE
 	..()
@@ -278,7 +278,7 @@
 	name = "Terrorist Acts"
 	keywords += list("Terrorism")
 	definition = "To engage in maliciously destructive actions, which seriously threaten the crew or facility, or the usage of weapons of mass destruction."
-	suggested_punishments = "Hold until Transfer.  Termination.  Fax SifGov."
+	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "This includes the use of mass bombings, mass murder, releasing harmful biological agents, nuclear weapons, \
 	radiological weapons, and chemical weapons."
 	mandated = TRUE
