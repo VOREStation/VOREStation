@@ -28176,9 +28176,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/techfloor/hole,
-/obj/machinery/camera/network/civilian{
-	dir = 9
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
 "pxT" = (
