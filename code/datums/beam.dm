@@ -59,7 +59,7 @@
 	return ..()
 
 /datum/beam/proc/Draw()
-	if(QDELETED(target) || !QDELETED(origin))
+	if(QDELETED(target) || QDELETED(origin))
 		qdel(src)
 		return
 
