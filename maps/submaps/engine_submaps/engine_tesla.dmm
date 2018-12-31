@@ -13,8 +13,8 @@
 "am" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/cyan{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/airless,/area/space)
 "an" = (/obj/structure/cable/cyan{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/airless,/area/space)
 "ao" = (/obj/structure/closet/emcloset,/obj/machinery/embedded_controller/radio/airlock/airlock_controller{frequency = 1379; id_tag = "eng_north_airlock"; pixel_x = 24; pixel_y = 0; req_one_access = list(10,11); tag_airpump = "eng_north_pump"; tag_chamber_sensor = "eng_north_sensor"; tag_exterior_door = "eng_north_outer"; tag_interior_door = "eng_north_inner"},/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
-"ap" = (/obj/machinery/portable_atmospherics/canister/phoron,/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 4; icon_state = "map"},/turf/simulated/floor,/area/engineering/engine_gas)
-"aq" = (/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/obj/structure/dispenser/phoron,/turf/simulated/floor,/area/engineering/engine_gas)
+"ap" = (/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 4; icon_state = "map"},/turf/simulated/floor,/area/engineering/engine_gas)
+"aq" = (/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/obj/structure/table/standard,/obj/item/stack/cable_coil/random,/obj/item/weapon/tool/wrench,/obj/item/weapon/tool/screwdriver,/turf/simulated/floor,/area/engineering/engine_gas)
 "ar" = (/obj/structure/cable/cyan,/obj/machinery/power/emitter{anchored = 1; state = 1},/turf/simulated/floor/airless,/area/space)
 "as" = (/obj/structure/cable/cyan{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/effect/floor_decal/rust/mono_rusted1,/turf/simulated/floor/airless,/area/space)
 "at" = (/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1379; master_tag = "eng_north_airlock"; name = "exterior access button"; pixel_x = -5; pixel_y = -26; req_one_access = list(10,11,13)},/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "eng_north_outer"; locked = 1; name = "Engine North Airlock Exterior"},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
@@ -24,15 +24,15 @@
 "ax" = (/obj/structure/cable/cyan{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/effect/floor_decal/borderfloor{dir = 5},/obj/effect/floor_decal/corner/yellow/border{dir = 5},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "ay" = (/obj/structure/cable/cyan{d1 = 0; d2 = 4; icon_state = "0-4"},/obj/machinery/power/apc{dir = 8; name = "west bump"; pixel_x = -28},/turf/simulated/floor,/area/engineering/engine_gas)
 "az" = (/obj/structure/cable/cyan{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/power/sensor{name = "Powernet Sensor - Engine Power"; name_tag = "Engine Power"},/obj/structure/cable/cyan{d2 = 2; icon_state = "0-2"},/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/floor,/area/engineering/engine_gas)
-"aA" = (/obj/machinery/camera/network/engine{dir = 1},/obj/structure/table/standard,/obj/item/weapon/circuitboard/tesla_coil{pixel_x = -2; pixel_y = -2},/obj/item/weapon/circuitboard/tesla_coil{pixel_x = 2; pixel_y = 2},/obj/item/weapon/stock_parts/capacitor,/obj/item/weapon/stock_parts/capacitor{pixel_x = -2; pixel_y = 2},/turf/simulated/floor,/area/engineering/engine_gas)
+"aA" = (/obj/machinery/camera/network/engine{dir = 1},/obj/structure/table/standard,/obj/item/weapon/circuitboard/grounding_rod{pixel_x = 2; pixel_y = 2},/obj/item/weapon/circuitboard/grounding_rod{pixel_x = -2; pixel_y = -2},/turf/simulated/floor,/area/engineering/engine_gas)
 "aB" = (/obj/machinery/camera/network/engine{dir = 8},/turf/space,/area/space)
 "aC" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'RADIOACTIVE AREA'"; icon_state = "radiation"; name = "RADIOACTIVE AREA"; pixel_x = 0; pixel_y = 0},/turf/simulated/wall/r_wall,/area/engineering/engine_room)
 "aD" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 1},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aE" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/yellow/border{dir = 4},/turf/simulated/floor/tiled,/area/engineering/engine_room)
-"aF" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/engineering,/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/floor,/area/engineering/engine_gas)
+"aF" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/engineering,/obj/machinery/atmospherics/pipe/simple/hidden,/obj/machinery/door/firedoor/glass,/turf/simulated/floor,/area/engineering/engine_gas)
 "aG" = (/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine charging port."; dir = 1; id = "SupermatterPort"; name = "Observation Blast Doors"; pixel_x = -4; pixel_y = -24; req_access = list(10)},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aH" = (/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine charging port."; id = "SupermatterPort"; name = "Observation Blast Doors"; pixel_x = -4; pixel_y = 24; req_access = list(10)},/turf/simulated/floor/tiled,/area/engineering/engine_room)
-"aI" = (/obj/machinery/power/tesla_coil,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/airless,/area/space)
+"aI" = (/obj/item/weapon/extinguisher,/turf/space,/area/space)
 "aJ" = (/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aK" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/cyan{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/effect/floor_decal/borderfloor/corner{dir = 4},/obj/effect/floor_decal/corner/yellow/bordercorner{dir = 4},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "aL" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/corner/yellow/border{dir = 1},/turf/simulated/floor/tiled,/area/engineering/engine_room)
@@ -56,14 +56,16 @@
 "bd" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/door/firedoor/glass,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/obj/structure/window/reinforced,/obj/machinery/door/blast/regular{density = 0; icon_state = "pdoor0"; id = "EngineRadiatorViewport"; name = "Engine Radiator Viewport Shutter"; opacity = 0},/turf/simulated/floor,/area/submap/pa_room)
 "be" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "bf" = (/turf/simulated/floor/tiled,/area/submap/pa_room)
+"bg" = (/obj/machinery/power/grounding_rod,/turf/simulated/floor/airless,/area/space)
 "bh" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'RADIOACTIVE AREA'"; icon_state = "radiation"; name = "RADIOACTIVE AREA"; pixel_x = 0; pixel_y = 0},/turf/simulated/wall/r_wall,/area/submap/pa_room)
 "bi" = (/turf/simulated/wall/r_wall,/area/submap/pa_room)
-"bj" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/glass_engineering,/turf/simulated/floor/tiled,/area/submap/pa_room)
+"bj" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/power/tesla_coil,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/airless,/area/space)
 "bk" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "bl" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/yellow/border{dir = 4},/obj/effect/floor_decal/borderfloor/corner2{dir = 6},/obj/effect/floor_decal/corner/yellow/bordercorner2{dir = 6},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "bm" = (/turf/simulated/wall/r_wall,/area/template_noop)
 "bn" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/obj/machinery/door/blast/regular{density = 0; icon_state = "pdoor0"; id = "EngineRadiatorViewport"; name = "Engine Radiator Viewport Shutter"; opacity = 0},/obj/machinery/door/firedoor/glass,/turf/simulated/floor,/area/submap/pa_room)
 "bo" = (/obj/effect/floor_decal/techfloor/orange{dir = 5},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/pa_room)
+"bp" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/item/clothing/head/hardhat,/turf/simulated/floor/airless,/area/space)
 "bq" = (/obj/effect/floor_decal/steeldecal,/turf/simulated/floor/tiled,/area/submap/pa_room)
 "br" = (/obj/machinery/light{dir = 1},/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine charging port."; id = "EngineRadiatorViewport"; name = "Viewport Blast Doors"; pixel_x = -4; pixel_y = 24; req_access = list(10)},/turf/simulated/floor/tiled,/area/submap/pa_room)
 "bs" = (/obj/structure/cable/cyan{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/pa_room)
@@ -74,7 +76,7 @@
 "bx" = (/obj/structure/particle_accelerator/particle_emitter/left{dir = 8},/obj/effect/floor_decal/techfloor/orange{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/submap/pa_room)
 "by" = (/obj/effect/floor_decal/techfloor/orange{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/submap/pa_room)
 "bz" = (/obj/machinery/particle_accelerator/control_box,/obj/effect/floor_decal/techfloor/orange{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/submap/pa_room)
-"bA" = (/obj/effect/floor_decal/techfloor/orange{dir = 5},/obj/item/stack/cable_coil/random,/turf/simulated/floor/tiled/techfloor,/area/submap/pa_room)
+"bA" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/glass_engineering,/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/submap/pa_room)
 "bB" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled,/area/submap/pa_room)
 "bC" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/door/firedoor/glass,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor,/area/submap/pa_room)
 "bD" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled,/area/engineering/engine_room)
@@ -99,6 +101,7 @@
 "bW" = (/obj/effect/floor_decal/techfloor/orange/corner,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/pa_room)
 "bX" = (/obj/effect/floor_decal/techfloor/orange{icon_state = "techfloororange_edges"; dir = 6},/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/pa_room)
 "bY" = (/obj/machinery/alarm{dir = 8; pixel_x = 25; pixel_y = 0},/obj/effect/floor_decal/steeldecal/steel_decals8,/obj/structure/table/standard,/obj/item/weapon/book/manual/tesla_engine,/obj/item/weapon/book/manual/engineering_particle_accelerator{pixel_x = 5; pixel_y = 5},/turf/simulated/floor/tiled,/area/submap/pa_room)
+"bZ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/machinery/power/tesla_coil,/turf/simulated/floor/airless,/area/space)
 "ca" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/submap/pa_room)
 "cb" = (/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/yellow/border{dir = 4},/obj/effect/floor_decal/borderfloor/corner2{dir = 5},/obj/effect/floor_decal/corner/yellow/bordercorner2{dir = 5},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cc" = (/obj/machinery/atmospherics/pipe/simple/hidden{dir = 6},/turf/simulated/floor/tiled,/area/engineering/engine_room)
@@ -117,7 +120,7 @@
 "cp" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/yellow/border,/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cq" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/alarm{dir = 1; icon_state = "alarm0"; pixel_y = -22},/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/yellow/border,/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cr" = (/obj/structure/cable/cyan{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/effect/floor_decal/borderfloor{dir = 6},/obj/effect/floor_decal/corner/yellow/border{dir = 6},/obj/effect/floor_decal/industrial/hatch/yellow,/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/tiled,/area/engineering/engine_room)
-"cs" = (/obj/machinery/power/emitter{anchored = 1; dir = 1; state = 1},/obj/structure/cable/cyan{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/airless,/area/space)
+"cs" = (/obj/item/weapon/weldingtool,/turf/simulated/floor/airless,/area/space)
 "ct" = (/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1379; master_tag = "eng_south_airlock"; name = "exterior access button"; pixel_x = -5; pixel_y = 26; req_one_access = list(10,11,13)},/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "eng_south_outer"; locked = 1; name = "Engine South Airlock Exterior"},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
 "cu" = (/obj/machinery/atmospherics/unary/vent_pump/high_volume{dir = 4; frequency = 1379; id_tag = "eng_south_pump"},/obj/machinery/airlock_sensor{frequency = 1379; id_tag = "eng_south_sensor"; pixel_x = 0; pixel_y = 25},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
 "cv" = (/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "eng_south_inner"; locked = 1; name = "Engine South Airlock Interior"},/obj/machinery/atmospherics/pipe/simple/hidden{dir = 4},/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/access_button{command = "cycle_interior"; frequency = 1379; master_tag = "eng_south_airlock"; name = "interior access button"; pixel_x = 8; pixel_y = -26; req_one_access = list(10,11)},/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
@@ -128,14 +131,15 @@
 "cA" = (/obj/structure/cable/cyan{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/effect/floor_decal/rust,/turf/simulated/floor/airless,/area/space)
 "cB" = (/obj/structure/closet/emcloset,/obj/machinery/embedded_controller/radio/airlock/airlock_controller{frequency = 1379; id_tag = "eng_south_airlock"; pixel_x = 24; pixel_y = 0; req_one_access = list(10,11); tag_airpump = "eng_south_pump"; tag_chamber_sensor = "eng_south_sensor"; tag_exterior_door = "eng_south_outer"; tag_interior_door = "eng_south_inner"},/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
 "cC" = (/turf/simulated/wall/r_wall,/area/space)
-"cD" = (/obj/structure/lattice,/obj/machinery/power/grounding_rod,/turf/space,/area/space)
+"cD" = (/obj/effect/floor_decal/techfloor/orange{dir = 5},/turf/simulated/floor/tiled/techfloor,/area/submap/pa_room)
 "cE" = (/obj/machinery/door/blast/regular{density = 0; dir = 2; icon_state = "pdoor0"; id = "SupermatterPort"; layer = 2.7; name = "Reactor Blast Door"; opacity = 0},/obj/machinery/door/firedoor/glass,/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor,/area/engineering/engine_room)
-"cF" = (/obj/machinery/power/emitter{anchored = 1; state = 1},/obj/structure/cable/cyan,/turf/simulated/floor/airless,/area/space)
+"cF" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow,/obj/machinery/power/tesla_coil,/turf/simulated/floor/airless,/area/space)
 "cG" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled,/area/submap/pa_room)
-"cH" = (/obj/machinery/door/airlock/glass_engineering,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/submap/pa_room)
+"cH" = (/obj/machinery/door/airlock/glass_engineering,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/submap/pa_room)
 "cI" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/engine_room)
+"cJ" = (/obj/item/weapon/tool/wirecutters,/turf/simulated/floor/airless,/area/space)
 "cK" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/airless,/area/space)
-"cL" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/airless,/area/space)
+"cL" = (/obj/structure/cable/cyan{d2 = 2; icon_state = "0-2"},/obj/machinery/power/emitter{dir = 1; step_x = 0; anchored = 1; state = 1},/turf/simulated/floor/airless,/area/space)
 "cM" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light,/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/yellow/border,/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cN" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/airless,/area/space)
 "cQ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/airless,/area/space)
@@ -149,25 +153,25 @@ aaacababababababababababababababababababababababababababaaaa
 aaacababababababababababababababababababababababababababaaaa
 aaadabababababababababababababababababababaeaeaeaeaeababaaaa
 aaacacacacacacacacacacacacacacacafafafababaeagahaiaeababaaaa
-aaacababajajajakalalalamalalalanafaoafafafaeagapaqaeababaaaa
-aaacabababajajcFajajajarajajadasatauavawaxaeayazaAaaaaaaaaaa
-aaacababababadabababababadababaBafafaCaDaEaeaeaFaeaaaaaaaaaa
-aaacababababcDabababababcDabababababcEaJaKaLaMaNaOaaaaaaaaaa
-aaacababababadabababababadabababababcEaQaRaSaUaVaWaaaaaaaaaa
-aaacadadadajcocKcKaIcKcKaIcLababababcEaGbabbbcaZbeaaaaaaaaaa
-aaacabababajadadadadadadadcNabaYbPbPbhbibjbibibkblbmbmaaaaaa
-aaacabababajadaXadadadaXadcNabbnbobfbqbrbsbtbibkaEaabubvaaaa
-aaacabababajadadajajajadadcNadbnbwbxbybzbAbBbCbDaEaaaaaaaaaa
-aaacabababajadadajbEajadadaPcKbFbQbGbHbIbJbKbLbMbNaaaabOaaaa
+aaacababajajakalalalalalamalalanafaoafafafaeagapaqaeababaaaa
+aaacabababajarajajajajajarajadasatauavawaxaeayazaAaaaaaaaaaa
+aaacababababadababadababadababaBafafaCaDaEaeaeaFaeaaaaaaaaaa
+aaacababababadababadababadabababababcEaJaKaLaMaNaOaaaaaaaaaa
+aaacababaIabadababadababadadbgabababcEaQaRaSaUaVaWaaaaaaaaaa
+aaacabababbgajcocKcKcKbjcKbpadabababcEaGbabbbcaZbeaaaaaaaaaa
+aaacadadadajaXabadabadabaXcNadaYbPbPbhbibAbibibkblbmbmaaaaaa
+aaacabababajababadabadababbZadbnbobfbqbrbsbtbibkaEaabubvaaaa
+aaacabababajadadcsajajadadcNadbnbwbxbybzcDbBbCbDaEaaaaaaaaaa
+aaacabababajababajbEajababaPcKbFbQbGbHbIbJbKbLbMbNaaaabOaaaa
 aaacabababajadadajajajadadcNadbnbWbRbSbTbUbVbCbDaEaaaaaaaaaa
-aaacabababajadaXadadadaXadcNabbnbXcacacdcGbYbibkaEaaaaaaaaaa
-aaacabababajadadadadadadadcNabbdcmcmbhbicHbibibkcbbmbmaaaaaa
-aaacadadadajcocKcKaIcKcKaIcQababababcEaHcIcecfcgbaaaaaaaaaaa
-aaacababababadabababababadabababababcEccchaTcjckclaaaaaaaaaa
-aaacababababcDabababababcDabababababcEaJcncMcpcqcraaaaaaaaaa
-aaacababababadabababababadababaBafafaCciaEafafafafaaaaaaaaaa
-aaacabababajajcsajajajcsajajadakctcucvcwcxafaaaaaaaaaaaaaaaa
-aaacabadajajajcyalalalczalalalcAafcBafafafafaaaaaaaaaaaaaaaa
+aaacabababajababadabadababcFadbnbXcacacdcGbYbibkaEaaaaaaaaaa
+aaacadadadajaXabadabadabaXcNadbdcmcmbhbicHbibibkcbbmbmaaaaaa
+aaacabababbgajcocKcKcKbjcKcQadabababcEaHcIcecfcgbaaaaaaaaaaa
+aaacababababadababadababadadbgabababcEccchaTcjckclaaaaaaaaaa
+aaacababababadababadababadabababababcEaJcncMcpcqcraaaaaaaaaa
+aaacababababadababadababadababaBafafaCciaEafafafafaaaaaaaaaa
+aaacabababcJcLajajajajajcLajadakctcucvcwcxafaaaaaaaaaaaaaaaa
+aaacabadajajcyalalalalalczalalcAafcBafafafafaaaaaaaaaaaaaaaa
 aaacadadcCcCcCcCcCcCcCcCcCcCcCcCafafaCaaaaaaaaaaaaaaaaaaaaaa
 aaacababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
