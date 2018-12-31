@@ -139,7 +139,7 @@
 "cI" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cJ" = (/obj/item/weapon/tool/wirecutters,/turf/simulated/floor/airless,/area/space)
 "cK" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/airless,/area/space)
-"cL" = (/obj/structure/cable/cyan{d2 = 2; icon_state = "0-2"},/obj/machinery/power/emitter{dir = 1; step_x = 0; anchored = 1; state = 1},/turf/simulated/floor/airless,/area/space)
+"cL" = (/obj/structure/cable/cyan{d2 = 2; icon_state = "0-2"},/obj/machinery/power/emitter{dir = 1; anchored = 1; state = 1},/turf/simulated/floor/airless,/area/space)
 "cM" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light,/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/yellow/border,/turf/simulated/floor/tiled,/area/engineering/engine_room)
 "cN" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/airless,/area/space)
 "cQ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/airless,/area/space)
