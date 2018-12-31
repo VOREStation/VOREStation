@@ -77,6 +77,7 @@ var/list/_client_preferences_by_type
 		preference_mob << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
 		preference_mob << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
 
+<<<<<<< HEAD
 /datum/client_preference/play_jukebox
 	description ="Play jukebox music"
 	key = "SOUND_JUKEBOX"
@@ -98,6 +99,20 @@ var/list/_client_preferences_by_type
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
 //VOREStation Add End
+=======
+/datum/client_preference/weather_sounds
+	description ="Weather sounds"
+	key = "SOUND_WEATHER"
+	enabled_description = "Audible"
+	disabled_description = "Silent"
+
+/datum/client_preference/supermatter_hum
+	description ="Supermatter hum"
+	key = "SOUND_SUPERMATTER"
+	enabled_description = "Audible"
+	disabled_description = "Silent"
+
+>>>>>>> 5fb77b3... Merge pull request #5791 from Neerti/looping_sounds
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
 	key = "CHAT_GHOSTEARS"

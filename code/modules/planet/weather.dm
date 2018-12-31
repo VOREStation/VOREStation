@@ -25,13 +25,19 @@
 
 /datum/weather_holder/proc/change_weather(var/new_weather)
 	var/old_light_modifier = null
-	var/old_weather = null
+	var/datum/weather/old_weather = null
 	if(current_weather)
 		old_light_modifier = current_weather.light_modifier // We store the old one, so we can determine if recalculating the sun is needed.
 		old_weather = current_weather
 	current_weather = allowed_weather_types[new_weather]
 	next_weather_shift = world.time + rand(current_weather.timer_low_bound, current_weather.timer_high_bound) MINUTES
 	if(new_weather != old_weather)
+		if(istype(old_weather)) // At roundstart this is null.
+			old_weather.process_sounds() // Ensure that people who should hear the ending sound will hear it.
+			old_weather.stop_sounds()
+
+		current_weather.process_sounds() // Same story, make sure the starting sound is heard.
+		current_weather.start_sounds()
 		show_transition_message()
 
 	update_icon_effects()
@@ -48,7 +54,7 @@
 			advance_forecast()
 	else
 		current_weather.process_effects()
-
+		current_weather.process_sounds()
 
 
 // Should only have to be called once.
@@ -140,6 +146,18 @@
 	var/list/transition_messages = list()// List of messages shown to all outdoor mobs when this weather is transitioned to, for flavor. Not shown if already this weather.
 	var/observed_message = null // What is shown to a player 'examining' the weather.
 
+	// Looping sound datums for weather sounds, both inside and outside.
+	var/datum/looping_sound/outdoor_sounds = null
+	var/datum/looping_sound/indoor_sounds = null
+	var/outdoor_sounds_type = null
+	var/indoor_sounds_type = null
+
+/datum/weather/New()
+	if(outdoor_sounds_type)
+		outdoor_sounds = new outdoor_sounds_type(list(), FALSE, TRUE)
+	if(indoor_sounds_type)
+		indoor_sounds = new indoor_sounds_type(list(), FALSE, TRUE)
+
 /datum/weather/proc/process_effects()
 	show_message = FALSE	// Need to reset the show_message var, just in case
 	if(effect_message)	// Only bother with the code below if we actually need to display something
@@ -147,6 +165,71 @@
 			last_message = world.time	// Reset the timer
 			show_message = TRUE			// Tell the rest of the process that we need to make a message
 	return
+
+/datum/weather/proc/process_sounds()
+	if(!outdoor_sounds && !indoor_sounds) // No point bothering if we have no sounds.
+		return
+
+	for(var/z_level in 1 to world.maxz)
+		for(var/a in GLOB.players_by_zlevel[z_level])
+			var/mob/M = a
+
+			// Check if the mob left the z-levels we control. If so, make the sounds stop for them.
+			if(!(z_level in holder.our_planet.expected_z_levels))
+				hear_indoor_sounds(M, FALSE)
+				hear_outdoor_sounds(M, FALSE)
+				continue
+
+			// Otherwise they should hear some sounds, depending on if they're inside or not.
+			var/turf/T = get_turf(M)
+			if(istype(T))
+				if(T.outdoors) // Mob is currently outdoors.
+					hear_outdoor_sounds(M, TRUE)
+					hear_indoor_sounds(M, FALSE)
+
+				else // Mob is currently indoors.
+					hear_outdoor_sounds(M, FALSE)
+					hear_indoor_sounds(M, TRUE)
+
+			else
+				hear_indoor_sounds(M, FALSE)
+				hear_outdoor_sounds(M, FALSE)
+
+/datum/weather/proc/start_sounds()
+	if(outdoor_sounds)
+		outdoor_sounds.start()
+	if(indoor_sounds)
+		indoor_sounds.start()
+
+/datum/weather/proc/stop_sounds()
+	if(outdoor_sounds)
+		outdoor_sounds.stop()
+	if(indoor_sounds)
+		indoor_sounds.stop()
+
+	// Stop everything just in case.
+	for(var/z_level in 1 to world.maxz)
+		for(var/a in GLOB.players_by_zlevel[z_level])
+			hear_indoor_sounds(a, FALSE)
+			hear_outdoor_sounds(a, FALSE)
+
+// Adds or removes someone from the outdoor list.
+/datum/weather/proc/hear_outdoor_sounds(mob/M, adding)
+	if(!outdoor_sounds)
+		return
+	if(adding)
+		outdoor_sounds.output_atoms |= M
+		return
+	outdoor_sounds.output_atoms -= M
+
+// Ditto, for indoors.
+/datum/weather/proc/hear_indoor_sounds(mob/M, adding)
+	if(!indoor_sounds)
+		return
+	if(adding)
+		indoor_sounds.output_atoms |= M
+		return
+	indoor_sounds.output_atoms -= M
 
 // All this does is hold the weather icon.
 /atom/movable/weather_visuals

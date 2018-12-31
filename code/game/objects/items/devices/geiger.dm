@@ -1,8 +1,3 @@
-#define RAD_LEVEL_LOW 0.01 // Around the level at which radiation starts to become harmful
-#define RAD_LEVEL_MODERATE 10
-#define RAD_LEVEL_HIGH 25
-#define RAD_LEVEL_VERY_HIGH 50
-
 //Geiger counter
 //Rewritten version of TG's geiger counter
 //I opted to show exact radiation levels
@@ -15,12 +10,23 @@
 	w_class = ITEMSIZE_SMALL
 	var/scanning = 0
 	var/radiation_count = 0
+	var/datum/looping_sound/geiger/soundloop
 
+<<<<<<< HEAD
 /obj/item/device/geiger/New()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/device/geiger/Destroy()
+=======
+/obj/item/device/geiger/Initialize()
+	START_PROCESSING(SSobj, src)
+	soundloop = new(list(src), FALSE)
+	return ..()
+
+/obj/item/device/geiger/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(soundloop)
+>>>>>>> 5fb77b3... Merge pull request #5791 from Neerti/looping_sounds
 	return ..()
 
 /obj/item/device/geiger/process()
@@ -31,6 +37,7 @@
 		return
 	radiation_count = radiation_repository.get_rads_at_turf(get_turf(src))
 	update_icon()
+	update_sound()
 
 /obj/item/device/geiger/examine(mob/user)
 	..(user)
@@ -44,18 +51,24 @@
 	if(amount > radiation_count)
 		radiation_count = amount
 
-	var/sound = "geiger"
-	if(amount < 5)
-		sound = "geiger_weak"
-	playsound(src, sound, between(10, 10 + (radiation_count * 4), 100), 0)
-	if(sound == "geiger_weak") // A weak geiger sound every two seconds sounds too infrequent.
-		spawn(1 SECOND)
-			playsound(src, sound, between(10, 10 + (radiation_count * 4), 100), 0)
 	update_icon()
+	update_sound()
+
+/obj/item/device/geiger/proc/update_sound()
+	var/datum/looping_sound/geiger/loop = soundloop
+	if(!scanning)
+		loop.stop()
+		return
+	if(!radiation_count)
+		loop.stop()
+		return
+	loop.last_radiation = radiation_count
+	loop.start()
 
 /obj/item/device/geiger/attack_self(var/mob/user)
 	scanning = !scanning
 	update_icon()
+	update_sound()
 	to_chat(user, "<span class='notice'>\icon[src] You switch [scanning ? "on" : "off"] \the [src].</span>")
 
 /obj/item/device/geiger/update_icon()
@@ -76,8 +89,3 @@
 			icon_state = "geiger_on_4"
 		if(RAD_LEVEL_VERY_HIGH to INFINITY)
 			icon_state = "geiger_on_5"
-
-#undef RAD_LEVEL_LOW
-#undef RAD_LEVEL_MODERATE
-#undef RAD_LEVEL_HIGH
-#undef RAD_LEVEL_VERY_HIGH
