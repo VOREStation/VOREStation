@@ -332,7 +332,7 @@
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 15, "cheese" = 5)
-	nutriment_amt = 25
+	nutriment_amt = 10
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo/New()
 	..()
@@ -422,7 +422,7 @@
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("pizza crust" = 10, "cheese" = 5, "creamy sauce" = 5, "mushroom" = 5)
-	nutriment_amt = 25
+	nutriment_amt = 10
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo/New()
 	..()
@@ -466,7 +466,7 @@
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 20, "cheese" = 5, "eggplant" = 5, "carrot" = 5, "corn" = 5)
-	nutriment_amt = 20
+	nutriment_amt = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo/New()
 	..()
