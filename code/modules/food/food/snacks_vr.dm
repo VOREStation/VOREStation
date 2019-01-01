@@ -480,3 +480,19 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo/filled
 	filled = TRUE
+
+/obj/item/pizzabox/margherita/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margfrozen(src)
+	boxtag = "Margherita Deluxe"
+
+/obj/item/pizzabox/vegetable/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegfrozen(src)
+	boxtag = "Gourmet Vegatable"
+
+/obj/item/pizzabox/mushroom/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushfrozen(src)
+	boxtag = "Mushroom Special"
+
+/obj/item/pizzabox/meat/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatfrozen(src)
+	boxtag = "Meatlover's Supreme"
