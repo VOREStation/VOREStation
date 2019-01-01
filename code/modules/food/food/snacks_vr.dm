@@ -441,7 +441,7 @@
 	name = "frozen vegtable pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
 	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "vegtable_pizza_frozen"
+	icon_state = "vegetable_pizza_frozen"
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen vegtable chunks" = 5)
@@ -454,7 +454,7 @@
 	name = "Vegetablepizza"
 	desc = "At least 10 of Tomato Sapiens were harmed during making this pizza."
 	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "vegtable_pizza_cargo"
+	icon_state = "vegetable_pizza_cargo"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
@@ -472,7 +472,7 @@
 	name = "Vegtablepizza slice"
 	desc = "At least 10 of Tomato Sapiens were harmed during making this pizza."
 	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "vegtable_pizza_slice_cargo"
+	icon_state = "vegetable_pizza_slice_cargo"
 	filling_color = "#BAA14C"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=13)
