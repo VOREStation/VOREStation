@@ -29,7 +29,14 @@
 					   "mechoid-Service",
 					   "mechoid-Janitor",
 					   "mechoid-Combat",
-					   "mechoid-Combat-roll"
+					   "mechoid-Combat-roll",
+					   "Noble-CLN",
+					   "Noble-SRV",
+					   "Noble-DIG",
+					   "Noble-MED",
+					   "Noble-SEC",
+					   "Noble-ENG",
+					   "Noble-STD"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
