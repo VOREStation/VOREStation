@@ -151,6 +151,7 @@
 	<br><br>\
 	Association leaders have refrained from officially supporting the rioters, though many suspect that Association propagandists have sparked the unrest. Solar officials, on the other hand, were quick to offer assurances that the unrest will be calmed long before it begins to affect the Fleet base in system."
 	
+
 /datum/lore/codex/page/article14
 	name = "5/25/62 - Harper's Aetolus Remains Shadowed"
 	data = "The recent detente with the Almach Association has prompted easier communications with Rim governments. Loved ones separated by the cordon have a chance to communicate once more, trade is posed to recommence, and light has been shed on the conditions of Shelf, Relan, and Angessa's Pearl. Amid this light is a patch of darkness. The fourth major polity of the Association, the Aetolian Council remains inscrutable, with no publicly-available information in the system available after their purge of corporate loyalists during the Gray Hour. What reports do exist are rumors within the Rim of Aetolian projects to create a new, hardier strain of Promethean, potentially one in flagrant violation of the Five Points of Human Sanctity. It is also known that Aetolus is a contributor to the personnel of the military vessels that even now are active in the Golden Crescent, although no so-called \"Aeto-Prometheans\" are believed to be active outside of the rim at this time.\
@@ -249,7 +250,7 @@
 	data = "Admiral Kaleb McMullen made a public statement this afternoon on the continued Boiling Point attacks within SCG space. Speaking from his office in the Saint Columbia Fleet Base, Admiral McMullen thoroughly reassured reporters that the attacks will come to a swift end. According to McMullen, \"The era of wanton destruction as a result of Boiling Point's madness is coming to a close. Our command staff and proud servicepeople have been training and revising a solution to this threat that has haunted our borders and threatened the stability of our colonies and the lives of the honest people of the Solar Confederate Government. With new options available I have full confidence Boiling Point will be a name left to the dust.\"\
 	<br><br>\
 	Admiral McMullen, who has been stationed in Saint Columbia for nearly half a year of political and social unrest did not elaborate further on what he intended to do to solve the Boiling Point attacks, claiming that details would be forthcoming as \"operational security permits\"."
-	
+
 /datum/lore/codex/page/article24
 	name = "11/22/62 - Construction of \"MJOLNIR\" Weapon System in Saint Columbia Fleet Base"
 	data = "Pursuant to recent assurances of safety in the region and the ongoing \"special election\" in Saint Columbia, a new weapon system called MJOLNIR was revealed, fully operational, in the Saint Columbia Fleet Base's \"Iserlohn\" weapons platform. Said to be a bluespace-lensed laser array capable of faster-than-light strikes against any ship in the system, as well as surgical strikes against ground forces on Saint Columbia proper, MJOLNIR is the first in a new generation of defense systems improving on the capabilities of the Vulture's Claw point defenses developed during the Hegemony War and using laser technology purchased from Eutopia. Political commentators supporting Saint Columbia decry the move as \"an obvious threat\", as does Militia liaison Invalid String Please Try Again. Admiral McMullen acknowledges the criticism, but states that his \"first priority must be the defense of the Golden Crescent and the security of our borders\". When responding to claims that the installation should not be placed in such a politically volatile system, he remarked, \"until the Shelficans figure out a way to teleport about a million tons worth of military equipment down to Gavel, the Fleet Base and Iserlohn are going to stay in Saint Columbia.\""
@@ -282,7 +283,7 @@
 	children = list(
 		/datum/lore/codex/page/valult
 		)
-		
+
 /datum/lore/codex/page/valult
 	name = "The Valentine's Ultimatum"
 	data = "\[West shuffles some papers and clears their throat\]\
@@ -328,7 +329,15 @@
 	data = "Just hours after reconnecting with the Exonet after voting in a new government, the colony of Saint Columbia has unilaterally seceded from SolGov and petitioned for inclusion within the Almach Association. This declaration, issued by First Secretary Luissa Tassis, is in stark contrast to pre-election promises of continued support of Sol. Admiral McMullen of the Saint Columbia Garrison remains in control of the Fleet Base, itself a large colony housing around 75000 civilian contractors and military families who were not party to the Barrueco Referendum or the new constitution.\
 	<br><br>\
 	Efforts to ensure electoral validity and a peaceful exchange of power have been stymied by the presence of several dozen Militia vessels currently transiting from the Crescent to the Rim. Since the declaration went through, no Almachi vessels have been seen leaving the system, instead forming around Saint Columbia in an obvious defensive posture. The legality of this formation is questionable at best, as fleet activity in divided systems like Abel's Rest and Kauq'xum has been avoided for diplomatic reasons."
-	
+
 /datum/lore/codex/page/article29
 	name = "11/30/62 - Adm. McMullen Declares \"Iserlohn Republic\""
 	data = "Pursuant to the continuing hostility from Secretary Tassis' Saint Columbia Democratic Union and the Almach Militia, the civilians of the Saint Columbia Fleet Base have been organized into an Iserlohn Republic. Named after the largest single module of the station, the Republic has applied to the Colonial Assembly as an independent protectorate, with provisional recognition already extended by Executive of Development Zehava Collins. In a move decried as nepotistic, Admiral McMullen declared independence and installed his daughter Anya as interim President pending ratification of a constitution. SolGov Fleet protocol forbids any member of the service from accepting any political appointment and is believed to be the main reason he did not take power himself. Anya McMullen is the administrative head of the base's hydroponics array and is considered a highly respected citizen of the colony, relationship to its military administrator notwithstanding."
+
+/datum/lore/codex/page/article30
+	name = "01/01/63 - Sif Governor Bjorn Arielsson to Retire"
+	data = "Aging Shadow Coalition governor Bjorn Arielsson has today confirmed rumours that he will not run for re-election in the 2563 cycle. The popular governor has represented the people of Vir in the Colonial Assembly for ten years, and supporters had long hoped that he would run for a third term. Arielsson cites advancing age and a desire to spend more time with his partner of 12 years, noted Positronic entrepreneur View Arielsson.\
+	<br><br>\
+	Arielsson's governorship saw increased funding towards Sif's vererable ground-based transportation networks to the benefit of some of New Rekjavik's more remote neighbors, though opponents have criticised subsidies towards artificially heated fungal farms, arguing that the faciliies \"benefit a small minority of Skrellian residents to the detriment of already fragile local ecosystems.\"\
+	<br><br>\
+	The Sivian Shadow Coalition has yet to announce who is to take Arielsson's place on this year's ballot."
