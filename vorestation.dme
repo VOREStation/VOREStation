@@ -52,12 +52,9 @@
 #include "code\__defines\misc.dm"
 #include "code\__defines\misc_vr.dm"
 #include "code\__defines\mobs.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\mobs_vr.dm"
 #include "code\__defines\nifsoft.dm"
-=======
 #include "code\__defines\objects.dm"
->>>>>>> 05e9dae... Merge pull request #5714 from Mechoid/The_story_so_far_In_the_beginning_the_grippers_were_created_This_has_made_a_lot_of_people_very_angry_and_was_widely_regarded_as_a_bad_move:polaris.dme
 #include "code\__defines\planets.dm"
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\qdel.dm"
