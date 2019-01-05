@@ -81,4 +81,4 @@
 	containername = "Chinese takeout crate"
 
 /datum/supply_pack/randomised/hospitality/pizza
-	cost = 50
+	cost = 25
