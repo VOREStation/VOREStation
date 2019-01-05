@@ -620,14 +620,15 @@
 		clean_cycle()
 		return
 
-	if(patient)	//We're caring for the patient. Medical emergency! Or endo scene.
+	if(patient && !compactor) //We're caring for the patient. Medical emergency! Or endo scene.
 		update_patient()
 		if(patient.health < 0)
 			patient.adjustOxyLoss(-1) //Heal some oxygen damage if they're in critical condition
 			patient.updatehealth()
+			drain()
 		patient.AdjustStunned(-4)
 		patient.AdjustWeakened(-4)
-		drain()
+		drain(1)
 		return
 
 	if(!patient && !cleaning) //We think we're done working.
