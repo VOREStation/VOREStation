@@ -9,12 +9,8 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
-<<<<<<< HEAD
 	/mob/living/simple_animal/borer,
 	/obj/belly, //VOREStation Edit,
-=======
-	/mob/living/simple_mob/animal/borer,
->>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 	/obj/screen
 	)
 

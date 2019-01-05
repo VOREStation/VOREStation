@@ -36,10 +36,6 @@
 	summon_amt = 10
 	range = 3
 
-<<<<<<< HEAD
-	summon_type = list(/mob/living/simple_animal/hostile/creature/vore) // Vorestation Edit
-=======
 	summon_type = list(/mob/living/simple_mob/creature)
->>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 
 	hud_state = "wiz_creature"
