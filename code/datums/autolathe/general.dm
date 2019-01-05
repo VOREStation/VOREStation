@@ -122,7 +122,3 @@
 	name = "handcuffs"
 	path =/obj/item/weapon/handcuffs
 	hidden = 1
-
-/datum/category_item/autolathe/general/holocollar
-	name = "Holo-collar"
-	path =/obj/item/clothing/accessory/collar/holo //Chomp edit Adding holo collar to list of craftable items
