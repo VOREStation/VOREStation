@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 #define WELDER_FUEL_BURN_INTERVAL 13
 /*
  * Welding Tool
@@ -321,10 +317,7 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
-<<<<<<< HEAD
 		if(H.nif && H.nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION)) return //VOREStation Add - NIF
-=======
->>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 		switch(safety)
 			if(1)
 				to_chat(usr, "<span class='warning'>Your eyes sting a little.</span>")

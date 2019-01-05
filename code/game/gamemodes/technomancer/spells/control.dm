@@ -21,34 +21,7 @@
 	aspect = ASPECT_BIOMED //Not sure if this should be something else.
 	var/image/control_overlay = null
 	var/list/controlled_mobs = list()
-<<<<<<< HEAD
-	var/list/allowed_mobs = list(
-		/mob/living/bot,
-		/mob/living/simple_animal/cat,
-		/mob/living/simple_animal/chick,
-		/mob/living/simple_animal/chicken,
-		/mob/living/simple_animal/corgi,
-		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/lizard,
-		/mob/living/simple_animal/mouse,
-		/mob/living/simple_animal/parrot,
-		/mob/living/simple_animal/slime,
-//		/mob/living/simple_animal/adultslime,
-		/mob/living/simple_animal/tindalos,
-		/mob/living/simple_animal/yithian,
-		/mob/living/simple_animal/hostile/scarybat,
-		/mob/living/simple_animal/hostile/viscerator,
-		/mob/living/simple_animal/hostile/malf_drone,
-		/mob/living/simple_animal/hostile/giant_spider,
-		/mob/living/simple_animal/hostile/hivebot,
-		/mob/living/simple_animal/retaliate/diyaab, //Doubt these will get used but might as well,
-		/mob/living/simple_animal/hostile/savik,
-		/mob/living/simple_animal/hostile/shantak
-		)
-=======
 	var/allowed_mob_classes = MOB_CLASS_ANIMAL|MOB_CLASS_SYNTHETIC
->>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 
 //This unfortunately is gonna be rather messy due to the various mobtypes involved.
 /obj/item/weapon/spell/control/proc/select(var/mob/living/L)

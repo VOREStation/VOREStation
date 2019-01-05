@@ -108,17 +108,10 @@
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
-<<<<<<< HEAD
-		/mob/living/simple_animal/hostile/scarybat,
-		/mob/living/simple_animal/hostile/creature/vore,
-		/mob/living/simple_animal/hostile/faithless
-	)   // Vorestation Edit
-=======
 		/mob/living/simple_mob/animal/space/bats,
 		/mob/living/simple_mob/creature,
 		/mob/living/simple_mob/faithless
 	)
->>>>>>> 3155d58... Merge pull request #5735 from Neerti/hopefully_last_master_sync
 
 /obj/effect/gateway/active/cult
 	light_range=5
