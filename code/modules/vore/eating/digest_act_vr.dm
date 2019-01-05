@@ -87,7 +87,8 @@
 		else if(isrobot(B.owner))
 			var/mob/living/silicon/robot/R = B.owner
 			R.cell.charge += 150
-
+		qdel(src)
+		return w_class
 	. = ..()
 
 /obj/item/weapon/holder/digest_act(var/atom/movable/item_storage = null)
