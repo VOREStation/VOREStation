@@ -30,6 +30,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
+	secondary_langs = list(LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
 	breath_type = null
