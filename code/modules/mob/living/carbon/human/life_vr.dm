@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/weightgain()
-	if (nutrition > 0 && stat != 2)
+	if (nutrition >= 0 && stat != 2)
 		if (nutrition > MIN_NUTRITION_TO_GAIN && weight < MAX_MOB_WEIGHT && weight_gain)
 			weight += species.metabolism*(0.01*weight_gain)
 
@@ -68,6 +68,8 @@
 					M.nutrition -= M.species.hunger_factor/10
 					if(M.m_intent == "run")
 						M.nutrition -= M.species.hunger_factor/10
+					if(M.nutrition < 0)
+						M.nutrition = 0
 			else
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
 				if(src.m_intent == "run")
