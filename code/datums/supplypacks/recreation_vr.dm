@@ -69,7 +69,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Plushies crate"
 	
-/datum/supply_packs/recreation/collars
+/datum/supply_pack/recreation/collars
 	name = "Collar bundle"
 	contains = list(
 			/obj/item/clothing/accessory/collar/shock = 1,
