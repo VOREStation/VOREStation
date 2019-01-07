@@ -57,8 +57,8 @@
 		return "Show Monitor"
 
 /datum/nifsoft/cameramonitor
-	name = "Camera Monitor"
-	desc = "A link to the local camera monitors. Useful for knowing where the trouble is."
+	name = "Security Monitor"
+	desc = "A link to the local camera alarm monitors. Useful for knowing where the trouble is."
 	list_pos = NIF_SECMONITOR
 	access = access_security
 	cost = 1250
