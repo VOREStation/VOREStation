@@ -7,7 +7,6 @@
 	desc = "A large, strange gauntlet."
 	icon_state = "gravwhip"
 	item_state = "gravwhip"
-	fire_sound = 'sound/effects/zzzt.ogg'
 	fire_sound_text = "laser blast"
 
 	fire_delay = 15

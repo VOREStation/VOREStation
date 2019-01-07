@@ -296,7 +296,7 @@
 	description_info = "This weapon cannot be fired indoors, underground, or on-station."
 	icon_state = "mecha_mortar"
 	equip_cooldown = 30
-	fire_sound = 'sound/weapons/cannon.ogg'
+	fire_sound = 'sound/weapons/Gunshot_cannon.ogg'
 	fire_volume = 100
 	projectiles = 3
 	deviation = 0.6
@@ -319,7 +319,7 @@
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/pellet/shotgun/flak
-	fire_sound = 'sound/weapons/gunshot/shotgun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	fire_volume = 80
 	projectiles = 40
 	projectiles_per_shot = 4
@@ -345,7 +345,7 @@
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/pistol/medium
-	fire_sound = 'sound/weapons/machinegun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
 	projectiles = 30 //10 bursts, matching the Scattershot's 10. Also, conveniently, doesn't eat your powercell when reloading like 300 bullets does.
 	projectiles_per_shot = 3
 	deviation = 0.3
@@ -523,7 +523,7 @@
 	icon_state = "mecha_drac3"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/incendiary
-	fire_sound = 'sound/weapons/machinegun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
 	projectiles = 30
 	projectiles_per_shot = 2
 	deviation = 0.4

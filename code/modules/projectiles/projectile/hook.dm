@@ -16,6 +16,7 @@
 
 	var/impact_sound = 'sound/effects/uncloak.ogg'
 	var/crack_sound = 'sound/effects/teleport.ogg'
+	fire_sound = 'sound/effects/zzzt.ogg'
 
 	var/target_distance = null	// Shamelessly stolen from arcing projectiles.
 	var/my_tracking_beam = null	// Beam made by the launcher. Tracked here to destroy it in time with the impact.

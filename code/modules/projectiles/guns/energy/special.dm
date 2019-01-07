@@ -30,7 +30,6 @@
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
 	icon_state = "decloner"
 	item_state = "decloner"
-	fire_sound = 'sound/weapons/pulse3.ogg'
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/energy/declone
 
@@ -39,7 +38,6 @@
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
 	icon_state = "floramut100"
 	item_state = "floramut"
-	fire_sound = 'sound/effects/stealthoff.ogg'
 	projectile_type = /obj/item/projectile/energy/floramut
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
@@ -112,13 +110,11 @@
 	desc = "A custom-built weapon of some kind."
 	icon_state = "xray"
 	projectile_type = /obj/item/projectile/beam/mindflayer
-	fire_sound = 'sound/weapons/Laser.ogg'
 
 /obj/item/weapon/gun/energy/toxgun
 	name = "phoron pistol"
 	desc = "A specialized firearm designed to fire lethal bolts of phoron."
 	icon_state = "toxgun"
-	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
 	projectile_type = /obj/item/projectile/energy/phoron
@@ -131,7 +127,6 @@
 	icon = 'icons/obj/gun.dmi'
 	item_icons = null
 	icon_state = "staffofchange"
-	fire_sound = 'sound/weapons/emitter.ogg'
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE
@@ -188,6 +183,9 @@ obj/item/weapon/gun/energy/staff/focus
 	item_state = "dakkalaser"
 	wielded_item_state = "dakkalaser-wielded"
 	fire_sound = 'sound/weapons/Laser.ogg'
+=======
+	wielded_item_state = "dakkalaser-wielded"
+>>>>>>> 81c3036... Guns sounds refactor and improvements (#5803)
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 24 // 100 shots, it's a spray and pray (to RNGesus) weapon.
 	projectile_type = /obj/item/projectile/energy/blue_pellet
@@ -201,6 +199,7 @@ obj/item/weapon/gun/energy/staff/focus
 		list(mode_name="single shot", burst = 1, burst_accuracy = list(75), dispersion = list(0), charge_cost = 24),
 		list(mode_name="five shot burst", burst = 5, burst_accuracy = list(75,75,75,75,75), dispersion = list(1,1,1,1,1)),
 		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(75,75,75,75,75,75,75,75,75,75), dispersion = list(2,2,2,2,2,2,2,2,2,2)),
+<<<<<<< HEAD
 		)
 
 /obj/item/weapon/gun/energy/maghowitzer
@@ -211,7 +210,6 @@ obj/item/weapon/gun/energy/staff/focus
 	icon_state = "mhdhowitzer"
 	item_state = "mhdhowitzer"
 	wielded_item_state = "mhdhowitzer-wielded"
-	fire_sound = 'sound/weapons/emitter2.ogg'
 	w_class = ITEMSIZE_HUGE
 
 	charge_cost = 10000 // Uses large cells, can at max have 3 shots.
