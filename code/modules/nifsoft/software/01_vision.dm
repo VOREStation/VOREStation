@@ -136,7 +136,7 @@
 	name = "Thermal Scanner"
 	desc = "Similar to the worn Thermal Goggles, these allow you to see heat-emitting creatures through walls."
 	list_pos = NIF_THERMALS
-	cost = 500
+	cost = 1000
 	a_drain = 0.1
 	illegal = TRUE
 	access = 999
