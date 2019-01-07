@@ -2377,6 +2377,7 @@
 #include "code\modules\nifsoft\nifsoft.dm"
 #include "code\modules\nifsoft\software\01_vision.dm"
 #include "code\modules\nifsoft\software\05_health.dm"
+#include "code\modules\nifsoft\software\06_screens.dm"
 #include "code\modules\nifsoft\software\10_combat.dm"
 #include "code\modules\nifsoft\software\13_soulcatcher.dm"
 #include "code\modules\nifsoft\software\14_commlink.dm"
