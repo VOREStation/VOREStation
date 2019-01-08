@@ -12180,18 +12180,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
-"AB" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "AH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -12360,11 +12348,6 @@
 /area/maintenance/lower/atmos)
 "BO" = (
 /obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "BP" = (
@@ -12620,11 +12603,6 @@
 "Dk" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
@@ -12632,11 +12610,6 @@
 "Dl" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
@@ -12645,9 +12618,6 @@
 	dir = 6
 	},
 /obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
@@ -12737,15 +12707,6 @@
 	},
 /obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/atmos)
-"DD" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance/common,
-/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "DE" = (
 /obj/structure/catwalk,
@@ -12841,9 +12802,6 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "DP" = (
@@ -12860,11 +12818,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "DQ" = (
@@ -12877,11 +12830,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
@@ -12898,11 +12846,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
@@ -12922,11 +12865,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
@@ -15407,11 +15345,6 @@
 /area/janitor)
 "Jf" = (
 /obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
@@ -15461,16 +15394,6 @@
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
-"Jr" = (
-/obj/effect/floor_decal/techfloor,
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/atmos)
 "Jt" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -15871,16 +15794,6 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
-"Ll" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "Lm" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -16362,15 +16275,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
-"NI" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "NP" = (
 /obj/structure/table/steel,
 /obj/item/clothing/glasses/sunglasses/blindfold,
@@ -18173,11 +18077,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
@@ -29816,7 +29715,7 @@ BQ
 CM
 Cq
 Rm
-AB
+Qb
 BO
 Zf
 Zf
@@ -29959,7 +29858,7 @@ CM
 Cq
 Rm
 TN
-NI
+Nr
 Nr
 Zf
 Zf
@@ -30101,7 +30000,7 @@ CM
 Cq
 Rm
 TN
-Jr
+DB
 JW
 JW
 JW
@@ -30385,7 +30284,7 @@ CM
 Yb
 Rm
 Sw
-Ll
+Zf
 Dz
 JW
 JK
@@ -31238,7 +31137,7 @@ Cq
 Rm
 CW
 Dm
-DD
+Ba
 DO
 Es
 Ev
