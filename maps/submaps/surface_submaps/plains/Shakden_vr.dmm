@@ -38,7 +38,7 @@
 	},
 /area/submap/Shakden)
 "h" = (
-/mob/living/simple_animal/hostile/dragon/virgo3b,
+/mob/living/simple_animal/hostile/dragon,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -223,7 +223,7 @@ c
 c
 d
 d
-h
+d
 d
 c
 c
