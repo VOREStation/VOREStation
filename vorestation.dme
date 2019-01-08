@@ -2983,6 +2983,7 @@
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
 #include "maps\submaps\space_submaps\space.dm"
+#include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains_areas.dm"
 #include "maps\submaps\surface_submaps\plains\plains.dm"

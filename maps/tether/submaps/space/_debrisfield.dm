@@ -1,7 +1,7 @@
 // -- Datums -- //
 
 /datum/shuttle_destination/excursion/debrisfield
-	name = "\improper Away Mission - Debris Field"
+	name = "Debris Field"
 	my_area = /area/shuttle/excursion/debrisfield
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 	skip_me = TRUE
@@ -28,3 +28,7 @@
 //And some special areas, including our shuttle landing spot (must be unique)
 /area/shuttle/excursion/debrisfield
 	name = "\improper Excursion Shuttle - Debris Field"
+
+/area/tether_away/debrisfield/space/poi
+	name = "Away Mission - Debris Field"
+	icon_state = "space"

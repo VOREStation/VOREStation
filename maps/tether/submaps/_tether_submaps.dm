@@ -56,10 +56,11 @@
 	name = "Away Mission - Plains"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
 	base_turf = /turf/simulated/mineral/floor/virgo3b
+	z = Z_LEVEL_PLAINS
 
 /datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(z), 100, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
+	seed_submaps(list(Z_LEVEL_PLAINS), 100, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
@@ -153,8 +154,13 @@
 	mappath = 'space/debrisfield.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/away_debrisfield
 
+/datum/map_template/tether_lateload/away_debrisfield/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_DEBRISFIELD), 50, /area/tether_away/debrisfield/space/poi, /datum/map_template/debrisfield)
+
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
+	z = Z_LEVEL_DEBRISFIELD
 
 
 //////////////////////////////////////////////////////////////////////////////////////

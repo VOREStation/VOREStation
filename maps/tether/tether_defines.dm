@@ -40,6 +40,8 @@
 #define Z_LEVEL_BEACH_CAVE					16
 #define Z_LEVEL_AEROSTAT					17
 #define Z_LEVEL_AEROSTAT_SURFACE			18
+#define Z_LEVEL_PLAINS						19
+#define Z_LEVEL_DEBRISFIELD					20
 
 /datum/map/tether
 	name = "Virgo"
