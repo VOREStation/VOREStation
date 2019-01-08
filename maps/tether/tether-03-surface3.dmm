@@ -20488,8 +20488,9 @@
 /area/crew_quarters/barrestroom)
 "Ol" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 8
+	anchored = 0;
+	dir = 8;
+	icon_state = "propulsion"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/shuttle_pad)
@@ -21678,6 +21679,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)

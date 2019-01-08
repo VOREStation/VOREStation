@@ -12620,7 +12620,6 @@
 "Dk" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/catwalk,
-/obj/structure/catwalk,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -12642,7 +12641,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "Dm" = (
-/obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
