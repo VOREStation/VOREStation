@@ -60,7 +60,7 @@
 
 /datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_PLAINS), 100, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
+	seed_submaps(list(Z_LEVEL_PLAINS), 150, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
