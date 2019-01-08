@@ -26212,6 +26212,16 @@
 "clt" = (
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm4)
+"clG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar)
 "cpe" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	icon_state = "map";
@@ -27139,6 +27149,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
+"fsh" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "ftb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -27513,11 +27527,11 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/east)
@@ -28215,6 +28229,12 @@
 /area/tether/surfacebase/public_garden)
 "jbT" = (
 /obj/random/junk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "jec" = (
@@ -28245,6 +28265,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"jmT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar)
 "jnD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/effect/decal/cleanable/dirt,
@@ -28337,6 +28367,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"jxM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar)
 "jDH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -28625,6 +28661,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "kVU" = (
@@ -30483,18 +30520,16 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
 "rZz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "saA" = (
@@ -31182,6 +31217,8 @@
 	name = "Bar Backroom";
 	welded = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "uru" = (
@@ -31235,6 +31272,12 @@
 	icon_state = "0-4"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "uDW" = (
@@ -31748,6 +31791,9 @@
 "vXi" = (
 /obj/structure/table/steel,
 /obj/random/junk,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "vXW" = (
@@ -32202,6 +32248,12 @@
 "xDe" = (
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/showers)
+"xEp" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "xED" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -43472,10 +43524,10 @@ wgr
 gzJ
 wgr
 jbT
-gzJ
+jxM
 uqa
-gzJ
-gzJ
+jxM
+clG
 ffQ
 jWI
 aah
@@ -43617,7 +43669,7 @@ uAz
 vdX
 jWI
 kTN
-gzJ
+jmT
 vXi
 jWI
 aah
@@ -45565,9 +45617,9 @@ bjw
 blS
 bnK
 avP
-aCI
+fsh
 gNf
-aCI
+xEp
 eiU
 aCI
 agM
