@@ -29563,6 +29563,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/processing)
+"nIs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "nJE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -45800,7 +45809,7 @@ avP
 fsh
 gNf
 xEp
-eiU
+nIs
 aCI
 agM
 avB
