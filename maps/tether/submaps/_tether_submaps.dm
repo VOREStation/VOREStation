@@ -60,7 +60,7 @@
 
 /datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_PLAINS), 150, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
+	seed_submaps(list(Z_LEVEL_PLAINS), 120, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
@@ -92,8 +92,8 @@
 
 /datum/map_template/tether_lateload/away_beach_cave/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
-	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
+	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 60, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
+	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 60, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
 
 	// Now for the tunnels.
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_BEACH_CAVE, world.maxx, world.maxy)
@@ -138,7 +138,7 @@
 
 /datum/map_template/tether_lateload/away_aerostat_surface/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 70, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, world.maxx, world.maxy)
 	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)
 
@@ -156,7 +156,8 @@
 
 /datum/map_template/tether_lateload/away_debrisfield/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_DEBRISFIELD), 50, /area/tether_away/debrisfield/space/poi, /datum/map_template/debrisfield)
+	//Commented out until we actually get POIs
+	//seed_submaps(list(Z_LEVEL_DEBRISFIELD), 50, /area/tether_away/debrisfield/space/poi, /datum/map_template/debrisfield)
 
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
