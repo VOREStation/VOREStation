@@ -100,7 +100,6 @@
 	list_pos = NIF_MESONS
 	cost = 1000
 	a_drain = 0.1
-	access = access_engine
 	tick_flags = NIF_ACTIVETICK
 	planes_enabled = list(VIS_FULLBRIGHT, VIS_MESONS)
 	vision_flags = (NIF_V_MESONS)
@@ -119,7 +118,6 @@
 	list_pos = NIF_MATERIAL
 	cost = 1000
 	a_drain = 0.1
-	access = access_research
 	tick_flags = NIF_ACTIVETICK
 	planes_enabled = list(VIS_FULLBRIGHT)
 	vision_flags = (NIF_V_MATERIAL)
