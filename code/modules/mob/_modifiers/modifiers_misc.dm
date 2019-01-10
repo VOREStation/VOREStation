@@ -180,6 +180,8 @@ the artifact triggers the rage.
 	accuracy = -75				// Aiming requires focus.
 	accuracy_dispersion = 3		// Ditto.
 	evasion = -45				// Too angry to dodge.
+<<<<<<< HEAD
+=======
 
 // Non-cult version of deep wounds.
 // Surprisingly, more dangerous.
@@ -212,6 +214,10 @@ the artifact triggers the rage.
 	on_expired_text = "<span class='warning'>The fire starts to fade.</span>"
 	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
 	var/damage_per_tick = 5
+
+/datum/modifier/fire/intense
+	mob_overlay_state = "on_fire_intense"
+	damage_per_tick = 10
 
 /datum/modifier/fire/tick()
 	holder.inflict_heat_damage(damage_per_tick)

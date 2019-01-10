@@ -452,6 +452,13 @@
 	emp_act(1)
 	to_chat(src, span("critical", "You've been struck by lightning!"))
 
+// Called when touching a lava tile.
+// Does roughly 100 damage to unprotected mobs, and 20 to fully protected mobs.
+/mob/living/lava_act()
+	add_modifier(/datum/modifier/fire/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
+	inflict_heat_damage(40) // Another 40, however this is instantly applied to unprotected mobs.
+	adjustFireLoss(20) // Lava cannot be 100% resisted with fire protection.
+
 /mob/living/proc/reagent_permeability()
 	return 1
 	return round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2)

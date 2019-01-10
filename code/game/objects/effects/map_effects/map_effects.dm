@@ -49,6 +49,7 @@
 		spawn(retry_delay) // Maybe someday we'll have fancy TG timers/schedulers.
 			if(!QDELETED(src))
 				.()
+		return
 
 	var/next_interval = rand(interval_lower_bound, interval_upper_bound)
 	spawn(next_interval)

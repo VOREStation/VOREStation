@@ -1191,6 +1191,7 @@
 #include "code\game\objects\structures\bedsheet_bin.dm"
 #include "code\game\objects\structures\bonfire.dm"
 #include "code\game\objects\structures\catwalk.dm"
+#include "code\game\objects\structures\cliff.dm"
 #include "code\game\objects\structures\coathanger.dm"
 #include "code\game\objects\structures\curtains.dm"
 #include "code\game\objects\structures\displaycase.dm"
@@ -1198,6 +1199,7 @@
 #include "code\game\objects\structures\door_assembly.dm"
 #include "code\game\objects\structures\electricchair.dm"
 #include "code\game\objects\structures\extinguisher.dm"
+#include "code\game\objects\structures\fence.dm"
 #include "code\game\objects\structures\fitness.dm"
 #include "code\game\objects\structures\flora.dm"
 #include "code\game\objects\structures\flora_vr.dm"
@@ -1303,7 +1305,11 @@
 #include "code\game\turfs\simulated\floor_icon.dm"
 #include "code\game\turfs\simulated\floor_static.dm"
 #include "code\game\turfs\simulated\floor_types.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\turfs\simulated\floor_types_vr.dm"
+=======
+#include "code\game\turfs\simulated\lava.dm"
+>>>>>>> afa149c... Adds New PoI Features + Bonus PoI (#5796):polaris.dme
 #include "code\game\turfs\simulated\wall_attacks.dm"
 #include "code\game\turfs\simulated\wall_icon.dm"
 #include "code\game\turfs\simulated\wall_types.dm"
