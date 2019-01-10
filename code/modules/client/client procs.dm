@@ -44,7 +44,7 @@
 	//Admin PM
 	if(href_list["priv_msg"])
 		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
+		if(ismob(C)) 		//Old stuff can feed-in mobs instead ofGLOB.clients
 			var/mob/M = C
 			C = M.client
 		cmd_admin_pm(C,null)
@@ -108,8 +108,8 @@
 	src << "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>"
 
 
-	clients += src
-	directory[ckey] = src
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -181,8 +181,8 @@
 		holder.owner = null
 		admins -= src
 	GLOB.ahelp_tickets.ClientLogout(src)
-	directory -= ckey
-	clients -= src
+	GLOB.directory -= ckey
+	GLOB.clients -= src
 	return ..()
 
 /client/Destroy()
