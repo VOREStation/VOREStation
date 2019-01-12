@@ -59,14 +59,13 @@ var/list/possible_cable_coil_colours = list(
 	var/obj/machinery/power/breakerbox/breaker_box
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
-
 	if(drain_check)
 		return 1
 
-	var/datum/powernet/PN = get_powernet()
-	if(!PN) return 0
+	if(!powernet)
+		return 0
 
-	return PN.draw_power(amount)
+	return powernet.draw_power(amount)
 
 /obj/structure/cable/yellow
 	color = COLOR_YELLOW
@@ -122,6 +121,35 @@ var/list/possible_cable_coil_colours = list(
 			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
 	return
 
+
+// Rotating cables requires d1 and d2 to be rotated
+/obj/structure/cable/set_dir(new_dir)
+	if(powernet)
+		cut_cable_from_powernet() // Remove this cable from the powernet so the connections update
+
+	// If d1 is 0, then it's a not, and doesn't rotate
+	if(d1)
+		// Using turn will maintain the cable's shape
+		// Taking the difference between current orientation and new one
+		d1 = turn(d1, dir2angle(new_dir) - dir2angle(dir))
+	d2 = turn(d2, dir2angle(new_dir) - dir2angle(dir))
+
+	// Maintain d1 < d2
+	if(d1 > d2)
+		var/temp = d1
+		d1 = d2
+		d2 = temp
+
+	//	..()	Cable sprite generation is dependent upon only d1 and d2.
+	// 			Actually changing dir will rotate the generated sprite to look wrong, but function correctly.
+	update_icon()
+	// Add this cable back to the powernet, if it's connected to any
+	if(d1)
+		mergeConnectedNetworks(d1)
+	else
+		mergeConnectedNetworksOnTurf()
+	mergeConnectedNetworks(d2)
+
 ///////////////////////////////////
 // General procedures
 ///////////////////////////////////
@@ -138,10 +166,6 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/update_icon()
 	icon_state = "[d1]-[d2]"
 	alpha = invisibility ? 127 : 255
-
-// returns the powernet this cable belongs to
-/obj/structure/cable/proc/get_powernet()			//TODO: remove this as it is obsolete
-	return powernet
 
 //Telekinesis has no effect on a cable
 /obj/structure/cable/attack_tk(mob/user)

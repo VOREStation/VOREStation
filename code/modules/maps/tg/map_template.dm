@@ -24,7 +24,10 @@
 	if(rename)
 		name = rename
 
+<<<<<<< HEAD
 /datum/map_template/proc/preload_size(path, orientation = SOUTH)
+=======
+/datum/map_template/proc/preload_size(path, orientation = 0)
 	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
 		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
@@ -69,7 +72,7 @@
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH)
+/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = 0)
 	var/x = 1
 	var/y = 1
 
@@ -89,10 +92,10 @@
 	on_map_loaded(world.maxz) //VOREStation Edit
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = 0)
 	var/old_T = T
 	if(centered)
-		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
+		T = locate(T.x - round(((orientation%180) ? height : width)/2) , T.y - round(((orientation%180) ? width : height)/2) , T.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
 	if(!T)
 		return
 	if(T.x+width > world.maxx)
@@ -117,15 +120,15 @@
 	loaded++
 	return TRUE
 
-/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = 0)
 	var/turf/placement = T
 	if(centered)
-		var/turf/corner = locate(placement.x - round(((orientation & NORTH|SOUTH) ? width : height)/2), placement.y - round(((orientation & NORTH|SOUTH) ? height : width)/2), placement.z)
+		var/turf/corner = locate(placement.x - round(((orientation%180) ? height : width)/2), placement.y - round(((orientation%180) ? width : height)/2), placement.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
 		if(corner)
 			placement = corner
-	return block(placement, locate(placement.x+((orientation & NORTH|SOUTH) ? width : height)-1, placement.y+((orientation & NORTH|SOUTH) ? height : width)-1, placement.z))
+	return block(placement, locate(placement.x+((orientation%180) ? height : width)-1, placement.y+((orientation%180) ? width : height)-1, placement.z))
 
-/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = 0)
 	var/deleted_atoms = 0
 	admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
@@ -139,7 +142,7 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = SOUTH)
+/proc/load_new_z_level(var/file, var/name, var/orientation = 0)
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
@@ -216,13 +219,13 @@
 
 			var/orientation
 			if(chosen_template.fixed_orientation || !config.random_submap_orientation)
-				orientation = SOUTH
+				orientation = 0
 			else
-				orientation = pick(cardinal)
+				orientation = pick(list(0, 90, 180, 270))
 
 			chosen_template.preload_size(chosen_template.mappath, orientation)
-			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
-			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)
+			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation%180) ? chosen_template.height : chosen_template.width) / 2) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
+			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation%180) ? chosen_template.width : chosen_template.height) / 2)
 			var/z_level = pick(z_levels)
 			var/turf/T = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z_level)
 			var/valid = TRUE
