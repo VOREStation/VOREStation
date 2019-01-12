@@ -49,7 +49,7 @@
 				if(shadekin)
 					shadekin.death()
 
-		/*if(SMITE_SHADEKIN_NOMF) // Disabled until shadekin are reenabled.
+		/*if(SMITE_SHADEKIN_NOMF)
 			var/list/kin_types = list(
 				"Red Eyes (Dark)" =	/mob/living/simple_animal/shadekin/red/dark,
 				"Red Eyes (Light)" = /mob/living/simple_animal/shadekin/red/white,
@@ -73,7 +73,7 @@
 			var/kin_type = input("Select the type of shadekin for [target] nomf","Shadekin Type Choice") as null|anything in kin_types
 			if(!kin_type || !target)
 				return
-		*/
+
 
 			kin_type = kin_types[kin_type]
 
@@ -118,6 +118,7 @@
 				target.ghostize()
 				qdel(target)
 				qdel(shadekin)
+		*/
 
 		if(SMITE_REDSPACE_ABDUCT)
 			redspace_abduction(target, src)
