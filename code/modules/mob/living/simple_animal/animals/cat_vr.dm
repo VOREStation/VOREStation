@@ -48,7 +48,7 @@
 	icon_dead = "kitten" //Teleports out
 	gender = MALE
 	holder_type = /obj/item/weapon/holder/cat/fluff/tabiranth
-	var/friend_name = "Ascian"
+	friend_name = "Ascian"
 	digestable = 0
 	meat_amount = 0
 	maxHealth = 50
