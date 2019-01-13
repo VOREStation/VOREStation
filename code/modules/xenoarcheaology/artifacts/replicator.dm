@@ -26,7 +26,7 @@
 	/obj/item/roller,
 	/obj/structure/closet/crate,
 	/obj/structure/closet/acloset,
-	/mob/living/simple_mob/mimic/crate, // Vorestation edit
+	// /mob/living/simple_mob/mimic/crate, // Vorestation edit //VORESTATION AI TEMPORARY REMOVAL
 	/mob/living/simple_mob/mechanical/viscerator,
 	/mob/living/simple_mob/mechanical/hivebot,
 	/obj/item/device/analyzer,

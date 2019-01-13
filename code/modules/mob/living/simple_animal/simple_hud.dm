@@ -1,4 +1,4 @@
-/mob/living/simple_animal/instantiate_hud(var/datum/hud/hud)
+/mob/living/simple_mob/instantiate_hud(var/datum/hud/hud)
 	if(!client)
 		return //Why bother.
 

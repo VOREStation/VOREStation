@@ -299,7 +299,7 @@
 				if(soaked >= round(throw_damage*0.8))
 					return
 
-				//Handles embedding for non-humans and simple_animals.
+				//Handles embedding for non-humans and simple_mobs.
 				embed(O)
 
 				var/turf/T = near_wall(dir,2)

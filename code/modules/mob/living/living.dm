@@ -129,9 +129,9 @@ default behaviour is:
 				forceMove(tmob.loc)
 
 				//VOREstation Edit - Begin
-				if (istype(tmob, /mob/living/simple_animal)) //check bumpnom chance, if it's a simplemob that's bumped
+				if (istype(tmob, /mob/living/simple_mob)) //check bumpnom chance, if it's a simplemob that's bumped
 					tmob.Bumped(src)
-				else if(istype(src, /mob/living/simple_animal)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
+				else if(istype(src, /mob/living/simple_mob)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
 					Bumped(tmob)
 				if (tmob.loc == src) //check if they got ate, and if so skip the forcemove
 					now_pushing = 0

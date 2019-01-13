@@ -1,4 +1,4 @@
-/mob/living/simple_animal/snake
+/mob/living/simple_mob/snake
 	name = "snake"
 	desc = "A big thick snake."
 	icon = 'icons/mob/snake_vr.dmi'
@@ -23,13 +23,13 @@
 	speak_emote = list("hisses")
 
 //NOODLE IS HERE! SQUEEEEEEEE~
-/mob/living/simple_animal/snake/Noodle
+/mob/living/simple_mob/snake/Noodle
 	name = "Noodle"
 	desc = "This snake is particularly chubby and demands nothing but the finest of treats."
 	var/turns_since_scan = 0
 	var/obj/movement_target
 
-/mob/living/simple_animal/snake/Noodle/Life() //stolen from Ian in corgi.dm
+/mob/living/simple_mob/snake/Noodle/Life() //stolen from Ian in corgi.dm
 	if(!..())
 		return 0
 
@@ -61,7 +61,7 @@
 				else if(ishuman(movement_target.loc) && prob(20))
 					visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
 
-/mob/living/simple_animal/snake/Noodle/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/snake/Noodle/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/snakesnack))
 		visible_message("<span class='notice'>[user] feeds \the [O] to [src].</span>")
 		qdel(O)

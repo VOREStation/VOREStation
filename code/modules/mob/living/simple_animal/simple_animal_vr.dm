@@ -3,7 +3,7 @@
 #define SA_ICON_DEAD	0x02
 #define SA_ICON_REST	0x03
 
-/mob/living/simple_animal
+/mob/living/simple_mob
 	var/vore_active = 0					// If vore behavior is enabled for this mob
 
 	var/vore_capacity = 1				// The capacity (in people) this person can hold
@@ -31,20 +31,21 @@
 
 	var/vore_fullness = 0				// How "full" the belly is (controls icons)
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
+	var/life_disabled = 0				// For performance reasons
 
 // Release belly contents before being gc'd!
-/mob/living/simple_animal/Destroy()
+/mob/living/simple_mob/Destroy()
 	release_vore_contents()
 	prey_excludes.Cut()
 	. = ..()
 
 //For all those ID-having mobs
-/mob/living/simple_animal/GetIdCard()
+/mob/living/simple_mob/GetIdCard()
 	if(myid)
 		return myid
 
 // Update fullness based on size & quantity of belly contents
-/mob/living/simple_animal/proc/update_fullness()
+/mob/living/simple_mob/proc/update_fullness()
 	var/new_fullness = 0
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
@@ -53,7 +54,7 @@
 	new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
 
-/mob/living/simple_animal/proc/update_vore_icon()
+/mob/living/simple_mob/proc/update_vore_icon()
 	if(!vore_active)
 		return 0
 	update_fullness()
@@ -66,34 +67,34 @@
 	else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 		return "[icon_rest]-[vore_fullness]"
 
-/mob/living/simple_animal/proc/will_eat(var/mob/living/M)
+/mob/living/simple_mob/proc/will_eat(var/mob/living/M)
 	if(client) //You do this yourself, dick!
-		ai_log("vr/wont eat [M] because we're player-controlled", 3)
+		//ai_log("vr/wont eat [M] because we're player-controlled", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(!istype(M)) //Can't eat 'em if they ain't /mob/living
-		ai_log("vr/wont eat [M] because they are not /mob/living", 3)
+		//ai_log("vr/wont eat [M] because they are not /mob/living", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(src == M) //Don't eat YOURSELF dork
-		ai_log("vr/won't eat [M] because it's me!", 3)
+		//ai_log("vr/won't eat [M] because it's me!", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(vore_ignores_undigestable && !M.digestable) //Don't eat people with nogurgle prefs
-		ai_log("vr/wont eat [M] because I am picky", 3)
+		//ai_log("vr/wont eat [M] because I am picky", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(!M.allowmobvore) // Don't eat people who don't want to be ate by mobs
-		ai_log("vr/wont eat [M] because they don't allow mob vore", 3)
+		//ai_log("vr/wont eat [M] because they don't allow mob vore", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(M in prey_excludes) // They're excluded
-		ai_log("vr/wont eat [M] because they are excluded", 3)
+		//ai_log("vr/wont eat [M] because they are excluded", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(M.size_multiplier < vore_min_size || M.size_multiplier > vore_max_size)
-		ai_log("vr/wont eat [M] because they too small or too big", 3)
+		//ai_log("vr/wont eat [M] because they too small or too big", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	if(vore_capacity != 0 && (vore_fullness >= vore_capacity)) // We're too full to fit them
-		ai_log("vr/wont eat [M] because I am too full", 3)
+		//ai_log("vr/wont eat [M] because I am too full", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
 	return 1
-
-/mob/living/simple_animal/PunchTarget()
+/*
+/mob/living/simple_mob/PunchTarget()
 	ai_log("vr/PunchTarget() [target_mob]", 3)
 
 	// If we're not hungry, call the sideways "parent" to do normal punching
@@ -110,8 +111,9 @@
 		return EatTarget()
 	else
 		return ..()
-
-/mob/living/simple_animal/proc/CanPounceTarget() //returns either FALSE or a %chance of success
+		*/ //VORESTATION AI TEMPORARY REMOVAL
+/*
+/mob/living/simple_mob/proc/CanPounceTarget() //returns either FALSE or a %chance of success
 	if(!target_mob.canmove || issilicon(target_mob) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
 	if(!prob(vore_pounce_chance)) //mob doesn't want to pounce
@@ -123,9 +125,9 @@
 		return FALSE
 	else
 		return max(0,(vore_pounce_successrate - (vore_pounce_falloff * TargetHealthPercent)))
-
-
-/mob/living/simple_animal/proc/PounceTarget(var/successrate = 100)
+*/ //VORESTATION AI TEMPORARY REMOVAL
+/*
+/mob/living/simple_mob/proc/PounceTarget(var/successrate = 100)
 	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		target_mob.Weaken(5)
@@ -138,40 +140,40 @@
 		return EatTarget()
 	else
 		return //just leave them
-
+*/ //VORESTATION AI TEMPORARY REMOVAL
 // Attempt to eat target
 // TODO - Review this.  Could be some issues here
-/mob/living/simple_animal/proc/EatTarget()
-	ai_log("vr/EatTarget() [target_mob]",2)
-	stop_automated_movement = 1
-	var/old_target = target_mob
-	handle_stance(STANCE_BUSY)
-	. = animal_nom(target_mob)
+/mob/living/simple_mob/proc/EatTarget(atom/A)
+	//ai_log("vr/EatTarget() [target_mob]",2) //VORESTATION AI TEMPORARY REMOVAL
+	//stop_automated_movement = 1 //VORESTATION AI TEMPORARY REMOVAL
+	var/old_target = A
+	set_AI_busy(1) //VORESTATION AI TEMPORARY EDIT
+	. = animal_nom(A)
 	playsound(src, swallowsound, 50, 1)
 	update_icon()
 
 	if(.)
 		// If we succesfully ate them, lose the target
-		LoseTarget()
+		set_AI_busy(0) // lose_target(A) //Unsure what to put here. Replaced with set_AI_busy(1) //VORESTATION AI TEMPORARY EDIT
 		return old_target
-	else if(old_target == target_mob)
+	else if(old_target == A)
 		// If we didn't but they are still our target, go back to attack.
 		// but don't run the handler immediately, wait until next tick
 		// Otherwise we'll be in a possibly infinate loop
-		set_stance(STANCE_ATTACK)
-	stop_automated_movement = 0
+		set_AI_busy(0) //VORESTATION AI TEMPORARY EDIT
+	//stop_automated_movement = 0 //VORESTATION AI TEMPORARY EDIT
 
-/mob/living/simple_animal/death()
+/mob/living/simple_mob/death()
 	release_vore_contents()
 	. = ..()
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
-/mob/living/simple_animal/init_vore()
+/mob/living/simple_mob/init_vore()
 	if(!vore_active || no_vore)
 		return
 
 	if(!IsAdvancedToolUser())
-		verbs |= /mob/living/simple_animal/proc/animal_nom
+		verbs |= /mob/living/simple_mob/proc/animal_nom
 		verbs |= /mob/living/proc/shred_limb
 
 	if(LAZYLEN(vore_organs))
@@ -213,30 +215,30 @@
 		"The churning walls slowly pulverize you into meaty nutrients.",
 		"The stomach glorps and gurgles as it tries to work you into slop.")
 
-/mob/living/simple_animal/Bumped(var/atom/movable/AM, yes)
+/mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
 	if(ismob(AM))
 		var/mob/tmob = AM
 		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
 			if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
 				tmob.Weaken(5)
 			tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
-			stop_automated_movement = 1
+			//stop_automated_movement = 1 //VORESTATION AI TEMPORARY REMOVAL
 			animal_nom(tmob)
 			update_icon()
-			stop_automated_movement = 0
+			//stop_automated_movement = 0 //VORESTATION AI TEMPORARY REMOVAL
 	..()
-
+/* //Was replaced with suitable_turf_type, but that can be done later. //VORESTATION AI TEMPORARY REMOVAL
 // Checks to see if mob doesn't like this kind of turf
-/mob/living/simple_animal/avoid_turf(var/turf/turf)
+/mob/living/simple_mob/avoid_turf(var/turf/turf)
 	//So we only check if the parent didn't find anything terrible
 	if((. = ..(turf)))
 		return .
 
 	if(istype(turf,/turf/unsimulated/floor/sky))
 		return TRUE //Mobs aren't that stupid, probably
-
+*/
 //Grab = Nomf
-/mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
 
 	if(a_intent == I_GRAB && isliving(A) && !has_hands)

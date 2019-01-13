@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/syndicate
+/mob/living/simple_mob/hostile/syndicate
 	name = "mercenary"
 	desc = "Death to the Company."
 	tt_desc = "E Homo sapiens"
@@ -65,7 +65,7 @@
 
 	var/corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier
 
-/mob/living/simple_animal/hostile/syndicate/death()
+/mob/living/simple_mob/hostile/syndicate/death()
 	if(corpse)
 		..()
 		new corpse (src.loc)
@@ -78,7 +78,7 @@
 
 ///////////////Sword and shield////////////
 
-/mob/living/simple_animal/hostile/syndicate/melee
+/mob/living/simple_mob/hostile/syndicate/melee
 	icon_state = "syndicatemelee"
 	icon_living = "syndicatemelee"
 
@@ -93,7 +93,7 @@
 
 	loot_list = list(/obj/item/weapon/melee/energy/sword/red = 100, /obj/item/weapon/shield/energy = 100)
 
-/mob/living/simple_animal/hostile/syndicate/melee/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/hostile/syndicate/melee/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.force)
 		if(prob(20))
 			visible_message("<span class='danger'>\The [src] blocks \the [O] with its shield!</span>")
@@ -106,7 +106,7 @@
 		usr << "<span class='warning'>This weapon is ineffective, it does no damage.</span>"
 		visible_message("<span class='warning'>\The [user] gently taps [src] with \the [O].</span>")
 
-/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
 		visible_message("<font color='red'><B>[src] blocks [Proj] with its shield!</B></font>")
@@ -116,7 +116,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/hostile/syndicate/melee/space
+/mob/living/simple_mob/hostile/syndicate/melee/space
 	name = "syndicate commando"
 	icon_state = "syndicatemeleespace"
 	icon_living = "syndicatemeleespace"
@@ -137,10 +137,10 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/syndicatecommando
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/syndicate/melee/space/Process_Spacemove(var/check_drift = 0)
 	return
 
-/mob/living/simple_animal/hostile/syndicate/ranged
+/mob/living/simple_mob/hostile/syndicate/ranged
 	icon_state = "syndicateranged"
 	icon_living = "syndicateranged"
 
@@ -152,7 +152,7 @@
 
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
 
-/mob/living/simple_animal/hostile/syndicate/ranged/laser
+/mob/living/simple_mob/hostile/syndicate/ranged/laser
 	icon_state = "syndicateranged_laser"
 	icon_living = "syndicateranged_laser"
 	rapid = 0
@@ -161,7 +161,7 @@
 
 	loot_list = list(/obj/item/weapon/gun/energy/laser = 100)
 
-/mob/living/simple_animal/hostile/syndicate/ranged/ionrifle
+/mob/living/simple_mob/hostile/syndicate/ranged/ionrifle
 	icon_state = "syndicateranged_ionrifle"
 	icon_living = "syndicateranged_ionrifle"
 	rapid = 0
@@ -170,7 +170,7 @@
 
 	loot_list = list(/obj/item/weapon/gun/energy/ionrifle = 100)
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space
+/mob/living/simple_mob/hostile/syndicate/ranged/space
 	name = "space mercenary" //VOREStation Edit
 	icon_state = "syndicaterangedpsace"
 	icon_living = "syndicaterangedpsace"
@@ -190,7 +190,7 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/syndicatecommando
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/syndicate/ranged/space/Process_Spacemove(var/check_drift = 0)
 	return
 
 ///////////////////////////////////////////////
@@ -198,38 +198,38 @@
 //	Don't leave corpses, to help balance loot.
 ///////////////////////////////////////////////
 
-/mob/living/simple_animal/hostile/syndicate/poi
+/mob/living/simple_mob/hostile/syndicate/poi
 	loot_list = list()
 	corpse = null
 
-/mob/living/simple_animal/hostile/syndicate/melee/poi
+/mob/living/simple_mob/hostile/syndicate/melee/poi
 	loot_list = list()
 	corpse = null
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/poi
+/mob/living/simple_mob/hostile/syndicate/melee/space/poi
 	loot_list = list()
 	corpse = null
 
-/mob/living/simple_animal/hostile/syndicate/ranged/poi
+/mob/living/simple_mob/hostile/syndicate/ranged/poi
 	loot_list = list()
 	corpse = null
 
-/mob/living/simple_animal/hostile/syndicate/ranged/laser/poi
+/mob/living/simple_mob/hostile/syndicate/ranged/laser/poi
 	loot_list = list()
 	corpse = null
 
-/mob/living/simple_animal/hostile/syndicate/ranged/ionrifle/poi
+/mob/living/simple_mob/hostile/syndicate/ranged/ionrifle/poi
 	loot_list = list()
 	corpse = null
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/poi
+/mob/living/simple_mob/hostile/syndicate/ranged/space/poi
 	loot_list = list()
 	corpse = null
 
 
 //Viscerators
 
-/mob/living/simple_animal/hostile/viscerator
+/mob/living/simple_mob/hostile/viscerator
 	name = "viscerator"
 	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations."
 	icon = 'icons/mob/critter.dmi'
@@ -261,6 +261,6 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_animal/hostile/viscerator/death()
+/mob/living/simple_mob/hostile/viscerator/death()
 	..(null,"is smashed into pieces!")
 	qdel(src)

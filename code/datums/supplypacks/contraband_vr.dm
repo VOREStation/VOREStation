@@ -5,7 +5,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Stolen crate"
 	contraband = 1
-
+/* //VORESTATION AI TEMPORARY REMOVAL
 /datum/supply_pack/supply/wolfgirl
 	name = "Wolfgirl Crate"
 	cost = 200 //I mean, it's a whole wolfgirl
@@ -19,3 +19,4 @@
 	containertype = /obj/structure/largecrate/animal/catgirl
 	containername = "Catgirl crate"
 	contraband = 1
+*/

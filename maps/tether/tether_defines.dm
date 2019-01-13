@@ -249,7 +249,7 @@
 	if(activated && isemptylist(frozen_mobs))
 		return
 	activated = 1
-	for(var/mob/living/simple_animal/M in frozen_mobs)
+	for(var/mob/living/simple_mob/M in frozen_mobs)
 		M.life_disabled = 0
 		frozen_mobs -= M
 	frozen_mobs.Cut()
