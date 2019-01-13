@@ -8,7 +8,7 @@
 	containertype = /obj/structure/largecrate
 	containername = "Exploration Dune Buggy Crate"
 */
-/datum/supply_pack/sci/pred
+/datum/supply_pack/sci/pred //VORESTATION AI TEMPORARY REMOVAL. File commented out until vore mobs fixed.
 	name = "Dangerous Predator crate"
 	cost = 40
 	containertype = /obj/structure/largecrate/animal/pred

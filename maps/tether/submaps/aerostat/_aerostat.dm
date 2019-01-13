@@ -64,10 +64,10 @@
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/hivebot/range = 3,
-		/mob/living/simple_animal/hostile/hivebot/range/ion = 3,
-		/mob/living/simple_animal/hostile/hivebot/range/laser = 3,
-		/mob/living/simple_animal/hostile/corrupthound = 1
+		/*/mob/living/simple_mob/hostile/hivebot/range = 3,
+		/mob/living/simple_mob/hostile/hivebot/range/ion = 3,
+		/mob/living/simple_mob/hostile/hivebot/range/laser = 3,
+		/mob/living/simple_mob/hostile/corrupthound = 1*/ //VORESTATION AI TEMPORARY REMOVAL
 	)
 
 /obj/tether_away_spawner/aerostat_surface
@@ -78,9 +78,9 @@
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/jelly = 3,
-		/mob/living/simple_animal/hostile/viscerator = 2,
-		/mob/living/simple_animal/hostile/corrupthound = 1
+		/* /mob/living/simple_mob/hostile/jelly = 3,
+		/mob/living/simple_mob/hostile/viscerator = 2,
+		/mob/living/simple_mob/hostile/corrupthound = 1*/ //VORESTATION AI TEMPORARY REMOVAL
 	)
 
 /obj/structure/old_roboprinter

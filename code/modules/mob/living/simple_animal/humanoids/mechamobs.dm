@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/mecha
+/mob/living/simple_mob/hostile/mecha
 	name = "mercenary gygax"
 	desc = "Well that's forboding."
 	icon = 'icons/mecha/mecha.dmi'
@@ -66,38 +66,38 @@
 	var/datum/effect/effect/system/spark_spread/sparks
 	var/wreckage = /obj/effect/decal/mecha_wreckage/gygax/dark
 
-/mob/living/simple_animal/hostile/mecha/New()
+/mob/living/simple_mob/hostile/mecha/New()
 	..()
 	sparks = new (src)
 	sparks.set_up(3, 1, src)
 
-/mob/living/simple_animal/hostile/mecha/Destroy()
+/mob/living/simple_mob/hostile/mecha/Destroy()
 	qdel(sparks)
 	..()
 
-/mob/living/simple_animal/hostile/mecha/Life()
+/mob/living/simple_mob/hostile/mecha/Life()
 	. = ..()
 	if(!.) return
 	if((health < getMaxHealth()*0.3) && prob(10))
 		sparks.start()
 
-/mob/living/simple_animal/hostile/mecha/bullet_act()
+/mob/living/simple_mob/hostile/mecha/bullet_act()
 	..()
 	sparks.start()
 
-/mob/living/simple_animal/hostile/mecha/death()
+/mob/living/simple_mob/hostile/mecha/death()
 	..(0,"explodes!")
 	sparks.start()
 	explosion(get_turf(src), 0, 0, 1, 3)
 	qdel(src)
 	new /obj/effect/decal/mecha_wreckage/gygax/dark(get_turf(src))
 
-/mob/living/simple_animal/hostile/mecha/Move()
+/mob/living/simple_mob/hostile/mecha/Move()
 	..()
 	playsound(src,'sound/mecha/mechstep.ogg',40,1)
 
 // This is a PoI mob, not the normal, floaty drones that hang out around windows
-/mob/living/simple_animal/hostile/mecha/malf_drone
+/mob/living/simple_mob/hostile/mecha/malf_drone
 	name = "autonomous mechanized drone"
 	desc = "It appears to be an exosuit, piloted by a drone intelligence. It looks scary."
 	intelligence_level = SA_ROBOTIC
@@ -116,8 +116,8 @@
 	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
 	returns_home = TRUE
 
-/mob/living/simple_animal/hostile/mecha/malf_drone/isSynthetic()
+/mob/living/simple_mob/hostile/mecha/malf_drone/isSynthetic()
 	return TRUE
 
-/mob/living/simple_animal/hostile/mecha/malf_drone/speech_bubble_appearance()
+/mob/living/simple_mob/hostile/mecha/malf_drone/speech_bubble_appearance()
 	return "synthetic_evil"

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/clown
+/mob/living/simple_mob/hostile/clown
 	name = "clown"
 	desc = "A denizen of clown planet"
 	tt_desc = "E Homo sapiens corydon" //this is an actual clown, as opposed to someone dressed up as one

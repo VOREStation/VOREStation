@@ -4,7 +4,7 @@
 	icon = 'icons/mob/screen_spells.dmi'
 	var/ability_name = "FIX ME"
 	var/cost = 50
-	var/mob/living/simple_animal/shadekin/my_kin
+	var/mob/living/simple_mob/shadekin/my_kin
 	var/shift_mode = NOT_WHILE_SHIFTED
 	var/ab_sound
 
@@ -130,7 +130,7 @@
 	on_created_text = "<span class='notice'>You drag part of The Dark into realspace, enveloping yourself.</span>"
 	on_expired_text = "<span class='warning'>You lose your grasp on The Dark and realspace reasserts itself.</span>"
 	stacks = MODIFIER_STACK_EXTEND
-	var/mob/living/simple_animal/shadekin/my_kin
+	var/mob/living/simple_mob/shadekin/my_kin
 
 /datum/modifier/shadekin/create_shade/tick()
 	if(my_kin.ability_flags & AB_PHASE_SHIFTED)

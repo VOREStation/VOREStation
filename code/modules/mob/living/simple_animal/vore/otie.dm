@@ -3,7 +3,7 @@
 // Probably easier to troubleshoot when we ain't breaking the server by spawning a buttload of heavily extra feature coded snowflake mobs to the wilderness as mass cannonfodder.
 // Also ToDo: An actual "simple" mob for that purpose if necessary :v
 
-/mob/living/simple_animal/otie //Spawn this one only if you're looking for a bad time. Not friendly.
+/mob/living/simple_mob/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."
 	tt_desc = "Otus robustus"
@@ -55,13 +55,13 @@
 
 // Activate Noms!
 
-/mob/living/simple_animal/otie
+/mob/living/simple_mob/otie
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 20
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
+/mob/living/simple_mob/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "mutated feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
 	tt_desc = "Otus phoronis"
@@ -85,7 +85,7 @@
 	glowyeyes = TRUE
 	eyetype = "photie"
 
-/mob/living/simple_animal/otie/red
+/mob/living/simple_mob/otie/red
 	name = "feral red otie"
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces."
 	tt_desc = "Otus infernalis"
@@ -109,19 +109,19 @@
 	glowyeyes = TRUE
 	eyetype = "hotie"
 
-/mob/living/simple_animal/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
+/mob/living/simple_mob/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "red otie"
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. This one seems rather peaceful though."
 	faction = "neutral"
 	tamed = 1
 
-/mob/living/simple_animal/otie/friendly //gets the pet2tame feature and doesn't kill you right away
+/mob/living/simple_mob/otie/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
 	faction = "neutral"
 	tamed = 1
 
-/mob/living/simple_animal/otie/cotie //same as above but has a little collar :v
+/mob/living/simple_mob/otie/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
 	icon_state = "cotie"
@@ -130,7 +130,7 @@
 	faction = "neutral"
 	tamed = 1
 
-/mob/living/simple_animal/otie/cotie/phoron //friendly phoron pup with collar
+/mob/living/simple_mob/otie/cotie/phoron //friendly phoron pup with collar
 	name = "mutated otie"
 	desc = "Looks like someone did manage to domesticate one of those wild phoron mutants. What a badass."
 	tt_desc = "Otus phoronis"
@@ -149,7 +149,7 @@
 	glowyeyes = TRUE
 	eyetype = "photie"
 
-/mob/living/simple_animal/otie/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
+/mob/living/simple_mob/otie/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
 	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
 	icon_state = "sotie"
@@ -168,7 +168,7 @@
 	var/check_records = 0 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
 
-/mob/living/simple_animal/otie/security/phoron
+/mob/living/simple_mob/otie/security/phoron
 	name = "mutated guard otie"
 	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs."
 	tt_desc = "Otus phoronis"
@@ -189,15 +189,15 @@
 	glowyeyes = TRUE
 	eyetype = "sotie"
 
-/mob/living/simple_animal/otie/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_animal/mouse))
+/mob/living/simple_mob/otie/PunchTarget()
+	if(istype(target_mob,/mob/living/simple_mob/mouse))
 		return EatTarget()
 	else ..()
 
-/mob/living/simple_animal/otie/Found(var/atom/found_atom)
+/mob/living/simple_mob/otie/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
-	if(istype(found_atom,/mob/living/simple_animal/mouse))
+	if(istype(found_atom,/mob/living/simple_mob/mouse))
 		return found_atom
 	else if(ismob(found_atom))
 		var/mob/found_mob = found_atom
@@ -216,20 +216,20 @@
 	else
 		return null
 
-/mob/living/simple_animal/otie/security/Found(var/atom/found_atom)
+/mob/living/simple_mob/otie/security/Found(var/atom/found_atom)
 	if(check_threat(found_atom) >= 4)
 		if(resting)
 			lay_down()
 		return found_atom
 	..()
 
-/mob/living/simple_animal/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
+/mob/living/simple_mob/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
 	if(istype(O, /obj/item/weapon/reagent_containers/food))
 		qdel(O)
 		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
 		if(ai_inactive)//No autobarf on player control.
 			return
-		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_animal/otie/security))
+		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/otie/security))
 			to_chat(user,"<span class='notice'>The guard pup accepts your offer for their catch.</span>")
 			release_vore_contents()
 		else if(prob(2)) //Small chance to get prey out from non-sec oties.
@@ -238,21 +238,21 @@
 		return
 	. = ..()
 
-/mob/living/simple_animal/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
+/mob/living/simple_mob/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
 	if(ishuman(prey))
 		vore_selected.digest_mode = DM_HOLD
 		if(check_threat(prey) >= 4)
 			global_announcer.autosay("[src] has detained suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
-	if(istype(prey,/mob/living/simple_animal/mouse))
+	if(istype(prey,/mob/living/simple_mob/mouse))
 		vore_selected.digest_mode = DM_DIGEST
 	. = ..()
 
-/mob/living/simple_animal/otie/security/proc/check_threat(var/mob/living/M)
+/mob/living/simple_mob/otie/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
 		return 0
 	return M.assess_perp(0, 0, 0, check_records, check_arrest)
 
-/mob/living/simple_animal/otie/security/set_target(var/mob/M)
+/mob/living/simple_mob/otie/security/set_target(var/mob/M)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -280,7 +280,7 @@
 	return 0
 
 
-/mob/living/simple_animal/otie/security/proc/target_name(mob/living/T)
+/mob/living/simple_mob/otie/security/proc/target_name(mob/living/T)
 	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 		return H.get_id_name("unidentified person")
@@ -288,7 +288,7 @@
 
 //Basic friend AI
 
-/mob/living/simple_animal/otie/Life()
+/mob/living/simple_mob/otie/Life()
 	. = ..()
 	if(!. || ai_inactive) return
 
@@ -328,7 +328,7 @@
 
 //Pet 4 friendly
 
-/mob/living/simple_animal/otie/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/otie/attack_hand(mob/living/carbon/human/M as mob)
 
 	switch(M.a_intent)
 		if(I_HELP)
@@ -359,27 +359,27 @@
 		else
 			..()
 
-/mob/living/simple_animal/otie/proc/add_eyes()
+/mob/living/simple_mob/otie/proc/add_eyes()
 	if(!eye_layer)
 		eye_layer = image(icon, "[eyetype]-eyes")
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
 	add_overlay(eye_layer)
 
-/mob/living/simple_animal/otie/proc/remove_eyes()
+/mob/living/simple_mob/otie/proc/remove_eyes()
 	cut_overlay(eye_layer)
 
-/mob/living/simple_animal/otie/New()
+/mob/living/simple_mob/otie/New()
 	if(glowyeyes)
 		add_eyes()
 	..()
 
-/mob/living/simple_animal/otie/update_icon()
+/mob/living/simple_mob/otie/update_icon()
 	. = ..()
 	remove_eyes()
 	if(glowyeyes && stat == CONSCIOUS && !resting)
 		add_eyes()
 
-/mob/living/simple_animal/otie/death(gibbed, deathmessage = "dies!")
+/mob/living/simple_mob/otie/death(gibbed, deathmessage = "dies!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead

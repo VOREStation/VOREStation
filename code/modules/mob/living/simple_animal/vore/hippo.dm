@@ -1,4 +1,4 @@
-/mob/living/simple_animal/retaliate/hippo
+/mob/living/simple_mob/retaliate/hippo
 	name = "hippo"
 	desc = "Mostly know for the spectacular hit of the live action movie Hungry Hungry Hippos."
 	tt_desc = "Hippopotamus amphibius"
@@ -50,12 +50,12 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 // Activate Noms!
-/mob/living/simple_animal/retaliate/hippo //I don't know why it's in a seperate line but everyone does it so i do it
+/mob/living/simple_mob/retaliate/hippo //I don't know why it's in a seperate line but everyone does it so i do it
 	vore_active = 1
 	vore_capacity = 1
 	vore_bump_chance = 15
 	vore_bump_emote = "lazily wraps its tentacles around"
-	vore_standing_too = 1 
+	vore_standing_too = 1
 	vore_ignores_undigestable = 0
 	vore_default_mode = DM_HOLD
 	vore_digest_chance = 10

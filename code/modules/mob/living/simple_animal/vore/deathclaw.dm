@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/deathclaw
+/mob/living/simple_mob/hostile/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
 	icon = 'icons/mob/vore64x64.dmi'
@@ -23,7 +23,7 @@
 	pixel_y = 0
 
 // Activate Noms!
-/mob/living/simple_animal/hostile/deathclaw
+/mob/living/simple_mob/hostile/deathclaw
 	vore_active = 1
 	vore_capacity = 2
 	vore_max_size = RESIZE_HUGE

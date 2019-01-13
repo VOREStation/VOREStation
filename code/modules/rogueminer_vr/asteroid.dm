@@ -113,7 +113,7 @@
 	New()
 		..()
 		spot_add(2,2,/obj/random/cargopod) //EXTRA loot!
-		spot_add(2,2,/mob/living/simple_animal/hostile/alien) //GRRR
+		//spot_add(2,2,/mob/living/simple_mob/hostile/alien) //GRRR //VORESTATION AI TEMPORARY REMOVAL
 
 //Longer cargo container for higher difficulties
 /datum/rogue/asteroid/predef/cargo_large
@@ -146,5 +146,5 @@
 		spot_add(3,3,/obj/random/cargopod) //Mid loot
 		spot_add(4,3,/obj/random/cargopod) //Right loot
 
-		if(prob(30))
-			spot_add(3,3,/mob/living/simple_animal/hostile/alien) //And maybe a friend.
+		//if(prob(30))
+			//spot_add(3,3,/mob/living/simple_mob/hostile/alien) //And maybe a friend. //VORESTATION AI TEMPORARY REMOVAL
