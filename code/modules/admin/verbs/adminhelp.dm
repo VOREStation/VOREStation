@@ -343,8 +343,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
+<<<<<<< HEAD
 	msg += "<font color='red'><b>This is something that can be solved ICly, and does not currently require admin intervention.</b></font><br>"  //VOREStation Edit
 	msg += "<font color='red'>Your AdminHelp may also be unable to be answered due to ongoing events.</font>"  //VOREStation Edit
+=======
+	msg += "<font color='red'><b>This is something that can be solved ICly, and does not currently require staff intervention.</b></font><br>"
+	msg += "<font color='red'>Your AdminHelp may also be unanswerable due to ongoing events.</font>"
+>>>>>>> ece6992... Merge pull request #5820 from Anewbe/ic_issue_response
 
 	if(initiator)
 		to_chat(initiator, msg)
