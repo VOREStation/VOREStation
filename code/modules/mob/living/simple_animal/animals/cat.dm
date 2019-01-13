@@ -174,6 +174,7 @@
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
 	gender = NEUTER
+	holder_type = /obj/item/weapon/holder/cat/kitten //VOREStation Edit
 
 // Leaving this here for now.
 /obj/item/weapon/holder/cat/fluff/bones
