@@ -49,9 +49,9 @@
 	destinations = list(/datum/shuttle_destination/excursion/virgo2orbit, /datum/shuttle_destination/excursion/aerostat)
 
 /obj/away_mission_init/aerostat/initialize()
-	seed_submaps(list(z), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/virgo2(null, 1, 1, z, 64, 64)
+	/*seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)*/
 
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL

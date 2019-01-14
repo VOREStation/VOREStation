@@ -1,3 +1,21 @@
+/datum/gear/suit/roles/poncho/cloak/research
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+
+/datum/gear/suit/roles/poncho/cloak/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+
+/datum/gear/suit/wintercoat/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+
+/datum/gear/suit/wintercoat/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+
+/datum/gear/suit/snowsuit/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+
+/datum/gear/suit/snowsuit/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat

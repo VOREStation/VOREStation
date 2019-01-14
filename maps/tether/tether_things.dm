@@ -396,8 +396,6 @@ var/global/list/latejoin_tram   = list()
 	..()
 	for(var/i = 1 to 3)
 		new /obj/item/weapon/gun/energy/frontier/locked(src)
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/gun/energy/frontier/locked/holdout(src)
 
 // Underdark mob spawners
 /obj/tether_away_spawner/underdark_normal

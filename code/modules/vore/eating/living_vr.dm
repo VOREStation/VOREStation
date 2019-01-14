@@ -458,9 +458,9 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-    volume = 1000
+    volume = 2500
     temperature = 293.150
-    total_moles = 40
+    total_moles = 104
 
 /datum/gas_mixture/belly_air/New()
     . = ..()
@@ -551,6 +551,10 @@
 	var/obj/item/I = get_active_hand()
 	if(!I)
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
+		return
+
+	if(is_type_in_list(I,item_vore_blacklist))
+		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
 		return
 
 	if(is_type_in_list(I,edible_trash))

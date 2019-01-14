@@ -46,6 +46,12 @@
 	pixel_x = -16
 	pixel_y = 0
 
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+	mount_offset_y = 10
+
 	var/glowyeyes = FALSE
 	var/image/eye_layer = null
 	var/eyetype
@@ -383,3 +389,12 @@
 	.=..()
 	resting = 0
 	icon_state = icon_dead
+
+/mob/living/simple_animal/otie/Login()
+	. = ..()
+	if(!riding_datum)
+		riding_datum = new /datum/riding/simple_animal(src)
+	verbs |= /mob/living/simple_animal/proc/animal_mount
+
+/mob/living/simple_animal/otie/MouseDrop_T(mob/living/M, mob/living/user)
+	return

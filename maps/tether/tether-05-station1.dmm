@@ -21787,7 +21787,7 @@
 	icon_state = "1-8"
 	},
 /obj/effect/landmark/start{
-	name = "Search and Rescue"
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
@@ -21851,7 +21851,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start{
-	name = "Search and Rescue"
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
@@ -21912,7 +21912,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start{
-	name = "Search and Rescue"
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)

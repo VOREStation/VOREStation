@@ -49,6 +49,12 @@
 	meat_amount = 10 //Infinite meat!
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+	mount_offset_y = 20
+
 // Activate Noms!
 /mob/living/simple_mob/retaliate/hippo //I don't know why it's in a seperate line but everyone does it so i do it
 	vore_active = 1
@@ -64,3 +70,12 @@
 	vore_stomach_name = "rumen" //First stomach of a ruminant. It's where the pre digestion bacteria stuff happens. Very warm.
 	vore_stomach_flavor	= "You are squeezed into the sweltering insides of the herbivore rumen."
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_animal/retaliate/hippo/Login()
+	. = ..()
+	if(!riding_datum)
+		riding_datum = new /datum/riding/simple_animal(src)
+	verbs |= /mob/living/simple_animal/proc/animal_mount
+
+/mob/living/simple_animal/retaliate/hippo/MouseDrop_T(mob/living/M, mob/living/user)
+	return

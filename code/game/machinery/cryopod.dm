@@ -391,6 +391,13 @@
 			var/obj/belly/B = belly
 			for(var/mob/living/sub_L in B)
 				despawn_occupant(sub_L)
+			for(var/obj/item/W in B)
+				W.forceMove(src)
+				if(W.contents.len)
+					for(var/obj/item/O in W.contents)
+						if(istype(O,/obj/item/weapon/storage/internal))
+							continue
+						O.forceMove(src)
 		if(ishuman(to_despawn))
 			var/mob/living/carbon/human/H = to_despawn
 			if(H.nif)

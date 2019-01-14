@@ -60,6 +60,9 @@
 		return
 
 	if(compactor)
+		if(is_type_in_list(target,item_vore_blacklist))
+			to_chat(user, "<span class='warning'>You are hard-wired to not ingest this item.</span>")
+			return
 		if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
 			var/obj/target_obj = target
 			if(target_obj.w_class > ITEMSIZE_LARGE)
@@ -224,7 +227,7 @@
 		dat += "<font color='red'>Cargo compartment slot: Fuel.</font><BR>"
 		dat += "<font color='red'>([list2text(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
 
-	if(analyzer && synced)
+	if(analyzer && !synced)
 		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items

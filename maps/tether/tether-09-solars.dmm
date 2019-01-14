@@ -1149,7 +1149,6 @@
 /area/rnd/outpost/eva)
 "cB" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
@@ -1330,7 +1329,6 @@
 /area/rnd/outpost/testing)
 "cT" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1879,7 +1877,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor,
@@ -2388,7 +2385,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -3416,7 +3412,6 @@
 /area/rnd/outpost/heating)
 "gx" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/corner/purple{
@@ -3517,7 +3512,6 @@
 /area/rnd/outpost)
 "gD" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/borderfloor{
