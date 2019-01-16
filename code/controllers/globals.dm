@@ -38,8 +38,10 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	stat("Globals:", statclick.update("Edit"))
 
-/datum/controller/global_vars/VV_hidden()
-	return ..() + gvars_datum_protected_varlist
+/datum/controller/global_vars/vv_edit_var(var_name, var_value)
+	if(gvars_datum_protected_varlist[var_name])
+		return FALSE
+	return ..()
 
 /datum/controller/global_vars/Initialize(var/exclude_these)
 	gvars_datum_init_order = list()

@@ -1,6 +1,5 @@
-/*
-	These defines are specific to the atom/flags_1 bitmask
-*/
+//MARK ALL FLAG CHANGES IN _globals/bitfields.dm!
+//All flags should go in here if possible.
 #define ALL (~0) //For convenience.
 #define NONE 0
 
@@ -17,3 +16,4 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 // datum_flags
 #define DF_VAR_EDITED	(1<<0)
 #define DF_ISPROCESSING (1<<1)
+

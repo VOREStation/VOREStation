@@ -138,19 +138,19 @@
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
-				turf_move_cost = Clamp(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.water_movement, 15)
+				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.water_movement, 15)
 			if(shoes)
 				var/obj/item/clothing/shoes/feet = shoes
 				if(feet.water_speed)
-					turf_move_cost = Clamp(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.water_speed, 15)
+					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.water_speed, 15)
 			. += turf_move_cost
 		if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
-				turf_move_cost = Clamp(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.snow_movement, 15)
+				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.snow_movement, 15)
 			if(shoes)
 				var/obj/item/clothing/shoes/feet = shoes
 				if(feet.water_speed)
-					turf_move_cost = Clamp(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.snow_speed, 15)
+					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.snow_speed, 15)
 			. += turf_move_cost
 
 #undef HUMAN_LOWEST_SLOWDOWN

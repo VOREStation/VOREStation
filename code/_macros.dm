@@ -1,11 +1,8 @@
-#define Clamp(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
-
-#define CLAMP01(x) 		(Clamp(x, 0, 1))
-
 #define span(class, text) ("<span class='[class]'>[text]</span>")
 
 #define get_turf(A) get_step(A,0)
 
+<<<<<<< HEAD
 #define isAI(A) istype(A, /mob/living/silicon/ai)
 
 #define isalien(A) istype(A, /mob/living/carbon/alien)
@@ -52,6 +49,8 @@
 
 #define isweakref(A) istype(A, /weakref)
 
+=======
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 #define to_chat(target, message) target << message

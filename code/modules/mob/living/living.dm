@@ -1330,7 +1330,26 @@ default behaviour is:
 
 
 /mob/living/proc/dirties_floor()	// If we ever decide to add fancy conditionals for making dirty floors (floating, etc), here's the proc.
+<<<<<<< HEAD
+	return makes_dirt
+=======
 	return makes_dirt
 
 /mob/living/proc/needs_to_breathe()
 	return !isSynthetic()
+
+/mob/living/vv_get_header()
+	. = ..()
+	. += {"
+		<a href='?_src_=vars;rename=\ref[src]'><b>[src]</b></a><font size='1'>
+		<br><a href='?_src_=vars;datumedit=\ref[src];varnameedit=ckey'>[ckey ? ckey : "No ckey"]</a> / <a href='?_src_=vars;datumedit=\ref[src];varnameedit=real_name'>[real_name ? real_name : "No real name"]</a>
+		<br>
+		BRUTE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brute'>[getBruteLoss()]</a>
+		FIRE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=fire'>[getFireLoss()]</a>
+		TOXIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=toxin'>[getToxLoss()]</a>
+		OXY:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=oxygen'>[getOxyLoss()]</a>
+		CLONE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=clone'>[getCloneLoss()]</a>
+		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
+		</font>
+		"}
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv

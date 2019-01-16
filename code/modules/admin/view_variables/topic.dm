@@ -1,8 +1,12 @@
-
+//DO NOT ADD MORE TO THIS FILE.
+//Use vv_do_topic()!
 /client/proc/view_var_Topic(href, href_list, hsrc)
-	//This should all be moved over to datum/admins/Topic() or something ~Carn
-	if( (usr.client != src) || !src.holder )
+	if((usr.client != src) || !src.holder)
 		return
+	var/datum/target = locate(href_list["target"])
+	if(target)
+		target.vv_do_topic(href_list)
+
 	if(href_list["Vars"])
 		debug_variables(locate(href_list["Vars"]))
 
@@ -163,11 +167,12 @@
 		href_list["datumrefresh"] = href_list["make_skeleton"]
 
 	else if(href_list["delall"])
-		if(!check_rights(R_DEBUG|R_SERVER))	return
+		if(!check_rights(R_DEBUG|R_SERVER))
+			return
 
 		var/obj/O = locate(href_list["delall"])
 		if(!isobj(O))
-			usr << "This can only be used on instances of type /obj"
+			to_chat(usr, "This can only be used on instances of type /obj")
 			return
 
 		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
@@ -188,55 +193,24 @@
 					if(Obj.type == O_type)
 						i++
 						qdel(Obj)
+					CHECK_TICK
 				if(!i)
-					usr << "No objects of this type exist"
+					to_chat(usr, "No objects of this type exist")
 					return
-				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)</span>")
+				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
+				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
 			if("Type and subtypes")
 				var/i = 0
 				for(var/obj/Obj in world)
 					if(istype(Obj,O_type))
 						i++
 						qdel(Obj)
+					CHECK_TICK
 				if(!i)
-					usr << "No objects of this type exist"
+					to_chat(usr, "No objects of this type exist")
 					return
-				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)</span>")
-
-	else if(href_list["explode"])
-		if(!check_rights(R_DEBUG|R_FUN))	return
-
-		var/atom/A = locate(href_list["explode"])
-		if(!isobj(A) && !ismob(A) && !isturf(A))
-			usr << "This can only be done to instances of type /obj, /mob and /turf"
-			return
-
-		src.cmd_admin_explosion(A)
-		href_list["datumrefresh"] = href_list["explode"]
-
-	else if(href_list["emp"])
-		if(!check_rights(R_DEBUG|R_FUN))	return
-
-		var/atom/A = locate(href_list["emp"])
-		if(!isobj(A) && !ismob(A) && !isturf(A))
-			usr << "This can only be done to instances of type /obj, /mob and /turf"
-			return
-
-		src.cmd_admin_emp(A)
-		href_list["datumrefresh"] = href_list["emp"]
-
-	else if(href_list["mark_object"])
-		if(!check_rights(0))	return
-
-		var/datum/D = locate(href_list["mark_object"])
-		if(!istype(D))
-			usr << "This can only be done to instances of type /datum"
-			return
-
-		src.holder.marked_datum = D
-		href_list["datumrefresh"] = href_list["mark_object"]
+				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
+				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
 
 	else if(href_list["rotatedatum"])
 		if(!check_rights(0))	return
@@ -519,15 +493,31 @@
 			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]")
 			message_admins("<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [L]</span>")
 			href_list["datumrefresh"] = href_list["mobToDamage"]
-
-	else if(href_list["call_proc"])
-		var/datum/D = locate(href_list["call_proc"])
-		if(istype(D) || istype(D, /client)) // can call on clients too, not just datums
-			callproc_targetpicked(1, D)
+	else if(href_list["expose"])
+		if(!check_rights(R_ADMIN, FALSE))
+			return
+		var/thing = locate(href_list["expose"])
+		if(!thing)		//Do NOT QDELETED check!
+			return
+		var/value = vv_get_value(VV_CLIENT)
+		if (value["class"] != VV_CLIENT)
+			return
+		var/client/C = value["value"]
+		if (!C)
+			return
+		var/prompt = alert("Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", "Yes", "No")
+		if (prompt != "Yes")
+			return
+		if(!thing)
+			to_chat(usr, "<span class='warning'>The object you tried to expose to [C] no longer exists (GC'd)</span>")
+			return
+		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;datumrefresh=\ref[thing]'>VV window</a>")
+		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [src]")
+		to_chat(C, "[holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
+		C.debug_variables(thing)
 
 	if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
 		if(istype(DAT, /datum) || istype(DAT, /client))
 			debug_variables(DAT)
 
-	return
