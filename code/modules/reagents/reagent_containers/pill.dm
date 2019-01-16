@@ -12,10 +12,8 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 
-
-
-/obj/item/weapon/reagent_containers/pill/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/Initialize()
+	. = ..()
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
 
@@ -98,28 +96,26 @@
 	desc = "Neutralizes many common toxins. Contains 25 units of Dylovene."
 	icon_state = "pill17"
 
-/obj/item/weapon/reagent_containers/pill/antitox/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/antitox/Initialize()
+	. = ..()
 	reagents.add_reagent("anti_toxin", 25)
-
 
 /obj/item/weapon/reagent_containers/pill/tox
 	name = "Toxins pill"
 	desc = "Highly toxic." //this is cooler without "contains 50u toxin"
 	icon_state = "pill5"
 
-/obj/item/weapon/reagent_containers/pill/tox/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/tox/Initialize()
+	. = ..()
 	reagents.add_reagent("toxin", 50)
-
 
 /obj/item/weapon/reagent_containers/pill/cyanide
 	name = "Cyanide pill"
 	desc = "Don't swallow this." //this is cooler without "contains 50u cyanide"
 	icon_state = "pill5"
 
-/obj/item/weapon/reagent_containers/pill/cyanide/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/cyanide/Initialize()
+	. = ..()
 	reagents.add_reagent("cyanide", 50)
 
 
@@ -128,8 +124,8 @@
 	desc = "It's magic. We don't have to explain it." //it's space magic you don't need the quantity
 	icon_state = "pill16"
 
-/obj/item/weapon/reagent_containers/pill/adminordrazine/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/adminordrazine/Initialize()
+	. = ..()
 	reagents.add_reagent("adminordrazine", 50)
 
 /obj/item/weapon/reagent_containers/pill/stox
@@ -137,8 +133,8 @@
 	desc = "Commonly used to treat insomnia. Contains 15 units of Soporific."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/stox/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/stox/Initialize()
+	. = ..()
 	reagents.add_reagent("stoxin", 15)
 
 
@@ -147,8 +143,8 @@
 	desc = "Used to treat burns. Contains 15 units of Kelotane."
 	icon_state = "pill11"
 
-/obj/item/weapon/reagent_containers/pill/kelotane/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/kelotane/Initialize()
+	. = ..()
 	reagents.add_reagent("kelotane", 15)
 
 
@@ -157,8 +153,8 @@
 	desc = "Paracetamol! A painkiller for the ages. Chewables! Contains 15 units of Paracetamol."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/paracetamol/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/paracetamol/Initialize()
+	. = ..()
 	reagents.add_reagent("paracetamol", 15)
 
 
@@ -167,8 +163,8 @@
 	desc = "A simple painkiller. Contains 15 units of Tramadol."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/tramadol/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/tramadol/Initialize()
+	. = ..()
 	reagents.add_reagent("tramadol", 15)
 
 
@@ -177,8 +173,8 @@
 	desc = "Improves the ability to concentrate. Contains 15 units of Methylphenidate."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/methylphenidate/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/methylphenidate/Initialize()
+	. = ..()
 	reagents.add_reagent("methylphenidate", 15)
 
 
@@ -187,18 +183,17 @@
 	desc = "Mild anti-depressant. Contains 15 units of Citalopram."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/citalopram/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/citalopram/Initialize()
+	. = ..()
 	reagents.add_reagent("citalopram", 15)
-
 
 /obj/item/weapon/reagent_containers/pill/dexalin
 	name = "Dexalin pill"
 	desc = "Used to treat oxygen deprivation. Contains 15 units of Dexalin."
 	icon_state = "pill16"
 
-/obj/item/weapon/reagent_containers/pill/dexalin/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/dexalin/Initialize()
+	. = ..()
 	reagents.add_reagent("dexalin", 15)
 
 
@@ -207,38 +202,35 @@
 	desc = "Used to treat extreme oxygen deprivation. Contains 15 units of Dexalin Plus."
 	icon_state = "pill8"
 
-/obj/item/weapon/reagent_containers/pill/dexalin_plus/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/dexalin_plus/Initialize()
+	. = ..()
 	reagents.add_reagent("dexalinp", 15)
-
 
 /obj/item/weapon/reagent_containers/pill/dermaline
 	name = "Dermaline pill"
 	desc = "Used to treat burn wounds. Contains 15 units of Dermaline."
 	icon_state = "pill12"
 
-/obj/item/weapon/reagent_containers/pill/dermaline/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/dermaline/Initialize()
+	. = ..()
 	reagents.add_reagent("dermaline", 15)
-
 
 /obj/item/weapon/reagent_containers/pill/dylovene
 	name = "Dylovene pill"
 	desc = "A broad-spectrum anti-toxin. Contains 15 units of Dylovene."
 	icon_state = "pill13"
 
-/obj/item/weapon/reagent_containers/pill/dylovene/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/dylovene/Initialize()
+	. = ..()
 	reagents.add_reagent("anti_toxin", 15)
-
 
 /obj/item/weapon/reagent_containers/pill/inaprovaline
 	name = "Inaprovaline pill"
 	desc = "Used to stabilize patients. Contains 30 units of Inaprovaline."
 	icon_state = "pill20"
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/inaprovaline/Initialize()
+	. = ..()
 	reagents.add_reagent("inaprovaline", 30)
 
 
@@ -247,8 +239,8 @@
 	desc = "Used to treat physical injuries. Contains 20 units of Bicaridine."
 	icon_state = "pill18"
 
-/obj/item/weapon/reagent_containers/pill/bicaridine/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/bicaridine/Initialize()
+	. = ..()
 	reagents.add_reagent("bicaridine", 20)
 
 
@@ -257,8 +249,8 @@
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space. Contains 15 units of Spaceacillin."
 	icon_state = "pill19"
 
-/obj/item/weapon/reagent_containers/pill/spaceacillin/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/spaceacillin/Initialize()
+	. = ..()
 	reagents.add_reagent("spaceacillin", 15)
 
 
@@ -267,8 +259,8 @@
 	desc = "Used to neutralise chemicals in the stomach. Contains 15 units of Carbon."
 	icon_state = "pill7"
 
-/obj/item/weapon/reagent_containers/pill/carbon/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/carbon/Initialize()
+	. = ..()
 	reagents.add_reagent("carbon", 15)
 
 
@@ -277,8 +269,8 @@
 	desc = "Used to aid in blood regeneration after bleeding. Contains 15 units of Iron."
 	icon_state = "pill4"
 
-/obj/item/weapon/reagent_containers/pill/iron/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/iron/Initialize()
+	. = ..()
 	reagents.add_reagent("iron", 15)
 
 //Not-quite-medicine
@@ -287,8 +279,8 @@
 	desc = "Happy happy joy joy!" //we're not giving quantities for shady maint drugs
 	icon_state = "pill18"
 
-/obj/item/weapon/reagent_containers/pill/happy/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/happy/Initialize()
+	. = ..()
 	reagents.add_reagent("space_drugs", 15)
 	reagents.add_reagent("sugar", 15)
 
@@ -298,8 +290,8 @@
 	desc = "Zoooom!"
 	icon_state = "pill18"
 
-/obj/item/weapon/reagent_containers/pill/zoom/New()
-	..()
+/obj/item/weapon/reagent_containers/pill/zoom/Initialize()
+	. = ..()
 	reagents.add_reagent("impedrezene", 10)
 	reagents.add_reagent("synaptizine", 5)
 	reagents.add_reagent("hyperzine", 5)
@@ -309,6 +301,12 @@
 	desc = "Guaranteed to get you slim!"
 	icon_state = "pill9"
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/diet/New()
 	..()
 	reagents.add_reagent("lipozine", 15) //VOREStation Edit
+=======
+/obj/item/weapon/reagent_containers/pill/diet/Initialize()
+	. = ..()
+	reagents.add_reagent("lipozine", 2)
+>>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814

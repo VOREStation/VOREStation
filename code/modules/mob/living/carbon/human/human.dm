@@ -20,8 +20,7 @@
 	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
 	var/active_regen_delay = 300
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-
+/mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -42,7 +41,7 @@
 
 	human_mob_list |= src
 
-	..()
+	. = ..()
 
 	hide_underwear.Cut()
 	for(var/category in global_underwear.categories_by_name)

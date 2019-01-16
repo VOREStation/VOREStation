@@ -330,8 +330,8 @@
 	name = "Syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 
-/obj/item/weapon/reagent_containers/syringe/inaprovaline/New()
-	..()
+/obj/item/weapon/reagent_containers/syringe/inaprovaline/Initialize()
+	. = ..()
 	reagents.add_reagent("inaprovaline", 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
@@ -340,8 +340,8 @@
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 
-/obj/item/weapon/reagent_containers/syringe/antitoxin/New()
-	..()
+/obj/item/weapon/reagent_containers/syringe/antitoxin/Initialize()
+	. = ..()
 	reagents.add_reagent("anti_toxin", 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
@@ -350,8 +350,8 @@
 	name = "Syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
 
-/obj/item/weapon/reagent_containers/syringe/antiviral/New()
-	..()
+/obj/item/weapon/reagent_containers/syringe/antiviral/Initialize()
+	. = ..()
 	reagents.add_reagent("spaceacillin", 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
@@ -360,16 +360,16 @@
 	name = "Syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 
-/obj/item/weapon/reagent_containers/syringe/drugs/New()
-	..()
+/obj/item/weapon/reagent_containers/syringe/drugs/Initialize()
+	. = ..()
 	reagents.add_reagent("space_drugs",  5)
 	reagents.add_reagent("mindbreaker",  5)
 	reagents.add_reagent("cryptobiolin", 5)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral/New()
-	..()
+/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral/Initialize()
+	. = ..()
 	reagents.add_reagent("chloralhydrate", 50)
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -378,7 +378,13 @@
 	name = "Syringe (anabolic steroids)"
 	desc = "Contains drugs for muscle growth."
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/syringe/steroid/New()
 	..()
 	//reagents.add_reagent("adrenaline",5) //VOREStation Edit - No thanks.
+=======
+/obj/item/weapon/reagent_containers/syringe/steroid/Initialize()
+	. = ..()
+	reagents.add_reagent("adrenaline",5)
+>>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 	reagents.add_reagent("hyperzine",10)

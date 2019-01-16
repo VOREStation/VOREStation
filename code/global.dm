@@ -107,7 +107,6 @@ var/gravity_is_on = 1
 
 var/join_motd = null
 
-var/datum/event_manager/event_manager	= new() // Event Manager, the manager for events.
 var/datum/game_master/game_master = new() // Game Master, an AI for choosing events.
 var/datum/metric/metric = new() // Metric datum, used to keep track of the round.
 

@@ -152,7 +152,7 @@
 	log_client_to_db()
 
 	send_resources()
-	GLOB.nanomanager.send_resources(src)
+	SSnanoui.send_resources(src)
 
 	if(!void)
 		void = new()

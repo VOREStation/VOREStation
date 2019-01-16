@@ -356,8 +356,8 @@
 	origin_tech = list(TECH_BIO = 4)
 	var/grown = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/New()
-	..()
+/obj/item/weapon/reagent_containers/food/snacks/egg/slime/Initialize()
+	. = ..()
 	reagents.add_reagent("nutriment", 4)
 	reagents.add_reagent("slimejelly", 1)
 	spawn(rand(1200,1500))//the egg takes a while to "ripen"

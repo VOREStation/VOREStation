@@ -1,4 +1,5 @@
-/mob/living/carbon/New()
+/mob/living/carbon/Initialize()
+	. = ..()
 	//setup reagent holders
 	bloodstr = new/datum/reagents/metabolism/bloodstream(500, src)
 	ingested = new/datum/reagents/metabolism/ingested(500, src)
@@ -6,7 +7,6 @@
 	reagents = bloodstr
 	if (!default_language && species_language)
 		default_language = all_languages[species_language]
-	..()
 
 /mob/living/carbon/Life()
 	..()
