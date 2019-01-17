@@ -374,11 +374,15 @@
 		chem_effects[effect] = magnitude
 
 /mob/living/carbon/get_default_language()
-	if(default_language && can_speak(default_language))
-		return default_language
+	if(default_language)
+		if(can_speak(default_language))
+			return default_language
+		else
+			return all_languages[LANGUAGE_GIBBERISH]
 
 	if(!species)
 		return null
+
 	return species.default_language ? all_languages[species.default_language] : null
 
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
