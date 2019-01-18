@@ -68,6 +68,33 @@
 		update_icon()
 		set_light(0)
 
+<<<<<<< HEAD
+=======
+/obj/item/weapon/flame/candle/small
+	name = "small red candle"
+	desc = "a small red candle, for more intimate candle occasions."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "smallcandle"
+	icon_type = "smallcandle"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/flame/candle/white
+	name = "white candle"
+	desc = "a white pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "whitecandle"
+	icon_type = "whitecandle"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/flame/candle/black
+	name = "black candle"
+	desc = "a black pillar candle. Ominous."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "blackcandle"
+	icon_type = "blackcandle"
+	w_class = ITEMSIZE_SMALL
+
+>>>>>>> 3b2570d... Merge pull request #5856 from Cerebulon/candleicons
 /obj/item/weapon/flame/candle/candelabra
 	name = "candelabra"
 	desc = "a small gold candelabra. The cups that hold the candles save some of the wax from dripping off, allowing the candles to burn longer."
