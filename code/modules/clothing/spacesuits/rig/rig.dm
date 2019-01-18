@@ -418,8 +418,10 @@
 
 	var/mob/living/carbon/human/H = loc
 
-	var/efficiency = 1 - H.get_pressure_weakness()		//you need to have a good seal for effective cooling
-	var/env_temp = get_environment_temperature()		//wont save you from a fire
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	var/efficiency = 1 - H.get_pressure_weakness(environment.return_pressure())	// You need to have a good seal for effective cooling
+	var/env_temp = get_environment_temperature()						//wont save you from a fire
 	var/temp_adj = min(H.bodytemperature - max(thermostat, env_temp), max_cooling)
 
 	if (temp_adj < 0.5)	//only cools, doesn't heat, also we don't need extreme precision
