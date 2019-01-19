@@ -3,6 +3,7 @@
 /datum/ai_holder
 	var/hostile = FALSE						// Do we try to hurt others?
 	var/retaliate = FALSE					// Attacks whatever struck it first. Mobs will still attack back if this is false but hostile is true.
+	var/mauling = FALSE						// Attacks unconscious mobs
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -79,6 +80,7 @@
 			set_stance(STANCE_ALERT)
 		else
 			set_stance(STANCE_APPROACH)
+		last_target_time = world.time
 		return TRUE
 
 // Filters return one or more 'preferred' targets.
@@ -102,8 +104,17 @@
 
 	if(isliving(the_target))
 		var/mob/living/L = the_target
-		if(L.stat == DEAD)
-			return FALSE
+		if(ishuman(L) || issilicon(L))
+			if(!L.client)	// SSD players get a pass
+				return FALSE
+		if(L.stat)
+			if(L.stat == DEAD) // Leave dead things alone
+				return FALSE
+			if(L.stat == UNCONSCIOUS)	// Do we have mauling? Yes? Then maul people who are sleeping but not SSD
+				if(mauling)
+					return TRUE
+				else
+					return FALSE
 		if(holder.IIsAlly(L))
 			return FALSE
 		return TRUE
@@ -206,9 +217,14 @@
 		ai_log("react_to_attack() : Was attacked by [attacker], but they were an ally.", AI_LOG_TRACE)
 		return FALSE
 	if(target) // Already fighting someone. Switching every time we get hit would impact our combat performance.
-		ai_log("react_to_attack() : Was attacked by [attacker], but we already have a target.", AI_LOG_TRACE)
-		on_attacked(attacker) // So we attack immediately and not threaten.
-		return FALSE
+		if(!retaliate)	// If we don't get to fight back, we don't fight back...
+			ai_log("react_to_attack() : Was attacked by [attacker], but we already have a target.", AI_LOG_TRACE)
+			on_attacked(attacker) // So we attack immediately and not threaten.
+			return FALSE
+		else if(attacker in attackers && world.time > last_target_time + 3 SECONDS)	// Otherwise, let 'er rip
+			ai_log("react_to_attack() : Was attacked by [attacker]. Can retaliate, waited 3 seconds.", AI_LOG_INFO)
+			on_attacked(attacker) // So we attack immediately and not threaten.
+			return give_target(attacker) // Also handles setting the appropiate stance.
 
 	if(stance == STANCE_SLEEP) // If we're asleep, try waking up if someone's wailing on us.
 		ai_log("react_to_attack() : AI is asleep. Waking up.", AI_LOG_TRACE)
@@ -220,10 +236,11 @@
 
 // Sets a few vars so mobs that threaten will react faster to an attacker or someone who attacked them before.
 /datum/ai_holder/proc/on_attacked(atom/movable/AM)
-	last_conflict_time = world.time
 	if(isliving(AM))
 		var/mob/living/L = AM
-		attackers |= L.name
+		if(!(L.name in attackers))
+			attackers |= L.name
+			last_conflict_time = world.time
 
 // Causes targeting to prefer targeting the taunter if possible.
 // This generally occurs if more than one option is within striking distance, including the taunter.
