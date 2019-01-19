@@ -265,9 +265,12 @@
 				continue
 
 			if(owner.nutrition > 90 && (M.health < M.maxHealth))
-				M.adjustBruteLoss(-5)
-				M.adjustFireLoss(-5)
-				owner.nutrition -= 2
+				M.adjustBruteLoss(-2.5)
+				M.adjustFireLoss(-2.5)
+				M.adjustToxLoss(-5)
+				M.adjustOxyLoss(-5)
+				M.adjustCloneLoss(-1.25)
+				owner.nutrition -= 6
 				if(M.nutrition <= 400)
 					M.nutrition += 1
 			else if(owner.nutrition > 90 && (M.nutrition <= 400))
