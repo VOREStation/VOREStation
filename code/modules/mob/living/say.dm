@@ -138,7 +138,7 @@ proc/get_radio_key_from_channel(var/channel)
 		if(message)
 			client.handle_spam_prevention(MUTE_IC)
 			if((client.prefs.muted & MUTE_IC) || say_disabled)
-				src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
+				to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
 				return
 
 	//Redirect to say_dead if talker is dead
@@ -184,7 +184,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//Self explanatory.
 	if(is_muzzled() && !(speaking && (speaking.flags & SIGNLANG)))
-		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
+		to_chat(src, "<span class='danger'>You're muzzled and cannot speak!</span>")
 		return
 
 	//Clean up any remaining junk on the left like spaces.

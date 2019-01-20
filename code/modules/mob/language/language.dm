@@ -175,7 +175,14 @@
 	if (only_species_language && speaking != all_languages[species_language])
 		return 0
 
-	return (speaking.can_speak_special(src) && (universal_speak || (speaking && (speaking.flags & INNATE)) || speaking in src.languages))
+	if(speaking.can_speak_special(src))
+		if(universal_speak)
+			return 1
+		if(speaking && (speaking.flags & INNATE))
+			return 1
+		if(speaking in src.languages)
+			return 1
+	return 0
 
 /mob/proc/get_language_prefix()
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)

@@ -44,6 +44,8 @@
 	..()
 	update_icons()
 
+	default_language = all_languages[LANGUAGE_GALCOM]
+
 	botcard = new /obj/item/weapon/card/id(src)
 	botcard.access = botcard_access.Copy()
 
