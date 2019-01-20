@@ -18,14 +18,74 @@
 
 	var/icon/sprite
 	if(istype(D, /atom))
+<<<<<<< HEAD
 		var/atom/A = D
 		if(A.icon && A.icon_state)
 			sprite = icon(A.icon, A.icon_state)
 			usr << browse_rsc(sprite, "view_vars_sprite.png")
+=======
+		var/atom/AT = D
+		if(AT.icon && AT.icon_state)
+			sprite = new /icon(AT.icon, AT.icon_state)
+			hash = md5(AT.icon)
+			hash = md5(hash + AT.icon_state)
+			src << browse_rsc(sprite, "vv[hash].png")
+
+	title = "[D] (\ref[D]) = [type]"
+	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
+
+	var/sprite_text
+	if(sprite)
+		sprite_text = "<img src='vv[hash].png'></td><td>"
+	var/list/header = islist(D)? list("<b>/list</b>") : D.vv_get_header()
+
+	var/marked
+	if(holder && holder.marked_datum && holder.marked_datum == D)
+		marked = VV_MSG_MARKED
+	var/varedited_line = ""
+	if(!islist && (D.datum_flags & DF_VAR_EDITED))
+		varedited_line = VV_MSG_EDITED
+	var/deleted_line
+	if(!islist && D.gc_destroyed)
+		deleted_line = VV_MSG_DELETED
+
+	var/list/dropdownoptions = list()
+	var/autoconvert_dropdown = FALSE
+	if (islist)
+		dropdownoptions = list(
+			"---",
+			"Add Item" = "?_src_=vars;listadd=[refid]",
+			"Remove Nulls" = "?_src_=vars;listnulls=[refid]",
+			"Remove Dupes" = "?_src_=vars;listdupes=[refid]",
+			"Set len" = "?_src_=vars;listlen=[refid]",
+			"Shuffle" = "?_src_=vars;listshuffle=[refid]",
+			"Show VV To Player" = "?_src_=vars;expose=[refid]"
+			)
+		autoconvert_dropdown = TRUE
+	else
+		dropdownoptions = D.vv_get_dropdown()
+	var/list/dropdownoptions_html = list()
+	if(autoconvert_dropdown)
+		for (var/name in dropdownoptions)
+			var/link = dropdownoptions[name]
+			if (link)
+				dropdownoptions_html += "<option value='[link]'>[name]</option>"
+			else
+				dropdownoptions_html += "<option value>[name]</option>"
+	else
+		dropdownoptions_html = dropdownoptions + D.get_view_variables_options()
+
+	var/list/names = list()
+	if (!islist)
+		for (var/V in D.vars)
+			names += V
+	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
+>>>>>>> c480a51... Merge pull request #5883 from kevinz000/150_hours_of_testing
 
 	usr << browse_rsc('code/js/view_variables.js', "view_variables.js")
 
 	var/html = {"
+<<<<<<< HEAD
 		<html>
 		<head>
 			<script src='view_variables.js'></script>
@@ -38,6 +98,121 @@
 		<body onload='selectTextField(); updateSearch()'; onkeyup='updateSearch()'>
 			<div align='center'>
 				<table width='100%'><tr>
+=======
+<html>
+	<head>
+		<title>[title]</title>
+		<style>
+			body {
+				font-family: Verdana, sans-serif;
+				font-size: 9pt;
+			}
+			.value {
+				font-family: "Courier New", monospace;
+				font-size: 8pt;
+			}
+		</style>
+	</head>
+	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
+		<script type="text/javascript">
+			// onload
+			function selectTextField() {
+				var filter_text = document.getElementById('filter');
+				filter_text.focus();
+				filter_text.select();
+				var lastsearch = getCookie("[refid][cookieoffset]search");
+				if (lastsearch) {
+					filter_text.value = lastsearch;
+					updateSearch();
+				}
+			}
+			function getCookie(cname) {
+				var name = cname + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0; i<ca.length; i++) {
+					var c = ca\[i];
+					while (c.charAt(0)==' ') c = c.substring(1,c.length);
+					if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+				}
+				return "";
+			}
+
+			// main search functionality
+			var last_filter = "";
+			function updateSearch() {
+				var filter = document.getElementById('filter').value.toLowerCase();
+				var vars_ol = document.getElementById("vars");
+
+				if (filter === last_filter) {
+					// An event triggered an update but nothing has changed.
+					return;
+				} else if (filter.indexOf(last_filter) === 0) {
+					// The new filter starts with the old filter, fast path by removing only.
+					var children = vars_ol.childNodes;
+					for (var i = children.length - 1; i >= 0; --i) {
+						try {
+							var li = children\[i];
+							if (li.innerText.toLowerCase().indexOf(filter) == -1) {
+								vars_ol.removeChild(li);
+							}
+						} catch(err) {}
+					}
+				} else {
+					// Remove everything and put back what matches.
+					while (vars_ol.hasChildNodes()) {
+						vars_ol.removeChild(vars_ol.lastChild);
+					}
+
+					for (var i = 0; i < complete_list.length; ++i) {
+						try {
+							var li = complete_list\[i];
+							if (!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
+								vars_ol.appendChild(li);
+							}
+						} catch(err) {}
+					}
+				}
+
+				last_filter = filter;
+				document.cookie="[refid][cookieoffset]search="+encodeURIComponent(filter);
+
+			}
+
+			// onkeydown
+			function handle_keydown() {
+				if(event.keyCode == 116) {  //F5 (to refresh properly)
+					document.getElementById("refresh_link").click();
+					event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+					return false;
+				}
+				return true;
+			}
+
+			// onkeyup
+			function handle_keyup() {
+				updateSearch();
+			}
+
+			// onchange
+			function handle_dropdown(list) {
+				var value = list.options\[list.selectedIndex].value;
+				if (value !== "") {
+					location.href = value;
+				}
+				list.selectedIndex = 0;
+				document.getElementById('filter').focus();
+			}
+
+			// byjax
+			function replace_span(what) {
+				var idx = what.indexOf(':');
+				document.getElementById(what.substr(0, idx)).innerHTML = what.substr(idx + 1);
+			}
+		</script>
+		<div align='center'>
+			<table width='100%'>
+				<tr>
+>>>>>>> c480a51... Merge pull request #5883 from kevinz000/150_hours_of_testing
 					<td width='50%'>
 						<table align='center' width='100%'><tr>
 							[sprite ? "<td><img src='view_vars_sprite.png'></td>" : ""]
@@ -52,6 +227,7 @@
 						<div align='center'>
 							<a href='?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>
 							<form>
+<<<<<<< HEAD
 								<select name='file'
 								        size='1'
 								        onchange='loadPage(this.form.elements\[0\])'
@@ -63,6 +239,13 @@
 									<option value='?_src_=vars;mark_object=\ref[D]'>Mark Object</option>
 									<option value='?_src_=vars;call_proc=\ref[D]'>Call Proc</option>
 									[D.get_view_variables_options()]
+=======
+								<select name="file" size="1"
+									onchange="handle_dropdown(this)"
+									onmouseclick="this.focus()">
+									<option value selected>Select option</option>
+									[dropdownoptions_html.Join()]
+>>>>>>> c480a51... Merge pull request #5883 from kevinz000/150_hours_of_testing
 								</select>
 							</form>
 						</div>
