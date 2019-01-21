@@ -38,13 +38,22 @@
 		if(isitem(A) && !did_an_item)
 			var/obj/item/I = A
 			if(mode_flags & DM_FLAG_ITEMWEAK)
-				I.gurgle_contaminate(src, cont_flavor)
-				items_preserved |= I
-				to_update = TRUE
+				if(digest_mode == DM_HOLD)
+					if(istype(I,/obj/item/weapon/reagent_containers/food))
+						digest_item(I)
+					else
+						items_preserved |= I
+				else
+					I.gurgle_contaminate(src, cont_flavor)
+					items_preserved |= I
 			else
-				digest_item(I)
-			to_update = TRUE
-			did_an_item = TRUE
+				I.gurgle_contaminate(src, cont_flavor)
+				if(I.digest_stage && I.digest_stage > 0)
+					digest_item(I)
+				else
+					digest_item(I)
+					did_an_item = TRUE
+				to_update = TRUE
 
 		//Handle eaten mobs
 		else if(isliving(A))
@@ -76,6 +85,9 @@
 								digest_item(I)
 							to_update = TRUE
 							break
+		//get rid of things like blood drops and gibs that end up in there
+		else if(istype(A,/obj/effect/decal/cleanable/))
+			qdel(A)
 
 ///////////////////////////// DM_HOLD /////////////////////////////
 	if(digest_mode == DM_HOLD)

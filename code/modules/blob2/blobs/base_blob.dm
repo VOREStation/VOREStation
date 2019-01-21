@@ -51,6 +51,15 @@ var/list/blobs = list()
 		return TRUE
 	if(istype(mover) && mover.checkpass(PASSBLOB))
 		return TRUE
+	else if(istype(mover, /mob/living))
+		var/mob/living/L = mover
+		if(L.faction == "blob")
+			return TRUE
+	else if(istype(mover, /obj/item/projectile))
+		var/obj/item/projectile/P = mover
+		if(P.firer && P.firer.faction == "blob")
+			return TRUE
+		return FALSE
 	else
 		return FALSE
 //	return ..()
@@ -246,6 +255,9 @@ var/list/blobs = list()
 
 /obj/structure/blob/bullet_act(var/obj/item/projectile/P)
 	if(!P)
+		return
+
+	if(P.firer && P.firer.faction == "blob")
 		return
 
 	var/damage = P.get_structure_damage() // So tasers don't hurt the blob.

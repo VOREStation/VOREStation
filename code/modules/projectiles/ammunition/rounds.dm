@@ -27,6 +27,7 @@
 	desc = "A .357 bullet casing."
 	caliber = ".357"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
+	matter = list(DEFAULT_WALL_MATERIAL = 210)
 
 /*
  * .38
@@ -36,10 +37,10 @@
 	desc = "A .38 bullet casing."
 	caliber = ".38"
 	projectile_type = /obj/item/projectile/bullet/pistol
+	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
-/obj/item/ammo_casing/a38r
+/obj/item/ammo_casing/a38/rubber
 	desc = "A .38 rubber bullet casing."
-	caliber = ".38"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
@@ -58,12 +59,13 @@
 	desc = "A .44 bullet casing."
 	caliber = ".44"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
+	matter = list(DEFAULT_WALL_MATERIAL = 210)
 
-/obj/item/ammo_casing/a44r
+/obj/item/ammo_casing/a44/rubber
 	icon_state = "r-casing"
 	desc = "A .44 rubber bullet casing."
-	caliber = ".44"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
 /*
  * .75 (aka Gyrojet Rockets, aka admin abuse)
@@ -73,6 +75,7 @@
 	desc = "A .75 gyrojet rocket sheathe."
 	caliber = ".75"
 	projectile_type = /obj/item/projectile/bullet/gyro
+	matter = list(DEFAULT_WALL_MATERIAL = 4000)
 
 /*
  * 9mm
@@ -82,26 +85,30 @@
 	desc = "A 9mm bullet casing."
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/pistol
+	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
 /obj/item/ammo_casing/a9mm/ap
 	desc = "A 9mm armor-piercing bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/ap
+	matter = list(DEFAULT_WALL_MATERIAL = 80)
 
-/obj/item/ammo_casing/a9mmf
+/obj/item/ammo_casing/a9mm/hp
+	desc = "A 9mm hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/hp
+
+
+/obj/item/ammo_casing/a9mm/flash
 	desc = "A 9mm flash shell casing."
-	caliber = "9mm"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
 
-/obj/item/ammo_casing/a9mmr
+/obj/item/ammo_casing/a9mm/rubber
 	desc = "A 9mm rubber bullet casing."
-	caliber = "9mm"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
-/obj/item/ammo_casing/a9mmp
+/obj/item/ammo_casing/a9mm/practice
 	desc = "A 9mm practice bullet casing."
-	caliber = "9mm"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
@@ -113,30 +120,30 @@
 	desc = "A .45 bullet casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
+	matter = list(DEFAULT_WALL_MATERIAL = 75)
 
-/obj/item/ammo_casing/a45ap
+/obj/item/ammo_casing/a45/ap
 	desc = "A .45 Armor-Piercing bullet casing."
-	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium/ap
 
-/obj/item/ammo_casing/a45p
+/obj/item/ammo_casing/a45/practice
 	desc = "A .45 practice bullet casing."
-	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
+	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
-/obj/item/ammo_casing/a45r
+/obj/item/ammo_casing/a45/rubber
 	desc = "A .45 rubber bullet casing."
-	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
-/obj/item/ammo_casing/a45f
+/obj/item/ammo_casing/a45/flash
 	desc = "A .45 flash shell casing."
-	caliber = ".45"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/energy/flash
+	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
 /obj/item/ammo_casing/a45/emp
 	name = ".45 haywire round"
@@ -147,8 +154,7 @@
 
 /obj/item/ammo_casing/a45/hp
 	desc = "A .45 hollow-point bullet casing."
-	projectile_type = /obj/item/projectile/bullet/pistol/medium/hollow
-
+	projectile_type = /obj/item/projectile/bullet/pistol/medium/hp
 
 /*
  * 10mm
@@ -158,6 +164,7 @@
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
+	matter = list(DEFAULT_WALL_MATERIAL = 75)
 
 /obj/item/ammo_casing/a10mm/emp
 	name = "10mm haywire round"
@@ -183,7 +190,6 @@
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
-	matter = list(DEFAULT_WALL_MATERIAL = 360)
 
 /obj/item/ammo_casing/a12g/blank
 	name = "shotgun shell"
@@ -197,7 +203,7 @@
 	desc = "A practice shell."
 	icon_state = "pshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/practice
-	matter = list("metal" = 90)
+	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
 /obj/item/ammo_casing/a12g/beanbag
 	name = "beanbag shell"
@@ -244,16 +250,18 @@
 	caliber = "7.62mm"
 	icon_state = "rifle-casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
+	matter = list(DEFAULT_WALL_MATERIAL = 200)
 
 /obj/item/ammo_casing/a762/ap
 	desc = "A 7.62mm armor-piercing bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a762/ap
+	matter = list(DEFAULT_WALL_MATERIAL = 300)
 
-/obj/item/ammo_casing/a762p
+/obj/item/ammo_casing/a762/practice
 	desc = "A 7.62mm practice bullet casing."
-	caliber = "7.62mm"
 	icon_state = "rifle-casing" // Need to make an icon for these
 	projectile_type = /obj/item/projectile/bullet/rifle/practice
+	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
 /obj/item/ammo_casing/a762/blank
 	desc = "A blank 7.62mm bullet casing."
@@ -262,7 +270,7 @@
 
 /obj/item/ammo_casing/a762/hp
 	desc = "A 7.62mm hollow-point bullet casing."
-	projectile_type = /obj/item/projectile/bullet/rifle/a762/hollow
+	projectile_type = /obj/item/projectile/bullet/rifle/a762/hp
 
 /obj/item/ammo_casing/a762/hunter
 	desc = "A 7.62mm hunting bullet casing."
@@ -288,16 +296,18 @@
 	caliber = "5.45mm"
 	icon_state = "rifle-casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/a545
+	matter = list(DEFAULT_WALL_MATERIAL = 180)
 
 /obj/item/ammo_casing/a545/ap
 	desc = "A 5.45mm armor-piercing bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a545/ap
+	matter = list(DEFAULT_WALL_MATERIAL = 270)
 
-/obj/item/ammo_casing/a545p
+/obj/item/ammo_casing/a545/practice
 	desc = "A 5.45mm practice bullet casing."
-	caliber = "5.45mm"
 	icon_state = "rifle-casing" // Need to make an icon for these
 	projectile_type = /obj/item/projectile/bullet/rifle/practice
+	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
 /obj/item/ammo_casing/a545/blank
 	desc = "A blank 5.45mm bullet casing."
@@ -306,7 +316,7 @@
 
 /obj/item/ammo_casing/a545/hp
 	desc = "A 5.45mm hollow-point bullet casing."
-	projectile_type = /obj/item/projectile/bullet/rifle/a545/hollow
+	projectile_type = /obj/item/projectile/bullet/rifle/a545/hp
 
 /obj/item/ammo_casing/a545/hunter
 	desc = "A 5.45mm hunting bullet casing."
@@ -322,6 +332,7 @@
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/missile
 	caliber = "rocket"
+	matter = list(DEFAULT_WALL_MATERIAL = 10000)
 
 /obj/item/ammo_casing/cap
 	name = "cap"
@@ -330,6 +341,7 @@
 	icon_state = "r-casing"
 	color = "#FF0000"
 	projectile_type = /obj/item/projectile/bullet/pistol/cap
+	matter = list(DEFAULT_WALL_MATERIAL = 85)
 
 /obj/item/ammo_casing/spent // For simple hostile mobs only, so they don't cough up usable bullets when firing. This is for literally nothing else.
 	icon_state = "s-casing-spent"

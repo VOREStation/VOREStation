@@ -68,6 +68,7 @@
 					cell.charge = 0
 					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
 					set_light(0)
+					playsound(src.loc, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket.
 					on = 0
 					update_icon()
 
@@ -180,6 +181,7 @@
 			user.put_in_hands(cell)
 			cell = null
 			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 			on = 0
 			update_icon()
 			return
@@ -228,6 +230,7 @@
 					W.loc = src
 					cell = W
 					user << "<span class='notice'>You install a cell in \the [src].</span>"
+					playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 					update_icon()
 				else
 					user << "<span class='notice'>\The [src] already has a cell.</span>"

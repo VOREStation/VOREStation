@@ -5,8 +5,12 @@
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY
 
+	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
+
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
+		if(user.a_intent == I_HELP)
+			return
 		var/can_place = 0
 		if(istype(user, /mob/living/silicon/robot))
 			can_place = 1
@@ -136,7 +140,7 @@
 	icon_state = "tape"
 	w_class = ITEMSIZE_TINY
 	plane = MOB_PLANE
-	anchored = 1 //it's sticky, no you cant move it
+	anchored = FALSE
 
 	var/obj/item/weapon/stuck = null
 
@@ -176,6 +180,10 @@
 		qdel(I)
 		to_chat(user, "<span-class='notice'>You place \the [I] back into \the [src].</span>")
 
+/obj/item/weapon/ducttape/attack_hand(mob/living/L)
+	anchored = FALSE
+	return ..() // Pick it up now that it's unanchored.
+
 /obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
@@ -194,6 +202,7 @@
 	user.drop_from_inventory(src)
 	playsound(src, 'sound/effects/tape.ogg',25)
 	forceMove(source_turf)
+	anchored = TRUE
 
 	if(params)
 		var/list/mouse_control = params2list(params)

@@ -30,11 +30,11 @@
 
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
-	if(istype(W, /obj/item/weapon/screwdriver) && !inuse)
+	if(W.is_screwdriver() && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		default_deconstruction_crowbar(user, W)
 		return
 

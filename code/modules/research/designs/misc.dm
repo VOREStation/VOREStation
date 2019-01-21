@@ -139,7 +139,7 @@ datum/design/item/laserpointer
 	id = "handdrill"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
-	build_path = /obj/item/weapon/screwdriver/power
+	build_path = /obj/item/weapon/tool/screwdriver/power
 	sort_string = "VASDA"
 
 /datum/design/item/jaws_life
@@ -148,7 +148,7 @@ datum/design/item/laserpointer
 	id = "jawslife"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 300, "silver" = 100)
-	build_path = /obj/item/weapon/crowbar/power
+	build_path = /obj/item/weapon/tool/crowbar/power
 	sort_string = "VASEA"
 
 /datum/design/item/device/t_scanner_upg

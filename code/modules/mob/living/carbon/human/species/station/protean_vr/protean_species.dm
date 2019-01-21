@@ -1,7 +1,7 @@
 #define DAM_SCALE_FACTOR 0.01
 #define METAL_PER_TICK 150
 /datum/species/protean
-	name =             "Protean"
+	name =             SPECIES_PROTEAN
 	name_plural =      "Proteans"
 	blurb =            "Sometimes very advanced civilizations will produce the ability to swap into manufactured, robotic bodies. And sometimes \
 						<i>VERY</i> advanced civilizations have the option of 'nanoswarm' bodies. Effectively a single robot body comprised \
@@ -21,6 +21,7 @@
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
+	assisted_langs = list(LANGUAGE_EAL)
 	color_mult = TRUE
 
 	breath_type = null
@@ -115,7 +116,7 @@
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
 	var/obj/item/device/nif/saved_nif = H.nif
 	if(saved_nif)
-		H.nif.unimplant()
+		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
 		H.nif.forceMove(null)
 	..()
 	if(saved_nif)
@@ -139,7 +140,7 @@
 
 	if(H.backbag == 1) //Somewhat misleading, 1 == no bag (not boolean)
 		H.equip_to_slot_or_del(permit, slot_l_hand)
-		H.equip_to_slot_or_del(metal_stack, slot_r_hand)		
+		H.equip_to_slot_or_del(metal_stack, slot_r_hand)
 	else
 		H.equip_to_slot_or_del(permit, slot_in_backpack)
 		H.equip_to_slot_or_del(metal_stack, slot_in_backpack)
@@ -162,17 +163,18 @@
 
 /datum/species/protean/handle_death(var/mob/living/carbon/human/H)
 	to_chat(H,"<span class='warning'>You died as a Protean. Please sit out of the round for at least 30 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
-	spawn(1)
+	spawn(1) //This spawn is here so that if the protean_blob calls qdel, it doesn't try to gib the humanform.
 		if(H)
 			H.gib()
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
 		H.nano_intoblob()
+		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
 	if(refactory && !(refactory.status & ORGAN_DEAD))
-		
+
 		//MHydrogen adds speeeeeed
 		if(refactory.get_stored_material("mhydrogen") >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/mhydrogen, origin = refactory)
@@ -233,7 +235,7 @@
 	var/obj/item/organ/internal/nano/refactory/refactory = origin.resolve()
 	if(!istype(refactory) || refactory.status & ORGAN_DEAD)
 		expire()
-	
+
 	//Out of materials
 	if(!refactory.use_stored_material(material_name,material_use))
 		expire()
@@ -255,7 +257,7 @@
 
 	on_created_text = "<span class='notice'>You feel yourself become nearly impervious to physical attacks as plasteel nanites are made.</span>"
 	on_expired_text = "<span class='notice'>Your refactory finishes consuming the plasteel, and you return to your normal nanites.</span>"
-	
+
 	material_name = "plasteel"
 
 	incoming_brute_damage_percent = 0.5
@@ -266,7 +268,7 @@
 
 	on_created_text = "<span class='notice'>You feel yourself become more reflective, able to resist heat and fire better for a time.</span>"
 	on_expired_text = "<span class='notice'>Your refactory finishes consuming the diamond, and you return to your normal nanites.</span>"
-	
+
 	material_name = "diamond"
 
 	incoming_fire_damage_percent = 0.2
@@ -277,7 +279,7 @@
 
 	on_created_text = "<span class='notice'>You feel new nanites being produced from your stockpile of steel, healing you slowly.</span>"
 	on_expired_text = "<span class='notice'>Your steel supply has either run out, or is no longer needed, and your healing stops.</span>"
-	
+
 	material_name = "steel"
 
 /datum/modifier/protean/steel/tick()

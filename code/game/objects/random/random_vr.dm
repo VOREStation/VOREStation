@@ -201,9 +201,31 @@
 			this_mob.forceMove(T)
 
 //Just overriding this here, no more super medkit so those can be reserved for PoIs and such
-/obj/random/firstaid/item_to_spawn()
+/obj/random/tetheraid
+	name = "Random First Aid Kit"
+	desc = "This is a random first aid kit. Does not include Combat Kits."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "firstaid"
+
+/obj/random/tetheraid/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
 				prob(3);/obj/item/weapon/storage/firstaid/toxin,
 				prob(3);/obj/item/weapon/storage/firstaid/o2,
 				prob(2);/obj/item/weapon/storage/firstaid/adv,
 				prob(3);/obj/item/weapon/storage/firstaid/fire)
+
+//Override from maintenance.dm to prevent combat kits from spawning in Tether maintenance
+/obj/random/maintenance/item_to_spawn()
+	return pick(prob(300);/obj/random/tech_supply,
+				prob(200);/obj/random/medical,
+				prob(100);/obj/random/tetheraid,
+				prob(10);/obj/random/contraband,
+				prob(50);/obj/random/action_figure,
+				prob(50);/obj/random/plushie,
+				prob(200);/obj/random/junk,
+				prob(200);/obj/random/material,
+				prob(50);/obj/random/toy,
+				prob(100);/obj/random/tank,
+				prob(50);/obj/random/soap,
+				prob(60);/obj/random/drinkbottle,
+				prob(500);/obj/random/maintenance/clean)

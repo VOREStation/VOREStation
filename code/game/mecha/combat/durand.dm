@@ -6,6 +6,7 @@
 	step_in = 4
 	dir_in = 1 //Facing North.
 	health = 400
+	maxhealth = 400
 	deflect_chance = 20
 	damage_absorption = list("brute"=0.5,"fire"=1.1,"bullet"=0.65,"laser"=0.85,"energy"=0.9,"bomb"=0.8)
 	max_temperature = 30000
@@ -14,6 +15,12 @@
 	var/defence = 0
 	var/defence_deflect = 35
 	wreckage = /obj/effect/decal/mecha_wreckage/durand
+
+	max_hull_equip = 2
+	max_weapon_equip = 1
+	max_utility_equip = 2
+	max_universal_equip = 1
+	max_special_equip = 1
 
 /*
 /obj/mecha/combat/durand/New()
@@ -41,6 +48,7 @@
 	set popup_menu = 0
 	if(usr!=src.occupant)
 		return
+	playsound(src, 'sound/mecha/duranddefencemode.ogg', 50, 1)
 	defence = !defence
 	if(defence)
 		deflect_chance = defence_deflect

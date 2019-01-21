@@ -5,7 +5,7 @@
 
 
 /datum/species/xenochimera //Scree's race.
-	name = "Xenochimera"
+	name = SPECIES_XENOCHIMERA
 	name_plural = "Xenochimeras"
 	icobase = 'icons/mob/human_races/r_xenochimera.dmi'
 	deform = 'icons/mob/human_races/r_def_xenochimera.dmi'
@@ -14,7 +14,8 @@
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
-	var/base_species = "Xenochimera"
+	base_species = "Xenochimera"
+	selects_bodytype = TRUE
 
 	num_alternate_languages = 2
 	secondary_langs = list("Sol Common")
@@ -32,6 +33,7 @@
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
 
+	virus_immune = 1 // They practically ARE one.
 	min_age = 18
 	max_age = 80
 
@@ -49,6 +51,16 @@
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
 	flags = NO_SCAN | NO_INFECT //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	has_organ = list(    //Same organ list as tajarans.
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_VOICE = 		/obj/item/organ/internal/voicebox,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_EYES =     /obj/item/organ/internal/eyes
+		)
 
 	flesh_color = "#AFA59E"
 	base_color 	= "#333333"
@@ -300,7 +312,7 @@
 /////SPIDER RACE/////
 /////////////////////
 /datum/species/spider //These actually look pretty damn spooky!
-	name = "Vasilissan"
+	name = SPECIES_VASILISSAN
 	name_plural = "Vasilissans"
 	icobase = 'icons/mob/human_races/r_spider.dmi'
 	deform = 'icons/mob/human_races/r_def_spider.dmi'
@@ -311,7 +323,7 @@
 	burn_mod =  1.15	//15% burn damage increase. They're spiders. Aerosol can+lighter = dead spiders.
 
 	num_alternate_languages = 2
-	secondary_langs = list("Sol Common")
+	secondary_langs = list(LANGUAGE_VESPINAE)
 	color_mult = 1
 	tail = "tail" //Spider tail.
 	icobase_tail = 1

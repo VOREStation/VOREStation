@@ -6,6 +6,7 @@
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon = 'icons/obj/clothing/collars_vr.dmi'
 	icon_override = 'icons/obj/clothing/collars_vr.dmi'
+	var/writtenon = 0
 
 /obj/item/clothing/accessory/collar/silver
 	name = "Silver tag collar"
@@ -27,6 +28,20 @@
 	icon_state = "collar_bell"
 	item_state = "collar_bell_overlay"
 	overlay_state = "collar_bell_overlay"
+	var/jingled = 0
+
+/obj/item/clothing/accessory/collar/bell/verb/jinglebell()
+	set name = "Jingle Bell"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	if(!jingled)
+		usr.audible_message("[usr] jingles the [src]'s bell.")
+		jingled = 1
+		schedule_callback_in(5 SECONDS, VARSET_CALLBACK(src, jingled, 0))
+	return
 
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
@@ -164,8 +179,14 @@
 	item_state = "collar_holo_overlay"
 	overlay_state = "collar_holo_overlay"
 
-/obj/item/clothing/accessory/collar/holo/attack_self(mob/user as mob)
-	to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
+/obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
+	if(istype(src,/obj/item/clothing/accessory/collar/holo))
+		to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
+	else
+		if(writtenon)
+			to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
+			return
+		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
 
 	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
 
@@ -176,7 +197,49 @@
 	else
 		to_chat(user,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
 		name = initial(name) + " ([str])"
-		desc = initial(desc) + " The tag says \"[str]\"."
+		if(istype(src,/obj/item/clothing/accessory/collar/holo))
+			desc = initial(desc) + " The tag says \"[str]\"."
+		else
+			desc = initial(desc) + " \"[str]\" has been engraved on the tag."
+		writtenon = 1
+
+/obj/item/clothing/accessory/collar/attackby(obj/item/I, mob/user)
+	if(istype(src,/obj/item/clothing/accessory/collar/holo))
+		return
+	
+	if(istype(I,/obj/item/weapon/tool/screwdriver))
+		update_collartag(user, I, "scratched out", "scratch out", "engraved")
+		return
+		
+	if(istype(I,/obj/item/weapon/pen))
+		update_collartag(user, I, "crossed out", "cross out", "written")
+		return
+	
+	to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
+	
+/obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
+	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
+		return
+	
+	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+	
+	if(!str || !length(str))
+		if(!writtenon)
+			to_chat(user,"<span class='notice'>You don't write anything.</span>")
+		else
+			to_chat(user,"<span class='notice'>You [erasing] the words with the [I].</span>")
+			name = initial(name)
+			desc = initial(desc) + " The tag has had the words [erasemethod]."
+	else
+		if(!writtenon)
+			to_chat(user,"<span class='notice'>You write '[str]' on the tag with the [I].</span>")
+			name = initial(name) + " ([str])"
+			desc = initial(desc) + " \"[str]\" has been [writemethod] on the tag."
+			writtenon = 1
+		else
+			to_chat(user,"<span class='notice'>You [erasing] the words on the tag with the [I], and write '[str]'.</span>")
+			name = initial(name) + " ([str])"
+			desc = initial(desc) + " Something has been [erasemethod] on the tag, and it now has \"[str]\" [writemethod] on it."
 
 //Machete Holsters
 /obj/item/clothing/accessory/holster/machete
@@ -188,3 +251,9 @@
 	can_hold = list(/obj/item/weapon/material/knife/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
+
+//Medals
+
+/obj/item/clothing/accessory/medal/silver/unity
+	name = "medal of unity"
+	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."

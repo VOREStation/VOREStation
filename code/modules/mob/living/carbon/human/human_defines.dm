@@ -30,6 +30,7 @@
 	var/r_synth							//Used with synth_color to color synth parts that normaly can't be colored.
 	var/g_synth							//Same as above
 	var/b_synth							//Same as above
+	var/synth_markings = 0				//Enables/disables markings on synth parts.
 
 	//var/size_multiplier = 1 //multiplier for the mob's icon size //VOREStation Edit (Moved to /mob/living)
 	var/damage_multiplier = 1 //multiplies melee combat damage
@@ -98,6 +99,8 @@
 	mob_swap_flags = ~HEAVY
 
 	var/identifying_gender // In case the human identifies as another gender than it's biological
+
+	var/list/descriptors	// For comparative examine code
 
 	var/step_count = 0 // Track how many footsteps have been taken to know when to play footstep sounds
 

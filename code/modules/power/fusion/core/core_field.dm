@@ -35,7 +35,7 @@
 		/obj/structure/cable,
 		/obj/machinery/atmospherics,
 		/obj/machinery/air_sensor,
-		/mob/observer/dead,
+		/mob/observer,
 		/obj/machinery/power/hydromagnetic_trap
 		)
 

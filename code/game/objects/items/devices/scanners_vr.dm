@@ -2,7 +2,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 //SleeveMate!
 /obj/item/device/sleevemate
-	name = "\improper SleeveMate 3200"
+	name = "\improper SleeveMate 3700"
 	desc = "A hand-held sleeve management tool for performing one-time backups and managing mindstates."
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "sleevemate"
@@ -76,7 +76,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Mind/body comparison
 	output += "<b>Sleeve Pair:</b> "
-	if(H.mind && ckey(H.mind.key) != H.ckey)
+	if(!H.ckey)
+		output += "<span class='warning'>No mind in that body</span> [stored_mind != null ? "\[<a href='?src=\ref[src];target=\ref[H];mindupload=1'>Upload</a>\]" : null]<br>"
+	else if(H.mind && ckey(H.mind.key) != H.ckey)
 		output += "<span class='warning'>May not be correct body</span><br>"
 	else if(H.mind && ckey(H.mind.key) == H.ckey)
 		output += "Appears to be correct mind in body<br>"
@@ -98,10 +100,16 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		output += "<span class='warning'>Unable</span><br>"
 
 	//Soulcatcher transfer
-	if(stored_mind && H.nif)
+	if(H.nif)
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 		if(SC)
-			output += "<b>Store in Soulcatcher: </b>\[<a href='?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
+			output += "<br>"
+			output += "<b>Soulcatcher detected ([SC.brainmobs.len] minds)</b><br>"
+			for(var/mob/living/carbon/brain/caught_soul/mind in SC.brainmobs)
+				output += "<i>[mind.name]: </i> [mind.transient == FALSE ? "\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]" : "<span class='warning'>Incompatible</span>"]<br>"
+
+			if(stored_mind)
+				output += "<b>Store in Soulcatcher: </b>\[<a href='?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
 
 	to_chat(user,output)
 
@@ -166,6 +174,10 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
 			return
 
+		if(stored_mind)
+			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
+			return
+
 		var/choice = alert(usr,"This will remove the target's mind from their body. The only way to put it back is via a resleeving pod. Continue?","Confirmation","Continue","Cancel")
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(target))
 
@@ -207,6 +219,51 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		stored_mind = null
 		to_chat(usr,"<span class='notice'>Mind transferred into Soulcatcher!</span>")
 		update_icon()
+
+	if(href_list["mindupload"])
+		if(!stored_mind)
+			to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
+			return
+
+		if(!istype(target))
+			return
+
+		if(istype(target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = target
+			if(H.resleeve_lock && stored_mind.loaded_from_ckey  != H.resleeve_lock)
+				to_chat(usr,"<span class='warning'>\[H] is protected from impersonation!</span>")
+				return
+
+		usr.visible_message("<span class='warning'>[usr] begins uploading someone's mind into [target]!</span>","<span class='notice'>You begin uploading a mind into [target]!</span>")
+		if(do_after(usr,35 SECONDS,target))
+			if(!stored_mind)
+				to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
+				return
+			stored_mind.active = TRUE
+			stored_mind.transfer_to(target)
+			stored_mind = null
+			to_chat(usr,"<span class='notice'>Mind transferred into [target]!</span>")
+			update_icon()
+
+	if(href_list["mindrelease"])
+		if(stored_mind)
+			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
+			return
+		var/mob/living/carbon/human/H = target
+		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
+		if(!SC)
+			return
+		for(var/mob/living/carbon/brain/caught_soul/soul in SC.brainmobs)
+			if(soul.name == href_list["mindrelease"])
+				stored_mind = soul.mind
+				stored_mind.current = null
+				soul.Destroy()
+				update_icon()
+				to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
+				return
+		to_chat(usr,"<span class='notice'>Unable to find that mind in Soulcatcher!</span>")
+
+
 
 /obj/item/device/sleevemate/update_icon()
 	if(stored_mind)

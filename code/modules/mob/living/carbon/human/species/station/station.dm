@@ -12,6 +12,7 @@
 	species_language = LANGUAGE_SOL_COMMON
 	secondary_langs = list(LANGUAGE_SOL_COMMON, LANGUAGE_TERMINUS)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_SKRELLIANFAR, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	min_age = 17
 	max_age = 130
@@ -40,13 +41,13 @@
 	primitive_form = SPECIES_MONKEY_UNATHI
 	darksight = 3
 	ambiguous_genders = TRUE
-	//gluttonous = 1 //VOREStation Edit - Redundant
+	gluttonous = 1
 	slowdown = 0.5
 	total_health = 125
 	brute_mod = 0.85
 	burn_mod = 0.85
 	metabolic_rate = 0.85
-	item_slowdown_mod = 0.5
+	item_slowdown_mod = 0.25
 	mob_size = MOB_LARGE
 	blood_volume = 840
 	bloodloss_rate = 0.75
@@ -66,7 +67,7 @@
 	planet, they mostly hold ideals of honesty, virtue, proficiency and bravery above all \
 	else, frequently even their own lives. They prefer warmer temperatures than most species and \
 	their native tongue is a heavy hissing laungage called Sinta'Unathi."
-/* VOREStation Removal
+
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
 	cold_level_3 = 130 //Default 120
@@ -78,12 +79,13 @@
 	heat_level_1 = 420 //Default 360 - Higher is better
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
+
 	breath_heat_level_1 = 450	//Default 380 - Higher is better
 	breath_heat_level_2 = 530	//Default 450
 	breath_heat_level_3 = 1400	//Default 1250
 
 	minimum_breath_pressure = 18	//Bigger, means they need more air
-*/
+
 	body_temperature = T20C
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -93,7 +95,7 @@
 	blood_color = "#b3cbc3"
 	base_color = "#066000"
 
-	//reagent_tag = IS_UNATHI //VOREStation Edit
+	reagent_tag = IS_UNATHI
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/claw
 
@@ -121,18 +123,23 @@
 		)
 
 
-	//heat_discomfort_level = 295 //VOREStation Edit
+	heat_discomfort_level = 295
 	heat_discomfort_strings = list(
 		"You feel soothingly warm.",
 		"You feel the heat sink into your bones.",
 		"You feel warm enough to take a nap."
 		)
 
-	//cold_discomfort_level = 292 //VOREStation Removal
+	cold_discomfort_level = 292
 	cold_discomfort_strings = list(
 		"You feel chilly.",
 		"You feel sluggish and cold.",
 		"Your scales bristle against the cold."
+		)
+
+	descriptors = list(
+		/datum/mob_descriptor/height = 2,
+		/datum/mob_descriptor/build = 2
 		)
 
 /datum/species/unathi/equip_survival_gear(var/mob/living/carbon/human/H)
@@ -177,11 +184,6 @@
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
 	cold_level_3 = 80  //Default 120
-/* VOREStation Removal
-	heat_level_1 = 330 //Default 360
-	heat_level_2 = 380 //Default 400
-	heat_level_3 = 800 //Default 1000
-
 
 	breath_cold_level_1 = 180	//Default 240 - Lower is better
 	breath_cold_level_2 = 100	//Default 180
@@ -194,7 +196,7 @@
 	breath_heat_level_1 = 360	//Default 380 - Higher is better
 	breath_heat_level_2 = 430	//Default 450
 	breath_heat_level_3 = 1000	//Default 1250
-*/
+
 	primitive_form = SPECIES_MONKEY_TAJ
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -203,20 +205,23 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 
-	//reagent_tag = IS_TAJARA //VOREStation Removal
+	reagent_tag = IS_TAJARA
 
-	//heat_discomfort_level = 292 //VOREStation Removal
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
+
+	heat_discomfort_level = 292
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
-	//cold_discomfort_level = 275 //VOREStation Removal
+
+	cold_discomfort_level = 275
 
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart,
 		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		O_BRAIN =    /obj/item/organ/internal/brain,
@@ -243,6 +248,7 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
 	name_language = LANGUAGE_SKRELLIAN
 	species_language = LANGUAGE_SKRELLIAN
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_TERMINUS, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	health_hud_intensity = 2
 
 	water_movement = -3
@@ -279,11 +285,11 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	//reagent_tag = IS_SKRELL //VOREStation Edit
-
 	breath_heat_level_1 = 400	//Default 380 - Higher is better
 	breath_heat_level_2 = 500	//Default 450
 	breath_heat_level_3 = 1350	//Default 1250
+
+	reagent_tag = IS_SKRELL
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -317,13 +323,14 @@
 	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3
 	show_ssd = "completely quiescent"
+	health_hud_intensity = 2.5
+	item_slowdown_mod = 0.1
+
 	num_alternate_languages = 2
-	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
 	name_language = LANGUAGE_ROOTLOCAL
 	species_language = LANGUAGE_ROOTLOCAL
-	health_hud_intensity = 2.5
-	item_slowdown_mod = 0.25
-
+	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
+	assisted_langs = list(LANGUAGE_VOX)	// Diona are weird, let's just assume they can use basically any language.
 	min_age = 1
 	max_age = 300
 

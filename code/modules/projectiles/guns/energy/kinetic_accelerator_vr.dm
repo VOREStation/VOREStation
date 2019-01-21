@@ -30,7 +30,7 @@
 				to_chat(user, "<span class='notice'>There is a [M.name] mod installed, using <b>[M.cost]%</b> capacity.</span>")
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/attackby(obj/item/A, mob/user)
-	if(istype(A, /obj/item/weapon/crowbar))
+	if(istype(A, /obj/item/weapon/tool/crowbar))
 		if(modkits.len)
 			to_chat(user, "<span class='notice'>You pry the modifications out.</span>")
 			playsound(loc, A.usesound, 100, 1)
@@ -109,11 +109,11 @@
 
 // /obj/item/projectile/kinetic/pod
 // 	kill_count = 4
-// 
+//
 // /obj/item/projectile/kinetic/pod/regular
 // 	damage = 50
 // 	pressure_decrease = 0.5
-// 
+//
 // /obj/item/projectile/kinetic/pod/enhanced
 // 	turf_aoe = TRUE
 // 	mob_aoe = TRUE

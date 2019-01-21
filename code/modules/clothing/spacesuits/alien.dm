@@ -31,10 +31,9 @@
 // Can't be equipped by any other species due to bone structure and vox cybernetics.
 /obj/item/clothing/suit/space/vox
 	w_class = ITEMSIZE_NORMAL
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | PHORONGUARD
+	flags = PHORONGUARD
+	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank)
-	phoronproof = 1
-	slowdown = 0.5
 	armor = list(melee = 60, bullet = 50, laser = 40,energy = 15, bomb = 30, bio = 100, rad = 50)
 	siemens_coefficient = 0.2
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
@@ -44,9 +43,9 @@
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	siemens_coefficient = 0.2
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT | PHORONGUARD
+	flags = PHORONGUARD
+	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
 	flags_inv = 0
-	phoronproof = 1
 	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/head/helmet/space/vox/pressure

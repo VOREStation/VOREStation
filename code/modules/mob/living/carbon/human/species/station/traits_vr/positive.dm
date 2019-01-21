@@ -42,13 +42,13 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 3)
+	var_changes = list("darksight" = 3, "flash_mod" = 2.0)
 
 /datum/trait/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
-	var_changes = list("darksight" = 7)
+	var_changes = list("darksight" = 7, "flash_mod" = 3.0)
 
 /datum/trait/melee_attack
 	name = "Sharp Melee"
@@ -96,8 +96,8 @@
 
 /datum/trait/winged_flight
 	name = "Winged Flight"
-	desc = "Allows you to fly by using your wings."
-	cost = 2 //Some in game value.
+	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
+	cost = 1
 
 /datum/trait/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)

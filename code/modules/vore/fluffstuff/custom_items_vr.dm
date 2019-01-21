@@ -725,7 +725,7 @@
 	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_roiz
 
-/obj/item/weapon/implant/reagent_generator/roiz/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/reagent_generator/roiz/post_implant(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
@@ -793,7 +793,7 @@
 	random_emote = list("hisses softly with a blush on her face", "bites down on her lower lip", "lets out a light huff")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_jasmine
 
-/obj/item/weapon/implant/reagent_generator/jasmine/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/reagent_generator/jasmine/post_implant(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
@@ -861,7 +861,7 @@
 	random_emote = list("hisses softly with a blush on her face", "yelps in embarrassment", "grunts a little")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_yonra
 
-/obj/item/weapon/implant/reagent_generator/yonra/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/reagent_generator/yonra/post_implant(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
@@ -945,7 +945,7 @@
 	random_emote = list("trembles and huffs, panting from the exertion.", "sees what has happened and covers her face with both hands!", "whimpers softly, her legs shivering, knees pointed inward from the feeling.")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_rischi
 
-/obj/item/weapon/implant/reagent_generator/rischi/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/reagent_generator/rischi/post_implant(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
@@ -995,70 +995,6 @@
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
-/obj/item/weapon/implant/reagent_generator/pumila_apple
-	name = "apple laying implant"
-	desc = "This is an implant that allows the user to grow apples."
-	generated_reagents = list("sugar" = 2) //This actually allows them to.
-	usable_volume = 250 //Five apples. Let's not get /too/ crazy here.
-	transfer_amount = 50
-
-	empty_message = list("Your have no apples on you.", "You have a distinct lack of apples..")
-	full_message = list("You have multiple apples on you, ready for harvest!", "There are a multitude of apples awaiting harvest on you!")
-	emote_descriptor = list("an apple right off of Pumila!", "a large apple off Pumila!")
-	var/verb_descriptor = list("grabs", "snatches", "picks")
-	var/self_verb_descriptor = list("grab", "snatch", "pick")
-	var/short_emote_descriptor = list("picks", "grabs")
-	self_emote_descriptor = list("grab", "pick", "snatch")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_pumila_apple
-
-/obj/item/weapon/implant/reagent_generator/pumila_apple/implanted(mob/living/carbon/source)
-	processing_objects += src
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
-	return 1
-
-/obj/item/weapon/implanter/reagent_generator/pumila_apple
-	implant_type = /obj/item/weapon/implant/reagent_generator/pumila_apple
-
-/mob/living/carbon/human/proc/use_reagent_implant_pumila_apple()
-	set name = "Grab Apple"
-	set desc = "Grab an apple off of Pumila."
-	set category = "Object"
-	set src in view(1)
-
-	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
-		return
-
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
-		return
-
-	var/obj/item/weapon/implant/reagent_generator/roiz/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
-	if (rimplant)
-		if(rimplant.reagents.total_volume < rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-			return
-
-		var/datum/seed/S = plant_controller.seeds["apple"] //crosses fingers.
-		S.harvest(usr,0,0,1)
-
-		var/index = rand(0,2)
-
-		if (usr != src)
-			var/emote = rimplant.emote_descriptor[index]
-			var/verb_desc = rimplant.verb_descriptor[index]
-			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
-		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an apple.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an apple.</span>")
-
-		rimplant.reagents.remove_any(rimplant.transfer_amount)
 /*
 /obj/item/weapon/implant/reagent_generator/pumila_nectar //Bugged. Two implants at once messes things up.
 	generated_reagents = list("honey" = 2)
@@ -1289,8 +1225,8 @@
 	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
 		B.tele_hand = null
 	beacons.Cut()
-	qdel_null(power_source)
-	qdel_null(spk)
+	QDEL_NULL(power_source)
+	QDEL_NULL(spk)
 	return ..()
 
 /obj/item/device/perfect_tele/update_icon()
@@ -1704,7 +1640,7 @@
 	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
 
-/obj/item/weapon/implant/reagent_generator/evian/implanted(mob/living/carbon/source)
+/obj/item/weapon/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
 	processing_objects += src
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
@@ -1923,11 +1859,11 @@
 			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
 		return (BRUTELOSS|FIRELOSS)
 
-/obj/item/weapon/melee/fluffstuff/awoosword
+/obj/item/weapon/melee/fluffstuff/wolfgirlsword
 	name = "Wolfgirl Sword Replica"
 	desc = "A replica of a large, scimitar-like sword with a dull edge. Ceremonial... until it isn't."
 	icon = 'icons/obj/weapons_vr.dmi'
-	icon_state = "awoosword"
+	icon_state = "wolfgirlsword"
 	slot_flags = SLOT_BACK | SLOT_OCLOTHING
 	active_force = 15
 	active_throwforce = 7
@@ -1939,16 +1875,16 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
-	var/active_state = "awoosword"
-	allowed = list(/obj/item/weapon/shield/fluff/awooshield)
+	var/active_state = "wolfgirlsword"
+	allowed = list(/obj/item/weapon/shield/fluff/wolfgirlshield)
 	damtype = HALLOSS
 
-/obj/item/weapon/melee/fluffstuff/awoosword/dropped(var/mob/user)
+/obj/item/weapon/melee/fluffstuff/wolfgirlsword/dropped(var/mob/user)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
 
-/obj/item/weapon/melee/fluffstuff/awoosword/activate(mob/living/user)
+/obj/item/weapon/melee/fluffstuff/wolfgirlsword/activate(mob/living/user)
 	if(!active)
 		to_chat(user, "<span class='notice'>The [src] is now sharpened. It will cut!</span>")
 
@@ -1960,7 +1896,7 @@
 	damtype = BRUTE
 
 
-/obj/item/weapon/melee/fluffstuff/awoosword/deactivate(mob/living/user)
+/obj/item/weapon/melee/fluffstuff/wolfgirlsword/deactivate(mob/living/user)
 	if(active)
 		to_chat(user, "<span class='notice'>The [src] grows dull!</span>")
 	..()
@@ -1998,7 +1934,7 @@
 	KA.desc = initial(KA.desc)
 	KA.icon = initial(KA.icon)
 	..()
-	
+
 //ArgobargSoup:Lynn Shady
 /obj/item/device/flashlight/pen/fluff/lynn
 	name = "Lynn's penlight"
@@ -2006,3 +1942,15 @@
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "penlightlynn"
+
+//Knightfall5:Ashley Kifer
+/obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
+	name = "nobel sciences award"
+	desc = "A bronze medal which represents significant contributions to the field of science or engineering, this one has Ashley Kifer engraved on it."
+
+//lm40 - Kenzie Houser
+/obj/item/weapon/reagent_containers/hypospray/vial/kenzie
+	name = "gold-trimmed hypospray"
+	desc = "A gold-trimmed MKII hypospray. The name 'Kenzie Houser' is engraved on the side."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "kenziehypo"

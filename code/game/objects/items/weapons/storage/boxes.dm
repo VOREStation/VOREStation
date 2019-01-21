@@ -56,7 +56,6 @@
 	name = "emergency supply box"
 	desc = "A survival box issued to crew members for use in emergency situations."
 	starts_with = list(
-		/obj/item/clothing/glasses/goggles, //VOREStation Add - Goggles for the phoron atmosphere,
 		/obj/item/clothing/mask/breath
 	)
 
@@ -64,7 +63,6 @@
 	name = "synthetic supply box"
 	desc = "A survival box issued to synthetic crew members for use in emergency situations."
 	starts_with = list(
-		/obj/item/clothing/glasses/goggles //VOREStation Add - Goggles for the phoron atmosphere,
 	)
 
 /obj/item/weapon/storage/box/survival/comp
@@ -72,7 +70,6 @@
 	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."
 	icon_state = "survival"
 	starts_with = list(
-		/obj/item/clothing/glasses/goggles, //VOREStation Add - Goggles for the phoron atmosphere,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/device/flashlight/glowstick,
@@ -96,8 +93,7 @@
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	icon_state = "syringe"
-	can_hold = list(/obj/item/weapon/reagent_containers/syringe) //VOREStation Edit
-	starts_with = list(/obj/item/weapon/reagent_containers/syringe = 20) //VOREStation Edit
+	starts_with = list(/obj/item/weapon/reagent_containers/syringe = 7)
 
 /obj/item/weapon/storage/box/syringegun
 	name = "box of syringe gun cartridges"

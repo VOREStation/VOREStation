@@ -36,12 +36,14 @@
 /datum/map_z_level/tether_lateload/underdark
 	name = "Underdark"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+	z = Z_LEVEL_UNDERDARK
 
 /datum/map_template/tether_lateload/tether_underdark/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(z), 100, /area/mine/unexplored/underdark, /datum/map_template/underdark)
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)         // Create the mining ore distribution map.
+	seed_submaps(list(Z_LEVEL_UNDERDARK), 100, /area/mine/unexplored/underdark, /datum/map_template/underdark)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_UNDERDARK, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
 
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
@@ -62,6 +64,7 @@
 
 /datum/map_z_level/tether_lateload/away_beach
 	name = "Away Mission - Desert Beach"
+	z = Z_LEVEL_BEACH
 
 /datum/map_template/tether_lateload/away_beach_cave
 	name = "Desert Planet - Z2 Cave"
@@ -69,8 +72,18 @@
 	mappath = 'beach/cave.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/away_beach_cave
 
+/datum/map_template/tether_lateload/away_beach_cave/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
+	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
+
+	// Now for the tunnels.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_BEACH_CAVE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_LEVEL_BEACH_CAVE, 64, 64)
+
 /datum/map_z_level/tether_lateload/away_beach_cave
 	name = "Away Mission - Desert Cave"
+	z = Z_LEVEL_BEACH_CAVE
 
 /obj/effect/step_trigger/zlevel_fall/beach
 	var/static/target_z
@@ -85,6 +98,7 @@
 
 /datum/map_z_level/tether_lateload/away_alienship
 	name = "Away Mission - Alien Ship"
+	z = Z_LEVEL_ALIENSHIP
 
 
 #include "aerostat/_aerostat.dm"
@@ -96,6 +110,7 @@
 
 /datum/map_z_level/tether_lateload/away_aerostat
 	name = "Away Mission - Aerostat"
+	z = Z_LEVEL_AEROSTAT
 
 /datum/map_template/tether_lateload/away_aerostat_surface
 	name = "Remmi Aerostat - Z2 Surface"
@@ -103,8 +118,15 @@
 	mappath = 'aerostat/surface.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/away_aerostat_surface
 
+/datum/map_template/tether_lateload/away_aerostat_surface/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)
+
 /datum/map_z_level/tether_lateload/away_aerostat_surface
 	name = "Away Mission - Aerostat Surface"
+	z = Z_LEVEL_AEROSTAT_SURFACE
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +165,7 @@
 	flags = MAP_LEVEL_SEALED
 
 /datum/map_z_level/tether_lateload/New(var/datum/map/map, mapZ)
-	if(mapZ)
+	if(mapZ && !z)
 		z = mapZ
 	return ..(map)
 

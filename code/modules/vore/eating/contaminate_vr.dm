@@ -25,8 +25,6 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 /obj/item/proc/can_gurgle()
 	if(flags & PHORONGUARD)
 		return FALSE
-	else if(phoronproof == TRUE)
-		return FALSE
 	else if(unacidable)
 		return FALSE
 	else
@@ -45,12 +43,6 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	..()
 	if(gurgled)
 		decontaminate()
-
-/obj/item/device/pda/can_use() //Get your rice bowl ready.
-	if(gurgled)
-		return FALSE
-	else
-		return ..()
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob) //Wash the soggy item before it can interact with the sink.
 	if(O.gurgled)
@@ -98,6 +90,9 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	digest_act(item_storage) //Digesting these anyway
 	return TRUE
 
+/obj/item/device/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
+	return FALSE
+
 /obj/item/weapon/reagent_containers/food/gurgle_contaminate(var/atom/movable/item_storage = null)
 	digest_act(item_storage)
 	return TRUE
@@ -123,7 +118,3 @@ var/image/gurgled_overlay = image('icons/effects/sludgeoverlay_vr.dmi')
 	if((. = ..()))
 		name = "soggy [cleanname]"
 		desc = "This soggy box is about to fall apart any time."
-
-/obj/item/device/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
-	if((. = ..()))
-		desc = "This device seems completely unresponsive while drenched with sludge. Perhaps you could still wash it."

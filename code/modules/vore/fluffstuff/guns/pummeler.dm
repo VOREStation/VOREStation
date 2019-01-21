@@ -1,7 +1,7 @@
 // -------------- Pummeler -------------
 /obj/item/weapon/gun/energy/pummeler
-	name = "\improper PML9 \'Pummeler\'"
-	desc = "For when you want to get that pesky marketing guy out of your face ASAP. The pummeler fires one HUGE \
+	name = "hypersonic gun"
+	desc = "For when you want to get that pesky marketing guy out of your face ASAP. The PML9 'Pummeler' fires one HUGE \
 	sonic blast in the direction of fire, throwing the target away from you at high speed. Now you can REALLY \
 	turn up the bass to max."
 

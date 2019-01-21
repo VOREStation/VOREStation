@@ -1,3 +1,9 @@
+/datum/gear/shoes/boots/winter/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+
+/datum/gear/shoes/boots/winter/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+
 /datum/gear/shoes/black/cuffs
 	display_name = "legwraps, black"
 	path = /obj/item/clothing/shoes/black/cuffs

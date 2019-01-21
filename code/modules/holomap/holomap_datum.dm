@@ -8,9 +8,9 @@
 	if(!station_map || reinit)
 		station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[T.z]"])
 	if(!cursor || reinit)
-		cursor = image('icons/holomap_markers_vr.dmi', "you")
+		cursor = image('icons/holomap_markers.dmi', "you")
 	if(!legend || reinit)
-		legend = image('icons/effects/64x64_vr.dmi', "legend")
+		legend = image('icons/effects/64x64.dmi', "legend_sc")
 
 	if(isAI)
 		T = get_turf(user.client.eye)
@@ -24,8 +24,8 @@
 	station_map.overlays |= legend
 
 /datum/station_holomap/proc/initialize_holomap_bogus()
-	station_map = image('icons/480x480_vr.dmi', "stationmap")
-	legend = image('icons/effects/64x64_vr.dmi', "notfound")
+	station_map = image('icons/480x480.dmi', "stationmap")
+	legend = image('icons/effects/64x64.dmi', "notfound")
 	legend.pixel_x = 7 * WORLD_ICON_SIZE
 	legend.pixel_y = 7 * WORLD_ICON_SIZE
 	station_map.overlays |= legend

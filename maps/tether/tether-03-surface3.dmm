@@ -253,7 +253,7 @@
 /area/tether/surfacebase/medical/triage)
 "aE" = (
 /obj/structure/table/rack,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/random/maintenance/medical,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_site2)
@@ -1787,7 +1787,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "dB" = (
@@ -2249,11 +2249,11 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 4
 	},
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/machinery/vending/wallmed1{
 	pixel_x = 32
 	},
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/common)
 "ev" = (
@@ -9670,7 +9670,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
 "qY" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
 "qZ" = (
@@ -13289,7 +13289,7 @@
 /obj/item/honey_frame,
 /obj/item/honey_frame,
 /obj/item/honey_frame,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/bee_smoker,
 /obj/item/beehive_assembly,
 /obj/structure/closet/crate/hydroponics{
@@ -18894,8 +18894,8 @@
 /obj/item/device/multitool{
 	pixel_x = 3
 	},
-/obj/item/weapon/crowbar,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/weapon/storage/belt/utility,
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
@@ -20740,8 +20740,8 @@
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
 "JI" = (
-/turf/simulated/floor/reinforced,
 /obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tether/surface)
 "JJ" = (
@@ -21276,7 +21276,7 @@
 "KO" = (
 /obj/structure/table/marble,
 /obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/clothing/head/that{
 	pixel_x = 4;
 	pixel_y = 6
@@ -21576,7 +21576,7 @@
 /obj/item/clothing/gloves/rainbow,
 /obj/item/clothing/head/soft/rainbow,
 /obj/item/clothing/shoes/rainbow,
-/obj/item/clothing/suit/storage/seromi/cloak/rainbow,
+/obj/item/clothing/suit/storage/seromi/cloak/standard/rainbow,
 /obj/item/clothing/under/color/rainbow,
 /turf/simulated/floor/plating,
 /area/crew_quarters/bar)

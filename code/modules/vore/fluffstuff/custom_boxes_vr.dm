@@ -1,3 +1,6 @@
+// ToDo: Alphabetize by ckey.
+// Also these things might be mildly obsolete considering the update to inventory.
+
 // BEGIN - DO NOT EDIT PROTOTYPE
 /obj/item/weapon/storage/box/fluff
 	name = "Undefined Fluff Box"
@@ -37,6 +40,20 @@
 		/obj/item/clothing/under/fluff/kilanosuit/purple,
 		/obj/item/clothing/shoes/boots/fluff/kilano/purple)
 
+//BeyondMyLife: Ne'tra Ky'ram //Made a box because they have so many items that it'd spam the debug log.
+/obj/item/weapon/storage/box/fluff/kilano
+	name = "Ne'tra Ky'ram's Kit"
+	desc = "A kit containing Ne'tra Ky'ram's clothing."
+	has_items = list(
+		/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat,
+		/obj/item/clothing/under/fluff/kilanosuit,
+		/obj/item/weapon/storage/backpack/messenger/sec/fluff/kilano,
+		/obj/item/weapon/storage/belt/security/fluff/kilano,
+		/obj/item/clothing/gloves/fluff/kilano/netra,
+		/obj/item/clothing/shoes/boots/fluff/kilano,
+		/obj/item/clothing/accessory/storage/black_vest/fluff/kilano
+		)
+
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
@@ -45,8 +62,8 @@
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		/obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian,
-		/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
+		//	/obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian,
+		//	/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
@@ -62,6 +79,39 @@
 		/obj/item/weapon/cane/fluff/tasald,
 		/obj/item/clothing/glasses/hud/health/octaviousmonicle
 		)
+
+//drakefrostpaw:Drake Frostpaw
+/obj/item/weapon/storage/box/fluff/drake
+	name = "United Federation Uniform Kit"
+	desc = "A box containing all the parts of a United Federation Uniform"
+	has_items = list(
+		/obj/item/clothing/under/rank/internalaffairs/fluff/joan,
+		/obj/item/clothing/suit/storage/fluff/modernfedcoat/modernfedsec,
+		/obj/item/clothing/head/caphat/formal/fedcover/fedcoversec,
+		/obj/item/clothing/gloves/white,
+		)
+
+// Draycu: Schae Yonra
+/obj/item/weapon/storage/box/fluff/yonra
+	name = "Yonra's Starting Kit"
+	desc = "A small box containing Yonra's personal effects"
+	has_items = list(
+		/obj/item/weapon/melee/fluff/holochain/mass,
+		/obj/item/weapon/implanter/reagent_generator/yonra,
+		/obj/item/clothing/accessory/medal/silver/unity)
+
+//ivymoomoo:Ivy Baladeva
+/obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+	name = "Ivy's Courier"
+	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
+
+	New()
+		..()
+		new /obj/item/clothing/head/beretg(src)
+		new /obj/item/device/fluff/id_kit_ivy(src)
+		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
+		new /obj/item/weapon/storage/box/matches(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -109,8 +159,6 @@
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
 		new /obj/item/clothing/suit/space/fluff/joan(src)
 
-
-
 //joanrisu:Katarina Eine
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	name = "Katarina's Workbag"
@@ -127,34 +175,10 @@
 		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
-//drakefrostpaw:Drake Frostpaw
-/obj/item/weapon/storage/box/fluff/drake
-	name = "United Federation Uniform Kit"
-	desc = "A box containing all the parts of a United Federation Uniform"
-	has_items = list(
-		/obj/item/clothing/under/rank/internalaffairs/fluff/joan,
-		/obj/item/clothing/suit/storage/fluff/modernfedcoat/modernfedsec,
-		/obj/item/clothing/head/caphat/formal/fedcover/fedcoversec,
-		/obj/item/clothing/gloves/white,
-		)
-
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
 	desc = "Personal Effects"
 	has_items = list()
-
-//ivymoomoo:Ivy Baladeva
-/obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
-	name = "Ivy's Courier"
-	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
-
-	New()
-		..()
-		new /obj/item/clothing/head/beretg(src)
-		new /obj/item/device/fluff/id_kit_ivy(src)
-		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
-		new /obj/item/weapon/storage/box/matches(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
 
 //Xsdew:Penelope Allen
 /obj/item/weapon/storage/box/fluff/penelope
@@ -195,20 +219,6 @@
 		/obj/item/weapon/gun/projectile/colt/fluff/serdy)
 */
 
-//BeyondMyLife: Ne'tra Ky'ram //Made a box because they have so many items that it'd spam the debug log.
-/obj/item/weapon/storage/box/fluff/kilano
-	name = "Ne'tra Ky'ram's Kit"
-	desc = "A kit containing Ne'tra Ky'ram's clothing."
-	has_items = list(
-		/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat,
-		/obj/item/clothing/under/fluff/kilanosuit,
-		/obj/item/weapon/storage/backpack/messenger/sec/fluff/kilano,
-		/obj/item/weapon/storage/belt/security/fluff/kilano,
-		/obj/item/clothing/gloves/fluff/kilano/netra,
-		/obj/item/clothing/shoes/boots/fluff/kilano,
-		/obj/item/clothing/accessory/storage/black_vest/fluff/kilano
-		)
-
 // JackNoir413: Mor Xaina
 /obj/item/weapon/storage/box/fluff/morxaina
 	name = "Fashionable clothes set"
@@ -218,13 +228,19 @@
 		/obj/item/clothing/gloves/fluff/morsleeves,
 		/obj/item/clothing/under/fluff/morunder)
 
-// Mewchild: Phi Vietsi
-/obj/item/weapon/storage/box/fluff/vietsi
+// Mewchild: Phi Ahkeen
+/obj/item/weapon/storage/box/fluff/phi
 	name = "Phi's Personal Items"
-	desc = "A small box containing Phi's small things"
 	has_items = list(
 		/obj/item/clothing/accessory/medal/bronze_heart,
-		/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi)
+		/obj/item/clothing/gloves/ring/seal/signet/fluff/phi)
+
+// Tabiranth: Ascian
+/obj/item/weapon/grenade/spawnergrenade/spirit
+	name = "spirit's pet carrier"
+	desc = "Contains kitten."
+	spawner_type = /mob/living/simple_animal/cat/fluff/tabiranth
+	deliveryamt = 1
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

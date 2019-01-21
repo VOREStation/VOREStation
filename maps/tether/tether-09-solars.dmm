@@ -1149,7 +1149,6 @@
 /area/rnd/outpost/eva)
 "cB" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
@@ -1317,7 +1316,7 @@
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cS" = (
@@ -1330,7 +1329,6 @@
 /area/rnd/outpost/testing)
 "cT" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1762,7 +1760,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/item/device/assembly_holder/timer_igniter,
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
@@ -1879,7 +1877,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor,
@@ -2388,7 +2385,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -2894,14 +2890,14 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/wrench{
+/obj/item/weapon/tool/wrench{
 	pixel_x = 2;
 	pixel_y = 2
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
-/obj/item/weapon/wrench{
+/obj/item/weapon/tool/wrench{
 	pixel_x = -2;
 	pixel_y = -2
 	},
@@ -3416,7 +3412,6 @@
 /area/rnd/outpost/heating)
 "gx" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/corner/purple{
@@ -3443,7 +3438,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/standard,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/machinery/camera/network/research_outpost{
 	dir = 8
 	},
@@ -3460,7 +3455,7 @@
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/heating)
 "gB" = (
@@ -3517,7 +3512,6 @@
 /area/rnd/outpost)
 "gD" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/borderfloor{

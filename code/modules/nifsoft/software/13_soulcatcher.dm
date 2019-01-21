@@ -26,7 +26,7 @@
 		load_settings()
 
 	Destroy()
-		qdel_null_list(brainmobs)
+		QDEL_NULL_LIST(brainmobs)
 		return ..()
 
 	activate()
@@ -49,7 +49,7 @@
 			nif.human.verbs |= /mob/living/carbon/human/proc/nme
 
 	uninstall()
-		qdel_null_list(brainmobs)
+		QDEL_NULL_LIST(brainmobs)
 		if((. = ..()) && nif && nif.human) //Sometimes NIFs are deleted outside of a human
 			nif.human.verbs -= /mob/living/carbon/human/proc/nsay
 			nif.human.verbs -= /mob/living/carbon/human/proc/nme
@@ -407,7 +407,7 @@
 	real_name = brainmob.real_name	//And the OTHER name
 
 	forceMove(get_turf(parent_human))
-	moved_event.register(parent_human, src, /mob/observer/eye/ar_soul/proc/human_moved)
+	GLOB.moved_event.register(parent_human, src, /mob/observer/eye/ar_soul/proc/human_moved)
 
 	//Time to play dressup
 	if(brainmob.client.prefs)
@@ -422,7 +422,7 @@
 
 /mob/observer/eye/ar_soul/Destroy()
 	if(parent_human) //It's POSSIBLE they've been deleted before the NIF somehow
-		moved_event.unregister(parent_human, src)
+		GLOB.moved_event.unregister(parent_human, src)
 		parent_human = null
 	return ..()
 
@@ -554,7 +554,7 @@
 		to_chat(src,"<span class='warning'>You're not projecting into AR!</span>")
 		return
 
-	qdel_null(eyeobj)
+	QDEL_NULL(eyeobj)
 	soulcatcher.notify_into("[src] ended AR projection.")
 
 /mob/living/carbon/brain/caught_soul/verb/nsay(message as text|null)

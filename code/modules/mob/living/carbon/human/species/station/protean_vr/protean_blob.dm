@@ -45,6 +45,9 @@
 	var/obj/item/organ/internal/nano/refactory/refactory
 	var/datum/modifier/healing
 
+	var/obj/prev_left_hand
+	var/obj/prev_right_hand
+
 	player_msg = "In this form, you can move a little faster, your health will regenerate as long as you have metal in you, and you can ventcrawl!"
 
 	can_buckle = TRUE //Blobsurfing
@@ -152,7 +155,13 @@
 			var/obj/item/organ/internal/O = organ
 			O.removed()
 			O.forceMove(drop_location())
-		qdel_null(humanform) //Don't leave it just sitting in nullspace
+		var/list/items = humanform.get_equipped_items()
+		if(prev_left_hand) items += prev_left_hand
+		if(prev_right_hand) items += prev_right_hand
+		for(var/obj/object in items)
+			object.forceMove(drop_location())
+		QDEL_NULL(humanform) //Don't leave it just sitting in nullspace
+
 	animate(src,alpha = 0,time = 2 SECONDS)
 	sleep(2 SECONDS)
 	qdel(src)
@@ -193,6 +202,13 @@
 /mob/living/simple_animal/protean_blob/DoPunch(var/atom/A)
 	if(refactory && istype(A,/obj/item/stack/material))
 		var/obj/item/stack/material/S = A
+		var/substance = S.material.name
+		var/list/edible_materials = list("steel", "plasteel", "diamond", "mhydrogen") //Can't eat all materials, just useful ones.
+		var allowed = FALSE
+		for(var/material in edible_materials)
+			if(material == substance) allowed = TRUE
+		if(!allowed)
+			return
 		if(refactory.add_stored_material(S.material.name,1*S.perunit) && S.use(1))
 			visible_message("<b>[name]</b> gloms over some of \the [S], absorbing it.")
 	else
@@ -201,6 +217,13 @@
 /mob/living/simple_animal/protean_blob/attackby(var/obj/item/O, var/mob/user)
 	if(refactory && istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/S = O
+		var/substance = S.material.name
+		var/list/edible_materials = list("steel", "plasteel", "diamond", "mhydrogen") //Can't eat all materials, just useful ones.
+		var allowed = FALSE
+		for(var/material in edible_materials)
+			if(material == substance) allowed = TRUE
+		if(!allowed)
+			return
 		if(refactory.add_stored_material(S.material.name,1*S.perunit) && S.use(1))
 			visible_message("<b>[name]</b> gloms over some of \the [S], absorbing it.")
 	else
@@ -213,11 +236,13 @@
 
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/nano_intoblob()
+	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
+	remove_micros(src, src) //Living things don't fare well in roblobs.
 	if(buckled)
 		buckled.unbuckle_mob()
 	if(LAZYLEN(buckled_mobs))
 		for(var/buckledmob in buckled_mobs)
-			unbuckle_mob(buckledmob, force = TRUE)
+			riding_datum.force_dismount(buckledmob)
 	if(pulledby)
 		pulledby.stop_pulling()
 	stop_pulling()
@@ -228,9 +253,36 @@
 	//Create our new blob
 	var/mob/living/simple_animal/protean_blob/blob = new(creation_spot,src)
 
+	//Drop all our things
+	var/list/things_to_drop = contents.Copy()
+	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
+	
+	/* No for now, because insta-pepperspray or flash on unblob
+	if(l_hand && l_hand.w_class <= ITEMSIZE_SMALL) //Hands but only if small or smaller
+		things_to_not_drop += l_hand
+	if(r_hand && r_hand.w_class <= ITEMSIZE_SMALL)
+		things_to_not_drop += r_hand
+	*/
+
+	things_to_drop -= things_to_not_drop //Crunch the lists
+	things_to_drop -= organs //Mah armbs
+	things_to_drop -= internal_organs //Mah sqeedily spooch
+	
+	for(var/obj/item/I in things_to_drop) //rip hoarders
+		drop_from_inventory(I)
+
+	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
+		var/obj/item/clothing/uniform = w_uniform
+		if(LAZYLEN(uniform.accessories))
+			for(var/obj/item/clothing/accessory/A in uniform.accessories)
+				uniform.remove_accessory(null,A) //First param is user, but adds fingerprints and messages
+
 	//Size update
 	blob.transform = matrix()*size_multiplier
 	blob.size_multiplier = size_multiplier
+
+	if(l_hand) blob.prev_left_hand = l_hand //Won't save them if dropped above, but necessary if handdrop is disabled.
+	if(r_hand) blob.prev_right_hand = r_hand
 
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
@@ -241,7 +293,7 @@
 
 	//Message
 	blob.visible_message("<b>[src.name]</b> collapses into a gooey blob!")
-	
+
 	//Duration of the to_puddle iconstate that the blob starts with
 	sleep(13)
 	blob.update_icon() //Will remove the collapse anim
@@ -257,6 +309,13 @@
 	//Return our blob in case someone wants it
 	return blob
 
+//For some reason, there's no way to force drop all the mobs grabbed. This ought to fix that. And be moved elsewhere. Call with caution, doesn't handle cycles.
+/proc/remove_micros(var/src, var/mob/root)
+	for(var/obj/item/I in src)
+		remove_micros(I, root) //Recursion. I'm honestly depending on there being no containment loop, but at the cost of performance that can be fixed too.
+		if(istype(I, /obj/item/weapon/holder))
+			root.remove_from_mob(I)
+
 /mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_animal/protean_blob/blob)
 	if(!istype(blob))
 		return
@@ -264,11 +323,11 @@
 		buckled.unbuckle_mob()
 	if(LAZYLEN(buckled_mobs))
 		for(var/buckledmob in buckled_mobs)
-			unbuckle_mob(buckledmob, force = TRUE)
+			riding_datum.force_dismount(buckledmob)
 	if(pulledby)
 		pulledby.stop_pulling()
 	stop_pulling()
-	
+
 	//Stop healing if we are
 	if(blob.healing)
 		blob.healing.expire()
@@ -278,7 +337,7 @@
 
 	//Message
 	blob.visible_message("<b>[src.name]</b> reshapes into a humanoid appearance!")
-	
+
 	//Duration of above animation
 	sleep(8)
 
@@ -295,7 +354,6 @@
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
 	temporary_form = null
-	Life(1) //Fix my blindness right meow
 
 	//Transfer vore organs
 	vore_selected = blob.vore_selected
@@ -303,7 +361,12 @@
 		var/obj/belly/B = belly
 		B.forceMove(src)
 		B.owner = src
-	
+
+	if(blob.prev_left_hand) put_in_l_hand(blob.prev_left_hand) //The restore for when reforming.
+	if(blob.prev_right_hand) put_in_r_hand(blob.prev_right_hand)
+
+	Life(1) //Fix my blindness right meow //Has to be moved up here, there exists a circumstance where blob could be deleted without vore organs moving right.
+
 	//Get rid of friend blob
 	qdel(blob)
 

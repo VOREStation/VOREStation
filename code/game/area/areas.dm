@@ -35,7 +35,7 @@
 //	var/list/lights				// list of all lights on this area
 	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/firedoors_closed = 0
-	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
+	var/list/ambience = list()
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
@@ -68,10 +68,8 @@
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
-	return INITIALIZE_HINT_LATELOAD
-
-/area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates lighting icon
+	return INITIALIZE_HINT_LATELOAD
 
 /area/proc/get_contents()
 	return contents
@@ -297,10 +295,6 @@ var/list/mob/living/forced_ambiance_list = new
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 		forced_ambiance_list -= L
 
-	if(!L.client.ambience_playing)
-		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = CHANNEL_AMBIENCE)
-
 	if(forced_ambience)
 		if(forced_ambience.len)
 			forced_ambiance_list |= L
@@ -311,10 +305,10 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 	else if(src.ambience.len && prob(35))
-		if((world.time >= L.client.played + 600))
+		if((world.time >= L.client.time_last_ambience_played + 1 MINUTE))
 			var/sound = pick(ambience)
-			L << sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE)
-			L.client.played = world.time
+			L << sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE)
+			L.client.time_last_ambience_played = world.time
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate

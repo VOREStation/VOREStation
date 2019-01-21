@@ -22,8 +22,8 @@
 	environment_smash = 2
 	can_be_antagged = 1
 	speed = -1
-	maxHealth = 50000
-	health = 50000
+	maxHealth = 3000
+	health = 3000
 	status_flags = CANPUSH
 //	investigates = 1
 	a_intent = I_HURT
@@ -58,12 +58,23 @@
 
 	melee_miss_chance = 0
 
+	armor = list(
+				"melee" = 30,
+				"bullet" = 60,
+				"laser" = 80,
+				"energy" = 30,
+				"bomb" = 30,
+				"bio" = 100,
+				"rad" = 100)
+
+	resistance = 20
 
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	var/last_hit = 0
 	var/cannot_be_seen = 1
 	var/mob/living/creator = null
+	var/drilled = FALSE
 
 
 // No movement while seen code.
@@ -92,9 +103,20 @@
 			else
 				visible_message("<span class='warning'>[src] is too strong to be banished!</span>")
 				Paralyse(rand(8,15))
+	if(istype(O, /obj/item/weapon/pickaxe) || istype(O, /obj/item/weapon/pickaxe/plasmacutter) && !drilled)
+		drilled = TRUE
+		resistance = 0
+		spawn(300)
+			drilled = FALSE
+			resistance = initial(resistance)
+	..()
 
 /mob/living/simple_animal/hostile/statue/death()
-	new /obj/item/stack/material/marble(loc)
+	var/chunks_to_spawn = rand(2,5)
+	for(var/I = 1 to chunks_to_spawn)
+		new /obj/item/stack/material/marble(get_turf(loc))
+	new /obj/item/cursed_marble(get_turf(loc))
+	..()
 
 /mob/living/simple_animal/hostile/statue/Move(turf/NewLoc)
 	if(can_be_seen(NewLoc))
@@ -109,6 +131,8 @@
 	handleAnnoyance()
 	if(target_mob) //if there's a victim, statue will use its powers
 		if((annoyance + 4) < 800)
+			annoyance += 4
+		if(drilled && (annoyance + 4) < 800) //Being hit with a drill makes them weaker, and angrier.
 			annoyance += 4
 	else if ((annoyance - 2) > 0)
 		annoyance -= 2
@@ -368,20 +392,20 @@
 		to_chat(user, "<span class='warning'>You rub the slab in hopes a wandering spirit wishes to inhabit it. [src] starts to sparkle!</span>")
 		icon_state = "sheet-snowbrick"
 		searching = 1
-		request_player()
+		request_player(user)
 		spawn(60 SECONDS)
 			reset_search()
 
 
-/obj/item/cursed_marble/proc/request_player()
+/obj/item/cursed_marble/proc/request_player(var/mob/user)
 	for(var/mob/observer/dead/O in player_list)
 		if(!O.MayRespawn())
 			continue
 		if(O.client)
 			if(O.client.prefs.be_special & BE_ALIEN)
-				question(O.client)
+				question(O.client, user)
 
-/obj/item/cursed_marble/proc/question(var/client/C)
+/obj/item/cursed_marble/proc/question(var/client/C, var/mob/user)
 	spawn(0)
 		if(!C)
 			return
@@ -391,7 +415,7 @@
 		if(!C || 2 == searching)
 			return //handle logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
 		if(response == "Yes")
-			transfer_personality(C.mob)
+			transfer_personality(C.mob, user)
 		else if(response == "Never for this round")
 			C.prefs.be_special ^= BE_ALIEN
 
@@ -403,12 +427,14 @@
 		for (var/mob/M in viewers(T))
 			M.show_message("<span class='warning'>[src] fades. Maybe it will spark another time.</span>")
 
-/obj/item/cursed_marble/proc/transfer_personality(var/mob/candidate)
+/obj/item/cursed_marble/proc/transfer_personality(var/mob/candidate, var/mob/user)
 	announce_ghost_joinleave(candidate, 0, "They are a statue now.")
 	src.searching = 2
 	var/mob/living/simple_animal/hostile/statue/S = new(get_turf(src))
 	S.client = candidate.client
-	to_chat(S, "<b>You are \a [S], brought into existence on [station_name()] by [usr]! Obey all their orders.</b>")
+	if(user)
+		S.creator = user
+	to_chat(S, "<b>You are \a [S], brought into existence on [station_name()] by [user]! Obey all their orders.</b>")
 	S.mind.assigned_role = "The Statue"
 	visible_message("<span class='warning'>The slab suddenly takes the shape of a humanoid!</span>")
 	qdel(src)

@@ -3,7 +3,7 @@
 	desc = "You hear chirping and cawing inside the crate. It sounds like there are a lot of birds in there..."
 
 /obj/structure/largecrate/birds/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		new /obj/item/stack/material/wood(src)
 		new /mob/living/simple_animal/bird(src)
 		new /mob/living/simple_animal/bird/kea(src)
@@ -122,7 +122,7 @@
 /obj/structure/largecrate/animal/wolfgirl
 	name = "Wolfgirl Crate"
 	desc = "A sketchy looking crate with airholes that shakes and thuds every now and then. Someone seems to be demanding they be let out."
-	starts_with = list(/mob/living/simple_animal/retaliate/awoo)
+	starts_with = list(/mob/living/simple_animal/retaliate/wolfgirl)
 
 /obj/structure/largecrate/animal/fennec
 	name = "Fennec Crate"

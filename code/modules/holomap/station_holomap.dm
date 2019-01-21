@@ -4,7 +4,7 @@
 /obj/machinery/station_map
 	name = "station holomap"
 	desc = "A virtual map of the surrounding station."
-	icon = 'icons/obj/machines/stationmap_vr.dmi'
+	icon = 'icons/obj/machines/stationmap.dmi'
 	icon_state = "station_map"
 	anchored = 1
 	density = 0
@@ -67,7 +67,7 @@
 	// small_station_map.plane = LIGHTING_PLANE // Not until we do planes ~Leshana
 	// small_station_map.layer = LIGHTING_LAYER+1 // Weird things will happen!
 
-	floor_markings = image('icons/obj/machines/stationmap_vr.dmi', "decal_station_map")
+	floor_markings = image('icons/obj/machines/stationmap.dmi', "decal_station_map")
 	floor_markings.dir = src.dir
 	// floor_markings.plane = ABOVE_TURF_PLANE // Not until we do planes ~Leshana
 	// floor_markings.layer = DECAL_LAYER
@@ -123,8 +123,8 @@
 			user.client.images |= holomap_datum.station_map
 
 			watching_mob = user
-			moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
-			dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
+			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
+			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
 			update_use_power(2)
 
@@ -152,8 +152,8 @@
 			var/mob/M = watching_mob
 			spawn(5) //we give it time to fade out
 				M.client.images -= holomap_datum.station_map
-		moved_event.unregister(watching_mob, src)
-		dir_set_event.unregister(watching_mob, src)
+		GLOB.moved_event.unregister(watching_mob, src)
+		GLOB.dir_set_event.unregister(watching_mob, src)
 		destroyed_event.unregister(watching_mob, src)
 	watching_mob = null
 	update_use_power(1)
@@ -228,7 +228,7 @@
 	x_offset = WORLD_ICON_SIZE
 	y_offset = WORLD_ICON_SIZE
 	circuit = /obj/item/weapon/circuitboard/station_map
-	icon_override = 'icons/obj/machines/stationmap_vr.dmi'
+	icon_override = 'icons/obj/machines/stationmap.dmi'
 
 /datum/frame/frame_types/station_map/get_icon_state(var/state)
 	return "station_map_frame_[state]"

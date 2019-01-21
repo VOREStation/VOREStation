@@ -42,7 +42,7 @@
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = 0
 
-/obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
+/obj/structure/closet/body_bag/attackby(var/obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_hand() != W)
@@ -58,7 +58,7 @@
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(W.is_wirecutter())
 		to_chat(user, "You cut the tag off the bodybag")
 		src.name = "body bag"
 		src.overlays.Cut()
@@ -149,8 +149,8 @@
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
-	qdel_null(syringe)
-	qdel_null(tank)
+	QDEL_NULL(syringe)
+	QDEL_NULL(tank)
 	return ..()
 
 /obj/structure/closet/body_bag/cryobag/open()
@@ -239,7 +239,7 @@
 					inject_occupant(H)
 					break
 
-		else if(istype(W,/obj/item/weapon/screwdriver))
+		else if(W.is_screwdriver())
 			if(syringe)
 				if(used)
 					to_chat(user,"<span class='warning'>The injector cannot be removed now that the stasis bag has been used!</span>")

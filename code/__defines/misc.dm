@@ -4,7 +4,7 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-// Invisibility constants.
+// Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
 #define INVISIBILITY_LEVEL_TWO            45
@@ -20,6 +20,9 @@
 
 #define SEE_INVISIBLE_MINIMUM 5
 #define INVISIBILITY_MAXIMUM 100
+
+// Pseudo-Invis, like Ninja, Ling, Etc.
+#define EFFECTIVE_INVIS					  50		// Below this, can't be examined, may as well be invisible to the game
 
 // For the client FPS pref and anywhere else
 #define MAX_CLIENT_FPS	200
@@ -146,6 +149,7 @@
 #define MAT_GLASS			"glass"
 #define MAT_SILVER			"silver"
 #define MAT_GOLD			"gold"
+#define MAT_URANIUM			"uranium" //Did it
 #define MAT_TITANIUM		"titanium"
 #define MAT_PHORON			"phoron"
 #define MAT_DIAMOND			"diamond"
@@ -279,3 +283,23 @@ var/global/list/##LIST_NAME = list();\
 #define MATRIX_Achromatomaly 	list(0.62,	0.32, 	0.06, 	0.16, 	0.78, 	0.06, 	0.16, 	0.32, 	0.52)
 #define MATRIX_Vulp_Colorblind 	list(0.50,	0.40,	0.10,	0.50,	0.40,	0.10,	0,		0.20,	0.80)
 #define MATRIX_Taj_Colorblind 	list(0.40,	0.20,	0.40,	0.40,	0.60,	0,		0.20,	0.20,	0.60)
+
+// Tool substitution defines
+#define IS_SCREWDRIVER		"screwdriver"
+#define IS_CROWBAR			"crowbar"
+#define IS_WIRECUTTER		"wirecutter"
+#define IS_WRENCH			"wrench"
+
+// RCD modes. Used on the RCD, and gets passed to an object's rcd_act() when an RCD is used on it, to determine what happens.
+#define RCD_FLOORWALL		"Floor / Wall"		// Builds plating on space/ground/open tiles. Builds a wall when on floors. Finishes walls when used on girders.
+#define RCD_AIRLOCK			"Airlock"			// Builds an airlock on the tile if one isn't already there.
+#define RCD_WINDOWGRILLE	"Window / Grille" 	// Builds a full tile window and grille pair on floors.
+#define RCD_DECONSTRUCT		"Deconstruction"	// Removes various things. Still consumes compressed matter.
+
+#define RCD_VALUE_MODE		"mode"
+#define RCD_VALUE_DELAY		"delay"
+#define RCD_VALUE_COST		"cost"
+
+
+#define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
+#define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT

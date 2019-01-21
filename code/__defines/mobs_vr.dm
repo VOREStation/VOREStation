@@ -13,6 +13,9 @@
 #define O_ORCH		"orchestrator"
 #define O_FACT		"refactory"
 
+//Alraune organs
+#define A_FRUIT	"fruit gland"
+
 //species defines
 #define SPECIES_AKULA			"Akula"
 #define SPECIES_ALRAUNE			"Alraune"

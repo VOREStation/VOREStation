@@ -115,9 +115,9 @@
 			plant.pixel_y = 0
 		plant.update_neighbors()
 
-/turf/simulated/wall/ChangeTurf(var/newtype)
+/turf/simulated/wall/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
 	clear_plants()
-	..(newtype)
+	..(N, tell_universe, force_lighting_update, preserve_outdoors)
 
 //Appearance
 /turf/simulated/wall/examine(mob/user)
@@ -287,3 +287,27 @@
 				W.burn((temperature/4))
 			for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
 				D.ignite(temperature/4)
+
+/turf/simulated/wall/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	if(material.integrity > 1000) // Don't decon things like elevatorium.
+		return FALSE
+	if(reinf_material && !the_rcd.can_remove_rwalls) // Gotta do it the old fashioned way if your RCD can't.
+		return FALSE
+
+	if(passed_mode == RCD_DECONSTRUCT)
+		var/delay_to_use = material.integrity / 3 // Steel has 150 integrity, so it'll take five seconds to down a regular wall.
+		if(reinf_material)
+			delay_to_use += reinf_material.integrity / 3
+		return list(
+			RCD_VALUE_MODE = RCD_DECONSTRUCT,
+			RCD_VALUE_DELAY = delay_to_use,
+			RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 5
+			)
+	return FALSE
+
+/turf/simulated/wall/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	if(passed_mode == RCD_DECONSTRUCT)
+		to_chat(user, span("notice", "You deconstruct \the [src]."))
+		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
+		return TRUE
+	return FALSE

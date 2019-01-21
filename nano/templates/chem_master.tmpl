@@ -72,6 +72,12 @@
 				{{:helper.link('', 'pill pill' + data.pillSprite, {'tab_select' : 'pill'}, null, 'link32')}}
 				{{:helper.link('', 'pill bottle' + data.bottleSprite, {'tab_select' : 'bottle'}, null, 'link32')}}
 			</div>
+		{{else}}
+			<hr>
+			<div class='item'>
+				{{:helper.link('Create bottle (50 units max)', null, {'createbottle' : 1})}}
+				{{:helper.link('Create bouillon cube (60 units max)', null, {'createpill' : 1})}}
+			</div>
 		{{/if}}
 	{{/if}}
 

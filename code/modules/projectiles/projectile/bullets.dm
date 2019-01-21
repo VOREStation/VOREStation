@@ -62,100 +62,45 @@
 
 	return 0
 
-//For projectiles that actually represent clouds of projectiles
-/obj/item/projectile/bullet/pellet
-	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage = 20
-	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
-	var/pellets = 4			//number of pellets
-	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
-	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
-	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
-
-/obj/item/projectile/bullet/pellet/Bumped()
-	. = ..()
-	bumped = 0 //can hit all mobs in a tile. pellets is decremented inside attack_mob so this should be fine.
-
-/obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
-	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
-	return max(pellets - pellet_loss, 1)
-
-/obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if (pellets < 0) return 1
-
-	var/total_pellets = get_pellets(distance)
-	var/spread = max(base_spread - (spread_step*distance), 0)
-
-	//shrapnel explosions miss prone mobs with a chance that increases with distance
-	var/prone_chance = 0
-	if(!base_spread)
-		prone_chance = max(spread_step*(distance - 2), 0)
-
-	var/hits = 0
-	for (var/i in 1 to total_pellets)
-		if(target_mob.lying && target_mob != original && prob(prone_chance))
-			continue
-
-		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability
-		//whether the pellet actually hits the def_zone or a different zone should still be determined by the parent using get_zone_with_miss_chance().
-		var/old_zone = def_zone
-		def_zone = ran_zone(def_zone, spread)
-		if (..()) hits++
-		def_zone = old_zone //restore the original zone the projectile was aimed at
-
-	pellets -= hits //each hit reduces the number of pellets left
-	if (hits >= total_pellets || pellets <= 0)
-		return 1
-	return 0
-
-/obj/item/projectile/bullet/pellet/get_structure_damage()
-	var/distance = get_dist(loc, starting)
-	return ..() * get_pellets(distance)
-
-/obj/item/projectile/bullet/pellet/Move()
-	. = ..()
-
-	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too
-	if(. && !base_spread && isturf(loc))
-		for(var/mob/living/M in loc)
-			if(M.lying || !M.CanPass(src, loc)) //Bump if lying or if we would normally Bump.
-				if(Bump(M)) //Bump will make sure we don't hit a mob multiple times
-					return
-
 /* short-casing projectiles, like the kind used in pistols or SMGs */
 
-/obj/item/projectile/bullet/pistol
-	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg'
+/obj/item/projectile/bullet/pistol // 9mm pistols and most SMGs. Sacrifice power for capacity.
+	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg' // ToDo: Different shot sounds for different strength pistols. -Ace
 	damage = 20
 
 /obj/item/projectile/bullet/pistol/ap
 	damage = 15
 	armor_penetration = 30
 
-/obj/item/projectile/bullet/pistol/medium
+/obj/item/projectile/bullet/pistol/hp
+	damage = 25
+	armor_penetration = -50
+
+/obj/item/projectile/bullet/pistol/medium // .45 (and maybe .40 if it ever gets added) caliber security pistols. Balance between capacity and power.
+	// fire_sound = 'sound/weapons/gunshot3.ogg' // ToDo: Different shot sounds for different strength pistols.
 	damage = 25
 
 /obj/item/projectile/bullet/pistol/medium/ap
 	damage = 20
 	armor_penetration = 15
 
-/obj/item/projectile/bullet/pistol/medium/hollow
+/obj/item/projectile/bullet/pistol/medium/hp
 	damage = 30
 	armor_penetration = -50
 
-/obj/item/projectile/bullet/pistol/strong //revolvers and matebas
-	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+/obj/item/projectile/bullet/pistol/strong // .357 and .44 caliber stuff. High power pistols like the Mateba or Desert Eagle. Sacrifice capacity for power.
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg' // ToDo: Replace with something less ugly. I recommend weapons/gunshot3.ogg
 	damage = 60
 
-/obj/item/projectile/bullet/pistol/rubber/strong //"rubber" bullets for revolvers and matebas
-	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+/obj/item/projectile/bullet/pistol/rubber/strong // "Rubber" bullets for high power pistols.
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg' // ToDo: Same as above.
 	damage = 10
 	agony = 60
 	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
-/obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
+/obj/item/projectile/bullet/pistol/rubber // "Rubber" bullets for all other pistols.
 	name = "rubber bullet"
 	damage = 5
 	agony = 40
@@ -189,6 +134,11 @@
 	range_step = 1
 	spread_step = 10
 
+/obj/item/projectile/bullet/pellet/shotgun/flak
+	damage = 2 //The main weapon using these fires four at a time, usually with different destinations. Usually.
+	range_step = 2
+	spread_step = 30
+	armor_penetration = 10
 
 //EMP shotgun 'slug', it's basically a beanbag that pops a tiny emp when it hits. //Not currently used
 /obj/item/projectile/bullet/shotgun/ion
@@ -222,7 +172,7 @@
 	damage = 30
 	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
 
-/obj/item/projectile/bullet/rifle/a762/hollow
+/obj/item/projectile/bullet/rifle/a762/hp
 	damage = 40
 	armor_penetration = -50
 	penetrating = 0
@@ -239,7 +189,7 @@
 	damage = 20
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
 
-/obj/item/projectile/bullet/rifle/a545/hollow
+/obj/item/projectile/bullet/rifle/a545/hp
 	damage = 35
 	armor_penetration = -50
 	penetrating = 0

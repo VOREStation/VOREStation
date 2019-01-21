@@ -649,6 +649,17 @@
 		icon_state = "jagged"
 		body_parts = list(BP_HEAD)
 
+	blank_face
+		name = "Blank round face (use with monster mouth)"
+		icon_state = "blankface"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	monster_mouth
+		name = "Monster mouth"
+		icon_state = "monster"
+		body_parts = list(BP_HEAD)
+
 	saber_teeth
 		name = "Saber teeth"
 		icon_state = "saber"
@@ -977,7 +988,7 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO)
 
-	spirit_panels_head
+	spirit_lights_head
 		name = "Ward - Spirit FBP Lights (head)"
 		icon_state = "lights"
 		color_blend_mode = ICON_MULTIPLY

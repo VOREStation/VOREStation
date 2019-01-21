@@ -16,7 +16,6 @@
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
-
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
@@ -57,5 +56,12 @@
 
 	var/see_invisible_default = SEE_INVISIBLE_LIVING
 
+	var/nest				//Not specific, because a Nest may be the prop nest, or blob factory in this case.
+
 	var/list/hud_list		//Holder for health hud, status hud, wanted hud, etc (not like inventory slots)
 	var/has_huds = FALSE	//Whether or not we should bother initializing the above list
+
+	var/makes_dirt = TRUE	//FALSE if the mob shouldn't be making dirt on the ground when it walks
+
+	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
+	

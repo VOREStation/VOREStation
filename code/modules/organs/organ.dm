@@ -31,6 +31,10 @@ var/list/organ_cache = list()
 	var/rejecting                     // Is this organ already being rejected?
 	var/preserved = 0                 // If this is 1, prevents organ decay.
 
+	// Language vars. Putting them here in case we decide to do something crazy with sign-or-other-nonverbal languages.
+	var/list/will_assist_languages = list()
+	var/list/datum/language/assists_languages = list()
+
 /obj/item/organ/Destroy()
 
 	if(owner)           owner = null

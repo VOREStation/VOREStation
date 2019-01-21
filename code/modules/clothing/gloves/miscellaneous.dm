@@ -105,9 +105,8 @@
 	name = "insulated gauntlets"
 	icon_state = "gloves-vox"
 	item_state = "gloves-vox"
-	item_flags = PHORONGUARD
+	flags = PHORONGUARD
 	siemens_coefficient = 0
-	phoronproof = 1
 	permeability_coefficient = 0.05
 	species_restricted = list("Vox")
 
@@ -120,6 +119,7 @@
 	name = "knuckle dusters"
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
 	icon_state = "knuckledusters"
+	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	attack_verb = list("punched", "beaten", "struck")
 	flags = THICKMATERIAL	// Stops rings from increasing hit strength
 	siemens_coefficient = 1
