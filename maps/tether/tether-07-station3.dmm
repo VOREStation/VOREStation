@@ -17576,7 +17576,7 @@
 	dir = 9;
 	pixel_y = 0
 	},
-/mob/living/simple_animal/fluffy,
+/mob/living/simple_mob/animal/sif/fluffy,
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "CG" = (
@@ -24324,7 +24324,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/mob/living/simple_animal/cat/fluff/Runtime,
+/mob/living/simple_mob/animal/passive/cat/runtime,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "NB" = (
