@@ -113,3 +113,12 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
+
+/datum/trait/antiseptic_saliva
+	name = "Antiseptic Saliva"
+	desc = "Your saliva has especially strong antiseptic properties that can be used to heal small wounds."
+	cost = 0
+
+/datum/trait/antiseptic_saliva/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/verb/lick_wounds
