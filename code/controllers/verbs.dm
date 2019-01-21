@@ -63,11 +63,12 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("Master","Ticker","Ticker Process","Air","Jobs","Radio","Supply","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Plants","Alarm","Xenobio"))
+/client/proc/debug_controller()
 	set category = "Debug"
 	set name = "Debug Controller"
-	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
+	set desc = "Debug the various subsystems/controllers for the game (be careful!)"
 
+<<<<<<< HEAD
 	if(!holder)	return
 	switch(controller)
 		if("Master")
@@ -140,3 +141,49 @@
 	debug_variables(P)
 	feedback_add_details("admin_verb", "DProcCtrl")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
+=======
+	if(!holder)
+		return
+	var/list/options = list()
+	options["MC"] = Master
+	options["Failsafe"] = Failsafe
+	options["Configuration"] = config
+	for(var/i in Master.subsystems)
+		var/datum/controller/subsystem/S = i
+		if(!istype(S))		//Eh, we're a debug verb, let's have typechecking.
+			continue
+		var/strtype = "SS[get_end_section_of_type(S.type)]"
+		if(options[strtype])
+			var/offset = 2
+			while(istype(options["[strtype]_[offset] - DUPE ERROR"], /datum/controller/subsystem))
+				offset++
+			options["[strtype]_[offset] - DUPE ERROR"] = S		//Something is very, very wrong.
+		else
+			options[strtype] = S
+
+	//Goon PS stuff, and other yet-to-be-subsystem things.
+	options["LEGACY: master_controller"] = master_controller
+	options["LEGACY: ticker"] = ticker
+	options["LEGACY: tickerProcess"] = tickerProcess
+	options["LEGACY: air_master"] = air_master
+	options["LEGACY: job_master"] = job_master
+	options["LEGACY: radio_controller"] = radio_controller
+	options["LEGACY: supply_controller"] = supply_controller
+	options["LEGACY: emergency_shuttle"] = emergency_shuttle
+	options["LEGACY: paiController"] = paiController
+	options["LEGACY: cameranet"] = cameranet
+	options["LEGACY: transfer_controller"] = transfer_controller
+	options["LEGACY: gas_data"] = gas_data
+	options["LEGACY: plant_controller"] = plant_controller
+	options["LEGACY: alarm_manager"] = alarm_manager
+
+	var/pick = input(mob, "Choose a controller to debug/view variables of.", "VV controller:") as null|anything in options
+	if(!pick)
+		return
+	var/datum/D = options[pick]
+	if(!istype(D))
+		return
+	feedback_add_details("admin_verb", "DebugController")
+	message_admins("Admin [key_name_admin(mob)] is debugging the [pick] controller.")
+	debug_variables(D)
+>>>>>>> bfaaffb... Adds a better debug controller verb that can target all controllers/processes/mc/failsafe/config/etc (#5852)
