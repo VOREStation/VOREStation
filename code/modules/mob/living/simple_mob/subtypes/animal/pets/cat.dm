@@ -81,14 +81,13 @@
 		face_atom(L)
 		to_chat(L, span("notice", "\The [src] is now your friend! Meow."))
 		visible_emote(pick("nuzzles [friend].", "brushes against [friend].", "rubs against [friend].", "purrs."))
+
+		if(has_AI())
+			var/datum/ai_holder/AI = ai_holder
+			AI.set_follow(friend)
 	else
 		to_chat(L, span("notice", "[src] ignores you."))
 	//VOREStation Edit End
-
-	if(has_AI())
-		var/datum/ai_holder/AI = ai_holder
-		AI.set_follow(friend)
-
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_mob/animal/passive/cat/runtime
