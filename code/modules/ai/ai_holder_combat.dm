@@ -70,8 +70,10 @@
 		on_engagement(target)
 		if(firing_lanes && !test_projectile_safety(target))
 			// Nudge them a bit, maybe they can shoot next time.
-			step_rand(holder)
-			holder.face_atom(target)
+			var/turf/T = get_step(holder, pick(cardinal))
+			if(T)
+				holder.IMove(T) // IMove() will respect movement cooldown.
+				holder.face_atom(target)
 			ai_log("engage_target() : Could not safely fire at target. Exiting.", AI_LOG_DEBUG)
 			return
 
@@ -130,6 +132,9 @@
 
 // Used to make sure projectiles will probably hit the target and not the wall or a friend.
 /datum/ai_holder/proc/test_projectile_safety(atom/movable/AM)
+	if(holder.Adjacent(AM)) // If they're right next to us then lets just say yes. check_trajectory() tends to spaz out otherwise.
+		return TRUE
+
 	var/mob/living/L = check_trajectory(AM, holder) // This isn't always reliable but its better than the previous method.
 //	world << "Checked trajectory, would hit [L]."
 
