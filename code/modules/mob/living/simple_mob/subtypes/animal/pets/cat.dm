@@ -22,7 +22,6 @@
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. Meow.
 	var/friend_name = null //VOREStation Edit - Lock befriending to this character
-	
 
 /mob/living/simple_mob/animal/passive/cat/handle_special()
 	if(!stat && prob(2)) // spooky
@@ -132,6 +131,7 @@
 	icon_dead = "cat3_dead"
 	icon_rest = "cat3_rest"
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
+
 
 /datum/say_list/cat
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
