@@ -21,7 +21,6 @@
 	has_langs = list("Cat")
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. Meow.
-	var/befriend_job = null //VOREStation Edit - Lock befriending to this job
 	var/friend_name = null //VOREStation Edit - Lock befriending to this character
 	
 
@@ -75,8 +74,8 @@
 			to_chat(L, span("warning", "\The [src] ignores you."))
 			return
 
-	//VOREStation Edit Start - Adds befriend_job and friend_name var checks
-	if((!friend_name || L.real_name == friend_name) && (!befriend_job || L.job == befriend_job))
+	//VOREStation Edit Start - Adds friend_name var checks
+	if(!friend_name || L.real_name == friend_name)
 		friend = L
 		face_atom(L)
 		to_chat(L, span("notice", "\The [src] is now your friend! Meow."))
@@ -100,7 +99,6 @@
 	icon_living = "cat"
 	icon_dead = "cat_dead"
 	icon_rest = "cat_rest"
-	befriend_job = "Chief Medical Officer" //VOREStation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"
@@ -134,7 +132,6 @@
 	icon_dead = "cat3_dead"
 	icon_rest = "cat3_rest"
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
-	friend_name = "Erstatz Vryroxes" //VOREStation Edit
 
 /datum/say_list/cat
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
