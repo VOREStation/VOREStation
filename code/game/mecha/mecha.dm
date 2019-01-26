@@ -317,7 +317,7 @@
 //		return ..()
 */
 
-/obj/mecha/proc/click_action(atom/target,mob/user)
+/obj/mecha/proc/click_action(atom/target,mob/user, params)
 	if(!src.occupant || src.occupant != user ) return
 	if(user.stat) return
 	if(state)
@@ -339,7 +339,7 @@
 		if(selected && selected.is_ranged())
 			selected.action(target)
 	else if(selected && selected.is_melee())
-		selected.action(target)
+		selected.action(target, params)
 	else
 		src.melee_action(target)
 	return

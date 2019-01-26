@@ -672,10 +672,12 @@
 	. = (is_client_active(10 MINUTES))
 
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
-			stat("Station Time", stationtime2text())
-			stat("Station Date", stationdate2text())
-			stat("Round Duration", roundduration2text())
+		if(statpanel("Status"))
+			stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+			if(ticker && ticker.current_state != GAME_STATE_PREGAME)
+				stat("Station Time", stationtime2text())
+				stat("Station Date", stationdate2text())
+				stat("Round Duration", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
@@ -1192,6 +1194,8 @@ mob/proc/yank_out_object()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
+<<<<<<< HEAD
+=======
 
 // Manages a global list of mobs with clients attached, indexed by z-level.
 /mob/proc/update_client_z(new_z) // +1 to register, null to unregister.
@@ -1205,6 +1209,7 @@ mob/proc/yank_out_object()
 		else
 			registered_z = null
 
-/mob/on_z_change(old_z, new_z)
+/mob/onTransitZ(old_z, new_z)
 	..()
 	update_client_z(new_z)
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles

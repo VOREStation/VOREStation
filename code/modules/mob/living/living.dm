@@ -80,49 +80,23 @@ default behaviour is:
 			return 1
 		return 0
 
-/mob/living/Bump(atom/movable/AM, yes)
-	spawn(0)
-		if ((!( yes ) || now_pushing) || !loc)
-			return
-		now_pushing = 1
-		if (istype(AM, /mob/living))
-			var/mob/living/tmob = AM
+/mob/living/Bump(atom/movable/AM)
+	if(now_pushing || !loc)
+		return
+	now_pushing = 1
+	if (istype(AM, /mob/living))
+		var/mob/living/tmob = AM
 
-			//Even if we don't push/swap places, we "touched" them, so spread fire
-			spread_fire(tmob)
+		//Even if we don't push/swap places, we "touched" them, so spread fire
+		spread_fire(tmob)
 
-			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
-					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
-					now_pushing = 0
-					return
-				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
-					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
-					now_pushing = 0
-					return
-
-			//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			var/dense = 0
-			if(loc.density)
-				dense = 1
-			for(var/atom/movable/A in loc)
-				if(A == src)
-					continue
-				if(A.density)
-					if(A.flags&ON_BORDER)
-						dense = !A.CanPass(src, src.loc)
-					else
-						dense = 1
-				if(dense) break
-
-			//Leaping mobs just land on the tile, no pushing, no anything.
-			if(status_flags & LEAPING)
-				loc = tmob.loc
-				status_flags &= ~LEAPING
+		for(var/mob/living/M in range(tmob, 1))
+			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
+				if ( !(world.time % 5) )
+					to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
 				now_pushing = 0
 				return
+<<<<<<< HEAD
 
 			if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 				var/turf/oldloc = loc
@@ -145,15 +119,58 @@ default behaviour is:
 				// VOREStation Edit - End
 
 				tmob.forceMove(oldloc)
+=======
+			if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
+				if ( !(world.time % 5) )
+					to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 				now_pushing = 0
 				return
 
-			if(!can_move_mob(tmob, 0, 0))
+		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
+		var/dense = 0
+		if(loc.density)
+			dense = 1
+		for(var/atom/movable/A in loc)
+			if(A == src)
+				continue
+			if(A.density)
+				if(A.flags&ON_BORDER)
+					dense = !A.CanPass(src, src.loc)
+				else
+					dense = 1
+			if(dense) break
+
+		//Leaping mobs just land on the tile, no pushing, no anything.
+		if(status_flags & LEAPING)
+			loc = tmob.loc
+			status_flags &= ~LEAPING
+			now_pushing = 0
+			return
+
+		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
+			var/turf/oldloc = loc
+			forceMove(tmob.loc)
+			tmob.forceMove(oldloc)
+			now_pushing = 0
+			return
+
+		if(!can_move_mob(tmob, 0, 0))
+			now_pushing = 0
+			return
+		if(a_intent == I_HELP || src.restrained())
+			now_pushing = 0
+			return
+		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+			if(prob(40) && !(FAT in src.mutations))
+				to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
 				now_pushing = 0
 				return
-			if(a_intent == I_HELP || src.restrained())
+		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
+			if(prob(99))
 				now_pushing = 0
 				return
+<<<<<<< HEAD
 
 			// VOREStation Edit - Begin
 			// Plow that nerd.
@@ -182,11 +199,19 @@ default behaviour is:
 					now_pushing = 0
 					return
 			if(!(tmob.status_flags & CANPUSH))
+=======
+		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
+			if(prob(99))
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 				now_pushing = 0
 				return
+		if(!(tmob.status_flags & CANPUSH))
+			now_pushing = 0
+			return
 
-			tmob.LAssailant = src
+		tmob.LAssailant = src
 
+<<<<<<< HEAD
 		now_pushing = 0
 		spawn(0)
 			..()
@@ -203,27 +228,36 @@ default behaviour is:
 					src << ("<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
 					to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
 					*/ // VOREStation Removal End
+=======
+	now_pushing = 0
+	. = ..()
+	if (!istype(AM, /atom/movable) || AM.anchored)
+		if(confused && prob(50) && m_intent=="run")
+			Weaken(2)
+			playsound(loc, "punch", 25, 1, -1)
+			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
+			src.apply_damage(5, BRUTE)
+			to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
+		return
+	if (!now_pushing)
+		if(isobj(AM))
+			var/obj/I = AM
+			if(!can_pull_size || can_pull_size < I.w_class)
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 				return
-			if (!now_pushing)
-				if(isobj(AM))
-					var/obj/I = AM
-					if(!can_pull_size || can_pull_size < I.w_class)
-						return
-				now_pushing = 1
+		now_pushing = 1
 
-				var/t = get_dir(src, AM)
-				if (istype(AM, /obj/structure/window))
-					for(var/obj/structure/window/win in get_step(AM,t))
-						now_pushing = 0
-						return
-				step(AM, t)
-				if(ishuman(AM) && AM:grabbed_by)
-					for(var/obj/item/weapon/grab/G in AM:grabbed_by)
-						step(G:assailant, get_dir(G:assailant, AM))
-						G.adjust_position()
+		var/t = get_dir(src, AM)
+		if (istype(AM, /obj/structure/window))
+			for(var/obj/structure/window/win in get_step(AM,t))
 				now_pushing = 0
-			return
-	return
+				return
+		step(AM, t)
+		if(ishuman(AM) && AM:grabbed_by)
+			for(var/obj/item/weapon/grab/G in AM:grabbed_by)
+				step(G:assailant, get_dir(G:assailant, AM))
+				G.adjust_position()
+		now_pushing = 0
 
 /mob/living/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/structure/blob) && faction == "blob") //Blobs should ignore things on their faction.

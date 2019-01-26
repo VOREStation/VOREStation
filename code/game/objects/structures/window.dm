@@ -131,14 +131,20 @@
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
+<<<<<<< HEAD
 		return 1
 	if(is_fulltile())
 		return 0	//full tile window, you can't move into it!
 	if(get_dir(loc, target) & dir)
+=======
+		return TRUE
+	if(is_fulltile())
+		return FALSE	//full tile window, you can't move into it!
+	if((get_dir(loc, target) & dir) || (get_dir(mover, target) == turn(dir, 180)))
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 		return !density
 	else
-		return 1
-
+		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -146,7 +152,6 @@
 	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
-
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()

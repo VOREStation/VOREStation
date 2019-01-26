@@ -219,7 +219,7 @@
 	embed_chance = 0 // nope
 	nodamage = 1
 	damage_type = HALLOSS
-	muzzle_type = /obj/effect/projectile/bullet/muzzle
+	muzzle_type = /obj/effect/projectile/muzzle/bullet
 
 /obj/item/projectile/bola
 	name = "bola"

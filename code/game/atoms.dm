@@ -8,12 +8,13 @@
 	var/list/blood_DNA
 	var/was_bloodied
 	var/blood_color
-	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = 1 //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
+
+	var/last_bumped = 0
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -98,7 +99,7 @@
 	return -1
 
 /atom/proc/Bumped(AM as mob|obj)
-	return
+	set waitfor = FALSE
 
 // Convenience proc to see if a container is open for chemistry handling
 // returns true if open
@@ -496,7 +497,7 @@
 		if(!istype(drop_destination) || drop_destination == destination)
 			return forceMove(destination)
 		destination = drop_destination
-	return forceMove(null)
+	return moveToNullspace()
 
 /atom/proc/onDropInto(var/atom/movable/AM)
 	return // If onDropInto returns null, then dropInto will forceMove AM into us.

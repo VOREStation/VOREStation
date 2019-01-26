@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /*
 	The initialization of the game happens roughly like this:
@@ -27,12 +28,16 @@ var/global/datum/global_init/init = new ()
 	global.init = null
 	return 2 // QDEL_HINT_IWILLGC
 
+=======
+//Global init and the rest of world's code have been moved to code/global_init.dm and code/game/world.dm respectively.
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 /world
 	mob = /mob/new_player
 	turf = /turf/space
 	area = /area/space
 	view = "15x15"
 	cache_lifespan = 7
+<<<<<<< HEAD
 
 
 
@@ -679,3 +684,5 @@ proc/establish_old_db_connection()
 	max_z_changed()
 
 #undef FAILED_DB_CONNECTION_CUTOFF
+=======
+>>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles

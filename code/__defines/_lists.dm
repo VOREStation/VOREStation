@@ -52,3 +52,5 @@
 		__BIN_MID = __BIN_ITEM.##COMPARE > IN.##COMPARE ? __BIN_MID : __BIN_MID + 1;\
 		LIST.Insert(__BIN_MID, IN);\
 	}
+
+#define islist(L) istype(L, /list)

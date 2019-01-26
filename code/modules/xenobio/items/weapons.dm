@@ -90,9 +90,9 @@
 	// Probably for the best so that it doesn't harm the slime.
 	taser_effect = FALSE
 
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/stun/xeno/weak //Weaker variant for non-research equipment, turrets, or rapid fire types.
 	agony = 3
