@@ -73,7 +73,12 @@
 			src.visible_message("<span class='notice'>[user] activates [src]!</span>")
 			mode = 2
 			icon_state = "powersink1"
+<<<<<<< HEAD
 			processing_objects.Add(src)
+=======
+			START_PROCESSING(SSobj, src)
+			datum_flags &= ~DF_ISPROCESSING // Have to reset this flag so that PROCESSING_POWER_OBJECT can re-add it. It fails if the flag is already present. - Ater
+>>>>>>> 5b22bed... Unclogs powersink drains (#5901)
 			START_PROCESSING_POWER_OBJECT(src)
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
 			src.visible_message("<span class='notice'>[user] deactivates [src]!</span>")
