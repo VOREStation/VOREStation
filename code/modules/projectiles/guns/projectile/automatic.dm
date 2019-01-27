@@ -300,9 +300,9 @@
 /obj/item/weapon/gun/projectile/automatic/as24/update_icon()
 	..()
 	if(ammo_magazine)
-		icon_state = "ashot-[round(ammo_magazine.stored_ammo.len,12)]"
-	else
 		icon_state = "ashot"
+	else
+		icon_state = "ashot-empty"
 	return
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
