@@ -740,8 +740,11 @@
 #include "code\game\machinery\transportpod.dm"
 #include "code\game\machinery\turret_control.dm"
 #include "code\game\machinery\vending.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\machinery\vending_vr.dm"
 #include "code\game\machinery\vr_console.dm"
+=======
+>>>>>>> 83fc6b5... Adds Alien Reality pods, aka AR pods, for use in events or PoIs. (#5798):polaris.dme
 #include "code\game\machinery\wall_frames.dm"
 #include "code\game\machinery\washing_machine.dm"
 #include "code\game\machinery\wishgranter.dm"
@@ -856,6 +859,8 @@
 #include "code\game\machinery\telecomms\telecomunications.dm"
 #include "code\game\machinery\telecomms\telemonitor.dm"
 #include "code\game\machinery\telecomms\traffic_control.dm"
+#include "code\game\machinery\virtual_reality\ar_console.dm"
+#include "code\game\machinery\virtual_reality\vr_console.dm"
 #include "code\game\magic\Uristrunes.dm"
 #include "code\game\mecha\mech_bay.dm"
 #include "code\game\mecha\mech_fabricator.dm"
@@ -2166,6 +2171,7 @@
 #include "code\modules\mob\living\carbon\human\species\species_shapeshift_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\species_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\event.dm"
+#include "code\modules\mob\living\carbon\human\species\outsider\replicant.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\shadow.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\skeleton.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\vox.dm"
@@ -2485,7 +2491,11 @@
 #include "code\modules\organs\subtypes\diona.dm"
 #include "code\modules\organs\subtypes\indestructible.dm"
 #include "code\modules\organs\subtypes\machine.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\organs\subtypes\nano.dm"
+=======
+#include "code\modules\organs\subtypes\replicant.dm"
+>>>>>>> 83fc6b5... Adds Alien Reality pods, aka AR pods, for use in events or PoIs. (#5798):polaris.dme
 #include "code\modules\organs\subtypes\seromi.dm"
 #include "code\modules\organs\subtypes\slime.dm"
 #include "code\modules\organs\subtypes\slime_vr.dm"
