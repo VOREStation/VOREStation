@@ -75,6 +75,7 @@
 			if(null)
 				return
 
+<<<<<<< HEAD
 			if("finished")
 				done = 1
 
@@ -142,6 +143,82 @@
 		log_admin("[key_name(src)] called [target]'s [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
 		if(arguments.len)
 			returnval = call(target, procname)(arglist(arguments))
+=======
+/client/proc/callproc_datum(datum/A as null|area|mob|obj|turf)
+	set category = "Debug"
+	set name = "Atom ProcCall"
+	set waitfor = 0
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/procname = input("Proc name, eg: fake_blood","Proc:", null) as text|null
+	if(!procname)
+		return
+	if(!hascall(A,procname))
+		to_chat(usr, "<font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font>")
+		return
+	var/list/lst = get_callproc_args()
+	if(!lst)
+		return
+
+	if(!A || !IsValidSrc(A))
+		to_chat(usr, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
+		return
+	var/msg = "[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
+	log_admin(msg)
+	//message_admins(msg)
+	admin_ticket_log(A, msg)
+	feedback_add_details("admin_verb","TPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	var/returnval = WrapAdminProcCall(A, procname, lst) // Pass the lst as an argument list to the proc
+	. = get_callproc_returnval(returnval,procname)
+	if(.)
+		to_chat(usr, .)
+
+/client/proc/get_callproc_args()
+	var/argnum = input("Number of arguments","Number:",0) as num|null
+	if(isnull(argnum))
+		return null					//Cancel
+
+	. = list()
+	//var/list/named_args = list()			//Named arguments are removed, due to them making proccalling take too long.
+	while(argnum--)
+		/*						//Named arguments are removed, due to them making proccalling take too long.
+		var/named_arg = input("Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
+		if(isnull(named_arg))
+			return null				//Cancel
+		*/
+		var/value = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
+		if (!value["class"])
+			return null				//Cancel
+		/*						//Named arguments are removed, due to them making proccalling take too long.
+		if(named_arg)
+			named_args[named_arg] = value["value"]
+		else
+			. += value["value"]
+	if(LAZYLEN(named_args))
+		. += named_args
+		*/
+		. += value["value"]
+
+/client/proc/get_callproc_returnval(returnval,procname)
+	. = ""
+	if(islist(returnval))
+		var/list/returnedlist = returnval
+		. = "<font color='blue'>"
+		if(returnedlist.len)
+			var/assoc_check = returnedlist[1]
+			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
+				. += "[procname] returned an associative list:"
+				for(var/key in returnedlist)
+					. += "\n[key] = [returnedlist[key]]"
+
+			else
+				. += "[procname] returned a list:"
+				for(var/elem in returnedlist)
+					. += "\n[elem]"
+>>>>>>> 158d8d3... Merge pull request #5905 from kevinz000/patch-2
 		else
 			returnval = call(target, procname)()
 	else
