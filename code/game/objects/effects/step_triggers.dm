@@ -93,6 +93,7 @@
 	var/teleport_y = 0
 	var/teleport_z = 0
 
+<<<<<<< HEAD
 	Trigger(var/atom/movable/A)
 		if(teleport_x && teleport_y && teleport_z)
 			var/turf/T = locate(teleport_x, teleport_y, teleport_z)
@@ -108,6 +109,58 @@
 					A.forceMove(T)
 			else
 				A.forceMove(T)
+=======
+/obj/effect/step_trigger/teleporter/Trigger(atom/movable/AM)
+	if(teleport_x && teleport_y && teleport_z)
+		var/turf/T = locate(teleport_x, teleport_y, teleport_z)
+		move_object(AM, T)
+
+
+/obj/effect/step_trigger/teleporter/proc/move_object(atom/movable/AM, turf/T)
+	if(AM.anchored && !istype(AM, /obj/mecha))
+		return
+
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(L.pulling)
+			var/atom/movable/P = L.pulling
+			L.stop_pulling()
+			P.forceMove(T)
+			L.forceMove(T)
+			L.start_pulling(P)
+		else
+			L.forceMove(T)
+	else
+		AM.forceMove(T)
+
+/* Moves things by an offset, useful for 'Bridges'. Uses dir and a distance var to work with maploader direction changes. */
+/obj/effect/step_trigger/teleporter/offset
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "arrow"
+	var/distance = 3
+
+/obj/effect/step_trigger/teleporter/offset/north
+	dir = NORTH
+
+/obj/effect/step_trigger/teleporter/offset/south
+	dir = SOUTH
+
+/obj/effect/step_trigger/teleporter/offset/east
+	dir = EAST
+
+/obj/effect/step_trigger/teleporter/offset/west
+	dir = WEST
+
+/obj/effect/step_trigger/teleporter/offset/Trigger(atom/movable/AM)
+	var/turf/T = get_turf(src)
+	for(var/i = 1 to distance)
+		T = get_step(T, dir)
+		if(!istype(T))
+			return
+	move_object(AM, T)
+
+
+>>>>>>> b2c2ef4... Merge pull request #5912 from Anewbe/mech_fix
 
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
