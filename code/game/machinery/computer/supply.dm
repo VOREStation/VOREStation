@@ -31,6 +31,8 @@
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(..())
 		return
+	if(!allowed(user))
+		return
 	user.set_machine(src)
 	ui_interact(user)
 	return
