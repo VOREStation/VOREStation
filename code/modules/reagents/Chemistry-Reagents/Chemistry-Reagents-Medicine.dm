@@ -504,6 +504,220 @@
 					if(W.damage <= 0)
 						O.wounds -= W
 
+<<<<<<< HEAD
+=======
+/datum/reagent/respirodaxon
+	name = "Respirodaxon"
+	id = "respirodaxon"
+	description = "Used to repair the tissue of the lungs and similar organs."
+	taste_description = "metallic"
+	reagent_state = LIQUID
+	color = "#4444FF"
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/respirodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.6
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_LUNGS, O_VOICE, O_GBLADDER)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("gastirodaxon") || M.reagents.has_reagent("peridaxon"))
+			if(H.losebreath >= 15 && prob(H.losebreath))
+				H.Stun(2)
+			else
+				H.losebreath = CLAMP(H.losebreath + 3, 0, 20)
+
+/datum/reagent/gastirodaxon
+	name = "Gastirodaxon"
+	id = "gastirodaxon"
+	description = "Used to repair the tissues of the digestive system."
+	taste_description = "chalk"
+	reagent_state = LIQUID
+	color = "#8B4513"
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/gastirodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.6
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_APPENDIX, O_NUTRIENT, O_PLASMA, O_POLYP)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("hepanephrodaxon") || M.reagents.has_reagent("peridaxon"))
+			if(prob(10))
+				H.vomit(1)
+			else if(H.nutrition > 30)
+				H.nutrition = max(0, H.nutrition - round(30 * removed))
+
+/datum/reagent/hepanephrodaxon
+	name = "Hepanephrodaxon"
+	id = "hepanephrodaxon"
+	description = "Used to repair the common tissues involved in filtration."
+	taste_description = "glue"
+	reagent_state = LIQUID
+	color = "#D2691E"
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/hepanephrodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.4
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_LIVER, O_KIDNEYS, O_APPENDIX, O_ACID, O_HIVE)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("cordradaxon") || M.reagents.has_reagent("peridaxon"))
+			if(prob(5))
+				H.vomit(1)
+			else if(prob(5))
+				to_chat(H,"<span class='danger'>Something churns inside you.</span>")
+				H.adjustToxLoss(10 * removed)
+				H.vomit(0, 1)
+
+/datum/reagent/cordradaxon
+	name = "Cordradaxon"
+	id = "cordradaxon"
+	description = "Used to repair the specialized tissues involved in the circulatory system."
+	taste_description = "rust"
+	reagent_state = LIQUID
+	color = "#FF4444"
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/cordradaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.6
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_HEART, O_RESPONSE, O_ANCHOR, O_EGG)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("respirodaxon") || M.reagents.has_reagent("peridaxon"))
+			H.losebreath = CLAMP(H.losebreath + 1, 0, 10)
+
+/datum/reagent/immunosuprizine
+	name = "Immunosuprizine"
+	id = "immunosuprizine"
+	description = "An experimental powder believed to have the ability to prevent any organ rejection."
+	taste_description = "flesh"
+	reagent_state = SOLID
+	color = "#7B4D4F"
+	overdose = 20
+	scannable = 1
+
+/datum/reagent/immunosuprizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/strength_mod = 1
+
+	if(alien == IS_DIONA)	// It's a tree.
+		strength_mod = 0.25
+
+	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
+		strength_mod = 0.75
+
+	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
+		strength_mod = 1.5
+
+	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
+		strength_mod = 1.75
+
+	if(alien == IS_TAJARA)	// Highest metabolism.
+		strength_mod = 2
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(alien != IS_DIONA)
+			H.adjustToxLoss((30 / strength_mod) * removed)
+
+		var/list/organtotal = list()
+		organtotal |= H.organs
+		organtotal |= H.internal_organs
+
+		for(var/obj/item/organ/I in organtotal)	// Don't mess with robot bits, they don't reject.
+			if(I.robotic >= ORGAN_ROBOT)
+				organtotal -= I
+
+		if(dose >= 15)
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data && prob(round(15 * strength_mod)))	// Reset the rejection process, toggle it to not reject.
+					I.rejecting = 0
+					I.can_reject = FALSE
+
+		if(H.reagents.has_reagent("spaceacillin") || H.reagents.has_reagent("corophizine"))	// Chemicals that increase your immune system's aggressiveness make this chemical's job harder.
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data)
+					var/rejectmem = I.can_reject
+					I.can_reject = initial(I.can_reject)
+					if(rejectmem != I.can_reject)
+						H.adjustToxLoss((15 / strength_mod))
+						I.take_damage(1)
+
+/datum/reagent/skrellimmuno
+	name = "Malish-Qualem"
+	id = "malish-qualem"
+	description = "A strange, oily powder used by Malish-Katish to prevent organ rejection."
+	taste_description = "mordant"
+	reagent_state = SOLID
+	color = "#84B2B0"
+	overdose = 20
+	scannable = 1
+
+/datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/strength_mod = 0.5
+
+	if(alien == IS_SKRELL)
+		strength_mod = 1
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(alien != IS_SKRELL)
+			H.adjustToxLoss(20 * removed)
+
+		var/list/organtotal = list()
+		organtotal |= H.organs
+		organtotal |= H.internal_organs
+
+		for(var/obj/item/organ/I in organtotal)	// Don't mess with robot bits, they don't reject.
+			if(I.robotic >= ORGAN_ROBOT)
+				organtotal -= I
+
+		if(dose >= 15)
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data && prob(round(15 * strength_mod)))
+					I.rejecting = 0
+					I.can_reject = FALSE
+
+		if(H.reagents.has_reagent("spaceacillin") || H.reagents.has_reagent("corophizine"))
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data)
+					var/rejectmem = I.can_reject
+					I.can_reject = initial(I.can_reject)
+					if(rejectmem != I.can_reject)
+						H.adjustToxLoss((10 / strength_mod))
+						I.take_damage(1)
+
+>>>>>>> c95b84c... Merge pull request #5921 from PolarisSS13/CLAMP_fix
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
 	id = "ryetalyn"
