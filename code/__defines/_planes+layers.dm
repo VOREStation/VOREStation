@@ -71,6 +71,7 @@ What is the naming convention for planes or layers?
 	#define HIDING_LAYER			2.6 // Layer at which mobs hide to be under things like tables
 	#define DOOR_OPEN_LAYER			2.7 // Under all objects if opened. 2.7 due to tables being at 2.6
 	#define TABLE_LAYER				2.8 // Just under stuff that wants to be slightly below common objects.
+	#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
 	#define UNDER_JUNK_LAYER		2.9 // Things that want to be slightly below common objects
 	// Turf/Obj layer boundary
 	#define ABOVE_JUNK_LAYER		3.1 // Things that want to be slightly above common objects

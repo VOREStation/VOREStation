@@ -43,3 +43,4 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSGLASS				(1<<1)
 #define PASSGRILLE				(1<<2)
 #define PASSBLOB				(1<<3)
+#define PASSMOB					(1<<4)

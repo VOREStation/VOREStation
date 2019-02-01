@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
@@ -9,6 +10,8 @@
 	else
 		return (!mover.density || !density || lying)
 
+=======
+>>>>>>> e1343ac... Merge pull request #5918 from kevinz000/pp_fix_1
 /mob/proc/setMoveCooldown(var/timeout)
 	move_delay = max(world.time + timeout, move_delay)
 
