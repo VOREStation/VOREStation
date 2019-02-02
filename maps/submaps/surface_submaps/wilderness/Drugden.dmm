@@ -60,7 +60,7 @@
 /turf/simulated/floor/carpet,
 /area/submap/Drugd)
 "p" = (
-/mob/living/simple_animal/mouse,
+/mob/living/simple_mob/mouse,
 /turf/simulated/floor,
 /area/submap/Drugd)
 "q" = (
@@ -208,7 +208,7 @@
 /turf/simulated/floor/carpet,
 /area/submap/Drugd)
 "Q" = (
-/mob/living/simple_animal/hostile/hivebot/range/guard,
+/mob/living/simple_mob/hostile/hivebot/range/guard,
 /turf/simulated/floor,
 /area/submap/Drugd)
 "R" = (

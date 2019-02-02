@@ -180,7 +180,7 @@
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "N" = (
-/mob/living/simple_animal/hostile/giant_spider{
+/mob/living/simple_mob/hostile/giant_spider{
 	attack_armor_pen = 100;
 	attacktext = list("lightly bonked");
 	desc = "Furry and brown, this spider is so goddamn fat you're surprised it even moves around.";

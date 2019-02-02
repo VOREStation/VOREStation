@@ -21,11 +21,11 @@
 	},
 /area/submap/CaveTrench)
 "g" = (
-/mob/living/simple_animal/hostile/malf_drone/lesser,
+/mob/living/simple_mob/hostile/malf_drone/lesser,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/CaveTrench)
 "h" = (
-/mob/living/simple_animal/fish/trout{
+/mob/living/simple_mob/fish/trout{
 	faction = "malf_drone"
 	},
 /turf/simulated/floor/water{
@@ -43,7 +43,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/submap/CaveTrench)
 "l" = (
-/mob/living/simple_animal/fish/trout,
+/mob/living/simple_mob/fish/trout,
 /turf/simulated/floor/water{
 	outdoors = 0
 	},

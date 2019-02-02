@@ -20,14 +20,14 @@
 /turf/simulated/floor/outdoors/rocks,
 /area/submap/Cavelake)
 "g" = (
-/mob/living/simple_animal/giant_crab,
+/mob/living/simple_mob/giant_crab,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/Cavelake)
 "h" = (
 /turf/simulated/floor/water,
 /area/submap/Cavelake)
 "i" = (
-/mob/living/simple_animal/fish/perch,
+/mob/living/simple_mob/fish/perch,
 /turf/simulated/floor/water,
 /area/submap/Cavelake)
 "j" = (
@@ -35,7 +35,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/Cavelake)
 "k" = (
-/mob/living/simple_animal/fish/trout,
+/mob/living/simple_mob/fish/trout,
 /turf/simulated/floor/water,
 /area/submap/Cavelake)
 "l" = (

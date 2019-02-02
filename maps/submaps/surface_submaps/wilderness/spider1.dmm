@@ -19,7 +19,7 @@
 /turf/template_noop,
 /area/submap/spider1)
 "f" = (
-/mob/living/simple_animal/hostile/giant_spider/frost{
+/mob/living/simple_mob/hostile/giant_spider/frost{
 	returns_home = 1
 	},
 /turf/template_noop,
@@ -30,13 +30,13 @@
 /area/submap/spider1)
 "h" = (
 /obj/effect/spider/cocoon,
-/mob/living/simple_animal/hostile/giant_spider/frost{
+/mob/living/simple_mob/hostile/giant_spider/frost{
 	returns_home = 1
 	},
 /turf/template_noop,
 /area/submap/spider1)
 "Z" = (
-/mob/living/simple_animal/hostile/giant_spider/nurse,
+/mob/living/simple_mob/hostile/giant_spider/nurse,
 /turf/template_noop,
 /area/submap/spider1)
 =======

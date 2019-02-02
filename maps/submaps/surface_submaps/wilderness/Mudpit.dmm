@@ -60,7 +60,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/Mudpit)
 "D" = (
-/mob/living/simple_animal/hostile/giant_spider/thermic{
+/mob/living/simple_mob/hostile/giant_spider/thermic{
 	returns_home = 1
 	},
 /turf/simulated/floor/outdoors/dirt,
