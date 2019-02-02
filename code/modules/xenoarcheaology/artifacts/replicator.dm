@@ -26,7 +26,6 @@
 	/obj/item/roller,
 	/obj/structure/closet/crate,
 	/obj/structure/closet/acloset,
-	// /mob/living/simple_mob/mimic/crate, // Vorestation edit //VORESTATION AI TEMPORARY REMOVAL
 	/mob/living/simple_mob/mechanical/viscerator,
 	/mob/living/simple_mob/mechanical/hivebot,
 	/obj/item/device/analyzer,
@@ -65,6 +64,7 @@
 	/obj/item/weapon/grenade/chem_grenade/cleaner,
 	/obj/item/weapon/grenade/chem_grenade/metalfoam)
 
+//	/mob/living/simple_mob/mimic/crate,	// Vorestation edit //VORESTATION AI TEMPORARY REMOVAL, REPLACE BACK IN LIST WHEN FIXED
 	var/quantity = rand(5, 15)
 	for(var/i=0, i<quantity, i++)
 		var/button_desc = "a [pick("yellow","purple","green","blue","red","orange","white")], "

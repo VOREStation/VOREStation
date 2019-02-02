@@ -2344,6 +2344,7 @@
 #include "code\modules\mob\living\simple_mob\subtypes\slime\xenobio\discipline.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\slime\xenobio\subtypes.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\slime\xenobio\xenobio.dm"
+#include "code\modules\mob\living\simple_mob\subtypes\vore\redpanda.dm"
 #include "code\modules\mob\living\voice\voice.dm"
 #include "code\modules\mob\new_player\login.dm"
 #include "code\modules\mob\new_player\logout.dm"
