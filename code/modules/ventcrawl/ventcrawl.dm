@@ -9,7 +9,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
-	/obj/belly,		//VOREStation Edit
+	/obj/belly,	//VOREStation Edit
 	/obj/screen
 	)
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
