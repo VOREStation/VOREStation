@@ -248,28 +248,28 @@
 		animal_nom(A)
 
 // Riding
-/datum/riding/simple_animal
+/datum/riding/simple_mob
 	keytype = /obj/item/weapon/material/twohanded/fluff/riding_crop // Crack!
 	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
 	key_name = "a riding crop"		// What the 'keys' for the thing being rided on would be called.
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
 
-/datum/riding/simple_animal/handle_vehicle_layer()
+/datum/riding/simple_mob/handle_vehicle_layer()
 	ridden.layer = initial(ridden.layer)
 
-/datum/riding/simple_animal/ride_check(mob/living/M)
+/datum/riding/simple_mob/ride_check(mob/living/M)
 	var/mob/living/L = ridden
 	if(L.stat)
 		force_dismount(M)
 		return FALSE
 	return TRUE
 
-/datum/riding/simple_animal/force_dismount(mob/M)
+/datum/riding/simple_mob/force_dismount(mob/M)
 	. =..()
 	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
 
-/datum/riding/simple_animal/get_offsets(pass_index) // list(dir = x, y, layer)
-	var/mob/living/simple_animal/L = ridden
+/datum/riding/simple_mob/get_offsets(pass_index) // list(dir = x, y, layer)
+	var/mob/living/simple_mob/L = ridden
 	var/scale = L.size_multiplier
 
 	var/list/values = list(
@@ -280,7 +280,7 @@
 
 	return values
 
-/mob/living/simple_animal/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
+/mob/living/simple_mob/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
 	if(!riding_datum)
@@ -305,7 +305,7 @@
 	if(.)
 		buckled_mobs[H] = "riding"
 
-/mob/living/simple_animal/attack_hand(mob/user as mob)
+/mob/living/simple_mob/attack_hand(mob/user as mob)
 	if(riding_datum && LAZYLEN(buckled_mobs))
 		//We're getting off!
 		if(user in buckled_mobs)
@@ -317,7 +317,7 @@
 	else
 		. = ..()
 
-/mob/living/simple_animal/proc/animal_mount(var/mob/living/M in living_mobs(1))
+/mob/living/simple_mob/proc/animal_mount(var/mob/living/M in living_mobs(1))
 	set name = "Animal Mount/Dismount"
 	set category = "Abilities"
 	set desc = "Let people ride on you."

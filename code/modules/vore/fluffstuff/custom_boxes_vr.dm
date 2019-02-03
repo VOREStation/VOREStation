@@ -233,7 +233,7 @@
 	name = "Phi's Personal Items"
 	has_items = list(
 		/obj/item/clothing/accessory/medal/bronze_heart,
-		/obj/item/clothing/gloves/ring/seal/signet/fluff/vietsi)
+		/obj/item/clothing/gloves/ring/seal/signet/fluff/phi)
 
 /* //VORESTATION AI TEMPORARY REMOVAL
 // Tabiranth: Ascian

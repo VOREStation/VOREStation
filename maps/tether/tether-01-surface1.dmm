@@ -13773,7 +13773,7 @@
 "aGx" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/toolbox/emergency,
-/obj/item/device/radio/emergency
+/obj/item/device/radio/emergency,
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)

@@ -25,9 +25,9 @@
 		/mob/living/simple_mob/animal/giant_spider/nurse,
 		/mob/living/simple_mob/animal/space/alien,
 		/mob/living/simple_mob/animal/space/bear,
-		// /mob/living/simple_mob/carp, // Vorestation edit //VORESTATION AI TEMPORARY REMOVAL
 		/mob/living/simple_mob/creature,
 		/mob/living/simple_mob/slime/xenobio)
+	//	/mob/living/simple_mob/carp,	// Vorestation edit //VORESTATION AI TEMPORARY REMOVAL, REPLACE BACK IN LIST WHEN FIXED
 	else
 		spawn_type = pick(\
 		/mob/living/simple_mob/animal/passive/cat,
