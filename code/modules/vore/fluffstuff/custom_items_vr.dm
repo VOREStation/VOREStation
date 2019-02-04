@@ -624,8 +624,8 @@
 	ambulance = !(ambulance)
 	if(ambulance)
 		processing_objects.Add(src)
-		item_state = "tempestsaddlebag-red"
-		icon_state = "tempestbag-red"
+		item_state = "tempestsaddlebag-amb"
+		icon_state = "tempestbag-amb"
 		if (ismob(src.loc))
 			var/mob/M = src.loc
 			M.update_inv_back()
@@ -648,13 +648,9 @@
 		return
 	if(world.time - ambulance_last_switch > 15)
 		ambulance_state = !(ambulance_state)
-		var/newcolor = "red"
 		var/newlight = "#FF0000"
 		if(ambulance_state)
-			newcolor = "blue"
 			newlight = "#0000FF"
-		item_state = "tempestsaddlebag-[newcolor]"
-		icon_state = "tempestbag-[newcolor]"
 		if (ismob(src.loc))
 			var/mob/M = src.loc
 			M.update_inv_back()
