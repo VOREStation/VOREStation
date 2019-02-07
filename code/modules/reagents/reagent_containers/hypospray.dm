@@ -241,6 +241,13 @@
 	name = "bone repair injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. This one excels at treating damage to bones."
 	filled_reagents = list("inaprovaline" = 5, "osteodaxon" = 10)
+<<<<<<< HEAD
+=======
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
+	name = "glucose hypo"
+	desc = "A hypoinjector filled with glucose, used for critically malnourished patients and voidsuited workers."
+	filled_reagents = list("glucose" = 15)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/stimm
 	name = "stimm injector"
@@ -347,3 +354,4 @@
 	if(.) // Will occur if successfully injected.
 		infect_mob_random_lesser(H)
 		add_attack_logs(user, H, "Infected \the [H] with \the [src], by \the [user].")
+>>>>>>> 3e9624c... Adds the Zaddat Race + Modifies pressure damage calculations (#5869)
