@@ -188,6 +188,21 @@
 	name = "speedloader (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
 
+///////// 5mm Caseless /////////
+
+/obj/item/ammo_magazine/m5mmcaseless
+	name = "prototype rifle magazine (5mm caseless)"
+	ammo_type = /obj/item/ammo_casing/a5mmcaseless
+	icon_state = "caseless-mag"
+	caliber = "5mm caseless"
+	mag_type = MAGAZINE
+	max_ammo = 30
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m5mmcaseless/stun
+	icon_state = "caseless-mag-alt"
+	ammo_type = /obj/item/ammo_casing/a5mmcaseless/stun
+
 ///////// 9mm /////////
 
 /obj/item/ammo_magazine/m9mm

@@ -52,7 +52,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 130, "uranium" = 100)
 
 /*
- * .50 Action Express
+ * .44
  */
 
 /obj/item/ammo_casing/a44
@@ -321,6 +321,22 @@
 /obj/item/ammo_casing/a545/hunter
 	desc = "A 5.45mm hunting bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a545/hunter
+
+/*
+ * 5mm Caseless
+ */
+
+/obj/item/ammo_casing/a5mmcaseless
+	desc = "A 5mm solid phoron caseless round."
+	caliber = "5mm caseless"
+	icon_state = "casing" // Placeholder. Should probably be purple.
+	projectile_type = /obj/item/projectile/bullet/pistol // Close enough to be comparable.
+	matter = list(DEFAULT_WALL_MATERIAL = 180)
+	caseless = 1
+
+/obj/item/ammo_casing/a5mmcaseless/stun
+	desc = "A 5mm solid phoron caseless stun round."
+	projectile_type = /obj/item/projectile/energy/electrode // Maybe nerf this considering there's 30 rounds in a mag.
 
 /*
  * Misc
