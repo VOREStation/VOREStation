@@ -95,22 +95,22 @@
 	var/datum/effect/effect/system/spark_spread/spark_system
 
 /obj/item/weapon/rig/examine()
-	usr << "This is \icon[src][src.name]."
-	usr << "[src.desc]"
+	to_chat(usr, "This is \icon[src][src.name].")
+	to_chat(usr, "[src.desc]")
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			usr << "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
 
 	if(src.loc == usr)
-		usr << "The access panel is [locked? "locked" : "unlocked"]."
-		usr << "The maintenance panel is [open ? "open" : "closed"]."
-		usr << "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"]."
-		usr << "The cooling stystem is [cooling_on ? "active" : "inactive"]."
+		to_chat(usr, "The access panel is [locked? "locked" : "unlocked"].")
+		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
+		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
+		to_chat(usr, "The cooling stystem is [cooling_on ? "active" : "inactive"].")
 
 		if(open)
-			usr << "It's equipped with [english_list(installed_modules)]."
+			to_chat(usr, "It's equipped with [english_list(installed_modules)].")
 
 /obj/item/weapon/rig/New()
 	..()
@@ -212,12 +212,12 @@
 // Seal = 0 unsets protection
 /obj/item/weapon/rig/proc/update_airtight(var/obj/item/piece, var/seal = 0)
 	if(seal == 1)
-		min_pressure_protection = rigsuit_min_pressure
-		max_pressure_protection = rigsuit_max_pressure
+		piece.min_pressure_protection = rigsuit_min_pressure
+		piece.max_pressure_protection = rigsuit_max_pressure
 		piece.item_flags |= AIRTIGHT
 	else
-		min_pressure_protection = null
-		max_pressure_protection = null
+		piece.min_pressure_protection = null
+		piece.max_pressure_protection = null
 		piece.item_flags &= ~AIRTIGHT
 	return
 
@@ -267,7 +267,8 @@
 		if(!instant)
 			M.visible_message("<font color='blue'>[M]'s suit emits a quiet hum as it begins to adjust its seals.</font>","<font color='blue'>With a quiet hum, the suit begins running checks and adjusting components.</font>")
 			if(seal_delay && !do_after(M,seal_delay))
-				if(M) M << "<span class='warning'>You must remain still while the suit is adjusting the components.</span>"
+				if(M)
+					to_chat(M, "<span class='warning'>You must remain still while the suit is adjusting the components.</span>")
 				failed_to_seal = 1
 		if(!M)
 			failed_to_seal = 1
@@ -283,7 +284,8 @@
 					continue
 
 				if(!istype(M) || !istype(piece) || !istype(compare_piece) || !msg_type)
-					if(M) M << "<span class='warning'>You must remain still while the suit is adjusting the components.</span>"
+					if(M)
+						to_chat(M, "<span class='warning'>You must remain still while the suit is adjusting the components.</span>")
 					failed_to_seal = 1
 					break
 
@@ -295,16 +297,16 @@
 					piece.icon_state = "[suit_state][!seal_target ? "_sealed" : ""]"
 					switch(msg_type)
 						if("boots")
-							M << "<font color='blue'>\The [piece] [!seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>"
+							to_chat(M, "<font color='blue'>\The [piece] [!seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>")
 							M.update_inv_shoes()
 						if("gloves")
-							M << "<font color='blue'>\The [piece] [!seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>"
+							to_chat(M, "<font color='blue'>\The [piece] [!seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>")
 							M.update_inv_gloves()
 						if("chest")
-							M << "<font color='blue'>\The [piece] [!seal_target ? "cinches tight again your chest" : "releases your chest"].</font>"
+							to_chat(M, "<font color='blue'>\The [piece] [!seal_target ? "cinches tight again your chest" : "releases your chest"].</font>")
 							M.update_inv_wear_suit()
 						if("helmet")
-							M << "<font color='blue'>\The [piece] hisses [!seal_target ? "closed" : "open"].</font>"
+							to_chat(M, "<font color='blue'>\The [piece] hisses [!seal_target ? "closed" : "open"].</font>")
 							M.update_inv_head()
 							if(helmet)
 								helmet.update_light(wearer)
@@ -339,7 +341,7 @@
 
 	// Success!
 	canremove = seal_target
-	M << "<font color='blue'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></font>"
+	to_chat(M, "<font color='blue'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></font>")
 	M.client.screen -= booting_L
 	qdel(booting_L)
 	booting_R.icon_state = "boot_done"
@@ -374,19 +376,21 @@
 	if(!cell)
 		return
 	if(cell.charge <= 0)
-		user << "<span class='notice'>\The [src] has no power!.</span>"
+		to_chat(user, "<span class='notice'>\The [src] has no power!.</span>")
 		return
 	if(!suit_is_deployed())
-		user << "<span class='notice'>The hardsuit needs to be deployed first!.</span>"
+		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!.</span>")
 		return
 
 	cooling_on = 1
-	usr << "<span class='notice'>You switch \the [src]'s cooling system on.</span>"
+	to_chat(usr, "<span class='notice'>You switch \the [src]'s cooling system on.</span>")
 
 
 /obj/item/weapon/rig/proc/turn_cooling_off(var/mob/user, var/failed)
-	if(failed) visible_message("\The [src]'s cooling system clicks and whines as it powers down.")
-	else usr << "<span class='notice'>You switch \the [src]'s cooling system off.</span>"
+	if(failed)
+		visible_message("\The [src]'s cooling system clicks and whines as it powers down.")
+	else
+		to_chat(usr, "<span class='notice'>You switch \the [src]'s cooling system off.</span>")
 	cooling_on = 0
 
 /obj/item/weapon/rig/proc/get_environment_temperature()
@@ -473,13 +477,13 @@
 				if(istype(wearer))
 					if(!canremove)
 						if (offline_slowdown < 3)
-							wearer << "<span class='danger'>Your suit beeps stridently, and suddenly goes dead.</span>"
+							to_chat(wearer, "<span class='danger'>Your suit beeps stridently, and suddenly goes dead.</span>")
 						else
-							wearer << "<span class='danger'>Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.</span>"
+							to_chat(wearer, "<span class='danger'>Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.</span>")
 					if(offline_vision_restriction == 1)
-						wearer << "<span class='danger'>The suit optics flicker and die, leaving you with restricted vision.</span>"
+						to_chat(wearer, "<span class='danger'>The suit optics flicker and die, leaving you with restricted vision.</span>")
 					else if(offline_vision_restriction == 2)
-						wearer << "<span class='danger'>The suit optics drop out completely, drowning you in darkness.</span>"
+						to_chat(wearer, "<span class='danger'>The suit optics drop out completely, drowning you in darkness.</span>")
 		if(!offline)
 			offline = 1
 	else
@@ -532,7 +536,7 @@
 		fail_msg = "<span class='warning'>Not enough stored power.</span>"
 
 	if(fail_msg)
-		user << "[fail_msg]"
+		to_chat(user, fail_msg)
 		return 0
 
 	// This is largely for cancelling stealth and whatever.
