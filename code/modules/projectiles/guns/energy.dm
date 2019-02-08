@@ -149,7 +149,9 @@
 /obj/item/weapon/gun/energy/examine(mob/user)
 	. = ..()
 	if(power_supply)
-		var/shots_remaining = round(power_supply.charge / charge_cost)
+		var/shots_remaining = 0
+		if(power_supply.charge)
+			shots_remaining = round(power_supply.charge / charge_cost)
 		user << "Has [shots_remaining] shot\s remaining."
 	else
 		user << "Does not have a power cell."
