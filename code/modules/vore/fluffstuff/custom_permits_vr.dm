@@ -48,6 +48,11 @@
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on April 24th, 2562."
 */
 
+// ValiTheWolf: Vakashi
+/obj/item/clothing/accessory/permit/gun/fluff/Vakashi
+	name = "Vakashi's Sidearm Permit"
+	desc = "A card indicating that the owner is allowed to carry a sidearm that uses less-than-lethal munitions. It is issued by CentCom, so it is valid until it expires on February 8th, 2564."
+
 /*  silenedmp5a5:Serdykov Antoz
 /obj/item/clothing/accessory/permit/gun/fluff/silencedmp5a5
 	name = "Serdykov Antoz's Sidearm Permit"
