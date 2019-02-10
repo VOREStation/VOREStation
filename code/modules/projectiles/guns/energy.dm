@@ -149,10 +149,18 @@
 /obj/item/weapon/gun/energy/examine(mob/user)
 	. = ..()
 	if(power_supply)
+<<<<<<< HEAD
 		var/shots_remaining = round(power_supply.charge / charge_cost)
 		user << "Has [shots_remaining] shot\s remaining."
+=======
+		if(charge_cost)
+			var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
+			to_chat(user, "Has [shots_remaining] shot\s remaining.")
+		else
+			to_chat(user, "Has infinite shots remaining.")
+>>>>>>> 2ce4013... Merge pull request #5944 from Mechoid/Fix_DivZero
 	else
-		user << "Does not have a power cell."
+		to_chat(user, "Does not have a power cell.")
 	return
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
