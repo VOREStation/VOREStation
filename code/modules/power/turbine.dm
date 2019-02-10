@@ -95,10 +95,8 @@
 		stat |= BROKEN
 
 // When anchored, don't let air past us.
-/obj/machinery/compressor/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	if(!height || air_group)
-		return !anchored
-	return !density
+/obj/machinery/compressor/CanZASPass(turf/T, is_zone)
+	return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES
 
 /obj/machinery/compressor/proc/locate_machinery()
 	if(turbine)

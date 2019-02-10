@@ -84,14 +84,27 @@
 		open()
 		addtimer(CALLBACK(src, .proc/close), check_access(null)? 50 : 20)
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height, air_group)
+<<<<<<< HEAD
+/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
 		if(air_group) return 0
+=======
+/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
+>>>>>>> 4122c65... Merge pull request #5947 from Neerti/bump_fixes
 		return !density
-	else
-		return 1
+	return TRUE
+
+/obj/machinery/door/window/CanZASPass(turf/T, is_zone)
+	if(get_dir(T, loc) == turn(dir, 180))
+		if(is_zone) // No merging allowed.
+			return ATMOS_PASS_NO
+		return ..() // Air can flow if open (density == FALSE).
+	return ATMOS_PASS_YES // Windoors don't block if not facing the right way.
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	if(istype(mover) && mover.checkpass(PASSGLASS))

@@ -259,12 +259,14 @@
 	if(stat & BROKEN)
 		stat &= ~BROKEN
 
-
-/obj/machinery/door/blast/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 1
+/*
+// This replicates the old functionality coded into CanPass() for this object, however it appeared to have made blast doors not airtight.
+// If for some reason this is actually needed for something important, uncomment this.
+/obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
+	if(is_zone)
+		return ATMOS_PASS_YES
 	return ..()
-
-
+*/
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.

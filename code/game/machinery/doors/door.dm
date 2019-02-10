@@ -9,6 +9,7 @@
 	anchored = 1
 	opacity = 1
 	density = 1
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
@@ -135,12 +136,15 @@
 			else
 				do_animate("deny")
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return !block_air_zones
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
 
+/obj/machinery/door/CanZASPass(turf/T, is_zone)
+	if(is_zone)
+		return block_air_zones ? ATMOS_PASS_NO : ATMOS_PASS_YES
+	return ..()
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return

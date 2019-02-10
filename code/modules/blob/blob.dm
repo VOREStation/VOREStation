@@ -22,10 +22,8 @@
 	update_icon()
 	return ..(loc)
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target, var/height = 0, var/air_group = 0)
-	if(air_group || height == 0)
-		return 1
-	return 0
+/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target)
+	return FALSE
 
 /obj/effect/blob/ex_act(var/severity)
 	switch(severity)
@@ -207,5 +205,5 @@
 	else
 		icon_state = "blob_damaged"
 
-/obj/effect/blob/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
+/obj/effect/blob/shield/CanPass(var/atom/movable/mover, var/turf/target)
 	return !density

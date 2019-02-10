@@ -10,6 +10,7 @@
 	density = 1
 	anchored = 1.0
 	pressure_resistance = 4*ONE_ATMOSPHERE
+	can_atmos_pass = ATMOS_PASS_NO
 	var/win_path = /obj/structure/window/basic
 	var/activated
 
@@ -22,7 +23,7 @@
 /obj/effect/wingrille_spawn/attack_generic()
 	activate()
 
-/obj/effect/wingrille_spawn/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+/obj/effect/wingrille_spawn/CanPass(atom/movable/mover, turf/target)
 	return FALSE
 
 /obj/effect/wingrille_spawn/Initialize()

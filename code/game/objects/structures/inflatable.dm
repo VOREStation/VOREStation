@@ -25,6 +25,7 @@
 	density = 1
 	anchored = 1
 	opacity = 0
+	can_atmos_pass = ATMOS_PASS_DENSITY
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
@@ -39,9 +40,6 @@
 /obj/structure/inflatable/Destroy()
 	update_nearby_tiles()
 	return ..()
-
-/obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	return 0
 
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
@@ -168,9 +166,7 @@
 /obj/structure/inflatable/door/attack_hand(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group)
-		return state
+/obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density
