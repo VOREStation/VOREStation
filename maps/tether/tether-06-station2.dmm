@@ -19339,11 +19339,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/alarm{
-	breach_detection = 0;
 	dir = 8;
 	pixel_x = 25;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_y = 0
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/airless,
