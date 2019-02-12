@@ -18036,7 +18036,7 @@
 	req_access = list()
 	},
 /obj/structure/table/glass,
-/obj/machinery/chemical_dispenser/full,
+/obj/machinery/chemical_dispenser/xenoflora,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "bfR" = (
