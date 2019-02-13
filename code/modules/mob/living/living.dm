@@ -767,7 +767,6 @@ default behaviour is:
 	return
 
 /mob/living/Move(a, b, flag)
-
 	if (buckled && buckled.loc != a) //not updating position
 		if(istype(buckled, /mob))	//If you're buckled to a mob, a la slime things, keep on rolling.
 			return buckled.Move(a, b)
@@ -853,9 +852,12 @@ default behaviour is:
 											if(istype(location, /turf/simulated))
 												location.add_blood(M)
 
-					step(pulling, get_dir(pulling.loc, T))
-					if(t)
-						M.start_pulling(t)
+					if(get_dist(pulling.loc, T) > 1 || pulling.loc.z != T.z)
+						M.stop_pulling()
+					else
+						step(pulling, get_dir(pulling.loc, T))
+						if(t)
+							M.start_pulling(t)
 				else
 					if (pulling)
 						if (istype(pulling, /obj/structure/window))
@@ -863,8 +865,11 @@ default behaviour is:
 							if(W.is_fulltile())
 								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
-					if (pulling)
-						step(pulling, get_dir(pulling.loc, T))
+
+						if(get_dist(pulling.loc, T) > 1 || pulling.loc.z != T.z) // This is needed or else pulled objects can't get pushed away.
+							stop_pulling()
+						else
+							step(pulling, get_dir(pulling.loc, T))
 	else
 		stop_pulling()
 		. = ..()
