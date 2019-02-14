@@ -21,6 +21,7 @@
 	edge = 1
 	toolspeed = 1
 	var/random_color = TRUE
+	var/pulling = 0
 
 /obj/item/weapon/tool/wirecutters/New()
 	if(random_color && prob(50))
@@ -45,13 +46,16 @@
 			to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 			return
 		if(H.teeth)
-			usr.visible_message("\The [usr] starts pulling out \the [H]'s tooth with \the [src]!")
-			if(do_after(user, 10))
-				H.teeth -= 1
-				new /obj/item/stack/teeth(H.loc)
-				usr.visible_message("\The [usr] pulls out \the [H]'s tooth with \the [src]!")
-				var/obj/item/organ/external/head/L = H.organs_by_name[BP_HEAD]
-				L.take_damage(1.2)
+			if(!pulling)
+				usr.visible_message("\The [usr] starts pulling out \the [H]'s tooth with \the [src]!")
+				pulling = 1
+				if(do_after(user, 10))
+					H.teeth -= 1
+					new /obj/item/stack/teeth(H.loc)
+					usr.visible_message("\The [usr] pulls out \the [H]'s tooth with \the [src]!")
+					var/obj/item/organ/external/head/L = H.organs_by_name[BP_HEAD]
+					L.take_damage(1.2)
+				pulling = 0
 		else
 			to_chat(user,"<span class='warning'>[H] doesn't have any teeth to pull out!</span>")
 	else
