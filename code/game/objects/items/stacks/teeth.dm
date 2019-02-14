@@ -28,13 +28,14 @@
 				H.nutrition -= amount*3 //NOT ENOUGH NOT ENOUGH NOT ENOUGH
 				var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 				L.take_damage(amount*1.5)
+				playsound(src.loc, 'sound/vore/gulp.ogg', 25, 1)
 			else
 				user.visible_message("[user] tries to feed [M] a handfull of teeth!")
 				if(do_after(user, 20))
 					user.visible_message("[user] has fed [M] a handfull of teeth!", "You feed [M] the teeth!")
 					var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 					L.take_damage(amount*1.5)
-		playsound(src.loc, 'sound/vore/gulp.ogg', 25, 1)
+					playsound(src.loc, 'sound/vore/gulp.ogg', 25, 1)
 		qdel(src)
 
 
