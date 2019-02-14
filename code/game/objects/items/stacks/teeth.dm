@@ -25,6 +25,7 @@
 		if(H.species.has_organ[O_LIVER])
 			if(H == user)
 				user.visible_message("[user] has swallowed a handfull of teeth!", "You swallow the teeth!")
+				H.nutrition -= amount*3 //NOT ENOUGH NOT ENOUGH NOT ENOUGH
 				var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 				L.take_damage(amount*1.5)
 			else
@@ -57,7 +58,10 @@
 		if(H.species.has_organ[O_LIVER])
 			if(H == user)
 				user.visible_message("[user] has swallowed a glass of teeth!", "You swallow the teeth!")
+				H.nutrition -= 150
 				var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
+				H.verbs |= /mob/living/proc/eat_trash
+				to_chat(user, "<span class='warning'>WHY ARE YOU SO DAMNABLY HUNGRY?!</span>")
 				L.take_damage(40)
 			else
 				user.visible_message("[user] tries to feed [M] a glass of teeth!")
