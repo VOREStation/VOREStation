@@ -331,6 +331,9 @@
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
 
+	if(!hasteeth) //Teeth are organs. Or so I was told.
+		H.teeth = 0
+
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
