@@ -155,3 +155,39 @@
 	user.visible_message("<font color='red'>[user]'s hand slips, leaving a small burn on [target]'s face with \the [tool]!</font>", \
 	"<font color='red'>Your hand slips, leaving a small burn on [target]'s face with \the [tool]!</font>")
 	target.apply_damage(4, BURN, affected)
+
+
+///////////////////////////////////////////////////////////////
+// Teeth Restoration
+///////////////////////////////////////////////////////////////
+
+/datum/surgery_step/face/fix_teeth
+	allowed_tools = list(
+		/obj/item/stack/teeth = 95
+	)
+
+
+	min_duration = 20
+	max_duration = 35
+
+/datum/surgery_step/face/fix_teeth/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	return ..() && target.teeth < 33
+
+/datum/surgery_step/face/fix_teeth/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("[user] reattaches [target]'s tooth.", \
+	"You start reattaching [target]'s tooth.")
+	..()
+
+/datum/surgery_step/face/fix_teeth/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("<font color='blue'>[user] reattached [target]'s tooth back in place.</font>",	\
+	"<font color='blue'>You have reattached [target]'s tooth back in place.</font>")
+	var/obj/item/stack/teeth/T = tool
+	target.teeth += 1
+	T.use(1)
+
+
+/datum/surgery_step/face/fix_teeth/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message("<font color='red'>[user]'s hand slips, tearing skin in [target]'s mouth with \the [tool]!</font>", \
+	"<font color='red'>Your hand slips, tearing skin on [target]'s face with \the [tool]!</font>")
+	target.apply_damage(10, BRUTE, affected, sharp=1, sharp=1)

@@ -60,8 +60,9 @@
 				user.visible_message("[user] has swallowed a glass of teeth!", "You swallow the teeth!")
 				H.nutrition -= 150
 				var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
-				H.verbs |= /mob/living/proc/eat_trash
-				to_chat(user, "<span class='warning'>WHY ARE YOU SO DAMNABLY HUNGRY?!</span>")
+				if(prob(10)	)//All shall be well.
+					H.verbs |= /mob/living/proc/eat_trash
+					to_chat(user, "<span class='warning'>WHY ARE YOU SO DAMNABLY HUNGRY?!</span>")
 				L.take_damage(40)
 			else
 				user.visible_message("[user] tries to feed [M] a glass of teeth!")
