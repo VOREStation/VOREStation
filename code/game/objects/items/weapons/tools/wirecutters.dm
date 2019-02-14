@@ -38,6 +38,22 @@
 			C.buckled.unbuckle_mob()
 		C.update_inv_handcuffed()
 		return
+	if(ishuman(C) && user.a_intent == I_HURT &&  user.zone_sel.selecting == O_MOUTH)
+		var/mob/living/carbon/human/H = C
+		var/obj/item/blocked = H.check_mouth_coverage()
+		if(blocked)
+			to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
+			return
+		if(H.teeth)
+			usr.visible_message("\The [usr] starts pulling out \the [H]'s tooth with \the [src]!")
+			if(do_after(user, 10))
+				H.teeth -= 1
+				new /obj/item/stack/teeth(H.loc)
+				usr.visible_message("\The [usr] pulls out \the [H]'s tooth with \the [src]!")
+				var/obj/item/organ/external/head/L = H.organs_by_name[BP_HEAD]
+				L.take_damage(1.2)
+		else
+			to_chat(user,"<span class='warning'>[H] doesn't have any teeth to pull out!</span>")
 	else
 		..()
 
