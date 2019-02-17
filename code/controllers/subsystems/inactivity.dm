@@ -5,15 +5,9 @@ SUBSYSTEM_DEF(inactivity)
 
 /datum/controller/subsystem/inactivity/fire()
 	if(config.kick_inactive)
-<<<<<<< HEAD:code/controllers/Processes/inactivity.dm
-		for(last_object in clients)
-			var/client/C = last_object
-			if(C.is_afk(config.kick_inactive MINUTES) && !C.holder) // VOREStation Edit - Allow admins to idle
-=======
 		for(var/i in clients)
 			var/client/C = i
-			if(C.is_afk(config.kick_inactive MINUTES))
->>>>>>> 414cf71... Merge pull request #5726 from kevinz000/ss_refactor_3:code/controllers/subsystems/inactivity.dm
+			if(C.is_afk(config.kick_inactive MINUTES) && !C.holder) // VOREStation Edit - Allow admins to idle
 				to_chat(C,"<span class='warning'>You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.</span>")
 				var/information
 
