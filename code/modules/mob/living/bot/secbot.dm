@@ -24,8 +24,7 @@
 	var/awaiting_surrender = 0
 	var/can_next_insult = 0			// Uses world.time
 	var/stun_strength = 60			// For humans.
-	var/xeno_stun_strength = 0		// For simple mobs.
-	var/xeno_harm_strength = 15 	// Ditto.
+	var/xeno_harm_strength = 15 	// How hard to hit simple_mobs.
 	var/baton_glow = "#FF6A00"
 
 	var/used_weapon	= /obj/item/weapon/melee/baton	//Weapon used by the bot
@@ -53,12 +52,13 @@
 	desc = "A little security robot, with a slime baton subsituted for the regular one."
 	default_icon_state = "slimesecbot"
 	stun_strength = 10 // Slimebatons aren't meant for humans.
-	xeno_stun_strength = 5
-	xeno_harm_strength = 9
+
+	xeno_harm_strength = 9 // Weaker than regular slimesky but they can stun.
 	baton_glow = "#33CCFF"
 	req_one_access = list(access_research, access_robotics)
 	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
 	used_weapon = /obj/item/weapon/melee/baton/slime
+	var/xeno_stun_strength = 5 // How hard to slimebatoned()'d naughty slimes. 5 works out to 2 discipline and 5 weaken.
 
 /mob/living/bot/secbot/slime/slimesky
 	name = "Doctor Slimesky"
@@ -269,9 +269,14 @@
 					C.handcuffed = new /obj/item/weapon/handcuffs(C)
 					C.update_inv_handcuffed()
 			busy = 0
+<<<<<<< HEAD
+	else if(istype(M, /mob/living/simple_animal))
+		var/mob/living/simple_animal/S = M
+		S.Weaken(xeno_stun_strength)
+=======
 	else if(istype(M, /mob/living/simple_mob))
 		var/mob/living/simple_mob/S = M
-		S.Weaken(xeno_stun_strength)
+>>>>>>> d598379... Fixes blast door issue, and slimesky being considered unjustified. (#5966)
 		S.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)
 		playsound(loc, "swing_hit", 50, 1, -1)
@@ -286,9 +291,15 @@
 /mob/living/bot/secbot/slime/UnarmedAttack(var/mob/living/L, var/proximity)
 	..()
 
+<<<<<<< HEAD
+	if(istype(L, /mob/living/simple_animal/slime))
+		var/mob/living/simple_animal/slime/S = L
+		S.adjust_discipline(2)
+=======
 	if(istype(L, /mob/living/simple_mob/slime/xenobio))
 		var/mob/living/simple_mob/slime/xenobio/S = L
-		S.adjust_discipline(2)
+		S.slimebatoned(src, xeno_stun_strength)
+>>>>>>> d598379... Fixes blast door issue, and slimesky being considered unjustified. (#5966)
 
 
 

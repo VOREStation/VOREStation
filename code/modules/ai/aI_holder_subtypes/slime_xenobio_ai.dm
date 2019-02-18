@@ -34,16 +34,22 @@
 
 // Checks if disciplining the slime would be 'justified' right now.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/is_justified_to_discipline()
+	ai_log("xenobio_slime/is_justified_to_discipline() : Entered.", AI_LOG_TRACE)
 	if(!can_act())
+		ai_log("xenobio_slime/is_justified_to_discipline() : Judged to be unjustified because we cannot act. Exiting.", AI_LOG_DEBUG)
 		return FALSE // The slime considers it abuse if they get stunned while already stunned.
 	if(rabid)
+		ai_log("xenobio_slime/is_justified_to_discipline() : Judged to be justified because we're rabid. Exiting.", AI_LOG_TRACE)
 		return TRUE
 	if(target && can_attack(target))
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(istype(H.species, /datum/species/monkey))
+				ai_log("xenobio_slime/is_justified_to_discipline() : Judged to be unjustified because we're targeting a monkey. Exiting.", AI_LOG_DEBUG)
 				return FALSE // Attacking monkeys is okay.
+		ai_log("xenobio_slime/is_justified_to_discipline() : Judged to be justified because we are targeting a non-monkey. Exiting.", AI_LOG_TRACE)
 		return TRUE // Otherwise attacking other things is bad.
+	ai_log("xenobio_slime/is_justified_to_discipline() : Judged to be unjustified because we are not targeting anything. Exiting.", AI_LOG_DEBUG)
 	return FALSE // Not attacking anything.
 
 /datum/ai_holder/simple_mob/xenobio_slime/proc/can_command(mob/living/commander)
@@ -64,7 +70,7 @@
 	if(amount > 0)
 		if(rabid)
 			return
-		var/justified = is_justified_to_discipline()
+		var/justified = my_slime.is_justified_to_discipline() // This will also consider the AI-side of that proc.
 		lost_target() // Stop attacking.
 
 		if(justified)
