@@ -413,6 +413,9 @@
 	name = "maid headband"
 	desc = "Keeps hair out of the way for important... jobs."
 	icon_state = "maid"
+<<<<<<< HEAD
+	body_parts_covered = 0
+=======
 	body_parts_covered = 0
 
 /obj/item/clothing/head/maangtikka
@@ -427,3 +430,16 @@
 	icon_state = "jingasa"
 	body_parts_covered = 0
 	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
+	
+/obj/item/clothing/head/cowl
+	name = "black cowl"
+	desc = "A gold-lined black cowl. It gives off uncomfortable cult vibes, but fancy."
+	icon_state = "cowl"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/cowl
+	name = "white cowl"
+	desc = "A gold-lined white cowl. It gives off uncomfortable cult vibes, but fancy."
+	icon_state = "whitecowl"
+	body_parts_covered = 0
+>>>>>>> 8735e70... Merge pull request #5956 from kartagrafi/nockk

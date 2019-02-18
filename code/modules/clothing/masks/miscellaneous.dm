@@ -169,6 +169,34 @@
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 0.9
+	
+/obj/item/clothing/mask/nock_scarab
+	name = "nock mask (blue, scarab)"
+	desc = "To Nock followers, masks symbolize rebirth and a new persona. Damaging the wearer's mask is generally considered an attack on their person itself."
+	icon_state = "nock_scarab"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = HEAD|FACE
+
+/obj/item/clothing/mask/nock_demon
+	name = "nock mask (purple, demon)"
+	desc = "To Nock followers, masks symbolize rebirth and a new persona. Damaging the wearer's mask is generally considered an attack on their person itself."
+	icon_state = "nock_demon"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = HEAD|FACE
+
+/obj/item/clothing/mask/nock_life
+	name = "nock mask (green, life)"
+	desc = "To Nock followers, masks symbolize rebirth and a new persona. Damaging the wearer's mask is generally considered an attack on their person itself."
+	icon_state = "nock_life"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = HEAD|FACE
+
+/obj/item/clothing/mask/nock_ornate
+	name = "nock mask (red, ornate)"
+	desc = "To Nock followers, masks symbolize rebirth and a new persona. Damaging the wearer's mask is generally considered an attack on their person itself."
+	icon_state = "nock_ornate"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = HEAD|FACE
 
 /obj/item/clothing/mask/horsehead/New()
     ..()
