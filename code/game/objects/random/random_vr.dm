@@ -178,14 +178,14 @@
 	icon_state = "x"
 	spawn_nothing_percentage = 10
 	var/faction = "wild animal"
-/*
+
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	return pick(
-				prob(50);/mob/living/simple_mob/retaliate/gaslamp,
+				prob(50);/mob/living/simple_mob/animal/space/gaslamp,
 //				prob(50);/mob/living/simple_mob/otie/feral, // Removed until Otie code is unfucked.
-				prob(20);/mob/living/simple_mob/hostile/dino/virgo3b,
-				prob(1);/mob/living/simple_mob/hostile/dragon/virgo3b)
-*/ //VORESTATION AI TEMPORARY REMOVAL
+				prob(20);/mob/living/simple_mob/vore/dino/virgo3b,
+				prob(1);/mob/living/simple_mob/vore/dragon/virgo3b)
+
 /obj/random/outside_mob/spawn_item()
 	. = ..()
 	if(istype(., /mob/living/simple_mob))
