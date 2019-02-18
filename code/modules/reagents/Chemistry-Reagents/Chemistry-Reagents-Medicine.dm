@@ -515,6 +515,7 @@
 	taste_description = "metallic"
 	reagent_state = LIQUID
 	color = "#4444FF"
+	metabolism = REM * 1.5
 	overdose = 10
 	scannable = 1
 
@@ -528,13 +529,15 @@
 			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_LUNGS, O_VOICE, O_GBLADDER)))
 				continue
 			if(I.damage > 0)
-				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
 				H.Confuse(2)
 		if(M.reagents.has_reagent("gastirodaxon") || M.reagents.has_reagent("peridaxon"))
 			if(H.losebreath >= 15 && prob(H.losebreath))
 				H.Stun(2)
 			else
 				H.losebreath = CLAMP(H.losebreath + 3, 0, 20)
+		else
+			H.losebreath = max(H.losebreath - 4, 0)
 
 /datum/reagent/gastirodaxon
 	name = "Gastirodaxon"
@@ -543,6 +546,7 @@
 	taste_description = "chalk"
 	reagent_state = LIQUID
 	color = "#8B4513"
+	metabolism = REM * 1.5
 	overdose = 10
 	scannable = 1
 
@@ -556,13 +560,15 @@
 			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_APPENDIX, O_NUTRIENT, O_PLASMA, O_POLYP)))
 				continue
 			if(I.damage > 0)
-				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
 				H.Confuse(2)
 		if(M.reagents.has_reagent("hepanephrodaxon") || M.reagents.has_reagent("peridaxon"))
 			if(prob(10))
 				H.vomit(1)
 			else if(H.nutrition > 30)
 				H.nutrition = max(0, H.nutrition - round(30 * removed))
+		else
+			H.adjustToxLoss(-10 * removed) // Carthatoline based, considering cost.
 
 /datum/reagent/hepanephrodaxon
 	name = "Hepanephrodaxon"
@@ -571,6 +577,7 @@
 	taste_description = "glue"
 	reagent_state = LIQUID
 	color = "#D2691E"
+	metabolism = REM * 1.5
 	overdose = 10
 	scannable = 1
 
@@ -584,7 +591,7 @@
 			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_LIVER, O_KIDNEYS, O_APPENDIX, O_ACID, O_HIVE)))
 				continue
 			if(I.damage > 0)
-				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
 				H.Confuse(2)
 		if(M.reagents.has_reagent("cordradaxon") || M.reagents.has_reagent("peridaxon"))
 			if(prob(5))
@@ -593,6 +600,8 @@
 				to_chat(H,"<span class='danger'>Something churns inside you.</span>")
 				H.adjustToxLoss(10 * removed)
 				H.vomit(0, 1)
+		else
+			H.adjustToxLoss(-12 * removed) // Carthatoline based, considering cost.
 
 /datum/reagent/cordradaxon
 	name = "Cordradaxon"
@@ -601,6 +610,7 @@
 	taste_description = "rust"
 	reagent_state = LIQUID
 	color = "#FF4444"
+	metabolism = REM * 1.5
 	overdose = 10
 	scannable = 1
 
@@ -614,10 +624,12 @@
 			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_HEART, O_RESPONSE, O_ANCHOR, O_EGG)))
 				continue
 			if(I.damage > 0)
-				I.damage = max(I.damage - 2 * removed * repair_strength, 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
 				H.Confuse(2)
 		if(M.reagents.has_reagent("respirodaxon") || M.reagents.has_reagent("peridaxon"))
 			H.losebreath = CLAMP(H.losebreath + 1, 0, 10)
+		else
+			H.adjustOxyLoss(-30 * removed) // Deals with blood oxygenation.
 
 /datum/reagent/immunosuprizine
 	name = "Immunosuprizine"
@@ -682,6 +694,7 @@
 	taste_description = "mordant"
 	reagent_state = SOLID
 	color = "#84B2B0"
+	metabolism = REM * 0.75
 	overdose = 20
 	scannable = 1
 
