@@ -113,7 +113,7 @@
 		taped = 0
 	..()
 */ //VORESTATION AI REMOVAL, Oties are still fucking broken.
-/obj/structure/largecrate/animal/catgirl
+/mob/living/simple_mob/vore/catgirl
 	name = "Catgirl Crate"
 	desc = "A sketchy looking crate with airholes that seems to have had most marks and stickers removed. You can almost make out 'genetically-engineered subject' written on it."
 	starts_with = list(/mob/living/simple_mob/catgirl)
@@ -121,7 +121,7 @@
 /obj/structure/largecrate/animal/wolfgirl
 	name = "Wolfgirl Crate"
 	desc = "A sketchy looking crate with airholes that shakes and thuds every now and then. Someone seems to be demanding they be let out."
-	starts_with = list(/mob/living/simple_mob/retaliate/wolfgirl)
+	starts_with = list(/mob/living/simple_mob/vore/wolfgirl)
 
 /obj/structure/largecrate/animal/fennec
 	name = "Fennec Crate"
@@ -130,5 +130,5 @@
 
 /obj/structure/largecrate/animal/fennec/initialize()
 	starts_with = list(pick(/mob/living/simple_mob/fennec,
-						/mob/living/simple_mob/retaliate/fennix;0.5))
+						/mob/living/simple_mob/vore/fennix;0.5))
 	return ..()
