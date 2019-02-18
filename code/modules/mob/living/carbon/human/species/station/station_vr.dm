@@ -123,7 +123,7 @@
 	color_mult = 1
 	inherent_verbs = list(/mob/living/proc/shred_limb,/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
 
-	hasteeth = 0
+	hasteeth = FALSE
 
 	min_age = 18
 	max_age = 80
@@ -335,7 +335,7 @@
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 
-	hasteeth = 0
+	hasteeth = FALSE
 
 	min_age = 18
 
@@ -357,7 +357,7 @@
 		)
 
 /datum/species/shapeshifter/promethean
-	hasteeth = 0
+	hasteeth = FALSE
 	spawn_flags = SPECIES_CAN_JOIN
 
 /datum/species/human
@@ -369,7 +369,7 @@
 	base_color = "#EECEB3"
 
 /datum/species/vox
-	hasteeth = 0
+	hasteeth = FALSE
 	gluttonous = 0
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	min_age = 18

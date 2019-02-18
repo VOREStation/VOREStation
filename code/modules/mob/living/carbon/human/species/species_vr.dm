@@ -17,7 +17,7 @@
 	var/wing_animation
 	var/icobase_wing
 
-	var/hasteeth = 1 //If the species has teeth. Pity those who don't. They can still take them from those, who do, though.
+	var/hasteeth = TRUE //If the species has teeth. Pity those who don't. They can still take them from those, who do, though.
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()

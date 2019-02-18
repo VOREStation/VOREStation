@@ -52,17 +52,17 @@
 			center_of_mass = list("x"=16, "y"=10)
 			return
 
-	attackby(obj/item/I, mob/user)
-		..()
-		if(istype(I, /obj/item/stack/teeth))
-			var/obj/item/stack/teeth/T = I
-			if (reagents.reagent_list.len == 0)
-				if(T.amount > 19)
-					new /obj/item/teethglass(src.loc)
-					T.amount -= 20
-					qdel(src)
-				else
-					to_chat(user,"<span class='warning'>There's not enought teeth, you need at least 20.</span>")
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(istype(I, /obj/item/stack/teeth))
+		var/obj/item/stack/teeth/T = I
+		if (!length(reagents.reagent_list))
+			if(T.amount >= 20)
+				new /obj/item/teethglass(src.loc)
+				T.use(20)
+				qdel(src)
+			else
+				to_chat(user,"<span class='warning'>There's not enought teeth, you need at least 20.</span>")
 
 /obj/item/weapon/reagent_containers/food/drinks/cup
 	name = "coffee cup"

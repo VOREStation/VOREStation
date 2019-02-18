@@ -14,8 +14,7 @@
 
 /obj/item/stack/teeth/attack(mob/M as mob, mob/user as mob)
 	if (!ishuman(M))
-		..()
-		return
+		return ..()
 	else
 		var/mob/living/carbon/human/H = M
 		var/obj/item/blocked = H.check_mouth_coverage()
@@ -24,18 +23,18 @@
 			return
 		if(H.species.has_organ[O_LIVER])
 			if(H == user)
-				user.visible_message("[user] has swallowed a handfull of teeth!", "You swallow the teeth!")
+				user.visible_message("[user] swallows a handfull of teeth!", "You swallow the teeth!")
 				H.nutrition -= amount*3 //NOT ENOUGH NOT ENOUGH NOT ENOUGH
 				var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 				L.take_damage(amount*1.5)
-				playsound(src.loc, 'sound/vore/gulp.ogg', 25, 1)
+				playsound(src, 'sound/vore/gulp.ogg', 25, 1)
 			else
 				user.visible_message("[user] tries to feed [M] a handfull of teeth!")
 				if(do_after(user, 20))
 					user.visible_message("[user] has fed [M] a handfull of teeth!", "You feed [M] the teeth!")
 					var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 					L.take_damage(amount*1.5)
-					playsound(src.loc, 'sound/vore/gulp.ogg', 25, 1)
+					playsound(src, 'sound/vore/gulp.ogg', 25, 1)
 		qdel(src)
 
 
@@ -48,8 +47,7 @@
 
 /obj/item/teethglass/attack(mob/M as mob, mob/user as mob)
 	if (!ishuman(M))
-		..()
-		return
+		return ..()
 	else
 		var/mob/living/carbon/human/H = M
 		var/obj/item/blocked = H.check_mouth_coverage()
@@ -58,7 +56,7 @@
 			return
 		if(H.species.has_organ[O_LIVER])
 			if(H == user)
-				user.visible_message("[user] has swallowed a glass of teeth!", "You swallow the teeth!")
+				user.visible_message("[user] swallows a glass of teeth!", "You swallow the teeth!")
 				H.nutrition -= 150
 				var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 				if(prob(10)	)//All shall be well.
@@ -71,6 +69,6 @@
 					user.visible_message("[user] has fed [M] a glass of teeth!", "You feed [M] the teeth!")
 					var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
 					L.take_damage(50)
-		playsound(src.loc, 'sound/vore/gulp.ogg', 25, 1)
-		new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(user.loc)
+		playsound(src, 'sound/vore/gulp.ogg', 25, 1)
+		new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(user.drop_location())
 		qdel(src)
