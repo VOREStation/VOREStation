@@ -1,4 +1,3 @@
-//VORESTATION AI TEMPORARY REMOVAL. Commented out until vore mobs are fixed.
 /obj/structure/largecrate/birds //This is an awful hack, but it's the only way to get multiple mobs spawned in one crate.
 	name = "Bird crate"
 	desc = "You hear chirping and cawing inside the crate. It sounds like there are a lot of birds in there..."
@@ -6,28 +5,27 @@
 /obj/structure/largecrate/birds/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_crowbar())
 		new /obj/item/stack/material/wood(src)
-		new /mob/living/simple_mob/bird(src)
-		new /mob/living/simple_mob/bird/kea(src)
-		new /mob/living/simple_mob/bird/eclectus(src)
-		new /mob/living/simple_mob/bird/greybird(src)
-		new /mob/living/simple_mob/bird/eclectusf(src)
-		new /mob/living/simple_mob/bird/blue_caique(src)
-		new /mob/living/simple_mob/bird/white_caique(src)
-		new /mob/living/simple_mob/bird/green_budgerigar(src)
-		new /mob/living/simple_mob/bird/blue_Budgerigar(src)
-		new /mob/living/simple_mob/bird/bluegreen_Budgerigar(src)
-		new /mob/living/simple_mob/bird/commonblackbird(src)
-		new /mob/living/simple_mob/bird/azuretit(src)
-		new /mob/living/simple_mob/bird/europeanrobin(src)
-		new /mob/living/simple_mob/bird/goldcrest(src)
-		new /mob/living/simple_mob/bird/ringneckdove(src)
-		new /mob/living/simple_mob/bird/cockatiel(src)
-		new /mob/living/simple_mob/bird/white_cockatiel(src)
-		new /mob/living/simple_mob/bird/yellowish_cockatiel(src)
-		new /mob/living/simple_mob/bird/grey_cockatiel(src)
-		new /mob/living/simple_mob/bird/too(src)
-		new /mob/living/simple_mob/bird/hooded_too(src)
-		new /mob/living/simple_mob/bird/pink_too(src)
+		new /mob/living/simple_mob/animal/passive/bird(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/kea(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/eclectus(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/grey_parrot(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/black_headed_caique(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/white_caique(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/budgerigar(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/blue(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/bluegreen(src)
+		new /mob/living/simple_mob/animal/passive/bird/black_bird(src)
+		new /mob/living/simple_mob/animal/passive/bird/azure_tit(src)
+		new /mob/living/simple_mob/animal/passive/bird/european_robin(src)
+		new /mob/living/simple_mob/animal/passive/bird/goldcrest(src)
+		new /mob/living/simple_mob/animal/passive/bird/ringneck_dove(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/white(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/yellowish(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/sulphur_cockatoo(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/white_cockatoo(src)
+		new /mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo(src)
 		var/turf/T = get_turf(src)
 		for(var/atom/movable/AM in contents)
 			if(AM.simulated) AM.forceMove(T)
@@ -40,42 +38,42 @@
 
 /obj/structure/largecrate/animal/pred
 	name = "Predator carrier"
-	starts_with = list(/mob/living/simple_mob/catgirl)
+	starts_with = list(/mob/living/simple_mob/vore/catgirl)
 
 /obj/structure/largecrate/animal/pred/initialize() //This is nessesary to get a random one each time.
-	starts_with = list(pick(/mob/living/simple_mob/retaliate/bee,
-						/mob/living/simple_mob/catgirl;3,
-						/mob/living/simple_mob/hostile/frog,
+	starts_with = list(pick(/mob/living/simple_mob/vore/bee,
+						/mob/living/simple_mob/vore/catgirl;3,
+						/mob/living/simple_mob/vore/frog,
 						/mob/living/simple_mob/horse,
-						/mob/living/simple_mob/hostile/panther,
-						/mob/living/simple_mob/hostile/giant_snake,
-						/mob/living/simple_mob/hostile/wolf,
-						/mob/living/simple_mob/hostile/bear;0.5,
-						/mob/living/simple_mob/hostile/bear/brown;0.5,
-						/mob/living/simple_mob/hostile/carp,
-						/mob/living/simple_mob/hostile/mimic,
-						/mob/living/simple_mob/hostile/rat,
-						/mob/living/simple_mob/hostile/rat/passive,
-						/mob/living/simple_mob/otie;0.5))
+						/mob/living/simple_mob/vore/panther,
+						/mob/living/simple_mob/vore/giant_snake,
+						/mob/living/simple_mob/vore/wolf,
+						/mob/living/simple_mob/animal/space/bear;0.5,
+						/mob/living/simple_mob/animal/space/carp,
+						/mob/living/simple_mob/animal/space/mimic,
+						/mob/living/simple_mob/vore/rat,
+						/mob/living/simple_mob/vore/rat/passive,
+//						/mob/living/simple_mob/otie;0.5
+						))
 	return ..()
 
 /obj/structure/largecrate/animal/dangerous
 	name = "Dangerous Predator carrier"
-	starts_with = list(/mob/living/simple_mob/hostile/alien)
+	starts_with = list(/mob/living/simple_mob/animal/space/alien)
 
 /obj/structure/largecrate/animal/dangerous/initialize()
 	starts_with = list(pick(/mob/living/simple_mob/hostile/carp/pike,
 						/mob/living/simple_mob/hostile/deathclaw,
 						/mob/living/simple_mob/hostile/dino,
-						/mob/living/simple_mob/hostile/alien,
-						/mob/living/simple_mob/hostile/alien/drone,
-						/mob/living/simple_mob/hostile/alien/sentinel,
-						/mob/living/simple_mob/hostile/alien/queen,
-						/mob/living/simple_mob/otie/feral,
-						/mob/living/simple_mob/otie/red,
-						/mob/living/simple_mob/hostile/corrupthound))
+						/mob/living/simple_mob/animal/space/alien,
+						/mob/living/simple_mob/animal/space/alien/drone,
+						/mob/living/simple_mob/animal/space/alien/sentinel,
+						/mob/living/simple_mob/animal/space/alien/queen,
+//						/mob/living/simple_mob/otie/feral,
+//						/mob/living/simple_mob/otie/red,
+						/mob/living/simple_mob/vore/corrupthound))
 	return ..()
-
+/*
 /obj/structure/largecrate/animal/guardbeast
 	name = "VARMAcorp autoNOMous security solution"
 	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
@@ -114,7 +112,7 @@
 		icon_state = "otiecrate"
 		taped = 0
 	..()
-
+*/ //VORESTATION AI REMOVAL, Oties are still fucking broken.
 /obj/structure/largecrate/animal/catgirl
 	name = "Catgirl Crate"
 	desc = "A sketchy looking crate with airholes that seems to have had most marks and stickers removed. You can almost make out 'genetically-engineered subject' written on it."
