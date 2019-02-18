@@ -411,4 +411,37 @@ var/list/organ_cache = list()
 		return 0
 	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
 		return 0
+<<<<<<< HEAD
 	return 1
+=======
+	return 1
+
+/obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
+	if(!istype(owner))
+		return
+
+	var/list/save_verbs = list()
+
+	if(removed && organ_verbs)	// Do we share verbs with any other organs? Are they functioning?
+		var/list/all_organs = list()
+		all_organs |= owner.organs
+		all_organs |= owner.internal_organs
+
+		for(var/obj/item/organ/O in all_organs)
+			if(!(O.status & ORGAN_DEAD) && O.organ_verbs)
+				for(var/verb_type in O.organ_verbs)
+					if(verb_type in organ_verbs)
+						save_verbs |= verb_type
+
+	if(!removed && organ_verbs)
+		for(var/verb_path in organ_verbs)
+			owner.verbs |= verb_path
+	else if(organ_verbs)
+		for(var/verb_path in organ_verbs)
+			if(!(verb_path in save_verbs))
+				owner.verbs -= verb_path
+	return
+
+/obj/item/organ/proc/handle_organ_proc_special()	// Called when processed.
+	return
+>>>>>>> 7d7819e... Merge pull request #5965 from Mechoid/Organs_Remove_Verbs_Properly
