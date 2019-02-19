@@ -618,7 +618,7 @@
 	var/ambulance = 0
 	var/ambulance_state = 0
 	var/ambulance_last_switch = 0
-	var/ambulance_volume = 15
+	var/ambulance_volume = 25
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
 	ambulance = !(ambulance)
