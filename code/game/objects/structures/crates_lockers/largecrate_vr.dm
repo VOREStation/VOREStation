@@ -62,9 +62,9 @@
 	starts_with = list(/mob/living/simple_mob/animal/space/alien)
 
 /obj/structure/largecrate/animal/dangerous/initialize()
-	starts_with = list(pick(/mob/living/simple_mob/hostile/carp/pike,
+	starts_with = list(pick(/mob/living/simple_mob/animal/space/carp/large,
 						/mob/living/simple_mob/hostile/deathclaw,
-						/mob/living/simple_mob/hostile/dino,
+						/mob/living/simple_mob/vore/dino,
 						/mob/living/simple_mob/animal/space/alien,
 						/mob/living/simple_mob/animal/space/alien/drone,
 						/mob/living/simple_mob/animal/space/alien/sentinel,
@@ -113,10 +113,11 @@
 		taped = 0
 	..()
 */ //VORESTATION AI REMOVAL, Oties are still fucking broken.
-/mob/living/simple_mob/vore/catgirl
+
+/obj/structure/largecrate/animal/catgirl
 	name = "Catgirl Crate"
 	desc = "A sketchy looking crate with airholes that seems to have had most marks and stickers removed. You can almost make out 'genetically-engineered subject' written on it."
-	starts_with = list(/mob/living/simple_mob/catgirl)
+	starts_with = list(/mob/living/simple_mob/vore/catgirl)
 
 /obj/structure/largecrate/animal/wolfgirl
 	name = "Wolfgirl Crate"
