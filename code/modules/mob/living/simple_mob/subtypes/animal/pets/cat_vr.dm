@@ -1,5 +1,4 @@
-/*
-/mob/living/simple_mob/cat/fluff/Runtime/init_vore()
+/mob/living/simple_mob/animal/passive/cat/runtime/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -30,7 +29,6 @@
 		"Runtime purrs happily as you slowly slip away inside of her gut, your body's nutrients are then used to put a layer of padding on the now pudgy cat.",
 		"The acids inside of Runtime's stomach, aided by the constant motions of the smooth walls surrounding you finally manage to melt you away into nothing more mush. She curls up on the floor, slowly kneading the air as her stomach moves its contents — including you — deeper into her digestive system.",
 		"Your form begins to slowly soften and break apart, rounding out Runtime's swollen belly. The carnivorous cat rumbles and purrs happily at the feeling of such a filling meal.")
-*/
 
 // Ascian's Tactical Kitten
 /obj/item/weapon/holder/cat/fluff/tabiranth
