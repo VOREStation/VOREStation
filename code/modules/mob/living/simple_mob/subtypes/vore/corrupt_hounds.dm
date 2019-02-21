@@ -111,11 +111,13 @@
 	if(stat == CONSCIOUS && !resting)
 		add_eyes()
 
+/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/vore/corrupthound/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
+*/
 
 /mob/living/simple_mob/vore/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
 	return
