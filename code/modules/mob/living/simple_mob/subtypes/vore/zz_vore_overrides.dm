@@ -109,6 +109,7 @@
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
+/* //VOREStation AI Temporary removal
 /mob/living/simple_mob/hostile/creature/vore
 	vore_active = 1
 	// NO VORE SPRITES
@@ -119,6 +120,7 @@
 	speed = 4			// Slow it down a bit
 	health = 80			// Increase health to compensate
 	maxHealth = 80
+*/
 
 /mob/living/simple_mob/animal/space/mimic
 	vore_active = 1
@@ -132,9 +134,10 @@
 /mob/living/simple_mob/animal/passive/cat
 	vore_active = 1
 	// NO VORE SPRITES
-	specific_targets = 0 // Targeting UNLOCKED
+	//specific_targets = 0 // Targeting UNLOCKED //VOREStation Removal - Incompatable
 	vore_max_size = RESIZE_TINY
 
+/* //VOREStation AI Temporary removal
 /mob/living/simple_mob/cat/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_mob/mouse))
 		visible_message("<span class='warning'>\The [src] pounces on \the [target_mob]!]</span>")
@@ -156,7 +159,7 @@
 	if (friend == found_atom)
 		return null
 	return ..()
-
+*/
 /mob/living/simple_mob/cat/fluff
 	vore_ignores_undigestable = 0
 	vore_pounce_chance = 100
@@ -164,6 +167,7 @@
 	vore_default_mode = DM_HOLD //can use the toggle if you wanna be catfood
 	vore_standing_too = TRUE //gonna get pounced
 
+/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/cat/fluff/EatTarget()
 	var/mob/living/TM = target_mob
 	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
@@ -171,12 +175,14 @@
 		if(src && TM)
 			prey_excludes -= TM
 	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
+*/
 
 /mob/living/simple_mob/animal/fox_vr
 	vore_active = 1
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_TINY
 
+/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/fox/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_mob/mouse))
 		return EatTarget()
@@ -196,6 +202,7 @@
 	if (friend == found_atom)
 		return null
 	return ..()
+*/
 
 /mob/living/simple_mob/fox/fluff
 	vore_ignores_undigestable = 0
@@ -204,6 +211,7 @@
 	vore_default_mode = DM_HOLD //can use the toggle if you wanna be foxfood
 	vore_standing_too = TRUE // gonna get pounced
 
+/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/fox/fluff/EatTarget()
 	var/mob/living/TM = target_mob
 	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
@@ -211,6 +219,7 @@
 		if(src && TM)
 			prey_excludes -= TM
 	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
+*/
 
 /mob/living/simple_mob/animal/space/goose
 	vore_active = 1
@@ -227,20 +236,20 @@
 	vore_active = 1
 	// NO VORE SPRITES
 
-/mob/living/simple_mob/hostile/carp/holodeck
+/mob/living/simple_mob/animal/space/carp/holographic
 	vore_icons = 0 // NO VORE SPRITES
 	vore_digest_chance = 0
 	vore_absorb_chance = 0
 
 // Override stuff for holodeck carp to make them not digest when set to safe!
-/mob/living/simple_mob/hostile/carp/holodeck/init_vore()
+/mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	. = ..()
 	var/safe = (faction == "neutral")
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/hostile/carp/holodeck/set_safety(var/safe)
+/mob/living/simple_mob/animal/space/carp/holographic/set_safety(var/safe)
 	. = ..()
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly

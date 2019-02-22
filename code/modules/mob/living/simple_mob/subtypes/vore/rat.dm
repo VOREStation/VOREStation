@@ -161,11 +161,13 @@
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
 
+/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/vore/rat/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
+*/
 
 /mob/living/simple_mob/vore/rat/MouseDrop_T(mob/living/M, mob/living/user)
 	return

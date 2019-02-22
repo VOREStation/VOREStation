@@ -39,11 +39,13 @@
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
+/* //VOREStation AI Temporary Removal
 /mob/living/simple_animal/vore/panther/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
+*/
 
 /mob/living/simple_animal/vore/panther/MouseDrop_T(mob/living/M, mob/living/user)
 	return
