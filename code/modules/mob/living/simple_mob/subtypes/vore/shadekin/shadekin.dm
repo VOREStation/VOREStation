@@ -6,23 +6,17 @@
 	icon_living = "map_example"
 	faction = "shadekin"
 	ui_icons = 'icons/mob/shadekin_hud.dmi'
-	intelligence_level = SA_HUMANOID
+	mob_class = MOB_CLASS_HUMANOID
 
 	maxHealth = 200
 	health = 200
 
-	move_to_delay = 2
-	speed = -1
+	movement_cooldown = 2
 	see_in_dark = 10 //SHADEkin
 	has_hands = TRUE //Pawbs
 	seedarkness = FALSE //SHAAAADEkin
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	has_langs = list(LANGUAGE_GALCOM,LANGUAGE_SHADEKIN)
-
-	investigates = TRUE
-	reacts = TRUE
-	run_at_them = FALSE
-	cooperative = FALSE
 
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -38,18 +32,14 @@
 	minbodytemp = 0
 	maxbodytemp = 900
 
-	speak_chance = 2
-	speak = list("Marrr.", "Marrr?", "Marrr!")
-	emote_hear = list("chrrrrrs", "wurbles", "wrrrrbles")
-	emote_see = list("tailtwitches", "earflicks")
-	say_maybe_target = list("...mar?")
-	say_got_target = list("MAR!!!")
+	say_list_type = /datum/say_list/shadekin
+
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
+
 	attacktext = list("mauled","slashed","clawed")
 	friendly = list("boops", "pawbs", "mars softly at", "sniffs on")
-	reactions = list("Mar?" = "Marrr!", "Mar!" = "Marrr???", "Mar." = "Marrr.")
 
 	vore_active = TRUE
 	vore_pounce_chance = 10
@@ -237,6 +227,7 @@
 
 	. = ..(FALSE, deathmessage)
 
+/* //VOREStation AI Temporary Removal
 //Blue-eyes want to nom people to heal them
 /mob/living/simple_mob/shadekin/Found(var/atom/A)
 	if(specific_targets && isliving(A)) //Healing!
@@ -245,6 +236,7 @@
 		if(health_percent <= 50 && will_eat(A))
 			return A
 	. = ..()
+*/
 
 //They reach nutritional equilibrium (important for blue-eyes healbelly)
 /mob/living/simple_mob/shadekin/Life()
@@ -329,6 +321,7 @@
 			if(0 to 20)
 				energyhud.icon_state = "energy4"
 
+/* //VOREStation AI Removal
 //Friendly ones wander towards people, maybe shy-ly if they are set to shy
 /mob/living/simple_mob/shadekin/handle_wander_movement()
 	if(isturf(src.loc) && !resting && !buckled && canmove)
@@ -383,11 +376,12 @@
 					return
 				Move(T)
 				lifes_since_move = 0
+*/
 
 /mob/living/simple_mob/shadekin/speech_bubble_appearance()
 	return "ghost"
 
-/mob/living/simple_mob/shadekin/DoPunch(var/atom/A)
+/mob/living/simple_mob/shadekin/apply_melee_effects(var/atom/A)
 	. = ..(A)
 	if(isliving(A)) //We punched something!
 		var/mob/living/L = A
@@ -434,6 +428,14 @@
 	. = ..()
 	if(M.a_intent == I_HELP)
 		shy_approach = FALSE //ACCLIMATED
+
+/datum/say_list/shadekin
+	speak = list("Marrr.", "Marrr?", "Marrr!")
+	emote_hear = list("chrrrrrs", "wurbles", "wrrrrbles")
+	emote_see = list("tailtwitches", "earflicks")
+	say_maybe_target = list("...mar?")
+	say_got_target = list("MAR!!!")
+	//reactions = list("Mar?" = "Marrr!", "Mar!" = "Marrr???", "Mar." = "Marrr.")
 
 /datum/language/shadekin
 	name = "Shadekin Empathy"
