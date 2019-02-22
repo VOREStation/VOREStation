@@ -615,10 +615,10 @@
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
 	action_button_name = "Toggle Mlembulance Mode"
-	var/ambulance = 0
-	var/ambulance_state = 0
+	var/ambulance = FALSE
+	var/ambulance_state = FALSE
 	var/ambulance_last_switch = 0
-	var/ambulance_volume = 25
+	var/ambulance_volume = 25	//Allows for varediting, just in case
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
 	ambulance = !(ambulance)
@@ -626,10 +626,10 @@
 		processing_objects.Add(src)
 		item_state = "tempestsaddlebag-amb"
 		icon_state = "tempestbag-amb"
-		if (ismob(src.loc))
-			var/mob/M = src.loc
+		if (ismob(loc))
+			var/mob/M = loc
 			M.update_inv_back()
-		ambulance_state = 0
+		ambulance_state = FALSE
 		set_light(2, 1, "#FF0000")
 		while(ambulance)
 			playsound(src.loc, 'sound/items/amulanceweeoo.ogg', ambulance_volume, 0)
@@ -637,8 +637,8 @@
 	else
 		item_state = "tempestsaddlebag"
 		icon_state = "tempestbag"
-		if (ismob(src.loc))
-			var/mob/M = src.loc
+		if (ismob(loc))
+			var/mob/M = loc
 			M.update_inv_back()
 		set_light(0)
 
@@ -651,8 +651,8 @@
 		var/newlight = "#FF0000"
 		if(ambulance_state)
 			newlight = "#0000FF"
-		if (ismob(src.loc))
-			var/mob/M = src.loc
+		if (ismob(loc))
+			var/mob/M = loc
 			M.update_inv_back()
 		set_light(2, 1, newlight)
 		ambulance_last_switch = world.time
