@@ -553,8 +553,4 @@
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "medlaptop"
-<<<<<<< HEAD
-	throwpass = 1 //VOREStation Edit - Really???
-=======
 	density = 0
->>>>>>> d5b0840... Merge pull request #5777 from Heroman3003/laptop-refix
