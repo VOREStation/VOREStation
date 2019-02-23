@@ -59,13 +59,8 @@
 
 		if(NORTH)
 
-<<<<<<< HEAD
-			int_panel_x = ux + Floor(lift_size_x/2)
-			int_panel_y = uy + (make_walls ? 1 : 0)
-=======
 			int_panel_x = ux + FLOOR(lift_size_x/2, 1)
 			int_panel_y = uy + 1
->>>>>>> 8da11c1... Makes math helpers defines for performance (#5654)
 			ext_panel_x = ux
 			ext_panel_y = ey + 2
 
@@ -81,13 +76,8 @@
 
 		if(SOUTH)
 
-<<<<<<< HEAD
-			int_panel_x = ux + Floor(lift_size_x/2)
-			int_panel_y = ey - (make_walls ? 1 : 0)
-=======
 			int_panel_x = ux + FLOOR(lift_size_x/2, 1)
 			int_panel_y = ey - 1
->>>>>>> 8da11c1... Makes math helpers defines for performance (#5654)
 			ext_panel_x = ex
 			ext_panel_y = uy - 2
 
@@ -103,13 +93,8 @@
 
 		if(EAST)
 
-<<<<<<< HEAD
-			int_panel_x = ux + (make_walls ? 1 : 0)
-			int_panel_y = uy + Floor(lift_size_y/2)
-=======
 			int_panel_x = ux+1
 			int_panel_y = uy + FLOOR(lift_size_y/2, 1)
->>>>>>> 8da11c1... Makes math helpers defines for performance (#5654)
 			ext_panel_x = ex+2
 			ext_panel_y = ey
 
@@ -125,13 +110,8 @@
 
 		if(WEST)
 
-<<<<<<< HEAD
-			int_panel_x = ex - (make_walls ? 1 : 0)
-			int_panel_y = uy + Floor(lift_size_y/2)
-=======
 			int_panel_x = ex-1
 			int_panel_y = uy + FLOOR(lift_size_y/2, 1)
->>>>>>> 8da11c1... Makes math helpers defines for performance (#5654)
 			ext_panel_x = ux-2
 			ext_panel_y = uy
 
