@@ -153,8 +153,10 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.gib()
 
 /datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
-
-/* VOREStation Removal - Too crazy with our uncapped hunger and slowdown stuff.
+	var/regen_brute = 1
+	var/regen_burn = 1
+	var/regen_tox = 1
+	var/regen_oxy = 1
 
 	var/turf/T = H.loc
 	if(istype(T))
@@ -164,15 +166,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
 				S.dirt = 0
-			H.nutrition = min(500, max(0, H.nutrition + rand(15, 30)))
-VOREStation Removal End */
-
-	var/regen_brute = 1
-	var/regen_burn = 1
-	var/regen_tox = 1
-	var/regen_oxy = 1
-
-	var/turf/T = H.loc	//VOREStation Addition: get the location as originally commented out
+			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 
 	T = get_turf(H) // Swap over to an actual turf, because we need to get the pressure.
 	if(istype(T)) // Make sure it exists, and is a turf again.
