@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/alien
+/mob/living/simple_mob/hostile/alien
 	name = "alien hunter"
 	desc = "Hiss!"
 	icon = 'icons/mob/alien.dmi'
@@ -48,7 +48,7 @@
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 
-/mob/living/simple_animal/hostile/alien/drone
+/mob/living/simple_mob/hostile/alien/drone
 	name = "alien drone"
 	icon_state = "aliend_running"
 	icon_living = "aliend_running"
@@ -58,7 +58,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 
-/mob/living/simple_animal/hostile/alien/sentinel
+/mob/living/simple_mob/hostile/alien/sentinel
 	name = "alien sentinel"
 	icon_state = "aliens_running"
 	icon_living = "aliens_running"
@@ -71,7 +71,7 @@
 	projectiletype = /obj/item/projectile/energy/neurotoxin/toxic
 	projectilesound = 'sound/weapons/pierce.ogg'
 
-/mob/living/simple_animal/hostile/alien/sentinel/praetorian
+/mob/living/simple_mob/hostile/alien/sentinel/praetorian
 	name = "alien praetorian"
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "prat_s"
@@ -86,7 +86,7 @@
 	old_x = -16
 	meat_amount = 5
 
-/mob/living/simple_animal/hostile/alien/queen
+/mob/living/simple_mob/hostile/alien/queen
 	name = "alien queen"
 	icon_state = "alienq_running"
 	icon_living = "alienq_running"
@@ -103,7 +103,7 @@
 	rapid = 1
 	status_flags = 0
 
-/mob/living/simple_animal/hostile/alien/queen/empress
+/mob/living/simple_mob/hostile/alien/queen/empress
 	name = "alien empress"
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "queen_s"
@@ -119,7 +119,7 @@
 	pixel_x = -16
 	old_x = -16
 
-/mob/living/simple_animal/hostile/alien/queen/empress/mother
+/mob/living/simple_mob/hostile/alien/queen/empress/mother
 	name = "alien mother"
 	icon = 'icons/mob/96x96.dmi'
 	icon_state = "empress_s"
@@ -136,7 +136,7 @@
 	pixel_x = -32
 	old_x = -32
 
-/mob/living/simple_animal/hostile/alien/death()
+/mob/living/simple_mob/hostile/alien/death()
 	..()
 	visible_message("[src] lets out a waning guttural screech, green blood bubbling from its maw...")
 	playsound(src, 'sound/voice/hiss6.ogg', 100, 1)

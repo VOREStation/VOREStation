@@ -11,7 +11,7 @@
 	var/last_spawn
 	var/spawn_delay = 150
 	var/randomize_spawning = FALSE
-	var/creature_types = list(/mob/living/simple_animal/retaliate/diyaab)
+	var/creature_types = list(/mob/living/simple_mob/animal/sif/diyaab)
 	var/list/den_mobs
 	var/den_faction			//The faction of any spawned creatures.
 	var/max_creatures = 3	//Maximum number of living creatures this nest can have at one time.

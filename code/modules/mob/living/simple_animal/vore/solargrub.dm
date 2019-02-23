@@ -10,7 +10,7 @@ List of things solar grubs should be able to do:
 
 #define SINK_POWER 1
 
-/mob/living/simple_animal/retaliate/solargrub
+/mob/living/simple_mob/retaliate/solargrub
 	name = "juvenile solargrub"
 	desc = "A young sparkling solargrub"
 	icon = 'icons/mob/vore.dmi' //all of these are placeholders
@@ -54,13 +54,13 @@ List of things solar grubs should be able to do:
 	var/obj/structure/cable/attached        // the attached cable
 	var/emp_chance = 20 // Beware synths
 
-/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+/mob/living/simple_mob/retaliate/solargrub/PunchTarget()
 	if(target_mob&& prob(emp_chance))
 		target_mob.emp_act(4) //The weakest strength of EMP
 		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
 	..()
 
-/mob/living/simple_animal/retaliate/solargrub/Life()
+/mob/living/simple_mob/retaliate/solargrub/Life()
 	. = ..()
 	if(!. || ai_inactive) return
 
@@ -90,7 +90,7 @@ List of things solar grubs should be able to do:
 			anchored = 0
 			PN = null
 
-/mob/living/simple_animal/retaliate/solargrub //active noms
+/mob/living/simple_mob/retaliate/solargrub //active noms
 	vore_bump_chance = 50
 	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
@@ -98,7 +98,7 @@ List of things solar grubs should be able to do:
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
 
-/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+/mob/living/simple_mob/retaliate/solargrub/PunchTarget()
 	. = ..()
 	if(isliving(.))
 		var/mob/living/L = .
@@ -107,12 +107,12 @@ List of things solar grubs should be able to do:
 				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
 				L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_animal/retaliate/solargrub/death()
+/mob/living/simple_mob/retaliate/solargrub/death()
 	src.anchored = 0
 	set_light(0)
 	..()
 
-/mob/living/simple_animal/retaliate/solargrub/handle_light()
+/mob/living/simple_mob/retaliate/solargrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)
