@@ -59,7 +59,7 @@
 	if(injector.occupant)
 		data["occupied"] = 1
 	if(isxeno(injector.occupant))
-		var/mob/living/simple_animal/xeno/X = injector.occupant
+		var/mob/living/simple_mob/xeno/X = injector.occupant
 		data["compatible"] = 1
 		data["instability"] = 100 * (X.mut_level / X.mut_max)
 	else

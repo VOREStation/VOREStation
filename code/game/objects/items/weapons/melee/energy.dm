@@ -233,11 +233,10 @@
 		playsound(get_turf(target), 'sound/weapons/blade1.ogg', 100, 1)
 
 		// Make lesser robots really mad at us.
-		if(istype(target, /mob/living/simple_animal))
-			var/mob/living/simple_animal/SA = target
-			if(SA.intelligence_level == SA_ROBOTIC)
-				SA.taunt(user)
-			SA.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
+		if(target.mob_class & MOB_CLASS_SYNTHETIC)
+			if(target.has_AI())
+				target.taunt(user)
+			target.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
 
 /*
  *Energy Blade

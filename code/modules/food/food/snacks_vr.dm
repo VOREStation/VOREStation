@@ -308,3 +308,195 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube
 	name = "wolpin cube"
 	monkey_type = "Wolpin"
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
+	name = "frozen margherita pizza"
+	desc = "It's frozen rock solid, better thaw it in a microwave."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "margharita_pizza_frozen"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 15
+	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen cheese" = 5, "frozen tomato" = 5)
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen/New()
+	..()
+	bitesize = 20
+	reagents.add_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
+	name = "Margherita"
+	desc = "The golden standard of pizzas, it looks drowned in tomato sauce."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "margharita_pizza_cargo"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/margcargo
+	slices_num = 6
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("pizza crust" = 10, "tomato" = 15, "cheese" = 5)
+	nutriment_amt = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo/New()
+	..()
+	reagents.add_reagent("protein", 2)
+	reagents.add_reagent("tomatojuice", 10)
+	bitesize = 2
+	reagents.remove_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/margcargo
+	name = "Margherita slice"
+	desc = "A slice of the classic pizza, it's hard not to spill any tomato juice on yourself."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "margharita_pizza_slice_cargo"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=13)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/margcargo/filled
+	filled = TRUE
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen
+	name = "frozen meat pizza"
+	desc = "It's frozen rock solid, better thaw it in a microwave."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "meat_pizza_frozen"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 15
+	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen meat" = 5, "frozen cow screams" = 5)
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen/New()
+	..()
+	bitesize = 20
+	reagents.add_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
+	name = "Meatpizza"
+	desc = "A pizza with meat topping, some of it suspiciously pink."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "meat_pizza_cargo"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo
+	slices_num = 6
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("meat" = 10, "beef" = 10, "squeaky pork" = 15, "longpig" = 5)
+	nutriment_amt = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo/New()
+	..()
+	reagents.add_reagent("protein", 20)
+	reagents.add_reagent("tomatojuice", 6)
+	bitesize = 2
+	reagents.remove_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo
+	name = "Meatpizza slice"
+	desc = "A slice of a meaty pizza, there are some bits of supiciously pink meat."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "meat_pizza_slice_cargo"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=13)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo/filled
+	filled = TRUE
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen
+	name = "frozen mushroom pizza"
+	desc = "It's frozen rock solid, better thaw it in a microwave."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "mushroom_pizza_frozen"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 15
+	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen mushrooms" = 5, "frozen cream" = 5)
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen/New()
+	..()
+	bitesize = 20
+	reagents.add_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
+	name = "Mushroompizza"
+	desc = "Very special pizza, it looks to be drowned in cream."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "mushroom_pizza_cargo"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/mushcargo
+	slices_num = 6
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("pizza crust" = 10, "cheese" = 5, "creamy sauce" = 5, "mushroom" = 5)
+	nutriment_amt = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo/New()
+	..()
+	reagents.add_reagent("protein", 4)
+	bitesize = 2
+	reagents.remove_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/mushcargo
+	name = "Mushroompizza slice"
+	desc = "Very special pizza slice, it looks to be drowned in cream."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "mushroom_pizza_slice_cargo"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=13)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/mushcargp/filled
+	filled = TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen
+	name = "frozen vegtable pizza"
+	desc = "It's frozen rock solid, better thaw it in a microwave."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "vegetable_pizza_frozen"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 15
+	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen vegtable chunks" = 5)
+	
+/obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen/New()
+	..()
+	bitesize = 20
+	reagents.add_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo
+	name = "Vegetablepizza"
+	desc = "At least 10 of Tomato Sapiens were harmed during making this pizza."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "vegetable_pizza_cargo"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo
+	slices_num = 6
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("pizza crust" = 10, "tomato" = 20, "cheese" = 5, "eggplant" = 5, "carrot" = 5, "corn" = 5)
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo/New()
+	..()
+	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("tomatojuice", 15)
+	reagents.add_reagent("imidazoline", 10)
+	bitesize = 2
+	reagents.remove_reagent("frostoil",3)
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo
+	name = "Vegtablepizza slice"
+	desc = "At least 10 of Tomato Sapiens were harmed during making this pizza."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "vegetable_pizza_slice_cargo"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=13)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo/filled
+	filled = TRUE
+
+/obj/item/pizzabox/margherita/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen(src)
+
+/obj/item/pizzabox/vegetable/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen(src)
+
+/obj/item/pizzabox/mushroom/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen(src)
+
+/obj/item/pizzabox/meat/New()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen(src)

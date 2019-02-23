@@ -88,6 +88,13 @@
 		else
 			resistance += rand(1,9)
 
+	//VOREStation Add Start - Corophazine can treat higher stages
+	var/antibiotics = mob.chem_effects[CE_ANTIBIOTIC]
+	if(antibiotics == ANTIBIO_SUPER)
+		if(prob(70))
+			src.cure(mob)
+	//VOREStation Add End
+
 	//Resistance is capped at 90 without being manually set to 100
 	if(resistance > 90 && resistance < 100)
 		resistance = 90

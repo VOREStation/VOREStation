@@ -1,4 +1,4 @@
-/mob/living/simple_animal/cat/fluff/Runtime/init_vore()
+/mob/living/simple_mob/cat/fluff/Runtime/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -38,7 +38,7 @@
 	icon_state = "kitten"
 	w_class = ITEMSIZE_SMALL
 
-/mob/living/simple_animal/cat/fluff/tabiranth
+/mob/living/simple_mob/cat/fluff/tabiranth
 	name = "Spirit"
 	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
 	icon = 'icons/mob/custom_items_mob.dmi'
@@ -55,7 +55,7 @@
 	health = 50
 
 //Emergency teleport - Until a spriter makes something better
-/mob/living/simple_animal/cat/fluff/tabiranth/death(gibbed, deathmessage = "teleports away!")
+/mob/living/simple_mob/cat/fluff/tabiranth/death(gibbed, deathmessage = "teleports away!")
 	overlays = list()
 	icon_state = ""
 	flick("kphaseout",src)

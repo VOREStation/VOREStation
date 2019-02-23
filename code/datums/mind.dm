@@ -502,7 +502,7 @@
 	if(!mind.assigned_role)	mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
 
 //slime
-/mob/living/simple_animal/slime/mind_initialize()
+/mob/living/simple_mob/slime/mind_initialize()
 	. = ..()
 	mind.assigned_role = "slime"
 
@@ -527,29 +527,30 @@
 	mind.special_role = ""
 
 //Animals
-/mob/living/simple_animal/mind_initialize()
+/mob/living/simple_mob/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Animal"
+	mind.assigned_role = "Simple Mob"
 
-/mob/living/simple_animal/corgi/mind_initialize()
+/mob/living/simple_mob/animal/passive/dog/corgi/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Corgi"
 
-/mob/living/simple_animal/shade/mind_initialize()
+/mob/living/simple_mob/construct/shade/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Shade"
+	mind.special_role = "Cultist"
 
-/mob/living/simple_animal/construct/builder/mind_initialize()
+/mob/living/simple_mob/construct/artificer/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Artificer"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_animal/construct/wraith/mind_initialize()
+/mob/living/simple_mob/construct/wraith/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Wraith"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_animal/construct/armoured/mind_initialize()
+/mob/living/simple_mob/construct/juggernaut/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Juggernaut"
 	mind.special_role = "Cultist"

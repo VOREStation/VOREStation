@@ -130,7 +130,7 @@
 	for(var/mob/living/L in summoned_mobs)
 		summoned_mobs -= L
 		qdel(L)
-	for(var/mob/living/simple_animal/ward/ward in wards_in_use)
+	for(var/mob/living/ward in wards_in_use)
 		wards_in_use -= ward
 		qdel(ward)
 

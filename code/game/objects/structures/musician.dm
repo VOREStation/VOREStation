@@ -321,7 +321,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(istype(usr,/mob/living/simple_animal/mouse))
+	if(istype(usr,/mob/living/simple_mob/animal/passive/mouse))
 		return
 	else if(!usr || !isturf(usr.loc))
 		return

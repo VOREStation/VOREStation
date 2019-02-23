@@ -9,10 +9,11 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
-	/mob/living/simple_animal/borer,
-	/obj/belly, //VOREStation Edit,
+	/obj/belly,
 	/obj/screen
 	)
+	//VOREStation Edit : added /obj/belly, to this list, travis is complaining about this in his indentation check
+	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
 /mob/living/var/last_played_vent
@@ -38,7 +39,7 @@ var/list/ventcrawl_machinery = list(
 		add_ventcrawl(loc)
 		client.screen += global_hud.centermarker
 
-/mob/living/simple_animal/slime/can_ventcrawl()
+/mob/living/simple_mob/slime/xenobio/can_ventcrawl()
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while feeding.</span>")
 		return FALSE
@@ -67,11 +68,6 @@ var/list/ventcrawl_machinery = list(
 
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
-		return 1
-	return ..()
-
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if(carried_item == held_item)
 		return 1
 	return ..()
 

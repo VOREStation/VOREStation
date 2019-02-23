@@ -743,13 +743,12 @@
 
 
 /mob/proc/facedir(var/ndir)
-	if(!canface() || (client && (client.moving || (world.time < client.move_delay))))
+	if(!canface() || (client && (client.moving || (world.time < move_delay))))
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	if(client)
-		client.move_delay += movement_delay()
+	move_delay += movement_delay()
 	return 1
 
 
@@ -1002,7 +1001,7 @@ mob/proc/yank_out_object()
 /mob/proc/has_brain_worms()
 
 	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
+		if(istype(I,/mob/living/simple_mob/animal/borer))
 			return I
 
 	return 0

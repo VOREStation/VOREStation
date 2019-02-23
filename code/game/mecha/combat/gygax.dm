@@ -37,6 +37,7 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax/dark
 	max_equip = 4
 	step_energy_drain = 5
+	mech_faction = MECH_FACTION_SYNDI
 
 	max_hull_equip = 1
 	max_weapon_equip = 2
@@ -84,6 +85,7 @@
 		step_energy_drain = step_energy_drain*overload_coeff
 		src.occupant_message("<font color='red'>You enable leg actuators overload.</font>")
 	src.log_message("Toggled leg actuators overload.")
+	playsound(src, 'sound/mecha/mechanical_toggle.ogg', 50, 1)
 	return
 
 /obj/mecha/combat/gygax/dyndomove(direction)
