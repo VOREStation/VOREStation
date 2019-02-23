@@ -1,10 +1,10 @@
-/*/datum/supply_pack/hydro/birds //VORESTATION AI TEMPORARY REMOVAL
+/datum/supply_pack/hydro/birds
 	name = "Birds Crate"
 	cost = 200 //You're getting 22 birds. Of course it's going to be a lot!
 	containertype = /obj/structure/largecrate/birds
 	containername = "Bird crate"
 	access = access_hydroponics
-*/
+
 /datum/supply_pack/hydro/sobaka
 	name = "Sobaka crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes/sobakacubes)
@@ -32,10 +32,9 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Wolpin crate"
-/*
+
 /datum/supply_pack/hydro/fennec
 	name = "Fennec crate"
 	cost = 60 //considering a corgi crate is 50, and you get two fennecs
 	containertype = /obj/structure/largecrate/animal/fennec
 	containername = "Fennec crate"
-*/ //VORESTATION AI TEMPORARY REMOVAL

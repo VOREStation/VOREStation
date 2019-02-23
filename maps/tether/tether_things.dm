@@ -406,10 +406,10 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/*/mob/living/simple_mob/hostile/jelly = 3,
-		/mob/living/simple_mob/hostile/giant_spider/hunter = 1,
-		/mob/living/simple_mob/hostile/giant_spider/phorogenic = 1,
-		/mob/living/simple_mob/hostile/giant_spider/lurker = 1,*/ //VORESTATION AI TEMPORARY REMOVAL
+		/mob/living/simple_mob/hostile/jelly = 3,
+		/mob/living/simple_mob/animal/giant_spider/hunter = 1,
+		/mob/living/simple_mob/animal/giant_spider/phorogenic = 1,
+		/mob/living/simple_mob/animal/giant_spider/lurker = 1,
 	)
 
 /obj/tether_away_spawner/underdark_hard
@@ -420,9 +420,9 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/*/mob/living/simple_mob/hostile/corrupthound = 1,
-		/mob/living/simple_mob/hostile/rat = 1,
-		/mob/living/simple_mob/hostile/mimic = 1*/ //VORESTATION AI TEMPORARY REMOVAL
+		/mob/living/simple_mob/vore/corrupthound = 1,
+		/mob/living/simple_mob/vore/rat = 1,
+		/mob/living/simple_mob/animal/space/mimic = 1
 	)
 
 /obj/tether_away_spawner/underdark_boss
@@ -433,7 +433,7 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 100
 	guard = 70
 	mobs_to_pick_from = list(
-		// /mob/living/simple_mob/hostile/dragon = 1 //VORESTATION AI TEMPORARY REMOVAL
+		/mob/living/simple_mob/vore/dragon = 1
 	)
 
 // Used at centcomm for the elevator

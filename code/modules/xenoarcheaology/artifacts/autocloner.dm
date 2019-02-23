@@ -26,8 +26,8 @@
 		/mob/living/simple_mob/animal/space/alien,
 		/mob/living/simple_mob/animal/space/bear,
 		/mob/living/simple_mob/creature,
-		/mob/living/simple_mob/slime/xenobio)
-	//	/mob/living/simple_mob/carp,	// Vorestation edit //VORESTATION AI TEMPORARY REMOVAL, REPLACE BACK IN LIST WHEN FIXED
+		/mob/living/simple_mob/slime/xenobio,
+		/mob/living/simple_mob/animal/space/carp)// Vorestation edit
 	else
 		spawn_type = pick(\
 		/mob/living/simple_mob/animal/passive/cat,

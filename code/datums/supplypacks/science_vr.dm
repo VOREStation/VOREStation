@@ -8,7 +8,7 @@
 	containertype = /obj/structure/largecrate
 	containername = "Exploration Dune Buggy Crate"
 */
-/datum/supply_pack/sci/pred //VORESTATION AI TEMPORARY REMOVAL. File commented out until vore mobs fixed.
+/datum/supply_pack/sci/pred
 	name = "Dangerous Predator crate"
 	cost = 40
 	containertype = /obj/structure/largecrate/animal/pred
@@ -22,7 +22,7 @@
 	containername = "EXTREMELY Dangerous Predator crate"
 	access = access_xenobiology
 	contraband = 1
-
+/*
 /datum/supply_pack/sci/otie
 	name = "VARMAcorp adoptable reject (Dangerous!)"
 	cost = 100
@@ -36,3 +36,4 @@
 	containertype = /obj/structure/largecrate/animal/otie/phoron
 	containername = "VARMAcorp adaptive beta subject (Experimental)"
 	access = access_xenobiology
+*/ //VORESTATION AI TEMPORARY REMOVAL. Oties commented out cuz broke.
