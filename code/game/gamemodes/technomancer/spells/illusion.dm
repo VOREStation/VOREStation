@@ -14,7 +14,7 @@
 	aspect = ASPECT_LIGHT
 	cast_methods = CAST_RANGED | CAST_USE
 	var/atom/movable/copied = null
-	var/mob/living/simple_animal/illusion/illusion = null
+	var/mob/living/simple_mob/illusion/illusion = null
 
 /obj/item/weapon/spell/illusion/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
@@ -33,17 +33,13 @@
 			if(pay_energy(500))
 				illusion = new(T)
 				illusion.copy_appearance(copied)
-				if(ishuman(copied))
-					var/mob/living/carbon/human/H = copied
-					// This is to try to have the illusion move at the same rate the real mob world.
-					illusion.step_delay = max(H.movement_delay() + 4, 3)
 				user << "<span class='notice'>An illusion of \the [copied] is made on \the [T].</span>"
 				user << 'sound/effects/pop.ogg'
 				return 1
 		else
 			if(pay_energy(100))
-				spawn(1)
-					illusion.walk_loop(T)
+				var/datum/ai_holder/AI = illusion.ai_holder
+				AI.give_destination(T)
 
 /obj/item/weapon/spell/illusion/on_use_cast(mob/user)
 	if(illusion)
@@ -76,116 +72,3 @@
 		temp_image.transform = M
 //		temp_image.pixel_y = 8
 		src.overlays.Add(temp_image)
-
-
-/mob/living/simple_animal/illusion
-	name = "illusion" // gets overwritten
-	desc = "If you can read me, the game broke.  Please report this to a coder."
-	resistance = 1000 // holograms are tough
-	wander = 0
-	response_help   = "pushes a hand through"
-	response_disarm = "tried to disarm"
-	response_harm   = "tried to punch"
-	var/atom/movable/copying = null
-	universal_speak = 1
-	var/realistic = 0
-	var/list/path = list() //Used for AStar pathfinding.
-	var/walking = 0
-	var/step_delay = 10
-
-/mob/living/simple_animal/illusion/update_icon() // We don't want the appearance changing AT ALL unless by copy_appearance().
-	return
-
-/mob/living/simple_animal/illusion/proc/copy_appearance(var/atom/movable/thing_to_copy)
-	if(!thing_to_copy)
-		return 0
-	name = thing_to_copy.name
-	desc = thing_to_copy.desc
-	gender = thing_to_copy.gender
-	appearance = thing_to_copy.appearance
-	copying = thing_to_copy
-	return 1
-
-// We use special movement code for illusions, because BYOND's default pathfinding will use diagonal movement if it results
-// in the shortest path.  As players are incapable of moving in diagonals, we must do this or else illusions will not be convincing.
-/mob/living/simple_animal/illusion/proc/calculate_path(var/turf/targeted_loc)
-	if(!path.len || !path)
-		spawn(0)
-			path = AStar(loc, targeted_loc, /turf/proc/CardinalTurfs, /turf/proc/Distance, 0, 10, id = null)
-			if(!path)
-				path = list()
-		return
-
-/mob/living/simple_animal/illusion/proc/walk_path(var/turf/targeted_loc)
-	if(path && path.len)
-		step_to(src, path[1])
-		path -= path[1]
-		return
-	else
-		if(targeted_loc)
-			calculate_path(targeted_loc)
-
-/mob/living/simple_animal/illusion/proc/walk_loop(var/turf/targeted_loc)
-	if(walking) //Already busy moving somewhere else.
-		return 0
-	walking = 1
-	calculate_path(targeted_loc)
-	if(!targeted_loc)
-		walking = 0
-		return 0
-	if(path.len == 0)
-		calculate_path(targeted_loc)
-	while(loc != targeted_loc)
-		walk_path(targeted_loc)
-		sleep(step_delay)
-	walking = 0
-	return 1
-
-// Because we can't perfectly duplicate some examine() output, we directly examine the AM it is copying.  It's messy but
-// this is to prevent easy checks from the opposing force.
-/mob/living/simple_animal/illusion/examine(mob/user)
-	if(copying)
-		copying.examine(user)
-		return
-	..()
-
-/mob/living/simple_animal/illusion/bullet_act(var/obj/item/projectile/P)
-	if(!P)
-		return
-
-	if(realistic)
-		return ..()
-
-	return PROJECTILE_FORCE_MISS
-
-/mob/living/simple_animal/illusion/attack_hand(mob/living/carbon/human/M)
-	if(!realistic)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-		visible_message("<span class='warning'>[M]'s hand goes through \the [src]!</span>")
-		return
-	else
-		switch(M.a_intent)
-
-			if(I_HELP)
-				var/datum/gender/T = gender_datums[src.get_visible_gender()]
-				M.visible_message("<span class='notice'>[M] hugs [src] to make [T.him] feel better!</span>", \
-				"<span class='notice'>You hug [src] to make [T.him] feel better!</span>") // slightly redundant as at the moment most mobs still use the normal gender var, but it works and future-proofs it
-				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-
-			if(I_DISARM)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("<span class='danger'>[M] attempted to disarm [src]!</span>")
-				M.do_attack_animation(src)
-
-			if(I_GRAB)
-				..()
-
-			if(I_HURT)
-				adjustBruteLoss(harm_intent_damage)
-				M.visible_message("<font color='red'>[M] [response_harm] \the [src]</font>")
-				M.do_attack_animation(src)
-
-	return
-
-/mob/living/simple_animal/illusion/ex_act()
-	return

@@ -206,6 +206,6 @@
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		if(!iscultist(L) && !istype(L, /mob/living/simple_animal/construct))
+		if(!iscultist(L) && !istype(L, /mob/living/simple_mob/construct))
 			return
 	..()

@@ -40,7 +40,7 @@
 // We are being killed. Least we can do is deregister all those events we registered
 /datum/controller/process/scheduler/onKill()
 	for(var/st in scheduled_tasks)
-		destroyed_event.unregister(st, src)
+		GLOB.destroyed_event.unregister(st, src)
 
 /datum/controller/process/scheduler/statProcess()
 	..()
@@ -148,7 +148,7 @@
 
 /datum/scheduled_task/source/New(var/trigger_time, var/datum/source, var/procedure, var/list/arguments, var/proc/task_after_process, var/list/task_after_process_args)
 	src.source = source
-	destroyed_event.register(src.source, src, /datum/scheduled_task/source/proc/source_destroyed)
+	GLOB.destroyed_event.register(src.source, src, /datum/scheduled_task/source/proc/source_destroyed)
 	..(trigger_time, procedure, arguments, task_after_process, task_after_process_args)
 
 /datum/scheduled_task/source/Destroy()

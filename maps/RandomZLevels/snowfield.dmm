@@ -1373,7 +1373,7 @@
 "dT" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/decal/remains/human,
-/mob/living/simple_animal/hostile/mimic/crate,
+/mob/living/simple_mob/hostile/mimic/crate,
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/snowfield/base)
 "dU" = (
@@ -1442,11 +1442,11 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "ee" = (
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "ef" = (
@@ -1454,7 +1454,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "eg" = (

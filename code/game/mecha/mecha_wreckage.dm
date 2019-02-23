@@ -99,6 +99,14 @@
 	name = "Dark Gygax wreckage"
 	icon_state = "darkgygax-broken"
 
+/obj/effect/decal/mecha_wreckage/gygax/adv
+	name = "Advanced Dark Gygax wreckage"
+	icon_state = "darkgygax_adv-broken"
+
+/obj/effect/decal/mecha_wreckage/gygax/medgax
+	name = "Medgax wreckage"
+	icon_state = "medgax-broken"
+
 /obj/effect/decal/mecha_wreckage/marauder
 	name = "Marauder wreckage"
 	icon_state = "marauder-broken"
@@ -197,6 +205,9 @@
 				welder_salvage += part
 				parts -= part
 		return
+
+/obj/effect/decal/mecha_wreckage/odysseus/murdysseus
+	icon_state = "murdysseus-broken"
 
 /obj/effect/decal/mecha_wreckage/hoverpod
 	name = "Hover pod wreckage"

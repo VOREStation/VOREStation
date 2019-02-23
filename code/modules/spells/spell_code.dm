@@ -198,10 +198,10 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			if(findNullRod(T))
 				return 0
 
-	if(istype(user, /mob/living/simple_animal) && holder == user)
-		var/mob/living/simple_animal/SA = user
-		if(SA.purge)
-			SA << "<span class='warning'>The nullrod's power interferes with your own!</span>"
+	if(istype(user, /mob/living/simple_mob) && holder == user)
+		var/mob/living/simple_mob/SM = user
+		if(SM.purge)
+			SM << "<span class='warning'>The nullrod's power interferes with your own!</span>"
 			return 0
 
 	if(!src.check_charge(skipcharge, user)) //sees if we can cast based on charges alone

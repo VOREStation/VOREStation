@@ -206,7 +206,7 @@
 	user.setClickCooldown(user.get_attack_speed())
 	if(!damage)
 		return
-	if(damage >= 10)
+	if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 		if(reinf)
 			damage = damage / 2
