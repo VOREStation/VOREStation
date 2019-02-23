@@ -46,11 +46,12 @@
 	var/bolt_up_sound = 'sound/machines/boltsup.ogg'
 	var/bolt_down_sound = 'sound/machines/boltsdown.ogg'
 
-/obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
-		if(damage >= 10)
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			if(src.locked || src.welded)
 				visible_message("<span class='danger'>\The [user] begins breaking into \the [src] internals!</span>")
+				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 				if(do_after(user,10 SECONDS,src))
 					src.locked = 0
 					src.welded = 0
@@ -58,6 +59,7 @@
 					open(1)
 					if(prob(25))
 						src.shock(user, 100)
+				user.set_AI_busy(FALSE)
 			else if(src.density)
 				visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 				open(1)
@@ -506,9 +508,6 @@ About the new airlock wires panel:
 			user.halloss += 10
 			user.stunned += 10
 			return
-	..(user)
-
-/obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
 	..(user)
 
 /obj/machinery/door/airlock/proc/isElectrified()
@@ -1260,3 +1259,24 @@ About the new airlock wires panel:
 		src.open()
 		src.lock()
 	return
+
+
+/obj/machinery/door/airlock/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			// Old RCD code made it cost 10 units to decon an airlock.
+			// Now the new one costs ten "sheets".
+			return list(
+				RCD_VALUE_MODE = RCD_DECONSTRUCT,
+				RCD_VALUE_DELAY = 5 SECONDS,
+				RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 10
+			)
+	return FALSE
+
+/obj/machinery/door/airlock/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			qdel(src)
+			return TRUE
+	return FALSE

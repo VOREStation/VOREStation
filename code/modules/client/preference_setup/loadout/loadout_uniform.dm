@@ -10,6 +10,7 @@
 	path = /obj/item/clothing/under/blazer/skirt
 
 /datum/gear/uniform/cheongsam
+	description = "Various color variations of an old earth dress style. They are pretty close fitting around the waist."
 	display_name = "cheongsam selection"
 
 /datum/gear/uniform/cheongsam/New()
@@ -21,6 +22,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cheongasms))
 
 /datum/gear/uniform/croptop
+	description = "Light shirts which shows the midsection of the wearer."
 	display_name = "croptop selection"
 
 /datum/gear/uniform/croptop/New()

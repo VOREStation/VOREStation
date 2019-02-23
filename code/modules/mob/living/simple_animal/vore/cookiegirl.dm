@@ -1,4 +1,4 @@
-/mob/living/simple_animal/cookiegirl
+/mob/living/simple_mob/cookiegirl
 	name = "cookiegirl"
 	desc = "A woman made with a combination of, well... Whatever you put in a cookie. What were the chefs thinking?"
 	icon = 'icons/mob/vore.dmi'
@@ -31,7 +31,7 @@
 	attacktext = list("smacked")
 
 	// Activate Noms!
-/mob/living/simple_animal/cookiegirl
+/mob/living/simple_mob/cookiegirl
 	vore_active = 1
 	vore_bump_chance = 2
 	vore_pounce_chance = 25
@@ -41,5 +41,5 @@
 	vore_digest_chance = 10 // Gonna become as sweet as sugar, soon.
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/cookiegirl/retaliate
+/mob/living/simple_mob/cookiegirl/retaliate
 	retaliate = 1

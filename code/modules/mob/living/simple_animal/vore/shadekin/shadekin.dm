@@ -1,4 +1,4 @@
-/mob/living/simple_animal/shadekin //Spawning the prototype spawns a random one, see initialize()
+/mob/living/simple_mob/shadekin //Spawning the prototype spawns a random one, see initialize()
 	name = "shadekin"
 	desc = "Some sort of fluffer. Big ears, long tail."
 	icon = 'icons/mob/vore_shadekin.dmi'
@@ -6,6 +6,7 @@
 	icon_living = "map_example"
 	faction = "shadekin"
 	ui_icons = 'icons/mob/shadekin_hud.dmi'
+	intelligence_level = SA_HUMANOID
 
 	maxHealth = 200
 	health = 200
@@ -84,16 +85,16 @@
 
 	var/list/shadekin_abilities
 
-/mob/living/simple_animal/shadekin/initialize()
+/mob/living/simple_mob/shadekin/initialize()
 	//You spawned the prototype, and want a totally random one.
-	if(type == /mob/living/simple_animal/shadekin)
+	if(type == /mob/living/simple_mob/shadekin)
 
 		//I'm told by VerySoft these are the liklihood values
 		var/list/sk_types = list(
-			/mob/living/simple_animal/shadekin/red = 20,	//Actively seek people out to nom, so fairly common to see (relatively speaking),
-			/mob/living/simple_animal/shadekin/blue = 15,	//Explorers that like to interact with people, so still fairly common,
-			/mob/living/simple_animal/shadekin/purple = 15,	//Also explorers that may or may not homf people,
-			/mob/living/simple_animal/shadekin/yellow = 1	//Very rare, usually never leaves their home
+			/mob/living/simple_mob/shadekin/red = 20,	//Actively seek people out to nom, so fairly common to see (relatively speaking),
+			/mob/living/simple_mob/shadekin/blue = 15,	//Explorers that like to interact with people, so still fairly common,
+			/mob/living/simple_mob/shadekin/purple = 15,	//Also explorers that may or may not homf people,
+			/mob/living/simple_mob/shadekin/yellow = 1	//Very rare, usually never leaves their home
 		)
 		var/new_type = pickweight(sk_types)
 
@@ -137,11 +138,11 @@
 
 	return ..()
 
-/mob/living/simple_animal/shadekin/Destroy()
+/mob/living/simple_mob/shadekin/Destroy()
 	QDEL_NULL_LIST(shadekin_abilities)
 	. = ..()
 
-/mob/living/simple_animal/shadekin/init_vore()
+/mob/living/simple_mob/shadekin/init_vore()
 	if(LAZYLEN(vore_organs))
 		return
 
@@ -196,7 +197,7 @@
 		"The chaos of being digested fades as you're snuffed out by a harsh clench! You're steadily broken down into a thick paste, processed and absorbed by the predator!"
 		)
 
-/mob/living/simple_animal/shadekin/Life()
+/mob/living/simple_mob/shadekin/Life()
 	. = ..()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		density = FALSE
@@ -206,7 +207,7 @@
 		nutrition = max(0, nutrition-5)
 		energy = min(100,energy+1)
 
-/mob/living/simple_animal/shadekin/update_icon()
+/mob/living/simple_mob/shadekin/update_icon()
 	. = ..()
 
 	cut_overlay(tailimage)
@@ -216,18 +217,18 @@
 	add_overlay(tailimage)
 	add_overlay(eye_icon_state)
 
-/mob/living/simple_animal/shadekin/Stat()
+/mob/living/simple_mob/shadekin/Stat()
 	. = ..()
 	if(statpanel("Shadekin"))
 		abilities_stat()
 
-/mob/living/simple_animal/shadekin/proc/abilities_stat()
+/mob/living/simple_mob/shadekin/proc/abilities_stat()
 	for(var/A in shadekin_abilities)
 		var/obj/effect/shadekin_ability/ability = A
 		stat("[ability.ability_name]",ability.atom_button_text())
 
 //They phase back to the dark when killed
-/mob/living/simple_animal/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
+/mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
 	overlays = list()
 	icon_state = ""
 	flick("tp_out",src)
@@ -237,7 +238,7 @@
 	. = ..(FALSE, deathmessage)
 
 //Blue-eyes want to nom people to heal them
-/mob/living/simple_animal/shadekin/Found(var/atom/A)
+/mob/living/simple_mob/shadekin/Found(var/atom/A)
 	if(specific_targets && isliving(A)) //Healing!
 		var/mob/living/L = A
 		var/health_percent = (L.health/L.maxHealth)*100
@@ -246,11 +247,11 @@
 	. = ..()
 
 //They reach nutritional equilibrium (important for blue-eyes healbelly)
-/mob/living/simple_animal/shadekin/Life()
+/mob/living/simple_mob/shadekin/Life()
 	if((. = ..()))
 		handle_shade()
 
-/mob/living/simple_animal/shadekin/proc/handle_shade()
+/mob/living/simple_mob/shadekin/proc/handle_shade()
 	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
 	var/darkness = 1
 
@@ -329,7 +330,7 @@
 				energyhud.icon_state = "energy4"
 
 //Friendly ones wander towards people, maybe shy-ly if they are set to shy
-/mob/living/simple_animal/shadekin/handle_wander_movement()
+/mob/living/simple_mob/shadekin/handle_wander_movement()
 	if(isturf(src.loc) && !resting && !buckled && canmove)
 		lifes_since_move++
 		if(lifes_since_move >= turns_per_move)
@@ -383,10 +384,10 @@
 				Move(T)
 				lifes_since_move = 0
 
-/mob/living/simple_animal/shadekin/speech_bubble_appearance()
+/mob/living/simple_mob/shadekin/speech_bubble_appearance()
 	return "ghost"
 
-/mob/living/simple_animal/shadekin/DoPunch(var/atom/A)
+/mob/living/simple_mob/shadekin/DoPunch(var/atom/A)
 	. = ..(A)
 	if(isliving(A)) //We punched something!
 		var/mob/living/L = A
@@ -409,7 +410,7 @@
 			energy += gains
 
 //Special hud elements for darkness and energy gains
-/mob/living/simple_animal/shadekin/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+/mob/living/simple_mob/shadekin/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
 	//Darkness hud
 	darkhud = new /obj/screen()
 	darkhud.icon = ui_style
@@ -429,7 +430,7 @@
 	hud_elements |= energyhud
 
 // When someone clicks us with an empty hand
-/mob/living/simple_animal/shadekin/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/shadekin/attack_hand(mob/living/carbon/human/M as mob)
 	. = ..()
 	if(M.a_intent == I_HELP)
 		shy_approach = FALSE //ACCLIMATED
@@ -443,4 +444,4 @@
 	exclaim_verb = "mars"
 	key = "m"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = WHITELISTED | HIVEMIND

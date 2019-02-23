@@ -23,11 +23,11 @@
 			html += "<div class='block'>"
 			html += "<h3 class='uiContent highlight' style='font-size:16px'>[H.real_name]</h3><br>"
 			if(H.flavor_texts["general"])
-				html += "<a onclick='togglesection(\"[H.real_name] [curID] flavor\")'>Flavor text</a>"
-				html += "<p class='uiContent' style='display:none' id='[H.real_name] [curID] flavor'>[H.flavor_texts["general"]]</p>"
+				html += "<a onclick='togglesection(\"[ckey(H.real_name)] [curID] flavor\")'>Flavor text</a>"
+				html += "<p class='uiContent' style='display:none' id='[ckey(H.real_name)] [curID] flavor'>[H.flavor_texts["general"]]</p>"
 			if(H.ooc_notes)
-				html += "<a onclick='togglesection(\"[H.real_name] [curID] ooc\")'>OOC notes</a>"
-				html += "<p class='uiContent' style='display:none' id='[H.real_name] [curID] ooc'>[H.ooc_notes]</p>"
+				html += "<a onclick='togglesection(\"[ckey(H.real_name)] [curID] ooc\")'>OOC notes</a>"
+				html += "<p class='uiContent' style='display:none' id='[ckey(H.real_name)] [curID] ooc'>[H.ooc_notes]</p>"
 			html += "</div>"
 	if(!curID)
 		html += "<p class='uiContent'>404: Station not found</p>"

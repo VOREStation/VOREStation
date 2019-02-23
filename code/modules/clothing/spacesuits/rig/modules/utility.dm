@@ -94,7 +94,7 @@
 	usable = 1
 	engage_string = "Configure RCD"
 
-	device_type = /obj/item/weapon/rcd/mounted
+	device_type = /obj/item/weapon/rcd/electric/mounted/rig
 
 /obj/item/rig_module/device/New()
 	..()

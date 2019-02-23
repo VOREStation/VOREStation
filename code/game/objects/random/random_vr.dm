@@ -181,15 +181,15 @@
 
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	return pick(
-				prob(50);/mob/living/simple_animal/retaliate/gaslamp,
-//				prob(50);/mob/living/simple_animal/otie/feral, // Removed until Otie code is unfucked.
-				prob(20);/mob/living/simple_animal/hostile/dino/virgo3b,
-				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
+				prob(50);/mob/living/simple_mob/animal/space/gaslamp,
+//				prob(50);/mob/living/simple_mob/otie/feral, // Removed until Otie code is unfucked.
+				prob(20);/mob/living/simple_mob/vore/dino/virgo3b,
+				prob(1);/mob/living/simple_mob/vore/dragon/virgo3b)
 
 /obj/random/outside_mob/spawn_item()
 	. = ..()
-	if(istype(., /mob/living/simple_animal))
-		var/mob/living/simple_animal/this_mob = .
+	if(istype(., /mob/living/simple_mob))
+		var/mob/living/simple_mob/this_mob = .
 		this_mob.faction = src.faction
 		if (this_mob.minbodytemp > 200) // Temporary hotfix. Eventually I'll add code to change all mob vars to fit the environment they are spawned in.
 			this_mob.minbodytemp = 200
@@ -201,9 +201,31 @@
 			this_mob.forceMove(T)
 
 //Just overriding this here, no more super medkit so those can be reserved for PoIs and such
-/obj/random/firstaid/item_to_spawn()
+/obj/random/tetheraid
+	name = "Random First Aid Kit"
+	desc = "This is a random first aid kit. Does not include Combat Kits."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "firstaid"
+
+/obj/random/tetheraid/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
 				prob(3);/obj/item/weapon/storage/firstaid/toxin,
 				prob(3);/obj/item/weapon/storage/firstaid/o2,
 				prob(2);/obj/item/weapon/storage/firstaid/adv,
 				prob(3);/obj/item/weapon/storage/firstaid/fire)
+
+//Override from maintenance.dm to prevent combat kits from spawning in Tether maintenance
+/obj/random/maintenance/item_to_spawn()
+	return pick(prob(300);/obj/random/tech_supply,
+				prob(200);/obj/random/medical,
+				prob(100);/obj/random/tetheraid,
+				prob(10);/obj/random/contraband,
+				prob(50);/obj/random/action_figure,
+				prob(50);/obj/random/plushie,
+				prob(200);/obj/random/junk,
+				prob(200);/obj/random/material,
+				prob(50);/obj/random/toy,
+				prob(100);/obj/random/tank,
+				prob(50);/obj/random/soap,
+				prob(60);/obj/random/drinkbottle,
+				prob(500);/obj/random/maintenance/clean)

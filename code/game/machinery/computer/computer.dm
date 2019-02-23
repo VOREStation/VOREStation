@@ -15,6 +15,8 @@
 	var/light_power_on = 1
 	var/overlay_layer
 
+	clicksound = "keyboard"
+
 /obj/machinery/computer/New()
 	overlay_layer = layer
 	..()

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/pirate
+/mob/living/simple_mob/hostile/pirate
 	name = "Pirate"
 	desc = "Does what he wants cause a pirate is free."
 	tt_desc = "E Homo sapiens"
@@ -50,7 +50,7 @@
 
 	var/corpse = /obj/effect/landmark/mobcorpse/pirate
 
-/mob/living/simple_animal/hostile/pirate/ranged
+/mob/living/simple_mob/hostile/pirate/ranged
 	name = "Pirate Gunner"
 	icon_state = "pirateranged"
 	icon_living = "pirateranged"
@@ -64,7 +64,7 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged
 
-/mob/living/simple_animal/hostile/pirate/death()
+/mob/living/simple_mob/hostile/pirate/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)

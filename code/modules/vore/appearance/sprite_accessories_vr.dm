@@ -531,6 +531,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/wing/feathered_medium
+	name = "medium feathered wings, colorable" // Keekenox made these feathery things with a little bit more shape to them than the other wings. They are medium sized wing boys.
+	desc = ""
+	icon_state = "feathered3"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/bat_black
 	name = "bat wings, black"
 	desc = ""

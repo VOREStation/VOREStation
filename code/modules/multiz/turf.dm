@@ -26,6 +26,7 @@
 	plane = OPENSPACE_PLANE_START
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	dynamic_lighting = 0 // Someday lets do proper lighting z-transfer.  Until then we are leaving this off so it looks nicer.
+	can_build_into_floor = TRUE
 
 	var/turf/below
 
@@ -148,3 +149,9 @@
 /turf/simulated/open/is_space()
 	var/turf/below = GetBelow(src)
 	return !below || below.is_space()
+
+/turf/simulated/open/is_safe_to_enter(mob/living/L)
+	if(L.can_fall())
+		if(!locate(/obj/structure/stairs) in GetBelow(src))
+			return FALSE
+	return ..()

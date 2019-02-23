@@ -31,6 +31,7 @@
 	var/list/footstep_sounds = null
 
 	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
+	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
 
 /turf/New()
 	..()
@@ -321,3 +322,32 @@ var/const/enterloopsanity = 100
 
 /turf/AllowDrop()
 	return TRUE
+
+// Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
+/turf/proc/is_safe_to_enter(mob/living/L)
+	return TRUE
+
+// This is all the way up here since its the common ancestor for things that need to get replaced with a floor when an RCD is used on them.
+// More specialized turfs like walls should instead override this.
+// The code for applying lattices/floor tiles onto lattices could also utilize something similar in the future.
+/turf/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	if(density || !can_build_into_floor)
+		return FALSE
+	if(passed_mode == RCD_FLOORWALL)
+		var/obj/structure/lattice/L = locate() in src
+		// A lattice costs one rod to make. A sheet can make two rods, meaning a lattice costs half of a sheet.
+		// A sheet also makes four floor tiles, meaning it costs 1/4th of a sheet to place a floor tile on a lattice.
+		// Therefore it should cost 3/4ths of a sheet if a lattice is not present, or 1/4th of a sheet if it does.
+		return list(
+			RCD_VALUE_MODE = RCD_FLOORWALL,
+			RCD_VALUE_DELAY = 0,
+			RCD_VALUE_COST = L ? RCD_SHEETS_PER_MATTER_UNIT * 0.25 : RCD_SHEETS_PER_MATTER_UNIT * 0.75
+			)
+	return FALSE
+
+/turf/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	if(passed_mode == RCD_FLOORWALL)
+		to_chat(user, span("notice", "You build a floor."))
+		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
+		return TRUE
+	return FALSE

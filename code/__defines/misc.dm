@@ -289,3 +289,17 @@ var/global/list/##LIST_NAME = list();\
 #define IS_CROWBAR			"crowbar"
 #define IS_WIRECUTTER		"wirecutter"
 #define IS_WRENCH			"wrench"
+
+// RCD modes. Used on the RCD, and gets passed to an object's rcd_act() when an RCD is used on it, to determine what happens.
+#define RCD_FLOORWALL		"Floor / Wall"		// Builds plating on space/ground/open tiles. Builds a wall when on floors. Finishes walls when used on girders.
+#define RCD_AIRLOCK			"Airlock"			// Builds an airlock on the tile if one isn't already there.
+#define RCD_WINDOWGRILLE	"Window / Grille" 	// Builds a full tile window and grille pair on floors.
+#define RCD_DECONSTRUCT		"Deconstruction"	// Removes various things. Still consumes compressed matter.
+
+#define RCD_VALUE_MODE		"mode"
+#define RCD_VALUE_DELAY		"delay"
+#define RCD_VALUE_COST		"cost"
+
+
+#define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
+#define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT

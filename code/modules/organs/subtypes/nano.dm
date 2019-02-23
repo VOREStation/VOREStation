@@ -109,9 +109,9 @@
 /obj/item/organ/internal/nano/refactory/proc/use_stored_material(var/material,var/amt)
 	if(status & ORGAN_DEAD)
 		return 0
-		
+
 	var/available = materials[material]
-	
+
 	//Success
 	if(available >= amt)
 		var/new_amt = available-amt
@@ -141,12 +141,13 @@
 	. = ..()
 	icon_state = "posi1"
 
+
 /obj/item/organ/internal/mmi_holder/posibrain/nano/update_from_mmi()
 	. = ..()
 	icon = initial(icon)
 	icon_state = "posi1"
 	stored_mmi.icon_state = "posi1"
-	
+
 	stored_mmi.brainmob.languages = owner.languages
 
 // The 'out on the ground' object, not the organ holder

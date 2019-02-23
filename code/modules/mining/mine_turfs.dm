@@ -62,6 +62,7 @@ var/list/mining_overlay_cache = list()
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	can_build_into_floor = TRUE
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -72,6 +73,7 @@ var/list/mining_overlay_cache = list()
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	can_build_into_floor = TRUE
 	update_general()
 
 /turf/simulated/mineral/proc/make_wall()
@@ -80,6 +82,7 @@ var/list/mining_overlay_cache = list()
 	density = 1
 	opacity = 1
 	blocks_air = 1
+	can_build_into_floor = FALSE
 	update_general()
 
 /turf/simulated/mineral/proc/update_general()
@@ -452,6 +455,8 @@ var/list/mining_overlay_cache = list()
 				//update overlays displaying excavation level
 				if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
 					var/excav_quadrant = round(excavation_level / 25) + 1
+					if(excav_quadrant > 5)
+						excav_quadrant = 5
 					cut_overlay(excav_overlay)
 					excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
 					add_overlay(excav_overlay)

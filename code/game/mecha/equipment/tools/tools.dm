@@ -128,7 +128,7 @@
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
-	equip_cooldown = 20
+	equip_cooldown = 10
 	force = 15
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/action(atom/target)
@@ -244,100 +244,43 @@
 	equip_cooldown = 10
 	energy_drain = 250
 	range = MELEE|RANGED
-	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
-	var/disabled = 0 //malf
-
 	equip_type = EQUIP_SPECIAL
+	var/obj/item/weapon/rcd/electric/mounted/mecha/my_rcd = null
+
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/initialize()
+	my_rcd = new(src)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/Destroy()
+	QDEL_NULL(my_rcd)
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/rcd/action(atom/target)
-	if(istype(target,/area/shuttle)||istype(target, /turf/space/transit))//>implying these are ever made -Sieve
-		disabled = 1
-	else
-		disabled = 0
-	if(!istype(target, /turf) && !istype(target, /obj/machinery/door/airlock))
-		target = get_turf(target)
-	if(!action_checks(target) || disabled || get_dist(chassis, target)>3) return
-	playsound(chassis, 'sound/machines/click.ogg', 50, 1)
-	//meh
-	switch(mode)
-		if(0)
-			if (istype(target, /turf/simulated/wall))
-				occupant_message("Deconstructing [target]...")
-				set_ready_state(0)
-				if(do_after_cooldown(target))
-					if(disabled) return
-					chassis.spark_system.start()
-					target:ChangeTurf(/turf/simulated/floor/plating)
-					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					chassis.use_power(energy_drain)
-			else if (istype(target, /turf/simulated/floor))
-				occupant_message("Deconstructing [target]...")
-				set_ready_state(0)
-				if(do_after_cooldown(target))
-					if(disabled) return
-					chassis.spark_system.start()
-					target:ChangeTurf(get_base_turf_by_area(target))
-					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					chassis.use_power(energy_drain)
-			else if (istype(target, /obj/machinery/door/airlock))
-				occupant_message("Deconstructing [target]...")
-				set_ready_state(0)
-				if(do_after_cooldown(target))
-					if(disabled) return
-					chassis.spark_system.start()
-					qdel(target)
-					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					chassis.use_power(energy_drain)
-		if(1)
-			if(istype(target, /turf/space) || istype(target,get_base_turf_by_area(target)))
-				occupant_message("Building Floor...")
-				set_ready_state(0)
-				if(do_after_cooldown(target))
-					if(disabled) return
-					target:ChangeTurf(/turf/simulated/floor/plating)
-					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					chassis.spark_system.start()
-					chassis.use_power(energy_drain*2)
-			else if(istype(target, /turf/simulated/floor))
-				occupant_message("Building Wall...")
-				set_ready_state(0)
-				if(do_after_cooldown(target))
-					if(disabled) return
-					target:ChangeTurf(/turf/simulated/wall)
-					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					chassis.spark_system.start()
-					chassis.use_power(energy_drain*2)
-		if(2)
-			if(istype(target, /turf/simulated/floor))
-				occupant_message("Building Airlock...")
-				set_ready_state(0)
-				if(do_after_cooldown(target))
-					if(disabled) return
-					chassis.spark_system.start()
-					var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
-					T.autoclose = 1
-					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
-					chassis.use_power(energy_drain*2)
-	return
+	if(!action_checks(target) || get_dist(chassis, target) > 3)
+		return FALSE
+
+	my_rcd.use_rcd(target, chassis.occupant)
 
 /obj/item/mecha_parts/mecha_equipment/tool/rcd/Topic(href,href_list)
 	..()
 	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
-		switch(mode)
-			if(0)
-				occupant_message("Switched RCD to Deconstruct.")
-			if(1)
-				occupant_message("Switched RCD to Construct.")
-			if(2)
-				occupant_message("Switched RCD to Construct Airlock.")
-	return
-
+		my_rcd.mode_index = text2num(href_list["mode"])
+		occupant_message("RCD reconfigured to '[my_rcd.modes[my_rcd.mode_index]]'.")
+/*
 /obj/item/mecha_parts/mecha_equipment/tool/rcd/get_equip_info()
 	return "[..()] \[<a href='?src=\ref[src];mode=0'>D</a>|<a href='?src=\ref[src];mode=1'>C</a>|<a href='?src=\ref[src];mode=2'>A</a>\]"
+*/
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/get_equip_info()
+	var/list/content = list(..()) // This is all for one line, in the interest of string tree conservation.
+	var/i = 1
+	content += "<br>"
+	for(var/mode in my_rcd.modes)
+		content += "     <a href='?src=\ref[src];mode=[i]'>[mode]</a>"
+		if(i < my_rcd.modes.len)
+			content += "<br>"
+		i++
 
-
+	return content.Join()
 
 
 /obj/item/mecha_parts/mecha_equipment/teleporter
@@ -1260,9 +1203,10 @@
 			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
 			return
 
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
 
 	//search for a valid passenger compartment

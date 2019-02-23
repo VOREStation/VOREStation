@@ -30,11 +30,11 @@
 /datum/supply_pack/recreation/wolfgirl_cosplay_crate
 	name = "Wolfgirl Cosplay Crate"
 	contains = list(
-			/obj/item/clothing/head/fluff/awoo = 1,
-			/obj/item/clothing/shoes/fluff/awoo = 1,
-			/obj/item/clothing/under/fluff/awoo = 1,
-			/obj/item/weapon/melee/fluffstuff/awoosword = 1,
-			/obj/item/weapon/shield/fluff/awooshield = 1
+			/obj/item/clothing/head/fluff/wolfgirl = 1,
+			/obj/item/clothing/shoes/fluff/wolfgirl = 1,
+			/obj/item/clothing/under/fluff/wolfgirl = 1,
+			/obj/item/weapon/melee/fluffstuff/wolfgirlsword = 1,
+			/obj/item/weapon/shield/fluff/wolfgirlshield = 1
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate

@@ -65,6 +65,7 @@
 		/obj/item/clothing/under/rank/scientist,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
 		/obj/item/clothing/shoes/white,
+		/obj/item/weapon/melee/umbrella, // vorestation addition,
 		/obj/item/clothing/glasses/science,
 		/obj/item/device/radio/headset/headset_sci,
 		/obj/item/weapon/storage/belt/archaeology,

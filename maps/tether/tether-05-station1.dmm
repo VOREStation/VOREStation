@@ -884,7 +884,7 @@
 	dir = 4
 	},
 /obj/structure/railing,
-/mob/living/simple_animal/fish/koi/poisonous,
+/mob/living/simple_mob/animal/passive/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "acg" = (
@@ -1446,7 +1446,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/mob/living/simple_animal/fish/koi/poisonous,
+/mob/living/simple_mob/animal/passive/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "adA" = (
@@ -1948,7 +1948,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/machinery/suit_cycler/explorer,
+/obj/machinery/suit_cycler/exploration,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_prep)
 "aeC" = (
@@ -2562,8 +2562,8 @@
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "afV" = (
-/turf/simulated/floor/reinforced,
 /obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
 "afX" = (
@@ -8666,7 +8666,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
 "azy" = (
-/mob/living/simple_animal/corgi/Ian,
+/mob/living/simple_mob/animal/passive/dog/corgi/Ian,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "azz" = (
@@ -10732,7 +10732,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/mob/living/simple_animal/fox/fluff/Renault,
+/mob/living/simple_mob/animal/fox_vr/Renault,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aEu" = (
@@ -15893,7 +15893,7 @@
 /area/hallway/station/atrium)
 "bfT" = (
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_animal/snake/Noodle,
+/mob/living/simple_mob/animal/space/snake/noodle,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "bfW" = (
@@ -19977,6 +19977,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_grid,
 /area/teleporter)
 "bJY" = (
@@ -21786,7 +21787,7 @@
 	icon_state = "1-8"
 	},
 /obj/effect/landmark/start{
-	name = "Search and Rescue"
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
@@ -21850,7 +21851,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start{
-	name = "Search and Rescue"
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
@@ -21911,7 +21912,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start{
-	name = "Search and Rescue"
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
@@ -22129,9 +22130,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"pTz" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/machinery/suit_cycler/pilot,
+/turf/simulated/floor/tiled,
+/area/tether/station/excursion_dock)
 "pYE" = (
 /obj/structure/closet/secure_closet/pathfinder{
-	req_access = list(18,43,67)
+	req_access = list(62)
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
@@ -22462,7 +22477,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
 	name = "Pathfinder's Office";
-	req_access = list(18,43,67)
+	req_access = list(62)
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -35486,7 +35501,7 @@ aad
 aaH
 aah
 aah
-aah
+pTz
 abc
 aad
 abU

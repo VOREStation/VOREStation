@@ -267,7 +267,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
 	if(initiator)
-		to_chat(initiator, "<font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [key_name(usr)].</font>")
+		to_chat(initiator, "<font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [key_name(usr,FALSE,FALSE)].</font>")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
 	message_admins(msg)
 	log_admin(msg)
@@ -293,7 +293,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ListInsert(src)
 	AddInteraction("<font color='red'>Closed by [key_name_admin(usr)].</font>")
 	if(initiator)
-		to_chat(initiator, "<font color='red'>Ticket [TicketHref("#[id]")] was closed by [key_name(usr)].</font>")
+		to_chat(initiator, "<font color='red'>Ticket [TicketHref("#[id]")] was closed by [key_name(usr,FALSE,FALSE)].</font>")
 	if(!silent)
 		feedback_inc("ahelp_close")
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name_admin(usr)]."
@@ -310,7 +310,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	AddInteraction("<font color='green'>Resolved by [key_name_admin(usr)].</font>")
 	if(initiator)
-		to_chat(initiator, "<font color='green'>Ticket [TicketHref("#[id]")] was marked resolved by [key_name(usr)].</font>")
+		to_chat(initiator, "<font color='green'>Ticket [TicketHref("#[id]")] was marked resolved by [key_name(usr,FALSE,FALSE)].</font>")
 	if(!silent)
 		feedback_inc("ahelp_resolve")
 		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name_admin(usr)]"
@@ -323,7 +323,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(initiator)
-		initiator << 'sound/effects/adminhelp.ogg'
+		if(initiator.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			initiator << 'sound/effects/adminhelp.ogg'
 
 		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>")
 		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b></font>")
@@ -342,8 +343,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
-	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
-	msg += "<font color='red'>Your AdminHelp may also be unabled to be answered due to ongoing events.</font>"
+	msg += "<font color='red'><b>This is something that can be solved ICly, and does not currently require admin intervention.</b></font><br>"  //VOREStation Edit
+	msg += "<font color='red'>Your AdminHelp may also be unable to be answered due to ongoing events.</font>"  //VOREStation Edit
 
 	if(initiator)
 		to_chat(initiator, msg)
@@ -360,13 +361,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/msg = "<font color='red'>Your AdminHelp is being handled by [key_name(usr)] please be patient.</font>"
+	var/msg = "<font color='red'>Your AdminHelp is being handled by [key_name(usr,FALSE,FALSE)] please be patient.</font>"
 
 	if(initiator)
 		to_chat(initiator, msg)
 
 	feedback_inc("ahelp_icissue")
-	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr)]"
+	msg = "Ticket [TicketHref("#[id]")] being handled by [key_name(usr,FALSE,FALSE)]"
 	message_admins(msg)
 	log_admin(msg)
 	AddInteraction("[key_name_admin(usr)] is now handling this ticket.")
@@ -503,7 +504,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "Show Ticket List"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN, TRUE))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG, TRUE))
 		return
 
 	var/browse_to
@@ -550,7 +551,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in admins)
 		.["total"] += X
-		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X)) //VOREStation Edit
+		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, C = X))
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X

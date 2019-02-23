@@ -331,12 +331,12 @@
 			return
 		//Actual escaping
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
-		for(var/mob/living/simple_animal/SA in range(10))
+		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		if(isanimal(B.owner))
-			var/mob/living/simple_animal/SA = B.owner
+			var/mob/living/simple_mob/SA = B.owner
 			SA.update_icons()
 
 	//You're in a dogborg!
@@ -458,9 +458,9 @@
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
-    volume = 1000
+    volume = 2500
     temperature = 293.150
-    total_moles = 40
+    total_moles = 104
 
 /datum/gas_mixture/belly_air/New()
     . = ..()
@@ -553,7 +553,45 @@
 		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
 		return
 
+	if(is_type_in_list(I,item_vore_blacklist))
+		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
+		return
+
 	if(is_type_in_list(I,edible_trash))
+		if(I.hidden_uplink)
+			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
+			message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
+			return
+		if(istype(I,/obj/item/device/pda))
+			var/obj/item/device/pda/P = I
+			if(P.owner)
+				var/watching = FALSE
+				for(var/mob/living/carbon/human/H in view(src))
+					if(H.real_name == P.owner && H.client)
+						watching = TRUE
+						break
+				if(!watching)
+					return
+				else
+					visible_message("<span class='warning'>[src] is threatening to make [P] disappear!</span>")
+					if(P.id)
+						var/confirm = alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", "Definitely", "Cancel")
+						if(confirm != "Definitely")
+							return
+					if(!do_after(src, 100, P))
+						return
+					visible_message("<span class='warning'>[src] successfully makes [P] disappear!</span>")
+			to_chat(src, "<span class='notice'>You can taste the sweet flavor of delicious technology.</span>")
+			drop_item()
+			I.forceMove(vore_selected)
+			updateVRPanel()
+			return
+		if(istype(I,/obj/item/clothing/shoes))
+			var/obj/item/clothing/shoes/S = I
+			if(S.holding)
+				to_chat(src, "<span class='warning'>There's something inside!</span>")
+				return
+
 		drop_item()
 		I.forceMove(vore_selected)
 		updateVRPanel()
@@ -588,7 +626,7 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of really bad ideas.</span>")
-		else if(istype(I,/obj/item/toy/figure))
+		else if(istype(I,/obj/item/toy))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 		else if(istype(I,/obj/item/device/paicard) || istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
@@ -611,8 +649,8 @@
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
 
-/mob/living/examine(mob/user)
-	. = ..()
+/mob/living/examine(mob/user, distance, infix, suffix)
+	. = ..(user, distance, infix, suffix)
 	if(showvoreprefs)
 		to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
 

@@ -1047,8 +1047,6 @@
 				sleeping += 1
 				Paralyse(5)
 
-		confused = max(0, confused - 1)
-
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
@@ -1077,38 +1075,41 @@
 		var/obj/machinery/camera/cam = client.eye
 		client.screen |= cam.client_huds
 
-	if(stat != DEAD)
-		if(stat == UNCONSCIOUS && health <= 0)
-			//Critical damage passage overlay
+	if(stat == DEAD) //Dead
+		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+		if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
+
+	else if(stat == UNCONSCIOUS && health <= 0) //Crit
+		//Critical damage passage overlay
+		var/severity = 0
+		switch(health)
+			if(-20 to -10)			severity = 1
+			if(-30 to -20)			severity = 2
+			if(-40 to -30)			severity = 3
+			if(-50 to -40)			severity = 4
+			if(-60 to -50)			severity = 5
+			if(-70 to -60)			severity = 6
+			if(-80 to -70)			severity = 7
+			if(-90 to -80)			severity = 8
+			if(-95 to -90)			severity = 9
+			if(-INFINITY to -95)	severity = 10
+		overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
+	else //Alive
+		clear_fullscreen("crit")
+		//Oxygen damage overlay
+		if(oxyloss)
 			var/severity = 0
-			switch(health)
-				if(-20 to -10)			severity = 1
-				if(-30 to -20)			severity = 2
-				if(-40 to -30)			severity = 3
-				if(-50 to -40)			severity = 4
-				if(-60 to -50)			severity = 5
-				if(-70 to -60)			severity = 6
-				if(-80 to -70)			severity = 7
-				if(-90 to -80)			severity = 8
-				if(-95 to -90)			severity = 9
-				if(-INFINITY to -95)	severity = 10
-			overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
+			switch(oxyloss)
+				if(10 to 20)		severity = 1
+				if(20 to 25)		severity = 2
+				if(25 to 30)		severity = 3
+				if(30 to 35)		severity = 4
+				if(35 to 40)		severity = 5
+				if(40 to 45)		severity = 6
+				if(45 to INFINITY)	severity = 7
+			overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 		else
-			clear_fullscreen("crit")
-			//Oxygen damage overlay
-			if(oxyloss)
-				var/severity = 0
-				switch(oxyloss)
-					if(10 to 20)		severity = 1
-					if(20 to 25)		severity = 2
-					if(25 to 30)		severity = 3
-					if(30 to 35)		severity = 4
-					if(35 to 40)		severity = 5
-					if(40 to 45)		severity = 6
-					if(45 to INFINITY)	severity = 7
-				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
-			else
-				clear_fullscreen("oxy")
+			clear_fullscreen("oxy")
 
 		//Fire and Brute damage overlay (BSSR)
 		var/hurtdamage = src.getShockBruteLoss() + src.getShockFireLoss() + damageoverlaytemp	//Doesn't call the overlay if you can't actually feel it
@@ -1125,66 +1126,6 @@
 			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
-
-	if( stat == DEAD )
-		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
-		see_in_dark = 8
-		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
-		if(client)
-			if(client.view != world.view) // If mob dies while zoomed in with device, unzoom them.
-				for(var/obj/item/item in contents)
-					if(item.zoom)
-						item.zoom()
-						break
-
-	else
-		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
-
-		if(XRAY in mutations)
-			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-			see_in_dark = 8
-			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-
-		if(seer==1)
-			var/obj/effect/rune/R = locate() in loc
-			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
-				see_invisible = SEE_INVISIBLE_CULT
-			else
-				see_invisible = see_invisible_default
-				seer = 0
-
-		if(!seedarkness)
-			sight = species.get_vision_flags(src)
-			see_in_dark = 8
-			see_invisible = SEE_INVISIBLE_NOLIGHTING
-
-		else
-			sight = species.get_vision_flags(src)
-			see_in_dark = species.darksight
-			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
-
-		var/tmp/glasses_processed = 0
-		var/obj/item/weapon/rig/rig = back
-		if(istype(rig) && rig.visor)
-			if(!rig.helmet || (head && rig.helmet == head))
-				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
-					glasses_processed = 1
-					process_glasses(rig.visor.vision.glasses)
-
-		if(glasses && !glasses_processed)
-			glasses_processed = 1
-			process_glasses(glasses)
-		if(XRAY in mutations)
-			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-			see_in_dark = 8
-			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-
-		if(!glasses_processed && (species.get_vision_flags(src) > 0))
-			sight |= species.get_vision_flags(src)
-		if(!seer && !glasses_processed && seedarkness)
-			see_invisible = see_invisible_default
 
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)
@@ -1333,11 +1274,70 @@
 			if(found_welder)
 				client.screen |= global_hud.darkMask
 
+/mob/living/carbon/human/handle_vision()
+	if(stat == DEAD)
+		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
+		see_in_dark = 8
+		if(client)
+			if(client.view != world.view) // If mob dies while zoomed in with device, unzoom them.
+				for(var/obj/item/item in contents)
+					if(item.zoom)
+						item.zoom()
+						break
+
+	else //We aren't dead
+		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
+
+		if(XRAY in mutations)
+			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+			see_in_dark = 8
+			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+
+		if(seer==1)
+			var/obj/effect/rune/R = locate() in loc
+			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
+				see_invisible = SEE_INVISIBLE_CULT
+			else
+				see_invisible = see_invisible_default
+				seer = 0
+
+		if(!seedarkness)
+			sight = species.get_vision_flags(src)
+			see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_NOLIGHTING
+
+		else
+			sight = species.get_vision_flags(src)
+			see_in_dark = species.darksight
+			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
+
+		var/tmp/glasses_processed = 0
+		var/obj/item/weapon/rig/rig = back
+		if(istype(rig) && rig.visor && !looking_elsewhere)
+			if(!rig.helmet || (head && rig.helmet == head))
+				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
+					glasses_processed = 1
+					process_glasses(rig.visor.vision.glasses)
+
+		if(glasses && !glasses_processed && !looking_elsewhere)
+			glasses_processed = 1
+			process_glasses(glasses)
+		if(XRAY in mutations)
+			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+			see_in_dark = 8
+			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+
+		if(!glasses_processed && (species.get_vision_flags(src) > 0))
+			sight |= species.get_vision_flags(src)
+		if(!seer && !glasses_processed && seedarkness)
+			see_invisible = see_invisible_default
+
 		if(machine)
 			var/viewflags = machine.check_eye(src)
 			if(viewflags < 0)
 				reset_view(null, 0)
-			else if(viewflags)
+			else if(viewflags && !looking_elsewhere)
 				sight |= viewflags
 		else if(eyeobj)
 			if(eyeobj.owner != src)
@@ -1600,7 +1600,7 @@
 		else if(foundVirus)
 			holder.icon_state = "hudill"
 		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
+			var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
 			if(B.controlling)
 				holder.icon_state = "hudbrainworm"
 			else

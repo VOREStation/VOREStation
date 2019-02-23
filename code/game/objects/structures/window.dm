@@ -206,7 +206,7 @@
 	user.setClickCooldown(user.get_attack_speed())
 	if(!damage)
 		return
-	if(damage >= 10)
+	if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 		if(reinf)
 			damage = damage / 2
@@ -647,3 +647,20 @@
 			MT.update_icon()
 		return TRUE
 	. = ..()
+
+/obj/structure/window/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			return list(
+				RCD_VALUE_MODE = RCD_DECONSTRUCT,
+				RCD_VALUE_DELAY = 5 SECONDS,
+				RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 5
+			)
+
+/obj/structure/window/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			qdel(src)
+			return TRUE
+	return FALSE

@@ -130,9 +130,6 @@
 		if("Chemistry")
 			debug_variables(chemistryProcess)
 			feedback_add_details("admin_verb", "DChem")
-		if("Vote")
-			debug_variables(vote)
-			feedback_add_details("admin_verb", "DVote")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
 

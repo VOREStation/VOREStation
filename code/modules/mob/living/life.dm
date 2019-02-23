@@ -62,6 +62,8 @@
 
 	handle_regular_hud_updates()
 
+	handle_vision()
+
 /mob/living/proc/handle_breathing()
 	return
 
@@ -108,6 +110,7 @@
 	handle_silent()
 	handle_drugged()
 	handle_slurring()
+	handle_confused()
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -144,6 +147,11 @@
 		AdjustParalysis(-1)
 	return paralysis
 
+/mob/living/proc/handle_confused()
+	if(confused)
+		AdjustConfused(-1)
+	return confused
+
 /mob/living/proc/handle_disabilities()
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
@@ -172,9 +180,6 @@
 	handle_hud_icons()
 
 	return 1
-
-/mob/living/proc/handle_vision()
-	return
 
 /mob/living/proc/update_sight()
 	if(!seedarkness)
