@@ -239,7 +239,7 @@
 /obj/item/weapon/grenade/spawnergrenade/spirit
 	name = "spirit's pet carrier"
 	desc = "Contains kitten."
-	spawner_type = /mob/living/simple_animal/cat/fluff/tabiranth
+	spawner_type = /mob/living/simple_mob/animal/passive/cat/tabiranth
 	deliveryamt = 1
 
 /*

@@ -202,7 +202,7 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aw" = (
-/mob/living/simple_animal/retaliate/gaslamp,
+/mob/living/simple_mob/animal/space/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/outpost/solars_outside)
 "ax" = (
@@ -800,7 +800,7 @@
 /turf/simulated/mineral/virgo3b,
 /area/tether/outpost/solars_outside)
 "bH" = (
-/mob/living/simple_animal/retaliate/gaslamp,
+/mob/living/simple_mob/animal/space/gaslamp,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
 "bI" = (
@@ -817,7 +817,7 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "bJ" = (
-/mob/living/simple_animal/retaliate/gaslamp,
+/mob/living/simple_mob/animal/space/gaslamp,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/tether/outpost/solars_outside)
 "bK" = (

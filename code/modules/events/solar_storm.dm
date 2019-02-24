@@ -13,8 +13,8 @@
 	adjust_solar_output(1.5)
 
 /datum/event/solar_storm/proc/adjust_solar_output(var/mult = 1)
-	if(isnull(base_solar_gen_rate)) base_solar_gen_rate = solar_gen_rate
-	solar_gen_rate = mult * base_solar_gen_rate
+	if(isnull(base_solar_gen_rate)) base_solar_gen_rate = GLOB.solar_gen_rate
+	GLOB.solar_gen_rate = mult * base_solar_gen_rate
 
 
 /datum/event/solar_storm/start()

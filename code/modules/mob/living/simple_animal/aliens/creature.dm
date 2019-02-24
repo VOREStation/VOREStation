@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/creature
+/mob/living/simple_mob/hostile/creature
 	name = "creature"
 	desc = "A sanity-destroying otherthing."
 	icon = 'icons/mob/critter.dmi'
@@ -25,7 +25,7 @@
 
 	speak_emote = list("gibbers")
 
-/mob/living/simple_animal/hostile/creature/cult
+/mob/living/simple_mob/hostile/creature/cult
 	faction = "cult"
 
 	min_oxy = 0
@@ -40,14 +40,14 @@
 
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/creature/cult/cultify()
+/mob/living/simple_mob/hostile/creature/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/creature/cult/Life()
+/mob/living/simple_mob/hostile/creature/cult/Life()
 	..()
 	check_horde()
 
-/mob/living/simple_animal/hostile/creature/strong
+/mob/living/simple_mob/hostile/creature/strong
 	maxHealth = 160
 	health = 160
 
@@ -55,7 +55,7 @@
 	melee_damage_lower = 13
 	melee_damage_upper = 25
 
-/mob/living/simple_animal/hostile/creature/strong/cult
+/mob/living/simple_mob/hostile/creature/strong/cult
 	faction = "cult"
 
 	min_oxy = 0
@@ -70,9 +70,9 @@
 
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/creature/cult/cultify()
+/mob/living/simple_mob/hostile/creature/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/creature/cult/Life()
+/mob/living/simple_mob/hostile/creature/cult/Life()
 	..()
 	check_horde()

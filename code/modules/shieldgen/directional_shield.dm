@@ -88,6 +88,8 @@
 	but allow those projectiles to leave the shield from the inside.  Blocking too many damaging projectiles will cause the shield to fail."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signmaker_sec"
+	light_range = 4
+	light_power = 4
 	var/active = FALSE					// If it's on.
 	var/shield_health = 400				// How much damage the shield blocks before breaking.  This is a shared health pool for all shields attached to this projector.
 	var/max_shield_health = 400			// Ditto.  This is fairly high, but shields are really big, you can't miss them, and laser carbines pump out so much hurt.
@@ -169,6 +171,8 @@
 	var/new_b = Interpolate(low_b, high_b, weight = lerp_weight)
 
 	var/new_color = rgb(new_r, new_g, new_b)
+
+	set_light(light_range, light_power, new_color)
 
 	// Now deploy the new color to all the shields.
 	for(var/obj/effect/directional_shield/S in active_shields)

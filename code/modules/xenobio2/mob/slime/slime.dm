@@ -1,7 +1,7 @@
 /*
 Slime definitions, Life and New live here.
 */
-/mob/living/simple_animal/xeno/slime //Adult values are found here
+/mob/living/simple_mob/xeno/slime //Adult values are found here
 	nameVar = "grey"		//When mutated, nameVar might change.
 	desc = "A shifting, mass of goo."
 	faction = "slime"
@@ -80,7 +80,7 @@ Slime definitions, Life and New live here.
 						"woodpulp" = list("heal" = 0.1, "nutr" = 0.7),
 						"docilitytoxin" = list("nutr" = 0.3)	)
 
-/mob/living/simple_animal/xeno/slime/New()
+/mob/living/simple_mob/xeno/slime/New()
 	..()
 	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
 		languages += L

@@ -5,7 +5,7 @@
 	set name = "Release Control"
 	set desc = "Release control of your host's body."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
 
 	if(B && B.host_brain)
 		src << "<span class='danger'>You withdraw your probosci, releasing control of [B.host_brain]</span>"
@@ -25,7 +25,7 @@
 	set name = "Torment host"
 	set desc = "Punish your host with agony."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
 
 	if(!B)
 		return
@@ -43,7 +43,7 @@
 	set name = "Reproduce"
 	set desc = "Spawn several young."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
 
 	if(!B)
 		return
@@ -55,7 +55,7 @@
 		B.has_reproduced = 1
 
 		vomit(1)
-		new /mob/living/simple_animal/borer(get_turf(src))
+		new /mob/living/simple_mob/animal/borer(get_turf(src))
 
 	else
 		src << "<span class='warning'>You do not have enough chemicals stored to reproduce.</span>"
