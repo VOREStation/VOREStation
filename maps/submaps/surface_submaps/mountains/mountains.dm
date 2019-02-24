@@ -124,12 +124,6 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/temple.dmm'
 	cost = 20
 
-/datum/map_template/surface/mountains/normal/crashedmedshuttle
-	name = "Crashed Med Shuttle"
-	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
-	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
-	cost = 20
-
 /datum/map_template/surface/mountains/normal/digsite
 	name = "Dig Site"
 	desc = "A small abandoned dig site."
@@ -272,3 +266,19 @@
 	desc = "An abandoned blast mining site, seems that local wildlife has moved in."
 	mappath = 'maps/submaps/surface_submaps/mountains/BlastMine1.dmm'
 	cost = 20
+<<<<<<< HEAD
+=======
+
+/datum/map_template/surface/mountains/deep/lava_trench
+	name = "lava trench"
+	desc = "A long stretch of lava underground, almost river-like, with a small crystal research outpost on the side."
+	mappath = 'maps/submaps/surface_submaps/mountains/lava_trench.dmm'
+	cost = 20
+	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/deep/crashedmedshuttle
+	name = "Crashed Med Shuttle"
+	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
+	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
+	cost = 20
+>>>>>>> 17578e0... Merge pull request #5970 from Neerti/spider_poi_move
