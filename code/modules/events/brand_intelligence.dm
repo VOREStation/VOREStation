@@ -58,12 +58,8 @@
 			infectedMachine.shut_up = 0
 			infectedMachine.shoot_inventory = 1
 
-<<<<<<< HEAD
-			if(IsMultiple(activeFor, 12))
-				/* VORESTATION Removal - Using the pick below.
-=======
 			if(ISMULTIPLE(activeFor, 12))
->>>>>>> 8da11c1... Makes math helpers defines for performance (#5654)
+				/* VORESTATION Removal - Using the pick below.
 				originMachine.speak(pick("Try our aggressive new marketing strategies!", \
 										 "You should buy products to feed your lifestyle obsession!", \
 										 "Consume!", \
