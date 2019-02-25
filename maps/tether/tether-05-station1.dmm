@@ -3177,6 +3177,28 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
+"afW" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "englockdown";
+	name = "Engineering Lockdown";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 10;
+	icon_state = "fwindow";
+	id = "ce_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "ce_office"
+	},
+/turf/simulated/floor,
+/area/crew_quarters/heads/chief)
 "afX" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -13852,23 +13874,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/weapon/rig/ce/equipped,
 /turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
-"aQc" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "englockdown";
-	name = "Engineering Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor,
 /area/crew_quarters/heads/chief)
 "aQh" = (
 /obj/structure/cable/green{
@@ -27187,9 +27192,9 @@ aJn
 aLt
 aRb
 aRb
-aQc
-aQc
-aQc
+afW
+afW
+afW
 aRb
 aRb
 aRb
