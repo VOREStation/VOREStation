@@ -266,8 +266,6 @@
 	desc = "An abandoned blast mining site, seems that local wildlife has moved in."
 	mappath = 'maps/submaps/surface_submaps/mountains/BlastMine1.dmm'
 	cost = 20
-<<<<<<< HEAD
-=======
 
 /datum/map_template/surface/mountains/deep/lava_trench
 	name = "lava trench"
@@ -281,4 +279,3 @@
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
 	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
 	cost = 20
->>>>>>> 17578e0... Merge pull request #5970 from Neerti/spider_poi_move
