@@ -11,7 +11,7 @@ var/global/list/prevent_respawns = list()
 	set category = "OOC"
 	set desc = "Free your job slot, remove yourself from the manifest, and prevent respawning as this character for this round."
 
-	var/confirm = alert("This will free up your job slot, remove you from the manifest, and prevent you from respawning with this character for the round. You can rejoin as another \
+	var/confirm = alert("This will free up your job slot, remove you from the manifest, and allow you to respawn as this character. You can rejoin as another \
 	character if you like. Do this now?","Quit This Round","Quit Round","Cancel")
 	if(confirm != "Quit Round")
 		return
@@ -22,7 +22,7 @@ var/global/list/prevent_respawns = list()
 		return
 
 	//Add them to the nope list
-	prevent_respawns += mind.name
+	//prevent_respawns += mind.name //Replaced by PR 4785
 
 	//Update any existing objectives involving this mob.
 	for(var/datum/objective/O in all_objectives)
