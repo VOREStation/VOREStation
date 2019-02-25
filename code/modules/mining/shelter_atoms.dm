@@ -128,7 +128,7 @@
 	basestate = "pwindow"
 
 //The windows have diagonal versions, and will never be a full window
-/obj/structure/window/reinforced/survival_pod/is_full_window()
+/obj/structure/window/reinforced/survival_pod/is_fulltile()
 	return FALSE
 
 /obj/structure/window/reinforced/survival_pod/update_icon()
