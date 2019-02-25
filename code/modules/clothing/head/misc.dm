@@ -414,3 +414,16 @@
 	desc = "Keeps hair out of the way for important... jobs."
 	icon_state = "maid"
 	body_parts_covered = 0
+
+/obj/item/clothing/head/maangtikka
+	name = "maang tikka"
+	desc = "A jeweled headpiece originating in India."
+	icon_state = "maangtikka"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/jingasa
+	name = "jingasa"
+	desc = "A wide, flat rain hat originally from Japan."
+	icon_state = "jingasa"
+	body_parts_covered = 0
+	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
