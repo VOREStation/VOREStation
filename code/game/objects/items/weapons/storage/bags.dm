@@ -170,6 +170,10 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown)
 
+/obj/item/weapon/storage/bag/plants/large
+	name = "large plant bag"
+	w_class = ITEMSIZE_SMALL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 45
 
 // -----------------------------
 //        Sheet Snatcher

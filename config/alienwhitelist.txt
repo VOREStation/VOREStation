@@ -1,3 +1,5 @@
+some~user - Species
+
 admiraldragon - Vox
 aether_elemental - Daemon
 arokha - Protean
@@ -16,6 +18,7 @@ ktccd - Diona
 mewchild - Diona
 mewchild - Vox
 natje - Xenochimera
+oreganovulgaris - Xenochimera
 paradoxspace - Xenochimera
 rapidvalj - Vox
 rikaru19xjenkins  - Xenomorph Hybrid
@@ -29,12 +32,14 @@ silverTalismen - Diona
 silverTalismen - Vox
 silvertalismen - Xenochimera
 singo - Gutter
-some~user - Species
 tastypred - Xenochimera
+varonis - Xenochimera
 verkister - Xenochimera
+wickedtemp - Shadekin Empathy
+wtfismyname - Xenomorph Hybrid
 xioen - Diona
 xioen - Xenochimera
 xioen - Xenomorph Hybrid
+zalvine - Shadekin Empathy
 zammyman215 - Vox
 zekesturm - Xenomorph Hybrid
-wtfismyname - Xenomorph Hybrid

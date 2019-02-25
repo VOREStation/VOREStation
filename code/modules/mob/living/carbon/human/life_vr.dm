@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/weightgain()
-	if (nutrition > 0 && stat != 2)
+	if (nutrition >= 0 && stat != 2)
 		if (nutrition > MIN_NUTRITION_TO_GAIN && weight < MAX_MOB_WEIGHT && weight_gain)
 			weight += species.metabolism*(0.01*weight_gain)
 
@@ -28,15 +28,16 @@
 
 		holder.icon_state = "hudblank"
 
-		for(var/obj/item/weapon/implant/I in src)
-			if(I.implanted)
-				if(istype(I,/obj/item/weapon/implant/backup))
-					if(!mind)
-						holder.icon_state = "hud_backup_nomind"
-					else if(!(mind.name in SStranscore.body_scans))
-						holder.icon_state = "hud_backup_nobody"
-					else
-						holder.icon_state = "hud_backup_norm"
+		for(var/obj/item/organ/external/E in organs)
+			for(var/obj/item/weapon/implant/I in E.implants)
+				if(I.implanted)
+					if(istype(I,/obj/item/weapon/implant/backup))
+						if(!mind)
+							holder.icon_state = "hud_backup_nomind"
+						else if(!(mind.name in SStranscore.body_scans))
+							holder.icon_state = "hud_backup_nobody"
+						else
+							holder.icon_state = "hud_backup_norm"
 
 		apply_hud(BACKUP_HUD, holder)
 
@@ -67,6 +68,8 @@
 					M.nutrition -= M.species.hunger_factor/10
 					if(M.m_intent == "run")
 						M.nutrition -= M.species.hunger_factor/10
+					if(M.nutrition < 0)
+						M.nutrition = 0
 			else
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
 				if(src.m_intent == "run")

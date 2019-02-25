@@ -391,6 +391,13 @@
 			var/obj/belly/B = belly
 			for(var/mob/living/sub_L in B)
 				despawn_occupant(sub_L)
+			for(var/obj/item/W in B)
+				W.forceMove(src)
+				if(W.contents.len)
+					for(var/obj/item/O in W.contents)
+						if(istype(O,/obj/item/weapon/storage/internal))
+							continue
+						O.forceMove(src)
 		if(ishuman(to_despawn))
 			var/mob/living/carbon/human/H = to_despawn
 			if(H.nif)
@@ -567,9 +574,10 @@
 		to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 		return
 
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			to_chat(usr, "You're too busy getting your life sucked out of you.")
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
 
 	visible_message("[usr] [on_enter_visible_message] [src].", 3)

@@ -262,6 +262,9 @@
 		var/icon/charicon = cached_character_icon(H)
 		front = icon(charicon, dir = SOUTH)
 		side = icon(charicon, dir = WEST)
+	else // Sending null things through browse_rsc() makes a runtime and breaks the console trying to view the record.
+		front = icon('html/images/no_image32.png')
+		side = icon('html/images/no_image32.png')
 
 	if(!id)
 		id = text("[]", add_zero(num2hex(rand(1, 65536)), 4))

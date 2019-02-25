@@ -228,6 +228,8 @@ var/list/gamemode_cache = list()
 	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
+	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -747,6 +749,9 @@ var/list/gamemode_cache = list()
 
 				if ("paranoia_logging")
 					config.paranoia_logging = 1
+
+				if("random_submap_orientation")
+					config.random_submap_orientation = 1
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

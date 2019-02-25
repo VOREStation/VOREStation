@@ -85,9 +85,6 @@
 		if("Jobs")
 			debug_variables(job_master)
 			feedback_add_details("admin_verb","DJobs")
-		if("Sun")
-			debug_variables(sun)
-			feedback_add_details("admin_verb","DSun")
 		if("Radio")
 			debug_variables(radio_controller)
 			feedback_add_details("admin_verb","DRadio")
@@ -130,9 +127,6 @@
 		if("Chemistry")
 			debug_variables(chemistryProcess)
 			feedback_add_details("admin_verb", "DChem")
-		if("Vote")
-			debug_variables(vote)
-			feedback_add_details("admin_verb", "DVote")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
 

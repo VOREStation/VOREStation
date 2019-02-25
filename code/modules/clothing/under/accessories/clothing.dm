@@ -30,7 +30,6 @@
 	desc = "Lucky suit jacket."
 	icon_state = "checkered_jacket"
 
-
 /obj/item/clothing/accessory/chaps
 	name = "brown chaps"
 	desc = "A pair of loose, brown leather chaps."
@@ -257,31 +256,38 @@
 /obj/item/clothing/accessory/wcoat/red
 	name = "red waistcoat"
 	icon_state = "red_waistcoat"
+	item_state = "red_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/grey
 	name = "grey waistcoat"
 	icon_state = "grey_waistcoat"
+	item_state = "grey_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/brown
 	name = "brown waistcoat"
 	icon_state = "brown_waistcoat"
+	item_state = "brown_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/gentleman
 	name = "elegant waistcoat"
 	icon_state = "elegant_waistcoat"
+	item_state = "elegant_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/swvest
 	name = "black sweatervest"
 	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
 	icon_state = "sweatervest"
+	item_state = "sweatervest"
 
 /obj/item/clothing/accessory/wcoat/swvest/blue
 	name = "blue sweatervest"
 	icon_state = "sweatervest_blue"
+	item_state = "sweatervest_blue"
 
 /obj/item/clothing/accessory/wcoat/swvest/red
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
+	item_state = "sweatervest_red"
 
 //Sweaters.
 
@@ -335,3 +341,23 @@
 	name = "Christmas turtleneck"
 	desc = "A really cheesy holiday sweater, it actually kinda itches."
 	icon_state = "turtleneck_winterred"
+
+/obj/item/clothing/accessory/cowledvest
+	name = "cowled vest"
+	desc = "A body warmer for the 26th century."
+	icon_state = "cowled_vest"
+
+/obj/item/clothing/accessory/asymmetric
+	name = "blue asymmetrical jacket"
+	desc = "Insultingly avant-garde in prussian blue."
+	icon_state = "asym_blue"
+
+/obj/item/clothing/accessory/asymmetric/purple
+	name = "purple asymmetrical jacket"
+	desc = "Insultingly avant-garde in mauve."
+	icon_state = "asym_purple"
+
+/obj/item/clothing/accessory/asymmetric/green
+	name = "green asymmetrical jacket"
+	desc = "Insultingly avant-garde in aqua."
+	icon_state = "asym_green"

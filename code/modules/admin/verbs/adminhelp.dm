@@ -323,7 +323,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(initiator)
-		initiator << 'sound/effects/adminhelp.ogg'
+		if(initiator.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			initiator << 'sound/effects/adminhelp.ogg'
 
 		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>")
 		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b></font>")
@@ -342,8 +343,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
-	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
-	msg += "<font color='red'>Your AdminHelp may also be unabled to be answered due to ongoing events.</font>"
+	msg += "<font color='red'><b>This is something that can be solved ICly, and does not currently require admin intervention.</b></font><br>"  //VOREStation Edit
+	msg += "<font color='red'>Your AdminHelp may also be unable to be answered due to ongoing events.</font>"  //VOREStation Edit
 
 	if(initiator)
 		to_chat(initiator, msg)

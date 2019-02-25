@@ -77,6 +77,7 @@
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	min_age = 18
 	max_age = 80
@@ -306,6 +307,7 @@
 	tail_animation = 'icons/mob/species/unathi/tail_vr.dmi'
 	color_mult = 1
 	min_age = 18
+	gluttonous = 0
 	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/tajaran
@@ -317,6 +319,7 @@
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+	heat_discomfort_level = 294 //Prevents heat discomfort spam at 20c
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -324,6 +327,8 @@
 	deform = 'icons/mob/human_races/r_def_skrell_vr.dmi'
 	color_mult = 1
 	min_age = 18
+	reagent_tag = null
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED

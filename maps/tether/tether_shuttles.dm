@@ -174,7 +174,7 @@
 	name = "shuttle control console"
 	shuttle_tag = "Excursion Shuttle"
 	req_access = list()
-	req_one_access = list(access_explorer,access_pilot)
+	req_one_access = list(access_pilot)
 	var/wait_time = 45 MINUTES
 
 /obj/machinery/computer/shuttle_control/web/excursion/ui_interact()
@@ -190,7 +190,7 @@
 	current_area = /area/shuttle/excursion/tether
 	docking_controller_tag = "expshuttle_docker"
 	web_master_type = /datum/shuttle_web_master/excursion
-	var/abduct_chance = 0.5 //Prob
+	var/abduct_chance = 0 //Prob
 
 /datum/shuttle/web_shuttle/excursion/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
 	if(prob(abduct_chance))

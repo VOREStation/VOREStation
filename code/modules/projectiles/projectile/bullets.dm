@@ -64,38 +64,43 @@
 
 /* short-casing projectiles, like the kind used in pistols or SMGs */
 
-/obj/item/projectile/bullet/pistol
-	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg'
+/obj/item/projectile/bullet/pistol // 9mm pistols and most SMGs. Sacrifice power for capacity.
+	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg' // ToDo: Different shot sounds for different strength pistols. -Ace
 	damage = 20
 
 /obj/item/projectile/bullet/pistol/ap
 	damage = 15
 	armor_penetration = 30
 
-/obj/item/projectile/bullet/pistol/medium
+/obj/item/projectile/bullet/pistol/hp
+	damage = 25
+	armor_penetration = -50
+
+/obj/item/projectile/bullet/pistol/medium // .45 (and maybe .40 if it ever gets added) caliber security pistols. Balance between capacity and power.
+	// fire_sound = 'sound/weapons/gunshot3.ogg' // ToDo: Different shot sounds for different strength pistols.
 	damage = 25
 
 /obj/item/projectile/bullet/pistol/medium/ap
 	damage = 20
 	armor_penetration = 15
 
-/obj/item/projectile/bullet/pistol/medium/hollow
+/obj/item/projectile/bullet/pistol/medium/hp
 	damage = 30
 	armor_penetration = -50
 
-/obj/item/projectile/bullet/pistol/strong //revolvers and matebas
-	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+/obj/item/projectile/bullet/pistol/strong // .357 and .44 caliber stuff. High power pistols like the Mateba or Desert Eagle. Sacrifice capacity for power.
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg' // ToDo: Replace with something less ugly. I recommend weapons/gunshot3.ogg
 	damage = 60
 
-/obj/item/projectile/bullet/pistol/rubber/strong //"rubber" bullets for revolvers and matebas
-	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+/obj/item/projectile/bullet/pistol/rubber/strong // "Rubber" bullets for high power pistols.
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg' // ToDo: Same as above.
 	damage = 10
 	agony = 60
 	embed_chance = 0
 	sharp = 0
 	check_armour = "melee"
 
-/obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
+/obj/item/projectile/bullet/pistol/rubber // "Rubber" bullets for all other pistols.
 	name = "rubber bullet"
 	damage = 5
 	agony = 40
@@ -167,7 +172,7 @@
 	damage = 30
 	armor_penetration = 50 // At 30 or more armor, this will do more damage than standard rounds.
 
-/obj/item/projectile/bullet/rifle/a762/hollow
+/obj/item/projectile/bullet/rifle/a762/hp
 	damage = 40
 	armor_penetration = -50
 	penetrating = 0
@@ -184,7 +189,7 @@
 	damage = 20
 	armor_penetration = 50 // At 40 or more armor, this will do more damage than standard rounds.
 
-/obj/item/projectile/bullet/rifle/a545/hollow
+/obj/item/projectile/bullet/rifle/a545/hp
 	damage = 35
 	armor_penetration = -50
 	penetrating = 0

@@ -58,6 +58,8 @@
 	return FALSE
 /obj/item/device/perfect_tele_beacon/digest_act(var/atom/movable/item_storage = null)
 	return FALSE //Sorta important to not digest your own beacons.
+/obj/item/organ/internal/brain/slime/digest_act(var/atom/movable/item_storage = null)
+	return FALSE //so prometheans can be recovered
 
 /////////////
 // Some special treatment
@@ -65,8 +67,8 @@
 //PDAs need to lose their ID to not take it with them, so we can get a digested ID
 /obj/item/device/pda/digest_act(var/atom/movable/item_storage = null)
 	if(id)
-		id = null
-
+		if(istype(item_storage,/obj/item/device/dogborg/sleeper) || (!isnull(digest_stage) && digest_stage <= 0))
+			id = null
 	. = ..()
 
 /obj/item/weapon/card/id/digest_act(var/atom/movable/item_storage = null)
@@ -85,7 +87,8 @@
 		else if(isrobot(B.owner))
 			var/mob/living/silicon/robot/R = B.owner
 			R.cell.charge += 150
-
+		qdel(src)
+		return w_class
 	. = ..()
 
 /obj/item/weapon/holder/digest_act(var/atom/movable/item_storage = null)
@@ -98,7 +101,11 @@
 
 /obj/item/organ/digest_act(var/atom/movable/item_storage = null)
 	if((. = ..()))
-		. += 70 //Organs give a little more
+		if(isbelly(item_storage))
+			var/obj/belly/B = item_storage
+			. += 5 * (B.digest_brute + B.digest_burn)
+		else
+			. += 70 //Organs give a little more
 
 /obj/item/weapon/storage/digest_act(var/atom/movable/item_storage = null)
 	for(var/obj/item/I in contents)

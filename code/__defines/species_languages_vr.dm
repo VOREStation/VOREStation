@@ -4,6 +4,7 @@
 #define LANGUAGE_ECUREUILIAN "Ecureuilian"
 #define LANGUAGE_DAEMON "Daemon"
 #define LANGUAGE_ENOCHIAN "Enochian"
+#define LANGUAGE_VESPINAE "Vespinae"
 
 #define LANGUAGE_CHIMPANZEE "Chimpanzee"
 #define LANGUAGE_NEAERA "Neaera"

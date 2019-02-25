@@ -177,6 +177,18 @@ character_name: Diana Kuznetsova
 item_path: /obj/item/clothing/head/fluff/pink_tiara
 }
 
+{
+ckey: cross_exonar
+character_name: Sari-U
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+
+{
+ckey: cross_exonar
+character_name: Sari-E
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
@@ -383,15 +395,29 @@ item_path: /obj/item/clothing/head/fedora/fluff/jemli
 {
 ckey: jertheace
 character_name: Jeremiah Acacius
-item_path: /obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
-req_access = 58
+item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
+req_access = 3
 }
 
 {
 ckey: jertheace
 character_name: Jeremiah Acacius
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
-req_access = 58
+item_path: /obj/item/weapon/gun/projectile/p92x/large/preban/hp
+req_access = 3
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah Acacius
+item_path: /obj/item/ammo_magazine/m9mm/large/preban/hp #Spare ammo
+req_access = 3
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah Acacius
+item_path: /obj/item/clothing/accessory/holster/armpit
+req_access = 3
 }
 
 {
@@ -404,12 +430,6 @@ item_path: /obj/item/clothing/shoes/boots/combat
 ckey: jertheace
 character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/under/syndicate/combat
-}
-
-{
-ckey: jertheace
-character_name: Jeremiah Acacius
-item_path: /obj/item/clothing/suit/armor/tactical/officer/fluff/ace
 }
 
 {
@@ -535,6 +555,13 @@ item_path: /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
 
 # ######## L CKEYS
 
+{
+ckey: lm40
+character_name: Kenzie Houser
+item_path: /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
+req_access: 5
+}
+
 #Weapon Box. Permit Expired
 #{
 #ckey: luminescentring
@@ -557,8 +584,8 @@ item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 # ######## M CKEYS
 {
 ckey: mewchild
-character_name: Phi Vietsi
-item_path: /obj/item/weapon/storage/box/fluff/vietsi
+character_name: Phi Ahkeen
+item_path: /obj/item/weapon/storage/box/fluff/phi
 }
 
 {
@@ -646,18 +673,18 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 
 # ######## P CKEYS
 
-{
-ckey: pawoverlord
-character_name: Sorrel Cavalet
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
-}
+#{
+#ckey: pawoverlord
+#character_name: Sorrel Cavalet
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
+#}
 
-{
-ckey: pawoverlord
-character_name: Sorrel Cavalet
-item_path: /obj/item/weapon/gun/projectile/colt
-item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
-}
+#{
+#ckey: pawoverlord
+#character_name: Sorrel Cavalet
+#item_path: /obj/item/weapon/gun/projectile/colt
+#item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
+#}
 
 {
 ckey: phoaly
@@ -838,6 +865,18 @@ item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
 {
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
+}
+
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/device/survivalcapsule/tabiranth
+}
+
+{
 ckey: techtypes
 character_name: Lasshseeki Korss
 item_path: /obj/item/weapon/implant/language/eal
@@ -853,12 +892,6 @@ item_path: /obj/item/clothing/accessory/medal/silver/unity
 ckey: tonyvld
 character_name: Tony Bingham
 item_path: /obj/item/clothing/head/fluff/runac
-}
-
-{
-ckey: tabiranth
-character_name: Ascian
-item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
 }
 
 # ######## U CKEYS
