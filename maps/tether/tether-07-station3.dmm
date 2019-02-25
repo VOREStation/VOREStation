@@ -1900,6 +1900,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "dc" = (
