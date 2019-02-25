@@ -7433,7 +7433,7 @@
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "cmooffice"
+	id = "cmooffice_b"
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
@@ -7446,7 +7446,7 @@
 	id = "cmooffice_b"
 	},
 /obj/structure/window/reinforced/polarized{
-	id = "cmooffice"
+	id = "cmooffice_b"
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
