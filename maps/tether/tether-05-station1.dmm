@@ -3061,9 +3061,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
 "afL" = (
