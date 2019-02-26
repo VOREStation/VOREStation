@@ -2637,10 +2637,10 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_monitoring)
 "afg" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/item/clothing/under/gladiator,
+/obj/item/clothing/head/helmet/gladiator,
+/turf/simulated/floor,
+/area/tether/station/pathfinder_office)
 "afh" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -3219,6 +3219,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"afY" = (
+/obj/item/weapon/material/twohanded/spear/foam,
+/turf/simulated/floor,
+/area/tether/station/pathfinder_office)
 "afZ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
@@ -3234,9 +3238,27 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"aga" = (
+/obj/item/weapon/storage/fancy/crayons{
+	desc = "Special food for special warriors of the expedition force.";
+	name = "spearman ration"
+	},
+/turf/simulated/floor,
+/area/tether/station/pathfinder_office)
 "agb" = (
 /obj/structure/sign/department/eng,
 /turf/simulated/wall/r_wall,
+/area/hallway/station/atrium)
+"agc" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
+"agd" = (
+/obj/effect/landmark{
+	name = "lightsout"
+	},
+/turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "age" = (
 /obj/effect/floor_decal/borderfloor{
@@ -21762,16 +21784,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
-"gcH" = (
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 1
-	},
-/obj/machinery/meter,
-/turf/simulated/floor/tiled,
-/area/tether/station/excursion_dock)
 "gUt" = (
 /obj/structure/table/steel,
 /obj/item/clothing/head/pilot,
@@ -33708,7 +33720,7 @@ aeo
 aaq
 aaq
 aau
-afg
+agc
 avK
 avN
 aad
@@ -33850,7 +33862,7 @@ amF
 avG
 adB
 aaq
-afg
+agc
 avK
 avN
 aad
@@ -33992,7 +34004,7 @@ amF
 avG
 adB
 aaq
-afg
+agc
 avK
 auH
 aad
@@ -34422,7 +34434,7 @@ aap
 avK
 auK
 axm
-acm
+agd
 abh
 aAt
 acp
@@ -34703,7 +34715,7 @@ anX
 afI
 oVP
 aap
-gcH
+avK
 qgR
 aad
 axI
@@ -34844,7 +34856,7 @@ aaD
 avG
 tIi
 aaq
-afg
+agc
 avK
 auQ
 aad
@@ -34986,7 +34998,7 @@ amL
 aob
 dbI
 aaq
-afg
+agc
 avK
 qgR
 aad
@@ -35128,7 +35140,7 @@ aep
 aeu
 aev
 aau
-afg
+agc
 avK
 qgR
 aad
@@ -35691,11 +35703,11 @@ aad
 abV
 acP
 aad
-aad
-aad
+hCe
+hCe
 vQL
-aad
-aad
+hCe
+hCe
 aTU
 lMo
 nYM
@@ -35833,11 +35845,11 @@ dkC
 acc
 acQ
 amU
-aiv
+hCe
 xcY
 afc
 wZn
-nYM
+hCe
 oaO
 wFb
 vUO
@@ -35975,11 +35987,11 @@ akL
 oeg
 acV
 amU
-aiv
+hCe
 adO
 afe
 mcB
-nYM
+hCe
 fsu
 sbI
 sZd
@@ -36547,7 +36559,7 @@ hCe
 pYE
 dlk
 ekp
-nYM
+hCe
 nma
 lue
 hJg
@@ -36689,7 +36701,7 @@ hCe
 hCe
 hCe
 hCe
-nYM
+hCe
 jDS
 wLj
 cNq
@@ -36827,11 +36839,11 @@ prz
 vUd
 tWI
 aeB
-aiv
-aac
-aac
-aac
-nYM
+hCe
+afg
+afY
+aga
+hCe
 uDP
 mFo
 mFo
@@ -36969,11 +36981,11 @@ aiv
 aiv
 aiv
 aiv
-aiv
-aac
-aac
-aac
-nYM
+hCe
+hCe
+hCe
+hCe
+hCe
 qzk
 dMN
 mcn

@@ -1499,6 +1499,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
+"acJ" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/landmark{
+	name = "lightsout"
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
 "acK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
@@ -7708,11 +7716,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
-/area/hallway/lower/first_west)
-"asX" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "asY" = (
@@ -34515,7 +34518,7 @@ ako
 ako
 ako
 ako
-asX
+acJ
 atI
 arG
 aVu

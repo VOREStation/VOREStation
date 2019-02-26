@@ -5687,6 +5687,9 @@
 	dir = 2
 	},
 /obj/machinery/hologram/holopad,
+/obj/effect/landmark{
+	name = "lightsout"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "jR" = (
