@@ -1,4 +1,4 @@
-/mob/living/carbon/human/verb/lick_wounds(var/mob/living/carbon/M in living_mobs(1))
+/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M in living_mobs(1))
 	set name = "Lick Wounds"
 	set category = "Abilities"
 	set desc = "Disinfect and heal small wounds with your saliva."
