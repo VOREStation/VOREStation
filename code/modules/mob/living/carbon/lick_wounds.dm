@@ -46,6 +46,10 @@
 			to_chat(src, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been treated.</span>")
 			return
 
+		  if(affecting.brute_dam > 20 || affecting.burn_dam > 20)
+            to_chat(src, "<span class='warning'>The wounds on [M]'s [affecting.name] are too severe to treat with just licking.</span>")
+            return
+           
 		else
 			visible_message("<span class='notice'>\The [src] starts licking the wounds on [M]'s [affecting.name] clean.</span>", \
 					             "<span class='notice'>You start licking the wounds on [M]'s [affecting.name] clean.</span>" )
