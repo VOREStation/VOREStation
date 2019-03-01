@@ -8019,6 +8019,20 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/cargo)
+"mW" = (
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/security/brig)
+"mX" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/sleeper)
 "mY" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -8044,6 +8058,32 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
+"nb" = (
+/obj/structure/table/standard,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 8
+	},
+/obj/item/weapon/folder/yellow,
+/obj/item/weapon/stamp/denied{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/weapon/stamp/cargo,
+/turf/simulated/floor/tiled,
+/area/quartermaster/office)
+"nc" = (
+/obj/structure/table/glass,
+/obj/item/weapon/folder/white,
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
 "nd" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -8062,6 +8102,55 @@
 	},
 /turf/simulated/floor/wood,
 /area/security/breakroom)
+"nf" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 10
+	},
+/obj/structure/table/glass,
+/obj/item/weapon/storage/box/body_record_disk,
+/obj/item/weapon/paper{
+	desc = "";
+	info = "Bodies designed on the design console must be saved to a disk, provided on the front desk counter, then placed into the resleeving console for printing.";
+	name = "Body Designer Note"
+	},
+/obj/item/device/sleevemate,
+/obj/item/weapon/folder/white,
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
+"ng" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/sleeper)
+"nh" = (
+/obj/structure/table/standard,
+/obj/item/weapon/hand_labeler,
+/obj/item/weapon/stamp{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/weapon/hand_labeler,
+/obj/item/weapon/folder/yellow,
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "ni" = (
 /obj/structure/bookcase,
 /obj/item/weapon/book/manual/security_space_law,
@@ -8639,6 +8728,30 @@
 	},
 /turf/simulated/floor,
 /area/security/security_processing)
+"oh" = (
+/obj/structure/table/glass,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/clipboard,
+/obj/item/weapon/pen,
+/obj/machinery/camera/network/medbay{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/pink/border{
+	dir = 5
+	},
+/obj/item/weapon/folder/white,
+/turf/simulated/floor/tiled/white,
+/area/medical/exam_room)
 "oi" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -12161,26 +12274,6 @@
 "tB" = (
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
-/area/quartermaster/office)
-"tC" = (
-/obj/item/weapon/stamp/denied{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/stamp/cargo,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "tD" = (
 /obj/structure/disposalpipe/segment,
@@ -19999,10 +20092,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
-"Gn" = (
-/obj/structure/table/glass,
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
 "Go" = (
 /obj/machinery/door/window/eastleft{
 	req_one_access = list(5)
@@ -20850,23 +20939,6 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/security_starboard)
-"HM" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 10
-	},
-/obj/structure/table/glass,
-/obj/item/weapon/storage/box/body_record_disk,
-/obj/item/weapon/paper{
-	desc = "";
-	info = "Bodies designed on the design console must be saved to a disk, provided on the front desk counter, then placed into the resleeving console for printing.";
-	name = "Body Designer Note"
-	},
-/obj/item/device/sleevemate,
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
 "HN" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -22198,16 +22270,6 @@
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
 /area/quartermaster/warehouse)
-"JM" = (
-/obj/structure/table/standard,
-/obj/item/weapon/hand_labeler,
-/obj/item/weapon/stamp{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/weapon/hand_labeler,
-/turf/simulated/floor/tiled,
-/area/quartermaster/storage)
 "JN" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -22355,15 +22417,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden,
-/turf/simulated/floor/tiled/white,
-/area/medical/sleeper)
-"Ka" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "Kb" = (
@@ -22708,26 +22761,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
-"KD" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 6
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/sleeper)
 "KE" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -25819,29 +25852,6 @@
 	dir = 4
 	},
 /obj/item/weapon/cane,
-/turf/simulated/floor/tiled/white,
-/area/medical/exam_room)
-"Pc" = (
-/obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/clipboard,
-/obj/item/weapon/pen,
-/obj/machinery/camera/network/medbay{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/pink/border{
-	dir = 5
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
 "Pd" = (
@@ -34739,7 +34749,7 @@ Gk
 Iy
 Jh
 JY
-KD
+ng
 Le
 LL
 Mf
@@ -35019,7 +35029,7 @@ EG
 Fv
 Gl
 GU
-HM
+nf
 Iy
 Ji
 JZ
@@ -35123,7 +35133,7 @@ bK
 cf
 cT
 jy
-jk
+mW
 jk
 jk
 jk
@@ -35164,7 +35174,7 @@ GV
 HN
 Iy
 Jj
-Ka
+mX
 KG
 Lh
 Lh
@@ -35266,7 +35276,7 @@ cf
 cT
 jy
 jk
-jk
+mW
 jk
 jk
 jk
@@ -35299,7 +35309,7 @@ Bt
 Cc
 Dk
 EI
-Gn
+nc
 Fx
 GS
 GW
@@ -37020,7 +37030,7 @@ Nk
 NI
 Og
 Ow
-Pc
+oh
 Pz
 PT
 Qs
@@ -40843,7 +40853,7 @@ GK
 HA
 Ir
 IU
-JM
+nh
 zO
 ab
 ab
@@ -41249,7 +41259,7 @@ qu
 qu
 rV
 sH
-tC
+nb
 uC
 vo
 wb

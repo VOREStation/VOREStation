@@ -3260,6 +3260,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
 "eX" = (
+/obj/structure/table/steel,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/item/weapon/folder/white,
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
+"eY" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
@@ -3269,7 +3277,7 @@
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
-"eY" = (
+"eZ" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
@@ -3278,7 +3286,7 @@
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
-"eZ" = (
+"fa" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -13514,13 +13522,6 @@
 "xW" = (
 /obj/structure/sign/nosmoking_1,
 /turf/simulated/wall,
-/area/medical/morgue)
-"xX" = (
-/obj/structure/table/steel,
-/obj/effect/floor_decal/techfloor{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "xY" = (
 /obj/structure/bed/chair/office/light{
@@ -29118,7 +29119,7 @@ vV
 ww
 xh
 xx
-xX
+eX
 yz
 uW
 zl
@@ -30123,11 +30124,11 @@ AN
 AN
 Bw
 yY
-eX
-eY
-eY
 eY
 eZ
+eZ
+eZ
+fa
 yY
 ac
 ac
