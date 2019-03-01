@@ -228,7 +228,7 @@
 		/obj/item/clothing/gloves/fluff/morsleeves,
 		/obj/item/clothing/under/fluff/morunder)
 
-// Mewchild: Phi Viesti
+// Mewchild: Phi Vietsi
 /obj/item/weapon/storage/box/fluff/phi
 	name = "Phi's Personal Items"
 	has_items = list(
