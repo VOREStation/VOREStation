@@ -2615,7 +2615,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/wall,
+/turf/simulated/wall{
+	can_open = 1
+	},
 /area/maintenance/station/ai)
 "en" = (
 /obj/machinery/camera/network/security{
