@@ -3079,6 +3079,11 @@
 	},
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
+/obj/machinery/turretid/stun{
+	control_area = /area/ai/foyer;
+	name = "AI Core Access turret control";
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "eI" = (
@@ -3241,6 +3246,20 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/station/public_meeting_room)
 "eW" = (
+/obj/machinery/turretid/stun{
+	control_area = /area/ai_upload;
+	name = "AI Upload turret control";
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload_foyer)
+"eX" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
@@ -3250,7 +3269,7 @@
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
-"eX" = (
+"eY" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
@@ -3259,7 +3278,7 @@
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
-"eY" = (
+"eZ" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -5525,20 +5544,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_server_room)
-"ks" = (
-/obj/machinery/turretid/stun{
-	control_area = "\improper AI Upload Chamber";
-	name = "AI Upload turret control";
-	pixel_x = 0;
-	pixel_y = 30
-	},
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -23;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_upload_foyer)
 "kt" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -30118,11 +30123,11 @@ AN
 AN
 Bw
 yY
-eW
-eX
-eX
 eX
 eY
+eY
+eY
+eZ
 yY
 ac
 ac
@@ -31362,7 +31367,7 @@ il
 iT
 jp
 jY
-ks
+eW
 ll
 lQ
 jY
