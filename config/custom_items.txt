@@ -584,7 +584,7 @@ item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 # ######## M CKEYS
 {
 ckey: mewchild
-character_name: Phi Ahkeen
+character_name: Phi Viesti
 item_path: /obj/item/weapon/storage/box/fluff/phi
 }
 
