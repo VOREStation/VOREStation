@@ -750,9 +750,14 @@
 		icon_state = "hair_belenkotied"
 		flags = HAIR_TIEABLE
 
-	belenkotied
-		name = "Supernova"
-		icon_state = "hair_supernova"
+	glossy
+		name = "Glossy"
+		icon_state = "hair_glossy"
+		flags = HAIR_TIEABLE
+
+	sharpponytail
+		name = "Sharp Ponytail"
+		icon_state = "hair_sharpponytail"
 		flags = HAIR_TIEABLE
 
 /*

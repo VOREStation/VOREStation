@@ -52,12 +52,12 @@
 	while (i <= carp_amount)
 		var/group_size = rand(group_size_min, group_size_max)
 		for (var/j = 1, j <= group_size, j++)
-			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(spawn_locations[i]))
+			spawned_carp.Add(new /mob/living/simple_mob/animal/space/carp/event(spawn_locations[i]))
 		i++
 	message_admins("[spawned_carp.len] carp spawned by event.")
 
 /datum/gm_action/carp_migration/end()
-	for(var/mob/living/simple_animal/hostile/carp/C in spawned_carp)
+	for(var/mob/living/simple_mob/animal/space/carp/C in spawned_carp)
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))

@@ -11,7 +11,7 @@
 var/datum/controller/process/alarm/alarm_manager
 
 /datum/controller/process/alarm
-	var/list/datum/alarm/all_handlers
+	var/list/datum/alarm/all_handlers = list()
 
 /datum/controller/process/alarm/setup()
 	name = "alarm"

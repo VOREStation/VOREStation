@@ -173,7 +173,7 @@
 	if(!user.IsAdvancedToolUser())
 		return 0
 	if(isanimal(user))
-		var/mob/living/simple_animal/S = user
+		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
 			return 0
 
@@ -526,7 +526,8 @@
 		return 2
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
 	//on the other side of a window if it makes a difference. Or if they run behind a window, too bad.
-	return check_trajectory(target, user)
+	if(check_trajectory(target, user))
+		return 1 // Magic numbers are fun.
 
 //called if there was no projectile to shoot
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)

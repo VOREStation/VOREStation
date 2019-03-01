@@ -5,7 +5,7 @@
 #define SPINNING_COCOON 4
 
 //basic spider mob, these generally guard nests
-/mob/living/simple_animal/hostile/giant_spider
+/mob/living/simple_mob/hostile/giant_spider
 	name = "giant spider"
 	desc = "Furry and brown, it makes you shudder to look at it. This one has deep red eyes."
 	tt_desc = "X Brachypelma phorus"
@@ -51,14 +51,14 @@
 
 	low_priority = TRUE //VOREStation Edit
 
-/mob/living/simple_animal/hostile/giant_spider/proc/add_eyes()
+/mob/living/simple_mob/hostile/giant_spider/proc/add_eyes()
 	if(!eye_layer)
 		eye_layer = image(icon, "[icon_state]-eyes")
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
 
 	overlays += eye_layer
 
-/mob/living/simple_animal/hostile/giant_spider/proc/remove_eyes()
+/mob/living/simple_mob/hostile/giant_spider/proc/remove_eyes()
 	overlays -= eye_layer
 
 /*
@@ -66,7 +66,7 @@ Nurse Family
 */
 
 //nursemaids - these create webs and eggs
-/mob/living/simple_animal/hostile/giant_spider/nurse
+/mob/living/simple_mob/hostile/giant_spider/nurse
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes."
 	tt_desc = "X Brachypelma phorus laetus"
 	icon_state = "nurse"
@@ -85,7 +85,7 @@ Nurse Family
 	var/atom/cocoon_target
 	var/egg_inject_chance = 5
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/hat
+/mob/living/simple_mob/hostile/giant_spider/nurse/hat
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes and a tiny nurse hat."
 	icon_state = "nursemed"
 	icon_living = "nursemed"
@@ -101,7 +101,7 @@ Nurse Family
 	poison_chance = 15
 // VOREStation Edit End
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/queen
+/mob/living/simple_mob/hostile/giant_spider/nurse/queen
 	desc = "Absolutely gigantic, this creature is horror itself."
 	tt_desc = "X Brachypelma phorus tyrannus"
 	icon = 'icons/mob/64x64.dmi'
@@ -124,7 +124,7 @@ Nurse Family
 	old_x = -16
 	old_y = -16
 
-/mob/living/simple_animal/hostile/giant_spider/webslinger
+/mob/living/simple_mob/hostile/giant_spider/webslinger
 	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes, and a cloak of web."
 	tt_desc = "X Brachypelma phorus balisticus"
 	icon_state = "webslinger"
@@ -150,7 +150,7 @@ Nurse Family
 	spattack_min_range = 0
 	spattack_max_range = 5
 
-/mob/living/simple_animal/hostile/giant_spider/webslinger/AttackTarget() //One day.
+/mob/living/simple_mob/hostile/giant_spider/webslinger/AttackTarget() //One day.
 	var/mob/living/carbon/human/victim = null //Webslinger needs to know if its target is human later.
 	if(ishuman(target_mob))
 		victim = target_mob
@@ -165,7 +165,7 @@ Nurse Family
 		shoot_range = 5
 	return ..()
 
-/mob/living/simple_animal/hostile/giant_spider/carrier
+/mob/living/simple_mob/hostile/giant_spider/carrier
 	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes."
 	tt_desc = "X Brachypelma phorus gerulus"
 	icon_state = "carrier"
@@ -183,15 +183,15 @@ Nurse Family
 
 	var/spiderling_count = 0
 	var/spiderling_type = /obj/effect/spider/spiderling
-	var/swarmling_type = /mob/living/simple_animal/hostile/giant_spider/hunter
+	var/swarmling_type = /mob/living/simple_mob/hostile/giant_spider/hunter
 	var/swarmling_faction = "spiders"
 
-/mob/living/simple_animal/hostile/giant_spider/carrier/New()
+/mob/living/simple_mob/hostile/giant_spider/carrier/New()
 	spiderling_count = rand(5,10)
 	adjust_scale(1.2)
 	..()
 
-/mob/living/simple_animal/hostile/giant_spider/carrier/death()
+/mob/living/simple_mob/hostile/giant_spider/carrier/death()
 	visible_message("<span class='notice'>\The [src]'s abdomen splits as it rolls over, spiderlings crawling from the wound.</span>")
 	spawn(1)
 		for(var/I = 1 to spiderling_count)
@@ -214,10 +214,10 @@ Nurse Family
 				break
 	return ..()
 
-/mob/living/simple_animal/hostile/giant_spider/carrier/recursive
+/mob/living/simple_mob/hostile/giant_spider/carrier/recursive
 	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes. You have a distinctly <font face='comic sans ms'>bad</font> feeling about this."
 
-	swarmling_type = /mob/living/simple_animal/hostile/giant_spider/carrier/recursive
+	swarmling_type = /mob/living/simple_mob/hostile/giant_spider/carrier/recursive
 
 /*
 Hunter Family
@@ -225,7 +225,7 @@ Hunter Family
 
 //hunters have the most poison and move the fastest, so they can find prey
 
-/mob/living/simple_animal/hostile/giant_spider/hunter
+/mob/living/simple_mob/hostile/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	tt_desc = "X Brachypelma phorus venandi"
 	icon_state = "hunter"
@@ -238,7 +238,7 @@ Hunter Family
 
 	poison_per_bite = 5
 
-/mob/living/simple_animal/hostile/giant_spider/lurker
+/mob/living/simple_mob/hostile/giant_spider/lurker
 	desc = "Translucent and white, it makes you shudder to look at it. This one has incandescent red eyes."
 	tt_desc = "X Brachypelma phorus insidator"
 	icon_state = "lurker"
@@ -258,11 +258,11 @@ Hunter Family
 	poison_type = "cryptobiolin"
 	poison_per_bite = 2
 
-/mob/living/simple_animal/hostile/giant_spider/lurker/death()
+/mob/living/simple_mob/hostile/giant_spider/lurker/death()
 	alpha = 255
 	return ..()
 
-/mob/living/simple_animal/hostile/giant_spider/tunneler
+/mob/living/simple_mob/hostile/giant_spider/tunneler
 	desc = "Sandy and brown, it makes you shudder to look at it. This one has glittering yellow eyes."
 	tt_desc = "X Brachypelma phorus cannalis"
 	icon_state = "tunneler"
@@ -280,7 +280,7 @@ Hunter Family
 	poison_per_bite = 3
 	poison_type = "serotrotium_v"
 
-/mob/living/simple_animal/hostile/giant_spider/tunneler/death()
+/mob/living/simple_mob/hostile/giant_spider/tunneler/death()
 	spawn(1)
 		for(var/I = 1 to rand(3,6))
 			if(src)
@@ -293,7 +293,7 @@ Hunter Family
 Guard Family
 */
 
-/mob/living/simple_animal/hostile/giant_spider/pepper
+/mob/living/simple_mob/hostile/giant_spider/pepper
 	desc = "Red and brown, it makes you shudder to look at it. This one has glinting red eyes."
 	tt_desc = "X Brachypelma phorus ignis"
 	icon_state = "pepper"
@@ -310,11 +310,11 @@ Guard Family
 	poison_per_bite = 5
 	poison_type = "condensedcapsaicin_v"
 
-/mob/living/simple_animal/hostile/giant_spider/pepper/New()
+/mob/living/simple_mob/hostile/giant_spider/pepper/New()
 	adjust_scale(1.1)
 	..()
 
-/mob/living/simple_animal/hostile/giant_spider/thermic
+/mob/living/simple_mob/hostile/giant_spider/thermic
 	desc = "Mirage-cloaked and orange, it makes you shudder to look at it. This one has simmering orange eyes."
 	tt_desc = "X Brachypelma phorus incaendium"
 	icon_state = "pit"
@@ -331,7 +331,7 @@ Guard Family
 	poison_per_bite = 1
 	poison_type = "thermite_v"
 
-/mob/living/simple_animal/hostile/giant_spider/electric
+/mob/living/simple_mob/hostile/giant_spider/electric
 	desc = "Spined and yellow, it makes you shudder to look at it. This one has flickering gold eyes."
 	tt_desc = "X Brachypelma phorus aromatitis"
 	icon_state = "spark"
@@ -355,7 +355,7 @@ Guard Family
 	poison_per_bite = 3
 	poison_type = "stimm"
 
-/mob/living/simple_animal/hostile/giant_spider/phorogenic
+/mob/living/simple_mob/hostile/giant_spider/phorogenic
 	desc = "Crystalline and purple, it makes you shudder to look at it. This one has haunting purple eyes."
 	tt_desc = "X Brachypelma phorus phorus"
 	icon_state = "phoron"
@@ -376,11 +376,11 @@ Guard Family
 
 	var/exploded = 0
 
-/mob/living/simple_animal/hostile/giant_spider/phorogenic/New()
+/mob/living/simple_mob/hostile/giant_spider/phorogenic/New()
 	adjust_scale(1.25)
 	return ..()
 
-/mob/living/simple_animal/hostile/giant_spider/phorogenic/death()
+/mob/living/simple_mob/hostile/giant_spider/phorogenic/death()
 	visible_message("<span class='danger'>\The [src]'s body begins to rupture!</span>")
 	spawn(rand(1,5))
 		if(src && !exploded)
@@ -389,7 +389,7 @@ Guard Family
 			explosion(src.loc, 1, 2, 4, 6)
 	return ..()
 
-/mob/living/simple_animal/hostile/giant_spider/frost
+/mob/living/simple_mob/hostile/giant_spider/frost
 	desc = "Icy and blue, it makes you shudder to look at it. This one has brilliant blue eyes."
 	tt_desc = "X Brachypelma phorus pruinae"
 	icon_state = "frost"
@@ -406,16 +406,16 @@ Guard Family
 Spider Procs
 */
 
-/mob/living/simple_animal/hostile/giant_spider/New(var/location, var/atom/parent)
+/mob/living/simple_mob/hostile/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
 	add_eyes()
 	..()
 
-/mob/living/simple_animal/hostile/giant_spider/death()
+/mob/living/simple_mob/hostile/giant_spider/death()
 	remove_eyes()
 	..()
 
-/mob/living/simple_animal/hostile/giant_spider/DoPunch(var/atom/A)
+/mob/living/simple_mob/hostile/giant_spider/DoPunch(var/atom/A)
 	. = ..()
 	if(.) // If we succeeded in hitting.
 		if(isliving(A))
@@ -428,7 +428,7 @@ Spider Procs
 						to_chat(L, "<span class='warning'>You feel a tiny prick.</span>")
 						L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/DoPunch(var/atom/A)
+/mob/living/simple_mob/hostile/giant_spider/nurse/DoPunch(var/atom/A)
 	. = ..()
 	if(.) // If we succeeded in hitting.
 		if(ishuman(A))
@@ -446,7 +446,7 @@ Spider Procs
 						O.implants += eggs
 						to_chat(H, "<font size='3'><span class='warning'>\The [src] injects something into your [O.name]!</span></font>")
 
-/mob/living/simple_animal/hostile/giant_spider/webslinger/DoPunch(var/atom/A)
+/mob/living/simple_mob/hostile/giant_spider/webslinger/DoPunch(var/atom/A)
 	. = ..()
 	if(.) // If we succeeded in hitting.
 		if(isliving(A))
@@ -456,7 +456,7 @@ Spider Procs
 				visible_message("<span class='danger'>\The [src] throws a layer of web at \the [L]!</span>")
 				new /obj/effect/spider/stickyweb(L.loc)
 
-/mob/living/simple_animal/hostile/giant_spider/handle_stance()
+/mob/living/simple_mob/hostile/giant_spider/handle_stance()
 	. = ..()
 	if(ai_inactive) return
 
@@ -473,7 +473,7 @@ Spider Procs
 					stop_automated_movement = 0
 					walk(src,0)
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/proc/GiveUp(var/C)
+/mob/living/simple_mob/hostile/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(10 SECONDS)
 		if(busy == MOVING_TO_TARGET)
 			if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
@@ -481,7 +481,7 @@ Spider Procs
 			busy = 0
 			stop_automated_movement = 0
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/Life()
+/mob/living/simple_mob/hostile/giant_spider/nurse/Life()
 	. = ..()
 	if(!. || ai_inactive) return
 
@@ -554,7 +554,7 @@ Spider Procs
 							C.pixel_x = cocoon_target.pixel_x
 							C.pixel_y = cocoon_target.pixel_y
 							for(var/mob/living/M in C.loc)
-								if(istype(M, /mob/living/simple_animal/hostile/giant_spider))
+								if(istype(M, /mob/living/simple_mob/hostile/giant_spider))
 									continue
 								large_cocoon = 1
 								fed++

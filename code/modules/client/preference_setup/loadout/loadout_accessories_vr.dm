@@ -30,11 +30,36 @@
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo
 
-/datum/gear/accessory/white_drop_pouches
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
+/datum/gear/accessory/holster
+	display_name = "holster selection (Security, CD, HoP, Exploration)"
+	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Explorer","Pathfinder")
+
+/datum/gear/accessory/brown_vest
+	display_name = "webbing, brown"
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder")
+
+/datum/gear/accessory/black_vest
+	display_name = "webbing, black"
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder")
 
 /datum/gear/accessory/white_vest
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist")
+	display_name = "webbing, white (Medical)"
+	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic")
+
+/datum/gear/accessory/brown_drop_pouches
+	display_name = "drop pouches, brown"
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder")
+
+/datum/gear/accessory/black_drop_pouches
+	display_name = "drop pouches, black"
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder")
+
+/datum/gear/accessory/white_drop_pouches
+	display_name = "drop pouches, white (Medical)"
+	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic")
+
+/datum/gear/accessory/stethoscope
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"

@@ -19,6 +19,7 @@ var/list/global/map_templates = list()
 	var/mappath = null
 	var/loaded = 0 // Times loaded this round
 	var/annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
+	var/fixed_orientation = FALSE // If true, the submap will not be rotated randomly when loaded.
 
 	var/cost = null // The map generator has a set 'budget' it spends to place down different submaps. It will pick available submaps randomly until \
 	it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc. \
@@ -226,7 +227,13 @@ var/list/global/map_templates = list()
 		var/specific_sanity = 100 // A hundred chances to place the chosen submap.
 		while(specific_sanity > 0)
 			specific_sanity--
-			var/orientation = pick(cardinal)
+
+			var/orientation
+			if(chosen_template.fixed_orientation || !config.random_submap_orientation)
+				orientation = SOUTH
+			else
+				orientation = pick(cardinal)
+
 			chosen_template.preload_size(chosen_template.mappath, orientation)
 			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
 			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)
