@@ -1689,7 +1689,7 @@ Departamental Swimsuits, for general use
 	icon_state = "kilanosuit_p"
 	item_state = "kilanosuit_p"
 
-//Mewchild: Phi Viesti
+//Mewchild: Phi Vietsi
 /obj/item/clothing/gloves/ring/seal/signet/fluff/phi
 	name = "Phi's Bone Signet Ring"
 	desc = "A signet ring belonging to Phi, carved from the bones of something long extinct, as a ward against bad luck."
