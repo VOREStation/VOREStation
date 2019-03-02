@@ -3403,9 +3403,18 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced/polarized/full{
-	id = "library_window_tint"
+	id = "library_study"
 	},
 /turf/simulated/floor/plating,
+/area/library)
+"agp" = (
+/obj/machinery/button/windowtint{
+	id = "library_study";
+	pixel_x = 26;
+	pixel_y = -26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/carpet,
 /area/library)
 "agx" = (
 /obj/structure/bed/chair/comfy/blue{
@@ -19764,15 +19773,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/bridge_hallway)
-"bGj" = (
-/obj/machinery/button/windowtint{
-	id = "library_window_tint";
-	pixel_x = 26;
-	pixel_y = -26
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet,
-/area/library)
 "bGl" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -36434,7 +36434,7 @@ aAg
 bBg
 aEL
 aFk
-bGj
+agp
 bHr
 aAg
 aac
