@@ -364,7 +364,7 @@
 	stop_pulling()
 	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-	Weaken(Floor(stun_duration/2))
+	Weaken(FLOOR(stun_duration/2, 1))
 	return 1
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)

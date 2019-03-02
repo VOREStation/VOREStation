@@ -634,7 +634,7 @@
 		if(new_bulge == 0) //Disable.
 			selected.bulge_size = 0
 			to_chat(user,"<span class='notice'>Your stomach will not be seen on examine.</span>")
-		else if (!IsInRange(new_bulge,25,200))
+		else if (!ISINRANGE(new_bulge,25,200))
 			selected.bulge_size = 0.25 //Set it to the default.
 			to_chat(user,"<span class='notice'>Invalid size.</span>")
 		else if(new_bulge)
@@ -644,7 +644,7 @@
 		var/new_grow = input(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.", selected.shrink_grow_size) as num|null
 		if (new_grow == null)
 			return
-		if (!IsInRange(new_grow,25,200))
+		if (!ISINRANGE(new_grow,25,200))
 			selected.shrink_grow_size = 1 //Set it to the default
 			to_chat(user,"<span class='notice'>Invalid size.</span>")
 		else if(new_grow)
