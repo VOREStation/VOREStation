@@ -25,7 +25,7 @@
 //
 // Simple proc for animals to have their digestion toggled on/off externally
 //
-/*
+
 /mob/living/simple_mob/verb/toggle_digestion()
 	set name = "Toggle Animal's Digestion"
 	set desc = "Enables digestion on this mob for 20 minutes."
@@ -35,7 +35,7 @@
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat) return
 
-	if(retaliate || (hostile && faction != user.faction))
+	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
 		user << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
 		return
 	if(vore_selected.digest_mode == DM_HOLD)
@@ -48,7 +48,7 @@
 		var/confirm = alert(user, "This mob is currently set to process all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
 		if(confirm == "Disable")
 			vore_selected.digest_mode = DM_HOLD
-*/ //VORESTATION AI TEMPORARY REMOVAL
+
 /*
 /mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (hostile && faction != user.faction)) && isturf(user.loc))
