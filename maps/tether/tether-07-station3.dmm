@@ -3538,6 +3538,10 @@
 	pixel_x = 0;
 	pixel_y = 24
 	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
 "fK" = (
@@ -7865,7 +7869,7 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "iaa-tint"
+	id = "iaa_office"
 	},
 /turf/simulated/floor,
 /area/lawoffice)
@@ -7888,7 +7892,7 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "iaa-tint"
+	id = "iaa_office"
 	},
 /turf/simulated/floor,
 /area/lawoffice)
@@ -8214,7 +8218,7 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "iaa-tint"
+	id = "iaa_office"
 	},
 /turf/simulated/floor,
 /area/lawoffice)
@@ -8222,11 +8226,11 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "iaa-tint"
+	id = "iaa_office"
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "iaa-tint"
+	id = "iaa_office"
 	},
 /turf/simulated/floor,
 /area/lawoffice)
@@ -8676,7 +8680,7 @@
 /obj/effect/floor_decal/spline/plain,
 /obj/structure/flora/pottedplant/stoutbush,
 /obj/machinery/button/windowtint{
-	id = "iaa-tint";
+	id = "iaa_office";
 	pixel_x = 0;
 	pixel_y = -36
 	},
@@ -8765,7 +8769,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "iaa-tint"
+	id = "iaa_office"
 	},
 /turf/simulated/floor,
 /area/lawoffice)
@@ -8896,7 +8900,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "psych-tint"
+	id = "psych_office"
 	},
 /turf/simulated/floor/plating,
 /area/medical/psych)
@@ -8919,21 +8923,13 @@
 /turf/space,
 /area/space)
 "ou" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 8;
-	icon_state = "shutter0";
-	id = "surgeryobs";
-	name = "Operating Theatre Privacy Shutters";
-	opacity = 0
+/obj/machinery/button/windowtint{
+	id = "psych_office";
+	pixel_x = 24;
+	range = 8
 	},
-/obj/structure/window/reinforced/polarized/full{
-	id = "surgeryobs1"
-	},
-/turf/simulated/floor/plating,
-/area/medical/surgery)
+/turf/simulated/floor/carpet/blue,
+/area/medical/psych)
 "ov" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9253,11 +9249,19 @@
 "oY" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "surgeryobs";
+	name = "Operating Theatre Privacy Shutters";
+	opacity = 0
+	},
 /obj/structure/window/reinforced/polarized/full{
-	id = "resleeving-tint"
+	id = "surgery_1"
 	},
 /turf/simulated/floor/plating,
-/area/medical/resleeving)
+/area/medical/surgery)
 "oZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -9702,12 +9706,9 @@
 /area/maintenance/station/ai)
 "pB" = (
 /obj/structure/grille,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "resleeving-tint"
+	id = "resleeving"
 	},
 /turf/simulated/floor/plating,
 /area/medical/resleeving)
@@ -9719,16 +9720,37 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "pD" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/machinery/button/windowtint{
-	id = "surgeryobs1";
-	pixel_y = -26
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
-/obj/item/stack/nanopaste,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/button/windowtint{
+	dir = 8;
+	id = "resleeving";
+	pixel_x = 28;
+	pixel_y = 8
+	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay recovery room door.";
+	dir = 8;
+	id = "MedicalResleeving";
+	name = "Exit Button";
+	pixel_x = 28;
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled/white,
-/area/medical/surgery)
+/area/medical/resleeving)
 "pE" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -9812,12 +9834,15 @@
 /area/security/security_processing)
 "pN" = (
 /obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "surgeryobs2"
+	id = "resleeving"
 	},
 /turf/simulated/floor/plating,
-/area/medical/surgery2)
+/area/medical/resleeving)
 "pO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -9876,13 +9901,16 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "pS" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized/full{
-	id = "cmooffice"
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/button/windowtint{
+	id = "surgery_1";
+	pixel_y = -26
 	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/cmo)
+/obj/item/stack/nanopaste,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
 "pT" = (
 /obj/structure/railing,
 /turf/simulated/floor,
@@ -10388,14 +10416,10 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "cmooffice_b"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 8;
-	id = "cmooffice_b"
+	id = "surgery_2"
 	},
 /turf/simulated/floor/plating,
-/area/crew_quarters/heads/cmo)
+/area/medical/surgery2)
 "qR" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -10969,10 +10993,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "cmooffice_b"
-	},
-/obj/structure/window/reinforced/polarized{
-	id = "cmooffice_b"
+	id = "cmo_office_int"
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
@@ -12039,13 +12060,42 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "tc" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized/full{
-	id = "mrecovery-tint"
+/obj/structure/bed/chair/office/light{
+	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/medical/sleeper)
+/obj/effect/landmark/start{
+	name = "Chief Medical Officer"
+	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the CMO's office.";
+	id = "cmodoor";
+	name = "CMO Office Door Control";
+	pixel_x = -8;
+	pixel_y = -36
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "virologyquar";
+	name = "Virology Emergency Lockdown Control";
+	pixel_x = 0;
+	pixel_y = -28;
+	req_access = list(5)
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "medbayquar";
+	name = "Medbay Emergency Lockdown Control";
+	pixel_x = 0;
+	pixel_y = -36;
+	req_access = list(5)
+	},
+/obj/machinery/button/windowtint{
+	id = "cmo_office_int";
+	pixel_x = -6;
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/heads/cmo)
 "td" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -12406,13 +12456,15 @@
 /turf/simulated/wall,
 /area/quartermaster/office)
 "tC" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized/full{
-	id = "pr1_window_tint"
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/button/windowtint{
+	id = "surgery_2";
+	pixel_y = -26
 	},
-/turf/simulated/floor,
-/area/medical/patient_a)
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery2)
 "tD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -13165,21 +13217,37 @@
 /turf/simulated/wall/r_wall,
 /area/security/detectives_office)
 "uK" = (
-/obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "pr2_window_tint"
+	id = "cmo_office_ext"
 	},
-/turf/simulated/floor,
-/area/medical/patient_b)
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "cmo_office_ext"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/cmo)
 "uL" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized/full{
-	id = "pr3_window_tint"
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
 	},
-/turf/simulated/floor,
-/area/medical/patient_c)
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "patient_room_c"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "sec_processing"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "uM" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -14017,16 +14085,19 @@
 /turf/space/cracked_asteroid,
 /area/mine/explored/upper_level)
 "wf" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized/full{
-	id = "pr1_window_tint"
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "pr1_window_tint"
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/medical/patient_a)
+/obj/machinery/button/windowtint{
+	id = "cmo_office_ext";
+	pixel_x = -20;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/heads/cmo)
 "wg" = (
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain";
@@ -14672,6 +14743,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"xh" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "cmo_office_ext"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "cmo_office_ext"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/cmo)
 "xi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15405,13 +15487,10 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "pr2_window_tint"
-	},
-/obj/structure/window/reinforced/polarized{
-	id = "pr2_window_tint"
+	id = "recovery_ward"
 	},
 /turf/simulated/floor/plating,
-/area/medical/patient_b)
+/area/medical/sleeper)
 "ym" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -15884,15 +15963,31 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "yT" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized/full{
-	id = "mrecovery-tint"
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "mrecovery-tint"
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
 	},
-/turf/simulated/floor/plating,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay recovery room door.";
+	id = "MedicalRecovery";
+	name = "Exit Button";
+	pixel_x = -4;
+	pixel_y = 26
+	},
+/obj/machinery/button/windowtint{
+	id = "recovery_ward";
+	pixel_x = 6;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/white,
 /area/medical/ward)
 "yU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -17067,16 +17162,13 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "AA" = (
-/obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "pr3_window_tint"
+	id = "patient_room_a"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "pr3_window_tint"
-	},
-/turf/simulated/floor/plating,
-/area/medical/patient_c)
+/turf/simulated/floor,
+/area/medical/patient_a)
 "AB" = (
 /obj/structure/table/woodentable,
 /obj/structure/plushie/ian{
@@ -17334,6 +17426,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/nuke_storage)
+"Bf" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "patient_room_b"
+	},
+/turf/simulated/floor,
+/area/medical/patient_b)
 "Bg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -17676,6 +17776,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"BB" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "patient_room_c"
+	},
+/turf/simulated/floor,
+/area/medical/patient_c)
 "BC" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -18149,6 +18257,68 @@
 	},
 /turf/simulated/floor/wood,
 /area/medical/psych)
+"Cy" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/pink/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 0;
+	pixel_y = 36
+	},
+/obj/machinery/button/windowtint{
+	id = "patient_room_a";
+	pixel_y = 26
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/patient_a)
+"Cz" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/pink/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/button/windowtint{
+	id = "patient_room_b";
+	pixel_y = 26
+	},
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 0;
+	pixel_y = 36
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/patient_b)
 "CA" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled,
@@ -19074,13 +19244,36 @@
 /turf/simulated/floor/carpet/blue,
 /area/medical/psych)
 "Ej" = (
-/obj/machinery/button/windowtint{
-	id = "psych-tint";
-	pixel_x = 24;
-	range = 8
+/obj/structure/bed/chair{
+	dir = 8
 	},
-/turf/simulated/floor/carpet/blue,
-/area/medical/psych)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/pink/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/button/windowtint{
+	id = "patient_room_c";
+	pixel_y = 26
+	},
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 0;
+	pixel_y = 36
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/patient_c)
 "Ek" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -20199,6 +20392,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
+"Gn" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "patient_room_a"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "patient_room_a"
+	},
+/turf/simulated/floor/plating,
+/area/medical/patient_a)
 "Go" = (
 /obj/machinery/door/window/eastleft{
 	req_one_access = list(5)
@@ -20713,6 +20917,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
+"Hk" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "patient_room_b"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "patient_room_b"
+	},
+/turf/simulated/floor/plating,
+/area/medical/patient_b)
 "Hl" = (
 /obj/machinery/iv_drip,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -21028,6 +21243,17 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/security_starboard)
+"HM" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "patient_room_c"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "patient_room_c"
+	},
+/turf/simulated/floor/plating,
+/area/medical/patient_c)
 "HN" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -21959,6 +22185,17 @@
 /obj/item/device/radio/headset,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
+"Jg" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "recovery_ward"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "recovery_ward"
+	},
+/turf/simulated/floor/plating,
+/area/medical/ward)
 "Jh" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -22422,38 +22659,6 @@
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/resleeving)
-"JW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/machinery/button/windowtint{
-	dir = 8;
-	id = "resleeving-tint";
-	pixel_x = 28;
-	pixel_y = 8
-	},
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay recovery room door.";
-	dir = 8;
-	id = "MedicalResleeving";
-	name = "Exit Button";
-	pixel_x = 28;
-	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
@@ -24194,43 +24399,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
-"MO" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Chief Medical Officer"
-	},
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the CMO's office.";
-	id = "cmodoor";
-	name = "CMO Office Door Control";
-	pixel_x = -8;
-	pixel_y = -36
-	},
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for shutters.";
-	id = "virologyquar";
-	name = "Virology Emergency Lockdown Control";
-	pixel_x = 0;
-	pixel_y = -28;
-	req_access = list(5)
-	},
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for shutters.";
-	id = "medbayquar";
-	name = "Medbay Emergency Lockdown Control";
-	pixel_x = 0;
-	pixel_y = -36;
-	req_access = list(5)
-	},
-/obj/machinery/button/windowtint{
-	id = "cmooffice";
-	pixel_x = -6;
-	pixel_y = -28
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
 "MP" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -24711,16 +24879,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
-"Nr" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/machinery/button/windowtint{
-	id = "surgeryobs2";
-	pixel_y = -26
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery2)
 "Ns" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite,
@@ -24917,20 +25075,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/medbay)
-"NO" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 10
-	},
-/obj/machinery/button/windowtint{
-	id = "cmooffice_b";
-	pixel_x = -20;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
 "NP" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -25759,33 +25903,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/medical/ward)
-"OX" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 4
-	},
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay recovery room door.";
-	id = "MedicalRecovery";
-	name = "Exit Button";
-	pixel_x = -4;
-	pixel_y = 26
-	},
-/obj/machinery/button/windowtint{
-	id = "mrecovery-tint";
-	pixel_x = 6;
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/ward)
 "OY" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/medical,
@@ -26162,37 +26279,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_a)
-"PC" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/pink/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/pink/bordercorner2{
-	dir = 4
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 36
-	},
-/obj/machinery/button/windowtint{
-	id = "pr1_window_tint";
-	pixel_y = 26
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/patient_a)
 "PD" = (
 /obj/structure/table/glass,
 /obj/machinery/computer/med_data/laptop,
@@ -26235,37 +26321,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_b)
-"PF" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/pink/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/pink/bordercorner2{
-	dir = 4
-	},
-/obj/machinery/button/windowtint{
-	id = "pr2_window_tint";
-	pixel_y = 26
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 36
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/patient_b)
 "PG" = (
 /obj/structure/table/glass,
 /obj/machinery/computer/med_data/laptop,
@@ -26305,37 +26360,6 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/patient_c)
-"PI" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/pink/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/pink/bordercorner2{
-	dir = 4
-	},
-/obj/machinery/button/windowtint{
-	id = "pr3_window_tint";
-	pixel_y = 26
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 36
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_c)
@@ -33560,8 +33584,8 @@ Ix
 Me
 Me
 Me
-qQ
-qQ
+uK
+uK
 Me
 aa
 aa
@@ -33703,8 +33727,8 @@ Me
 My
 MN
 Nx
-NO
-rC
+wf
+xh
 aa
 aa
 aa
@@ -33843,10 +33867,10 @@ La
 LG
 Me
 Mz
-MO
+tc
 Ny
 NP
-rC
+xh
 aa
 aa
 aa
@@ -33988,7 +34012,7 @@ MA
 MP
 Nz
 NP
-rC
+xh
 aa
 aa
 aa
@@ -34405,7 +34429,7 @@ Df
 Df
 Ix
 Jf
-JW
+pD
 KB
 Ld
 LK
@@ -34546,15 +34570,15 @@ Gk
 Gk
 Gk
 Ix
-oY
 pB
+pN
 KC
-oY
-oY
+pB
+pB
 Me
-pS
+rC
 MT
-pS
+rC
 Me
 Me
 ab
@@ -35692,7 +35716,7 @@ LO
 Nb
 LO
 NW
-tc
+yl
 OU
 Pr
 PL
@@ -35700,7 +35724,7 @@ Qk
 QH
 QN
 QP
-yT
+Jg
 vt
 aa
 aa
@@ -35834,7 +35858,7 @@ LP
 Nc
 NF
 NZ
-tc
+yl
 OV
 Ps
 PM
@@ -35842,7 +35866,7 @@ Ql
 Pu
 Pu
 QQ
-yT
+Jg
 vt
 vt
 aa
@@ -35984,7 +36008,7 @@ Qm
 Pu
 Pu
 QQ
-yT
+Jg
 vt
 vt
 aa
@@ -36118,15 +36142,15 @@ MG
 Ne
 KI
 Ob
-tc
-OX
+yl
+yT
 Pu
 PO
 Qn
 Pu
 Pu
 QQ
-yT
+Jg
 vt
 vt
 vt
@@ -36260,7 +36284,7 @@ Jr
 Nf
 KI
 Oc
-tc
+yl
 OY
 Pv
 PP
@@ -36268,7 +36292,7 @@ Qo
 PP
 QO
 QR
-yT
+Jg
 vt
 vt
 vt
@@ -37255,11 +37279,11 @@ Nm
 NK
 Oi
 OB
-tC
+AA
 PA
 PU
 Qt
-wf
+Gn
 vt
 vt
 vt
@@ -37401,7 +37425,7 @@ Pf
 PB
 PV
 Qu
-wf
+Gn
 vt
 vt
 vt
@@ -37536,14 +37560,14 @@ LX
 IH
 Jz
 No
-Kn
+uL
 Ok
 OD
-tC
-PC
+AA
+Cy
 PW
 Qv
-wf
+Gn
 vt
 vt
 vt
@@ -37667,17 +37691,17 @@ oq
 EX
 oq
 zD
-ou
-ou
+oY
+oY
 II
-ou
-ou
+oY
+oY
 KU
-pN
-pN
+qQ
+qQ
 Mq
-pN
-pN
+qQ
+qQ
 KV
 Ol
 OE
@@ -37823,11 +37847,11 @@ Np
 KV
 Om
 OF
-uK
+Bf
 PD
 PX
 Qw
-yl
+Hk
 vt
 vt
 vt
@@ -37969,7 +37993,7 @@ Pi
 PE
 PY
 Qx
-yl
+Hk
 vt
 vt
 vt
@@ -38097,21 +38121,21 @@ Hn
 Ig
 IL
 JC
-pD
+pS
 KV
 Lz
 Ma
 Mt
 Ma
-Nr
+tC
 KV
 Oo
 OH
-uK
-PF
+Bf
+Cz
 PZ
 Qy
-yl
+Hk
 vt
 vt
 vt
@@ -38391,11 +38415,11 @@ Nt
 KV
 Oq
 OF
-uL
+BB
 PG
 Qa
 Qz
-AA
+HM
 vt
 vt
 vt
@@ -38537,7 +38561,7 @@ Pl
 PH
 Qb
 QA
-AA
+HM
 vt
 vt
 vt
@@ -38675,11 +38699,11 @@ Mw
 Mw
 Os
 OJ
-uL
-PI
+BB
+Ej
 Qc
 QB
-AA
+HM
 vt
 vt
 vt
@@ -38799,7 +38823,7 @@ AF
 BG
 Cx
 Du
-Ej
+ou
 Ef
 FT
 zD
