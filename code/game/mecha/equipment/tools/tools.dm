@@ -128,7 +128,7 @@
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
-	equip_cooldown = 20
+	equip_cooldown = 10
 	force = 15
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/action(atom/target)
@@ -1203,9 +1203,10 @@
 			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
 			return
 
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
 
 	//search for a valid passenger compartment

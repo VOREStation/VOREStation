@@ -48,6 +48,7 @@
 	set popup_menu = 0
 	if(usr!=src.occupant)
 		return
+	playsound(src, 'sound/mecha/duranddefencemode.ogg', 50, 1)
 	defence = !defence
 	if(defence)
 		deflect_chance = defence_deflect

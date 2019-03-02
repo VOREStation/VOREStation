@@ -77,6 +77,7 @@
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	min_age = 18
 	max_age = 80
@@ -327,6 +328,7 @@
 	color_mult = 1
 	min_age = 18
 	reagent_tag = null
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED

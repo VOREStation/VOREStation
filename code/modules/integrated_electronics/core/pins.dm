@@ -173,7 +173,7 @@ list[](
 	return !isnull(data)
 
 // This proc asks for the data to write, then writes it.
-/datum/integrated_io/proc/ask_for_pin_data(mob/user)
+/datum/integrated_io/proc/ask_for_pin_data(mob/user, obj/item/I)
 	var/new_data = ask_for_data_type(user)
 	write_data_to_pin(new_data)
 

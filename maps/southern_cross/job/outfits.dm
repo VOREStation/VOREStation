@@ -13,8 +13,8 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/device/radio/headset/explorer
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
-	id_type = /obj/item/weapon/card/id/civilian/explorer
+	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
+	id_type = /obj/item/weapon/card/id/explorer/explorer //VOREStation Edit
 	id_pda_assignment = "Explorer"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
@@ -46,20 +46,21 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/device/radio/headset/pilot/alt
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
-	id_type = /obj/item/weapon/card/id/civilian/pilot
+	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian
+	id_type = /obj/item/weapon/card/id/explorer/pilot //VOREStation Edit
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/sar
-	name = OUTFIT_JOB_NAME("Search and Rescue")
+	name = OUTFIT_JOB_NAME("Field Medic") //VOREStation Edit
 	uniform = /obj/item/clothing/under/utility/blue
-	suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
+	//suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar //VOREStation Edit
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	l_ear = /obj/item/device/radio/headset/sar
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
+	pda_type = /obj/item/device/pda/sar //VOREStation Add
 	id_type = /obj/item/weapon/card/id/medical/sar
-	id_pda_assignment = "Search and Rescue"
+	id_pda_assignment = "Field Medic" //VOREStation Edit
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL

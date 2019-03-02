@@ -24,7 +24,7 @@
 /datum/event/grub_infestation/start()
 	while((spawncount >= 1) && vents.len)
 		var/obj/vent = pick(vents)
-		new /mob/living/simple_animal/solargrub_larva(get_turf(vent))
+		//new /mob/living/simple_mob/solargrub_larva(get_turf(vent)) //VORESTATION AI TEMPORARY REMOVAL. Event commented out until mobs are fixed.
 		vents -= vent
 		spawncount--
 	vents.Cut()

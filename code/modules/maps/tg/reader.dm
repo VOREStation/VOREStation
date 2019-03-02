@@ -99,6 +99,11 @@ var/global/use_preloader = FALSE
 			var/ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
 			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
 
+			if(orientation & (EAST | WEST)) //VOREStation edit we just have to pray the upstream spacebrains take into consideration before their refator is done.
+				xcrd = ycrd // temp variable
+				ycrd = xcrdStart
+				xcrdStart = xcrd
+
 			var/zexpansion = zcrd > world.maxz
 			if(zexpansion && !measureOnly)
 				if(cropMap)

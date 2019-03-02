@@ -35,6 +35,11 @@
 #define Z_LEVEL_MISC						11
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_UNDERDARK					13
+#define Z_LEVEL_ALIENSHIP					14
+#define Z_LEVEL_BEACH						15
+#define Z_LEVEL_BEACH_CAVE					16
+#define Z_LEVEL_AEROSTAT					17
+#define Z_LEVEL_AEROSTAT_SURFACE			18
 
 /datum/map/tether
 	name = "Virgo"
@@ -249,7 +254,7 @@
 	if(activated && isemptylist(frozen_mobs))
 		return
 	activated = 1
-	for(var/mob/living/simple_animal/M in frozen_mobs)
+	for(var/mob/living/simple_mob/M in frozen_mobs)
 		M.life_disabled = 0
 		frozen_mobs -= M
 	frozen_mobs.Cut()

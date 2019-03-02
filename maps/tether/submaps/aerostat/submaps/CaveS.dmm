@@ -48,7 +48,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "m" = (
-/mob/living/simple_animal/hostile/giant_spider/lurker,
+/mob/living/simple_mob/hostile/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "n" = (
@@ -61,7 +61,7 @@
 /area/submap/virgo2/CaveS)
 "q" = (
 /obj/effect/decal/cleanable/cobweb2,
-/mob/living/simple_animal/hostile/giant_spider/lurker,
+/mob/living/simple_mob/hostile/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "r" = (
@@ -133,7 +133,7 @@
 /area/submap/virgo2/CaveS)
 "D" = (
 /obj/effect/spider/stickyweb,
-/mob/living/simple_animal/hostile/giant_spider/lurker,
+/mob/living/simple_mob/hostile/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "E" = (
