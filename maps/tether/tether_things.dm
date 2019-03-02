@@ -1,7 +1,7 @@
 /obj/structure/window/reinforced/polarized/full
-	dir = SOUTHWEST
 	icon_state = "fwindow"
 	maxhealth = 80
+	fulltile = TRUE
 
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
