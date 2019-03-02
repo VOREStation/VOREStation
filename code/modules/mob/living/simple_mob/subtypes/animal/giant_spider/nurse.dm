@@ -23,7 +23,7 @@
 
 	var/fed = 0 // Counter for how many egg laying 'charges' the spider has.
 	var/egg_inject_chance = 25 // One in four chance to get eggs.
-	egg_type = /obj/effect/spider/eggcluster/small //VORESTATION AI TEMPORARY EDIT
+	var/egg_type = /obj/effect/spider/eggcluster/small
 	var/web_type = /obj/effect/spider/stickyweb/dark
 
 
