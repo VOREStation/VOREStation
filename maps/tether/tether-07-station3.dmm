@@ -1941,6 +1941,11 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "dg" = (
@@ -6974,11 +6979,6 @@
 	icon_state = "0-2"
 	},
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 1;
@@ -6986,6 +6986,9 @@
 	id = "security_lockdown";
 	name = "Security Blast Doors";
 	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
@@ -7074,11 +7077,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green,
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
-	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
@@ -7090,6 +7088,9 @@
 	name = "Security Blast Doors";
 	opacity = 0
 	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
+	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
 	id = "hos_office"
@@ -7098,41 +7099,28 @@
 /area/crew_quarters/heads/hos)
 "lv" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 4;
 	icon_state = "pdoor0";
-	id = "security_lockdown";
+	id = "brig_lockdown";
 	name = "Security Blast Doors";
 	opacity = 0
 	},
-/obj/structure/window/reinforced/polarized{
-	dir = 8;
-	id = "hos_office"
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "sec_processing"
 	},
 /turf/simulated/floor,
-/area/crew_quarters/heads/hos)
+/area/security/security_processing)
 "lw" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 8;
-	id = "lawyer_blast"
+/obj/structure/window/reinforced/polarized/full{
+	id = "sec_processing"
 	},
 /turf/simulated/floor,
-/area/lawoffice)
+/area/security/security_processing)
 "lx" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/security{
@@ -7427,45 +7415,46 @@
 /turf/space,
 /area/shuttle/antag_space/north)
 "lZ" = (
-/obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "cmooffice_b"
+/obj/structure/cable/green,
+/obj/structure/grille,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "security_lockdown";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "cmooffice_b"
+	id = "hos_office"
 	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/cmo)
+/turf/simulated/floor,
+/area/crew_quarters/heads/hos)
 "ma" = (
-/obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "cmooffice_b"
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "cmooffice_b"
-	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/cmo)
+/turf/simulated/floor,
+/area/security/breakroom)
 "mb" = (
 /obj/structure/grille,
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "exam_room"
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "exam_room"
-	},
-/turf/simulated/floor/plating,
-/area/medical/exam_room)
+/turf/simulated/floor,
+/area/security/forensics)
 "mc" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 9
@@ -7822,30 +7811,30 @@
 /area/security/security_lockerroom)
 "mE" = (
 /obj/structure/grille,
+/obj/structure/cable/green,
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pr1_window_tint"
+/obj/structure/cable/green{
+	icon_state = "0-4"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "pr1_window_tint"
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
 	},
-/turf/simulated/floor/plating,
-/area/medical/patient_a)
+/turf/simulated/floor,
+/area/security/forensics)
 "mF" = (
 /obj/structure/grille,
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pr2_window_tint"
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "pr2_window_tint"
-	},
-/turf/simulated/floor/plating,
-/area/medical/patient_b)
+/turf/simulated/floor,
+/area/security/forensics)
 "mG" = (
 /obj/structure/railing{
 	dir = 8
@@ -7862,31 +7851,47 @@
 /turf/simulated/wall/r_wall,
 /area/security/hallway)
 "mI" = (
-/obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pr3_window_tint"
+/obj/structure/cable/green{
+	icon_state = "0-4"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "pr3_window_tint"
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "security_lockdown";
+	name = "Security Blast Doors";
+	opacity = 0
 	},
-/turf/simulated/floor/plating,
-/area/medical/patient_c)
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "iaa-tint"
+	},
+/turf/simulated/floor,
+/area/lawoffice)
 "mJ" = (
-/obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "mrecovery-tint"
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/structure/window/reinforced/polarized{
-	id = "mrecovery-tint"
+/obj/structure/cable/green{
+	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/medical/ward)
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "security_lockdown";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "iaa-tint"
+	},
+/turf/simulated/floor,
+/area/lawoffice)
 "mK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -8193,6 +8198,38 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"nm" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "security_lockdown";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "iaa-tint"
+	},
+/turf/simulated/floor,
+/area/lawoffice)
+"nn" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "iaa-tint"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "iaa-tint"
+	},
+/turf/simulated/floor,
+/area/lawoffice)
 "no" = (
 /turf/simulated/wall,
 /area/security/hallway)
@@ -8635,6 +8672,20 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
+"nZ" = (
+/obj/effect/floor_decal/spline/plain,
+/obj/structure/flora/pottedplant/stoutbush,
+/obj/machinery/button/windowtint{
+	id = "iaa-tint";
+	pixel_x = 0;
+	pixel_y = -36
+	},
+/obj/machinery/light_switch{
+	pixel_x = 0;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/dark,
+/area/lawoffice)
 "oa" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -8712,22 +8763,12 @@
 /area/security/security_processing)
 "og" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "brig_lockdown";
-	name = "Security Blast Doors";
-	opacity = 0
-	},
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "sec_processing"
+/obj/structure/window/reinforced/polarized/full{
+	id = "iaa-tint"
 	},
 /turf/simulated/floor,
-/area/security/security_processing)
+/area/lawoffice)
 "oh" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -8851,6 +8892,14 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/cargo)
+"oq" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "psych-tint"
+	},
+/turf/simulated/floor/plating,
+/area/medical/psych)
 "or" = (
 /obj/item/weapon/storage/laundry_basket,
 /turf/simulated/floor,
@@ -8869,6 +8918,22 @@
 /obj/structure/grille,
 /turf/space,
 /area/space)
+"ou" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "surgeryobs";
+	name = "Operating Theatre Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "surgeryobs1"
+	},
+/turf/simulated/floor/plating,
+/area/medical/surgery)
 "ov" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9185,6 +9250,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"oY" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "resleeving-tint"
+	},
+/turf/simulated/floor/plating,
+/area/medical/resleeving)
 "oZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -9627,6 +9700,17 @@
 /obj/random/maintenance/medical,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
+"pB" = (
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "resleeving-tint"
+	},
+/turf/simulated/floor/plating,
+/area/medical/resleeving)
 "pC" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -9635,15 +9719,16 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "pD" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/button/windowtint{
+	id = "surgeryobs1";
+	pixel_y = -26
 	},
-/turf/simulated/floor,
-/area/security/breakroom)
+/obj/item/stack/nanopaste,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
 "pE" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -9725,6 +9810,14 @@
 "pM" = (
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
+"pN" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "surgeryobs2"
+	},
+/turf/simulated/floor/plating,
+/area/medical/surgery2)
 "pO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -9782,6 +9875,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/security/hallway)
+"pS" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "cmooffice"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/cmo)
 "pT" = (
 /obj/structure/railing,
 /turf/simulated/floor,
@@ -10284,15 +10385,17 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "qQ" = (
-/obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "sec_processing"
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "cmooffice_b"
 	},
-/turf/simulated/floor,
-/area/security/security_processing)
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "cmooffice_b"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/cmo)
 "qR" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -10862,6 +10965,17 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/security/hallway)
+"rC" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "cmooffice_b"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "cmooffice_b"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/cmo)
 "rD" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -11924,6 +12038,14 @@
 /obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled,
 /area/security/hallway)
+"tc" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "mrecovery-tint"
+	},
+/turf/simulated/floor/plating,
+/area/medical/sleeper)
 "td" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -12204,6 +12326,14 @@
 /obj/machinery/vending/snack,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"tt" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "exam_room"
+	},
+/turf/simulated/floor,
+/area/medical/sleeper)
 "tu" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -12275,6 +12405,14 @@
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
 /area/quartermaster/office)
+"tC" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "pr1_window_tint"
+	},
+/turf/simulated/floor,
+/area/medical/patient_a)
 "tD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -13028,50 +13166,20 @@
 /area/security/detectives_office)
 "uK" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "security_lockdown";
-	name = "Security Blast Doors";
-	opacity = 0
-	},
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
+/obj/structure/window/reinforced/polarized/full{
+	id = "pr2_window_tint"
 	},
 /turf/simulated/floor,
-/area/lawoffice)
+/area/medical/patient_b)
 "uL" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "security_lockdown";
-	name = "Security Blast Doors";
-	opacity = 0
-	},
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
+/obj/structure/window/reinforced/polarized/full{
+	id = "pr3_window_tint"
 	},
 /turf/simulated/floor,
-/area/lawoffice)
+/area/medical/patient_c)
 "uM" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -13106,27 +13214,16 @@
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "uN" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "security_lockdown";
-	name = "Security Blast Doors";
-	opacity = 0
-	},
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "exam_room"
 	},
-/turf/simulated/floor,
-/area/lawoffice)
+/obj/structure/window/reinforced/polarized{
+	id = "exam_room"
+	},
+/turf/simulated/floor/plating,
+/area/medical/exam_room)
 "uO" = (
 /turf/simulated/wall/r_wall,
 /area/lawoffice)
@@ -13920,15 +14017,16 @@
 /turf/space/cracked_asteroid,
 /area/mine/explored/upper_level)
 "wf" = (
-/obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "pr1_window_tint"
 	},
-/turf/simulated/floor,
-/area/lawoffice)
+/obj/structure/window/reinforced/polarized{
+	id = "pr1_window_tint"
+	},
+/turf/simulated/floor/plating,
+/area/medical/patient_a)
 "wg" = (
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain";
@@ -15304,19 +15402,16 @@
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "yl" = (
-/obj/effect/floor_decal/spline/plain,
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/machinery/button/windowtint{
-	id = "lawyer_blast";
-	pixel_x = 0;
-	pixel_y = -36
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "pr2_window_tint"
 	},
-/obj/machinery/light_switch{
-	pixel_x = 0;
-	pixel_y = -26
+/obj/structure/window/reinforced/polarized{
+	id = "pr2_window_tint"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/lawoffice)
+/turf/simulated/floor/plating,
+/area/medical/patient_b)
 "ym" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -15788,6 +15883,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
+"yT" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "mrecovery-tint"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "mrecovery-tint"
+	},
+/turf/simulated/floor/plating,
+/area/medical/ward)
 "yU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -16962,14 +17068,15 @@
 /area/hallway/station/upper)
 "AA" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "psych-tint"
-	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "pr3_window_tint"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "pr3_window_tint"
+	},
 /turf/simulated/floor/plating,
-/area/medical/psych)
+/area/medical/patient_c)
 "AB" = (
 /obj/structure/table/woodentable,
 /obj/structure/plushie/ian{
@@ -20606,24 +20713,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
-"Hk" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 8;
-	icon_state = "shutter0";
-	id = "surgeryobs";
-	name = "Operating Theatre Privacy Shutters";
-	opacity = 0
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "surgeryobs"
-	},
-/turf/simulated/floor/plating,
-/area/medical/surgery)
 "Hl" = (
 /obj/machinery/iv_drip,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -21870,16 +21959,6 @@
 /obj/item/device/radio/headset,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
-"Jg" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "resleeving-tint"
-	},
-/turf/simulated/floor/plating,
-/area/medical/resleeving)
 "Jh" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -22378,19 +22457,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
-"JX" = (
-/obj/structure/grille,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "resleeving-tint"
-	},
-/turf/simulated/floor/plating,
-/area/medical/resleeving)
 "JY" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -22590,17 +22656,6 @@
 	pixel_x = 0;
 	pixel_y = -24
 	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"Kq" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/obj/machinery/button/windowtint{
-	id = "surgeryobs";
-	pixel_y = -26
-	},
-/obj/item/stack/nanopaste,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Kr" = (
@@ -23244,16 +23299,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
-"Lw" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "surgeryobs2"
-	},
-/turf/simulated/floor/plating,
-/area/medical/surgery2)
 "Lx" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -24014,16 +24059,6 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
-"ME" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "cmooffice"
-	},
-/turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
 "MF" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -25291,16 +25326,6 @@
 /obj/structure/sign/nosmoking_1,
 /turf/simulated/wall,
 /area/medical/sleeper)
-"Ox" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "mrecovery-tint"
-	},
-/turf/simulated/floor/plating,
-/area/medical/sleeper)
 "Oy" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25326,16 +25351,6 @@
 	name = "Recovery Room"
 	},
 /turf/simulated/floor/tiled/white,
-/area/medical/sleeper)
-"Oz" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "exam_room"
-	},
-/turf/simulated/floor,
 /area/medical/sleeper)
 "OA" = (
 /obj/structure/cable/green{
@@ -25857,16 +25872,6 @@
 "Pd" = (
 /turf/simulated/wall,
 /area/medical/patient_a)
-"Pe" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pr1_window_tint"
-	},
-/turf/simulated/floor,
-/area/medical/patient_a)
 "Pf" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25895,16 +25900,6 @@
 "Pg" = (
 /turf/simulated/wall,
 /area/medical/patient_b)
-"Ph" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pr2_window_tint"
-	},
-/turf/simulated/floor,
-/area/medical/patient_b)
 "Pi" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25932,16 +25927,6 @@
 /area/medical/patient_b)
 "Pj" = (
 /turf/simulated/wall,
-/area/medical/patient_c)
-"Pk" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pr3_window_tint"
-	},
-/turf/simulated/floor,
 /area/medical/patient_c)
 "Pl" = (
 /obj/structure/cable/green{
@@ -27371,23 +27356,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
-"Tb" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
-	},
-/obj/structure/cable/green,
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor,
-/area/security/forensics)
 "Td" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -27561,20 +27529,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
-"UA" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/security/forensics)
 "UC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -27708,19 +27662,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
-"Wj" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hos_office"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/security/forensics)
 "WB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -31740,7 +31681,7 @@ je
 je
 je
 lj
-lv
+lZ
 qc
 qv
 rd
@@ -31883,7 +31824,7 @@ nW
 TO
 oW
 ZM
-UA
+mb
 qw
 re
 sa
@@ -32025,7 +31966,7 @@ nX
 nX
 oX
 Sc
-Tb
+mE
 qx
 rf
 sb
@@ -32167,7 +32108,7 @@ Rq
 jM
 kv
 SP
-Wj
+mF
 qy
 rg
 sc
@@ -32451,7 +32392,7 @@ eH
 ow
 Un
 cZ
-UA
+mb
 qz
 ri
 sd
@@ -32593,7 +32534,7 @@ jM
 jM
 pa
 Sz
-Tb
+mE
 qA
 rj
 se
@@ -32735,7 +32676,7 @@ oa
 ox
 ff
 pC
-Wj
+mF
 qB
 rk
 sf
@@ -32876,7 +32817,7 @@ ZY
 ZY
 ZY
 av
-pD
+ma
 qd
 qC
 rl
@@ -33311,9 +33252,9 @@ sT
 tP
 uJ
 vu
-lw
-lw
-lw
+nn
+nn
+nn
 vu
 uO
 zX
@@ -33457,7 +33398,7 @@ wg
 wg
 xy
 yi
-wf
+og
 zY
 Bj
 Ca
@@ -33599,7 +33540,7 @@ wh
 wh
 xz
 yj
-wf
+og
 zZ
 Bk
 BC
@@ -33619,8 +33560,8 @@ Ix
 Me
 Me
 Me
-lZ
-lZ
+qQ
+qQ
 Me
 aa
 aa
@@ -33741,7 +33682,7 @@ wh
 wM
 xA
 yk
-wf
+og
 Aa
 Bl
 Ca
@@ -33763,7 +33704,7 @@ My
 MN
 Nx
 NO
-ma
+rC
 aa
 aa
 aa
@@ -33882,7 +33823,7 @@ vy
 wh
 wh
 xB
-yl
+nZ
 uO
 Ab
 Bm
@@ -33905,7 +33846,7 @@ Mz
 MO
 Ny
 NP
-ma
+rC
 aa
 aa
 aa
@@ -34019,7 +33960,7 @@ rr
 sm
 sV
 tS
-uK
+mI
 vz
 wh
 Cu
@@ -34047,7 +33988,7 @@ MA
 MP
 Nz
 NP
-ma
+rC
 aa
 aa
 aa
@@ -34161,7 +34102,7 @@ rs
 lA
 DO
 tT
-uL
+mJ
 vA
 wh
 wh
@@ -34309,7 +34250,7 @@ wh
 wM
 xE
 yk
-wf
+og
 Ae
 Bo
 Ca
@@ -34445,13 +34386,13 @@ rt
 oz
 sY
 tV
-uN
+nm
 vC
 wh
 wh
 xF
 yo
-wf
+og
 Af
 Bp
 Cg
@@ -34593,7 +34534,7 @@ wi
 wN
 xG
 yp
-wf
+og
 Aa
 Bq
 Ch
@@ -34605,15 +34546,15 @@ Gk
 Gk
 Gk
 Ix
-Jg
-JX
+oY
+pB
 KC
-Jg
-Jg
+oY
+oY
 Me
-ME
+pS
 MT
-ME
+pS
 Me
 Me
 ab
@@ -35003,14 +34944,14 @@ cV
 jk
 jk
 jk
-og
+lv
 oB
 pl
 pM
 qh
 fK
 rv
-qQ
+lw
 qP
 tX
 uR
@@ -35145,14 +35086,14 @@ jk
 jk
 jk
 jk
-og
+lv
 oC
 pm
 Rs
 qi
 qN
 rw
-qQ
+lw
 pg
 tY
 uS
@@ -35294,7 +35235,7 @@ DP
 nu
 qN
 rx
-qQ
+lw
 td
 pG
 mH
@@ -35429,7 +35370,7 @@ cS
 jk
 jk
 jk
-qQ
+lw
 oE
 po
 pO
@@ -35571,14 +35512,14 @@ cT
 jy
 jk
 jk
-qQ
+lw
 oF
 pp
 pP
 qi
 mz
 ry
-qQ
+lw
 tZ
 ua
 uU
@@ -35714,12 +35655,12 @@ mH
 lD
 lD
 of
-qQ
-qQ
-qQ
+lw
+lw
+lw
 qk
-qQ
-qQ
+lw
+lw
 oA
 tg
 ub
@@ -35751,7 +35692,7 @@ LO
 Nb
 LO
 NW
-Ox
+tc
 OU
 Pr
 PL
@@ -35759,7 +35700,7 @@ Qk
 QH
 QN
 QP
-mJ
+yT
 vt
 aa
 aa
@@ -35893,7 +35834,7 @@ LP
 Nc
 NF
 NZ
-Ox
+tc
 OV
 Ps
 PM
@@ -35901,7 +35842,7 @@ Ql
 Pu
 Pu
 QQ
-mJ
+yT
 vt
 vt
 aa
@@ -36043,7 +35984,7 @@ Qm
 Pu
 Pu
 QQ
-mJ
+yT
 vt
 vt
 aa
@@ -36177,7 +36118,7 @@ MG
 Ne
 KI
 Ob
-Ox
+tc
 OX
 Pu
 PO
@@ -36185,7 +36126,7 @@ Qn
 Pu
 Pu
 QQ
-mJ
+yT
 vt
 vt
 vt
@@ -36319,7 +36260,7 @@ Jr
 Nf
 KI
 Oc
-Ox
+tc
 OY
 Pv
 PP
@@ -36327,7 +36268,7 @@ Qo
 PP
 QO
 QR
-mJ
+yT
 vt
 vt
 vt
@@ -36603,12 +36544,12 @@ Lp
 Nh
 KI
 Od
-Oz
+tt
 OZ
 Pw
 PQ
 Qp
-mb
+uN
 vt
 vt
 vt
@@ -36750,7 +36691,7 @@ Pa
 Px
 PR
 Qq
-mb
+uN
 vt
 vt
 vt
@@ -36887,12 +36828,12 @@ Lp
 Nj
 KI
 Of
-Oz
+tt
 Pb
 Py
 PS
 Qr
-mb
+uN
 vt
 vt
 vt
@@ -37034,7 +36975,7 @@ oh
 Pz
 PT
 Qs
-mb
+uN
 vt
 vt
 vt
@@ -37314,11 +37255,11 @@ Nm
 NK
 Oi
 OB
-Pe
+tC
 PA
 PU
 Qt
-mE
+wf
 vt
 vt
 vt
@@ -37460,7 +37401,7 @@ Pf
 PB
 PV
 Qu
-mE
+wf
 vt
 vt
 vt
@@ -37598,11 +37539,11 @@ No
 Kn
 Ok
 OD
-Pe
+tC
 PC
 PW
 Qv
-mE
+wf
 vt
 vt
 vt
@@ -37722,21 +37663,21 @@ Av
 hX
 hZ
 zD
-AA
+oq
 EX
-AA
+oq
 zD
-Hk
-Hk
+ou
+ou
 II
-Hk
-Hk
+ou
+ou
 KU
-Lw
-Lw
+pN
+pN
 Mq
-Lw
-Lw
+pN
+pN
 KV
 Ol
 OE
@@ -37863,7 +37804,7 @@ zB
 Ay
 xX
 jm
-AA
+oq
 Ec
 EY
 FN
@@ -37882,11 +37823,11 @@ Np
 KV
 Om
 OF
-Ph
+uK
 PD
 PX
 Qw
-mF
+yl
 vt
 vt
 vt
@@ -38005,7 +37946,7 @@ zC
 Az
 BD
 Cv
-AA
+oq
 Ed
 EZ
 Ef
@@ -38028,7 +37969,7 @@ Pi
 PE
 PY
 Qx
-mF
+yl
 vt
 vt
 vt
@@ -38144,10 +38085,10 @@ xb
 xR
 yJ
 zD
-AA
+oq
 BE
-AA
-AA
+oq
+oq
 Ee
 EZ
 FO
@@ -38156,7 +38097,7 @@ Hn
 Ig
 IL
 JC
-Kq
+pD
 KV
 Lz
 Ma
@@ -38166,11 +38107,11 @@ Nr
 KV
 Oo
 OH
-Ph
+uK
 PF
 PZ
 Qy
-mF
+yl
 vt
 vt
 vt
@@ -38450,11 +38391,11 @@ Nt
 KV
 Oq
 OF
-Pk
+uL
 PG
 Qa
 Qz
-mI
+AA
 vt
 vt
 vt
@@ -38596,7 +38537,7 @@ Pl
 PH
 Qb
 QA
-mI
+AA
 vt
 vt
 vt
@@ -38734,11 +38675,11 @@ Mw
 Mw
 Os
 OJ
-Pk
+uL
 PI
 Qc
 QB
-mI
+AA
 vt
 vt
 vt

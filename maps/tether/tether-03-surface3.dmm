@@ -17765,10 +17765,56 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "EM" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "rd_office"
+	},
+/turf/simulated/floor/plating,
+/area/rnd/rdoffice)
+"EN" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "rd_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "rd_office"
+	},
+/turf/simulated/floor/plating,
+/area/rnd/rdoffice)
+"EO" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/machinery/button/windowtint{
+	id = "rd_office";
+	pixel_x = 24;
+	pixel_y = 16
+	},
+/obj/effect/landmark/start{
+	name = "Research Director"
+	},
+/obj/machinery/button/remote/airlock{
+	id = "RDdoor";
+	name = "RD Office Door Control";
+	pixel_x = 30;
+	pixel_y = 18
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/rdoffice)
+"EP" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "rd_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "rd_office"
+	},
+/turf/simulated/floor/plating,
+/area/rnd/rdoffice)
 "EQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -17836,6 +17882,11 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
+"EV" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "EW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -18434,12 +18485,6 @@
 /area/crew_quarters/barrestroom)
 "FN" = (
 /turf/simulated/wall,
-/area/rnd/rdoffice)
-"FO" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/polarized/full,
-/turf/simulated/floor/plating,
 /area/rnd/rdoffice)
 "FP" = (
 /obj/machinery/door/firedoor/glass,
@@ -19444,15 +19489,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/bar_backroom)
-"Hy" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/polarized{
-	dir = 8
-	},
-/obj/structure/window/reinforced/polarized/full,
-/turf/simulated/floor/plating,
-/area/rnd/rdoffice)
 "Hz" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin{
@@ -19821,25 +19857,6 @@
 	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/rdoffice)
-"HZ" = (
-/obj/structure/bed/chair/office/light{
-	dir = 1
-	},
-/obj/machinery/button/windowtint{
-	pixel_x = 24;
-	pixel_y = 16
-	},
-/obj/effect/landmark/start{
-	name = "Research Director"
-	},
-/obj/machinery/button/remote/airlock{
-	id = "RDdoor";
-	name = "RD Office Door Control";
-	pixel_x = 30;
-	pixel_y = 18
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
@@ -20350,13 +20367,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/shuttle_pad)
-"IT" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced/polarized,
-/obj/structure/window/reinforced/polarized/full,
-/turf/simulated/floor/plating,
-/area/rnd/rdoffice)
 "IU" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -29860,9 +29870,9 @@ Eg
 FN
 FN
 FN
-Hy
-Hy
-Hy
+EN
+EN
+EN
 FN
 FN
 ac
@@ -29999,7 +30009,7 @@ yR
 yR
 Eb
 Eg
-FO
+EM
 Gw
 Hi
 Hz
@@ -30141,14 +30151,14 @@ yR
 CY
 Ec
 Eh
-FO
+EM
 Gx
 Hj
 HA
-HZ
+EO
 Ik
 Iv
-IT
+EP
 ac
 ac
 ac
@@ -30290,7 +30300,7 @@ HB
 Ia
 HC
 Iw
-IT
+EP
 ac
 ac
 ac
@@ -30425,14 +30435,14 @@ yR
 yR
 yR
 EA
-FO
+EM
 Gz
 Hl
 HC
 HC
 HC
 Ix
-IT
+EP
 ac
 ac
 ac
@@ -30567,7 +30577,7 @@ Cu
 Du
 Ee
 EK
-FO
+EM
 GA
 Hm
 HD
@@ -30712,9 +30722,9 @@ Ei
 FN
 FN
 FN
-FO
-FO
-FO
+EM
+EM
+EM
 FN
 FN
 ac
@@ -36262,7 +36272,7 @@ Jr
 Jv
 Jz
 JE
-EM
+EV
 JM
 IY
 IY
@@ -36404,7 +36414,7 @@ Js
 Js
 Jz
 JE
-EM
+EV
 JM
 IY
 IY
@@ -36546,7 +36556,7 @@ Jt
 Js
 Jz
 JE
-EM
+EV
 JM
 IY
 IY

@@ -3268,34 +3268,50 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "eY" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "chapel"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/turf/simulated/floor/plating,
+/area/chapel/office)
 "eZ" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced/polarized/full{
+	id = "chapel"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/turf/simulated/floor/plating,
+/area/chapel/office)
 "fa" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "interrogation"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/structure/window/reinforced/tinted{
+	dir = 8;
+	icon_state = "twindow"
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/security/interrogation)
+"fb" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "interrogation"
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/security/interrogation)
 "fc" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -3321,6 +3337,45 @@
 "fd" = (
 /turf/simulated/wall/r_wall,
 /area/security/interrogation)
+"fe" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "interrogation"
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4;
+	icon_state = "twindow"
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/security/interrogation)
+"ff" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/hallway/station/starboard)
+"fg" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/hallway/station/starboard)
+"fh" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fi" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -3387,6 +3442,15 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"fq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fr" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/structure/window/reinforced{
@@ -3411,6 +3475,16 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
+"fu" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fv" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -3481,16 +3555,6 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"fO" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "chapel"
-	},
-/turf/simulated/floor/plating,
-/area/chapel/office)
 "fP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3505,17 +3569,6 @@
 	req_access = list(27)
 	},
 /turf/simulated/floor/lino,
-/area/chapel/office)
-"fQ" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "chapel"
-	},
-/turf/simulated/floor/plating,
 /area/chapel/office)
 "fR" = (
 /obj/structure/cable/pink{
@@ -4094,24 +4147,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
-"ha" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "chapel"
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4;
-	icon_state = "twindow"
-	},
-/turf/simulated/floor,
-/area/security/interrogation)
 "hc" = (
 /obj/structure/cable/pink{
 	icon_state = "1-2"
@@ -6561,27 +6596,6 @@
 "my" = (
 /obj/machinery/status_display,
 /turf/simulated/wall,
-/area/hallway/station/starboard)
-"mz" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
-	},
-/turf/simulated/floor/plating,
-/area/hallway/station/starboard)
-"mA" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "lawyer_blast"
-	},
-/turf/simulated/floor/plating,
 /area/hallway/station/starboard)
 "mB" = (
 /obj/machinery/door/firedoor/glass,
@@ -17029,24 +17043,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/maintenance/station/sec_lower)
-"Fj" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "chapel"
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 8;
-	icon_state = "twindow"
-	},
-/turf/simulated/floor,
-/area/security/interrogation)
 "Fq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -17979,20 +17975,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
-"Of" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "chapel"
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/security/interrogation)
 "Oj" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -28664,7 +28646,7 @@ fd
 Mp
 Sy
 Mp
-Fj
+fa
 En
 hY
 fd
@@ -28806,7 +28788,7 @@ fd
 fK
 gb
 gE
-Of
+fb
 WL
 hZ
 fd
@@ -28948,7 +28930,7 @@ fd
 fL
 gc
 Mp
-ha
+fe
 hw
 ia
 fd
@@ -29655,7 +29637,7 @@ dy
 dY
 ey
 iH
-fO
+eY
 ge
 gI
 hc
@@ -29797,7 +29779,7 @@ dz
 dZ
 ez
 fj
-fO
+eY
 gf
 gJ
 hd
@@ -30081,7 +30063,7 @@ dB
 eb
 eB
 fl
-fQ
+eZ
 gh
 gL
 hf
@@ -30124,11 +30106,11 @@ AN
 AN
 Bw
 yY
-eY
-eZ
-eZ
-eZ
-fa
+fh
+fq
+fq
+fq
+fu
 yY
 ac
 ac
@@ -30223,7 +30205,7 @@ dC
 ec
 eC
 fm
-fO
+eY
 gi
 gM
 hg
@@ -33075,7 +33057,7 @@ js
 kz
 js
 jx
-mz
+ff
 nm
 nP
 oA
@@ -33217,7 +33199,7 @@ jt
 jx
 js
 NJ
-mA
+fg
 nn
 nR
 oB
@@ -33785,7 +33767,7 @@ js
 kF
 jx
 Nh
-mA
+fg
 nl
 nU
 ot
@@ -33927,7 +33909,7 @@ kd
 kG
 jx
 js
-mA
+fg
 nr
 nV
 oF

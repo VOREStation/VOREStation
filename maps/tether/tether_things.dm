@@ -1,8 +1,3 @@
-/obj/structure/window/reinforced/polarized/full
-	icon_state = "fwindow"
-	maxhealth = 80
-	fulltile = TRUE
-
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
     height = 7

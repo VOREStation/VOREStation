@@ -805,11 +805,6 @@
 /area/shuttle/excursion/tether)
 "abL" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pathfinder_office"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d2 = 4;
@@ -818,6 +813,9 @@
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "pathfinder_office"
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/pathfinder_office)
@@ -2465,11 +2463,6 @@
 /area/engineering/engine_monitoring)
 "aeT" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pathfinder_office"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d2 = 4;
@@ -2478,6 +2471,9 @@
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "pathfinder_office"
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/pathfinder_office)
@@ -2529,15 +2525,13 @@
 /area/shuttle/excursion/tether)
 "aeZ" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pathfinder_office"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "pathfinder_office"
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/pathfinder_office)
@@ -2562,17 +2556,15 @@
 /area/tether/station/excursion_dock)
 "afb" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "pathfinder_office"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/structure/cable/green,
+/obj/structure/window/reinforced/polarized/full{
+	id = "pathfinder_office"
+	},
 /turf/simulated/floor/plating,
 /area/tether/station/pathfinder_office)
 "afc" = (
@@ -3178,27 +3170,10 @@
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
 "afW" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "englockdown";
-	name = "Engineering Lockdown";
-	opacity = 0
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "ce_office"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 8;
-	id = "ce_office"
-	},
-/turf/simulated/floor,
-/area/crew_quarters/heads/chief)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "afX" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -3250,10 +3225,14 @@
 /turf/simulated/wall/r_wall,
 /area/hallway/station/atrium)
 "agc" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/grille,
+/obj/structure/cable/green,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "ce_office"
+	},
+/turf/simulated/floor,
+/area/crew_quarters/heads/chief)
 "agd" = (
 /obj/effect/landmark{
 	name = "lightsout"
@@ -3313,6 +3292,121 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"agi" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "englockdown";
+	name = "Engineering Lockdown";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "ce_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "ce_office"
+	},
+/turf/simulated/floor,
+/area/crew_quarters/heads/chief)
+"agj" = (
+/obj/structure/grille,
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "hop_office"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
+"agk" = (
+/obj/structure/grille,
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "hop_office"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
+"agl" = (
+/obj/structure/grille,
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "hop_office"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
+"agm" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
+"agn" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
+"ago" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced/polarized/full{
+	id = "library_window_tint"
+	},
+/turf/simulated/floor/plating,
+/area/library)
 "agx" = (
 /obj/structure/bed/chair/comfy/blue{
 	icon_state = "comfychair_preview";
@@ -13659,17 +13753,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_airlock)
-"aNg" = (
-/obj/structure/grille,
-/obj/structure/cable/green,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "ce_office"
-	},
-/turf/simulated/floor,
-/area/crew_quarters/heads/chief)
 "aNo" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -16739,54 +16822,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/bridge_hallway)
-"bju" = (
-/obj/structure/grille,
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hop_office"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 1;
-	id = "hop_office"
-	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/hop)
-"bjz" = (
-/obj/structure/grille,
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hop_office"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 1;
-	id = "hop_office"
-	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/hop)
 "bjC" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable/green{
@@ -16820,24 +16855,6 @@
 	req_access = list(57)
 	},
 /turf/simulated/floor/tiled,
-/area/crew_quarters/heads/hop)
-"bjP" = (
-/obj/structure/grille,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hop_office"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 1;
-	id = "hop_office"
-	},
-/turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
 "bjS" = (
 /obj/structure/disposalpipe/segment,
@@ -17413,23 +17430,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
-"boO" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hop_office"
-	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/hop)
 "boU" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 32;
@@ -17660,20 +17660,6 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
-/area/crew_quarters/heads/hop)
-"bpO" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "hop_office"
-	},
-/turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
 "bpQ" = (
 /obj/structure/table/reinforced,
@@ -19409,16 +19395,6 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/carpet,
-/area/library)
-"bCl" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/window/reinforced/polarized{
-	dir = 10;
-	icon_state = "fwindow";
-	id = "library_window_tint"
-	},
-/turf/simulated/floor/plating,
 /area/library)
 "bDr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27204,9 +27180,9 @@ aJn
 aLt
 aRb
 aRb
-afW
-afW
-afW
+agi
+agi
+agi
 aRb
 aRb
 aRb
@@ -27486,7 +27462,7 @@ aFO
 aSC
 bds
 aLA
-aNg
+agc
 aYH
 aRV
 bcp
@@ -27628,7 +27604,7 @@ aFL
 aSC
 aoq
 aLy
-aNg
+agc
 aYF
 aRX
 aSe
@@ -27770,7 +27746,7 @@ aFO
 aSC
 aTK
 aLG
-aNg
+agc
 aYJ
 baA
 bcn
@@ -27912,7 +27888,7 @@ aQv
 aSC
 aTJ
 aLC
-aNg
+agc
 aBg
 aTm
 bcr
@@ -28196,7 +28172,7 @@ bZt
 aSC
 aTL
 aLH
-aNg
+agc
 aRV
 aQh
 aRV
@@ -33720,7 +33696,7 @@ aeo
 aaq
 aaq
 aau
-agc
+afW
 avK
 avN
 aad
@@ -33749,8 +33725,8 @@ awE
 awE
 awI
 awI
-boO
-bpO
+agm
+agn
 brj
 awI
 awI
@@ -33862,7 +33838,7 @@ amF
 avG
 adB
 aaq
-agc
+afW
 avK
 avN
 aad
@@ -33888,7 +33864,7 @@ bbT
 ber
 awF
 bhr
-bju
+agj
 blr
 bnL
 boN
@@ -34004,7 +33980,7 @@ amF
 avG
 adB
 aaq
-agc
+afW
 avK
 auH
 aad
@@ -34172,7 +34148,7 @@ acp
 bez
 awG
 axj
-bjz
+agk
 ayj
 ayX
 azy
@@ -34314,7 +34290,7 @@ acp
 bez
 awG
 axj
-bjz
+agk
 blF
 ayX
 azz
@@ -34456,7 +34432,7 @@ acp
 beE
 awG
 axj
-bjz
+agk
 ayl
 ayX
 azA
@@ -34598,7 +34574,7 @@ acp
 beH
 awH
 bmM
-bjP
+agl
 aym
 bnZ
 boU
@@ -34856,7 +34832,7 @@ aaD
 avG
 tIi
 aaq
-agc
+afW
 avK
 auQ
 aad
@@ -34998,7 +34974,7 @@ amL
 aob
 dbI
 aaq
-agc
+afW
 avK
 qgR
 aad
@@ -35140,7 +35116,7 @@ aep
 aeu
 aev
 aau
-agc
+afW
 avK
 qgR
 aad
@@ -36314,9 +36290,9 @@ aAk
 aAk
 aAg
 aAg
-bCl
+ago
 bFC
-bCl
+ago
 bWN
 aAg
 aGL
