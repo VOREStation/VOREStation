@@ -170,6 +170,7 @@
 
 
 /obj/item/device/multitool
+	var/accepting_refs
 	var/datum/integrated_io/selected_io = null
 	var/mode = 0
 
@@ -190,6 +191,10 @@
 	else
 		if(buffer || connecting || connectable)
 			icon_state = "multitool_tracking_fail"
+		else if(accepting_refs)
+			icon_state = "multitool_ref_scan"
+		else if(weakref_wiring)
+			icon_state = "multitool_no_camera"
 		else
 			icon_state = "multitool"
 
@@ -239,7 +244,13 @@
 		io1.holder.interact(user) // This is to update the UI.
 		update_icon()
 
-
+/obj/item/device/multitool/afterattack(atom/target, mob/living/user, proximity)
+	if(accepting_refs && toolmode == MULTITOOL_MODE_INTCIRCUITS && proximity)
+		weakref_wiring = weakref(target)
+		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
+		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
+		now off.</span>")
+		accepting_refs = 0
 
 
 

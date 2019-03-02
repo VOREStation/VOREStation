@@ -28,24 +28,17 @@ var/global/list/vantag_choices_list = list(
 		VANTAG_KIDNAP	=	"Be Kidnapped",
 		VANTAG_KILL		=	"Be Killed")
 
-/* Time to finally undo this. Replaced with digest_act on these items.
-//Important items that are preserved when people are digested, etc.
-//On Polaris, different from Cryo list as MMIs need to be removed for FBPs to be logged out.
-var/global/list/important_items = list(
+//Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm
+var/global/list/item_vore_blacklist = list(
 		/obj/item/weapon/hand_tele,
 		/obj/item/weapon/card/id/gold/captain/spare,
-		/obj/item/device/aicard,
-		/obj/item/device/mmi/digital/posibrain,
-		/obj/item/device/paicard,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/weapon/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz,
-		/obj/item/device/perfect_tele_beacon)
-*/
+		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
 
 var/global/list/digestion_sounds = list(
 		'sound/vore/digest1.ogg',
@@ -101,7 +94,7 @@ var/global/list/struggle_sounds = list(
 		"Squish4" = 'sound/vore/squish4.ogg')
 
 
-var/global/list/global_egg_types = list(
+var/global/list/global_vore_egg_types = list(
 		"Unathi" 		= UNATHI_EGG,
 		"Tajaran" 		= TAJARAN_EGG,
 		"Akula" 		= AKULA_EGG,
@@ -114,7 +107,7 @@ var/global/list/global_egg_types = list(
 		"Xenochimera" 		= XENOCHIMERA_EGG,
 		"Xenomorph"		= XENOMORPH_EGG)
 
-var/global/list/tf_egg_types = list(
+var/global/list/tf_vore_egg_types = list(
 	"Unathi" 		= /obj/structure/closet/secure_closet/egg/unathi,
 	"Tajara" 		= /obj/structure/closet/secure_closet/egg/tajaran,
 	"Akula" 		= /obj/structure/closet/secure_closet/egg/shark,

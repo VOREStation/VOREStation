@@ -73,7 +73,7 @@ var/list/medical_positions = list(
 	"Geneticist",
 	"Psychiatrist",
 	"Chemist",
-	"Search and Rescue", // VOREStation Edit - Moved SAR from planetary -> medical
+	"Field Medic", // VOREStation Edit - Moved SAR from planetary -> medical
 	"Paramedic"
 )
 

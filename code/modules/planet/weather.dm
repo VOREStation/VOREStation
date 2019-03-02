@@ -98,7 +98,7 @@
 	visuals.icon_state = current_weather.icon_state
 
 /datum/weather_holder/proc/update_temperature()
-	temperature = Interpolate(current_weather.temp_low, current_weather.temp_high, weight = our_planet.sun_position)
+	temperature = LERP(current_weather.temp_low, current_weather.temp_high, our_planet.sun_position)
 	our_planet.needs_work |= PLANET_PROCESS_TEMP
 
 /datum/weather_holder/proc/get_weather_datum(desired_type)

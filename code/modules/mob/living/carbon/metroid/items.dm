@@ -142,7 +142,7 @@
 	if(M.mind)
 		user << "<span class='warning'> The slime resists!</span>"
 		return ..()
-	var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
+	var/mob/living/simple_mob/slime/pet = new /mob/living/simple_mob/slime(M.loc)
 	pet.icon_state = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
 	pet.icon_living = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
 	pet.icon_dead = "[M.colour] [M.is_adult ? "adult" : "baby"] slime dead"
@@ -196,7 +196,7 @@
 		if(M.mind)
 			user << "<span class='warning'> The slime resists!</span>"
 			return ..()
-		var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
+		var/mob/living/simple_mob/adultslime/pet = new /mob/living/simple_mob/adultslime(M.loc)
 		pet.icon_state = "[M.colour] adult slime"
 		pet.icon_living = "[M.colour] adult slime"
 		pet.icon_dead = "[M.colour] baby slime dead"

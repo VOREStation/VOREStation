@@ -62,7 +62,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/syndicate{
+/mob/living/simple_mob/hostile/syndicate{
 	desc = "A weary looking syndicate operative.";
 	faction = "syndicate"
 	},

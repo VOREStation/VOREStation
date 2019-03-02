@@ -70,3 +70,18 @@
 	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
 	banned_objects = list()
 
+/datum/map_template/shelter/gamma
+	name = "Shelter Gamma"
+	shelter_id = "shelter_gamma"
+	description = "An heavily modified variant of the luxury shelter, \
+		this particular model has extra food, drinks, and other supplies. \
+		Originally designed for use by colonists on worlds with little to \
+		to no contact, the expense of these shelters have prevented them \
+		from seeing common use."
+	mappath = "maps/submaps/shelters/shelter_3.dmm"
+	roof = "roof_beta"
+
+/datum/map_template/shelter/gamma/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
+	banned_objects = list()

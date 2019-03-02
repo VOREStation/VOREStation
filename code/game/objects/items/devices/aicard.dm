@@ -107,7 +107,7 @@
 		return 0
 
 	if(!user.IsAdvancedToolUser() && isanimal(user))
-		var/mob/living/simple_animal/S = user
+		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
 			return 0
 

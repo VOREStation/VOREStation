@@ -82,10 +82,11 @@
 
 
 	var/obj/item/weapon/implant/reagent_generator/rimplant
-	for(var/I in src.contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if(rimplant)
 		if(container.reagents.total_volume < container.volume)
 			var/container_name = container.name

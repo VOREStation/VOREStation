@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/faithless
+/mob/living/simple_mob/hostile/faithless
 	name = "Faithless"
 	desc = "The Wish Granter's faith in humanity, incarnate"
 	icon_state = "faithless"
@@ -37,15 +37,15 @@
 
 	speak_chance = 0
 
-/mob/living/simple_animal/hostile/faithless/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/faithless/Process_Spacemove(var/check_drift = 0)
 	return 1
 
-/mob/living/simple_animal/hostile/faithless/set_target()
+/mob/living/simple_mob/hostile/faithless/set_target()
 	. = ..()
 	if(.)
 		audible_emote("wails at [target_mob]")
 
-/mob/living/simple_animal/hostile/faithless/PunchTarget()
+/mob/living/simple_mob/hostile/faithless/PunchTarget()
 	. = ..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -53,18 +53,18 @@
 			L.Weaken(3)
 			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
 
-/mob/living/simple_animal/hostile/faithless/cult
+/mob/living/simple_mob/hostile/faithless/cult
 	faction = "cult"
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/faithless/cult/cultify()
+/mob/living/simple_mob/hostile/faithless/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/faithless/cult/Life()
+/mob/living/simple_mob/hostile/faithless/cult/Life()
 	..()
 	check_horde()
 
-/mob/living/simple_animal/hostile/faithless/strong
+/mob/living/simple_mob/hostile/faithless/strong
 	maxHealth = 100
 	health = 100
 
@@ -72,14 +72,13 @@
 	melee_damage_lower = 13
 	melee_damage_upper = 28
 
-
-/mob/living/simple_animal/hostile/faithless/strong/cult
+/mob/living/simple_mob/hostile/faithless/strong/cult
 	faction = "cult"
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/faithless/cult/cultify()
+/mob/living/simple_mob/hostile/faithless/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/faithless/cult/Life()
+/mob/living/simple_mob/hostile/faithless/cult/Life()
 	..()
 	check_horde()

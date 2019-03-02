@@ -16,6 +16,8 @@
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
+	selected_image = image(icon = 'icons/mob/screen1.dmi', loc = src, icon_state = "centermarker")
+
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
 	dsoverlay = null
@@ -29,6 +31,7 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+	qdel(selected_image)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -126,9 +129,9 @@ default behaviour is:
 				forceMove(tmob.loc)
 
 				//VOREstation Edit - Begin
-				if (istype(tmob, /mob/living/simple_animal)) //check bumpnom chance, if it's a simplemob that's bumped
+				if (istype(tmob, /mob/living/simple_mob)) //check bumpnom chance, if it's a simplemob that's bumped
 					tmob.Bumped(src)
-				else if(istype(src, /mob/living/simple_animal)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
+				else if(istype(src, /mob/living/simple_mob)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
 					Bumped(tmob)
 				if (tmob.loc == src) //check if they got ate, and if so skip the forcemove
 					now_pushing = 0
@@ -550,8 +553,6 @@ default behaviour is:
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
-<<<<<<< HEAD
-=======
 // Applies direct "cold" damage while checking protection against the cold.
 /mob/living/proc/inflict_cold_damage(amount)
 	amount *= 1 - get_cold_protection(50) // Within spacesuit protection.
@@ -582,7 +583,6 @@ default behaviour is:
 	if(amount > 0)
 		adjustToxLoss(amount)
 
->>>>>>> 452fd9a... Adds several new map/event oriented objects (#5757)
 /mob/proc/get_contents()
 
 
@@ -696,6 +696,8 @@ default behaviour is:
 	BITSET(hud_updateflag, LIFE_HUD)
 	ExtinguishMob()
 	fire_stacks = 0
+	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
+		ai_holder.go_wake()
 
 /mob/living/proc/rejuvenate()
 	if(reagents)
@@ -865,7 +867,7 @@ default behaviour is:
 					if (pulling)
 						if (istype(pulling, /obj/structure/window))
 							var/obj/structure/window/W = pulling
-							if(W.is_full_window())
+							if(W.is_fulltile())
 								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
 									stop_pulling()
 					if (pulling)
@@ -924,7 +926,7 @@ default behaviour is:
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+			if(istype(A,/mob/living/simple_mob/animal/borer) || istype(A,/obj/item/weapon/holder))
 				return
 
 	else if(istype(H.loc,/obj/item/clothing/accessory/holster))

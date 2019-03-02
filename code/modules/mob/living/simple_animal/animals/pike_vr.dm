@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/carp/pike
+/mob/living/simple_mob/hostile/carp/pike
 	name = "space pike"
 	desc = "A bigger, angrier cousin of the space carp."
 	icon = 'icons/mob/spaceshark.dmi'
@@ -25,10 +25,10 @@
 
 	vore_icons = 0 //No custom icons yet
 
-/mob/living/simple_animal/hostile/carp/pike/weak
+/mob/living/simple_mob/hostile/carp/pike/weak
 	maxHealth = 75
 	health = 75
 
-/mob/living/simple_animal/hostile/carp/strong
+/mob/living/simple_mob/hostile/carp/strong
 	maxHealth = 50
 	health = 50

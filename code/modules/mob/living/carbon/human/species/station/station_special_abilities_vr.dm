@@ -689,7 +689,7 @@
 
 	return ..(target)
 
-/mob/living/simple_animal/can_shred(var/mob/living/carbon/human/target)
+/mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))

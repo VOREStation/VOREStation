@@ -75,9 +75,9 @@
 
 	for(var/mob/living/L in view(owner))
 		// Spiders, carp... bears.
-		if(istype(L, /mob/living/simple_animal))
-			var/mob/living/simple_animal/SM = L
-			if(!is_ally(SM) && SM.hostile)
+		if(istype(L, /mob/living/simple_mob))
+			var/mob/living/simple_mob/SM = L
+			if(!is_ally(SM) && SM.has_AI() && SM.ai_holder.hostile)
 				hostile_mobs++
 				if(SM.summoned || SM.supernatural) // Our creations might be trying to kill us.
 					potential_spells |= /obj/item/weapon/spell/abjuration

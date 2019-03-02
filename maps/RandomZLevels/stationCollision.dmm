@@ -549,7 +549,7 @@
 	},
 /area/awaymission/research)
 "bS" = (
-/mob/living/simple_animal/lizard,
+/mob/living/simple_mob/lizard,
 /turf/simulated/floor/grass,
 /area/awaymission/research)
 "bT" = (
@@ -625,7 +625,7 @@
 	},
 /area/awaymission/research)
 "ce" = (
-/mob/living/simple_animal/hostile/creature{
+/mob/living/simple_mob/hostile/creature{
 	name = "Experiment 35b"
 	},
 /turf/simulated/floor,
@@ -709,7 +709,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/mob/living/simple_animal/hostile/hivebot{
+/mob/living/simple_mob/hostile/hivebot{
 	opensdoors = 0
 	},
 /turf/simulated/floor{
