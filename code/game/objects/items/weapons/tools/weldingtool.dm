@@ -124,9 +124,45 @@
 		if(get_fuel() < 1)
 			setWelding(0)
 
+	//I'm not sure what this does. I assume it has to do with starting fires...
+	//...but it doesnt check to see if the welder is on or not.
+	var/turf/location = src.loc
+	if(istype(location, /mob/living))
+		var/mob/living/M = location
+		if(M.item_is_in_hands(src))
+			location = get_turf(M)
+	if (istype(location, /turf))
+		location.hotspot_expose(700, 5)
+
+/obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
+	if(!proximity) return
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
+		if(!welding && max_fuel)
+			O.reagents.trans_to_obj(src, max_fuel)
+			to_chat(user, "<span class='notice'>Welder refueled</span>")
+			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			return
+		else if(!welding)
+			to_chat(user, "<span class='notice'>[src] doesn't use fuel.</span>")
+			return
+		else
+			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
+			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
+			to_chat(user, "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>")
+			var/obj/structure/reagent_dispensers/fueltank/tank = O
+			tank.explode()
+			return
+	if (src.welding)
+		remove_fuel(1)
+		var/turf/location = get_turf(user)
+		if(isliving(O))
+			var/mob/living/L = O
+			L.IgniteMob()
+		if (istype(location, /turf))
+			location.hotspot_expose(700, 50, 1)
+
 /obj/item/weapon/weldingtool/attack_self(mob/user as mob)
 	setWelding(!welding, usr)
-	return
 
 //Returns the amount of fuel in the welder
 /obj/item/weapon/weldingtool/proc/get_fuel()
@@ -565,6 +601,5 @@
 
 /obj/item/weapon/weldingtool/electric/mounted/cyborg
 	toolspeed = 0.5
-
 
 #undef WELDER_FUEL_BURN_INTERVAL
