@@ -13,8 +13,8 @@
 
 	if (stat != CONSCIOUS)
 		return
-	//if (istype(src,/mob/living/simple_mob/mouse) && T.ckey == null) //VORESTATION AI TEMPORARY REMOVAL
-	//	return //VORESTATION AI TEMPORARY REMOVAL
+	if (istype(src,/mob/living/simple_mob/mouse) && T.ckey == null)
+		return
 	if (client && IsAdvancedToolUser())
 		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
 		return
