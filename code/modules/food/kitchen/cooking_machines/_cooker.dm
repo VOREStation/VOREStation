@@ -171,7 +171,7 @@
 		cooking_obj = null
 	else
 		var/failed
-		var/overcook_period = max(Floor(cook_time/5),1)
+		var/overcook_period = max(FLOOR(cook_time/5, 1),1)
 		cooking_obj = result
 		var/count = overcook_period
 		while(1)

@@ -152,3 +152,31 @@
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
+
+/datum/recipe/margheritapizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
+
+/datum/recipe/mushroompizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
+
+/datum/recipe/meatpizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
+
+/datum/recipe/vegtablepizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo

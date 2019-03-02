@@ -250,4 +250,4 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/mapped/New()
 	..()
 	virus2 |= new /datum/disease2/disease
-	virus2.makerandom()
+	virus2[1].makerandom()

@@ -1,4 +1,5 @@
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
+//VOREStation Edit Start - Updating this for Virgo
 var/global/list/default_internal_channels = list(
 	num2text(PUB_FREQ) = list(),
 	num2text(AI_FREQ)  = list(access_synth),
@@ -10,16 +11,18 @@ var/global/list/default_internal_channels = list(
 	num2text(MED_I_FREQ)=list(access_medical_equip),
 	num2text(SEC_FREQ) = list(access_security),
 	num2text(SEC_I_FREQ)=list(access_security),
-	num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
-	num2text(SUP_FREQ) = list(access_cargo),
-	num2text(SRV_FREQ) = list(access_janitor, access_hydroponics)
+	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology, access_explorer),
+	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
+	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
+	num2text(EXP_FREQ) = list(access_explorer, access_pilot, access_rd)
 )
 
 var/global/list/default_medbay_channels = list(
 	num2text(PUB_FREQ) = list(),
-	num2text(MED_FREQ) = list(access_medical_equip),
-	num2text(MED_I_FREQ) = list(access_medical_equip)
+	num2text(MED_FREQ) = list(),
+	num2text(MED_I_FREQ) = list()
 )
+//VOREStation Edit End
 
 /obj/item/device/radio
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
@@ -480,6 +483,13 @@ var/global/list/default_medbay_channels = list(
 	//THIS IS TEMPORARY. YEAH RIGHT
 	if(!connection)	return 0	//~Carn
 
+//VOREStation Add Start
+	if(bluespace_radio)
+		return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
+					  src, message, displayname, jobname, real_name, M.voice_name,
+					  0, signal.data["compression"], list(0), connection.frequency,verb,speaking)
+//VOREStation Add End
+
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
 					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking)
@@ -518,7 +528,8 @@ var/global/list/default_medbay_channels = list(
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
-			return -1
+			if(!bluespace_radio) //VOREStation Edit
+				return -1
 	if(freq in ANTAG_FREQS)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1

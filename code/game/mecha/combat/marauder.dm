@@ -22,6 +22,7 @@
 	internal_damage_threshold = 25
 	force = 45
 	max_equip = 4
+	mech_faction = MECH_FACTION_NT
 
 	max_hull_equip = 3
 	max_weapon_equip = 3
@@ -42,6 +43,7 @@
 	force = 55
 	max_equip = 5
 
+
 /obj/mecha/combat/marauder/mauler
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
 	name = "Mauler"
@@ -49,6 +51,7 @@
 	initial_icon = "mauler"
 	operation_req_access = list(access_syndicate)
 	wreckage = /obj/effect/decal/mecha_wreckage/mauler
+	mech_faction = MECH_FACTION_SYNDI
 
 /obj/mecha/combat/marauder/New()
 	..()

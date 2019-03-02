@@ -1,4 +1,4 @@
-/mob/living/simple_animal/fennec
+/mob/living/simple_mob/fennec
 	name = "fennec"
 	desc = "It's a dusty big-eared sandfox! Adorable!"
 	tt_desc = "Vulpes zerda"
@@ -29,7 +29,7 @@
 	emote_see = list("earflicks","sniffs at the ground")
 
 // Activate Noms!
-/mob/living/simple_animal/fennec
+/mob/living/simple_mob/fennec
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"
