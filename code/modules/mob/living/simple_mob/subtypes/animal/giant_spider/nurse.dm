@@ -22,6 +22,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/nurse_spider
 
 	var/fed = 0 // Counter for how many egg laying 'charges' the spider has.
+	var/laying_eggs = FALSE	// Only allow one set of eggs to be laid at once.
 	var/egg_inject_chance = 25 // One in four chance to get eggs.
 	var/egg_type = /obj/effect/spider/eggcluster/small
 	var/web_type = /obj/effect/spider/stickyweb/dark
@@ -45,7 +46,8 @@
 /mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
 	if(isturf(A))
 		if(fed)
-			return lay_eggs(A)
+			if(!laying_eggs)
+				return lay_eggs(A)
 		return web_tile(A)
 
 	if(isliving(A))
@@ -161,6 +163,8 @@
 	visible_message(span("notice", "\The [src] begins to lay a cluster of eggs.") )
 	// Get our AI to stay still.
 	set_AI_busy(TRUE)
+	// Stop players from spamming eggs.
+	laying_eggs = TRUE
 
 	if(!do_mob(src, T, 5 SECONDS))
 		set_AI_busy(FALSE)
@@ -174,6 +178,7 @@
 	set_AI_busy(FALSE)
 	new egg_type(T)
 	fed--
+	laying_eggs = FALSE
 	return TRUE
 
 
