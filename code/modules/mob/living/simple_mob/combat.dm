@@ -102,7 +102,7 @@
 			return FALSE
 
 	visible_message("<span class='danger'><b>\The [src]</b> fires at \the [A]!</span>")
-	shoot(A, src.loc, src)
+	shoot(A)
 	if(casingtype)
 		new casingtype(loc)
 
@@ -112,21 +112,22 @@
 	return TRUE
 
 
-//Shoot a bullet at someone (idk why user is an argument when src would fit???)
-/mob/living/simple_mob/proc/shoot(atom/A, turf/start, mob/living/user, bullet = 0)
-	if(A == start)
+// Shoot a bullet at something.
+/mob/living/simple_mob/proc/shoot(atom/A)
+	if(A == get_turf(src))
 		return
 
 	face_atom(A)
 
-	var/obj/item/projectile/P = new projectiletype(user.loc)
+	var/obj/item/projectile/P = new projectiletype(src.loc)
 	if(!P)
 		return
 
 	// If the projectile has its own sound, use it.
 	// Otherwise default to the mob's firing sound.
-	playsound(user, P.fire_sound ? P.fire_sound : projectilesound, 80, 1)
+	playsound(src, P.fire_sound ? P.fire_sound : projectilesound, 80, 1)
 
+	P.firer = src // So we can't shoot ourselves.
 	P.launch(A)
 	if(needs_reload)
 		reload_count++
