@@ -22578,6 +22578,14 @@
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
 /area/quartermaster/warehouse)
+"JM" = (
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "JN" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -34526,7 +34534,7 @@ lC
 lC
 lC
 nO
-nN
+JM
 oz
 fo
 pK
