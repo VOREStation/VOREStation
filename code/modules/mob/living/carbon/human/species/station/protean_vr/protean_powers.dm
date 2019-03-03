@@ -213,7 +213,7 @@
 		return //Quietly fail
 
 	var/actually_added = refactory.add_stored_material(substance,howmuch*matstack.perunit)
-	matstack.use(Ceiling(actually_added/matstack.perunit))
+	matstack.use(CEILING((actually_added/matstack.perunit), 1))
 	if(actually_added && actually_added < howmuch)
 		to_chat(src,"<span class='warning'>Your refactory module is now full, so only [actually_added] units were stored.</span>")
 		visible_message("<span class='notice'>[src] nibbles some of the [substance] right off the stack!</span>")
@@ -283,7 +283,7 @@
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200%. Up-sizing consumes metal, downsizing returns metal."
 	var/new_size = input(user, nagmessage, "Pick a Size", user.size_multiplier*100) as num|null
-	if(!new_size || !IsInRange(new_size,25,200))
+	if(!new_size || !ISINRANGE(new_size,25,200))
 		return
 
 	var/size_factor = new_size/100

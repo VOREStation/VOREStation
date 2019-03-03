@@ -123,6 +123,7 @@
 	damage_type = BURN
 	agony = 10
 	check_armour = "bio"
+	armor_penetration = 25	// It's acid
 
 	combustion = FALSE
 
@@ -130,9 +131,10 @@
 	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
 	damage = 5
-	damage_type = TOX
+	damage_type = BIOACID
 	agony = 80
 	check_armour = "bio"
+	armor_penetration = 25	// It's acid-based
 
 	combustion = FALSE
 
@@ -140,9 +142,10 @@
 	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
 	damage = 20
-	damage_type = TOX
+	damage_type = BIOACID
 	agony = 20
 	check_armour = "bio"
+	armor_penetration = 25	// It's acid-based
 
 /obj/item/projectile/energy/phoron
 	name = "phoron bolt"

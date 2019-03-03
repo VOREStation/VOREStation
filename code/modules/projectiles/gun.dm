@@ -619,7 +619,7 @@
 
 	if(one_handed_penalty)
 		if(!held_twohanded)
-			acc_mod += -ceil(one_handed_penalty/2)
+			acc_mod += -CEILING(one_handed_penalty/2, 1)
 			disp_mod += one_handed_penalty*0.5 //dispersion per point of two-handedness
 
 	//Accuracy modifiers

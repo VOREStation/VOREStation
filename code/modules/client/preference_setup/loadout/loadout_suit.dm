@@ -463,6 +463,10 @@ datum/gear/suit/duster
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 
+/datum/gear/suit/miscellaneous/kamishimo
+	display_name = "kamishimo"
+	path = /obj/item/clothing/suit/kamishimo
+
 /datum/gear/suit/snowsuit
 	display_name = "snowsuit"
 	path = /obj/item/clothing/suit/storage/snowsuit

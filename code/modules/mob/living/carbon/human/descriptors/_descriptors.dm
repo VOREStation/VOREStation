@@ -34,7 +34,7 @@
 		chargen_value_descriptors = list()
 		for(var/i = 1 to LAZYLEN(standalone_value_descriptors))
 			chargen_value_descriptors[standalone_value_descriptors[i]] = i
-	default_value = ceil(LAZYLEN(standalone_value_descriptors) * 0.5)
+	default_value = CEILING(LAZYLEN(standalone_value_descriptors) * 0.5, 1)
 	..()
 
 /datum/mob_descriptor/proc/get_third_person_message_start(var/datum/gender/my_gender)
@@ -99,10 +99,10 @@
 
 /datum/mob_descriptor/proc/get_comparative_value_string_smaller(var/value, var/datum/gender/my_gender, var/datum/gender/other_gender)
 	var/maxval = LAZYLEN(comparative_value_descriptors_smaller)
-	value = Clamp(ceil(value * maxval), 1, maxval)
+	value = Clamp(CEILING(value * maxval, 1), 1, maxval)
 	return comparative_value_descriptors_smaller[value]
 
 /datum/mob_descriptor/proc/get_comparative_value_string_larger(var/value, var/datum/gender/my_gender, var/datum/gender/other_gender)
 	var/maxval = LAZYLEN(comparative_value_descriptors_larger)
-	value = Clamp(ceil(value * maxval), 1, maxval)
+	value = Clamp(CEILING(value * maxval, 1), 1, maxval)
 	return comparative_value_descriptors_larger[value]

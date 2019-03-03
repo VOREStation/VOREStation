@@ -239,7 +239,7 @@ proc/admin_notice(var/message, var/rights)
 
 		// Display the notes on the current page
 		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
-		// Emulate ceil(why does BYOND not have ceil)
+		// Emulate CEILING(why does BYOND not have ceil, 1)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
 		var/page_index = page - 1
