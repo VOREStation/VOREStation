@@ -1543,6 +1543,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/uxstorage)
+"acN" = (
+/obj/structure/cable/ender{
+	icon_state = "1-2";
+	id = "surface-mining"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/outside/outside1)
 "acO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27897,19 +27910,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
-"kdx" = (
-/obj/structure/cable/ender{
-	icon_state = "1-2";
-	id = "surface-solars"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "kfl" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -38718,7 +38718,7 @@ aaa
 "}
 (71,1,1) = {"
 aaa
-kdx
+acN
 fAq
 frA
 frA

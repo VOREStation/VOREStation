@@ -112,6 +112,13 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
+"av" = (
+/obj/structure/cable/ender{
+	icon_state = "1-2";
+	id = "surface-mining"
+	},
+/turf/simulated/floor/plating,
+/area/mine/explored)
 "aw" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -982,13 +989,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
-"FG" = (
-/obj/structure/cable/ender{
-	icon_state = "1-2";
-	id = "surface-solars"
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "FV" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "2-8"
@@ -11555,7 +11555,7 @@ jh
 jh
 lb
 KF
-FG
+av
 aa
 "}
 (72,1,1) = {"
