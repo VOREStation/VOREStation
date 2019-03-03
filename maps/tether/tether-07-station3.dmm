@@ -1909,7 +1909,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/ai)
 "dd" = (
-/obj/machinery/recharge_station,
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "de" = (
@@ -8029,10 +8032,12 @@
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "mW" = (
-/turf/simulated/wall{
-	can_open = 1
+/obj/machinery/recharge_station,
+/obj/machinery/light/small{
+	dir = 1
 	},
-/area/security/brig)
+/turf/simulated/floor/tiled/white,
+/area/security/security_bathroom)
 "mX" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -13228,6 +13233,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
+"uL" = (
+/obj/machinery/washing_machine,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/security/security_bathroom)
 "uM" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -27299,10 +27311,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
-"RT" = (
-/obj/structure/toilet,
-/turf/simulated/floor/tiled/white,
-/area/security/security_bathroom)
 "Sa" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -27620,10 +27628,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
-"VB" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/white,
-/area/security/security_bathroom)
 "VJ" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -35078,7 +35082,7 @@ bK
 cf
 cT
 jy
-mW
+jk
 jk
 jk
 jk
@@ -35221,7 +35225,7 @@ cf
 cT
 jy
 jk
-mW
+jk
 jk
 jk
 jk
@@ -37206,7 +37210,7 @@ bz
 bw
 cl
 dS
-RT
+dd
 SX
 ST
 VJ
@@ -37490,11 +37494,11 @@ bB
 by
 cz
 dS
-dd
+mW
 SX
 TX
 WB
-VB
+uL
 Uw
 UV
 fG
