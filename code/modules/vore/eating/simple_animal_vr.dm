@@ -49,21 +49,21 @@
 		if(confirm == "Disable")
 			vore_selected.digest_mode = DM_HOLD
 
-/*
+
 /mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
-	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (hostile && faction != user.faction)) && isturf(user.loc))
-		if (retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
+	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
+		if (ai_holder.retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
 			user.Weaken(5) //They get tackled anyway whether they're edible or not.
 			user.visible_message("<span class='danger'>\the [user] swats \the [src] with \the [O] and promptly gets tackled!</span>!")
 			if (will_eat(user))
-				stop_automated_movement = 1
+				//stop_automated_movement = 1 //VOREStation AI Temporary Removal
 				animal_nom(user)
 				update_icon()
-				stop_automated_movement = 0
-			else if (!target_mob) // no using this to clear a retaliate mob's target
-				target_mob = user //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
-				AttackTarget()
-				LoseTarget() // only make one attempt at an attack rather than going into full rage mode
+				//stop_automated_movement = 0 //VORESTation AI Temporary Removal
+			else if (!ai_holder.target) // no using this to clear a retaliate mob's target
+				ai_holder.target = user //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
+				//AttackTarget() //VOREStation AI Temporary Removal
+				//LoseTarget() // only make one attempt at an attack rather than going into full rage mode
 		else
 			user.visible_message("<span class='info'>\the [user] swats \the [src] with \the [O]!</span>!")
 			release_vore_contents()
@@ -74,5 +74,5 @@
 						if(src && L)
 							prey_excludes -= L
 	else
-		..() */ //VORESTATION AI TEMPORARY REMOVAL
+		..()
 
