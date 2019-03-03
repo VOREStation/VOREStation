@@ -42,9 +42,7 @@
 	name = "south bump";
 	pixel_y = -28
 	},
-/obj/structure/cable/green{
-	icon_state = "16-0"
-	},
+/obj/structure/cable/green,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/mining_main/external)
 "aak" = (
