@@ -56,10 +56,10 @@
 			user.Weaken(5) //They get tackled anyway whether they're edible or not.
 			user.visible_message("<span class='danger'>\the [user] swats \the [src] with \the [O] and promptly gets tackled!</span>!")
 			if (will_eat(user))
-				//stop_automated_movement = 1 //VOREStation AI Temporary Removal
+				set_AI_busy(TRUE)
 				animal_nom(user)
 				update_icon()
-				//stop_automated_movement = 0 //VORESTation AI Temporary Removal
+				set_AI_busy(FALSE)
 			else if (!ai_holder.target) // no using this to clear a retaliate mob's target
 				ai_holder.target = user //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
 				//AttackTarget() //VOREStation AI Temporary Removal

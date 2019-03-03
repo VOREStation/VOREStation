@@ -227,10 +227,10 @@
 			if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
 				tmob.Weaken(5)
 			tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
-			//stop_automated_movement = 1 //VORESTATION AI TEMPORARY REMOVAL
+			set_AI_busy(TRUE)
 			animal_nom(tmob)
 			update_icon()
-			//stop_automated_movement = 0 //VORESTATION AI TEMPORARY REMOVAL
+			set_AI_busy(FALSE)
 	..()
 /* //Was replaced with suitable_turf_type, but that can be done later. //VORESTATION AI TEMPORARY REMOVAL
 // Checks to see if mob doesn't like this kind of turf
