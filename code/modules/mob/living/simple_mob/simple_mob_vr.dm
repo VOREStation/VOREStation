@@ -232,16 +232,13 @@
 			update_icon()
 			set_AI_busy(FALSE)
 	..()
-/* //Was replaced with suitable_turf_type, but that can be done later. //VORESTATION AI TEMPORARY REMOVAL
-// Checks to see if mob doesn't like this kind of turf
-/mob/living/simple_mob/avoid_turf(var/turf/turf)
-	//So we only check if the parent didn't find anything terrible
-	if((. = ..(turf)))
-		return .
 
-	if(istype(turf,/turf/unsimulated/floor/sky))
-		return TRUE //Mobs aren't that stupid, probably
-*/
+// Checks to see if mob doesn't like this kind of turf
+/mob/living/simple_mob/IMove(newloc)
+	if(istype(newloc,/turf/unsimulated/floor/sky))
+		return MOVEMENT_FAILED //Mobs aren't that stupid, probably
+	return ..() // Procede as normal.
+
 //Grab = Nomf
 /mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
