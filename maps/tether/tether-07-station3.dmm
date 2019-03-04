@@ -14926,6 +14926,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
+"xu" = (
+/obj/structure/table/glass,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/obj/item/device/defib_kit/loaded,
+/turf/simulated/floor/tiled/white,
+/area/medical/sleeper)
 "xv" = (
 /obj/structure/sign/warning/secure_area,
 /turf/simulated/wall/r_wall,
@@ -23402,23 +23419,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
-"Lo" = (
-/obj/structure/table/glass,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
-	},
-/obj/item/device/defib_kit/loaded,
-/turf/simulated/floor/tiled/white,
-/area/space)
 "Lp" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -36131,7 +36131,7 @@ IC
 Jq
 Kf
 KL
-Lo
+xu
 LR
 Mj
 MG
