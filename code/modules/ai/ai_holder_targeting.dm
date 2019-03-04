@@ -15,8 +15,9 @@
 	var/lose_target_time = 0				// world.time when a target was lost.
 	var/lose_target_timeout = 5 SECONDS		// How long until a mob 'times out' and stops trying to find the mob that disappeared.
 
-	var/list/attackers = list()			// List of strings of names of people who attacked us before in our life.
-										// This uses strings and not refs to allow for disguises, and to avoid needing to use weakrefs.
+	var/list/attackers = list()				// List of strings of names of people who attacked us before in our life.
+											// This uses strings and not refs to allow for disguises, and to avoid needing to use weakrefs.
+	var/destructive = FALSE					// Will target 'neutral' structures/objects and not just 'hostile' ones.
 
 // A lot of this is based off of /TG/'s AI code.
 
@@ -111,6 +112,7 @@
 		var/obj/mecha/M = the_target
 		if(M.occupant)
 			return can_attack(M.occupant)
+		return destructive // Empty mechs are 'neutral'.
 
 	if(istype(the_target, /obj/machinery/porta_turret))
 		var/obj/machinery/porta_turret/P = the_target

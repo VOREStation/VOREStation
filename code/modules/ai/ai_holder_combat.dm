@@ -1,7 +1,7 @@
 // This file is for actual fighting. Targeting is in a seperate file.
 
 /datum/ai_holder
-	var/firing_lanes = FALSE				// If ture, tries to refrain from shooting allies or the wall.
+	var/firing_lanes = TRUE					// If ture, tries to refrain from shooting allies or the wall.
 	var/conserve_ammo = FALSE				// If true, the mob will avoid shooting anything that does not have a chance to hit a mob. Requires firing_lanes to be true.
 	var/pointblank = FALSE					// If ranged is true, and this is true, people adjacent to the mob will suffer the ranged instead of using a melee attack.
 

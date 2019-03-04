@@ -121,7 +121,7 @@
 				// Special handling of windows, which are dense but block only from some directions
 				if(istype(A, /obj/structure/window))
 					var/obj/structure/window/W = A
-					if (!W.is_full_window() && !(turn(src.last_move, 180) & A.dir))
+					if (!W.is_fulltile() && !(turn(src.last_move, 180) & A.dir))
 						continue
 				// Same thing for (closed) windoors, which have the same problem
 				else if(istype(A, /obj/machinery/door/window) && !(turn(src.last_move, 180) & A.dir))

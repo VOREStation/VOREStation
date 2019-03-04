@@ -12,13 +12,16 @@
 
 	var/always_stun = FALSE // If true, the slime will elect to attempt to permastun the target.
 
+	var/last_discipline_decay = null // Last world.time discipline was reduced from decay.
+	var/discipline_decay_time = 5 SECONDS // Earliest that one discipline can decay.
+
 /datum/ai_holder/simple_mob/xenobio_slime/sapphire
 	always_stun = TRUE // They know that stuns are godly.
 	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
 
 /datum/ai_holder/simple_mob/xenobio_slime/light_pink
-	discipline = 5
-	obedience = 5
+	discipline = 10
+	obedience = 10
 
 /datum/ai_holder/simple_mob/xenobio_slime/passive/New() // For Kendrick.
 	..()
@@ -89,9 +92,10 @@
 
 // Handles decay of discipline.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/discipline_decay()
-	if(discipline > 0)
+	if(discipline > 0 && last_discipline_decay + discipline_decay_time < world.time)
 		if(!prob(75 + (obedience * 5)))
 			adjust_discipline(-1)
+			last_discipline_decay = world.time
 
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_tactic()
 	evolve_and_reproduce()
