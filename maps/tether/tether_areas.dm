@@ -27,7 +27,7 @@
 	forced_ambience = list('sound/music/elevator.ogg')
 	dynamic_lighting = FALSE //Temporary fix for elevator lighting
 
-	requires_power = 0
+	requires_power = FALSE
 
 /area/turbolift/tether/transit
 	name = "tether (midway)"

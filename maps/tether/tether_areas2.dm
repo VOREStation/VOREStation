@@ -504,7 +504,9 @@
 
 /area/tether/elevator
 	name = "\improper Tether Elevator"
-	requires_power = 0
+	dynamic_lighting = FALSE
+
+	requires_power = FALSE
 
 //////////////////////////////////
 
