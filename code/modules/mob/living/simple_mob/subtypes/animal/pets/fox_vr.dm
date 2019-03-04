@@ -197,13 +197,6 @@
 	var/mob/living/friend = null // Our best pal, who we'll follow. awoo.
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
-/datum/ai_holder/simple_mob/passive
-	hostile = FALSE
-	can_flee = TRUE
-	violent_breakthrough = FALSE
-	base_wander_delay = 11
-	wander = TRUE
-
 /mob/living/simple_mob/animal/fox_vr/Renault/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
