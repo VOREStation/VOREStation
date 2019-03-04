@@ -14423,11 +14423,10 @@
 /area/quartermaster/office)
 "wL" = (
 /obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior North";
-	dir = 1
+	c_tag = "SEC - Vault Exterior South"
 	},
 /turf/simulated/mineral/floor/vacuum,
-/area/mine/explored/upper_level)
+/area/security/nuke_storage)
 "wM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/reinforced,
@@ -14929,13 +14928,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
-"xu" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
-	},
-/turf/space,
-/area/space)
 "xv" = (
 /obj/structure/sign/warning/secure_area,
 /turf/simulated/wall/r_wall,
@@ -14944,13 +14936,12 @@
 /turf/simulated/wall/r_wall,
 /area/security/nuke_storage)
 "xx" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+/obj/machinery/camera/network/security{
+	c_tag = "SEC - Vault Exterior North";
+	dir = 1
 	},
 /turf/simulated/mineral/floor/vacuum,
-/area/mine/explored/upper_level)
+/area/security/nuke_storage)
 "xy" = (
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain";
@@ -17353,13 +17344,6 @@
 /area/supply/station{
 	dynamic_lighting = 0
 	})
-"AZ" = (
-/obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior West";
-	dir = 8
-	},
-/turf/space,
-/area/space)
 "Ba" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -22662,6 +22646,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
+"JW" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/space,
+/area/security/nuke_storage)
+"JX" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/mineral/floor/vacuum,
+/area/security/nuke_storage)
 "JY" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -22863,6 +22862,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"Kq" = (
+/obj/machinery/camera/network/security{
+	c_tag = "SEC - Vault Exterior West";
+	dir = 8
+	},
+/turf/space,
+/area/security/nuke_storage)
 "Kr" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -31712,7 +31718,7 @@ aa
 aa
 ae
 aa
-AZ
+Kq
 aa
 ae
 aa
@@ -31850,7 +31856,7 @@ uG
 vs
 ae
 aa
-xu
+JW
 xv
 xw
 xw
@@ -31858,7 +31864,7 @@ xw
 xw
 xw
 xv
-xu
+JW
 aa
 ae
 aa
@@ -32275,7 +32281,7 @@ tJ
 qc
 vs
 vt
-wL
+xx
 xw
 xw
 zf
@@ -32285,7 +32291,7 @@ BW
 CU
 xw
 xw
-vt
+wL
 vt
 vt
 vt
@@ -32844,7 +32850,7 @@ qc
 vt
 vt
 vt
-xx
+JX
 xw
 zj
 xw
@@ -32852,7 +32858,7 @@ dG
 xw
 zj
 xw
-xx
+JX
 vt
 ab
 ab
