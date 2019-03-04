@@ -2629,7 +2629,7 @@
 /area/maintenance/station/ai)
 "en" = (
 /obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior West";
+	icon_state = "camera";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
