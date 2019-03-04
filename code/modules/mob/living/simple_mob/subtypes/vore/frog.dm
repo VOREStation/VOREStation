@@ -14,7 +14,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 25
 
-	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 // Pepe is love, not hate.
 /mob/living/simple_mob/vore/frog/New()

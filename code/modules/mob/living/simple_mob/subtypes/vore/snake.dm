@@ -21,7 +21,7 @@
 	pixel_x = -16
 	pixel_y = -16
 
-	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 // Activate Noms!
 /mob/living/simple_mob/vore/giant_snake
