@@ -504,6 +504,8 @@
 
 /area/tether/elevator
 	name = "\improper Tether Elevator"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "elevator"
 	dynamic_lighting = FALSE
 
 	requires_power = FALSE
