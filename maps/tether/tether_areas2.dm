@@ -499,6 +499,13 @@
 /area/shuttle/excursion/virgo3b_sky
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky
+
+// Elevator area //
+
+/area/tether/elevator
+	name = "\improper Tether Elevator"
+	requires_power = 0
+
 //////////////////////////////////
 
 /area/antag/antag_base

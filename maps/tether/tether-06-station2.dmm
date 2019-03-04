@@ -3479,11 +3479,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/area/tether/elevator)
 "fv" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -3513,6 +3509,25 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/engineering/shaft)
+"fy" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"fz" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fB" = (
 /obj/structure/stairs/south,
 /turf/simulated/floor/tiled,
@@ -5816,11 +5831,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/station/eng_upper)
-"kY" = (
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/hallway/station/starboard)
 "kZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -6218,9 +6228,6 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
-"lH" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/hallway/station/starboard)
 "lI" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -7531,12 +7538,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
-"nI" = (
-/obj/structure/sign/deck2,
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/hallway/station/starboard)
 "nJ" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -28648,12 +28649,12 @@ fd
 LD
 jP
 kk
-kY
-kY
-kY
-kY
-kY
-kY
+fh
+fh
+fh
+fh
+fh
+fh
 jj
 pj
 kj
@@ -28790,12 +28791,12 @@ fd
 fN
 jQ
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fh
+fq
+fq
+fq
+fq
+fh
 jj
 kj
 pO
@@ -28932,12 +28933,12 @@ fd
 jl
 jR
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fh
+fq
+fq
+fq
+fq
+fh
 jL
 kj
 pP
@@ -29074,12 +29075,12 @@ fd
 Tj
 jS
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fh
+fq
+fq
+fq
+fq
+fh
 oR
 kj
 pQ
@@ -29216,12 +29217,12 @@ aN
 XM
 jS
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fh
+fq
+fq
+fq
+fq
+fh
 oS
 kj
 pR
@@ -29358,12 +29359,12 @@ SI
 SI
 RT
 kk
-kY
-kY
-lH
-lH
-nI
-kY
+fh
+fh
+fq
+fq
+fu
+fh
 kj
 kj
 pS

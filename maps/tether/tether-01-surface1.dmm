@@ -8222,9 +8222,6 @@
 "ati" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/lower/xenoflora)
-"atj" = (
-/turf/simulated/wall/r_wall,
-/area/tether/surfacebase/atrium_one)
 "atl" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/effect/floor_decal/industrial/outline,
@@ -8550,11 +8547,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/primary)
-"atW" = (
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/tether/surfacebase/atrium_one)
 "atX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -8838,9 +8830,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
-"auF" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/surfacebase/atrium_one)
 "auG" = (
 /obj/structure/closet/firecloset/full/double,
 /turf/simulated/floor/tiled/techfloor,
@@ -10231,18 +10220,6 @@
 /obj/random/junk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
-"axD" = (
-/obj/turbolift_map_holder/tether{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/surfacebase/atrium_one)
-"axE" = (
-/obj/structure/sign/deck/first,
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/tether/surfacebase/atrium_one)
 "axF" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -37547,7 +37524,7 @@ ati
 ati
 ati
 ati
-ati
+aBe
 aAt
 aBd
 aBV
@@ -37689,7 +37666,7 @@ avA
 avA
 avA
 ayJ
-ati
+aBe
 aAu
 aBd
 aBd
@@ -37824,14 +37801,14 @@ alg
 alg
 alg
 aah
-atj
-atW
-atW
-atW
-atW
-atW
-atW
-atj
+ati
+afs
+afs
+afs
+afs
+afs
+afs
+aBe
 aAu
 azI
 aah
@@ -37966,14 +37943,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-axD
-atW
-atj
+ati
+afs
+afx
+afx
+afx
+afz
+afs
+aBe
 aAu
 azI
 aah
@@ -38108,14 +38085,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-auF
-atW
-atj
+ati
+afs
+afx
+afx
+afx
+afx
+afs
+aBe
 aci
 azI
 aah
@@ -38250,14 +38227,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-auF
-atW
-atj
+ati
+afs
+afx
+afx
+afx
+afx
+afs
+aBe
 aAu
 azI
 aah
@@ -38392,14 +38369,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-auF
-atW
-atj
+ati
+afs
+afx
+afx
+afx
+afx
+afs
+aBe
 aAu
 azI
 aah
@@ -38534,14 +38511,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-atW
-auF
-auF
-axE
-atW
-atj
+ati
+afs
+afs
+afx
+afx
+afG
+afs
+aBe
 aAu
 azI
 aah
