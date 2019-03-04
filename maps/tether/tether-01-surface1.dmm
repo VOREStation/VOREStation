@@ -27185,11 +27185,9 @@
 /obj/structure/closet/crate,
 /obj/item/weapon/bedsheet/green,
 /obj/machinery/alarm{
-	breach_detection = 0;
 	dir = 8;
 	pixel_x = 25;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_y = 0
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -27961,11 +27959,9 @@
 "lCL" = (
 /obj/structure/catwalk,
 /obj/machinery/alarm{
-	breach_detection = 0;
 	dir = 8;
 	pixel_x = 25;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_y = 0
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
