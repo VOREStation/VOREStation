@@ -17653,6 +17653,15 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/tcommsat/chamber)
+"HR" = (
+/obj/machinery/telecomms/relay/preset/tether/midpoint,
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base";
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 80
+	},
+/area/tcommsat/chamber)
 "HT" = (
 /obj/item/weapon/storage/box/glasses/pint,
 /obj/item/weapon/storage/box/glass_extras/straws,
@@ -32865,7 +32874,7 @@ Gg
 Gq
 GD
 GP
-Gz
+HR
 Hd
 Hn
 Gz
