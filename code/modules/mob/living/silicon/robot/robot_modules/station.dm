@@ -19,7 +19,6 @@ var/global/list/robot_modules = list(
 	icon_state = "std_module"
 	w_class = ITEMSIZE_NO_CONTAINER
 	item_state = "std_mod"
-	flags = CONDUCT
 	var/hide_on_manifest = 0
 	var/channels = list()
 	var/networks = list()

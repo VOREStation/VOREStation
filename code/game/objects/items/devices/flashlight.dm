@@ -4,7 +4,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 	action_button_name = "Toggle Flashlight"
@@ -26,7 +25,6 @@
 /obj/item/device/flashlight/New()
 	if(power_use)
 		START_PROCESSING(SSobj, src)
-
 		if(cell_type)
 			cell = new cell_type(src)
 			brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
@@ -245,7 +243,6 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = "pen"
-	flags = CONDUCT
 	slot_flags = SLOT_EARS
 	brightness_on = 2
 	w_class = ITEMSIZE_TINY
@@ -277,7 +274,6 @@
 	icon_state = "maglight"
 	flashlight_colour = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
 	force = 10
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list ("smacked", "thwacked", "thunked")
@@ -289,7 +285,6 @@
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
 	item_state = null
-	flags = CONDUCT
 	brightness_on = 2
 	w_class = ITEMSIZE_TINY
 	power_use = 0
@@ -302,7 +297,6 @@
 	force = 10
 	brightness_on = 5
 	w_class = ITEMSIZE_LARGE
-	flags = CONDUCT
 	power_use = 0
 	on = 1
 

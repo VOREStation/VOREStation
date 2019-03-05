@@ -16,7 +16,6 @@
 	var/frequency = 1451
 	var/broadcasting = null
 	var/listening = 1.0
-	flags = CONDUCT
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 	throw_speed = 4

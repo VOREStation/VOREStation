@@ -3,7 +3,6 @@
 	desc = "Should anything ever go wrong..."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_phone"
-	flags = CONDUCT
 	force = 3.0
 	throwforce = 2.0
 	throw_speed = 1
@@ -85,7 +84,6 @@
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_NORMAL
@@ -210,7 +208,7 @@
 	var/traitor_frequency = 0.0
 	var/mob/currentUser = null
 	var/obj/item/device/radio/origradio = null
-	flags = CONDUCT | ONBELT
+	flags = ONBELT
 	w_class = ITEMSIZE_SMALL
 	item_state = "radio"
 	throw_speed = 4
@@ -228,7 +226,6 @@
 	var/selfdestruct = 0.0
 	var/traitor_frequency = 0.0
 	var/obj/item/device/radio/origradio = null
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "radio"
 	throwforce = 5
@@ -283,7 +280,6 @@
 	icon_state = "std_module"
 	item_state = "std_mod"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	var/mtype = 1						// 1=electronic 2=hardware
 
 /obj/item/weapon/module/card_reader

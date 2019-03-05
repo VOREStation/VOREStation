@@ -15,7 +15,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon_state = "health"
 	item_state = "healthanalyzer"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL
@@ -299,7 +298,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -337,7 +335,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT | OPENCONTAINER
+	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -399,7 +397,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -447,7 +444,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	item_state = "xenobio"
 	origin_tech = list(TECH_BIO = 1)
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -490,7 +486,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "eftpos"
 	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 2)
 	throwforce = 0
 	throw_speed = 3

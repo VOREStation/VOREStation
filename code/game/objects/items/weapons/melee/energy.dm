@@ -7,7 +7,7 @@
 	sharp = 0
 	edge = 0
 	armor_penetration = 50
-	flags = NOBLOODY
+	flags = NOCONDUCT | NOBLOODY
 	var/lrange = 2
 	var/lpower = 2
 	var/lcolor = "#0099FF"
@@ -82,7 +82,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1

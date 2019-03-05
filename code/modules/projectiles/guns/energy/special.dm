@@ -7,7 +7,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	projectile_type = /obj/item/projectile/ion
 
@@ -127,7 +126,11 @@
 	icon = 'icons/obj/gun.dmi'
 	item_icons = null
 	icon_state = "staffofchange"
+<<<<<<< HEAD
+	fire_sound = 'sound/weapons/emitter.ogg'
 	flags =  CONDUCT
+=======
+>>>>>>> f093ebd... Merge pull request #5987 from Anewbe/shock_grilles
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	charge_cost = 480

@@ -37,8 +37,8 @@
 	if(apply_colour)
 		color = material.icon_colour
 
-	if(material.conductive)
-		flags |= CONDUCT
+	if(!material.conductive)
+		flags |= NOCONDUCT
 
 	matter = material.get_matter()
 	update_strings()

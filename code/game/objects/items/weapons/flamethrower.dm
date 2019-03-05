@@ -8,7 +8,6 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi',
 			)
 	item_state = "flamethrower_0"
-	flags = CONDUCT
 	force = 3.0
 	throwforce = 10.0
 	throw_speed = 1

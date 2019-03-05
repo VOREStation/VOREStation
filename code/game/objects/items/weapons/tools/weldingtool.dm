@@ -7,7 +7,6 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	item_state = "welder"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
 	//Amount of OUCH when it's thrown
