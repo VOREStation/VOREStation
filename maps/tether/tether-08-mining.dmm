@@ -402,6 +402,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
 /obj/structure/closet/hydrant{
 	pixel_y = -32
 	},
@@ -597,7 +600,7 @@
 	pressure_checks_default = 2;
 	use_power = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "mH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -1136,6 +1139,11 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
+"KL" = (
+/obj/machinery/telecomms/relay/preset/underdark,
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor,
+/area/outpost/mining_main/maintenance)
 "Ma" = (
 /obj/machinery/door/airlock/mining{
 	name = "Quarters"
@@ -1257,6 +1265,7 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "TC" = (
+/obj/machinery/camera/network/mining,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 10
 	},
@@ -4158,7 +4167,7 @@ Kj
 Zg
 RB
 MV
-KJ
+KL
 SF
 ab
 Il
