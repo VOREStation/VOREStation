@@ -7,7 +7,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 200, "waste" = 100)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
-	secured = 1
+	secured = TRUE
 
 	var/code = 30
 	var/frequency = 1457
@@ -15,7 +15,7 @@
 	var/airlock_wire = null
 	var/datum/wires/connected = null
 	var/datum/radio_frequency/radio_connection
-	var/deadman = 0
+	var/deadman = FALSE
 
 /obj/item/device/assembly/signaler/New()
 	..()
@@ -25,13 +25,13 @@
 
 
 /obj/item/device/assembly/signaler/activate()
-	if(cooldown > 0)	return 0
+	if(cooldown > 0)	return FALSE
 	cooldown = 2
 	spawn(10)
 		process_cooldown()
 
 	signal()
-	return 1
+	return TRUE
 
 /obj/item/device/assembly/signaler/update_icon()
 	if(holder)
@@ -70,7 +70,8 @@ Code:
 
 
 /obj/item/device/assembly/signaler/Topic(href, href_list, state = deep_inventory_state)
-	if(..()) return 1
+	if(..())
+		return TRUE
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr << browse(null, "window=radio")
@@ -109,7 +110,10 @@ Code:
 		..()
 
 /obj/item/device/assembly/signaler/proc/signal()
-	if(!radio_connection) return
+	if(!radio_connection)
+		return
+	if(is_jammed(src))
+		return
 
 	var/datum/signal/signal = new
 	signal.source = src
@@ -120,19 +124,26 @@ Code:
 
 
 /obj/item/device/assembly/signaler/pulse(var/radio = 0)
+	if(is_jammed(src))
+		return FALSE
 	if(src.connected && src.wires)
 		connected.Pulse(src)
 	else if(holder)
 		holder.process_activation(src, 1, 0)
 	else
 		..(radio)
-	return 1
+	return TRUE
 
 
 /obj/item/device/assembly/signaler/receive_signal(datum/signal/signal)
-	if(!signal)	return 0
-	if(signal.encryption != code)	return 0
-	if(!(src.wires & WIRE_RADIO_RECEIVE))	return 0
+	if(!signal)
+		return FALSE
+	if(signal.encryption != code)
+		return FALSE
+	if(!(src.wires & WIRE_RADIO_RECEIVE))
+		return FALSE
+	if(is_jammed(src))
+		return FALSE
 	pulse(1)
 
 	if(!holder)
@@ -161,8 +172,13 @@ Code:
 	if(!M || !ismob(M))
 		if(prob(5))
 			signal()
+<<<<<<< HEAD
 		deadman = 0
 		processing_objects.Remove(src)
+=======
+		deadman = FALSE
+		STOP_PROCESSING(SSobj, src)
+>>>>>>> 5c5e67d... Merge pull request #5985 from Anewbe/jammer
 	else if(prob(5))
 		M.visible_message("[M]'s finger twitches a bit over [src]'s signal button!")
 	return
@@ -171,8 +187,13 @@ Code:
 	set src in usr
 	set name = "Threaten to push the button!"
 	set desc = "BOOOOM!"
+<<<<<<< HEAD
 	deadman = 1
 	processing_objects.Add(src)
+=======
+	deadman = TRUE
+	START_PROCESSING(SSobj, src)
+>>>>>>> 5c5e67d... Merge pull request #5985 from Anewbe/jammer
 	log_and_message_admins("is threatening to trigger a signaler deadman's switch")
 	usr.visible_message("<font color='red'>[usr] moves their finger over [src]'s signal button...</font>")
 

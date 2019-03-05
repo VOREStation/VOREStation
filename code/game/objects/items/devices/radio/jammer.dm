@@ -15,7 +15,7 @@ var/global/list/active_radio_jammers = list()
 
 /obj/item/device/radio_jammer
 	name = "subspace jammer"
-	desc = "Primarily for blocking subspace communications, preventing the use of headsets, PDAs, and communicators."
+	desc = "Primarily for blocking subspace communications, preventing the use of headsets, PDAs, and communicators. Also masks suit sensors."	// Added suit sensor jamming
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer0"
 	var/active_state = "jammer1"
@@ -24,7 +24,11 @@ var/global/list/active_radio_jammers = list()
 	var/on = 0
 	var/jam_range = 7
 	var/obj/item/weapon/cell/device/weapon/power_source
+<<<<<<< HEAD
 	var/tick_cost = 5 //VOREStation Edit - For the ERPs.
+=======
+	var/tick_cost = 8 // Will last for roughly ten minutes, as process() ticks every 2 seconds.
+>>>>>>> 5c5e67d... Merge pull request #5985 from Anewbe/jammer
 
 	origin_tech = list(TECH_ILLEGAL = 7, TECH_BLUESPACE = 5) //Such technology! Subspace jamming!
 
