@@ -28,7 +28,11 @@
 
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
+<<<<<<< HEAD
 		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src))) //VOREStation Edit - Polaris change breaks Tether
+=======
+		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)))
+>>>>>>> 9f8f299... Merge pull request #5960 from Verkister/patch-20
 			N = /turf/simulated/open
 
 	var/obj/fire/old_fire = fire
