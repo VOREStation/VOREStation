@@ -9,7 +9,7 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "ad" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/outside{
 	dir = 1
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
@@ -497,11 +497,10 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/reading_room)
 "bg" = (
-/obj/machinery/camera/network/security{
-	dir = 9
-	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "bh" = (
 /turf/simulated/wall/r_wall,
 /area/gateway/prep_room)
@@ -2895,7 +2894,7 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/lobby)
 "fF" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/outside{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
@@ -4723,7 +4722,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -4963,7 +4962,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "iK" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -5066,7 +5065,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "iR" = (
@@ -5244,7 +5243,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "jc" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -5885,7 +5884,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
 "kk" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/outside{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
@@ -5935,15 +5934,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "ko" = (
-/obj/machinery/camera/network/civilian{
-	dir = 1
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -6257,7 +6256,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "kM" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -6548,7 +6547,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /turf/simulated/floor/tiled,
@@ -7408,7 +7407,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/north_stairs_three)
 "nd" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /turf/simulated/open,
@@ -7423,7 +7422,7 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/north_stairs_three)
 "ng" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -9594,7 +9593,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "qS" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -9795,7 +9794,7 @@
 	name = "\improper Recreation Area Showers"
 	})
 "rn" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -10262,7 +10261,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -11746,7 +11745,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
@@ -12643,7 +12642,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "wh" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -13912,7 +13911,7 @@
 /area/hallway/lower/third_south)
 "yw" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -15271,12 +15270,6 @@
 /obj/machinery/computer/arcade,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
-"AS" = (
-/obj/machinery/camera/network/northern_star{
-	dir = 9
-	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
 "AT" = (
 /obj/structure/railing,
 /turf/simulated/open,
@@ -16416,7 +16409,7 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/mauve/border,
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -17883,10 +17876,11 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "EV" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/shuttle_pad)
 "EW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -18222,7 +18216,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "Fs" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -18471,6 +18465,10 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
+"FK" = (
+/obj/machinery/camera/network/outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "FM" = (
 /obj/structure/sink{
 	dir = 4;
@@ -19026,7 +19024,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "GJ" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -19175,7 +19173,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "GU" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -20024,7 +20022,7 @@
 "It" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -20609,7 +20607,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -21067,7 +21065,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "Kk" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -21277,12 +21275,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/reinforced,
 /area/tether/surfacebase/shuttle_pad)
-"KJ" = (
-/obj/machinery/camera/network/engineering{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/shuttle_pad)
 "KK" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor,
@@ -21294,10 +21286,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/shuttle_pad)
-"KM" = (
-/obj/machinery/camera/network/northern_star,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
 "KO" = (
 /obj/structure/table/marble,
 /obj/item/weapon/flame/lighter/zippo,
@@ -28270,7 +28258,7 @@ ac
 ac
 ac
 ac
-bg
+fF
 ac
 ac
 ac
@@ -29245,7 +29233,7 @@ ac
 ac
 ac
 ac
-bg
+fF
 ac
 ac
 ac
@@ -29432,7 +29420,7 @@ ac
 ac
 ac
 ac
-AS
+fF
 ac
 ac
 ac
@@ -33429,7 +33417,7 @@ ac
 ac
 ac
 ac
-AS
+fF
 ac
 ac
 ac
@@ -35854,7 +35842,7 @@ IR
 IR
 IR
 IR
-KM
+FK
 ac
 ac
 ac
@@ -36270,7 +36258,7 @@ Jr
 Jv
 Jz
 JE
-EV
+bg
 JM
 IY
 IY
@@ -36412,7 +36400,7 @@ Js
 Js
 Jz
 JE
-EV
+bg
 JM
 IY
 IY
@@ -36554,7 +36542,7 @@ Jt
 Js
 Jz
 JE
-EV
+bg
 JM
 IY
 IY
@@ -36685,7 +36673,7 @@ Gm
 GW
 Hr
 ac
-AS
+fF
 ac
 IS
 IY
@@ -37556,7 +37544,7 @@ IR
 Kv
 Kv
 KE
-KJ
+EV
 IR
 ac
 ac
@@ -38126,7 +38114,7 @@ IR
 IR
 IR
 IR
-KM
+FK
 ac
 ac
 ac

@@ -2967,7 +2967,7 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
-/obj/machinery/camera/network/mining,
+/obj/machinery/camera/network/cargo,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
 "aeU" = (
@@ -3688,7 +3688,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/camera/network/mining{
+/obj/machinery/camera/network/cargo{
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -4130,22 +4130,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
-"ahH" = (
-/obj/machinery/camera/network/civilian{
-	dir = 2
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/lower/first_west)
 "ahI" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -4246,7 +4230,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "ahR" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -4414,7 +4398,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 1
 	},
@@ -4528,7 +4512,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
@@ -6158,7 +6142,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
@@ -6180,7 +6164,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
@@ -7340,11 +7324,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
-"aqx" = (
-/obj/structure/bed/chair,
-/obj/machinery/camera/network/northern_star,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/tram)
 "aqz" = (
 /obj/structure/bed/chair,
 /obj/machinery/status_display{
@@ -7910,7 +7889,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
@@ -8047,15 +8026,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/tram)
-"asK" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/obj/machinery/camera/network/northern_star{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
 "asL" = (
 /obj/effect/floor_decal/industrial/warning/corner,
@@ -8858,7 +8828,7 @@
 /area/tether/surfacebase/atrium_one)
 "auN" = (
 /obj/effect/floor_decal/borderfloor,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -10232,7 +10202,7 @@
 /area/tether/surfacebase/atrium_one)
 "axK" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -11283,7 +11253,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -11302,7 +11272,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 8;
 	icon_state = "camera"
 	},
@@ -12532,7 +12502,7 @@
 "aCA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -13762,7 +13732,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 8;
 	icon_state = "camera"
 	},
@@ -16606,7 +16576,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 8;
 	icon_state = "camera"
 	},
@@ -18228,7 +18198,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 1
 	},
@@ -18256,10 +18226,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
-"bfC" = (
-/obj/machinery/camera/network/northern_star,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/tram)
 "bfF" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -18456,7 +18422,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -18572,18 +18538,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
-"bhj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/camera/network/northern_star{
-	dir = 5
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/tram)
 "bhk" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -19227,13 +19181,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
-"bmh" = (
-/obj/machinery/camera/network/research{
-	dir = 4;
-	network = list("Xenobiology")
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology)
 "bmm" = (
 /obj/machinery/door/window/brigdoor/eastleft{
 	name = "Containment Pen";
@@ -21771,13 +21718,6 @@
 /obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
-"bEd" = (
-/obj/machinery/computer/security/mining{
-	name = "xenobiology camera monitor";
-	network = list("Xenobiology")
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/xenobiology)
 "bEf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -22408,7 +22348,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
 "bLY" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
@@ -23686,7 +23626,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -24517,7 +24457,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/structure/disposalpipe/junction{
@@ -25898,19 +25838,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
-"cft" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/grey/border{
-	icon_state = "bordercolor";
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "cfv" = (
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -26792,17 +26719,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
-"chW" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/grey/border{
-	icon_state = "bordercolor";
-	dir = 4
-	},
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "chY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/spline/plain{
@@ -32291,19 +32207,19 @@ axf
 bhp
 azr
 azX
-bmh
+adj
 aDa
 bqk
 aDa
-bmh
+adk
 aBu
 azr
 azU
-bmh
+adu
 aBu
 azr
 azU
-bmh
+adH
 aBu
 azr
 aah
@@ -33018,7 +32934,7 @@ bNQ
 bQw
 bSu
 azU
-bmh
+adI
 azU
 azr
 aad
@@ -33577,7 +33493,7 @@ aDA
 bvF
 byz
 aHb
-bEd
+adF
 aAO
 aGt
 aAO
@@ -33586,7 +33502,7 @@ bOf
 bQK
 bSH
 bTk
-bmh
+adJ
 aDa
 bWk
 aad
@@ -34536,7 +34452,7 @@ aah
 aah
 aah
 ahl
-ahH
+acN
 aiE
 ajq
 ako
@@ -43681,7 +43597,7 @@ cce
 cda
 cjs
 ceK
-cft
+adh
 cfL
 cgk
 chl
@@ -44679,7 +44595,7 @@ cfx
 cfU
 cfv
 chu
-chW
+adi
 ciK
 cjA
 ceM
@@ -44774,7 +44690,7 @@ aah
 aah
 aah
 apP
-aqx
+acT
 arm
 arm
 arm
@@ -44788,7 +44704,7 @@ azl
 azR
 avb
 apP
-bfC
+add
 arm
 cfi
 cfy
@@ -45209,7 +45125,7 @@ atu
 atu
 avX
 axd
-bhj
+ada
 azo
 azS
 aAJ
@@ -46907,7 +46823,7 @@ apR
 aqG
 aTI
 aqG
-asK
+acV
 aTI
 aqG
 aqG
@@ -46919,7 +46835,7 @@ aTI
 aqG
 aqG
 aTI
-asK
+acV
 aqG
 aTI
 aqG

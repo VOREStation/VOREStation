@@ -435,6 +435,38 @@ var/global/list/latejoin_tram   = list()
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
 
+//Tether-unique network cameras
+/obj/machinery/camera/network/tether
+	network = list(NETWORK_TETHER)
+
+/obj/machinery/camera/network/tcomms
+	network = list(NETWORK_TCOMMS)
+
+/obj/machinery/camera/network/outside
+	network = list(NETWORK_OUTSIDE)
+
+/obj/machinery/camera/network/exploration
+	network = list(NETWORK_EXPLORATION)
+
+/obj/machinery/camera/network/research/xenobio
+	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
+
+//Camera monitors
+/obj/machinery/computer/security/xenobio
+	name = "xenobiology camera monitor"
+	desc = "Used to access the xenobiology cell cameras."
+	icon_keyboard = "mining_key"
+	icon_screen = "mining"
+	network = list(NETWORK_XENOBIO)
+	circuit = /obj/item/weapon/circuitboard/security/xenobio
+	light_color = "#F9BBFC"
+
+/obj/item/weapon/circuitboard/security/xenobio
+	name = T_BOARD("xenobiology camera monitor")
+	build_path = /obj/machinery/computer/security/xenobio
+	network = list(NETWORK_XENOBIO)
+	req_access = list()
+
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
