@@ -488,6 +488,37 @@
 
 	return ..()
 
+/obj/machinery/transhuman/resleever/MouseDrop_T(mob/living/carbon/O, mob/user as mob)
+	if(!istype(O))
+		return 0 //not a mob
+	if(user.incapacitated())
+		return 0 //user shouldn't be doing things
+	if(O.anchored)
+		return 0 //mob is anchored???
+	if(get_dist(user, src) > 1 || get_dist(user, O) > 1)
+		return 0 //doesn't use adjacent() to allow for non-cardinal (fuck my life)
+	if(!ishuman(user) && !isrobot(user))
+		return 0 //not a borg or human
+	if(panel_open)
+		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		return 0 //panel open
+
+	if(O.buckled)
+		return 0
+	if(O.has_buckled_mobs())
+		to_chat(user, span("warning", "\The [O] has other entities attached to it. Remove them first."))
+		return
+
+	if(put_mob(O))
+		if(O == user)
+			src.updateUsrDialog()
+			visible_message("[user] climbs into \the [src].")
+		else
+			src.updateUsrDialog()
+			visible_message("[user] puts [O] into \the [src].")
+
+	add_fingerprint(user)
+
 /obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
