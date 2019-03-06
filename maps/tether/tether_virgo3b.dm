@@ -163,11 +163,6 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"Clouds cut off your view of the sky.",
 		"It's very cloudy."
 		)
-	observed_message = "It is snowing lightly."
-	transition_messages = list(
-		"Small snowflakes begin to fall from above.",
-		"It begins to snow lightly.",
-		)
 
 /datum/weather/virgo3b/light_snow
 	name = "light snow"
