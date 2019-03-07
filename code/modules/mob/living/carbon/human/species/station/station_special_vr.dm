@@ -30,6 +30,7 @@
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
 		/mob/living/proc/shred_limb,
+		/mob/living/proc/eat_trash,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
 

@@ -37,6 +37,11 @@
 	S["max_traits"]		>> pref.max_traits
 	S["trait_points"]	>> pref.starting_trait_points
 
+	S["trait_trash_eater"]			>> pref.trait_trash_eater
+	S["trait_brutal_predation"]		>> pref.trait_brutal_predation
+	S["trait_bloodsucker"]			>> pref.trait_bloodsucker
+	S["trait_succubus_drain"]		>> pref.trait_succubus_drain
+
 /datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
 	S["custom_species"]	<< pref.custom_species
 	S["custom_base"]	<< pref.custom_base
@@ -48,6 +53,11 @@
 	S["traits_cheating"]<< pref.traits_cheating
 	S["max_traits"]		<< pref.max_traits
 	S["trait_points"]	<< pref.starting_trait_points
+
+	S["trait_trash_eater"]			<< pref.trait_trash_eater
+	S["trait_brutal_predation"]		<< pref.trait_brutal_predation
+	S["trait_bloodsucker"]			<< pref.trait_bloodsucker
+	S["trait_succubus_drain"]		<< pref.trait_succubus_drain
 
 /datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
@@ -151,7 +161,7 @@
 			var/datum/trait/trait = negative_traits[T]
 			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
-	else
+	else if (!(pref.species == SPECIES_XENOCHIMERA))
 		. += "<b>Enable Trash Can:</b> <a [pref.trait_trash_eater ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_trash_eater=0'><b>[pref.trait_trash_eater ? "Yes" : "No"]</b></a><br>"
 		. += "<b>Enable Brutal Predation:</b> <a [pref.trait_brutal_predation ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_brutal_predation=0'><b>[pref.trait_brutal_predation ? "Yes" : "No"]</b></a><br>"
 		. += "<b>Enable Bloodsucker:</b> <a [pref.trait_bloodsucker ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_bloodsucker=0'><b>[pref.trait_bloodsucker ? "Yes" : "No"]</b></a><br>"
