@@ -15,6 +15,11 @@
 	var/starting_trait_points = STARTING_SPECIES_POINTS
 	var/max_traits = MAX_SPECIES_TRAITS
 
+	var/trait_trash_eater = 0
+	var/trait_brutal_predation = 0
+	var/trait_bloodsucker = 0
+	var/trait_succubus_drain = 0
+
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/traits
 	name = "Traits"
@@ -90,9 +95,20 @@
 		//Statistics for this would be nice
 		var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
-		
+
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
+	else
+		if(pref.trait_trash_eater)
+			character.verbs |= /mob/living/proc/eat_trash
+		if(pref.trait_brutal_predation)
+			character.verbs |= /mob/living/proc/shred_limb
+		if(pref.trait_bloodsucker)
+			character.verbs |= /mob/living/carbon/human/proc/bloodsuck
+		if(pref.trait_succubus_drain)
+			character.verbs |= /mob/living/carbon/human/proc/succubus_drain
+			character.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
+			character.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += "<b>Custom Species</b> "
@@ -135,6 +151,11 @@
 			var/datum/trait/trait = negative_traits[T]
 			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
+	else
+		. += "<b>Enable Trash Can:</b> <a [pref.trait_trash_eater ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_trash_eater=0'><b>[pref.trait_trash_eater ? "Yes" : "No"]</b></a><br>"
+		. += "<b>Enable Brutal Predation:</b> <a [pref.trait_brutal_predation ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_brutal_predation=0'><b>[pref.trait_brutal_predation ? "Yes" : "No"]</b></a><br>"
+		. += "<b>Enable Bloodsucker:</b> <a [pref.trait_bloodsucker ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_bloodsucker=0'><b>[pref.trait_bloodsucker ? "Yes" : "No"]</b></a><br>"
+		. += "<b>Enable Succubus Drain:</b> <a [pref.trait_succubus_drain ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_trait_succubus_drain=0'><b>[pref.trait_succubus_drain ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
@@ -276,6 +297,22 @@
 
 			mylist += path
 			return TOPIC_REFRESH
+
+	else if(href_list["toggle_trait_trash_eater"])
+		pref.trait_trash_eater = pref.trait_trash_eater ? 0 : 1;
+		return TOPIC_REFRESH
+
+	else if(href_list["toggle_trait_brutal_predation"])
+		pref.trait_brutal_predation = pref.trait_brutal_predation ? 0 : 1;
+		return TOPIC_REFRESH
+
+	else if(href_list["toggle_trait_bloodsucker"])
+		pref.trait_bloodsucker = pref.trait_bloodsucker ? 0 : 1;
+		return TOPIC_REFRESH
+
+	else if(href_list["toggle_trait_succubus_drain"])
+		pref.trait_succubus_drain = pref.trait_succubus_drain ? 0 : 1;
+		return TOPIC_REFRESH
 
 	return ..()
 
