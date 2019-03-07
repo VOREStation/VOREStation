@@ -45,12 +45,7 @@
 	flags = NO_SCAN | IS_PLANT | NO_MINOR_CUT
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
-	inherent_verbs = list(
-		/*/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,*/
-		/mob/living/carbon/human/proc/alraune_fruit_select) //Give them the voremodes related to wrapping people in vines and sapping their fluids
+	inherent_verbs = list(/mob/living/carbon/human/proc/alraune_fruit_select) //Removed fluid/energy sapping traits due to being put into prefs
 
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
