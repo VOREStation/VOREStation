@@ -163,6 +163,26 @@
 	path = /obj/item/clothing/under/rank/head_of_security/skirt
 	allowed_roles = list("Head of Security")
 
+/datum/gear/uniform/job_turtle/science
+	display_name = "turtleneck, science"
+	path = /obj/item/clothing/under/rank/scientist/turtleneck
+	allowed_roles = list("Research Director", "Scientist", "Roboticist", "Xenobiologist")
+
+/datum/gear/uniform/job_turtle/security
+	display_name = "turtleneck, security"
+	path = /obj/item/clothing/under/rank/security/turtleneck
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+
+/datum/gear/uniform/job_turtle/engineering
+	display_name = "turtleneck, engineering"
+	path = /obj/item/clothing/under/rank/engineer/turtleneck
+	allowed_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer")
+
+/datum/gear/uniform/job_turtle/medical
+	display_name = "turtleneck, medical"
+	path = /obj/item/clothing/under/rank/medical/turtleneck
+	allowed_roles = list("Chief Medical Officer", "Paramedic", "Medical Doctor", "Psychologist", "Search and Rescue", "Chemist")
+
 /datum/gear/uniform/jeans_qm
 	display_name = "jeans, QM"
 	path = /obj/item/clothing/under/rank/cargo/jeans
