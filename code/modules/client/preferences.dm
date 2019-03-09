@@ -217,7 +217,8 @@ datum/preferences
 		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
 		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a> - "
-		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a>"
+		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
+		dat += "<a href='?src=\ref[src];copy=1'>Copy slot</a>"
 
 	else
 		dat += "Please create an account to save your preferences."
@@ -273,6 +274,14 @@ datum/preferences
 			return 0
 		load_character(SAVE_RESET)
 		sanitize_preferences()
+	else if(href_list["copy"])
+		if(!IsGuestKey(usr.key))
+			open_copy_dialog(usr)
+			return 1
+	else if(href_list["overwrite"])
+		overwrite_character(text2num(href_list["overwrite"]))
+		sanitize_preferences()
+		close_load_dialog(usr)
 	else
 		return 0
 
@@ -332,3 +341,29 @@ datum/preferences
 /datum/preferences/proc/close_load_dialog(mob/user)
 	//user << browse(null, "window=saves")
 	panel.close()
+<<<<<<< HEAD
+=======
+
+/datum/preferences/proc/open_copy_dialog(mob/user)
+	var/dat = "<body>"
+	dat += "<tt><center>"
+
+	var/savefile/S = new /savefile(path)
+	if(S)
+		dat += "<b>Select a character slot to overwrite</b><br>"
+		dat += "<b>You will then need to save to confirm</b><hr>"
+		var/name
+		for(var/i=1, i<= config.character_slots, i++)
+			S.cd = "/character[i]"
+			S["real_name"] >> name
+			if(!name)	name = "Character[i]"
+			if(i==default_slot)
+				name = "<b>[name]</b>"
+			dat += "<a href='?src=\ref[src];overwrite=[i]'>[name]</a><br>"
+
+	dat += "<hr>"
+	dat += "</center></tt>"
+	panel = new(user, "Character Slots", "Character Slots", 300, 390, src)
+	panel.set_content(dat)
+	panel.open()
+>>>>>>> 6927ca1... Merge pull request #5988 from PrismaticGynoid/charactercopy
