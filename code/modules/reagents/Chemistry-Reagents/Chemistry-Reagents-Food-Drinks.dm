@@ -3147,3 +3147,47 @@
 
 	glass_name = "Ichor Mead"
 	glass_desc = "A trip to Valhalla."
+
+/datum/reagent/ethanol/schnapps_pep
+	name = "Peppermint Schnapps"
+	id = "schnapps_pep"
+	description = "Achtung, pfefferminze."
+	taste_description = "minty alcohol"
+	color = "#8FC468"
+	strength = 25
+
+	glass_name = "peppermint schnapps"
+	glass_desc = "A glass of peppermint schnapps. It seems like it'd be better, mixed."
+
+/datum/reagent/ethanol/schnapps_pea
+	name = "Peach Schnapps"
+	id = "schnapps_pea"
+	description = "Achtung, fruchtig."
+	taste_description = "peaches"
+	color = "#d67d4d"
+	strength = 25
+
+	glass_name = "peach schnapps"
+	glass_desc = "A glass of peach schnapps. It seems like it'd be better, mixed."
+
+/datum/reagent/ethanol/schnapps_lem
+	name = "Lemonade Schnapps"
+	id = "schnapps_lem"
+	description = "Childhood memories are not included."
+	taste_description = "sweet, lemon-y alcohol"
+	color = "#FFFF00"
+	strength = 25
+
+	glass_name = "lemonade schnapps"
+	glass_desc = "A glass of lemonade schnapps. It seems like it'd be better, mixed."
+
+/datum/reagent/ethanol/fusionnaire
+	name = "Fusionnaire"
+	id = "fusionnaire"
+	description = "A drink for the brave."
+	taste_description = "a painfully alcoholic lemon soda with an undertone of mint"
+	color = "#6BB486"
+	strength = 9
+
+	glass_name = "fusionnaire"
+	glass_desc = "A relatively new cocktail, mostly served in the bars of NanoTrasen owned stations."
