@@ -300,6 +300,10 @@
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				var/obj/structure/window/reinforced/polarized/P = new(loc, dir)
+				if(is_fulltile())
+					P.fulltile = TRUE
+					P.icon_state = "fwindow"
+				P.maxhealth = maxhealth
 				P.health = health
 				P.state = state
 				P.anchored = anchored
