@@ -61,6 +61,7 @@
 	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
 	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
 	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
+	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
 
 	embed_chance = 0	//Base chance for a projectile to embed
 

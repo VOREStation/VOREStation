@@ -63,6 +63,7 @@
 	icon_state = "emitter"
 	fire_sound = 'sound/weapons/emitter.ogg'
 	light_color = "#00CC33"
+	excavation_amount = 70 // 3 shots to mine a turf
 
 	muzzle_type = /obj/effect/projectile/emitter/muzzle
 	tracer_type = /obj/effect/projectile/emitter/tracer
@@ -118,6 +119,7 @@
 	fire_sound = 'sound/weapons/emitter.ogg'
 	damage = 0 // The actual damage is computed in /code/modules/power/singularity/emitter.dm
 	light_color = "#00CC33"
+	excavation_amount = 70 // 3 shots to mine a turf
 
 	muzzle_type = /obj/effect/projectile/emitter/muzzle
 	tracer_type = /obj/effect/projectile/emitter/tracer
