@@ -213,8 +213,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if((H.getHalLoss() + agony_to_apply) <= 70) // Don't permalock, but make it far easier to knock them down.
 				H.apply_damage(agony_to_apply, HALLOSS)
 
+<<<<<<< HEAD
 	//else//VOREStation Removal
 		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+=======
+	else
+		H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+>>>>>>> 828fba9... Merge pull request #5994 from PolarisSS13/revert-5975-promethean_retuning
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
@@ -234,8 +239,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 		t_she = "They are"
 	else if(H.identifying_gender == NEUTER)
 		t_she = "It is"
+<<<<<<< HEAD
 	else if(H.identifying_gender == HERM) //VOREStation Edit
 		t_she = "Shi is"
+=======
+>>>>>>> 828fba9... Merge pull request #5994 from PolarisSS13/revert-5975-promethean_retuning
 
 	switch(stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)
