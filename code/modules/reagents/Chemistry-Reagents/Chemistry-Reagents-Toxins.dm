@@ -16,7 +16,10 @@
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		if(alien == IS_SLIME)
 			removed *= 0.25 // Results in half the standard tox as normal. Prometheans are 'Small' for flaps.
-			M.nutrition += strength * removed
+			if(dose >= 10)
+				M.nutrition += strength * removed //Body has to deal with the massive influx of toxins, rather than try using them to repair.
+			else
+				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
 		M.adjustToxLoss(strength * removed)
 
 /datum/reagent/toxin/plasticide
@@ -67,11 +70,20 @@
 /datum/reagent/toxin/hydrophoron/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return
-	T.assume_gas("phoron", ceil(volume/2), T20C)
+	T.assume_gas("phoron", CEILING(volume/2, 1), T20C)
 	for(var/turf/simulated/floor/target_tile in range(0,T))
 		target_tile.assume_gas("phoron", volume/2, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	remove_self(volume)
+
+/datum/reagent/toxin/hydrophoron/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		M.adjust_fire_stacks(removed * 10)
+		if(prob(10))
+			to_chat(M, "<span class='critical'>You feel something boiling within you!</span>")
+			spawn(rand(30, 60))
+				M.IgniteMob()
 
 /datum/reagent/toxin/spidertoxin
 	name = "Spidertoxin"
@@ -107,6 +119,8 @@
 	if(alien == IS_VOX)
 		M.adjustOxyLoss(-100 * removed) //5 oxyloss healed per tick.
 		return //You're wasting plasma (a semi-limited chemical) to save someone, so it might as well be somewhat strong.
+	if(alien == IS_SLIME)
+		M.adjust_fire_stacks(removed * 3) //Not quite 'converting' it. It's like mixing fuel into a jelly. You get explosive, or at least combustible, jelly.
 	..()
 
 /datum/reagent/toxin/phoron/touch_turf(var/turf/simulated/T, var/amount)
@@ -177,6 +191,11 @@
 	strength = 0
 	overdose = REAGENTS_OVERDOSE
 
+/datum/reagent/toxin/potassium_chloride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		M.adjustFireLoss(removed * 2)
+
 /datum/reagent/toxin/potassium_chloride/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	if(ishuman(M))
@@ -206,6 +225,8 @@
 				H.losebreath = max(10, M.losebreath-10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
+	if(alien == IS_SLIME)
+		M.adjustFireLoss(removed * 3)
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
@@ -353,6 +374,13 @@
 /datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
+	if(alien == IS_SLIME)
+		M.apply_effect(5, AGONY, 0)
+		M.adjustToxLoss(3 * removed)
+		if(prob(10))
+			to_chat(M, "<span class='warning'>Your cellular mass hardens for a moment.</span>")
+			M.Stun(6)
+		return
 	if(alien == IS_SKRELL)
 		M.take_organ_damage(2.4 * removed, 0)
 		if(M.losebreath < 10)
@@ -384,9 +412,34 @@
 	if(M.isSynthetic())
 		return
 
-	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.species.flags & NO_SCAN))
-		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(alien == IS_SLIME && prob(25))
+			var/color_shift = rand(-100, 100)
+			spawn(1)
+				if(prob(33))
+					if(H.r_skin)
+						H.r_skin = max(0, min(255, H.r_skin + color_shift))
+					if(H.r_hair)
+						H.r_hair = max(0, min(255, H.r_hair + color_shift))
+					if(H.r_facial)
+						H.r_facial = max(0, min(255, H.r_facial + color_shift))
+				if(prob(33))
+					if(H.g_skin)
+						H.g_skin = max(0, min(255, H.g_skin + color_shift))
+					if(H.g_hair)
+						H.g_hair = max(0, min(255, H.g_hair + color_shift))
+					if(H.g_facial)
+						H.g_facial = max(0, min(255, H.g_facial + color_shift))
+				if(prob(33))
+					if(H.b_skin)
+						H.b_skin = max(0, min(255, H.b_skin + color_shift))
+					if(H.b_hair)
+						H.b_hair = max(0, min(255, H.b_hair + color_shift))
+					if(H.b_facial)
+						H.b_facial = max(0, min(255, H.b_facial + color_shift))
+		if(H.species.flags & NO_SCAN)
+			return
 
 //The original coder comment here wanted it to be "Approx. one mutation per 10 injected/20 ingested/30 touching units"
 //The issue was, it was removed (.2) multiplied by .1, which resulted in a .02% chance per tick to have a mutation occur. Or more accurately, 5000 injected for a single mutation.
@@ -439,6 +492,7 @@
 	reagent_state = LIQUID
 	color = "#009CA8"
 	metabolism = REM * 0.5
+	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -485,6 +539,7 @@
 	reagent_state = SOLID
 	color = "#000067"
 	metabolism = REM * 0.5
+	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 	overdose_mod = 5	//For that good, lethal feeling
 

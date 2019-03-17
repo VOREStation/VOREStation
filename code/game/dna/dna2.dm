@@ -109,7 +109,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	// VOREStation
 
 	// New stuff
-	var/species = "Human"
+	var/species = SPECIES_HUMAN
 	var/list/body_markings = list()
 
 // Make a copy of this strand.
@@ -195,6 +195,12 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	if(istype(character.species,/datum/species/xenochimera))
 		var/datum/species/xenochimera/CS = character.species
+		//src.species_traits = CS.traits.Copy() //No traits
+		src.base_species = CS.base_species
+		src.blood_color = CS.blood_color
+
+	if(istype(character.species,/datum/species/alraune))
+		var/datum/species/alraune/CS = character.species
 		//src.species_traits = CS.traits.Copy() //No traits
 		src.base_species = CS.base_species
 		src.blood_color = CS.blood_color

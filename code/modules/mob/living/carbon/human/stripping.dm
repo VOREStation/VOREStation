@@ -33,7 +33,7 @@
 			return
 		if("tie")
 			var/obj/item/clothing/under/suit = w_uniform
-			if(!istype(suit) || !suit.accessories.len)
+			if(!istype(suit) || !LAZYLEN(suit.accessories))
 				return
 			var/obj/item/clothing/accessory/A = suit.accessories[1]
 			if(!istype(A))
@@ -48,8 +48,7 @@
 
 			if(istype(A, /obj/item/clothing/accessory/badge) || istype(A, /obj/item/clothing/accessory/medal))
 				user.visible_message("<span class='danger'>\The [user] tears off \the [A] from [src]'s [suit.name]!</span>")
-			attack_log += "\[[time_stamp()]\] <font color='orange'>Has had \the [A] removed by [user.name] ([user.ckey])</font>"
-			user.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [name]'s ([ckey]) [A.name]</font>"
+			add_attack_logs(user,src,"Stripped [A.name] off [suit.name]")
 			A.on_removed(user)
 			suit.accessories -= A
 			update_inv_w_uniform()
@@ -81,7 +80,7 @@
 		return
 
 	if(stripping)
-		admin_attack_log(user, src, "Attempted to remove \a [target_slot]", "Target of an attempt to remove \a [target_slot].", "attempted to remove \a [target_slot] from")
+		add_attack_logs(user,src,"Removed equipment from slot [target_slot]")
 		unEquip(target_slot)
 	else if(user.unEquip(held))
 		equip_to_slot_if_possible(held, text2num(slot_to_strip), 0, 1, 1)
@@ -108,8 +107,7 @@
 	if (suit.has_sensor >= 2)
 		user << "<span class='warning'>\The [src]'s suit sensor controls are locked.</span>"
 		return
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their sensors toggled by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) sensors</font>")
+	add_attack_logs(user,src,"Adjusted suit sensor level")
 	suit.set_sensors(user)
 
 // Remove all splints.

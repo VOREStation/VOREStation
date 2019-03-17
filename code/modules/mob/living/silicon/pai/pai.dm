@@ -1,11 +1,13 @@
 /mob/living/silicon/pai
 	name = "pAI"
 	icon = 'icons/mob/pai.dmi'
-	icon_state = "repairbot"
+	icon_state = "pai-repairbot"
 
 	emote_type = 2		// pAIs emotes are heard, not seen, so they can be seen through a container (eg. person)
 	pass_flags = 1
 	mob_size = MOB_SMALL
+
+	holder_type = /obj/item/weapon/holder/pai
 
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
@@ -23,17 +25,17 @@
 	var/obj/item/device/radio/radio		// Our primary radio
 	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
 
-	var/chassis = "repairbot"   // A record of your chosen chassis.
+	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
-		"Drone" = "repairbot",
-		"Cat" = "cat",
-		"Mouse" = "mouse",
-		"Monkey" = "monkey",
-		"Corgi" = "borgi",
-		"Fox" = "fox",
-		"Parrot" = "parrot",
-		"Rabbit" = "rabbit",
-		"Bear" = "bear"  //VOREStation Edit
+		"Drone" = "pai-repairbot",
+		"Cat" = "pai-cat",
+		"Mouse" = "pai-mouse",
+		"Monkey" = "pai-monkey",
+		"Corgi" = "pai-borgi",
+		"Fox" = "pai-fox",
+		"Parrot" = "pai-parrot",
+		"Rabbit" = "pai-rabbit",
+		"Bear" = "pai-bear"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -99,6 +101,7 @@
 	add_language(LANGUAGE_TRADEBAND, 1)
 	add_language(LANGUAGE_GUTTER, 1)
 	add_language(LANGUAGE_EAL, 1)
+	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_SIGN, 0)
 
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
@@ -198,7 +201,7 @@
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	usr << "<span class='notice'>You reset your record-viewing software.</span>"
 
 /mob/living/silicon/pai/cancel_camera()
@@ -298,7 +301,7 @@
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
 	verbs += /mob/living/proc/set_size //VOREStation edit
-	verbs += /mob/living/silicon/pai/proc/shred_limb //VORREStation edit
+	verbs += /mob/living/proc/shred_limb //VORREStation edit
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
@@ -389,9 +392,7 @@
 	if(src.loc == card)
 		return
 
-	for(var/I in vore_organs) //VOREStation edit. Release all their stomach contents. Don't want them to be in the PAI when they fold or weird things might happen.
-		var/datum/belly/B = vore_organs[I] //VOREStation edit
-		B.release_all_contents() //VOREStation edit
+	release_vore_contents() //VOREStation Add
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
@@ -432,7 +433,8 @@
 	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
-	H.icon_state = "pai-[icon_state]"
+
+	H.icon_state = "[chassis]"
 	grabber.update_inv_l_hand()
 	grabber.update_inv_r_hand()
 	return H

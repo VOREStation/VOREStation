@@ -6,7 +6,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals_vr.dmi' // VOREStation Edit
-	layer = DECALS_LAYER
+	plane = DECAL_PLANE
 	var/supplied_dir
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
@@ -14,16 +14,28 @@ var/list/floor_decals = list()
 	if(newcolour) color = newcolour
 	..(newloc)
 
-// Hack to workaround byond crash bug
 /obj/effect/floor_decal/initialize()
-	if(!floor_decals_initialized || !loc || QDELETED(src))
-		return
 	add_to_turf_decals()
-	var/turf/T = get_turf(src)
-	if(T) //VOREStation Edit
-		T.apply_decals()
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
+
+// This is a separate proc from initialize() to facilitiate its caching and other stuff.  Look into it someday.
+/obj/effect/floor_decal/proc/add_to_turf_decals()
+	if(supplied_dir)
+		set_dir(supplied_dir) // TODO - Why can't this line be done in initialize/New()?
+	var/turf/T = get_turf(src)
+	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
+		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[T.layer]"
+		var/image/I = floor_decals[cache_key]
+		if(!I)
+			I = image(icon = icon, icon_state = icon_state, dir = dir)
+			I.layer = T.layer
+			I.color = color
+			I.alpha = alpha
+			floor_decals[cache_key] = I
+		LAZYADD(T.decals, I) // Add to its decals list (so it remembers to re-apply after it cuts overlays)
+		T.add_overlay(I) // Add to its current overlays too.
+		return T
 
 /obj/effect/floor_decal/reset
 	name = "reset marker"

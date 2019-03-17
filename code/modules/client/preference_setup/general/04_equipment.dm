@@ -11,12 +11,14 @@
 	S["all_underwear_metadata"] >> pref.all_underwear_metadata
 	S["backbag"]	>> pref.backbag
 	S["pdachoice"]	>> pref.pdachoice
+	S["communicator_visibility"]	>> pref.communicator_visibility
 
 /datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
 	S["all_underwear"] << pref.all_underwear
 	S["all_underwear_metadata"] << pref.all_underwear_metadata
 	S["backbag"]	<< pref.backbag
 	S["pdachoice"]	<< pref.pdachoice
+	S["communicator_visibility"]	<< pref.communicator_visibility
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
@@ -86,6 +88,7 @@
 		. += "<br>"
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
+	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 
 	return jointext(.,null)
 
@@ -139,5 +142,10 @@
 		if(new_metadata)
 			set_metadata(underwear, gt, new_metadata)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["toggle_comm_visibility"])
+		if(CanUseTopic(user))
+			pref.communicator_visibility = !pref.communicator_visibility
+			return TOPIC_REFRESH
+
 
 	return ..()

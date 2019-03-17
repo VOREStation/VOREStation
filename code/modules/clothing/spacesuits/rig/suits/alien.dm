@@ -28,14 +28,14 @@
 	siemens_coefficient = 0.2
 
 /obj/item/clothing/head/helmet/space/rig/breacher
-	species_restricted = list("Unathi")
+	species_restricted = list(SPECIES_UNATHI)
 	force = 5
 
 /obj/item/clothing/suit/space/rig/breacher
-	species_restricted = list("Unathi")
+	species_restricted = list(SPECIES_UNATHI)
 
 /obj/item/clothing/shoes/magboots/rig/breacher
-	species_restricted = list("Unathi")
+	species_restricted = list(SPECIES_UNATHI)
 
 /*
  *	VOX
@@ -47,11 +47,9 @@
 	suit_type = "alien"
 	icon_state = "vox_rig"
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL|PHORONGUARD
 	siemens_coefficient = 0.2
-	phoronproof = 1
 	offline_slowdown = 5
-	slowdown = 2
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 
 	air_type = /obj/item/weapon/tank/vox
@@ -62,36 +60,31 @@
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/vox
 
 /obj/item/clothing/head/helmet/space/rig/vox
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
-	phoronproof = 1
 
 /obj/item/clothing/shoes/magboots/rig/vox
 	name = "talons"
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/shoes.dmi'
+		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
-	phoronproof = 1
 
 /obj/item/clothing/suit/space/rig/vox
-	species_restricted = list("Vox")
-	phoronproof = 1
+	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/gloves/gauntlets/rig/vox
 	siemens_coefficient = 0
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/gloves.dmi'
+		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
-	phoronproof = 1
 
 /obj/item/weapon/rig/vox/carapace
 	name = "dense alien control module"
 	suit_type = "dense alien"
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	emp_protection = 40 //change this to 30 if too high.
-	phoronproof = 1
 
 	req_access = list(access_syndicate)
 
@@ -112,7 +105,6 @@
 	icon_state = "voxstealth_rig"
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 50)
 	emp_protection = 40 //change this to 30 if too high.
-	phoronproof = 1
 
 	req_access = list(access_syndicate)
 

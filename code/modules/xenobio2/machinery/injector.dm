@@ -51,7 +51,7 @@
 		user << "<span class='danger'>The injector is full, empty it first!</span>"
 		return
 
-	if(!(istype(victim, /mob/living/simple_animal/xeno)) && !emagged)
+	if(!(istype(victim, /mob/living/simple_mob/xeno)) && !emagged)
 		user << "<span class='danger'>This is not a suitable subject for the injector!</span>"
 		return
 
@@ -85,7 +85,7 @@
 	if(!occupant)
 		return
 	if(isxeno(occupant))
-		var/mob/living/simple_animal/xeno/X = occupant
+		var/mob/living/simple_mob/xeno/X = occupant
 		beaker.reagents.trans_to_holder(X.reagents, computer.transfer_amount, 1, 0)
 	else
 		beaker.reagents.trans_to_mob(occupant, computer.transfer_amount)
@@ -93,11 +93,11 @@
 /obj/machinery/xenobio2/manualinjector/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(istype(W, /obj/item/weapon/crowbar) && !occupant)
+	if(W.is_crowbar() && !occupant)
 		default_deconstruction_crowbar(user, W)
 		return
 

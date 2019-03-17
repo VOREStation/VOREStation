@@ -12,10 +12,12 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	load_method = SINGLE_CASING|SPEEDLOADER
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
+	projectile_type = /obj/item/projectile/bullet/shotgun
 	handle_casings = HOLD_CASINGS
-	fire_sound = 'sound/weapons/shotgun.ogg'
 	var/recentpump = 0 // to prevent spammage
 	var/action_sound = 'sound/weapons/shotgunpump.ogg'
+	var/animated_pump = 0 //This is for cyling animations.
+	var/empty_sprite = 0 //This is just a dirty var so it doesn't fudge up.
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -39,7 +41,22 @@
 		loaded -= AC //Remove casing from loaded list.
 		chambered = AC
 
+	if(animated_pump)//This affects all bolt action and shotguns. 
+		flick("[icon_state]-cycling", src)//This plays any pumping
+
 	update_icon()
+
+/obj/item/weapon/gun/projectile/shotgun/pump/update_icon()//This adds empty sprite capability for shotguns.
+	..()
+	if(!empty_sprite)//Just a dirty check 
+		return
+	if((loaded.len) || (chambered))
+		icon_state = "[icon_state]"
+	else
+		icon_state = "[icon_state]-empty"
+
+/obj/item/weapon/gun/projectile/shotgun/pump/slug
+	ammo_type = /obj/item/ammo_casing/a12g
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
@@ -106,7 +123,7 @@
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "sawn-off shotgun"
 			desc = "Omar's coming!"
-			user << "<span class='warning'>You shorten the barrel of \the [src]!</span>"
+			to_chat(user, "<span class='warning'>You shorten the barrel of \the [src]!</span>")
 	else
 		..()
 

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/clothing/backpack.dmi'
 	icon_state = "backpack"
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi'
 		)
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
@@ -47,22 +47,22 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14 // 56
 	storage_cost = INVENTORY_STANDARD_SPACE + 1
 
-	New()
-		..()
+/obj/item/weapon/storage/backpack/holding/duffle
+	name = "dufflebag of holding"
+	icon_state = "holdingduffle"
+
+/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/storage/backpack/holding))
+		user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
+		qdel(W)
 		return
+	. = ..()
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
-			qdel(W)
-			return
-		..()
-
-	//Please don't clutter the parent storage item with stupid hacks.
-	can_be_inserted(obj/item/W as obj, stop_messages = 0)
-		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			return 1
-		return ..()
+//Please don't clutter the parent storage item with stupid hacks.
+/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	if(istype(W, /obj/item/weapon/storage/backpack/holding))
+		return 1
+	return ..()
 
 /obj/item/weapon/storage/backpack/santabag
 	name = "\improper Santa's gift bag"
@@ -142,18 +142,18 @@
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie
 	name = "black dufflebag"
-	desc = "A large dufflebag for holding extra tactical supplies."
+	desc = "A large dufflebag for holding extra tactical supplies. This one appears to be made out of lighter material than usual."
 	icon_state = "duffle_syndie"
 	slowdown = 0
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie/med
 	name = "medical dufflebag"
-	desc = "A large dufflebag for holding extra tactical medical supplies."
+	desc = "A large dufflebag for holding extra tactical medical supplies. This one appears to be made out of lighter material than usual."
 	icon_state = "duffle_syndiemed"
 
 /obj/item/weapon/storage/backpack/dufflebag/syndie/ammo
 	name = "ammunition dufflebag"
-	desc = "A large dufflebag for holding extra weapons ammunition and supplies."
+	desc = "A large dufflebag for holding extra weapons ammunition and supplies. This one appears to be made out of lighter material than usual."
 	icon_state = "duffle_syndieammo"
 
 /obj/item/weapon/storage/backpack/dufflebag/captain
@@ -197,9 +197,7 @@
 	item_state_slots = list(slot_r_hand_str = "briefcase", slot_l_hand_str = "briefcase")
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
-	New()
-		..()
-		new /obj/item/weapon/storage/wallet/random( src )
+	starts_with = list(/obj/item/weapon/storage/wallet/random)
 
 /obj/item/weapon/storage/backpack/satchel/norm
 	name = "satchel"

@@ -35,6 +35,12 @@
 			t_he	= "it"
 			t_His 	= "Its"
 			t_his 	= "its"
+		if(HERM)
+			t_He 	= "Shi"
+			t_he	= "shi"
+			t_His 	= "Hir"
+			t_his 	= "hir"
+			t_heavy = "curvy"
 
 	switch(weight_examine)
 		if(0 to 74)
@@ -88,6 +94,10 @@
 			t_He 	= "It"
 			t_his 	= "its"
 			t_His	= "Its"
+		if(HERM)
+			t_He 	= "Shi"
+			t_his 	= "hir"
+			t_His 	= "Hir"
 	switch(nutrition_examine)
 		if(0 to 49)
 			message = "<span class='warning'>[t_He] [t_is] starving! You can hear [t_his] stomach snarling from across the room!</span>\n"
@@ -103,19 +113,8 @@
 			message = "<span class='warning'>[t_He] [t_is] engorged with a huge stomach that sags and wobbles as they move. [t_He] must have consumed at least twice their body weight. It looks incredibly soft.</span>\n"
 		if(3005 to 4074) // Three people.
 			message = "<span class='warning'>[t_His] stomach is firmly packed with digesting slop. [t_He] must have eaten at least a few times worth their body weight! It looks hard for them to stand, and [t_his] gut jiggles when they move.</span>\n"
-		if(4075 to 10000) // Four or more people.
+		if(4075 to INFINITY) // Four or more people.
 			message = "<span class='warning'>[t_He] [t_is] so absolutely stuffed that you aren't sure how it's possible to move. [t_He] can't seem to swell any bigger. The surface of [t_his] belly looks sorely strained!</span>\n"
-	return message
-
-/mob/living/carbon/human/proc/examine_bellies()
-	if(!show_pudge()) //Some clothing or equipment can hide this.
-		return ""
-
-	var/message = ""
-	for (var/I in src.vore_organs)
-		var/datum/belly/B = vore_organs[I]
-		message += B.get_examine_msg()
-
 	return message
 
 //For OmniHUD records access for appropriate models
@@ -141,23 +140,18 @@
 
 	return FALSE
 
-/mob/living/carbon/human/proc/examine_pickup_size(mob/living/carbon/human/H)
+/mob/living/carbon/human/proc/examine_pickup_size(mob/living/H)
 	var/message = ""
-	if(isliving(src) && (H.get_effective_size() - src.get_effective_size()) >= 0.50)
+	if(istype(H) && (H.get_effective_size() - src.get_effective_size()) >= 0.50)
 		message = "<font color='blue'>They are small enough that you could easily pick them up!</font>\n"
 	return message
 
-
-/mob/living/carbon/human/proc/examine_step_size(mob/living/carbon/human/H)
+/mob/living/carbon/human/proc/examine_step_size(mob/living/H)
 	var/message = ""
-	if(isliving(src) && (H.get_effective_size() - src.get_effective_size()) >= 0.75)
+	if(istype(H) && (H.get_effective_size() - src.get_effective_size()) >= 0.75)
 		message = "<font color='red'>They are small enough that you could easily trample them!</font>\n"
 	return message
 
-/mob/living/carbon/human/proc/nif_examine(mob/living/carbon/human/H)
-	var/message = ""
-	if(!src.nif || src.conceal_nif || !src.nif_examine) //Do they have a nif, do they have the NIF concealed, and do they have a NIF examine message?
-		return "" //If so, no message.
-	else
-		message += "[src.nif_examine]\n"
-		return message
+/mob/living/carbon/human/proc/examine_nif(mob/living/carbon/human/H)
+	if(nif && nif.examine_msg) //If you have one set, anyway.
+		return "<span class='notice'>[nif.examine_msg]</span>\n"

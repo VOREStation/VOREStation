@@ -30,7 +30,7 @@ var/obj/screen/robot_inventory
 	using.alpha = ui_alpha
 	using.icon_state = "radio"
 	using.screen_loc = ui_movi
-	using.layer = 20
+	using.layer = HUD_LAYER
 	src.adding += using
 
 //Module select
@@ -43,7 +43,7 @@ var/obj/screen/robot_inventory
 	using.alpha = ui_alpha
 	using.icon_state = "inv1"
 	using.screen_loc = ui_inv1
-	using.layer = 20
+	using.layer = HUD_LAYER
 	src.adding += using
 	mymob:inv1 = using
 
@@ -55,7 +55,7 @@ var/obj/screen/robot_inventory
 	using.alpha = ui_alpha
 	using.icon_state = "inv2"
 	using.screen_loc = ui_inv2
-	using.layer = 20
+	using.layer = HUD_LAYER
 	src.adding += using
 	mymob:inv2 = using
 
@@ -67,7 +67,7 @@ var/obj/screen/robot_inventory
 	using.alpha = ui_alpha
 	using.icon_state = "inv3"
 	using.screen_loc = ui_inv3
-	using.layer = 20
+	using.layer = HUD_LAYER
 	src.adding += using
 	mymob:inv3 = using
 
@@ -81,7 +81,7 @@ var/obj/screen/robot_inventory
 	using.alpha = ui_alpha
 	using.icon_state = mymob.a_intent
 	using.screen_loc = ui_acti
-	using.layer = 20
+	using.layer = HUD_LAYER
 	src.adding += using
 	action_intent = using
 
@@ -119,7 +119,7 @@ var/obj/screen/robot_inventory
 	using.icon_state = "panel"
 	using.alpha = ui_alpha
 	using.screen_loc = ui_borg_panel
-	using.layer = 19
+	using.layer = HUD_LAYER-0.01
 	src.adding += using
 
 //Store
@@ -276,6 +276,6 @@ var/obj/screen/robot_inventory
 		r.client.screen -= r.robot_modules_background
 
 /mob/living/silicon/robot/update_hud()
-	..()
 	if(modtype)
 		hands.icon_state = lowertext(modtype)
+	..()

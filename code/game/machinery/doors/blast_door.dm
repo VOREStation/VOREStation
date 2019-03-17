@@ -7,6 +7,9 @@
 // as they lack any ID scanning system, they just handle remote control signals. Subtypes have
 // different icons, which are defined by set of variables. Subtypes are on bottom of this file.
 
+// UPDATE 06.04.2018
+// The emag thing wasn't working as intended, manually overwrote it.
+
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -55,6 +58,10 @@
 		icon_state = icon_state_open
 	radiation_repository.resistance_cache.Remove(get_turf(src))
 	return
+
+// Has to be in here, comment at the top is older than the emag_act code on doors proper
+/obj/machinery/door/blast/emag_act()
+	return -1
 
 // Proc: force_open()
 // Parameters: None
@@ -118,7 +125,7 @@
 			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
 				var/obj/item/weapon/material/twohanded/fireaxe/F = C
 				if(!F.wielded)
-					user << "<span class='warning'>You need to be wielding \the [F] to do that.</span>"
+					to_chat(user, "<span class='warning'>You need to be wielding \the [F] to do that.</span>")
 					return
 
 			// If we're at this point, it's a fireaxe in both hands or something else that doesn't care for twohanding.
@@ -126,7 +133,7 @@
 				force_toggle(1, user)
 
 			else
-				usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
+				to_chat(user, "<span class='notice'>[src]'s motors resist your effort.</span>")
 			return
 
 
@@ -144,21 +151,21 @@
 				return
 
 	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel") // Repairing.
-		var/amt = Ceiling((maxhealth - health)/150)
+		var/amt = CEILING((maxhealth - health)/150, 1)
 		if(!amt)
-			usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
+			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
 		var/obj/item/stack/P = C
 		if(P.amount < amt)
-			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 			return
-		usr << "<span class='notice'>You begin repairing [src]...</span>"
+		to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 		if(do_after(usr, 30))
 			if(P.use(amt))
-				usr << "<span class='notice'>You have repaired \The [src]</span>"
+				to_chat(user, "<span class='notice'>You have repaired \The [src]</span>")
 				src.repair()
 			else
-				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 
 	else if(src.density && (user.a_intent == I_HURT)) //If we can't pry it open and it's not a weapon.... Eh, let's attack it anyway.
 		var/obj/item/weapon/W = C
@@ -195,6 +202,27 @@
 		else
 			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
 			return
+	..()
+
+// Proc: attack_generic()
+// Parameters: Attacking simple mob, incoming damage.
+// Description: Checks the power or integrity of the blast door, if either have failed, chekcs the damage to determine if the creature would be able to open the door by force. Otherwise, super.
+/obj/machinery/door/blast/attack_generic(var/mob/user, var/damage)
+	if(stat & (BROKEN|NOPOWER))
+		if(damage >= 10)
+			if(src.density)
+				visible_message("<span class='danger'>\The [user] starts forcing \the [src] open!</span>")
+				if(do_after(user, 5 SECONDS, src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					force_open(1)
+			else
+				visible_message("<span class='danger'>\The [user] starts forcing \the [src] closed!</span>")
+				if(do_after(user, 2 SECONDS, src))
+					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+					force_close(1)
+		else
+			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+		return
 	..()
 
 // Proc: open()

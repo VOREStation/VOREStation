@@ -1,13 +1,13 @@
-/mob/living/simple_animal/fox
+/mob/living/simple_mob/fox
 	name = "fox"
 	desc = "It's a fox. I wonder what it says?"
+	tt_desc = "Vulpes vulpes"
 	icon = 'icons/mob/fox_vr.dmi'
 	icon_state = "fox2"
 	icon_living = "fox2"
 	icon_dead = "fox2_dead"
 	icon_rest = "fox2_rest"
 
-	hostile = 1 //To mice, anyway.
 	investigates = 1
 	specific_targets = 1 //Only targets with Found()
 	run_at_them = 0 //DOMESTICATED
@@ -39,54 +39,48 @@
 	var/turns_since_scan = 0
 	var/mob/flee_target
 
-/mob/living/simple_animal/fox/New()
-	if(!vore_organs.len)
-		var/datum/belly/B = new /datum/belly(src)
-		B.immutable = 1
-		B.name = "Stomach"
-		B.inside_flavor = "Slick foxguts. Cute on the outside, slimy on the inside!"
-		B.human_prey_swallow_time = swallowTime
-		B.nonhuman_prey_swallow_time = swallowTime
-		vore_organs[B.name] = B
-		vore_selected = B.name
-
-		B.emote_lists[DM_HOLD] = list(
-			"The foxguts knead and churn around you harmlessly.",
-			"With a loud glorp, some air shifts inside the belly.",
-			"A thick drop of warm bellyslime drips onto you from above.",
-			"The fox turns suddenly, causing you to shift a little.",
-			"During a moment of relative silence, you can hear the fox breathing.",
-			"The slimey stomach walls squeeze you lightly, then relax.")
-
-		B.emote_lists[DM_DIGEST] = list(
-			"The guts knead at you, trying to work you into thick soup.",
-			"You're ground on by the slimey walls, treated like a mouse.",
-			"The acrid air is hard to breathe, and stings at your lungs.",
-			"You can feel the acids coating you, ground in by the slick walls.",
-			"The fox's stomach churns hungrily over your form, trying to take you.",
-			"With a loud glorp, the stomach spills more acids onto you.")
+/mob/living/simple_mob/fox/init_vore()
 	..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "Slick foxguts. Cute on the outside, slimy on the inside!"
+
+	B.emote_lists[DM_HOLD] = list(
+		"The foxguts knead and churn around you harmlessly.",
+		"With a loud glorp, some air shifts inside the belly.",
+		"A thick drop of warm bellyslime drips onto you from above.",
+		"The fox turns suddenly, causing you to shift a little.",
+		"During a moment of relative silence, you can hear the fox breathing.",
+		"The slimey stomach walls squeeze you lightly, then relax.")
+
+	B.emote_lists[DM_DIGEST] = list(
+		"The guts knead at you, trying to work you into thick soup.",
+		"You're ground on by the slimey walls, treated like a mouse.",
+		"The acrid air is hard to breathe, and stings at your lungs.",
+		"You can feel the acids coating you, ground in by the slick walls.",
+		"The fox's stomach churns hungrily over your form, trying to take you.",
+		"With a loud glorp, the stomach spills more acids onto you.")
 
 // All them complicated fox procedures.
-/mob/living/simple_animal/fox/Life()
+/mob/living/simple_mob/fox/Life()
 	. = ..()
 	if(!.) return
 
 	handle_flee_target()
 
-/mob/living/simple_animal/fox/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_animal/mouse))
-		var/mob/living/simple_animal/mouse/mouse = target_mob
+/mob/living/simple_mob/fox/PunchTarget()
+	if(istype(target_mob,/mob/living/simple_mob/mouse))
+		var/mob/living/simple_mob/mouse/mouse = target_mob
 		mouse.splat()
 		visible_emote(pick("bites \the [mouse]!","pounces on \the [mouse]!","chomps on \the [mouse]!"))
 	else
 		..()
 
-/mob/living/simple_animal/fox/Found(var/atom/found_atom)
-	if(istype(found_atom,/mob/living/simple_animal/mouse))
+/mob/living/simple_mob/fox/Found(var/atom/found_atom)
+	if(istype(found_atom,/mob/living/simple_mob/mouse))
 		return found_atom
 
-/mob/living/simple_animal/fox/proc/handle_flee_target()
+/mob/living/simple_mob/fox/proc/handle_flee_target()
 	//see if we should stop fleeing
 	if (flee_target && !(flee_target in ListTargets(view_range)))
 		flee_target = null
@@ -99,16 +93,16 @@
 		stop_automated_movement = 1
 		walk_away(src, flee_target, 7, 2)
 
-/mob/living/simple_animal/fox/react_to_attack(var/atom/A)
+/mob/living/simple_mob/fox/react_to_attack(var/atom/A)
 	if(A == src) return
 	flee_target = A
 	turns_since_scan = 5
 
-/mob/living/simple_animal/fox/ex_act()
+/mob/living/simple_mob/fox/ex_act()
 	. = ..()
 	react_to_attack(src.loc)
 
-/mob/living/simple_animal/fox/MouseDrop(atom/over_object)
+/mob/living/simple_mob/fox/MouseDrop(atom/over_object)
 	var/mob/living/carbon/H = over_object
 	if(!istype(H) || !Adjacent(H)) return ..()
 
@@ -118,17 +112,17 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/fox/get_scooped(var/mob/living/carbon/grabber)
+/mob/living/simple_mob/fox/get_scooped(var/mob/living/carbon/grabber)
 	if (stat >= DEAD)
 		return //since the holder icon looks like a living cat
 	..()
 
 //Basic friend AI
-/mob/living/simple_animal/fox/fluff
+/mob/living/simple_mob/fox/fluff
 	var/mob/living/carbon/human/friend
 	var/befriend_job = null
 
-/mob/living/simple_animal/fox/fluff/Life()
+/mob/living/simple_mob/fox/fluff/Life()
 	. = ..()
 	if(!. || ai_inactive || !friend) return
 
@@ -155,7 +149,7 @@
 			var/verb = pick("yaps", "howls", "whines")
 			audible_emote("[verb] anxiously.")
 
-/mob/living/simple_animal/fox/fluff/verb/friend()
+/mob/living/simple_mob/fox/fluff/verb/friend()
 	set name = "Become Friends"
 	set category = "IC"
 	set src in view(1)
@@ -179,43 +173,38 @@
 	desc = "The fox doesn't say a goddamn thing, now."
 
 //Captain fox
-/mob/living/simple_animal/fox/fluff/Renault
+/mob/living/simple_mob/fox/fluff/Renault
 	name = "Renault"
 	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
+	tt_desc = "Vulpes nobilis"
 	befriend_job = "Colony Director"
 
-/mob/living/simple_animal/fox/fluff/Renault/New()
-	if(!vore_organs.len)
-		var/datum/belly/B = new /datum/belly(src)
-		B.immutable = 1
-		B.name = "Stomach"
-		B.inside_flavor = "Slick foxguts. They seem somehow more regal than perhaps other foxes!"
-		B.human_prey_swallow_time = swallowTime
-		B.nonhuman_prey_swallow_time = swallowTime
-		vore_organs[B.name] = B
-		vore_selected = B.name
-
-		B.emote_lists[DM_HOLD] = list(
-			"Renault's stomach walls squeeze around you more tightly for a moment, before relaxing, as if testing you a bit.",
-			"There's a sudden squeezing as Renault presses a forepaw against his gut over you, squeezng you against the slick walls.",
-			"The 'head fox' has a stomach that seems to think you belong to it. It might be hard to argue, as it kneads at your form.",
-			"If being in the captain's fox is a promotion, it might not feel like one. The belly just coats you with more thick foxslime.",
-			"It doesn't seem like Renault wants to let you out. The stomach and owner possessively squeeze around you.",
-			"Renault's stomach walls squeeze closer, as he belches quietly, before swallowing more air. Does he do that on purpose?")
-
-		B.emote_lists[DM_DIGEST] = list(
-			"Renault's stomach walls grind hungrily inwards, kneading acids against your form, and treating you like any other food.",
-			"The captain's fox impatiently kneads and works acids against you, trying to claim your body for fuel.",
-			"The walls knead in firmly, squeezing and tossing you around briefly in disorienting aggression.",
-			"Renault belches, letting the remaining air grow more acrid. It burns your lungs with each breath.",
-			"A thick glob of acids drip down from above, adding to the pool of caustic fluids in Renault's belly.",
-			"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
-
+/mob/living/simple_mob/fox/fluff/Renault/init_vore()
 	..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "Slick foxguts. They seem somehow more regal than perhaps other foxes!"
 
-/mob/living/simple_animal/fox/syndicate
+	B.emote_lists[DM_HOLD] = list(
+		"Renault's stomach walls squeeze around you more tightly for a moment, before relaxing, as if testing you a bit.",
+		"There's a sudden squeezing as Renault presses a forepaw against his gut over you, squeezing you against the slick walls.",
+		"The 'head fox' has a stomach that seems to think you belong to it. It might be hard to argue, as it kneads at your form.",
+		"If being in the captain's fox is a promotion, it might not feel like one. The belly just coats you with more thick foxslime.",
+		"It doesn't seem like Renault wants to let you out. The stomach and owner possessively squeeze around you.",
+		"Renault's stomach walls squeeze closer, as he belches quietly, before swallowing more air. Does he do that on purpose?")
+
+	B.emote_lists[DM_DIGEST] = list(
+		"Renault's stomach walls grind hungrily inwards, kneading acids against your form, and treating you like any other food.",
+		"The captain's fox impatiently kneads and works acids against you, trying to claim your body for fuel.",
+		"The walls knead in firmly, squeezing and tossing you around briefly in disorienting aggression.",
+		"Renault belches, letting the remaining air grow more acrid. It burns your lungs with each breath.",
+		"A thick glob of acids drip down from above, adding to the pool of caustic fluids in Renault's belly.",
+		"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
+
+/mob/living/simple_mob/fox/syndicate
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
+	tt_desc = "Vulpes malus"
 	icon = 'icons/mob/fox_vr.dmi'
 	icon_state = "syndifox"
 	icon_living = "syndifox"

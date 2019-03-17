@@ -1,6 +1,6 @@
 
 //malfunctioning combat drones
-/mob/living/simple_animal/hostile/malf_drone
+/mob/living/simple_mob/hostile/malf_drone
 	name = "combat drone"
 	desc = "An automated combat drone armed with state of the art weaponry and shielding."
 	icon_state = "drone3"
@@ -25,7 +25,9 @@
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
 	destroy_surroundings = 0
+	hovering = TRUE
 
+	armor = list(melee = 25, bullet = 25, laser = 25, energy = 10, bomb = 25, bio = 100, rad = 100)	// Some level of armor plating makes sense
 	//Drones aren't affected by atmos.
 	min_oxy = 0
 	max_oxy = 0
@@ -49,7 +51,7 @@
 	var/exploding = 0
 	var/has_loot = 1
 
-/mob/living/simple_animal/hostile/malf_drone/New()
+/mob/living/simple_mob/hostile/malf_drone/New()
 	..()
 	if(prob(5))
 		projectiletype = /obj/item/projectile/beam/pulse/drone
@@ -58,14 +60,14 @@
 	ion_trail.set_up(src)
 	ion_trail.start()
 
-/mob/living/simple_animal/hostile/malf_drone/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/malf_drone/Process_Spacemove(var/check_drift = 0)
 	return 1
 
-/mob/living/simple_animal/hostile/malf_drone/isSynthetic()
+/mob/living/simple_mob/hostile/malf_drone/isSynthetic()
 	return TRUE
 
 //self repair systems have a chance to bring the drone back to life
-/mob/living/simple_animal/hostile/malf_drone/Life()
+/mob/living/simple_mob/hostile/malf_drone/Life()
 
 	//emps and lots of damage can temporarily shut us down
 	if(disabled > 0)
@@ -148,18 +150,18 @@
 	..()
 
 //ion rifle!
-/mob/living/simple_animal/hostile/malf_drone/emp_act(severity)
+/mob/living/simple_mob/hostile/malf_drone/emp_act(severity)
 	health -= rand(3,15) * (severity + 1)
 	disabled = rand(150, 600)
 	hostile = 0
 	walk(src,0)
 	..()
 
-/mob/living/simple_animal/hostile/malf_drone/death()
+/mob/living/simple_mob/hostile/malf_drone/death()
 	..(null,"suddenly breaks apart.")
 	qdel(src)
 
-/mob/living/simple_animal/hostile/malf_drone/Destroy()
+/mob/living/simple_mob/hostile/malf_drone/Destroy()
 	//More advanced than the default S_A loot system, for visual effect and random tech levels.
 	if(has_loot)
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -275,3 +277,10 @@
 
 /obj/item/projectile/beam/pulse/drone
 	damage = 10
+
+// A slightly easier drone, for POIs.
+// Difference is that it should not be faster than you.
+/mob/living/simple_mob/hostile/malf_drone/lesser
+	desc = "An automated combat drone with an aged apperance."
+	returns_home = TRUE
+	move_to_delay = 6

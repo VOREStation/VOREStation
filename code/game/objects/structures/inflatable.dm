@@ -50,7 +50,7 @@
 	health -= proj_damage
 	..()
 	if(health <= 0)
-		deflate(1)
+		puncture()
 	return
 
 /obj/structure/inflatable/ex_act(severity)
@@ -59,15 +59,15 @@
 			qdel(src)
 			return
 		if(2.0)
-			deflate(1)
+			puncture()
 			return
 		if(3.0)
 			if(prob(50))
-				deflate(1)
+				puncture()
 				return
 
 /obj/structure/inflatable/blob_act()
-	deflate(1)
+	puncture()
 
 /obj/structure/inflatable/attack_hand(mob/user as mob)
 		add_fingerprint(user)
@@ -78,7 +78,7 @@
 
 	if (can_puncture(W))
 		visible_message("<span class='danger'>[user] pierces [src] with [W]!</span>")
-		deflate(1)
+		puncture()
 	if(W.damtype == BRUTE || W.damtype == BURN)
 		hit(W.force)
 		..()
@@ -89,7 +89,7 @@
 	if(sound_effect)
 		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 	if(health <= 0)
-		deflate(1)
+		puncture()
 
 /obj/structure/inflatable/CtrlClick()
 	hand_deflate()
@@ -102,20 +102,21 @@
 	R.add_fingerprint(user)
 	qdel(src)
 
-/obj/structure/inflatable/proc/deflate(var/violent=0)
+/obj/structure/inflatable/proc/deflate()
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
-	if(violent)
-		visible_message("[src] rapidly deflates!")
-		var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
+	//user << "<span class='notice'>You slowly deflate the inflatable wall.</span>"
+	visible_message("[src] slowly deflates.")
+	spawn(50)
+		var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
 		src.transfer_fingerprints_to(R)
 		qdel(src)
-	else
-		//user << "<span class='notice'>You slowly deflate the inflatable wall.</span>"
-		visible_message("[src] slowly deflates.")
-		spawn(50)
-			var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
-			src.transfer_fingerprints_to(R)
-			qdel(src)
+
+/obj/structure/inflatable/proc/puncture()
+	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+	visible_message("[src] rapidly deflates!")
+	var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
+	src.transfer_fingerprints_to(R)
+	qdel(src)
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
@@ -133,7 +134,7 @@
 	user.do_attack_animation(src)
 	if(health <= 0)
 		user.visible_message("<span class='danger'>[user] [attack_verb] open the [src]!</span>")
-		spawn(1) deflate(1)
+		spawn(1) puncture()
 	else
 		user.visible_message("<span class='danger'>[user] [attack_verb] at [src]!</span>")
 	return 1
@@ -221,19 +222,20 @@
 	else
 		icon_state = "door_closed"
 
-/obj/structure/inflatable/door/deflate(var/violent=0)
+/obj/structure/inflatable/door/deflate()
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
-	if(violent)
-		visible_message("[src] rapidly deflates!")
-		var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
+	visible_message("[src] slowly deflates.")
+	spawn(50)
+		var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
 		src.transfer_fingerprints_to(R)
 		qdel(src)
-	else
-		visible_message("[src] slowly deflates.")
-		spawn(50)
-			var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
-			src.transfer_fingerprints_to(R)
-			qdel(src)
+
+/obj/structure/inflatable/door/puncture()
+	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+	visible_message("[src] rapidly deflates!")
+	var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
+	src.transfer_fingerprints_to(R)
+	qdel(src)
 
 /obj/item/inflatable/torn
 	name = "torn inflatable wall"

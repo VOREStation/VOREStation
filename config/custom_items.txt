@@ -61,6 +61,12 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 }
 
 {
+ckey: argobargsoup
+character_name: Lynn Shady
+item_path: /obj/item/device/flashlight/pen/fluff/lynn
+}
+
+{
 ckey: arokha
 character_name: Aronai Kadigan
 item_path: /obj/item/clothing/under/utility/sifguard/medical/command
@@ -79,19 +85,27 @@ item_desc: A medical jacket straight from Central Command.
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/weapon/storage/backpack/satchel/gen/fluff/aronai
+item_path: /obj/item/weapon/card/id/centcom/station/fluff/aronai
 }
 
+Weapon Box. Permit Expired
 {
 ckey: aerowing
 character_name: Sebastian Aji
 item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
 }
+
 # ######## B CKEYS
 {
 ckey: benemuel
 character_name: Yuuko Shimmerpond
 item_path: /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
+}
+
+{
+ckey: beyondmylife
+character_name: Cassandra Selone
+item_path: /obj/item/weapon/storage/box/fluff/cassandra
 }
 
 {
@@ -163,6 +177,18 @@ character_name: Diana Kuznetsova
 item_path: /obj/item/clothing/head/fluff/pink_tiara
 }
 
+{
+ckey: cross_exonar
+character_name: Sari-U
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+
+{
+ckey: cross_exonar
+character_name: Sari-E
+item_path: /obj/item/weapon/disk/limb/eggnerdltd
+}
+
 # ######## D CKEYS
 {
 ckey: deepindigo
@@ -176,17 +202,18 @@ character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 }
 
-{
-ckey: dhaeleena
-character_name: Dhaeleena M'iar
-item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
-}
-
-{
-ckey: dhaeleena
-character_name: Dhaeleena M'iar
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
-}
+#Permit Expired
+#{
+#ckey: dhaeleena
+#character_name: Dhaeleena M'iar
+#item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
+#}
+#
+#{
+#ckey: dhaeleena
+#character_name: Dhaeleena M'iar
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
+#}
 
 {
 ckey: dickfreedomjohnson
@@ -209,7 +236,7 @@ item_path: /obj/item/weapon/storage/box/fluff/drake
 {
 ckey: draycu
 character_name: Theseus
-item_path:/obj/item/weapon/coin/diamond
+item_path: /obj/item/weapon/coin/diamond
 item_name: theseus' diamond coin
 item_desc: An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen.
 }
@@ -217,13 +244,7 @@ item_desc: An engraved coin made of diamond. On the side for heads is printed th
 {
 ckey: draycu
 character_name: Schae Yonra
-item_path: /obj/item/weapon/melee/fluff/holochain/mass
-}
-
-{
-ckey: draycu
-character_name: Schae Yonra
-item_path: /obj/item/weapon/implanter/reagent_generator/yonra
+item_path: /obj/item/weapon/storage/box/fluff/yonra
 }
 
 # ######## E CKEYS
@@ -294,12 +315,36 @@ character_name: Belle Day
 item_path: /obj/item/weapon/implanter/reagent_generator/belle
 }
 
+#{
+#ckey: hzdonut
+#character_name: Jesse Soemmer
+#item_path: /obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
+#}
+#
+#{
+#ckey: hzdonut
+#character_name: Jesse Soemmer
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
+#}
+#
+#{
+#ckey: hzdonut
+#character_name: Jesse Soemmer
+#item_path: /obj/item/clothing/accessory/holster/hip
+#}
+
 # ######## I CKEYS
 
 {
 ckey: interrolouis
 character_name:  Ruda Lizden
-item_path:/obj/item/clothing/accessory/badge/holo/detective/ruda
+item_path: /obj/item/clothing/accessory/badge/holo/detective/ruda
+}
+
+{
+ckey: interrolouis
+character_name: Kai Highlands
+item_path: /obj/item/borg/upgrade/modkit/chassis_mod/kai
 }
 
 {
@@ -350,15 +395,29 @@ item_path: /obj/item/clothing/head/fedora/fluff/jemli
 {
 ckey: jertheace
 character_name: Jeremiah Acacius
-item_path: /obj/item/weapon/gun/projectile/shotgun/pump/USDF/fluff/ace
-req_access = 58
+item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
+req_access = 3
 }
 
 {
 ckey: jertheace
 character_name: Jeremiah Acacius
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/ace
-req_access = 58
+item_path: /obj/item/weapon/gun/projectile/p92x/large/preban/hp
+req_access = 3
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah Acacius
+item_path: /obj/item/ammo_magazine/m9mm/large/preban/hp #Spare ammo
+req_access = 3
+}
+
+{
+ckey: jertheace
+character_name: Jeremiah Acacius
+item_path: /obj/item/clothing/accessory/holster/armpit
+req_access = 3
 }
 
 {
@@ -371,12 +430,6 @@ item_path: /obj/item/clothing/shoes/boots/combat
 ckey: jertheace
 character_name: Jeremiah Acacius
 item_path: /obj/item/clothing/under/syndicate/combat
-}
-
-{
-ckey: jertheace
-character_name: Jeremiah Acacius
-item_path: /obj/item/clothing/suit/armor/tactical/officer/fluff/ace
 }
 
 {
@@ -435,6 +488,18 @@ item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 
 # ######## K CKEYS
 {
+ckey: kazkin
+character_name: Ahzrukhal Ahkeen
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
+ckey: keekenox
+character_name: SMU-453
+item_path: /obj/item/clothing/accessory/medal/nobel_science
+}
+
+{
 ckey: ketrai
 character_name: Ketrai
 item_path: /obj/item/clothing/head/fluff/ketrai
@@ -459,16 +524,22 @@ item_path: /obj/item/clothing/accessory/storage/knifeharness
 }
 
 {
+ckey: kitchifox
+character_name: Rana Uma
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
 ckey: KiwiDaNinja
 character_name: Chakat Taiga
 item_path: /obj/item/clothing/under/fluff/taiga
 }
 
-{
-ckey: kligor
-character_name: Andy Gettemy
-item_path: /obj/item/device/pda_mod/fluff/kligor
-}
+#{
+#ckey: kligor
+#character_name: Andy Gettemy
+#item_path: /obj/item/device/pda_mod/fluff/kligor
+#}
 
 {
 ckey: konabird
@@ -476,12 +547,28 @@ character_name: Rischi
 item_path: /obj/item/weapon/implanter/reagent_generator/rischi
 }
 
+{
+ckey: knightfall5
+character_name: Ashley Kifer
+item_path: /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
+}
+
 # ######## L CKEYS
+
+{
+ckey: lm40
+character_name: Kenzie Houser
+item_path: /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
+req_access: 5
+}
+
+#Weapon Box. Permit Expired
 #{
 #ckey: luminescentring
 #character_name: Briana Moore
 #item_path: /obj/item/weapon/storage/box/fluff/briana_moore
 #}
+
 {
 ckey: luminescentring
 character_name: Briana Moore
@@ -497,8 +584,8 @@ item_path: /obj/item/weapon/implanter/reagent_generator/savannah
 # ######## M CKEYS
 {
 ckey: mewchild
-character_name: Phi Vietsi
-item_path: /obj/item/clothing/gloves/fluff/vietsi
+character_name: Phi Ahkeen
+item_path: /obj/item/weapon/storage/box/fluff/phi
 }
 
 {
@@ -538,6 +625,13 @@ character_name: Myryan Karnage-Cunningham
 item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 }
 
+{
+ckey: mr_signmeup
+character_name: Reshskakskakss Seekiseekis
+item_path: /obj/item/clothing/suit/security/navyhos
+req_titles: Head of Security
+}
+
 # ######## N CKEYS
 
 {
@@ -565,9 +659,9 @@ item_path: /obj/item/clothing/under/fluff/aluranevines
 }
 
 {
-ckey: natje
-character_name: Pumila
-item_path: /obj/item/weapon/implanter/reagent_generator/pumila_apple
+ckey: nepox
+character_name: Annie Rose
+item_path: /obj/item/clothing/accessory/sweater/fluff/annie
 }
 
 # ######## O CKEYS
@@ -579,17 +673,23 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 
 # ######## P CKEYS
 
-{
-ckey: pawoverlord
-character_name: Sorrel Cavalet
-item_path: /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
-}
+#{
+#ckey: pawoverlord
+#character_name: Sorrel Cavalet
+#item_path: /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
+#}
+
+#{
+#ckey: pawoverlord
+#character_name: Sorrel Cavalet
+#item_path: /obj/item/weapon/gun/projectile/colt
+#item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
+#}
 
 {
-ckey: pawoverlord
-character_name: Sorrel Cavalet
-item_path: /obj/item/weapon/gun/projectile/colt
-item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
+ckey: phoaly
+character_name: Lily Maximus
+item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
 {
@@ -682,13 +782,20 @@ item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 #item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
 #req_access = 1
 #}
-
+#
 #{
 #ckey: silencedmp5a5
 #character_name: Serdykov Antoz
 #item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
 #req_access = 1
 #}
+
+{
+ckey: silencedmp5a5
+character_name: NT-HASD #556
+item_path: /obj/item/device/modkit_conversion/hasd
+req_access = 1
+}
 
 {
 ckey: silvertalismen
@@ -712,12 +819,6 @@ item_path: /obj/item/clothing/mask/gas/sexyclown
 ckey: silvertalismen
 character_name: Tasy Ruffles
 item_path: /obj/item/device/pda/clown
-}
-
-{
-ckey: silvertalismen
-character_name: Camilla
-item_path: /obj/item/toy/plushie/farwa
 }
 
 {
@@ -757,6 +858,36 @@ item_path: /obj/item/clothing/under/sexymime
 }
 
 # ######## T CKEYS
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/weapon/grenade/spawnergrenade/spirit
+}
+
+{
+ckey: tabiranth
+character_name: Ascian
+item_path: /obj/item/device/survivalcapsule/tabiranth
+}
+
+{
+ckey: techtypes
+character_name: Lasshseeki Korss
+item_path: /obj/item/weapon/implant/language/eal
+}
+
+{
+ckey: tinydude16
+character_name: Konor Foxe
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
 {
 ckey: tonyvld
 character_name: Tony Bingham
@@ -846,11 +977,11 @@ item_path: /obj/item/clothing/mask/gas/sexymime
 }
 
 # ######## W CKEYS
-{
-ckey: warbrand2
-character_name: Brandy draca
-item_path: /obj/item/device/pda_mod/fluff/warbrand2
-}
+#{
+#ckey: warbrand2
+#character_name: Brandy draca
+#item_path: /obj/item/device/pda_mod/fluff/warbrand2
+#}
 
 {
 ckey: werebear
@@ -866,25 +997,25 @@ item_path: /obj/item/clothing/head/welding/fluff/vinjj
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/clothing/glasses/omnihud/med/fluff/wickedtemphud
 }
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/weapon/reagent_containers/hypospray/vial/tempest
 }
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/weapon/storage/backpack/saddlebag/tempest
 }
 
 {
 ckey: wickedtemp
-character_name: Chakat Tempest
+character_name: Chakat Tempest Venesare
 item_path: /obj/item/weapon/implanter/reagent_generator/tempest
 }
 
@@ -902,6 +1033,12 @@ character_name: Amy Lessen
 item_path: /obj/item/weapon/card/id/fluff/xennith
 }
 
+{
+ckey: Xonkon
+character_name: Ali
+item_path: /obj/item/clothing/accessory/medal/silver/unity
+}
+
 # ######## Y CKEYS
 # ######## Z CKEYS
 {
@@ -914,6 +1051,12 @@ item_path: /obj/item/device/modkit_single/fluff/zekechimera
 ckey: zekesturm
 character_name: Zeke Arachi
 item_path: /obj/item/clothing/head/fluff/xeno
+}
+
+{
+ckey: zigfe
+character_name: Zaoozaoo Xrimxuqmqixzix
+item_path: /obj/item/clothing/head/fluff/zao
 }
 
 {

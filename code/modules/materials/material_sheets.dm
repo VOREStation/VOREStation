@@ -94,6 +94,13 @@
 	apply_colour = 1
 	no_variants = FALSE
 
+/obj/item/stack/material/lead
+	name = "lead"
+	icon_state = "sheet-adamantine"
+	default_type = "lead"
+	apply_colour = 1
+	no_variants = TRUE
+
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
@@ -185,11 +192,19 @@
 	default_type = DEFAULT_WALL_MATERIAL
 	no_variants = FALSE
 
+/obj/item/stack/material/steel/hull
+	name = MAT_STEELHULL
+	default_type = MAT_STEELHULL
+
 /obj/item/stack/material/plasteel
 	name = "plasteel"
 	icon_state = "sheet-plasteel"
 	default_type = "plasteel"
 	no_variants = FALSE
+
+/obj/item/stack/material/plasteel/hull
+	name = MAT_PLASTEELHULL
+	default_type = MAT_PLASTEELHULL
 
 /obj/item/stack/material/durasteel
 	name = "durasteel"
@@ -197,6 +212,9 @@
 	item_state = "sheet-metal"
 	default_type = "durasteel"
 	no_variants = FALSE
+
+/obj/item/stack/material/durasteel/hull
+	name = "MAT_DURASTEELHULL"
 
 /obj/item/stack/material/wood
 	name = "wooden plank"
@@ -262,9 +280,15 @@
 
 /obj/item/stack/material/snow
 	name = "snow"
-	desc = "The temptation to build a snowfort rises."
+	desc = "The temptation to build a snowman rises."
 	icon_state = "sheet-snow"
 	default_type = "snow"
+
+/obj/item/stack/material/snowbrick
+	name = "snow brick"
+	desc = "For all of your igloo building needs."
+	icon_state = "sheet-snowbrick"
+	default_type = "packed snow"
 
 /obj/item/stack/material/leather
 	name = "leather"

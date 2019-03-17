@@ -50,7 +50,8 @@
 
 /obj/item/ammo_magazine/s38/rubber
 	name = "speedloader (.38 rubber)"
-	ammo_type = /obj/item/ammo_casing/a38r
+	icon_state = "T38"
+	ammo_type = /obj/item/ammo_casing/a38/rubber
 
 /obj/item/ammo_magazine/s38/emp
 	name = "speedloader (.38 haywire)"
@@ -73,19 +74,19 @@
 
 /obj/item/ammo_magazine/m45/rubber
 	name = "magazine (.45 rubber)"
-	ammo_type = /obj/item/ammo_casing/a45r
+	ammo_type = /obj/item/ammo_casing/a45/rubber
 
 /obj/item/ammo_magazine/m45/practice
 	name = "magazine (.45 practice)"
-	ammo_type = /obj/item/ammo_casing/a45p
+	ammo_type = /obj/item/ammo_casing/a45/practice
 
 /obj/item/ammo_magazine/m45/flash
 	name = "magazine (.45 flash)"
-	ammo_type = /obj/item/ammo_casing/a45f
+	ammo_type = /obj/item/ammo_casing/a45/flash
 
 /obj/item/ammo_magazine/m45/ap
 	name = "magazine (.45 AP)"
-	ammo_type = /obj/item/ammo_casing/a45ap
+	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/box/emp/b45
 	name = "ammunition box (.45 haywire)"
@@ -115,7 +116,7 @@
 
 /obj/item/ammo_magazine/m45tommy/ap
 	name = "tommygun magazine (.45 AP)"
-	ammo_type = /obj/item/ammo_casing/a45ap
+	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/m45tommy/empty
 	initial_ammo = 0
@@ -132,7 +133,7 @@
 
 /obj/item/ammo_magazine/m45tommydrum/ap
 	name = "tommygun drum magazine (.45 AP)"
-	ammo_type = /obj/item/ammo_casing/a45ap
+	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/m45tommydrum/empty
 	initial_ammo = 0
@@ -149,15 +150,15 @@
 
 /obj/item/ammo_magazine/clip/c45/rubber
 	name = "ammo clip (.45 rubber)"
-	ammo_type = /obj/item/ammo_casing/a45r
+	ammo_type = /obj/item/ammo_casing/a45/rubber
 
 /obj/item/ammo_magazine/clip/c45/practice
 	name = "ammo clip (.45 practice)"
-	ammo_type = /obj/item/ammo_casing/a45p
+	ammo_type = /obj/item/ammo_casing/a45/practice
 
 /obj/item/ammo_magazine/clip/c45/flash
 	name = "ammo clip (.45 flash)"
-	ammo_type = /obj/item/ammo_casing/a45f
+	ammo_type = /obj/item/ammo_casing/a45/flash
 
 /obj/item/ammo_magazine/s45
 	name = "speedloader (.45)"
@@ -173,19 +174,19 @@
 
 /obj/item/ammo_magazine/s45/rubber
 	name = "speedloader (.45 rubber)"
-	ammo_type = /obj/item/ammo_casing/a45r
+	ammo_type = /obj/item/ammo_casing/a45/rubber
 
 /obj/item/ammo_magazine/s45/practice
 	name = "speedloader (.45 practice)"
-	ammo_type = /obj/item/ammo_casing/a45p
+	ammo_type = /obj/item/ammo_casing/a45/practice
 
 /obj/item/ammo_magazine/s45/flash
 	name = "speedloader (.45 flash)"
-	ammo_type = /obj/item/ammo_casing/a45f
+	ammo_type = /obj/item/ammo_casing/a45/flash
 
 /obj/item/ammo_magazine/s45/ap
 	name = "speedloader (.45 AP)"
-	ammo_type = /obj/item/ammo_casing/a45ap
+	ammo_type = /obj/item/ammo_casing/a45/ap
 
 ///////// 9mm /////////
 
@@ -214,15 +215,15 @@
 
 /obj/item/ammo_magazine/m9mm/flash
 	name = "magazine (9mm flash)"
-	ammo_type = /obj/item/ammo_casing/a9mmf
+	ammo_type = /obj/item/ammo_casing/a9mm/flash
 
 /obj/item/ammo_magazine/m9mm/rubber
 	name = "magazine (9mm rubber)"
-	ammo_type = /obj/item/ammo_casing/a9mmr
+	ammo_type = /obj/item/ammo_casing/a9mm/rubber
 
 /obj/item/ammo_magazine/m9mm/practice
 	name = "magazine (9mm practice)"
-	ammo_type = /obj/item/ammo_casing/a9mmp
+	ammo_type = /obj/item/ammo_casing/a9mm/practice
 
 // Compact
 /obj/item/ammo_magazine/m9mm/compact
@@ -241,15 +242,15 @@
 
 /obj/item/ammo_magazine/m9mm/compact/flash
 	name = "compact magazine (9mm flash)"
-	ammo_type = /obj/item/ammo_casing/a9mmf
+	ammo_type = /obj/item/ammo_casing/a9mm/flash
 
 /obj/item/ammo_magazine/m9mm/compact/rubber
 	name = "compact magazine (9mm rubber)"
-	ammo_type = /obj/item/ammo_casing/a9mmr
+	ammo_type = /obj/item/ammo_casing/a9mm/rubber
 
 /obj/item/ammo_magazine/m9mm/compact/practice
 	name = "compact magazine (9mm practice)"
-	ammo_type = /obj/item/ammo_casing/a9mmp
+	ammo_type = /obj/item/ammo_casing/a9mm/practice
 
 // SMG
 /obj/item/ammo_magazine/m9mmt
@@ -267,15 +268,15 @@
 
 /obj/item/ammo_magazine/m9mmt/rubber
 	name = "top mounted magazine (9mm rubber)"
-	ammo_type = /obj/item/ammo_casing/a9mmr
+	ammo_type = /obj/item/ammo_casing/a9mm/rubber
 
 /obj/item/ammo_magazine/m9mmt/flash
 	name = "top mounted magazine (9mm flash)"
-	ammo_type = /obj/item/ammo_casing/a9mmf
+	ammo_type = /obj/item/ammo_casing/a9mm/flash
 
 /obj/item/ammo_magazine/m9mmt/practice
 	name = "top mounted magazine (9mm practice)"
-	ammo_type = /obj/item/ammo_casing/a9mmp
+	ammo_type = /obj/item/ammo_casing/a9mm/practice
 
 /obj/item/ammo_magazine/m9mmp90
 	name = "large capacity top mounted magazine (9mm armor-piercing)"
@@ -302,15 +303,15 @@
 
 /obj/item/ammo_magazine/clip/c9mm/rubber
 	name = "ammo clip (.45 rubber)"
-	ammo_type = /obj/item/ammo_casing/a9mmr
+	ammo_type = /obj/item/ammo_casing/a9mm/rubber
 
 /obj/item/ammo_magazine/clip/c9mm/practice
 	name = "ammo clip (.45 practice)"
-	ammo_type = /obj/item/ammo_casing/a9mmp
+	ammo_type = /obj/item/ammo_casing/a9mm/practice
 
 /obj/item/ammo_magazine/clip/c9mm/flash
 	name = "ammo clip (.45 flash)"
-	ammo_type = /obj/item/ammo_casing/a9mmf
+	ammo_type = /obj/item/ammo_casing/a9mm/flash
 
 /obj/item/ammo_magazine/box/c9mm // Made by RnD for Prototype SMG and should probably be removed because why does it require DIAMONDS to make bullets?
 	name = "ammunition Box (9mm)"
@@ -322,6 +323,26 @@
 	max_ammo = 30
 
 /obj/item/ammo_magazine/box/c9mm/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/m9mmR/saber
+	desc = "A very high capacity double stack magazine made specially for the SABER SMG. Filled with 22 9mm bullets."
+	icon_state = "S9mm"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/a9mm
+	matter = list(DEFAULT_WALL_MATERIAL = 1200)
+	caliber = "9mm"
+	max_ammo = 22
+	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m9mmR/saber/ap
+	desc = "A high capacity double stack magazine made specially for the SABER SMG. Filled with 22 9mm armor piercing bullets."
+	icon_state = "S9mm"
+	ammo_type = /obj/item/ammo_casing/a9mm/ap
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+
+/obj/item/ammo_magazine/m9mmR/saber/empty
 	initial_ammo = 0
 
 ///////// 10mm /////////
@@ -380,7 +401,7 @@
 
 /obj/item/ammo_magazine/m545/practice
 	name = "magazine (5.45mm practice)"
-	ammo_type = /obj/item/ammo_casing/a545p
+	ammo_type = /obj/item/ammo_casing/a545/practice
 
 /obj/item/ammo_magazine/m545/practice/ext
 	name = "extended magazine (5.45mm practice)"
@@ -413,7 +434,7 @@
 
 /obj/item/ammo_magazine/m545/small/practice
 	name = "magazine (5.45mm practice)"
-	ammo_type = /obj/item/ammo_casing/a545p
+	ammo_type = /obj/item/ammo_casing/a545/practice
 
 /obj/item/ammo_magazine/m545/small/ap
 	name = "magazine (5.45mm armor-piercing)"
@@ -471,7 +492,7 @@
 
 /obj/item/ammo_magazine/m44
 	name = "magazine (.44)"
-	icon_state = "44"
+	icon_state = "m44"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".44"
@@ -492,6 +513,23 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1620) // metal costs are very roughly based around one .50 casing = 180 metal
 	max_ammo = 9
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/s44
+	name = "speedloader (.44)"
+	icon_state = "44"
+	ammo_type = /obj/item/ammo_casing/a44
+	matter = list(DEFAULT_WALL_MATERIAL = 1260) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	caliber = ".44"
+	max_ammo = 6
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/s44/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/s44/rubber
+	name = "speedloader (.44 rubber)"
+	icon_state = "R44"
+	ammo_type = /obj/item/ammo_casing/a44/rubber
 
 ///////// 7.62mm /////////
 
@@ -561,7 +599,7 @@
 
 /obj/item/ammo_magazine/clip/c762/practice
 	name = "rifle clip (7.62mm practice)"
-	ammo_type = /obj/item/ammo_casing/a762p
+	ammo_type = /obj/item/ammo_casing/a762/practice
 
 /obj/item/ammo_magazine/clip/c762/hunter
 	name = "rifle clip (7.62mm hunting)"

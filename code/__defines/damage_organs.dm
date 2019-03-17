@@ -7,6 +7,7 @@
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
 #define ELECTROCUTE "electrocute"
+#define BIOACID   "bioacid"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -49,6 +50,7 @@
 #define ORGAN_ASSISTED 1 // Like pacemakers, not robotic
 #define ORGAN_ROBOT    2 // Fully robotic, no organic parts
 #define ORGAN_LIFELIKE 3 // Robotic, made to appear organic
+#define ORGAN_NANOFORM 4 // VOREStation Add - Fully nanoswarm organ
 
 //Germs and infections.
 #define GERM_LEVEL_AMBIENT  110 // Maximum germ level you can reach by standing still.

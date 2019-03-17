@@ -9,7 +9,7 @@
 	"Being in a cult",
 	"Racially biased lawsets",
 	"An Unathi who WON'T STOP FIGHTING",
-	"Tajara fetishists",
+	"Tajaran fetishists",
 	"Bald thirty-year-olds",
 	"A Chief Engineer who can't setup the engine",
 	"Being sucked out into space",

@@ -20,9 +20,10 @@
 /datum/surgery_step/internal/remove_embryo
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
 	/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
+
+	allowed_procs = list(IS_WIRECUTTER = 75)
 	blood_level = 2
 
 	min_duration = 80
@@ -73,7 +74,7 @@
 		return
 	var/is_organ_damaged = 0
 	for(var/obj/item/organ/I in affected.internal_organs)
-		if(I.damage > 0)
+		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
 			is_organ_damaged = 1
 			break
 	return ..() && is_organ_damaged
@@ -91,7 +92,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	for(var/obj/item/organ/I in affected.internal_organs)
-		if(I && I.damage > 0)
+		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
 			if(!(I.robotic >= ORGAN_ROBOT))
 				user.visible_message("[user] starts treating damage to [target]'s [I.name] with [tool_name].", \
 				"You start treating damage to [target]'s [I.name] with [tool_name]." )
@@ -111,11 +112,12 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
-		if(I && I.damage > 0)
+		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
 			if(!(I.robotic >= ORGAN_ROBOT))
 				user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
 				"<span class='notice'>You treat damage to [target]'s [I.name] with [tool_name].</span>" )
 				I.damage = 0
+				I.status = 0
 				if(I.organ_tag == O_EYES)
 					target.sdisabilities &= ~BLIND
 				if(I.organ_tag == O_LUNGS)
@@ -211,9 +213,10 @@
 
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
 	/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
+
+	allowed_procs = list(IS_WIRECUTTER = 75)
 
 	min_duration = 60
 	max_duration = 80

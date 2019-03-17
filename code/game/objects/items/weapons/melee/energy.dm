@@ -39,9 +39,10 @@
 	set_light(0,0)
 
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message("<span class='danger'>\The [user] accidentally cuts \himself with \the [src].</span>",\
+			user.visible_message("<span class='danger'>\The [user] accidentally cuts [TU.himself] with \the [src].</span>",\
 			"<span class='danger'>You accidentally cut yourself with \the [src].</span>")
 			user.take_organ_damage(5,5)
 		deactivate(user)
@@ -57,10 +58,10 @@
 	return
 
 /obj/item/weapon/melee/energy/suicide_act(mob/user)
-	var/tempgender = "[user.gender == MALE ? "he's" : user.gender == FEMALE ? "she's" : "they are"]"
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if(active)
-		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
-			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
+		user.visible_message(pick("<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.he] [TU.is] trying to commit seppuku.</span>",\
+			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"))
 		return (BRUTELOSS|FIRELOSS)
 
 /*
@@ -86,6 +87,7 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1
 	edge = 1
+	can_cleave = TRUE
 
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	..()
@@ -97,14 +99,9 @@
 	icon_state = initial(icon_state)
 	to_chat(user, "<span class='notice'>\The [src] is de-energised. It's just a regular axe now.</span>")
 
-// This cannot go into afterattack since some mobs delete themselves upon dying.
-/obj/item/weapon/melee/energy/axe/pre_attack(var/mob/living/target, var/mob/living/user)
-	if(istype(target))
-		cleave(user, target)
-	..()
-
 /obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
-	visible_message("<span class='warning'>\The [user] swings \the [src] towards \his head! It looks like \he's trying to commit suicide.</span>")
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	visible_message("<span class='warning'>\The [user] swings \the [src] towards [TU.his] head! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)
 
 /*
@@ -236,11 +233,10 @@
 		playsound(get_turf(target), 'sound/weapons/blade1.ogg', 100, 1)
 
 		// Make lesser robots really mad at us.
-		if(istype(target, /mob/living/simple_animal))
-			var/mob/living/simple_animal/SA = target
-			if(SA.intelligence_level == SA_ROBOTIC)
-				SA.taunt(user)
-			SA.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
+		if(target.mob_class & MOB_CLASS_SYNTHETIC)
+			if(target.has_AI())
+				target.taunt(user)
+			target.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
 
 /*
  *Energy Blade

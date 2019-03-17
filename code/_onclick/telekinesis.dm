@@ -68,7 +68,7 @@ var/const/tk_maxrange = 15
 	flags = NOBLUDGEON
 	//item_state = null
 	w_class = ITEMSIZE_NO_CONTAINER
-	layer = 20
+	layer = HUD_LAYER
 
 	var/last_throw = 0
 	var/atom/movable/focus = null
@@ -154,7 +154,7 @@ var/const/tk_maxrange = 15
 	O.anchored = 1
 	O.density = 0
 	O.layer = FLY_LAYER
-	O.set_dir(pick(cardinal))
+	O.set_dir(pick(GLOB.cardinal))
 	O.icon = 'icons/effects/effects.dmi'
 	O.icon_state = "nothing"
 	flick("empdisable",O)

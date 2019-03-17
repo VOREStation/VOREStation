@@ -6,6 +6,7 @@
 	icon = 'icons/obj/card.dmi'
 	icon_state = "permit"
 	w_class = ITEMSIZE_TINY
+	slot = ACCESSORY_SLOT_MEDAL
 	var/owner = 0	//To prevent people from just renaming the thing if they steal it
 
 /obj/item/clothing/accessory/permit/attack_self(mob/user as mob)
@@ -33,6 +34,10 @@
 /obj/item/clothing/accessory/permit/gun/bar
 	name = "bar shotgun permit"
 	desc = "A card indicating that the owner is allowed to carry a shotgun in the bar."
+
+/obj/item/clothing/accessory/permit/gun/planetside
+	name = "planetside gun permit"
+	desc = "A card indicating that the owner is allowed to carry a firearm while on the surface."
 
 /obj/item/clothing/accessory/permit/drone
 	name = "drone identification card"

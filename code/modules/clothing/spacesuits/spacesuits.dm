@@ -6,6 +6,7 @@
 	name = "Space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
+	flags = PHORONGUARD
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
@@ -14,10 +15,10 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Diona")
+	species_restricted = list("exclude",SPECIES_DIONA)
 	preserve_item = 1
-	phoronproof = 1
 	flash_protection = FLASH_PROTECTION_MAJOR
+	valid_accessory_slots = null
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -48,11 +49,14 @@
 /obj/item/clothing/suit/space
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
+	icon = 'icons/obj/clothing/spacesuits.dmi'
+	update_icon_define = INV_SPACESUIT_DEF_ICON
 	icon_state = "space"
 	w_class = ITEMSIZE_HUGE // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
+	flags = PHORONGUARD
+	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | PHORONGUARD
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/suit_cooling_unit)
 	slowdown = 3
@@ -61,9 +65,8 @@
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Diona")
+	species_restricted = list("exclude",SPECIES_DIONA)
 	preserve_item = 1
-	phoronproof = 1
 
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 

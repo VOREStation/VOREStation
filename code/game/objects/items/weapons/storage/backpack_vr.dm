@@ -94,6 +94,13 @@
 				else
 					slowdown = initial(slowdown)
 				return 1
+			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/deer))
+				item_state = "[icon_base]_Deer"
+				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
+					slowdown = 0
+				else
+					slowdown = initial(slowdown)
+				return 1
 			else
 				H << "<span class='warning'>[no_message]</span>"
 				return 0

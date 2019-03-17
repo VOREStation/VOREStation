@@ -38,7 +38,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>You activate the P.A.T. module.</span>")
-	moved_event.register(H, src, /obj/item/rig_module/pat_module/proc/boop)
+	GLOB.moved_event.register(H, src, /obj/item/rig_module/pat_module/proc/boop)
 
 /obj/item/rig_module/pat_module/deactivate()
 	if(!..())
@@ -46,7 +46,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>Your disable the P.A.T. module.</span>")
-	moved_event.unregister(H, src)
+	GLOB.moved_event.unregister(H, src)
 
 /obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
 	if(!istype(user) || !istype(To) || !istype(Tn))
@@ -83,12 +83,8 @@
 
 	var/username = FindNameFromID(H) || "Unknown"
 	var/message = "[username] has overridden [A] (airlock) in \the [get_area(A)] at [A.x],[A.y],[A.z] with \the [src]."
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.icon = icon
-	a.icon_state = icon_state
-	a.autosay(message, "Security Subsystem", "Command")
-	a.autosay(message, "Security Subsystem", "Security")
-	qdel(a)
+	global_announcer.autosay(message, "Security Subsystem", "Command")
+	global_announcer.autosay(message, "Security Subsystem", "Security")
 	return 1
 
 /obj/item/rig_module/rescue_pharm
@@ -108,14 +104,14 @@
 	interface_name = "mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
 
-	var/max_reagent_volume = 10 //Regen to this volume
+	var/max_reagent_volume = 20 //Regen to this volume
 	var/chems_to_use = 5 //Per injection
 
 	charges = list(
-		list("inaprovaline",  "inaprovaline",  0, 10),
-		list("tricordrazine", "tricordrazine", 0, 10),
-		list("tramadol",      "tramadol",      0, 10),
-		list("dexalin plus",  "dexalinp",      0, 10)
+		list("inaprovaline",  "inaprovaline",  0, 20),
+		list("anti_toxin",  "anti_toxin",  0, 20),
+		list("paracetamol",      "paracetamol",      0, 20),
+		list("dexalin",  "dexalin",      0, 20)
 		)
 
 /obj/item/rig_module/rescue_pharm/process()

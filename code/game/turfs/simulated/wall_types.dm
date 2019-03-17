@@ -3,10 +3,27 @@
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, "plasteel","plasteel") //3strong
 
+/turf/simulated/wall/shull/New(var/newloc) //Spaaaace ship.
+	..(newloc, MAT_STEELHULL, null, MAT_STEELHULL)
+/turf/simulated/wall/rshull/New(var/newloc)
+	..(newloc, MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
+/turf/simulated/wall/pshull/New(var/newloc) //Spaaaace-er ship.
+	..(newloc, MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
+/turf/simulated/wall/rpshull/New(var/newloc)
+	..(newloc, MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
+/turf/simulated/wall/dshull/New(var/newloc) //Spaaaace-est ship.
+	..(newloc, MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
+/turf/simulated/wall/rdshull/New(var/newloc)
+	..(newloc, MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
+/turf/simulated/wall/thull/New(var/newloc)
+	..(newloc, MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
+/turf/simulated/wall/rthull/New(var/newloc)
+	..(newloc, MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
+
 /turf/simulated/wall/cult
 	icon_state = "cult"
 /turf/simulated/wall/cult/New(var/newloc)
-	..(newloc,"cult","cult2")
+	..(newloc,"cult","cult2","cult")
 /turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
@@ -23,6 +40,10 @@
 	..(newloc,"gold")
 /turf/simulated/wall/silver/New(var/newloc)
 	..(newloc,"silver")
+/turf/simulated/wall/lead/New(var/newloc)
+	..(newloc,"lead")
+/turf/simulated/wall/r_lead/New(var/newloc)
+	..(newloc,"lead", "lead")
 /turf/simulated/wall/phoron/New(var/newloc)
 	..(newloc,"phoron")
 /turf/simulated/wall/sandstone/New(var/newloc)
@@ -35,6 +56,8 @@
 	..(newloc,"silver","gold")
 /turf/simulated/wall/sandstonediamond/New(var/newloc)
 	..(newloc,"sandstone","diamond")
+/turf/simulated/wall/snowbrick/New(var/newloc)
+	..(newloc,"packed snow")
 
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/New(var/newloc)
@@ -112,7 +135,7 @@
 	icon_state = "alien"
 	base_state = "alien"
 	light_range = 3
-	light_power = 3
+	light_power = 0.75
 	light_color = "#ff0066" // Pink-ish
 	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
 
@@ -218,15 +241,7 @@
 
 /turf/simulated/shuttle/wall/voidcraft/update_icon()
 	if(stripe_color)
-		overlays = list() //VOREStation Edit - Another place with overlay nonsense.
+		cut_overlays()
 		var/image/I = image(icon = src.icon, icon_state = "o_[icon_state]")
 		I.color = stripe_color
-		//VOREStation Add - Shenanigans around this because of the bullshit byond bug
-		var/pre_overlays = overlays.len
-		overlays.Add(I)
-		var/post_overlays = overlays.len
-		if(post_overlays != (pre_overlays + 1))
-			world.log << "Corrupted overlays on [x],[y],[z] voidcraft wall"
-			new type(src)
-			return
-		//VOREStation Add End
+		add_overlay(I)

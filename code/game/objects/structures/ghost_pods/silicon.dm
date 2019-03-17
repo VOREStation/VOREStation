@@ -10,11 +10,10 @@
 	density = TRUE
 	ghost_query_type = /datum/ghost_query/lost_drone
 	confirm_before_open = TRUE
+	needscharger = TRUE
 
 /obj/structure/ghost_pod/manual/lost_drone/trigger()
-	..()
-	visible_message("<span class='notice'>\The [src] appears to be attempting to restart the robot contained inside.</span>")
-	log_and_message_admins("is attempting to open \a [src].")
+	..("<span class='notice'>\The [src] appears to be attempting to restart the robot contained inside.</span>", "is attempting to open \a [src].")
 
 /obj/structure/ghost_pod/manual/lost_drone/create_occupant(var/mob/M)
 	density = FALSE
@@ -45,6 +44,7 @@
 	icon_state_opened = "borg_pod_opened"
 	density = TRUE
 	ghost_query_type = /datum/ghost_query/gravekeeper_drone
+	needscharger = TRUE
 
 /obj/structure/ghost_pod/automatic/gravekeeper_drone/create_occupant(var/mob/M)
 	density = FALSE

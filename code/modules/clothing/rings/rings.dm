@@ -37,9 +37,9 @@
 		if(reagents.total_volume)
 			to_chat(H, "<span class='danger'>You feel a prick as you slip on \the [src].</span>")
 			if(H.reagents)
-				var/contained_reagents = reagents.get_reagents()
+				var/contained = reagents.get_reagents()
 				var/trans = reagents.trans_to_mob(H, 15, CHEM_BLOOD)
-				admin_inject_log(usr, H, src, contained_reagents, trans)
+				add_attack_logs(usr, H, "Injected with [name] containing [contained] transferred [trans] units")
 	return
 
 //Sleepy Ring
@@ -51,7 +51,7 @@
 
 /obj/item/clothing/gloves/ring/reagent/sleepy/New()
 	..()
-	reagents.add_reagent(/datum/reagent/chloralhydrate, 15) // Less than a sleepy-pen, but still enough to knock someone out
+	reagents.add_reagent("chloralhydrate", 15) // Less than a sleepy-pen, but still enough to knock someone out
 
 /////////////////////////////////////////
 //Seals and Signet Rings
@@ -61,7 +61,7 @@
 	icon_state = "seal-secgen"
 
 /obj/item/clothing/gloves/ring/seal/mason
-	name = "masonic ring"
+	name = "\improper Masonic ring"
 	desc = "The Square and Compasses feature prominently on this Masonic ring."
 	icon_state = "seal-masonic"
 

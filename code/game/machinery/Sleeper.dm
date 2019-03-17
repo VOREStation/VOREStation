@@ -23,6 +23,7 @@
 			if(sleepernew)
 				sleeper = sleepernew
 				sleepernew.console = src
+				set_dir(get_dir(src, sleepernew))
 				return
 		return
 
@@ -39,10 +40,8 @@
 
 	if(!sleeper)
 		findsleeper()
-		if(sleeper)
-			return sleeper.ui_interact(user)
-	else if(sleeper)
-		return sleeper.ui_interact(user)
+	if(sleeper)
+		return ui_interact(user)
 	else
 		to_chat(user, "<span class='warning'>Sleeper not found!</span>")
 
@@ -58,6 +57,94 @@
 		icon_state = "sleeperconsole-p"
 	else
 		icon_state = initial(icon_state)
+
+/obj/machinery/sleep_console/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = outside_state)
+	var/data[0]
+
+	var/obj/machinery/sleeper/S = sleeper
+	var/mob/living/carbon/human/occupant = sleeper.occupant
+
+	data["power"] = S.stat & (NOPOWER|BROKEN) ? 0 : 1
+
+	var/list/reagents = list()
+	for(var/T in S.available_chemicals)
+		var/list/reagent = list()
+		reagent["id"] = T
+		reagent["name"] = S.available_chemicals[T]
+		if(occupant)
+			reagent["amount"] = occupant.reagents.get_reagent_amount(T)
+		reagents += list(reagent)
+	data["reagents"] = reagents.Copy()
+
+	if(occupant)
+		data["occupant"] = 1
+		switch(occupant.stat)
+			if(CONSCIOUS)
+				data["stat"] = "Conscious"
+			if(UNCONSCIOUS)
+				data["stat"] = "Unconscious"
+			if(DEAD)
+				data["stat"] = "<font color='red'>Dead</font>"
+		data["health"] = occupant.health
+		data["maxHealth"] = occupant.getMaxHealth()
+		if(iscarbon(occupant))
+			var/mob/living/carbon/C = occupant
+			data["pulse"] = C.get_pulse(GETPULSE_TOOL)
+		data["brute"] = occupant.getBruteLoss()
+		data["burn"] = occupant.getFireLoss()
+		data["oxy"] = occupant.getOxyLoss()
+		data["tox"] = occupant.getToxLoss()
+	else
+		data["occupant"] = 0
+	if(S.beaker)
+		data["beaker"] = S.beaker.reagents.get_free_space()
+	else
+		data["beaker"] = -1
+	data["filtering"] = S.filtering
+
+	var/stasis_level_name = "Error!"
+	for(var/N in S.stasis_choices)
+		if(S.stasis_choices[N] == S.stasis_level)
+			stasis_level_name = N
+			break
+	data["stasis"] = stasis_level_name
+
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "sleeper.tmpl", "Sleeper UI", 600, 600, state = state)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/sleep_console/Topic(href, href_list)
+	if(..())
+		return 1
+
+	var/obj/machinery/sleeper/S = sleeper
+
+	if(usr == S.occupant)
+		to_chat(usr, "<span class='warning'>You can't reach the controls from the inside.</span>")
+		return
+
+	add_fingerprint(usr)
+
+	if(href_list["eject"])
+		S.go_out()
+	if(href_list["beaker"])
+		S.remove_beaker()
+	if(href_list["sleeper_filter"])
+		if(S.filtering != text2num(href_list["sleeper_filter"]))
+			S.toggle_filter()
+	if(href_list["chemical"] && href_list["amount"])
+		if(S.occupant && S.occupant.stat != DEAD)
+			if(href_list["chemical"] in S.available_chemicals) // Your hacks are bad and you should feel bad
+				S.inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
+	if(href_list["change_stasis"])
+		var/new_stasis = input("Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level") as null|anything in S.stasis_choices
+		if(new_stasis && CanUseTopic(usr, default_state) == STATUS_INTERACTIVE)
+			S.stasis_level = S.stasis_choices[new_stasis]
+
+	return 1
 
 /obj/machinery/sleeper
 	name = "sleeper"
@@ -121,89 +208,6 @@
 
 /obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
-
-/obj/machinery/sleeper/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = outside_state)
-	var/data[0]
-
-	data["power"] = stat & (NOPOWER|BROKEN) ? 0 : 1
-
-	var/list/reagents = list()
-	for(var/T in available_chemicals)
-		var/list/reagent = list()
-		reagent["id"] = T
-		reagent["name"] = available_chemicals[T]
-		if(occupant)
-			reagent["amount"] = occupant.reagents.get_reagent_amount(T)
-		reagents += list(reagent)
-	data["reagents"] = reagents.Copy()
-
-	if(occupant)
-		data["occupant"] = 1
-		switch(occupant.stat)
-			if(CONSCIOUS)
-				data["stat"] = "Conscious"
-			if(UNCONSCIOUS)
-				data["stat"] = "Unconscious"
-			if(DEAD)
-				data["stat"] = "<font color='red'>Dead</font>"
-		data["health"] = occupant.health
-		data["maxHealth"] = occupant.getMaxHealth()
-		if(iscarbon(occupant))
-			var/mob/living/carbon/C = occupant
-			data["pulse"] = C.get_pulse(GETPULSE_TOOL)
-		data["brute"] = occupant.getBruteLoss()
-		data["burn"] = occupant.getFireLoss()
-		data["oxy"] = occupant.getOxyLoss()
-		data["tox"] = occupant.getToxLoss()
-	else
-		data["occupant"] = 0
-	if(beaker)
-		data["beaker"] = beaker.reagents.get_free_space()
-	else
-		data["beaker"] = -1
-	data["filtering"] = filtering
-
-	var/stasis_level_name = "Error!"
-	for(var/N in stasis_choices)
-		if(stasis_choices[N] == stasis_level)
-			stasis_level_name = N
-			break
-	data["stasis"] = stasis_level_name
-
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "sleeper.tmpl", "Sleeper UI", 600, 600, state = state)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/sleeper/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if(usr == occupant)
-		to_chat(usr, "<span class='warning'>You can't reach the controls from the inside.</span>")
-		return
-
-	add_fingerprint(usr)
-
-	if(href_list["eject"])
-		go_out()
-	if(href_list["beaker"])
-		remove_beaker()
-	if(href_list["sleeper_filter"])
-		if(filtering != text2num(href_list["sleeper_filter"]))
-			toggle_filter()
-	if(href_list["chemical"] && href_list["amount"])
-		if(occupant && occupant.stat != DEAD)
-			if(href_list["chemical"] in available_chemicals) // Your hacks are bad and you should feel bad
-				inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
-	if(href_list["change_stasis"])
-		var/new_stasis = input("Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
-		if(new_stasis && CanUseTopic(usr, default_state) == STATUS_INTERACTIVE)
-			stasis_level = stasis_choices[new_stasis]
-
-	return 1
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
@@ -341,3 +345,9 @@
 			to_chat(user, "The subject has too many chemicals in their bloodstream.")
 	else
 		to_chat(user, "There's no suitable occupant in \the [src].")
+
+//Survival/Stasis sleepers
+/obj/machinery/sleeper/survival_pod
+	desc = "A limited functionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
+	icon_state = "sleeper"
+	stasis_level = 100 //Just one setting

@@ -265,13 +265,13 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//Handle nonverbal and sign languages here
 	if (speaking)
+		if (speaking.flags & SIGNLANG)
+			log_say("(SIGN) [message]", src)
+			return say_signlang(message, pick(speaking.signlang_verb), speaking)
+
 		if (speaking.flags & NONVERBAL)
 			if (prob(30))
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
-
-		if (speaking.flags & SIGNLANG)
-			log_say("[name]/[key] : SIGN: [message]")
-			return say_signlang(message, pick(speaking.signlang_verb), speaking)
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()
@@ -292,18 +292,21 @@ proc/get_radio_key_from_channel(var/channel)
 			sound_vol *= 0.5
 
 		//Obtain the mobs and objects in the message range
-		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view)
+		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
 		listening = results["mobs"]
 		listening_obj = results["objs"]
 	else
 		return 1 //If we're in nullspace, then forget it.
+
+	//Remember the speech images so we can remove them later and they can get GC'd
+	var/list/images_to_clients = list()
 
 	//The 'post-say' static speech bubble
 	var/speech_bubble_test = say_test(message)
 	//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit. Commented this out in case we need to reenable.
 	var/speech_type = speech_bubble_appearance()
 	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-	spawn(30) qdel(speech_bubble)
+	images_to_clients[speech_bubble] = list()
 
 	// Attempt Multi-Z Talking
 	var/mob/above = src.shadow
@@ -312,7 +315,7 @@ proc/get_radio_key_from_channel(var/channel)
 		if(ST)
 			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
 			var/image/z_speech_bubble = image('icons/mob/talk_vr.dmi', above, "h[speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-			spawn(30) qdel(z_speech_bubble)
+			images_to_clients[z_speech_bubble] = list()
 			for(var/item in results["mobs"])
 				if(item != above && !(item in listening))
 					listening[item] = z_speech_bubble
@@ -327,12 +330,17 @@ proc/get_radio_key_from_channel(var/channel)
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
-					M << (listening[M] || speech_bubble) // Send the image attached to shadow mob if available
+					if(M.client)
+						var/image/I1 = listening[M] || speech_bubble
+						images_to_clients[I1] |= M.client
+						M << I1
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
-
 				if(whispering) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
-						M << (listening[M] || speech_bubble) // Send the image attached to shadow mob if available
+						if(M.client)
+							var/image/I2 = listening[M] || speech_bubble
+							images_to_clients[I2] |= M.client
+							M << I2
 						M.hear_say(stars(message), verb, speaking, alt_name, italics, src, speech_sound, sound_vol*0.2)
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
 						M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
@@ -345,13 +353,40 @@ proc/get_radio_key_from_channel(var/channel)
 				if(dst <= message_range)
 					O.hear_talk(src, message, verb, speaking)
 
+	//Remove all those images. At least it's just ONE spawn this time.
+	spawn(30)
+		for(var/img in images_to_clients)
+			var/image/I = img
+			var/list/clients_from_image = images_to_clients[I]
+			for(var/client in clients_from_image)
+				var/client/C = client
+				if(C) //Could have disconnected after message sent, before removing bubble.
+					C.images -= I
+			qdel(I)
+
 	//Log the message to file
-	log_say("[name]/[key][whispering ? " (W)" : ""]: [message]")
+	if(message_mode)
+		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
+	if(whispering)
+		log_whisper(message,src)
+	else
+		log_say(message, src)
 	return 1
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
-	for (var/mob/O in viewers(src, null))
-		O.hear_signlang(message, verb, language, src)
+	var/turf/T = get_turf(src)
+	//We're in something, gesture to people inside the same thing
+	if(loc != T)
+		for(var/mob/M in loc)
+			M.hear_signlang(message, verb, language, src)
+
+	//We're on a turf, gesture to visible as if we were a normal language
+	else
+		var/list/potentials = get_mobs_and_objs_in_view_fast(T, world.view)
+		var/list/mobs = potentials["mobs"]
+		for(var/hearer in mobs)
+			var/mob/M = hearer
+			M.hear_signlang(message, verb, language, src)
 	return 1
 
 /obj/effect/speech_bubble

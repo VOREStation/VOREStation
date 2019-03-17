@@ -53,7 +53,7 @@
 	if(isliving(user))
 		hasShocked = 1
 		var/shock_damage = min(rand(30,40),rand(30,40))
-		user.electrocute_act(shock_damage, src)
+		user.electrocute_act(shock_damage, src, 1, BP_TORSO)
 
 		var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
 		user.throw_at(target, 200, 4)
@@ -61,7 +61,6 @@
 		sleep(20)
 
 		hasShocked = 0
-	return
 
 /obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
 	if(!master1 || !master2)

@@ -28,10 +28,7 @@
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_delayed_toxic_sting)
 	if(!T)
 		return 0
-	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was delayed toxic stung by [key_name(src)]</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used delayed toxic sting on [key_name(T)]</font>")
-	msg_admin_attack("[key_name(T)] was delayed toxic stung by [key_name(src)]")
-
+	add_attack_logs(src,T,"Delayed toxic sting (chagneling)")
 	var/type_to_give = /datum/modifier/delayed_toxin_sting
 	if(src.mind.changeling.recursive_enhancement)
 		type_to_give = /datum/modifier/delayed_toxin_sting/strong

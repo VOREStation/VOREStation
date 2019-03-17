@@ -3,7 +3,7 @@
 	//Multikey checks and logging
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
-	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
+	log_access_in(client)
 	if(config.log_access)
 		for(var/mob/M in player_list)
 			if(M == src)	continue
@@ -18,10 +18,10 @@
 				if(matches)
 					if(M.client)
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.</font>", 1)
-						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
+						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
 					else
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
-						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
+						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
 
@@ -33,6 +33,11 @@
 	client.screen = list()				//remove hud items just in case
 	if(hud_used)	qdel(hud_used)		//remove the hud objects
 	hud_used = new /datum/hud(src)
+
+	if(client.prefs && client.prefs.client_fps)
+		client.fps = client.prefs.client_fps
+	else
+		client.fps = 0 // Results in using the server FPS
 
 	next_move = 1
 	disconnect_time = null				//clear the disconnect time
@@ -51,9 +56,19 @@
 
 	if(!plane_holder) //Lazy
 		plane_holder = new(src) //Not a location, it takes it and saves it.
+	if(!vis_enabled)
 		vis_enabled = list()
 	client.screen += plane_holder.plane_masters
 	recalculate_vis()
 
+	// AO support
+	var/ao_enabled = client.is_preference_enabled(/datum/client_preference/ambient_occlusion)
+	plane_holder.set_ao(VIS_OBJS, ao_enabled)
+	plane_holder.set_ao(VIS_MOBS, ao_enabled)
+
 	//set macro to normal incase it was overriden (like cyborg currently does)
-	winset(src, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
+	client.set_hotkeys_macro("macro", "hotkeymode")
+
+	if(!client.tooltips)
+		client.tooltips = new(client)
+	

@@ -122,7 +122,7 @@
 	icon_state = design.icon_state // poster[serial_number]
 
 /obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		playsound(src.loc, W.usesound, 100, 1)
 		if(ruined)
 			user << "<span class='notice'>You remove the remnants of the poster.</span>"

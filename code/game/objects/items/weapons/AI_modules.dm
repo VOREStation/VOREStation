@@ -22,6 +22,11 @@ AI MODULES
 	var/datum/ai_laws/laws = null
 
 /obj/item/weapon/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
+	if(!user.IsAdvancedToolUser() && isanimal(user))
+		var/mob/living/simple_mob/S = user
+		if(!S.IsHumanoidToolUser(src))
+			return 0
+
 	if (istype(AM, /obj/machinery/computer/aiupload))
 		var/obj/machinery/computer/aiupload/comp = AM
 		if(comp.stat & NOPOWER)

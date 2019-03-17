@@ -21,6 +21,17 @@
 	..()
 	robotize()
 
+/obj/item/organ/internal/eyes/grey
+	icon_state = "eyes_grey"
+
+/obj/item/organ/internal/eyes/grey/colormatch/New()
+	..()
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.blood_color
+
 /obj/item/organ/internal/eyes/proc/change_eye_color()
 	set name = "Change Eye Color"
 	set desc = "Changes your robotic eye color instantly."
@@ -39,7 +50,7 @@
 		// Now sync the organ's eye_colour list.
 		update_colour()
 		// Finally, update the eye icon on the mob.
-		owner.update_eyes()
+		owner.regenerate_icons()
 
 /obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
 
@@ -93,3 +104,9 @@
 
 /obj/item/organ/internal/eyes/proc/additional_flash_effects(var/intensity)
 	return -1
+
+/obj/item/organ/internal/eyes/emp_act(severity)
+	// ..()	//Returns if the organ isn't robotic // VOREStation Edit - Don't take damage
+	if(robotic >= ORGAN_ASSISTED)
+		return
+	owner.eye_blurry += (4/severity)

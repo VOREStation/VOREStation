@@ -9,8 +9,11 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/device/radio/borg,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
-	/mob/living/simple_animal/borer,
+	/obj/belly,
+	/obj/screen
 	)
+	//VOREStation Edit : added /obj/belly, to this list, travis is complaining about this in his indentation check
+	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
 /mob/living/var/last_played_vent
@@ -34,25 +37,29 @@ var/list/ventcrawl_machinery = list(
 	if(is_ventcrawling && istype(loc, /obj/machinery/atmospherics)) //attach us back into the pipes
 		remove_ventcrawl()
 		add_ventcrawl(loc)
+		client.screen += global_hud.centermarker
 
-/mob/living/simple_animal/slime/can_ventcrawl()
+/mob/living/simple_mob/slime/xenobio/can_ventcrawl()
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while feeding.</span>")
 		return FALSE
 	. = ..()
 
-/mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/proc/is_allowed_vent_crawl_item(var/obj/carried_item)
+	//Ability master easy test for allowed (cheaper than istype)
 	if(carried_item == ability_master)
 		return 1
 
-	var/list/allowed = list()
-	for(var/type in can_enter_vent_with)
-		var/list/types = typesof(type)
-		allowed += types
+	//Try to find it in our allowed list (istype includes subtypes)
+	var/listed = FALSE
+	for(var/test_type in can_enter_vent_with)
+		if(istype(carried_item,test_type))
+			listed = TRUE
+			break
 
-	if(carried_item.type in allowed)
-		if(get_inventory_slot(carried_item) == 0)
-			return 1
+	//Only allow it if it's "IN" the mob, not equipped on/being held
+	if(listed && !get_inventory_slot(carried_item))
+		return 1
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in internal_organs)
@@ -61,11 +68,6 @@ var/list/ventcrawl_machinery = list(
 
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
-		return 1
-	return ..()
-
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if(carried_item == held_item)
 		return 1
 	return ..()
 
@@ -150,6 +152,7 @@ var/list/ventcrawl_machinery = list(
 					if(HAZARD_HIGH_PRESSURE to INFINITY)
 						to_chat(src, "<span class='danger'>You feel a roaring wind pushing you away from the vent!</span>")
 
+			fade_towards(vent_found,45)
 			if(!do_after(src, 45, vent_found, 1, 1))
 				return
 			if(!can_ventcrawl())
@@ -175,9 +178,12 @@ var/list/ventcrawl_machinery = list(
 	for(var/datum/pipeline/pipeline in network.line_members)
 		for(var/obj/machinery/atmospherics/A in (pipeline.members || pipeline.edges))
 			if(!A.pipe_image)
-				A.pipe_image = image(A, A.loc, layer = 20, dir = A.dir)
+				A.pipe_image = image(A, A.loc, dir = A.dir)
+				A.pipe_image.plane = PLANE_LIGHTING_ABOVE
 			pipes_shown += A.pipe_image
 			client.images += A.pipe_image
+	if(client)
+		client.screen += global_hud.centermarker
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
@@ -185,6 +191,7 @@ var/list/ventcrawl_machinery = list(
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
+		client.screen -= global_hud.centermarker
 		client.eye = src
 
 	pipes_shown.len = 0

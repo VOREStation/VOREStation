@@ -250,9 +250,8 @@
 	return
 
 /obj/effect/beam/i_beam/Destroy()
+	. = ..()
 	if(master.first == src)
 		master.first = null
-	if(next)
-		qdel(next)
-		next = null
-	..()
+	if(next && !next.gc_destroyed)
+		QDEL_NULL(next)

@@ -23,8 +23,8 @@
 	name = OUTFIT_JOB_NAME("Medical Doctor")
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	l_hand = /obj/item/weapon/storage/firstaid/adv
-	r_pocket = /obj/item/device/healthanalyzer
+	l_hand = /obj/item/weapon/storage/firstaid/regular
+	r_pocket = /obj/item/device/flashlight/pen
 	id_type = /obj/item/weapon/card/id/medical/doctor
 
 /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
@@ -94,7 +94,7 @@
 	uniform = /obj/item/clothing/under/rank/medical/scrubs/black
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	shoes = /obj/item/clothing/shoes/boots/jackboots
-	l_hand = /obj/item/weapon/storage/firstaid/adv
+	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
 	id_type = /obj/item/weapon/card/id/medical/paramedic

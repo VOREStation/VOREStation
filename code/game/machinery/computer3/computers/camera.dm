@@ -23,10 +23,10 @@
 	allow_disassemble	= 0
 
 	// No operating system
-	New()
-		..(built=0)
-		os = program
-		circuitb.OS = os
+/obj/machinery/computer3/security/wooden_tv/New()
+	..(built=0)
+	os = program
+	circuitb.OS = os
 
 
 /obj/machinery/computer3/security/mining
@@ -59,22 +59,22 @@
 	var/networks = list("ALL") // A little workaround as it is not possible to place station_networks here
 	var/screen = "cameras"
 
-	execute(var/datum/file/source)
-		if(istype(source,/datum/file/program/security))
-			var/datum/file/program/security/prog = source
-			prog.key = src
-			prog.camera_list = null
-			return
-		if(istype(source,/datum/file/program/ntos))
-			for(var/obj/item/part/computer/storage/S in list(computer.hdd,computer.floppy))
-				for(var/datum/file/F in S.files)
-					if(istype(F,/datum/file/program/security))
-						var/datum/file/program/security/Sec = F
-						Sec.key = src
-						Sec.camera_list = null
-						Sec.execute(source)
-						return
-		computer.Crash(MISSING_PROGRAM)
+/datum/file/camnet_key/execute(var/datum/file/source)
+	if(istype(source,/datum/file/program/security))
+		var/datum/file/program/security/prog = source
+		prog.key = src
+		prog.camera_list = null
+		return
+	if(istype(source,/datum/file/program/ntos))
+		for(var/obj/item/part/computer/storage/S in list(computer.hdd,computer.floppy))
+			for(var/datum/file/F in S.files)
+				if(istype(F,/datum/file/program/security))
+					var/datum/file/program/security/Sec = F
+					Sec.key = src
+					Sec.camera_list = null
+					Sec.execute(source)
+					return
+	computer.Crash(MISSING_PROGRAM)
 
 /datum/file/camnet_key/New()
 	for(var/N in networks)
@@ -150,28 +150,29 @@
 	var/mapping = 0//For the overview file, interesting bit of code.
 
 	//proc/camera_list(var/datum/file/camnet_key/key)
-	get_machines(var/datum/file/camnet_key/key)
-		if (!computer || computer.z > 6)
-			return null
+/obj/item/part/computer/networking/cameras/get_machines(var/datum/file/camnet_key/key)
+	if (!computer || computer.z > 6)
+		return null
 
-		cameranet.process_sort()
+	cameranet.process_sort()
 
-		var/list/L = list()
-		for(var/obj/machinery/camera/C in cameranet.cameras)
-			var/list/temp = C.network & key.networks
-			if(temp.len)
-				L.Add(C)
+	var/list/L = list()
+	for(var/obj/machinery/camera/C in cameranet.cameras)
+		var/list/temp = C.network & key.networks
+		if(temp.len)
+			L.Add(C)
 
-		return L
-	verify_machine(var/obj/machinery/camera/C,var/datum/file/camnet_key/key = null)
-		if(!istype(C) || !C.can_use())
+	return L
+
+/obj/item/part/computer/networking/cameras/verify_machine(var/obj/machinery/camera/C,var/datum/file/camnet_key/key = null)
+	if(!istype(C) || !C.can_use())
+		return 0
+
+	if(key)
+		var/list/temp = C.network & key.networks
+		if(!temp.len)
 			return 0
-
-		if(key)
-			var/list/temp = C.network & key.networks
-			if(!temp.len)
-				return 0
-		return 1
+	return 1
 
 /*
 	Camera monitoring program
@@ -198,95 +199,95 @@
 
 	var/obj/machinery/camera/current = null
 
-	execute(var/datum/file/program/caller)
-		..(caller)
-		if(computer && !key)
-			var/list/fkeys = computer.list_files(/datum/file/camnet_key)
-			if(fkeys && fkeys.len)
-				key = fkeys[1]
-			update_icon()
-			computer.update_icon()
-			for(var/mob/living/L in viewers(1))
-				if(!istype(L,/mob/living/silicon/ai) && L.machine == src)
-					L.reset_view(null)
-
-
-	Reset()
-		..()
-		reset_current()
+/datum/file/program/security/execute(var/datum/file/program/caller)
+	..(caller)
+	if(computer && !key)
+		var/list/fkeys = computer.list_files(/datum/file/camnet_key)
+		if(fkeys && fkeys.len)
+			key = fkeys[1]
+		update_icon()
+		computer.update_icon()
 		for(var/mob/living/L in viewers(1))
 			if(!istype(L,/mob/living/silicon/ai) && L.machine == src)
 				L.reset_view(null)
 
-	interact()
-		if(!interactable())
-			return
 
-		if(!computer.camnet)
-			computer.Crash(MISSING_PERIPHERAL)
-			return
+/datum/file/program/security/Reset()
+	..()
+	reset_current()
+	for(var/mob/living/L in viewers(1))
+		if(!istype(L,/mob/living/silicon/ai) && L.machine == src)
+			L.reset_view(null)
 
+/datum/file/program/security/interact()
+	if(!interactable())
+		return
+
+	if(!computer.camnet)
+		computer.Crash(MISSING_PERIPHERAL)
+		return
+
+	if(!key)
+		var/list/fkeys = computer.list_files(/datum/file/camnet_key)
+		if(fkeys && fkeys.len)
+			key = fkeys[1]
+		update_icon()
+		computer.update_icon()
 		if(!key)
-			var/list/fkeys = computer.list_files(/datum/file/camnet_key)
-			if(fkeys && fkeys.len)
-				key = fkeys[1]
-			update_icon()
-			computer.update_icon()
-			if(!key)
-				return
-
-		if(computer.camnet.verify_machine(current))
-			usr.reset_view(current)
-
-		if(world.time - last_camera_refresh > 50 || !camera_list)
-			last_camera_refresh = world.time
-
-			var/list/temp_list = computer.camnet.get_machines(key)
-
-			camera_list = "Network Key: [key.title] [topic_link(src,"keyselect","\[ Select key \]")]<hr>"
-			for(var/obj/machinery/camera/C in temp_list)
-				if(C.can_use())
-					camera_list += "[C.c_tag] - [topic_link(src,"show=\ref[C]","Show")]<br>"
-				else
-					camera_list += "[C.c_tag] - <b>DEACTIVATED</b><br>"
-			//camera_list += "<br>" + topic_link(src,"close","Close")
-
-		popup.set_content(camera_list)
-		popup.open()
-
-
-	update_icon()
-		if(key)
-			overlay.icon_state = key.screen
-			name = key.title + " Camera Monitor"
-		else
-			overlay.icon_state = "camera-static"
-			name = initial(name)
-
-
-
-	Topic(var/href,var/list/href_list)
-		if(!interactable() || !computer.camnet || ..(href,href_list))
 			return
 
-		if("show" in href_list)
-			var/obj/machinery/camera/C = locate(href_list["show"])
-			if(istype(C) && C.can_use())
-				set_current(C)
-				usr.reset_view(C)
-				interact()
-				return
+	if(computer.camnet.verify_machine(current))
+		usr.reset_view(current)
 
-		if("keyselect" in href_list)
-			reset_current()
-			usr.reset_view(null)
-			key = input(usr,"Select a camera network key:", "Key Select", null) as null|anything in computer.list_files(/datum/file/camnet_key)
-			select_key(key)
-			if(key)
-				interact()
+	if(world.time - last_camera_refresh > 50 || !camera_list)
+		last_camera_refresh = world.time
+
+		var/list/temp_list = computer.camnet.get_machines(key)
+
+		camera_list = "Network Key: [key.title] [topic_link(src,"keyselect","\[ Select key \]")]<hr>"
+		for(var/obj/machinery/camera/C in temp_list)
+			if(C.can_use())
+				camera_list += "[C.c_tag] - [topic_link(src,"show=\ref[C]","Show")]<br>"
 			else
-				usr << "The screen turns to static."
+				camera_list += "[C.c_tag] - <b>DEACTIVATED</b><br>"
+		//camera_list += "<br>" + topic_link(src,"close","Close")
+
+	popup.set_content(camera_list)
+	popup.open()
+
+
+/datum/file/program/security/update_icon()
+	if(key)
+		overlay.icon_state = key.screen
+		name = key.title + " Camera Monitor"
+	else
+		overlay.icon_state = "camera-static"
+		name = initial(name)
+
+
+
+/datum/file/program/security/Topic(var/href,var/list/href_list)
+	if(!interactable() || !computer.camnet || ..(href,href_list))
+		return
+
+	if("show" in href_list)
+		var/obj/machinery/camera/C = locate(href_list["show"])
+		if(istype(C) && C.can_use())
+			set_current(C)
+			usr.reset_view(C)
+			interact()
 			return
+
+	if("keyselect" in href_list)
+		reset_current()
+		usr.reset_view(null)
+		key = input(usr,"Select a camera network key:", "Key Select", null) as null|anything in computer.list_files(/datum/file/camnet_key)
+		select_key(key)
+		if(key)
+			interact()
+		else
+			to_chat(usr, "The screen turns to static.")
+		return
 
 /datum/file/program/security/proc/select_key(var/selected_key)
 	key = selected_key
@@ -332,20 +333,20 @@
 	var/special_key		= new/datum/file/camnet_key/syndicate
 	var/camera_conn	= null
 
-	interact()
-		if(!interactable())
-			return
+/datum/file/program/security/syndicate/interact()
+	if(!interactable())
+		return
 
-		if(!computer.net)
-			computer.Crash(MISSING_PERIPHERAL)
-			return
+	if(!computer.net)
+		computer.Crash(MISSING_PERIPHERAL)
+		return
 
-		camera_conn = computer.net.connect_to(/obj/machinery/camera,camera_conn)
+	camera_conn = computer.net.connect_to(/obj/machinery/camera,camera_conn)
 
-		if(!camera_conn)
-			computer.Crash(NETWORK_FAILURE)
-			return
+	if(!camera_conn)
+		computer.Crash(NETWORK_FAILURE)
+		return
 
-		// On interact, override camera key selection
-		select_key(special_key)
-		..()
+	// On interact, override camera key selection
+	select_key(special_key)
+	..()

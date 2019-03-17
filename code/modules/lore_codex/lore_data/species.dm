@@ -48,8 +48,8 @@
 
 /datum/lore/codex/page/tajaran
 	name = "Tajaran"
-	keywords = list("Tajara")
-	data = "The Tajara are a race of humanoid mammalian aliens from Meralar, the fourth planet of the Rarkajar star system. Thickly furred and protected \
+	keywords = list("Tajaran")
+	data = "The Tajaran are a race of humanoid mammalian aliens from Meralar, the fourth planet of the Rarkajar star system. Thickly furred and protected \
 	from cold, they thrive on their subarctic planet, where the only terran temperate areas spread across the equator and tropical belt. \
 	With their own share of bloody wars and great technological advances, the Tajaran are a proud kind. They fiercely believe they belong \
 	among the stars and consider themselves a rightful interstellar nation, even if the humans helped them to actually achieve superluminal \

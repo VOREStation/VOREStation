@@ -5,8 +5,12 @@
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY
 
+	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
+
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
+		if(user.a_intent == I_HELP)
+			return
 		var/can_place = 0
 		if(istype(user, /mob/living/silicon/robot))
 			can_place = 1
@@ -56,6 +60,7 @@
 				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
 				H.update_inv_glasses()
+				playsound(src, 'sound/effects/tape.ogg',25)
 
 			else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
 				if(!H.organs_by_name[BP_HEAD])
@@ -87,13 +92,14 @@
 				if(!can_place)
 					return
 
-				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
+				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || (H.head && (H.head.body_parts_covered & FACE)))
 					return
 
 				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 				H.update_inv_wear_mask()
+				playsound(src, 'sound/effects/tape.ogg',25)
 
 			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
 				can_place = 0
@@ -109,6 +115,7 @@
 					return
 
 				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+				playsound(src, 'sound/effects/tape.ogg',25)
 
 				if(!T.place_handcuffs(H, user))
 					user.unEquip(T)
@@ -124,6 +131,7 @@
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
 	tape.attach(W)
 	user.put_in_hands(tape)
+	playsound(src, 'sound/effects/tape.ogg',25)
 
 /obj/item/weapon/ducttape
 	name = "tape"
@@ -131,8 +139,8 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape"
 	w_class = ITEMSIZE_TINY
-	layer = 4
-	anchored = 1 //it's sticky, no you cant move it
+	plane = MOB_PLANE
+	anchored = FALSE
 
 	var/obj/item/weapon/stuck = null
 
@@ -172,6 +180,10 @@
 		qdel(I)
 		to_chat(user, "<span-class='notice'>You place \the [I] back into \the [src].</span>")
 
+/obj/item/weapon/ducttape/attack_hand(mob/living/L)
+	anchored = FALSE
+	return ..() // Pick it up now that it's unanchored.
+
 /obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
@@ -188,7 +200,9 @@
 			return											// reduce papers around corners issue.
 
 	user.drop_from_inventory(src)
+	playsound(src, 'sound/effects/tape.ogg',25)
 	forceMove(source_turf)
+	anchored = TRUE
 
 	if(params)
 		var/list/mouse_control = params2list(params)

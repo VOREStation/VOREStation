@@ -6,11 +6,12 @@
 
 	if (transforming)
 		return
+	handle_modifiers() //VOREStation Edit - Needs to be done even if in nullspace.
 	if(!loc)
 		return
 	var/datum/gas_mixture/environment = loc.return_air()
 
-	handle_modifiers() // Do this early since it might affect other things later.
+	//handle_modifiers() // Do this early since it might affect other things later. //VOREStation Edit
 
 	handle_light()
 
@@ -28,8 +29,6 @@
 
 		//Random events (vomiting etc)
 		handle_random_events()
-
-		attempt_vr(src,"handle_internal_contents",args) //VOREStation Code
 
 		. = 1
 
@@ -62,6 +61,8 @@
 	update_canmove()
 
 	handle_regular_hud_updates()
+
+	handle_vision()
 
 /mob/living/proc/handle_breathing()
 	return
@@ -109,19 +110,16 @@
 	handle_silent()
 	handle_drugged()
 	handle_slurring()
+	handle_confused()
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
-		if(!stunned)
-			update_icons()
 	return stunned
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
 		weakened = max(weakened-1,0)
-		if(!weakened)
-			update_icons()
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -147,9 +145,12 @@
 /mob/living/proc/handle_paralysed()
 	if(paralysis)
 		AdjustParalysis(-1)
-		if(!paralysis)
-			update_icons()
 	return paralysis
+
+/mob/living/proc/handle_confused()
+	if(confused)
+		AdjustConfused(-1)
+	return confused
 
 /mob/living/proc/handle_disabilities()
 	//Eyes
@@ -180,9 +181,6 @@
 
 	return 1
 
-/mob/living/proc/handle_vision()
-	return
-
 /mob/living/proc/update_sight()
 	if(!seedarkness)
 		see_invisible = SEE_INVISIBLE_NOLIGHTING
@@ -209,13 +207,17 @@
 		return TRUE
 
 	else if(glow_toggle)
-		set_light(2, l_color = glow_color) //2 is PDA brightness, so neutral in terms of balance
+		set_light(glow_range, glow_intensity, glow_color)
 
 	else
 		set_light(0)
 		return FALSE
 
 /mob/living/proc/handle_darksight()
+	if(!seedarkness) //Cheap 'always darksight' var
+		dsoverlay.alpha = 255
+		return
+
 	var/darksightedness = min(see_in_dark/world.view,1.0)	//A ratio of how good your darksight is, from 'nada' to 'really darn good'
 	var/current = dsoverlay.alpha/255						//Our current adjustedness
 

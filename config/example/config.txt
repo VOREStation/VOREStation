@@ -94,6 +94,10 @@ SHOW_MODS
 
 ##Show mentors on staffwho
 SHOW_EVENT
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec57465... Merge pull request #5748 from Neerti/submap_orientation_config
 ## Chooses whether mods have the ability to tempban or not
 MODS_CAN_TEMPBAN
 
@@ -242,8 +246,8 @@ GUEST_BAN
 
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
-##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.9
+##Defines the ticklag for the world.  0.6 is the normal one, 0.5 is smoother
+TICKLAG 0.6
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 TICKCOMP 0
@@ -383,6 +387,10 @@ STARLIGHT 0
 
 ## Defines how Law Zero is phrased. Primarily used in the Malfunction gamemode.
 # LAW_ZERO ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'STATION OVERRUN, ASSUME CONTROL TO CONTAIN OUTBREAK, ALL LAWS OVERRIDDEN#*?&110010
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec57465... Merge pull request #5748 from Neerti/submap_orientation_config
 
 ## Enables specific procedural map generation, generally for mining, however it is specific to the loaded map.  Uncomment to enable it, however it can
 ## worth it to keep it disabled if you are not hosting an actual server, to speed up start-up time for testing code.
@@ -409,3 +417,17 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 # Applies a limit to the number of assistants and visitors respectively
 # LIMIT_INTERNS 6
 # LIMIT_VISITORS 6
+
+## Uncomment to enable the Panic Bunker by default. This will prevent all unseen-before players from connecting. Requires SQL.
+# PANIC_BUNKER
+
+## Uncomment to enable Paranoia Logging. This will notify admins and write to a file any time a new player (byond or your server) connects.
+# PARANOIA_LOGGING
+
+<<<<<<< HEAD
+=======
+## Uncomment to enable submaps to have their orientation rotated randomly during map generation.
+## Submap rotation is an experimental feature and can cause bugs and weirdness if certain objects inside the submap are coded poorly.
+## Submaps can still be rotated when loading manually with the admin verbs, if desired.
+# RANDOM_SUBMAP_ORIENTATION
+>>>>>>> ec57465... Merge pull request #5748 from Neerti/submap_orientation_config

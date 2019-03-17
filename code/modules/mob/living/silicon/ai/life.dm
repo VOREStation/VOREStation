@@ -8,6 +8,8 @@
 		if (src.stat!=CONSCIOUS)
 			src.cameraFollow = null
 			src.reset_view(null)
+			if(controlling_drone)
+				controlling_drone.release_ai_control("<b>WARNING: Primary control loop failure.</b> Session terminated.")
 
 		src.updatehealth()
 
@@ -150,6 +152,7 @@
 
 	process_queued_alarms()
 	handle_regular_hud_updates()
+	handle_vision()
 
 /mob/living/silicon/ai/proc/lacks_power()
 	if(APU_power)

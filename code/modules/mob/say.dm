@@ -11,7 +11,7 @@
 	set name = "Say"
 	set category = "IC"
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	usr.say(message)
 
 /mob/verb/me_verb(message as text)
@@ -21,10 +21,10 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "<font color='red'>Speech is currently admin-disabled.</font>"
 		return
+	
+	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
 
-	message = sanitize(message)
-
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote("me",usr.emote_type,message)
 	else

@@ -4,7 +4,6 @@
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shards"
 
@@ -36,7 +35,6 @@
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0
@@ -47,7 +45,6 @@
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "flour"
 
@@ -57,7 +54,6 @@
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	light_range = 1
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
@@ -67,7 +63,7 @@
 	desc = "Somebody should remove that."
 	density = 0
 	anchored = 1
-	layer = 3
+	plane = OBJ_PLANE
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cobweb1"
 
@@ -76,7 +72,7 @@
 	desc = "It looks like a melted... something."
 	density = 0
 	anchored = 1
-	layer = 3
+	plane = OBJ_PLANE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "molten"
 
@@ -85,7 +81,7 @@
 	desc = "Somebody should remove that."
 	density = 0
 	anchored = 1
-	layer = 3
+	plane = OBJ_PLANE
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cobweb2"
 
@@ -96,17 +92,16 @@
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
+	var/list/datum/disease2/disease/virus2 = list()
 
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"
 	desc = "It's red."
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("tomato_floor1", "tomato_floor2", "tomato_floor3")
 
@@ -115,7 +110,6 @@
 	desc = "Seems like this one won't hatch."
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("smashed_egg1", "smashed_egg2", "smashed_egg3")
 
@@ -124,7 +118,6 @@
 	desc = "It's pie cream from a cream pie."
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("smashed_pie")
 
@@ -133,7 +126,6 @@
 	desc = "Some kind of fruit smear."
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")

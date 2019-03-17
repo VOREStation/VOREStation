@@ -35,24 +35,26 @@
 	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
+	var/list/starts_with //Things to spawn on the box on spawn
+	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
 
 /obj/item/weapon/storage/Destroy()
 	close_all()
-	qdel_null(boxes)
-	qdel_null(src.storage_start)
-	qdel_null(src.storage_continue)
-	qdel_null(src.storage_end)
-	qdel_null(src.stored_start)
-	qdel_null(src.stored_continue)
-	qdel_null(src.stored_end)
-	qdel_null(closer)
+	QDEL_NULL(boxes)
+	QDEL_NULL(src.storage_start)
+	QDEL_NULL(src.storage_continue)
+	QDEL_NULL(src.storage_end)
+	QDEL_NULL(src.stored_start)
+	QDEL_NULL(src.stored_continue)
+	QDEL_NULL(src.stored_end)
+	QDEL_NULL(closer)
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 
-	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
+	if (isliving(usr) || isobserver(usr))
 
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
@@ -139,7 +141,7 @@
 	is_seeing -= user
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
-	if (src.use_sound)
+	if (src.use_sound && !isobserver(user))
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
 	orient2hud(user)
@@ -352,12 +354,10 @@
 //such as when picking up all the items on a tile with one click.
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
+
 	if(usr)
-		usr.remove_from_mob(W)
-		usr.update_icons()	//update our overlays
-	W.forceMove(src)
-	W.on_enter_storage(src)
-	if(usr)
+		usr.remove_from_mob(W,target = src) //If given a target, handles forceMove()
+		W.on_enter_storage(src)
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= W
 		W.dropped(usr)
@@ -375,6 +375,10 @@
 		src.orient2hud(usr)
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
+	else
+		W.forceMove(src)
+		W.on_enter_storage(src)
+
 	update_icon()
 	return 1
 
@@ -523,7 +527,8 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/weapon/storage/New()
+/obj/item/weapon/storage/initialize()
+	. = ..()
 
 	if(allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
@@ -534,12 +539,6 @@
 		verbs += /obj/item/weapon/storage/verb/toggle_gathering_mode
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
-
-	spawn(5)
-		var/total_storage_space = 0
-		for(var/obj/item/I in contents)
-			total_storage_space += I.get_storage_cost()
-		max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
 	src.boxes = new /obj/screen/storage(  )
 	src.boxes.name = "storage"
@@ -579,7 +578,22 @@
 	src.closer.icon_state = "storage_close"
 	src.closer.hud_layerise()
 	orient2hud()
-	return
+
+	if(LAZYLEN(starts_with) && !empty)
+		for(var/newtype in starts_with)
+			var/count = starts_with[newtype] || 1 //Could have left it blank.
+			while(count)
+				count--
+				new newtype(src)
+		starts_with = null //Reduce list count.
+
+	calibrate_size()
+
+/obj/item/weapon/storage/proc/calibrate_size()
+	var/total_storage_space = 0
+	for(var/obj/item/I in contents)
+		total_storage_space += I.get_storage_cost()
+	max_storage_space = max(total_storage_space,max_storage_space) //Prevents spawned containers from being too small for their contents.
 
 /obj/item/weapon/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))
@@ -658,3 +672,60 @@
 		can_hold[I.type]++
 		max_w_class = max(I.w_class, max_w_class)
 		max_storage_space += I.get_storage_cost()
+
+/*
+ * Trinket Box - READDING SOON
+ */
+/obj/item/weapon/storage/trinketbox
+	name = "trinket box"
+	desc = "A box that can hold small trinkets, such as a ring."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "trinketbox"
+	var/open = 0
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/clothing/gloves/ring,
+		/obj/item/weapon/coin,
+		/obj/item/clothing/accessory/medal
+		)
+	var/open_state
+	var/closed_state
+
+/obj/item/weapon/storage/trinketbox/update_icon()
+	overlays.Cut()
+	if(open)
+		icon_state = open_state
+
+		if(contents.len >= 1)
+			var/contained_image = null
+			if(istype(contents[1],  /obj/item/clothing/gloves/ring))
+				contained_image = "ring_trinket"
+			else if(istype(contents[1], /obj/item/weapon/coin))
+				contained_image = "coin_trinket"
+			else if(istype(contents[1], /obj/item/clothing/accessory/medal))
+				contained_image = "medal_trinket"
+			if(contained_image)
+				overlays += contained_image
+	else
+		icon_state = closed_state
+
+/obj/item/weapon/storage/trinketbox/New()
+	if(!open_state)
+		open_state = "[initial(icon_state)]_open"
+	if(!closed_state)
+		closed_state = "[initial(icon_state)]"
+	..()
+
+/obj/item/weapon/storage/trinketbox/attack_self()
+	open = !open
+	update_icon()
+	..()
+
+/obj/item/weapon/storage/trinketbox/examine(mob/user)
+	..()
+	if(open && contents.len)
+		var/display_item = contents[1]
+		to_chat(user, "<span class='notice'>\The [src] contains \the [display_item]!</span>")
+
+/obj/item/weapon/storage/AllowDrop()
+	return TRUE

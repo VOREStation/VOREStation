@@ -2,7 +2,6 @@
 	name = "fuel rod assembly"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel_assembly"
-	layer = 4
 
 	var/material_name
 
@@ -47,7 +46,7 @@
 		return PROCESS_KILL
 
 	if(istype(loc, /turf))
-		radiation_repository.radiate(src, max(1,ceil(radioactivity/30)))
+		radiation_repository.radiate(src, max(1,CEILING(radioactivity/30, 1)))
 
 /obj/item/weapon/fuel_assembly/Destroy()
 	processing_objects -= src

@@ -1,6 +1,6 @@
 /obj/machinery/gateway
 	name = "gateway"
-	desc = "A mysterious gateway built by unknown hands.  It allows for faster than light travel to far-flung locations and even alternate realities."
+	desc = "A mysterious gateway built by unknown hands.  It allows for faster than light travel to far-flung locations and even alternate realities."  //VOREStation Edit
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
 	density = 1
@@ -39,17 +39,17 @@
 	wait = world.time + config.gateway_delay	//+ thirty minutes default
 	awaygate = locate(/obj/machinery/gateway/centeraway)
 	. = ..()
+	density = 1 //VOREStation Add
 
 /obj/machinery/gateway/centerstation/update_icon()
 	if(active)
 		icon_state = "oncenter"
 		return
 	icon_state = "offcenter"
-
+/* VOREStation Removal - Doesn't do anything
 /obj/machinery/gateway/centerstation/New()
 	density = 1
-
-
+*/ //VOREStation Removal End
 
 obj/machinery/gateway/centerstation/process()
 	if(stat & (NOPOWER))
@@ -90,7 +90,7 @@ obj/machinery/gateway/centerstation/process()
 	if(world.time < wait)
 		user << "<span class='notice'>Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes.</span>"
 		return
-	if(!awaygate.calibrated && LAZYLEN(awaydestinations))
+	if(!awaygate.calibrated && !LAZYLEN(awaydestinations)) //VOREStation Edit
 		user << "<span class='notice'>Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update.</span>"
 		return
 
@@ -252,10 +252,12 @@ obj/machinery/gateway/centerstation/process()
 			user << "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>"
 			return
 		else
+			// VOREStation Add
 			stationgate = locate(/obj/machinery/gateway/centerstation)
 			if(!stationgate)
 				user << "<span class='notice'>Error: Recalibration failed. No destination found... That can't be good.</span>"
 				return
+			// VOREStation Add End
 			else
 				user << "<font color='blue'><b>Recalibration successful!</b>:</font><font color='black'> This gate's systems have been fine tuned. Travel to this gate will now be on target.</font>"
 				calibrated = 1

@@ -9,14 +9,15 @@ SUBSYSTEM_DEF(mapping)
 
 	var/obj/effect/landmark/engine_loader/engine_loader
 
+	var/list/shelter_templates = list()
+
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
+	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	loadEngine()
-	// TODO - This probably should be here
-	// // Pick a random away mission.
-	// createRandomZlevel()
+	preloadShelterTemplates()
 	// Mining generation probably should be here too
 	// TODO - Other stuff related to maps and areas could be moved here too.  Look at /tg
 	if(using_map)
@@ -87,6 +88,15 @@ SUBSYSTEM_DEF(mapping)
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
 				MT.load_new_z(centered = FALSE)
+
+/datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
+	for(var/item in subtypesof(/datum/map_template/shelter))
+		var/datum/map_template/shelter/shelter_type = item
+		if(!(initial(shelter_type.mappath)))
+			continue
+		var/datum/map_template/shelter/S = new shelter_type()
+
+		shelter_templates[S.shelter_id] = S
 
 /datum/controller/subsystem/mapping/stat_entry(msg)
 	if (!Debug2)

@@ -65,5 +65,5 @@
 /mob/living/carbon/human/sparram/New(var/new_loc)
 	..(new_loc, "Sparra")
 
-/mob/living/carbon/human/vulpkaninm/New(var/new_loc)
+/mob/living/carbon/human/wolpin/New(var/new_loc)
 	..(new_loc, "Wolpin")

@@ -1,8 +1,3 @@
-/obj/structure/window/reinforced/polarized/full
-	dir = SOUTHWEST
-	icon_state = "fwindow"
-	maxhealth = 80
-
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
     height = 7
@@ -75,6 +70,32 @@
 		teleport_y = 2
 	else
 		teleport_y = src.y
+
+/obj/effect/step_trigger/teleporter/to_underdark
+	icon = 'icons/obj/stairs.dmi'
+	icon_state = "stairs"
+	invisibility = 0
+/obj/effect/step_trigger/teleporter/to_underdark/initialize()
+	. = ..()
+	teleport_x = x
+	teleport_y = y
+	for(var/z_num in using_map.zlevels)
+		var/datum/map_z_level/Z = using_map.zlevels[z_num]
+		if(Z.name == "Underdark")
+			teleport_z = Z.z
+
+/obj/effect/step_trigger/teleporter/from_underdark
+	icon = 'icons/obj/stairs.dmi'
+	icon_state = "stairs"
+	invisibility = 0
+/obj/effect/step_trigger/teleporter/from_underdark/initialize()
+	. = ..()
+	teleport_x = x
+	teleport_y = y
+	for(var/z_num in using_map.zlevels)
+		var/datum/map_z_level/Z = using_map.zlevels[z_num]
+		if(Z.name == "Mining Outpost")
+			teleport_z = Z.z
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
 	planet = planet_virgo3b
@@ -217,7 +238,7 @@
 	var/mob/living/carbon/human/user = AM
 
 	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
-	if(user && choice == "Yes")
+	if(user && Adjacent(user) && choice == "Yes")
 		user.ghostize()
 		despawn_occupant(user)
 
@@ -343,7 +364,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/item/weapon/reagent_containers/pill/airlock
 	name = "\'Airlock\' Pill"
-	desc = "Neutralizes toxins and provides a mild alangesic effect."
+	desc = "Neutralizes toxins and provides a mild analgesic effect."
 	icon_state = "pill2"
 
 /obj/item/weapon/reagent_containers/pill/airlock/New()
@@ -352,15 +373,67 @@ var/global/list/latejoin_tram   = list()
 	reagents.add_reagent("paracetamol", 5)
 
 //"Red" Armory Door
-/obj/machinery/door/airlock/multi_tile/metal/red
+/obj/machinery/door/airlock/security/armory
 	name = "Red Armory"
 	//color = ""
 
-/obj/machinery/door/airlock/multi_tile/metal/red/allowed(mob/user)
+/obj/machinery/door/airlock/security/armory/allowed(mob/user)
 	if(get_security_level() in list("green","blue"))
 		return FALSE
 
 	return ..(user)
+
+/obj/structure/closet/secure_closet/guncabinet/excursion
+	name = "expedition weaponry cabinet"
+	req_one_access = list(access_explorer,access_armory)
+
+/obj/structure/closet/secure_closet/guncabinet/excursion/New()
+	..()
+	for(var/i = 1 to 3)
+		new /obj/item/weapon/gun/energy/frontier/locked(src)
+
+// Underdark mob spawners
+/obj/tether_away_spawner/underdark_normal
+	name = "Underdark Normal Spawner"
+	faction = "underdark"
+	atmos_comp = TRUE
+	prob_spawn = 100
+	prob_fall = 50
+	guard = 20
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/hostile/jelly = 3,
+		/mob/living/simple_mob/animal/giant_spider/hunter = 1,
+		/mob/living/simple_mob/animal/giant_spider/phorogenic = 1,
+		/mob/living/simple_mob/animal/giant_spider/lurker = 1,
+	)
+
+/obj/tether_away_spawner/underdark_hard
+	name = "Underdark Hard Spawner"
+	faction = "underdark"
+	atmos_comp = TRUE
+	prob_spawn = 100
+	prob_fall = 50
+	guard = 20
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/vore/corrupthound = 1,
+		/mob/living/simple_mob/vore/rat = 1,
+		/mob/living/simple_mob/animal/space/mimic = 1
+	)
+
+/obj/tether_away_spawner/underdark_boss
+	name = "Underdark Boss Spawner"
+	faction = "underdark"
+	atmos_comp = TRUE
+	prob_spawn = 100
+	prob_fall = 100
+	guard = 70
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/vore/dragon = 1
+	)
+
+// Used at centcomm for the elevator
+/obj/machinery/cryopod/robot/door/dorms
+	spawnpoint_type = /datum/spawnpoint/tram
 
 //
 // ### Wall Machines On Full Windows ###

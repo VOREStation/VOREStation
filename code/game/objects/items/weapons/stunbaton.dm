@@ -19,14 +19,18 @@
 	var/obj/item/weapon/cell/bcell = null
 	var/hitcost = 240
 
-/obj/item/weapon/melee/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>\The [user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
-	return (FIRELOSS)
-
 /obj/item/weapon/melee/baton/New()
 	..()
 	update_icon()
 	return
+
+/obj/item/weapon/melee/baton/get_cell()
+	return bcell
+
+/obj/item/weapon/melee/baton/suicide_act(mob/user)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	user.visible_message("<span class='suicide'>\The [user] is putting the live [name] in [TU.his] mouth! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
+	return (FIRELOSS)
 
 /obj/item/weapon/melee/baton/MouseDrop(obj/over_object as obj)
 	if(!canremove)
@@ -265,9 +269,8 @@
 
 /obj/item/weapon/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	..(target, user, hit_zone)
-	if(istype(target, /mob/living/simple_animal) && status)
-		var/mob/living/simple_animal/SA = target
-		SA.taunt(user)
+	if(status && target.has_AI())
+		target.taunt(user)
 
 // Borg version, for the lost module.
 /obj/item/weapon/melee/baton/shocker/robot

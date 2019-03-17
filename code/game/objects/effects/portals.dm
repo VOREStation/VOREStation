@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
+
 /obj/effect/portal
 	name = "portal"
 	desc = "Looks unstable. Best to test it with the clown."
@@ -29,6 +31,7 @@
 	return
 
 /obj/effect/portal/New()
+	..() // Necessary for the list boilerplate to work
 	spawn(300)
 		qdel(src)
 		return

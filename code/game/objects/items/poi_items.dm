@@ -28,14 +28,8 @@
 	icon_closed = "poireactor"
 	climbable = 0
 
-/obj/structure/closet/crate/oldreactor/New()
-	..()
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
-	new /obj/item/weapon/fuel_assembly/deuterium(src)
+	starts_with = list(
+		/obj/item/weapon/fuel_assembly/deuterium = 6)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"
@@ -52,3 +46,4 @@
 /obj/item/poi/brokenoldreactor/Destroy()
 	processing_objects -= src
 	return ..()
+

@@ -57,14 +57,14 @@
 		if(mute_irc)
 			usr << "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>"
 			return
-		cmd_admin_irc_pm(href_list["irc_msg"])
+		send2adminirc(href_list["irc_msg"])
 		return
 
 
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
-		href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
+		href_logfile << "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]"
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
@@ -111,6 +111,8 @@
 	clients += src
 	directory[ckey] = src
 
+	GLOB.ahelp_tickets.ClientLogin(src)
+
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
@@ -150,7 +152,7 @@
 	log_client_to_db()
 
 	send_resources()
-	nanomanager.send_resources(src)
+	GLOB.nanomanager.send_resources(src)
 
 	if(!void)
 		void = new()
@@ -164,6 +166,12 @@
 			src.changes()
 
 	hook_vr("client_new",list(src)) //VOREStation Code
+	
+	if(config.paranoia_logging)
+		if(isnum(player_age) && player_age == 0)
+			log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
+		if(isnum(account_age) && account_age <= 2)
+			log_and_message_admins("PARANOIA: [key_name(src)] has a very new BYOND account ([account_age] days).")
 
 	//////////////
 	//DISCONNECT//
@@ -172,6 +180,7 @@
 	if(holder)
 		holder.owner = null
 		admins -= src
+	GLOB.ahelp_tickets.ClientLogout(src)
 	directory -= ckey
 	clients -= src
 	return ..()
@@ -220,6 +229,12 @@
 		player_age = text2num(query.item[2])
 		break
 
+	account_join_date = sanitizeSQL(findJoinDate())
+	if(account_join_date && dbcon.IsConnected())
+		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[account_join_date]')")
+		if(query_datediff.Execute() && query_datediff.NextRow())
+			account_age = text2num(query_datediff.item[1])
+
 	var/DBQuery/query_ip = dbcon.NewQuery("SELECT ckey FROM erro_player WHERE ip = '[address]'")
 	query_ip.Execute()
 	related_accounts_ip = ""
@@ -252,7 +267,7 @@
 	//Panic bunker code
 	if (isnum(player_age) && player_age == 0) //first connection
 		if (config.panic_bunker && !holder && !deadmin_holder)
-			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
+			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
 			to_chat(src, "Sorry but the server is currently not accepting connections from never before seen players.")
 			qdel(src)
@@ -316,6 +331,7 @@
 		'html/images/sglogo.png',
 		'html/images/talisman.png',
 		'html/images/paper_bg.png',
+		'html/images/no_image32.png',
 		'icons/pda_icons/pda_atmos.png',
 		'icons/pda_icons/pda_back.png',
 		'icons/pda_icons/pda_bell.png',
@@ -372,3 +388,16 @@ client/verb/character_setup()
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
+
+/client/proc/findJoinDate()
+	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+	if(!http)
+		log_world("Failed to connect to byond age check for [ckey]")
+		return
+	var/F = file2text(http["CONTENT"])
+	if(F)
+		var/regex/R = regex("joined = \"(\\d{4}-\\d{2}-\\d{2})\"")
+		if(R.Find(F))
+			. = R.group[1]
+		else
+			CRASH("Age check regex failed for [src.ckey]")

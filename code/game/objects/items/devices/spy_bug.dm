@@ -16,11 +16,12 @@
 
 //	var/obj/item/device/radio/bug/radio
 	var/obj/machinery/camera/bug/camera
+	var/camtype = /obj/machinery/camera/bug
 
 /obj/item/device/camerabug/New()
 	..()
 //	radio = new(src)
-	camera = new(src)
+	camera = new camtype(src)
 
 /obj/item/device/camerabug/attack_self(mob/user)
 	if(user.a_intent == I_HURT)
@@ -40,7 +41,7 @@
 		linkedmonitor.unpair(src)
 	linkedmonitor = null
 	qdel(camera)
-	camera = new(src)
+	camera = new camtype(src)
 	to_chat(usr, "<span class='notice'>You turn the [src] off and on again, delinking it from any monitors.")
 
 /obj/item/brokenbug
@@ -83,6 +84,7 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
+	camtype = /obj/machinery/camera/bug/spy
 
 /obj/item/device/camerabug/examine(mob/user)
 	. = ..(user, 0)

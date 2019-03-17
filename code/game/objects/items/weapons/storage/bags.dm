@@ -68,6 +68,9 @@
 // -----------------------------
 //        Mining Satchel
 // -----------------------------
+/*
+ * Mechoid - Orebags are the most common quick-gathering thing, and also have tons of lag associated with it. Their checks are going to be hyper-simplified due to this, and their INCREDIBLY singular target contents.
+ */
 
 /obj/item/weapon/storage/bag/ore
 	name = "mining satchel"
@@ -79,7 +82,80 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/weapon/ore)
+	var/stored_ore = list()
+	var/last_update = 0
 
+/obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
+	if(!istype(W)) return 0
+
+	if(new_location)
+		if(ismob(loc))
+			W.dropped(usr)
+		if(ismob(new_location))
+			W.hud_layerise()
+		else
+			W.reset_plane_and_layer()
+		W.forceMove(new_location)
+	else
+		W.forceMove(get_turf(src))
+
+	W.on_exit_storage(src)
+	update_icon()
+	return 1
+
+/obj/item/weapon/storage/bag/ore/gather_all(turf/T as turf, mob/user as mob, var/silent = 0)
+	var/success = 0
+	var/failure = 0
+	for(var/obj/item/weapon/ore/I in T) //Only ever grabs ores. Doesn't do any extraneous checks, as all ore is the same size. Tons of checks means it causes hanging for up to three seconds.
+		if(contents.len >= max_storage_space)
+			failure = 1
+			break
+		I.forceMove(src)
+		success = 1
+	if(success && !failure && !silent)
+		to_chat(user, "<span class='notice'>You put everything in [src].</span>")
+	else if(success && (!silent || (silent && contents.len >= max_storage_space)))
+		to_chat(user, "<span class='notice'>You fill the [src].</span>")
+	else if(!silent)
+		to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
+
+/obj/item/weapon/storage/bag/ore/examine(mob/user)
+	..()
+
+	if(!Adjacent(user)) //Can only check the contents of ore bags if you can physically reach them.
+		return
+
+	if(istype(user, /mob/living))
+		add_fingerprint(user)
+
+	if(!contents.len)
+		to_chat(user, "It is empty.")
+		return
+
+	if(world.time > last_update + 10)
+		update_ore_count()
+		last_update = world.time
+
+	to_chat(user, "<span class='notice'>It holds:</span>")
+	for(var/ore in stored_ore)
+		to_chat(user, "<span class='notice'>- [stored_ore[ore]] [ore]</span>")
+	return
+
+/obj/item/weapon/storage/bag/ore/open(mob/user as mob) //No opening it for the weird UI of having shit-tons of ore inside it.
+	if(world.time > last_update + 10)
+		update_ore_count()
+		last_update = world.time
+		examine(user)
+
+/obj/item/weapon/storage/bag/ore/proc/update_ore_count() //Stolen from ore boxes.
+
+	stored_ore = list()
+
+	for(var/obj/item/weapon/ore/O in contents)
+		if(stored_ore[O.name])
+			stored_ore[O.name]++
+		else
+			stored_ore[O.name] = 1
 
 // -----------------------------
 //          Plant bag
@@ -94,6 +170,10 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown)
 
+/obj/item/weapon/storage/bag/plants/large
+	name = "large plant bag"
+	w_class = ITEMSIZE_SMALL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 45
 
 // -----------------------------
 //        Sheet Snatcher
@@ -112,121 +192,117 @@
 	storage_slots = 7
 
 	allow_quick_empty = 1 // this function is superceded
-	New()
-		..()
-		//verbs -= /obj/item/weapon/storage/verb/quick_empty
-		//verbs += /obj/item/weapon/storage/bag/sheetsnatcher/quick_empty
 
-	can_be_inserted(obj/item/W as obj, stop_messages = 0)
-		if(!istype(W,/obj/item/stack/material))
-			if(!stop_messages)
-				usr << "The snatcher does not accept [W]."
-			return 0
-		var/current = 0
-		for(var/obj/item/stack/material/S in contents)
-			current += S.amount
-		if(capacity == current)//If it's full, you're done
-			if(!stop_messages)
-				usr << "<span class='warning'>The snatcher is full.</span>"
-			return 0
-		return 1
+/obj/item/weapon/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	if(!istype(W,/obj/item/stack/material))
+		if(!stop_messages)
+			usr << "The snatcher does not accept [W]."
+		return 0
+	var/current = 0
+	for(var/obj/item/stack/material/S in contents)
+		current += S.amount
+	if(capacity == current)//If it's full, you're done
+		if(!stop_messages)
+			usr << "<span class='warning'>The snatcher is full.</span>"
+		return 0
+	return 1
 
 
 // Modified handle_item_insertion.  Would prefer not to, but...
-	handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
-		var/obj/item/stack/material/S = W
-		if(!istype(S)) return 0
+/obj/item/weapon/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+	var/obj/item/stack/material/S = W
+	if(!istype(S)) return 0
 
-		var/amount
-		var/inserted = 0
-		var/current = 0
-		for(var/obj/item/stack/material/S2 in contents)
-			current += S2.amount
-		if(capacity < current + S.amount)//If the stack will fill it up
-			amount = capacity - current
+	var/amount
+	var/inserted = 0
+	var/current = 0
+	for(var/obj/item/stack/material/S2 in contents)
+		current += S2.amount
+	if(capacity < current + S.amount)//If the stack will fill it up
+		amount = capacity - current
+	else
+		amount = S.amount
+
+	for(var/obj/item/stack/material/sheet in contents)
+		if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
+			sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
+			S.amount -= amount
+			inserted = 1
+			break
+
+	if(!inserted || !S.amount)
+		usr.remove_from_mob(S)
+		usr.update_icons()	//update our overlays
+		if (usr.client && usr.s_active != src)
+			usr.client.screen -= S
+		S.dropped(usr)
+		if(!S.amount)
+			qdel(S)
 		else
-			amount = S.amount
+			S.loc = src
 
-		for(var/obj/item/stack/material/sheet in contents)
-			if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
-				sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
-				S.amount -= amount
-				inserted = 1
-				break
-
-		if(!inserted || !S.amount)
-			usr.remove_from_mob(S)
-			usr.update_icons()	//update our overlays
-			if (usr.client && usr.s_active != src)
-				usr.client.screen -= S
-			S.dropped(usr)
-			if(!S.amount)
-				qdel(S)
-			else
-				S.loc = src
-
-		orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
-		update_icon()
-		return 1
+	orient2hud(usr)
+	if(usr.s_active)
+		usr.s_active.show_to(usr)
+	update_icon()
+	return 1
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
-	orient2hud(mob/user as mob)
-		var/adjusted_contents = contents.len
+/obj/item/weapon/storage/bag/sheetsnatcher/orient2hud(mob/user as mob)
+	var/adjusted_contents = contents.len
 
-		//Numbered contents display
-		var/list/datum/numbered_display/numbered_contents
-		if(display_contents_with_number)
-			numbered_contents = list()
-			adjusted_contents = 0
-			for(var/obj/item/stack/material/I in contents)
-				adjusted_contents++
-				var/datum/numbered_display/D = new/datum/numbered_display(I)
-				D.number = I.amount
-				numbered_contents.Add( D )
+	//Numbered contents display
+	var/list/datum/numbered_display/numbered_contents
+	if(display_contents_with_number)
+		numbered_contents = list()
+		adjusted_contents = 0
+		for(var/obj/item/stack/material/I in contents)
+			adjusted_contents++
+			var/datum/numbered_display/D = new/datum/numbered_display(I)
+			D.number = I.amount
+			numbered_contents.Add( D )
 
-		var/row_num = 0
-		var/col_count = min(7,storage_slots) -1
-		if (adjusted_contents > 7)
-			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-		src.slot_orient_objs(row_num, col_count, numbered_contents)
-		return
-
+	var/row_num = 0
+	var/col_count = min(7,storage_slots) -1
+	if (adjusted_contents > 7)
+		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
+	src.slot_orient_objs(row_num, col_count, numbered_contents)
+	return
 
 // Modified quick_empty verb drops appropriate sized stacks
-	quick_empty()
-		var/location = get_turf(src)
-		for(var/obj/item/stack/material/S in contents)
-			while(S.amount)
-				var/obj/item/stack/material/N = new S.type(location)
-				var/stacksize = min(S.amount,N.max_amount)
-				N.amount = stacksize
-				S.amount -= stacksize
-			if(!S.amount)
-				qdel(S) // todo: there's probably something missing here
-		orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
-		update_icon()
+/obj/item/weapon/storage/bag/sheetsnatcher/quick_empty()
+	var/location = get_turf(src)
+	for(var/obj/item/stack/material/S in contents)
+		while(S.amount)
+			var/obj/item/stack/material/N = new S.type(location)
+			var/stacksize = min(S.amount,N.max_amount)
+			N.amount = stacksize
+			S.amount -= stacksize
+			N.update_icon()
+		if(!S.amount)
+			qdel(S) // todo: there's probably something missing here
+	orient2hud(usr)
+	if(usr.s_active)
+		usr.s_active.show_to(usr)
+	update_icon()
 
 // Instead of removing
-	remove_from_storage(obj/item/W as obj, atom/new_location)
-		var/obj/item/stack/material/S = W
-		if(!istype(S)) return 0
+/obj/item/weapon/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W as obj, atom/new_location)
+	var/obj/item/stack/material/S = W
+	if(!istype(S)) return 0
 
-		//I would prefer to drop a new stack, but the item/attack_hand code
-		// that calls this can't recieve a different object than you clicked on.
-		//Therefore, make a new stack internally that has the remainder.
-		// -Sayu
+	//I would prefer to drop a new stack, but the item/attack_hand code
+	// that calls this can't recieve a different object than you clicked on.
+	//Therefore, make a new stack internally that has the remainder.
+	// -Sayu
 
-		if(S.amount > S.max_amount)
-			var/obj/item/stack/material/temp = new S.type(src)
-			temp.amount = S.amount - S.max_amount
-			S.amount = S.max_amount
+	if(S.amount > S.max_amount)
+		var/obj/item/stack/material/temp = new S.type(src)
+		temp.amount = S.amount - S.max_amount
+		S.amount = S.max_amount
 
-		return ..(S,new_location)
+	return ..(S,new_location)
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)

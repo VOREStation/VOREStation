@@ -20,7 +20,7 @@
 "at" = (/obj/item/device/multitool,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "au" = (/obj/item/weapon/cell{charge = 100; maxcharge = 15000},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "av" = (/obj/machinery/door/airlock/glass,/turf/simulated/shuttle/plating,/area/derelict/ship)
-"aw" = (/obj/structure/shuttle/engine/propulsion{tag = "icon-burst_l (EAST)"; icon_state = "burst_l"; dir = 4},/turf/space,/area/derelict/ship)
+"aw" = (/obj/structure/shuttle/engine/propulsion{ icon_state = "burst_l"; dir = 4},/turf/space,/area/derelict/ship)
 "ax" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced/full,/turf/simulated/shuttle/plating,/area/derelict/ship)
 "ay" = (/obj/structure/table/standard,/obj/machinery/light{dir = 4},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "az" = (/obj/machinery/door/airlock/glass,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
@@ -39,6 +39,7 @@
 "aM" = (/obj/machinery/light{dir = 1},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aN" = (/obj/structure/table/standard,/obj/item/device/analyzer,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aO" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
+"aP" = (/obj/structure/table/standard,/obj/item/weapon/tool/screwdriver,/obj/machinery/light,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aS" = (/obj/machinery/door/window/northright,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aT" = (/obj/item/weapon/bedsheet,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/structure/bed/padded,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aU" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
@@ -59,7 +60,6 @@
 "bk" = (/obj/machinery/mass_driver{dir = 8; icon_state = "mass_driver"; id = "oldship_gun"},/turf/simulated/shuttle/plating,/area/derelict/ship)
 "bl" = (/obj/machinery/door/airlock/glass{name = "Pod Bay"},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "bm" = (/obj/machinery/computer/pod{id = "oldship_gun"},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
-"bn" = (/obj/structure/table/standard,/obj/item/weapon/screwdriver,/obj/machinery/light,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "bo" = (/obj/structure/table/standard,/obj/item/device/radio/off,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "bp" = (/turf/simulated/mineral/vacuum,/area/mine/unexplored)
 "bq" = (/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored)
@@ -99,8 +99,8 @@
 "bY" = (/obj/item/device/flashlight/flare,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "bZ" = (/obj/item/stack/material/wood,/obj/item/stack/material/wood,/obj/structure/ore_box,/obj/item/weapon/ore/iron,/obj/item/weapon/ore/iron,/obj/item/weapon/ore/iron,/turf/simulated/floor/airless,/area/wreck/ufoship)
 "ca" = (/obj/item/clothing/head/helmet/space/deathsquad,/obj/structure/table/rack,/obj/effect/decal/cleanable/molten_item,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
-"cb" = (/obj/machinery/compressor{dir = 4},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (WEST)"; icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
-"cc" = (/obj/machinery/crystal,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (EAST)"; icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
+"cb" = (/obj/machinery/compressor{dir = 4},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
+"cc" = (/obj/machinery/crystal,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
 "cd" = (/obj/item/device/gps,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "ce" = (/obj/structure/ore_box,/turf/simulated/floor/airless,/area/wreck/ufoship)
 "cf" = (/obj/item/weapon/circuitboard/broken,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
@@ -132,12 +132,12 @@
 "cF" = (/obj/structure/dispenser{oxygentanks = 0; phorontanks = 0},/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "cG" = (/obj/item/stack/material/glass{amount = 50; pixel_x = -2; pixel_y = 2},/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "cH" = (/obj/item/stack/cable_coil/yellow,/turf/simulated/floor/airless,/area/wreck/ufoship)
-"cI" = (/obj/machinery/compressor{dir = 4},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (WEST)"; icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
-"cJ" = (/obj/machinery/crystal,/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (EAST)"; icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
+"cI" = (/obj/machinery/compressor{dir = 4},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
+"cJ" = (/obj/machinery/crystal,/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/floor/reinforced/phoron,/area/wreck/ufoship)
 "cK" = (/obj/item/weapon/cell/super,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "cL" = (/obj/structure/largecrate,/turf/simulated/floor/airless,/area/wreck/ufoship)
 "cM" = (/obj/effect/decal/cleanable/molten_item,/turf/simulated/floor/airless,/area/wreck/ufoship)
-"cN" = (/obj/structure/window/phoronreinforced{tag = "icon-phoronrwindow (NORTH)"; icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
+"cN" = (/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "cO" = (/obj/item/stack/material/steel,/obj/item/stack/material/steel,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "cP" = (/obj/structure/table/rack,/obj/item/clothing/glasses/welding,/turf/simulated/floor/tiled/airless,/area/wreck/ufoship)
 "cQ" = (/obj/effect/decal/mecha_wreckage/mauler,/obj/item/weapon/material/shard/shrapnel,/turf/simulated/floor/airless,/area/wreck/ufoship)
@@ -209,7 +209,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababacacacacacabacacacababalalaiajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabjbkazacacacacacacblacacababababalaiajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbmacacacacacababababaaaaababaiajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababacbnboababababaaaaaaaaababawaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababacaPboababababaaaaaaaaababawaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

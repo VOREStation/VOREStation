@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	setupgenetics() //to set the mutations' place in structural enzymes, so monkey.initialize() knows where to put the monkey mutation.
+	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	to_world_log("Initializing objects")
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(atoms)
 				CHECK_TICK
 	else
 		count = 0
-		for(var/atom/A in world)
+		for(var/atom/A in world) // This must be world, since this operation adds all the atoms to their specific lists.
 			if(!A.initialized)
 				InitAtom(A, mapload_arg)
 				++count
@@ -135,9 +135,7 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
-		//text2file(initlog, "[GLOB.log_directory]/initialize.log")
-		var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-		text2file(initlog, "data/logs/[date_string]-initialize.log")
+		text2file(initlog, "[log_path]-initialize.log")
 
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT

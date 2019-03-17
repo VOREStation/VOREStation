@@ -3,7 +3,7 @@
 	desc = "A little cleaning robot, it looks so excited!"
 	icon_state = "cleanbot0"
 	req_one_access = list(access_robotics, access_janitor)
-	botcard_access = list(access_janitor, access_maint_tunnels)
+	botcard_access = list(access_janitor)
 
 	locked = 0 // Start unlocked so roboticist can set them to patrol.
 	wait_if_pulled = 1
@@ -20,7 +20,7 @@
 	get_targets()
 
 /mob/living/bot/cleanbot/handleIdle()
-	if(!screwloose && !oddbutton && prob(5))
+	if(!screwloose && !oddbutton && prob(2))
 		custom_emote(2, "makes an excited booping sound!")
 		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
 
@@ -67,7 +67,8 @@
 		return
 
 	busy = 1
-	custom_emote(2, "begins to clean up \the [D]")
+	if(prob(20))
+		custom_emote(2, "begins to clean up \the [D]")
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime))

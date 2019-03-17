@@ -24,12 +24,12 @@
 	100 - low_probability * 50;"spacesuit", \
 	"health", \
 	25 + low_probability * 75;"snacks", \
-	25;"alien", \
+	/*25;"alien", \ */ //VORESTATION AI TEMPORARY REMOVAL
 	"lights", \
 	25 - low_probability * 25;"engineering", \
 	25 - low_probability * 25;"coffin", \
-	25;"mimic", \
-	25;"viscerator", \
+	/*25;"mimic", \ //VORESTATION AI TEMPORARY REMOVAL
+	25;"viscerator", \ */ //VORESTATION AI TEMPORARY REMOVAL
 	))
 		if("treasure")
 			var/obj/structure/closet/crate/C = new(src.loc)
@@ -276,23 +276,23 @@
 			/obj/item/weapon/reagent_containers/food/snacks/liquidfood)
 			for(var/i=0,i<num,i++)
 				new new_type(C)
-		if("alien")
+		/*if("alien")
 			//ancient aliens
 			var/obj/structure/closet/acloset/C = new(src.loc)
 			if(prob(33))
 				if(live_cargo) // Carp! Since Facehuggers got removed.
 					var/num = rand(1,3)
 					for(var/i=0,i<num,i++)
-						new /mob/living/simple_animal/hostile/carp(C)
+						new /mob/living/simple_mob/hostile/carp(C)
 				else // Just a costume.
 					new /obj/item/clothing/suit/storage/hooded/carp_costume(C)
 			else if(prob(50))
 				if(live_cargo) // Something else very much alive and angry.
-					var/spawn_type = pick(/mob/living/simple_animal/hostile/alien, /mob/living/simple_animal/hostile/alien/drone, /mob/living/simple_animal/hostile/alien/sentinel)
-					new spawn_type(C)
+					/*var/spawn_type = pick(/mob/living/simple_mob/hostile/alien, /mob/living/simple_mob/hostile/alien/drone, /mob/living/simple_mob/hostile/alien/sentinel)
+					new spawn_type(C) */ //VORESTATION AI TEMPORARY REMOVAL
 				else // Just a costume.
 					new /obj/item/clothing/head/xenos(C)
-					new /obj/item/clothing/suit/xenos(C)
+					new /obj/item/clothing/suit/xenos(C)*/ //VORESTATION AI TEMPORARY REMOVAL
 
 			//33% chance of nothing
 
@@ -336,14 +336,17 @@
 				new /obj/effect/decal/remains/xeno(src)
 		if("mimic")
 			//a guardian of the tomb!
-			var/mob/living/simple_animal/hostile/mimic/crate/mimic = new(src.loc)
-			mimic.faction = spawned_faction
+			// var/mob/living/simple_mob/hostile/mimic/crate/mimic = new(src.loc)
+			// mimic.faction = spawned_faction
+			var/obj/structure/closet/crate/secure/gear/C = new(src.loc) //VORESTATION AI TEMPORARY EDIT
+			new /obj/item/weapon/storage/toolbox/electrical(C) //Placeholder to prevent errors. //VORESTATION AI TEMPORARY EDIT
 		if("viscerator")
 			//more tomb guardians!
-			var/num = rand(1,3)
-			var/obj/structure/closet/crate/secure/gear/C = new(src.loc)
-			for(var/i=0,i<num,i++)
-				new /mob/living/simple_animal/hostile/viscerator(C)
+			//var/num = rand(1,3) //VORESTATION AI TEMPORARY REMOVAL
+			var/obj/structure/closet/crate/secure/gear/C = new(src.loc) //VORESTATION AI TEMPORARY EDIT
+			new /obj/item/weapon/storage/toolbox/electrical(C) //Placeholder to prevent errors. //VORESTATION AI TEMPORARY EDIT
+			//for(var/i=0,i<num,i++) //VORESTATION AI TEMPORARY REMOVAL
+				//new /mob/living/simple_mob/hostile/viscerator(C)  //VORESTATION AI TEMPORARY REMOVAL
 
 	qdel(src)
 
@@ -365,7 +368,7 @@
 	icon_state = "da"
 
 /obj/structure/symbol/em
-	desc = "It looks like the letter 'Y' with an underline."
+	desc = "It looks kind of like a cup. Specifically, a martini glass."
 	icon_state = "em"
 
 /obj/structure/symbol/es
@@ -381,7 +384,7 @@
 	icon_state = "gu"
 
 /obj/structure/symbol/lo
-	desc = "It looks kind of like a cup. Specifically, a martini glass."
+	desc = "It looks like the letter 'Y' with an underline."
 	icon_state = "lo"
 
 /obj/structure/symbol/pr

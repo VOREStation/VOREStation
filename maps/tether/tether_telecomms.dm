@@ -38,13 +38,19 @@
 	id = "Science Outpost Relay"
 	listening_level = Z_LEVEL_SOLARS
 	autolinkers = list("sci_o_relay")
+
+/obj/machinery/telecomms/relay/preset/underdark
+	id = "Mining Underground Relay"
+	listening_level = Z_LEVEL_UNDERDARK
+	autolinkers = list("ud_relay")
+
 // #### Hub ####
 /obj/machinery/telecomms/hub/preset/tether
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub",
 		"tbl_relay", "tbm_relay", "tbh_relay", "tsl_relay", "tsm_relay", "tsh_relay",
-		"c_relay", "m_relay", "r_relay", "sci_o_relay",
+		"c_relay", "m_relay", "r_relay", "sci_o_relay", "ud_relay",
 		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "explorer", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
 	)
@@ -62,7 +68,7 @@
 // Telecommunications Satellite
 /area/tether/surfacebase/tcomms
 	name = "\improper Telecomms"
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg')
 
 /area/tether/surfacebase/tcomms/entrance
 	name = "\improper Telecomms Teleporter"

@@ -26,19 +26,7 @@
 	// 	gas_choices += "volatile_fuel" // Dangerous and no default atmos setup!
 	gas_type = pick(gas_choices)
 
-	// Assemble areas that all exists (See DM reference if you are confused about loop labels)
-	var/list/area/grand_list_of_areas = list()
-	looping_station_areas:
-		for(var/parentpath in global.the_station_areas)
-			// Check its not excluded
-			for(var/excluded_path in excluded)
-				if(ispath(parentpath, excluded_path))
-					continue looping_station_areas
-			// Otherwise add it and all subtypes that exist on the map to our grand list
-			for(var/areapath in typesof(parentpath))
-				var/area/A = locate(areapath) // Check if it actually exists
-				if(istype(A) && A.z in using_map.player_levels)
-					grand_list_of_areas += A
+	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 
 	// Okay, now lets try and pick a target! Lets try 10 times, otherwise give up
 	for(var/i in 1 to 10)
@@ -62,17 +50,6 @@
 		log_debug("atmos_leak event: Giving up after too many failures to pick target area")
 		kill()
 		return
-
-/** Checks if any living humans are in a given area! */
-/datum/event/atmos_leak/proc/is_area_occupied(var/area/myarea)
-	// Testing suggests looping over human_mob_list is quicker than looping over area contents
-	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
-			continue
-		var/area/A = get_area(H)
-		if(A == myarea) //The loc of a turf is the area it is in.
-			return 1
-	return 0
 
 /datum/event/atmos_leak/announce()
 	command_announcement.Announce("Warning, hazardous [gas_data.name[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert")

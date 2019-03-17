@@ -84,7 +84,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 	evac = 1
 	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
-	for(var/area/A in world)
+	for(var/area/A in all_areas)
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
@@ -98,10 +98,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	autopilot = 1
 	set_launch_countdown(get_shuttle_prep_time())
 	auto_recall_time = rand(world.time + 300, launch_time - 300)
-	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
+	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
 	atc.shift_ending()
@@ -116,7 +116,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	if (evac)
 		emergency_shuttle_recalled.Announce(using_map.emergency_shuttle_recall_message)
 
-		for(var/area/A in world)
+		for(var/area/A in all_areas)
 			if(istype(A, /area/hallway))
 				A.readyreset()
 		evac = 0
@@ -234,7 +234,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	name = "star"
 	var/speed = 10
 	var/direction = SOUTH
-	layer = 2 // TURF_LAYER
+	layer = TURF_LAYER
+	plane = TURF_PLANE
 
 /obj/effect/bgstar/New()
 	..()

@@ -1,0 +1,45 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Mechpt)
+"c" = (/obj/item/trash/chips,/turf/template_noop,/area/submap/Mechpt)
+"d" = (/obj/structure/railing,/turf/template_noop,/area/submap/Mechpt)
+"e" = (/obj/structure/railing,/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/chips,/turf/template_noop,/area/submap/Mechpt)
+"f" = (/obj/structure/railing,/obj/structure/table/woodentable,/obj/item/weapon/cell/high,/obj/item/weapon/cell/high,/turf/template_noop,/area/submap/Mechpt)
+"g" = (/obj/structure/railing,/obj/structure/table/woodentable,/turf/template_noop,/area/submap/Mechpt)
+"h" = (/obj/structure/railing,/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c10,/turf/template_noop,/area/submap/Mechpt)
+"i" = (/obj/structure/railing{ icon_state = "railing0"; dir = 4},/turf/template_noop,/area/submap/Mechpt)
+"j" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"k" = (/obj/structure/railing{ icon_state = "railing0"; dir = 8},/turf/template_noop,/area/submap/Mechpt)
+"l" = (/obj/item/stack/rods,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"m" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"n" = (/obj/effect/decal/cleanable/blood/oil/streak,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"o" = (/obj/effect/decal/mecha_wreckage/ripley/deathripley,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"p" = (/obj/effect/decal/mecha_wreckage/ripley/firefighter,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"q" = (/obj/item/stack/cable_coil,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
+"r" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/template_noop,/area/submap/Mechpt)
+"s" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/structure/reagent_dispensers/beerkeg,/turf/template_noop,/area/submap/Mechpt)
+"t" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c50,/turf/template_noop,/area/submap/Mechpt)
+"u" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/cell/high,/obj/item/weapon/cell/device/weapon,/turf/template_noop,/area/submap/Mechpt)
+"v" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/template_noop,/area/submap/Mechpt)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbcbbbbbbbbbbbbbbbbbba
+abbdddddddddefghgdddddddddddba
+abijjjjjjjjjjjjjjjjjjjjjjjjjka
+abijjjjjjjjjjjjjjjjjjjjjjjjjka
+abijjjljjjjjjjjjjjjmjjjnjjjjka
+abijjjjjmjjjjjjjjjjjjjjjjjjjka
+ajjjjjjjjjjojjjjjjjjjjjjjjjjja
+abjjjjjjjjjjjjjjjjjjjjjjjjjjja
+abijjjjjjjjjjjpjjjmjjjjjjjjjka
+abijjjjjjjjjjjjjjjjjjjjjjjjjka
+abijjjjjjjmjjqjjjjjjjjjjjjjjka
+abijnjjjjjjjjjjjjjjjjjjjjjjjka
+abijjjjjjjjjjjjjjjjjjjjjjjjjka
+abbrrrrrrrrrstutvrrrrrrrrrrrba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

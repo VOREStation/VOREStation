@@ -9,13 +9,16 @@
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
-/obj/machinery/computer/centrifuge/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/screwdriver))
+/obj/machinery/computer/centrifuge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(O.is_screwdriver())
 		return ..(O,user)
+
+	if(default_unfasten_wrench(user, O, 20))
+		return
 
 	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial))
 		if(sample)
-			user << "\The [src] is already loaded."
+			to_chat(user, "\The [src] is already loaded.")
 			return
 
 		sample = O
@@ -23,7 +26,7 @@
 		O.loc = src
 
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 
 	src.attack_hand(user)
 
@@ -71,7 +74,7 @@
 					data["antibodies"] = antigens2string(A.data["antibodies"], none=null)
 				data["is_antibody_sample"] = 1
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "isolation_centrifuge.tmpl", src.name, 400, 500)
 		ui.set_initial_data(data)
@@ -95,7 +98,7 @@
 	if (..()) return 1
 
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(user, src, "main")
 
 	src.add_fingerprint(user)
 
@@ -157,7 +160,7 @@
 	sample.reagents.remove_reagent("blood", amt)
 	sample.reagents.add_reagent("antibodies", amt, data)
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	update_icon()
 	ping("\The [src] pings, \"Antibody isolated.\"")
 
@@ -167,7 +170,7 @@
 	dish.virus2 = virus2
 	virus2 = null
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	update_icon()
 	ping("\The [src] pings, \"Pathogen isolated.\"")
 

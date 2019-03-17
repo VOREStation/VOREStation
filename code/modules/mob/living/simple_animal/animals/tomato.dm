@@ -1,6 +1,7 @@
-/mob/living/simple_animal/hostile/tomato
+/mob/living/simple_mob/hostile/tomato
 	name = "tomato"
 	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
+	tt_desc = "X Solanum abominable"
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"
@@ -18,6 +19,6 @@
 	harm_intent_damage = 5
 	melee_damage_upper = 15
 	melee_damage_lower = 10
-	attacktext = "mauled"
+	attacktext = list("mauled")
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat

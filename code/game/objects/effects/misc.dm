@@ -26,7 +26,8 @@
 	desc = "Something swinging really wide."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "cleave"
-	layer = 6
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	time_to_die = 6
 	alpha = 140
 	mouse_opacity = 0
@@ -45,4 +46,21 @@
 
 /obj/effect/temporary_effect/shuttle_landing/initialize()
 	flick("shuttle_warning", src) // flick() forces the animation to always begin at the start.
+	. = ..()
+
+// The manifestation of Zeus's might. Or just a really unlucky day.
+// This is purely a visual effect, this isn't the part of the code that hurts things.
+/obj/effect/temporary_effect/lightning_strike
+	name = "lightning"
+	desc = "How <i>shocked</i> you must be, to see this text. You must have <i>lightning</i> reflexes. \
+	The humor in this description is just so <i>electrifying</i>."
+	icon = 'icons/effects/96x256.dmi'
+	icon_state = "lightning_strike"
+	plane = PLANE_LIGHTING_ABOVE
+	time_to_die = 1 SECOND
+	pixel_x = -32
+
+/obj/effect/temporary_effect/lightning_strike/initialize()
+	icon_state += "[rand(1,2)]" // To have two variants of lightning sprites.
+	animate(src, alpha = 0, time = time_to_die - 1)
 	. = ..()

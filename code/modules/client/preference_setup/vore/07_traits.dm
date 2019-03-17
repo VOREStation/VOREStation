@@ -55,7 +55,7 @@
 		pref.starting_trait_points = STARTING_SPECIES_POINTS
 		pref.max_traits = MAX_SPECIES_TRAITS
 
-	if(pref.species != "Custom Species")
+	if(pref.species != SPECIES_CUSTOM)
 		pref.pos_traits.Cut()
 		pref.neu_traits.Cut()
 		pref.neg_traits.Cut()
@@ -73,24 +73,24 @@
 			if(!(path in negative_traits))
 				pref.neg_traits -= path
 
-	if(!pref.custom_base || (pref.custom_base != "Xenochimera" && !(pref.custom_base in playable_species - whitelisted_species)))
-		pref.custom_base = "Human"
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
+		// Allowed!
+	else if(!pref.custom_base || !(pref.custom_base in custom_species_bases))
+		pref.custom_base = SPECIES_HUMAN
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	if(pref.species == "Custom Species")
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		var/datum/species/custom/CS = character.species
 		var/S = pref.custom_base ? pref.custom_base : "Human"
 		var/datum/species/custom/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
 
-		//Any additional non-trait settings can be applied here
-		new_CS.blood_color = pref.blood_color
-
-	if(pref.species == "Xenochimera")
-		var/datum/species/xenochimera/CS = character.species
-		var/S = pref.custom_base ? pref.custom_base : "Human"
-		var/datum/species/xenochimera/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
-
+		//Statistics for this would be nice
+		var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
+		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
+		
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
 
@@ -98,16 +98,12 @@
 	. += "<b>Custom Species</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
-	if(pref.species == "Custom Species")
+	var/datum/species/selected_species = all_species[pref.species]
+	if(selected_species.selects_bodytype)
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
-	if(pref.species == "Xenochimera")
-		. += "<b>Icon Base: </b> "
-		. += "<a href='?src=\ref[src];custom_base_xenochimera=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
-
-	if(pref.species == "Custom Species")
-
+	if(pref.species == SPECIES_CUSTOM)
 		var/points_left = pref.starting_trait_points
 		var/traits_left = pref.max_traits
 		for(var/T in pref.pos_traits + pref.neg_traits)
@@ -161,14 +157,11 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["custom_base"])
-		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean"
-		if(text_choice in playable_species)
-			pref.custom_base = text_choice
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["custom_base_xenochimera"])
-		var/text_choice = input("Pick an icon set for your species:","Icon Base") in playable_species - whitelisted_species - "Custom Species" - "Promethean" + "Xenochimera"
-		if(text_choice in playable_species)
+		var/list/choices = custom_species_bases
+		if(pref.species != SPECIES_CUSTOM)
+			choices = (choices | pref.species)
+		var/text_choice = input("Pick an icon set for your species:","Icon Base") in choices
+		if(text_choice in choices)
 			pref.custom_base = text_choice
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 

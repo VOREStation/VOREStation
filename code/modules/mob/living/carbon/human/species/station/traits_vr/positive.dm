@@ -1,14 +1,8 @@
 /datum/trait/speed_fast
 	name = "Haste"
 	desc = "Allows you to move faster on average than baseline."
-	cost = 3
+	cost = 4
 	var_changes = list("slowdown" = -0.5)
-
-/datum/trait/speed_fast_plus
-	name = "Major Haste"
-	desc = "Allows you to move MUCH faster on average than baseline."
-	cost = 5
-	var_changes = list("slowdown" = -1.0)
 
 /datum/trait/hardy
 	name = "Hardy"
@@ -25,18 +19,8 @@
 /datum/trait/endurance_high
 	name = "High Endurance"
 	desc = "Increases your maximum total hitpoints to 125"
-	cost = 2
+	cost = 4
 	var_changes = list("total_health" = 125)
-
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
-
-/datum/trait/endurance_very_high
-	name = "Very High Endurance"
-	desc = "Increases your maximum total hitpoints to 150"
-	cost = 3
-	var_changes = list("total_health" = 150)
 
 	apply(var/datum/species/S,var/mob/living/carbon/human/H)
 		..(S,H)
@@ -58,13 +42,13 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 3)
+	var_changes = list("darksight" = 3, "flash_mod" = 2.0)
 
 /datum/trait/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
-	var_changes = list("darksight" = 7)
+	var_changes = list("darksight" = 7, "flash_mod" = 3.0)
 
 /datum/trait/melee_attack
 	name = "Sharp Melee"
@@ -81,38 +65,28 @@
 /datum/trait/minor_brute_resist
 	name = "Minor Brute Resist"
 	desc = "Adds 15% resistance to brute damage sources."
-	cost = 1
+	cost = 2
 	var_changes = list("brute_mod" = 0.85)
 
 /datum/trait/brute_resist
 	name = "Brute Resist"
 	desc = "Adds 25% resistance to brute damage sources."
-	cost = 2
-	var_changes = list("brute_mod" = 0.75)
-
-/datum/trait/brute_resist_plus
-	name = "Major Brute Resist"
-	desc = "Adds 50% resistance to brute damage sources."
 	cost = 3
-	var_changes = list("brute_mod" = 0.5)
+	var_changes = list("brute_mod" = 0.75)
+	excludes = list(/datum/trait/minor_burn_resist,/datum/trait/burn_resist)
 
 /datum/trait/minor_burn_resist
 	name = "Minor Burn Resist"
 	desc = "Adds 15% resistance to burn damage sources."
-	cost = 1
+	cost = 2
 	var_changes = list("burn_mod" = 0.85)
 
 /datum/trait/burn_resist
 	name = "Burn Resist"
 	desc = "Adds 25% resistance to burn damage sources."
-	cost = 2
-	var_changes = list("burn_mod" = 0.75)
-
-/datum/trait/burn_resist_plus
-	name = "Major Burn Resist"
-	desc = "Adds 50% resistance to burn damage sources."
 	cost = 3
-	var_changes = list("burn_mod" = 0.5)
+	var_changes = list("burn_mod" = 0.75)
+	excludes = list(/datum/trait/minor_brute_resist,/datum/trait/brute_resist)
 
 /datum/trait/photoresistant
 	name = "Photoresistant"
@@ -122,8 +96,8 @@
 
 /datum/trait/winged_flight
 	name = "Winged Flight"
-	desc = "Allows you to fly by using your wings."
-	cost = 2 //Some in game value.
+	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
+	cost = 1
 
 /datum/trait/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)

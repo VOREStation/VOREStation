@@ -10,6 +10,7 @@
 	path = /obj/item/clothing/under/blazer/skirt
 
 /datum/gear/uniform/cheongsam
+	description = "Various color variations of an old earth dress style. They are pretty close fitting around the waist."
 	display_name = "cheongsam selection"
 
 /datum/gear/uniform/cheongsam/New()
@@ -21,6 +22,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cheongasms))
 
 /datum/gear/uniform/croptop
+	description = "Light shirts which shows the midsection of the wearer."
 	display_name = "croptop selection"
 
 /datum/gear/uniform/croptop/New()
@@ -449,3 +451,36 @@
 /datum/gear/uniform/bathrobe
 	display_name = "bathrobe"
 	path = /obj/item/clothing/under/bathrobe
+
+/datum/gear/uniform/flamenco
+	display_name = "flamenco dress"
+	path = /obj/item/clothing/under/dress/flamenco
+
+/datum/gear/uniform/westernbustle
+	display_name = "western bustle"
+	path = /obj/item/clothing/under/dress/westernbustle
+
+/datum/gear/uniform/circuitry
+	display_name = "jumpsuit, circuitry (empty)"
+	path = /obj/item/clothing/under/circuitry
+
+/datum/gear/uniform/sleekoverall
+	display_name = "sleek overalls"
+	path = /obj/item/clothing/under/overalls/sleek
+
+/datum/gear/uniform/sarired
+	display_name = "sari, red"
+	path = /obj/item/clothing/under/dress/sari
+
+/datum/gear/uniform/sarigreen
+	display_name = "sari, green"
+	path = /obj/item/clothing/under/dress/sari/green
+
+/datum/gear/uniform/wrappedcoat
+	display_name = "modern wrapped coat"
+	path = /obj/item/clothing/under/moderncoat
+
+/datum/gear/uniform/ascetic
+	display_name = "plain ascetic garb"
+	path = /obj/item/clothing/under/ascetic
+

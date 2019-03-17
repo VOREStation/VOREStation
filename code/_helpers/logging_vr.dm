@@ -1,11 +1,11 @@
-/proc/log_nsay(text,inside)
+/proc/log_nsay(text, inside, mob/speaker)
 	if (config.log_say)
-		diary << "\[[time_stamp()]]NSAY (NIF:[inside]): [text][log_end]"
+		WRITE_LOG(diary, "NSAY (NIF:[inside]): [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_nme(text,inside)
+/proc/log_nme(text, inside, mob/speaker)
 	if (config.log_emote)
-		diary << "\[[time_stamp()]]NME (NIF:[inside]): [text][log_end]"
+		WRITE_LOG(diary, "NME (NIF:[inside]): [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_subtle(text)
+/proc/log_subtle(text, mob/speaker)
 	if (config.log_emote)
-		diary << "\[[time_stamp()]]SUBTLE: [text][log_end]"
+		WRITE_LOG(diary, "SUBTLE: [speaker.simple_info_line()]: [html_decode(text)]")

@@ -60,6 +60,7 @@ BLIND     // can't see anything
 			to_chat(usr, "You activate the optical matrix on the [src].")
 		user.update_action_buttons()
 		user.recalculate_vis()
+	..()
 
 /obj/item/clothing/glasses/meson
 	name = "optical meson scanner"
@@ -145,7 +146,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/night/vox
 	name = "Alien Optics"
 	species_restricted = list("Vox")
-	phoronproof = 1
+	flags = PHORONGUARD
 
 /obj/item/clothing/glasses/night/New()
 	..()
@@ -230,6 +231,31 @@ BLIND     // can't see anything
 	icon_state = "gglasses"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
+
+/obj/item/clothing/glasses/regular/rimless
+	name = "prescription rimless glasses"
+	desc = "Sleek modern glasses with a single sculpted lens."
+	icon_state = "glasses_rimless"
+	prescription = 1
+
+/obj/item/clothing/glasses/rimless
+	name = "rimless glasses"
+	desc = "Sleek modern glasses with a single sculpted lens."
+	icon_state = "glasses_rimless"
+	prescription = 0
+
+/obj/item/clothing/glasses/regular/thin
+	name = "prescription thin-rimmed glasses"
+	desc = "Glasses with frames are so last century."
+	icon_state = "glasses_thin"
+	prescription = 1
+
+/obj/item/clothing/glasses/thin
+	name = "thin-rimmed glasses"
+	desc = "Glasses with frames are so last century."
+	icon_state = "glasses_thin"
+	prescription = 0
+
 
 /obj/item/clothing/glasses/sunglasses
 	name = "sunglasses"

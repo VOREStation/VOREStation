@@ -4,7 +4,7 @@
 	if (!message)
 		return
 
-	log_say("Ghost/[src.key] : [message]")
+	log_ghostsay(message, src)
 
 	if (src.client)
 		if(message)
@@ -25,7 +25,7 @@
 	if(act != "me")
 		return
 
-	log_emote("Ghost/[src.key] : [message]")
+	log_ghostemote(message, src)
 
 	if(src.client)
 		if(message)

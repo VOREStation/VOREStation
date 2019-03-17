@@ -12,6 +12,9 @@
 		desc = "A device that synthesises [material.display_name]."
 		matter = null
 
+/obj/item/stack/material/cyborg/update_strings()
+	return
+
 /obj/item/stack/material/cyborg/plastic
 	icon_state = "sheet-plastic"
 	default_type = "plastic"

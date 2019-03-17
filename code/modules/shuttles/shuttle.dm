@@ -208,13 +208,14 @@
 
 	for(var/turf/T in dstturfs)
 		var/turf/D = locate(T.x, throwy - 1, T.z)
-		for(var/I in T)
-			if(istype(I,/mob/living))
-				var/mob/living/L = I
-				L.gib()
-			else if(istype(I,/obj))
-				var/obj/O = I
-				O.forceMove(D)
+		for(var/atom/movable/AM as mob|obj in T)
+			AM.Move(D)
+
+	for(var/mob/living/carbon/bug in destination)
+		bug.gib()
+
+	for(var/mob/living/simple_mob/pest in destination)
+		pest.gib()
 
 	origin.move_contents_to(destination, direction=direction)
 

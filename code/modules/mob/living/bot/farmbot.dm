@@ -221,7 +221,7 @@
 
 		busy = 1
 		while(do_after(src, 10) && tank.reagents.total_volume < tank.reagents.maximum_volume)
-			tank.reagents.add_reagent("water", 10)
+			tank.reagents.add_reagent("water", 100) //VOREStation Edit
 			if(prob(5))
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
@@ -343,7 +343,7 @@
 	new /obj/item/weapon/farmbot_arm_assembly(loc, src)
 
 /obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/organ/external/S, mob/user as mob)
-	if ((!istype(S, /obj/item/organ/external/arm)) || (!S.robotic == ORGAN_ROBOT))
+	if ((!istype(S, /obj/item/organ/external/arm)) || S.robotic != ORGAN_ROBOT)
 		..()
 		return
 

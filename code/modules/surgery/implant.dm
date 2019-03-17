@@ -44,9 +44,9 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-	/obj/item/weapon/surgical/surgicaldrill = 100,	\
-	/obj/item/weapon/pen = 75,	\
-	/obj/item/stack/rods = 50
+		/obj/item/weapon/surgical/surgicaldrill = 100,	\
+		/obj/item/weapon/pen = 75,	\
+		/obj/item/stack/rods = 50
 	)
 
 	min_duration = 60
@@ -77,10 +77,10 @@
 /datum/surgery_step/cavity/close_space
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/surgical/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
-	/obj/item/weapon/weldingtool = 25
+		/obj/item/weapon/surgical/cautery = 100,			\
+		/obj/item/clothing/mask/smokable/cigarette = 75,	\
+		/obj/item/weapon/flame/lighter = 50,			\
+		/obj/item/weapon/weldingtool = 25
 	)
 
 	min_duration = 60
@@ -157,10 +157,11 @@
 
 /datum/surgery_step/cavity/implant_removal
 	allowed_tools = list(
-	/obj/item/weapon/surgical/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
+		/obj/item/weapon/surgical/hemostat = 100,	\
+		/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
+
+	allowed_procs = list(IS_WIRECUTTER = 75)
 
 	min_duration = 80
 	max_duration = 100
@@ -206,8 +207,8 @@
 			BITSET(target.hud_updateflag, IMPLOYAL_HUD)
 
 			//Handle possessive brain borers.
-			if(istype(obj,/mob/living/simple_animal/borer))
-				var/mob/living/simple_animal/borer/worm = obj
+			if(istype(obj,/mob/living/simple_mob/animal/borer))
+				var/mob/living/simple_mob/animal/borer/worm = obj
 				if(worm.controlling)
 					target.release_control()
 				worm.detatch()

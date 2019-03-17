@@ -49,10 +49,9 @@
 		if(occupant)
 			to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
 			return
-		for(var/mob/living/simple_animal/slime/M in range(1, H.affecting))
-			if(M.victim == H.affecting)
-				to_chat(user, "<span class='danger'>[H.affecting.name] has a slime attached to them, deal with that first.</span>")
-				return
+		if(H.affecting.has_buckled_mobs())
+			to_chat(user, span("warning", "\The [H.affecting] has other entities attached to it. Remove them first."))
+			return
 		var/mob/M = H.affecting
 		if(M.abiotic())
 			to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
@@ -86,10 +85,9 @@
 	if(O.abiotic())
 		to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
 		return 0
-	for(var/mob/living/simple_animal/slime/M in range(1, O))
-		if(M.victim == O)
-			to_chat(user, "<span class='danger'>[O] has a slime attached to them, deal with that first.</span>")
-			return 0
+	if(O.has_buckled_mobs())
+		to_chat(user, span("warning", "\The [O] has other entities attached to it. Remove them first."))
+		return
 
 	if(O == user)
 		visible_message("[user] climbs into \the [src].")
@@ -230,9 +228,11 @@
 		// Loop through every direction
 		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
 			bodyscannernew = locate(/obj/machinery/bodyscanner, get_step(src, dir)) // Try to find a scanner in that direction
-		if(bodyscannernew)
-			scanner = bodyscannernew
-			bodyscannernew.console = src
+			if(bodyscannernew)
+				scanner = bodyscannernew
+				bodyscannernew.console = src
+				set_dir(get_dir(src, bodyscannernew))
+				return
 		return
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
@@ -345,7 +345,7 @@
 					organStatus["destroyed"] = 1
 				if(E.status & ORGAN_BROKEN)
 					organStatus["broken"] = E.broken_description
-				if(E.status & ORGAN_ROBOT)
+				if(E.robotic >= ORGAN_ROBOT)
 					organStatus["robotic"] = 1
 				if(E.splinted)
 					organStatus["splinted"] = 1
@@ -389,7 +389,7 @@
 			occupantData = attempt_vr(scanner,"get_occupant_data_vr",list(occupantData,H)) //VOREStation Insert
 		data["occupant"] = occupantData
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "adv_med.tmpl", "Body Scanner", 690, 800)
 		ui.set_initial_data(data)
@@ -514,7 +514,7 @@
 					bled = "Bleeding:"
 				if(e.status & ORGAN_BROKEN)
 					AN = "[e.broken_description]:"
-				if(e.status & ORGAN_ROBOT)
+				if(e.robotic >= ORGAN_ROBOT)
 					robot = "Prosthetic:"
 				if(e.status & ORGAN_DEAD)
 					o_dead = "Necrotic:"

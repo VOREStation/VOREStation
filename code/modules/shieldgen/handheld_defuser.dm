@@ -7,11 +7,6 @@
 	var/obj/item/weapon/cell/device/cell
 	var/enabled = 0
 
-/obj/item/weapon/shield_diffuser/update_icon()
-	if(enabled)
-		icon_state = "hdiffuser_on"
-	else
-		icon_state = "hdiffuser_off"
 
 /obj/item/weapon/shield_diffuser/New()
 	cell = new(src)
@@ -24,6 +19,9 @@
 		processing_objects.Remove(src)
 	. = ..()
 
+/obj/item/weapon/shield_diffuser/get_cell()
+	return cell
+
 /obj/item/weapon/shield_diffuser/process()
 	if(!enabled)
 		return
@@ -33,6 +31,12 @@
 		for(var/obj/effect/energy_field/S in shielded_tile)
 			if(istype(S) && cell.checked_use(10 KILOWATTS * CELLRATE))
 				qdel(S)
+
+/obj/item/weapon/shield_diffuser/update_icon()
+	if(enabled)
+		icon_state = "hdiffuser_on"
+	else
+		icon_state = "hdiffuser_off"
 
 /obj/item/weapon/shield_diffuser/attack_self()
 	enabled = !enabled

@@ -1,6 +1,7 @@
-/mob/living/simple_animal/hostile/tree
+/mob/living/simple_mob/hostile/tree
 	name = "pine tree"
 	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
+	tt_desc = "X Festivus tyrannus"
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 	icon_living = "pine_1"
@@ -22,7 +23,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	min_oxy = 0
@@ -39,12 +40,12 @@
 
 	pixel_x = -16
 
-/mob/living/simple_animal/hostile/tree/FindTarget()
+/mob/living/simple_mob/hostile/tree/FindTarget()
 	. = ..()
 	if(.)
 		audible_emote("growls at [.]")
 
-/mob/living/simple_animal/hostile/tree/PunchTarget()
+/mob/living/simple_mob/hostile/tree/PunchTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -52,7 +53,7 @@
 			L.Weaken(3)
 			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
 
-/mob/living/simple_animal/hostile/tree/death()
+/mob/living/simple_mob/hostile/tree/death()
 	..(null,"is hacked into pieces!")
 	playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
 	new /obj/item/stack/material/wood(loc)

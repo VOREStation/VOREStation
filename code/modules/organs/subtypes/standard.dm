@@ -24,9 +24,10 @@
 	base_miss_chance = 10
 
 /obj/item/organ/external/chest/robotize()
-	if(..())
-		// Give them a new cell.
-		owner.internal_organs_by_name["cell"] = new /obj/item/organ/internal/cell(owner,1)
+	if(..() && robotic != ORGAN_NANOFORM) //VOREStation Edit
+		// Give them fancy new organs.
+		owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
+		owner.internal_organs_by_name[O_VOICE] = new /obj/item/organ/internal/voicebox/robot(owner, 1)
 
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
@@ -72,7 +73,7 @@
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 
 /obj/item/organ/external/arm
-	organ_tag = "l_arm"
+	organ_tag = BP_L_ARM
 	name = "left arm"
 	icon_name = "l_arm"
 	max_damage = 80
@@ -98,13 +99,13 @@
 	if (. >= 2)
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
-			if(organ_tag == "l_arm") //Specific level 2 'feature
+			if(organ_tag == BP_L_ARM) //Specific level 2 'feature
 				owner.drop_l_hand()
-			else if(organ_tag == "r_arm")
+			else if(organ_tag == BP_R_ARM)
 				owner.drop_r_hand()
 
 /obj/item/organ/external/arm/right
-	organ_tag = "r_arm"
+	organ_tag = BP_R_ARM
 	name = "right arm"
 	icon_name = "r_arm"
 	body_part = ARM_RIGHT
@@ -112,7 +113,7 @@
 	amputation_point = "right shoulder"
 
 /obj/item/organ/external/leg
-	organ_tag = "l_leg"
+	organ_tag = BP_L_LEG
 	name = "left leg"
 	icon_name = "l_leg"
 	max_damage = 80
@@ -142,7 +143,7 @@
 			owner.Weaken(5)
 
 /obj/item/organ/external/leg/right
-	organ_tag = "r_leg"
+	organ_tag = BP_R_LEG
 	name = "right leg"
 	icon_name = "r_leg"
 	body_part = LEG_RIGHT
@@ -151,7 +152,7 @@
 	amputation_point = "right hip"
 
 /obj/item/organ/external/foot
-	organ_tag = "l_foot"
+	organ_tag = BP_L_FOOT
 	name = "left foot"
 	icon_name = "l_foot"
 	max_damage = 50
@@ -159,7 +160,7 @@
 	w_class = ITEMSIZE_SMALL
 	body_part = FOOT_LEFT
 	icon_position = LEFT
-	parent_organ = "l_leg"
+	parent_organ = BP_L_LEG
 	joint = "left ankle"
 	amputation_point = "left ankle"
 	can_stand = 1
@@ -186,24 +187,24 @@
 			owner.Weaken(5)
 
 /obj/item/organ/external/foot/right
-	organ_tag = "r_foot"
+	organ_tag = BP_R_FOOT
 	name = "right foot"
 	icon_name = "r_foot"
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
-	parent_organ = "r_leg"
+	parent_organ = BP_R_LEG
 	joint = "right ankle"
 	amputation_point = "right ankle"
 
 /obj/item/organ/external/hand
-	organ_tag = "l_hand"
+	organ_tag = BP_L_HAND
 	name = "left hand"
 	icon_name = "l_hand"
 	max_damage = 50
 	min_broken_damage = 15
 	w_class = ITEMSIZE_SMALL
 	body_part = HAND_LEFT
-	parent_organ = "l_arm"
+	parent_organ = BP_L_ARM
 	joint = "left wrist"
 	amputation_point = "left wrist"
 	can_grasp = 1
@@ -229,17 +230,17 @@
 	if (. >= 2)
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
-			if(organ_tag == "l_hand") //Specific level 2 'feature
+			if(organ_tag == BP_L_HAND) //Specific level 2 'feature
 				owner.drop_l_hand()
-			else if(organ_tag == "r_hand")
+			else if(organ_tag == BP_R_HAND)
 				owner.drop_r_hand()
 
 /obj/item/organ/external/hand/right
-	organ_tag = "r_hand"
+	organ_tag = BP_R_HAND
 	name = "right hand"
 	icon_name = "r_hand"
 	body_part = HAND_RIGHT
-	parent_organ = "r_arm"
+	parent_organ = BP_R_ARM
 	joint = "right wrist"
 	amputation_point = "right wrist"
 
@@ -281,8 +282,6 @@
 		spawn(1)
 			owner.update_hair()
 	get_icon()
-	if(vital)	//This is just in case we ever add something that both a) Doesn't need a head to live, and b) Can be defibbed
-		owner.can_defib = 0
 	..()
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
@@ -307,6 +306,12 @@
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 			owner.eye_blurry += 20 //Specific level 2 'feature
+
+/obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/toy/plushie) || istype(I, /obj/item/organ/external/head))
+		user.visible_message("<span class='notice'>[user] makes \the [I] kiss \the [src]!.</span>", \
+		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
+	return ..()
 
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"

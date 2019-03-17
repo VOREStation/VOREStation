@@ -1,4 +1,3 @@
-#define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
 var/global/list/wing_icon_cache = list()
 
 /mob/living/carbon/human/proc/get_ears_overlay()
@@ -17,7 +16,8 @@ var/global/list/wing_icon_cache = list()
 
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
-	if(synthetic && synthetic.includes_tail && !tail_style)
+	var/datum/robolimb/model = isSynthetic()
+	if(istype(model) && model.includes_tail && !tail_style)
 		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
 		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		return image(tail_s)
@@ -40,6 +40,10 @@ var/global/list/wing_icon_cache = list()
 				qdel(overlay)
 
 		if(isTaurTail(tail_style))
+			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
+			if(taurtype.can_ride && !riding_datum)
+				riding_datum = new /datum/riding/taur(src)
+				verbs |= /mob/living/carbon/human/proc/taur_mount
 			return image(tail_s, "pixel_x" = -16)
 		else
 			return image(tail_s)

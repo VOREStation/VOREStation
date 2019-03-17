@@ -1,7 +1,8 @@
 //Space bears!
-/mob/living/simple_animal/hostile/bear
+/mob/living/simple_mob/hostile/bear
 	name = "space bear"
-	desc = "RawrRawr!!"
+	desc = "A product of Space Russia?"
+	tt_desc = "U Ursinae aetherius" //...bearspace? Maybe.
 	icon_state = "bear"
 	icon_living = "bear"
 	icon_dead = "bear_dead"
@@ -23,6 +24,8 @@
 
 	melee_damage_lower = 20
 	melee_damage_upper = 30
+	attack_sharp = 1
+	attack_edge = 1
 
 	//Space bears aren't affected by atmos.
 	min_oxy = 0
@@ -45,7 +48,7 @@
 
 //	var/stance_step = 0
 
-/mob/living/simple_animal/hostile/bear/handle_stance(var/new_stance)
+/mob/living/simple_mob/hostile/bear/handle_stance(var/new_stance)
 	// Below was a bunch of code that made this specific mob be 'alert' and will hurt you when it gets closer.
 	// It's commented out because it made infinite loops and the AI is going to be moved/rewritten sometime soon (famous last words)
 	// and it would be better if this 'alert before attacking' behaviour was on the parent instead of a specific type of mob anyways.
@@ -100,7 +103,7 @@
 			..()
 	*/
 
-/mob/living/simple_animal/hostile/bear/update_icons()
+/mob/living/simple_mob/hostile/bear/update_icons()
 	..()
 	if(!stat)
 		if(loc && istype(loc,/turf/space))
@@ -108,16 +111,16 @@
 		else
 			icon_state = "bearfloor"
 
-/mob/living/simple_animal/hostile/bear/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/bear/Process_Spacemove(var/check_drift = 0)
 	return
 
-/mob/living/simple_animal/hostile/bear/FindTarget()
+/mob/living/simple_mob/hostile/bear/FindTarget()
 	. = ..()
 	if(.)
 		custom_emote(1,"stares alertly at [.]")
 //		handle_stance(STANCE_ALERT)
 
-/mob/living/simple_animal/hostile/bear/PunchTarget()
+/mob/living/simple_mob/hostile/bear/PunchTarget()
 	if(!Adjacent(target_mob))
 		return
 	custom_emote(1, pick( list("slashes at [target_mob]", "bites [target_mob]") ) )

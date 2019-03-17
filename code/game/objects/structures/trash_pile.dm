@@ -169,7 +169,6 @@
 					prob(3);/obj/item/weapon/spacecash/c20,
 					prob(3);/obj/item/weapon/storage/backpack/dufflebag,
 					prob(3);/obj/item/weapon/storage/box/donkpockets,
-					prob(3);/obj/item/weapon/storage/box/engineer,
 					prob(3);/obj/item/weapon/storage/box/mousetraps,
 					prob(3);/obj/item/weapon/storage/wallet,
 					prob(2);/obj/item/clothing/glasses/meson/prescription,
@@ -222,9 +221,10 @@
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
+					prob(3);/obj/item/weapon/implanter/sizecontrol,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
-					prob(3);/obj/item/weapon/material/knuckledusters,
+					prob(3);/obj/item/clothing/gloves/knuckledusters,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
 				//	prob(2);/obj/item/weapon/legcuffs,
@@ -266,7 +266,7 @@
 	desc = "A small heap of trash, perfect for mice to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	spawn_types = list(/mob/living/simple_animal/mouse)
+	spawn_types = list(/mob/living/simple_mob/animal/passive/mouse)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 1 HOUR

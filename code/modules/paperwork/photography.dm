@@ -38,6 +38,8 @@ var/global/photo_count = 0
 /obj/item/weapon/photo/New()
 	id = photo_count++
 
+
+
 /obj/item/weapon/photo/attack_self(mob/user as mob)
 	user.examinate(src)
 
@@ -131,7 +133,7 @@ var/global/photo_count = 0
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 	var/size = 3
-	var/picture_planes = list(PLANE_WORLD)
+	var/list/picture_planes = list()
 
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"
@@ -182,7 +184,7 @@ var/global/photo_count = 0
 		// As well as anything that isn't invisible.
 		for(var/atom/A in the_turf)
 			if(A.invisibility) continue
-			if(!(A.plane in picture_planes)) continue
+			if(A.plane > 0 && !(A.plane in picture_planes)) continue
 			atoms.Add(A)
 
 	// Sort the atoms into their layers
@@ -191,7 +193,7 @@ var/global/photo_count = 0
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
-			var/icon/img = getFlatIcon(A, picture_planes = picture_planes)//build_composite_icon(A)
+			var/icon/img = getFlatIcon(A)//, picture_planes = picture_planes)//build_composite_icon(A) //VOREStation Edit
 
 			// If what we got back is actually a picture, draw it.
 			if(istype(img, /icon))
@@ -233,6 +235,7 @@ var/global/photo_count = 0
 			mob_detail = "You can see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]. "
 		else
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
+
 	return mob_detail
 
 /obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -275,6 +278,7 @@ var/global/photo_count = 0
 		x_c = x_c - size
 
 	var/obj/item/weapon/photo/p = createpicture(target, user, turfs, mobs, flag)
+
 	printpicture(user, p)
 
 /obj/item/device/camera/proc/createpicture(atom/target, mob/user, list/turfs, mobs, flag)
@@ -298,7 +302,6 @@ var/global/photo_count = 0
 	p.pixel_x = rand(-10, 10)
 	p.pixel_y = rand(-10, 10)
 	p.photo_size = size
-
 	return p
 
 /obj/item/device/camera/proc/printpicture(mob/user, obj/item/weapon/photo/p)

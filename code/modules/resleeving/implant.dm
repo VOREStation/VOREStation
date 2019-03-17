@@ -9,8 +9,6 @@
 	desc = "A mindstate backup implant that occasionally stores a copy of one's mind on a central server for backup purposes."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "backup_implant"
-	var/last_attempt
-	var/attempt_delay = 5 MINUTES
 
 /obj/item/weapon/implant/backup/get_data()
 	var/dat = {"
@@ -25,35 +23,16 @@
 <b>Integrity:</b> Generally very survivable. Susceptible to being destroyed by acid."}
 	return dat
 
-/obj/item/weapon/implant/backup/implanted(var/mob/living/carbon/human/H)
-	..()
-	if(istype(H))
-		var/obj/item/weapon/implant/backup/other_imp = locate(/obj/item/weapon/implant/backup,H)
-		if(other_imp && other_imp.imp_in == H)
-			qdel(other_imp) //implant fight
+/obj/item/weapon/implant/backup/Destroy()
+	SStranscore.implants -= src
+	return ..()
 
-		if(H.mind && H.stat < DEAD) //One right now, on implanting.
-			SStranscore.m_backup(H.mind)
-			last_attempt = world.time
-
-		backup()
-
-		return 1
-
-/obj/item/weapon/implant/backup/proc/backup()
-	last_attempt = world.time
-	var/mob/living/carbon/human/H = loc
-
-	//We're in a human, at least.
+/obj/item/weapon/implant/backup/post_implant(var/mob/living/carbon/human/H)
 	if(istype(H))
 		BITSET(H.hud_updateflag, BACKUP_HUD)
-		//Okay we've got a mind at least
-		if(H == imp_in && H.mind && H.stat < DEAD)
-			SStranscore.m_backup(H.mind,H.nif)
-			persist_nif_data(H)
+		SStranscore.implants |= src
 
-	spawn(attempt_delay)
-		backup()
+		return 1
 
 //New, modern implanter instead of old style implanter.
 /obj/item/weapon/backup_implanter
@@ -124,18 +103,10 @@
 				M.visible_message("<span class='notice'>[M] has been backup implanted by [user].</span>")
 
 				var/obj/item/weapon/implant/backup/imp = imps[imps.len]
-				if(imp.implanted(M))
-					imp.forceMove(M)
+				if(imp.handle_implant(M,user.zone_sel.selecting))
+					imp.post_implant(M)
 					imps -= imp
-					imp.imp_in = M
-					imp.implanted = 1
-					admin_attack_log(user, M, "Implanted using \the [src.name] ([imp.name])", "Implanted with \the [src.name] ([imp.name])", "used an implanter, [src.name] ([imp.name]), on")
-					if (ishuman(M))
-						var/mob/living/carbon/human/H = M
-						var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
-						affected.implants += imp
-						imp.part = affected
-						BITSET(H.hud_updateflag, BACKUP_HUD)
+					add_attack_logs(user,M,"Implanted backup implant")
 
 				update()
 

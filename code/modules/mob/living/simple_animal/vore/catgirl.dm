@@ -1,8 +1,10 @@
-/mob/living/simple_animal/catgirl
+/mob/living/simple_mob/catgirl
 	name = "catgirl"
 	desc = "Her hobbies are catnaps, knocking things over, and headpats."
+	tt_desc = "Homo felinus"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "catgirl"
+	intelligence_level = SA_HUMANOID
 
 	speed = 5
 
@@ -15,15 +17,20 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 
+	response_help = "pets the"
+	response_disarm = "gently baps the"
+	response_harm = "hits the"
+
 	speak_chance = 2
 	speak = list("Meow!","Esp!","Purr!","HSSSSS","Mew?","Nya~")
 	speak_emote = list("purrs","meows")
 	emote_hear = list("meows","mews")
-	emote_see = list("shakes her head","shivers")
-	attacktext = "swatted"
+	emote_see = list("shakes her head","shivers","stretches","grooms herself")
+	attacktext = list("swatted","bapped")
 
 	var/random_skin = 1
 	var/list/skins = list(
+		"catgirl",
 		"catgirlnude",
 		"catgirlbikini",
 		"catgirlrednude",
@@ -37,7 +44,7 @@
 		"catgirlbrown"
 	)
 
-/mob/living/simple_animal/catgirl/New()
+/mob/living/simple_mob/catgirl/New()
 	..()
 	if(random_skin)
 		icon_living = pick(skins)
@@ -46,7 +53,7 @@
 		update_icon()
 
 // Activate Noms!
-/mob/living/simple_animal/catgirl
+/mob/living/simple_mob/catgirl
 	vore_active = 1
 	vore_bump_chance = 5
 	vore_pounce_chance = 50
@@ -56,5 +63,5 @@
 	vore_digest_chance = 25 // But squirming might make them gurgle...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_animal/catgirl/retaliate
+/mob/living/simple_mob/catgirl/retaliate
 	retaliate = 1

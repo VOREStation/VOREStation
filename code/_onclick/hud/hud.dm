@@ -9,12 +9,13 @@ var/list/global_huds = list(
 		global_hud.whitense,
 		global_hud.vimpaired,
 		global_hud.darkMask,
+		global_hud.centermarker,
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
 		global_hud.science,
 		global_hud.material,
-		global_hud.holomap	// VOREStation Edit - Holomap
+		global_hud.holomap
 		)
 
 /datum/hud/var/obj/screen/grab_intent
@@ -28,13 +29,14 @@ var/list/global_huds = list(
 	var/obj/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
+	var/obj/screen/centermarker
 	var/obj/screen/darksight
 	var/obj/screen/nvg
 	var/obj/screen/thermal
 	var/obj/screen/meson
 	var/obj/screen/science
 	var/obj/screen/material
-	var/obj/screen/holomap // VOREStation Edit - Holomap
+	var/obj/screen/holomap
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
 	var/obj/screen/screen = new /obj/screen()
@@ -49,7 +51,6 @@ var/list/global_huds = list(
 
 /obj/screen/global_screen
 	screen_loc = ui_entire_screen
-	layer = 17
 	plane = PLANE_FULLSCREEN
 	mouse_opacity = 0
 
@@ -72,7 +73,18 @@ var/list/global_huds = list(
 	darksight.icon = null
 	darksight.screen_loc = "1,1"
 	darksight.plane = PLANE_LIGHTING
-	darksight.plane = LIGHTING_LAYER + 0.1
+
+	//Marks the center of the screen, for things like ventcrawl
+	centermarker = new /obj/screen()
+	centermarker.icon = 'icons/mob/screen1.dmi'
+	centermarker.icon_state = "centermarker"
+	centermarker.screen_loc = "CENTER,CENTER"
+
+	//Marks the center of the screen, for things like ventcrawl
+	centermarker = new /obj/screen()
+	centermarker.icon = 'icons/mob/screen1.dmi'
+	centermarker.icon_state = "centermarker"
+	centermarker.screen_loc = "CENTER,CENTER"
 
 	nvg = setup_overlay("nvg_hud")
 	thermal = setup_overlay("thermal_hud")
@@ -80,19 +92,17 @@ var/list/global_huds = list(
 	science = setup_overlay("science_hud")
 	material = setup_overlay("material_hud")
 
-	// VOREStation Edit Begin - Holomap
 	// The holomap screen object is actually totally invisible.
 	// Station maps work by setting it as an images location before sending to client, not
 	// actually changing the icon or icon state of the screen object itself!
 	// Why do they work this way? I don't know really, that is how /vg designed them, but since they DO
-	// work this way, we can take advantage of their immutability by making them part of 
+	// work this way, we can take advantage of their immutability by making them part of
 	// the global_hud (something we have and /vg doesn't) instead of an instance per mob.
 	holomap = new /obj/screen()
 	holomap.name = "holomap"
 	holomap.icon = null
 	holomap.screen_loc = ui_holomap
 	holomap.mouse_opacity = 0
-	// VOREStation Edit End
 
 	var/obj/screen/O
 	var/i
@@ -133,20 +143,17 @@ var/list/global_huds = list(
 	for(i = 1, i <= 4, i++)
 		O = vimpaired[i]
 		O.icon_state = "dither50"
-		O.layer = 17
 		O.plane = PLANE_FULLSCREEN
 		O.mouse_opacity = 0
 
 		O = darkMask[i]
 		O.icon_state = "dither50"
-		O.layer = 17
 		O.plane = PLANE_FULLSCREEN
 		O.mouse_opacity = 0
 
 	for(i = 5, i <= 8, i++)
 		O = darkMask[i]
 		O.icon_state = "black"
-		O.layer = 17
 		O.plane = PLANE_FULLSCREEN
 		O.mouse_opacity = 2
 
@@ -180,6 +187,7 @@ var/list/global_huds = list(
 
 	var/obj/screen/movable/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
+	var/list/slot_info
 
 datum/hud/New(mob/owner)
 	mymob = owner
@@ -308,8 +316,6 @@ datum/hud/New(mob/owner)
 		mymob.instantiate_hud(src)
 	else if(isalien(mymob))
 		larva_hud()
-	else if(isslime(mymob))
-		slime_hud()
 	else if(isAI(mymob))
 		ai_hud()
 	else if(isobserver(mymob))

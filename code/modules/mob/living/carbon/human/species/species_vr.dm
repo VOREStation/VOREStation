@@ -33,9 +33,10 @@
 		var/type = H.nif.type
 		var/durability = H.nif.durability
 		var/list/nifsofts = H.nif.nifsofts
+		var/list/nif_savedata = H.nif.save_data.Copy()
 		..()
 
-		var/obj/item/device/nif/nif = new type(H,durability)
+		var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
 		nif.nifsofts = nifsofts
 	else
 		..()

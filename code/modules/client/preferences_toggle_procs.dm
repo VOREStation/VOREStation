@@ -8,7 +8,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear all mob speech as a ghost."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear all mob speech as a ghost.")
 
 	prefs.save_preferences()
 
@@ -23,7 +23,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see all emotes as a ghost."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see all emotes as a ghost.")
 
 	prefs.save_preferences()
 
@@ -38,7 +38,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear all radios as a ghost."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear all radios as a ghost.")
 
 	prefs.save_preferences()
 
@@ -53,7 +53,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear dead chat as a ghost."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear dead chat as a ghost.")
 
 	prefs.save_preferences()
 
@@ -68,7 +68,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(/datum/client_preference/show_ooc)) ? "now" : "no longer"] hear global out of character chat."
+	to_chat(src,"You will [ (is_preference_enabled(/datum/client_preference/show_ooc)) ? "now" : "no longer"] hear global out of character chat.")
 
 	prefs.save_preferences()
 
@@ -83,7 +83,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear local out of character chat."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear local out of character chat.")
 
 	prefs.save_preferences()
 
@@ -98,11 +98,11 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] see the speech indicator."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] have the speech indicator.")
 
 	prefs.save_preferences()
 
-	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","TTIND") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ahelp_sound()
 	set name = "Toggle Admin Help Sound"
@@ -113,7 +113,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive noise from admin messages."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive noise from admin messages.")
 
 	prefs.save_preferences()
 
@@ -128,7 +128,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear music in the lobby."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear music in the lobby.")
 
 	prefs.save_preferences()
 
@@ -143,7 +143,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear MIDIs from admins."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear MIDIs from admins.")
 
 	prefs.save_preferences()
 
@@ -158,7 +158,7 @@
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear ambient noise."
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear ambient noise.")
 
 	prefs.save_preferences()
 
@@ -190,7 +190,7 @@
 	prefs.be_special ^= role_flag
 	prefs.save_preferences()
 
-	src << "You will [(prefs.be_special & role_flag) ? "now" : "no longer"] be considered for [role] events (where possible)."
+	to_chat(src,"You will [(prefs.be_special & role_flag) ? "now" : "no longer"] be considered for [role] events (where possible).")
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -203,9 +203,35 @@
 	toggle_preference(pref_path)
 	prefs.save_preferences()
 
-	src << "You will now use [(is_preference_enabled(/datum/client_preference/safefiring)) ? "safe" : "dangerous"] firearms firing."
+	to_chat(src,"You will now use [(is_preference_enabled(/datum/client_preference/safefiring)) ? "safe" : "dangerous"] firearms firing.")
 
 	feedback_add_details("admin_verb","TFiringMode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_mob_tooltips()
+	set name = "Toggle Mob Tooltips"
+	set category = "Preferences"
+	set desc = "Toggles displaying name/species over mobs when moused over."
+
+	var/pref_path = /datum/client_preference/mob_tooltips
+	toggle_preference(pref_path)
+	prefs.save_preferences()
+
+	to_chat(src,"You will now [(is_preference_enabled(/datum/client_preference/mob_tooltips)) ? "see" : "not see"] mob tooltips.")
+
+	feedback_add_details("admin_verb","TMobTooltips") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_hear_instruments()
+	set name = "Toggle Hear/Ignore Instruments"
+	set category = "Preferences"
+	set desc = "Hear In-game Instruments"
+
+	var/pref_path = /datum/client_preference/instrument_toggle
+	toggle_preference(pref_path)
+	prefs.save_preferences()
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/instrument_toggle)) ? "hear" : "not hear"] instruments being played.")
+
+	feedback_add_details("admin_verb","THInstm") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Toggles for Staff
 //Developers
@@ -219,7 +245,7 @@
 
 	if(check_rights(R_ADMIN|R_DEBUG))
 		toggle_preference(pref_path)
-		src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive debug logs."
+		to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive debug logs.")
 		prefs.save_preferences()
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -234,7 +260,7 @@
 
 	if(check_rights(R_ADMIN|R_MOD))
 		toggle_preference(pref_path)
-		src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive attack logs."
+		to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive attack logs.")
 		prefs.save_preferences()
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

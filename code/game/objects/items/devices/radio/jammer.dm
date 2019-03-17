@@ -35,8 +35,11 @@ var/global/list/active_radio_jammers = list()
 /obj/item/device/radio_jammer/Destroy()
 	if(on)
 		turn_off()
-	qdel_null(power_source)
+	QDEL_NULL(power_source)
 	return ..()
+
+/obj/item/device/radio_jammer/get_cell()
+	return power_source
 
 /obj/item/device/radio_jammer/proc/turn_off(mob/user)
 	if(user)

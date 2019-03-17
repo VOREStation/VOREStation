@@ -12,7 +12,7 @@
 	desc = "Small machine which transmits data about specific powernet"
 	anchored = 1
 	density = 0
-	layer = 2.46 // Above cables, but should be below floors.
+	layer = ABOVE_UTILITY
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_beacon" // If anyone wants to make better sprite, feel free to do so without asking me.
 
@@ -35,7 +35,7 @@
 /obj/machinery/power/sensor/Destroy()
 	. = ..()
 	// TODO - Switch power_monitor to register deletion events instead of this.
-	for(var/obj/machinery/computer/power_monitor/PM in world)
+	for(var/obj/machinery/computer/power_monitor/PM in machines)
 		if(PM.power_monitor)
 			PM.power_monitor.refresh_sensors()
 

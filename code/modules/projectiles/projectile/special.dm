@@ -1,6 +1,7 @@
 /obj/item/projectile/ion
 	name = "ion bolt"
 	icon_state = "ion"
+	fire_sound = 'sound/weapons/Laser.ogg'
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
@@ -8,15 +9,29 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
-	var/pulse_range = 1
 
+	combustion = FALSE
+
+	var/sev1_range = 0
+	var/sev2_range = 1
+	var/sev3_range = 1
+	var/sev4_range = 1
 
 /obj/item/projectile/ion/on_hit(var/atom/target, var/blocked = 0)
-		empulse(target, pulse_range, pulse_range, pulse_range, pulse_range)
+		empulse(target, sev1_range, sev2_range, sev3_range, sev4_range)
 		return 1
 
 /obj/item/projectile/ion/small
-	pulse_range = 0
+	sev1_range = -1
+	sev2_range = 0
+	sev3_range = 0
+	sev4_range = 1
+
+/obj/item/projectile/ion/pistol
+	sev1_range = 0
+	sev2_range = 0
+	sev3_range = 0
+	sev4_range = 0
 
 /obj/item/projectile/bullet/gyro
 	name ="explosive bolt"
@@ -27,12 +42,13 @@
 	edge = 1
 
 /obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
-		explosion(target, -1, 0, 2)
-		return 1
+	explosion(target, -1, 0, 2)
+	..()
 
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
+	fire_sound = 'sound/weapons/pulse3.ogg'
 	damage = 0
 	damage_type = BURN
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -42,6 +58,8 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
+
+	combustion = FALSE
 
 /obj/item/projectile/temp/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -71,6 +89,8 @@
 /obj/item/projectile/temp/hot
 	name = "heat beam"
 	target_temperature = 1000
+
+	combustion = TRUE
 
 /obj/item/projectile/meteor
 	name = "meteor"
@@ -105,6 +125,7 @@
 /obj/item/projectile/energy/floramut
 	name = "alpha somatoray"
 	icon_state = "energy"
+	fire_sound = 'sound/effects/stealthoff.ogg'
 	damage = 0
 	damage_type = TOX
 	nodamage = 1
@@ -112,6 +133,8 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+
+	combustion = FALSE
 
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
@@ -121,8 +144,9 @@
 			if(prob(15))
 				M.apply_effect((rand(30,80)),IRRADIATE)
 				M.Weaken(5)
+				var/datum/gender/TM = gender_datums[M.get_visible_gender()]
 				for (var/mob/V in viewers(src))
-					V.show_message("<font color='red'>[M] writhes in pain as \his vacuoles boil.</font>", 3, "<font color='red'>You hear the crunching of leaves.</font>", 2)
+					V.show_message("<font color='red'>[M] writhes in pain as [TM.his] vacuoles boil.</font>", 3, "<font color='red'>You hear the crunching of leaves.</font>", 2)
 			if(prob(35))
 			//	for (var/mob/V in viewers(src)) //Public messages commented out to prevent possible metaish genetics experimentation and stuff. - Cheridan
 			//		V.show_message("<font color='red'>[M] is mutated by the radiation beam.</font>", 3, "<font color='red'> You hear the snapping of twigs.</font>", 2)
@@ -147,6 +171,7 @@
 /obj/item/projectile/energy/floramut/gene
 	name = "gamma somatoray"
 	icon_state = "energy2"
+	fire_sound = 'sound/effects/stealthoff.ogg'
 	damage = 0
 	damage_type = TOX
 	nodamage = 1
@@ -156,6 +181,7 @@
 /obj/item/projectile/energy/florayield
 	name = "beta somatoray"
 	icon_state = "energy2"
+	fire_sound = 'sound/effects/stealthoff.ogg'
 	damage = 0
 	damage_type = TOX
 	nodamage = 1
@@ -179,6 +205,8 @@
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
 
+	combustion = FALSE
+
 /obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
@@ -201,6 +229,8 @@
 	damage_type = HALLOSS
 	muzzle_type = null
 
+	combustion = FALSE
+
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
@@ -217,6 +247,8 @@
 	embed_chance = 0 //Nada.
 	damage_type = BRUTE
 	muzzle_type = null
+
+	combustion = FALSE
 
 /obj/item/projectile/webball/on_hit(var/atom/target, var/blocked = 0)
 	if(isturf(target.loc))

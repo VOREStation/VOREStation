@@ -56,7 +56,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/clothing/head/chameleon/changeling
 	name = "malformed head"
@@ -78,7 +77,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/clothing/suit/chameleon/changeling
 	name = "chitinous chest"
@@ -104,7 +102,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/clothing/shoes/chameleon/changeling
 	name = "malformed feet"
@@ -130,7 +127,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/weapon/storage/backpack/chameleon/changeling
 	name = "backpack"
@@ -158,7 +154,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		for(var/atom/movable/AM in src.contents) //Dump whatever's in the bag before deleting.
 			AM.forceMove(get_turf(loc))
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/clothing/gloves/chameleon/changeling
 	name = "malformed hands"
@@ -185,8 +180,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
-
 
 /obj/item/clothing/mask/chameleon/changeling
 	name = "chitin visor"
@@ -213,7 +206,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/clothing/glasses/chameleon/changeling
 	name = "chitin goggles"
@@ -235,7 +227,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/weapon/storage/belt/chameleon/changeling
 	name = "waist pouch"
@@ -261,7 +252,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
 
 /obj/item/weapon/card/id/syndicate/changeling
 	name = "chitinous card"
@@ -277,6 +267,9 @@ var/global/list/changeling_fabricated_clothing = list(
 /obj/item/weapon/card/id/syndicate/changeling/New(mob/user as mob)
 	..()
 	registered_user = user
+
+/obj/item/weapon/card/id/syndicate/changeling/initialize()
+	. = ..()
 	access = null
 
 /obj/item/weapon/card/id/syndicate/changeling/verb/shred()
@@ -288,8 +281,6 @@ var/global/list/changeling_fabricated_clothing = list(
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
-		H.update_icons_layers()
-
 
 /obj/item/weapon/card/id/syndicate/changeling/Click() //Since we can't hold it in our hands, and attack_hand() doesn't work if it in inventory...
 	if(!registered_user)

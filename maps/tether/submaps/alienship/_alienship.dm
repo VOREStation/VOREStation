@@ -61,7 +61,7 @@
 /obj/machinery/porta_turret/alien/ion
 	name = "interior anti-boarding turret"
 	desc = "A very tough looking turret made by alien hands."
-	installation = /obj/item/weapon/gun/energy/ionrifle/pistol
+	installation = /obj/item/weapon/gun/energy/ionrifle/weak
 	enabled = TRUE
 	lethal = TRUE
 	ailock = TRUE
@@ -107,7 +107,7 @@
 	icon = 'alienship.dmi'
 	icon_state = "alien_injector"
 	item_state = "autoinjector"
-	filled_reagents = list("rezadone" = 5)
+	filled_reagents = list("rezadone" = 4, "corophizine" = 1)
 
 
 // -- Areas -- //

@@ -21,7 +21,7 @@ var/list/sacrificed = list()
 			allrunesloc = new/list()
 			var/index = 0
 		//	var/tempnum = 0
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in rune_list)
 				if(R == src)
 					continue
 				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
@@ -59,7 +59,7 @@ var/list/sacrificed = list()
 			var/runecount = 0
 			var/obj/effect/rune/IP = null
 			var/mob/living/user = usr
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in rune_list)
 				if(R == src)
 					continue
 				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["other"] && R.word3 == key)
@@ -139,7 +139,7 @@ var/list/sacrificed = list()
 				target.take_overall_damage(0, rand(5, 20)) // You dirty resister cannot handle the damage to your mind. Easily. - even cultists who accept right away should experience some effects
 				// Resist messages go!
 				if(initial_message) //don't do this stuff right away, only if they resist or hesitate.
-					admin_attack_log(attacker, target, "Used a convert rune", "Was subjected to a convert rune", "used a convert rune on")
+					add_attack_logs(attacker,target,"Convert rune")
 					switch(target.getFireLoss())
 						if(0 to 25)
 							target << "<span class='cult'>Your blood boils as you force yourself to resist the corruption invading every corner of your mind.</span>"
@@ -168,7 +168,8 @@ var/list/sacrificed = list()
 				if (!target.can_feel_pain())
 					target.visible_message("<span class='warning'>The markings below \the [target] glow a bloody red.</span>")
 				else
-					target.visible_message("<span class='warning'>[target] writhes in pain as the markings below \him glow a bloody red.</span>", "<span class='danger'>AAAAAAHHHH!</span>", "<span class='warning'>You hear an anguished scream.</span>")
+					var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+					target.visible_message("<span class='warning'>[target] writhes in pain as the markings below [TT.him] glow a bloody red.</span>", "<span class='danger'>AAAAAAHHHH!</span>", "<span class='warning'>You hear an anguished scream.</span>")
 
 				if(!waiting_for_input[target]) //so we don't spam them with dialogs if they hesitate
 					waiting_for_input[target] = 1
@@ -242,11 +243,11 @@ var/list/sacrificed = list()
 
 		drain()
 			var/drain = 0
-			for(var/obj/effect/rune/R in world)
+			for(var/obj/effect/rune/R in rune_list)
 				if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
 					for(var/mob/living/carbon/D in R.loc)
 						if(D.stat!=2)
-							admin_attack_log(usr, D, "Used a blood drain rune.", "Was victim of a blood drain rune.", "used a blood drain rune on")
+							add_attack_logs(usr,D,"Blood drain rune")
 							var/bdrain = rand(1,25)
 							D << "<span class='warning'>You feel weakened.</span>"
 							D.take_overall_damage(bdrain, 0)
@@ -342,7 +343,7 @@ var/list/sacrificed = list()
 
 			is_sacrifice_target = 0
 			find_sacrifice:
-				for(var/obj/effect/rune/R in world)
+				for(var/obj/effect/rune/R in rune_list)
 					if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
 						for(var/mob/living/carbon/human/N in R.loc)
 							if(cult && N.mind && N.mind == cult.sacrifice_target)
@@ -374,14 +375,17 @@ var/list/sacrificed = list()
 
 			if(corpse_to_raise.client)
 
+				var/datum/gender/TU = gender_datums[corpse_to_raise.get_visible_gender()]
+				var/datum/gender/TT = gender_datums[body_to_sacrifice.get_visible_gender()]
+
 				cult.add_antagonist(corpse_to_raise.mind)
 				corpse_to_raise.revive()
 
 				usr.say("Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!")
-				corpse_to_raise.visible_message("<span class='warning'>[corpse_to_raise]'s eyes glow with a faint red as he stands up, slowly starting to breathe again.</span>", \
+				corpse_to_raise.visible_message("<span class='warning'>[corpse_to_raise]'s eyes glow with a faint red as [TU.he] stand[TU.s] up, slowly starting to breathe again.</span>", \
 				"<span class='warning'>Life... I'm alive again...</span>", \
 				"<span class='warning'>You hear a faint, slightly familiar whisper.</span>")
-				body_to_sacrifice.visible_message("<span class='danger'>[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from \his remains!</span>", \
+				body_to_sacrifice.visible_message("<span class='danger'>[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from [TT.his] remains!</span>", \
 				"<span class='danger'>You feel as your blood boils, tearing you apart.</span>", \
 				"<span class='danger'>You hear a thousand voices, all crying in pain.</span>")
 				body_to_sacrifice.gib()
@@ -433,8 +437,9 @@ var/list/sacrificed = list()
 		ajourney() //some bits copypastaed from admin tools - Urist
 			if(usr.loc==src.loc)
 				var/mob/living/carbon/human/L = usr
+				var/datum/gender/TU = gender_datums[L.get_visible_gender()]
 				usr.say("Fwe[pick("'","`")]sh mah erl nyag r'ya!")
-				usr.visible_message("<span class='warning'>[usr]'s eyes glow blue as \he freezes in place, absolutely motionless.</span>", \
+				usr.visible_message("<span class='warning'>[usr]'s eyes glow blue as [TU.he] freeze[TU.s] in place, absolutely motionless.</span>", \
 				"<span class='warning'>The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry...</span>", \
 				"<span class='warning'>You hear only complete silence for a moment.</span>")
 				announce_ghost_joinleave(usr.ghostize(1), 1, "You feel that they had to use some [pick("dark", "black", "blood", "forgotten", "forbidden")] magic to [pick("invade","disturb","disrupt","infest","taint","spoil","blight")] this place!")
@@ -599,11 +604,12 @@ var/list/sacrificed = list()
 
 		mend()
 			var/mob/living/user = usr
+			var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
 			src = null
 			user.say("Uhrast ka'hfa heldsagen ver[pick("'","`")]lot!")
 			user.take_overall_damage(200, 0)
 			runedec+=10
-			user.visible_message("<span class='danger'>\The [user] keels over dead, \his blood glowing blue as it escapes \his body and dissipates into thin air.</span>", \
+			user.visible_message("<span class='danger'>\The [user] keels over dead, [TU.his] blood glowing blue as it escapes [TU.his] body and dissipates into thin air.</span>", \
 			"<span class='danger'>In the last moment of your humble life, you feel an immense pain as fabric of reality mends... with your blood.</span>", \
 			"<span class='warning'>You hear faint rustle.</span>")
 			for(,user.stat==2)
@@ -886,7 +892,8 @@ var/list/sacrificed = list()
 				if (cultist == user) //just to be sure.
 					return
 				if(cultist.buckled || cultist.handcuffed || (!isturf(cultist.loc) && !istype(cultist.loc, /obj/structure/closet)))
-					user << "<span class='warning'>You cannot summon \the [cultist], for \his shackles of blood are strong.</span>"
+					var/datum/gender/TU = gender_datums[cultist.get_visible_gender()]
+					user << "<span class='warning'>You cannot summon \the [cultist], for [TU.his] shackles of blood are strong.</span>"
 					return fizzle()
 				cultist.loc = src.loc
 				cultist.lying = 1
@@ -926,7 +933,7 @@ var/list/sacrificed = list()
 				if(affected.len)
 					usr.say("Sti[pick("'","`")] kaliedir!")
 					usr << "<span class='warning'>The world becomes quiet as the deafening rune dissipates into fine dust.</span>"
-					admin_attacker_log_many_victims(usr, affected, "Used a deafen rune.", "Was victim of a deafen rune.", "used a deafen rune on")
+					add_attack_logs(usr,affected,"Deafen rune")
 					qdel(src)
 				else
 					return fizzle()
@@ -945,7 +952,7 @@ var/list/sacrificed = list()
 				if(affected.len)
 					usr.whisper("Sti[pick("'","`")] kaliedir!")
 					usr << "<span class='warning'>Your talisman turns into gray dust, deafening everyone around.</span>"
-					admin_attacker_log_many_victims(usr, affected, "Used a deafen rune.", "Was victim of a deafen rune.", "used a deafen rune on")
+					add_attack_logs(usr, affected, "Deafen rune")
 					for (var/mob/V in orange(1,src))
 						if(!(iscultist(V)))
 							V.show_message("<span class='warning'>Dust flows from [usr]'s hands for a moment, and the world suddenly becomes quiet..</span>", 3)
@@ -971,7 +978,7 @@ var/list/sacrificed = list()
 				if(affected.len)
 					usr.say("Sti[pick("'","`")] kaliesin!")
 					usr << "<span class='warning'>The rune flashes, blinding those who not follow the Nar-Sie, and dissipates into fine dust.</span>"
-					admin_attacker_log_many_victims(usr, affected, "Used a blindness rune.", "Was victim of a blindness rune.", "used a blindness rune on")
+					add_attack_logs(usr, affected, "Blindness rune")
 					qdel(src)
 				else
 					return fizzle()
@@ -991,7 +998,7 @@ var/list/sacrificed = list()
 				if(affected.len)
 					usr.whisper("Sti[pick("'","`")] kaliesin!")
 					usr << "<span class='warning'>Your talisman turns into gray dust, blinding those who not follow the Nar-Sie.</span>"
-					admin_attacker_log_many_victims(usr, affected, "Used a blindness rune.", "Was victim of a blindness rune.", "used a blindness rune on")
+					add_attack_logs(usr, affected, "Blindness rune")
 			return
 
 
@@ -1028,8 +1035,7 @@ var/list/sacrificed = list()
 					if(iscultist(C) && !C.stat)
 						C.say("Dedo ol[pick("'","`")]btoh!")
 						C.take_overall_damage(15, 0)
-				admin_attacker_log_many_victims(usr, victims, "Used a blood boil rune.", "Was the victim of a blood boil rune.", "used a blood boil rune on")
-				log_and_message_admins_many(cultists - usr, "assisted activating a blood boil rune.")
+				add_attack_logs(usr, victims, "Blood boil rune")
 				qdel(src)
 			else
 				return fizzle()
@@ -1043,7 +1049,7 @@ var/list/sacrificed = list()
 				if(iscultist(C) && !C.stat)
 					culcount++
 			if(culcount >= 5)
-				for(var/obj/effect/rune/R in world)
+				for(var/obj/effect/rune/R in rune_list)
 					if(R.blood_DNA == src.blood_DNA)
 						for(var/mob/living/M in orange(2,R))
 							M.take_overall_damage(0,15)
@@ -1077,13 +1083,13 @@ var/list/sacrificed = list()
 						C.Weaken(1)
 						C.Stun(1)
 						C.show_message("<span class='danger'>The rune explodes in a bright flash.</span>", 3)
-						admin_attack_log(usr, C, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")
+						add_attack_logs(usr,C,"Stun rune")
 
 					else if(issilicon(L))
 						var/mob/living/silicon/S = L
 						S.Weaken(5)
 						S.show_message("<span class='danger'>BZZZT... The rune has exploded in a bright flash.</span>", 3)
-						admin_attack_log(usr, S, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")
+						add_attack_logs(usr,S,"Stun rune")
 				qdel(src)
 			else                        ///When invoked as talisman, stun and mute the target mob.
 				usr.say("Dream sign ''Evil sealing talisman'[pick("'","`")]!")
@@ -1097,7 +1103,7 @@ var/list/sacrificed = list()
 
 					if(issilicon(T))
 						T.Weaken(15)
-						admin_attack_log(usr, T, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")
+						add_attack_logs(usr,T,"Stun rune")
 					else if(iscarbon(T))
 						var/mob/living/carbon/C = T
 						C.flash_eyes()
@@ -1105,7 +1111,7 @@ var/list/sacrificed = list()
 							C.silent += 15
 						C.Weaken(25)
 						C.Stun(25)
-						admin_attack_log(usr, C, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")
+						add_attack_logs(usr,C,"Stun rune")
 				return
 
 /////////////////////////////////////////TWENTY-FIFTH RUNE

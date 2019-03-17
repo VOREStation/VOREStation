@@ -1,8 +1,12 @@
-# vorestation
+# VOREStation
 
-[Forums](http://forum.vore-station.net/) - [Wiki](http://wiki.vore-station.net/)
+[![forthebadge](http://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/compatibility-club-penguin.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/no-ragrets.svg)](http://forthebadge.com)
 
-VOREStation is a fork of the Polaris code branch, itself a fork of the Baystation12 code branch, for the game Spacestation13.
+[Website](https://vore-station.net) - [Forums](https://forum.vore-station.net/) - [Wiki](https://wiki.vore-station.net/)
+
+Going to make a Pull Request? Make sure you read the [CONTRIBUTING.md](.github/CONTRIBUTING.md) first!
+
+VOREStation is a fork of the Polaris code branch, itself a fork of the Baystation12 code branch, for the game Space Station 13.
 
 ---
 
@@ -20,7 +24,7 @@ See [here](https://www.gnu.org/licenses/why-affero-gpl.html) for more informatio
 All assets including icons and sound are under a [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/) license unless otherwise indicated.
 
 ### GETTING THE CODE
-The simplest way to obtain the code is using the github .zip feature.
+The simplest way to obtain the code is using the github .zip feature. If you do this, you won't be able to make a Pull Request later, though. You'll need to use the git method.
 
 Click [here](https://github.com/VOREStation/VOREStation/archive/master.zip) to get the latest code as a .zip file, then unzip it to wherever you want.
 
@@ -31,13 +35,6 @@ The more complicated and easier to update method is using git.  You'll need to d
 (hint: hold down ctrl and press insert to paste into git bash)
 
 This will take a while to download, but it provides an easier method for updating.
-
-Once the repository is in place, run this command:
-```bash
-cd VOREStation
-git update-index --assume-unchanged vorestation.int
-```
-Now git will ignore changes to the file vorestation.int.
 
 ### INSTALLATION
 
@@ -53,7 +50,7 @@ If you see any errors or warnings, something has gone wrong - possibly a corrupt
 
 Once that's done, open up the config folder.  You'll want to edit config.txt to set the probabilities for different gamemodes in Secret and to set your server location so that all your players don't get disconnected at the end of each round.  It's recommended you don't turn on the gamemodes with probability 0, as they have various issues and aren't currently being tested, so they may have unknown and bizarre bugs.
 
-You'll also want to edit admins.txt to remove the default admins and add your own.  "Game Master" is the highest level of access, and the other recommended admin levels for now are "Game Admin" and "Moderator".  The format is:
+You'll also want to edit admins.txt to remove the default admins and add your own.  "Host" is the highest level of access, and the other recommended admin levels for now are "Game Admin" and "Moderator".  The format is:
 
     byondkey - Rank
 
@@ -88,10 +85,4 @@ For a basic setup, simply copy every file from config/example to config.
 
 ### SQL Setup
 
-The SQL backend for the library and stats tracking requires a MySQL server.  Your server details go in /config/dbconfig.txt, and the SQL schema is in /SQL/tgstation_schema.sql.  More detailed setup instructions arecoming soon, for now ask in our IRC channel.
-
----
-
-### IRC Bot Setup
-
-Included in the repo is an IRC bot capable of relaying adminhelps to a specified IRC channel/server (thanks to Skibiliano).  Instructions for bot setup are included in the /bot/ folder along with the bot/relay script itself.
+The SQL backend for the library and stats tracking requires a MySQL server.  Your server details go in /config/dbconfig.txt, and the SQL schema is in /SQL/tgstation_schema.sql.  More detailed setup instructions arecoming soon, for now ask in our Discord.

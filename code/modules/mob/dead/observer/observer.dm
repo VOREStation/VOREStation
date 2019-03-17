@@ -8,7 +8,7 @@
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = 3.9	//Just below normal mobs
+	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
 	alpha = 127
 	stat = DEAD
@@ -103,13 +103,12 @@
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.icon
-			LAZYCLEARLIST(H.list_huds)
-			H.update_icons()
-			overlays = H.overlays
+			icon_state = H.icon_state
+			add_overlay(H.overlays_standing) //All our equipment sprites
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			overlays = body.overlays
+			add_overlay(body.overlays)
 
 		gender = body.gender
 		if(body.mind && body.mind.name)
@@ -157,6 +156,7 @@ Works together with spawning an observer, noted above.
 	if(!client) return 0
 
 	handle_regular_hud_updates()
+	handle_vision()
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
@@ -498,7 +498,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 	//find a viable mouse candidate
-	var/mob/living/simple_animal/mouse/host
+	var/mob/living/simple_mob/animal/passive/mouse/host
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
@@ -506,7 +506,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			found_vents.Add(v)
 	if(found_vents.len)
 		vent_found = pick(found_vents)
-		host = new /mob/living/simple_animal/mouse(vent_found)
+		host = new /mob/living/simple_mob/animal/passive/mouse(vent_found)
 	else
 		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
 
@@ -630,8 +630,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		)
 		toggle_visibility(TRUE)
 	else
+		var/datum/gender/T = gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
-			"<span class='warning'>\The [user] just tried to smash \his book into that ghost!  It's not very effective.</span>", \
+			"<span class='warning'>\The [user] just tried to smash [T.his] book into that ghost!  It's not very effective.</span>", \
 			"<span class='warning'>You get the feeling that the ghost can't become any more visible.</span>" \
 		)
 
@@ -752,7 +753,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 			return 0
 		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)
 		if(msg)
-			log_say("SpectralWhisper: [key_name(usr)]->[M.key] : [msg]")
+			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
 			M << "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>"
 			src << "<span class='warning'> You said: '[msg]' to [M].</span>"
 		else
@@ -794,3 +795,19 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 /mob/observer/dead/is_deaf()
 	return FALSE
+
+/mob/observer/dead/verb/paialert()
+	set category = "Ghost"
+	set name = "Blank pAI alert"
+	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
+	if(usr.client.prefs.be_special & BE_PAI)
+		for(var/obj/item/device/paicard/p in all_pai_cards)
+			var/obj/item/device/paicard/PP = p
+			if(PP.pai == null)
+				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
+				PP.overlays += "pai-ghostalert"
+				spawn(54)
+					PP.overlays.Cut()
+
+/mob/observer/dead/speech_bubble_appearance()
+	return "ghost"

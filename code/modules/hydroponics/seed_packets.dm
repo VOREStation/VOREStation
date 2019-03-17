@@ -1,5 +1,7 @@
 var/global/list/plant_seed_sprites = list()
 
+GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
+
 //Seed packet object/procs.
 /obj/item/seeds
 	name = "packet of seeds"

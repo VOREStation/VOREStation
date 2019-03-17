@@ -38,11 +38,14 @@
 	var/atom/movable/overlay/c_animation = null
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
-	if(damage >= 10)
-		visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
-		take_damage(damage)
-	else
-		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
+	if(isanimal(user))
+		var/mob/living/simple_mob/S = user
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
+			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
+			playsound(src, S.attack_sound, 75, 1)
+			take_damage(damage)
+		else
+			visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
 	user.do_attack_animation(src)
 
 /obj/machinery/door/New()
@@ -204,79 +207,82 @@
 
 	if (attempt_vr(src,"attackby_vr",list(I, user))) return
 
-	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
-		if(stat & BROKEN)
-			user << "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>"
-			return
-		if(health >= maxhealth)
-			user << "<span class='notice'>Nothing to fix!</span>"
-			return
-		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
-			return
+	if(istype(I))
+		if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
+			if(stat & BROKEN)
+				user << "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>"
+				return
+			if(health >= maxhealth)
+				user << "<span class='notice'>Nothing to fix!</span>"
+				return
+			if(!density)
+				user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+				return
 
-		//figure out how much metal we need
-		var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
-		amount_needed = (round(amount_needed) == amount_needed)? amount_needed : round(amount_needed) + 1 //Why does BYOND not have a ceiling proc?
+			//figure out how much metal we need
+			var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
+			amount_needed = (round(amount_needed) == amount_needed)? amount_needed : round(amount_needed) + 1 //Why does BYOND not have a ceiling proc?
 
-		var/obj/item/stack/stack = I
-		var/transfer
-		if (repairing)
-			transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
-			if (!transfer)
-				user << "<span class='warning'>You must weld or remove \the [repairing] from \the [src] before you can add anything else.</span>"
-		else
-			repairing = stack.split(amount_needed)
+			var/obj/item/stack/stack = I
+			var/transfer
 			if (repairing)
-				repairing.loc = src
-				transfer = repairing.amount
+				transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
+				if (!transfer)
+					user << "<span class='warning'>You must weld or remove \the [repairing] from \the [src] before you can add anything else.</span>"
+			else
+				repairing = stack.split(amount_needed)
+				if (repairing)
+					repairing.loc = src
+					transfer = repairing.amount
 
-		if (transfer)
-			user << "<span class='notice'>You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src].</span>"
+			if (transfer)
+				user << "<span class='notice'>You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src].</span>"
 
-		return
-
-	if(repairing && istype(I, /obj/item/weapon/weldingtool))
-		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
 			return
 
-		var/obj/item/weapon/weldingtool/welder = I
-		if(welder.remove_fuel(0,user))
-			user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
-			playsound(src, welder.usesound, 50, 1)
-			if(do_after(user, (5 * repairing.amount) * welder.toolspeed) && welder && welder.isOn())
-				user << "<span class='notice'>You finish repairing the damage to \the [src].</span>"
-				health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
-				update_icon()
-				qdel(repairing)
-				repairing = null
+		if(repairing && istype(I, /obj/item/weapon/weldingtool))
+			if(!density)
+				user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+				return
+
+			var/obj/item/weapon/weldingtool/welder = I
+			if(welder.remove_fuel(0,user))
+				user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
+				playsound(src, welder.usesound, 50, 1)
+				if(do_after(user, (5 * repairing.amount) * welder.toolspeed) && welder && welder.isOn())
+					user << "<span class='notice'>You finish repairing the damage to \the [src].</span>"
+					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
+					update_icon()
+					qdel(repairing)
+					repairing = null
+			return
+
+		if(repairing && I.is_crowbar())
+			user << "<span class='notice'>You remove \the [repairing].</span>"
+			playsound(src, I.usesound, 100, 1)
+			repairing.loc = user.loc
+			repairing = null
+			return
+
+		//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
+		if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
+			var/obj/item/weapon/W = I
+			user.setClickCooldown(user.get_attack_speed(W))
+			if(W.damtype == BRUTE || W.damtype == BURN)
+				user.do_attack_animation(src)
+				if(W.force < min_force)
+					user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
+				else
+					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
+					playsound(src.loc, hitsound, 100, 1)
+					take_damage(W.force)
+			return
+
+	if(src.operating > 0 || isrobot(user))
+		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
+
+	if(src.operating)
 		return
-
-	if(repairing && istype(I, /obj/item/weapon/crowbar))
-		user << "<span class='notice'>You remove \the [repairing].</span>"
-		playsound(src, I.usesound, 100, 1)
-		repairing.loc = user.loc
-		repairing = null
-		return
-
-	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
-		var/obj/item/weapon/W = I
-		user.setClickCooldown(user.get_attack_speed(W))
-		if(W.damtype == BRUTE || W.damtype == BURN)
-			user.do_attack_animation(src)
-			if(W.force < min_force)
-				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
-			else
-				user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
-				playsound(src.loc, hitsound, 100, 1)
-				take_damage(W.force)
-		return
-
-	if(src.operating > 0 || isrobot(user))	return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
-
-	if(src.operating) return
 
 	if(src.allowed(user) && operable())
 		if(src.density)

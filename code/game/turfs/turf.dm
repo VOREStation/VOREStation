@@ -1,5 +1,7 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
+	layer = TURF_LAYER
+	plane = TURF_PLANE
 	level = 1
 	var/holy = 0
 
@@ -29,6 +31,7 @@
 	var/list/footstep_sounds = null
 
 	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
+	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
 
 /turf/New()
 	..()
@@ -84,6 +87,34 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			S.gather_all(src, user)
 	return ..()
 
+// Hits a mob on the tile.
+/turf/proc/attack_tile(obj/item/weapon/W, mob/living/user)
+	if(!istype(W))
+		return FALSE
+
+	var/list/viable_targets = list()
+	var/success = FALSE // Hitting something makes this true. If its still false, the miss sound is played.
+
+	for(var/mob/living/L in contents)
+		if(L == user) // Don't hit ourselves.
+			continue
+		viable_targets += L
+
+	if(!viable_targets.len) // No valid targets on this tile.
+		if(W.can_cleave)
+			success = W.cleave(user, src)
+	else
+		var/mob/living/victim = pick(viable_targets)
+		success = W.resolve_attackby(victim, user)
+
+	user.setClickCooldown(user.get_attack_speed(W))
+	user.do_attack_animation(src, no_attack_icons = TRUE)
+
+	if(!success) // Nothing got hit.
+		user.visible_message("<span class='warning'>\The [user] swipes \the [W] over \the [src].</span>")
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+	return success
+
 /turf/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc
@@ -101,6 +132,14 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return
 	if (do_after(user, 25 + (5 * user.weakened)) && !(user.stat))
 		step_towards(O, src)
+		if(ismob(O))
+			animate(O, transform = turn(O.transform, 20), time = 2)
+			sleep(2)
+			animate(O, transform = turn(O.transform, -40), time = 4)
+			sleep(4)
+			animate(O, transform = turn(O.transform, 20), time = 2)
+			sleep(2)
+			O.update_transform()
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -280,3 +319,35 @@ var/const/enterloopsanity = 100
 		if(isliving(AM))
 			var/mob/living/M = AM
 			M.turf_collision(src, speed)
+
+/turf/AllowDrop()
+	return TRUE
+
+// Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
+/turf/proc/is_safe_to_enter(mob/living/L)
+	return TRUE
+
+// This is all the way up here since its the common ancestor for things that need to get replaced with a floor when an RCD is used on them.
+// More specialized turfs like walls should instead override this.
+// The code for applying lattices/floor tiles onto lattices could also utilize something similar in the future.
+/turf/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	if(density || !can_build_into_floor)
+		return FALSE
+	if(passed_mode == RCD_FLOORWALL)
+		var/obj/structure/lattice/L = locate() in src
+		// A lattice costs one rod to make. A sheet can make two rods, meaning a lattice costs half of a sheet.
+		// A sheet also makes four floor tiles, meaning it costs 1/4th of a sheet to place a floor tile on a lattice.
+		// Therefore it should cost 3/4ths of a sheet if a lattice is not present, or 1/4th of a sheet if it does.
+		return list(
+			RCD_VALUE_MODE = RCD_FLOORWALL,
+			RCD_VALUE_DELAY = 0,
+			RCD_VALUE_COST = L ? RCD_SHEETS_PER_MATTER_UNIT * 0.25 : RCD_SHEETS_PER_MATTER_UNIT * 0.75
+			)
+	return FALSE
+
+/turf/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	if(passed_mode == RCD_FLOORWALL)
+		to_chat(user, span("notice", "You build a floor."))
+		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
+		return TRUE
+	return FALSE

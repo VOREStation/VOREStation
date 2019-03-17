@@ -4,7 +4,8 @@
 	anchored = 1
 	density = 1
 	pixel_x = -16
-	layer = MOB_LAYER // You know what, let's play it safe.
+	plane = MOB_PLANE // You know what, let's play it safe.
+	layer = ABOVE_MOB_LAYER
 	var/base_state = null	// Used for stumps.
 	var/health = 200		// Used for chopping down trees.
 	var/max_health = 200
@@ -18,6 +19,10 @@
 		return ..()
 
 	if(is_stump)
+		if(istype(W,/obj/item/weapon/shovel))
+			if(do_after(user, 5 SECONDS))
+				visible_message("<span class='notice'>\The [user] digs up \the [src] stump with \the [W].</span>")
+				qdel(src)
 		return
 
 	visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W]!</span>")
@@ -47,13 +52,19 @@
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
 
 // Used when the tree gets hurt.
-/obj/structure/flora/tree/proc/adjust_health(var/amount)
+/obj/structure/flora/tree/proc/adjust_health(var/amount, var/damage_wood = FALSE)
 	if(is_stump)
 		return
+
+	// Bullets and lasers ruin some of the wood
+	if(damage_wood && product_amount > 0)
+		var/wood = initial(product_amount)
+		product_amount -= round(wood * (abs(amount)/max_health))
 
 	health = between(0, health + amount, max_health)
 	if(health <= 0)
 		die()
+		return
 
 // Called when the tree loses all health, for whatever reason.
 /obj/structure/flora/tree/proc/die()
@@ -79,8 +90,15 @@
 	set_light(0)
 
 /obj/structure/flora/tree/ex_act(var/severity)
-	adjust_health(-(max_health / severity))
+	adjust_health(-(max_health / severity), TRUE)
 
+/obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
+	if(Proj.get_structure_damage())
+		adjust_health(-Proj.get_structure_damage(), TRUE)
+
+/obj/structure/flora/tree/tesla_act(power, explosive)
+	adjust_health(-power / 100, TRUE) // Kills most trees in one lightning strike.
+	..()
 
 /obj/structure/flora/tree/get_description_interaction()
 	var/list/results = list()

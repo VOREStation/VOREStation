@@ -1,6 +1,7 @@
-/mob/living/simple_animal/hostile/russian
+/mob/living/simple_mob/hostile/russian
 	name = "russian"
 	desc = "For the Motherland!"
+	tt_desc = "E Homo sapiens"
 	icon_state = "russianmelee"
 	icon_living = "russianmelee"
 	icon_dead = "russianmelee_dead"
@@ -30,7 +31,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attacktext = "punched"
+	attacktext = list("punched")
 
 	min_oxy = 5
 	max_oxy = 0
@@ -46,7 +47,7 @@
 
 	var/corpse = /obj/effect/landmark/mobcorpse/russian
 
-/mob/living/simple_animal/hostile/russian/ranged
+/mob/living/simple_mob/hostile/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
 
@@ -59,7 +60,7 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/russian/ranged
 
-/mob/living/simple_animal/hostile/russian/death()
+/mob/living/simple_mob/hostile/russian/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)

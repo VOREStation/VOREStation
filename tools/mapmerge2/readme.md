@@ -2,7 +2,7 @@
 
 **Map Merge 2** is an improvement over previous map merging scripts, with
 better merge-conflict prevention, multi-Z support, and automatic handling of
-key overflow.
+key overflow. For up-to-date tips and tricks, also visit the [Map Merger] wiki article.
 
 ## What Map Merging Is
 
@@ -15,17 +15,14 @@ contains the desired changes.
 
 ## Installation
 
-* Install Python 3.6.X from the [Python website]
-  * Make sure to check 'Add Python to PATH' on the first screen of the setup!
-* Run `requirements-install.bat` in the tools/mapmerge2 folder (or run `python -m pip install -r requirements.txt`).
-* Run `install.bat` in the tools/mapmerge2/hooks folder.
+To install Python dependencies, run `requirements-install.bat`, or run
+`python -m pip install -r requirements.txt` directly. See the [Git hooks]
+documentation to install the Git pre-commit hook which runs the map merger
+automatically, or use `tools/mapmerge/Prepare Maps.bat` to save backups before
+running `mapmerge.bat`.
 
-After this point, any time you make commits in Git, the maps should automatically be converted to tgm format for you.
-
-If you find it necessary to convert them by hand, there are batch files in the tools/mapmerge2 folder to do so.
-
-If you re-clone, you will need to re-run `install.bat`.
-
+For up-to-date installation and detailed troubleshooting instructions, visit
+the [Map Merger] wiki article.
 
 ## Code Structure
 
@@ -47,8 +44,9 @@ Implementation modules:
 * `mapmerge.py` includes the implementation of the map merge operation.
 * `frontend.py` includes the common code for the frontend scripts.
 
-`precommit.py` is run by the Git hooks if installed, and merges the new
+`precommit.py` is run by the [Git hooks] if installed, and merges the new
 version of any map saved in the index (`git add`ed) with the old version stored
 in Git when run.
 
-[Python website]: https://www.python.org/downloads/
+[Map Merger]: https://tgstation13.org/wiki/Map_Merger
+[Git hooks]: ../hooks/README.md

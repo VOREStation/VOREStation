@@ -47,7 +47,8 @@ var/list/event_last_fired = list()
 
 	possibleEvents[/datum/event/economic_event] = 300
 	possibleEvents[/datum/event/trivial_news] = 400
-	possibleEvents[/datum/event/mundane_news] = 300
+	//possibleEvents[/datum/event/mundane_news] = 300
+	possibleEvents[/datum/event/lore_news] = 300 // up this if the above ones get removed as they damn well should
 
 	possibleEvents[/datum/event/pda_spam] = max(min(25, player_list.len) * 4, 200)
 	possibleEvents[/datum/event/money_lotto] = max(min(5, player_list.len), 50)

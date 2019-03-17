@@ -107,7 +107,6 @@
 /area/submap/virgo2/DecoupledEngine)
 "az" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (SOUTHEAST)";
 	icon_state = "intact";
 	dir = 6
 	},
@@ -132,17 +131,6 @@
 	dir = 4
 	},
 /turf/simulated/floor,
-/area/submap/virgo2/DecoupledEngine)
-"aC" = (
-/obj/structure/shuttle/engine/propulsion{
-	tag = "icon-propulsion_r (EAST)";
-	icon_state = "propulsion_r";
-	dir = 4
-	},
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
 /area/submap/virgo2/DecoupledEngine)
 "aD" = (
 /obj/structure/lattice,
@@ -202,7 +190,6 @@
 "aL" = (
 /obj/structure/grille/broken,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (EAST)";
 	icon_state = "phoronrwindow";
 	dir = 4
 	},
@@ -286,12 +273,10 @@
 "aV" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (EAST)";
 	icon_state = "phoronrwindow";
 	dir = 4
 	},
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (WEST)";
 	icon_state = "phoronrwindow";
 	dir = 8
 	},
@@ -299,7 +284,6 @@
 /area/submap/virgo2/DecoupledEngine)
 "aW" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -366,7 +350,6 @@
 /obj/machinery/power/rad_collector,
 /obj/structure/window/phoronreinforced,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (WEST)";
 	icon_state = "phoronrwindow";
 	dir = 8
 	},
@@ -386,7 +369,6 @@
 "bh" = (
 /obj/machinery/power/rad_collector,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (EAST)";
 	icon_state = "phoronrwindow";
 	dir = 4
 	},
@@ -428,13 +410,11 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (EAST)";
 	icon_state = "phoronrwindow";
 	dir = 4
 	},
 /obj/structure/window/phoronreinforced,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (WEST)";
 	icon_state = "phoronrwindow";
 	dir = 8
 	},
@@ -470,12 +450,10 @@
 "bs" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (NORTH)";
 	icon_state = "phoronrwindow";
 	dir = 1
 	},
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (WEST)";
 	icon_state = "phoronrwindow";
 	dir = 8
 	},
@@ -485,7 +463,6 @@
 "bt" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (NORTH)";
 	icon_state = "phoronrwindow";
 	dir = 1
 	},
@@ -495,12 +472,10 @@
 "bu" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (NORTH)";
 	icon_state = "phoronrwindow";
 	dir = 1
 	},
 /obj/structure/window/phoronreinforced{
-	tag = "icon-phoronrwindow (EAST)";
 	icon_state = "phoronrwindow";
 	dir = 4
 	},
@@ -1171,7 +1146,7 @@ ad
 ad
 ad
 at
-aC
+aO
 aO
 aY
 bi

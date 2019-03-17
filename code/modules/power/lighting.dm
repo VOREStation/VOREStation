@@ -16,7 +16,8 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = 1
-	layer = 5
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -46,7 +47,7 @@
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if (istype(W, /obj/item/weapon/wrench))
+	if (W.is_wrench())
 		if (src.stage == 1)
 			playsound(src, W.usesound, 75, 1)
 			usr << "You begin deconstructing [src]."
@@ -65,7 +66,7 @@
 			usr << "You have to unscrew the case first."
 			return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(W.is_wirecutter())
 		if (src.stage != 2) return
 		src.stage = 1
 		switch(fixture_type)
@@ -97,7 +98,7 @@
 				"You add wires to [src].")
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		if (src.stage == 2)
 			switch(fixture_type)
 				if ("tube")
@@ -132,7 +133,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
 	anchored = 1
-	layer = 5
 	stage = 1
 	fixture_type = "bulb"
 	sheets_refunded = 1
@@ -143,6 +143,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp-construct-stage1"
 	anchored = 0
+	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	stage = 1
 	fixture_type = "flamp"
@@ -156,15 +157,16 @@
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1
-	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	use_power = 2
 	idle_power_usage = 2
-	active_power_usage = 20
+	active_power_usage = 20 // VOREStation Edit - Keep lights at 20 power
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
-	var/brightness_range = 10	// luminosity when on, also used in power calculation // VOREStation Edit - Put light range back how it was for now.
-	var/brightness_power = 3
-	var/brightness_color = null
+	var/brightness_range = 10	// luminosity when on, also used in power calculation //VOREStation Edit - 8->10
+	var/brightness_power = 0.8
+	var/brightness_color = LIGHT_COLOR_FLUORESCENT_TUBE //VOREStation Edit - Our tubes are whiter
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
 	var/light_type = /obj/item/weapon/light/tube		// the type of light item
@@ -177,42 +179,51 @@
 	var/shows_alerts = TRUE		// Flag for if this fixture should show alerts.  Make sure icon states exist!
 	var/current_alert = null	// Which alert are we showing right now?
 
+	var/auto_flicker = FALSE // If true, will constantly flicker, so long as someone is around to see it (otherwise its a waste of CPU).
+
+/obj/machinery/light/flicker
+	auto_flicker = TRUE
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 6  // VOREStation Edit - Put light range back how it was for now.
-	brightness_power = 2
-	brightness_color = "#FFF4E5"
+	brightness_range = 5 //VOREStation Edit - 4->5
+	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 	shows_alerts = FALSE
+
+/obj/machinery/light/small/flicker
+	auto_flicker = TRUE
 
 /obj/machinery/light/flamp
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp1"
 	base_state = "flamp"
 	fitting = "bulb"
-	brightness_range = 5
-	brightness_power = 2
+	brightness_range = 8 //VOREStation Edit - 4->8
+	plane = OBJ_PLANE
 	layer = OBJ_LAYER
-	brightness_color = "#FFF4E5"
+	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 	desc = "A floor lamp."
 	light_type = /obj/item/weapon/light/bulb
 	shows_alerts = FALSE
 	var/lamp_shade = 1
 
-//Vorestation addition, to override the New() proc further below, since this is a lamp.
-/obj/machinery/light/flamp/New()
-	..()
-	layer = OBJ_LAYER
+/obj/machinery/light/flamp/flicker
+	auto_flicker = TRUE
+
 
 /obj/machinery/light/small/emergency
 	brightness_range = 4
-	brightness_power = 2
 	brightness_color = "#da0205"
+
+/obj/machinery/light/small/emergency/flicker
+	auto_flicker = TRUE
+
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -220,7 +231,11 @@
 	light_type = /obj/item/weapon/light/tube/large
 	shows_alerts = FALSE
 	brightness_range = 12
-	brightness_power = 4
+	brightness_power = 0.9
+
+/obj/machinery/light/spot/flicker
+	auto_flicker = TRUE
+
 
 /obj/machinery/light/built/New()
 	status = LIGHT_EMPTY
@@ -259,9 +274,6 @@
 					broken(1)
 		spawn(1)
 			update(0)
-	//Vorestation addition, so large mobs stop looking stupid in front of lights.
-	if (dir == 2)
-		layer = 5
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -341,7 +353,8 @@
 
 	if(on)
 		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
-			switchcount++
+			if(!auto_flicker)
+				switchcount++
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
 
@@ -469,7 +482,7 @@
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
-		if(istype(W, /obj/item/weapon/screwdriver)) //If it's a screwdriver open it.
+		if(W.is_screwdriver()) //If it's a screwdriver open it.
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
@@ -505,7 +518,7 @@
 				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 /obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
@@ -518,7 +531,7 @@
 			return
 
 	else
-		if(istype(W, /obj/item/weapon/screwdriver))
+		if(W.is_screwdriver())
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] removes [src]'s lamp shade.", \
 				"You remove [src]'s lamp shade.", "You hear a noise.")
@@ -724,6 +737,13 @@
 	if(on)
 		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
 
+	if(auto_flicker && !flickering)
+		if(check_for_player_proximity(src, radius = 12, ignore_ghosts = FALSE, ignore_afk = TRUE))
+			seton(TRUE) // Lights must be on to flicker.
+			flicker(5)
+		else
+			seton(FALSE) // Otherwise keep it dark and spooky for when someone shows up.
+
 
 // called when area power state changes
 /obj/machinery/light/power_change()
@@ -762,8 +782,8 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 	var/rigged = 0		// true if rigged to explode
 	var/brightness_range = 2 //how much light it gives off
-	var/brightness_power = 1
-	var/brightness_color = null
+	var/brightness_power = 0.8
+	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 
 /obj/item/weapon/light/tube
 	name = "light tube"
@@ -773,13 +793,12 @@
 	item_state = "c_tube"
 	matter = list("glass" = 100)
 	brightness_range = 8
-	brightness_power = 3
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
-	brightness_power = 4
+	brightness_power = 0.9
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -789,8 +808,7 @@
 	item_state = "contvapour"
 	matter = list("glass" = 100)
 	brightness_range = 5
-	brightness_power = 2
-	brightness_color = "#a0a080"
+	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
@@ -804,7 +822,6 @@
 	item_state = "egg4"
 	matter = list("glass" = 100)
 	brightness_range = 5
-	brightness_power = 2
 
 // update the icon state and description of the light
 

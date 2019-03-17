@@ -67,6 +67,7 @@
 		syringestab(target, user)
 		return
 
+	var/injtime = time // Calculated 'true' injection time (as added to by hardsuits and whatnot), 66% of this goes to warmup, then every 33% after injects 5u
 	switch(mode)
 		if(SYRINGE_DRAW)
 			if(!reagents.get_free_space())
@@ -160,8 +161,9 @@
 				return
 
 			var/mob/living/carbon/human/H = target
+			var/obj/item/organ/external/affected //VOREStation Edit - Moved this outside this if
 			if(istype(H))
-				var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+				affected = H.get_organ(user.zone_sel.selecting) //VOREStation Edit - See above comment.
 				if(!affected)
 					to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
 					return
@@ -169,9 +171,10 @@
 					to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 					return
 
+			var/warmup_time = 0 //None if we're using this on ourselves.
+			var/cycle_time = injtime*0.33 //33% of the time slept between 5u doses
 			if(ismob(target) && target != user)
-
-				var/injtime = time //Injecting through a hardsuit takes longer due to needing to find a port.
+				warmup_time = injtime*0.66 //66% of the time is warmup
 
 				if(istype(H))
 					if(H.wear_suit)
@@ -187,34 +190,41 @@
 						return
 
 				if(injtime == time)
-					user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>")
+					user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>","<span class='notice'>You begin injecting [target] with [visible_name].</span>")
 				else
-					user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>")
+					user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>","<span class='notice'>You begin hunting for an injection port on [target]'s suit!</span>")
 
-				user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+			//The warmup
+			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+			if(!do_after(user,warmup_time,target))
+				return
 
-				if(!do_mob(user, target, injtime))
-					return
-
-				user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>")
-
-			var/trans
-			if(ismob(target))
-				var/contained = reagentlist()
-				trans = reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
-				admin_inject_log(user, target, src, contained, trans)
-			else
-				trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
-			if(trans)
-				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
-			else
-				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
+			var/trans = 0
+			var/contained = reagentlist()
+			while(reagents.total_volume)
+				if(ismob(target))
+					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)	
+				else
+					trans += reagents.trans_to_obj(target, amount_per_transfer_from_this)
+				update_icon()
+				if(!reagents.total_volume || !do_after(user,cycle_time,target))
+					break
+			
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
 
-	return
+			if(trans)
+				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
+				if(ismob(target))
+					add_attack_logs(user,target,"Injected with [src.name] containing [contained], trasferred [trans] units")
+			else
+				to_chat(user, "<span class='notice'>The syringe is empty.</span>")
 
+//		dirty(target,affected) //VOREStation Add -- Removed by Request
+
+	return
+/* VOREStation Edit - See syringes_vr.dm
 /obj/item/weapon/reagent_containers/syringe/update_icon()
 	overlays.Cut()
 
@@ -241,7 +251,7 @@
 
 		filling.color = reagents.get_color()
 		overlays += filling
-
+*/
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if(istype(target, /mob/living/carbon/human))
 
@@ -265,9 +275,7 @@
 			user.remove_from_mob(src)
 			qdel(src)
 
-			user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with \the [src] (INTENT: HARM).</font>"
-			target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: HARM).</font>"
-			msg_admin_attack("[key_name_admin(user)] attacked [key_name_admin(target)] with [src.name] (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			add_attack_logs(user,target,"Syringe harmclick")
 
 			return
 
@@ -283,10 +291,10 @@
 
 
 	var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
-	var/contained_reagents = reagents.get_reagents()
+	var/contained = reagents.get_reagents()
 	var/trans = reagents.trans_to_mob(target, syringestab_amount_transferred, CHEM_BLOOD)
 	if(isnull(trans)) trans = 0
-	admin_inject_log(user, target, src, contained_reagents, trans, violent=1)
+	add_attack_logs(user,target,"Stabbed with [src.name] containing [contained], trasferred [trans] units")
 	break_syringe(target, user)
 
 /obj/item/weapon/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
@@ -325,8 +333,8 @@
 /obj/item/weapon/reagent_containers/syringe/inaprovaline/New()
 	..()
 	reagents.add_reagent("inaprovaline", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
+	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
+	//update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
@@ -335,8 +343,8 @@
 /obj/item/weapon/reagent_containers/syringe/antitoxin/New()
 	..()
 	reagents.add_reagent("anti_toxin", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
+	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
+	//update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
 	name = "Syringe (spaceacillin)"
@@ -345,8 +353,8 @@
 /obj/item/weapon/reagent_containers/syringe/antiviral/New()
 	..()
 	reagents.add_reagent("spaceacillin", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
+	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
+	//update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/drugs
 	name = "Syringe (drugs)"
@@ -357,8 +365,8 @@
 	reagents.add_reagent("space_drugs",  5)
 	reagents.add_reagent("mindbreaker",  5)
 	reagents.add_reagent("cryptobiolin", 5)
-	mode = SYRINGE_INJECT
-	update_icon()
+	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
+	//update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral/New()
 	..()

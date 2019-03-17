@@ -233,7 +233,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 		else
 			var/datum/integrated_io/io = pin
-			io.ask_for_pin_data(usr) // The pins themselves will determine how to ask for data, and will validate the data.
+			io.ask_for_pin_data(usr, held_item) // The pins themselves will determine how to ask for data, and will validate the data.
 			/*
 			if(io.io_type == DATA_CHANNEL)
 
@@ -330,6 +330,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			to_chat(usr, "<span class='warning'>\The [src] seems to be permanently attached to the case.</span>")
 			return
 		var/obj/item/device/electronic_assembly/ea = loc
+		power_fail()
 		disconnect_all()
 		var/turf/T = get_turf(src)
 		forceMove(T)
@@ -394,3 +395,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		O.disconnect()
 	for(var/datum/integrated_io/activate/A in activators)
 		A.disconnect()
+
+/obj/item/integrated_circuit/proc/on_anchored()
+	return
+
+/obj/item/integrated_circuit/proc/on_unanchored()
+	return

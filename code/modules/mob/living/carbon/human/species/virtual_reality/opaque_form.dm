@@ -42,7 +42,7 @@
 		)
 
 /datum/species/shapeshifter/promethean/avatar/tajaran
-	name = "Virtual Reality Tajara"
+	name = "Virtual Reality Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	tail = "tajtail"

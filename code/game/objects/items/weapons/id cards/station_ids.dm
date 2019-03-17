@@ -5,7 +5,7 @@
 	item_state = "card-id"
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/id.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi'
 		)
 
 	var/access = list()
@@ -29,6 +29,8 @@
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0			// determines if this ID has claimed a dorm already
+
+	var/mining_points = 0	// For redeeming at mining equipment vendors
 
 /obj/item/weapon/card/id/examine(mob/user)
 	set src in oview(1)
@@ -55,8 +57,9 @@
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
 /obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
-	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
-	side = getFlatIcon(M, WEST, always_use_defdir = 1)
+	var/icon/charicon = cached_character_icon(M)
+	front = icon(charicon,dir = SOUTH)
+	side = icon(charicon,dir = WEST)
 
 /mob/proc/set_id_info(var/obj/item/weapon/card/id/id_card)
 	id_card.age = 0
@@ -112,15 +115,17 @@
 	usr << "The fingerprint hash on the card is [fingerprint_hash]."
 	return
 
-/obj/item/weapon/card/id/New()
-	..()
-	var/datum/job/jobdatum
-	for(var/jobtype in typesof(/datum/job))
-		var/datum/job/J = new jobtype
-		if(J.title == rank)
-			jobdatum = J
-			access = jobdatum.get_access()
-			return
+/obj/item/weapon/card/id/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_wear_id_str)
+		return "id" //Legacy, just how it is. There's only one sprite.
+
+	return ..()
+
+/obj/item/weapon/card/id/initialize()
+	. = ..()
+	var/datum/job/J = job_master.GetJob(rank)
+	if(J)
+		access = J.get_access()
 
 /obj/item/weapon/card/id/silver
 	name = "identification card"
@@ -151,7 +156,7 @@
 	job_access_type = /datum/job/captain
 
 /obj/item/weapon/card/id/gold/captain/spare
-	name = "colony director's spare ID"
+	name = "\improper Colony Director's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	registered_name = "Colony Director"
 	job_access_type = /datum/job/captain
@@ -163,8 +168,8 @@
 	item_state = "tdgreen"
 	assignment = "Synthetic"
 
-/obj/item/weapon/card/id/synthetic/New()
-	..()
+/obj/item/weapon/card/id/synthetic/initialize()
+	. = ..()
 	access = get_all_station_access() + access_synth
 
 /obj/item/weapon/card/id/centcom
@@ -174,12 +179,12 @@
 	registered_name = "Central Command"
 	assignment = "General"
 
-/obj/item/weapon/card/id/centcom/New()
+/obj/item/weapon/card/id/centcom/initialize()
+	. = ..()
 	access = get_all_centcom_access()
-	..()
 
-/obj/item/weapon/card/id/centcom/station/New()
-	..()
+/obj/item/weapon/card/id/centcom/station/initialize()
+	. = ..()
 	access |= get_all_station_access()
 
 /obj/item/weapon/card/id/centcom/ERT
@@ -187,8 +192,8 @@
 	assignment = "Emergency Response Team"
 	icon_state = "centcom"
 
-/obj/item/weapon/card/id/centcom/ERT/New()
-	..()
+/obj/item/weapon/card/id/centcom/ERT/initialize()
+	. = ..()
 	access |= get_all_station_access()
 
 // Department-flavor IDs

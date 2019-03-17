@@ -97,6 +97,7 @@ Class Procs:
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
+	layer = UNDER_JUNK_LAYER
 
 	var/stat = 0
 	var/emagged = 0
@@ -111,8 +112,10 @@ Class Procs:
 	var/uid
 	var/panel_open = 0
 	var/global/gl_uid = 1
+	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
+	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/circuit = null
+	var/obj/item/weapon/circuitboard/circuit = null
 
 /obj/machinery/New(l, d=0)
 	..(l)
@@ -123,10 +126,12 @@ Class Procs:
 
 /obj/machinery/initialize()
 	. = ..()
+	global.machines += src
 	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/Destroy()
 	STOP_MACHINE_PROCESSING(src)
+	global.machines -= src
 	if(component_parts)
 		for(var/atom/A in component_parts)
 			if(A.loc == src) // If the components are inside the machine, delete them.
@@ -225,12 +230,13 @@ Class Procs:
 		return attack_hand(user)
 
 /obj/machinery/attack_hand(mob/user as mob)
+
 	if(inoperable(MAINT))
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/living/silicon)))
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -238,8 +244,11 @@ Class Procs:
 			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << "<span class='warning'>You momentarily forget how to use [src].</span>"
+			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
 			return 1
+
+	if(clicksound && istype(user, /mob/living/carbon))
+		playsound(src, clicksound, clickvol)
 
 	add_fingerprint(user)
 
@@ -310,23 +319,23 @@ Class Procs:
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						user << "<span class='notice'>[A.name] replaced with [B.name].</span>"
+						to_chat(user, "<span class='notice'>[A.name] replaced with [B.name].</span>")
 						break
 			update_icon()
 			RefreshParts()
 	else
-		user << "<span class='notice'>Following parts detected in the machine:</span>"
+		to_chat(user, "<span class='notice'>Following parts detected in the machine:</span>")
 		for(var/var/obj/item/C in component_parts) //var/var/obj/item/C?
-			user << "<span class='notice'>    [C.name]</span>"
+			to_chat(user, "<span class='notice'>    [C.name]</span>")
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
-/obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/wrench/W, var/time = 0)
-	if(!istype(W))
+/obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
+	if(!W.is_wrench())
 		return FALSE
 	if(panel_open)
 		return FALSE // Close panel first!
-	playsound(loc, W.usesound, 50, 1)	
+	playsound(loc, W.usesound, 50, 1)
 	var/actual_time = W.toolspeed * time
 	if(actual_time != 0)
 		user.visible_message( \
@@ -341,48 +350,48 @@ Class Procs:
 		update_icon()
 	return TRUE
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/crowbar/C)
-	if(!istype(C))
+/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/C)
+	if(!C.is_crowbar())
 		return 0
 	if(!panel_open)
 		return 0
 	. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
-	if(!istype(S))
+/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+	if(!S.is_screwdriver())
 		return 0
 	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
-	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>"
+	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
 	update_icon()
 	return 1
 
-/obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
-	if(!istype(S))
+/obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+	if(!S.is_screwdriver())
 		return 0
 	if(!circuit)
 		return 0
-	user << "<span class='notice'>You start disconnecting the monitor.</span>"
+	to_chat(user, "<span class='notice'>You start disconnecting the monitor.</span>")
 	playsound(src, S.usesound, 50, 1)
 	if(do_after(user, 20 * S.toolspeed))
 		if(stat & BROKEN)
-			user << "<span class='notice'>The broken glass falls out.</span>"
+			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 			new /obj/item/weapon/material/shard(src.loc)
 		else
-			user << "<span class='notice'>You disconnect the monitor.</span>"
+			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 		. = dismantle()
 
-/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
-	if(!istype(S))
+/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+	if(!S.is_screwdriver())
 		return 0
 	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
-	user << "The wires have been [panel_open ? "exposed" : "unexposed"]"
+	to_chat(user, "The wires have been [panel_open ? "exposed" : "unexposed"]")
 	update_icon()
 	return 1
 
-/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/weapon/wirecutters/W)
-	if(!istype(W))
+/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/W)
+	if(!W.is_wirecutter())
 		return 0
 	if(!panel_open)
 		return 0
@@ -402,7 +411,7 @@ Class Procs:
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
-	if(A.frame_type.frame_class == "machine")
+	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
 			D.forceMove(src.loc)
 		if(A.components)
@@ -412,15 +421,15 @@ Class Procs:
 		component_parts = list()
 		A.check_components()
 
-	if(A.frame_type.frame_class == "alarm")
-		A.state = 2
-	else if(A.frame_type.frame_class == "computer" || A.frame_type.frame_class == "display")
+	if(A.frame_type.frame_class == FRAME_CLASS_ALARM)
+		A.state = FRAME_FASTENED
+	else if(A.frame_type.frame_class == FRAME_CLASS_COMPUTER || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
 		if(stat & BROKEN)
-			A.state = 3
+			A.state = FRAME_WIRED
 		else
-			A.state = 4
+			A.state = FRAME_PANELED
 	else
-		A.state = 3
+		A.state = FRAME_WIRED
 
 	A.set_dir(dir)
 	A.pixel_x = pixel_x

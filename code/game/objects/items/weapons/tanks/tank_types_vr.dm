@@ -1,4 +1,4 @@
-/obj/item/weapon/tank/emergency/phoron_double
+/obj/item/weapon/tank/emergency/phoron/double
 	name = "double emergency phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon = 'icons/obj/tank_vr.dmi'
@@ -8,7 +8,7 @@
 	gauge_cap = 3
 	volume = 10
 
-/obj/item/weapon/tank/emergency/phoron_double/New()
+/obj/item/weapon/tank/emergency/phoron/double/New()
 	..()
 	air_contents.adjust_gas("phoron", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -41,6 +41,8 @@
 	icon = 'icons/obj/tank_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	icon_state = "phoron_vox"
+	gauge_cap = 3
+	gauge_icon = "indicator_double"
 
 /obj/item/weapon/tank/emergency
 	icon = 'icons/obj/tank_vr.dmi'

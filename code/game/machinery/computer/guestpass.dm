@@ -54,8 +54,8 @@
 			expired = 1
 	return ..()
 
-/obj/item/weapon/card/id/guest/New()
-	..()
+/obj/item/weapon/card/id/guest/initialize()
+	. = ..()
 	processing_objects.Add(src)
 	update_icon()
 
@@ -78,6 +78,8 @@
 /obj/machinery/computer/guestpass
 	name = "guest pass terminal"
 	icon_state = "guest"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = 0
@@ -102,7 +104,7 @@
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
 			giver = I
-			nanomanager.update_uis(src)
+			GLOB.nanomanager.update_uis(src)
 		else if(giver)
 			user << "<span class='warning'>There is already ID card inside.</span>"
 		return
@@ -148,7 +150,7 @@
 	data["log"] = internal_log
 	data["uid"] = uid
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "guest_pass.tmpl", src.name, 400, 520)
 		ui.set_initial_data(data)
@@ -240,4 +242,4 @@
 					usr << "<span class='warning'>Cannot issue pass without issuing ID.</span>"
 
 	src.add_fingerprint(usr)
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)

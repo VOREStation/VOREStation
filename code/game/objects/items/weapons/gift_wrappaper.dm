@@ -46,7 +46,7 @@
 /obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/weapon/wirecutters))
+	if (!W.is_wirecutter())
 		user << "<span class='warning'>I need wirecutters for that.</span>"
 		return
 
@@ -101,7 +101,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/device/paicard,
-		/obj/item/device/violin,
+		/obj/item/device/instrument/violin,
 		/obj/item/weapon/storage/belt/utility/full,
 		/obj/item/clothing/accessory/tie/horrible)
 
@@ -129,7 +129,8 @@
 	if (!( locate(/obj/structure/table, src.loc) ))
 		user << "<span class='warning'>You MUST put the paper on a table!</span>"
 	if (W.w_class < ITEMSIZE_LARGE)
-		if (user.get_type_in_hands(/obj/item/weapon/wirecutters))
+		var/obj/item/I = user.get_inactive_hand()
+		if(I.is_wirecutter())
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				user << "<span class='warning'>You need more paper!</span>"
@@ -179,10 +180,7 @@
 
 			H.loc = present
 
-			H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been wrapped with [src.name]  by [user.name] ([user.ckey])</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to wrap [H.name] ([H.ckey])</font>")
-			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
-
+			add_attack_logs(user,H,"Wrapped with [src]")
 		else
 			user << "<span class='warning'>You need more paper.</span>"
 	else

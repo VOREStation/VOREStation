@@ -21,11 +21,13 @@
 		if(!AM.loc) //Don't teleport HUD telements to us.
 			return
 		if(AM.anchored)
-			user << "<span class='warning'>\The [hit_atom] is firmly secured and anchored, you can't move it!</span>"
+			to_chat(user, "<span class='warning'>\The [hit_atom] is firmly secured and anchored, you can't move it!</span>")
 			return
+
 		if(!within_range(hit_atom) && !check_for_scepter())
-			user << "<span class='warning'>\The [hit_atom] is too far away.</span>"
+			to_chat(user, "<span class='warning'>\The [hit_atom] is too far away.</span>")
 			return
+
 		//Teleporting an item.
 		if(istype(hit_atom, /obj/item))
 			var/obj/item/I = hit_atom
@@ -47,7 +49,7 @@
 		//Now let's try to teleport a living mob.
 		else if(istype(hit_atom, /mob/living))
 			var/mob/living/L = hit_atom
-			L << "<span class='danger'>You are teleported towards \the [user].</span>"
+			to_chat(L, "<span class='danger'>You are teleported towards \the [user].</span>")
 			var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread
 			var/datum/effect/effect/system/spark_spread/s2 = new /datum/effect/effect/system/spark_spread
 			s1.set_up(2, 1, user)
@@ -60,7 +62,7 @@
 
 			spawn(1 SECOND)
 				if(!user.Adjacent(L))
-					user << "<span class='warning'>\The [L] is out of your reach.</span>"
+					to_chat(user, "<span class='warning'>\The [L] is out of your reach.</span>")
 					qdel(src)
 					return
 

@@ -199,3 +199,13 @@
 
 /obj/structure/simple_door/resin/New(var/newloc,var/material_name)
 	..(newloc, "resin")
+
+/obj/structure/simple_door/cult/New(var/newloc,var/material_name)
+	..(newloc, "cult")
+
+/obj/structure/simple_door/cult/TryToSwitchState(atom/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!iscultist(L) && !istype(L, /mob/living/simple_mob/construct))
+			return
+	..()

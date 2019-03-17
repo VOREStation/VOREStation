@@ -12,7 +12,7 @@
 
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
-	priority = 100
+	priority = FIRE_PRIORITY_MACHINES
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
@@ -90,10 +90,10 @@ SUBSYSTEM_DEF(machines)
 	msg += "PO:[round(cost_power_objects,1)]"
 	msg += "} "
 	msg += "PI:[global.pipe_networks.len]|"
-	msg += "MC:[global.machines.len]|"
+	msg += "MC:[global.processing_machines.len]|"
 	msg += "PN:[global.powernets.len]|"
 	msg += "PO:[global.processing_power_items.len]|"
-	msg += "MC/MS:[round((cost ? global.machines.len/cost_machinery : 0),0.1)]"
+	msg += "MC/MS:[round((cost ? global.processing_machines.len/cost_machinery : 0),0.1)]"
 	..(jointext(msg, null))
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
-		src.current_run = global.machines.Copy()
+		src.current_run = global.processing_machines.Copy()
 
 	var/list/current_run = src.current_run
 	while(current_run.len)
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(machines)
 			if(M.use_power)
 				M.auto_use_power()
 		else
-			global.machines.Remove(M)
+			global.processing_machines.Remove(M)
 			if(!QDELETED(M))
 				M.is_processing = null
 		if(MC_TICK_CHECK)

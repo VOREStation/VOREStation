@@ -148,7 +148,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
 	density = 1
-	layer = 2.0
+	plane = TURF_PLANE
 	var/obj/structure/morgue/connected = null
 	anchored = 1
 	throwpass = 1
@@ -195,6 +195,8 @@
 /*
  * Crematorium
  */
+
+GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 /obj/structure/morgue/crematorium
 	name = "crematorium"
@@ -306,10 +308,6 @@
 					if (C.can_feel_pain())
 						C.emote("scream")
 
-			//Logging for this causes runtimes resulting in the cremator locking up. Commenting it out until that's figured out.
-			//M.attack_log += "\[[time_stamp()]\] Has been cremated by <b>[user]/[user.ckey]</b>" //No point in this when the mob's about to be deleted
-			//user.attack_log +="\[[time_stamp()]\] Cremated <b>[M]/[M.ckey]</b>"
-			//log_attack("\[[time_stamp()]\] <b>[user]/[user.ckey]</b> cremated <b>[M]/[M.ckey]</b>")
 			M.death(1)
 			M.ghostize()
 			qdel(M)
@@ -346,7 +344,7 @@
 	if(..())
 		return
 	if(src.allowed(user))
-		for (var/obj/structure/morgue/crematorium/C in world)
+		for (var/obj/structure/morgue/crematorium/C in all_crematoriums)
 			if (C.id == id)
 				if (!C.cremating)
 					C.cremate(user)

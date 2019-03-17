@@ -4,7 +4,7 @@
 	name = "Bluespace Gigabeacon"
 	desc = "A device that draws power from bluespace and creates a permanent tracking beacon."
 	level = 1		// underfloor
-	layer = 2.5
+	layer = UNDER_JUNK_LAYER
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 0

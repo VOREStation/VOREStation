@@ -1,2 +1,0 @@
-#!/bin/bash
-exec tools/mapmerge2/hooks/python.sh -m precommit

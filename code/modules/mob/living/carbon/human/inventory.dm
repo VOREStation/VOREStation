@@ -3,6 +3,9 @@ Add fingerprints to items when we put them in our hands.
 This saves us from having to call add_fingerprint() any time something is put in a human's hands programmatically.
 */
 
+/mob/living/carbon/human
+	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
+
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = 1
@@ -28,7 +31,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if (del_on_fail)
 		qdel(W)
 	return null
-
 
 /mob/living/carbon/human/proc/has_organ(name)
 	var/obj/item/organ/external/O = organs_by_name[name]
@@ -86,6 +88,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
+		worn_clothing -= wear_suit
 		wear_suit = null
 		update_inv_wear_suit()
 	else if (W == w_uniform)
@@ -96,16 +99,21 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if (wear_id)
 			drop_from_inventory(wear_id)
 		if (belt)
+			worn_clothing -= belt
 			drop_from_inventory(belt)
+		worn_clothing -= w_uniform
 		w_uniform = null
 		update_inv_w_uniform()
 	else if (W == gloves)
+		worn_clothing -= gloves
 		gloves = null
 		update_inv_gloves()
 	else if (W == glasses)
+		worn_clothing -= glasses
 		glasses = null
 		update_inv_glasses()
 	else if (W == head)
+		worn_clothing -= head
 		head = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
@@ -121,12 +129,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 		r_ear = null
 		update_inv_ears()
 	else if (W == shoes)
+		worn_clothing -= shoes
 		shoes = null
 		update_inv_shoes()
 	else if (W == belt)
+		worn_clothing -= belt
 		belt = null
 		update_inv_belt()
 	else if (W == wear_mask)
+		worn_clothing -= wear_mask
 		wear_mask = null
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
@@ -141,12 +152,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else if (W == wear_id)
 		wear_id = null
 		update_inv_wear_id()
+		BITSET(hud_updateflag, ID_HUD)
+		BITSET(hud_updateflag, WANTED_HUD)
 	else if (W == r_store)
 		r_store = null
-		update_inv_pockets()
+		//update_inv_pockets() //Doesn't do anything.
 	else if (W == l_store)
 		l_store = null
-		update_inv_pockets()
+		//update_inv_pockets() //Doesn't do anything.
 	else if (W == s_store)
 		s_store = null
 		update_inv_s_store()
@@ -164,12 +177,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else if (W == r_hand)
 		r_hand = null
 		if(l_hand)
+			l_hand.update_twohanding()
 			l_hand.update_held_icon()
 			update_inv_l_hand()
 		update_inv_r_hand()
 	else if (W == l_hand)
 		l_hand = null
 		if(r_hand)
+			r_hand.update_twohanding()
 			r_hand.update_held_icon()
 			update_inv_l_hand()
 		update_inv_l_hand()
@@ -182,49 +197,58 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
-//set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
+/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
 
-	if(!slot) return
-	if(!istype(W)) return
-	if(!has_organ_for_slot(slot)) return
-	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
+	if(!slot)
+		return
+	if(!istype(W))
+		return
+	if(!has_organ_for_slot(slot))
+		return
+	if(!species || !species.hud || !(slot in species.hud.equip_slots))
+		return
+
 	W.loc = src
 	switch(slot)
 		if(slot_back)
 			src.back = W
 			W.equipped(src, slot)
-			update_inv_back(redraw_mob)
+			worn_clothing += back
+			update_inv_back()
 		if(slot_wear_mask)
 			src.wear_mask = W
 			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
-				update_hair(redraw_mob)	//rebuild hair
-				update_inv_ears(0)
+				update_hair()	//rebuild hair
+				update_inv_ears()
 			W.equipped(src, slot)
-			update_inv_wear_mask(redraw_mob)
+			worn_clothing += wear_mask
+			update_inv_wear_mask()
 		if(slot_handcuffed)
 			src.handcuffed = W
-			update_inv_handcuffed(redraw_mob)
+			update_inv_handcuffed()
 		if(slot_legcuffed)
 			src.legcuffed = W
 			W.equipped(src, slot)
-			update_inv_legcuffed(redraw_mob)
+			update_inv_legcuffed()
 		if(slot_l_hand)
 			src.l_hand = W
 			W.equipped(src, slot)
-			update_inv_l_hand(redraw_mob)
+			update_inv_l_hand()
 		if(slot_r_hand)
 			src.r_hand = W
 			W.equipped(src, slot)
-			update_inv_r_hand(redraw_mob)
+			update_inv_r_hand()
 		if(slot_belt)
 			src.belt = W
 			W.equipped(src, slot)
-			update_inv_belt(redraw_mob)
+			worn_clothing += belt
+			update_inv_belt()
 		if(slot_wear_id)
 			src.wear_id = W
 			W.equipped(src, slot)
-			update_inv_wear_id(redraw_mob)
+			update_inv_wear_id()
+			BITSET(hud_updateflag, ID_HUD)
+			BITSET(hud_updateflag, WANTED_HUD)
 		if(slot_l_ear)
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
@@ -233,7 +257,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.r_ear = O
 				O.hud_layerise()
 			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
+			update_inv_ears()
 		if(slot_r_ear)
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
@@ -242,58 +266,66 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.l_ear = O
 				O.hud_layerise()
 			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
+			update_inv_ears()
 		if(slot_glasses)
 			src.glasses = W
 			W.equipped(src, slot)
-			update_inv_glasses(redraw_mob)
+			update_inv_glasses()
 		if(slot_gloves)
 			src.gloves = W
 			W.equipped(src, slot)
-			update_inv_gloves(redraw_mob)
+			worn_clothing += glasses
+			update_inv_gloves()
 		if(slot_head)
 			src.head = W
 			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
-				update_hair(redraw_mob)	//rebuild hair
+				update_hair()	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
 			if(istype(W,/obj/item/clothing/head/kitty))
 				W.update_icon(src)
 			W.equipped(src, slot)
-			update_inv_head(redraw_mob)
+			worn_clothing += head
+			update_inv_head()
 		if(slot_shoes)
 			src.shoes = W
 			W.equipped(src, slot)
-			update_inv_shoes(redraw_mob)
+			worn_clothing += shoes
+			update_inv_shoes()
 		if(slot_wear_suit)
 			src.wear_suit = W
 			W.equipped(src, slot)
-			update_inv_wear_suit(redraw_mob)
+			worn_clothing += wear_suit
+			update_inv_wear_suit()
 		if(slot_w_uniform)
 			src.w_uniform = W
 			W.equipped(src, slot)
-			update_inv_w_uniform(redraw_mob)
+			worn_clothing += w_uniform
+			update_inv_w_uniform()
 		if(slot_l_store)
 			src.l_store = W
 			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
+			//update_inv_pockets() //Doesn't do anything
 		if(slot_r_store)
 			src.r_store = W
 			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
+			//update_inv_pockets() //Doesn't do anything
 		if(slot_s_store)
 			src.s_store = W
 			W.equipped(src, slot)
-			update_inv_s_store(redraw_mob)
+			update_inv_s_store()
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
 			W.loc = src.back
 		if(slot_tie)
-			var/obj/item/clothing/under/uniform = src.w_uniform
-			uniform.attackby(W,src)
+			for(var/obj/item/clothing/C in worn_clothing)
+				if(istype(W, /obj/item/clothing/accessory))
+					var/obj/item/clothing/accessory/A = W
+					if(C.attempt_attach_accessory(A, src))
+						return
 		else
-			src << "<font color='red'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"
+			src << "<font color='red'>You are trying to equip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</font>"
 			return
 
 	if((W == src.l_hand) && (slot != slot_l_hand))
@@ -307,6 +339,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(W.action_button_name)
 		update_action_buttons()
+
+	if(W.zoom)
+		W.zoom()
+
+	W.in_inactive_hand(src)
 
 	return 1
 

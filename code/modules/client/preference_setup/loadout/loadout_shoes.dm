@@ -141,6 +141,14 @@
 	display_name = "cowboy boots"
 	path = /obj/item/clothing/shoes/boots/cowboy
 
+/datum/gear/shoes/cowboy/classic
+	display_name = "classic cowboy boots"
+	path = /obj/item/clothing/shoes/boots/cowboy/classic
+
+/datum/gear/shoes/cowboy/snakeskin
+	display_name = "snakeskin cowboy boots"
+	path = /obj/item/clothing/shoes/boots/cowboy/snakeskin
+
 /datum/gear/shoes/jungle
 	display_name = "jungle boots"
 	path = /obj/item/clothing/shoes/boots/jungle
@@ -219,3 +227,7 @@
 	display_name = "hydroponics winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/hydro
 	allowed_roles = list("Botanist", "Xenobiologist")
+
+/datum/gear/shoes/circuitry
+	display_name = "boots, circuitry (empty)"
+	path = /obj/item/clothing/shoes/circuitry

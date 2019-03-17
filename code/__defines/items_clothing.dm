@@ -22,20 +22,25 @@
 #define SLOT_TIE        0x4000
 #define SLOT_HOLSTER	0x8000 //16th bit - higher than this will overflow
 
-#define ACCESSORY_SLOT_UTILITY  "Utility"
-#define ACCESSORY_SLOT_ARMBAND  "Armband"
-#define ACCESSORY_SLOT_RANK     "Rank"
-#define ACCESSORY_SLOT_DEPT		"Department"
-#define ACCESSORY_SLOT_DECOR    "Decor"
-#define ACCESSORY_SLOT_MEDAL    "Medal"
-#define ACCESSORY_SLOT_INSIGNIA "Insignia"
-#define ACCESSORY_SLOT_ARMOR_C  "Chest armor"
-#define ACCESSORY_SLOT_ARMOR_A  "Arm armor"
-#define ACCESSORY_SLOT_ARMOR_L  "Leg armor"
-#define ACCESSORY_SLOT_ARMOR_S  "Armor storage"
-#define ACCESSORY_SLOT_ARMOR_M  "Misc armor"
+#define ACCESSORY_SLOT_UTILITY	0x1
+#define ACCESSORY_SLOT_WEAPON	0x2
+#define ACCESSORY_SLOT_ARMBAND  0x4
+#define ACCESSORY_SLOT_DECOR    0x8
+#define ACCESSORY_SLOT_MEDAL    0x20
+#define ACCESSORY_SLOT_TIE		0x40
+#define ACCESSORY_SLOT_INSIGNIA 0x80
+#define ACCESSORY_SLOT_OVER		0x100
+//Should these really be 'accessory' accessories
+#define ACCESSORY_SLOT_ARMOR_C  0x200
+#define ACCESSORY_SLOT_ARMOR_A  0x400
+#define ACCESSORY_SLOT_ARMOR_L  0x800
+#define ACCESSORY_SLOT_ARMOR_S  0x1000
+#define ACCESSORY_SLOT_ARMOR_M  0x2000
+#define ACCESSORY_SLOT_HELM_C	0x4000
 
-// Flags bitmasks.
+#define ACCESSORY_SLOT_TORSO 	(ACCESSORY_SLOT_UTILITY|ACCESSORY_SLOT_WEAPON)
+
+// Flags bitmasks. - Used in /atom/var/flags
 #define NOBLUDGEON         0x1    // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
 #define CONDUCT            0x2   // Conducts electricity. (metal etc.)
 #define ON_BORDER          0x4   // Item has priority to check when entering or leaving.
@@ -44,8 +49,9 @@
 #define PHORONGUARD        0x20 // Does not get contaminated by phoron.
 #define	NOREACT            0x40 // Reagents don't react inside this container.
 #define PROXMOVE           0x80  // Does this object require proximity checking in Enter()?
+#define OVERLAY_QUEUED     0x100 // Atom queued to SSoverlay for COMPILE_OVERLAYS
 
-//Flags for items (equipment)
+//Flags for items (equipment) - Used in /obj/item/var/item_flags
 #define THICKMATERIAL          0x1  // Prevents syringes, parapens and hyposprays if equipped to slot_suit or slot_head.
 #define STOPPRESSUREDAMAGE     0x2  // Counts towards pressure protection. Note that like temperature protection, body_parts_covered is considered here as well.
 #define AIRTIGHT               0x4  // Functions with internals.
@@ -53,13 +59,13 @@
 #define BLOCK_GAS_SMOKE_EFFECT 0x10 // Blocks the effect that chemical clouds would have on a mob -- glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
 #define FLEXIBLEMATERIAL       0x20 // At the moment, masks with this flag will not prevent eating even if they are covering your face.
 
-// Flags for pass_flags.
+// Flags for pass_flags. - Used in /atom/var/pass_flags
 #define PASSTABLE  0x1
 #define PASSGLASS  0x2
 #define PASSGRILLE 0x4
 #define PASSBLOB   0x8
 
-// Bitmasks for the flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
+// Bitmasks for the /obj/item/var/flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
 // WARNING: The following flags apply only to the external suit!
 #define HIDEGLOVES      0x1
 #define HIDESUITSTORAGE 0x2
@@ -78,29 +84,34 @@
 #define BLOCKHEADHAIR   0x20    // Hides the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR       0x40    // Hides the user's hair, facial and otherwise.
 
-// Slots.
-#define slot_back        1
-#define slot_wear_mask   2
-#define slot_handcuffed  3
-#define slot_l_hand      4
-#define slot_r_hand      5
-#define slot_belt        6
-#define slot_wear_id     7
-#define slot_l_ear       8
+// Slots as numbers //
+//Hands
+#define slot_l_hand      1
+#define slot_r_hand      2 //Some things may reference this, try to keep it here
+//Shown unless F12 pressed
+#define slot_back        3
+#define slot_belt        4
+#define slot_wear_id     5
+#define slot_s_store     6
+#define slot_l_store     7
+#define slot_r_store     8 //Some things may reference this, try to keep it here
+//Shown when inventory unhidden
 #define slot_glasses     9
-#define slot_gloves      10
-#define slot_head        11
-#define slot_shoes       12
-#define slot_wear_suit   13
-#define slot_w_uniform   14
-#define slot_l_store     15
-#define slot_r_store     16
-#define slot_s_store     17
-#define slot_in_backpack 18
-#define slot_legcuffed   19
-#define slot_r_ear       20
-#define slot_legs        21
-#define slot_tie         22
+#define slot_wear_mask   10
+#define slot_gloves      11
+#define slot_head        12
+#define slot_shoes       13
+#define slot_wear_suit   14
+#define slot_w_uniform   15
+#define slot_l_ear       16
+#define slot_r_ear       17
+//Secret slots
+#define slot_legs        18
+#define slot_tie         19
+#define slot_handcuffed  20
+#define slot_legcuffed   21
+#define slot_in_backpack 22
+#define SLOT_TOTAL       22
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.
@@ -111,6 +122,21 @@
 #define slot_w_uniform_str	"slot_w_uniform"
 #define slot_head_str		"slot_head"
 #define slot_wear_suit_str	"slot_suit"
+#define slot_l_ear_str      "slot_l_ear"
+#define slot_r_ear_str      "slot_r_ear"
+#define slot_belt_str       "slot_belt"
+#define slot_shoes_str      "slot_shoes"
+#define slot_head_str      	"slot_head"
+#define slot_wear_mask_str 	"slot_wear_mask"
+#define slot_handcuffed_str "slot_handcuffed"
+#define slot_legcuffed_str	"slot_legcuffed"
+#define slot_wear_mask_str 	"slot_wear_mask"
+#define slot_wear_id_str  	"slot_wear_id"
+#define slot_gloves_str  	"slot_gloves"
+#define slot_glasses_str  	"slot_glasses"
+#define slot_s_store_str	"slot_s_store"
+#define slot_tie_str		"slot_tie"
+
 
 // Bitflags for clothing parts.
 #define HEAD        0x1
@@ -193,3 +219,7 @@
 #define SUIT_SENSOR_BINARY   1
 #define SUIT_SENSOR_VITAL    2
 #define SUIT_SENSOR_TRACKING 3
+
+// Hair Defines
+#define HAIR_VERY_SHORT 0x1
+#define HAIR_TIEABLE 0x4

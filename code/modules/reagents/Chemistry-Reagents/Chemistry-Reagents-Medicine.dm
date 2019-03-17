@@ -28,8 +28,11 @@
 	scannable = 1
 
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(6 * removed, 0)
+		M.heal_organ_damage(4 * removed * chem_effective, 0) //VOREStation Edit
 
 /datum/reagent/bicaridine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -59,8 +62,12 @@
 	scannable = 1
 
 /datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.5
+		M.adjustBruteLoss(2 * removed) //Mends burns, but has negative effects with a Promethean's skeletal structure.
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 6 * removed)
+		M.heal_organ_damage(0, 4 * removed * chem_effective) //VOREStation edit
 
 /datum/reagent/dermaline
 	name = "Dermaline"
@@ -74,8 +81,11 @@
 	scannable = 1
 
 /datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 12 * removed)
+		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -87,10 +97,17 @@
 	scannable = 1
 
 /datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.66
+		if(dose >= 15)
+			M.druggy = max(M.druggy, 5)
 	if(alien != IS_DIONA)
-		M.drowsyness = max(0, M.drowsyness - 6 * removed)
-		M.hallucination = max(0, M.hallucination - 9 * removed)
-		M.adjustToxLoss(-4 * removed)
+		M.drowsyness = max(0, M.drowsyness - 6 * removed * chem_effective)
+		M.hallucination = max(0, M.hallucination - 9 * removed * chem_effective)
+		M.adjustToxLoss(-4 * removed * chem_effective)
+		if(prob(10))
+			M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 
 /datum/reagent/carthatoline
 	name = "Carthatoline"
@@ -106,6 +123,8 @@
 	if(M.getToxLoss() && prob(10))
 		M.vomit(1)
 	M.adjustToxLoss(-8 * removed)
+	if(prob(30))
+		M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
@@ -114,6 +133,8 @@
 				return
 			if(L.damage > 0)
 				L.damage = max(L.damage - 2 * removed, 0)
+		if(alien == IS_SLIME)
+			H.druggy = max(M.druggy, 5)
 
 /datum/reagent/dexalin
 	name = "Dexalin"
@@ -124,14 +145,21 @@
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+	metabolism = REM * 0.25 //VOREStation Edit
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 6)
+		M.adjustToxLoss(removed * 24) //VOREStation Edit
+	else if(alien == IS_SLIME && dose >= 15)
+		M.add_chemical_effect(CE_PAINKILLER, 15)
+		if(prob(15))
+			to_chat(M, "<span class='notice'>You have a moment of clarity as you collapse.</span>")
+			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
+			M.Weaken(6)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-15 * removed)
+		M.adjustOxyLoss(-60 * removed) //VOREStation Edit
 
-	holder.remove_reagent("lexorin", 2 * removed)
+	holder.remove_reagent("lexorin", 8 * removed) //VOREStation Edit
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
@@ -146,6 +174,12 @@
 /datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 9)
+	else if(alien == IS_SLIME && dose >= 10)
+		M.add_chemical_effect(CE_PAINKILLER, 25)
+		if(prob(25))
+			to_chat(M, "<span class='notice'>You have a moment of clarity, as you feel your tubes lose pressure rapidly.</span>")
+			M.adjustBrainLoss(-8 * removed)
+			M.Weaken(3)
 	else if(alien != IS_DIONA)
 		M.adjustOxyLoss(-150 * removed)
 
@@ -162,9 +196,12 @@
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-3 * removed)
-		M.heal_organ_damage(1.5 * removed, 1.5 * removed)
-		M.adjustToxLoss(-1.5 * removed)
+		var/chem_effective = 1
+		if(alien == IS_SLIME)
+			chem_effective = 0.5
+		M.adjustOxyLoss(-3 * removed * chem_effective)
+		M.heal_organ_damage(1.5 * removed, 1.5 * removed * chem_effective)
+		M.adjustToxLoss(-1.5 * removed * chem_effective)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -179,10 +216,17 @@
 
 /datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature < 170)
-		M.adjustCloneLoss(-10 * removed)
-		M.adjustOxyLoss(-10 * removed)
-		M.heal_organ_damage(10 * removed, 10 * removed)
-		M.adjustToxLoss(-10 * removed)
+		var/chem_effective = 1
+		if(alien == IS_SLIME)
+			chem_effective = 0.25
+			to_chat(M, "<span class='danger'>It's cold. Something causes your cellular mass to harden occasionally, resulting in vibration.</span>")
+			M.Weaken(10)
+			M.silent = max(M.silent, 10)
+			M.make_jittery(4)
+		M.adjustCloneLoss(-10 * removed * chem_effective)
+		M.adjustOxyLoss(-10 * removed * chem_effective)
+		M.heal_organ_damage(10 * removed, 10 * removed * chem_effective)
+		M.adjustToxLoss(-10 * removed * chem_effective)
 
 /datum/reagent/clonexadone
 	name = "Clonexadone"
@@ -197,10 +241,18 @@
 
 /datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature < 170)
-		M.adjustCloneLoss(-30 * removed)
-		M.adjustOxyLoss(-30 * removed)
-		M.heal_organ_damage(30 * removed, 30 * removed)
-		M.adjustToxLoss(-30 * removed)
+		var/chem_effective = 1
+		if(alien == IS_SLIME)
+			if(prob(10))
+				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
+			chem_effective = 0.5
+			M.Weaken(20)
+			M.silent = max(M.silent, 20)
+			M.make_jittery(4)
+		M.adjustCloneLoss(-30 * removed * chem_effective)
+		M.adjustOxyLoss(-30 * removed * chem_effective)
+		M.heal_organ_damage(30 * removed, 30 * removed * chem_effective)
+		M.adjustToxLoss(-30 * removed * chem_effective)
 
 /* Painkillers */
 
@@ -217,10 +269,15 @@
 	mrate_static = TRUE
 
 /datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 25)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	M.add_chemical_effect(CE_PAINKILLER, 25 * chem_effective)
 
 /datum/reagent/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
+	if(alien == IS_SLIME)
+		M.add_chemical_effect(CE_SLOWDOWN, 1)
 	M.hallucination = max(M.hallucination, 2)
 
 /datum/reagent/tramadol
@@ -236,7 +293,11 @@
 	mrate_static = TRUE
 
 /datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 80)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.8
+		M.add_chemical_effect(CE_SLOWDOWN, 1)
+	M.add_chemical_effect(CE_PAINKILLER, 80 * chem_effective)
 
 /datum/reagent/tramadol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -255,9 +316,13 @@
 	mrate_static = TRUE
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 200)
-	M.eye_blurry = min(M.eye_blurry + 10, 250)
-	M.Confuse(5)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+		M.stuttering = min(50, max(0, M.stuttering + 5)) //If you can't feel yourself, and your main mode of speech is resonation, there's a problem.
+	M.add_chemical_effect(CE_PAINKILLER, 200 * chem_effective)
+	M.add_chemical_effect(CE_SLOWDOWN, 1)
+	M.eye_blurry = min(M.eye_blurry + 10, 250 * chem_effective)
 
 /datum/reagent/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -278,16 +343,23 @@
 	scannable = 1
 
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
 	if(alien == IS_DIONA)
 		return
+	if(alien == IS_SLIME)
+		if(dose >= 5) //Not effective in small doses, though it causes toxloss at higher ones, it will make the regeneration for brute and burn more 'efficient' at the cost of more nutrition.
+			M.nutrition -= removed * 2
+			M.adjustBruteLoss(-2 * removed)
+			M.adjustFireLoss(-1 * removed)
+		chem_effective = 0.5
 	M.drowsyness = max(M.drowsyness - 5, 0)
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
 	M.AdjustWeakened(-1)
 	holder.remove_reagent("mindbreaker", 5)
 	M.hallucination = max(0, M.hallucination - 10)
-	M.adjustToxLoss(5 * removed) // It used to be incredibly deadly due to an oversight. Not anymore!
-	M.add_chemical_effect(CE_PAINKILLER, 20)
+	M.adjustToxLoss(5 * removed * chem_effective) // It used to be incredibly deadly due to an oversight. Not anymore!
+	M.add_chemical_effect(CE_PAINKILLER, 20 * chem_effective)
 
 /datum/reagent/hyperzine
 	name = "Hyperzine"
@@ -301,6 +373,10 @@
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_TAJARA)
 		removed *= 1.25
+	if(alien == IS_SLIME)
+		M.make_jittery(4) //Hyperactive fluid pumping results in unstable 'skeleton', resulting in vibration.
+		if(dose >= 5)
+			M.nutrition = (M.nutrition - (removed * 2)) //Sadly this movement starts burning food in higher doses.
 	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
@@ -320,8 +396,15 @@
 /datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.adjustBrainLoss(-30 * removed)
-	M.add_chemical_effect(CE_PAINKILLER, 10)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.25
+		if(M.brainloss >= 10)
+			M.Weaken(5)
+		if(dose >= 10 && M.paralysis < 40)
+			M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
+	M.adjustBrainLoss(-8 * removed * chem_effective) //VOREStation Edit
+	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective)
 
 /datum/reagent/imidazoline
 	name = "Imidazoline"
@@ -369,6 +452,10 @@
 			if(I.damage <= 5 && I.organ_tag == O_EYES)
 				H.eye_blurry = min(M.eye_blurry + 10, 250) //Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
+		if(alien == IS_SLIME)
+			H.add_chemical_effect(CE_PAINKILLER, 20)
+			if(prob(33))
+				H.Confuse(10)
 
 /datum/reagent/osteodaxon
 	name = "Osteodaxon"
@@ -437,9 +524,35 @@
 	M.disabilities = 0
 	M.sdisabilities = 0
 
+	var/mob/living/carbon/human/H = M
+	if(alien == IS_SLIME && istype(H)) //Shifts them toward white, faster than Rezadone does toward grey.
+		if(prob(50))
+			if(H.r_skin)
+				H.r_skin = round((H.r_skin + 510)/3)
+			if(H.r_hair)
+				H.r_hair = round((H.r_hair + 510)/3)
+			if(H.r_facial)
+				H.r_facial = round((H.r_facial + 510)/3)
+			H.adjustToxLoss(6 * removed)
+		if(prob(50))
+			if(H.g_skin)
+				H.g_skin = round((H.g_skin + 510)/3)
+			if(H.g_hair)
+				H.g_hair = round((H.g_hair + 510)/3)
+			if(H.g_facial)
+				H.g_facial = round((H.g_facial + 510)/3)
+			H.adjustToxLoss(6 * removed)
+		if(prob(50))
+			if(H.b_skin)
+				H.b_skin = round((H.b_skin + 510)/3)
+			if(H.b_hair)
+				H.b_hair = round((H.b_hair + 510)/3)
+			if(H.b_facial)
+				H.b_facial = round((H.b_facial + 510)/3)
+			H.adjustToxLoss(6 * removed)
+
 	// Might need to update appearance for hulk etc.
 	if(needs_update && ishuman(M))
-		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
 /datum/reagent/ethylredoxrazine
@@ -461,11 +574,11 @@
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - removed * 5, 0)
+				R.remove_self(removed * 5)
 	if(M.bloodstr)
 		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - removed * 15, 0) 
+				R.remove_self(removed * 15)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -509,10 +622,91 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"
-	metabolism = REM * 0.05
+	metabolism = REM * 0.25
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
+	data = 0
+
+/datum/reagent/spaceacillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(volume <= 0.1 && data != -1)
+			data = -1
+			to_chat(M, "<span class='notice'>You regain focus...</span>")
+		else
+			var/delay = (5 MINUTES)
+			if(world.time > data + delay)
+				data = world.time
+				to_chat(M, "<span class='warning'>Your senses feel unfocused, and divided.</span>")
+	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
+
+/datum/reagent/corophizine
+	name = "Corophizine"
+	id = "corophizine"
+	description = "A wide-spectrum antibiotic drug. Powerful and uncomfortable in equal doses."
+	taste_description = "burnt toast"
+	reagent_state = LIQUID
+	color = "#FFB0B0"
+	mrate_static = TRUE
+	overdose = 10
+	scannable = 1
+	data = 0
+
+/datum/reagent/corophizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
+
+	var/mob/living/carbon/human/H = M
+
+	if(ishuman(M) && alien == IS_SLIME) //Everything about them is treated like a targetted organism. Widespread bodily function begins to fail.
+		if(volume <= 0.1 && data != -1)
+			data = -1
+			to_chat(M, "<span class='notice'>Your body ceases its revolt.</span>")
+		else
+			var/delay = (3 MINUTES)
+			if(world.time > data + delay)
+				data = world.time
+				to_chat(M, "<span class='critical'>It feels like your body is revolting!</span>")
+		M.Confuse(7)
+		M.adjustFireLoss(removed * 2)
+		M.adjustToxLoss(removed * 2)
+		if(dose >= 5 && M.toxloss >= 10) //It all starts going wrong.
+			M.adjustBruteLoss(removed * 3)
+			M.eye_blurry = min(20, max(0, M.eye_blurry + 10))
+			if(prob(25))
+				if(prob(25))
+					to_chat(M, "<span class='danger'>Your pneumatic fluids seize for a moment.</span>")
+				M.Stun(2)
+				spawn(30)
+					M.Weaken(2)
+		if(dose >= 10 || M.toxloss >= 25) //Internal skeletal tubes are rupturing, allowing the chemical to breach them.
+			M.adjustToxLoss(removed * 4)
+			M.make_jittery(5)
+		if(dose >= 20 || M.toxloss >= 60) //Core disentigration, cellular mass begins treating itself as an enemy, while maintaining regeneration. Slime-cancer.
+			M.adjustBrainLoss(2 * removed)
+			M.nutrition = max(H.nutrition - 20, 0)
+		if(M.bruteloss >= 60 && M.toxloss >= 60 && M.brainloss >= 30) //Total Structural Failure. Limbs start splattering.
+			var/obj/item/organ/external/O = pick(H.organs)
+			if(prob(20) && !istype(O, /obj/item/organ/external/chest/unbreakable/slime) && !istype(O, /obj/item/organ/external/groin/unbreakable/slime))
+				to_chat(M, "<span class='critical'>You feel your [O] begin to dissolve, before it sloughs from your body.</span>")
+				O.droplimb() //Splat.
+		return
+
+	//Based roughly on Levofloxacin's rather severe side-effects
+	if(prob(20))
+		M.Confuse(5)
+	if(prob(20))
+		M.Weaken(5)
+	if(prob(20))
+		M.make_dizzy(5)
+	if(prob(20))
+		M.hallucination = max(M.hallucination, 10)
+	
+	//One of the levofloxacin side effects is 'spontaneous tendon rupture', which I'll immitate here. 1:1000 chance, so, pretty darn rare.
+	if(ishuman(M) && rand(1,10000) == 1) //VOREStation Edit (more rare)
+		var/obj/item/organ/external/eo = pick(H.organs) //Misleading variable name, 'organs' is only external organs
+		eo.fracture()
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"
@@ -523,11 +717,20 @@
 	color = "#C8A5DC"
 	touch_met = 5
 
+/datum/reagent/sterilizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustFireLoss(removed)
+		M.adjustToxLoss(2 * removed)
+	return
+
 /datum/reagent/sterilizine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.germ_level -= min(removed*20, M.germ_level)
 	for(var/obj/item/I in M.contents)
 		I.was_bloodied = null
 	M.was_bloodied = null
+	if(alien == IS_SLIME)
+		M.adjustFireLoss(removed)
+		M.adjustToxLoss(2 * removed)
 
 /datum/reagent/sterilizine/touch_obj(var/obj/O)
 	O.germ_level -= min(volume*20, O.germ_level)
@@ -571,6 +774,29 @@
 /datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
+	var/mob/living/carbon/human/H = M
+	if(alien == IS_SLIME && istype(H))
+		if(prob(50))
+			if(H.r_skin)
+				H.r_skin = round((H.r_skin + 50)/2)
+			if(H.r_hair)
+				H.r_hair = round((H.r_hair + 50)/2)
+			if(H.r_facial)
+				H.r_facial = round((H.r_facial + 50)/2)
+		if(prob(50))
+			if(H.g_skin)
+				H.g_skin = round((H.g_skin + 50)/2)
+			if(H.g_hair)
+				H.g_hair = round((H.g_hair + 50)/2)
+			if(H.g_facial)
+				H.g_facial = round((H.g_facial + 50)/2)
+		if(prob(50))
+			if(H.b_skin)
+				H.b_skin = round((H.b_skin + 50)/2)
+			if(H.b_hair)
+				H.b_hair = round((H.b_hair + 50)/2)
+			if(H.b_facial)
+				H.b_facial = round((H.b_facial + 50)/2)
 	M.adjustCloneLoss(-20 * removed)
 	M.adjustOxyLoss(-2 * removed)
 	M.heal_organ_damage(20 * removed, 20 * removed)
@@ -593,6 +819,7 @@
 	reagent_state = LIQUID
 	color = "#BF80BF"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 
@@ -615,6 +842,7 @@
 	reagent_state = LIQUID
 	color = "#FF80FF"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 
@@ -637,6 +865,7 @@
 	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 
@@ -663,6 +892,7 @@
 	reagent_state = LIQUID
 	color = "#e6efe3"
 	metabolism = 0.01
+	ingest_met = 0.25
 	mrate_static = TRUE
 	data = 0
 

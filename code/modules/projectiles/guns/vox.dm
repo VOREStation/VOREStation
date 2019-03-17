@@ -9,8 +9,8 @@
 
 	var/last_regen = 0
 	var/spike_gen_time = 150
-	var/max_spikes = 3
-	var/spikes = 3
+	var/max_spikes = 5
+	var/spikes = 5
 	release_force = 30
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "spikethrower3"
@@ -35,7 +35,7 @@
 
 /obj/item/weapon/gun/launcher/spikethrower/examine(mob/user)
 	..(user)
-	user << "It has [spikes] spike\s remaining."
+	to_chat(user, "It has [spikes] spike\s remaining.")
 
 /obj/item/weapon/gun/launcher/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
@@ -56,23 +56,23 @@
 	desc = "A vicious alien beam weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "darkcannon"
 	item_state = "darkcannon"
-	fire_sound = 'sound/weapons/eLuger.ogg'
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 300
 	projectile_type = /obj/item/projectile/beam/stun/darkmatter
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge
 	battery_lock = 1
-	accuracy = 2
+	accuracy = 30
 
 	firemodes = list(
-		list(mode_name="stunning", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(2), dispersion=null, projectile_type=/obj/item/projectile/beam/stun/darkmatter, charge_cost = 300),
-		list(mode_name="focused", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(2), dispersion=null, projectile_type=/obj/item/projectile/beam/darkmatter, charge_cost = 600),
+		list(mode_name="stunning", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(30), dispersion=null, projectile_type=/obj/item/projectile/beam/stun/darkmatter, charge_cost = 300),
+		list(mode_name="focused", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(30), dispersion=null, projectile_type=/obj/item/projectile/beam/darkmatter, charge_cost = 400),
 		list(mode_name="scatter burst", burst=8, fire_delay=null, move_delay=4, burst_accuracy=list(0, 0, 0, 0, 0, 0, 0, 0), dispersion=list(3, 3, 3, 3, 3, 3, 3, 3, 3), projectile_type=/obj/item/projectile/energy/darkmatter, charge_cost = 300),
 		)
 
 /obj/item/projectile/beam/stun/darkmatter
 	name = "dark matter wave"
 	icon_state = "darkt"
+	fire_sound = 'sound/weapons/eLuger.ogg'
 	nodamage = 1
 	taser_effect = 1
 	agony = 55
@@ -86,6 +86,7 @@
 /obj/item/projectile/beam/darkmatter
 	name = "dark matter bolt"
 	icon_state = "darkb"
+	fire_sound = 'sound/weapons/eLuger.ogg'
 	damage = 35
 	armor_penetration = 35
 	damage_type = BRUTE
@@ -101,6 +102,7 @@
 /obj/item/projectile/energy/darkmatter
 	name = "dark matter pellet"
 	icon_state = "dark_pellet"
+	fire_sound = 'sound/weapons/eLuger.ogg'
 	damage = 20
 	armor_penetration = 35
 	damage_type = BRUTE
@@ -110,18 +112,17 @@
 	embed_chance = 0
 
 /*
- * Vox Darkmatter Cannon
+ * Vox Sonic Cannon
  */
 /obj/item/weapon/gun/energy/sonic
 	name = "soundcannon"
 	desc = "A vicious alien sound weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "noise"
 	item_state = "noise"
-	fire_sound = 'sound/effects/basscannon.ogg'
 	w_class = ITEMSIZE_HUGE
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge
 	battery_lock = 1
-	charge_cost = 600
+	charge_cost = 400
 
 	projectile_type=/obj/item/projectile/sonic/weak
 
@@ -133,6 +134,7 @@
 /obj/item/projectile/sonic
 	name = "sonic pulse"
 	icon_state = "sound"
+	fire_sound = 'sound/effects/basscannon.ogg'
 	damage = 5
 	armor_penetration = 30
 	damage_type = BRUTE

@@ -100,6 +100,7 @@
 	for(var/turf in visRemoved)
 		var/turf/t = turf
 		if(obscuredTurfs[t])
+			LAZYINITLIST(t.obfuscations)
 			if(!t.obfuscations[obfuscation.type])
 				var/image/ob_image = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
 				ob_image.plane = PLANE_FULLSCREEN
@@ -141,6 +142,7 @@
 
 	for(var/turf in obscuredTurfs)
 		var/turf/t = turf
+		LAZYINITLIST(t.obfuscations)
 		if(!t.obfuscations[obfuscation.type])
 			var/image/ob_image = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
 			ob_image.plane = PLANE_FULLSCREEN

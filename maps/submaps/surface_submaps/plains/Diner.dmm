@@ -1,0 +1,1132 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/template_noop,
+/area/submap/Diner)
+"ac" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Diner)
+"ad" = (
+/turf/simulated/wall,
+/area/submap/Diner)
+"ae" = (
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"af" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ag" = (
+/obj/structure/table/standard,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ah" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ai" = (
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/weapon/reagent_containers/glass/beaker,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aj" = (
+/obj/structure/table/standard,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/weapon/material/knife/butch,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ak" = (
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"al" = (
+/obj/machinery/vending/dinnerware,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"am" = (
+/obj/structure/sink/kitchen,
+/turf/simulated/wall,
+/area/submap/Diner)
+"an" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/submap/Diner)
+"ao" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ap" = (
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aq" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ar" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/weapon/material/kitchen/utensil/fork,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"as" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"at" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"au" = (
+/obj/structure/table/standard,
+/obj/item/weapon/book/manual/chef_recipes,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"av" = (
+/obj/structure/table/standard,
+/obj/item/weapon/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aw" = (
+/obj/machinery/cooker/cereal,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ax" = (
+/obj/structure/bed/chair/wood,
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ay" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"az" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aA" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled,
+/area/submap/Diner)
+"aB" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aC" = (
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/item/weapon/material/kitchen/utensil/fork,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aD" = (
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aE" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/item/weapon/stool/padded,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aF" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aG" = (
+/turf/simulated/floor/tiled,
+/area/submap/Diner)
+"aH" = (
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aI" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aJ" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aK" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aL" = (
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Diner)
+"aM" = (
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aN" = (
+/obj/structure/closet/crate/freezer,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aO" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aP" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/table/standard,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aQ" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/flour,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aR" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/coatrack,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aS" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aT" = (
+/obj/structure/closet/crate/freezer,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aU" = (
+/obj/machinery/gibber,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/Diner)
+"aV" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aW" = (
+/obj/machinery/cooker/fryer,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aX" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Diner)
+"aY" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"aZ" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/machinery/cooker/grill,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"ba" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/submap/Diner)
+"bb" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Diner)
+"bc" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"bd" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"be" = (
+/obj/structure/table/standard,
+/obj/machinery/chemical_dispenser/bar_coffee,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"bf" = (
+/obj/item/frame/apc,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bg" = (
+/obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bh" = (
+/obj/structure/bed/chair/office/light,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bi" = (
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bk" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bl" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/cell/high,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bm" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bn" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bo" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"bp" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/structure/windoor_assembly{
+	icon_state = "l_windoor_assembly01";
+	dir = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"bq" = (
+/obj/structure/bookcase,
+/turf/simulated/floor/lino,
+/area/submap/Diner)
+"br" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/machinery/space_heater,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"bs" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+"bt" = (
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+"bu" = (
+/obj/structure/toilet,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+"bv" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"bw" = (
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/diagonal,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
+"bx" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+"by" = (
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+"bz" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+"bA" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Diner)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+an
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+ab
+an
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+an
+ab
+aa
+"}
+(4,1,1) = {"
+aa
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+aa
+"}
+(5,1,1) = {"
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+aa
+"}
+(6,1,1) = {"
+aa
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+aa
+"}
+(7,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+aX
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(8,1,1) = {"
+aa
+ab
+ab
+ab
+ad
+ad
+ae
+ae
+ae
+ad
+ad
+az
+ad
+ae
+ae
+ae
+ad
+ae
+ae
+ae
+ad
+ab
+ab
+ab
+aa
+"}
+(9,1,1) = {"
+aa
+ab
+ab
+ad
+ad
+af
+ax
+aC
+ao
+af
+ad
+aV
+ad
+ax
+aC
+ao
+ax
+aC
+ao
+af
+ad
+ad
+ab
+ab
+aa
+"}
+(10,1,1) = {"
+aa
+ab
+ad
+ad
+aq
+af
+ax
+aD
+ao
+af
+ad
+az
+ad
+ax
+aD
+ao
+ax
+aD
+ao
+af
+br
+ad
+ad
+ab
+aa
+"}
+(11,1,1) = {"
+aa
+ad
+ad
+af
+af
+af
+af
+af
+af
+af
+aR
+af
+aY
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ad
+ad
+aa
+"}
+(12,1,1) = {"
+aa
+ae
+af
+ax
+ar
+ao
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ad
+aa
+"}
+(13,1,1) = {"
+aa
+ae
+af
+ax
+as
+ao
+af
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+af
+af
+bv
+bv
+ae
+aa
+"}
+(14,1,1) = {"
+aa
+ad
+ad
+ad
+ad
+ad
+ad
+aF
+aJ
+aO
+aF
+aF
+aF
+aF
+aF
+aF
+aO
+aJ
+aF
+af
+af
+aD
+aC
+ae
+aa
+"}
+(15,1,1) = {"
+aa
+ad
+ag
+ap
+at
+ap
+az
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ah
+af
+af
+bw
+bw
+ae
+aa
+"}
+(16,1,1) = {"
+aa
+ad
+ah
+ap
+ap
+ap
+az
+af
+aK
+aP
+aS
+aW
+aZ
+bc
+bd
+be
+ah
+aK
+bp
+af
+af
+af
+af
+ad
+aa
+"}
+(17,1,1) = {"
+aa
+ad
+ai
+ap
+au
+ap
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+bx
+ad
+ad
+aa
+"}
+(18,1,1) = {"
+aa
+ad
+aj
+ap
+ah
+ap
+aA
+aG
+aL
+aG
+aG
+aG
+aG
+ba
+ba
+aG
+aG
+aL
+aG
+ad
+bs
+bt
+by
+ad
+aa
+"}
+(19,1,1) = {"
+aa
+ad
+ak
+ap
+av
+ap
+ad
+ad
+ad
+ad
+ad
+ad
+ba
+ba
+ad
+ad
+ad
+bo
+ad
+ad
+bt
+bt
+bz
+ad
+aa
+"}
+(20,1,1) = {"
+aa
+ad
+al
+ap
+ap
+ap
+ad
+aH
+aM
+aQ
+aT
+ad
+bb
+ba
+ad
+bf
+bk
+bi
+bi
+ad
+bu
+bt
+bA
+ad
+aa
+"}
+(21,1,1) = {"
+aa
+ad
+am
+ap
+ap
+ap
+aB
+aH
+aH
+aH
+aH
+ad
+aG
+ba
+ad
+bg
+bl
+bi
+bi
+ad
+ad
+ad
+ad
+ad
+aa
+"}
+(22,1,1) = {"
+aa
+ab
+ad
+ad
+aw
+ap
+ad
+aH
+aH
+aH
+aH
+ad
+aA
+aA
+ad
+bh
+bm
+bi
+bq
+ad
+ad
+ad
+ad
+ab
+aa
+"}
+(23,1,1) = {"
+aa
+ab
+ab
+ad
+ad
+ay
+ad
+aI
+aN
+aH
+aU
+ad
+bb
+aG
+ad
+bi
+bn
+bi
+bq
+ad
+ad
+ad
+ab
+ab
+aa
+"}
+(24,1,1) = {"
+aa
+ab
+ab
+ab
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aA
+aA
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ab
+ab
+ab
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

@@ -184,7 +184,7 @@
 		return
 
 	var/farEnough = 1
-	for(var/A in master_controller.digsite_spawning_turfs)
+	for(var/A in SSxenoarch.digsite_spawning_turfs)
 		var/turf/T = A
 		if(T in range(5, M))
 			farEnough = 0
@@ -192,7 +192,7 @@
 	if(!farEnough)
 		return
 
-	master_controller.digsite_spawning_turfs.Add(M)
+	SSxenoarch.digsite_spawning_turfs.Add(M)
 
 	var/digsite = get_random_digsite_type()
 	var/target_digsite_size = rand(DIGSITESIZE_LOWER, DIGSITESIZE_UPPER)
@@ -240,14 +240,14 @@
 
 		//have a chance for an artifact to spawn here, but not in animal or plant digsites
 		if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
-			master_controller.artifact_spawning_turfs.Add(archeo_turf)
+			SSxenoarch.artifact_spawning_turfs.Add(archeo_turf)
 
 	//create artifact machinery
 	var/num_artifacts_spawn = rand(ARTIFACTSPAWNNUM_LOWER, ARTIFACTSPAWNNUM_UPPER)
-	while(master_controller.artifact_spawning_turfs.len > num_artifacts_spawn)
-		pick_n_take(master_controller.artifact_spawning_turfs)
+	while(SSxenoarch.artifact_spawning_turfs.len > num_artifacts_spawn)
+		pick_n_take(SSxenoarch.artifact_spawning_turfs)
 
-	var/list/artifacts_spawnturf_temp = master_controller.artifact_spawning_turfs.Copy()
+	var/list/artifacts_spawnturf_temp = SSxenoarch.artifact_spawning_turfs.Copy()
 	while(artifacts_spawnturf_temp.len > 0)
 		var/turf/simulated/mineral/artifact_turf = pop(artifacts_spawnturf_temp)
 		artifact_turf.artifact_find = new()

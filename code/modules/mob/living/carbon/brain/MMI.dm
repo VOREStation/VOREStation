@@ -6,6 +6,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = ITEMSIZE_NORMAL
+	can_speak = 1
 	origin_tech = list(TECH_BIO = 3)
 
 	req_access = list(access_robotics)
@@ -145,8 +146,8 @@
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
-	qdel_null(radio)
-	qdel_null(brainmob)
+	QDEL_NULL(radio)
+	QDEL_NULL(brainmob)
 	return ..()
 
 /obj/item/device/mmi/radio_enabled

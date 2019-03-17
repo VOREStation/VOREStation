@@ -14,6 +14,8 @@
 
 /obj/effect/overlay/aiholo/Destroy()
 	drop_prey()
+	for(var/mob/M in contents)
+		M.forceMove(loc)
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
@@ -99,7 +101,7 @@
 	. = ..(user)
 
 	var/msg = "\n"
-	
+
 	//If you need an ooc_notes copy paste, this is NOT the one to use.
 	var/ooc_notes = master.ooc_notes
 	if(ooc_notes)

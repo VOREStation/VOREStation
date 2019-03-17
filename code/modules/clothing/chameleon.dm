@@ -430,6 +430,7 @@
 		P.icon = initial(copy_projectile.icon)
 		P.icon_state = initial(copy_projectile.icon_state)
 		P.pass_flags = initial(copy_projectile.pass_flags)
+		P.fire_sound = initial(copy_projectile.fire_sound)
 		P.hitscan = initial(copy_projectile.hitscan)
 		P.step_delay = initial(copy_projectile.step_delay)
 		P.muzzle_type = initial(copy_projectile.muzzle_type)
@@ -451,12 +452,15 @@
 	var/obj/item/weapon/gun/copy = ..()
 
 	flags_inv = copy.flags_inv
-	fire_sound = copy.fire_sound
+	if(copy.fire_sound)
+		fire_sound = copy.fire_sound
+	else
+		fire_sound = null
 	fire_sound_text = copy.fire_sound_text
 
-	var/obj/item/weapon/gun/energy/E = copy
-	if(istype(E))
-		copy_projectile = E.projectile_type
+	var/obj/item/weapon/gun/G = copy
+	if(istype(G))
+		copy_projectile = G.projectile_type
 		//charge_meter = E.charge_meter //does not work very well with icon_state changes, ATM
 	else
 		copy_projectile = null

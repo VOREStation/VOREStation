@@ -26,7 +26,7 @@
 var/list/flesh_overlay_cache = list()
 
 /turf/simulated/flesh/update_icon(var/update_neighbors)
-	overlays.Cut()
+	cut_overlays()
 
 	if(density)
 		icon = 'icons/turf/stomach_vr.dmi'
@@ -37,7 +37,7 @@ var/list/flesh_overlay_cache = list()
 				var/place_dir = turn(direction, 180)
 				if(!flesh_overlay_cache["flesh_side_[place_dir]"])
 					flesh_overlay_cache["flesh_side_[place_dir]"] = image('icons/turf/stomach_vr.dmi', "flesh_side", dir = place_dir)
-				T.overlays += flesh_overlay_cache["flesh_side_[place_dir]"]
+				add_overlay(flesh_overlay_cache["flesh_side_[place_dir]"])
 
 	if(update_neighbors)
 		for(var/direction in alldirs)

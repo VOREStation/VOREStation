@@ -15,3 +15,4 @@ var/datum/antagonist/thug/thugs
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those with explicit exceptions apply to antagonists.</b>"
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE | ANTAG_RANDSPAWN | ANTAG_VOTABLE
+	can_speak_aooc = FALSE

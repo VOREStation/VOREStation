@@ -2,7 +2,7 @@
 	return  // VOREStation Edit - Can't exploit shell if we never call shell!
 	if (config.use_irc_bot)
 		if (config.use_node_bot)
-			shell("node bridge.js -h \"[config.irc_bot_host]\" -p \"[config.irc_bot_port]\" -c \"[channel]\" -m \"[msg]\"")
+			shell("node bridge.js -h \"[config.irc_bot_host]\" -p \"[config.irc_bot_port]\" -c \"[channel]\" -m \"[escape_shell_arg(msg)]\"")
 		else
 			if (config.irc_bot_host)
 				if(config.irc_bot_export)
@@ -17,10 +17,10 @@
 							nudge_lib = "lib/nudge.so"
 
 						spawn(0)
-							call(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[msg]")
+							call(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[escape_shell_arg(msg)]")
 					else
 						spawn(0)
-							ext_python("ircbot_message.py", "[config.comms_password] [config.irc_bot_host] [channel] [msg]")
+							ext_python("ircbot_message.py", "[config.comms_password] [config.irc_bot_host] [channel] [escape_shell_arg(msg)]")
 	return
 
 /proc/send2mainirc(var/msg)

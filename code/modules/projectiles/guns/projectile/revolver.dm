@@ -8,6 +8,7 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
 	ammo_type = /obj/item/ammo_casing/a357
+	projectile_type = /obj/item/projectile/bullet/pistol/strong
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
@@ -73,7 +74,7 @@
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/gunshot_heavy.ogg'
-	ammo_type = /obj/item/ammo_casing/a45r
+	ammo_type = /obj/item/ammo_casing/a45/rubber
 	max_shells = 7
 
 
@@ -117,7 +118,6 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 		return 1
 
 
-
 // Blade Runner pistol.
 /obj/item/weapon/gun/projectile/revolver/deckard
 	name = "\improper Deckard .38"
@@ -154,6 +154,7 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/cap
+	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
 /obj/item/weapon/gun/projectile/revolver/judge
 	name = "\"The Judge\""
@@ -162,10 +163,10 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 	max_shells = 5
-	fire_sound = 'sound/weapons/shotgun.ogg'
 	recoil = 2 // ow my fucking hand
-	accuracy = -1 // smooth bore + short barrel = shit accuracy
+	accuracy = -15 // smooth bore + short barrel = shit accuracy
 	ammo_type = /obj/item/ammo_casing/a12g
+	projectile_type = /obj/item/projectile/bullet/shotgun
 	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.
 
 /obj/item/weapon/gun/projectile/revolver/lemat
@@ -176,9 +177,9 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
-	fire_sound = 'sound/weapons/gunshot3.ogg'
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
+	projectile_type = /obj/item/projectile/bullet/pistol
 	var/secondary_max_shells = 1
 	var/secondary_caliber = "12g"
 	var/secondary_ammo_type = /obj/item/ammo_casing/a12g
@@ -208,7 +209,6 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 
 		if(caliber && secondary_caliber)
 			caliber = secondary_caliber
-			fire_sound = 'sound/weapons/shotgun.ogg'
 
 		if(ammo_type && secondary_ammo_type)
 			ammo_type = secondary_ammo_type
@@ -225,7 +225,6 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 
 		if(caliber && secondary_caliber)
 			caliber = initial(caliber)
-			fire_sound = initial(fire_sound)
 
 		if(ammo_type && secondary_ammo_type)
 			ammo_type = initial(ammo_type)
@@ -259,3 +258,24 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 		to_chat(user, "\The [src] has a secondary barrel loaded with \a [to_print]")
 	else
 		to_chat(user, "\The [src] has a secondary barrel that is empty.")
+
+
+//Ported from Bay
+/obj/item/weapon/gun/projectile/revolver/webley
+	name = "service revolver"
+	desc = "A rugged top break revolver based on the Webley Mk. VI model, with modern improvements. Uses .44 magnum rounds."
+	icon_state = "webley2"
+	item_state = "webley2"
+	caliber = ".44"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	handle_casings = CYCLE_CASINGS
+	max_shells = 6
+	ammo_type = /obj/item/ammo_casing/a44
+
+/obj/item/weapon/gun/projectile/revolver/webley/auto
+	name = "autorevolver"
+	icon_state = "mosley"
+	desc = "A shiny Mosley Autococker automatic revolver, with black accents. Marketed as the 'Revolver for the Modern Era'. Uses .44 magnum rounds."
+	fire_delay = 5.7 //Autorevolver. Also synced with the animation
+	fire_anim = "mosley_fire"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)

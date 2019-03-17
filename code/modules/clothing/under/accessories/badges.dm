@@ -9,6 +9,7 @@
 	desc = "Security Department detective's badge, made from gold."
 	icon_state = "badge"
 	slot_flags = SLOT_BELT | SLOT_TIE
+	slot = ACCESSORY_SLOT_MEDAL
 
 	var/stored_name
 	var/badge_string = "Corporate Security"
@@ -38,6 +39,23 @@
 /obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
 		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
+		user.do_attack_animation(M)
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+
+// Sheriff Badge (toy)
+/obj/item/clothing/accessory/badge/sheriff
+	name = "sheriff badge"
+	desc = "This town ain't big enough for the two of us, pardner."
+	icon_state = "sheriff"
+	item_state = "goldbadge"
+
+/obj/item/clothing/accessory/badge/sheriff/attack_self(mob/user as mob)
+	user.visible_message("[user] shows their sheriff badge. There's a new sheriff in town!",\
+		"You flash the sheriff badge to everyone around you!")
+
+/obj/item/clothing/accessory/badge/sheriff/attack(mob/living/carbon/human/M, mob/living/user)
+	if(isliving(user))
+		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, the sheriff badge into their face!.</span>","<span class='danger'>You invade [M]'s personal space, thrusting the sheriff badge into their face insistently.</span>")
 		user.do_attack_animation(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 

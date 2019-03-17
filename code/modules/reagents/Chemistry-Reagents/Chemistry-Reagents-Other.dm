@@ -49,6 +49,60 @@
 	id = "crayon_dust_brown"
 	color = "#846F35"
 
+/datum/reagent/marker_ink
+	name = "Marker ink"
+	id = "marker_ink"
+	description = "Intensely coloured ink used in markers."
+	taste_description = "extremely bitter"
+	reagent_state = LIQUID
+	color = "#888888"
+	overdose = 5
+
+/datum/reagent/marker_ink/black
+	name = "Black marker ink"
+	id = "marker_ink_black"
+	color = "#000000"
+
+/datum/reagent/marker_ink/red
+	name = "Red marker ink"
+	id = "marker_ink_red"
+	color = "#FE191A"
+
+/datum/reagent/marker_ink/orange
+	name = "Orange marker ink"
+	id = "marker_ink_orange"
+	color = "#FFBE4F"
+
+/datum/reagent/marker_ink/yellow
+	name = "Yellow marker ink"
+	id = "marker_ink_yellow"
+	color = "#FDFE7D"
+
+/datum/reagent/marker_ink/green
+	name = "Green marker ink"
+	id = "marker_ink_green"
+	color = "#18A31A"
+
+/datum/reagent/marker_ink/blue
+	name = "Blue marker ink"
+	id = "marker_ink_blue"
+	color = "#247CFF"
+
+/datum/reagent/marker_ink/purple
+	name = "Purple marker ink"
+	id = "marker_ink_purple"
+	color = "#CC0099"
+
+/datum/reagent/marker_ink/grey //Mime
+	name = "Grey marker ink"
+	id = "marker_ink_grey"
+	color = "#808080"
+
+/datum/reagent/marker_ink/brown //Rainbow
+	name = "Brown marker ink"
+	id = "marker_ink_brown"
+	color = "#846F35"
+
 /datum/reagent/paint
 	name = "Paint"
 	id = "paint"
@@ -306,7 +360,7 @@
 			S.dirt = 0
 		T.clean_blood()
 
-		for(var/mob/living/simple_animal/slime/M in T)
+		for(var/mob/living/simple_mob/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
@@ -319,6 +373,8 @@
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		if(alien == IS_SLIME)
+			M.adjustToxLoss(rand(5, 10))
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
@@ -335,6 +391,14 @@
 			H.clean_blood(1)
 			return
 	M.clean_blood()
+
+/datum/reagent/space_cleaner/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(6 * removed)
+	else
+		M.adjustToxLoss(3 * removed)
+		if(prob(5))
+			M.vomit()
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"
@@ -418,3 +482,11 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+/datum/reagent/nutriment/biomass
+	name = "Biomass"
+	id = "biomass"
+	description = "A slurry of compounds that contains the basic requirements for life."
+	taste_description = "salty meat"
+	reagent_state = LIQUID
+	color = "#DF9FBF"

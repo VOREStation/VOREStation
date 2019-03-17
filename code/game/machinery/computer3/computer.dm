@@ -45,7 +45,6 @@
 	// Misc & special purpose
 	var/obj/item/part/computer/ai_holder/cradle				= null
 	var/obj/item/part/computer/toybox/toybox				= null
-	var/mob/living/silicon/ai/occupant						= null
 
 
 	// Legacy variables
@@ -70,160 +69,171 @@
 
 	var/obj/item/weapon/cell/battery	= null // uninterruptible power supply aka battery
 
+/obj/machinery/computer3/New(var/L, var/built = 0)
+	..()
+	spawn(2)
+		power_change()
 
-	verb/ResetComputer()
-		set name = "Reset Computer"
-		set category = "Object"
-		set src in view(1)
+	if(show_keyboard)
+		var/kb_state = "kb[rand(1,15)]"
+		kb = image('icons/obj/computer3.dmi',icon_state=kb_state)
+		overlays += kb
 
-		if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
-			usr << "<span class='warning'>You can't do that.</span>"
-			return
+	if(!built)
+		if(!circuitb || !istype(circuitb))
+			circuitb = new(src)
+		if(circuitb.OS)
+			os = circuitb.OS
+			circuitb.OS.computer = src
+		else
+			os = null
 
-		if(!Adjacent(usr))
-			usr << "You can't reach it."
-			return
+		// separated into its own function because blech
+		spawn_parts()
 
-		Reset()
-
-	New(var/L, var/built = 0)
-		..()
-		spawn(2)
-			power_change()
-
-		if(show_keyboard)
-			var/kb_state = "kb[rand(1,15)]"
-			kb = image('icons/obj/computer3.dmi',icon_state=kb_state)
-			overlays += kb
-
-		if(!built)
-			if(!circuitb || !istype(circuitb))
-				circuitb = new(src)
-			if(circuitb.OS)
-				os = circuitb.OS
-				circuitb.OS.computer = src
+		if(default_prog) // Add the default software if applicable
+			var/datum/file/program/P = new default_prog
+			if(hdd)
+				hdd.addfile(P,1)
+				program = P
+				if(!os)
+					os = P
+			else if(floppy)
+				floppy.inserted = new(floppy)
+				floppy.files = floppy.inserted.files
+				floppy.addfile(P)
+				program = P
 			else
-				os = null
+				circuitb.OS = P
+				circuitb.OS.computer = src
+				os = circuitb.OS
+				circuitb.name = "Circuitboard ([P])"
 
-			// separated into its own function because blech
-			spawn_parts()
+		if(hdd)		// Spawn files
+			for(var/typekey in spawn_files)
+				hdd.addfile(new typekey,1)
 
-			if(default_prog) // Add the default software if applicable
-				var/datum/file/program/P = new default_prog
-				if(hdd)
-					hdd.addfile(P,1)
-					program = P
-					if(!os)
-						os = P
-				else if(floppy)
-					floppy.inserted = new(floppy)
-					floppy.files = floppy.inserted.files
-					floppy.addfile(P)
-					program = P
-				else
-					circuitb.OS = P
-					circuitb.OS.computer = src
-					os = circuitb.OS
-					circuitb.name = "Circuitboard ([P])"
+	update_icon()
 
+/obj/machinery/computer3/verb/ResetComputer()
+	set name = "Reset Computer"
+	set category = "Object"
+	set src in view(1)
 
-			if(hdd)		// Spawn files
-				for(var/typekey in spawn_files)
-					hdd.addfile(new typekey,1)
+	if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
+		to_chat(usr, "<span class='warning'>You can't do that.</span>")
+		return
 
-		update_icon()
+	if(!Adjacent(usr))
+		to_chat(usr, "You can't reach it.")
+		return
 
+	Reset()
 
-	proc/update_spawn_files()
-		for(var/typekey in spawn_files)
-			hdd.addfile(new typekey,1)
+/obj/machinery/computer3/proc/update_spawn_files()
+	for(var/typekey in spawn_files)
+		hdd.addfile(new typekey,1)
 
-	proc/spawn_parts()
-		for(var/typekey in spawn_parts)
-
-			if(ispath(typekey,/obj/item/part/computer/storage/removable))
-				if(floppy) continue
-				floppy = new typekey(src)
-				floppy.init(src)
+/obj/machinery/computer3/proc/spawn_parts()
+	for(var/typekey in spawn_parts)
+		if(ispath(typekey,/obj/item/part/computer/storage/removable))
+			if(floppy)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/storage/hdd))
-				if(hdd) continue
-				hdd = new typekey(src)
-				hdd.init(src)
+			floppy = new typekey(src)
+			floppy.init(src)
+			continue
+
+		if(ispath(typekey,/obj/item/part/computer/storage/hdd))
+			if(hdd)
 				continue
+			hdd = new typekey(src)
+			hdd.init(src)
+			continue
 
-			if(ispath(typekey,/obj/item/part/computer/networking/cameras))
-				if(camnet) continue
-				camnet = new typekey(src)
-				camnet.init(src)
+		if(ispath(typekey,/obj/item/part/computer/networking/cameras))
+			if(camnet)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/networking/radio))
-				if(radio) continue
-				radio = new typekey(src)
-				radio.init(src)
+			camnet = new typekey(src)
+			camnet.init(src)
+			continue
+
+		if(ispath(typekey,/obj/item/part/computer/networking/radio))
+			if(radio)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/networking))
-				if(net) continue
-				net = new typekey(src)
-				net.init(src)
+			radio = new typekey(src)
+			radio.init(src)
+			continue
+
+		if(ispath(typekey,/obj/item/part/computer/networking))
+			if(net)
 				continue
+			net = new typekey(src)
+			net.init(src)
+			continue
 
-			if(ispath(typekey,/obj/item/part/computer/cardslot))
-				if(cardslot) continue
-				cardslot = new typekey(src)
-				cardslot.init(src)
+		if(ispath(typekey,/obj/item/part/computer/cardslot))
+			if(cardslot)
 				continue
-			if(ispath(typekey,/obj/item/part/computer/ai_holder))
-				if(cradle) continue
-				cradle = new typekey(src)
-				cradle.init(src)
-			if(ispath(typekey,/obj/item/part/computer/toybox))
-				if(toybox) continue
-				toybox = new typekey(src)
-				toybox.init(src)
+			cardslot = new typekey(src)
+			cardslot.init(src)
+			continue
+
+		if(ispath(typekey,/obj/item/part/computer/ai_holder))
+			if(cradle)
 				continue
+			cradle = new typekey(src)
+			cradle.init(src)
+			continue
 
-			if(ispath(typekey,/obj/item/weapon/cell))
-				if(battery) continue
-				battery = new typekey(src)
+		if(ispath(typekey,/obj/item/part/computer/toybox))
+			if(toybox)
 				continue
+			toybox = new typekey(src)
+			toybox.init(src)
+			continue
 
-	proc/Reset(var/error = 0)
-		for(var/mob/living/M in range(1))
-			M << browse(null,"window=\ref[src]")
-		if(program)
-			program.Reset()
-			program		= null
-		req_access	= os.req_access
-		update_icon()
+		if(ispath(typekey,/obj/item/weapon/cell))
+			if(battery)
+				continue
+			battery = new typekey(src)
+			continue
 
-		// todo does this do enough
+/obj/machinery/computer3/proc/Reset(var/error = 0)
+	for(var/mob/living/M in range(1))
+		M << browse(null,"window=\ref[src]")
+	if(program)
+		program.Reset()
+		program		= null
+	req_access	= os.req_access
+	update_icon()
 
-	emp_act(severity)
-		if(prob(20/severity)) set_broken()
-		..()
+	// todo does this do enough
+
+/obj/machinery/computer3/emp_act(severity)
+	if(prob(20/severity)) set_broken()
+	..()
 
 
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
+/obj/machinery/computer3/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if (prob(25))
 				qdel(src)
 				return
-			if(2.0)
-				if (prob(25))
-					qdel(src)
-					return
-				if (prob(50))
-					for(var/x in verbs)
-						verbs -= x
-					set_broken()
-			if(3.0)
-				if (prob(25))
-					for(var/x in verbs)
-						verbs -= x
-					set_broken()
-			else
-		return
+			if (prob(50))
+				for(var/x in verbs)
+					verbs -= x
+				set_broken()
+		if(3.0)
+			if (prob(25))
+				for(var/x in verbs)
+					verbs -= x
+				set_broken()
+		else
+	return
 
 	/*
 		Computers have the capability to use a battery backup.
@@ -244,201 +254,199 @@
 
 		Make sure to use use_power() a bunch in peripherals code
 	*/
-	auto_use_power()
-		if(!powered(power_channel))
-			if(battery && battery.charge > 0)
-				if(use_power == 1)
-					battery.use(idle_power_usage)
-				else
-					battery.use(active_power_usage)
-				return 1
-			return 0
-		if(src.use_power == 1)
-			use_power(idle_power_usage,power_channel)
-		else if(src.use_power >= 2)
-			use_power(active_power_usage,power_channel)
-		return 1
-
-	use_power(var/amount, var/chan = -1)
-		if(chan == -1)
-			chan = power_channel
-
-		var/area/A = get_area(loc)
-		if(istype(A) && A.powered(chan))
-			A.use_power(amount, chan)
-		else if(battery && battery.charge > 0)
-			battery.use(amount)
-
-	power_change()
-		if( !powered(power_channel) && (!battery || battery.charge <= 0) )
-			stat |= NOPOWER
-		else
-			stat &= ~NOPOWER
-
-	process()
-		auto_use_power()
-		power_change()
-		update_icon()
-		if(stat & (NOPOWER|BROKEN))
-			return
-
-		if(program)
-			program.process()
-			return
-
-		if(os)
-			program = os
-			os.process()
-			return
-
-
-	proc/set_broken()
-		icon_state = "computer_b"
-		stat |= BROKEN
-		if(program)
-			program.error = BUSTED_ASS_COMPUTER
-		if(os)
-			os.error = BUSTED_ASS_COMPUTER
-
-	attackby(I as obj, mob/user as mob)
-		if(istype(I, /obj/item/weapon/screwdriver) && allow_disassemble)
-			disassemble(user)
-			return
-
-		/*
-			+++++++++++
-			|IMPORTANT| If you add a peripheral, put it in this list
-			+++++++++++ --------------------------------------------
-		*/
-		var/list/peripherals = list(hdd,floppy,radio,net,cardslot,cradle) //camnet, toybox removed
-
-		var/list/p_list = list()
-		for(var/obj/item/part/computer/C in peripherals)
-			if(!isnull(C) && C.allow_attackby(I,user))
-				p_list += C
-		if(p_list.len)
-			var/obj/item/part/computer/P = null
-			if(p_list.len == 1)
-				P = p_list[1]
+/obj/machinery/computer3/auto_use_power()
+	if(!powered(power_channel))
+		if(battery && battery.charge > 0)
+			if(use_power == 1)
+				battery.use(idle_power_usage)
 			else
-				P = input(user,"Which component?") as null|anything in p_list
+				battery.use(active_power_usage)
+			return 1
+		return 0
+	if(src.use_power == 1)
+		use_power(idle_power_usage,power_channel)
+	else if(src.use_power >= 2)
+		use_power(active_power_usage,power_channel)
+	return 1
 
-			if(P)
-				P.attackby(I,user)
-				return
-		..()
+/obj/machinery/computer3/use_power(var/amount, var/chan = -1)
+	if(chan == -1)
+		chan = power_channel
 
-	attack_hand(var/mob/user as mob)
-		if(stat)
-			Reset()
-			return
+	var/area/A = get_area(loc)
+	if(istype(A) && A.powered(chan))
+		A.use_power(amount, chan)
+	else if(battery && battery.charge > 0)
+		battery.use(amount)
 
-		// I don't want to deal with computers that you can't walk up to and use
-		// there is still cardauth anyway
-		//if(!allowed(user))
-		//	return
+/obj/machinery/computer3/power_change()
+	if( !powered(power_channel) && (!battery || battery.charge <= 0) )
+		stat |= NOPOWER
+	else
+		stat &= ~NOPOWER
 
-		if(program)
-			if(program.computer != src) // floppy disk may have been removed, etc
-				Reset()
-				attack_hand(user)
-				return
-			if(program.error)
-				Crash(program.error)
-				return
-			user.set_machine(src)
-			program.attack_hand(user) // will normally translate to program/interact()
-			return
-
-		if(os)
-			program = os
-			user.set_machine(src)
-			os.attack_hand(user)
-			return
-
-		user << "\The [src] won't boot!"
-
-	attack_ai(var/mob/user as mob) // copypasta because server racks lose attack_hand()
-		if(stat)
-			Reset()
-			return
-
-		if(program)
-			if(program.computer != src) // floppy disk may have been removed, etc
-				Reset()
-				attack_ai(user)
-				return
-			if(program.error)
-				Crash(program.error)
-				return
-			user.set_machine(src)
-			program.attack_hand(user) // will normally translate to program/interact()
-			return
-
-		if(os)
-			program = os
-			user.set_machine(src)
-			os.attack_hand(user)
-			return
-
-		user << "\The [src] won't boot!"
-
-	interact()
-		if(stat)
-			Reset()
-			return
-		if(!allowed(usr) || !usr in view(1))
-			usr.unset_machine()
-			return
-
-		if(program)
-			program.interact()
-			return
-
-		if(os)
-			program = os
-			os.interact()
-			return
-
+/obj/machinery/computer3/process()
+	auto_use_power()
+	power_change()
 	update_icon()
-		if(legacy_icon)
+	if(stat & (NOPOWER|BROKEN))
+		return
+
+	if(program)
+		program.process()
+		return
+
+	if(os)
+		program = os
+		os.process()
+		return
+
+/obj/machinery/computer3/proc/set_broken()
+	icon_state = "computer_b"
+	stat |= BROKEN
+	if(program)
+		program.error = BUSTED_ASS_COMPUTER
+	if(os)
+		os.error = BUSTED_ASS_COMPUTER
+
+/obj/machinery/computer3/attackby(obj/item/I as obj, mob/user as mob)
+	if(I.is_screwdriver() && allow_disassemble)
+		disassemble(user)
+		return
+
+	/*
+		+++++++++++
+		|IMPORTANT| If you add a peripheral, put it in this list
+		+++++++++++ --------------------------------------------
+	*/
+
+	var/list/p_list = list()
+	for(var/obj/item/part/computer/C in src)
+		if(!isnull(C) && C.allow_attackby(I,user))
+			p_list += C
+	if(p_list.len)
+		var/obj/item/part/computer/P = null
+		if(p_list.len == 1)
+			P = p_list[1]
+		else
+			P = input(user,"Which component?") as null|anything in p_list
+
+		if(P)
+			P.attackby(I,user)
+			return
+	..()
+
+/obj/machinery/computer3/attack_hand(var/mob/user as mob)
+	if(stat)
+		Reset()
+		return
+
+	// I don't want to deal with computers that you can't walk up to and use
+	// there is still cardauth anyway
+	//if(!allowed(user))
+	//	return
+
+	if(program)
+		if(program.computer != src) // floppy disk may have been removed, etc
+			Reset()
+			attack_hand(user)
+			return
+		if(program.error)
+			Crash(program.error)
+			return
+		user.set_machine(src)
+		program.attack_hand(user) // will normally translate to program/interact()
+		return
+
+	if(os)
+		program = os
+		user.set_machine(src)
+		os.attack_hand(user)
+		return
+
+	to_chat(user, "\The [src] won't boot!")
+
+/obj/machinery/computer3/attack_ai(var/mob/user as mob) // copypasta because server racks lose attack_hand()
+	if(stat)
+		Reset()
+		return
+
+	if(program)
+		if(program.computer != src) // floppy disk may have been removed, etc
+			Reset()
+			attack_ai(user)
+			return
+		if(program.error)
+			Crash(program.error)
+			return
+		user.set_machine(src)
+		program.attack_hand(user) // will normally translate to program/interact()
+		return
+
+	if(os)
+		program = os
+		user.set_machine(src)
+		os.attack_hand(user)
+		return
+
+	to_chat(user, "\The [src] won't boot!")
+
+/obj/machinery/computer3/interact()
+	if(stat)
+		Reset()
+		return
+	if(!allowed(usr) || !usr in view(1))
+		usr.unset_machine()
+		return
+
+	if(program)
+		program.interact()
+		return
+
+	if(os)
+		program = os
+		os.interact()
+		return
+
+/obj/machinery/computer3/update_icon()
+	if(legacy_icon)
+		icon_state = initial(icon_state)
+		// Broken
+		if(stat & BROKEN)
+			icon_state += "b"
+
+		// Powered
+		else if(stat & NOPOWER)
 			icon_state = initial(icon_state)
-			// Broken
-			if(stat & BROKEN)
-				icon_state += "b"
+			icon_state += "0"
+		return
+	if(stat)
+		overlays.Cut()
+		return
+	if(program)
+		overlays = list(program.overlay)
+		if(show_keyboard)
+			overlays += kb
+		name = "[program.name] [initial(name)]"
+	else if(os)
+		overlays = list(os.overlay)
+		if(show_keyboard)
+			overlays += kb
+		name = initial(name)
+	else
+		var/global/image/generic = image('icons/obj/computer3.dmi',icon_state="osod") // orange screen of death
+		overlays = list(generic)
+		if(show_keyboard)
+			overlays += kb
+		name = initial(name) + " (orange screen of death)"
 
-			// Powered
-			else if(stat & NOPOWER)
-				icon_state = initial(icon_state)
-				icon_state += "0"
-			return
-		if(stat)
-			overlays.Cut()
-			return
-		if(program)
-			overlays = list(program.overlay)
-			if(show_keyboard)
-				overlays += kb
-			name = "[program.name] [initial(name)]"
-		else if(os)
-			overlays = list(os.overlay)
-			if(show_keyboard)
-				overlays += kb
-			name = initial(name)
-		else
-			var/global/image/generic = image('icons/obj/computer3.dmi',icon_state="osod") // orange screen of death
-			overlays = list(generic)
-			if(show_keyboard)
-				overlays += kb
-			name = initial(name) + " (orange screen of death)"
-
-	//Returns percentage of battery charge remaining. Returns -1 if no battery is installed.
-	proc/check_battery_status()
-		if (battery)
-			var/obj/item/weapon/cell/B = battery
-			return round(B.charge / (B.maxcharge / 100))
-		else
-			return -1
+//Returns percentage of battery charge remaining. Returns -1 if no battery is installed.
+/obj/machinery/computer3/proc/check_battery_status()
+	if (battery)
+		var/obj/item/weapon/cell/B = battery
+		return round(B.charge / (B.maxcharge / 100))
+	else
+		return -1
 
 
 

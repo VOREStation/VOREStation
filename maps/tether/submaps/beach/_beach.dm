@@ -13,7 +13,7 @@
 
 //The other destination is landed on the surface
 /datum/shuttle_destination/excursion/beach
-	name = "Coastal Area"
+	name = "Remote Coastal Area"
 	my_area = /area/shuttle/excursion/away_beach
 	preferred_interim_area = /area/shuttle/excursion/sand_moving
 	skip_me = TRUE
@@ -74,27 +74,28 @@
 //In our case, it initializes the ores and random submaps in the beach's cave, then deletes itself
 /obj/away_mission_init/beachcave/initialize()
 	// Cave submaps are first.
-	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
+	/*seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
 	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
 
 	// Now for the tunnels.
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/beachmine(null, 1, 1, z, 64, 64)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_BEACH_CAVE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_LEVEL_BEACH_CAVE, 64, 64)*/
 
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
 
 // Two mob spawners that are placed on the map that spawn some mobs!
 // They keep track of their mob, and when it's dead, spawn another (only if nobody is looking)
+// Note that if your map has step teleports, mobs may wander through them accidentally and not know how to get back
 /obj/tether_away_spawner/beach_outside
 	name = "Beach Outside Spawner" //Just a name
 	faction = "beach_out" //Sets all the mobs to this faction so they don't infight
 	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
 	prob_spawn = 50 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
-	guard = 40 //They'll stay within this range (not defining disables)
+	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/snake
+		/mob/living/simple_mob/vore/giant_snake
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly
@@ -105,7 +106,7 @@
 	prob_fall = 25
 	guard = 40
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/fennec
+		/mob/living/simple_mob/fennec
 	)
 
 /obj/tether_away_spawner/beach_cave
@@ -113,12 +114,14 @@
 	faction = "beach_cave"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 10
+	prob_fall = 40
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/deathclaw,
-		/mob/living/simple_animal/hostile/frog,
-		/mob/living/simple_animal/hostile/hivebot/range/ion
+		/mob/living/simple_mob/vore/frog = 3, //Frogs are 3x more likely to spawn than,
+		/mob/living/simple_mob/hostile/deathclaw = 1, //these deathclaws are, with these values,
+		/mob/living/simple_mob/animal/giant_spider = 3,
+		/mob/living/simple_mob/vore/giant_snake = 1,
+		/mob/living/simple_mob/animal/giant_spider/ion = 2
 	)
 
 // These are step-teleporters, for map edge transitions
@@ -145,7 +148,7 @@
 
 /turf/simulated/floor/beach/coastwater/New()
 	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1))
 
 // -- Areas -- //
 
@@ -155,7 +158,7 @@
 	dynamic_lighting = 0
 
 /area/tether_away/beach
-	name = "\improper Desert Planet Beach"
+	name = "\improper Away Mission - Virgo 4 Beach"
 	icon_state = "away"
 	base_turf = /turf/simulated/floor/beach/sand //This is what the ground turns into if destroyed/bombed/etc
 	//Not going to do sunlight simulations here like virgo3b
@@ -186,6 +189,7 @@
 /area/tether_away/cave
 	flags = RAD_SHIELDED
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/cave
 
 /area/tether_away/cave/explored/normal
 	name = "\improper Away Mission - Virgo 4 Cave (E)"

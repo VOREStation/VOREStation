@@ -11,19 +11,19 @@
 	blobpwrdisplay.name = "blob power"
 	blobpwrdisplay.icon_state = "block"
 	blobpwrdisplay.screen_loc = ui_health
-	blobpwrdisplay.layer = 20
+	blobpwrdisplay.layer = HUD_LAYER
 
 	blobhealthdisplay = new /obj/screen()
 	blobhealthdisplay.name = "blob health"
 	blobhealthdisplay.icon_state = "block"
 	blobhealthdisplay.screen_loc = ui_internal
-	blobhealthdisplay.layer = 20
+	blobhealthdisplay.layer = HUD_LAYER
 
 	mymob.client.screen = list()
 
 	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
 	mymob.client.screen += mymob.client.void
-
+/*
 /datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
 	src.adding = list()
@@ -36,7 +36,7 @@
 	using.icon = ui_style
 	using.icon_state = "intent_"+mymob.a_intent
 	using.screen_loc = ui_zonesel
-	using.layer = 20
+	using.layer = HUD_LAYER
 	src.adding += using
 	action_intent = using
 
@@ -50,7 +50,7 @@
 	using.name = "help"
 	using.icon = ico
 	using.screen_loc = ui_zonesel
-	using.layer = 21
+	using.layer = HUD_LAYER+0.01
 	src.adding += using
 	help_intent = using
 
@@ -61,7 +61,7 @@
 	using.name = "disarm"
 	using.icon = ico
 	using.screen_loc = ui_zonesel
-	using.layer = 21
+	using.layer = HUD_LAYER+0.01
 	src.adding += using
 	disarm_intent = using
 
@@ -72,7 +72,7 @@
 	using.name = "grab"
 	using.icon = ico
 	using.screen_loc = ui_zonesel
-	using.layer = 21
+	using.layer = HUD_LAYER+0.01
 	src.adding += using
 	grab_intent = using
 
@@ -83,7 +83,7 @@
 	using.name = I_HURT
 	using.icon = ico
 	using.screen_loc = ui_zonesel
-	using.layer = 21
+	using.layer = HUD_LAYER+0.01
 	src.adding += using
 	hurt_intent = using
 
@@ -92,47 +92,45 @@
 	mymob.client.screen += mymob.client.void
 
 	return
+*/
 
-/mob/living/simple_animal/construct/instantiate_hud(var/datum/hud/HUD)
-	HUD.construct_hud()
-
+//	HUD.construct_hud() //Archaic.
+/*
 /datum/hud/proc/construct_hud()
 	var/constructtype
 
-	if(istype(mymob,/mob/living/simple_animal/construct/armoured) || istype(mymob,/mob/living/simple_animal/construct/behemoth))
+	if(istype(mymob,/mob/living/simple_mob/construct/armoured) || istype(mymob,/mob/living/simple_mob/construct/behemoth))
 		constructtype = "juggernaut"
-	else if(istype(mymob,/mob/living/simple_animal/construct/builder))
+	else if(istype(mymob,/mob/living/simple_mob/construct/builder))
 		constructtype = "artificer"
-	else if(istype(mymob,/mob/living/simple_animal/construct/wraith))
+	else if(istype(mymob,/mob/living/simple_mob/construct/wraith))
 		constructtype = "wraith"
-	else if(istype(mymob,/mob/living/simple_animal/construct/harvester))
+	else if(istype(mymob,/mob/living/simple_mob/construct/harvester))
 		constructtype = "harvester"
 
 	if(constructtype)
-		mymob.fire = new /obj/screen()
+
 		mymob.fire.icon = 'icons/mob/screen1_construct.dmi'
 		mymob.fire.icon_state = "fire0"
 		mymob.fire.name = "fire"
 		mymob.fire.screen_loc = ui_construct_fire
 
-		mymob.healths = new /obj/screen()
 		mymob.healths.icon = 'icons/mob/screen1_construct.dmi'
 		mymob.healths.icon_state = "[constructtype]_health0"
 		mymob.healths.name = "health"
 		mymob.healths.screen_loc = ui_construct_health
 
-		mymob.pullin = new /obj/screen()
 		mymob.pullin.icon = 'icons/mob/screen1_construct.dmi'
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
 		mymob.pullin.screen_loc = ui_construct_pull
 
-		mymob.zone_sel = new /obj/screen/zone_sel()
+
 		mymob.zone_sel.icon = 'icons/mob/screen1_construct.dmi'
 		mymob.zone_sel.overlays.len = 0
 		mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 
-		mymob.purged = new /obj/screen()
+
 		mymob.purged.icon = 'icons/mob/screen1_construct.dmi'
 		mymob.purged.icon_state = "purge0"
 		mymob.purged.name = "purged"
@@ -142,3 +140,4 @@
 
 	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged)
 	mymob.client.screen += mymob.client.void
+*/

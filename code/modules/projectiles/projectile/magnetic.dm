@@ -2,6 +2,7 @@
 /obj/item/projectile/bullet/magnetic
 	name = "rod"
 	icon_state = "rod"
+	fire_sound = 'sound/weapons/railgun.ogg'
 	damage = 65
 	stun = 1
 	weaken = 1
@@ -17,6 +18,7 @@
 /obj/item/projectile/bullet/magnetic/flechette
 	name = "flechette"
 	icon_state = "flechette"
+	fire_sound = 'sound/weapons/rapidslice.ogg'
 	damage = 20
 	armor_penetration = 100
 

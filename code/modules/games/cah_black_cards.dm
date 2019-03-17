@@ -30,7 +30,7 @@
 	"_____ used ____ to create their newest invention, _____!",
 	"Scientists are not allowed to make Gatling _____.",
 	"It's not a party until the ____ arrive.",
-	"No matter how many Tajara you have, _____ is never acceptable.",
+	"No matter how many Tajaran you have, _____ is never acceptable.",
 	"No, the AI's first law is NOT to serve _____.",
 	"The robots are not disposal bins for your _____.",
 	"You can never have too many _____ on shift.",

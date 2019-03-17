@@ -56,13 +56,15 @@
 
 /obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"
-	New()
-		if(prob(50))
-			icon_state = "stickyweb2"
+
+/obj/effect/spider/stickyweb/initialize()
+	if(prob(50))
+		icon_state = "stickyweb2"
+	return ..()
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
-	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
+	if(istype(mover, /mob/living/simple_mob/animal/giant_spider))
 		return 1
 	else if(istype(mover, /mob/living))
 		if(prob(50))
@@ -80,10 +82,12 @@
 	var/spiders_min = 6
 	var/spiders_max = 24
 	var/spider_type = /obj/effect/spider/spiderling
-	New()
-		pixel_x = rand(3,-3)
-		pixel_y = rand(3,-3)
-		processing_objects |= src
+
+/obj/effect/spider/eggcluster/initialize()
+	pixel_x = rand(3,-3)
+	pixel_y = rand(3,-3)
+	processing_objects |= src
+	return ..()
 
 /obj/effect/spider/eggcluster/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
@@ -123,16 +127,16 @@
 	desc = "It never stays still for long."
 	icon_state = "spiderling"
 	anchored = 0
-	layer = 2.7
+	layer = HIDING_LAYER
 	health = 3
 	var/last_itch = 0
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
-	var/list/grow_as = list(/mob/living/simple_animal/hostile/giant_spider, /mob/living/simple_animal/hostile/giant_spider/nurse, /mob/living/simple_animal/hostile/giant_spider/hunter)
+	var/list/grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/nurse, /mob/living/simple_mob/animal/giant_spider/hunter)
 
 /obj/effect/spider/spiderling/frost
-	grow_as = list(/mob/living/simple_animal/hostile/giant_spider/frost)
+	grow_as = list(/mob/living/simple_mob/animal/giant_spider/frost)
 
 /obj/effect/spider/spiderling/New(var/location, var/atom/parent)
 	pixel_x = rand(6,-6)
@@ -221,7 +225,7 @@
 		skitter()
 
 	else if(isorgan(loc))
-		if(!amount_grown) amount_grown = 1
+		if(amount_grown < 0) amount_grown = 1
 		var/obj/item/organ/external/O = loc
 		if(!O.owner || O.owner.stat == DEAD || amount_grown > 80)
 			O.implants -= src
@@ -237,7 +241,7 @@
 	else if(prob(1))
 		src.visible_message("<span class='notice'>\The [src] skitters.</span>")
 
-	if(amount_grown)
+	if(amount_grown >= 0)
 		amount_grown += rand(0,2)
 
 /obj/effect/spider/spiderling/proc/skitter()

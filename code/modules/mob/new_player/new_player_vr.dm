@@ -49,5 +49,6 @@
 
 	//Final popup notice
 	if (!pass)
-		alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
+		spawn()
+			alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
 	return pass

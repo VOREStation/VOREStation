@@ -57,6 +57,23 @@
 	name = "\improper North Stairwell Third Floor"
 	icon_state = "dk_yellow"
 
+/area/tether/surfacebase/public_garden_one
+	name = "\improper Public Garden First Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden_two
+	name = "\improper Public Garden Second Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden_three
+	name = "\improper Public Garden Third Floor"
+	icon_state = "green"
+/area/tether/surfacebase/public_garden
+	name = "\improper Public Garden"
+	icon_state = "purple"
+/area/tether/surfacebase/bar_backroom
+	name = "\improper Bar Backroom"
+	icon_state = "red"
+	sound_env = SMALL_SOFTFLOOR
+
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
 /area/tether/surfacebase/east_stairs_two
@@ -102,6 +119,14 @@
 /area/tether/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
 
+// Mining Underdark
+/area/mine/unexplored/underdark
+	name = "\improper Mining Underdark"
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+/area/mine/explored/underdark
+	name = "\improper Mining Underdark"
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+
 // Mining outpost areas
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
@@ -144,7 +169,7 @@
 /area/tether/surfacebase/security/common
 	name = "\improper Surface Security Room"
 /area/tether/surfacebase/security/armory
-	name = "\improper Surface Armoary"
+	name = "\improper Surface Armory"
 /area/tether/surfacebase/security/checkpoint
 	name = "\improper Surface Checkpoint Office"
 /area/tether/surfacebase/security/hallway
@@ -208,6 +233,8 @@
 	name = "\improper Solars maintenanceance"
 /area/maintenance/lower/mining_eva
 	name = "\improper Mining EVA Maintenance"
+/area/maintenance/lower/public_garden_maintenence
+	name = "\improper Public Garden Maintenence"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
@@ -335,6 +362,9 @@
 /area/security/hallway
 	name = "\improper Security Hallway"
 	icon_state = "security"
+/area/security/hallwayaux
+	name = "\improper Security Armory Hallway"
+	icon_state = "security"
 /area/security/forensics
 	name = "\improper Forensics Lab"
 	icon_state = "security"
@@ -347,15 +377,21 @@
 /area/security/brig/bathroom
 	name = "\improper Brig Bathroom"
 	icon_state = "security"
-/area/security/armory/green
-	name = "\improper Armory - Green"
-	icon_state = "security_equip_storage"
 /area/security/armory/blue
 	name = "\improper Armory - Blue"
 	icon_state = "armory"
 /area/security/armory/red
 	name = "\improper Armory - Red"
 	icon_state = "red2"
+/area/security/observation
+	name = "\improper Brig Observation"
+	icon_state = "riot_control"
+/area/security/eva
+	name = "\improper Security EVA"
+	icon_state = "security_equip_storage"
+/area/security/recstorage
+	name = "\improper Brig Recreation Storage"
+	icon_state = "brig"
 
 /area/engineering/atmos/backup
 	name = "\improper Backup Atmospherics"
@@ -399,6 +435,14 @@
 	name = "\improper Micro Maintenance"
 /area/maintenance/station/virology
 	name = "\improper Virology Maintenance"
+/area/maintenance/station/ai
+	name = "\improper AI Maintenance"
+	sound_env = SEWER_PIPE
+
+/area/tether/station/public_meeting_room
+	name = "Public Meeting Room"
+	icon_state = "blue"
+	sound_env = SMALL_SOFTFLOOR
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
@@ -415,6 +459,12 @@
 
 /area/tether/station/explorer_prep
 	name = "\improper Explorer Prep Room"
+
+/area/tether/station/explorer_meeting
+	name = "\improper Explorer Meeting Room"
+
+/area/tether/station/pathfinder_office
+	name = "\improper Pathfinder's Office"
 
 /area/shuttle/excursion
 	name = "\improper Excursion Shuttle"

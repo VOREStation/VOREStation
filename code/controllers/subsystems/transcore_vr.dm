@@ -1,3 +1,6 @@
+#define SSTRANSCORE_IMPLANTS 1
+#define SSTRANSCORE_BACKUPS 2
+
 ////////////////////////////////
 //// Mind/body data storage system
 //// for the resleeving tech
@@ -6,39 +9,108 @@
 SUBSYSTEM_DEF(transcore)
 	name = "Transcore"
 	priority = 20
-	wait = 1 MINUTE
-	flags = SS_BACKGROUND|SS_NO_TICK_CHECK|SS_NO_INIT
+	wait = 3 MINUTES
+	flags = SS_BACKGROUND|SS_NO_INIT
 	runlevels = RUNLEVEL_GAME
 
 	// THINGS
 	var/overdue_time = 15 MINUTES
 	var/core_dumped = FALSE			// Core has been dumped!  Also set can_fire = 0 when you set this.
 
+	var/current_step = SSTRANSCORE_IMPLANTS
+
+	var/cost_backups = 0
+	var/cost_implants = 0
+
 	var/datum/transhuman/mind_record/list/backed_up = list()	// All known mind records, indexed by MR.mindname/mind.name
 	var/datum/transhuman/mind_record/list/has_left = list()		// Why do we even have this?
 	var/datum/transhuman/body_record/list/body_scans = list()	// All known body records, indexed by BR.mydna.name
+	var/obj/item/weapon/implant/backup/list/implants = list()	// All OPERATING implants that are being ticked
 
-/datum/controller/subsystem/transcore/fire()
-	for(var/N in backed_up)
-		var/datum/transhuman/mind_record/curr_MR = backed_up[N]
-		if(!curr_MR)
-			log_debug("Tried to process [N] in transcore w/o a record!")
+	var/list/current_run = list()
+
+/datum/controller/subsystem/transcore/fire(resumed = 0)
+	var/timer = TICK_USAGE
+
+	INTERNAL_PROCESS_STEP(SSTRANSCORE_IMPLANTS,TRUE,process_implants,cost_implants,SSTRANSCORE_BACKUPS)
+	INTERNAL_PROCESS_STEP(SSTRANSCORE_BACKUPS,FALSE,process_backups,cost_backups,SSTRANSCORE_IMPLANTS)
+
+/datum/controller/subsystem/transcore/proc/process_implants(resumed = 0)
+	if (!resumed)
+		src.current_run = implants.Copy()
+
+	var/list/current_run = src.current_run
+	while(current_run.len)
+		var/obj/item/weapon/implant/backup/imp = current_run[current_run.len]
+		current_run.len--
+
+		//Remove if not in a human anymore.
+		if(!imp || !isorgan(imp.loc))
+			implants -= imp
 			continue
+
+		//We're in an organ, at least.
+		var/obj/item/organ/external/EO = imp.loc
+		var/mob/living/carbon/human/H = EO.owner
+		if(!H)
+			implants -= imp
+			continue
+
+		//In a human	
+		BITSET(H.hud_updateflag, BACKUP_HUD)
+
+		if(H == imp.imp_in && H.mind && H.stat < DEAD)
+			SStranscore.m_backup(H.mind,H.nif)
+			persist_nif_data(H)
+
+		if(MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/transcore/proc/process_backups(resumed = 0)
+	if (!resumed)
+		src.current_run = backed_up.Copy()
+
+	var/list/current_run = src.current_run
+	while(current_run.len)
+		var/name = current_run[current_run.len]
+		var/datum/transhuman/mind_record/curr_MR = current_run[name]
+		current_run -= name
+
+		//Invalid record
+		if(!curr_MR)
+			log_debug("Tried to process [name] in transcore w/o a record!")
+			backed_up -= name
+			continue
+
+		//Onetimes do not get processing or notifications
 		if(curr_MR.one_time)
 			continue
+
+		//Timing check
 		var/since_backup = world.time - curr_MR.last_update
 		if(since_backup < overdue_time)
 			curr_MR.dead_state = MR_NORMAL
 		else
 			if(curr_MR.dead_state != MR_DEAD) //First time switching to dead
-				notify(N)
+				notify(name)
 			curr_MR.dead_state = MR_DEAD
 
-/datum/controller/subsystem/transcore/stat_entry(msg)
+		if(MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/transcore/stat_entry()
+	var/msg = list()
 	if(core_dumped)
 		msg += "CORE DUMPED | "
-	msg += "MR: [backed_up.len] | BR: [body_scans.len]"
-	..(msg)
+	msg += "$:{"
+	msg += "IM:[round(cost_implants,1)]|"
+	msg += "BK:[round(cost_backups,1)]"
+	msg += "} "
+	msg += "#:{"
+	msg += "IM:[implants.len]|"
+	msg += "BK:[backed_up.len]"
+	msg += "} "
+	..(jointext(msg, null))
 
 /datum/controller/subsystem/transcore/Recover()
 	if (istype(SStranscore.body_scans))
@@ -73,10 +145,12 @@ SUBSYSTEM_DEF(transcore)
 					var/datum/nifsoft/nifsoft = N
 					nifsofts += nifsoft.type
 			MR.nif_software = nifsofts
+			MR.nif_savedata = nif.save_data.Copy()
 		else if(isnull(nif)) //Didn't pass anything, so no NIF
 			MR.nif_path = null
 			MR.nif_durability = null
 			MR.nif_software = null
+			MR.nif_savedata = null
 
 	else
 		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time)
@@ -86,9 +160,7 @@ SUBSYSTEM_DEF(transcore)
 // Send a past-due notification to the medical radio channel.
 /datum/controller/subsystem/transcore/proc/notify(var/name)
 	ASSERT(name)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
-	qdel(a)
+	global_announcer.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
 
 // Called from mind_record to add itself to the transcore.
 /datum/controller/subsystem/transcore/proc/add_backup(var/datum/transhuman/mind_record/MR)
@@ -121,13 +193,14 @@ SUBSYSTEM_DEF(transcore)
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
 /datum/controller/subsystem/transcore/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
 	ASSERT(disk)
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
-	a.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
-	qdel(a)
+	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
+	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
 
 	disk.stored += backed_up
 	backed_up.Cut()
 	core_dumped = TRUE
 	can_fire = FALSE
 	return disk.stored.len
+
+#undef SSTRANSCORE_BACKUPS
+#undef SSTRANSCORE_IMPLANTS

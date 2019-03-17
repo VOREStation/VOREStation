@@ -92,6 +92,30 @@
 	modifier_type = /datum/modifier/trait/larger
 	mutually_exclusive = list(/datum/trait/modifier/physical/smaller, /datum/trait/modifier/physical/small, /datum/trait/modifier/physical/large)
 
+/datum/trait/modifier/physical/colorblind_protanopia
+	name = "Protanopia"
+	desc = "You have a form of red-green colorblindness. You cannot see reds, and have trouble distinguishing them from yellows and greens."
+	modifier_type = /datum/modifier/trait/colorblind_protanopia
+	mutually_exclusive = list(/datum/trait/modifier/physical/colorblind_deuteranopia, /datum/trait/modifier/physical/colorblind_tritanopia, /datum/trait/modifier/physical/colorblind_monochrome)
+
+/datum/trait/modifier/physical/colorblind_deuteranopia
+	name = "Deuteranopia"
+	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing them from yellows and reds."
+	modifier_type = /datum/modifier/trait/colorblind_deuteranopia
+	mutually_exclusive = list(/datum/trait/modifier/physical/colorblind_protanopia, /datum/trait/modifier/physical/colorblind_tritanopia, /datum/trait/modifier/physical/colorblind_monochrome)
+
+/datum/trait/modifier/physical/colorblind_tritanopia
+	name = "Tritanopia"
+	desc = "You have a form of blue-yellow colorblindness. You have trouble distinguishing between blues, greens, and yellows, and see blues and violets as dim."
+	modifier_type = /datum/modifier/trait/colorblind_tritanopia
+	mutually_exclusive = list(/datum/trait/modifier/physical/colorblind_protanopia, /datum/trait/modifier/physical/colorblind_deuteranopia, /datum/trait/modifier/physical/colorblind_monochrome)
+
+/datum/trait/modifier/physical/colorblind_monochrome
+	name = "Monochromacy"
+	desc = "You are fully colorblind. Your condition is rare, but you can see no colors at all."
+	modifier_type = /datum/modifier/trait/colorblind_monochrome
+	mutually_exclusive = list(/datum/trait/modifier/physical/colorblind_protanopia, /datum/trait/modifier/physical/colorblind_deuteranopia, /datum/trait/modifier/physical/colorblind_tritanopia)
+
 // These two traits might be borderline, feel free to remove if they get abused.
 /datum/trait/modifier/physical/high_metabolism
 	name = "High Metabolism"
@@ -226,7 +250,7 @@
 	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 
 /datum/trait/modifier/mental/tajaraphobe
-	name = "Tajara-phobic"
+	name = "Tajaran-phobic"
 	desc = "Boilerplate racism for cats goes here."
 	mutually_exclusive = list(/datum/trait/modifier/mental/xenophobe)
 

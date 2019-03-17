@@ -4,14 +4,14 @@
 */
 
 
-/datum/supply_packs/recreation
+/datum/supply_pack/recreation
 	group = "Recreation"
 
-/datum/supply_packs/randomised/recreation
+/datum/supply_pack/randomised/recreation
 	group = "Recreation"
 	access = access_security
 
-/datum/supply_packs/recreation/foam_weapons
+/datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"
 	contains = list(
 			/obj/item/weapon/material/sword/foam = 2,
@@ -23,7 +23,7 @@
 	containertype = /obj/structure/closet/crate
 	containername = "foam weapon crate"
 
-/datum/supply_packs/recreation/lasertag
+/datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
 	contains = list(
 			/obj/item/weapon/gun/energy/lasertag/red,
@@ -35,10 +35,11 @@
 	containername = "Lasertag Closet"
 	cost = 10
 
-/datum/supply_packs/recreation/artscrafts
+/datum/supply_pack/recreation/artscrafts
 	name = "Arts and Crafts supplies"
 	contains = list(
 			/obj/item/weapon/storage/fancy/crayons,
+			/obj/item/weapon/storage/fancy/markers,
 			/obj/item/device/camera,
 			/obj/item/device/camera_film = 2,
 			/obj/item/weapon/storage/photo_album,
@@ -57,7 +58,7 @@
 	containertype = "/obj/structure/closet/crate"
 	containername = "Arts and Crafts crate"
 
-/datum/supply_packs/recreation/painters
+/datum/supply_pack/recreation/painters
 	name = "Station Painting Supplies"
 	cost = 10
 	containername = "station painting supplies crate"

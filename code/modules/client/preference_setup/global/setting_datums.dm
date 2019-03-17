@@ -86,7 +86,18 @@ var/list/_client_preferences_by_type
 		preference_mob.stop_all_music()
 	else
 		preference_mob.update_music()
-
+//VOREStation Add - Need to put it here because it should be ordered riiiight here.
+/datum/client_preference/eating_noises
+	description = "Eating Noises"
+	key = "EATING_NOISES"
+	enabled_description = "Noisy"
+	disabled_description = "Silent"
+/datum/client_preference/digestion_noises
+	description = "Digestion Noises"
+	key = "DIGEST_NOISES"
+	enabled_description = "Noisy"
+	disabled_description = "Silent"
+//VOREStation Add End
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
 	key = "CHAT_GHOSTEARS"
@@ -111,6 +122,25 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/mob_tooltips
+	description ="Mob tooltips"
+	key = "MOB_TOOLTIPS"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/attack_icons
+	description ="Attack icons"
+	key = "ATTACK_ICONS"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/hotkeys_default
+	description ="Hotkeys Default"
+	key = "HUD_HOTKEYS"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+	enabled_by_default = FALSE // Backwards compatibility
+
 /datum/client_preference/show_typing_indicator
 	description ="Typing indicator"
 	key = "SHOW_TYPING"
@@ -119,7 +149,7 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/show_typing_indicator/toggled(var/mob/preference_mob, var/enabled)
 	if(!enabled)
-		preference_mob.set_typing_indicator(0)
+		preference_mob.set_typing_indicator(FALSE)
 
 /datum/client_preference/show_ooc
 	description ="OOC chat"
@@ -162,6 +192,24 @@ var/list/_client_preferences_by_type
 	key = "BROWSER_STYLED"
 	enabled_description = "Fancy"
 	disabled_description = "Plain"
+
+/datum/client_preference/ambient_occlusion
+	description = "Fake Ambient Occlusion"
+	key = "AMBIENT_OCCLUSION_PREF"
+	enabled_by_default = FALSE
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/ambient_occlusion/toggled(var/mob/preference_mob, var/enabled)
+	. = ..()
+	if(preference_mob && preference_mob.plane_holder)
+		var/datum/plane_holder/PH = preference_mob.plane_holder
+		PH.set_ao(VIS_OBJS, enabled)
+		PH.set_ao(VIS_MOBS, enabled)
+
+/datum/client_preference/instrument_toggle
+	description ="Hear In-game Instruments"
+	key = "SOUND_INSTRUMENT"
 
 /********************
 * Staff Preferences *

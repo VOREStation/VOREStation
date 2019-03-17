@@ -35,9 +35,9 @@ effective or pretty fucking useless.
 		user << "<span class='warning'>The mind batterer has been burnt out!</span>"
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [src] to knock down people in the area.</font>")
-
+	var/list/affected = list()
 	for(var/mob/living/carbon/human/M in orange(10, user))
+		affected += M
 		spawn()
 			if(prob(50))
 
@@ -48,6 +48,8 @@ effective or pretty fucking useless.
 
 			else
 				M << "<span class='danger'>You feel a sudden, electric jolt travel through your head.</span>"
+
+	add_attack_logs(user,affected,"Used a [name]")
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, 1)
 	user << "<span class='notice'>You trigger [src].</span>"

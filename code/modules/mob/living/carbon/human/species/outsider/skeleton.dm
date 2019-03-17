@@ -1,5 +1,5 @@
 /datum/species/skeleton
-	name = "Skeleton"
+	name = SPECIES_SKELETON
 	name_plural = "Skeletons"
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	primitive_form = "Monkey"
@@ -22,7 +22,7 @@
 	hunger_factor = 0
 	metabolic_rate = 0
 
-	virus_immune =	1
+	virus_immune = 1
 
 	brute_mod =     1
 	burn_mod =      0

@@ -26,12 +26,12 @@
     . = ..()
 
 /turf/snow/update_icon()
-    overlays.Cut()
+    cut_overlays()
     for(var/d in crossed_dirs)
         var/amt = crossed_dirs[d]
 
         for(var/i in 1 to amt)
-            overlays += icon(icon, "footprint[i]", text2num(d))
+            add_overlay(image(icon, "footprint[i]", text2num(d)))
 
 /turf/snow/snow2
 	name = "snow"

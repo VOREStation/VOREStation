@@ -12,8 +12,8 @@
 		create_fillers()
 
 /obj/machinery/door/airlock/multi_tile/Destroy()
-	qdel_null(filler1)
-	qdel_null(filler2)
+	QDEL_NULL(filler1)
+	QDEL_NULL(filler2)
 	return ..()
 
 /obj/machinery/door/airlock/multi_tile/Move()

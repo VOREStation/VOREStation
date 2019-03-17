@@ -17,7 +17,8 @@
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
 	density = 1
-	layer = 5
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	anchored = 1
 
 /obj/effect/overlay/palmtree_l
@@ -25,7 +26,8 @@
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
 	density = 1
-	layer = 5
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	anchored = 1
 
 /obj/effect/overlay/coconut
@@ -37,7 +39,7 @@
 	name = "Bluespace"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "bluespacify"
-	layer = 10
+	plane = ABOVE_PLANE
 
 /obj/effect/overlay/wallrot
 	name = "wallrot"
@@ -45,7 +47,8 @@
 	icon = 'icons/effects/wallrot.dmi'
 	anchored = 1
 	density = 1
-	layer = 5
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0
 
 /obj/effect/overlay/wallrot/New()
@@ -70,7 +73,9 @@
 
 /obj/effect/overlay/snow/floor
 	icon_state = "snowfloor"
-	layer = 2.01 //Just above floor
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
+	mouse_opacity = 0 //Don't block underlying tile interactions
 
 /obj/effect/overlay/snow/floor/edges
 	icon_state = "snow_edges"
@@ -80,11 +85,27 @@
 
 /obj/effect/overlay/snow/airlock
 	icon_state = "snowairlock"
-	layer = 3.2 //Just above airlocks
+	layer = DOOR_CLOSED_LAYER+0.01
 
 /obj/effect/overlay/snow/floor/pointy
 	icon_state = "snowfloorpointy"
 
 /obj/effect/overlay/snow/wall
 	icon_state = "snowwall"
-	layer = 5 //Same as lights so humans can stand under it
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/overlay/holographic
+	mouse_opacity = FALSE
+	anchored = TRUE
+	plane = ABOVE_PLANE
+
+// Similar to the tesla ball but doesn't actually do anything and is purely visual.
+/obj/effect/overlay/energy_ball
+	name = "energy ball"
+	desc = "An energy ball."
+	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
+	icon_state = "energy_ball"
+	plane = PLANE_LIGHTING_ABOVE
+	pixel_x = -32
+	pixel_y = -32

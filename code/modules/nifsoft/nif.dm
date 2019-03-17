@@ -32,6 +32,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/list/nifsofts[TOTAL_NIF_SOFTWARE]	// All our nifsofts
 	var/tmp/list/nifsofts_life = list()			// Ones that want to be talked to on life()
 	var/owner									// Owner character name
+	var/examine_msg								//Message shown on examine.
 
 	var/tmp/vision_flags = 0		// Flags implants set for faster lookups
 	var/tmp/health_flags = 0
@@ -41,6 +42,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/stat = NIF_PREINSTALL		// Status of the NIF
 	var/tmp/install_done				// Time when install will finish
 	var/tmp/open = FALSE				// If it's open for maintenance (1-3)
+	var/tmp/should_be_in = BP_HEAD		// Organ we're supposed to be held in
 
 	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
 
@@ -69,6 +71,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	//Put loaded data here if we loaded any
 	save_data = islist(load_data) ? load_data.Copy() : list()
+	var/saved_examine_msg = save_data["examine_msg"]
+
+	//If it's an empty string, they want it blank. If null, it's never been saved, give default.
+	if(isnull(saved_examine_msg))
+		saved_examine_msg = "There's a certain spark to their eyes."
+	examine_msg = saved_examine_msg
 
 	//If given a human on spawn (probably from persistence)
 	if(ishuman(newloc))
@@ -96,20 +104,25 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
 	human = null
-	qdel_null_list(nifsofts)
-	qdel_null(comm)
+	QDEL_NULL_LIST(nifsofts)
+	QDEL_NULL(comm)
 	nifsofts_life.Cut()
 	return ..()
 
 //Being implanted in some mob
 /obj/item/device/nif/proc/implant(var/mob/living/carbon/human/H)
-	if(istype(H) && !H.nif && H.species && (loc == H.get_organ(BP_HEAD)))
+	var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
+	if(istype(brain))
+		should_be_in = brain.parent_organ
+
+	if(istype(H) && !H.nif && H.species && (loc == H.get_organ(should_be_in)))
 		if(!bioadap && (H.species.flags & NO_SCAN)) //NO_SCAN is the default 'too complicated' flag
 			return FALSE
 
 		human = H
 		human.nif = src
 		stat = NIF_INSTALLING
+		H.verbs |= /mob/living/carbon/human/proc/set_nif_examine
 		return TRUE
 
 	return FALSE
@@ -117,11 +130,18 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //For debug or antag purposes
 /obj/item/device/nif/proc/quick_implant(var/mob/living/carbon/human/H)
 	if(istype(H))
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		if(!head)
+		var/obj/item/organ/external/parent
+		//Try to find their brain and put it near that
+		var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
+		if(istype(brain))
+			should_be_in = brain.parent_organ
+
+		parent = H.get_organ(should_be_in)
+		//Ok, nevermind then!
+		if(!istype(parent))
 			return FALSE
-		src.forceMove(head)
-		head.implants += src
+		forceMove(parent)
+		parent.implants += src
 		spawn(0) //Let the character finish spawning yo.
 			if(H.mind)
 				owner = H.mind.name
@@ -134,10 +154,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/unimplant(var/mob/living/carbon/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
-		qdel_null_list(SC.brainmobs)
+		QDEL_NULL_LIST(SC.brainmobs)
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
+	H.verbs -= /mob/living/carbon/human/proc/set_nif_examine
 	H.nif = null
 	human = null
 	install_done = null
@@ -167,14 +188,16 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	durability -= wear
 
 	if(durability <= 0)
-		notify("Danger! General system insta#^!($",TRUE)
-		to_chat(human,"<span class='danger'>Your NIF vision overlays disappear and your head suddenly seems very quiet...</span>")
 		stat = NIF_TEMPFAIL
 		update_icon()
-
+		
+		if(human)
+			notify("Danger! General system insta#^!($",TRUE)
+			to_chat(human,"<span class='danger'>Your NIF vision overlays disappear and your head suddenly seems very quiet...</span>")
+		
 //Attackby proc, for maintenance
 /obj/item/device/nif/attackby(obj/item/weapon/W, mob/user as mob)
-	if(open == 0 && istype(W,/obj/item/weapon/screwdriver))
+	if(open == 0 && W.is_screwdriver())
 		if(do_after(user, 4 SECONDS, src) && open == 0)
 			user.visible_message("[user] unscrews and pries open \the [src].","<span class='notice'>You unscrew and pry open \the [src].</span>")
 			playsound(user, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -195,7 +218,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
 			open = 3
 			update_icon()
-	else if(open == 3 && istype(W,/obj/item/weapon/screwdriver))
+	else if(open == 3 && W.is_screwdriver())
 		if(do_after(user, 3 SECONDS, src) && open == 3)
 			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.</span>")
 			playsound(user, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -280,11 +303,17 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			stat = NIF_WORKING
 			owner = human.mind.name
 			name = initial(name) + " ([owner])"
+			if(comm)
+				var/saved_name = save_data["commlink_name"]
+				if(saved_name)
+					comm.register_device(saved_name)
+				else if(human)
+					comm.register_device(human.name)
 			notify("Calibration complete! User data stored!")
 
 //Called each life() tick on the mob
 /obj/item/device/nif/proc/life()
-	if(!human || loc != human.get_organ(BP_HEAD))
+	if(!human || loc != human.get_organ(should_be_in))
 		unimplant(human)
 		return FALSE
 
@@ -553,22 +582,44 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/mob/living/carbon/human/U = user
 	var/mob/living/carbon/human/T = M
 
-	if(istype(T.species,/datum/species/shapeshifter/promethean) && target_zone == BP_HEAD) //Are prommy, aimed at head.
-		if(T.head || T.glasses)
-			to_chat(user,"<span class='warning'>Remove any headgear they have on first, as it might interfere.</span>")
+	if(istype(T.species,/datum/species/shapeshifter/promethean) && target_zone == BP_TORSO)
+		if(T.w_uniform || T.wear_suit)
+			to_chat(user,"<span class='warning'>Remove any clothing they have on, as it might interfere!</span>")
 			return
-		var/obj/item/organ/external/head = T.get_organ(BP_HEAD)
+		var/obj/item/organ/external/eo = T.get_organ(BP_TORSO)
 		if(!T)
-			to_chat(user,"<span class='warning'>They should probably regrow their head first.</span>")
+			to_chat(user,"<span class='warning'>They should probably regrow their torso first.</span>")
 			return
-		U.visible_message("<span class='notice'>[U] begins installing [src] into [T]'s head by just stuffing it in.</span>",
-		"<span class='notice'>You begin installing [src] into [T]'s head by just stuffing it in.</span>",
+		U.visible_message("<span class='notice'>[U] begins installing [src] into [T]'s chest by just stuffing it in.</span>",
+		"<span class='notice'>You begin installing [src] into [T]'s chest by just stuffing it in.</span>",
 		"There's a wet SQUISH noise.")
-		if(do_mob(user = user, target = T, time = 200, target_zone = BP_HEAD))
+		if(do_mob(user = user, target = T, time = 200, target_zone = BP_TORSO))
 			user.unEquip(src)
-			forceMove(head)
-			head.implants |= src
+			forceMove(eo)
+			eo.implants |= src
 			implant(T)
 			playsound(T,'sound/effects/slime_squish.ogg',50,1)
 	else
 		return ..()
+
+/mob/living/carbon/human/proc/set_nif_examine()
+	set name = "NIF Appearance"
+	set desc = "If your NIF alters your appearance in some way, describe it here."
+	set category = "OOC"
+
+	if(!nif)
+		verbs -= /mob/living/carbon/human/proc/set_nif_examine
+		to_chat(src,"<span class='warning'>You don't have a NIF, not sure why this was here.</span>")
+		return
+
+	var/new_flavor = sanitize(input(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg) as null|text, max_length = 128)
+	//They clicked cancel or meanwhile lost their NIF
+	if(!nif || isnull(new_flavor))
+		return //No changes
+	//Sanitize or user cleaned it entirely
+	if(!new_flavor)
+		nif.examine_msg = ""
+		nif.save_data["examine_msg"] = ""
+	else
+		nif.examine_msg = new_flavor
+		nif.save_data["examine_msg"] = new_flavor

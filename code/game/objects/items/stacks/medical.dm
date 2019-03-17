@@ -9,6 +9,7 @@
 	throw_range = 20
 	var/heal_brute = 0
 	var/heal_burn = 0
+	var/apply_sounds
 
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if (!istype(M))
@@ -65,6 +66,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -111,6 +113,8 @@
 					user.visible_message("<span class='notice'>\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>", \
 					                              "<span class='notice'>You place a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>" )
 				W.bandage()
+				// W.disinfect() // VOREStation - Tech1 should not disinfect
+				playsound(src, pick(apply_sounds), 25)
 				used++
 			affecting.update_damages()
 			if(used == amount)
@@ -129,6 +133,7 @@
 	heal_burn = 1
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
+	apply_sounds = list('sound/effects/ointment.ogg')
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -158,14 +163,16 @@
 			                         "<span class='notice'>You salved wounds on [M]'s [affecting.name].</span>" )
 			use(1)
 			affecting.salve()
+			playsound(src, pick(apply_sounds), 25)
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 3
+	heal_brute = 7 //VOREStation Edit
 	origin_tech = list(TECH_BIO = 1)
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -191,8 +198,8 @@
 					continue
 				if (W.bandaged && W.disinfected)
 					continue
-				if(used == amount)
-					break
+				//if(used == amount) //VOREStation Edit
+				//	break //VOREStation Edit
 				if(!do_mob(user, M, W.damage/5))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
@@ -211,7 +218,8 @@
 				W.bandage()
 				W.disinfect()
 				W.heal_damage(heal_brute)
-				used++
+				playsound(src, pick(apply_sounds), 25)
+				used = 1 //VOREStation Edit
 			affecting.update_damages()
 			if(used == amount)
 				if(affecting.is_bandaged())
@@ -225,9 +233,9 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 3
+	heal_burn = 7 //VOREStation Edit
 	origin_tech = list(TECH_BIO = 1)
-
+	apply_sounds = list('sound/effects/ointment.ogg')
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -257,6 +265,7 @@
 			affecting.heal_damage(0,heal_burn)
 			use(1)
 			affecting.salve()
+			playsound(src, pick(apply_sounds), 25)
 
 /obj/item/stack/medical/splint
 	name = "medical splints"

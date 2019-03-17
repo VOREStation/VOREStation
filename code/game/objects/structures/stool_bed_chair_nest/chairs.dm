@@ -48,15 +48,17 @@
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
 			I.layer = MOB_LAYER + 0.1
+			I.plane = MOB_PLANE
 			I.color = padding_material.icon_colour
 			stool_cache[cache_key] = I
 		overlays |= stool_cache[cache_key]
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
-		src.layer = FLY_LAYER
+		plane = MOB_PLANE
+		layer = MOB_LAYER + 0.1
 	else
-		src.layer = OBJ_LAYER
+		reset_plane_and_layer()
 
 /obj/structure/bed/chair/set_dir()
 	..()
@@ -75,7 +77,7 @@
 		src.set_dir(turn(src.dir, 90))
 		return
 	else
-		if(istype(usr,/mob/living/simple_animal/mouse))
+		if(istype(usr,/mob/living/simple_mob/animal/passive/mouse))
 			return
 		if(!usr || !isturf(usr.loc))
 			return
@@ -133,7 +135,7 @@
 	return
 
 /obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	..()
 
@@ -197,7 +199,7 @@
 	return
 
 /obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	..()
 

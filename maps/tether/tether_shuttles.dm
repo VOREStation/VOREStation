@@ -174,7 +174,7 @@
 	name = "shuttle control console"
 	shuttle_tag = "Excursion Shuttle"
 	req_access = list()
-	req_one_access = list(access_heads,access_explorer,access_pilot)
+	req_one_access = list(access_pilot)
 	var/wait_time = 45 MINUTES
 
 /obj/machinery/computer/shuttle_control/web/excursion/ui_interact()
@@ -190,11 +190,15 @@
 	current_area = /area/shuttle/excursion/tether
 	docking_controller_tag = "expshuttle_docker"
 	web_master_type = /datum/shuttle_web_master/excursion
-	var/abduct_chance = 1 //Prob
+	var/abduct_chance = 0 //Prob
 
 /datum/shuttle/web_shuttle/excursion/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
 	if(prob(abduct_chance))
 		abduct_chance = 0
+		var/list/occupants = list()
+		for(var/mob/living/L in departing)
+			occupants += key_name(L)
+		log_and_message_admins("Shuttle abduction occuring with (only mobs on turfs): [english_list(occupants)]")
 		//Build the route to the alien ship
 		var/obj/shuttle_connector/alienship/ASC = new /obj/shuttle_connector/alienship(null)
 		ASC.setup_routes()

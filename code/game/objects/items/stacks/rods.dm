@@ -36,7 +36,7 @@
 		icon_state = "rods"
 
 var/global/list/datum/stack_recipe/rods_recipes = list( \
-	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
 	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
@@ -44,7 +44,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		var/obj/item/weapon/weldingtool/WT = W
 
 		if(get_amount() < 2)
-			user << "<span class='warning'>You need at least two rods to do this.</span>"
+			to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
 			return
 
 		if(WT.remove_fuel(0,user))
@@ -61,8 +61,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		return
 
 	if (istype(W, /obj/item/weapon/tape_roll))
-		var/obj/item/stack/medical/splint/ghetto/new_splint = new(user.loc)
-		new_splint.loc = src.loc
+		var/obj/item/stack/medical/splint/ghetto/new_splint = new(get_turf(user))
 		new_splint.add_fingerprint(user)
 
 		user.visible_message("<span class='notice'>\The [user] constructs \a [new_splint] out of a [singular_name].</span>", \
@@ -91,15 +90,15 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 
 	else if(!in_use)
 		if(get_amount() < 2)
-			user << "<span class='warning'>You need at least two rods to do this.</span>"
+			to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
 			return
-		usr << "<span class='notice'>Assembling grille...</span>"
+		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
 		in_use = 1
 		if (!do_after(usr, 10))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		usr << "<span class='notice'>You assemble a grille</span>"
+		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
 		in_use = 0
 		F.add_fingerprint(usr)
 		use(2)

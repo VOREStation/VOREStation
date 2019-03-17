@@ -12,7 +12,7 @@
 		arscreen = new(nif)
 
 	Destroy()
-		qdel_null(arscreen)
+		QDEL_NULL(arscreen)
 		return ..()
 
 	activate()
@@ -203,8 +203,8 @@
 
 	proc/resp_breath()
 		if(!active) return null
-		var/datum/gas_mixture/breath = new()
-		breath.adjust_gas("oxygen", 300)
+		var/datum/gas_mixture/breath = new(BREATH_VOLUME)
+		breath.adjust_gas("oxygen", BREATH_MOLES)
 		breath.temperature = T20C
 		return breath
 

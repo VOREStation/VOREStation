@@ -10,6 +10,9 @@
 		/obj/item/weapon/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
 		/obj/item/device/flashlight/pen,
+		/obj/item/device/tape,
+		/obj/item/weapon/cartridge,
+		/obj/item/device/encryptionkey,
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/weapon/coin,
@@ -18,14 +21,23 @@
 		/obj/item/weapon/implanter,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/flame/match,
+		/obj/item/weapon/forensics,
+		/obj/item/weapon/glass_extra,
+		/obj/item/weapon/haircomb,
+		/obj/item/weapon/hand,
+		/obj/item/weapon/key,
+		/obj/item/weapon/lipstick,
 		/obj/item/weapon/paper,
 		/obj/item/weapon/pen,
 		/obj/item/weapon/photo,
 		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/sample,
+		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/stamp,
-		/obj/item/clothing/accessory/permit
+		/obj/item/clothing/accessory/permit,
+		/obj/item/clothing/accessory/badge
 		)
+	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	slot_flags = SLOT_ID
 
 	var/obj/item/weapon/card/id/front_id = null
@@ -70,10 +82,10 @@
 	..()
 	var/amount = rand(50, 100) + rand(50, 100) // Triangular distribution from 100 to 200
 	var/obj/item/weapon/spacecash/SC = null
+	SC = new(src)
 	for(var/i in list(100, 50, 20, 10, 5, 1))
 		if(amount < i)
 			continue
-		SC = new(src)
 		while(amount >= i)
 			amount -= i
 			SC.adjust_worth(i, 0)

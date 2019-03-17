@@ -108,6 +108,7 @@ var/global/list/ore_data = list()
 /ore/diamond
 	name = "diamond"
 	display_name = "diamond"
+	alloy = 1
 	compresses_to = "diamond"
 	result_amount = 5
 	spread_chance = 10

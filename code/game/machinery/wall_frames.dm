@@ -18,7 +18,7 @@
 		frame_types_wall = construction_frame_wall
 
 /obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		new refund_type(get_turf(src.loc), refund_amt)
 		qdel(src)
 		return
@@ -29,18 +29,18 @@
 	update_type_list()
 	var/datum/frame/frame_types/frame_type
 	if(!build_machine_type)
-		var/datum/frame/frame_types/response = input(usr, "What kind of frame would you like to make?", "Frame type request", null) in frame_types_floor
-		if(!response || response.name == "Cancel")
+		var/datum/frame/frame_types/response = input(user, "What kind of frame would you like to make?", "Frame type request", null) as null|anything in frame_types_floor
+		if(!response)
 			return
 		frame_type = response
 
 		build_machine_type = /obj/structure/frame
 
 		if(frame_type.frame_size != 5)
-			new /obj/item/stack/material/steel(usr.loc, (5 - frame_type.frame_size))
+			new /obj/item/stack/material/steel(user.loc, (5 - frame_type.frame_size))
 
 	var/ndir
-	ndir = usr.dir
+	ndir = user.dir
 	if(!(ndir in cardinal))
 		return
 
@@ -48,52 +48,57 @@
 	M.fingerprints = fingerprints
 	M.fingerprintshidden = fingerprintshidden
 	M.fingerprintslast = fingerprintslast
+	if(istype(src.loc, /obj/item/weapon/gripper)) //Typical gripper shenanigans
+		user.drop_item()
 	qdel(src)
 
 /obj/item/frame/proc/try_build(turf/on_wall, mob/user as mob)
 	update_type_list()
+
+	if(get_dist(on_wall, user)>1)
+		return
+
+	var/ndir
+	if(reverse)
+		ndir = get_dir(user, on_wall)
+	else
+		ndir = get_dir(on_wall, user)
+
+	if(!(ndir in cardinal))
+		return
+
+	var/turf/loc = get_turf(user)
+	var/area/A = loc.loc
+	if(!istype(loc, /turf/simulated/floor))
+		to_chat(user, "<span class='danger'>\The frame cannot be placed on this spot.</span>")
+		return
+
+	if(A.requires_power == 0 || A.name == "Space")
+		to_chat(user, "<span class='danger'>\The [src] Alarm cannot be placed in this area.</span>")
+		return
+
+	if(gotwallitem(loc, ndir))
+		to_chat(user, "<span class='danger'>There's already an item on this wall!</span>")
+		return
+
 	var/datum/frame/frame_types/frame_type
 	if(!build_machine_type)
-		var/datum/frame/frame_types/response = input(usr, "What kind of frame would you like to make?", "Frame type request", null) in frame_types_wall
-		if(!response || response.name == "Cancel")
+		var/datum/frame/frame_types/response = input(user, "What kind of frame would you like to make?", "Frame type request", null) as null|anything in frame_types_wall
+		if(!response)
 			return
 		frame_type = response
 
 		build_machine_type = /obj/structure/frame
 
 		if(frame_type.frame_size != 5)
-			new /obj/item/stack/material/steel(usr.loc, (5 - frame_type.frame_size))
-
-	if(get_dist(on_wall, usr)>1)
-		return
-
-	var/ndir
-	if(reverse)
-		ndir = get_dir(usr, on_wall)
-	else
-		ndir = get_dir(on_wall, usr)
-
-	if(!(ndir in cardinal))
-		return
-
-	var/turf/loc = get_turf(usr)
-	var/area/A = loc.loc
-	if(!istype(loc, /turf/simulated/floor))
-		usr << "<span class='danger'>\The frame cannot be placed on this spot.</span>"
-		return
-
-	if(A.requires_power == 0 || A.name == "Space")
-		usr << "<span class='danger'>\The [src] Alarm cannot be placed in this area.</span>"
-		return
-
-	if(gotwallitem(loc, ndir))
-		usr << "<span class='danger'>There's already an item on this wall!</span>"
-		return
+			new /obj/item/stack/material/steel(user.loc, (5 - frame_type.frame_size))
 
 	var/obj/machinery/M = new build_machine_type(loc, ndir, 1, frame_type)
 	M.fingerprints = fingerprints
 	M.fingerprintshidden = fingerprintshidden
 	M.fingerprintslast = fingerprintslast
+	if(istype(src.loc, /obj/item/weapon/gripper)) //Typical gripper shenanigans
+		user.drop_item()
 	qdel(src)
 
 /obj/item/frame/light

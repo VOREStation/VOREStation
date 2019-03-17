@@ -36,6 +36,8 @@
 
 	// TODO: Move these to a cache, similar to cameras
 	for(var/obj/machinery/alarm/alarm in (monitored_alarms.len ? monitored_alarms : machines))
+		if(!monitored_alarms.len && alarm.alarms_hidden)
+			continue
 		alarms[++alarms.len] = list(
 			"name" = sanitize(alarm.name),
 			"ref"= "\ref[alarm]",
@@ -46,7 +48,7 @@
 	data["alarms"] = alarms
 	data["map_levels"] = using_map.get_map_levels(T.z)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmos_control.tmpl", src.name, 625, 625, state = state)
 		// adding a template with the key "mapContent" enables the map ui functionality

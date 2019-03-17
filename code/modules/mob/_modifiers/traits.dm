@@ -43,7 +43,7 @@
 	desc = "You're rather inexperienced with guns, you've never used one in your life, or you're just really rusty.  \
 	Regardless, you find it quite difficult to land shots where you wanted them to go."
 
-	accuracy = -1
+	accuracy = -15
 	accuracy_dispersion = 1
 
 /datum/modifier/trait/high_metabolism
@@ -83,3 +83,39 @@
 	desc = "Your body is smaller than average."
 
 	icon_scale_percent = 0.9
+
+/datum/modifier/trait/colorblind_protanopia
+	name = "Protanopia"
+	desc = "You have a form of red-green colorblindness. You cannot see reds, and have trouble distinguishing them from yellows and greens."
+
+	client_color = MATRIX_Protanopia
+
+/datum/modifier/trait/colorblind_deuteranopia
+	name = "Deuteranopia"
+	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing them from yellows and reds."
+
+	client_color = MATRIX_Deuteranopia
+
+/datum/modifier/trait/colorblind_tritanopia
+	name = "Tritanopia"
+	desc = "You have a form of blue-yellow colorblindness. You have trouble distinguishing between blues, greens, and yellows, and see blues and violets as dim."
+
+	client_color = MATRIX_Tritanopia
+
+/datum/modifier/trait/colorblind_taj
+	name = "Colorblind - Blue-red"
+	desc = "You are colorblind. You have a minor issue with blue colors and have difficulty recognizing them from red colors."
+
+	client_color = MATRIX_Taj_Colorblind
+
+/datum/modifier/trait/colorblind_vulp
+	name = "Colorblind - Red-green"
+	desc = "You are colorblind. You have a severe issue with green colors and have difficulty recognizing them from red colors."
+
+	client_color = MATRIX_Vulp_Colorblind
+
+/datum/modifier/trait/colorblind_monochrome
+	name = "Monochromacy"
+	desc = "You are fully colorblind. Your condition is rare, but you can see no colors at all."
+
+	client_color = MATRIX_Monochromia

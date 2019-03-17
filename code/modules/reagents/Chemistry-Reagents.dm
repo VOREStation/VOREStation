@@ -57,12 +57,17 @@
 /datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
 	return
 
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD)
 		return
+	if(!istype(location))
+		return
+
+	var/datum/reagents/metabolism/active_metab = location
 	var/removed = metabolism
+
 	if(!mrate_static == TRUE)
 		// Modifiers
 		for(var/datum/modifier/mod in M.modifiers)
@@ -70,23 +75,25 @@
 				removed *= mod.metabolism_percent
 		// Species
 		removed *= M.species.metabolic_rate
+		// Metabolism
+		removed *= active_metab.metabolism_speed
 
-	if(ingest_met && (location == CHEM_INGEST))
+	if(ingest_met && (active_metab.metabolism_class == CHEM_INGEST))
 		removed = ingest_met
-	if(touch_met && (location == CHEM_TOUCH))
+	if(touch_met && (active_metab.metabolism_class == CHEM_TOUCH))
 		removed = touch_met
 	removed = min(removed, volume)
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
 	if(removed >= (metabolism * 0.1) || removed >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
-		switch(location)
+		switch(active_metab.metabolism_class)
 			if(CHEM_BLOOD)
 				affect_blood(M, alien, removed)
 			if(CHEM_INGEST)
 				affect_ingest(M, alien, removed)
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, removed)
-	if(overdose && (volume > overdose) && (location != CHEM_TOUCH))
+	if(overdose && (volume > overdose) && (active_metab.metabolism_class != CHEM_TOUCH))
 		overdose(M, alien, removed)
 	remove_self(removed)
 	return
@@ -95,13 +102,13 @@
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	affect_blood(M, alien, removed * 0.5)
+	M.bloodstr.add_reagent(id, removed)
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	return
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect. Doesn't happen instantly.
+/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
 	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))

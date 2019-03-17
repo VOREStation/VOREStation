@@ -1,0 +1,83 @@
+<!-- 
+	Timeclock UI
+	See: code/game/machinery/computer/timeclock_vr.dm
+-->
+
+<!-- Always show person's status display -->
+<div class="statusDisplay">
+	<h3>Time Off Balance for {{:config.user.name}}</h3>
+	{{props data.department_hours}}
+		<div class="line">
+			<div class="statusLabel">{{:key}}</div>
+			<div class="statusValue {{:value > 6 ? 'good' : value < 1 ? 'bad' : 'average'}}">{{:helper.fixed(value)}} {{:helper.fixed(value) == 1.0 ? 'hour' : 'hours'}}</div>
+		</div>
+	{{empty}}
+		<div class='notice'>No Hours Accrued</div>
+	{{/props}}
+</div>
+
+<h3>Employment Information</h3>
+<div class='itemGroup'>
+	<div class='item'>
+		<div class='itemLabel'>Employee ID:</div>
+		{{:helper.link(data.card ? data.card : 'Insert ID', 'person', {'id' : 1})}}
+	</div>
+	{{if data.job_datum }}
+		<div class='item'>
+			<div class='itemLabel'>Rank:</div>
+			<div class='itemContent'>
+				<span style='padding: 2px 8px; border-radius: 4px; background-color: {{:data.job_datum.selection_color}};'>{{:data.job_datum.title}}</span>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='itemLabel'>Department:</div>
+			<div class='itemContent'>{{:data.job_datum.department}}</div>
+		</div>
+		<div class='item'>
+			<div class='itemLabel'>Pay Scale:</div>
+			<div class='itemContent'>{{:data.job_datum.economic_modifier}}</div>
+		</div>
+		<div class='item'>
+			<div class='itemLabel'>PTO Eligibility:</div>
+			{{if data.job_datum.timeoff_factor > 0 }}
+				<div class='itemContent' title='Hours working this position will earn time off for its department.' style='cursor: help;'>
+					Earns PTO
+				</div>
+			{{else data.job_datum.timeoff_factor < 0}}
+				<div class='itemContent' title='Hours spent in this position are deducted from your time off for its department.' style='cursor: help;'>
+					Requires PTO
+				</div>
+			{{else}}
+				<div class='itemContent' title='This job neither requires nor earnts time off hours.' style='cursor: help;'>
+					Neutral
+				</div>
+			{{/if}}
+		</div>
+	{{/if}}
+</div>
+
+{{if data.allow_change_job && data.job_datum && data.job_datum.timeoff_factor != 0 }}
+<h3>Employment Actions</h3>
+<div class='itemGroup'>
+	<div class='item'>
+		{{if data.job_datum.head_position }}
+			<i class='uiIcon16 icon-alert'></i>
+			<span class='average'>NT policy does not permit head positions to go off duty mid-shift.</span>
+		{{else (data.job_datum.timeoff_factor > 0) }}
+			{{if helper.round(data.department_hours[data.job_datum.department]) > 0 }}
+				{{:helper.link('Go Off Duty', 'alert', {'switch-to-offduty': 1})}}
+			{{else}}
+				<i class='uiIcon16 icon-alert-red'></i>
+				<span class='bad'>Insufficent Time Off Accrued</span>
+			{{/if}}
+		{{else (data.job_datum.timeoff_factor < 0) }}
+			{{for data.job_choices }}
+				<div class='itemLabelWide'>{{:value}}</div>
+				<div class='itemContentMedium'>{{:helper.link("Issue Guest Pass", 'suitcase', {'guest-pass' : value})}}</div>
+			{{empty}}
+				<div class='notice'>No Open Positions - See Head of Personnel</div>
+			{{/for}}
+		{{/if}}
+	</div>
+</div>
+{{/if}}

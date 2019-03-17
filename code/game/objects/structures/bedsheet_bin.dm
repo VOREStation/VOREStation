@@ -10,7 +10,8 @@ LINEN BINS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 	slot_flags = SLOT_BACK
-	layer = 4.0
+	plane = MOB_PLANE
+	layer = BELOW_MOB_LAYER
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
@@ -19,9 +20,9 @@ LINEN BINS
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))
-		layer = MOB_LAYER + 0.1
+		layer = ABOVE_MOB_LAYER
 	else
-		layer = initial(layer)
+		reset_plane_and_layer()
 	add_fingerprint(user)
 	return
 
@@ -31,7 +32,7 @@ LINEN BINS
 		if(do_after(user, 50))
 			user << "<span class='notice'>You cut [src] into pieces!</span>"
 			for(var/i in 1 to rand(2,5))
-				new /obj/item/weapon/reagent_containers/glass/rag(src.loc)
+				new /obj/item/weapon/reagent_containers/glass/rag(drop_location())
 			qdel(src)
 		return
 	..()

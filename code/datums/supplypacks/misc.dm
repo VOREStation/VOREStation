@@ -4,14 +4,14 @@
 */
 
 
-/datum/supply_packs/misc
+/datum/supply_pack/misc
 	group = "Miscellaneous"
 
-/datum/supply_packs/randomised/misc
+/datum/supply_pack/randomised/misc
 	group = "Miscellaneous"
 
 
-/datum/supply_packs/randomised/misc/card_packs
+/datum/supply_pack/randomised/misc/card_packs
 	num_contained = 5
 	contains = list(
 			/obj/item/weapon/pack/cardemon,
@@ -23,14 +23,14 @@
 	containertype = /obj/structure/closet/crate
 	containername = "cards crate"
 
-/datum/supply_packs/misc/eftpos
+/datum/supply_pack/misc/eftpos
 	contains = list(/obj/item/device/eftpos)
 	name = "EFTPOS scanner"
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "EFTPOS crate"
 
-/datum/supply_packs/misc/chaplaingear
+/datum/supply_pack/misc/chaplaingear
 	name = "Chaplain equipment"
 	contains = list(
 			/obj/item/clothing/under/rank/chaplain,
@@ -48,14 +48,14 @@
 	containertype = "/obj/structure/closet/crate"
 	containername = "Chaplain equipment crate"
 
-/datum/supply_packs/misc/hoverpod
+/datum/supply_pack/misc/hoverpod
 	name = "Hoverpod Shipment"
 	contains = list()
 	cost = 80
 	containertype = /obj/structure/largecrate/hoverpod
 	containername = "Hoverpod Crate"
 
-/datum/supply_packs/randomised/misc/webbing
+/datum/supply_pack/randomised/misc/webbing
 	name = "Webbing crate"
 	num_contained = 4
 	contains = list(
@@ -70,3 +70,10 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate"
 	containername = "Webbing crate"
+
+/datum/supply_pack/misc/holoplant
+	name = "Holoplant Pot"
+	contains = list(/obj/machinery/holoplant/shipped)
+	cost = 15
+	containertype = /obj/structure/closet/crate
+	containername = "Holoplant crate"

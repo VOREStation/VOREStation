@@ -1,160 +1,291 @@
-//Contains the rapid construction device.
+// Contains the rapid construction device.
 /obj/item/weapon/rcd
 	name = "rapid construction device"
-	desc = "A device used to rapidly build walls and floors."
-	icon = 'icons/obj/items.dmi'
+	desc = "A device used to rapidly build and deconstruct. Reload with compressed matter cartridges."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
-	opacity = 0
-	density = 0
-	anchored = 0.0
-	flags = CONDUCT
-	force = 10.0
-	throwforce = 10.0
+	item_state = "rcd"
+	flags = CONDUCT | NOBLUDGEON
+	force = 10
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
-	preserve_item = 1
+	preserve_item = TRUE // RCDs are pretty important.
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
-	var/max_stored_matter = 30
-	var/working = 0
-	var/mode = 1
-	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
-	var/canRwall = 0
-	var/disabled = 0
+	var/max_stored_matter = RCD_MAX_CAPACITY
+	var/ranged = FALSE
+	var/busy = FALSE
+	var/allow_concurrent_building = FALSE // If true, allows for multiple RCD builds at the same time.
+	var/mode_index = 1
+	var/list/modes = list(RCD_FLOORWALL, RCD_AIRLOCK, RCD_WINDOWGRILLE, RCD_DECONSTRUCT)
+	var/can_remove_rwalls = FALSE
+	var/airlock_type = /obj/machinery/door/airlock
+	var/window_type = /obj/structure/window/reinforced/full
+	var/material_to_use = DEFAULT_WALL_MATERIAL // So badmins can make RCDs that print diamond walls.
+	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
 
-/obj/item/weapon/rcd/attack()
-	return 0
-
-/obj/item/weapon/rcd/proc/can_use(var/mob/user,var/turf/T)
-	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
-
-/obj/item/weapon/rcd/examine()
-	..()
-	if(src.type == /obj/item/weapon/rcd && loc == usr)
-		usr << "It currently holds [stored_matter]/[max_stored_matter] matter-units."
-
-/obj/item/weapon/rcd/New()
-	..()
+/obj/item/weapon/rcd/initialize()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	return ..()
 
 /obj/item/weapon/rcd/Destroy()
-	qdel(spark_system)
+	QDEL_NULL(spark_system)
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
+/obj/item/weapon/rcd/examine(mob/user)
+	..()
+	to_chat(user, display_resources())
 
+// Used to show how much stuff (matter units, cell charge, etc) is left inside.
+/obj/item/weapon/rcd/proc/display_resources()
+	return "It currently holds [stored_matter]/[max_stored_matter] matter-units."
+
+// Used to add new cartridges.
+/obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		var/obj/item/weapon/rcd_ammo/cartridge = W
 		if((stored_matter + cartridge.remaining) > max_stored_matter)
-			to_chat(user, "<span class='notice'>The RCD can't hold that many additional matter-units.</span>")
-			return
+			to_chat(user, span("warning", "The RCD can't hold that many additional matter-units."))
+			return FALSE
 		stored_matter += cartridge.remaining
 		user.drop_from_inventory(W)
 		qdel(W)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>The RCD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
-		return
-	..()
+		to_chat(user, span("notice", "The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
+		return TRUE
+	return ..()
 
-/obj/item/weapon/rcd/attack_self(mob/user)
-	//Change the mode
-	if(++mode > 3) mode = 1
-	user << "<span class='notice'>Changed mode to '[modes[mode]]'</span>"
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
-	if(prob(20)) src.spark_system.start()
-
-/obj/item/weapon/rcd/afterattack(atom/A, mob/user, proximity)
-	if(!proximity) return
-	if(disabled && !isrobot(user))
-		return 0
-	if(istype(get_area(A),/area/shuttle)||istype(get_area(A),/turf/space/transit))
-		return 0
-	return alter_turf(A,user,(mode == 3))
-
-/obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user)
-	if(stored_matter < amount)
-		return 0
-	stored_matter -= amount
-	return 1
-
-/obj/item/weapon/rcd/proc/alter_turf(var/turf/T,var/mob/user,var/deconstruct)
-
-	var/build_cost = 0
-	var/build_type
-	var/build_turf
-	var/build_delay
-	var/build_other
-
-	if(working == 1)
-		return 0
-
-	if(mode == 3 && istype(T,/obj/machinery/door/airlock))
-		build_cost =  10
-		build_delay = 50
-		build_type = "airlock"
-	else if(mode == 2 && !deconstruct && istype(T,/turf/simulated/floor))
-		build_cost =  10
-		build_delay = 50
-		build_type = "airlock"
-		build_other = /obj/machinery/door/airlock
-	else if(!deconstruct && (istype(T,/turf/space) || istype(T,get_base_turf_by_area(T))))
-		build_cost =  1
-		build_type =  "floor"
-		build_turf =  /turf/simulated/floor/airless
-	else if(!deconstruct && istype(T,/turf/simulated/mineral/floor))
-		build_cost =  1
-		build_type =  "floor"
-		build_turf =  /turf/simulated/floor/plating
-	else if(deconstruct && istype(T,/turf/simulated/wall))
-		var/turf/simulated/wall/W = T
-		build_delay = deconstruct ? 50 : 40
-		build_cost =  5
-		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
-		build_turf =  /turf/simulated/floor
-	else if(istype(T,/turf/simulated/floor) || (istype(T,/turf/simulated/mineral) && !T.density))
-		var/turf/simulated/F = T
-		build_delay = deconstruct ? 50 : 20
-		build_cost =  deconstruct ? 10 : 3
-		build_type =  deconstruct ? "floor" : "wall"
-		build_turf =  deconstruct ? get_base_turf_by_area(F) : /turf/simulated/wall
-
-	if(!build_type)
-		working = 0
-		return 0
-
-	if(!useResource(build_cost, user))
-		user << "Insufficient resources."
-		return 0
-
-	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-
-	working = 1
-	user << "[(deconstruct ? "Deconstructing" : "Building")] [build_type]..."
-
-	if(build_delay && !do_after(user, build_delay))
-		working = 0
-		return 0
-
-	working = 0
-	if(build_delay && !can_use(user,T))
-		return 0
-
-	if(build_turf)
-		T.ChangeTurf(build_turf)
-	else if(build_other)
-		new build_other(T)
+// Changes which mode it is on.
+/obj/item/weapon/rcd/attack_self(mob/living/user)
+	if(mode_index >= modes.len) // Shouldn't overflow unless someone messes with it in VV poorly but better safe than sorry.
+		mode_index = 1
 	else
-		qdel(T)
+		mode_index++
 
-	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-	return 1
+	to_chat(user, span("notice", "Changed mode to '[modes[mode_index]]'."))
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 
+	if(prob(20))
+		src.spark_system.start()
+
+// Removes resources if the RCD can afford it.
+/obj/item/weapon/rcd/proc/consume_resources(amount)
+	if(!can_afford(amount))
+		return FALSE
+	stored_matter -= amount
+	return TRUE
+
+// Useful for testing before actually paying (e.g. before a do_after() ).
+/obj/item/weapon/rcd/proc/can_afford(amount)
+	return stored_matter >= amount
+
+/obj/item/weapon/rcd/afterattack(atom/A, mob/living/user, proximity)
+	if(!ranged && !proximity)
+		return FALSE
+	use_rcd(A, user)
+
+// Used to call rcd_act() on the atom hit.
+/obj/item/weapon/rcd/proc/use_rcd(atom/A, mob/living/user)
+	if(busy && !allow_concurrent_building)
+		to_chat(user, span("warning", "\The [src] is busy finishing its current operation, be patient."))
+		return FALSE
+
+	var/list/rcd_results = A.rcd_values(user, src, modes[mode_index])
+	if(!rcd_results)
+		to_chat(user, span("warning", "\The [src] blinks a red light as you point it towards \the [A], indicating \
+		that it won't work. Try changing the mode, or use it on something else."))
+		return FALSE
+	if(!can_afford(rcd_results[RCD_VALUE_COST]))
+		to_chat(user, span("warning", "\The [src] lacks the required material to start."))
+		return FALSE
+
+	playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+
+	var/true_delay = rcd_results[RCD_VALUE_DELAY] * toolspeed
+
+	var/datum/beam/rcd_beam = null
+	if(ranged)
+		var/atom/movable/beam_origin = user // This is needed because mecha pilots are inside an object and the beam won't be made if it tries to attach to them..
+		if(!isturf(beam_origin.loc))
+			beam_origin = user.loc
+		rcd_beam = beam_origin.Beam(A, icon_state = "rped_upgrade", time = max(true_delay, 5))
+	busy = TRUE
+
+	if(do_after(user, true_delay, target = A))
+		busy = FALSE
+		// Doing another check in case we lost matter during the delay for whatever reason.
+		if(!can_afford(rcd_results[RCD_VALUE_COST]))
+			to_chat(user, span("warning", "\The [src] lacks the required material to finish the operation."))
+			return FALSE
+		if(A.rcd_act(user, src, rcd_results[RCD_VALUE_MODE]))
+			consume_resources(rcd_results[RCD_VALUE_COST])
+			playsound(get_turf(A), 'sound/items/deconstruct.ogg', 50, 1)
+			return TRUE
+
+	// If they moved, kill the beam immediately.
+	qdel(rcd_beam)
+	busy = FALSE
+	return FALSE
+
+// RCD variants.
+
+// This one starts full.
+/obj/item/weapon/rcd/loaded/initialize()
+	stored_matter = max_stored_matter
+	return ..()
+
+// This one makes cooler walls by using an alternative material.
+/obj/item/weapon/rcd/shipwright
+	name = "shipwright's rapid construction device"
+	desc = "A device used to rapidly build and deconstruct. This version creates a stronger variant of wall, often \
+	used in the construction of hulls for starships. Reload with compressed matter cartridges."
+	material_to_use = MAT_STEELHULL
+
+/obj/item/weapon/rcd/shipwright/loaded/initialize()
+	stored_matter = max_stored_matter
+	return ..()
+
+
+/obj/item/weapon/rcd/advanced
+	name = "advanced rapid construction device"
+	desc = "A device used to rapidly build and deconstruct. This version works at a range, builds faster, and has a much larger capacity. \
+	Reload with compressed matter cartridges."
+	icon_state = "adv_rcd"
+	ranged = TRUE
+	toolspeed = 0.5 // Twice as fast.
+	max_stored_matter = RCD_MAX_CAPACITY * 3 // Three times capacity.
+
+/obj/item/weapon/rcd/advanced/loaded/initialize()
+	stored_matter = max_stored_matter
+	return ..()
+
+
+// Electric RCDs.
+// Currently just a base for the mounted RCDs.
+// Currently there isn't a way to swap out the cells.
+// One could be added if there is demand to do so.
+/obj/item/weapon/rcd/electric
+	name = "electric rapid construction device"
+	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, no matter cartridges needed."
+	icon_state = "electric_rcd"
+	var/obj/item/weapon/cell/cell = null
+	var/make_cell = TRUE // If false, initialize() won't spawn a cell for this.
+	var/electric_cost_coefficent = 83.33 // Higher numbers make it less efficent. 86.3... means it should matche the standard RCD capacity on a 10k cell.
+
+/obj/item/weapon/rcd/electric/initialize()
+	if(make_cell)
+		cell = new /obj/item/weapon/cell/high(src)
+	return ..()
+
+/obj/item/weapon/rcd/electric/Destroy()
+	if(cell)
+		QDEL_NULL(cell)
+	return ..()
+
+/obj/item/weapon/rcd/electric/get_cell()
+	return cell
+
+/obj/item/weapon/rcd/electric/can_afford(amount) // This makes it so borgs won't drain their last sliver of charge by mistake, as a bonus.
+	var/obj/item/weapon/cell/cell = get_cell()
+	if(cell)
+		return cell.check_charge(amount * electric_cost_coefficent)
+	return FALSE
+
+/obj/item/weapon/rcd/electric/consume_resources(amount)
+	if(!can_afford(amount))
+		return FALSE
+	var/obj/item/weapon/cell/cell = get_cell()
+	return cell.checked_use(amount * electric_cost_coefficent)
+
+/obj/item/weapon/rcd/electric/display_resources()
+	var/obj/item/weapon/cell/cell = get_cell()
+	if(cell)
+		return "The power source connected to \the [src] has a charge of [cell.percent()]%."
+	return "It lacks a source of power, and cannot function."
+
+
+
+// 'Mounted' RCDs, used for borgs/RIGs/Mechas, all of which use their cells to drive the RCD.
+/obj/item/weapon/rcd/electric/mounted
+	name = "mounted electric rapid construction device"
+	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity from an external power source."
+	make_cell = FALSE
+
+/obj/item/weapon/rcd/electric/mounted/get_cell()
+	return get_external_power_supply()
+
+/obj/item/weapon/rcd/electric/mounted/proc/get_external_power_supply()
+	if(isrobot(loc)) // In a borg.
+		var/mob/living/silicon/robot/R = loc
+		return R.cell
+	if(istype(loc, /obj/item/rig_module)) // In a RIG.
+		var/obj/item/rig_module/module = loc
+		if(module.holder) // Is it attached to a RIG?
+			return module.holder.cell
+	if(istype(loc, /obj/item/mecha_parts/mecha_equipment)) // In a mech.
+		var/obj/item/mecha_parts/mecha_equipment/ME = loc
+		if(ME.chassis) // Is the part attached to a mech?
+			return ME.chassis.cell
+	return null
+
+
+// RCDs for borgs.
+/obj/item/weapon/rcd/electric/mounted/borg
+	can_remove_rwalls = TRUE
+	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, drawing directly from your cell."
+	electric_cost_coefficent = 41.66 // Twice as efficent, out of pity.
+	toolspeed = 0.5 // Twice as fast, since borg versions typically have this.
+
+/obj/item/weapon/rcd/electric/mounted/borg/lesser
+	can_remove_rwalls = FALSE
+
+
+// RCDs for RIGs.
+/obj/item/weapon/rcd/electric/mounted/rig
+
+
+// RCDs for Mechs.
+/obj/item/weapon/rcd/electric/mounted/mecha
+	ranged = TRUE
+	toolspeed = 0.5
+
+
+// Infinite use RCD for debugging/adminbuse.
+/obj/item/weapon/rcd/debug
+	name = "self-repleshing rapid construction device"
+	desc = "An RCD that appears to be plated with gold. For some reason it also seems to just \
+	be vastly superior to all other RCDs ever created, possibly due to it being colored gold."
+	icon_state = "debug_rcd"
+	ranged = TRUE
+	can_remove_rwalls = TRUE
+	allow_concurrent_building = TRUE
+	toolspeed = 0.25 // Four times as fast.
+
+/obj/item/weapon/rcd/debug/can_afford(amount)
+	return TRUE
+
+/obj/item/weapon/rcd/debug/consume_resources(amount)
+	return TRUE
+
+/obj/item/weapon/rcd/debug/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/weapon/rcd_ammo))
+		to_chat(user, span("notice", "\The [src] makes its own material, no need to add more."))
+		return FALSE
+	return ..()
+
+/obj/item/weapon/rcd/debug/display_resources()
+	return "It has UNLIMITED POWER!"
+
+
+
+// Ammo for the (non-electric) RCDs.
 /obj/item/weapon/rcd_ammo
 	name = "compressed matter cartridge"
 	desc = "Highly compressed matter for the RCD."
@@ -164,50 +295,11 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 30000,"glass" = 15000)
-	var/remaining = 10
+	var/remaining = RCD_MAX_CAPACITY / 3
 
 /obj/item/weapon/rcd_ammo/large
 	name = "high-capacity matter cartridge"
 	desc = "Do not ingest."
 	matter = list(DEFAULT_WALL_MATERIAL = 45000,"glass" = 22500)
-	remaining = 30
 	origin_tech = list(TECH_MATERIAL = 4)
-
-/obj/item/weapon/rcd/borg
-	canRwall = 1
-
-/obj/item/weapon/rcd/borg/lesser
-	canRwall = FALSE
-
-/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
-	if(isrobot(user))
-		var/mob/living/silicon/robot/R = user
-		if(R.cell)
-			var/cost = amount*30
-			if(R.cell.charge >= cost)
-				R.cell.use(cost)
-				return 1
-	return 0
-
-/obj/item/weapon/rcd/borg/attackby()
-	return
-
-/obj/item/weapon/rcd/borg/can_use(var/mob/user,var/turf/T)
-	return (user.Adjacent(T) && !user.stat)
-
-
-/obj/item/weapon/rcd/mounted/useResource(var/amount, var/mob/user)
-	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
-	if(istype(loc,/obj/item/rig_module))
-		var/obj/item/rig_module/module = loc
-		if(module.holder && module.holder.cell)
-			if(module.holder.cell.charge >= cost)
-				module.holder.cell.use(cost)
-				return 1
-	return 0
-
-/obj/item/weapon/rcd/mounted/attackby()
-	return
-
-/obj/item/weapon/rcd/mounted/can_use(var/mob/user,var/turf/T)
-	return (user.Adjacent(T) && !user.stat && !user.restrained())
+	remaining = RCD_MAX_CAPACITY

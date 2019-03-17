@@ -6,21 +6,22 @@
 	permeability_coefficient = 0.05
 
 /obj/item/clothing/gloves/fyellow                             //Cheap Chinese Crap
-	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
+	desc = "These gloves are cheap copies of proper insulated gloves. No way this can end badly."
 	name = "budget insulated gloves"
 	icon_state = "yellow"
-	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
+	siemens_coefficient = 1			//Set to a default of 1, gets overridden in initialize()
 	permeability_coefficient = 0.05
 
-	New()
-		//average of 0.5, somewhat better than regular gloves' 0.75
-		siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35)
+/obj/item/clothing/gloves/fyellow/initialize()
+	. = ..()
+	//Picks a value between 0 and 1.25, in 5% increments // VOREStation edit
+	var/shock_pick = rand(0,25) // VOREStation Edit
+	siemens_coefficient = shock_pick * 0.05
 
 /obj/item/clothing/gloves/black
 	desc = "These work gloves are thick and fire-resistant."
 	name = "black gloves"
 	icon_state = "black"
-	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
 
 	cold_protection = HANDS

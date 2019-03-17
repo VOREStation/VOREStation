@@ -23,12 +23,13 @@
 	var/area/last_name				//The last acquired name, used should origin be lost
 	var/area/last_camera_area		//The last area in which cameras where fetched, used to see if the camera list should be updated.
 	var/end_time					//Used to set when this alarm should clear, in case the origin is lost.
+	var/hidden = FALSE				//If this alarm can be seen from consoles or other things.
 
-/datum/alarm/New(var/atom/origin, var/atom/source, var/duration, var/severity)
+/datum/alarm/New(var/atom/origin, var/atom/source, var/duration, var/severity, var/hidden)
 	src.origin = origin
 
 	cameras()	// Sets up both cameras and last alarm area.
-	set_source_data(source, duration, severity)
+	set_source_data(source, duration, severity, hidden)
 
 /datum/alarm/proc/process()
 	// Has origin gone missing?
@@ -43,17 +44,19 @@
 			AS.duration = 0
 			AS.end_time = world.time + ALARM_RESET_DELAY
 
-/datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity)
+/datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity, var/hidden)
 	var/datum/alarm_source/AS = sources_assoc[source]
 	if(!AS)
 		AS = new/datum/alarm_source(source)
 		sources += AS
 		sources_assoc[source] = AS
+		src.hidden = hidden
 	// Currently only non-0 durations can be altered (normal alarms VS EMP blasts)
 	if(AS.duration)
 		duration = SecondsToTicks(duration)
 		AS.duration = duration
 	AS.severity = severity
+	src.hidden = min(src.hidden, hidden)
 
 /datum/alarm/proc/clear(var/source)
 	var/datum/alarm_source/AS = sources_assoc[source]

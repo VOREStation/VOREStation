@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/trinary/mixer
 	icon = 'icons/atmos/mixer.dmi'
 	icon_state = "map"
+	construction_type = /obj/item/pipe/trinary/flippable
+	pipe_state = "mixer"
 	density = 0
 	level = 1
 
@@ -20,10 +22,10 @@
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
 /obj/machinery/atmospherics/trinary/mixer/update_icon(var/safety = 0)
-	if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer))
-		icon_state = "m"
-	else if(istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
+	if(tee)
 		icon_state = "t"
+	else if(mirrored)
+		icon_state = "m"
 	else
 		icon_state = ""
 
@@ -34,34 +36,6 @@
 	else
 		icon_state += "off"
 		use_power = 0
-
-/obj/machinery/atmospherics/trinary/mixer/update_underlays()
-	if(..())
-		underlays.Cut()
-		var/turf/T = get_turf(src)
-		if(!istype(T))
-			return
-
-		if(istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			add_underlay(T, node1, turn(dir, -90))
-		else
-			add_underlay(T, node1, turn(dir, -180))
-
-		if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer) || istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			add_underlay(T, node2, turn(dir, 90))
-		else
-			add_underlay(T, node2, turn(dir, -90))
-
-		add_underlay(T, node3, dir)
-
-/obj/machinery/atmospherics/trinary/mixer/hide(var/i)
-	update_underlays()
-
-/obj/machinery/atmospherics/trinary/mixer/power_change()
-	var/old_stat = stat
-	..()
-	if(old_stat != stat)
-		update_icon()
 
 /obj/machinery/atmospherics/trinary/mixer/New()
 	..()
@@ -102,23 +76,6 @@
 		use_power(power_draw)
 
 	return 1
-
-/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
-		return ..()
-	if(!can_unwrench())
-		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
-		add_fingerprint(user)
-		return 1
-	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-	if (do_after(user, 40 * W.toolspeed))
-		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
-			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
 
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
 	if(..())
@@ -173,92 +130,22 @@
 	src.updateUsrDialog()
 	return
 
+//
+// "T" Orientation - Inputs are on oposite sides instead of adjacent
+//
 obj/machinery/atmospherics/trinary/mixer/t_mixer
 	icon_state = "tmap"
-
+	construction_type = /obj/item/pipe/trinary  // Can't flip a "T", its symmetrical
+	pipe_state = "t_mixer"
 	dir = SOUTH
 	initialize_directions = SOUTH|EAST|WEST
+	tee = TRUE
 
-	//node 3 is the outlet, nodes 1 & 2 are intakes
-
-obj/machinery/atmospherics/trinary/mixer/t_mixer/init_dir()
-	switch(dir)
-		if(NORTH)
-			initialize_directions = EAST|NORTH|WEST
-		if(SOUTH)
-			initialize_directions = SOUTH|WEST|EAST
-		if(EAST)
-			initialize_directions = EAST|NORTH|SOUTH
-		if(WEST)
-			initialize_directions = WEST|NORTH|SOUTH
-
-obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
-	..()
-	if(node1 && node2 && node3) return
-
-	var/node1_connect = turn(dir, -90)
-	var/node2_connect = turn(dir, 90)
-	var/node3_connect = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node1 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node2 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node3 = target
-			break
-
-	update_icon()
-	update_underlays()
-
-obj/machinery/atmospherics/trinary/mixer/m_mixer
+//
+// Mirrored Orientation - Flips the output dir to opposite side from normal.
+//
+/obj/machinery/atmospherics/trinary/mixer/m_mixer
 	icon_state = "mmap"
-
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|EAST
-
-	//node 3 is the outlet, nodes 1 & 2 are intakes
-
-obj/machinery/atmospherics/trinary/mixer/m_mixer/init_dir()
-	switch(dir)
-		if(NORTH)
-			initialize_directions = WEST|NORTH|SOUTH
-		if(SOUTH)
-			initialize_directions = SOUTH|EAST|NORTH
-		if(EAST)
-			initialize_directions = EAST|WEST|NORTH
-		if(WEST)
-			initialize_directions = WEST|SOUTH|EAST
-
-obj/machinery/atmospherics/trinary/mixer/m_mixer/atmos_init()
-	..()
-	if(node1 && node2 && node3) return
-
-	var/node1_connect = turn(dir, -180)
-	var/node2_connect = turn(dir, 90)
-	var/node3_connect = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node1 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node2 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node3 = target
-			break
-
-	update_icon()
-	update_underlays()
+	mirrored = TRUE

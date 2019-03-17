@@ -10,7 +10,7 @@
 
 #define isalien(A) istype(A, /mob/living/carbon/alien)
 
-#define isanimal(A) istype(A, /mob/living/simple_animal)
+#define isanimal(A) istype(A, /mob/living/simple_mob)
 
 #define isairlock(A) istype(A, /obj/machinery/door/airlock)
 
@@ -18,7 +18,7 @@
 
 #define iscarbon(A) istype(A, /mob/living/carbon)
 
-#define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
+#define iscorgi(A) istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
 
 #define isEye(A) istype(A, /mob/observer/eye)
 
@@ -26,7 +26,7 @@
 
 #define isliving(A) istype(A, /mob/living)
 
-#define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
+#define ismouse(A) istype(A, /mob/living/simple_mob/animal/passive/mouse)
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 
@@ -42,11 +42,11 @@
 
 #define isvoice(A) istype(A, /mob/living/voice)
 
-#define isslime(A) istype(A, /mob/living/simple_animal/slime)
+#define isslime(A) istype(A, /mob/living/simple_mob/slime)
 
 #define isbot(A) istype(A, /mob/living/bot)
 
-#define isxeno(A) istype(A, /mob/living/simple_animal/xeno)
+#define isxeno(A) istype(A, /mob/living/simple_mob/animal/space/alien)
 
 #define isopenspace(A) istype(A, /turf/simulated/open)
 
@@ -65,9 +65,9 @@
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
-#define qdel_null_list(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
+#define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
 
-#define qdel_null(x) if(x) { qdel(x) ; x = null }
+#define QDEL_NULL(x) if(x) { qdel(x) ; x = null }
 
 #define ARGS_DEBUG log_debug("[__FILE__] - [__LINE__]") ; for(var/arg in args) { log_debug("\t[log_info_line(arg)]") }
 
@@ -92,3 +92,5 @@
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 // Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
+// Turns LAZYINITLIST(L) L[K] = V into ...  for associated lists
+#define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;

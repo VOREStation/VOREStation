@@ -187,7 +187,7 @@
 					return
 				CentCom_announce(input, usr)
 				usr << "<font color='blue'>Message transmitted.</font>"
-				log_say("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
+				log_game("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(300)//10 minute cooldown
 					centcomm_message_cooldown = 0
@@ -204,7 +204,7 @@
 					return
 				Syndicate_announce(input, usr)
 				usr << "<font color='blue'>Message transmitted.</font>"
-				log_say("[key_name(usr)] has made an illegal announcement: [input]")
+				log_game("[key_name(usr)] has made an illegal announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(300)//10 minute cooldown
 					centcomm_message_cooldown = 0
@@ -420,7 +420,7 @@
 	return dat
 
 /proc/enable_prison_shuttle(var/mob/user)
-	for(var/obj/machinery/computer/prison_shuttle/PS in world)
+	for(var/obj/machinery/computer/prison_shuttle/PS in machines)
 		PS.allowedtocall = !(PS.allowedtocall)
 
 /proc/call_shuttle_proc(var/mob/user)

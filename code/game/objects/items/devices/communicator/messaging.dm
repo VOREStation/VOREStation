@@ -136,7 +136,7 @@
 
 			to_chat(src, "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>")
 			exonet_messages.Add("<b>To [chosen_communicator]:</b><br>[text_message]")
-			log_pda("[usr] (COMM: [src]) sent \"[text_message]\" to [chosen_communicator]")
+			log_pda("(DCOMM: [src]) sent \"[text_message]\" to [chosen_communicator]", src)
 			for(var/mob/M in player_list)
 				if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 					if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)

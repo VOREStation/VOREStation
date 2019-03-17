@@ -1,4 +1,4 @@
-/mob/living/simple_animal/retaliate/bee
+/mob/living/simple_mob/retaliate/bee
 	name = "space bumble bee"
 	desc = "Buzz buzz."
 	icon = 'icons/mob/vore.dmi'
@@ -21,7 +21,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 15 // To do: Make it toxin damage.
 	melee_damage_upper = 15
-	attacktext = "stung"
+	attacktext = list("stung")
 
 	//Space bees aren't affected by atmos.
 	min_oxy = 0
@@ -36,10 +36,10 @@
 
 	faction = "bee"
 
-/mob/living/simple_animal/retaliate/bee/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/retaliate/bee/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space bee!
 
 // Activate Noms!
-/mob/living/simple_animal/retaliate/bee
+/mob/living/simple_mob/retaliate/bee
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING

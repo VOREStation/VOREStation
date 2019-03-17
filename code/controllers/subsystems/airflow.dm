@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(airflow)
 	wait = 2
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
-	priority = 15
+	priority = FIRE_PRIORITY_AIRFLOW
 
 	var/list/processing = list()
 	var/list/currentrun = list()
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(airflow)
 			continue
 		else if (target.airflow_process_delay)
 			target.airflow_process_delay = 0
-		
+
 		target.airflow_speed = min(target.airflow_speed, 15)
 		target.airflow_speed -= vsc.airflow_speed_decay
 		if (!target.airflow_skip_speedcheck)
@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(airflow)
 			if (MC_TICK_CHECK)
 				return
 			continue
-		
+
 		step_towards(target, target.airflow_dest)
 		var/mob/M = target
 		if (ismob(target) && M.client)
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(airflow)
 		if (MC_TICK_CHECK)
 			return
 
-#undef CLEAR_OBJECT		
+#undef CLEAR_OBJECT
 
 /atom/movable
 	var/tmp/airflow_xo
@@ -129,9 +129,9 @@ SUBSYSTEM_DEF(airflow)
 	if (airflow_falloff < 1)
 		airflow_dest = null
 		return FALSE
-	
-	airflow_speed = min(max(n * (9 / airflow_falloff), 1), 9)	
-	
+
+	airflow_speed = min(max(n * (9 / airflow_falloff), 1), 9)
+
 	airflow_od = 0
 
 	if (!density)
@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(airflow)
 /atom/movable/proc/RepelAirflowDest(n)
 	if (!prepare_airflow(n))
 		return
-	
+
 	airflow_xo = -(airflow_dest.x - src.x)
 	airflow_yo = -(airflow_dest.y - src.y)
 

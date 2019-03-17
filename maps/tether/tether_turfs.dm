@@ -4,22 +4,21 @@ VIRGO3B_TURF_CREATE(/turf/simulated/open)
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
 /turf/simulated/open/virgo3b/New()
 	..()
-	outdoor_turfs.Add(src)
+	if(outdoors)
+		SSplanets.addTurf(src)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
-/turf/simulated/floor/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
 
 /turf/simulated/floor/virgo3b_indoors
 	VIRGO3B_SET_ATMOS
 /turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	return 0
 
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
-
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
-
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 /turf/simulated/floor/outdoors/grass/sif
 	turf_layers = list(
@@ -28,15 +27,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 		)
 
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
-/turf/simulated/floor/reinforced/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
-/turf/simulated/floor/tiled/steel_dirty/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
 
 // Overriding these for the sake of submaps that use them on other planets.
 // This means that mining on tether base and space is oxygen-generating, but solars and mining should use the virgo3b subtype
@@ -63,16 +53,62 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 	temperature	= TCMB
 
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
+VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
+	//This proc is responsible for ore generation on surface turfs
+/turf/simulated/mineral/virgo3b/make_ore(var/rare_ore)
+	if(mineral || ignore_mapgen)
+		return
+	var/mineral_name
+	if(rare_ore)
+		mineral_name = pickweight(list(
+			"uranium" = 10, 
+			"platinum" = 10, 
+			"hematite" = 20, 
+			"carbon" = 20, 
+			"diamond" = 1, 
+			"gold" = 8, 
+			"silver" = 8, 
+			"phoron" = 18))
+	else
+		mineral_name = pickweight(list(
+			"uranium" = 5, 
+			"platinum" = 5, 
+			"hematite" = 35, 
+			"carbon" = 35, 
+			"gold" = 3, 
+			"silver" = 3, 
+			"phoron" = 25))
+	if(mineral_name && (mineral_name in ore_data))
+		mineral = ore_data[mineral_name]
+		UpdateMineral()
+	update_icon()
 
-VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/wall/dark/hard_corner)
-/turf/simulated/shuttle/wall/dark/hard_corner/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
-/turf/simulated/shuttle/floor/black/virgo3b/New()
-	..()
-	outdoor_turfs.Add(src)
+/turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
+	if(mineral || ignore_mapgen)
+		return
+	var/mineral_name
+	if(rare_ore)
+		mineral_name = pickweight(list(
+			"uranium" = 10, 
+			"platinum" = 10, 
+			"hematite" = 10, 
+			"carbon" = 10, 
+			"diamond" = 4, 
+			"gold" = 15, 
+			"silver" = 15))
+	else
+		mineral_name = pickweight(list(
+			"uranium" = 7, 
+			"platinum" = 7, 
+			"hematite" = 28, 
+			"carbon" = 28, 
+			"diamond" = 2, 
+			"gold" = 7, 
+			"silver" = 7))
+	if(mineral_name && (mineral_name in ore_data))
+		mineral = ore_data[mineral_name]
+		UpdateMineral()
+	update_icon()
 
 //Unsimulated
 /turf/unsimulated/wall/planetary/virgo3b
@@ -128,7 +164,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
 /turf/space/bluespace
 	name = "bluespace"
 	icon_state = "bluespace"
-/turf/space/bluespace/New()
+/turf/space/bluespace/initialize()
 	..()
 	icon_state = "bluespace"
 
@@ -137,7 +173,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
 	name = "sand transit"
 	icon = 'icons/turf/transit_vr.dmi'
 	icon_state = "desert_ns"
-/turf/space/sandyscroll/New()
+/turf/space/sandyscroll/initialize()
 	..()
 	icon_state = "desert_ns"
 
@@ -147,7 +183,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/black)
 	color = "#FFBBBB"
 
 /turf/simulated/sky/virgo3b/initialize()
-	outdoor_turfs.Add(src)
+	SSplanets.addTurf(src)
 	set_light(2, 2, "#FFBBBB")
 
 /turf/simulated/sky/virgo3b/north

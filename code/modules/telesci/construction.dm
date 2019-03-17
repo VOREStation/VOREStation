@@ -20,6 +20,18 @@
 							/obj/item/stack/cable_coil = 5,
 							/obj/item/weapon/stock_parts/console_screen = 1)
 
+// Bamfpads! Ported from /tg/
+/obj/item/weapon/circuitboard/quantumpad
+	name = T_BOARD("quantum pad")
+	board_type = new /datum/frame/frame_types/machine
+	build_path = /obj/machinery/power/quantumpad
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 4, TECH_BLUESPACE = 4)
+	req_components = list(
+		/obj/item/weapon/ore/bluespace_crystal = 1,
+		/obj/item/weapon/stock_parts/capacitor = 1,
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/stack/cable_coil = 5)
+
 // The Designs
 
 /datum/design/circuit/telesci_console
@@ -35,7 +47,7 @@
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
 	build_path = /obj/item/weapon/circuitboard/telesci_pad
 	sort_string = "HAAEB"
-
+/* Normal GPS has all the fancy features now
 /datum/design/item/telesci_gps
 	name = "GPS device"
 	id = "telesci_gps"
@@ -43,6 +55,13 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1000)
 	build_path = /obj/item/device/gps/advanced
 	sort_string = "HAAEB"
+*/
+/datum/design/circuit/quantum_pad
+	name = "Quantum Pad"
+	id = "quantum_pad"
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
+	build_path = /obj/item/weapon/circuitboard/quantumpad
+	sort_string = "HAAC"
 
 /datum/design/item/bluespace_crystal
 	name = "Artificial Bluespace Crystal"
@@ -50,4 +69,4 @@
 	req_tech = list(TECH_BLUESPACE = 3, TECH_PHORON = 4)
 	materials = list("diamond" = 1500, "phoron" = 1500)
 	build_path = /obj/item/weapon/ore/bluespace_crystal/artificial
-	sort_string = "HAAEC"
+	sort_string = "HAAED"

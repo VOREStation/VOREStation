@@ -6,6 +6,8 @@
 	nodamage = 1
 	check_armour = "energy"
 
+	combustion = FALSE
+
 /obj/item/projectile/change/on_hit(var/atom/change)
 	wabbajack(change)
 
@@ -52,7 +54,7 @@
 				Robot.mmi = new /obj/item/device/mmi(new_mob)
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
 			if("slime")
-				new_mob = new /mob/living/simple_animal/slime(M.loc)
+				new_mob = new /mob/living/simple_mob/slime/xenobio(M.loc)
 				new_mob.universal_speak = 1
 			else
 				var/mob/living/carbon/human/H

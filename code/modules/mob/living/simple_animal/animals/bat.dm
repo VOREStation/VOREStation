@@ -1,6 +1,7 @@
-/mob/living/simple_animal/hostile/scarybat
+/mob/living/simple_mob/hostile/scarybat
 	name = "space bats"
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
+	tt_desc = "N Bestia gregaria" //Nispean swarm bats, because of course Nisp has swarm bats
 	icon = 'icons/mob/bats.dmi'
 	icon_state = "bat"
 	icon_living = "bat"
@@ -20,11 +21,14 @@
 	response_harm = "hits the"
 
 	harm_intent_damage = 10
-	melee_damage_lower = 3
-	melee_damage_upper = 3
+
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	attack_sharp = 1
+
 	environment_smash = 1
 
-	attacktext = "bites"
+	attacktext = list("bites")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	min_oxy = 0
@@ -43,25 +47,25 @@
 
 	var/mob/living/owner
 
-/mob/living/simple_animal/hostile/scarybat/New(loc, mob/living/L as mob)
+/mob/living/simple_mob/hostile/scarybat/New(loc, mob/living/L as mob)
 	..()
 	if(istype(L))
 		owner = L
 
-/mob/living/simple_animal/hostile/scarybat/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/scarybat/Process_Spacemove(var/check_drift = 0)
 	return ..()
 
-/mob/living/simple_animal/hostile/scarybat/set_target()
+/mob/living/simple_mob/hostile/scarybat/set_target()
 	. = ..()
 	if(.)
 		emote("flutters towards [.]")
 
-/mob/living/simple_animal/hostile/scarybat/ListTargets()
+/mob/living/simple_mob/hostile/scarybat/ListTargets()
 	. = ..()
 	if(owner)
 		return . - owner
 
-/mob/living/simple_animal/hostile/scarybat/PunchTarget()
+/mob/living/simple_mob/hostile/scarybat/PunchTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -69,13 +73,13 @@
 			L.Stun(1)
 			L.visible_message("<span class='danger'>\the [src] scares \the [L]!</span>")
 
-/mob/living/simple_animal/hostile/scarybat/cult
+/mob/living/simple_mob/hostile/scarybat/cult
 	faction = "cult"
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/scarybat/cult/cultify()
+/mob/living/simple_mob/hostile/scarybat/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/scarybat/cult/Life()
+/mob/living/simple_mob/hostile/scarybat/cult/Life()
 	..()
 	check_horde()

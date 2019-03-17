@@ -41,8 +41,8 @@
 /obj/structure/bookcase/manuals/xenoarchaeology
 	name = "Xenoarchaeology Manuals bookcase"
 
-/obj/structure/bookcase/manuals/xenoarchaeology/New()
-	..()
+/obj/structure/bookcase/manuals/xenoarchaeology/initialize()
+	. = ..()
 	new /obj/item/weapon/book/manual/excavation(src)
 	new /obj/item/weapon/book/manual/mass_spectrometry(src)
 	new /obj/item/weapon/book/manual/materials_chemistry_analysis(src)
@@ -53,23 +53,23 @@
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
-	req_access = list(access_tox_storage)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
 	icon_locked = "secureres1"
 	icon_opened = "secureresopen"
 	icon_broken = "secureresbroken"
 	icon_off = "secureresoff"
+	req_access = list(access_tox_storage)
 
-/obj/structure/closet/secure_closet/xenoarchaeologist/New()
-	..()
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/glasses/science(src)
-	new /obj/item/device/radio/headset/headset_sci(src)
-	new /obj/item/weapon/storage/belt/archaeology(src)
-	new /obj/item/weapon/storage/excavation(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/scientist,
+		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/shoes/white,
+		/obj/item/weapon/melee/umbrella, // vorestation addition,
+		/obj/item/clothing/glasses/science,
+		/obj/item/device/radio/headset/headset_sci,
+		/obj/item/weapon/storage/belt/archaeology,
+		/obj/item/weapon/storage/excavation)
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
@@ -77,23 +77,22 @@
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-/obj/structure/closet/excavation/New()
-	..()
-	new /obj/item/weapon/storage/belt/archaeology(src)
-	new /obj/item/weapon/storage/excavation(src)
-	new /obj/item/device/flashlight/lantern(src)
-	new /obj/item/device/ano_scanner(src)
-	new /obj/item/device/depth_scanner(src)
-	new /obj/item/device/core_sampler(src)
-	new /obj/item/device/gps(src)
-	new /obj/item/device/beacon_locator(src)
-	new /obj/item/device/radio/beacon(src)
-	new /obj/item/clothing/glasses/meson(src)
-	new /obj/item/weapon/pickaxe(src)
-	new /obj/item/device/measuring_tape(src)
-	new /obj/item/weapon/pickaxe/hand(src)
-	new /obj/item/weapon/storage/bag/fossils(src)
-	new /obj/item/weapon/hand_labeler(src)
+	starts_with = list(
+		/obj/item/weapon/storage/belt/archaeology,
+		/obj/item/weapon/storage/excavation,
+		/obj/item/device/flashlight/lantern,
+		/obj/item/device/ano_scanner,
+		/obj/item/device/depth_scanner,
+		/obj/item/device/core_sampler,
+		/obj/item/device/gps,
+		/obj/item/device/beacon_locator,
+		/obj/item/device/radio/beacon,
+		/obj/item/clothing/glasses/meson,
+		/obj/item/weapon/pickaxe,
+		/obj/item/device/measuring_tape,
+		/obj/item/weapon/pickaxe/hand,
+		/obj/item/weapon/storage/bag/fossils,
+		/obj/item/weapon/hand_labeler)
 
 /obj/machinery/alarm/isolation
 	req_one_access = list(access_research, access_atmospherics, access_engine_equip)

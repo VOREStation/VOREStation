@@ -1,6 +1,7 @@
-/mob/living/simple_animal/lizard
+/mob/living/simple_mob/lizard
 	name = "Lizard"
 	desc = "A cute tiny lizard."
+	tt_desc = "E Anolis cuvieri"
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "lizard"
 	icon_living = "lizard"
@@ -15,7 +16,7 @@
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
 
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 

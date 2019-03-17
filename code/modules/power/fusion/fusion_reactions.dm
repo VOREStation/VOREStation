@@ -117,7 +117,7 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	var/turf/origin = get_turf(holder)
 	holder.Rupture()
 	qdel(holder)
-	var/radiation_level = rand(100, 200)
+	var/radiation_level = 200
 
 	// Copied from the SM for proof of concept. //Not any more --Cirra //Use the whole z proc --Leshana
 	radiation_repository.z_radiate(locate(1, 1, holder.z), radiation_level, 1)
@@ -140,7 +140,6 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	explosion(origin, 1, 2, 5)
 
 	return 1
-
 
 // High end reactions.
 /decl/fusion_reaction/boron_hydrogen

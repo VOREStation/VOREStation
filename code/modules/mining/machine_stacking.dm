@@ -2,7 +2,7 @@
 
 /obj/machinery/mineral/stacking_unit_console
 	name = "stacking machine console"
-	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon = 'icons/obj/machines/mining_machines_vr.dmi'  // VOREStation Edit
 	icon_state = "console"
 	density = 1
 	anchored = 1
@@ -59,6 +59,7 @@
 			var/obj/item/stack/material/S = new stacktype (get_turf(machine.output))
 			S.amount = machine.stack_storage[href_list["release_stack"]]
 			machine.stack_storage[href_list["release_stack"]] = 0
+			S.update_icon()
 
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
@@ -70,7 +71,7 @@
 
 /obj/machinery/mineral/stacking_machine
 	name = "stacking machine"
-	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
 	icon_state = "stacker"
 	density = 1
 	anchored = 1.0
@@ -128,6 +129,7 @@
 			var/obj/item/stack/material/S = new stacktype (get_turf(output))
 			S.amount = stack_amt
 			stack_storage[sheet] -= stack_amt
+			S.update_icon()
 
 	console.updateUsrDialog()
 	return

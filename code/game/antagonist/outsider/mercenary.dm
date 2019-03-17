@@ -42,15 +42,13 @@ var/datum/antagonist/mercenary/mercs
 	if(player.backbag == 3) player.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(player), slot_back)
 	if(player.backbag == 4) player.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(player), slot_back)
 	if(player.backbag == 5) player.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/messenger(player), slot_back)
-	player.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(player.back), slot_in_backpack)
 	player.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(player), slot_in_backpack)
+
 	player.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 	player.mind.accept_tcrystals = 1
 
 	var/obj/item/device/radio/uplink/U = new(player.loc, player.mind, DEFAULT_TELECRYSTAL_AMOUNT)
 	player.put_in_hands(U)
-
-	player.update_icons_layers()
 
 	create_id("Mercenary", player)
 	create_radio(SYND_FREQ, player)

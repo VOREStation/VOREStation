@@ -1,5 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
+GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
+
 /obj/singularity/
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -7,7 +9,7 @@
 	icon_state = "singularity_s1"
 	anchored = 1
 	density = 1
-	layer = 6
+	plane = ABOVE_PLANE
 	light_range = 6
 	unacidable = 1 //Don't comment this out.
 

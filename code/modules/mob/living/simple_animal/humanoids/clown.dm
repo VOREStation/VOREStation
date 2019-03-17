@@ -1,6 +1,7 @@
-/mob/living/simple_animal/hostile/clown
+/mob/living/simple_mob/hostile/clown
 	name = "clown"
 	desc = "A denizen of clown planet"
+	tt_desc = "E Homo sapiens corydon" //this is an actual clown, as opposed to someone dressed up as one
 	icon_state = "clown"
 	icon_living = "clown"
 	icon_dead = "clown_dead"
@@ -26,7 +27,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "attacked"
+	attacktext = list("attacked")
 	attack_sound = 'sound/items/bikehorn.ogg'
 
 	min_oxy = 5

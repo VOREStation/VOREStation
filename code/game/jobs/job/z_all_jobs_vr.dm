@@ -12,6 +12,9 @@
 	spawn_positions = 3
 	alt_titles = list("Custodian", "Sanitation Technician", "Maid")
 
+/datum/job/librarian
+	alt_titles = list("Journalist", "Historian", "Writer")
+
 /datum/job/officer
 	total_positions = 4
 	spawn_positions = 4
@@ -47,3 +50,6 @@
 /datum/job/atmos
 	total_positions = 3
 	spawn_positions = 3
+	
+/datum/job/scientist
+	alt_titles = list("Xenoarcheologist", "Anomalist", "Phoron Researcher", "Circuit Designer")

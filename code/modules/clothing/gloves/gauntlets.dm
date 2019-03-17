@@ -11,6 +11,7 @@
 	desc = "These gloves go over regular gloves."
 	glove_level = 3
 	overgloves = 1
+	punch_force = 5
 	var/obj/item/clothing/gloves/gloves = null	//Undergloves
 
 /obj/item/clothing/gloves/gauntlets/mob_can_equip(mob/user)

@@ -4,16 +4,17 @@
 "d" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "e" = (/obj/effect/spider/spiderling/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "f" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"g" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"h" = (/obj/item/weapon/grenade/spawnergrenade/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"i" = (/mob/living/simple_animal/hostile/giant_spider/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"j" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"k" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"l" = (/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"m" = (/obj/item/device/flashlight,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"n" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"o" = (/obj/effect/spider/stickyweb,/mob/living/simple_animal/hostile/giant_spider/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-"p" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"g" = (/obj/random/mob/spider/mutant,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"h" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"i" = (/obj/random/mob/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"j" = (/obj/item/weapon/grenade/spawnergrenade/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"k" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"l" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"m" = (/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"n" = (/obj/item/device/flashlight,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"o" = (/mob/living/simple_mob/animal/giant_spider/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"p" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
+"q" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -22,24 +23,24 @@ aabbbbbbaabbbbbaaaaaaabbbbbaaa
 abbbbbbbbbbbbbbbbbbbbbbbbbbaaa
 aabbbbbbcbbbbbbbbbbbbbbbdbbbaa
 aabbbbdeddbbbcccbbbbbdddeddbaa
-aadbbfddddcbbdedbbbbbddddddbaa
-aadbbgfbbdddddddbccedddbdedbba
-aabbbbbbbddcdddddddddddbhibbaa
-aabbbbbbdddbbbjcddddddbbbbbbaa
-aabbbbbcdidbbbbbbcdiddcbbbbaaa
-aabbbbbcddcbbbbbbbddddcbbbaaaa
-aabbbbbbidcbbbbbbbdiddcbbbaaaa
-aabbbbbbdddbbbbbbkddddcbbbaaaa
-aabbbbbbdcdbbbbbblddddcbbbaaaa
-aabbbbbbdddbbbbbbcddidcbbbaaaa
-aadbbbbbddibbbbbbbccdddbbbaaaa
-aamdbbbbddbbbbbbbbbicddbbbaaaa
+aadbbfddddcbbdedbbbbbdgddddbaa
+aadbbhfbbiddddddbccedddbdedbba
+aabbbbbbbddcdddddddddddbjgbbaa
+aabbbbbbdddbbbkcddddddbbbbbbaa
+aabbbbbcdddbbbbbbcddddcbbbbaaa
+aabbbbbcddcbbbbbbbdiddcbbbaaaa
+aabbbbbbgdcbbbbbbbddddcbbbaaaa
+aabbbbbbdddbbbbbblddddcbbbaaaa
+aabbbbbbdcdbbbbbbmddgdcbbbaaaa
+aabbbbbbdddbbbbbbcddddcbbbaaaa
+aadbbbbbdddbbbbbbbccdddbbbaaaa
+aandbbbbddbbbbbbbbbocddbbbaaaa
 aaddbbbbdddbbbbbbbbbbddbbdaaaa
-aadddnddedddbbbbbbbbdedbbdaaaa
-aaddnncddddddobcdddddcbbbdaaaa
-aapdbbbbbdddddddddddcbbbbdaaaa
+aadddpddedddbbbbbbbbdedbbdaaaa
+aaddppcdddgddcbcdddddcbbbdaaaa
+aaqdbbbbbdddddddddddcbbbbdaaaa
 aabbbbbbbbcdddcdddddcbbbbbaaaa
-aabbbbbbbbbbbbbbbibbbbbbbbaaaa
+aabbbbbbbbbbbbbbbgbbbbbbbbaaaa
 aabbbbbbbbbbbbbbbbbbbbbbbbaaaa
 aaaaabbbbabbbbbbbaabbbbbbaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

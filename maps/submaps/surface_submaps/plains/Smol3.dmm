@@ -1,0 +1,237 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/Smol3)
+"c" = (
+/turf/simulated/wall/wood,
+/area/submap/Smol3)
+"d" = (
+/obj/structure/simple_door/wood,
+/turf/template_noop,
+/area/submap/Smol3)
+"e" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Smol3)
+"f" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/weapon/reagent_containers/food/snacks/meat,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Smol3)
+"g" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Smol3)
+"h" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper{
+	desc = "Lamen's Hunter Shack! Selling freshly hunted meat for six thalers a slab. Support Locale hunters! Also selling Getmore Products for 3 thalers a bag, or 2 thalers for a bottle of water. Please place all payments into the nearbye bag."
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Smol3)
+"i" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Smol3)
+"j" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/spacecash/c200,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Smol3)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+e
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+b
+b
+e
+e
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+c
+c
+c
+c
+e
+e
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+c
+e
+f
+h
+e
+e
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+d
+e
+e
+i
+e
+e
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+c
+e
+g
+j
+e
+e
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+c
+c
+c
+c
+e
+e
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+b
+b
+b
+e
+e
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+e
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+e
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

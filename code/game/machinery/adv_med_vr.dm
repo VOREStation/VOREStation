@@ -12,9 +12,9 @@
 	var/livingprey = 0
 	var/objectprey = 0
 
-	for(var/I in H.vore_organs)
-		var/datum/belly/B = H.vore_organs[I]
-		for(var/C in B.internal_contents)
+	for(var/belly in H.vore_organs)
+		var/obj/belly/B = belly
+		for(var/C in B)
 			if(ishuman(C))
 				humanprey++
 			else if(isliving(C))

@@ -91,3 +91,40 @@
 	maxcharge = 10000
 	matter = null
 	self_recharge = TRUE
+
+//Not actually a cell, but if people look for it, they'll probably look near other cells
+/obj/item/device/fbp_backup_cell
+	name = "backup battery"
+	desc = "A small one-time-use chemical battery for synthetic crew when they are low on power in emergency situations."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "fbp_cell"
+	w_class = ITEMSIZE_SMALL
+	var/amount = 100
+	var/used = FALSE
+
+/obj/item/device/fbp_backup_cell/initialize()
+	overlays += image(icon,"[icon_state]1")
+
+/obj/item/device/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
+	if(!used && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.isSynthetic())
+			if(H.nutrition <= amount)
+				use(user,H)
+			else
+				to_chat(user,"<span class='warning'>The difference in potential is too great. [user == M ? "You have" : "[H] has"] too much charge to use such a small battery.</span>")
+		else if(M == user)
+			to_chat(user,"<span class='warning'>You lick the cell, and your tongue tingles slightly.</span>")
+		else
+			to_chat(user,"<span class='warning'>This cell is meant for use on humanoid synthetics only.</span>")
+
+	. = ..()
+
+/obj/item/device/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
+	if(used)
+		return
+	used = TRUE
+	desc += " This one has already been used."
+	overlays.Cut()
+	target.nutrition += amount
+	user.custom_emote(message = "connects \the [src] to [user == target ? "their" : "[target]'s"] charging port, expending it.")

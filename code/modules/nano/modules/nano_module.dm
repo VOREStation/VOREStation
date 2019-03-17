@@ -5,6 +5,10 @@
 /datum/nano_module/New(var/host)
 	src.host = host
 
+/datum/nano_module/Destroy()
+	host = null
+	return ..()
+
 /datum/nano_module/nano_host()
 	return host ? host : src
 

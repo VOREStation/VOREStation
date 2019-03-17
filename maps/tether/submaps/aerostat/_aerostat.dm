@@ -49,9 +49,9 @@
 	destinations = list(/datum/shuttle_destination/excursion/virgo2orbit, /datum/shuttle_destination/excursion/aerostat)
 
 /obj/away_mission_init/aerostat/initialize()
-	seed_submaps(list(z), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/virgo2(null, 1, 1, z, 64, 64)
+	/*seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)*/
 
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
@@ -61,12 +61,13 @@
 	faction = "aerostat_inside"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 10
+	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/hivebot/range,
-		/mob/living/simple_animal/hostile/hivebot/range/ion,
-		/mob/living/simple_animal/hostile/hivebot/range/laser
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 3,
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 3,
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 3,
+		/mob/living/simple_mob/vore/corrupthound = 1
 	)
 
 /obj/tether_away_spawner/aerostat_surface
@@ -74,11 +75,12 @@
 	faction = "aerostat_surface"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 10
+	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/jelly,
-		/mob/living/simple_animal/hostile/viscerator
+		/mob/living/simple_mob/vore/corrupthound = 3,
+		/mob/living/simple_mob/mechanical/viscerator = 2,
+		/mob/living/simple_mob/vore/corrupthound = 1
 	)
 
 /obj/structure/old_roboprinter

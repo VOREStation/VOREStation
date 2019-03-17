@@ -36,9 +36,7 @@
 	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
 		src << "<span class='warning'>Our sting appears ineffective against its DNA.</span>"
 		return 0
-	T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was transform stung by [key_name(src)]</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Used transform sting on [key_name(T)]</font>")
-	msg_admin_attack("[key_name(T)] was transform stung by [key_name(src)]")
+	add_attack_logs(src,T,"Transformation sting (changeling)")
 	T.visible_message("<span class='warning'>[T] transforms!</span>")
 	T.dna = chosen_dna.Clone()
 	T.real_name = chosen_dna.real_name

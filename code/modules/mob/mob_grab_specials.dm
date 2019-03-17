@@ -82,9 +82,7 @@
 		attacker << "<span class='danger'>You cannot locate any eyes on [target]!</span>"
 		return
 
-	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Attacked [target.name]'s eyes using grab ([target.ckey])</font>")
-	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Had eyes attacked by [attacker.name]'s grab ([attacker.ckey])</font>")
-	msg_admin_attack("[key_name(attacker)] attacked [key_name(target)]'s eyes using a grab action.")
+	add_attack_logs(attacker,target,"Eye gouge using grab")
 
 	attack.handle_eye_attack(attacker, target)
 
@@ -93,7 +91,8 @@
 		return
 	if(target.lying)
 		return
-	attacker.visible_message("<span class='danger'>[attacker] thrusts \his head into [target]'s skull!</span>")
+	var/datum/gender/T = gender_datums[attacker.get_visible_gender()]
+	attacker.visible_message("<span class='danger'>[attacker] thrusts [T.his] head into [target]'s skull!</span>")
 
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head
@@ -110,9 +109,7 @@
 		target.visible_message("<span class='danger'>[target] [target.species.get_knockout_message(target)]</span>")
 
 	playsound(attacker.loc, "swing_hit", 25, 1, -1)
-	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Headbutted [target.name] ([target.ckey])</font>")
-	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Headbutted by [attacker.name] ([attacker.ckey])</font>")
-	msg_admin_attack("[key_name(attacker)] has headbutted [key_name(target)]")
+	add_attack_logs(attacker,target,"Headbutted using grab")
 
 	attacker.drop_from_inventory(src)
 	src.loc = null

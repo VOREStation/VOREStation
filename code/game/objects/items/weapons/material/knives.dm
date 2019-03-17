@@ -68,10 +68,44 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/material/knife/suicide_act(mob/user)
-	viewers(user) << pick("<span class='danger'>\The [user] is slitting \his wrists with \the [src]! It looks like \he's trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting \his throat with \the [src]! It looks like \he's trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like \he's trying to commit seppuku.</span>")
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
+	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
+	                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.hes] trying to commit seppuku.</span>")
 	return (BRUTELOSS)
+
+// These no longer inherit from hatchets.
+/obj/item/weapon/material/knife/tacknife
+	name = "tactical knife"
+	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	force_divisor = 0.25 //15 when hardness 60 (steel)
+	attack_verb = list("stabbed", "chopped", "cut")
+	applies_material_colour = 1
+
+/obj/item/weapon/material/knife/tacknife/combatknife
+	name = "combat knife"
+	desc = "If only you had a boot to put it in."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	force_divisor = 0.34 // 20 with hardness 60 (steel)
+	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
+	attack_verb = list("sliced", "stabbed", "chopped", "cut")
+	applies_material_colour = 1
+
+// Identical to the tactical knife but nowhere near as stabby.
+// Kind of like the toy esword compared to the real thing.
+/obj/item/weapon/material/knife/tacknife/boot
+	name = "boot knife"
+	desc = "A small fixed-blade knife for putting inside a boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	force_divisor = 0.15
+	applies_material_colour = 0
 
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
@@ -98,13 +132,9 @@
 	icon_state = "machete"
 	force_divisor = 0.3 // 18 when hardness 60 (steel)
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
-	var/should_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
-
-// This cannot go into afterattack since some mobs delete themselves upon dying.
-/obj/item/weapon/material/knife/machete/pre_attack(var/mob/living/target, var/mob/living/user)
-	if(should_cleave && istype(target))
-		cleave(user, target)
-	..()
+	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
+	slot_flags = SLOT_BELT
+	default_material = "plasteel" //VOREStation Edit
 
 /obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"
@@ -113,4 +143,5 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
+	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.

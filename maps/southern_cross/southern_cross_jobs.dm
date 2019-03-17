@@ -1,9 +1,8 @@
-//VORESTATION EDIT!!! This whole file is being included by hand to get these jobs rather than using the map datum itself.
 // Pilots
 
 var/const/SAR 				=(1<<11)
-var/const/PILOT 			=(1<<15) //VOREStation Edit - Bumped up 2
-var/const/EXPLORER 			=(1<<12) //VOREStation Edit - Moved to science
+var/const/PILOT 			=(1<<13)
+var/const/EXPLORER 			=(1<<14)
 
 var/const/access_pilot = 67
 var/const/access_explorer = 43
@@ -81,28 +80,30 @@ var/const/access_explorer = 43
 	selection_color = "#515151"
 	idtype = /obj/item/weapon/card/id/civilian/pilot
 	economic_modifier = 4
-	access = list(access_pilot) //VOREStation Edit
-	minimal_access = list(access_pilot) //VOREStation Edit
+	access = list(access_pilot, access_cargo, access_mining, access_mining_station)
+	minimal_access = list(access_pilot, access_cargo, access_mining, access_mining_station)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER
-	department = "Science" //VOREStation Edit
-	department_flag = MEDSCI //VOREStation Edit
+	department = "Civilian"
+	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 3 //VOREStation Edit
-	spawn_positions = 3 //VOREStation Edit
-	supervisors = "the research director" //VOREStation Edit
-	selection_color = "#633D63" //VOREStation Edit
+	total_positions = 4
+	spawn_positions = 4
+	supervisors = "the explorer leader and the head of personnel"
+	selection_color = "#515151"
 	idtype = /obj/item/weapon/card/id/civilian/explorer
 	economic_modifier = 4
-	access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
-	minimal_access = list(access_pilot, access_explorer, access_research) //VOREStation Edit
+	access = list(access_explorer)
+	minimal_access = list(access_explorer)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
+/*
 	alt_titles = list(
 		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
 		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
+*/
 
 /datum/job/sar
 	title = "Search and Rescue"
@@ -110,10 +111,10 @@ var/const/access_explorer = 43
 	department = "Medical"
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 2 //VOREStation Edit
-	spawn_positions = 2 //VOREStation Edit
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the chief medical officer"
-	selection_color = "#013D3B" //VOREStation Edit
+	selection_color = "#515151"
 	idtype = /obj/item/weapon/card/id/medical
 	economic_modifier = 4
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist, access_explorer)

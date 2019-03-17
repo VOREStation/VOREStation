@@ -1,6 +1,6 @@
 /turf/simulated/floor/carpet
 	name = "carpet"
-	icon = 'icons/turf/flooring/carpet_vr.dmi'
+	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
 
@@ -13,6 +13,11 @@
 	name = "blue carpet"
 	icon_state = "blucarpet"
 	initial_flooring = /decl/flooring/carpet/blucarpet
+
+/turf/simulated/floor/carpet/tealcarpet
+	name = "teal carpet"
+	icon_state = "tealcarpet"
+	initial_flooring = /decl/flooring/carpet/tealcarpet
 
 // Legacy support for existing paths for blue carpet
 /turf/simulated/floor/carpet/blue
@@ -62,6 +67,26 @@
 	icon = 'icons/turf/flooring/wood_vr.dmi'
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
+
+/turf/simulated/floor/wood/broken
+	icon_state = "wood_broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/broken/initialize()
+	break_tile()
+	return ..()
+
+/turf/simulated/floor/wood/sif
+	name = "alien wooden floor"
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_state = "sifwood"
+	initial_flooring = /decl/flooring/wood/sif
+
+/turf/simulated/floor/wood/sif/broken
+	icon_state = "sifwood_broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/sif/broken/initialize()
+	break_tile()
+	return ..()
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -219,9 +244,8 @@
 	oxygen = 0
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/n20/New()
-	..()
-	sleep(-1)
+/turf/simulated/floor/reinforced/n20/initialize()
+	. = ..()
 	if(!air) make_air()
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 
@@ -274,7 +298,7 @@
 	initial_flooring = /decl/flooring/tiling/asteroidfloor
 
 /turf/simulated/floor/tiled/asteroid_steel/airless
-	name = "airless plating"
+	name = "plating"
 	oxygen = 0
 	nitrogen = 0
 
@@ -308,25 +332,25 @@
 	temperature = TCMB
 
 /turf/simulated/floor/airless
-	name = "airless plating"
+	name = "plating"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/tiled/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/bluegrid/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/greengrid/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
@@ -335,7 +359,7 @@
 	oxygen = 0
 
 /turf/simulated/floor/tiled/white/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
@@ -400,11 +424,11 @@
     . = ..()
 
 /turf/snow/update_icon()
-    overlays.Cut()
+    cut_overlays()
     for(var/d in crossed_dirs)
         var/amt = crossed_dirs[d]
 
         for(var/i in 1 to amt)
-            overlays += icon(icon, "footprint[i]", text2num(d))
+            add_overlay(image(icon, "footprint[i]", text2num(d)))
 
 //**** Here ends snow ****

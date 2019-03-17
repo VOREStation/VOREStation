@@ -37,9 +37,9 @@
 	var/outgoing_melee_damage_percent	// Adjusts melee damage inflicted by holder by a percentage.  Affects attacks by melee weapons and hand-to-hand.
 	var/slowdown						// Negative numbers speed up, positive numbers slow down movement.
 	var/haste							// If set to 1, the mob will be 'hasted', which makes it ignore slowdown and go really fast.
-	var/evasion							// Positive numbers reduce the odds of being hit by 15% each.  Negative numbers increase the odds.
+	var/evasion							// Positive numbers reduce the odds of being hit. Negative numbers increase the odds.
 	var/bleeding_rate_percent			// Adjusts amount of blood lost when bleeding.
-	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder.  Each point makes it 15% easier or harder, just like evasion.
+	var/accuracy						// Positive numbers makes hitting things with guns easier, negatives make it harder.
 	var/accuracy_dispersion				// Positive numbers make gun firing cover a wider tile range, and therefore more inaccurate.  Negatives help negate dispersion penalties.
 	var/metabolism_percent				// Adjusts the mob's metabolic rate, which affects reagent processing.  Won't affect mobs without reagent processing.
 	var/icon_scale_percent				// Makes the holder's icon get scaled up or down.
@@ -149,6 +149,13 @@
 /mob/living/proc/remove_specific_modifier(var/datum/modifier/M, var/silent = FALSE)
 	M.expire(silent)
 
+// Removes one modifier of a type
+/mob/living/proc/remove_a_modifier_of_type(var/modifier_type, var/silent = FALSE)
+	for(var/datum/modifier/M in modifiers)
+		if(ispath(M.type, modifier_type))
+			M.expire(silent)
+			break
+
 // Removes all modifiers of a type
 /mob/living/proc/remove_modifiers_of_type(var/modifier_type, var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)
@@ -208,13 +215,13 @@
 		effects += "You move at maximum speed, and cannot be slowed by any means."
 
 	if(!isnull(evasion))
-		effects += "You are [abs(evasion * 15)]% [evasion > 0 ? "harder" : "easier"] to hit with weapons."
+		effects += "You are [abs(evasion)]% [evasion > 0 ? "harder" : "easier"] to hit with weapons."
 
 	if(!isnull(bleeding_rate_percent))
 		effects += "You bleed [multipler_to_percentage(bleeding_rate_percent, TRUE)] [bleeding_rate_percent > 1.0 ? "faster" : "slower"]."
 
 	if(!isnull(accuracy))
-		effects += "It is [abs(accuracy * 15)]% [accuracy > 0 ? "easier" : "harder"] for you to hit someone with a ranged weapon."
+		effects += "It is [abs(accuracy)]% [accuracy > 0 ? "easier" : "harder"] for you to hit someone with a ranged weapon."
 
 	if(!isnull(accuracy_dispersion))
 		effects += "Projectiles you fire are [accuracy_dispersion > 0 ? "more" : "less"] likely to stray from your intended target."

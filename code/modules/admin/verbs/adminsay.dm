@@ -9,7 +9,7 @@
 	if(!msg)
 		return
 
-	log_admin("ADMIN: [key_name(src)] : [msg]")
+	log_adminsay(msg,src)
 
 	if(check_rights(R_ADMIN,0))
 		for(var/client/C in admins)
@@ -27,7 +27,7 @@
 		return
 
 	msg = sanitize(msg)
-	log_admin("MOD: [key_name(src)] : [msg]")
+	log_modsay(msg,src)
 
 	if (!msg)
 		return
@@ -50,7 +50,7 @@
 		return
 
 	msg = sanitize(msg)
-	log_admin("EVENT: [key_name(src)] : [msg]")
+	log_eventsay(msg,src)
 
 	if (!msg)
 		return

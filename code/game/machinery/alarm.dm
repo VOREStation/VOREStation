@@ -36,6 +36,8 @@
 	name = "alarm"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 80
@@ -81,12 +83,17 @@
 
 	var/report_danger_level = 1
 
+	var/alarms_hidden = FALSE //If the alarms from this machine are visible on consoles
+
 /obj/machinery/alarm/nobreach
 	breach_detection = 0
 
 /obj/machinery/alarm/monitor
 	report_danger_level = 0
 	breach_detection = 0
+
+/obj/machinery/alarm/alarms_hidden
+	alarms_hidden = TRUE
 
 /obj/machinery/alarm/server/New()
 	..()
@@ -318,7 +325,7 @@
 			icon_state = "alarm1"
 			new_color = "#DA0205"
 
-	set_light(l_range = 2, l_power = 0.5, l_color = new_color)
+	set_light(l_range = 2, l_power = 0.25, l_color = new_color)
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
@@ -490,7 +497,7 @@
 	if(!(locked && !remote_connection) || remote_access || issilicon(user))
 		populate_controls(data)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "air_alarm.tmpl", name, 325, 625, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
@@ -799,6 +806,8 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
@@ -813,9 +822,13 @@ FIRE ALARM
 	panel_open = 0
 	var/seclevel
 	circuit = /obj/item/weapon/circuitboard/firealarm
+	var/alarms_hidden = FALSE //If the alarms from this machine are visible on consoles
+
+/obj/machinery/firealarm/alarms_hidden
+	alarms_hidden = TRUE
 
 /obj/machinery/firealarm/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		set_light(0)
@@ -830,16 +843,15 @@ FIRE ALARM
 	else
 		if(!detecting)
 			icon_state = "fire1"
-			set_light(l_range = 4, l_power = 2, l_color = "#ff0000")
+			set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
 		else
 			icon_state = "fire0"
 			switch(seclevel)
-				if("green")	set_light(l_range = 2, l_power = 0.5, l_color = "#00ff00")
-				if("blue")	set_light(l_range = 2, l_power = 0.5, l_color = "#1024A9")
-				if("red")	set_light(l_range = 4, l_power = 2, l_color = "#ff0000")
-				if("delta")	set_light(l_range = 4, l_power = 2, l_color = "#FF6633")
-
-		overlays += image('icons/obj/monitors.dmi', "overlay_[seclevel]")
+				if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
+				if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
+				if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
+				if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
+		add_overlay("overlay_[seclevel]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(detecting)
@@ -981,7 +993,7 @@ FIRE ALARM
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
-		fire_alarm.triggerAlarm(loc, FA, duration)
+		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 	update_icon()
 	playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
 	return

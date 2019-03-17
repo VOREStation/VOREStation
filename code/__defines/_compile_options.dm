@@ -7,6 +7,10 @@
 								2 for preloading absolutely everything;
 								*/
 
+#define RUST_G "rust_g"			// If uncommented, we will use the rust-g (https://github.com/tgstation/rust-g) native library for fast
+								// logging. This requires you to have the rust_g.dll or rust_g (renamed from librust_g.so) installed in the root folder or BYOND/bin
+								// The define's value should be the name of library file.
+
 // ZAS Compile Options
 //#define ZASDBG	 	// Uncomment to turn on super detailed ZAS debugging that probably won't even compile.
 #define MULTIZAS		// Uncomment to turn on Multi-Z ZAS Support!

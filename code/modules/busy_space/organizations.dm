@@ -31,7 +31,15 @@
 		"Hawk",
 		"Haste",
 		"Radiant",
-		"Luminous"
+		"Luminous",
+		"Princess of Sol",
+		"King of the Mountain",
+		"Words and Changes",
+		"Katerina's Silhouette",
+		"Castle of Water",
+		"Jade Leviathan",
+		"Sword of Destiny",
+		"Ishtar's Grace"
 		)
 	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
 	var/autogenerate_destination_names = TRUE
@@ -41,10 +49,10 @@
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(6, 10)
 		var/list/star_names = list(
-			"Sol", "Alpha Centauri", "Sirius", "Vega", "Regulus", "Vir", "Algol", "Aldebaran",
-			"Delta Doradus", "Menkar", "Geminga", "Elnath", "Gienah", "Mu Leporis", "Nyx", "Tau Ceti",
-			"Wazn", "Alphard", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "the Almach Rim")
-		var/list/destination_types = list("dockyard", "station", "vessel", "waystation", "telecommunications satellite", "spaceport", "distress beacon", "anomaly", "colony", "outpost")
+			"Sol", "Alpha Centauri", "Tau Ceti", "Zhu Que", "Oasis", "Vir", "Gavel", "Ganesha",
+			"Saint Columbia", "Altair", "Sidhe", "New Ohio", "Parvati", "Mahi-Mahi", "Nyx", "New Seoul",
+			"Kess-Gendar", "Raphael", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "Thoth", "Jahan's Post", "Kauq'xum", "Silk", "New Singapore", "Stove", "Viola", "Love", "Isavau's Gamble" )
+		var/list/destination_types = list("dockyard", "station", "vessel", "waystation", "telecommunications satellite", "spaceport", "anomaly", "colony", "outpost")
 		while(i)
 			destination_names.Add("a [pick(destination_types)] in [pick(star_names)]")
 			i--
@@ -69,10 +77,10 @@
 	for newly tested posibrains to remain with the company."
 	history = "" // To be written someday.
 	work = "research giant"
-	headquarters = "Luna"
+	headquarters = "Luna, Sol"
 	motto = ""
 
-	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response")
+	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response", "NDV" = "asset protection")
 	//Scientist naming scheme
 	ship_names = list(
 		"Bardeen",
@@ -99,13 +107,18 @@
 		"Aristotle",
 		"Von Braun",
 		"Kaku",
-		"Oppenheimer"
+		"Oppenheimer",
+		"Renwick",
+		"Hubble",
+		"Alcubierre",
+		"Robineau",
+		"Glass"
 		)
 	// Note that the current station being used will be pruned from this list upon being instantiated
 	destination_names = list(
 		"NSS Exodus in Nyx",
-		//"NCS Northern Star in Vir",
-		"NLS Southern Cross in Vir",
+		"NCS Northern Star in Vir",
+		//"NLS Southern Cross in Vir",
 		"NAS Vir Central Command",
 		"a dockyard orbiting Sif",
 		"an asteroid orbiting Kara",
@@ -130,14 +143,14 @@
 	desc = "Hephaestus Industries is the largest supplier of arms, ammunition, and small millitary vehicles in Sol space. \
 	Hephaestus products have a reputation for reliability, and the corporation itself has a noted tendency to stay removed \
 	from corporate politics. They enforce their neutrality with the help of a fairly large asset-protection contingent which \
-	prevents any contracting polities from using their own materiel against them. SolGov itself is one of Hephastus’ largest \
+	prevents any contracting polities from using their own materiel against them. SolGov itself is one of Hephaestus' largest \
 	bulk contractors owing to the above factors."
 	history = ""
 	work = "arms manufacturer"
-	headquarters = ""
+	headquarters = "Luna, Sol"
 	motto = ""
 
-	ship_prefixes = list("HTV" = "freight", "HTV" = "munitions resupply")
+	ship_prefixes = list("HTV" = "freight", "HLV" = "munitions resupply", "HDV" = "asset protection", "HDV" = "preemptive deployment")
 	//War God/Soldier Theme
 	ship_names = list(
 		"Ares",
@@ -154,7 +167,23 @@
 		"Annan",
 		"Chi Yu",
 		"Shiva",
-		"Tyr"
+		"Tyr",
+		"Nobunaga",
+		"Xerxes",
+		"Alexander",
+		"McArthur",
+		"Samson",
+		"Oya",
+		"Nemain",
+		"Caesar",
+		"Augustus",
+		"Sekhmet",
+		"Ku",
+		"Indra",
+		"Innana",
+		"Ishtar",
+		"Qamaits",
+		"'Oro",
 		)
 	destination_names = list(
 		"a SolGov dockyard on Luna",
@@ -170,15 +199,15 @@
 	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \
 	the sale of medical equipment-- from surgical tools to large medical devices to the Oddyseus trauma response mecha \
 	and everything in between. Their equipment tends to be top-of-the-line, most obviously shown by their incredibly \
-	human-like FBP designs. Vey’s rise to stardom came from their introduction of ressurective cloning, although in \
-	recent years they’ve been forced to diversify as their patents expired and NanoTrasen-made medications became \
+	human-like FBP designs. Vey's rise to stardom came from their introduction of ressurective cloning, although in \
+	recent years they've been forced to diversify as their patents expired and NanoTrasen-made medications became \
 	essential to modern cloning."
 	history = ""
 	work = "medical equipment supplier"
-	headquarters = ""
+	headquarters = "Toledo, New Ohio"
 	motto = ""
 
-	ship_prefixes = list("VTV" = "transportation", "VMV" = "medical resupply")
+	ship_prefixes = list("VTV" = "transportation", "VMV" = "medical resupply", "VSV" = "research mission", "VRV" = "emergency medical support")
 	// Diona names
 	ship_names = list(
 		"Wind That Stirs The Waves",
@@ -193,7 +222,13 @@
 		"Star That Fades From View",
 		"Eyes Which Turn Inwards",
 		"Joy Without Which The World Would Come Undone",
-		"A Thousand Thousand Planets Dangling From Branches"
+		"A Thousand Thousand Planets Dangling From Branches",
+		"Light Streaming Through Interminable Branches",
+		"Smoke Brought Up From A Terrible Fire",
+		"Light of Qerr'Valis",
+		"King Xae'uoque",
+		"Memory of Kel'xi",
+		"Xi'Kroo's Herald"
 		)
 	destination_names = list(
 		"a research facility in Samsara",
@@ -207,13 +242,13 @@
 	acronym = "ZH"
 	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
 	on the market for medications, and many household names are patentted by Zeng-Hu-- Bicaridyne, Dylovene, Tricordrizine, \
-	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Hu’s fortunes have been in decline as Nanotrasen’s near monopoly \
-	on phoron research cuts into their R&D and Vey-Med’s superior medical equipment effectively decimated their own equipment \
+	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Hu's fortunes have been in decline as Nanotrasen's near monopoly \
+	on phoron research cuts into their R&D and Vey-Med's superior medical equipment effectively decimated their own equipment \
 	interests. The three-way rivalry between these companies for dominance in the medical field is well-known and a matter of \
 	constant economic speculation."
 	history = ""
 	work = "pharmaceuticals company"
-	headquarters = ""
+	headquarters = "Earth, Sol"
 	motto = ""
 
 	ship_prefixes = list("ZTV" = "transportation", "ZMV" = "medical resupply")
@@ -226,25 +261,47 @@
 	desc = "Ward-Takahashi focuses on the sale of small consumer electronics, with its computers, communicators, \
 	and even mid-class automobiles a fixture of many households. Less famously, Ward-Takahashi also supplies most \
 	of the AI cores on which vital control systems are mounted, and it is this branch of their industry that has \
-	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashi’s economies \
-	of scale frequently steal market share from Nanotrasen’s high-price products, leading to a bitter rivalry in the \
+	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashi's economies \
+	of scale frequently steal market share from Nanotrasen's high-price products, leading to a bitter rivalry in the \
 	consumer electronics market."
 	history = ""
 	work = "electronics manufacturer"
 	headquarters = ""
 	motto = ""
 
-	ship_prefixes = list("WTV" = "freight")
+	ship_prefixes = list("WFV" = "freight", "WTV" = "transport", "WDV" = "asset protection")
+	ship_names = list(
+		"Comet",
+		"Aurora",
+		"Supernova",
+		"Nebula",
+		"Galaxy",
+		"Starburst",
+		"Constellation",
+		"Pulsar",
+		"Quark",
+		"Void",
+		"Asteroid",
+		"Wormhole",
+		"Sunspots",
+		"Supercluster",
+		"Moon",
+		"Anomaly",
+		"Drift",
+		"Stream",
+		"Rift",
+		"Curtain"
+		)
 	destination_names = list()
 
 /datum/lore/organization/tsc/bishop
 	name = "Bishop Cybernetics"
 	short_name = "Bishop"
 	acronym = "BC"
-	desc = "Bishop’s focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bête noire for \
+	desc = "Bishop's focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bête noire for \
 	bioconservatives), Bishop manufactures not only prostheses but also brain augmentation, synthetic organ replacements, \
 	and odds and ends like implanted wrist-watches. Their business model tends towards smaller, boutique operations, giving \
-	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Med’s for cost. Bishop’s reputation \
+	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Med's for cost. Bishop's reputation \
 	for catering towards the interests of human augmentation enthusiasts instead of positronics have earned it ire from the \
 	Positronic Rights Group and puts it in ideological (but not economic) comptetition with Morpheus Cyberkinetics."
 	history = ""
@@ -252,8 +309,10 @@
 	headquarters = ""
 	motto = ""
 
-	ship_prefixes = list("BTV" = "transportation")
-	destination_names = list()
+	ship_prefixes = list("ITV" = "transportation", "ISV" = "research exchange") //Bishop can't afford / doesn't care enough to afford its own prefixes
+	destination_names = list(
+	"A medical facility in Angessa's Pearl"
+	)
 
 /datum/lore/organization/tsc/morpheus
 	name = "Morpheus Cyberkinetics"
@@ -266,7 +325,7 @@
 	the good-will of the positronics, and the ire of those who wish to exploit them."
 	history = ""
 	work = "cybernetics manufacturer"
-	headquarters = ""
+	headquarters = "Shelf"
 	motto = ""
 
 	ship_prefixes = list("MTV" = "freight")
@@ -360,7 +419,17 @@
 		"Preemptive Defensive Strike",
 		"This Ship Is Spiders",
 		"Legitimate Trade Vessel",
-		"Please Don't Explode II"
+		"Please Don't Explode II",
+		"Get Off the Air",
+		"Definitely Unsinkable",
+		"We Didn't Do It!",
+		"Unrelated To That Other Ship",
+		"Not Reflecting The Opinons Of The Shareholders",
+		"Normal Ship Name",
+		"Define Offensive",
+		"Tiffany",
+		"My Other Ship is A Gestalt",
+		"NTV HTV WTV ITV ZTV"
 		)
 	destination_names = list(
 		"a trade outpost in Shelf"
@@ -378,7 +447,31 @@
 	headquarters = ""
 	motto = ""
 
-	ship_prefixes = list("XTV" = "hauling")
+	ship_prefixes = list("XTV" = "hauling", "XFV" = "bulk transport", "XIV" = "resupply")
+	destination_names = list()
+
+/datum/lore/organization/tsc/mbt
+	name = "Major Bill's Transportation"
+	short_name = "Major Bill's"
+	desc = "The most popular courier service and starliner, Major Bill's is an unassuming corporation whose greatest asset is their low cost and brand recognition. Major Bill’s is known, perhaps unfavorably, for its mascot, Major Bill, a cartoonish military figure that spouts quotable slogans. Their motto is \"With Major Bill's, you won't pay major bills!\", an earworm much of the galaxy longs to forget."
+	history = ""
+	work = "courier and passenger transit"
+	headquarters = "Mars, Sol"
+	motto = ""
+
+	ship_prefixes = list("TTV" = "transport", "TTV" = "luxury transit")
+	destination_names = list()
+
+/datum/lore/organization/tsc/independent
+	name = "Free Traders"
+	short_name = "Free Trader"
+	desc = "Though less common now than they were in the decades before the Sol Economic Organization took power, independent traders remain an important part of the galactic economy, owing in no small part to protective tarrifs established by the Free Trade Union in the late twenty-forth century."
+	history = ""
+	work = "trade and transit"
+	headquarters = "N/A"
+	motto = "N/A"
+
+	ship_prefixes = list("IEV" = "prospecting", "IEC" = "prospecting", "IFV" = "bulk freight", "ITV" = "passenger transport", "ITC" = "just-in-time delivery")
 	destination_names = list()
 
 // Governments
@@ -391,7 +484,7 @@
 	comply with SifGov's legislation and regulations." // Vorestation Edit. Confederate -> Central
 	history = "" // Todo like the rest of them
 	work = "governing body of Sif"
-	headquarters = "New Reykjavik, Sif"
+	headquarters = "New Reykjavik, Sif, Vir"
 	motto = ""
 	autogenerate_destination_names = FALSE
 
@@ -414,7 +507,7 @@
 	defacto represents humanity on the galactic stage."
 	history = "" // Todo
 	work = "governing polity of humanity's Confederation"
-	headquarters = "Luna"
+	headquarters = "Luna, Sol"
 	motto = "Nil Mortalibus Ardui Est" // Latin, because latin.  Says 'Nothing is too steep for mortals'.
 	autogenerate_destination_names = TRUE
 

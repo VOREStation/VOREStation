@@ -1,7 +1,5 @@
 // This is a wall you surround the area of your "planet" with, that makes the atmosphere inside stay within bounds, even if canisters
 // are opened or other strange things occur.
-var/list/planetary_walls = list()
-
 /turf/unsimulated/wall/planetary
 	name = "railroading"
 	desc = "Choo choo!"
@@ -21,10 +19,10 @@ var/list/planetary_walls = list()
 
 /turf/unsimulated/wall/planetary/New()
 	..()
-	planetary_walls.Add(src)
+	SSplanets.addTurf(src)
 
 /turf/unsimulated/wall/planetary/Destroy()
-	planetary_walls.Remove(src)
+	SSplanets.removeTurf(src)
 	..()
 
 /turf/unsimulated/wall/planetary/proc/set_temperature(var/new_temperature)

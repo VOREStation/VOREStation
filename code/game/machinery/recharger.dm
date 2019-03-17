@@ -8,7 +8,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 40000	//40 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_casing/nsfw_batt) //VOREStation Add - NSFW Batteries
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/ammo_casing/nsfw_batt) //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -41,41 +41,18 @@ obj/machinery/recharger
 			return
 		if(istype(G, /obj/item/weapon/gun/energy))
 			var/obj/item/weapon/gun/energy/E = G
-			if(!E.power_supply)
-				to_chat(user, "<span class='notice'>Your gun has no power cell.</span>")
-				return
 			if(E.self_recharge)
 				to_chat(user, "<span class='notice'>Your gun has no recharge port.</span>")
 				return
-		if(istype(G, /obj/item/weapon/gun/energy/staff))
+		if(!G.get_cell())
+			to_chat(user, "This device does not have a battery installed.")
 			return
-		if(istype(G, /obj/item/device/flashlight))
-			var/obj/item/device/flashlight/F = G
-			if(!F.power_use)
-				return
-			if(!F.cell)
-				return
-		if(istype(G, /obj/item/device/laptop))
-			var/obj/item/device/laptop/L = G
-			if(!L.stored_computer.battery)
-				user << "There's no battery in it!"
-				return
-		if(istype(G, /obj/item/device/electronic_assembly))
-			var/obj/item/device/electronic_assembly/assembly = G
-			if(!assembly.battery)
-				to_chat(user, "<span class='warning'>The assembly doesn't have a power cell.</span>")
-				return
-		if(istype(G, /obj/item/weapon/weldingtool/electric))
-			var/obj/item/weapon/weldingtool/electric/welder = G
-			if(!welder.power_supply)
-				to_chat(user, "<span class='notice'>Your welder has no power cell.</span>")
-				return
 
 		user.drop_item()
 		G.loc = src
 		charging = G
 		update_icon()
-	else if(portable && istype(G, /obj/item/weapon/wrench))
+	else if(portable && G.is_wrench())
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
@@ -109,71 +86,8 @@ obj/machinery/recharger
 		update_use_power(1)
 		icon_state = icon_state_idle
 	else
-		if(istype(charging, /obj/item/weapon/gun/energy))
-			var/obj/item/weapon/gun/energy/E = charging
-			if(!E.power_supply.fully_charged())
-				icon_state = icon_state_charging
-				E.power_supply.give(active_power_usage*CELLRATE)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/weapon/gun/magnetic))
-			var/obj/item/weapon/gun/magnetic/M = charging
-			if(!M.cell.fully_charged())
-				icon_state = icon_state_charging
-				M.cell.give(active_power_usage*CELLRATE)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/weapon/melee/baton))
-			var/obj/item/weapon/melee/baton/B = charging
-			if(B.bcell)
-				if(!B.bcell.fully_charged())
-					icon_state = icon_state_charging
-					B.bcell.give(active_power_usage*CELLRATE)
-					update_use_power(2)
-				else
-					icon_state = icon_state_charged
-					update_use_power(1)
-			else
-				icon_state = icon_state_idle
-				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/device/laptop))
-			var/obj/item/device/laptop/L = charging
-			if(!L.stored_computer.battery.fully_charged())
-				icon_state = icon_state_charging
-				L.stored_computer.battery.give(active_power_usage*CELLRATE)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/device/flashlight))
-			var/obj/item/device/flashlight/F = charging
-			if(F.cell)
-				if(!F.cell.fully_charged())
-					icon_state = icon_state_charging
-					F.cell.give(active_power_usage*CELLRATE)
-					update_use_power(2)
-				else
-					icon_state = icon_state_charged
-					update_use_power(1)
-			else
-				icon_state = icon_state_idle
-				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = charging
+		var/obj/item/weapon/cell/C = charging.get_cell()
+		if(istype(C))
 			if(!C.fully_charged())
 				icon_state = icon_state_charging
 				C.give(active_power_usage*CELLRATE)
@@ -181,25 +95,9 @@ obj/machinery/recharger
 			else
 				icon_state = icon_state_charged
 				update_use_power(1)
-			return
-
-		if(istype(charging, /obj/item/device/electronic_assembly))
-			var/obj/item/device/electronic_assembly/assembly = charging
-			if(assembly.battery)
-				if(!assembly.battery.fully_charged())
-					icon_state = icon_state_charging
-					assembly.battery.give(active_power_usage*CELLRATE)
-					update_use_power(2)
-				else
-					icon_state = icon_state_charged
-					update_use_power(1)
-			else
-				icon_state = icon_state_idle
-				update_use_power(1)
-			return
 
 		//VOREStation Add - NSFW Batteries
-		if(istype(charging, /obj/item/ammo_casing/nsfw_batt))
+		else if(istype(charging, /obj/item/ammo_casing/nsfw_batt))
 			var/obj/item/ammo_casing/nsfw_batt/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
 				icon_state = icon_state_charged
@@ -211,31 +109,16 @@ obj/machinery/recharger
 			return
 		//VOREStation Add End
 
-		if(istype(charging, /obj/item/weapon/weldingtool/electric))
-			var/obj/item/weapon/weldingtool/electric/C = charging
-			if(!C.power_supply.fully_charged())
-				icon_state = icon_state_charging
-				C.power_supply.give(active_power_usage*CELLRATE)
-				update_use_power(2)
-			else
-				icon_state = icon_state_charged
-				update_use_power(1)
-			return
-
 /obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
 
-	if(istype(charging,  /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/E = charging
-		if(E.power_supply)
-			E.power_supply.emp_act(severity)
+	if(charging)
+		var/obj/item/weapon/cell/C = charging.get_cell()
+		if(istype(C))
+			C.emp_act(severity)
 
-	else if(istype(charging, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = charging
-		if(B.bcell)
-			B.bcell.charge = 0
 	..(severity)
 
 /obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
@@ -244,11 +127,12 @@ obj/machinery/recharger
 	else
 		icon_state = icon_state_idle
 
-
 /obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 	active_power_usage = 25000	//25 kW , It's more specialized than the standalone recharger (guns, batons, and flashlights only) so make it more powerful
 	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/magnetic, /obj/item/weapon/melee/baton, /obj/item/device/flashlight, /obj/item/weapon/cell/device)
 	icon_state_charged = "wrecharger2"

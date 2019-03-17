@@ -15,9 +15,11 @@
 	var/spore_cooldown = 8 SECONDS
 
 /obj/structure/blob/factory/Destroy()
-	for(var/mob/living/simple_animal/hostile/blob/spore/spore in spores)
-		if(spore.factory == src)
+	for(var/mob/living/simple_mob/blob/spore/spore in spores)
+		if(istype(spore) && spore.factory == src)
 			spore.factory = null
+		else
+			spore.nest = null
 	spores = null
 	return ..()
 
@@ -29,9 +31,22 @@
 		return
 	flick("blob_factory_glow", src)
 	spore_delay = world.time + spore_cooldown
-	var/mob/living/simple_animal/hostile/blob/spore/S = null
+	var/mob/living/simple_mob/blob/spore/S = null
 	if(overmind)
 		S = new overmind.blob_type.spore_type(src.loc, src)
-		S.overmind = overmind
+		S.faction = "blob"
+		if(istype(S))
+			S.overmind = overmind
+			overmind.blob_mobs.Add(S)
+			if(overmind.blob_type.ranged_spores)
+				S.projectiletype = overmind.blob_type.spore_projectile
+				S.projectilesound = overmind.blob_type.spore_firesound
+		else //Other mobs don't add themselves in New. Ew.
+			S.nest = src
+			spores += S
 		S.update_icons()
-		overmind.blob_mobs.Add(S)
+
+/obj/structure/blob/factory/sluggish // Capable of producing MORE spores, but quite a bit slower than normal.
+	name = "sluggish factory blob"
+	max_spores = 4
+	spore_cooldown = 16 SECONDS

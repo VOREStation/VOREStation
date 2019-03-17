@@ -26,7 +26,7 @@
 
 	on_created_text = "<span class='warning'>You start to glow very brightly!</span>"
 	on_expired_text = "<span class='notice'>Your glow has ended.</span>"
-	evasion = -2
+	evasion = -30
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/corona/tick()

@@ -42,12 +42,16 @@
 
 /datum/lore/codex/page/unathi
 	name = "Unathi"
-	data = "Raging in from Moghes, the Unathi are a race of tall, reptilian humanoids that possess both crocodile-like and serpent-like features. \
-	They are a proud, warlike species that favors honor and strength, their home, Moghes, is a desert planet but was once believed to be full of life. \
-	Of all the currently known sentient species, the Unathi are the most unequal in gender with females tending to be property of the males. Most Unathi \
-	outside of Moghes tend to be exiles however, and with influence of other species the gender difference is not nearly as pronounced. Unathi were \
-	humanity's second contact, and despite their aggressive nature, seem to get along well enough with humanity, though are often considered to be \
-	'second-class' citizens and are rarely seen in jobs other than where muscle is needed." // ToDo: Update with Unathi rewrite from Polaris.
+	data = "The Unathi are a race of tall, reptilian humanoids that possess both crocodile-like and serpent-like features. Their scales are hard and \
+	plate-like, save for the softer ones that line the inside of their legs, armpits, and groin. Originating from the planet of Moghes, the Unathi \
+	live in an extremely religious society. The Unathi believe in and closely follow a set of Decrees laid out in their belief system, The Unity. \
+	Unathi believes in living long, prosperous, honorable and productive lives. They firmly believe in improving the skills of their craft to reach \
+	a level where they can be considered to have mastered it. Unathi was humanity's second alien contact, but due to their aggressive nature, engaged \
+	in an interstellar war with humanity known as the Sol-Hegemony Conflict. \
+	<br><br> \
+	Although the conflict has long since ended, and relations have slowly improved, Unathi are still often considered to be 'second-class' citizens \
+	and are rarely seen in jobs other than where muscle is needed. It is also still common for racial tensions to run high, although this is less \
+	common on the outskirts of SolGov's grasp, such as systems like Virgo-Erigone."
 
 /datum/lore/codex/page/tajaran
 	name = "Tajaran"
@@ -85,7 +89,7 @@
 	<br><br>\
 	With the help of Skrellean technology, the Akula had their genome modified to be capable of surviving in open air for long periods of time. \
 	However, Akula even today still require a high humidity environment to avoid drying out after a few days, which would make life on an arid world like \
-	[quick_link("Virgo Prime")] nearly impossible if it were not for Skrellean technology to aid them."
+	[quick_link("Virgo-Prime")] nearly impossible if it were not for Skrellean technology to aid them."
 
 /datum/lore/codex/page/nevrean/add_content()
 	name = "Nevrean"
@@ -126,7 +130,7 @@
 /datum/lore/codex/page/zorren/add_content()
 	name = "Zorren"
 	keywords += list("Zorren")
-	data = "The fox-like Zorren are native to [quick_link("Virgo Prime")], however there are two distinct varieties of \
+	data = "The fox-like Zorren are native to [quick_link("Virgo-Prime")], however there are two distinct varieties of \
 	Zorren one with large ears and shorter fur, and the other with longer fur that is a bit more vibrant. The \
 	long-eared, short-furred Zorren have come to be known as \"Flatland\" Zorren as that is where most of their \
 	settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently \
@@ -147,7 +151,7 @@
 	maintaining their own settlements and cultures, but often finding themselves standing on the shoulders of their more technologically advanced neighbors \
 	when it comes to meeting and exploring the rest of the galaxy.\
 	<br><br>\
-	It is important to note that Teshari names are unlike standard human names.  Their pack name precedes their given name."
+	It is important to note that Teshari names are unlike standard human names. Their pack name precedes their given name."
 	children = list(
 		/datum/lore/codex/page/teshari_packs,
 		/datum/lore/codex/page/teshari_physical

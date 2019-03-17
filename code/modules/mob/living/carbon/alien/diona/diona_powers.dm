@@ -19,7 +19,7 @@
 
 		if(istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/D = C
-			if(D.species && D.species.name == "Diona")
+			if(D.species && D.species.name == SPECIES_DIONA)
 				choices += C
 
 	var/mob/living/M = input(src,"Who do you wish to merge with?") in null|choices
@@ -33,7 +33,6 @@
 	if(!istype(H) || !src || !(src.Adjacent(H)))
 		return 0
 	H << "You feel your being twine with that of \the [src] as it merges with your biomass."
-	H.status_flags |= PASSEMOTES
 	src << "You feel your being twine with that of \the [H] as you merge with its biomass."
 	loc = H
 	verbs += /mob/living/carbon/alien/diona/proc/split
@@ -64,6 +63,5 @@
 
 	if(istype(M))
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+			if(istype(A,/mob/living/simple_mob/animal/borer) || istype(A,/obj/item/weapon/holder))
 				return
-	M.status_flags &= ~PASSEMOTES

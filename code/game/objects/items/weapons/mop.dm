@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/weapon/mop)
+
 /obj/item/weapon/mop
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
@@ -12,9 +14,9 @@
 	var/mopping = 0
 	var/mopcount = 0
 
-
 /obj/item/weapon/mop/New()
 	create_reagents(30)
+	..()
 
 /obj/item/weapon/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return

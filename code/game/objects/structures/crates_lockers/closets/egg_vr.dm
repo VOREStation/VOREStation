@@ -10,20 +10,13 @@
 	open_sound = 'sound/vore/schlorp.ogg'
 	close_sound = 'sound/vore/schlorp.ogg'
 	opened = 0
-	welded = 0 //Don't touch this.
+	sealed = 0 //Don't touch this.
 	health = 100
 
 /obj/structure/closet/secure_closet/egg/attackby(obj/item/weapon/W, mob/user as mob) //This also prevents crew from welding the eggs and making them unable to be opened.
 	if(istype(W, /obj/item/weapon/weldingtool))
 		src.dump_contents()
 		qdel(src)
-
-/obj/structure/closet/secure_closet/egg/dump_contents()
-	var/datum/belly/belly = check_belly(src)
-	if(belly)
-		for(var/atom/movable/M in src)
-			belly.internal_contents |= M
-	return ..()
 
 /obj/structure/closet/secure_closet/egg/unathi
 	name = "unathi egg"

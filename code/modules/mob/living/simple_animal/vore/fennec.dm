@@ -1,6 +1,7 @@
-/mob/living/simple_animal/fennec
+/mob/living/simple_mob/fennec
 	name = "fennec"
 	desc = "It's a dusty big-eared sandfox! Adorable!"
+	tt_desc = "Vulpes zerda"
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "fennec"
 	icon_living = "fennec"
@@ -18,7 +19,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 2
-	attacktext = "bapped"
+	attacktext = list("bapped")
 
 	speak_chance = 1
 	speak = list("SKREEEE!",
@@ -28,7 +29,7 @@
 	emote_see = list("earflicks","sniffs at the ground")
 
 // Activate Noms!
-/mob/living/simple_animal/fennec
+/mob/living/simple_mob/fennec
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"

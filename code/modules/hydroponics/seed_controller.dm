@@ -81,7 +81,7 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 
 	// Make sure any seed packets that were mapped in are updated
 	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in world)
+	for(var/obj/item/seeds/S in all_seed_packs)
 		S.update_seed()
 
 	//Might as well mask the gene types while we're at it.

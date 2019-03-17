@@ -15,6 +15,11 @@
 /proc/mob_size_difference(var/mob_size_A, var/mob_size_B)
 	return round(log(2, mob_size_A/mob_size_B), 1)
 
+/mob/proc/can_wield_item(obj/item/W)
+	if(W.w_class >= ITEMSIZE_LARGE && issmall(src))
+		return FALSE //M is too small to wield this
+	return TRUE
+
 /proc/istiny(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
@@ -48,6 +53,9 @@ proc/isdeaf(A)
 
 /mob/proc/break_cloak()
 	return
+
+/mob/proc/is_cloaked()
+	return FALSE
 
 proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
@@ -323,7 +331,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isslime(src))
+	if(isliving(src) && !isrobot(src))
 		switch(input)
 			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = input
@@ -512,7 +520,7 @@ proc/is_blind(A)
 		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if(species.name != SPECIES_HUMAN)
 			threatcount += 2
 
 	if(check_records || check_arrest)
@@ -529,19 +537,17 @@ proc/is_blind(A)
 
 	return threatcount
 
-/mob/living/simple_animal/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_mob/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
 
-	if(!istype(src, /mob/living/simple_animal/retaliate/goat))
-		if(hostile)
-			if(faction != "neutral") // Otherwise Runtime gets killed.
-				threatcount += 4
+	if(has_AI() && ai_holder.hostile && faction != "neutral") // Otherwise Runtime gets killed.
+		threatcount += 4
 	return threatcount
 
 // Beepsky will (try to) only beat 'bad' slimes.
-/mob/living/simple_animal/slime/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_mob/slime/xenobio/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	var/threatcount = 0
 
 	if(stat == DEAD)
@@ -560,8 +566,10 @@ proc/is_blind(A)
 	if(victim)
 		threatcount += 4
 */
-	if(rabid)
-		threatcount = 10
+	if(has_AI())
+		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
+		if(AI.rabid)
+			threatcount = 10
 
 	return threatcount
 
@@ -612,6 +620,10 @@ var/list/global/organ_rel_size = list(
 /mob/proc/handle_regular_hud_updates()
 	return
 
+//Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
+/mob/proc/handle_vision()
+	return
+
 //Icon is used to occlude things like huds from the faulty byond context menu.
 //   http://www.byond.com/forum/?post=2336679
 var/global/image/backplane
@@ -619,6 +631,35 @@ var/global/image/backplane
 	backplane = image('icons/misc/win32.dmi')
 	backplane.alpha = 0
 	backplane.plane = -100
+	backplane.layer = MOB_LAYER-0.1
 	backplane.mouse_opacity = 0
 
 	return TRUE
+
+/mob/proc/get_sound_env(var/pressure_factor)
+	if (pressure_factor < 0.5)
+		return SPACE
+	else
+		var/area/A = get_area(src)
+		return A.sound_env
+
+/mob/proc/position_hud_item(var/obj/item/item, var/slot)
+	if(!istype(hud_used) || !slot || !LAZYLEN(hud_used.slot_info))
+		return
+
+	//They may have hidden their entire hud but the hands
+	if(!hud_used.hud_shown && slot > slot_r_hand)
+		item.screen_loc = null
+		return
+
+	//They may have hidden the icons in the bottom left with the hide button
+	if(!hud_used.inventory_shown && slot > slot_r_store)
+		item.screen_loc = null
+		return
+
+	var/screen_place = hud_used.slot_info["[slot]"]
+	if(!screen_place)
+		item.screen_loc = null
+		return
+
+	item.screen_loc = screen_place

@@ -36,7 +36,7 @@
 		data["prime"] = user.pai_law0
 		data["supplemental"] = user.pai_laws
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_directives.tmpl", "pAI Directives", 450, 600)
@@ -62,11 +62,12 @@
 				count++
 
 			// Check the carrier
+			var/datum/gender/TM = gender_datums[M.get_visible_gender()]
 			var/answer = input(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", "No") in list("Yes", "No")
 			if(answer == "Yes")
 				var/turf/T = get_turf_or_move(P.loc)
 				for (var/mob/v in viewers(T))
-					v.show_message("<span class='notice'>[M] presses \his thumb against [P].</span>", 3, "<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>", 2)
+					v.show_message("<span class='notice'>[M] presses [TM.his] thumb against [P].</span>", 3, "<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>", 2)
 				var/datum/dna/dna = M.dna
 				P << "<font color = red><h3>[M]'s UE string : [dna.unique_enzymes]</h3></font>"
 				if(dna.unique_enzymes == P.master_dna)
@@ -74,7 +75,7 @@
 				else
 					P << "<b>DNA does not match stored Master DNA.</b>"
 			else
-				P << "[M] does not seem like \he is going to provide a DNA sample willingly."
+				P << "[M] does not seem like [TM.he] is going to provide a DNA sample willingly."
 			return 1
 
 /datum/pai_software/radio_config
@@ -101,7 +102,7 @@
 
 		data["channels"] = channels
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			ui = new(user, user, id, "pai_radio.tmpl", "Radio Configuration", 300, 150)
 			ui.set_initial_data(data)
@@ -127,10 +128,10 @@
 		// This is dumb, but NanoUI breaks if it has no data to send
 		data["manifest"] = PDA_Manifest
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
-			ui = new(user, user, id, "pai_manifest.tmpl", "Crew Manifest", 450, 600)
+			ui = new(user, user, id, "crew_manifest.tmpl", "Crew Manifest", 450, 600)
 			ui.set_initial_data(data)
 			ui.open()
 			ui.set_auto_update(1)
@@ -177,7 +178,7 @@
 
 		data["messages"] = messages
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_messenger.tmpl", "Digital Messenger", 450, 600)
@@ -235,7 +236,7 @@
 		data["medical"] = M ? M.fields : null
 		data["could_not_find"] = user.medical_cannotfind
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_medrecords.tmpl", "Medical Records", 450, 600)
@@ -289,7 +290,7 @@
 		data["security"] = S ? S.fields : null
 		data["could_not_find"] = user.security_cannotfind
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_secrecords.tmpl", "Security Records", 450, 600)
@@ -339,7 +340,7 @@
 		data["progress_b"] = user.hackprogress % 10
 		data["aborted"] = user.hack_aborted
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_doorjack.tmpl", "Door Jack", 300, 150)
@@ -430,7 +431,7 @@
 				gases[++gases.len] = gas
 			data["gas"] = gases
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_atmosphere.tmpl", "Atmosphere Sensor", 350, 300)
@@ -444,6 +445,11 @@
 
 	toggle(mob/living/silicon/pai/user)
 		user.secHUD = !user.secHUD
+		user.plane_holder.set_vis(VIS_CH_ID, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_WANTED, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_IMPTRACK, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_IMPLOYAL, user.secHUD)
+		user.plane_holder.set_vis(VIS_CH_IMPCHEM, user.secHUD)
 
 	is_active(mob/living/silicon/pai/user)
 		return user.secHUD
@@ -455,6 +461,8 @@
 
 	toggle(mob/living/silicon/pai/user)
 		user.medHUD = !user.medHUD
+		user.plane_holder.set_vis(VIS_CH_STATUS, user.medHUD)
+		user.plane_holder.set_vis(VIS_CH_HEALTH, user.medHUD)
 
 	is_active(mob/living/silicon/pai/user)
 		return user.medHUD
@@ -465,16 +473,18 @@
 	id = "translator"
 
 	toggle(mob/living/silicon/pai/user)
-		// 	Sol Common, Tradeband and Gutter are added with New() and are therefore the current default, always active languages
+		// 	Sol Common, Tradeband, Terminus and Gutter are added with New() and are therefore the current default, always active languages
 		user.translator_on = !user.translator_on
 		if(user.translator_on)
 			user.add_language(LANGUAGE_UNATHI)
 			user.add_language(LANGUAGE_SIIK)
+			user.add_language(LANGUAGE_AKHANI)
 			user.add_language(LANGUAGE_SKRELLIAN)
 			user.add_language(LANGUAGE_SCHECHI)
 		else
 			user.remove_language(LANGUAGE_UNATHI)
 			user.remove_language(LANGUAGE_SIIK)
+			user.remove_language(LANGUAGE_AKHANI)
 			user.remove_language(LANGUAGE_SKRELLIAN)
 			user.remove_language(LANGUAGE_SCHECHI)
 
@@ -493,7 +503,7 @@
 		data["frequency"] = format_frequency(user.sradio.frequency)
 		data["code"] = user.sradio.code
 
-		ui = nanomanager.try_update_ui(user, user, id, ui, data, force_open)
+		ui = GLOB.nanomanager.try_update_ui(user, user, id, ui, data, force_open)
 		if(!ui)
 			// Don't copy-paste this unless you're making a pAI software module!
 			ui = new(user, user, id, "pai_signaller.tmpl", "Signaller", 320, 150)

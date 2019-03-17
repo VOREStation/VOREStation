@@ -3,28 +3,37 @@
 *	related to weapons live.
 */
 
-/datum/supply_packs/munitions
+/datum/supply_pack/munitions
 	group = "Munitions"
 
-/datum/supply_packs/randomised/munitions
+/datum/supply_pack/randomised/munitions
 	group = "Munitions"
 /* VOREStation Removal - What? This crate costs 40... the crate with just two eguns costs 50... what??? This crate is also like "the armory" and has OFFICER access?
-/datum/supply_packs/munitions/weapons
-	name = "Weapons crate"
+/datum/supply_pack/munitions/weapons
+	name = "Weapons - Security basic equipment"
 	contains = list(
+			/obj/item/device/flash = 2,
+			/obj/item/weapon/reagent_containers/spray/pepper = 2,
 			/obj/item/weapon/melee/baton/loaded = 2,
-			/obj/item/weapon/gun/energy/gun = 2,
 			/obj/item/weapon/gun/energy/taser = 2,
 			/obj/item/weapon/gun/projectile/colt/detective = 2,
 			/obj/item/weapon/storage/box/flashbangs = 2
 			)
 	cost = 40
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Security equipment crate"
+	access = access_security*/
+
+/datum/supply_pack/munitions/egunpistol
+	name = "Weapons - Energy sidearms"
+	contains = list(/obj/item/weapon/gun/energy/gun = 2)
+	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
-	containername = "Weapons crate"
-	access = access_security
-*/
-/datum/supply_packs/munitions/flareguns
-	name = "Flare guns crate"
+	containername = "Energy sidearms crate"
+	access = access_armory //VOREStation Edit - Guns are for the armory.
+
+/datum/supply_pack/munitions/flareguns
+	name = "Weapons - Flare guns"
 	contains = list(
 			/obj/item/weapon/gun/projectile/sec/flash,
 			/obj/item/ammo_magazine/m45/flash,
@@ -32,100 +41,96 @@
 			/obj/item/weapon/storage/box/flashshells
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Flare gun crate"
 	access = access_armory //VOREStation Edit - Guns are for the armory.
 
-/datum/supply_packs/munitions/eweapons
-	name = "Experimental weapons crate"
+/datum/supply_pack/munitions/eweapons
+	name = "Weapons - Experimental weapons crate"
 	contains = list(
 			/obj/item/weapon/gun/energy/xray = 2,
 			/obj/item/weapon/shield/energy = 2)
 	cost = 100
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Experimental weapons crate"
 	access = access_armory
 
-/datum/supply_packs/munitions/energyweapons 
-	name = "Laser carbine crate"
+/datum/supply_pack/munitions/energyweapons
+	name = "Weapons - Laser rifle crate"
 	contains = list(/obj/item/weapon/gun/energy/laser = 2) //VOREStation Edit - Made to be consistent with the energy guns crate.
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "energy weapons crate"
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Energy weapons crate"
 	access = access_armory
 
-/datum/supply_packs/munitions/shotgun
-	name = "Shotgun crate"
+/datum/supply_pack/munitions/shotgun
+	name = "Weapons - Shotgun crate"
 	contains = list(
 			/obj/item/weapon/storage/box/shotgunammo,
 			/obj/item/weapon/storage/box/shotgunshells,
 			/obj/item/weapon/gun/projectile/shotgun/pump/combat = 2
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Shotgun crate"
 	access = access_armory
 /* VOREStation edit -- This is a bad idea. -- So is this.
-/datum/supply_packs/munitions/erifle
-	name = "Energy marksman crate"
+/datum/supply_pack/munitions/erifle
+	name = "Weapons - Energy marksman"
 	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)
 	cost = 100
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Energy marksman crate"
 	access = access_armory
 
-/datum/supply_packs/munitions/burstlaser
-	name = "Burst laser crate"
+/datum/supply_pack/munitions/burstlaser
+	name = "Weapons - Burst laser"
 	contains = list(/obj/item/weapon/gun/energy/gun/burst = 2)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Burst laser crate"
 	access = access_armory
 */
-/datum/supply_packs/munitions/ionweapons
-	name = "Electromagnetic weapons crate"
+/datum/supply_pack/munitions/ionweapons
+	name = "Weapons - Electromagnetic Rifles"
 	contains = list(
 			/obj/item/weapon/gun/energy/ionrifle = 2,
 			/obj/item/weapon/storage/box/empslite
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "electromagnetic weapons crate"
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Electromagnetic weapons crate"
 	access = access_armory
 
-/datum/supply_packs/munitions/ionpistols
-	name = "Electromagnetic pistols crate"
+/datum/supply_pack/munitions/ionpistols
+	name = "Weapons - Electromagnetic pistols"
 	contains = list(
 			/obj/item/weapon/gun/energy/ionrifle/pistol = 2,
 			/obj/item/weapon/storage/box/empslite
 			)
 	cost = 30
-	containertype = /obj/structure/closet/crate/secure
-	containername = "electromagnetic weapons crate"
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Electromagnetic weapons crate"
 	access = access_armory
 
-/datum/supply_packs/randomised/munitions/automatic
-	name = "Automatic weapon crate"
-	num_contained = 2
-	contains = list(
-			/obj/item/weapon/gun/projectile/automatic/wt550,
-			/obj/item/weapon/gun/projectile/automatic/z8
-			)
-	cost = 100
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Automatic weapon crate"
-	access = access_armory
-
-/datum/supply_packs/munitions/energy_guns
-	name = "Energy gun crate"
-	contains = list(/obj/item/weapon/gun/energy/gun = 2)
+/datum/supply_pack/munitions/bsmg
+	name = "Weapons - Ballistic SMGs"
+	contains = list(/obj/item/weapon/gun/projectile/automatic/wt550 = 2)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Energy gun crate"
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Ballistic weapon crate"
 	access = access_armory
 
-/datum/supply_packs/munitions/bolt_rifles_competitive
- 	name = "Competitive shooting crate"
+/datum/supply_pack/munitions/brifle
+	name = "Weapons - Ballistic Rifles"
+	contains = list(/obj/item/weapon/gun/projectile/automatic/z8 = 2)
+	cost = 80
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Ballistic weapon crate"
+	access = access_armory
+
+/datum/supply_pack/munitions/bolt_rifles_competitive
+ 	name = "Weapons - Competitive shooting rifles"
  	contains = list(
  			/obj/item/device/assembly/timer,
  			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice = 2,
@@ -136,37 +141,56 @@
  			)
  	cost = 40
  	containertype = /obj/structure/closet/crate/secure/weapon
- 	containername = "Weapons crate"
+ 	containername = "Ballistic Weapons crate"
  	access = access_armory //VOREStation Edit - Guns are for the armory.
 
-/datum/supply_packs/munitions/shotgunammo
-	name = "Shotgun ammunition crate"
+/datum/supply_pack/munitions/shotgunammo
+	name = "Ammunition - Shotgun shells"
 	contains = list(
 			/obj/item/weapon/storage/box/shotgunammo = 2,
 			/obj/item/weapon/storage/box/shotgunshells = 2
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
-	containername = "ballistic ammunition crate"
+	containername = "Ballistic ammunition crate"
 	access = access_armory
 
-/datum/supply_packs/randomised/munitions/autoammo
-	name = "Automatic weapon ammunition crate"
-	num_contained = 6
-	contains = list(
-			/obj/item/ammo_magazine/m9mmt,
-			/obj/item/ammo_magazine/m9mmt/rubber,
-			/obj/item/ammo_magazine/m545saw
-			)
-	cost = 25
-	containertype = /obj/structure/closet/crate/secure
-	containername = "Automatic weapon ammunition crate"
-	access = access_armory
-
-/datum/supply_packs/munitions/beanbagammo
-	name = "Beanbag shells"
+/datum/supply_pack/munitions/beanbagammo
+	name = "Ammunition - Beanbag shells"
 	contains = list(/obj/item/weapon/storage/box/beanbags = 3)
 	cost = 25
 	containertype = /obj/structure/closet/crate
-	containername = "Beanbag shells"
+	containername = "Ballistic ammunition crate"
 	access = access_armory //VOREStation Edit - Guns are for the armory.
+
+/datum/supply_pack/munitions/bsmgammo
+	name = "Ammunition - 9mm top mounted lethal"
+	contains = list(/obj/item/ammo_magazine/m9mmt = 6)
+	cost = 25
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Ballistic ammunition crate"
+	access = access_armory
+
+/datum/supply_pack/munitions/bsmgammorubber
+	name = "Ammunition - 9mm top mounted rubber"
+	contains = list(/obj/item/ammo_magazine/m9mmt/rubber = 6)
+	cost = 25
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Ballistic ammunition crate"
+	access = access_security
+
+/datum/supply_pack/munitions/brifleammo
+	name = "Ammunition - 7.62mm lethal"
+	contains = list(/obj/item/ammo_magazine/m762 = 6)
+	cost = 25
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Ballistic ammunition crate"
+	access = access_armory
+
+/datum/supply_pack/munitions/pcellammo
+	name = "Ammunition - Power cell"
+	contains = list(/obj/item/weapon/cell/device/weapon = 3)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Energy ammunition crate"
+	access = access_security

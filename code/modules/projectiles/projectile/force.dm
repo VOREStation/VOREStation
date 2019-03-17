@@ -5,6 +5,8 @@
 	damage = 20
 	check_armour = "energy"
 
+	combustion = FALSE
+
 /obj/item/projectile/forcebolt/strong
 	name = "force bolt"
 

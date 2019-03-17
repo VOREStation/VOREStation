@@ -17,6 +17,7 @@
 	var/obj/vehicle/train/lead
 	var/obj/vehicle/train/tow
 
+	var/open_top = TRUE
 
 //-------------------------------------------
 // Standard procs
@@ -56,8 +57,21 @@
 			if(istype(load, /mob/living/carbon/human))
 				var/mob/living/D = load
 				D << "<font color='red'>You hit [M]!</font>"
-				msg_admin_attack("[D.name] ([D.ckey]) hit [M.name] ([M.ckey]) with [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+				add_attack_logs(D,M,"Ran over with [src.name]")
 
+//trains are commonly open topped, so there is a chance the projectile will hit the mob riding the train instead
+/obj/vehicle/train/bullet_act(var/obj/item/projectile/Proj)
+	if(has_buckled_mobs() && prob(70))
+		var/mob/living/L = pick(buckled_mobs)
+		L.bullet_act(Proj)
+		return
+	..()
+
+/obj/vehicle/train/update_icon()
+	if(open)
+		icon_state = initial(icon_state) + "_open"
+	else
+		icon_state = initial(icon_state)
 
 //-------------------------------------------
 // Vehicle procs

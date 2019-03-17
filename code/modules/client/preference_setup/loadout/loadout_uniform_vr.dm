@@ -11,7 +11,7 @@
 /datum/gear/uniform/job_khi/cmd
 	display_name = "khi uniform, cmd"
 	path = /obj/item/clothing/under/rank/khi/cmd
-	allowed_roles = list("Colony Director","Head of Personnel")
+	allowed_roles = list("Head of Security","Colony Director","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
 
 /datum/gear/uniform/job_khi/sec
 	display_name = "khi uniform, sec"
@@ -164,3 +164,8 @@ Swimsuits
 /datum/gear/uniform/latexmaid
 	display_name = "latex maid dress"
 	path = /obj/item/clothing/under/fluff/latexmaid
+
+//Tron Siren outfit
+/datum/gear/uniform/siren
+	display_name = "jumpsuit, Siren"
+	path = /obj/item/clothing/under/fluff/siren

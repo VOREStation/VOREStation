@@ -28,7 +28,7 @@
 		data["focus"] = focus.return_reading_data()
 	data["map_levels"] = using_map.get_map_levels(T.z)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
 		// adding a template with the key "mapContent" enables the map ui functionality
@@ -43,8 +43,11 @@
 /datum/nano_module/power_monitor/proc/refresh_sensors()
 	grid_sensors = list()
 	var/turf/T = get_turf(nano_host())
+	var/list/levels = list()
+	if(T)
+		levels += using_map.get_map_levels(T.z, FALSE)
 	for(var/obj/machinery/power/sensor/S in machines)
-		if((T && S.loc.z == T.z) || (S.long_range)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
+		if(T && (S.loc.z == T.z) || (S.loc.z in levels) || (S.long_range)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
 			if(S.name_tag == "#UNKN#") // Default name. Shouldn't happen!
 				warning("Powernet sensor with unset ID Tag! [S.x]X [S.y]Y [S.z]Z")
 			else

@@ -102,7 +102,7 @@
 	a_drain = 0.1
 	access = access_engine
 	tick_flags = NIF_ACTIVETICK
-	planes_enabled = list(VIS_FULLBRIGHT)
+	planes_enabled = list(VIS_FULLBRIGHT, VIS_MESONS)
 	vision_flags = (NIF_V_MESONS)
 	incompatible_with = list(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
 

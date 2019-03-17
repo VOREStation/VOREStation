@@ -197,7 +197,7 @@
 	desc = "This is an unusual plant. It's bulbous ends emit a soft blue light."
 	icon_state = "plant-09"
 	light_range = 2
-	light_power = 1
+	light_power = 0.6
 	light_color = "#33CCFF"
 
 /obj/structure/flora/pottedplant/orientaltree
@@ -255,7 +255,7 @@
 	desc = "This is a subterranean plant. It's bulbous ends glow faintly."
 	icon_state = "plant-20"
 	light_range = 2
-	light_power = 1
+	light_power = 0.6
 	light_color = "#FF6633"
 
 /obj/structure/flora/pottedplant/minitree
@@ -301,7 +301,7 @@
 	desc = "This is a subterranean plant. It's bulbous ends glow faintly."
 	icon_state = "glowplant"
 	light_range = 2
-	light_power = 1
+	light_power = 0.6
 	light_color = "#FF6633"
 
 /obj/structure/flora/sif/subterranean/initialize()

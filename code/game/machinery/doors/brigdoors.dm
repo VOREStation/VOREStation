@@ -25,34 +25,39 @@
 	var/releasetime = 0		// when world.timeofday reaches it - release the prisoner
 	var/timing = 1    		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/picture_state		// icon_state of alert picture, if not displaying text/numbers
-	var/list/obj/machinery/targets = list()
+	var/list/obj/machinery/targets
 	var/timetoset = 0		// Used to set releasetime upon starting the timer
 
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/New()
+/obj/machinery/door_timer/initialize()
 	..()
+	//Doors need to go first, and can't rely on init order, so come back to me.
+	return INITIALIZE_HINT_LATELOAD
 
-	spawn(20)
-		for(var/obj/machinery/door/window/brigdoor/M in machines)
-			if (M.id == src.id)
-				targets += M
+/obj/machinery/door_timer/LateInitialize()
+	. = ..()
 
-		for(var/obj/machinery/flasher/F in machines)
-			if(F.id == src.id)
-				targets += F
+	for(var/obj/machinery/door/window/brigdoor/M in machines)
+		if (M.id == src.id)
+			LAZYADD(targets,M)
 
-		for(var/obj/structure/closet/secure_closet/brig/C in world)
-			if(C.id == src.id)
-				targets += C
+	for(var/obj/machinery/flasher/F in machines)
+		if(F.id == src.id)
+			LAZYADD(targets,F)
 
-		if(targets.len==0)
-			stat |= BROKEN
-		update_icon()
-		return
-	return
+	for(var/obj/structure/closet/secure_closet/brig/C in all_brig_closets)
+		if(C.id == src.id)
+			LAZYADD(targets,C)
 
+	if(!LAZYLEN(targets))
+		stat |= BROKEN
+	update_icon()
+
+/obj/machinery/door_timer/Destroy()
+	LAZYCLEARLIST(targets)
+	return ..()
 
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer
@@ -95,6 +100,7 @@
 // Closes and locks doors, power check
 /obj/machinery/door_timer/proc/timer_start()
 	if(stat & (NOPOWER|BROKEN))	return 0
+	if(!LAZYLEN(targets)) return 0
 
 	// Set releasetime
 	releasetime = world.timeofday + timetoset
@@ -115,6 +121,7 @@
 // Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end()
 	if(stat & (NOPOWER|BROKEN))	return 0
+	if(!LAZYLEN(targets)) return 0
 
 	// Reset releasetime
 	releasetime = 0
@@ -197,11 +204,12 @@
 	dat += "<a href='?src=\ref[src];tp=-60'>-</a> <a href='?src=\ref[src];tp=-1'>-</a> <a href='?src=\ref[src];tp=1'>+</a> <A href='?src=\ref[src];tp=60'>+</a><br/>"
 
 	// Mounted flash controls
-	for(var/obj/machinery/flasher/F in targets)
-		if(F.last_flash && (F.last_flash + 150) > world.time)
-			dat += "<br/><A href='?src=\ref[src];fc=1'>Flash Charging</A>"
-		else
-			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
+	if(LAZYLEN(targets))
+		for(var/obj/machinery/flasher/F in targets)
+			if(F.last_flash && (F.last_flash + 150) > world.time)
+				dat += "<br/><A href='?src=\ref[src];fc=1'>Flash Charging</A>"
+			else
+				dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
 
 	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
 	dat += "</TT></BODY></HTML>"
@@ -244,8 +252,9 @@
 			timeset(addtime)
 
 		if(href_list["fc"])
-			for(var/obj/machinery/flasher/F in targets)
-				F.flash()
+			if(LAZYLEN(targets))
+				for(var/obj/machinery/flasher/F in targets)
+					F.flash()
 
 		if(href_list["change"])
 			src.timer_start()

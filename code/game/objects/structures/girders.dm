@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 2
+	plane = PLATING_PLANE
 	w_class = ITEMSIZE_HUGE
 	var/state = 0
 	var/health = 200
@@ -83,8 +83,8 @@
 	health = (displaced_health - round(current_damage / 4))
 	cover = 25
 
-/obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
-	if(!damage || !wallbreaker)
+/obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart")
+	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return 0
 	user.do_attack_animation(src)
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
@@ -144,7 +144,7 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && state == 0)
+	if(W.is_wrench() && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
@@ -170,7 +170,7 @@
 		to_chat(user, "<span class='notice'>You drill through the girder!</span>")
 		dismantle()
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(W.is_screwdriver())
 		if(state == 2)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "<span class='notice'>Now unsecuring support struts...</span>")
@@ -183,7 +183,7 @@
 			reinforcing = !reinforcing
 			to_chat(user, "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>")
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
+	else if(W.is_wirecutter() && state == 1)
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now removing support struts...</span>")
 		if(do_after(user,40 * W.toolspeed))
@@ -193,7 +193,7 @@
 			reinf_material = null
 			reset_girder()
 
-	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
+	else if(W.is_crowbar() && state == 0 && anchored)
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
 		if(do_after(user, 40 * W.toolspeed))
@@ -317,19 +317,26 @@
 	return
 
 /obj/structure/girder/cult
+	name = "column"
 	icon= 'icons/obj/cult.dmi'
 	icon_state= "cultgirder"
 	health = 250
 	cover = 70
-	girder_material = DEFAULT_WALL_MATERIAL
+	girder_material = "cult"
 	applies_material_colour = 0
+
+/obj/structure/girder/cult/update_icon()
+	if(anchored)
+		icon_state = "cultgirder"
+	else
+		icon_state = "displaced"
 
 /obj/structure/girder/cult/dismantle()
 	new /obj/effect/decal/remains/human(get_turf(src))
 	qdel(src)
 
 /obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(W.is_wrench())
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
 		if(do_after(user,40 * W.toolspeed))
@@ -346,3 +353,54 @@
 		to_chat(user, "<span class='notice'>You drill through the girder!</span>")
 		new /obj/effect/decal/remains/human(get_turf(src))
 		dismantle()
+
+
+/obj/structure/girder/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	var/turf/simulated/T = get_turf(src)
+	if(!istype(T) || T.density)
+		return FALSE
+
+	switch(passed_mode)
+		if(RCD_FLOORWALL)
+			// Finishing a wall costs two sheets.
+			var/cost = RCD_SHEETS_PER_MATTER_UNIT * 2
+			// Rwalls cost three to finish.
+			if(the_rcd.make_rwalls)
+				cost += RCD_SHEETS_PER_MATTER_UNIT * 1
+			return list(
+				RCD_VALUE_MODE = RCD_FLOORWALL,
+				RCD_VALUE_DELAY = 2 SECONDS,
+				RCD_VALUE_COST = cost
+			)
+		if(RCD_DECONSTRUCT)
+			return list(
+				RCD_VALUE_MODE = RCD_DECONSTRUCT,
+				RCD_VALUE_DELAY = 2 SECONDS,
+				RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 5
+			)
+	return FALSE
+
+/obj/structure/girder/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+	var/turf/simulated/T = get_turf(src)
+	if(!istype(T) || T.density) // Should stop future bugs of people bringing girders to centcom and RCDing them, or somehow putting a girder on a durasteel wall and deconning it.
+		return FALSE
+
+	switch(passed_mode)
+		if(RCD_FLOORWALL)
+			to_chat(user, span("notice", "You finish a wall."))
+			// This is mostly the same as using on a floor. The girder's material is preserved, however.
+			T.ChangeTurf(/turf/simulated/wall)
+			var/turf/simulated/wall/new_T = get_turf(src) // Ref to the wall we just built.
+			// Apparently set_material(...) for walls requires refs to the material singletons and not strings.
+			// This is different from how other material objects with their own set_material(...) do it, but whatever.
+			var/material/M = name_to_material[the_rcd.material_to_use]
+			new_T.set_material(M, the_rcd.make_rwalls ? M : null, girder_material)
+			new_T.add_hiddenprint(user)
+			qdel(src)
+			return TRUE
+
+		if(RCD_DECONSTRUCT)
+			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			qdel(src)
+			return TRUE
+

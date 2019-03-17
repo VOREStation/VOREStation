@@ -8,12 +8,15 @@
 					LANGUAGE_TRADEBAND = 1,
 					LANGUAGE_UNATHI = 0,
 					LANGUAGE_SIIK	= 0,
+					LANGUAGE_AKHANI = 0,
 					LANGUAGE_SKRELLIAN = 0,
+					LANGUAGE_SKRELLIANFAR = 0,
 					LANGUAGE_ROOTLOCAL = 0,
 					LANGUAGE_GUTTER = 1,
 					LANGUAGE_SCHECHI = 0,
 					LANGUAGE_EAL	 = 1,
-					LANGUAGE_SIGN	 = 0
+					LANGUAGE_SIGN	 = 0,
+					LANGUAGE_TERMINUS = 1
 					)
 	sprites = list(
 					"Cerberus" = "syndie_bloodhound",
@@ -75,12 +78,12 @@
 	// General engineering/hacking.
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
-	src.modules += new /obj/item/weapon/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/wirecutters/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool/ai_detector(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.modules += new /obj/item/weapon/rcd/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
+	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
 	src.modules += new /obj/item/weapon/melee/energy/sword/ionic_rapier(src)
 
 	// FBP repair.
@@ -145,6 +148,7 @@
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)
 
 	// Surgery things.
+	src.modules += new /obj/item/weapon/autopsy_scanner(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
@@ -182,3 +186,13 @@
 	src.modules += O
 	src.modules += B
 	src.modules += S
+
+/obj/item/weapon/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+
+	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
+	if(S.mode == 2)
+		S.reagents.clear_reagents()
+		S.mode = initial(S.mode)
+		S.desc = initial(S.desc)
+		S.update_icon()
+	..()

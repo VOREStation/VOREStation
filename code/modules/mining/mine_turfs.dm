@@ -5,6 +5,7 @@ var/list/mining_overlay_cache = list()
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
+	density = 1
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
@@ -16,6 +17,8 @@ var/list/mining_overlay_cache = list()
 	density = 1
 	blocks_air = 1
 	temperature = T0C
+
+	can_dirty = FALSE
 
 	var/ore/mineral
 	var/sand_dug
@@ -59,6 +62,7 @@ var/list/mining_overlay_cache = list()
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	can_build_into_floor = TRUE
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -69,6 +73,7 @@ var/list/mining_overlay_cache = list()
 	density = 0
 	opacity = 0
 	blocks_air = 0
+	can_build_into_floor = TRUE
 	update_general()
 
 /turf/simulated/mineral/proc/make_wall()
@@ -77,6 +82,7 @@ var/list/mining_overlay_cache = list()
 	density = 1
 	opacity = 1
 	blocks_air = 1
+	can_build_into_floor = FALSE
 	update_general()
 
 /turf/simulated/mineral/proc/update_general()
@@ -96,6 +102,25 @@ var/list/mining_overlay_cache = list()
 				attackby(O, R)
 				return
 
+/turf/simulated/mineral/proc/get_cached_border(var/cache_id, var/direction, var/icon_file, var/icon_state, var/offset = 32)
+	//Cache miss
+	if(!mining_overlay_cache["[cache_id]_[direction]"])
+		var/image/new_cached_image = image(icon_state, dir = direction, layer = ABOVE_TURF_LAYER)
+		switch(direction)
+			if(NORTH)
+				new_cached_image.pixel_y = offset
+			if(SOUTH)
+				new_cached_image.pixel_y = -offset
+			if(EAST)
+				new_cached_image.pixel_x = offset
+			if(WEST)
+				new_cached_image.pixel_x = -offset
+		mining_overlay_cache["[cache_id]_[direction]"] = new_cached_image
+		return new_cached_image
+
+	//Cache hit
+	return mining_overlay_cache["[cache_id]_[direction]"]
+
 /turf/simulated/mineral/initialize()
 	. = ..()
 	if(prob(20))
@@ -110,8 +135,9 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/update_icon(var/update_neighbors)
 
-	overlays.Cut()
+	cut_overlays()
 
+	//We are a wall (why does this system work like this??)
 	if(density)
 		if(mineral)
 			name = "[mineral.display_name] deposit"
@@ -121,47 +147,40 @@ var/list/mining_overlay_cache = list()
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
 
+		//Apply overlays if we should have borders
 		for(var/direction in cardinal)
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
-				var/place_dir = turn(direction, 180)
-				if(!mining_overlay_cache["rock_side_[place_dir]"])
-					mining_overlay_cache["rock_side_[place_dir]"] = image('icons/turf/walls.dmi', "rock_side", dir = place_dir)
-				T.overlays += mining_overlay_cache["rock_side_[place_dir]"]
+				add_overlay(get_cached_border("rock_side",direction,icon,"rock_side"))
 
 			if(archaeo_overlay)
-				overlays += archaeo_overlay
+				add_overlay(archaeo_overlay)
 
 			if(excav_overlay)
-				overlays += excav_overlay
-	else
+				add_overlay(excav_overlay)
 
+	//We are a sand floor
+	else
 		name = "sand"
 		icon = 'icons/turf/flooring/asteroid.dmi'
 		icon_state = "asteroid"
 
 		if(sand_dug)
-			if(!mining_overlay_cache["dug_overlay"])
-				mining_overlay_cache["dug_overlay"] = image('icons/turf/flooring/asteroid.dmi', "dug_overlay")
-			overlays += mining_overlay_cache["dug_overlay"]
+			add_overlay("dug_overlay")
 
+		//Apply overlays if there's space
 		for(var/direction in cardinal)
 			if(istype(get_step(src, direction), /turf/space) && !istype(get_step(src, direction), /turf/space/cracked_asteroid))
-				if(!mining_overlay_cache["asteroid_edge_[direction]"])
-					mining_overlay_cache["asteroid_edge_[direction]"] = image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = direction)
-				overlays += mining_overlay_cache["asteroid_edge_[direction]"]
+				add_overlay(get_cached_border("asteroid_edge",direction,icon,"asteroid_edges", 0))
+
+			//Or any time
 			else
-				var/turf/simulated/mineral/M = get_step(src, direction)
-				if(istype(M) && M.density)
-					if(!mining_overlay_cache["rock_side_[direction]"])
-						mining_overlay_cache["rock_side_[direction]"] = image('icons/turf/walls.dmi', "rock_side", dir = direction)
-					overlays += mining_overlay_cache["rock_side_[direction]"]
+				var/turf/T = get_step(src, direction)
+				if(istype(T) && T.density)
+					add_overlay(get_cached_border("rock_side",direction,'icons/turf/walls.dmi',"rock_side"))
 
 		if(overlay_detail)
-
-			if(!mining_overlay_cache["decal_[overlay_detail]"])
-				mining_overlay_cache["decal_[overlay_detail]"] = image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
-			overlays += mining_overlay_cache["decal_[overlay_detail]"]
+			add_overlay('icons/turf/flooring/decals.dmi',overlay_detail)
 
 		if(update_neighbors)
 			for(var/direction in alldirs)
@@ -183,7 +202,7 @@ var/list/mining_overlay_cache = list()
 	if(severity <= 2) // Now to expose the ore lying under the sand.
 		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
 			for(var/ore in resources)
-				var/amount_to_give = rand(Ceiling(resources[ore]/2), resources[ore])  // Should result in at least one piece of ore.
+				var/amount_to_give = rand(CEILING(resources[ore]/2, 1), resources[ore])  // Should result in at least one piece of ore.
 				for(var/i=1, i <= amount_to_give, i++)
 					var/oretype = ore_types[ore]
 					new oretype(src)
@@ -192,7 +211,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 
 	// Emitter blasts
-	if(istype(Proj, /obj/item/projectile/beam/emitter))
+	if(istype(Proj, /obj/item/projectile/beam/emitter) || istype(Proj, /obj/item/projectile/beam/heavylaser/fakeemitter))
 		emitter_blasts_taken++
 		if(emitter_blasts_taken > 2) // 3 blasts per tile
 			mined_ore = 1
@@ -242,7 +261,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	if(!density)
@@ -262,19 +281,19 @@ var/list/mining_overlay_cache = list()
 
 		if(valid_tool)
 			if (sand_dug)
-				user << "<span class='warning'>This area has already been dug.</span>"
+				to_chat(user, "<span class='warning'>This area has already been dug.</span>")
 				return
 
 			var/turf/T = user.loc
 			if (!(istype(T)))
 				return
 
-			user << "<span class='notice'>You start digging.</span>"
+			to_chat(user, "<span class='notice'>You start digging.</span>")
 			playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
 
 			if(!do_after(user,40)) return
 
-			user << "<span class='notice'>You dug a hole.</span>"
+			to_chat(user, "<span class='notice'>You dug a hole.</span>")
 			GetDrilled()
 
 		else if(istype(W,/obj/item/weapon/storage/bag/ore))
@@ -297,7 +316,7 @@ var/list/mining_overlay_cache = list()
 				return
 			var/obj/item/stack/rods/R = W
 			if (R.use(1))
-				user << "<span class='notice'>Constructing support lattice ...</span>"
+				to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
 				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 				new /obj/structure/lattice(get_turf(src))
 
@@ -313,7 +332,7 @@ var/list/mining_overlay_cache = list()
 				S.use(1)
 				return
 			else
-				user << "<span class='warning'>The plating is going to need some support.</span>"
+				to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
 				return
 
 
@@ -333,7 +352,17 @@ var/list/mining_overlay_cache = list()
 			var/obj/item/device/measuring_tape/P = W
 			user.visible_message("<span class='notice'>\The [user] extends \a [P] towards \the [src].</span>","<span class='notice'>You extend \the [P] towards \the [src].</span>")
 			if(do_after(user, 15))
-				user << "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>"
+				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
+			return
+
+		if(istype(W, /obj/item/device/xenoarch_multi_tool))
+			var/obj/item/device/xenoarch_multi_tool/C = W
+			if(C.mode) //Mode means scanning
+				C.depth_scanner.scan_atom(user, src)
+			else
+				user.visible_message("<span class='notice'>\The [user] extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>", "<span class='notice'>You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>")
+				if(do_after(user, 15))
+					to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
 
 		if (istype(W, /obj/item/weapon/pickaxe))
@@ -355,7 +384,7 @@ var/list/mining_overlay_cache = list()
 				if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
 					fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 
-			user << "<span class='notice'>You start [P.drill_verb][fail_message].</span>"
+			to_chat(user, "<span class='notice'>You start [P.drill_verb][fail_message].</span>")
 
 			if(fail_message && prob(90))
 				if(prob(25))
@@ -374,7 +403,7 @@ var/list/mining_overlay_cache = list()
 					else if(newDepth > F.excavation_required - F.clearance_range) // Not quite right but you still extract your find, the closer to the bottom the better, but not above 80%
 						excavate_find(prob(80 * (F.excavation_required - newDepth) / F.clearance_range), F)
 
-				user << "<span class='notice'>You finish [P.drill_verb] \the [src].</span>"
+				to_chat(user, "<span class='notice'>You finish [P.drill_verb] \the [src].</span>")
 
 				if(newDepth >= 200) // This means the rock is mined out fully
 					var/obj/structure/boulder/B
@@ -403,12 +432,13 @@ var/list/mining_overlay_cache = list()
 				if(!archaeo_overlay && finds && finds.len)
 					var/datum/find/F = finds[1]
 					if(F.excavation_required <= excavation_level + F.view_range)
+						cut_overlay(archaeo_overlay)
 						archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-						updateIcon = 1
+						add_overlay(archaeo_overlay)
 
 				else if(archaeo_overlay && (!finds || !finds.len))
+					cut_overlay(archaeo_overlay)
 					archaeo_overlay = null
-					updateIcon = 1
 
 				//there's got to be a better way to do this
 				var/update_excav_overlay = 0
@@ -425,8 +455,11 @@ var/list/mining_overlay_cache = list()
 				//update overlays displaying excavation level
 				if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
 					var/excav_quadrant = round(excavation_level / 25) + 1
+					if(excav_quadrant > 5)
+						excav_quadrant = 5
+					cut_overlay(excav_overlay)
 					excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-					updateIcon = 1
+					add_overlay(excav_overlay)
 
 				if(updateIcon)
 					update_icon()
@@ -479,7 +512,7 @@ var/list/mining_overlay_cache = list()
 		if(prob(50))
 			pain = 1
 		for(var/mob/living/M in range(src, 200))
-			M << "<span class='danger'>[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</span>"
+			to_chat(M, "<span class='danger'>[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</span>")
 			if(pain)
 				flick("pain",M.pain)
 				if(prob(50))
@@ -488,7 +521,7 @@ var/list/mining_overlay_cache = list()
 				M.flash_eyes()
 				if(prob(50))
 					M.Stun(5)
-			radiation_repository.flat_radiate(src, 25, 200)
+			radiation_repository.flat_radiate(src, 25, 100)
 			if(prob(25))
 				excavate_find(prob(5), finds[1])
 	else if(rand(1,500) == 1)
@@ -552,7 +585,7 @@ var/list/mining_overlay_cache = list()
 				new /obj/item/stack/material/uranium(src, rand(5,25))
 
 /turf/simulated/mineral/proc/make_ore(var/rare_ore)
-	if(mineral)
+	if(mineral || ignore_mapgen) //VOREStation Edit - Makes sense, doesn't it?
 		return
 
 	var/mineral_name

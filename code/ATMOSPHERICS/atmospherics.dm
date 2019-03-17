@@ -17,10 +17,15 @@ Pipelines + Other Objects -> Pipe network
 	var/nodealert = 0
 	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
 
-	layer = 2.4 //under wires with their 2.44
+	layer = ATMOS_LAYER
+	plane = PLATING_PLANE
 
+	var/pipe_flags = PIPING_DEFAULT_LAYER_ONLY // Allow other layers by exception basis.
 	var/connect_types = CONNECT_TYPE_REGULAR
+	var/piping_layer = PIPING_LAYER_DEFAULT // This will replace icon_connect_type at some point ~Leshana
 	var/icon_connect_type = "" //"-supply" or "-scrubbers"
+	var/construction_type = null // Type path of the pipe item when this is deconstructed.
+	var/pipe_state // icon_state as a pipe item
 
 	var/initialize_directions = 0
 	var/pipe_color
@@ -29,11 +34,12 @@ Pipelines + Other Objects -> Pipe network
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2
 
-/obj/machinery/atmospherics/New()
+/obj/machinery/atmospherics/New(loc, newdir)
 	..()
 	if(!icon_manager)
 		icon_manager = new()
-
+	if(!isnull(newdir))
+		set_dir(newdir)
 	if(!pipe_color)
 		pipe_color = color
 	color = null
@@ -46,6 +52,15 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/init_dir()
 	return
 
+// Get ALL initialize_directions - Some types (HE pipes etc) combine two vars together for this.
+/obj/machinery/atmospherics/proc/get_init_dirs()
+	return initialize_directions
+
+// Get the direction each node is facing to connect.
+// It now returns as a list so it can be fetched nicely, each entry corresponds to node of same number.
+/obj/machinery/atmospherics/proc/get_node_connect_dirs()
+	return
+
 // Initializes nodes by looking at neighboring atmospherics machinery to connect to.
 // When we're being constructed at runtime, atmos_init() is called by the construction code.
 // When dynamically loading a map atmos_init is called by the maploader (initTemplateBounds proc)
@@ -53,6 +68,14 @@ Pipelines + Other Objects -> Pipe network
 // TODO - Consolidate these different ways of being called once SSatoms is created.
 /obj/machinery/atmospherics/proc/atmos_init()
 	return
+
+/** Check if target is an acceptable target to connect as a node from this machine. */
+/obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, node_num)
+	return (target.initialize_directions & get_dir(target,src)) && check_connectable(target) && target.check_connectable(src)
+
+/** Check if this machine is willing to connect with the target machine. */
+/obj/machinery/atmospherics/proc/check_connectable(obj/machinery/atmospherics/target)
+	return (src.connect_types & target.connect_types)
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/device/pipe_painter))
@@ -76,12 +99,6 @@ Pipelines + Other Objects -> Pipe network
 		return 1
 	else
 		return 0
-
-obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/atmos1, obj/machinery/atmospherics/atmos2)
-	return (atmos1.connect_types & atmos2.connect_types)
-
-/obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/atmospherics/atmos1, obj/item/pipe/pipe2)
-	return (atmos1.connect_types & pipe2.connect_types)
 
 /obj/machinery/atmospherics/proc/check_icon_cache(var/safety = 0)
 	if(!istype(icon_manager))
@@ -142,3 +159,59 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 		return 0
 	return 1
+
+// Deconstruct into a pipe item.
+/obj/machinery/atmospherics/proc/deconstruct()
+	if(QDELETED(src))
+		return
+	if(construction_type)
+		var/obj/item/pipe/I = new construction_type(loc, null, null, src)
+		I.setPipingLayer(piping_layer)
+		transfer_fingerprints_to(I)
+	qdel(src)
+
+// Return a list of nodes which we should call atmos_init() and build_network() during on_construction()
+/obj/machinery/atmospherics/proc/get_neighbor_nodes_for_init()
+	return null
+
+// Called on construction (i.e from pipe item) but not on initialization
+/obj/machinery/atmospherics/proc/on_construction(obj_color, set_layer)
+	pipe_color = obj_color
+	setPipingLayer(set_layer)
+	// TODO - M.connect_types = src.connect_types - Or otherwise copy from item? Or figure it out from piping layer?
+	var/turf/T = get_turf(src)
+	level = !T.is_plating() ? 2 : 1
+	atmos_init()
+	if(QDELETED(src))
+		return // TODO - Eventually should get rid of the need for this.
+	build_network()
+	var/list/nodes = get_neighbor_nodes_for_init()
+	for(var/obj/machinery/atmospherics/A in nodes)
+		A.atmos_init()
+		A.build_network()
+	// TODO - Should we do src.build_network() before or after the nodes?
+	// We've historically done before, but /tg does after. TODO research if there is a difference.
+
+// This sets our piping layer.  Hopefully its cool.
+/obj/machinery/atmospherics/proc/setPipingLayer(new_layer)
+	if(pipe_flags & (PIPING_DEFAULT_LAYER_ONLY|PIPING_ALL_LAYER))
+		new_layer = PIPING_LAYER_DEFAULT
+	piping_layer = new_layer
+	// Do it the Polaris way
+	switch(piping_layer)
+		if(PIPING_LAYER_SCRUBBER)
+			icon_state = "[icon_state]-scrubbers"
+			connect_types = CONNECT_TYPE_SCRUBBER
+			layer = PIPES_SCRUBBER_LAYER
+			icon_connect_type = "-scrubbers"
+		if(PIPING_LAYER_SUPPLY)
+			icon_state = "[icon_state]-supply"
+			connect_types = CONNECT_TYPE_SUPPLY
+			layer = PIPES_SUPPLY_LAYER
+			icon_connect_type = "-supply"
+	if(pipe_flags & PIPING_ALL_LAYER)
+		connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
+	// Or if we were to do it the TG way...
+	// pixel_x = PIPE_PIXEL_OFFSET_X(piping_layer)
+	// pixel_y = PIPE_PIXEL_OFFSET_Y(piping_layer)
+	// layer = initial(layer) + PIPE_LAYER_OFFSET(piping_layer)

@@ -7,7 +7,7 @@
 	density = 1
 	throwpass = 1
 	use_power = 1
-	layer = 3.3
+	layer = ON_WINDOW_LAYER
 	power_channel = EQUIP
 	var/on = 0
 	var/id_tag = null
@@ -45,8 +45,8 @@
 		var/obj/mecha/R = O
 		if(R && R.occupant)
 			R.occupant << block_message
-	else if(istype(O, /obj/vehicle/train/cargo/engine))
-		var/obj/vehicle/train/cargo/engine/E = O
+	else if(istype(O, /obj/vehicle/train/engine))
+		var/obj/vehicle/train/engine/E = O
 		if(E && E.load && E.is_train_head())
 			E.load << block_message
 

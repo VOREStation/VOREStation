@@ -1,8 +1,8 @@
 /mob/Logout()
-	nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	GLOB.nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
 	player_list -= src
 	disconnect_time = world.realtime
-	log_access("Logout: [key_name(src)]")
+	log_access_out(src)
 	if(admin_datums[src.ckey])
 		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			var/admins_number = admins.len

@@ -1,7 +1,7 @@
 // -------------- Protector -------------
 /obj/item/weapon/gun/energy/protector
-	name = "\improper KHI-98a \'Protector\'"
-	desc = "The KHI-98a is the first firearm custom-designed for Nanotrasen by KHI. It features a powerful stun mode, and \
+	name = "small energy gun"
+	desc = "The KHI-98a 'Protector' is the first firearm custom-designed for Nanotrasen by KHI. It features a powerful stun mode, and \
 	an alert-level-locked lethal mode, only usable on code blue and higher. It also features an integrated flashlight!"
 
 	description_info = "This gun can only be fired in lethal mode while on higher security alert levels. It is legal for sec to carry for this reason, since it cannot be used for lethal force until SOP allows it, in essence."
@@ -72,7 +72,7 @@
 			itemState += "[modifystate]"
 		*/
 	if(power_supply)
-		ratio = Ceiling((power_supply.charge / power_supply.maxcharge) * charge_sections)
+		ratio = CEILING(((power_supply.charge / power_supply.maxcharge) * charge_sections), 1)
 
 		if(power_supply.charge < charge_cost)
 			overlays += "[icon_state]_empty"

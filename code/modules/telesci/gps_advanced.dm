@@ -1,3 +1,6 @@
+
+// DEPRECATED - The normal GPS has the advanced features, now. This is obsolete.
+
 // These are distinguished from the ordinary "Relay Position Devices" that just print your location
 // In that they are also all networked with each other to show each other's locations.
 /obj/item/device/gps/advanced

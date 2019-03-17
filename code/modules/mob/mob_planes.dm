@@ -11,6 +11,8 @@
 	my_mob = this_guy
 
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
+
+	// 'Utility' planes
 	plane_masters[VIS_FULLBRIGHT] 	= new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
 	plane_masters[VIS_LIGHTING] 	= new /obj/screen/plane_master/lighting							//Lighting system (but different!)
 	plane_masters[VIS_GHOSTS] 		= new /obj/screen/plane_master/ghosts							//Ghosts!
@@ -31,16 +33,18 @@
 	plane_masters[VIS_ADMIN2] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
 	plane_masters[VIS_ADMIN3] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
 
-	plane_masters[VIS_D_COLORBLIND] = new /obj/screen/plane_master/colorblindness					//Colorblindness (affects world)
-	plane_masters[VIS_D_COLORBLINDI]= new /obj/screen/plane_master/colorblindness/items 			//Colorblindness (items in HUD, subplane of above, don't toggle)
-
 	plane_masters[VIS_MESONS]		= new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+
+	// Real tangible stuff planes
+	plane_masters[VIS_TURFS]	= new /obj/screen/plane_master/main{plane = TURF_PLANE}
+	plane_masters[VIS_OBJS]		= new /obj/screen/plane_master/main{plane = OBJ_PLANE}
+	plane_masters[VIS_MOBS]		= new /obj/screen/plane_master/main{plane = MOB_PLANE}
 
 	..()
 
 /datum/plane_holder/Destroy()
 	my_mob = null
-	qdel_null_list(plane_masters) //Goodbye my children, be free
+	QDEL_NULL_LIST(plane_masters) //Goodbye my children, be free
 	return ..()
 
 /datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)
@@ -48,6 +52,10 @@
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+
+	if(my_mob.alpha <= EFFECTIVE_INVIS)
+		state = FALSE
+
 	PM.set_visibility(state)
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
@@ -69,6 +77,17 @@
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
 			set_vis(which = SP, new_alpha = new_alpha)
+
+/datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
+	ASSERT(which)
+	var/obj/screen/plane_master/PM = plane_masters[which]
+	if(!PM)
+		crash_with("Tried to set_ao [which] in plane_holder on [my_mob]!")
+	PM.set_ambient_occlusion(enabled)
+	if(PM.sub_planes)
+		var/list/subplanes = PM.sub_planes
+		for(var/SP in subplanes)
+			set_ao(SP, enabled)
 
 /datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
 	ASSERT(which)
@@ -93,6 +112,9 @@
 	var/desired_alpha = 255	//What we go to when we're enabled
 	var/invis_toggle = FALSE
 	var/list/sub_planes
+
+/obj/screen/plane_master/New()
+	..(null) //Never be in anything ever.
 
 /obj/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
@@ -121,6 +143,11 @@
 		new_alpha = sanitize_integer(new_alpha, 0, 255, 255)
 		alpha = new_alpha
 
+/obj/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
+	filters -= AMBIENT_OCCLUSION
+	if(enabled)
+		filters += AMBIENT_OCCLUSION
+
 /obj/screen/plane_master/proc/alter_plane_values()
 	return //Stub
 
@@ -132,7 +159,7 @@
 //Lighting is weird and has matrix shenanigans. Think of this as turning on/off darkness.
 /obj/screen/plane_master/fullbright
 	plane = PLANE_LIGHTING
-	layer = LIGHTING_LAYER+1
+	layer = LAYER_HUD_BASE+1 // This MUST be above the lighting plane_master
 	color = null //To break lighting when visible (this is sorta backwards)
 	alpha = 0 //Starts full opaque
 	invisibility = 101
@@ -149,55 +176,8 @@
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
 
-//'Normal'ness						 v								 v								 v
-//Various types of colorblindness	R2R		R2G		R2B		G2R		G2G		G2B		B2R		B2G		B2B
-#define MATRIX_Monochromia 		list(0.33,	0.33,	0.33,	0.59,	0.59,	0.59,	0.11,	0.11,	0.11)
-#define MATRIX_Protanopia 		list(0.57,	0.43, 	0,		0.56, 	0.44, 	0, 		0, 		0.24,	0.76)
-#define MATRIX_Protanomaly 		list(0.82,	0.18, 	0,		0.33,	0.67, 	0, 		0, 		0.13,	0.88)
-#define MATRIX_Deuteranopia 	list(0.63,	0.38, 	0,		0.70, 	0.30, 	0, 		0, 		0.30, 	0.70)
-#define MATRIX_Deuteranomaly 	list(0.80, 	0.20, 	0,		0.26,	0.74,	0, 		0, 		0.14,	0.86)
-#define MATRIX_Tritanopia 		list(0.95, 	0.05, 	0,		0,		0.43, 	0.57,	0, 		0.48, 	0.53)
-#define MATRIX_Tritanomaly 		list(0.97,	0.03, 	0,		0,		0.73, 	0.27,	0, 		0.18,	0.82)
-#define MATRIX_Achromatopsia 	list(0.30,	0.59, 	0.11, 	0.30, 	0.59, 	0.11, 	0.30, 	0.59, 	0.11)
-#define MATRIX_Achromatomaly 	list(0.62,	0.32, 	0.06, 	0.16, 	0.78, 	0.06, 	0.16, 	0.32, 	0.52)
-#define MATRIX_Vulp_Colorblind 	list(0.50,	0.40,	0.10,	0.50,	0.40,	0.10,	0,		0.20,	0.80)
-#define MATRIX_Taj_Colorblind 	list(0.40,	0.20,	0.40,	0.40,	0.60,	0,		0.20,	0.20,	0.60)
-
 /////////////////
-//Colorblindness uses special color shenanigans
-/obj/screen/plane_master/colorblindness
-	plane = PLANE_WORLD //Affects the main game world
-	color = MATRIX_Monochromia
-	alpha = 255 //Starts out nice and opaque
-	invisibility = 101 //Can't see it usually
-	mouse_opacity = 1 //Don't make entire world not visible pls
-	invis_toggle = TRUE
-	sub_planes = list(VIS_D_COLORBLINDI)
-	var/list/varieties = list(
-		"Monochromia"		= MATRIX_Monochromia,
-		"Protanopia"		= MATRIX_Protanopia,
-		"Protanomaly"		= MATRIX_Protanomaly,
-		"Deuteranopia"		= MATRIX_Deuteranopia,
-		"Deuteranomaly"		= MATRIX_Deuteranomaly,
-		"Tritanopia"		= MATRIX_Tritanopia,
-		"Tritanomaly"		= MATRIX_Tritanomaly,
-		"Achromatopsia"		= MATRIX_Achromatopsia,
-		"Achromatomaly"		= MATRIX_Achromatomaly,
-		"Paradise Vulp"		= MATRIX_Vulp_Colorblind,
-		"Paradise Taj"		= MATRIX_Taj_Colorblind
-		)
-
-/obj/screen/plane_master/colorblindness/alter_plane_values(var/variety = null)
-	var/new_matrix = varieties[variety]
-	if(!new_matrix) return
-
-	color = new_matrix
-
-/obj/screen/plane_master/colorblindness/proc/debug_variety()
-	var/choice = input(usr,"Pick a type of colorblindness","Which?") as null|anything in varieties
-	if(choice)
-		color = varieties[choice]
-
-/obj/screen/plane_master/colorblindness/items
-	plane = PLANE_PLAYER_HUD_ITEMS
-	sub_planes = null
+//The main game planes start normal and visible
+/obj/screen/plane_master/main
+	alpha = 255
+	mouse_opacity = 1

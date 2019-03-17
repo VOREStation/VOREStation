@@ -14,12 +14,15 @@
 	if (istype(W, /obj/item/weapon/ore))
 		user.remove_from_mob(W)
 		src.contents += W
-	if (istype(W, /obj/item/weapon/storage))
+
+	else if (istype(W, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
+		if(!S.contents.len)
+			return
 		S.hide_from(usr)
 		for(var/obj/item/weapon/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
-		user << "<font color='blue'>You empty the satchel into the box.</font>"
+		to_chat(user,"<span class='notice'>You empty the satchel into the box.</span>")
 
 	update_ore_count()
 
@@ -62,13 +65,12 @@
 		user << "- [stored_ore[ore]] [ore]"
 	return
 
-
 /obj/structure/ore_box/verb/empty_box()
 	set name = "Empty Ore Box"
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human)) //Only living, intelligent creatures with hands can empty ore boxes.
+	if(!istype(usr, /mob/living/carbon/human) && !istype(usr, /mob/living/silicon/robot)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
 		usr << "<font color='red'>You are physically incapable of emptying the ore box.</font>"
 		return
 

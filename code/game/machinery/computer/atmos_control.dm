@@ -20,6 +20,7 @@
 /obj/machinery/computer/atmoscontrol/laptop
 	name = "Atmospherics Laptop"
 	desc = "A cheap laptop."
+	icon_screen = "atmoslaptop"
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	density = 0

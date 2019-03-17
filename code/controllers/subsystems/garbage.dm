@@ -3,7 +3,7 @@
 //
 SUBSYSTEM_DEF(garbage)
 	name = "Garbage"
-	priority = 15
+	priority = FIRE_PRIORITY_GARBAGE
 	wait = 2 SECONDS
 	flags = SS_POST_FIRE_TIMING|SS_BACKGROUND|SS_NO_INIT
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(garbage)
 			dellog += "\tIgnored force: [I.no_respect_force] times"
 		if (I.no_hint)
 			dellog += "\tNo hint: [I.no_hint] times"
-		log_misc(dellog.Join())
+	text2file(dellog.Join(), "[log_path]-qdel.log")
 
 /datum/controller/subsystem/garbage/fire()
 	//the fact that this resets its processing each fire (rather then resume where it left off) is intentional.
@@ -169,7 +169,12 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
-				testing("GC: -- \ref[D] | [type] was unable to be GC'd --")
+				var/extrainfo = "--"
+				if(istype(D,/image))
+					var/image/img = D
+					var/icon/ico = img.icon
+					extrainfo = "L:[img.loc] -- I:[ico] -- IS:[img.icon_state] --"
+				testing("GC: -- \ref[D] | [type] was unable to be GC'd [extrainfo]")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
@@ -442,4 +447,5 @@ SUBSYSTEM_DEF(garbage)
 
 /image/Destroy()
 	..()
-	return QDEL_HINT_HARDDEL_NOW
+	loc = null
+	return QDEL_HINT_QUEUE

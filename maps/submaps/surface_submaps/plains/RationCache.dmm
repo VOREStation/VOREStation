@@ -1,0 +1,20 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/floor/outdoors/snow,/area/submap/RationCache)
+"c" = (/mob/living/simple_mob/animal/sif/diyaab,/turf/simulated/floor/outdoors/snow,/area/submap/RationCache)
+"d" = (/mob/living/simple_mob/animal/sif/diyaab,/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+"e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+"f" = (/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/RationCache)
+"g" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+
+(1,1,1) = {"
+aaaabbbaaa
+aabbbbbbaa
+abbbbcbbbb
+abbbdbbcbb
+bbcefebbbb
+bbbegebbbb
+bbbbebcbbb
+bbbbbbbbaa
+aabbcbbaaa
+aabbbaaaaa
+"}

@@ -105,19 +105,28 @@
 		var/mob/living/carbon/human/H = occupant
 
 		// In case they somehow end up with positive values for otherwise unobtainable damage...
-		if(H.getToxLoss()>0)   H.adjustToxLoss(-(rand(1,3)))
-		if(H.getOxyLoss()>0)   H.adjustOxyLoss(-(rand(1,3)))
-		if(H.getCloneLoss()>0) H.adjustCloneLoss(-(rand(1,3)))
-		if(H.getBrainLoss()>0) H.adjustBrainLoss(-(rand(1,3)))
+		if(H.getToxLoss() > 0)
+			H.adjustToxLoss(-(rand(1,3)))
+		if(H.getOxyLoss() > 0)
+			H.adjustOxyLoss(-(rand(1,3)))
+		if(H.getCloneLoss() > 0)
+			H.adjustCloneLoss(-(rand(1,3)))
+		if(H.getBrainLoss() > 0)
+			H.adjustBrainLoss(-(rand(1,3)))
 
 		// Also recharge their internal battery.
-		if(!isnull(H.internal_organs_by_name["cell"]) && H.nutrition < 450)
+		if(H.isSynthetic() && H.nutrition < 450)
 			H.nutrition = min(H.nutrition+10, 450)
 			cell.use(7000/450*10)
 
+		// And clear up radiation
+		if(H.radiation > 0)
+			H.radiation = max(H.radiation - rand(5, 15), 0)
+
+
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
-	user << "The charge meter reads: [round(chargepercentage())]%"
+	to_chat(user, "The charge meter reads: [round(chargepercentage())]%")
 
 /obj/machinery/recharge_station/proc/chargepercentage()
 	if(!cell)
@@ -245,7 +254,7 @@
 
 	else if(istype(L,  /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
-		if(!isnull(H.internal_organs_by_name["cell"]))
+		if(H.isSynthetic())
 			add_fingerprint(H)
 			H.reset_view(src)
 			H.forceMove(src)
@@ -254,17 +263,6 @@
 			return 1
 	else
 		return
-
-/obj/machinery/recharge_station/proc/hascell(var/mob/M)
-	if(isrobot(M))
-		var/mob/living/silicon/robot/R = M
-		if(R.cell)
-			return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!isnull(H.internal_organs_by_name["cell"]))
-			return 1
-	return 0
 
 /obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
@@ -280,7 +278,7 @@
 	set name = "Eject Recharger"
 	set src in oview(1)
 
-	if(usr.incapacitated())
+	if(usr.incapacitated() || !isliving(usr))
 		return
 
 	go_out()
@@ -292,8 +290,9 @@
 	set name = "Enter Recharger"
 	set src in oview(1)
 
-	if(!usr.incapacitated())
+	if(usr.incapacitated() || !isliving(usr))
 		return
+
 	go_in(usr)
 
 /obj/machinery/recharge_station/ghost_pod_recharger

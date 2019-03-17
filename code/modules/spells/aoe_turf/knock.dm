@@ -22,7 +22,7 @@
 				door.open()
 	return
 
-
+/* Moved to game/gamemodes/cult/construct_spells.dm.
 //Construct version
 /spell/aoe_turf/knock/harvester
 	name = "Disintegrate Doors"
@@ -42,3 +42,4 @@
 		for(var/obj/machinery/door/door in T.contents)
 			spawn door.cultify()
 	return
+*/

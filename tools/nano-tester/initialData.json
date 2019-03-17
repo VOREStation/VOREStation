@@ -1,0 +1,20 @@
+{
+	"config": {
+		"title": "SMES"
+	},
+	"data": {
+		"nameTag": "Test SMES",
+		"storedCapacity": 50,
+		"storedCapacityAbs": 400,
+		"storedCapacityMax": 800,
+		"charging": 1,
+		"chargeMode": 1,
+		"chargeLevel": 100,
+		"chargeMax": 250,
+		"chargeLoad": 0,
+		"outputOnline": 1,
+		"outputLevel": 75,
+		"outputMax": 250,
+		"outputLoad": 45
+	}
+}

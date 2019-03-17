@@ -1,13 +1,13 @@
 /datum/trait/speed_slow
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
-	cost = -3
+	cost = -2
 	var_changes = list("slowdown" = 0.5)
 
 /datum/trait/speed_slow_plus
 	name = "Major Slowdown"
 	desc = "Allows you to move MUCH slower on average than baseline."
-	cost = -5
+	cost = -3
 	var_changes = list("slowdown" = 1.0)
 
 /datum/trait/weakling
@@ -81,46 +81,49 @@
 /datum/trait/conductive
 	name = "Conductive"
 	desc = "Increases your susceptibility to electric shocks by 50%"
-	cost = -2
+	cost = -1
 	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
 
 /datum/trait/conductive_plus
 	name = "Major Conductive"
 	desc = "Increases your susceptibility to electric shocks by 100%"
-	cost = -3
+	cost = -2
 	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 
-/datum/trait/photosensitive
-	name = "Photosensitive"
-	desc = "Increases stun duration from flashes and other light-based stuns."
-	cost = -1
-	var_changes = list("flash_mod" = 2.0)
+/datum/trait/hollow
+	name = "Hollow Bones/Aluminum Alloy"
+	desc = "Your bones and robot limbs are much easier to break."
+	cost = -2 //I feel like this should be higher, but let's see where it goes
+
+/datum/trait/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	for(var/obj/item/organ/external/O in H.organs)
+		O.min_broken_damage *= 0.5
+		O.min_bruised_damage *= 0.5
 
 /datum/trait/lightweight
 	name = "Lightweight"
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
-	cost = -4
+	cost = -2
 	var_changes = list("lightweight" = 1)
 
-/datum/trait/colorblind
+/datum/trait/colorblind/mono
 	name = "Colorblindness (Monochromancy)"
 	desc = "You simply can't see colors at all, period. You are 100% colorblind."
-	cost = -3
+	cost = -1
 
-/datum/trait/colorblind/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	if(!H.plane_holder)
-		H.plane_holder = new(H)
-	H.plane_holder.set_vis(VIS_D_COLORBLIND,TRUE) //The default is monocrhomia, no need to set values
+	H.add_modifier(/datum/modifier/trait/colorblind_monochrome)
 
 /datum/trait/colorblind/para_vulp
 	name = "Colorblindness (Para Vulp)"
 	desc = "You have a severe issue with green colors and have difficulty recognizing them from red colors."
-	cost = -2
+	cost = -1
 
 /datum/trait/colorblind/para_vulp/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.plane_holder.alter_values(VIS_D_COLORBLIND,list("variety" = "Paradise Vulp"))
+	H.add_modifier(/datum/modifier/trait/colorblind_vulp)
 
 /datum/trait/colorblind/para_taj
 	name = "Colorblindness (Para Taj)"
@@ -129,4 +132,4 @@
 
 /datum/trait/colorblind/para_taj/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.plane_holder.alter_values(VIS_D_COLORBLIND,list("variety" = "Paradise Taj"))
+	H.add_modifier(/datum/modifier/trait/colorblind_taj)

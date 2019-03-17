@@ -101,7 +101,6 @@ var/list/outfits_decls_by_type_
 			H.equip_to_slot_or_del(new path(H), slot_in_backpack)
 
 	post_equip(H)
-	H.regenerate_icons()
 	if(W) // We set ID info last to ensure the ID photo is as correct as possible.
 		H.set_id_info(W)
 	return 1
@@ -146,7 +145,7 @@ var/list/outfits_decls_by_type_
 	if(r_hand)
 		H.put_in_r_hand(new r_hand(H))
 	if(H.species)
-		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
+		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL, flags&OUTFIT_COMPREHENSIVE_SURVIVAL)
 
 /decl/hierarchy/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)
 	if(!id_slot || !id_type)
@@ -158,15 +157,18 @@ var/list/outfits_decls_by_type_
 		W.rank = rank
 	if(assignment)
 		W.assignment = assignment
-	H.set_id_info(W)
 	if(H.equip_to_slot_or_del(W, id_slot))
 		return W
 
-/decl/hierarchy/outfit/proc/equip_pda(mob/living/carbon/human/H, assignment)
+/decl/hierarchy/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
 	if(!pda_slot || !pda_type)
 		return
 	var/obj/item/device/pda/pda = new pda_type(H)
 	if(H.equip_to_slot_or_del(pda, pda_slot))
+		pda.owner = H.real_name
+		pda.ownjob = assignment
+		pda.ownrank = rank
+		pda.name = "PDA-[H.real_name] ([assignment])"
 		return pda
 
 /decl/hierarchy/outfit/dd_SortValue()

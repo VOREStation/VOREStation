@@ -46,7 +46,7 @@
 	icon = 'icons/obj/clothing/ears.dmi'
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
-	species_restricted = list("Skrell")
+	species_restricted = list(SPECIES_SKRELL)
 
 /obj/item/clothing/ears/skrell/chain
 	name = "Gold headtail chains"

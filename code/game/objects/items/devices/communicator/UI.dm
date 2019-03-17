@@ -14,7 +14,6 @@
 	var/im_list_ui[0]				//List of messages.
 
 	var/weather[0]
-	var/injection = null
 	var/modules_ui[0]				//Home screen info.
 
 	//First we add other 'local' communicators.
@@ -69,7 +68,7 @@
 		im_list_ui[++im_list_ui.len] = list("address" = I["address"], "to_address" = I["to_address"], "im" = I["im"])
 
 	//Weather reports.
-	for(var/datum/planet/planet in planet_controller.planets)
+	for(var/datum/planet/planet in SSplanets.planets)
 		if(planet.weather_holder && planet.weather_holder.current_weather)
 			var/list/W = list(
 				"Planet" = planet.name,
@@ -77,15 +76,19 @@
 				"Weather" = planet.weather_holder.current_weather.name,
 				"Temperature" = planet.weather_holder.temperature - T0C,
 				"High" = planet.weather_holder.current_weather.temp_high - T0C,
-				"Low" = planet.weather_holder.current_weather.temp_low - T0C)
+				"Low" = planet.weather_holder.current_weather.temp_low - T0C,
+				"Forecast" = english_list(planet.weather_holder.forecast, and_text = "&#8594;", comma_text = "&#8594;", final_comma_text = "&#8594;") // Unicode RIGHTWARDS ARROW.
+				)
 			weather[++weather.len] = W
 
-	injection = "<div>Test</div>"
+	// Update manifest
+	data_core.get_manifest_list()
 
 	//Modules for homescreen.
 	for(var/list/R in modules)
 		modules_ui[++modules_ui.len] = R
 
+	data["user"] = "\ref[user]"	// For receiving input() via topic, because input(usr,...) wasn't working on cartridges
 	data["owner"] = owner ? owner : "Unset"
 	data["occupation"] = occupation ? occupation : "Swipe ID to set."
 	data["connectionStatus"] = get_connection_to_tcomms()
@@ -109,14 +112,29 @@
 	data["weather"] = weather
 	data["aircontents"] = src.analyze_air()
 	data["flashlight"] = fon
-	data["injection"] = injection
+	data["manifest"] = PDA_Manifest
+	data["feeds"] = compile_news()
+	data["latest_news"] = get_recent_news()
+	if(cartridge) // If there's a cartridge, we need to grab the information from it
+		data["cart_devices"] = cartridge.get_device_status()
+		data["cart_templates"] = cartridge.ui_templates
+		for(var/list/L in cartridge.get_data())
+			data[L["field"]] = L["value"]
+			// cartridge.get_data() returns a list of tuples:
+			// The field element is the tag used to access the information by the template
+			// The value element is the actual data, and can take any form necessary for the template
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "communicator.tmpl", "Communicator", 475, 700, state = key_state)
+		data["currentTab"] = 1 // Reset the current tab, because we're going to home page
+		ui = new(user, src, ui_key, "communicator_header.tmpl", "Communicator", 475, 700, state = key_state)
+		// add templates for screens in common with communicator.
+		ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")
+		ui.add_template("crewManifest", "crew_manifest.tmpl")
+		ui.add_template("Body", "communicator.tmpl") // Main body
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -133,11 +151,7 @@
 	if(href_list["rename"])
 		var/new_name = sanitizeSafe(input(usr,"Please enter your name.","Communicator",usr.name) )
 		if(new_name)
-			owner = new_name
-			name = "[owner]'s [initial(name)]"
-			if(camera)
-				camera.name = name
-				camera.c_tag = name
+			register_device(new_name)
 
 	if(href_list["toggle_visibility"])
 		switch(network_visibility)
@@ -168,7 +182,7 @@
 
 	if(href_list["dial"])
 		if(!get_connection_to_tcomms())
-			usr << "<span class='danger'>Error: Cannot connect to Exonet node.</span>"
+			to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
 			return
 		var/their_address = href_list["dial"]
 		exonet.send_message(their_address, "voice")
@@ -181,14 +195,14 @@
 
 	if(href_list["message"])
 		if(!get_connection_to_tcomms())
-			usr << "<span class='danger'>Error: Cannot connect to Exonet node.</span>"
+			to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
 			return
 		var/their_address = href_list["message"]
 		var/text = sanitizeSafe(input(usr,"Enter your message.","Text Message"))
 		if(text)
 			exonet.send_message(their_address, "text", text)
 			im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
-			log_pda("[usr] (COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]")
+			log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", usr)
 			for(var/mob/M in player_list)
 				if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 					if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)
@@ -246,9 +260,21 @@
 			note = ""
 			notehtml = note
 
+	if(href_list["switch_template"])
+		var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(usr, src, "main")
+		if(ui)
+			ui.add_template("Body", href_list["switch_template"])
+
 	if(href_list["Light"])
 		fon = !fon
 		set_light(fon * flum)
 
-	nanomanager.update_uis(src)
+	if(href_list["toggle_device"])
+		var/obj/O = cartridge.internal_devices[text2num(href_list["toggle_device"])]
+		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
+
+	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
+		cartridge.Topic(href, href_list)
+
+	GLOB.nanomanager.update_uis(src)
 	add_fingerprint(usr)

@@ -58,11 +58,30 @@
 		"Administrator" = 			list("open" = "capsecureopen", "closed" = "capsecure", "locked" = "capsecure1", "broken" = "capsecurebroken", "off" = "capsecureoff")
 		)
 
+	var/forbidden_types = list(
+		/obj/structure/closet/alien,
+		/obj/structure/closet/body_bag,
+		/obj/structure/closet/cabinet,
+		/obj/structure/closet/crate,
+		/obj/structure/closet/coffin,
+		/obj/structure/closet/fireaxecabinet,
+		/obj/structure/closet/hydrant,
+		/obj/structure/closet/medical_wall,
+		/obj/structure/closet/statue,
+		/obj/structure/closet/walllocker
+		)
+
 /obj/item/device/closet_painter/afterattack(atom/A, var/mob/user, proximity)
 	if(!proximity)
 		return
 
+	var/non_closet = 0
 	if(!istype(A,/obj/structure/closet))
+		non_closet = 1
+	for(var/ctype in forbidden_types)
+		if(istype(A,ctype))
+			non_closet = 1
+	if(non_closet)
 		user << "<span class='warning'>\The [src] can only be used on closets.</span>"
 		return
 

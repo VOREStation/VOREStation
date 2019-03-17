@@ -27,16 +27,16 @@
 
 /datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
-	var/mob/living/simple_animal/borer/B
+	var/mob/living/simple_mob/animal/borer/B
 
 	if(istype(speaker,/mob/living/carbon))
 		var/mob/living/carbon/M = speaker
 		B = M.has_brain_worms()
-	else if(istype(speaker,/mob/living/simple_animal/borer))
+	else if(istype(speaker,/mob/living/simple_mob/animal/borer))
 		B = speaker
 
 	if(B)
-		speaker_mask = B.truename
+		speaker_mask = B.true_name
 	..(speaker,message,speaker_mask)
 
 /datum/language/vox
@@ -92,7 +92,7 @@
 	speech_verb = "hisses"
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"
-	key = "4"
+	key = "u"
 	flags = RESTRICTED
 	syllables = list("sss","sSs","SSS")
 
@@ -115,3 +115,30 @@
 		return 1
 
 	return 0
+
+//for your antag purposes.
+/datum/language/minbus
+	name = LANGUAGE_MINBUS
+	desc = "The Powers That Be have seen it fit to grace you with a special language that sounds like Russian for some reason."
+	speech_verb = "says"
+	ask_verb = "asks"
+	exclaim_verb = "shouts"
+	colour = "deadsay"
+	key = "r"
+	machine_understands = 0
+	flags = RESTRICTED
+	syllables = list("rus","zem","ave","groz","ski","ska","ven","konst","pol","lin","svy",
+	"danya","da","mied","zan","das","krem","myka","cyka","blyat","to","st","no","na","ni",
+	"ko","ne","en","po","ra","li","on","byl","cto","eni","ost","ol","ego","ver","stv","pro")
+
+//For your event purposes.
+/datum/language/occursus
+	name = LANGUAGE_EVENT1
+	desc = "The Powers That Be have seen it fit to grace you with a special language that sounds like... something. This description should be overridden by the time you see this."
+	speech_verb = "says"
+	ask_verb = "asks"
+	exclaim_verb = "shouts"
+	colour = "warning"
+	key = "]"
+	flags = RESTRICTED
+	syllables = list("chan","ange","thi","se")

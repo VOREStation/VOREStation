@@ -3,7 +3,6 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
-	layer = 2.9
 	anchored = 1
 	density = 1
 	var/obj/machinery/computer3/laptop/vended/newlap = null
@@ -29,14 +28,17 @@
 /obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/item/weapon/card/id/I = W.GetID()
 
+	if(default_unfasten_wrench(user, W, 20))
+		return
+
 	if(vendmode == 1 && I)
 		scan_id(I, W)
 		vendmode = 0
-		nanomanager.update_uis(src)
+		GLOB.nanomanager.update_uis(src)
 	if(vendmode == 2 && I)
 		if(reimburse_id(I, W))
 			vendmode = 0
-			nanomanager.update_uis(src)
+			GLOB.nanomanager.update_uis(src)
 	if(vendmode == 0)
 		if(istype(W, /obj/item/device/laptop))
 			var/obj/item/device/laptop/L = W
@@ -45,8 +47,8 @@
 			usr.drop_item()
 			L.loc = src
 			vendmode = 2
-			usr << "<span class='notice'>You slot your [L.name] into \The [src.name]</span>"
-			nanomanager.update_uis(src)
+			to_chat(user, "<span class='notice'>You slot your [L.name] into \The [src.name]</span>")
+			GLOB.nanomanager.update_uis(src)
 	else
 		..()
 
@@ -75,7 +77,7 @@
 	data["power"] = power
 	data["total"] = total()
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "laptop_vendor.tmpl", src.name, 480, 425)
 		ui.set_initial_data(data)
@@ -134,7 +136,7 @@
 			vendmode = 0
 
 	src.add_fingerprint(usr)
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/lapvend/proc/vend()
 	if(cardreader > 0)
@@ -167,7 +169,7 @@
 	visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	var/datum/money_account/CH = get_account(C.associated_account_number)
 	if(!CH)
-		usr << "\icon[src]<span class='warning'>No valid account number is associated with this card.</span>"
+		to_chat(usr, "\icon[src]<span class='warning'>No valid account number is associated with this card.</span>")
 		return
 	if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 		if(vendor_account)
@@ -176,9 +178,9 @@
 			if(D)
 				transfer_and_vend(D, C)
 			else
-				usr << "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>"
+				to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>")
 		else
-			usr << "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>")
 	else
 		transfer_and_vend(CH, C)
 
@@ -226,7 +228,7 @@
 		network = 0
 		power = 0
 	else
-		usr << "\icon[src]<span class='warning'>You don't have that much money!</span>"
+		to_chat(usr, "\icon[src]<span class='warning'>You don't have that much money!</span>")
 
 /obj/machinery/lapvend/proc/total()
 	var/total = 0
@@ -315,7 +317,7 @@
 	visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	var/datum/money_account/CH = get_account(C.associated_account_number)
 	if(!CH)
-		usr << "\icon[src]<span class='warning'>No valid account number is associated with this card.</span>"
+		to_chat(usr, "\icon[src]<span class='warning'>No valid account number is associated with this card.</span>")
 		return 0
 	if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 		if(vendor_account)
@@ -325,10 +327,10 @@
 				transfer_and_reimburse(D)
 				return 1
 			else
-				usr << "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>"
+				to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>")
 				return 0
 		else
-			usr << "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call [using_map.boss_short] Support.</span>")
 			return 0
 	else
 		transfer_and_reimburse(CH)

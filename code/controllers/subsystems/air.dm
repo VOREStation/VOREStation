@@ -9,7 +9,7 @@
 SUBSYSTEM_DEF(air)
 	name = "Air"
 	init_order = INIT_ORDER_AIR
-	priority = 20
+	priority = FIRE_PRIORITY_AIR
 	wait = 2 SECONDS // seconds (We probably can speed this up actually)
 	flags = SS_BACKGROUND // TODO - Should this really be background? It might be important.
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -27,6 +27,9 @@ SUBSYSTEM_DEF(air)
 	// Updating zone tiles requires temporary storage location of self-zone-blocked turfs across resumes. Used only by process_tiles_to_update.
 	var/list/selfblock_deferred = null
 
+	// This is used to tell Travis WHERE the edges are.
+	var/list/startup_active_edge_log = list()
+
 /datum/controller/subsystem/air/PreInit()
 	air_master = src
 
@@ -35,7 +38,7 @@ SUBSYSTEM_DEF(air)
 
 	current_cycle = 0
 	var/simulated_turf_count = 0
-	for(var/turf/simulated/S in world)
+	for(var/turf/simulated/S in turfs)
 		simulated_turf_count++
 		S.update_air_properties()
 		CHECK_TICK
@@ -56,8 +59,9 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		for(var/connection_edge/E in active_edges)
 			edge_log += "Active Edge [E] ([E.type])"
 			for(var/turf/T in E.connecting_turfs)
-				edge_log += "+--- Connecting Turf [T] @ [T.x], [T.y], [T.z]"
+				edge_log += "+--- Connecting Turf [T] ([T.type]) @ [T.x], [T.y], [T.z] ([T.loc])"
 		log_debug("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
+		startup_active_edge_log = edge_log.Copy()
 
 	..()
 
@@ -224,6 +228,9 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 // ZAS might displace objects as the map loads if an air tick is processed mid-load.
 /datum/controller/subsystem/air/StartLoadingMap(var/quiet = TRUE)
 	can_fire = FALSE
+	// Don't let map actually start loading if we are in the middle of firing
+	while(current_step)
+		stoplag()
 	. = ..()
 
 /datum/controller/subsystem/air/StopLoadingMap(var/quiet = TRUE)

@@ -106,6 +106,13 @@
 	check_bans = list("AI", "Cyborg", "Syndicate")
 	cutoff_number = 1
 
+/datum/ghost_query/borer
+	role_name = "Cortical Borer"
+	question = "A cortical borer has just been created on the facility.  Would you like to play as them?"
+	be_special_flag = BE_ALIEN
+	check_bans = list("Syndicate", "Borer")
+	cutoff_number = 1
+
 // Surface stuff.
 /datum/ghost_query/lost_drone
 	role_name = "Lost Drone"
@@ -125,4 +132,16 @@
 	role_name = "Lost Passenger"
 	question = "A person suspended in cryosleep has been discovered by a crewmember \
 	and they are attempting to open the cryopod.  Would you like to play as the occupant?"
+	cutoff_number = 1
+
+/datum/ghost_query/corgi_rune
+	role_name = "Dark Creature"
+	question = "A curious explorer has touched a mysterious rune. \
+	Would you like to play as the creature it summons?"
+	cutoff_number = 1
+
+/datum/ghost_query/cursedblade
+	role_name = "Cursed Sword"
+	question = "A cursed blade has been discovered by a curious explorer. \
+	Would you like to play as the soul imprisoned within?"
 	cutoff_number = 1

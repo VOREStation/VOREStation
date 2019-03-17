@@ -32,7 +32,7 @@
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -99,7 +99,7 @@
 	return (copytext(message, length(message)) == "!") ? 2 : 1
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-	log_say("[key_name(speaker)] : ([name]) [message]")
+	log_say("(HIVE) [message]", speaker)
 
 	if(!speaker_mask) speaker_mask = speaker.name
 	message = format_message(message, get_spoken_verb(message))
@@ -133,7 +133,15 @@
 	return speech_verb
 
 /datum/language/proc/can_speak_special(var/mob/speaker)
-	return 1
+	. = TRUE
+	if(ishuman(speaker))
+		var/mob/living/carbon/human/H = speaker
+		if(src.name in H.species.assisted_langs)
+			. = FALSE
+			var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever
+			if(vox)
+				if(!vox.is_broken() && (src in vox.assists_languages))
+					. = TRUE
 
 // Language handling.
 /mob/proc/add_language(var/language)

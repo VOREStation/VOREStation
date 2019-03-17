@@ -6,7 +6,7 @@
 	density = 1
 	throwpass = 1
 	climbable = 1
-	layer = 3.2 //Just above doors
+	layer = WINDOW_LAYER
 	anchored = 1
 	flags = ON_BORDER
 	icon_state = "railing0"
@@ -198,7 +198,7 @@
 
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
-	if(istype(W, /obj/item/weapon/wrench) && !anchored)
+	if(W.is_wrench() && !anchored)
 		playsound(src.loc, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
 			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
@@ -217,7 +217,7 @@
 				return
 
 	// Install
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrewing \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
 		playsound(loc, W.usesound, 75, 1)
 		if(do_after(user, 10, src))

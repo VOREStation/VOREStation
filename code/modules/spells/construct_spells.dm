@@ -1,5 +1,8 @@
 //////////////////////////////Construct Spells/////////////////////////
-
+/*
+ * Moved to game/gamemodes/cult/construct_spells.dm. Here for posterity.
+ */
+/*
 proc/findNullRod(var/atom/target)
 	if(istype(target,/obj/item/weapon/nullrod))
 		return 1
@@ -8,3 +11,4 @@ proc/findNullRod(var/atom/target)
 			if(findNullRod(A))
 				return 1
 	return 0
+*/

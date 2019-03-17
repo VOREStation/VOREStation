@@ -1,4 +1,4 @@
-/obj/mecha/medical/odysseus
+/obj/mecha/medical/odysseus/
 	desc = "These exosuits are developed and produced by Vey-Med. (&copy; All rights reserved)."
 	name = "Odysseus"
 	icon_state = "odysseus"
@@ -6,36 +6,37 @@
 	step_in = 2
 	max_temperature = 15000
 	health = 120
+	maxhealth = 120
 	wreckage = /obj/effect/decal/mecha_wreckage/odysseus
 	internal_damage_threshold = 35
 	deflect_chance = 15
 	step_energy_drain = 6
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
-	New()
-		..()
-		hud = new /obj/item/clothing/glasses/hud/health/mech(src)
-		return
+/obj/mecha/medical/odysseus/New()
+	..()
+	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
+	return
 
-	moved_inside(var/mob/living/carbon/human/H as mob)
-		if(..())
-			if(H.glasses)
-				occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
-			else
-				H.glasses = hud
-				H.recalculate_vis()
-			return 1
+/obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
+	if(..())
+		if(H.glasses)
+			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
 		else
-			return 0
+			H.glasses = hud
+			H.recalculate_vis()
+		return 1
+	else
+		return 0
 
-	go_out()
-		if(ishuman(occupant))
-			var/mob/living/carbon/human/H = occupant
-			if(H.glasses == hud)
-				H.glasses = null
-				H.recalculate_vis()
-		..()
-		return
+/obj/mecha/medical/odysseus/go_out()
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		if(H.glasses == hud)
+			H.glasses = null
+			H.recalculate_vis()
+	..()
+	return
 /*
 	verb/set_perspective()
 		set name = "Set client perspective."
@@ -108,7 +109,7 @@
 			else if(foundVirus)
 				holder.icon_state = "hudill"
 			else if(patient.has_brain_worms())
-				var/mob/living/simple_animal/borer/B = patient.has_brain_worms()
+				var/mob/living/simple_mob/animal/borer/B = patient.has_brain_worms()
 				if(B.controlling)
 					holder.icon_state = "hudbrainworm"
 				else

@@ -47,17 +47,6 @@
 #define GEAR_EVA 15
 
 
-/var/list/economic_species_modifier = list(
-										/datum/species/human							= 10,
-										/datum/species/human/vatgrown						= 10,
-										/datum/species/skrell							= 12,
-										/datum/species/unathi							= 7,
-										/datum/species/tajaran							= 7,
-										/datum/species/teshari							= 6,
-										/datum/species/diona 							= 4,
-										/datum/species/shapeshifter/promethean			= 3
-											)
-
 //---- The following corporations are friendly with NanoTrasen and loosely enable trade and travel:
 //Corporation NanoTrasen - Generalised / high tech research and phoron exploitation.
 //Corporation Vessel Contracting - Ship and station construction, materials research.
@@ -90,8 +79,9 @@ var/global/economy_init = 0
 	if(economy_init)
 		return 2
 
-	news_network.CreateFeedChannel("The [using_map.starsys_name] Times", "[using_map.starsys_name] Times ExoNode - [using_map.station_short]", 1, 1)
+	//news_network.CreateFeedChannel("The [using_map.starsys_name] Times", "[using_map.starsys_name] Times ExoNode - [using_map.station_short]", 1, 1)
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
+	news_network.CreateFeedChannel("Oculum Content Aggregator", "Oculus v6rev7", 1, 1)
 
 	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)
 		var/datum/trade_destination/D = new loc_type

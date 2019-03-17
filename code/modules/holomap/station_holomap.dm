@@ -1,16 +1,16 @@
-var/global/list/station_holomaps = list()
-
+//
+// Wall mounted holomap of the station
+//
 /obj/machinery/station_map
 	name = "station holomap"
 	desc = "A virtual map of the surrounding station."
-	icon = 'icons/obj/machines/stationmap_vr.dmi'
+	icon = 'icons/obj/machines/stationmap.dmi'
 	icon_state = "station_map"
 	anchored = 1
 	density = 0
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 500
-	//auto_init = 0 // We handle our own special initialization needs. // TODO - Make this not ~Leshana
 	circuit = /obj/item/weapon/circuitboard/station_map
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
@@ -19,7 +19,8 @@ var/global/list/station_holomaps = list()
 	var/light_range_on = 2
 	light_color = "#64C864"
 
-	layer = ABOVE_WINDOW_LAYER
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
 
 	var/mob/watching_mob = null
 	var/image/small_station_map = null
@@ -34,17 +35,17 @@ var/global/list/station_holomaps = list()
 	..()
 	holomap_datum = new()
 	original_zLevel = loc.z
-	station_holomaps += src
+	SSholomaps.station_holomaps += src
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 
 /obj/machinery/station_map/initialize()
 	. = ..()
-	if(ticker && holomaps_initialized)
+	if(SSholomaps.holomaps_initialized)
 		spawn(1) // Tragically we need to spawn this in order to give the frame construcing us time to set pixel_x/y
 			setup_holomap()
 
 /obj/machinery/station_map/Destroy()
-	station_holomaps -= src
+	SSholomaps.station_holomaps -= src
 	stopWatching()
 	holomap_datum = null
 	. = ..()
@@ -54,7 +55,7 @@ var/global/list/station_holomaps = list()
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
-	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[original_zLevel]" in extraMiniMaps))
+	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[original_zLevel]" in SSholomaps.extraMiniMaps))
 		bogus = TRUE
 		holomap_datum.initialize_holomap_bogus()
 		update_icon()
@@ -62,11 +63,11 @@ var/global/list/station_holomaps = list()
 
 	holomap_datum.initialize_holomap(T, reinit = TRUE)
 
-	small_station_map = image(extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
+	small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
 	// small_station_map.plane = LIGHTING_PLANE // Not until we do planes ~Leshana
 	// small_station_map.layer = LIGHTING_LAYER+1 // Weird things will happen!
 
-	floor_markings = image('icons/obj/machines/stationmap_vr.dmi', "decal_station_map")
+	floor_markings = image('icons/obj/machines/stationmap.dmi', "decal_station_map")
 	floor_markings.dir = src.dir
 	// floor_markings.plane = ABOVE_TURF_PLANE // Not until we do planes ~Leshana
 	// floor_markings.layer = DECAL_LAYER
@@ -122,9 +123,9 @@ var/global/list/station_holomaps = list()
 			user.client.images |= holomap_datum.station_map
 
 			watching_mob = user
-			moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
-			dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
-			destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
+			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
+			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
+			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
 			update_use_power(2)
 
 			if(bogus)
@@ -151,9 +152,9 @@ var/global/list/station_holomaps = list()
 			var/mob/M = watching_mob
 			spawn(5) //we give it time to fade out
 				M.client.images -= holomap_datum.station_map
-		moved_event.unregister(watching_mob, src)
-		dir_set_event.unregister(watching_mob, src)
-		destroyed_event.unregister(watching_mob, src)
+		GLOB.moved_event.unregister(watching_mob, src)
+		GLOB.dir_set_event.unregister(watching_mob, src)
+		GLOB.destroyed_event.unregister(watching_mob, src)
 	watching_mob = null
 	update_use_power(1)
 
@@ -182,7 +183,7 @@ var/global/list/station_holomaps = list()
 		if(bogus)
 			holomap_datum.initialize_holomap_bogus()
 		else
-			small_station_map.icon = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
+			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
 			overlays |= small_station_map
 			holomap_datum.initialize_holomap(get_turf(src))
 
@@ -227,7 +228,7 @@ var/global/list/station_holomaps = list()
 	x_offset = WORLD_ICON_SIZE
 	y_offset = WORLD_ICON_SIZE
 	circuit = /obj/item/weapon/circuitboard/station_map
-	icon_override = 'icons/obj/machines/stationmap_vr.dmi'
+	icon_override = 'icons/obj/machines/stationmap.dmi'
 
 /datum/frame/frame_types/station_map/get_icon_state(var/state)
 	return "station_map_frame_[state]"

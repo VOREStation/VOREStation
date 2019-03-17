@@ -2,11 +2,13 @@
 	name = "black vest"
 	desc = "Slick black suit vest."
 	icon_state = "det_vest"
+	slot = ACCESSORY_SLOT_OVER
 
-/obj/item/clothing/accessory/jacket/
+/obj/item/clothing/accessory/jacket
 	name = "tan suit jacket"
 	desc = "Cozy suit jacket."
 	icon_state = "tan_jacket"
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/jacket/charcoal
 	name = "charcoal suit jacket"
@@ -27,7 +29,6 @@
 	name = "checkered suit jacket"
 	desc = "Lucky suit jacket."
 	icon_state = "checkered_jacket"
-
 
 /obj/item/clothing/accessory/chaps
 	name = "brown chaps"
@@ -55,7 +56,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
-	slot = "over"
+	slot = ACCESSORY_SLOT_OVER
 
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
@@ -119,8 +120,8 @@
  * Cloak
  */
 /obj/item/clothing/accessory/poncho/roles/cloak
-	name = "brown cloak"
-	desc = "An elaborate brown cloak."
+	name = "quartermaster's cloak"
+	desc = "An elaborate brown and gold cloak."
 	icon_state = "qmcloak"
 	item_state = "qmcloak"
 	body_parts_covered = null
@@ -167,6 +168,54 @@
 	icon_state = "capcloak"
 	item_state = "capcloak"
 
+/obj/item/clothing/accessory/poncho/roles/cloak/cargo
+	name = "brown cloak"
+	desc = "A simple brown and black cloak."
+	icon_state = "cargocloak"
+	item_state = "cargocloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/mining
+	name = "trimmed purple cloak"
+	desc = "A trimmed purple and brown cloak."
+	icon_state = "miningcloak"
+	item_state = "miningcloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/security
+	name = "red cloak"
+	desc = "A simple red and black cloak."
+	icon_state = "seccloak"
+	item_state = "seccloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/service
+	name = "green cloak"
+	desc = "A simple green and blue cloak."
+	icon_state = "servicecloak"
+	item_state = "servicecloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/engineer
+	name = "gold cloak"
+	desc = "A simple gold and brown cloak."
+	icon_state = "engicloak"
+	item_state = "engicloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/atmos
+	name = "yellow cloak"
+	desc = "A trimmed yellow and blue cloak."
+	icon_state = "atmoscloak"
+	item_state = "atmoscloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/research
+	name = "purple cloak"
+	desc = "A simple purple and white cloak."
+	icon_state = "scicloak"
+	item_state = "scicloak"
+
+/obj/item/clothing/accessory/poncho/roles/cloak/medical
+	name = "blue cloak"
+	desc = "A simple blue and white cloak."
+	icon_state = "medcloak"
+	item_state = "medcloak"
+
 /obj/item/clothing/accessory/hawaii
 	name = "flower-pattern shirt"
 	desc = "You probably need some welder googles to look at this."
@@ -176,6 +225,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/hawaii/red
 	icon_state = "hawaii2"
@@ -201,35 +251,43 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/wcoat/red
 	name = "red waistcoat"
 	icon_state = "red_waistcoat"
+	item_state = "red_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/grey
 	name = "grey waistcoat"
 	icon_state = "grey_waistcoat"
+	item_state = "grey_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/brown
 	name = "brown waistcoat"
 	icon_state = "brown_waistcoat"
+	item_state = "brown_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/gentleman
 	name = "elegant waistcoat"
 	icon_state = "elegant_waistcoat"
+	item_state = "elegant_waistcoat"
 
 /obj/item/clothing/accessory/wcoat/swvest
 	name = "black sweatervest"
 	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
 	icon_state = "sweatervest"
+	item_state = "sweatervest"
 
 /obj/item/clothing/accessory/wcoat/swvest/blue
 	name = "blue sweatervest"
 	icon_state = "sweatervest_blue"
+	item_state = "sweatervest_blue"
 
 /obj/item/clothing/accessory/wcoat/swvest/red
 	name = "red sweatervest"
 	icon_state = "sweatervest_red"
+	item_state = "sweatervest_red"
 
 //Sweaters.
 
@@ -242,6 +300,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
 
 /obj/item/clothing/accessory/sweater/pink
 	name = "pink sweater"
@@ -282,3 +341,23 @@
 	name = "Christmas turtleneck"
 	desc = "A really cheesy holiday sweater, it actually kinda itches."
 	icon_state = "turtleneck_winterred"
+
+/obj/item/clothing/accessory/cowledvest
+	name = "cowled vest"
+	desc = "A body warmer for the 26th century."
+	icon_state = "cowled_vest"
+
+/obj/item/clothing/accessory/asymmetric
+	name = "blue asymmetrical jacket"
+	desc = "Insultingly avant-garde in prussian blue."
+	icon_state = "asym_blue"
+
+/obj/item/clothing/accessory/asymmetric/purple
+	name = "purple asymmetrical jacket"
+	desc = "Insultingly avant-garde in mauve."
+	icon_state = "asym_purple"
+
+/obj/item/clothing/accessory/asymmetric/green
+	name = "green asymmetrical jacket"
+	desc = "Insultingly avant-garde in aqua."
+	icon_state = "asym_green"

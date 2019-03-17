@@ -3,9 +3,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 // Species definition follows.
 /datum/species/shapeshifter/promethean
 
-	name =             "Promethean"
+	name =             SPECIES_PROMETHEAN
 	name_plural =      "Prometheans"
-	blurb =            "What has Science done?"
+	blurb =            "Prometheans (Macrolimus artificialis) are a species of artificially-created gelatinous humanoids, \
+	chiefly characterized by their primarily liquid bodies and ability to change their bodily shape and color in order to  \
+	mimic many forms of life. Derived from the Aetolian giant slime (Macrolimus vulgaris) inhabiting the warm, tropical planet \
+	of Aetolus, they are a relatively new lab-created sapient species, and as such many things about them have yet to be comprehensively studied. \
+	What has Science done?"
 	show_ssd =         "totally quiescent"
 	death_message =    "rapidly loses cohesion, splattering across the ground..."
 	knockout_message = "collapses inwards, forming a disordered puddle of goo."
@@ -26,6 +30,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
+	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
 	breath_type = null
 	poison_type = null
@@ -35,14 +40,19 @@ var/datum/species/shapeshifter/promethean/prometheans
 	male_cough_sounds = list('sound/effects/slime_squish.ogg')
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
+	min_age =		1
+	max_age =		10
+
+	economic_modifier = 3
+
 	//gluttonous =	1 // VOREStation Edit. Redundant feature.
 	virus_immune =	1
 	blood_volume =	560
-	min_age =		1
-	max_age =		5
 	brute_mod =		0.75
 	burn_mod =		2
 	oxy_mod =		0
+	flash_mod =		0.5 //No centralized, lensed eyes.
+	item_slowdown_mod = 1.33
 
 	cloning_modifier = /datum/modifier/cloning_sickness/promethean
 
@@ -56,13 +66,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	body_temperature =      310.15
 
-	siemens_coefficient =   0.3
+	siemens_coefficient =   0.4
 	rarity_value =          5
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
 	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
+
+	dispersed_eyes = TRUE
+
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unbreakable/slime),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unbreakable/slime),
@@ -83,12 +96,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,
 		/mob/living/carbon/human/proc/shapeshifter_select_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair,
+		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
+		/mob/living/carbon/human/proc/shapeshifter_select_wings, //VOREStation Add,
+		/mob/living/carbon/human/proc/shapeshifter_select_tail, //VOREStation Add,
+		/mob/living/carbon/human/proc/shapeshifter_select_ears, //VOREStation Add,
 		/mob/living/carbon/human/proc/regenerate
 		)
 
-	valid_transform_species = list("Human", "Vatborn", "Unathi", "Tajara", "Skrell", "Diona", "Teshari", "Monkey")
+	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY)
 
 	var/heal_rate = 0.5 // Temp. Regen per tick.
 
@@ -99,7 +116,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
 	var/boxtype = pick(typesof(/obj/item/weapon/storage/toolbox/lunchbox))
 	var/obj/item/weapon/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
-	var/mob/living/simple_animal/mouse/mouse = new (L)
+	var/mob/living/simple_mob/animal/passive/mouse/mouse = new (L)
 	var/obj/item/weapon/holder/holder = new (L)
 	mouse.forceMove(holder)
 	holder.sync(mouse)
@@ -136,25 +153,68 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.gib()
 
 /datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
-/* VOREStation Removal - Too crazy with our uncapped hunger and slowdown stuff.
+	var/regen_brute = 1
+	var/regen_burn = 1
+	var/regen_tox = 1
+	var/regen_oxy = 1
+
 	var/turf/T = H.loc
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
-		if(C)
-			if(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)))
-				return
+		if(C && !(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			qdel(C)
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
 				S.dirt = 0
-			H.nutrition += rand(15, 45)
-VOREStation Removal End */
+			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+
+	T = get_turf(H) // Swap over to an actual turf, because we need to get the pressure.
+	if(istype(T)) // Make sure it exists, and is a turf again.
+		var/datum/gas_mixture/environment = T.return_air()
+		var/pressure = environment.return_pressure()
+		var/affecting_pressure = H.calculate_affecting_pressure(pressure)
+		if(affecting_pressure <= hazard_low_pressure) // Dangerous low pressure stops the regeneration of physical wounds. Body is focusing on keeping them intact rather than sealing.
+			regen_brute = 0
+			regen_burn = 0
+
 	// Heal remaining damage.
-	if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-		H.adjustBruteLoss(-heal_rate)
-		H.adjustFireLoss(-heal_rate)
-		H.adjustOxyLoss(-heal_rate)
-		H.adjustToxLoss(-heal_rate)
+	if(H.fire_stacks >= 0)
+		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
+			var/nutrition_cost = 0
+			var/nutrition_debt = 0
+			var/starve_mod = 1
+			if(H.nutrition <= 25)
+				starve_mod = 0.75
+
+			if(regen_brute)
+				nutrition_debt = H.getBruteLoss()
+				H.adjustBruteLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getBruteLoss()
+
+			if(regen_burn)
+				nutrition_debt = H.getFireLoss()
+				H.adjustFireLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getFireLoss()
+
+			if(regen_oxy)
+				nutrition_debt = H.getOxyLoss()
+				H.adjustOxyLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getOxyLoss()
+
+			if(regen_tox)
+				nutrition_debt = H.getToxLoss()
+				H.adjustToxLoss(-heal_rate * starve_mod)
+				nutrition_cost += nutrition_debt - H.getToxLoss()
+
+			H.nutrition -= (3 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
+			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
+
+			var/agony_to_apply = ((1 / starve_mod) * nutrition_cost) //Regenerating damage causes minor pain over time. Small injures will be no issue, large ones will cause problems.
+			if((H.getHalLoss() + agony_to_apply) <= 70) // Don't permalock, but make it far easier to knock them down.
+				H.apply_damage(agony_to_apply, HALLOSS)
+
+	//else//VOREStation Removal
+		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
@@ -174,6 +234,8 @@ VOREStation Removal End */
 		t_she = "They are"
 	else if(H.identifying_gender == NEUTER)
 		t_she = "It is"
+	else if(H.identifying_gender == HERM) //VOREStation Edit
+		t_she = "Shi is"
 
 	switch(stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)

@@ -30,11 +30,11 @@
 
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
-	if(istype(W, /obj/item/weapon/screwdriver) && !inuse)
+	if(W.is_screwdriver() && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(W.is_crowbar())
 		default_deconstruction_crowbar(user, W)
 		return
 
@@ -71,7 +71,7 @@
 	update_light_color()
 	icon_state = "restruct_1"
 	spawn(30)
-		var/mob/living/simple_animal/xeno/slime/S = new(src)
+		var/mob/living/simple_mob/xeno/slime/S = new(src)
 		S.traitdat = new()	//New instance, so that if the core is deleted, the slime retains a trait datum.
 		S.nameVar = core.nameVar
 		S.name = "[S.nameVar] baby slime"

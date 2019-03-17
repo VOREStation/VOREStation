@@ -77,7 +77,7 @@ var/list/fusion_cores = list()
 	if(owned_field)
 		icon_state = "core0"
 		if(force_rupture || owned_field.plasma_temperature > 1000)
-			owned_field.Rupture()
+			owned_field.MRC()
 		else
 			owned_field.RadiateAll()
 		qdel(owned_field)
@@ -120,7 +120,7 @@ var/list/fusion_cores = list()
 	if(default_part_replacement(user, W))
 		return
 
-	if(ismultitool(W))
+	if(istype(W, /obj/item/device/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Fusion Core", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident

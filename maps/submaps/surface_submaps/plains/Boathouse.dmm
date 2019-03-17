@@ -1,0 +1,116 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/turf/template_noop,/area/submap/Boathouse)
+"ac" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Boathouse)
+"ad" = (/turf/simulated/floor/water,/area/submap/Boathouse)
+"ae" = (/turf/simulated/floor/water/deep,/area/submap/Boathouse)
+"af" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Boathouse)
+"ag" = (/obj/structure/table/bench/wooden,/turf/template_noop,/area/submap/Boathouse)
+"ah" = (/obj/structure/table/woodentable,/turf/template_noop,/area/submap/Boathouse)
+"ai" = (/turf/simulated/wall/wood,/area/submap/Boathouse)
+"aj" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/clothing/accessory/jacket,/obj/item/clothing/accessory/jacket,/obj/item/clothing/head/beanie,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"ak" = (/turf/simulated/floor/wood,/area/submap/Boathouse)
+"al" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/weapon/gun/projectile/shotgun/doublebarrel,/obj/item/weapon/storage/box/beanbags,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"am" = (/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
+"an" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"ao" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/simulated/floor/water,/area/submap/Boathouse)
+"ap" = (/obj/structure/railing,/turf/simulated/floor/water,/area/submap/Boathouse)
+"aq" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"ar" = (/obj/structure/table/woodentable,/obj/item/weapon/deck/cards,/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
+"as" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/chips,/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
+"at" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"au" = (/obj/item/weapon/stool,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"av" = (/turf/simulated/floor/wood{ icon_state = "wood_broken6"},/area/submap/Boathouse)
+"aw" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/water,/area/submap/Boathouse)
+"ax" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
+"ay" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/glass2/shot,/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
+"az" = (/obj/structure/table/woodentable,/obj/item/weapon/tape_roll,/obj/random/firstaid,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aA" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/glass2/shot,/obj/item/weapon/reagent_containers/food/drinks/glass2/shot,/obj/item/weapon/reagent_containers/food/drinks/glass2/shot,/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
+"aB" = (/turf/simulated/floor/wood{ icon_state = "wood_broken2"},/area/submap/Boathouse)
+"aC" = (/obj/structure/railing{dir = 8},/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/simulated/floor/water,/area/submap/Boathouse)
+"aD" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/simulated/floor/water,/area/submap/Boathouse)
+"aE" = (/obj/vehicle/boat/sifwood,/turf/simulated/floor/water,/area/submap/Boathouse)
+"aF" = (/obj/structure/window/reinforced/full,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aG" = (/obj/structure/table/woodentable,/obj/item/weapon/oar,/obj/item/weapon/oar,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aH" = (/obj/structure/railing{ icon_state = "railing0"; dir = 8},/turf/simulated/floor/water,/area/submap/Boathouse)
+"aI" = (/obj/structure/table/woodentable,/obj/random/powercell,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aJ" = (/turf/simulated/floor/wood{ icon_state = "wood_broken4"},/area/submap/Boathouse)
+"aK" = (/obj/structure/railing{ icon_state = "railing0"; dir = 8},/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/simulated/floor/water,/area/submap/Boathouse)
+"aL" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aM" = (/obj/structure/closet/secure_closet/freezer/fridge,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/fruitsalad,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aN" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aO" = (/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aP" = (/obj/structure/table/woodentable,/obj/item/weapon/material/knife,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aQ" = (/obj/structure/bookcase,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aR" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/bag/trash,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aS" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/lighter,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aT" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aU" = (/obj/structure/table/rack,/obj/item/clothing/accessory/poncho/blue,/obj/item/clothing/accessory/poncho/blue,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aV" = (/obj/structure/coatrack,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aW" = (/obj/structure/table/rack,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/hood/winter,/obj/item/clothing/shoes/boots/winter,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aX" = (/obj/structure/table/rack,/obj/item/clothing/accessory/storage,/obj/item/clothing/accessory/storage,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"aY" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"aZ" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet/bcarpet,/area/submap/Boathouse)
+"ba" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Boathouse)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabababababababababababacacacacacacacacacacacacacacacacacacabababababababababaa
+aaabababababababababacacadadadadadadadadadadadadadadadadadadacacabababababababaa
+aaabababababababacacacacadadadadadadadadadadadadadadadadadadadacacacabababababaa
+aaababababababacacadadadadadadadadadadaeaeaeaeaeaeaeaeaeaeaeadadadacacababababaa
+aaabababababacacadadadadadadadadadadadaeaeaeaeaeaeaeaeaeaeadadadadadacacabababaa
+aaababababacacadadadadadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeadadadadacababababaa
+aaabababacacadadadadadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeadadadadacababababaa
+aaabababacadadadadadadadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeadadadadacacababababaa
+aaababacacadadadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeadadadadacabababababaa
+aaabacacadadadadaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeadaeaeaeadadadadadacacabababababaa
+aaabacadadadadadaeaeaeaeaeaeaeaeaeaeaeaeaeaeadadadadadadadadadadacababababababaa
+aaacacadadadadadadaeaeaeaeaeaeaeaeaeaeaeaeadadadadadadadadadadadacababababababaa
+aaacadadadadadadadaeaeaeaeaeaeaeaeaeaeaeadadadadadadadadadadacacacababababababaa
+aaacadadadadadadadaeaeaeaeaeaeaeaeaeaeadadadadadadadadadacacacababababababababaa
+aaacacadadadadadadaeaeaeaeaeaeaeaeaeaeadadadadacacacacacacababababababababababaa
+aaabacadadadadadadaeaeaeaeaeaeaeaeaeaeadadadacacababababababababafababababababaa
+aaabacacadadadadadaeaeaeaeaeaeaeaeaeadadadadacababagagagagababababababababababaa
+aaababacacadadadadadaeaeaeaeaeaeaeaeadadadacabababahahahahababababababababababaa
+aaabababacadadadadadaeaeadaeaeaeaeaeadadadacabababagagagagababababababababababaa
+aaabababacacacadadadadaeadadaeaeaeaeaeadadacacabababababababababababafababababaa
+aaabababababacacacadadadadadaeaeaeaeaeadadadacacacababababababababababababababaa
+aaababababababacacacadadadadaeaeaeaeaeadadadadadacacacabababacacacacabababababaa
+aaababababababababacacacadadaeaeaeaeaeadadadadadadadacacacacacadadacacababababaa
+aaababababababababababacadadaeaeaeaeaeadaeadadadadadadadadadadadadadacababababaa
+aaababababababababababacadadadaeaeaeaeaeaeadadadadadadadadadadadadadacacabababaa
+aaababababababababababacadadadaeaeaeaeaeaeaeadadadadadadadadadadadadadacabababaa
+aaababababababababababacadadadadaeaeaeaeaeaeadadadadadadadadaeaeadadadacacababaa
+aaabababababababababacacadadadadaeaeaeaeaeaeaeaeaeadadadadaeaeaeadadadadacacabaa
+aaabababababababababacacadadadadadaeaeaeaeaeaeaeaeaeaeadaeaeaeadadadadadadacabaa
+aaabababababababababacacadadadadadadaeaeaeaeaeaeaeaeaeaeaeaeaeadadadadadadacabaa
+aaabababababababababacacadadadadadadadaeaeaeaeaeaeaeaeaeaeaeaeadadadadadacacabaa
+aaababababababababacacadadadadadadadadadaeaeaeaeaeaeaeaeaeaeadadadadadadacacabaa
+aaababababababababacacadadadadadadadadadaeaeaeaeaeaeaeaeaeaeadadadadadadadacabaa
+aaabababababababababacadadadadadadadadadadaeaeaeaeaeaeaeaeaeadadadadadadadacabaa
+aaabababaiaiaiaiaiaiacacadadadadadadadadadaeaeaeaeaeaeaeaeaeadadadadadadadacabaa
+aaabaiaiaiaiaiaiaiaiaiaiaiaiaiaiadadadadadadaeaeaeaeaeaeaeaeadadadadadadadacabaa
+aaaiaiajakakalaiakakakakaiaiaiaiadadadadadadaeaeaeaeaeaeaeaeadadadadadadacacabaa
+aaaiaiakamamakaianakakakaoapapapadadadadadadaeaeaeaeaeaeaeadadadadadadacacababaa
+aaaiaiaqarasaqaiatauakakakavakakawadadadadadaeaeaeaeaeaeaeadadadadadadacabababaa
+aaaiaiaqaxayaqaiazakakakakakakakawadadadadadadaeaeaeaeaeaeadadadadadadacabababaa
+aaaiaiaqaAayaqaiakakakaBaCaDaEaDadadadadadadadaeaeaeaeaeaeadadadadadacacabababaa
+aaaiaiakamamakaiakakakakawadadadadadadadadadaeaeaeaeaeaeadadadadadadadacabababaa
+aaabaFakamamakaiaGakakakaoapadapadadadadadadaeaeaeaeaeaeadadadadadadadacacababaa
+aaabaFakamamakaiatauakakakakakakaHadadadadadaeaeaeaeaeaeadadadadadadadadacababaa
+aaabaFakamamakaiaIakakakakakaJakaHadadadadadadaeaeaeaeaeaeaeaeadadadadadacacabaa
+aaabaFakamamakaiakakakakaKaDaDaDadadadadadadadadaeaeaeaeaeaeaeaeadadadadadacabaa
+aaabaFakamamakaiaiaLaiakaHadadadadadadadadadadadaeaeaeaeadaeaeaeadadadadadacabaa
+aaaiaiakamamakaiaiakaiakaHadadadadadadadadadadadaeaeaeaeadadadaeaeadadadadacabaa
+aaaiaiaMamamakaiaiaLaiaiaiaiaiaiadadadadadadadadaeaeaeadadadadadadadadadacacabaa
+aaaiaiaNamamakakakakakakaLaOaOaFadadadadadadadadaeaeadadadadadadadadadadacababaa
+aaaiaiaPamamamamamamamakaiaQaOaFadadadadadadadaeaeaeadadadadadadadadadadacababaa
+aaaiaiaRaSakakamamamamakaiaQaTaFadadadadadadadaeaeaeadadadadadadadadadadacababaa
+aaaiaiaiaiaiaUaVakakaWaXaiaYaZaFadadadadadadadaeaeaeadadadadadadadadadacacababaa
+aaabaiaiaiaiaiaiaLaLaiaiaiaiaiaiadadadadadadadadadadadadadadadadadadadacabababaa
+aaababaiaiaiabaiakakaiabaiaiaiacacacadadadadadadadadadadadadadadadadadacabababaa
+aaababababababaiaLaLaiababababababacacacacadadadadadacacadadadadadacacacabababaa
+aaababbabababababababababababaababababacacacadadacacacacacacacacacacabababababaa
+aaabababababbabababababababababababaabababacacacacababababababababababababababaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

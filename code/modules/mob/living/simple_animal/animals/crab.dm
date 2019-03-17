@@ -1,7 +1,8 @@
 //Look Sir, free crabs!
-/mob/living/simple_animal/crab
+/mob/living/simple_mob/crab
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
+	tt_desc = "E Cancer bellianus"
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
@@ -27,7 +28,7 @@
 	var/obj/item/inventory_head
 	var/obj/item/inventory_mask
 
-/mob/living/simple_animal/crab/Life()
+/mob/living/simple_mob/crab/Life()
 	..()
 	//CRAB movement, I'm not porting this up to SA because... "sideways-only movement" var nothanks
 	if(!ckey && !stat)
@@ -39,7 +40,7 @@
 	regenerate_icons()
 
 //COFFEE! SQUEEEEEEEEE!
-/mob/living/simple_animal/crab/Coffee
+/mob/living/simple_mob/crab/Coffee
 	name = "Coffee"
 	real_name = "Coffee"
 	desc = "It's Coffee, the other pet!"
@@ -48,9 +49,10 @@
 	response_harm   = "stomps"
 
 //Sif Crabs
-/mob/living/simple_animal/giant_crab
-	name = "Giant Crab"
+/mob/living/simple_mob/giant_crab
+	name = "giant crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey."
+	tt_desc = "S Cancer holligus"
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
 	icon_dead = "sif_crab_dead"
@@ -67,8 +69,11 @@
 
 	minbodytemp = 175
 
-	melee_damage_lower = 15
+	melee_damage_lower = 22
 	melee_damage_upper = 35
+	attack_armor_pen = 35
+	attack_sharp = 1
+	attack_edge = 1
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	response_help  = "pets"

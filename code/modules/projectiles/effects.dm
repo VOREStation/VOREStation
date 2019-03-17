@@ -1,7 +1,7 @@
 /obj/effect/projectile
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
-	layer = 20
+	plane = ABOVE_PLANE
 
 /obj/effect/projectile/New(var/turf/location)
 	if(istype(location))
@@ -268,3 +268,24 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
+
+//----------------------------
+// Inversion / Cult
+//----------------------------
+/obj/effect/projectile/inversion/tracer
+	icon_state = "invert"
+	light_range = 2
+	light_power = -2
+	light_color = "#FFFFFF"
+
+/obj/effect/projectile/inversion/muzzle
+	icon_state = "muzzle_invert"
+	light_range = 2
+	light_power = -2
+	light_color = "#FFFFFF"
+
+/obj/effect/projectile/inversion/impact
+	icon_state = "impact_invert"
+	light_range = 2
+	light_power = -2
+	light_color = "#FFFFFF"

@@ -1,6 +1,6 @@
 /*
 ** The Parts Lathe! Able to produce all tech level 1 stock parts for building machines!
-** 
+**
 ** The idea is that engineering etc should be able to build/repair basic technology machines
 ** without having to use a protolathe to print what are not prototype technologies.
 ** Some felt having an autolathe do this might be OP, so its a separate machine.
@@ -12,7 +12,7 @@
 ** Leshana says:
 ** - Phase 1 of this project adds the machine and basic operation.
 ** - Phase 2 will enhance usability by making & labeling boxes with a set of parts.
-** 
+**
 ** TODO - Implement phase 2 by adding cardboard boxes
 */
 
@@ -179,29 +179,29 @@
 
 /obj/machinery/partslathe/proc/canBuild(var/datum/category_item/partslathe/D)
 	for(var/M in D.resources)
-		if(materials[M] < Ceiling(D.resources[M] * mat_efficiency))
+		if(materials[M] < CEILING((D.resources[M] * mat_efficiency), 1))
 			return 0
 	return 1
 
 /obj/machinery/partslathe/proc/getLackingMaterials(var/datum/category_item/partslathe/D)
 	var/ret = ""
 	for(var/M in D.resources)
-		if(materials[M] < Ceiling(D.resources[M] * mat_efficiency))
+		if(materials[M] < CEILING((D.resources[M] * mat_efficiency), 1))
 			if(ret != "")
 				ret += ", "
-			ret += "[Ceiling(D.resources[M] * mat_efficiency) - materials[M]] [M]"
+			ret += "[CEILING((D.resources[M] * mat_efficiency), 1) - materials[M]] [M]"
 	return ret
 
 /obj/machinery/partslathe/proc/build(var/datum/category_item/partslathe/D)
 	for(var/M in D.resources)
-		materials[M] = max(0, materials[M] - Ceiling(D.resources[M] * mat_efficiency))
+		materials[M] = max(0, materials[M] - CEILING((D.resources[M] * mat_efficiency), 1))
 	var/obj/new_item = D.build(loc);
 	if(new_item)
 		new_item.loc = loc
 		if(mat_efficiency < 1) // No matter out of nowhere
 			if(new_item.matter && new_item.matter.len > 0)
 				for(var/i in new_item.matter)
-					new_item.matter[i] = Ceiling(new_item.matter[i] * mat_efficiency)
+					new_item.matter[i] = CEILING((new_item.matter[i] * mat_efficiency), 1)
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 /obj/machinery/partslathe/proc/eject_materials(var/material, var/amount)
@@ -280,7 +280,7 @@
 		recipies_ui[++recipies_ui.len] = list("name" = R.name, "type" = "[T]")
 	data["recipies"] = recipies_ui
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "partslathe.tmpl", "Parts Lathe UI", 500, 450)
 		ui.set_initial_data(data)

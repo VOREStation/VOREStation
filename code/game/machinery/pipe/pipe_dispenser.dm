@@ -6,74 +6,32 @@
 	anchored = 1
 	var/unwrenched = 0
 	var/wait = 0
+	var/p_layer = PIPING_LAYER_REGULAR
 
-/obj/machinery/pipedispenser/attack_hand(user as mob)
-	if(..())
+// TODO - Its about time to make this NanoUI don't we think?
+/obj/machinery/pipedispenser/attack_hand(var/mob/user as mob)
+	if((. = ..()))
 		return
-///// Z-Level stuff
-	var/dat = {"
-<b>Regular pipes:</b><BR>
-<A href='?src=\ref[src];make=0;dir=1'>Pipe</A><BR>
-<A href='?src=\ref[src];make=1;dir=5'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];make=5;dir=1'>Manifold</A><BR>
-<A href='?src=\ref[src];make=44;dir=1'>Digital Valve</A><BR>
-<A href='?src=\ref[src];make=8;dir=1'>Manual Valve</A><BR>
-<A href='?src=\ref[src];make=20;dir=1'>Pipe Cap</A><BR>
-<A href='?src=\ref[src];make=19;dir=1'>4-Way Manifold</A><BR>
-<A href='?src=\ref[src];make=45;dir=4'>Digital T-Valve</A><BR>
-<A href='?src=\ref[src];make=46;dir=8'>Digital T-Valve - Mirrored</A><BR>
-<A href='?src=\ref[src];make=18;dir=4'>Manual T-Valve</A><BR>
-<A href='?src=\ref[src];make=43;dir=8'>Manual T-Valve - Mirrored</A><BR>
-<A href='?src=\ref[src];make=21;dir=1'>Upward Pipe</A><BR>
-<A href='?src=\ref[src];make=22;dir=1'>Downward Pipe</A><BR>
-<b>Supply pipes:</b><BR>
-<A href='?src=\ref[src];make=29;dir=1'>Pipe</A><BR>
-<A href='?src=\ref[src];make=30;dir=5'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];make=33;dir=1'>Manifold</A><BR>
-<A href='?src=\ref[src];make=41;dir=1'>Pipe Cap</A><BR>
-<A href='?src=\ref[src];make=35;dir=1'>4-Way Manifold</A><BR>
-<A href='?src=\ref[src];make=37;dir=1'>Upward Pipe</A><BR>
-<A href='?src=\ref[src];make=39;dir=1'>Downward Pipe</A><BR>
-<b>Scrubbers pipes:</b><BR>
-<A href='?src=\ref[src];make=31;dir=1'>Pipe</A><BR>
-<A href='?src=\ref[src];make=32;dir=5'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];make=34;dir=1'>Manifold</A><BR>
-<A href='?src=\ref[src];make=42;dir=1'>Pipe Cap</A><BR>
-<A href='?src=\ref[src];make=36;dir=1'>4-Way Manifold</A><BR>
-<A href='?src=\ref[src];make=38;dir=1'>Upward Pipe</A><BR>
-<A href='?src=\ref[src];make=40;dir=1'>Downward Pipe</A><BR>
-<b>Devices:</b><BR>
-<A href='?src=\ref[src];make=28;dir=1'>Universal pipe adapter</A><BR>
-<A href='?src=\ref[src];make=4;dir=1'>Connector</A><BR>
-<A href='?src=\ref[src];make=7;dir=1'>Unary Vent</A><BR>
-<A href='?src=\ref[src];make=47;dir=1'>Passive Vent</A><BR>
-<A href='?src=\ref[src];make=9;dir=1'>Gas Pump</A><BR>
-<A href='?src=\ref[src];make=15;dir=1'>Pressure Regulator</A><BR>
-<A href='?src=\ref[src];make=16;dir=1'>High Power Gas Pump</A><BR>
-<A href='?src=\ref[src];make=10;dir=1'>Scrubber</A><BR>
-<A href='?src=\ref[src];makemeter=1'>Meter</A><BR>
-<A href='?src=\ref[src];make=13;dir=1'>Gas Filter</A><BR>
-<A href='?src=\ref[src];make=23;dir=1'>Gas Filter - Mirrored</A><BR>
-<A href='?src=\ref[src];make=14;dir=1'>Gas Mixer</A><BR>
-<A href='?src=\ref[src];make=25;dir=1'>Gas Mixer - Mirrored</A><BR>
-<A href='?src=\ref[src];make=24;dir=1'>Gas Mixer - T</A><BR>
-<A href='?src=\ref[src];make=26;dir=1'>Omni Gas Mixer</A><BR>
-<A href='?src=\ref[src];make=27;dir=1'>Omni Gas Filter</A><BR>
-<b>Heat exchange:</b><BR>
-<A href='?src=\ref[src];make=2;dir=1'>Pipe</A><BR>
-<A href='?src=\ref[src];make=3;dir=5'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];make=6;dir=1'>Junction</A><BR>
-<A href='?src=\ref[src];make=17;dir=1'>Heat Exchanger</A><BR>
-<b>Insulated pipes:</b><BR>
-<A href='?src=\ref[src];make=11;dir=1'>Pipe</A><BR>
-<A href='?src=\ref[src];make=12;dir=5'>Bent Pipe</A><BR>
+	src.interact(user)
 
-"}
-///// Z-Level stuff
-//What number the make points to is in the define # at the top of construction.dm in same folder
+/obj/machinery/pipedispenser/interact(mob/user)
+	user.set_machine(src)
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
-	onclose(user, "pipedispenser")
+	var/list/lines = list()
+	for(var/category in atmos_pipe_recipes)
+		lines += "<b>[category]:</b><BR>"
+		if(category == "Pipes")
+			// Stupid hack. Fix someday. So tired right now.
+			lines += "<a class='[p_layer == PIPING_LAYER_REGULAR ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_REGULAR]'>Regular</a> "
+			lines += "<a class='[p_layer == PIPING_LAYER_SUPPLY ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_SUPPLY]'>Supply</a> "
+			lines += "<a class='[p_layer == PIPING_LAYER_SCRUBBER ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_SCRUBBER]'>Scrubber</a> "
+			lines += "<br>"
+		for(var/datum/pipe_recipe/PI in atmos_pipe_recipes[category])
+			lines += PI.Render(src)
+	var/dat = lines.Join()
+	var/datum/browser/popup = new(user, "pipedispenser", name, 300, 800, src)
+	popup.set_content("<TT>[dat]</TT>")
+	popup.open()
 	return
 
 /obj/machinery/pipedispenser/Topic(href, href_list)
@@ -81,20 +39,27 @@
 		return
 	if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
+		usr.unset_machine(src)
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-	if(href_list["make"])
+	if(href_list["setlayer"])
+		var/new_pipe_layer = text2num(href_list["setlayer"])
+		if(isnum(new_pipe_layer))
+			p_layer = new_pipe_layer
+			updateDialog()
+	else if(href_list["makepipe"])
 		if(!wait)
-			var/p_type = text2num(href_list["make"])
+			var/obj/machinery/atmospherics/p_type = text2path(href_list["makepipe"])
 			var/p_dir = text2num(href_list["dir"])
-			var/obj/item/pipe/P = new (/*usr.loc*/ src.loc, pipe_type=p_type, dir=p_dir)
-			P.update()
+			var/pi_type = initial(p_type.construction_type)
+			var/obj/item/pipe/P = new pi_type(src.loc, p_type, p_dir)
+			P.setPipingLayer(p_layer)
 			P.add_fingerprint(usr)
 			wait = 1
 			spawn(10)
 				wait = 0
-	if(href_list["makemeter"])
+	else if(href_list["makemeter"])
 		if(!wait)
 			new /obj/item/pipe_meter(/*usr.loc*/ src.loc)
 			wait = 1
@@ -109,7 +74,7 @@
 		user.drop_item()
 		qdel(W)
 		return
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if(W.is_wrench())
 		if (unwrenched==0)
 			playsound(src, W.usesound, 50, 1)
 			user << "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>"

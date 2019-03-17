@@ -1,6 +1,7 @@
-/mob/living/simple_animal/hostile/carp
+/mob/living/simple_mob/hostile/carp
 	name = "space carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	tt_desc = "U Cyprinus aetherius" //carpspace? maybe
 	icon_state = "carp"
 	icon_living = "carp"
 	icon_dead = "carp_dead"
@@ -8,6 +9,7 @@
 
 	faction = "carp"
 	intelligence_level = SA_ANIMAL
+	hovering = TRUE
 	maxHealth = 25
 	health = 25
 	speed = 4
@@ -20,7 +22,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	//Space carp aren't affected by atmos.
@@ -36,7 +38,7 @@
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 
-/mob/living/simple_animal/hostile/carp/large
+/mob/living/simple_mob/hostile/carp/large
 	name = "elder carp"
 	desc = "An older, more matured carp. Few survive to this age due to their aggressiveness."
 	icon = 'icons/mob/64x32.dmi'
@@ -54,7 +56,7 @@
 	maxHealth = 50
 
 
-/mob/living/simple_animal/hostile/carp/large/huge
+/mob/living/simple_mob/hostile/carp/large/huge
 	name = "great white carp"
 	desc = "A very rare breed of carp- and a very aggressive one."
 	icon = 'icons/mob/64x64.dmi'
@@ -73,15 +75,15 @@
 	old_y = -16
 	pixel_y = -16
 
-/mob/living/simple_animal/hostile/carp/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/carp/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space carp!	//original comments do not steal
 
-/mob/living/simple_animal/hostile/carp/set_target()
+/mob/living/simple_mob/hostile/carp/set_target()
 	. = ..()
 	if(.)
 		custom_emote(1,"nashes at [.]")
 
-/mob/living/simple_animal/hostile/carp/PunchTarget()
+/mob/living/simple_mob/hostile/carp/PunchTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))

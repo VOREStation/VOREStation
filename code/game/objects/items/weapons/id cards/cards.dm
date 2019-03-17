@@ -46,7 +46,6 @@
 	name = "\proper the coordinates to clown planet"
 	icon_state = "data"
 	item_state = "card-id"
-	layer = 3
 	level = 2
 	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
 	function = "teleporter"
@@ -102,6 +101,6 @@
 			usr << "<span class='notice'>You are not adding enough telecrystals to fuel \the [src].</span>"
 			return
 		uses += T.amount/2 //Gives 5 uses per 10 TC
-		uses = ceil(uses) //Ensures no decimal uses nonsense, rounds up to be nice
+		uses = CEILING(uses, 1) //Ensures no decimal uses nonsense, rounds up to be nice
 		usr << "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>"
 		qdel(O)

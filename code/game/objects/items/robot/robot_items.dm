@@ -54,6 +54,8 @@
 /obj/item/borg/sight/material
 	name = "\proper material scanner vision"
 	sight_mode = BORGMATERIAL
+	icon_state = "material"
+	icon = 'icons/obj/clothing/glasses.dmi'
 
 /obj/item/borg/sight/hud
 	name = "hud"

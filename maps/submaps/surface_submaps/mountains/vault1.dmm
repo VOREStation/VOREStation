@@ -1,0 +1,17 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/wall,/area/submap/cave/vault1)
+"c" = (/turf/simulated/floor/plating,/area/submap/cave/vault1)
+"d" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating,/area/submap/cave/vault1)
+"e" = (/obj/random/multiple/minevault,/turf/simulated/floor/plating,/area/submap/cave/vault1)
+
+(1,1,1) = {"
+aaaaaaaaa
+aabbbbbaa
+abbcdcbba
+abcccccba
+abcceccba
+abcccccba
+abbcccbba
+aabbbbbaa
+aaaaaaaaa
+"}

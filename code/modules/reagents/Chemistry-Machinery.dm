@@ -28,11 +28,12 @@
 	var/tab = "home"
 	var/analyze_data[0]
 	flags = OPENCONTAINER
+	clicksound = "button"
 
 /obj/machinery/chem_master/New()
 	..()
-	var/datum/reagents/R = new/datum/reagents(120)
-	reagents = R
+	var/datum/reagents/R = new/datum/reagents(900)	//Just a huge random number so the buffer should (probably) never dump your reagents. 
+	reagents = R	//There should be a nano ui thingy to warn of this.
 	R.my_atom = src
 
 /obj/machinery/chem_master/ex_act(severity)
@@ -50,24 +51,28 @@
 	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 
 		if(src.beaker)
-			user << "\A [beaker] is already loaded into the machine."
+			to_chat(user, "\A [beaker] is already loaded into the machine.")
 			return
 		src.beaker = B
 		user.drop_item()
 		B.loc = src
-		user << "You add \the [B] to the machine!"
+		to_chat(user, "You add \the [B] to the machine.")
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
-			user << "A \the [loaded_pill_bottle] s already loaded into the machine."
+			to_chat(user, "A \the [loaded_pill_bottle] s already loaded into the machine.")
 			return
 
 		src.loaded_pill_bottle = B
 		user.drop_item()
 		B.loc = src
-		user << "You add \the [loaded_pill_bottle] into the dispenser slot!"
+		to_chat(user, "You add \the [loaded_pill_bottle] into the dispenser slot.")
+
+	else if(default_unfasten_wrench(user, B, 20))
+		return
+
 	return
 
 /obj/machinery/chem_master/attack_hand(mob/user as mob)
@@ -129,7 +134,7 @@
 
 	data["bottleSpritesAmount"] = list(1, 2, 3, 4) //how many bottle sprites there are. Sprites are taken from chemical.dmi and can be found in nano/images/pill.png
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "chem_master.tmpl", src.name, 575, 400)
 		ui.set_initial_data(data)
@@ -216,7 +221,9 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as num
+				count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as null|num
+				if(!count) //Covers 0 and cancel
+					return
 				count = Clamp(count, 1, max_pill_count)
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
@@ -225,7 +232,17 @@
 			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 60) amount_per_pill = 60
 
-			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
+			var/pill_cube = "pill"
+			if(condi)//For the condimaster
+				pill_cube = "cube"
+			else
+				pill_cube = "pill"
+
+			var/name = sanitizeSafe(input(usr,"Name:","Name your [pill_cube]!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as null|text, MAX_NAME_LEN)
+
+			if(!name) //Blank name (sanitized to nothing, or left empty) or cancel
+				return
+
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -235,7 +252,11 @@
 				P.name = "[name] pill"
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
-				P.icon_state = "pill"+pillsprite
+				if(!condi) //If normal
+					P.icon_state = "pill"+pillsprite
+				else //If condi is on
+					P.icon_state = "bouilloncube"//Reskinned monkey cube
+					P.desc = "A dissolvable cube."
 				reagents.trans_to_obj(P,amount_per_pill)
 				if(src.loaded_pill_bottle)
 					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
@@ -261,7 +282,7 @@
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 
 /obj/machinery/chem_master/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -277,7 +298,6 @@
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
-	layer = 2.9
 	density = 0
 	anchored = 0
 	use_power = 1
@@ -324,6 +344,12 @@
 		if(default_deconstruction_crowbar(user, O))
 			return
 
+	//vorestation edit start - for solargrubs
+	if (istype(O, /obj/item/device/multitool))
+		return ..()
+	//vorestation edit end
+
+
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
 		istype(O,/obj/item/weapon/reagent_containers/food/drinks/glass2) || \
 		istype(O,/obj/item/weapon/reagent_containers/food/drinks/shaker))
@@ -339,7 +365,7 @@
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
-		usr << "The machine cannot hold anymore items."
+		to_chat(user, "The machine cannot hold anymore items.")
 		return 1
 
 	if(!istype(O))
@@ -358,13 +384,13 @@
 				break
 
 		if(failed)
-			user << "Nothing in the plant bag is usable."
+			to_chat(user, "Nothing in the plant bag is usable.")
 			return 1
 
 		if(!O.contents.len)
-			user << "You empty \the [O] into \the [src]."
+			to_chat(user, "You empty \the [O] into \the [src].")
 		else
-			user << "You fill \the [src] from \the [O]."
+			to_chat(user, "You fill \the [src] from \the [O].")
 
 		src.updateUsrDialog()
 		return 0
@@ -372,16 +398,16 @@
 	if(istype(O,/obj/item/weapon/gripper))
 		var/obj/item/weapon/gripper/B = O	//B, for Borg.
 		if(!B.wrapped)
-			user << "\The [B] is not holding anything."
+			to_chat(user, "\The [B] is not holding anything.")
 			return 0
 		else
 			var/B_held = B.wrapped
-			user << "You use \the [B] to load \the [src] with \the [B_held]."
+			to_chat(user, "You use \the [B] to load \the [src] with \the [B_held].")
 
 		return 0
 
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
-		user << "\The [O] is not suitable for blending."
+		to_chat(user, "\The [O] is not suitable for blending.")
 		return 1
 
 	user.remove_from_mob(O)

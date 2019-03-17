@@ -1,10 +1,10 @@
 /datum/gear/gloves/goldring
 	display_name = "wedding ring, gold"
-	path = /obj/item/clothing/gloves/weddingring
+	path = /obj/item/clothing/gloves/ring/wedding
 
 /datum/gear/gloves/silverring
 	display_name = "wedding ring, silver"
-	path = /obj/item/clothing/gloves/weddingring/silver
+	path = /obj/item/clothing/gloves/ring/wedding/silver
 
 /datum/gear/gloves/colored
 	display_name = "gloves, colorable"
@@ -22,3 +22,7 @@
 /datum/gear/gloves/latex/colorable/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/gloves/siren
+	display_name = "gloves, Siren"
+	path = /obj/item/clothing/gloves/fluff/siren

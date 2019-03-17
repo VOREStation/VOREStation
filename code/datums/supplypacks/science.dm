@@ -2,25 +2,17 @@
 *	Here is where any supply packs
 *	related to security tasks live
 */
-/datum/supply_packs/sci
+/datum/supply_pack/sci
 	group = "Science"
 
-/datum/supply_packs/sci/virus
-	name = "Virus sample crate"
-	contains = list(/obj/item/weapon/virusdish/random = 4)
-	cost = 25
-	containertype = "/obj/structure/closet/crate/secure"
-	containername = "Virus sample crate"
-	access = access_cmo
-
-/datum/supply_packs/sci/coolanttank
+/datum/supply_pack/sci/coolanttank
 	name = "Coolant tank crate"
 	contains = list(/obj/structure/reagent_dispensers/coolanttank)
 	cost = 15
 	containertype = /obj/structure/largecrate
 	containername = "coolant tank crate"
 
-/datum/supply_packs/sci/phoron
+/datum/supply_pack/sci/phoron
 	name = "Phoron research crate"
 	contains = list(
 			/obj/item/weapon/tank/phoron = 3,
@@ -36,7 +28,7 @@
 	containername = "Phoron assembly crate"
 	access = access_tox_storage
 
-/datum/supply_packs/sci/exoticseeds
+/datum/supply_pack/sci/exoticseeds
 	name = "Exotic seeds crate"
 	contains = list(
 			/obj/item/seeds/replicapod = 2,
@@ -51,14 +43,14 @@
 	containername = "Exotic Seeds crate"
 	access = access_hydroponics
 
-/datum/supply_packs/sci/integrated_circuit_printer
+/datum/supply_pack/sci/integrated_circuit_printer
 	name = "Integrated circuit printer"
 	contains = list(/obj/item/device/integrated_circuit_printer = 2)
 	cost = 15
 	containertype = /obj/structure/closet/crate
 	containername = "Integrated circuit crate"
 
-/datum/supply_packs/sci/integrated_circuit_printer_upgrade
+/datum/supply_pack/sci/integrated_circuit_printer_upgrade
 	name = "Integrated circuit printer upgrade - advanced designs"
 	contains = list(/obj/item/weapon/disk/integrated_circuit/upgrade/advanced)
 	cost = 30

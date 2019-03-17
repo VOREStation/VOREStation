@@ -10,7 +10,7 @@ List of things solar grubs should be able to do:
 
 #define SINK_POWER 1
 
-/mob/living/simple_animal/retaliate/solargrub
+/mob/living/simple_mob/retaliate/solargrub
 	name = "juvenile solargrub"
 	desc = "A young sparkling solargrub"
 	icon = 'icons/mob/vore.dmi' //all of these are placeholders
@@ -47,15 +47,6 @@ List of things solar grubs should be able to do:
 	min_n2 = 0
 	max_n2 = 0
 
-	resistances = list(
-		HALLOSS = 0,
-		BRUTE = 1,
-		BURN = 0.1,
-		TOX = 0,
-		OXY = 0,
-		CLONE = 0
-		)
-
 	var/poison_per_bite = 5 //grubs cause a shock when they bite someone
 	var/poison_type = "shockchem"
 	var/poison_chance = 50
@@ -63,13 +54,13 @@ List of things solar grubs should be able to do:
 	var/obj/structure/cable/attached        // the attached cable
 	var/emp_chance = 20 // Beware synths
 
-/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+/mob/living/simple_mob/retaliate/solargrub/PunchTarget()
 	if(target_mob&& prob(emp_chance))
 		target_mob.emp_act(4) //The weakest strength of EMP
 		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
 	..()
 
-/mob/living/simple_animal/retaliate/solargrub/Life()
+/mob/living/simple_mob/retaliate/solargrub/Life()
 	. = ..()
 	if(!. || ai_inactive) return
 
@@ -86,8 +77,8 @@ List of things solar grubs should be able to do:
 				sparks.start()
 			anchored = 1
 			PN = attached.powernet
-			PN.draw_power(150000)
-			var/apc_drain_rate = 4000 //5000 seems a bit high, knocking it down to 4000
+			PN.draw_power(100000) // previous value 150000
+			var/apc_drain_rate = 750 //Going to see if grubs are better as a minimal bother. previous value : 4000
 			for(var/obj/machinery/power/terminal/T in PN.nodes)
 				if(istype(T.master, /obj/machinery/power/apc))
 					var/obj/machinery/power/apc/A = T.master
@@ -99,15 +90,15 @@ List of things solar grubs should be able to do:
 			anchored = 0
 			PN = null
 
-/mob/living/simple_animal/retaliate/solargrub //active noms
+/mob/living/simple_mob/retaliate/solargrub //active noms
 	vore_bump_chance = 50
-	vore_bump_emote = "applies minimal effort to try and slurp up"	
+	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
-	vore_default_mode = DM_ITEMWEAK //item friendly digestions, they just want your chemical energy :3
+	vore_default_mode = DM_DIGEST
 
-/mob/living/simple_animal/retaliate/solargrub/PunchTarget()
+/mob/living/simple_mob/retaliate/solargrub/PunchTarget()
 	. = ..()
 	if(isliving(.))
 		var/mob/living/L = .
@@ -116,12 +107,12 @@ List of things solar grubs should be able to do:
 				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
 				L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_animal/retaliate/solargrub/death()
+/mob/living/simple_mob/retaliate/solargrub/death()
 	src.anchored = 0
 	set_light(0)
 	..()
 
-/mob/living/simple_animal/retaliate/solargrub/handle_light()
+/mob/living/simple_mob/retaliate/solargrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)

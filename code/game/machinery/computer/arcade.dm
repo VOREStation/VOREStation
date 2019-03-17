@@ -27,7 +27,11 @@
 							/obj/item/toy/waterflower						= 1,
 							/obj/random/action_figure						= 1,
 							/obj/random/plushie								= 1,
-							/obj/item/toy/cultsword							= 1
+							/obj/item/toy/cultsword							= 1,
+							/obj/item/toy/bouquet/fake						= 1,
+							/obj/item/clothing/accessory/badge/sheriff		= 2,
+							/obj/item/clothing/head/cowboy_hat/small		= 2,
+							/obj/item/toy/stickhorse						= 2
 							)
 
 /obj/machinery/computer/arcade/New()
@@ -41,7 +45,7 @@
 		qdel(src)
 
 /obj/machinery/computer/arcade/proc/prizevend()
-	if(!contents.len)
+	if(!(contents-circuit).len)
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
@@ -49,7 +53,7 @@
 			new	/obj/item/clothing/head/syndicatefake(src.loc)
 
 	else
-		var/atom/movable/prize = pick(contents)
+		var/atom/movable/prize = pick(contents-circuit)
 		prize.loc = src.loc
 
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
@@ -135,7 +139,7 @@
 	data["enemyHP"] = enemy_hp
 	data["gameOver"] = gameover
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "arcade_battle.tmpl", src.name, 400, 300)
 		ui.set_initial_data(data)
@@ -197,7 +201,7 @@
 			emagged = 0
 
 	src.add_fingerprint(usr)
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	return
 
 /obj/machinery/computer/arcade/battle/proc/arcade_action()
@@ -267,6 +271,8 @@
 
 /obj/machinery/computer/arcade/battle/emag_act(var/charges, var/mob/user)
 	if(!emagged)
+		to_chat(user, span("notice","You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Hyper-Lethal Mode."))
+
 		temp = "If you die in the game, you die for real!"
 		player_hp = 30
 		player_mp = 10
@@ -395,18 +401,18 @@
 				dat += "<br>You ran out of food and starved."
 				if(emagged)
 					user.nutrition = 0 //yeah you pretty hongry
-					user << "<span class='danger'><font size=3>Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.</font></span>"
+					to_chat(user, span("danger", "<font size=3>Your body instantly contracts to that of one who has not eaten in months. Agonizing cramps seize you as you fall to the floor.</font>"))
 			if(fuel <= 0)
 				dat += "<br>You ran out of fuel, and drift, slowly, into a star."
 				if(emagged)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
 					M.IgniteMob() //flew into a star, so you're on fire
-					user << "<span class='danger'><font size=3>You feel an immense wave of heat emanate from \the [src]. Your skin bursts into flames.</font></span>"
+					to_chat(user,span("danger", "<font size=3>You feel an immense wave of heat emanate from \the [src]. Your skin bursts into flames.</font>"))
 		dat += "<br><P ALIGN=Right><a href='byond://?src=\ref[src];menu=1'>OK...</a></P>"
 
 		if(emagged)
-			user << "<span class='danger'><font size=3>You're never going to make it to Orion...</span></font>"
+			to_chat(user, span("danger", "<font size=3>You're never going to make it to Orion...</font>"))
 			user.death()
 			emagged = 0 //removes the emagged status after you lose
 			gameStatus = ORION_STATUS_START
@@ -471,20 +477,20 @@
 				switch(event)
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
-							usr << "<span class='warning'>You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?</span>"
+							to_chat(usr, span("warning", "You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
 							M.hallucination += 30
 						else
-							usr << "<span class='danger'>Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there...</span>"
+							to_chat(usr, span("danger", "Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
 							M.take_organ_damage(25)
 					if(ORION_TRAIL_ILLNESS)
 						var/severity = rand(1,3) //pray to RNGesus. PRAY, PIGS
 						if(severity == 1)
-							M << "<span class='warning'>You suddenly feel slightly nauseous.</span>" //got off lucky
+							to_chat(M, span("warning", "You suddenly feel slightly nauseous.")) //got off lucky
 						if(severity == 2)
-							usr << "<span class='warning'>You suddenly feel extremely nauseous and hunch over until it passes.</span>"
+							to_chat(usr, span("warning", "You suddenly feel extremely nauseous and hunch over until it passes."))
 							M.Stun(3)
 						if(severity >= 3) //you didn't pray hard enough
-							M << "<span class='warning'>An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit.</span>"
+							to_chat(M, span("warning", "An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
 							spawn(30)
 							if(istype(M,/mob/living/carbon/human))
 								var/mob/living/carbon/human/H = M
@@ -495,12 +501,12 @@
 							src.visible_message("A sudden gust of powerful wind slams \the [M] into the floor!", "You hear a large fwooshing sound, followed by a bang.")
 							M.take_organ_damage(15)
 						else
-							M << "<span class='warning'>A violent gale blows past you, and you barely manage to stay standing!</span>"
+							to_chat(M, span("warning", "A violent gale blows past you, and you barely manage to stay standing!"))
 					if(ORION_TRAIL_COLLISION) //by far the most damaging event
 						if(prob(90) && !hull)
 							var/turf/simulated/floor/F = src.loc
 							F.ChangeTurf(/turf/space)
-							src.visible_message("<span class='danger'>Something slams into the floor around \the [src], exposing it to space!", "You hear something crack and break.</span>")
+							src.visible_message(span("danger", "Something slams into the floor around \the [src], exposing it to space!"), "You hear something crack and break.")
 						else
 							src.visible_message("Something slams into the floor around \the [src] - luckily, it didn't get through!", "You hear something crack.")
 					if(ORION_TRAIL_MALFUNCTION)
@@ -569,9 +575,9 @@
 				event()
 				if(emagged) //has to be here because otherwise it doesn't work
 					src.show_message("\The [src] states, 'YOU ARE EXPERIENCING A BLACKHOLE. BE TERRIFIED.","You hear something say, 'YOU ARE EXPERIENCING A BLACKHOLE. BE TERRFIED'")
-					usr << "<span class='warning'>Something draws you closer and closer to the machine.</span>"
+					to_chat(usr, span("warning", "Something draws you closer and closer to the machine."))
 					sleep(10)
-					usr << "<span class='danger'>This is really starting to hurt!</span>"
+					to_chat(usr, span("danger", "This is really starting to hurt!"))
 					var i; //spawning a literal blackhole would be fun, but a bit disruptive.
 					for(i=0;i<4;i++)
 						var/mob/living/L = usr
@@ -997,12 +1003,12 @@
 
 /obj/machinery/computer/arcade/orion_trail/emag_act(mob/user)
 	if(!emagged)
-		user << "<span class='notice'>You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode.</span>"
+		to_chat(user, span("notice", "You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
 		name = "The Orion Trail: Realism Edition"
 		desc = "Learn how our ancestors got to Orion, and try not to die in the process!"
 		newgame()
 		emagged = 1
-
+		return 1
 
 /obj/item/weapon/orion_ship
 	name = "model settler ship"
@@ -1017,9 +1023,9 @@
 	if(!(in_range(user, src)))
 		return
 	if(!active)
-		user << "<span class='notice'>There's a little switch on the bottom. It's flipped down.</span>"
+		to_chat(user, span("notice", "There's a little switch on the bottom. It's flipped down."))
 	else
-		user << "<span class='notice'>There's a little switch on the bottom. It's flipped up.</span>"
+		to_chat(user, span("notice", "There's a little switch on the bottom. It's flipped up."))
 
 /obj/item/weapon/orion_ship/attack_self(mob/user)
 	if(active)
@@ -1028,17 +1034,17 @@
 	message_admins("[key_name_admin(usr)] primed an explosive Orion ship for detonation.")
 	log_game("[key_name(usr)] primed an explosive Orion ship for detonation.")
 
-	user << "<span class='warning'>You flip the switch on the underside of [src].</span>"
+	to_chat(user, span("warning", "You flip the switch on the underside of [src]."))
 	active = 1
-	src.visible_message("<span class='notice'>[src] softly beeps and whirs to life!</span>")
+	src.visible_message(span("notice", "[src] softly beeps and whirs to life!"))
 	src.audible_message("<b>\The [src]</b> says, 'This is ship ID #[rand(1,1000)] to Orion Port Authority. We're coming in for landing, over.'")
 	sleep(20)
-	src.visible_message("<span class='warning'>[src] begins to vibrate...</span>")
+	src.visible_message(span("warning", "[src] begins to vibrate..."))
 	src.audible_message("<b>\The [src]</b> says, 'Uh, Port? Having some issues with our reactor, could you check it out? Over.'")
 	sleep(30)
 	src.audible_message("<b>\The [src]</b> says, 'Oh, God! Code Eight! CODE EIGHT! IT'S GONNA BL-'")
 	sleep(3.6)
-	src.visible_message("<span class='danger'>[src] explodes!</span>")
+	src.visible_message(span("danger", "[src] explodes!"))
 	explosion(src.loc, 1,2,4)
 	qdel(src)
 

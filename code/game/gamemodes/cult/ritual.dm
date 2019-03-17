@@ -292,10 +292,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			words[cultwords[V]] = V
 
 	attack(mob/living/M as mob, mob/living/user as mob)
-
-		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had the [name] used on them by [user.name] ([user.ckey])</font>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [name] on [M.name] ([M.ckey])</font>")
-		msg_admin_attack("[user.name] ([user.ckey]) used [name] on [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		add_attack_logs(user,M,"Hit with [name]")
 
 		if(istype(M,/mob/observer/dead))
 			var/mob/observer/dead/D = M
@@ -322,7 +319,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			runerandom()
 		if(iscultist(user))
 			var/C = 0
-			for(var/obj/effect/rune/N in world)
+			for(var/obj/effect/rune/N in rune_list)
 				C++
 			if (!istype(user.loc,/turf))
 				user << "<span class='warning'>You do not have enough space to write a proper rune.</span>"

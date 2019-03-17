@@ -31,23 +31,20 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark6";
-	name = "Unknown Shuttle";
-	tag = "icon-dark6"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "aj" = (
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle";
-	tag = "icon-dark0"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "ak" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
-	name = "Unknown Shuttle";
-	tag = "icon-dark10"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "al" = (
@@ -67,8 +64,7 @@
 	},
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle";
-	tag = "icon-dark0"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "an" = (
@@ -121,8 +117,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark5";
-	name = "Unknown Shuttle";
-	tag = "icon-dark5"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "av" = (
@@ -149,14 +144,13 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
-	name = "Unknown Shuttle";
-	tag = "icon-dark9"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "aB" = (
-/mob/living/simple_animal/hostile/viscerator,
-/mob/living/simple_animal/hostile/viscerator,
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aC" = (
@@ -169,7 +163,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aD" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/hostile/syndicate/ranged/space,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aE" = (
@@ -248,7 +242,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aT" = (
-/mob/living/simple_animal/hostile/syndicate/ranged{
+/mob/living/simple_mob/hostile/syndicate/ranged{
 	desc = "Dosen't look friendly in the slightest.";
 	name = "Unknown Individual";
 	say_got_target = list("Looks like trouble!","Contact!","We've got company!","Perimeter Breached!!");
@@ -325,8 +319,7 @@
 	},
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
-	name = "Unknown Shuttle";
-	tag = "icon-dark0"
+	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
 "bd" = (
@@ -381,7 +374,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bn" = (
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bo" = (
@@ -400,8 +393,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bq" = (
-/mob/living/simple_animal/hostile/viscerator,
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
+/mob/living/simple_mob/hostile/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "br" = (
@@ -446,7 +439,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 "bz" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/hostile/syndicate/ranged/space,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 

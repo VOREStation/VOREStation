@@ -29,7 +29,7 @@
 			W.density = 1
 			user.remove_from_mob(W)
 			W.loc = loc
-			W.layer = 3.1
+			W.layer = ABOVE_JUNK_LAYER
 			pinned_target = W
 			user << "You slide the target into the stake."
 		return

@@ -39,3 +39,14 @@
 		if(prob(1))
 			owner.custom_pain("You suddenly feel short of breath and take a sharp, painful breath!",1)
 			owner.adjustOxyLoss(30) //Look it's hard to simulate low O2 perfusion okay
+
+/obj/item/organ/internal/lungs/grey
+	icon_state = "lungs_grey"
+
+/obj/item/organ/internal/lungs/grey/colormatch/New()
+	..()
+	var/mob/living/carbon/human/H = null
+	spawn(15)
+		if(ishuman(owner))
+			H = owner
+			color = H.species.blood_color

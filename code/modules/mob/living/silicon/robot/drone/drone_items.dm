@@ -3,6 +3,8 @@
 /obj/item/weapon/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool specialized in construction and engineering work."
+	description_info = "Ctrl-Clicking on the gripper will drop whatever it is holding.<br>\
+	Using an object on the gripper will interact with the item inside it, if it exists, instead."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
 
@@ -25,6 +27,23 @@
 	var/obj/item/wrapped = null // Item currently being held.
 
 	var/force_holder = null //
+
+/obj/item/weapon/gripper/examine(mob/user)
+	..()
+	if(wrapped)
+		to_chat(user, "<span class='notice'>\The [src] is holding \the [wrapped].</span>")
+		wrapped.examine(user)
+
+/obj/item/weapon/gripper/CtrlClick(mob/user)
+	drop_item()
+	return
+
+/obj/item/weapon/gripper/omni
+	name = "omni gripper"
+	desc = "A strange grasping tool that can hold anything a human can, but still maintains the limitations of application its more limited cousins have."
+	icon_state = "gripper-omni"
+
+	can_hold = list(/obj/item) // Testing and Event gripper.
 
 // VEEEEERY limited version for mining borgs. Basically only for swapping cells and upgrading the drills.
 /obj/item/weapon/gripper/miner
@@ -58,7 +77,8 @@
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/weapon/reagent_containers/pill,
-		/obj/item/weapon/reagent_containers/blood
+		/obj/item/weapon/reagent_containers/blood,
+		/obj/item/stack/material/phoron
 		)
 
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
@@ -83,7 +103,28 @@
 		/obj/item/weapon/disposable_teleporter/slime,
 		/obj/item/slimepotion,
 		/obj/item/slime_extract,
-		/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
+		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
+
+		)
+
+/obj/item/weapon/gripper/circuit
+	name = "circuit assembly gripper"
+	icon_state = "gripper-circ"
+	desc = "A complex grasping tool used for working with circuitry."
+
+	can_hold = list(
+		/obj/item/weapon/cell/device,
+		/obj/item/device/electronic_assembly,
+		/obj/item/device/assembly/electronic_assembly,
+		/obj/item/clothing/under/circuitry,
+		/obj/item/clothing/gloves/circuitry,
+		/obj/item/clothing/glasses/circuitry,
+		/obj/item/clothing/shoes/circuitry,
+		/obj/item/clothing/head/circuitry,
+		/obj/item/clothing/ears/circuitry,
+		/obj/item/clothing/suit/circuitry,
+		/obj/item/weapon/implant/integrated_circuit,
+		/obj/item/integrated_circuit
 
 		)
 
@@ -177,6 +218,21 @@
 		return wrapped.attack_self(user)
 	return ..()
 
+/obj/item/weapon/gripper/attackby(var/obj/item/O, var/mob/user)
+	if(wrapped) // We're interacting with the item inside. If you can hold a cup with 2 fingers and stick a straw in it, you could do that with a gripper and another robotic arm.
+		wrapped.loc = src.loc
+		var/resolved = wrapped.attackby(O, user)
+		if(QDELETED(wrapped) || wrapped.loc != src.loc)	 //Juuuust in case.
+			wrapped = null
+		if(!resolved && wrapped && O)
+			O.afterattack(wrapped,user,1)
+			if(QDELETED(wrapped) || wrapped.loc != src.loc)	 // I don't know of a nicer way to do this.
+				wrapped = null
+		if(wrapped)
+			wrapped.loc = src
+		return resolved
+	return ..()
+
 /obj/item/weapon/gripper/verb/drop_item()
 
 	set name = "Drop Item"
@@ -198,6 +254,21 @@
 	wrapped = null
 	//update_icon()
 
+/obj/item/weapon/gripper/proc/drop_item_nm()
+
+	if(!wrapped)
+		for(var/obj/item/thing in src.contents)
+			thing.loc = get_turf(src)
+		return
+
+	if(wrapped.loc != src)
+		wrapped = null
+		return
+
+	wrapped.loc = get_turf(src)
+	wrapped = null
+	//update_icon()
+
 /obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 		force_holder = wrapped.force
@@ -205,10 +276,13 @@
 		if(QDELETED(wrapped) || wrapped.loc != src.loc)	 //qdel check here so it doesn't duplicate/spawn ghost items
 			wrapped = null
 		else
+			wrapped.loc = src.loc //To ensure checks pass.
 			wrapped.attack(M,user)
 			M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
 			if(QDELETED(wrapped) || wrapped.loc != src.loc)
 				wrapped = null
+			if(wrapped) //In the event nothing happened to wrapped, go back into the gripper.
+				wrapped.loc = src
 			return 1
 	return 0
 
@@ -233,7 +307,8 @@
 			wrapped.afterattack(target,user,1)
 
 		//wrapped's force was set to zero.  This resets it to the value it had before.
-		wrapped.force = force_holder
+		if(wrapped)
+			wrapped.force = force_holder
 		force_holder = null
 		//If wrapped was neither deleted nor put into target, put it back into the gripper.
 		if(wrapped && user && (wrapped.loc == user))
@@ -249,6 +324,10 @@
 			return
 
 		var/obj/item/I = target
+
+		if(I.anchored)
+			to_chat(user,"<span class='notice'>You are unable to lift \the [I] from \the [I.loc].</span>")
+			return
 
 		//Check if the item is blacklisted.
 		var/grab = 0
@@ -328,7 +407,7 @@
 	var/grabbed_something = 0
 
 	for(var/mob/M in T)
-		if(istype(M,/mob/living/simple_animal/lizard) || istype(M,/mob/living/simple_animal/mouse))
+		if(istype(M,/mob/living/simple_mob/animal/passive/lizard) || istype(M,/mob/living/simple_mob/animal/passive/mouse))
 			src.loc.visible_message("<span class='danger'>[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.</span>","<span class='danger'>It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.</span>")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)

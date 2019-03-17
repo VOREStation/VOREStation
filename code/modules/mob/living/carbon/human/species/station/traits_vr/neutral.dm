@@ -1,22 +1,22 @@
 /datum/trait/metabolism_up
 	name = "Fast Metabolism"
-	desc = "You process ingested and injected reagents faster, but get hungry faster."
+	desc = "You process ingested and injected reagents faster, but get hungry faster (Teshari speed)."
 	cost = 0
-	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.005) //Teshari level
+	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.06) // +20% rate and 4x hunger (Teshari level)
 	excludes = list(/datum/trait/metabolism_down, /datum/trait/metabolism_apex)
 
 /datum/trait/metabolism_down
 	name = "Slow Metabolism"
 	desc = "You process ingested and injected reagents slower, but get hungry slower."
 	cost = 0
-	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.001)
+	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.0012) // -20% of default.
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_apex)
 
 /datum/trait/metabolism_apex
 	name = "Apex Metabolism"
-	desc = "Finally a proper excuse for your predatory actions. Also makes you process reagents faster but that's totally irrelevant. May cause excessive immersions with large/taur characters. Not recommended for efficient law-abiding workers or eco-aware NIF users."
+	desc = "Finally a proper excuse for your predatory actions. Essentially doubles the fast trait rates. Good for characters with big appetites."
 	cost = 0
-	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 0.5, "metabolism" = 0.010) //Big boy level
+	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
 
 /datum/trait/cold_discomfort
@@ -87,7 +87,7 @@
 
 /datum/trait/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.verbs |= /mob/living/carbon/human/proc/shred_limb
+	H.verbs |= /mob/living/proc/shred_limb
 
 /datum/trait/trashcan
 	name = "Trash Can"

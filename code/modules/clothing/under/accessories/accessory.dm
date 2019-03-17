@@ -6,7 +6,7 @@
 	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
 	slot_flags = SLOT_TIE
 	w_class = ITEMSIZE_SMALL
-	var/slot = "decor"
+	var/slot = ACCESSORY_SLOT_DECOR
 	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 	var/image/mob_overlay = null
@@ -14,7 +14,7 @@
 	var/concealed_holster = 0
 	var/mob/living/carbon/human/wearer = null //To check if the wearer changes, so species spritesheets change properly.
 
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
 
 /obj/item/clothing/accessory/Destroy()
 	on_removed()
@@ -26,7 +26,9 @@
 		if(icon_override)
 			if("[tmp_icon_state]_tie" in icon_states(icon_override))
 				tmp_icon_state = "[tmp_icon_state]_tie"
-		inv_overlay = image(icon = INV_ACCESSORIES_DEF_ICON, icon_state = tmp_icon_state, dir = SOUTH)
+			inv_overlay = image(icon = icon_override, icon_state = tmp_icon_state, dir = SOUTH)
+		else
+			inv_overlay = image(icon = INV_ACCESSORIES_DEF_ICON, icon_state = tmp_icon_state, dir = SOUTH)
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
@@ -93,6 +95,7 @@
 /obj/item/clothing/accessory/tie
 	name = "blue tie"
 	icon_state = "bluetie"
+	slot = ACCESSORY_SLOT_TIE
 
 /obj/item/clothing/accessory/tie/red
 	name = "red tie"
@@ -143,6 +146,7 @@
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
+	slot = ACCESSORY_SLOT_TIE
 
 /obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
@@ -204,6 +208,7 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
+	slot = ACCESSORY_SLOT_MEDAL
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"
@@ -258,6 +263,7 @@
 	name = "green scarf"
 	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
 	icon_state = "greenscarf"
+	slot = ACCESSORY_SLOT_DECOR
 
 /obj/item/clothing/accessory/scarf/red
 	name = "red scarf"
@@ -320,6 +326,7 @@
 	icon_state = "bracelet"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
 
 /obj/item/clothing/accessory/bracelet/friendship
 	name = "friendship bracelet"

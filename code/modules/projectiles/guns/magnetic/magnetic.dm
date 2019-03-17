@@ -4,7 +4,7 @@
 	icon_state = "coilgun"
 	item_state = "coilgun"
 	icon = 'icons/obj/railgun.dmi'
-//	one_handed_penalty = 1
+//	one_handed_penalty = 15
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 
@@ -15,7 +15,7 @@
 
 	var/obj/item/loaded                                        // Currently loaded object, for retrieval/unloading.
 	var/load_type = /obj/item/stack/rods                       // Type of stack to load with.
-	var/projectile_type = /obj/item/projectile/bullet/magnetic // Actual fire type, since this isn't throw_at rod launcher.
+	projectile_type = /obj/item/projectile/bullet/magnetic 	   // Actual fire type, since this isn't throw_at rod launcher.
 
 	var/power_cost = 950                                       // Cost per fire, should consume almost an entire basic cell.
 	var/power_per_tick                                         // Capacitor charge per process(). Updated based on capacitor rating.
@@ -31,10 +31,13 @@
 
 /obj/item/weapon/gun/magnetic/Destroy()
 	processing_objects.Remove(src)
-	qdel_null(cell)
-	qdel_null(loaded)
-	qdel_null(capacitor)
+	QDEL_NULL(cell)
+	QDEL_NULL(loaded)
+	QDEL_NULL(capacitor)
 	. = ..()
+
+/obj/item/weapon/gun/magnetic/get_cell()
+	return cell
 
 /obj/item/weapon/gun/magnetic/process()
 	if(capacitor)
@@ -102,7 +105,7 @@
 			update_icon()
 			return
 
-		if(isscrewdriver(thing))
+		if(thing.is_screwdriver())
 			if(!capacitor)
 				to_chat(user, "<span class='warning'>\The [src] has no capacitor installed.</span>")
 				return

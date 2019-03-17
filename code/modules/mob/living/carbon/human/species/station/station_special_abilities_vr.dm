@@ -1,202 +1,151 @@
-/mob/living/carbon/human/proc/begin_reconstitute_form() //Scree's race ability.in exchange for: No cloning.
-	set name = "Begin Reconstitute Form"
+/mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
+	set name = "Reconstitute Form"
 	set category = "Abilities"
 
-	if(world.time < last_special)
-		return
-
-	last_special = world.time + 50 //To prevent button spam.
+	// Sanity is mostly handled in chimera_regenerate()
 
 	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
-		var/mob/living/carbon/human/C = src
-		var/nutrition_used = C.nutrition/2
+		chimera_regenerate()
 
-		if(C.reviving == 1) //If they're already unable to
-			C << "You are already reconstructing, or your body is currently recovering from the intense process of your previous reconstitution."
+/mob/living/carbon/human/proc/chimera_regenerate()
+	//If they're already regenerating
+	switch(reviving)
+		if(REVIVING_NOW)
+			to_chat(src, "You are already reconstructing, just wait for the reconstruction to finish!")
+			return
+		if(REVIVING_DONE)
+			to_chat(src, "Your reconstruction is done, but you need to hatch now.")
+			return
+		if(REVIVING_COOLDOWN)
+			to_chat(src, "You can't use that ability again so soon!")
 			return
 
-		if(C.stat == DEAD) //Uh oh, you died!
-			if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
-				var/time = (240+960/(1 + nutrition_used/75))
-				C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
-				C.reviving = 1
-				C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
-				C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-				C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
+	var/nutrition_used = nutrition * 0.5
+	var/time = (240+960/(1 + nutrition_used/75))
 
-				for(var/obj/item/organ/E in C.bad_external_organs)
-					var/obj/item/organ/external/affected = E
-					for(var/datum/wound/W in affected.wounds) // Fix internal bleeds at the start of the rejuv process.
-						if(istype(W, /datum/wound/internal_bleeding))
-							affected.wounds -= W
-							affected.update_damages()
+	//Clicked regen while dead.
+	if(stat == DEAD)
 
-				spawn(time SECONDS)
-					if(C) //Runtime prevention.
-						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
-						C.verbs += /mob/living/carbon/human/proc/hatch
-						return
-					else
-						return //Something went wrong.
-			else //Dead until nutrition injected.
-				C << "Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain."
-				return
+		//Has nutrition and dead, allow regen.
+		if(hasnutriment())
+			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
-		else if(C.stat != DEAD) //If they're alive at the time of reviving.
-			var/time = (240+960/(1 + nutrition_used/75))
-			C.weakened = 10000 //Since it takes 1 tick to lose one weaken. Due to prior rounding errors, you'd sometimes unweaken before regenning. This fixes that.
-			C.reviving = 1
-			C.canmove = 0 //Make them unable to move. In case they somehow get up before the delay.
-			C << "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds."
-			C.does_not_breathe = 1 //effectively makes them spaceworthy while regenning
-
+			//Scary spawnerization.
+			reviving = REVIVING_NOW
 			spawn(time SECONDS)
-				if(C.stat != DEAD) //If they're still alive after regenning.
-					C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
-					C.verbs += /mob/living/carbon/human/proc/hatch
-					return
-				else if(C.stat == DEAD)
-					if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
-						C << "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>"
-						C.verbs += /mob/living/carbon/human/proc/hatch
-					else //Dead until nutrition injected.
-						C << "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process."
-						C.reviving = 0 // so they can try again when they're given a kickstart
-						return
+				// Was dead, now not dead.
+				if(stat != DEAD)
+					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
+					reviving = 0 //Not bool
+
+				// Was dead, still dead.
 				else
-					return //Something went wrong
+					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
+					verbs |= /mob/living/carbon/human/proc/hatch
+					reviving = REVIVING_DONE
+
+		//Dead until nutrition injected.
 		else
-			return //Something went wrong
+			to_chat(src, "<span class='warning'>Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain.</span>")
 
-/mob/living/carbon/human/proc/purge_impurities() //a lesser regeneration that just purges toxin/infections without healing. Does NOT clear reagents.
-	set name = "Purge Impurities"
-	set category = "Abilities"
+	//Clicked regen while NOT dead
+	else
+		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
-	if(world.time < last_special)
-		return
+		//Waiting for regen after being alive
+		reviving = REVIVING_NOW
+		spawn(time SECONDS)
 
-	last_special = world.time + 50 //To prevent button spam.
+			//If they're still alive after regenning.
+			if(stat != DEAD)
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				reviving = REVIVING_DONE
 
-	var/mob/living/carbon/human/C = src
+			//Was alive, now dead
+			else if(hasnutriment())
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				reviving = REVIVING_DONE
 
-	if(C.reviving == 1) //If they're already unable to
-		C << "Your body is currently still recovering from the last time you healed."
-		return
-
-	C.reviving = 1 // apply cooldown, this also locks out their main regen.
-	C << "<span class='notice'>You start to purge your body of poisons and intruders...</span>"
-
-	var/grossness = min(100, toxloss*5)
-
-	for(var/i = 0, i<10,i++) // tick some tox down. This'll clear 20 toxloss in total.
-		if(C)
-			C.adjustToxLoss(-2)
-			sleep(10)
-
-	for(var/obj/item/organ/external/E in C.organs) //half the germ_level of everything. If they're anything short of outright necrotic they'll be fine.
-		var/obj/item/organ/external/G = E
-		if(G.germ_level)
-			grossness += G.germ_level/10
-			G.germ_level = min(0, (G.germ_level/2) - 100)
-
-	for(var/obj/item/organ/internal/I in C.internal_organs)
-		var/obj/item/organ/internal/G = I
-		if(G.germ_level)
-			grossness += G.germ_level/5
-			G.germ_level = min(0, (G.germ_level/2) - 100)
-
-	//and now comes the fun part because they're gross
-	for (var/i = 0, i< grossness/10,i++)
-		if (prob(min(100, grossness)))
-			C << "<span class='warning'>You feel nauseous...</span>"
-			sleep(30)
-			if(prob(min(100, grossness/2))) // relatively small chance unless they really let themselves go to shit
-				C << "<span class='warning'>You double over, gagging!</span>"
-				C.Stun(3)
-			C.vomit()
-		sleep(50)
-
-	C << "<span class='notice'>You have finished purging your body of impurities.</span>"
-
-	spawn(300 SECONDS) //5 minute wait until you can purge or regenerate again.
-		C.reviving = 0
-
+			//Dead until nutrition injected.
+			else
+				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
+				reviving = 0 //Not boolean
 
 /mob/living/carbon/human/proc/hasnutriment()
-	if (src.bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
-		return 1
-	else if (src.ingested.has_reagent("nutriment", 60) || src.ingested.has_reagent("protein", 30)) //try forcefeeding them, why not. Less effective.
-		return 1
-	else return 0
+	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
+		return TRUE
+	else if (ingested.has_reagent("nutriment", 60) || src.ingested.has_reagent("protein", 30)) //try forcefeeding them, why not. Less effective.
+		return TRUE
+	else return FALSE
 
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
 	set category = "Abilities"
 
-	if(world.time < last_special)
+	if(reviving != REVIVING_DONE)
+		//Hwhat?
+		verbs -= /mob/living/carbon/human/proc/hatch
 		return
-
-	last_special = world.time + 50 //To prevent button spam.
 
 	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
 	if(confirm == "Yes")
-		var/mob/living/carbon/human/C = src
-		if(C.stat == DEAD) //Uh oh, you died!
-			if(C.hasnutriment()) //Let's hope you have nutriment in you.... If not
-				if(C) //Runtime prevention.
-					C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
-					var/old_nutrition = C.nutrition //Since the game is being annoying.
-					C << "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>"
-					viewers(C) << "<span class='danger'><p><font size=4>The lifeless husk of [C] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>" //Bloody hell...
-					var/T = get_turf(src)
-					new /obj/effect/gibspawner/human/scree(T)
-					var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
-					C.does_not_breathe = 0 //start breathing again
-					C.revive() // I did have special snowflake code, but this is easier.
-					C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
-					C.mutations.Remove(HUSK)
-					C.nutrition = old_nutrition
-					C.brainloss = (braindamage+10) //Gives them half their prior brain damage plus ten more.
-					C.update_canmove()
-					for(var/obj/item/W in C)
-						C.drop_from_inventory(W)
-					spawn(3600 SECONDS) //1 hour wait until you can revive.
-						C.reviving = 0
-					C.verbs -= /mob/living/carbon/human/proc/hatch
-					return
-				else
-					return //Ruuntime prevention
+
+		//Dead when hatching
+		if(stat == DEAD)
+			//Check again for nutriment (necessary?)
+			if(hasnutriment())
+				chimera_hatch()
+				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
+				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+				return
+
+			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
 			else
-				return //Something went wrong.
+				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
+				verbs -= /mob/living/carbon/human/proc/hatch
+				reviving = 0 //So they can try again when they're given a kickstart
 
-		else if(C.stat != DEAD) //If they're alive at the time of reviving.
-			C.nutrition -= C.nutrition/2 //Cut their nutrition in half.
-			var/old_nutrition = C.nutrition //Since the game is being annoying.
-			C << "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>"
-			viewers(C) << "<span class='danger'><p><font size=4>The dormant husk of [C] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>" //Bloody hell...
-			var/T = get_turf(src)
-			new /obj/effect/gibspawner/human/scree(T)
-			var/braindamage = C.brainloss/2 //If you have 100 brainloss, it gives you 50.
-			C.revive() // I did have special snowflake code, but this is easier.
-			C.weakened = 2 //Not going to let you get up immediately. 2 ticks before you get up. Overrides the above 10000 weaken.
-			C.mutations.Remove(HUSK)
-			C.nutrition = old_nutrition
-			C.brainloss = (braindamage) //Gives them half their prior brain damage plus ten more.
-			C.update_canmove()
-			for(var/obj/item/W in C)
-				C.drop_from_inventory(W)
-			spawn(3600 SECONDS) //1 hour wait until you can revive again.
-				C.reviving = 0
-			C.does_not_breathe = 0 //start breathing again
-			C.verbs -= /mob/living/carbon/human/proc/hatch
-			return
+		//Alive when hatching
 		else
-			return //Runtime prevention.
+			chimera_hatch()
+			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
 
-/obj/effect/gibspawner/human/scree
-	fleshcolor = "#14AD8B" //Scree blood.
+/mob/living/carbon/human/proc/chimera_hatch()
+	verbs -= /mob/living/carbon/human/proc/hatch
+	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
+
+	//Modify and record values (half nutrition and braindamage)
+	var/old_nutrition = nutrition * 0.5
+	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
+
+	//I did have special snowflake code, but this is easier.
+	revive()
+	mutations.Remove(HUSK)
+	nutrition = old_nutrition
+	setBrainLoss(braindamage)
+
+	//Drop everything
+	for(var/obj/item/W in src)
+		drop_from_inventory(W)
+
+	//Unfreeze some things
+	does_not_breathe = FALSE
+	update_canmove()
+	weakened = 2
+
+	//Visual effects
+	var/T = get_turf(src)
+	new /obj/effect/gibspawner/human/xenochimera(T)
+
+	reviving = REVIVING_COOLDOWN
+	schedule_callback_in(1 HOUR, VARSET_CALLBACK(src, reviving, 0))
+
+/obj/effect/gibspawner/human/xenochimera
+	fleshcolor = "#14AD8B"
 	bloodcolor = "#14AD8B"
 
 /mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
@@ -206,191 +155,193 @@
 	else return 0
 
 /mob/living/carbon/human/proc/handle_feral()
-	if(handling_hal) return //avoid conflict with actual hallucinations
+	if(handling_hal) return
 	handling_hal = 1
 
-	if(client && feral) // largely a copy of handle_hallucinations() without the fake attackers. Unlike hallucinations, only fires once - if they're still feral they'll get hit again anyway.
-		sleep(rand(200,500)/(feral/10))
-		var/halpick = rand(1,100)
-		switch(halpick)
-			if(0 to 15) //15% chance
-				//Screwy HUD
-				//src << "Screwy HUD"
-				hal_screwyhud = pick(1,2,3,3,4,4)
-				spawn(rand(100,250))
-					hal_screwyhud = 0
-			if(16 to 25) //10% chance
-				//Strange items
-				//src << "Traitor Items"
-				if(!halitem)
-					halitem = new
-					var/list/slots_free = list(ui_lhand,ui_rhand)
-					if(l_hand) slots_free -= ui_lhand
-					if(r_hand) slots_free -= ui_rhand
-					if(istype(src,/mob/living/carbon/human))
-						var/mob/living/carbon/human/H = src
-						if(!H.belt) slots_free += ui_belt
-						if(!H.l_store) slots_free += ui_storage1
-						if(!H.r_store) slots_free += ui_storage2
-					if(slots_free.len)
-						halitem.screen_loc = pick(slots_free)
-						halitem.layer = 50
-						switch(rand(1,6))
-							if(1) //revolver
-								halitem.icon = 'icons/obj/gun.dmi'
-								halitem.icon_state = "revolver"
-								halitem.name = "Revolver"
-							if(2) //c4
-								halitem.icon = 'icons/obj/assemblies.dmi'
-								halitem.icon_state = "plastic-explosive0"
-								halitem.name = "Mysterious Package"
-								if(prob(25))
-									halitem.icon_state = "c4small_1"
-							if(3) //sword
-								halitem.icon = 'icons/obj/weapons.dmi'
-								halitem.icon_state = "sword1"
-								halitem.name = "Sword"
-							if(4) //stun baton
-								halitem.icon = 'icons/obj/weapons.dmi'
-								halitem.icon_state = "stunbaton"
-								halitem.name = "Stun Baton"
-							if(5) //emag
-								halitem.icon = 'icons/obj/card.dmi'
-								halitem.icon_state = "emag"
-								halitem.name = "Cryptographic Sequencer"
-							if(6) //flashbang
-								halitem.icon = 'icons/obj/grenade.dmi'
-								halitem.icon_state = "flashbang1"
-								halitem.name = "Flashbang"
-						if(client) client.screen += halitem
-						spawn(rand(100,250))
-							if(client)
-								client.screen -= halitem
-							halitem = null
-			if(26 to 35) //10% chance
-				//Flashes of danger
-				//src << "Danger Flash"
-				if(!halimage)
-					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
-						possible_points += F
-					if(possible_points.len)
-						var/turf/simulated/floor/target = pick(possible_points)
+	if(client && feral >= 10) // largely a copy of handle_hallucinations() without the fake attackers. Unlike hallucinations, only fires once - if they're still feral they'll get hit again anyway.
+		spawn(rand(200,500)/(feral/10))
+			if(!feral) return //just to avoid fuckery in the event that they un-feral in the time it takes for the spawn to proc
+			var/halpick = rand(1,100)
+			switch(halpick)
+				if(0 to 15) //15% chance
+					//Screwy HUD
+					//src << "Screwy HUD"
+					hal_screwyhud = pick(1,2,3,3,4,4)
+					spawn(rand(100,250))
+						hal_screwyhud = 0
+				if(16 to 25) //10% chance
+					//Strange items
+					//src << "Traitor Items"
+					if(!halitem)
+						halitem = new
+						var/list/slots_free = list(ui_lhand,ui_rhand)
+						if(l_hand) slots_free -= ui_lhand
+						if(r_hand) slots_free -= ui_rhand
+						if(istype(src,/mob/living/carbon/human))
+							var/mob/living/carbon/human/H = src
+							if(!H.belt) slots_free += ui_belt
+							if(!H.l_store) slots_free += ui_storage1
+							if(!H.r_store) slots_free += ui_storage2
+						if(slots_free.len)
+							halitem.screen_loc = pick(slots_free)
+							halitem.layer = 50
+							switch(rand(1,6))
+								if(1) //revolver
+									halitem.icon = 'icons/obj/gun.dmi'
+									halitem.icon_state = "revolver"
+									halitem.name = "Revolver"
+								if(2) //c4
+									halitem.icon = 'icons/obj/assemblies.dmi'
+									halitem.icon_state = "plastic-explosive0"
+									halitem.name = "Mysterious Package"
+									if(prob(25))
+										halitem.icon_state = "c4small_1"
+								if(3) //sword
+									halitem.icon = 'icons/obj/weapons.dmi'
+									halitem.icon_state = "sword1"
+									halitem.name = "Sword"
+								if(4) //stun baton
+									halitem.icon = 'icons/obj/weapons.dmi'
+									halitem.icon_state = "stunbaton"
+									halitem.name = "Stun Baton"
+								if(5) //emag
+									halitem.icon = 'icons/obj/card.dmi'
+									halitem.icon_state = "emag"
+									halitem.name = "Cryptographic Sequencer"
+								if(6) //flashbang
+									halitem.icon = 'icons/obj/grenade.dmi'
+									halitem.icon_state = "flashbang1"
+									halitem.name = "Flashbang"
+							if(client) client.screen += halitem
+							spawn(rand(100,250))
+								if(client)
+									client.screen -= halitem
+								halitem = null
+				if(26 to 35) //10% chance
+					//Flashes of danger
+					//src << "Danger Flash"
+					if(!halimage)
+						var/list/possible_points = list()
+						for(var/turf/simulated/floor/F in view(src,world.view))
+							possible_points += F
+						if(possible_points.len)
+							var/turf/simulated/floor/target = pick(possible_points)
 
-						switch(rand(1,3))
-							if(1)
-								//src << "Space"
-								halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
-							if(2)
-								//src << "Fire"
-								halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
-							if(3)
-								//src << "C4"
-								halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
+							switch(rand(1,3))
+								if(1)
+									//src << "Space"
+									halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
+								if(2)
+									//src << "Fire"
+									halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
+								if(3)
+									//src << "C4"
+									halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
 
 
-						if(client) client.images += halimage
-						spawn(rand(10,50)) //Only seen for a brief moment.
-							if(client) client.images -= halimage
-							halimage = null
+							if(client) client.images += halimage
+							spawn(rand(10,50)) //Only seen for a brief moment.
+								if(client) client.images -= halimage
+								halimage = null
 
-			if(36 to 55) //20% chance
-				//Strange audio
-				//src << "Strange Audio"
-				switch(rand(1,12))
-					if(1) src << 'sound/machines/airlock.ogg'
-					if(2)
-						if(prob(50))src << 'sound/effects/Explosion1.ogg'
-						else src << 'sound/effects/Explosion2.ogg'
-					if(3) src << 'sound/effects/explosionfar.ogg'
-					if(4) src << 'sound/effects/Glassbr1.ogg'
-					if(5) src << 'sound/effects/Glassbr2.ogg'
-					if(6) src << 'sound/effects/Glassbr3.ogg'
-					if(7) src << 'sound/machines/twobeep.ogg'
-					if(8) src << 'sound/machines/windowdoor.ogg'
-					if(9)
-						//To make it more realistic, I added two gunshots (enough to kill)
-						src << 'sound/weapons/Gunshot.ogg'
-						spawn(rand(10,30))
+				if(36 to 55) //20% chance
+					//Strange audio
+					//src << "Strange Audio"
+					switch(rand(1,12))
+						if(1) src << 'sound/machines/airlock.ogg'
+						if(2)
+							if(prob(50))src << 'sound/effects/Explosion1.ogg'
+							else src << 'sound/effects/Explosion2.ogg'
+						if(3) src << 'sound/effects/explosionfar.ogg'
+						if(4) src << 'sound/effects/Glassbr1.ogg'
+						if(5) src << 'sound/effects/Glassbr2.ogg'
+						if(6) src << 'sound/effects/Glassbr3.ogg'
+						if(7) src << 'sound/machines/twobeep.ogg'
+						if(8) src << 'sound/machines/windowdoor.ogg'
+						if(9)
+							//To make it more realistic, I added two gunshots (enough to kill)
 							src << 'sound/weapons/Gunshot.ogg'
-					if(10) src << 'sound/weapons/smash.ogg'
-					if(11)
-						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
-						spawn(rand(10,30))
+							spawn(rand(10,30))
+								src << 'sound/weapons/Gunshot.ogg'
+						if(10) src << 'sound/weapons/smash.ogg'
+						if(11)
+							//Same as above, but with tasers.
 							src << 'sound/weapons/Taser.ogg'
-				//Rare audio
-					if(12)
-//These sounds are (mostly) taken from Hidden: Source
-						var/list/creepyasssounds = list('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/Heart Beat.ogg', 'sound/effects/screech.ogg',\
-							'sound/hallucinations/behind_you1.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/hallucinations/far_noise.ogg', 'sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg',\
-							'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
-							'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
-							'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-						src << pick(creepyasssounds)
-			if(56 to 60) //5% chance
-				//Flashes of danger
-				//src << "Danger Flash"
-				if(!halbody)
-					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
-						possible_points += F
-					if(possible_points.len)
-						var/turf/simulated/floor/target = pick(possible_points)
-						switch(rand(1,4))
-							if(1)
-								halbody = image('icons/mob/human.dmi',target,"husk_l",TURF_LAYER)
-							if(2,3)
-								halbody = image('icons/mob/human.dmi',target,"husk_s",TURF_LAYER)
-							if(4)
-								halbody = image('icons/mob/alien.dmi',target,"alienother",TURF_LAYER)
-	//						if(5)
-	//							halbody = image('xcomalien.dmi',target,"chryssalid",TURF_LAYER)
+							spawn(rand(10,30))
+								src << 'sound/weapons/Taser.ogg'
+					//Rare audio
+						if(12)
+	//These sounds are (mostly) taken from Hidden: Source
+							var/list/creepyasssounds = list('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/Heart Beat.ogg', 'sound/effects/screech.ogg',\
+								'sound/hallucinations/behind_you1.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/hallucinations/far_noise.ogg', 'sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg',\
+								'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
+								'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
+								'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
+							src << pick(creepyasssounds)
+				if(56 to 60) //5% chance
+					//Flashes of danger
+					//src << "Danger Flash"
+					if(!halbody)
+						var/list/possible_points = list()
+						for(var/turf/simulated/floor/F in view(src,world.view))
+							possible_points += F
+						if(possible_points.len)
+							var/turf/simulated/floor/target = pick(possible_points)
+							switch(rand(1,4))
+								if(1)
+									halbody = image('icons/mob/human.dmi',target,"husk_l",TURF_LAYER)
+								if(2,3)
+									halbody = image('icons/mob/human.dmi',target,"husk_s",TURF_LAYER)
+								if(4)
+									halbody = image('icons/mob/alien.dmi',target,"alienother",TURF_LAYER)
+		//						if(5)
+		//							halbody = image('xcomalien.dmi',target,"chryssalid",TURF_LAYER)
 
-						if(client) client.images += halbody
-						spawn(rand(50,80)) //Only seen for a brief moment.
-							if(client) client.images -= halbody
-							halbody = null
-			if(61 to 85) //25% chance
-				//food
-				if(!halbody)
-					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
-						possible_points += F
-					if(possible_points.len)
-						var/turf/simulated/floor/target = pick(possible_points)
-						switch(rand(1,10))
-							if(1)
-								halbody = image('icons/mob/animal.dmi',target,"cow",TURF_LAYER)
-							if(2)
-								halbody = image('icons/mob/animal.dmi',target,"chicken",TURF_LAYER)
-							if(3)
-								halbody = image('icons/obj/food.dmi',target,"bigbiteburger",TURF_LAYER)
-							if(4)
-								halbody = image('icons/obj/food.dmi',target,"meatbreadslice",TURF_LAYER)
-							if(5)
-								halbody = image('icons/obj/food.dmi',target,"sausage",TURF_LAYER)
-							if(6)
-								halbody = image('icons/obj/food.dmi',target,"bearmeat",TURF_LAYER)
-							if(7)
-								halbody = image('icons/obj/food.dmi',target,"fishfillet",TURF_LAYER)
-							if(8)
-								halbody = image('icons/obj/food.dmi',target,"meat",TURF_LAYER)
-							if(9)
-								halbody = image('icons/obj/food.dmi',target,"meatstake",TURF_LAYER)
-							if(10)
-								halbody = image('icons/obj/food.dmi',target,"monkeysdelight",TURF_LAYER)
+							if(client) client.images += halbody
+							spawn(rand(50,80)) //Only seen for a brief moment.
+								if(client) client.images -= halbody
+								halbody = null
+				if(61 to 85) //25% chance
+					//food
+					if(!halbody)
+						var/list/possible_points = list()
+						for(var/turf/simulated/floor/F in view(src,world.view))
+							possible_points += F
+						if(possible_points.len)
+							var/turf/simulated/floor/target = pick(possible_points)
+							switch(rand(1,10))
+								if(1)
+									halbody = image('icons/mob/animal.dmi',target,"cow",TURF_LAYER)
+								if(2)
+									halbody = image('icons/mob/animal.dmi',target,"chicken",TURF_LAYER)
+								if(3)
+									halbody = image('icons/obj/food.dmi',target,"bigbiteburger",TURF_LAYER)
+								if(4)
+									halbody = image('icons/obj/food.dmi',target,"meatbreadslice",TURF_LAYER)
+								if(5)
+									halbody = image('icons/obj/food.dmi',target,"sausage",TURF_LAYER)
+								if(6)
+									halbody = image('icons/obj/food.dmi',target,"bearmeat",TURF_LAYER)
+								if(7)
+									halbody = image('icons/obj/food.dmi',target,"fishfillet",TURF_LAYER)
+								if(8)
+									halbody = image('icons/obj/food.dmi',target,"meat",TURF_LAYER)
+								if(9)
+									halbody = image('icons/obj/food.dmi',target,"meatstake",TURF_LAYER)
+								if(10)
+									halbody = image('icons/obj/food.dmi',target,"monkeysdelight",TURF_LAYER)
 
-						if(client) client.images += halbody
-						spawn(rand(50,80)) //Only seen for a brief moment.
-							if(client) client.images -= halbody
-							halbody = null
-			if(86 to 100) //15% chance
-				//disorientation
-				if(client)
-					client.dir = pick(2,4,8)
-					spawn(rand(20,50))
-						client.dir = 1
+							if(client) client.images += halbody
+							spawn(rand(50,80)) //Only seen for a brief moment.
+								if(client) client.images -= halbody
+								halbody = null
+				if(86 to 100) //15% chance
+					//hear voices. Could make the voice pick from nearby creatures, but nearby creatures make feral hallucinations rare so don't bother.
+					var/list/hiddenspeakers = list("Someone distant", "A voice nearby","A familiar voice", "An echoing voice", "A cautious voice", "A scared voice", "Someone around the corner", "Someone", "Something", "Something scary", "An urgent voice", "An angry voice")
+					var/list/speakerverbs = list("calls out", "yells", "screams", "exclaims", "shrieks", "shouts", "hisses", "snarls")
+					var/list/spookyphrases = list("It's over here!","Stop it!", "Hunt it down!", "Get it!", "Quick, over here!", "Anyone there?", "Who's there?", "Catch that thing!", "Stop it! Kill it!", "Anyone there?", "Where is it?", "Find it!", "There it is!")
+					to_chat(src, "<span class='game say'><span class='name'>[pick(hiddenspeakers)]</span> [pick(speakerverbs)], \"[pick(spookyphrases)]\"</span>")
+
 
 	handling_hal = 0
 	return
@@ -500,9 +451,7 @@
 				C.absorbing_prey = 0
 				to_chat(C, "<span class='notice'>You have completely drained [T], causing them to pass out.</span>")
 				to_chat(T, "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(C)]</font>")
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(C)]")
+				add_attack_logs(C,T,"Succubus drained")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
@@ -579,9 +528,7 @@
 					absorbing_prey = 0
 					to_chat(src, "<span class='notice'>You have completely drained [T], killing them.</span>")
 					to_chat(T, "<span class='danger'size='5'>You feel... So... Weak...</span>")
-					T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(src)]</font>")
-					src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-					msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(src)]")
+					add_attack_logs(src,T,"Succubus drained (almost lethal)")
 					return
 				if(drain_finalized == 1 || T.getBrainLoss() < 55) //Let's not kill them with this unless the drain is finalized. This will still stack up to 55, since 60 is lethal.
 					T.adjustBrainLoss(5) //Will kill them after a short bit!
@@ -596,9 +543,7 @@
 				to_chat(src, "<span class='notice'>You have completely drained [T], killing them in the process.</span>")
 				to_chat(T, "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>")
 				visible_message("<span class='danger'>[src] seems to finish whatever they were doing to [T].</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was drained by [key_name(src)]</font>")
-				src.attack_log += text("\[[time_stamp()]\] <font color='orange'> Drained [key_name(T)]</font>")
-				msg_admin_attack("[key_name(T)] was completely drained of all nutrition by [key_name(src)]")
+				add_attack_logs(src,T,"Succubus drained (lethal)")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
@@ -658,9 +603,7 @@
 				C.absorbing_prey = 0
 				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
 				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
-				T.attack_log += text("\[[time_stamp()]\] <font color='red'>Was fed via slime feed  by [key_name(C)]</font>")
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'> Fed via slime feed [key_name(T)]</font>")
-				msg_admin_attack("[key_name(C)] fed [key_name(T)] via slime feed, resulting in them being eaten!")
+				add_attack_logs(C,T,"Slime fed")
 				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
 				return
 
@@ -668,9 +611,6 @@
 			to_chat(src, "<span class='warning'>Your feeding of [T] has been interrupted!</span>")
 			C.absorbing_prey = 0
 			return
-
-
-
 
 /mob/living/carbon/human/proc/succubus_drain_finalize()
 	set name = "Drain/Feed Finalization"
@@ -681,110 +621,168 @@
 	C.drain_finalized = !C.drain_finalized
 	to_chat(C, "<span class='notice'>You will [C.drain_finalized?"now":"not"] finalize draining/feeding.</span>")
 
-/mob/living/carbon/human/proc/shred_limb() //If you're looking at this, nothing but pain and suffering lies below.
+
+//Test to see if we can shred a mob. Some child override needs to pass us a target. We'll return it if you can.
+/mob/living/var/vore_shred_time = 45 SECONDS
+/mob/living/proc/can_shred(var/mob/living/carbon/human/target)
+	//Needs to have organs to be able to shred them.
+	if(!istype(target))
+		to_chat(src,"<span class='warning'>You can't shred that type of creature.</span>")
+		return FALSE
+	//Needs to be capable (replace with incapacitated call?)
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		to_chat(src,"<span class='warning'>You cannot do that in your current state!</span>")
+		return FALSE
+	//Needs to be adjacent, at the very least.
+	if(!Adjacent(target))
+		to_chat(src,"<span class='warning'>You must be next to your target.</span>")
+		return FALSE
+	//Cooldown on abilities
+	if(last_special > world.time)
+		to_chat(src,"<span class='warning'>You can't perform an ability again so soon!</span>")
+		return FALSE
+
+	return target
+
+//Human test for shreddability, returns the mob if they can be shredded.
+/mob/living/carbon/human/vore_shred_time = 10 SECONDS
+/mob/living/carbon/human/can_shred()
+	//Humans need a grab
+	var/obj/item/weapon/grab/G = get_active_hand()
+	if(!istype(G))
+		to_chat(src,"<span class='warning'>You have to have a very strong grip on someone first!</span>")
+		return FALSE
+	if(G.state != GRAB_NECK)
+		to_chat(src,"<span class='warning'>You must have a tighter grip to severely damage this creature!</span>")
+		return FALSE
+
+	return ..(G.affecting)
+
+//PAIs, borgs, and animals don't need a grab or anything
+/mob/living/silicon/pai/can_shred(var/mob/living/carbon/human/target)
+	if(!target)
+		var/list/choices = list()
+		for(var/mob/living/carbon/human/M in oviewers(1))
+			choices += M
+
+		if(!choices.len)
+			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
+
+		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+	if(!istype(target))
+		return FALSE
+
+	return ..(target)
+
+/mob/living/silicon/robot/can_shred(var/mob/living/carbon/human/target)
+	if(!target)
+		var/list/choices = list()
+		for(var/mob/living/carbon/human/M in oviewers(1))
+			choices += M
+
+		if(!choices.len)
+			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
+
+		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+	if(!istype(target))
+		return FALSE
+
+	return ..(target)
+
+/mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
+	if(!target)
+		var/list/choices = list()
+		for(var/mob/living/carbon/human/M in oviewers(1))
+			choices += M
+
+		if(!choices.len)
+			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
+
+		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+	if(!istype(target))
+		return FALSE
+
+	return ..(target)
+
+/mob/living/proc/shred_limb()
 	set name = "Damage/Remove Prey's Organ"
 	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
 	set category = "Abilities"
-	if(!ishuman(src))
-		return //If you're not a human you don't have permission to do this.
 
-	if(last_special > world.time)
+	//can_shred() will return a mob we can shred, if we can shred any.
+	var/mob/living/carbon/human/T = can_shred()
+	if(!istype(T))
+		return //Silent, because can_shred does messages.
+
+	//Let them pick any of the target's external organs
+	var/obj/item/organ/external/T_ext = input(src,"What do you wish to severely damage?") as null|anything in T.organs //D for destroy.
+	if(!T_ext) //Picking something here is critical.
 		return
-
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot severely damage anything in your current state!")
-		return
-
-	var/mob/living/carbon/human/C = src
-	var/obj/item/weapon/grab/G = src.get_active_hand()
-	if(!istype(G))
-		to_chat(C, "<span class='warning'>We must be grabbing a creature in our active hand to severely damage them.</span>")
-		return
-
-	var/mob/living/carbon/human/T = G.affecting
-	if(!istype(T)) //Are they a mob?
-		to_chat(C, "<span class='warning'>\The [T] is not able to be severely damaged!</span>")
-		return
-
-	if(G.state != GRAB_NECK)
-		to_chat(C, "<span class='warning'>You must have a tighter grip to severely damage this creature.</span>")
-		return
-
-	if(!T || !C || C.stat)
-		return
-
-	if(!Adjacent(T))
-		return
-
-	var/list/choices2 = list()
-	for(var/obj/item/organ/O in T.organs) //External organs
-		choices2 += O
-
-	var/obj/item/organ/external/D = input(C,"What do you wish to severely damage?") as null|anything in choices2 //D for destroy.
-	if(D.vital)
-		if(alert("Are you sure you wish to severely damage their [D]? It most likely will kill the prey...",,"Yes", "No") != "Yes")
+	if(T_ext.vital)
+		if(alert("Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...",,"Yes", "No") != "Yes")
 			return //If they reconsider, don't continue.
 
-	var/list/choices3 = list()
-	for(var/obj/item/organ/internal/I in D.internal_organs) //Look for the internal organ in the organ being shreded.
-		choices3 += I
+	//Any internal organ, if there are any
+	var/obj/item/organ/internal/T_int = input(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in T_ext.internal_organs
+	if(T_int && T_int.vital)
+		if(alert("Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+			return //If they reconsider, don't continue.
 
-	var/obj/item/organ/internal/P = input(C,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in choices3
+	//And a belly, if they want
+	var/obj/belly/B = input(src,"Do you wish to swallow the organ if you tear if out? If not, click 'cancel'") as null|anything in vore_organs
 
-	var/eat_limb = input(C,"Do you wish to swallow the organ if you tear if out? If so, select which stomach.") as null|anything in C.vore_organs  //EXTREMELY EFFICIENT
-
-	if(last_special > world.time)
+	if(can_shred(T) != T)
+		to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(C, "You cannot shred in your current state.")
-		return
+	last_special = world.time + vore_shred_time
+	visible_message("<span class='danger'>[src] appears to be preparing to do something to [T]!</span>") //Let everyone know that bad times are ahead
 
-	last_special = world.time + 100 //10 seconds.
-	C.visible_message("<font color='red'><b>[C] appears to be preparing to do something to [T]!</b></font>") //Let everyone know that bad times are head
+	if(do_after(src, vore_shred_time, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
+		if(can_shred(T) != T)
+			to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
+			return
 
-	if(do_after(C, 100, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
-		if(!Adjacent(T)) return
-		if(P && P.damage >= 25) //Internal organ and it's been severely damage
-			T.apply_damage(15, BRUTE, D) //Damage the external organ they're going through.
-			P.removed()
-			P.forceMove(T.loc) //Move to where prey is.
-			log_and_message_admins("tore out [P] of [T].", C)
-			if(eat_limb)
-				var/datum/belly/S = C.vore_organs[eat_limb]
-				P.forceMove(C) //Move to pred's gut
-				S.internal_contents |= P //Add to pred's gut.
-				C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") // Same as below, but (pred) damages the (right hand) of (person)
-				to_chat(C, "[P] of [T] moves into your [S]!") //Quietly eat their internal organ! Comes out "The (right hand) of (person) moves into your (stomach)
-				playsound(C, S.vore_sound, 70, 1)
-				log_and_message_admins("tore out and ate [P] of [T].", C)
+		//Removing an internal organ
+		if(T_int && T_int.damage >= 25) //Internal organ and it's been severely damaged
+			T.apply_damage(15, BRUTE, T_ext) //Damage the external organ they're going through.
+			T_int.removed()
+			if(B)
+				T_int.forceMove(B) //Move to pred's gut
+				visible_message("<span class='danger'>[src] severely damages [T_int.name] of [T]!</span>")
 			else
-				log_and_message_admins("tore out [P] of [T].", C)
-				C.visible_message("<font color='red'><b>[C] severely damages [D] of [T], resulting in their [P] coming out!</b></font>")
-		else if(!P && (D.damage >= 25 || D.brute_dam >= 25)) //Not targeting an internal organ & external organ has been severely damaged already.
-			D.droplimb(1,DROPLIMB_EDGE) //Clean cut so it doesn't kill the prey completely.
-			if(D.cannot_amputate) //Is it groin/chest? You can't remove those.
-				T.apply_damage(25, BRUTE, D)
-				C.visible_message("<font color='red'><b>[C] severely damage [T]'s [D]!</b></font>") //Keep it vague. Let the /me's do the talking.
-				log_and_message_admins("shreded [T]'s [D].", C)
-				return
-			if(eat_limb)
-				var/datum/belly/S = C.vore_organs[eat_limb]
-				D.forceMove(C) //Move to pred's gut
-				S.internal_contents |= D //Add to pred's gut.
-				C.visible_message("<span class='warning'>[C] swallows [D] of [T] into their [S]!</span>","You swallow [D] of [T]!")
-				playsound(C, S.vore_sound, 70, 1)
-				to_chat(C, "Their [D] moves into your [S]!")
-				log_and_message_admins("tore off and ate [D] of [T].", C)
+				T_int.forceMove(T.loc)
+				visible_message("<span class='danger'>[src] severely damages [T_ext.name] of [T], resulting in their [T_int.name] coming out!</span>","<span class='warning'>You tear out [T]'s [T_int.name]!</span>")
+
+		//Removing an external organ
+		else if(!T_int && (T_ext.damage >= 25 || T_ext.brute_dam >= 25))
+			T_ext.droplimb(1,DROPLIMB_EDGE) //Clean cut so it doesn't kill the prey completely.
+
+			//Is it groin/chest? You can't remove those.
+			if(T_ext.cannot_amputate)
+				T.apply_damage(25, BRUTE, T_ext)
+				visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
+			else if(B)
+				T_ext.forceMove(B)
+				visible_message("<span class='warning'>[src] swallows [T]'s [T_ext.name] into their [lowertext(B.name)]!</span>")
 			else
-				C.visible_message("<span class='warning'>[C] tears off [D] of [T]!</span>","You tear out [D] of [T]!") //Will come out "You tear out (the right foot) of (person)
-				log_and_message_admins("tore off [T]'s [D].", C)
-		else //Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
-			if(P)
-				P.damage = 25 //Internal organs can only take damage, not brute damage.
-			T.apply_damage(25, BRUTE, D)
-			C.visible_message("<font color='red'><b>[C] severely damages [D] of [T]!</b></font>") //Keep it vague. Let the /me's do the talking.
-			log_and_message_admins("shreded [D] of [T].", C)
+				T_ext.forceMove(T.loc)
+				visible_message("<span class='warning'>[src] tears off [T]'s [T_ext.name]!</span>","<span class='warning'>You tear off [T]'s [T_ext.name]!</span>")
+
+		//Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
+		else
+			if(T_int)
+				T_int.damage = 25 //Internal organs can only take damage, not brute damage.
+			T.apply_damage(25, BRUTE, T_ext)
+			visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
+
+		add_attack_logs(src,T,"Shredded (hardvore)")
+
+/mob/living/proc/shred_limb_temp()
+	set name = "Damage/Remove Prey's Organ (beartrap)"
+	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
+	set category = "Abilities"
+	shred_limb()
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"
@@ -845,6 +843,6 @@
 /mob/living/proc/toggle_pass_table()
 	set name = "Toggle Agility" //Dunno a better name for this. You have to be pretty agile to hop over stuff!!!
 	set desc = "Allows you to start/stop hopping over things such as hydroponics trays, tables, and railings."
-	set category = "IC"
+	set category = "Abilities"
 	pass_flags ^= PASSTABLE //I dunno what this fancy ^= is but Aronai gave it to me.
 	to_chat(src, "You [pass_flags&PASSTABLE ? "will" : "will NOT"] move over tables/railings/trays!")

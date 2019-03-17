@@ -5,46 +5,47 @@
 
 /obj/structure/closet/secure_closet/CMO_wardrobe
 	name = "chief medical officer's locker"
-	req_access = list(access_cmo)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
 	icon_locked = "cmosecure1"
 	icon_opened = "cmosecureopen"
 	icon_broken = "cmosecurebroken"
 	icon_off = "cmosecureoff"
+	req_access = list(access_cmo)
 
-/obj/structure/closet/secure_closet/CMO_wardrobe/New()
-	..()
+	starts_with = list(
+		/obj/item/clothing/under/rank/chief_medical_officer,
+		/obj/item/clothing/under/rank/chief_medical_officer/skirt,
+		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,
+		/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
+		/obj/item/weapon/cartridge/cmo,
+		/obj/item/clothing/gloves/sterile/latex,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/device/radio/headset/heads/cmo,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
+		/obj/item/clothing/shoes/white)
+
+/obj/structure/closet/secure_closet/CMO_wardrobe/initialize()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/medic(src)
+		starts_with += /obj/item/weapon/storage/backpack/medic
 	else
-		new /obj/item/weapon/storage/backpack/satchel/med(src)
+		starts_with += /obj/item/weapon/storage/backpack/satchel/med
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/dufflebag/med(src)
-	new /obj/item/clothing/shoes/white(src)
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
 	switch(pick("blue", "green", "purple", "black", "navyblue"))
 		if ("blue")
-			new /obj/item/clothing/under/rank/medical/scrubs(src)
-			new /obj/item/clothing/head/surgery/blue(src)
+			starts_with += /obj/item/clothing/under/rank/medical/scrubs
+			starts_with += /obj/item/clothing/head/surgery/blue
 		if ("green")
-			new /obj/item/clothing/under/rank/medical/scrubs/green(src)
-			new /obj/item/clothing/head/surgery/green(src)
+			starts_with += /obj/item/clothing/under/rank/medical/scrubs/green
+			starts_with += /obj/item/clothing/head/surgery/green
 		if ("purple")
-			new /obj/item/clothing/under/rank/medical/scrubs/purple(src)
-			new /obj/item/clothing/head/surgery/purple(src)
+			starts_with += /obj/item/clothing/under/rank/medical/scrubs/purple
+			starts_with += /obj/item/clothing/head/surgery/purple
 		if ("black")
-			new /obj/item/clothing/under/rank/medical/scrubs/black(src)
-			new /obj/item/clothing/head/surgery/black(src)
+			starts_with += /obj/item/clothing/under/rank/medical/scrubs/black
+			starts_with += /obj/item/clothing/head/surgery/black
 		if ("navyblue")
-			new /obj/item/clothing/under/rank/medical/scrubs/navyblue(src)
-			new /obj/item/clothing/head/surgery/navyblue(src)
-	new /obj/item/clothing/under/rank/chief_medical_officer(src)
-	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt(src)
-	new /obj/item/weapon/cartridge/cmo(src)
-	new /obj/item/clothing/gloves/sterile/latex(src)
-	new /obj/item/clothing/shoes/brown	(src)
-	new /obj/item/device/radio/headset/heads/cmo(src)
-	new /obj/item/clothing/suit/storage/hooded/wintercoat/medical(src)
-	return
+			starts_with += /obj/item/clothing/under/rank/medical/scrubs/navyblue
+			starts_with += /obj/item/clothing/head/surgery/navyblue
+	return ..()

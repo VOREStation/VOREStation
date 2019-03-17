@@ -25,14 +25,34 @@
 	name = "Ships"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
 
+#include "underdark_pois/_templates.dm"
+/datum/map_template/tether_lateload/tether_underdark
+	name = "Tether - Underdark"
+	desc = "Mining, but harder."
+	mappath = 'tether_underdark.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/underdark
+
+/datum/map_z_level/tether_lateload/underdark
+	name = "Underdark"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+	z = Z_LEVEL_UNDERDARK
+
+/datum/map_template/tether_lateload/tether_underdark/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_UNDERDARK), 100, /area/mine/unexplored/underdark, /datum/map_template/underdark)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
+
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
 #if AWAY_MISSION_TEST
 #include "beach/beach.dmm"
 #include "beach/cave.dmm"
 #include "alienship/alienship.dmm"
-//#include "aerostat/aerostat.dmm"
-//#include "aerostat/surface.dmm"
+#include "aerostat/aerostat.dmm"
+#include "aerostat/surface.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -44,6 +64,7 @@
 
 /datum/map_z_level/tether_lateload/away_beach
 	name = "Away Mission - Desert Beach"
+	z = Z_LEVEL_BEACH
 
 /datum/map_template/tether_lateload/away_beach_cave
 	name = "Desert Planet - Z2 Cave"
@@ -51,8 +72,18 @@
 	mappath = 'beach/cave.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/away_beach_cave
 
+/datum/map_template/tether_lateload/away_beach_cave/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
+	seed_submaps(list(Z_LEVEL_BEACH_CAVE), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/deep)
+
+	// Now for the tunnels.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_BEACH_CAVE, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/beachmine(null, 1, 1, Z_LEVEL_BEACH_CAVE, 64, 64)
+
 /datum/map_z_level/tether_lateload/away_beach_cave
 	name = "Away Mission - Desert Cave"
+	z = Z_LEVEL_BEACH_CAVE
 
 /obj/effect/step_trigger/zlevel_fall/beach
 	var/static/target_z
@@ -67,6 +98,7 @@
 
 /datum/map_z_level/tether_lateload/away_alienship
 	name = "Away Mission - Alien Ship"
+	z = Z_LEVEL_ALIENSHIP
 
 
 #include "aerostat/_aerostat.dm"
@@ -78,6 +110,7 @@
 
 /datum/map_z_level/tether_lateload/away_aerostat
 	name = "Away Mission - Aerostat"
+	z = Z_LEVEL_AEROSTAT
 
 /datum/map_template/tether_lateload/away_aerostat_surface
 	name = "Remmi Aerostat - Z2 Surface"
@@ -85,12 +118,34 @@
 	mappath = 'aerostat/surface.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/away_aerostat_surface
 
+/datum/map_template/tether_lateload/away_aerostat_surface/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_AEROSTAT_SURFACE, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)
+
 /datum/map_z_level/tether_lateload/away_aerostat_surface
 	name = "Away Mission - Aerostat Surface"
+	z = Z_LEVEL_AEROSTAT_SURFACE
 
 
+//////////////////////////////////////////////////////////////////////////////////////
+// Admin-use z-levels for loading whenever an admin feels like
+#if AWAY_MISSION_TEST
+#include "admin_use/spa.dmm"
+#endif
 
+#include "admin_use/fun.dm"
+/datum/map_template/tether_lateload/fun/spa
+	name = "Space Spa"
+	desc = "A pleasant spa located in a spaceship."
+	mappath = 'admin_use/spa.dmm'
 
+	associated_map_datum = /datum/map_z_level/tether_lateload/fun/spa
+
+/datum/map_z_level/tether_lateload/fun/spa
+	name = "Spa"
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Code Shenanigans for Tether lateload maps
@@ -110,7 +165,7 @@
 	flags = MAP_LEVEL_SEALED
 
 /datum/map_z_level/tether_lateload/New(var/datum/map/map, mapZ)
-	if(mapZ)
+	if(mapZ && !z)
 		z = mapZ
 	return ..(map)
 
@@ -168,17 +223,22 @@
 	density = 0
 	anchored = 1
 
+	//Weighted with values (not %chance, but relative weight)
+	//Can be left value-less for all equally likely
 	var/list/mobs_to_pick_from
-	var/mob/living/simple_animal/my_mob
-	var/depleted = FALSE
 
 	//When the below chance fails, the spawner is marked as depleted and stops spawning
 	var/prob_spawn = 100	//Chance of spawning a mob whenever they don't have one
 	var/prob_fall = 5		//Above decreases by this much each time one spawns
 
+	//Settings to help mappers/coders have their mobs do what they want in this case
 	var/faction				//To prevent infighting if it spawns various mobs, set a faction
 	var/atmos_comp			//TRUE will set all their survivability to be within 20% of the current air
 	var/guard				//# will set the mobs to remain nearby their spawn point within this dist
+
+	//Internal use only
+	var/mob/living/simple_mob/my_mob
+	var/depleted = FALSE
 
 /obj/tether_away_spawner/initialize()
 	. = ..()
@@ -193,12 +253,12 @@
 	if(my_mob && my_mob.stat != DEAD)
 		return //No need
 
-	if(LAZYLEN(human_mobs(world.view)))
+	if(LAZYLEN(loc.human_mobs(world.view)))
 		return //I'll wait.
 
 	if(prob(prob_spawn))
 		prob_spawn -= prob_fall
-		var/picked_type = pick(mobs_to_pick_from)
+		var/picked_type = pickweight(mobs_to_pick_from)
 		my_mob = new picked_type(get_turf(src))
 		my_mob.low_priority = TRUE
 
@@ -221,13 +281,28 @@
 				my_mob.max_tox = gaslist["phoron"] * 1.2
 				my_mob.max_n2 = gaslist["nitrogen"] * 1.2
 				my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
-
+/* //VORESTATION AI TEMPORARY REMOVAL
 		if(guard)
 			my_mob.returns_home = TRUE
 			my_mob.wander_distance = guard
-
+*/
 		return
 	else
 		processing_objects -= src
 		depleted = TRUE
 		return
+
+//Shadekin spawner. Could have them show up on any mission, so it's here.
+//Make sure to put them away from others, so they don't get demolished by rude mobs.
+/obj/tether_away_spawner/shadekin
+	name = "Shadekin Spawner"
+	icon = 'icons/mob/vore_shadekin.dmi'
+	icon_state = "spawner"
+
+	faction = "shadekin"
+	prob_spawn = 1
+	prob_fall = 1
+	guard = 10 //Don't wander too far, to stay alive.
+	mobs_to_pick_from = list(
+		// /mob/living/simple_mob/shadekin //VORESTATION AI TEMPORARY REMOVAL
+	)

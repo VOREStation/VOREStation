@@ -4,7 +4,7 @@
 */
 
 
-/datum/supply_packs/randomised/contraband
+/datum/supply_pack/randomised/contraband
 	num_contained = 5
 	contains = list(
 			/obj/item/seeds/bloodtomatoseed,
@@ -20,7 +20,7 @@
 	contraband = 1
 	group = "Supplies"
 
-/datum/supply_packs/security/specialops
+/datum/supply_pack/security/specialops
 	name = "Special Ops supplies"
 	contains = list(
 			/obj/item/weapon/storage/box/emps,
@@ -32,7 +32,7 @@
 	containername = "Special Ops crate"
 	contraband = 1
 
-/datum/supply_packs/supply/moghes
+/datum/supply_pack/supply/moghes
 	name = "Moghes imports"
 	contains = list(
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew = 2,
@@ -43,8 +43,8 @@
 	containername = "Moghes imports crate"
 	contraband = 1
 
-/datum/supply_packs/security/bolt_rifles_militia
- 	name = "Surplus militia rifles"
+/datum/supply_pack/munitions/bolt_rifles_militia
+ 	name = "Weapon - Surplus militia rifles"
  	contains = list(
  			/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 3,
  			/obj/item/ammo_magazine/clip/c762 = 6
@@ -52,9 +52,9 @@
  	cost = 50
  	contraband = 1
  	containertype = /obj/structure/closet/crate/secure/weapon
- 	containername = "Weapons crate"
+ 	containername = "Ballistic weapons crate"
 
-/datum/supply_packs/randomised/misc/telecrate //you get something awesome, a couple of decent things, and a few weak/filler things
+/datum/supply_pack/randomised/misc/telecrate //you get something awesome, a couple of decent things, and a few weak/filler things
 	name = "ERR_NULL_ENTRY" //null crate! also dream maker is hell,
 	num_contained = 1
 	contains = list(

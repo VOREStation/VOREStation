@@ -1,0 +1,57 @@
+<H2>Station Status Display Interlink</H2>
+
+<div class="item">
+	<div class="itemLabel">
+		<b>Code</b>
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Clear Message', 'trash', {'cartridge_topic' : "1", 'stat_display' : "blank"}, (data.stat_display.active == "blank") ? 'selected' : null)}}
+		{{:helper.link('Clear Alert', 'alert', 	 {'cartridge_topic' : "1", 'choice' : "Status", 'stat_display' : "alert", 'alert' : "default"}, (data.stat_display.active == "default") ? 'selected' : null)}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		<b>Message</b>
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Shuttle ETA', 'gear', 	 {'cartridge_topic' : "1", 'stat_display' : "shuttle"}, (data.stat_display.active == "shuttle") ? 'selected' : null)}}
+		{{:helper.link('Set Message', 'gear', 	 {'cartridge_topic' : "1", 'stat_display' : "message"}, (data.stat_display.active == "message") ? 'selected' : null)}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		<b>Alert</b>
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Red Alert', 'alert', 	 {'cartridge_topic' : "1", 'choice' : "Status", 'stat_display' : "alert", 'alert' : "redalert"}, (data.stat_display.active == "redalert") ? 'selected' : null)}}
+		{{:helper.link('Lockdown', 'caution', 	 {'cartridge_topic' : "1", 'choice' : "Status", 'stat_display' : "alert", 'alert' : "lockdown"}, (data.stat_display.active == "lockdown") ? 'selected' : null)}}
+		{{:helper.link('Biohazard', 'radiation', {'cartridge_topic' : "1", 'choice' : "Status", 'stat_display' : "alert", 'alert' : "biohazard"}, (data.stat_display.active == "biohazard") ? 'selected' : null)}}
+	</div>
+</div>
+{{if data.stat_display.line1 != data.stat_display.active_line1 || data.stat_display.line2 != data.stat_display.active_line2}}
+	<div class="item">
+		<div class="itemLabel">
+			Active Message:
+		</div>
+		<div class="itemContent">
+			{{:data.stat_display.active_line1}}<br>
+			{{:data.stat_display.active_line2}}
+		</div>
+	</div>
+{{/if}}
+<div class="item">
+	<div class="itemLabel">
+		Stored line 1
+	</div>
+	<div class="itemContent">
+		{{:helper.link(data.stat_display.line1 + ' (set)', 'pencil', {'cartridge_topic' : "1", 'stat_display' : "setmsg", 'line' : "1"}, null, null)}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Stored line 2
+	</div>
+	<div class="itemContent">
+		{{:helper.link(data.stat_display.line2 + ' (set)', 'pencil', {'cartridge_topic' : "1", 'stat_display' : "setmsg", 'line' : "2"}, null, null)}}
+	</div>
+</div>

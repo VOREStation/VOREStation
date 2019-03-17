@@ -15,17 +15,19 @@
 	var/list/decals
 
 	New(var/location = null, var/turf/simulated/shuttle/turf)
+		..(null)
 		my_turf = turf
 
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information
-	var/old_dest_type = T.type
-	var/old_dest_dir = T.dir
-	var/old_dest_icon_state = T.icon_state
-	var/old_dest_icon = T.icon
-	var/list/old_dest_overlays = T.overlays.Copy()
-	var/list/old_dest_underlays = T.underlays.Copy()
-	var/list/old_dest_decals = T.decals ? T.decals.Copy() : null
+	var/obj/landed_holder/new_holder = new(null)
+	new_holder.turf_type = T.type
+	new_holder.dir = T.dir
+	new_holder.icon = T.icon
+	new_holder.icon_state =  T.icon_state
+	new_holder.copy_overlays(T, TRUE)
+	new_holder.underlays = T.underlays.Copy()
+	new_holder.decals = T.decals ? T.decals.Copy() : null
 
 	//Set the destination to be like us
 	T.Destroy()
@@ -33,7 +35,7 @@
 	new_dest.set_dir(my_turf.dir)
 	new_dest.icon_state = my_turf.icon_state
 	new_dest.icon = my_turf.icon
-	new_dest.overlays = my_turf.overlays
+	new_dest.copy_overlays(my_turf, TRUE)
 	new_dest.underlays = my_turf.underlays
 	new_dest.decals = my_turf.decals
 	//Shuttle specific stuff
@@ -43,18 +45,9 @@
 	new_dest.join_flags = my_turf.join_flags
 	new_dest.join_group = my_turf.join_group
 
-	if(new_dest.decals)
-		new_dest.apply_decals()
-
-	//Tell the new turf about what was there before
-	new_dest.landed_holder = new(turf = new_dest)
-	new_dest.landed_holder.turf_type = old_dest_type
-	new_dest.landed_holder.dir = old_dest_dir
-	new_dest.landed_holder.icon = old_dest_icon
-	new_dest.landed_holder.icon_state = old_dest_icon_state
-	new_dest.landed_holder.overlays = old_dest_overlays
-	new_dest.landed_holder.underlays = old_dest_underlays
-	new_dest.landed_holder.decals = old_dest_decals
+	// Associate the holder with the new turf.
+	new_holder.my_turf = new_dest
+	new_dest.landed_holder = new_holder
 
 	//Update underlays if necessary (interior corners won't have changed).
 	if(new_dest.takes_underlays && !new_dest.interior_corner)
@@ -70,11 +63,9 @@
 		new_source.set_dir(dir)
 		new_source.icon_state = icon_state
 		new_source.icon = icon
-		new_source.overlays = overlays
+		new_source.copy_overlays(src, TRUE)
 		new_source.underlays = underlays
 		new_source.decals = decals
-		if(new_source.decals)
-			new_source.apply_decals()
 	else
 		new_source = my_turf.ChangeTurf(get_base_turf_by_area(my_turf),,1)
 
@@ -114,6 +105,7 @@
 	if(landed_holder && !interior_corner)
 		var/mutable_appearance/landed_on = new(landed_holder)
 		landed_on.layer = FLOAT_LAYER //Not turf
+		landed_on.plane = FLOAT_PLANE //Not turf
 		us.underlays = list(landed_on)
 		appearance = us
 		return
@@ -189,7 +181,7 @@
 /turf/simulated/shuttle/floor/alien
 	icon_state = "alienpod1"
 	light_range = 3
-	light_power = 3
+	light_power = 0.6
 	light_color = "#66ffff" // Bright cyan.
 	block_tele = TRUE
 

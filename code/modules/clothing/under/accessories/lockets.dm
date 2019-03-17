@@ -2,9 +2,9 @@
 	name = "silver locket"
 	desc = "A small locket of high-quality metal."
 	icon_state = "locket"
-	slot_flags = 0
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_MASK | SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
 	var/base_icon
 	var/open
 	var/obj/item/held //Item inside locket.

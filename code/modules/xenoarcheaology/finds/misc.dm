@@ -10,11 +10,29 @@
 	anchored = TRUE
 
 /obj/machinery/crystal/New()
-	if(prob(50))
+	if(prob(30))
 		icon_state = "crystal2"
 		set_light(3, 3, "#CC00CC")
 	else
 		set_light(3, 3, "#33CC33")
+
+/obj/machinery/crystal/ice //slightly more thematic crystals
+	name = "ice crystal"
+	desc = "A large crystalline ice formation."
+	icon_state = "icecrystal2"
+
+/obj/machinery/crystal/ice/New()
+	if(prob(10))
+		icon_state = "crystal"
+		set_light(5, 5, "#33CC33")
+	if(prob(10))
+		icon_state = "crystal2"
+		set_light(5, 5, "#CC00CC")
+	if(prob(30))
+		icon_state = "icecrystal1"
+		set_light(5, 5, "#C4FFFF")
+	else
+		set_light(5, 5, "#C4FFFF")
 
 //large finds
 				/*

@@ -1,16 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/mob/living/simple_animal/hostile/viscerator{
+/mob/living/simple_mob/hostile/viscerator{
+	maxbodytemp = 900;
 	returns_home = 1
 	},
-/turf/template_noop,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
 "ab" = (
 /turf/template_noop,
 /area/template_noop)
 "ac" = (
 /obj/effect/decal/remains,
-/turf/template_noop,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Rockybase)
 "ad" = (
 /turf/template_noop,
@@ -20,11 +21,13 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "af" = (
-/mob/living/simple_animal/hostile/malf_drone{
+/mob/living/simple_mob/hostile/malf_drone{
 	desc = "An automated combat drone with an aged apperance.";
+	faction = "syndicate";
+	maxbodytemp = 900;
 	returns_home = 1
 	},
-/turf/template_noop,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Rockybase)
 "ag" = (
 /turf/simulated/mineral/ignore_mapgen/virgo2,
@@ -354,8 +357,10 @@
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Rockybase)
 "bl" = (
-/mob/living/simple_animal/hostile/malf_drone{
+/mob/living/simple_mob/hostile/malf_drone{
 	desc = "An automated combat drone with an aged apperance.";
+	faction = "syndicate";
+	maxbodytemp = 900;
 	returns_home = 1
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
@@ -575,7 +580,9 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "bZ" = (
-/obj/machinery/drone_fabricator,
+/obj/machinery/drone_fabricator{
+	fabricator_tag = "Unknown Location"
+	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "ca" = (
@@ -657,7 +664,9 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "co" = (
-/mob/living/simple_animal/hostile/mecha/malf_drone,
+/mob/living/simple_mob/hostile/mecha/malf_drone{
+	faction = "syndicate"
+	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "cp" = (
@@ -755,15 +764,6 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
-"cz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/malf_drone{
-	desc = "An automated combat drone with an aged apperance.";
-	returns_home = 1
-	},
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/Rockybase)
 "cA" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/simulated/floor/tiled/techfloor/virgo2,
@@ -833,11 +833,31 @@
 /area/submap/virgo2/Rockybase)
 "cT" = (
 /obj/effect/decal/remains,
-/turf/template_noop,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
 
 (1,1,1) = {"
 aa
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
+bz
 ab
 ab
 ab
@@ -845,38 +865,18 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+bz
 aa
 "}
 (2,1,1) = {"
-ab
+bz
 ac
-ad
-ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
+cO
+cO
 ad
 ad
 ad
@@ -885,29 +885,29 @@ ag
 ag
 ag
 ag
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ab
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+bz
 "}
 (3,1,1) = {"
-ab
+bz
+cO
+cO
+cO
+cO
 ad
 ad
-ad
-ad
-ad
-ad
 ag
 ag
 ag
@@ -928,16 +928,16 @@ ag
 ag
 ag
 ag
-ad
-ad
+cO
+cO
 cT
 "}
 (4,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -961,15 +961,15 @@ ag
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (5,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -993,15 +993,15 @@ al
 ag
 ag
 ag
-ad
+cO
 ab
 "}
 (6,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1025,15 +1025,15 @@ al
 ag
 ag
 ag
-ad
+cO
 ab
 "}
 (7,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1057,15 +1057,15 @@ al
 ag
 ag
 ag
-ad
+cO
 ab
 "}
 (8,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1089,15 +1089,15 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (9,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ad
 ag
 ag
@@ -1121,15 +1121,15 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (10,1,1) = {"
-ab
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
 ad
 ad
 ag
@@ -1154,15 +1154,15 @@ ag
 ag
 ag
 ag
-ab
+bz
 "}
 (11,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
+cO
 ad
 ag
 ag
@@ -1186,15 +1186,15 @@ ag
 ag
 ag
 ag
-ab
+bz
 "}
 (12,1,1) = {"
 ab
-ad
-ad
-ad
+cO
+cO
+cO
 af
-ad
+cO
 ad
 ag
 ag
@@ -1218,15 +1218,15 @@ ag
 ag
 ag
 ag
-ab
+bz
 "}
 (13,1,1) = {"
 ab
-ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
+cO
 ad
 ag
 ag
@@ -1250,15 +1250,15 @@ ag
 ag
 ag
 ag
-ab
+bz
 "}
 (14,1,1) = {"
 ab
+cO
 ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1282,15 +1282,15 @@ ag
 ag
 ag
 ag
-ab
+bz
 "}
 (15,1,1) = {"
 ab
+cO
 ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1313,16 +1313,16 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (16,1,1) = {"
 ab
+cO
 ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1345,16 +1345,16 @@ al
 ag
 ag
 af
-ad
-ab
+cO
+bz
 "}
 (17,1,1) = {"
-ab
+bz
+cO
 ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1376,17 +1376,17 @@ cB
 al
 ag
 ag
-ad
-ad
-ab
+cO
+cO
+bz
 "}
 (18,1,1) = {"
-ab
+bz
 ad
 ad
-ad
-ad
-ad
+cO
+cO
+cO
 ag
 ag
 ag
@@ -1408,17 +1408,17 @@ ao
 al
 ag
 ag
-ad
-ad
-ab
+cO
+cO
+bz
 "}
 (19,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
+cO
 ad
 ag
 ag
@@ -1440,17 +1440,17 @@ cB
 al
 ag
 ag
-ad
-ad
-ab
+cO
+cO
+bz
 "}
 (20,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
+cO
 ad
 ad
 ag
@@ -1473,16 +1473,16 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (21,1,1) = {"
 aa
-ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
+cO
 cO
 cO
 ag
@@ -1505,11 +1505,11 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (22,1,1) = {"
-ab
+bz
 ad
 ad
 ad
@@ -1537,7 +1537,7 @@ al
 ag
 ag
 ag
-ad
+cO
 aa
 "}
 (23,1,1) = {"
@@ -1569,8 +1569,8 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (24,1,1) = {"
 bz
@@ -1601,8 +1601,8 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (25,1,1) = {"
 an
@@ -1633,8 +1633,8 @@ al
 ag
 ag
 ag
-ad
-ab
+cO
+bz
 "}
 (26,1,1) = {"
 an
@@ -1664,8 +1664,8 @@ cF
 al
 ag
 ag
-ad
-ad
+cO
+cO
 ab
 "}
 (27,1,1) = {"
@@ -1696,8 +1696,8 @@ cG
 al
 ag
 ag
-ad
-ad
+cO
+cO
 ab
 "}
 (28,1,1) = {"
@@ -1728,8 +1728,8 @@ bq
 al
 ag
 ag
-ad
-ad
+cO
+cO
 ab
 "}
 (29,1,1) = {"
@@ -1760,8 +1760,8 @@ al
 al
 ag
 ag
-ad
-ad
+cO
+cO
 ab
 "}
 (30,1,1) = {"
@@ -1792,7 +1792,7 @@ cH
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -1824,7 +1824,7 @@ ao
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -1855,8 +1855,8 @@ ao
 cI
 al
 ag
-ad
-ad
+cO
+cO
 ad
 ab
 "}
@@ -1883,12 +1883,12 @@ bL
 bO
 ch
 ct
-cz
+ch
 ao
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -1920,7 +1920,7 @@ ao
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -1952,7 +1952,7 @@ cJ
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -1983,8 +1983,8 @@ bU
 bW
 al
 ag
-ad
-ad
+cO
+cO
 ad
 ab
 "}
@@ -1992,8 +1992,8 @@ ab
 ab
 ad
 ad
-ad
-ad
+cO
+cO
 cO
 cO
 cO
@@ -2015,8 +2015,8 @@ bU
 cJ
 al
 ag
-ad
-ad
+cO
+cO
 ad
 ab
 "}
@@ -2024,9 +2024,9 @@ ab
 ab
 ad
 ad
-ad
-ad
-ad
+cO
+cO
+cO
 cO
 cO
 ag
@@ -2047,8 +2047,8 @@ bU
 cK
 al
 ag
-ad
-ad
+cO
+cO
 ad
 ab
 "}
@@ -2056,9 +2056,9 @@ ab
 ab
 ad
 ad
-ad
-ad
-ad
+cO
+cO
+cO
 ad
 ad
 ag
@@ -2080,7 +2080,7 @@ bO
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -2088,9 +2088,9 @@ ab
 ab
 ad
 ad
-ad
-ad
-ad
+cO
+cO
+cO
 ad
 ag
 ag
@@ -2112,7 +2112,7 @@ cL
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
@@ -2120,9 +2120,9 @@ ab
 ab
 ad
 ad
-ad
-ad
-ad
+cO
+cO
+cO
 ad
 ag
 ag
@@ -2144,17 +2144,17 @@ al
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
 (42,1,1) = {"
 ab
-ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2176,17 +2176,17 @@ cM
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
 (43,1,1) = {"
 ab
-ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2208,17 +2208,17 @@ cN
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
 (44,1,1) = {"
 ab
 ac
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2240,18 +2240,18 @@ al
 al
 ag
 ag
-ad
+cO
 ad
 ab
 "}
 (45,1,1) = {"
-ab
-ad
-ad
+bz
+cO
+cO
 af
-ad
-ad
-ad
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2272,18 +2272,18 @@ al
 ag
 ag
 ag
-ad
+cO
 ad
 ab
 "}
 (46,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2303,19 +2303,19 @@ ag
 ag
 ag
 ag
-ad
-ad
-ad
+cO
+cO
+cO
 cT
 "}
 (47,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2331,23 +2331,23 @@ ag
 ag
 ag
 ag
-ad
+cO
 ag
-ad
-ad
-ad
-ad
-ad
-ab
+cO
+cO
+cO
+cO
+cO
+bz
 "}
 (48,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
-ad
+bz
+cO
+cO
+cO
+cO
+cO
+cO
 ag
 ag
 ag
@@ -2361,64 +2361,64 @@ ag
 ag
 ag
 ag
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ab
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+bz
 "}
 (49,1,1) = {"
-ab
+bz
+cO
+cO
 ad
 ad
 ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
+cO
 af
-ad
-ad
+cO
+cO
 ad
 ad
 ab
 "}
 (50,1,1) = {"
 aa
+bz
+bz
 ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+bz
+bz
+bz
+bz
+bz
+bz
+bz
 ab
 ab
 ab

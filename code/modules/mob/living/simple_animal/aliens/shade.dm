@@ -1,4 +1,4 @@
-/mob/living/simple_animal/shade
+/mob/living/simple_mob/shade
 	name = "Shade"
 	real_name = "Shade"
 	desc = "A bound spirit"
@@ -20,7 +20,8 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15
-	attacktext = "drained the life from"
+	attack_armor_pen = 100	//It's a ghost/horror from beyond, I ain't gotta explain 100 AP
+	attacktext = list("drained the life from")
 
 	minbodytemp = 0
 	maxbodytemp = 4000
@@ -39,17 +40,17 @@
 
 	loot_list = list(/obj/item/weapon/ectoplasm = 100)
 
-/mob/living/simple_animal/shade/cultify()
+/mob/living/simple_mob/shade/cultify()
 	return
 
-/mob/living/simple_animal/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/device/soulstone))
 		var/obj/item/device/soulstone/S = O;
 		S.transfer_soul("SHADE", src, user)
 		return
 	..()
 
-/mob/living/simple_animal/shade/death()
+/mob/living/simple_mob/shade/death()
 	..()
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))

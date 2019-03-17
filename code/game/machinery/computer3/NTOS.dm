@@ -209,8 +209,8 @@
 		return
 
 	if("viewperipheral" in href_list) // open drive, show status of peripheral
-		var/obj/item/part/computer/C = locate(href_list["viewperipheral"])
-		if(!istype(C) || (C.loc != src.computer))
+		var/obj/item/part/computer/C = locate(href_list["viewperipheral"]) in src.computer
+		if(!istype(C))
 			return
 
 		if(istype(C,/obj/item/part/computer/storage))
@@ -219,13 +219,7 @@
 			return
 		// else ???
 		if(istype(C,/obj/item/part/computer/cardslot))
-			if(computer.cardslot.reader != null)
-				computer.cardslot.remove()
-		if(istype(C,/obj/item/part/computer/cardslot/dual))
-			if(computer.cardslot.writer != null)
-				computer.cardslot.remove(computer.cardslot.writer)
-			if(computer.cardslot.reader != null)
-				computer.cardslot.remove(computer.cardslot.reader)
+			computer.cardslot.remove(usr)
 		interact()
 		return
 

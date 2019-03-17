@@ -62,15 +62,17 @@
 /datum/reagent/vermicetol
 	name = "Vermicetol"
 	id = "vermicetol"
-	description = "A potent chemical that treats burn damage at an exceptional rate and lasts a while."
+	description = "A potent chemical that treats physical damage at an exceptional rate."
 	taste_description = "sparkles"
+	taste_mult = 3
 	reagent_state = SOLID
 	color = "#964e06"
-	overdose = 10
+	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
-	metabolism = 0.02
-	mrate_static = TRUE
 
 /datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
 	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 110 * removed) //Not as potent as Kelotane, but lasts LONG.
+		M.heal_organ_damage(8 * removed * chem_effective, 0)

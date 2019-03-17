@@ -121,7 +121,7 @@
 
 	var/pods_list_ui[0]
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
-		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.biomass)
+		pods_list_ui[++pods_list_ui.len] = list("pod" = pod, "biomass" = pod.get_biomass())
 
 	var/spods_list_ui[0]
 	for(var/obj/machinery/transhuman/synthprinter/spod in spods)
@@ -198,7 +198,7 @@
 	data["coredumped"] = SStranscore.core_dumped
 	data["emergency"] = disk ? 1 : 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "sleever.tmpl", "Resleeving Control Console", 400, 450)
 		ui.set_initial_data(data)
@@ -294,7 +294,7 @@
 						temp = "Error: Growpod is currently occupied."
 
 					//Not enough materials.
-					else if(pod.biomass < CLONE_BIOMASS)
+					else if(pod.get_biomass() < CLONE_BIOMASS)
 						temp = "Error: Not enough biomass."
 
 					//Gross pod (broke mid-cloning or something).
@@ -375,7 +375,7 @@
 		menu = href_list["menu"]
 		temp = ""
 
-	nanomanager.update_uis(src)
+	GLOB.nanomanager.update_uis(src)
 	add_fingerprint(usr)
 
 // In here because only relevant to computer

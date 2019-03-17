@@ -27,8 +27,13 @@ var/list/organ_cache = list()
 	var/min_bruised_damage = 10       // Damage before considered bruised
 	var/min_broken_damage = 30        // Damage before becoming broken
 	var/max_damage                    // Damage cap
+	var/can_reject = 1                // Can this organ reject?
 	var/rejecting                     // Is this organ already being rejected?
 	var/preserved = 0                 // If this is 1, prevents organ decay.
+
+	// Language vars. Putting them here in case we decide to do something crazy with sign-or-other-nonverbal languages.
+	var/list/will_assist_languages = list()
+	var/list/datum/language/assists_languages = list()
 
 /obj/item/organ/Destroy()
 
@@ -52,7 +57,7 @@ var/list/organ_cache = list()
 	if(istype(holder))
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
-		species = all_species["Human"]
+		species = all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = holder.species //VOREStation Edit - For custom species
@@ -83,13 +88,13 @@ var/list/organ_cache = list()
 			blood_DNA[dna.unique_enzymes] = dna.b_type
 
 /obj/item/organ/proc/die()
-	if(robotic >= ORGAN_ROBOT)
-		return
+	if(robotic < ORGAN_ROBOT)
+		status |= ORGAN_DEAD
 	damage = max_damage
-	status |= ORGAN_DEAD
 	processing_objects -= src
 	if(owner && vital)
 		owner.death()
+		owner.can_defib = 0
 
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
 	germ_level = Clamp(germ_level + amount, 0, INFECTION_LEVEL_MAX)
@@ -107,6 +112,11 @@ var/list/organ_cache = list()
 		return
 	if(preserved)
 		return
+
+	//check if we've hit max_damage
+	if(damage >= max_damage)
+		die()
+
 	//Process infections
 	if(robotic >= ORGAN_ROBOT || (owner && owner.species && (owner.species.flags & IS_PLANT || (owner.species.flags & NO_INFECT))))
 		germ_level = 0
@@ -132,62 +142,70 @@ var/list/organ_cache = list()
 		handle_rejection()
 		handle_germ_effects()
 
-	//check if we've hit max_damage
-	if(damage >= max_damage)
-		die()
-
 /obj/item/organ/examine(mob/user)
 	..(user)
 	if(status & ORGAN_DEAD)
 		user << "<span class='notice'>The decay has set in.</span>"
 
+//A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
 	if(robotic >= ORGAN_ROBOT) //Just in case!
 		germ_level = 0
 		return 0
 
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC] || 0
 
 	var/infection_damage = 0
 
-	if((status & ORGAN_DEAD) && antibiotics < 30) //Sepsis from 'dead' organs
-		infection_damage = min(1, 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25)) //1 Tox plus a little based on germ level
+	/// Infection damage
 
-	else if(germ_level > INFECTION_LEVEL_TWO && antibiotics < 30)
-		infection_damage = min(0.25, 0.25 + round((germ_level - INFECTION_LEVEL_TWO)/200,0.25))
+	//If the organ is dead, for the sake of organs that may have died due to non-infection, we'll only do damage if they have at least L1 infection (built up below)
+	if((status & ORGAN_DEAD) && antibiotics < ANTIBIO_OD && germ_level >= INFECTION_LEVEL_ONE)
+		infection_damage = max(1, 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25)) //1 Tox plus a little based on germ level
+
+	else if(germ_level > INFECTION_LEVEL_TWO && antibiotics < ANTIBIO_OD)
+		infection_damage = max(0.25, 0.25 + round((germ_level - INFECTION_LEVEL_TWO)/200,0.25))
 
 	if(infection_damage)
 		owner.adjustToxLoss(infection_damage)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
-		adjust_germ_level(-1)
+		adjust_germ_level(-antibiotics)
 
+	/// Germ Accumulation
+
+	//Dead organs accumulate germs indefinitely
+	if(status & ORGAN_DEAD)
+		adjust_germ_level(1)
+
+	//Half of level 1 is growing but harmless
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
-		if(antibiotics < 5 && prob(round(germ_level/6)))
+		if(!antibiotics && prob(round(germ_level/6)))
 			adjust_germ_level(1)
 
+	//Level 1 qualifies for specific organ processing effects
 	if(germ_level >= INFECTION_LEVEL_ONE)
-		. = 1 //Organ qualifies for effect-specific processing
-		//var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
-		//owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		. = 1
 		var/fever_temperature = owner.species.heat_discomfort_level * 1.10 //Heat discomfort level plus 10%
 		if(owner.bodytemperature < fever_temperature)
 			owner.bodytemperature += min(0.2,(fever_temperature - owner.bodytemperature) / 10) //Will usually climb by 0.2, else 10% of the difference if less
 
+	//Level two qualifies for further processing effects
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		. = 2 //Organ qualifies for effect-specific processing
 		//No particular effect on the general 'organ' at 3
 
-	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)
+	//Level three qualifies for significant growth and further effects
+	if (germ_level >= INFECTION_LEVEL_THREE && antibiotics < ANTIBIO_OD)
 		. = 3 //Organ qualifies for effect-specific processing
 		adjust_germ_level(rand(5,10)) //Germ_level increases without overdose of antibiotics
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
-	if(dna)
+	if(dna && can_reject)
 		if(!rejecting)
 			if(blood_incompatible(dna.b_type, owner.dna.b_type, species.name, owner.species.name)) //VOREStation Edit - Process species by name.
 				rejecting = 1
@@ -233,19 +251,19 @@ var/list/organ_cache = list()
 
 //Germs
 /obj/item/organ/proc/handle_antibiotics()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC] || 0
 
-	if (!germ_level || antibiotics < 5)
+	if (!germ_level || antibiotics < ANTIBIO_NORM)
 		return
 
 	if (germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
 	else if (germ_level < INFECTION_LEVEL_TWO)
-		adjust_germ_level(-6)	//at germ_level < 500, this should cure the infection in a minute
+		adjust_germ_level(-antibiotics*4)	//at germ_level < 500, this should cure the infection in a minute
 	else if (germ_level < INFECTION_LEVEL_THREE)
-		adjust_germ_level(-2) //at germ_level < 1000, this will cure the infection in 5 minutes
+		adjust_germ_level(-antibiotics*2) //at germ_level < 1000, this will cure the infection in 5 minutes
 	else
-		adjust_germ_level(-1)	// You waited this long to get treated, you don't really deserve this organ
+		adjust_germ_level(-antibiotics)	// You waited this long to get treated, you don't really deserve this organ
 
 //Adds autopsy data for used_weapon.
 /obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
@@ -293,15 +311,16 @@ var/list/organ_cache = list()
 /obj/item/organ/emp_act(severity)
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
-	switch (severity)
-		if (1)
-			take_damage(rand(6,12))
-		if (2)
-			take_damage(rand(4,8))
-		if (3)
-			take_damage(rand(3,6))
-		if (4)
-			take_damage(rand(1,4))
+	for(var/i = 1; i <= robotic; i++)
+		switch (severity)
+			if (1)
+				take_damage(rand(5,9))
+			if (2)
+				take_damage(rand(3,7))
+			if (3)
+				take_damage(rand(2,5))
+			if (4)
+				take_damage(rand(1,3))
 
 /obj/item/organ/proc/removed(var/mob/living/user)
 
@@ -316,7 +335,7 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = get_turf(owner)
+	loc = owner.drop_location()
 	processing_objects |= src
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
@@ -325,10 +344,9 @@ var/list/organ_cache = list()
 
 	if(owner && vital)
 		if(user)
-			user.attack_log += "\[[time_stamp()]\]<font color='red'> removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)])</font>"
-			owner.attack_log += "\[[time_stamp()]\]<font color='orange'> had a vital organ ([src]) removed by [user.name] ([user.ckey]) (INTENT: [uppertext(user.a_intent)])</font>"
-			msg_admin_attack("[user.name] ([user.ckey]) removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			add_attack_logs(user,owner,"Removed vital organ [src.name]")
 		owner.death()
+		owner.can_defib = 0
 
 	owner = null
 

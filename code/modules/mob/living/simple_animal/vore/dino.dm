@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/dino
+/mob/living/simple_mob/hostile/dino
 	name = "voracious lizard"
 	desc = "These gluttonous little bastards used to be regular lizards that were mutated by long-term exposure to phoron!"
 	icon = 'icons/mob/vore.dmi'
@@ -14,7 +14,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 25
-	attacktext = "bitten"
+	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 	minbodytemp = 200
 	maxbodytemp = 370
@@ -33,10 +33,10 @@
 	max_n2 = 0
 
 // Activate Noms!
-/mob/living/simple_animal/hostile/dino
+/mob/living/simple_mob/hostile/dino
 	vore_active = 1
 	swallowTime = 1 SECOND // Hungry little bastards.
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_animal/hostile/dino/virgo3b
+/mob/living/simple_mob/hostile/dino/virgo3b
 	faction = "virgo3b"

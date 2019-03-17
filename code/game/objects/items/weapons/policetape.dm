@@ -4,6 +4,9 @@
 	icon = 'icons/policetape.dmi'
 	icon_state = "tape"
 	w_class = ITEMSIZE_SMALL
+
+	toolspeed = 3 //You can use it in surgery. It's stupid, but you can.
+
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape
@@ -17,9 +20,9 @@
 		var/turf/T = get_turf(src)
 		if(!T)
 			return
-		var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in T
-		if(airlock)
-			afterattack(airlock, null, TRUE)
+		var/obj/machinery/door/door = locate(/obj/machinery/door) in T
+		if((door == /obj/machinery/door/airlock) || (door == /obj/machinery/door/firedoor))
+			afterattack(door, null, TRUE)
 		return INITIALIZE_HINT_QDEL
 
 
@@ -30,7 +33,7 @@ var/list/tape_roll_applications = list()
 	name = "tape"
 	icon = 'icons/policetape.dmi'
 	anchored = 1
-	layer = 3.2
+	layer = WINDOW_LAYER
 	var/lifted = 0
 	var/crumpled = 0
 	var/tape_dir = 0
@@ -250,14 +253,14 @@ var/list/tape_roll_applications = list()
 	if(!proximity)
 		return
 
-	if (istype(A, /obj/machinery/door/airlock))
+	if (istype(A, /obj/machinery/door))
 		var/turf/T = get_turf(A)
 		if(locate(/obj/item/tape, A.loc))
 			user << "There's already tape over that door!"
 		else
 			var/obj/item/tape/P = new tape_type(T)
 			P.update_icon()
-			P.layer = 3.2
+			P.layer = WINDOW_LAYER
 			user << "<span class='notice'>You finish placing \the [src].</span>"
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
@@ -289,7 +292,7 @@ var/list/tape_roll_applications = list()
 		add_fingerprint(M)
 		if (!allowed(M))	//only select few learn art of not crumpling the tape
 			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
-			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_animal)))
+			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_mob)))
 				return 0
 			crumple()
 	return ..(mover)
@@ -307,10 +310,11 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape/proc/lift(time)
 	lifted = 1
-	layer = 8
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	spawn(time)
 		lifted = 0
-		layer = initial(layer)
+		reset_plane_and_layer()
 
 // Returns a list of all tape objects connected to src, including itself.
 /obj/item/tape/proc/gettapeline()

@@ -28,42 +28,44 @@
 
 	var/obj/machinery/computer3/laptop/stored_computer = null
 
-	verb/open_computer()
-		set name = "Open Laptop"
-		set category = "Object"
-		set src in view(1)
+/obj/item/device/laptop/get_cell()
+	return stored_computer.battery
 
-		if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
-			usr << "<span class='warning'>You can't do that.</span>"
-			return
+/obj/item/device/laptop/verb/open_computer()
+	set name = "Open Laptop"
+	set category = "Object"
+	set src in view(1)
 
-		if(!Adjacent(usr))
-			usr << "You can't reach it."
-			return
+	if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
+		to_chat(usr, "<span class='warning'>You can't do that.</span>")
+		return
 
-		if(!istype(loc,/turf))
-			usr << "[src] is too bulky!  You'll have to set it down."
-			return
+	if(!Adjacent(usr))
+		to_chat(usr, "You can't reach it.")
+		return
 
-		if(!stored_computer)
-			if(contents.len)
-				for(var/obj/O in contents)
-					O.loc = loc
-			usr << "\The [src] crumbles to pieces."
-			spawn(5)
-				qdel(src)
-			return
+	if(!istype(loc,/turf))
+		to_chat(usr, "[src] is too bulky!  You'll have to set it down.")
+		return
 
-		stored_computer.loc = loc
-		stored_computer.stat &= ~MAINT
-		stored_computer.update_icon()
-		loc = stored_computer
-		usr << "You open \the [src]."
+	if(!stored_computer)
+		if(contents.len)
+			for(var/obj/O in contents)
+				O.loc = loc
+		to_chat(usr, "\The [src] crumbles to pieces.")
+		spawn(5)
+			qdel(src)
+		return
 
+	stored_computer.loc = loc
+	stored_computer.stat &= ~MAINT
+	stored_computer.update_icon()
+	loc = stored_computer
+	to_chat(usr, "You open \the [src].")
 
-	AltClick()
-		if(Adjacent(usr))
-			open_computer()
+/obj/item/device/laptop/AltClick()
+	if(Adjacent(usr))
+		open_computer()
 
 //Quickfix until Snapshot works out how he wants to redo power. ~Z
 /obj/item/device/laptop/verb/eject_id()
@@ -73,6 +75,7 @@
 
 	if(stored_computer)
 		stored_computer.eject_id()
+
 /obj/machinery/computer3/laptop/verb/eject_id()
 	set category = "Object"
 	set name = "Eject ID Card"
@@ -80,21 +83,11 @@
 	var/obj/item/part/computer/cardslot/C = locate() in src.contents
 
 	if(!C)
-		usr << "There is no card port on the laptop."
+		to_chat(usr, "There is no card port on the laptop.")
 		return
 
-	var/obj/item/weapon/card/id/card
-	if(C.reader)
-		card = C.reader
-	else if(C.writer)
-		card = C.writer
-	else
-		usr << "There is nothing to remove from the laptop card port."
-		return
-
-	usr << "You remove [card] from the laptop."
-	C.remove(4)
-
+	C.remove(usr)
+	return
 
 /obj/machinery/computer3/laptop
 	name = "Laptop Computer"
@@ -110,81 +103,81 @@
 
 	var/obj/item/device/laptop/portable = null
 
-	New(var/L, var/built = 0)
-		if(!built && !battery)
-			battery = new /obj/item/weapon/cell(src)
-			battery.maxcharge = 500
-			battery.charge = 500
-		..(L,built)
+/obj/machinery/computer3/laptop/New(var/L, var/built = 0)
+	if(!built && !battery)
+		battery = new /obj/item/weapon/cell(src)
+		battery.maxcharge = 500
+		battery.charge = 500
+	..(L,built)
 
-	verb/close_computer()
-		set name = "Close Laptop"
-		set category = "Object"
-		set src in view(1)
+/obj/machinery/computer3/laptop/verb/close_computer()
+	set name = "Close Laptop"
+	set category = "Object"
+	set src in view(1)
 
-		if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
-			usr << "<span class='warning'>You can't do that.</span>"
-			return
+	if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
+		to_chat(usr, "<span class='warning'>You can't do that.</span>")
+		return
 
-		if(!Adjacent(usr))
-			usr << "<span class='warning'>You can't reach it.</span>"
-			return
+	if(!Adjacent(usr))
+		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
+		return
 
-		close_laptop(usr)
+	close_laptop(usr)
 
-	proc/close_laptop(mob/user = null)
-		if(istype(loc,/obj/item/device/laptop))
-			testing("Close closed computer")
-			return
-		if(!istype(loc,/turf))
-			testing("Odd computer location: [loc] - close laptop")
-			return
+/obj/machinery/computer3/laptop/proc/close_laptop(mob/user = null)
+	if(istype(loc,/obj/item/device/laptop))
+		testing("Close closed computer")
+		return
+	if(!istype(loc,/turf))
+		testing("Odd computer location: [loc] - close laptop")
+		return
 
-		if(stat&BROKEN)
-			if(user)
-				user << "\The [src] is broken!  You can't quite get it closed."
-			return
-
-		if(!portable)
-			portable=new
-			portable.stored_computer = src
-
-		portable.loc = loc
-		loc = portable
-		stat |= MAINT
+	if(stat&BROKEN)
 		if(user)
-			user << "You close \the [src]."
+			to_chat(user, "\The [src] is broken!  You can't quite get it closed.")
+		return
 
-	auto_use_power()
-		if(stat&MAINT)
-			return
-		if(use_power && istype(battery) && battery.charge > 0)
-			if(use_power == 1)
-				battery.use(idle_power_usage*CELLRATE) //idle and active_power_usage are in WATTS. battery.use() expects CHARGE.
-			else
-				battery.use(active_power_usage*CELLRATE)
-			return 1
-		return 0
+	if(!portable)
+		portable=new
+		portable.stored_computer = src
 
-	use_power(var/amount, var/chan = -1)
-		if(battery && battery.charge > 0)
-			battery.use(amount*CELLRATE)
+	portable.loc = loc
+	loc = portable
+	stat |= MAINT
+	if(user)
+		to_chat(user, "You close \the [src].")
 
-	power_change()
-		if( !battery || battery.charge <= 0 )
-			stat |= NOPOWER
+/obj/machinery/computer3/laptop/auto_use_power()
+	if(stat&MAINT)
+		return
+	if(use_power && istype(battery) && battery.charge > 0)
+		if(use_power == 1)
+			battery.use(idle_power_usage*CELLRATE) //idle and active_power_usage are in WATTS. battery.use() expects CHARGE.
 		else
-			stat &= ~NOPOWER
+			battery.use(active_power_usage*CELLRATE)
+		return 1
+	return 0
 
-	Destroy()
-		if(istype(loc,/obj/item/device/laptop))
-			var/obj/O = loc
-			spawn(5)
-				if(O)
-					qdel(O)
-		..()
+/obj/machinery/computer3/laptop/use_power(var/amount, var/chan = -1)
+	if(battery && battery.charge > 0)
+		battery.use(amount*CELLRATE)
+
+/obj/machinery/computer3/laptop/power_change()
+	if( !battery || battery.charge <= 0 )
+		stat |= NOPOWER
+	else
+		stat &= ~NOPOWER
+
+/obj/machinery/computer3/laptop/Destroy()
+	if(istype(loc,/obj/item/device/laptop))
+		var/obj/O = loc
+		spawn(5)
+			if(O)
+				qdel(O)
+	..()
 
 
-	AltClick()
-		if(Adjacent(usr))
-			close_computer()
+/obj/machinery/computer3/laptop/AltClick()
+	if(Adjacent(usr))
+		close_computer()

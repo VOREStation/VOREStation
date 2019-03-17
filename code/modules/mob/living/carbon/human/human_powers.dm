@@ -1,6 +1,38 @@
 // These should all be procs, you can add them to humans/subspecies by
 // species.dm's inherent_verbs ~ Z
 
+/mob/living/carbon/human/proc/tie_hair()
+	set name = "Tie Hair"
+	set desc = "Style your hair."
+	set category = "IC"
+
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>You can't mess with your hair right now!</span>")
+		return
+
+	if(h_style)
+		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
+		var/selected_string
+		if(!(hair_style.flags & HAIR_TIEABLE))
+			to_chat(src, "<span class ='warning'>Your hair isn't long enough to tie.</span>")
+			return
+		else
+			var/list/datum/sprite_accessory/hair/valid_hairstyles = list()
+			for(var/hair_string in hair_styles_list)
+				var/list/datum/sprite_accessory/hair/test = hair_styles_list[hair_string]
+				if(test.flags & HAIR_TIEABLE)
+					valid_hairstyles.Add(hair_string)
+			selected_string = input("Select a new hairstyle", "Your hairstyle", hair_style) as null|anything in valid_hairstyles
+		if(incapacitated())
+			to_chat(src, "<span class='warning'>You can't mess with your hair right now!</span>")
+			return
+		else if(selected_string && h_style != selected_string)
+			h_style = selected_string
+			regenerate_icons()
+			visible_message("<span class='notice'>[src] pauses a moment to style their hair.</span>")
+		else
+			to_chat(src, "<span class ='notice'>You're already using that style.</span>")
+
 /mob/living/carbon/human/proc/tackle()
 	set category = "Abilities"
 	set name = "Tackle"
@@ -74,7 +106,7 @@
 		src << "Not even a [src.species.name] can speak to the dead."
 		return
 
-	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
+	log_say("(COMMUNE to [key_name(M)]) [text]",src)
 
 	M << "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>"
 	if(istype(M,/mob/living/carbon/human))
@@ -104,7 +136,7 @@
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
-		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
+		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
 		M << "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>"
 		src << "<font color='green'>You said: \"[msg]\" to [M]</font>"
 	return
@@ -167,13 +199,13 @@
 
 	var/toxDam = getToxLoss()
 	if(toxDam)
-		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>\n"
+		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
 	else
 		output += "System Instability: <span style='color:green;'>OK</span>\n"
 
 	for(var/obj/item/organ/external/EO in organs)
 		if(EO.brute_dam || EO.burn_dam)
-			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > ROBOLIMB_REPAIR_CAP ? "Heavy Damage" : "Light Damage"]</span>\n"
+			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
 		else
 			output += "[EO.name] - <span style='color:green;'>OK</span>\n"
 
@@ -235,33 +267,52 @@
 
 /mob/living/carbon/human/proc/regenerate()
 	set name = "Regenerate"
-	set desc = "Allows you to regrow limbs and heal organs."
+	set desc = "Allows you to regrow limbs and heal organs after a period of rest."
 	set category = "Abilities"
 
 	if(nutrition < 250)
-		to_chat(src, "<span class='warning'>You lack the biomass regrow anything!</span>")
+		to_chat(src, "<span class='warning'>You lack the biomass to begin regeneration!</span>")
 		return
 
-	nutrition -= 200
+	if(active_regen)
+		to_chat(src, "<span class='warning'>You are already regenerating tissue!</span>")
+		return
+	else
+		active_regen = TRUE
+		src.visible_message("<B>[src]</B>'s flesh begins to mend...")
 
-	for(var/obj/item/organ/I in internal_organs)
-		if(I.damage > 0)
-			I.damage = 0
-			to_chat(src, "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>")
+	var/delay_length = round(active_regen_delay * species.active_regen_mult)
+	if(do_after(src,delay_length))
+		nutrition -= 200
 
-	// Replace completely missing limbs.
-	for(var/limb_type in src.species.has_limbs)
-		var/obj/item/organ/external/E = src.organs_by_name[limb_type]
-		if(E && E.disfigured)
-			E.disfigured = 0
-		if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
-			E.removed()
-			qdel(E)
-			E = null
-		if(!E)
-			var/list/organ_data = src.species.has_limbs[limb_type]
-			var/limb_path = organ_data["path"]
-			var/obj/item/organ/O = new limb_path(src)
-			organ_data["descriptor"] = O.name
-			to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
-	update_icons_all()
+		for(var/obj/item/organ/I in internal_organs)
+			if(I.damage > 0)
+				I.damage = max(I.damage - 30, 0) //Repair functionally half of a dead internal organ.
+				to_chat(src, "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>")
+
+		// Replace completely missing limbs.
+		for(var/limb_type in src.species.has_limbs)
+			var/obj/item/organ/external/E = src.organs_by_name[limb_type]
+
+			if(E && E.disfigured)
+				E.disfigured = 0
+			if(E && (E.is_stump() || (E.status & (ORGAN_DESTROYED|ORGAN_DEAD|ORGAN_MUTATED))))
+				E.removed()
+				qdel(E)
+				E = null
+			if(!E)
+				var/list/organ_data = src.species.has_limbs[limb_type]
+				var/limb_path = organ_data["path"]
+				var/obj/item/organ/O = new limb_path(src)
+				organ_data["descriptor"] = O.name
+				to_chat(src, "<span class='notice'>You feel a slithering sensation as your [O.name] reform.</span>")
+
+				var/agony_to_apply = round(0.66 * O.max_damage) // 66% of the limb's health is converted into pain.
+				src.apply_damage(agony_to_apply, HALLOSS)
+
+		update_icons_body()
+		active_regen = FALSE
+	else
+		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
+		nutrition -= 75
+		active_regen = FALSE

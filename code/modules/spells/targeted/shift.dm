@@ -1,3 +1,8 @@
+/*
+ * This has been moved to game/gamemodes/cult/construct_spells.dm. This is here for posterity.
+ */
+
+/*
 /spell/targeted/ethereal_jaunt/shift
 	name = "Phase Shift"
 	desc = "This spell allows you to pass through walls"
@@ -22,3 +27,4 @@
 
 /spell/targeted/ethereal_jaunt/shift/jaunt_steam(var/mobloc)
 	return
+*/

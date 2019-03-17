@@ -1,6 +1,8 @@
 /obj/machinery/atmospherics/binary/pump/high_power
 	icon = 'icons/atmos/volume_pump.dmi'
 	icon_state = "map_off"
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "volumepump"
 	level = 1
 
 	name = "high power gas pump"

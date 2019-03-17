@@ -25,6 +25,7 @@ var/list/marker_beacon_colors = list(
 	icon_state = "marker"
 	max_amount = 100
 	no_variants = TRUE
+	w_class = ITEMSIZE_SMALL
 	var/picked_color = "random"
 
 /obj/item/stack/marker_beacon/ten
@@ -82,7 +83,7 @@ var/list/marker_beacon_colors = list(
 //	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
 	light_range = 2
-	light_power = 3
+	light_power = 0.8
 	var/remove_speed = 15
 	var/picked_color
 

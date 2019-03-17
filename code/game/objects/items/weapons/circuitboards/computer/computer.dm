@@ -100,6 +100,7 @@
 /obj/item/weapon/circuitboard/turbine_control
 	name = T_BOARD("turbine control console")
 	build_path = /obj/machinery/computer/turbine_computer
+	origin_tech = list(TECH_DATA = 2, TECH_POWER = 2)
 
 /obj/item/weapon/circuitboard/solar_control
 	name = T_BOARD("solar control console")
@@ -151,11 +152,6 @@
 /obj/item/weapon/circuitboard/splicer
 	name = T_BOARD("disease splicer")
 	build_path = /obj/machinery/computer/diseasesplicer
-
-/obj/item/weapon/circuitboard/ordercomp
-	name = T_BOARD("supply ordering console")
-	build_path = /obj/machinery/computer/ordercomp
-	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = T_BOARD("mining shuttle console")

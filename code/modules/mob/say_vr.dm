@@ -11,11 +11,11 @@
 		usr << "Speech is currently admin-disabled."
 		return
 
-	message = sanitize(message)
+	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
 	if(!message)
 		return
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote_vr("me",4,message)
 	else
@@ -31,17 +31,18 @@
 
 	var/input
 	if(!message)
-		input = sanitize(input(src,"Choose an emote to display.") as text|null)
+		input = sanitize_or_reflect(input(src,"Choose an emote to display.") as text|null, src)
 	else
 		input = message
 
 	if(input)
+		log_subtle(message,src)
 		message = "<B>[src]</B> <I>[input]</I>"
 	else
 		return
 
 	if (message)
-		log_subtle("[name]/[key] : [message]")
+		message = say_emphasis(message)
 
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
 		var/list/vis_mobs = vis["mobs"]
@@ -60,3 +61,31 @@
 /mob/proc/emote_vr(var/act, var/type, var/message) //This would normally go in say.dm
 	if(act == "me")
 		return custom_emote_vr(type, message)
+
+#define MAX_HUGE_MESSAGE_LEN 8192
+#define POST_DELIMITER_STR "\<\>"
+/proc/sanitize_or_reflect(message,user)
+	//Way too long to send
+	if(length(message) > MAX_HUGE_MESSAGE_LEN)
+		fail_to_chat(user)
+		return
+
+	message = sanitize(message, max_length = MAX_HUGE_MESSAGE_LEN)
+
+	//Came back still too long to send
+	if(length(message) > MAX_MESSAGE_LEN)
+		fail_to_chat(user,message)
+		return null
+	else
+		return message
+
+/proc/fail_to_chat(user,message)
+	if(!message)
+		to_chat(user,"<span class='danger'>Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all.</span>")
+		return
+
+	var/length = length(message)
+	var/posts = CEILING((length/MAX_MESSAGE_LEN), 1)
+	to_chat(user,message)
+	to_chat(user,"<span class='danger'>^ This message was NOT SENT ^ -- It was [length] characters, and the limit is [MAX_MESSAGE_LEN]. It would fit in [posts] separate messages.</span>")
+#undef MAX_HUGE_MESSAGE_LEN

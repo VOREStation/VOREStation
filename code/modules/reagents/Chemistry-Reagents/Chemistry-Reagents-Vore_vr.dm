@@ -10,9 +10,9 @@
 	reagent_state = LIQUID
 	color = "#FFFF00" // rgb: 255, 255, 0
 	metabolism = 0.01
+	mrate_static = TRUE
 
 /datum/reagent/macrocillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(M.size_multiplier < RESIZE_HUGE)
 		M.resize(M.size_multiplier+0.01)//Incrrease 1% per tick.
 	return
@@ -24,9 +24,9 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	metabolism = 0.01
+	mrate_static = TRUE
 
 /datum/reagent/microcillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(M.size_multiplier > RESIZE_TINY)
 		M.resize(M.size_multiplier-0.01) //Decrease 1% per tick.
 	return
@@ -39,9 +39,9 @@
 	reagent_state = LIQUID
 	color = "#00FFFF"
 	metabolism = 0.01 //One unit will be just enough to bring someone from 200% to 100%
+	mrate_static = TRUE
 
 /datum/reagent/normalcillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	if(M.size_multiplier > RESIZE_NORMAL)
 		M.resize(M.size_multiplier-0.01) //Decrease by 1% size per tick.
 	else if(M.size_multiplier < RESIZE_NORMAL)
@@ -58,7 +58,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/sizeoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	M.make_dizzy(1)
 	if(!M.confused) M.confused = 1
 	M.confused = max(M.confused, 20)
@@ -76,13 +75,12 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/ickypak/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	M.make_dizzy(1)
 	M.adjustHalLoss(2)
 
-	for(var/I in M.vore_organs)
-		var/datum/belly/B = M.vore_organs[I]
-		for(var/atom/movable/A in B.internal_contents)
+	for(var/belly in M.vore_organs)
+		var/obj/belly/B = belly
+		for(var/atom/movable/A in B)
 			if(isliving(A))
 				var/mob/living/P = A
 				if(P.absorbed)
@@ -90,8 +88,6 @@
 			if(prob(5))
 				playsound(M, 'sound/effects/splat.ogg', 50, 1)
 				B.release_specific_contents(A)
-	return
-
 
 /datum/reagent/unsorbitol
 	name = "Unsorbitol"
@@ -102,20 +98,19 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/unsorbitol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
 	M.make_dizzy(1)
 	M.adjustHalLoss(1)
 	if(!M.confused) M.confused = 1
 	M.confused = max(M.confused, 20)
 	M.hallucination += 15
 
-	for(var/I in M.vore_organs)
-		var/datum/belly/B = M.vore_organs[I]
+	for(var/belly in M.vore_organs)
+		var/obj/belly/B = belly
 
 		if(B.digest_mode == DM_ABSORB) //Turn off absorbing on bellies
 			B.digest_mode = DM_HOLD
 
-		for(var/mob/living/P in B.internal_contents)
+		for(var/mob/living/P in B)
 			if(!P.absorbed)
 				continue
 
@@ -123,7 +118,6 @@
 				playsound(M, 'sound/vore/schlorp.ogg', 50, 1)
 				P.absorbed = 0
 				M.visible_message("<font color='green'><b>Something spills into [M]'s [lowertext(B.name)]!</b></font>")
-	return
 
 //Special toxins for solargrubs
 

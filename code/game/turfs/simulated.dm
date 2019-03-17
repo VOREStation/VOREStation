@@ -12,6 +12,7 @@
 	nitrogen = MOLES_N2STANDARD
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
+	var/can_dirty = TRUE	// If false, tile never gets dirty
 	var/dirt = 0
 
 // This is not great.
@@ -21,16 +22,15 @@
 	spawn(0)
 		wet = wet_val
 		if(wet_overlay)
-			overlays -= wet_overlay
-			wet_overlay = null
-		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
-		overlays += wet_overlay
+			cut_overlay(wet_overlay)
+		wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
+		add_overlay(wet_overlay)
 		sleep(800)
 		if(wet == 2)
 			sleep(3200)
 		wet = 0
 		if(wet_overlay)
-			overlays -= wet_overlay
+			cut_overlay(wet_overlay)
 			wet_overlay = null
 
 /turf/simulated/proc/freeze_floor()
@@ -38,14 +38,14 @@
 		return
 	wet = 3 // icy
 	if(wet_overlay)
-		overlays -= wet_overlay
+		cut_overlay(wet_overlay)
 		wet_overlay = null
 	wet_overlay = image('icons/turf/overlays.dmi',src,"snowfloor")
-	overlays += wet_overlay
+	add_overlay(wet_overlay)
 	spawn(5 MINUTES)
 		wet = 0
 		if(wet_overlay)
-			overlays -= wet_overlay
+			cut_overlay(wet_overlay)
 			wet_overlay = null
 
 /turf/simulated/clean_blood()
@@ -66,12 +66,13 @@
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
 /turf/simulated/proc/update_dirt()
-	dirt = min(dirt+1, 101)
-	var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
-	if (dirt > 50)
-		if (!dirtoverlay)
-			dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
-		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
+	if(can_dirty)
+		dirt = min(dirt+1, 101)
+		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
+		if (dirt > 50)
+			if (!dirtoverlay)
+				dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
+			dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -83,8 +84,9 @@
 		if(M.lying)
 			return ..()
 
-		// Dirt overlays.
-		update_dirt()
+		if(M.dirties_floor())
+			// Dirt overlays.
+			update_dirt()
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M

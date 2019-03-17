@@ -54,18 +54,13 @@
 				if(user && M && (get_turf(M) == T1) && src && src.imp)
 					M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 
-					admin_attack_log(user, M, "Implanted using \the [src.name] ([src.imp.name])", "Implanted with \the [src.name] ([src.imp.name])", "used an implanter, [src.name] ([src.imp.name]), on")
+					add_attack_logs(user,M,"Implanted with [imp.name] using [name]")
 
-					if(src.imp.implanted(M))
-						src.imp.loc = M
-						src.imp.imp_in = M
-						src.imp.implanted = 1
-						if (ishuman(M))
+					if(imp.handle_implant(M))
+						imp.post_implant(M)
+
+						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
-							var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
-							affected.implants += src.imp
-							imp.part = affected
-
 							BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 							BITSET(H.hud_updateflag, BACKUP_HUD) //VOREStation Add - Backup HUD updates
 

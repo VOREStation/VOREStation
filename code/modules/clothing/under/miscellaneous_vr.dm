@@ -1,21 +1,5 @@
 /obj/item/clothing/var/hides_bulges = FALSE // OwO wats this?
 
-/mob/living/carbon/human/proc/show_pudge()
-	//A uniform could hide it.
-	if(istype(w_uniform,/obj/item/clothing))
-		var/obj/item/clothing/under = w_uniform
-		if(under.hides_bulges)
-			return FALSE
-
-	//We return as soon as we find one, no need for 'else' really.
-	if(istype(wear_suit,/obj/item/clothing))
-		var/obj/item/clothing/suit = wear_suit
-		if(suit.hides_bulges)
-			return FALSE
-
-
-	return TRUE
-
 /obj/item/clothing/under/permit
 	name = "public nudity permit"
 	desc = "This permit entitles the bearer to conduct their duties without a uniform. Normally issued to furred crewmembers or those with nothing to hide."
@@ -42,12 +26,35 @@
 	hides_bulges = TRUE
 	var/original_size
 
+
+
+/obj/item/clothing/under/bluespace/verb/toggle_fibers()
+		set category = "Object"
+		set name = "Adjust fibers"
+		set desc = "Adjust your suit fibers. This makes it so your stomach(s) will show or not."
+		set src in usr
+
+		adjust_fibers(usr)
+		..()
+
+/obj/item/clothing/under/bluespace/proc/adjust_fibers(mob/user)
+	if(hides_bulges == FALSE)
+		hides_bulges = TRUE
+		to_chat(user, "You tense the suit fibers, hiding your stomach(s).")
+	else
+		hides_bulges = FALSE
+		to_chat(user, "You relax the suit fibers, showing your stomach(s).")
+
+
+
 /obj/item/clothing/under/bluespace/verb/resize()
 	set name = "Adjust Size"
 	set category = "Object"
 	set src in usr
 	bluespace_size(usr)
 	..()
+
+
 
 /obj/item/clothing/under/bluespace/proc/bluespace_size(mob/usr as mob)
 	if (!ishuman(usr))
@@ -78,7 +85,7 @@
 		H.update_icons() //Just want the matrix transform
 		return
 
-	if (!IsInRange(new_size,25,200))
+	if (!ISINRANGE(new_size,25,200))
 		to_chat(H,"<span class='notice'>The safety features of the uniform prevent you from choosing this size.</span>")
 		return
 

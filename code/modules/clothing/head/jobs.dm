@@ -103,23 +103,34 @@
 	icon_state = "beret_corporate_warden"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
-/obj/item/clothing/head/helmet/warden //should these be helmets?
+/obj/item/clothing/head/helmet/warden
+	name = "warden's helmet"
+	desc = "Standard Warden gear. Protects the head from impacts."
+
+/obj/item/clothing/head/helmet/warden/hat
 	name = "warden's hat"
-	desc = "It's a special helmet issued to the Warden of a securiy force."
+	desc = "It's a special hat issued to the Warden of a securiy force."
 	icon_state = "policehelm"
-	body_parts_covered = 0
+	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/HoS
+	name = "Head of Security helmet"
+	desc = "Standard Head of Security gear. Protects the head from impacts."
+
+/obj/item/clothing/head/helmet/HoS/hat
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
-	body_parts_covered = 0
+	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/HoS/dermal
+/obj/item/clothing/head/helmet/dermal
 	name = "Dermal Armour Patch"
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"
 	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
+	valid_accessory_slots = null
+	show_examine = FALSE
+	flags_inv = null
 
 /obj/item/clothing/head/det
 	name = "fedora"
@@ -128,13 +139,13 @@
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	valid_accessory_slots = null
+	show_examine = FALSE
 
 /obj/item/clothing/head/det/grey
 	icon_state = "detective2"
 	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	desc = "A grey fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
-
 
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"

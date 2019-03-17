@@ -49,24 +49,24 @@
 	..()
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(I.is_wrench())
 		if(!glass)
 			playsound(src.loc, I.usesound, 50, 1)
 			if(do_after(user, 20 * I.toolspeed))
-				user << "<span class='notice'>You unfasten the frame.</span>"
+				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				new /obj/item/frame/mirror( src.loc )
 				qdel(src)
 		return
-	if(istype(I, /obj/item/weapon/crowbar))
+	if(I.is_wrench())
 		if(shattered && glass)
-			user << "<span class='notice'>The broken glass falls out.</span>"
+			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 			icon_state = "mirror_frame"
 			glass = !glass
 			new /obj/item/weapon/material/shard( src.loc )
 			return
 		if(!shattered && glass)
 			playsound(src.loc, I.usesound, 50, 1)
-			user << "<span class='notice'>You remove the glass.</span>"
+			to_chat(user, "<span class='notice'>You remove the glass.</span>")
 			glass = !glass
 			icon_state = "mirror_frame"
 			new /obj/item/stack/material/glass( src.loc, 2 )
@@ -76,15 +76,15 @@
 		if(!glass)
 			var/obj/item/stack/material/glass/G = I
 			if (G.get_amount() < 2)
-				user << "<span class='warning'>You need two sheets of glass to add them to the frame.</span>"
+				to_chat(user, "<span class='warning'>You need two sheets of glass to add them to the frame.</span>")
 				return
-			user << "<span class='notice'>You start to add the glass to the frame.</span>"
+			to_chat(user, "<span class='notice'>You start to add the glass to the frame.</span>")
 			if(do_after(user, 20))
 				if (G.use(2))
 					shattered = 0
 					glass = 1
 					icon_state = "mirror"
-					user << "<span class='notice'>You add the glass to the frame.</span>"
+					to_chat(user, "<span class='notice'>You add the glass to the frame.</span>")
 			return
 
 	if(shattered && glass)
@@ -123,10 +123,10 @@
 
 /obj/structure/mirror/raider/attack_hand(var/mob/living/carbon/human/user)
 	if(istype(get_area(src),/area/syndicate_mothership))
-		if(istype(user) && user.mind && user.mind.special_role == "Raider" && user.species.name != "Vox" && is_alien_whitelisted(user, "Vox"))
+		if(istype(user) && user.mind && user.mind.special_role == "Raider" && user.species.name != SPECIES_VOX && is_alien_whitelisted(user, SPECIES_VOX))
 			var/choice = input("Do you wish to become a true Vox of the Shoal? This is not reversible.") as null|anything in list("No","Yes")
 			if(choice && choice == "Yes")
-				var/mob/living/carbon/human/vox/vox = new(get_turf(src),"Vox")
+				var/mob/living/carbon/human/vox/vox = new(get_turf(src),SPECIES_VOX)
 				vox.gender = user.gender
 				raiders.equip(vox)
 				if(user.mind)

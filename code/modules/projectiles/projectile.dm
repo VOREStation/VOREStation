@@ -49,6 +49,7 @@
 		//Effects
 	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 maybe later for burst of fire around the impact point. - Mech
 	var/flammability = 0 //Amount of fire stacks to add for the above.
+	var/combustion = TRUE	//Does this set off flammable objects on fire/hit?
 	var/stun = 0
 	var/weaken = 0
 	var/paralyze = 0
@@ -58,6 +59,8 @@
 	var/drowsy = 0
 	var/agony = 0
 	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
+	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
+	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
 
 	embed_chance = 0	//Base chance for a projectile to embed
 
@@ -68,6 +71,8 @@
 	var/muzzle_type
 	var/tracer_type
 	var/impact_type
+
+	var/fire_sound
 
 	var/vacuum_traversal = 1 //Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
 
@@ -83,11 +88,17 @@
 //	if(isanimal(target))	return 0
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked, incendiary, flammability) // add in AGONY!
+	if(modifier_type_to_apply)
+		L.add_modifier(modifier_type_to_apply, modifier_duration)
 	return 1
 
 //called when the projectile stops flying because it collided with something
 /obj/item/projectile/proc/on_impact(var/atom/A)
 	impact_effect(effect_transform)		// generate impact effect
+	if(damage && damage_type == BURN)
+		var/turf/T = get_turf(A)
+		if(T)
+			T.hotspot_expose(700, 5)
 	return
 
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
@@ -129,6 +140,9 @@
 	var/turf/targloc = get_turf(target)
 	if (!istype(targloc) || !istype(curloc))
 		return 1
+
+	if(combustion)
+		curloc.hotspot_expose(700, 5)
 
 	if(targloc == curloc) //Shooting something in the same turf
 		target.bullet_act(src, target_zone)
@@ -177,7 +191,7 @@
 		return
 
 	//roll to-hit
-	miss_modifier = max(15*(distance-2) - round(15*accuracy) + miss_modifier + round(15*target_mob.get_evasion()), 0)
+	miss_modifier = max(15*(distance-2) - accuracy + miss_modifier + target_mob.get_evasion(), 0)
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS
@@ -192,23 +206,14 @@
 
 	//hit messages
 	if(silenced)
-		target_mob << "<span class='danger'>You've been hit in the [parse_zone(def_zone)] by \the [src]!</span>"
+		to_chat(target_mob, "<span class='danger'>You've been hit in the [parse_zone(def_zone)] by \the [src]!</span>")
 	else
 		visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 
 	//admin logs
 	if(!no_attack_log)
-		if(istype(firer, /mob))
-
-			var/attacker_message = "shot with \a [src.type]"
-			var/victim_message = "shot with \a [src.type]"
-			var/admin_message = "shot (\a [src.type])"
-
-			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
-		else
-			if(target_mob) // Sometimes the target_mob gets gibbed or something.
-				target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
-				msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
+		if(istype(firer, /mob) && istype(target_mob))
+			add_attack_logs(firer,target_mob,"Shot with \a [src.type] projectile")
 
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)
@@ -322,6 +327,7 @@
 
 		before_move()
 		Move(location.return_turf())
+		after_move()
 
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))
@@ -345,6 +351,9 @@
 			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
+	return
+
+/obj/item/projectile/proc/after_move()
 	return
 
 /obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, var/x_offset = 0, var/y_offset = 0)
@@ -400,7 +409,7 @@
 				P.activate()
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
-	if(ispath(tracer_type))
+	if(ispath(tracer_type) && location)
 		var/obj/effect/projectile/P = new impact_type(location.loc)
 
 		if(istype(P))
@@ -416,6 +425,7 @@
 	yo = null
 	xo = null
 	var/result = 0 //To pass the message back to the gun.
+	var/atom/movable/result_ref = null // The thing that got hit that made the check return true.
 
 /obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area)
 	if(A == firer)
@@ -425,7 +435,16 @@
 		return
 	if(istype(A, /obj/structure/foamedmetal)) //Turrets can detect through foamed metal, but will have to blast through it. Similar to windows, if someone runs behind it, a person should probably just not shoot.
 		return
+	if(istype(A, /obj/structure/girder)) //They see you there.
+		return
+	if(istype(A, /obj/structure/door_assembly)) //And through there.
+		return
+	if(istype(A, /obj/structure)) //Unanchored things you can shove around will still keep the turret or other firing at your position. Aim intent still functions.
+		var/obj/structure/S = A
+		if(!S.anchored)
+			return
 	if(istype(A, /mob/living) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
+		result_ref = A
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1
@@ -446,7 +465,8 @@
 /obj/item/projectile/test/process(var/turf/targloc)
 	while(src) //Loop on through!
 		if(result)
-			return (result - 1)
+			return result_ref
+		//	return (result - 1)
 		if((!( targloc ) || loc == targloc))
 			targloc = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z) //Finding the target turf at map edge
 
@@ -457,11 +477,13 @@
 
 		var/mob/living/M = locate() in get_turf(src)
 		if(istype(M)) //If there is someting living...
-			return 1 //Return 1
+			result_ref = M
+			return result_ref //Return 1
 		else
 			M = locate() in get_step(src,targloc)
 			if(istype(M))
-				return 1
+				result_ref = M
+				return result_ref
 
 //Helper proc to check if you can hit them or not.
 /proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)

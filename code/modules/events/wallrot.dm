@@ -1,20 +1,24 @@
-datum/event/wallrot/setup()
+/datum/event/wallrot
+	var/turf/simulated/wall/center
+
+/datum/event/wallrot/setup()
 	announceWhen = rand(0, 300)
 	endWhen = announceWhen + 1
 
-datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected on the colony. Station structures may be contaminated.", "Biohazard Alert")
+	// 100 attempts
+	for(var/i=0, i<100, i++)
+		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), 1)
+		if(istype(candidate, /turf/simulated/wall))
+			center = candidate
+			return 1
+	return 0
 
-datum/event/wallrot/start()
+/datum/event/wallrot/announce()
+	if(center)
+		command_announcement.Announce("Harmful fungi detected on \the [station_name()] nearby [center.loc.name]. Station structures may be contaminated.", "Biohazard Alert")
+
+/datum/event/wallrot/start()
 	spawn()
-		var/turf/simulated/wall/center = null
-
-		// 100 attempts
-		for(var/i=0, i<100, i++)
-			var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), 1)
-			if(istype(candidate, /turf/simulated/wall))
-				center = candidate
-
 		if(center)
 			// Make sure at least one piece of wall rots!
 			center.rot()

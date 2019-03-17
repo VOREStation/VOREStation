@@ -13,16 +13,16 @@
 	//Species-specific stuff.
 	species_restricted = list("Human", "Promethean")
 	sprite_sheets_refit = list(
-		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
+		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
+		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		"Unathi" = 'icons/obj/clothing/species/unathi/hats.dmi',
-		"Tajara" = 'icons/obj/clothing/species/tajaran/hats.dmi',
-		"Skrell" = 'icons/obj/clothing/species/skrell/hats.dmi',
-		"Teshari" = 'icons/obj/clothing/species/seromi/hats.dmi'
+		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/hats.dmi',
+		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/hats.dmi',
+		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/hats.dmi',
+		SPECIES_TESHARI = 'icons/obj/clothing/species/seromi/hats.dmi'
 		)
 
 	light_overlay = "helmet_light"
@@ -38,18 +38,18 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
-	species_restricted = list("Human", "Skrell", "Promethean")
+	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets_refit = list(
-		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi'
+		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
+		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
+		SPECIES_SKRELL = 'icons/mob/species/skrell/suit.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		"Unathi" = 'icons/obj/clothing/species/unathi/suits.dmi',
-		"Tajara" = 'icons/obj/clothing/species/tajaran/suits.dmi',
-		"Skrell" = 'icons/obj/clothing/species/skrell/suits.dmi',
-		"Teshari" = 'icons/obj/clothing/species/seromi/suits.dmi'
+		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/suits.dmi',
+		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/suits.dmi',
+		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/suits.dmi',
+		SPECIES_TESHARI = 'icons/obj/clothing/species/seromi/suits.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
@@ -68,9 +68,9 @@
 	var/list/part_list = new
 	for(var/obj/item/I in list(helmet,boots,tank,cooler))
 		part_list += "\a [I]"
-	user << "\The [src] has [english_list(part_list)] installed."
+	to_chat(user, "\The [src] has [english_list(part_list)] installed.")
 	if(tank && in_range(src,user))
-		user << "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
+		to_chat(user, "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>")
 
 /obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
@@ -95,23 +95,23 @@
 
 	if(helmet)
 		if(H.head)
-			M << "You are unable to deploy your suit's helmet as \the [H.head] is in the way."
+			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
 		else if (H.equip_to_slot_if_possible(helmet, slot_head))
-			M << "Your suit's helmet deploys with a hiss."
+			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			helmet.canremove = 0
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
-			M << "Alarmingly, the valve on your suit's installed tank fails to engage."
+			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
 		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
-			M << "The valve on your suit's installed tank safely engages."
+			to_chat(M, "The valve on your suit's installed tank safely engages.")
 			tank.canremove = 0
 
 	if(cooler)
 		if(H.s_store) //Ditto
-			M << "Alarmingly, the cooling unit installed into your suit fails to deploy."
+			to_chat(M, "Alarmingly, the cooling unit installed into your suit fails to deploy.")
 		else if (H.equip_to_slot_if_possible(cooler, slot_s_store))
-			M << "Your suit's cooling unit deploys."
+			to_chat(M, "Your suit's cooling unit deploys.")
 			cooler.canremove = 0
 
 
@@ -153,28 +153,31 @@
 	if(!istype(src.loc,/mob/living)) return
 
 	if(!helmet)
-		usr << "There is no helmet installed."
+		to_chat(usr, "There is no helmet installed.")
 		return
 
 	var/mob/living/carbon/human/H = usr
 
-	if(!istype(H)) return
-	if(H.stat) return
-	if(H.wear_suit != src) return
+	if(!istype(H))
+		return
+	if(H.stat)
+		return
+	if(H.wear_suit != src)
+		return
 
 	if(H.head == helmet)
-		H << "<span class='notice'>You retract your suit helmet.</span>"
+		to_chat(H, "<span class='notice'>You retract your suit helmet.</span>")
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 	else
 		if(H.head)
-			H << "<span class='danger'>You cannot deploy your helmet while wearing \the [H.head].</span>"
+			to_chat(H, "<span class='danger'>You cannot deploy your helmet while wearing \the [H.head].</span>")
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.pickup(H)
 			helmet.canremove = 0
-			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
+			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
 	helmet.update_light(H)
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
@@ -186,7 +189,7 @@
 	if(!istype(src.loc,/mob/living)) return
 
 	if(!tank && !cooler)
-		usr << "There is no tank or cooling unit inserted."
+		to_chat(usr, "There is no tank or cooling unit inserted.")
 		return
 
 	var/mob/living/carbon/human/H = usr
@@ -202,7 +205,7 @@
 	else
 		removing = cooler
 		cooler = null
-	H << "<span class='info'>You press the emergency release, ejecting \the [removing] from your suit.</span>"
+	to_chat(H, "<span class='info'>You press the emergency release, ejecting \the [removing] from your suit.</span>")
 	removing.canremove = 1
 	H.drop_from_inventory(removing)
 
@@ -214,75 +217,75 @@
 		return ..()
 
 	if(istype(src.loc,/mob/living))
-		user << "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>"
+		to_chat(user, "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>")
 		return
 
-	if(istype(W,/obj/item/weapon/screwdriver))
+	if(W.is_screwdriver())
 		if(helmet || boots || tank)
 			var/choice = input("What component would you like to remove?") as null|anything in list(helmet,boots,tank,cooler)
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
-				user << "You pop \the [tank] out of \the [src]'s storage compartment."
+				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
 				tank.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.tank = null
 			else if(choice == cooler)
-				user << "You pop \the [cooler] out of \the [src]'s storage compartment."
+				to_chat(user, "You pop \the [cooler] out of \the [src]'s storage compartment.")
 				cooler.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == helmet)
-				user << "You detatch \the [helmet] from \the [src]'s helmet mount."
+				to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
 				helmet.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.helmet = null
 			else if(choice == boots)
-				user << "You detatch \the [boots] from \the [src]'s boot mounts."
+				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.boots = null
 		else
-			user << "\The [src] does not have anything installed."
+			to_chat(user, "\The [src] does not have anything installed.")
 		return
 	else if(istype(W,/obj/item/clothing/head/helmet/space))
 		if(helmet)
-			user << "\The [src] already has a helmet installed."
+			to_chat(user, "\The [src] already has a helmet installed.")
 		else
-			user << "You attach \the [W] to \the [src]'s helmet mount."
+			to_chat(user, "You attach \the [W] to \the [src]'s helmet mount.")
 			user.drop_item()
 			W.forceMove(src)
 			src.helmet = W
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)
-			user << "\The [src] already has magboots installed."
+			to_chat(user, "\The [src] already has magboots installed.")
 		else
-			user << "You attach \the [W] to \the [src]'s boot mounts."
+			to_chat(user, "You attach \the [W] to \the [src]'s boot mounts.")
 			user.drop_item()
 			W.forceMove(src)
 			boots = W
 		return
 	else if(istype(W,/obj/item/weapon/tank))
 		if(tank)
-			user << "\The [src] already has an airtank installed."
+			to_chat(user, "\The [src] already has an airtank installed.")
 		else if(cooler)
-			user << "\The [src]'s suit cooling unit is in the way.  Remove it first."
+			to_chat(user, "\The [src]'s suit cooling unit is in the way.  Remove it first.")
 		else if(istype(W,/obj/item/weapon/tank/phoron))
-			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
+			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
 		else
-			user << "You insert \the [W] into \the [src]'s storage compartment."
+			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
 			user.drop_item()
 			W.forceMove(src)
 			tank = W
 		return
 	else if(istype(W,/obj/item/device/suit_cooling_unit))
 		if(cooler)
-			user << "\The [src] already has a suit cooling unit installed."
+			to_chat(user, "\The [src] already has a suit cooling unit installed.")
 		else if(tank)
-			user << "\The [src]'s airtank is in the way.  Remove it first."
+			to_chat(user, "\The [src]'s airtank is in the way.  Remove it first.")
 		else
-			user << "You insert \the [W] into \the [src]'s storage compartment."
+			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
 			user.drop_item()
 			W.forceMove(src)
 			cooler = W

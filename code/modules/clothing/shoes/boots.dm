@@ -11,6 +11,18 @@
 	desc = "Lacking a durasteel horse to ride."
 	icon_state = "cowboy"
 
+/obj/item/clothing/shoes/boots/cowboy/classic
+	name = "classic cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots."
+	icon_state = "cowboy_classic"
+	item_state_slots = list(slot_r_hand_str = "leather", slot_l_hand_str = "leather")
+
+/obj/item/clothing/shoes/boots/cowboy/snakeskin
+	name = "snakeskin cowboy boots"
+	desc = "A pair of cowboy boots made from python skin."
+	icon_state = "cowboy_snakeskin"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+
 /obj/item/clothing/shoes/boots/jackboots
 	name = "jackboots"
 	desc = "Standard-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."

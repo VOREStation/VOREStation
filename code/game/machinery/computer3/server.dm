@@ -24,9 +24,9 @@
 
 	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/radio/subspace)
 
-	update_icon()
+/obj/machinery/computer3/server/rack/update_icon()
 		//overlays.Cut()
 		return
 
-	attack_hand() // Racks have no screen, only AI can use them
+/obj/machinery/computer3/server/rack/attack_hand() // Racks have no screen, only AI can use them
 		return

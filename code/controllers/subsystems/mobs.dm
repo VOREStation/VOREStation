@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(mobs)
 	var/list/currentrun = list()
 	var/log_extensively = FALSE
 	var/list/timelog = list()
-	var/list/busy_z_levels
+	var/list/busy_z_levels = list()
 	var/slept_mobs = 0
 
 /datum/controller/subsystem/mobs/stat_entry()
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(mobs)
 	if (!resumed)
 		slept_mobs = 0
 		src.currentrun = mob_list.Copy()
-		busy_z_levels = list()
+		busy_z_levels.Cut()
 		for(var/played_mob in player_list)
 			if(!played_mob || isobserver(played_mob))
 				continue

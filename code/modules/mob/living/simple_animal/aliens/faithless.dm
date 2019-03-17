@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/faithless
+/mob/living/simple_mob/hostile/faithless
 	name = "Faithless"
 	desc = "The Wish Granter's faith in humanity, incarnate"
 	icon_state = "faithless"
@@ -17,10 +17,12 @@
 	response_harm = "hits"
 
 	harm_intent_damage = 10
-	melee_damage_lower = 5
-	melee_damage_upper = 5
 
-	attacktext = "gripped"
+	melee_damage_lower = 10
+	melee_damage_upper = 18
+	attack_armor_pen = 5	//It's a horror from beyond, I ain't gotta explain 5 AP
+
+	attacktext = list("gripped")
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 
 	min_oxy = 0
@@ -35,15 +37,15 @@
 
 	speak_chance = 0
 
-/mob/living/simple_animal/hostile/faithless/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/faithless/Process_Spacemove(var/check_drift = 0)
 	return 1
 
-/mob/living/simple_animal/hostile/faithless/set_target()
+/mob/living/simple_mob/hostile/faithless/set_target()
 	. = ..()
 	if(.)
 		audible_emote("wails at [target_mob]")
 
-/mob/living/simple_animal/hostile/faithless/PunchTarget()
+/mob/living/simple_mob/hostile/faithless/PunchTarget()
 	. = ..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -51,33 +53,32 @@
 			L.Weaken(3)
 			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
 
-/mob/living/simple_animal/hostile/faithless/cult
+/mob/living/simple_mob/hostile/faithless/cult
 	faction = "cult"
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/faithless/cult/cultify()
+/mob/living/simple_mob/hostile/faithless/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/faithless/cult/Life()
+/mob/living/simple_mob/hostile/faithless/cult/Life()
 	..()
 	check_horde()
 
-/mob/living/simple_animal/hostile/faithless/strong
+/mob/living/simple_mob/hostile/faithless/strong
 	maxHealth = 100
 	health = 100
 
 	harm_intent_damage = 5
-	melee_damage_lower = 7
-	melee_damage_upper = 20
+	melee_damage_lower = 13
+	melee_damage_upper = 28
 
-
-/mob/living/simple_animal/hostile/faithless/strong/cult
+/mob/living/simple_mob/hostile/faithless/strong/cult
 	faction = "cult"
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/faithless/cult/cultify()
+/mob/living/simple_mob/hostile/faithless/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/faithless/cult/Life()
+/mob/living/simple_mob/hostile/faithless/cult/Life()
 	..()
 	check_horde()
