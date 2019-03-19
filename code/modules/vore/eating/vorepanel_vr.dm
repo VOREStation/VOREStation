@@ -204,9 +204,22 @@
 			dat += " [english_list(flag_list)]"
 		else
 			dat += " None"
-		if(selected.mode_flags & DM_FLAG_ITEMWEAK)
-			dat += "<br><a href='?src=\ref[src];b_cont_flavor=\ref[selected]'>Contamination Mode:</a>"
-			dat += "[selected.cont_flavor]"
+
+		//Item Digest Mode Button
+		dat += "<br><a href='?src=\ref[src];b_item_mode=\ref[selected]'>Item Mode:</a>"
+		dat += "[selected.item_digest_mode]"
+
+		//Will it contaminate contents?
+		dat += "<br><a href='?src=\ref[src];b_contaminates=\ref[selected]'>Contaminates:</a>"
+		dat += " [selected.contaminates ? "Yes" : "No"]"
+
+		if(selected.contaminates)
+			//Contamination descriptors
+			dat += "<br><a href='?src=\ref[src];b_contamination_flavor=\ref[selected]'>Contamination Mode:</a>"
+			dat += "[selected.contamination_flavor]"
+			//Contamination color
+			dat += "<br><a href='?src=\ref[src];b_contamination_color=\ref[selected]'>Contamination Color:</a>"
+			dat += "[selected.contamination_color]"
 
 		//Belly verb
 		dat += "<br><a href='?src=\ref[src];b_verb=\ref[selected]'>Vore Verb:</a>"
@@ -526,7 +539,7 @@
 			selected.tf_mode = new_tf_mode
 
 		selected.digest_mode = new_mode
-		selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
+		//selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change	//Handled with item modes now
 
 	if(href_list["b_addons"])
 		var/list/menu_list = selected.mode_flag_list.Copy()
@@ -536,12 +549,33 @@
 		selected.mode_flags ^= selected.mode_flag_list[toggle_addon]
 		selected.items_preserved.Cut() //Re-evaltuate all items in belly on addon toggle
 
-	if(href_list["b_cont_flavor"])
-		var/list/menu_list = cont_flavors.Copy()
-		var/new_flavor = input("Choose Contamination Mode (currently [selected.cont_flavor])") as null|anything in menu_list
+	if(href_list["b_item_mode"])
+		var/list/menu_list = selected.item_digest_modes.Copy()
+
+		var/new_mode = input("Choose Mode (currently [selected.item_digest_mode])") as null|anything in menu_list
+		if(!new_mode)
+			return 0
+
+		selected.item_digest_mode = new_mode
+		selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
+
+	if(href_list["b_contaminates"])
+		selected.contaminates = !selected.contaminates
+
+	if(href_list["b_contamination_flavor"])
+		var/list/menu_list = contamination_flavors.Copy()
+		var/new_flavor = input("Choose Contamination Mode (currently [selected.contamination_flavor])") as null|anything in menu_list
 		if(!new_flavor)
 			return 0
-		selected.cont_flavor = new_flavor
+		selected.contamination_flavor = new_flavor
+
+	if(href_list["b_contamination_color"])
+		var/list/menu_list = contamination_colors.Copy()
+		var/new_color = input("Choose Contamination Color (currently [selected.contamination_color])") as null|anything in menu_list
+		if(!new_color)
+			return 0
+		selected.contamination_color = new_color
+		selected.items_preserved.Cut() //To re-contaminate for new color
 
 	if(href_list["b_desc"])
 		var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",selected.desc) as message|null)

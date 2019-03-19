@@ -21,13 +21,18 @@
 	var/swallowsound = null				// What noise plays when you succeed in eating the mob.
 
 	var/vore_default_mode = DM_DIGEST	// Default bellymode (DM_DIGEST, DM_HOLD, DM_ABSORB)
-	var/vore_default_flags = DM_FLAG_ITEMWEAK // Itemweak by default
+	var/vore_default_flags = 0			// No flags
 	var/vore_digest_chance = 25			// Chance to switch to digest mode if resisted
 	var/vore_absorb_chance = 0			// Chance to switch to absorb mode if resisted
 	var/vore_escape_chance = 25			// Chance of resisting out of mob
 
 	var/vore_stomach_name				// The name for the first belly if not "stomach"
 	var/vore_stomach_flavor				// The flavortext for the first belly if not the default
+
+	var/vore_default_item_mode = IM_DIGEST_FOOD			//How belly will interact with items
+	var/vore_default_contaminates = TRUE				//Will it contaminate?
+	var/vore_default_contamination_flavor = "Generic"	//Contamination descriptors
+	var/vore_default_contamination_color = "green"		//Contamination color
 
 	var/vore_fullness = 0				// How "full" the belly is (controls icons)
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
@@ -192,6 +197,10 @@
 	B.desc = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
 	B.digest_mode = vore_default_mode
 	B.mode_flags = vore_default_flags
+	B.item_digest_mode = vore_default_item_mode
+	B.contaminates = vore_default_contaminates
+	B.contamination_flavor = vore_default_contamination_flavor
+	B.contamination_color = vore_default_contamination_color
 	B.escapable = vore_escape_chance > 0
 	B.escapechance = vore_escape_chance
 	B.digestchance = vore_digest_chance
