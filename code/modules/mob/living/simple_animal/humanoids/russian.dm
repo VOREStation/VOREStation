@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/russian
+/mob/living/simple_mob/hostile/russian
 	name = "russian"
 	desc = "For the Motherland!"
 	tt_desc = "E Homo sapiens"
@@ -47,7 +47,7 @@
 
 	var/corpse = /obj/effect/landmark/mobcorpse/russian
 
-/mob/living/simple_animal/hostile/russian/ranged
+/mob/living/simple_mob/hostile/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
 
@@ -60,7 +60,7 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/russian/ranged
 
-/mob/living/simple_animal/hostile/russian/death()
+/mob/living/simple_mob/hostile/russian/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)

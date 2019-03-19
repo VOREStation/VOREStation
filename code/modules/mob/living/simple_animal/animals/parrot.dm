@@ -13,7 +13,7 @@
  */
 
 //Parrot is too snowflake for me to rewrite right now, someone should make it use the new
-//simple_animal movement stuff. -Aro
+//simple_mob movement stuff. -Aro
 
 //Only a maximum of one action and one intent should be active at any given time.
 //Actions
@@ -28,7 +28,7 @@
 #define PARROT_FLEE 64		//Flying away from its attacker
 
 
-/mob/living/simple_animal/parrot
+/mob/living/simple_mob/parrot
 	name = "parrot"
 	desc = "The parrot squawks, \"It's a parrot! BAWWK!\""
 	tt_desc = "E Ara macao"
@@ -94,7 +94,7 @@
 	var/obj/item/held_item = null
 
 
-/mob/living/simple_animal/parrot/New()
+/mob/living/simple_mob/parrot/New()
 	..()
 	if(!ears)
 		var/headset = pick(/obj/item/device/radio/headset/headset_sec, \
@@ -106,27 +106,27 @@
 
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
 
-	verbs.Add(/mob/living/simple_animal/parrot/proc/steal_from_ground, \
-			  /mob/living/simple_animal/parrot/proc/steal_from_mob, \
-			  /mob/living/simple_animal/parrot/verb/drop_held_item_player, \
-			  /mob/living/simple_animal/parrot/proc/perch_player)
+	verbs.Add(/mob/living/simple_mob/parrot/proc/steal_from_ground, \
+			  /mob/living/simple_mob/parrot/proc/steal_from_mob, \
+			  /mob/living/simple_mob/parrot/verb/drop_held_item_player, \
+			  /mob/living/simple_mob/parrot/proc/perch_player)
 
 
-/mob/living/simple_animal/parrot/death()
+/mob/living/simple_mob/parrot/death()
 	if(held_item)
 		held_item.forceMove(src.loc)
 		held_item = null
 	walk(src,0)
 	..()
 
-/mob/living/simple_animal/parrot/Stat()
+/mob/living/simple_mob/parrot/Stat()
 	..()
 	stat("Held Item", held_item)
 
 /*
  * Inventory
  */
-/mob/living/simple_animal/parrot/show_inv(mob/user as mob)
+/mob/living/simple_mob/parrot/show_inv(mob/user as mob)
 	user.set_machine(src)
 	if(user.stat) return
 
@@ -140,7 +140,7 @@
 	onclose(user, "mob[real_name]")
 	return
 
-/mob/living/simple_animal/parrot/Topic(href, href_list)
+/mob/living/simple_mob/parrot/Topic(href, href_list)
 
 	//Can the usr physically do this?
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
@@ -223,7 +223,7 @@
  * Attack responces
  */
 //Humans, monkeys, aliens
-/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M as mob)
+/mob/living/simple_mob/parrot/attack_hand(mob/living/carbon/M as mob)
 	..()
 	if(client) return
 	if(!stat && M.a_intent == I_HURT)
@@ -244,7 +244,7 @@
 	return
 
 //Mobs with objects
-/mob/living/simple_animal/parrot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/parrot/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
 	if(!stat && !client && !istype(O, /obj/item/stack/medical))
 		if(O.force)
@@ -258,7 +258,7 @@
 	return
 
 //Bullets
-/mob/living/simple_animal/parrot/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/parrot/bullet_act(var/obj/item/projectile/Proj)
 	..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
@@ -275,7 +275,7 @@
 /*
  * AI - Not really intelligent, but I'm calling it AI anyway.
  */
-/mob/living/simple_animal/parrot/Life()
+/mob/living/simple_mob/parrot/Life()
 	..()
 
 	//Sprite and AI update for when a parrot gets pulled
@@ -513,12 +513,12 @@
  * Procs
  */
 
-/mob/living/simple_animal/parrot/movement_delay()
+/mob/living/simple_mob/parrot/movement_delay()
 	if(client && stat == CONSCIOUS && parrot_state != "parrot_fly")
 		icon_state = "parrot_fly"
 	..()
 
-/mob/living/simple_animal/parrot/proc/search_for_item()
+/mob/living/simple_mob/parrot/proc/search_for_item()
 	for(var/atom/movable/AM in view(src))
 		//Skip items we already stole or are wearing or are too big
 		if(parrot_perch && AM.loc == parrot_perch.loc || AM.loc == src)
@@ -535,7 +535,7 @@
 				return C
 	return null
 
-/mob/living/simple_animal/parrot/proc/search_for_perch()
+/mob/living/simple_mob/parrot/proc/search_for_perch()
 	for(var/obj/O in view(src))
 		for(var/path in desired_perches)
 			if(istype(O, path))
@@ -543,7 +543,7 @@
 	return null
 
 //This proc was made to save on doing two 'in view' loops seperatly
-/mob/living/simple_animal/parrot/proc/search_for_perch_and_item()
+/mob/living/simple_mob/parrot/proc/search_for_perch_and_item()
 	for(var/atom/movable/AM in view(src))
 		for(var/perch_path in desired_perches)
 			if(istype(AM, perch_path))
@@ -568,7 +568,7 @@
 /*
  * Verbs - These are actually procs, but can be used as verbs by player-controlled parrots.
  */
-/mob/living/simple_animal/parrot/proc/steal_from_ground()
+/mob/living/simple_mob/parrot/proc/steal_from_ground()
 	set name = "Steal from ground"
 	set category = "Parrot"
 	set desc = "Grabs a nearby item."
@@ -596,7 +596,7 @@
 	to_chat(src, "<font color='red'>There is nothing of interest to take.</font>")
 	return 0
 
-/mob/living/simple_animal/parrot/proc/steal_from_mob()
+/mob/living/simple_mob/parrot/proc/steal_from_mob()
 	set name = "Steal from mob"
 	set category = "Parrot"
 	set desc = "Steals an item right out of a person's hand!"
@@ -627,7 +627,7 @@
 	to_chat(src, "<font color='red'>There is nothing of interest to take.</font>")
 	return 0
 
-/mob/living/simple_animal/parrot/verb/drop_held_item_player()
+/mob/living/simple_mob/parrot/verb/drop_held_item_player()
 	set name = "Drop held item"
 	set category = "Parrot"
 	set desc = "Drop the item you're holding."
@@ -639,7 +639,7 @@
 
 	return
 
-/mob/living/simple_animal/parrot/proc/drop_held_item(var/drop_gently = 1)
+/mob/living/simple_mob/parrot/proc/drop_held_item(var/drop_gently = 1)
 	set name = "Drop held item"
 	set category = "Parrot"
 	set desc = "Drop the item you're holding."
@@ -666,7 +666,7 @@
 	held_item = null
 	return 1
 
-/mob/living/simple_animal/parrot/proc/perch_player()
+/mob/living/simple_mob/parrot/proc/perch_player()
 	set name = "Sit"
 	set category = "Parrot"
 	set desc = "Sit on a nice comfy perch."
@@ -687,17 +687,17 @@
 /*
  * Sub-types
  */
-/mob/living/simple_animal/parrot/Poly
+/mob/living/simple_mob/parrot/Poly
 	name = "Poly"
 	desc = "Poly the Parrot. An expert on quantum cracker theory."
 	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
 
-/mob/living/simple_animal/parrot/Poly/New()
+/mob/living/simple_mob/parrot/Poly/New()
 	ears = new /obj/item/device/radio/headset/headset_eng(src)
 	available_channels = list(":e")
 	..()
 
-/mob/living/simple_animal/parrot/say(var/message)
+/mob/living/simple_mob/parrot/say(var/message)
 
 	if(stat)
 		return
@@ -731,25 +731,25 @@
 	..(message)
 
 
-/mob/living/simple_animal/parrot/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+/mob/living/simple_mob/parrot/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
 	if(prob(50))
 		parrot_hear(message)
 	..(message,verb,language,alt_name,italics,speaker)
 
 
 
-/mob/living/simple_animal/parrot/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0)
+/mob/living/simple_mob/parrot/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0)
 	if(prob(50))
 		parrot_hear("[pick(available_channels)] [message]")
 	..(message,verb,language,part_a,part_b,speaker,hard_to_hear)
 
 
-/mob/living/simple_animal/parrot/proc/parrot_hear(var/message="")
+/mob/living/simple_mob/parrot/proc/parrot_hear(var/message="")
 	if(!message || stat)
 		return
 	speech_buffer.Add(message)
 
-/mob/living/simple_animal/parrot/attack_generic(var/mob/user, var/damage, var/attack_message)
+/mob/living/simple_mob/parrot/attack_generic(var/mob/user, var/damage, var/attack_message)
 
 	var/success = ..()
 

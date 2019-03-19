@@ -8,4 +8,9 @@
 	update_antag_icons(mind)
 	client.screen |= global_hud.darksight
 	client.images |= dsoverlay
+
+	if(ai_holder && !ai_holder.autopilot)
+		ai_holder.go_sleep()
+		to_chat(src,"<span class='notice'>Mob AI disabled while you are controlling the mob.</span>")
+
 	return .

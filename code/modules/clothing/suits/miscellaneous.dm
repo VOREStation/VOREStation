@@ -255,6 +255,11 @@ obj/item/clothing/suit/kimono
 	icon_state = "kimono"
 	addblends = "kimono_a"
 
+obj/item/clothing/suit/kamishimo
+	name = "kamishimo"
+	desc = "Traditional Japanese menswear."
+	icon_state = "kamishimo"
+
 /*
  * coats
  */

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/penguin
+/mob/living/simple_mob/penguin
 	name = "space penguin"
 	desc = "An ungainly, waddling, cute, and VERY well-dressed bird."
 	tt_desc = "E Aptenodytes forsteri"

@@ -15,11 +15,13 @@
 
 /obj/item/weapon/spell/modifier/on_melee_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living))
-		on_add_modifier(hit_atom)
+		return on_add_modifier(hit_atom)
+	return FALSE
 
 /obj/item/weapon/spell/modifier/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living))
-		on_add_modifier(hit_atom)
+		return on_add_modifier(hit_atom)
+	return FALSE
 
 
 /obj/item/weapon/spell/modifier/proc/on_add_modifier(var/mob/living/L)
@@ -32,6 +34,7 @@
 		MT.spell_power = calculate_spell_power(1)
 	log_and_message_admins("has casted [src] on [L].")
 	qdel(src)
+	return TRUE
 
 // Technomancer specific subtype which keeps track of spell power and gets targeted specificially by Dispel.
 /datum/modifier/technomancer

@@ -88,6 +88,8 @@
 	but allow those projectiles to leave the shield from the inside.  Blocking too many damaging projectiles will cause the shield to fail."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signmaker_sec"
+	light_range = 4
+	light_power = 4
 	var/active = FALSE					// If it's on.
 	var/shield_health = 400				// How much damage the shield blocks before breaking.  This is a shared health pool for all shields attached to this projector.
 	var/max_shield_health = 400			// Ditto.  This is fairly high, but shields are really big, you can't miss them, and laser carbines pump out so much hurt.
@@ -152,7 +154,7 @@
 // Makes shields become gradually more red as the projector's health decreases.
 /obj/item/shield_projector/proc/update_shield_colors()
 	// This is done at the projector instead of the shields themselves to avoid needing to calculate this more than once every update.
-	var/lerp_weight = shield_health / max_shield_health
+	var/interpolate_weight = shield_health / max_shield_health
 
 	var/list/low_color_list = hex2rgb(low_color)
 	var/low_r = low_color_list[1]
@@ -164,11 +166,13 @@
 	var/high_g = high_color_list[2]
 	var/high_b = high_color_list[3]
 
-	var/new_r = Interpolate(low_r, high_r, weight = lerp_weight)
-	var/new_g = Interpolate(low_g, high_g, weight = lerp_weight)
-	var/new_b = Interpolate(low_b, high_b, weight = lerp_weight)
+	var/new_r = LERP(low_r, high_r, interpolate_weight)
+	var/new_g = LERP(low_g, high_g, interpolate_weight)
+	var/new_b = LERP(low_b, high_b, interpolate_weight)
 
 	var/new_color = rgb(new_r, new_g, new_b)
+
+	set_light(light_range, light_power, new_color)
 
 	// Now deploy the new color to all the shields.
 	for(var/obj/effect/directional_shield/S in active_shields)

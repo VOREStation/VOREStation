@@ -166,7 +166,7 @@
 			outmsg = "<span class='info'>You missed the lens of [C] with [src].</span>"
 
 	//cats!
-	for(var/mob/living/simple_animal/cat/C in viewers(1,targloc))
+	for(var/mob/living/simple_mob/animal/passive/cat/C in viewers(1,targloc))
 		if (!(C.stat || C.buckled))
 			if(prob(50) && !(C.client))
 				C.visible_message("<span class='warning'>[C] pounces on the light!</span>", "<span class='warning'>You pounce on the light!</span>")
