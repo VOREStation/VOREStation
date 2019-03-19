@@ -215,7 +215,7 @@
 
 		if(selected.contaminates)
 			//Contamination descriptors
-			dat += "<br><a href='?src=\ref[src];b_contamination_flavor=\ref[selected]'>Contamination Mode:</a>"
+			dat += "<br><a href='?src=\ref[src];b_contamination_flavor=\ref[selected]'>Contamination Flavor:</a>"
 			dat += "[selected.contamination_flavor]"
 			//Contamination color
 			dat += "<br><a href='?src=\ref[src];b_contamination_color=\ref[selected]'>Contamination Color:</a>"
