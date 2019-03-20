@@ -30,17 +30,17 @@
 	switch(choice)
 		if("Restore ID access")
 			if(!inserted)
-				to_chat(user, "<span class='notice'>No ID inserted.</span>")
+				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
 				return
 			var/mob/living/carbon/human/H = user
 			if(!(istype(H)))
-				to_chat(user, "<span class='warning'>Inappropriate species interfacing. Access denied.</span>")
+				to_chat(user, "<span class='warning'>Invalid user detected. Access denied.</span>")
 				return
 			else if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))	//Face hiding bad
-				to_chat(user, "<span class='warning'>Face scan obstructed. Access denied.</span>")
+				to_chat(user, "<span class='warning'>Facial recognition scan failed due to physical obstructions. Access denied.</span>")
 				return
 			else if(H.get_face_name() == "Unknown" || !(H.real_name == inserted.registered_name))
-				to_chat(user, "<span class='warning'>Face scan failed Access denied.</span>")
+				to_chat(user, "<span class='warning'>Facial recognition scan failed. Access denied.</span>")
 				return
 			else if(LAZYLEN(inserted.lost_access) && !(LAZYLEN(inserted.access)))
 				inserted.access = inserted.lost_access
@@ -55,7 +55,7 @@
 				return
 		if("Eject ID")
 			if(!inserted)
-				to_chat(user, "<span class='notice'>No ID inserted.</span>")
+				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
 				return
 			if(ishuman(user))
 				inserted.forceMove(get_turf(src))
