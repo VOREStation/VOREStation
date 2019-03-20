@@ -60,3 +60,44 @@
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	item_flags = AIRTIGHT
 	body_parts_covered = EYES
+
+/*---Tajaran-specific Eyewear---*/
+
+/obj/item/clothing/glasses/tajblind
+	name = "embroidered veil"
+	desc = "An Tajaran made veil that allows the user to see while obscuring their eyes."
+	icon = 'icons/obj/clothing/glasses_vr.dmi'
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon_state = "tajblind"
+	item_state = "tajblind"
+	prescription = 1
+	body_parts_covered = EYES
+
+/obj/item/clothing/glasses/hud/health/tajblind
+	name = "lightweight veil"
+	desc = "An Tajaran made veil that allows the user to see while obscuring their eyes. This one has an installed medical HUD."
+	icon = 'icons/obj/clothing/glasses_vr.dmi'
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon_state = "tajblind_med"
+	item_state = "tajblind_med"
+	body_parts_covered = EYES
+
+/obj/item/clothing/glasses/sunglasses/sechud/tajblind
+	name = "sleek veil"
+	desc = "An Tajaran made veil that allows the user to see while obscuring their eyes. This one has an in-built security HUD."
+	icon = 'icons/obj/clothing/glasses_vr.dmi'
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon_state = "tajblind_sec"
+	item_state = "tajblind_sec"
+	prescription = 1
+	body_parts_covered = EYES
+
+/obj/item/clothing/glasses/meson/prescription/tajblind
+	name = "industrial veil"
+	desc = "An Tajaran made veil that allows the user to see while obscuring their eyes. This one has installed mesons."
+	icon = 'icons/obj/clothing/glasses_vr.dmi'
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon_state = "tajblind_meson"
+	item_state = "tajblind_meson"
+	off_state = "tajblind_meson"
+	body_parts_covered = EYES

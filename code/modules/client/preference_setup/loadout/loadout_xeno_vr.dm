@@ -38,3 +38,28 @@
 	display_name = "loincloth"
 	path = /obj/item/clothing/suit/storage/fluff/loincloth
 	sort_category = "Xenowear"
+
+// Taj clothing
+/datum/gear/eyes/tajblind
+	display_name = "embroidered veil"
+	path = /obj/item/clothing/glasses/tajblind
+	//whitelisted = SPECIES_TAJ
+	sort_category = "Xenowear"
+
+/datum/gear/eyes/medical/tajblind
+	display_name = "medical veil (Tajara) (Medical)"
+	path = /obj/item/clothing/glasses/hud/health/tajblind
+	//whitelisted = SPECIES_TAJ
+	sort_category = "Xenowear"
+
+/datum/gear/eyes/meson/tajblind
+	display_name = "industrial veil (Tajara) (Engineering, Science)"
+	path = /obj/item/clothing/glasses/meson/prescription/tajblind
+	//whitelisted = SPECIES_TAJ
+	sort_category = "Xenowear"
+
+/datum/gear/eyes/security/tajblind
+	display_name = "sleek veil (Tajara) (Security)"
+	path = /obj/item/clothing/glasses/sunglasses/sechud/tajblind
+	//whitelisted = SPECIES_TAJ
+	sort_category = "Xenowear"
