@@ -58,6 +58,12 @@
 	//whitelisted = SPECIES_TAJ
 	sort_category = "Xenowear"
 
+/datum/gear/eyes/material/tajblind
+	display_name = "mining veil (Tajara) (Mining)"
+	path = /obj/item/clothing/glasses/material/prescription/tajblind
+	//whitelisted = SPECIES_TAJ
+	sort_category = "Xenowear"
+
 /datum/gear/eyes/security/tajblind
 	display_name = "sleek veil (Tajara) (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/tajblind

@@ -99,5 +99,15 @@
 	icon_override = 'icons/mob/eyes_vr.dmi'
 	icon_state = "tajblind_meson"
 	item_state = "tajblind_meson"
-	off_state = "tajblind_meson"
+	off_state = "tajblind"
+	body_parts_covered = EYES
+
+/obj/item/clothing/glasses/material/prescription/tajblind
+	name = "mining veil"
+	desc = "An Tajaran made veil that allows the user to see while obscuring their eyes. This one has an installed material scanner."
+	icon = 'icons/obj/clothing/glasses_vr.dmi'
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon_state = "tajblind_meson"
+	item_state = "tajblind_meson"
+	off_state = "tajblind"
 	body_parts_covered = EYES
