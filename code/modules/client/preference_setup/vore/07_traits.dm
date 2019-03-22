@@ -87,12 +87,13 @@
 		var/S = pref.custom_base ? pref.custom_base : "Human"
 		var/datum/species/custom/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
 
-		//Statistics for this would be nice
-		var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
-		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
-		
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
+
+		if(pref.species == SPECIES_CUSTOM)
+			//Statistics for this would be nice
+			var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
+			log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += "<b>Custom Species</b> "

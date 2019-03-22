@@ -37,7 +37,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
 
-	reagent_tag = IS_SERGAL
+	//reagent_tag = IS_SERGAL
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -99,7 +99,7 @@
 	base_color = "#777777"
 	blood_color = "#1D2CBF"
 
-	reagent_tag = IS_AKULA
+	//reagent_tag = IS_AKULA
 
 /datum/species/akula/can_breathe_water()
 	return TRUE // Surprise, SHERKS.
@@ -140,7 +140,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 
-	reagent_tag = IS_SERGAL
+	//reagent_tag = IS_SERGAL
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -319,7 +319,7 @@
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 	inherent_verbs = list(/mob/living/proc/shred_limb)
-	heat_discomfort_level = 294 //Prevents heat discomfort spam at 20c
+	heat_discomfort_level = 300 //Prevents heat discomfort spam at 20c
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
