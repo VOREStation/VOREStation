@@ -319,7 +319,7 @@
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 	inherent_verbs = list(/mob/living/proc/shred_limb)
-	heat_discomfort_level = 300 //Prevents heat discomfort spam at 20c
+	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
