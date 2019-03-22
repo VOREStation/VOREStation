@@ -24,7 +24,8 @@
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/weapon/material/knife/machete,
 		/obj/item/clothing/accessory/holster/machete,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2)
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein)
 
 /obj/structure/closet/secure_closet/sar
 	name = "field medic locker"
@@ -50,7 +51,8 @@
 		/obj/item/device/healthanalyzer,
 		/obj/item/device/radio/off,
 		/obj/random/medical,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 3,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/storage/box/freezer,
@@ -74,7 +76,8 @@
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/device/radio/headset/pilot/alt,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/weapon/storage/box/flare,
 		/obj/item/weapon/cell/device,
@@ -111,7 +114,8 @@
 		/obj/item/weapon/material/knife/machete/deluxe,
 		/obj/item/weapon/gun/energy/frontier/locked/carbine,
 		/obj/item/clothing/accessory/holster/machete,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2)
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein)
 
 /obj/structure/closet/secure_closet/pathfinder/Initialize()
 	if(prob(50))
