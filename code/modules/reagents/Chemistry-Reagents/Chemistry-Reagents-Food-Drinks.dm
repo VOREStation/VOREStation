@@ -34,14 +34,11 @@
 				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	/* VOREStation Removal
-	if(!injectable && alien != IS_SLIME)
+
+	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA) //VOREStation Edit
 		M.adjustToxLoss(0.1 * removed)
 		return
-	affect_ingest(M, alien, removed) 
-	*/ //VOREStation Removal End
-	if(injectable) //vorestation addition/replacement
-		affect_ingest(M, alien, removed)
+	affect_ingest(M, alien, removed)
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
