@@ -52,7 +52,7 @@
 		/obj/item/device/radio/off,
 		/obj/random/medical,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 2,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/storage/box/freezer,
