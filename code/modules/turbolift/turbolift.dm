@@ -154,12 +154,21 @@
 		return 0
 
 	for(var/turf/T in destination)
+<<<<<<< HEAD
 		for(var/I in T)
 			if(istype(I, /mob/living))
 				var/mob/living/L = I
 				L.gib()
 			else if(istype(I,/obj))
 				qdel(I)
+=======
+		for(var/atom/movable/AM in T)
+			if(istype(AM, /mob/living))
+				var/mob/living/M = AM
+				M.gib()
+			else if(AM.simulated && !(istype(AM, /mob/observer)))
+				qdel(AM)
+>>>>>>> e4f17ca... Merge pull request #6018 from PrismaticGynoid/naughtyelevators
 
 	origin.move_contents_to(destination)
 
