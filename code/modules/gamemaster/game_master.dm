@@ -22,7 +22,7 @@
 	for(var/datum/gm_action/action in available_actions)
 		action.gm = src
 
-/datum/game_master/proc/process()
+/datum/game_master/process()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING && !suspended)
 		adjust_staleness(1)
 		adjust_danger(-1)

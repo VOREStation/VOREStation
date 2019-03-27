@@ -62,7 +62,7 @@
 
 	var/highlight_special_characters = 1
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(C.player_age == "Requires database")
 			missing_ages = 1
 			continue
@@ -363,7 +363,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	//I frontload all the questions so we don't have a half-done process while you're reading.
-	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in clients
+	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in GLOB.clients
 	if(!picked_client)
 		return
 

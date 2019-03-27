@@ -266,7 +266,7 @@
 
 	New()
 		..()
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 	process()
 		var/mob/observer/dead/ghost
@@ -366,11 +366,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Grow()
 	grown = 1
 	icon_state = "slime egg-grown"
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Hatch()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	var/turf/T = get_turf(src)
 	src.visible_message("<span class='warning'> The [name] pulsates and quivers!</span>")
 	spawn(rand(50,100))

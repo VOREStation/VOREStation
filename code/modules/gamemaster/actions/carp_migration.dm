@@ -32,7 +32,7 @@
 	var/activeness = ((metric.assess_department(ROLE_SECURITY) + metric.assess_department(ROLE_ENGINEERING) + metric.assess_department(ROLE_MEDICAL)) / 3)
 	activeness = max(activeness, 20)
 
-	carp_amount = Ceiling(station_strength * (activeness / 100) + 1)
+	carp_amount = CEILING(station_strength * (activeness / 100) + 1, 1)
 
 /datum/gm_action/carp_migration/start()
 	..()

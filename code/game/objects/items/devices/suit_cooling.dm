@@ -30,7 +30,7 @@
 	toggle(usr)
 
 /obj/item/device/suit_cooling_unit/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	cell = new/obj/item/weapon/cell/high()	//comes not with the crappy default power cell - because this is dedicated EVA equipment
 	cell.loc = src
 

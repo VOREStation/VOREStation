@@ -32,6 +32,7 @@
 
 	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
 	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
+	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
 
 /turf/New()
 	..()
@@ -283,9 +284,6 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/process()
-	return PROCESS_KILL
-
 /turf/proc/contains_dense_objects()
 	if(density)
 		return 1
@@ -325,7 +323,27 @@ var/const/enterloopsanity = 100
 
 // Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
 /turf/proc/is_safe_to_enter(mob/living/L)
+	if(LAZYLEN(dangerous_objects))
+		for(var/obj/O in dangerous_objects)
+			if(!O.is_safe_to_step(L))
+				return FALSE
 	return TRUE
+
+// Tells the turf that it currently contains something that automated movement should consider if planning to enter the tile.
+// This uses lazy list macros to reduce memory footprint, since for 99% of turfs the list would've been empty anyways.
+/turf/proc/register_dangerous_object(obj/O)
+	if(!istype(O))
+		return FALSE
+	LAZYADD(dangerous_objects, O)
+//	color = "#FF0000"
+
+// Similar to above, for when the dangerous object stops being dangerous/gets deleted/moved/etc.
+/turf/proc/unregister_dangerous_object(obj/O)
+	if(!istype(O))
+		return FALSE
+	LAZYREMOVE(dangerous_objects, O)
+	UNSETEMPTY(dangerous_objects) // This nulls the list var if it's empty.
+//	color = "#00FF00"
 
 // This is all the way up here since its the common ancestor for things that need to get replaced with a floor when an RCD is used on them.
 // More specialized turfs like walls should instead override this.

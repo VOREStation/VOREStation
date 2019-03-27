@@ -1,4 +1,4 @@
-/mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
+/mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
@@ -682,15 +682,23 @@
 				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
+				stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()
 
 			if(statpanel("MC"))
+				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
+				stat("World Time:", world.time)
+				stat("Real time of day:", REALTIMEOFDAY)
 				stat(null)
+				if(GLOB)
+					GLOB.stat_entry()
+				else
+					stat("Globals:", "ERROR")
 				if(Master)
 					Master.stat_entry()
 				else
@@ -703,10 +711,18 @@
 					stat(null)
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
-						
+
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
 				
+
+			if(length(GLOB.sdql2_queries))
+				if(statpanel("SDQL2"))
+					stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+					for(var/i in GLOB.sdql2_queries)
+						var/datum/SDQL2_query/Q = i
+						Q.generate_stat()
+
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null
@@ -1176,3 +1192,19 @@ mob/proc/yank_out_object()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
+
+// Manages a global list of mobs with clients attached, indexed by z-level.
+/mob/proc/update_client_z(new_z) // +1 to register, null to unregister.
+	if(registered_z != new_z)
+		if(registered_z)
+			GLOB.players_by_zlevel[registered_z] -= src
+		if(client)
+			if(new_z)
+				GLOB.players_by_zlevel[new_z] += src
+			registered_z = new_z
+		else
+			registered_z = null
+
+/mob/on_z_change(old_z, new_z)
+	..()
+	update_client_z(new_z)

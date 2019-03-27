@@ -27,7 +27,7 @@
 		/obj/item/taperoll/engineering,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering)
 
-/obj/structure/closet/secure_closet/engineering_chief_wardrobe/initialize()
+/obj/structure/closet/secure_closet/engineering_chief_wardrobe/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/industrial
 	else

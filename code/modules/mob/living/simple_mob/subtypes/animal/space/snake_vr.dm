@@ -36,14 +36,6 @@
 	var/turns_since_scan = 0
 	var/obj/movement_target
 
-/datum/ai_holder/simple_mob/passive
-	base_wander_delay = 11 //Them pets better be slow to not push us around
-
-/datum/ai_holder/simple_mob/passive
-	hostile = FALSE
-	can_flee = TRUE
-	violent_breakthrough = FALSE
-
 /mob/living/simple_mob/animal/space/snake/noodle/Life()
 	..()
 

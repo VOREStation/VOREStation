@@ -64,7 +64,7 @@
 
 /obj/item/weapon/melee/changeling/New(location)
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
 		visible_message("<span class='warning'>A grotesque weapon forms around [loc.name]\'s arm!</span>",
 		"<span class='warning'>Our arm twists and mutates, transforming it into a deadly weapon.</span>",
@@ -81,7 +81,7 @@
 			qdel(src)
 
 /obj/item/weapon/melee/changeling/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	creator = null
 	..()
 

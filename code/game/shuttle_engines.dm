@@ -17,7 +17,7 @@
 	if(!height || air_group) return 0
 	else return ..()
 
-/obj/structure/shuttle/window/initialize()
+/obj/structure/shuttle/window/Initialize()
 	. = ..()
 	auto_join()
 

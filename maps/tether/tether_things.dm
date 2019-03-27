@@ -1,8 +1,3 @@
-/obj/structure/window/reinforced/polarized/full
-	dir = SOUTHWEST
-	icon_state = "fwindow"
-	maxhealth = 80
-
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
     height = 7
@@ -80,7 +75,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/to_underdark/initialize()
+/obj/effect/step_trigger/teleporter/to_underdark/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -93,7 +88,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/from_underdark/initialize()
+/obj/effect/step_trigger/teleporter/from_underdark/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -114,7 +109,7 @@
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
+/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/Initialize()
 	planet = planet_virgo3b
 	. = ..()
 
@@ -169,7 +164,7 @@
 
 	var/area/shock_area = /area/tether/surfacebase/tram
 
-/turf/simulated/floor/maglev/initialize()
+/turf/simulated/floor/maglev/Initialize()
 	. = ..()
 	shock_area = locate(shock_area)
 
@@ -209,7 +204,7 @@
 /obj/machinery/smartfridge/chemistry/chemvator/down
 	name = "\improper Smart Chemavator - Lower"
 
-/obj/machinery/smartfridge/chemistry/chemvator/down/initialize()
+/obj/machinery/smartfridge/chemistry/chemvator/down/Initialize()
 	. = ..()
 	var/obj/machinery/smartfridge/chemistry/chemvator/above = locate(/obj/machinery/smartfridge/chemistry/chemvator,get_zstep(src,UP))
 	if(istype(above))
@@ -331,22 +326,22 @@ var/global/list/latejoin_tram   = list()
 	"Beach" 			= new/datum/holodeck_program(/area/houseboat/holodeck/beach),
 	"Desert" 			= new/datum/holodeck_program(/area/houseboat/holodeck/desert,
 													list(
-														'sound/effects/wind/wind_2_1.ogg',
-											 			'sound/effects/wind/wind_2_2.ogg',
-											 			'sound/effects/wind/wind_3_1.ogg',
-											 			'sound/effects/wind/wind_4_1.ogg',
-											 			'sound/effects/wind/wind_4_2.ogg',
-											 			'sound/effects/wind/wind_5_1.ogg'
+														'sound/effects/weather/wind/wind_2_1.ogg',
+											 			'sound/effects/weather/wind/wind_2_2.ogg',
+											 			'sound/effects/weather/wind/wind_3_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_2.ogg',
+											 			'sound/effects/weather/wind/wind_5_1.ogg'
 												 		)
 		 											),
 	"Snowfield" 		= new/datum/holodeck_program(/area/houseboat/holodeck/snow,
 													list(
-														'sound/effects/wind/wind_2_1.ogg',
-											 			'sound/effects/wind/wind_2_2.ogg',
-											 			'sound/effects/wind/wind_3_1.ogg',
-											 			'sound/effects/wind/wind_4_1.ogg',
-											 			'sound/effects/wind/wind_4_2.ogg',
-											 			'sound/effects/wind/wind_5_1.ogg'
+														'sound/effects/weather/wind/wind_2_1.ogg',
+											 			'sound/effects/weather/wind/wind_2_2.ogg',
+											 			'sound/effects/weather/wind/wind_3_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_2.ogg',
+											 			'sound/effects/weather/wind/wind_5_1.ogg'
 												 		)
 		 											),
 	"Space" 			= new/datum/holodeck_program(/area/houseboat/holodeck/space,

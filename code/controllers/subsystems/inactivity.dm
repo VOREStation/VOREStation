@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(inactivity)
 
 /datum/controller/subsystem/inactivity/fire()
 	if(config.kick_inactive)
-		for(var/i in clients)
+		for(var/i in GLOB.clients)
 			var/client/C = i
 			if(C.is_afk(config.kick_inactive MINUTES) && !C.holder) // VOREStation Edit - Allow admins to idle
 				to_chat(C,"<span class='warning'>You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.</span>")

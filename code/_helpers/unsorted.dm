@@ -831,6 +831,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
 						O.loc = X
+						O.update_light()
 
 					//Move the mobs unless it's an AI eye or other eye type.
 					for(var/mob/M in T)
@@ -1461,3 +1462,5 @@ var/mob/dview/dview_mob = new
 
 /proc/pass()
 	return
+
+#define NAMEOF(datum, X) (#X || ##datum.##X)

@@ -15,16 +15,16 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
-	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
+	fire_sound_text = "a strange noise"
 
 /obj/item/weapon/gun/launcher/spikethrower/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 
 /obj/item/weapon/gun/launcher/spikethrower/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/gun/launcher/spikethrower/process()

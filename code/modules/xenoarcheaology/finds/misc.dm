@@ -3,13 +3,18 @@
 
 //legacy crystal
 /obj/machinery/crystal
-	name = "Crystal"
+	name = "crystal"
+	desc = "A shiny looking crystal formation."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crystal"
 	density = TRUE
 	anchored = TRUE
 
-/obj/machinery/crystal/New()
+/obj/machinery/crystal/Initialize()
+	randomize_color()
+	return ..()
+
+/obj/machinery/crystal/proc/randomize_color()
 	if(prob(30))
 		icon_state = "crystal2"
 		set_light(3, 3, "#CC00CC")
@@ -21,18 +26,25 @@
 	desc = "A large crystalline ice formation."
 	icon_state = "icecrystal2"
 
-/obj/machinery/crystal/ice/New()
-	if(prob(10))
-		icon_state = "crystal"
-		set_light(5, 5, "#33CC33")
-	if(prob(10))
-		icon_state = "crystal2"
-		set_light(5, 5, "#CC00CC")
+/obj/machinery/crystal/ice/randomize_color()
 	if(prob(30))
 		icon_state = "icecrystal1"
-		set_light(5, 5, "#C4FFFF")
-	else
-		set_light(5, 5, "#C4FFFF")
+	set_light(3, 3, "#C4FFFF")
+
+/obj/machinery/crystal/lava
+	name = "lava crystal"
+	desc = "A large crystalline formation found near extreme heat."
+	icon_state = "grey_crystal"
+	color = "#FCCF64"
+
+/obj/machinery/crystal/lava/randomize_color()
+	if(prob(50))
+		icon_state = "grey_crystal2"
+
+	if(prob(30))
+		color = "#E03131"
+
+	set_light(3, 3, color)
 
 //large finds
 				/*

@@ -21,7 +21,7 @@
 
 	Destroy()
 		QDEL_NULL(detonator)
-		QDEL_NULL_LIST(beakers)
+		QDEL_LIST_NULL(beakers)
 		return ..()
 
 	attack_self(mob/user as mob)

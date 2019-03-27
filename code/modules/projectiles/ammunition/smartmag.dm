@@ -27,11 +27,11 @@
 	var/emagged = 0		// If you emag the smart mag, you can get the bullets out by clicking it
 
 /obj/item/ammo_magazine/smart/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/ammo_magazine/smart/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/ammo_magazine/smart/process()
