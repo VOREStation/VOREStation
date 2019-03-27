@@ -171,33 +171,5 @@ var/round_start_time = 0
 	hour = MODULUS(hour, 24)
 	var/hourT
 	if(hour)
-<<<<<<< HEAD
-		if(hour != 1)
-			if(day && (minute || second))
-				hour = ", [hour] hours"
-			else if(day && (!minute || !second))
-				hour = " and [hour] hours"
-			else
-				hour = "[hour] hours"
-		else
-			if(day && (minute || second))
-				hour = ", 1 hour"
-			else if(day && (!minute || !second))
-				hour = " and 1 hour"
-			else
-				hour = "[truncate ? "hour" : "1 hour"]"
-	else
-		hour = null
-
-	if(!day)
-		return "[hour][minute][second]"
-	if(day > 1)
-		day = "[day] days"
-	else
-		day = "[truncate ? "day" : "1 day"]"
-
-	return "[day][hour][minute][second]"
-=======
 		hourT = " and [hour] hour[(hour != 1)? "s":""]"
 	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
->>>>>>> ae64d73... Upgrades SDQL2 and refactors it to a datum (#5793)
