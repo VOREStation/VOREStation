@@ -129,17 +129,18 @@
 /mob/living/simple_mob/slime/proc/unify()
 	unity = TRUE
 
-// Interface override, because slimes are supposed to attack other slimes of different color regardless of faction
+// Interface override, because slimes are supposed to attack other slimes of different color regardless of faction.
 // (unless Unified, of course).
 /mob/living/simple_mob/slime/IIsAlly(mob/living/L)
 	. = ..()
-	if(.) // Need to do an additional check if its another slime.
-		if(istype(L, /mob/living/simple_mob/slime))
-			var/mob/living/simple_mob/slime/S = L
-			if(S.slime_color != src.slime_color)
-				if(S.unity || src.unity)
-					return TRUE
-				return FALSE
+	if(istype(L, /mob/living/simple_mob/slime)) // Slimes should care about their color subfaction compared to another's.
+		var/mob/living/simple_mob/slime/S = L
+		if(S.unity || src.unity)
+			return TRUE
+		if(S.slime_color == src.slime_color)
+			return TRUE
+		else
+			return FALSE
 	// The other stuff was already checked in parent proc, and the . variable will implicitly return the correct value.
 
 // Slimes regenerate passively.
