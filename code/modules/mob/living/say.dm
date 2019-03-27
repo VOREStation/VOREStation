@@ -172,10 +172,22 @@ proc/get_radio_key_from_channel(var/channel)
 	//Parse the language code and consume it
 	if(!speaking)
 		speaking = parse_language(message)
+
+	if(!speaking)
+		speaking = get_default_language()
+
+	if(!can_speak(speaking))
+		speaking = all_languages[LANGUAGE_GIBBERISH]
+		var/babble_key = ",r"
+		message = babble_key + message
+
+	if(speaking == get_default_language())
+		var/new_message = ",[speaking.key]"
+		new_message += message
+		message = new_message
+
 	if(speaking)
 		message = copytext(message,2+length(speaking.key))
-	else
-		speaking = get_default_language()
 
 	//HIVEMIND languages always send to all people with that language
 	if(speaking && (speaking.flags & HIVEMIND))
