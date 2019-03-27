@@ -2702,11 +2702,8 @@
 #include "code\modules\reagents\reagent_containers\spray.dm"
 #include "code\modules\reagents\reagent_containers\spray_vr.dm"
 #include "code\modules\reagents\reagent_containers\syringes.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\reagents\reagent_containers\syringes_vr.dm"
-=======
 #include "code\modules\reagents\reagent_containers\unidentified_hypospray.dm"
->>>>>>> 68d3406... Merge pull request #5773 from Neerti/identification_system:polaris.dme
 #include "code\modules\recycling\conveyor2.dm"
 #include "code\modules\recycling\disposal-construction.dm"
 #include "code\modules\recycling\disposal.dm"
