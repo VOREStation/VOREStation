@@ -139,7 +139,7 @@
 
 /obj/item/weapon/tank/emergency/oxygen/New()
 		..()
-		src.air_contents.adjust_gas("oxygen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+		src.air_contents.adjust_gas("oxygen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 		return
 
@@ -167,7 +167,7 @@
 
 /obj/item/weapon/tank/emergency/nitrogen/New()
 	..()
-	src.air_contents.adjust_gas("nitrogen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas("nitrogen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/weapon/tank/emergency/nitrogen/double
 	name = "double emergency nitrogen tank"
@@ -183,7 +183,7 @@
 
 /obj/item/weapon/tank/emergency/phoron/New()
 	..()
-	src.air_contents.adjust_gas("phoron", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas("phoron", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/weapon/tank/emergency/phoron/double
 	name = "double emergency phoron tank"
