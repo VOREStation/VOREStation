@@ -12,12 +12,6 @@
 	var/radiation_count = 0
 	var/datum/looping_sound/geiger/soundloop
 
-<<<<<<< HEAD
-/obj/item/device/geiger/New()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/device/geiger/Destroy()
-=======
 /obj/item/device/geiger/Initialize()
 	START_PROCESSING(SSobj, src)
 	soundloop = new(list(src), FALSE)
@@ -26,7 +20,6 @@
 /obj/item/device/geiger/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(soundloop)
->>>>>>> 5fb77b3... Merge pull request #5791 from Neerti/looping_sounds
 	return ..()
 
 /obj/item/device/geiger/process()

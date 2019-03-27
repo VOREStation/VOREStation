@@ -461,12 +461,6 @@ var/datum/planet/sif/planet_sif = null
 	observed_message = "Everything is red. Something really wrong is going on."
 	transition_messages = list(
 		"The sky turns blood red!"
-<<<<<<< refs/remotes/VOREStation/master
-	)
-=======
-<<<<<<< HEAD
-	)
-=======
 	)
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors

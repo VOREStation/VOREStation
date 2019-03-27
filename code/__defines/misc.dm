@@ -302,7 +302,6 @@ var/global/list/##LIST_NAME = list();\
 
 
 #define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
-<<<<<<< HEAD
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
 
 // Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
