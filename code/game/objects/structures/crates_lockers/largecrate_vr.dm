@@ -40,7 +40,7 @@
 	name = "Predator carrier"
 	starts_with = list(/mob/living/simple_mob/vore/catgirl)
 
-/obj/structure/largecrate/animal/pred/initialize() //This is nessesary to get a random one each time.
+/obj/structure/largecrate/animal/pred/Initialize() //This is nessesary to get a random one each time.
 	starts_with = list(pick(/mob/living/simple_mob/vore/bee,
 						/mob/living/simple_mob/vore/catgirl;3,
 						/mob/living/simple_mob/vore/frog,
@@ -61,7 +61,7 @@
 	name = "Dangerous Predator carrier"
 	starts_with = list(/mob/living/simple_mob/animal/space/alien)
 
-/obj/structure/largecrate/animal/dangerous/initialize()
+/obj/structure/largecrate/animal/dangerous/Initialize()
 	starts_with = list(pick(/mob/living/simple_mob/animal/space/carp/large,
 						/mob/living/simple_mob/hostile/deathclaw,
 						/mob/living/simple_mob/vore/dino,
@@ -101,7 +101,7 @@
 	desc = "VARMAcorp experimental hostile environment adaptive breeding development kit. WARNING, DO NOT RELEASE IN WILD!"
 	starts_with = list(/mob/living/simple_mob/otie/cotie/phoron)
 
-/obj/structure/largecrate/animal/otie/phoron/initialize()
+/obj/structure/largecrate/animal/otie/phoron/Initialize()
 	starts_with = list(pick(/mob/living/simple_mob/otie/cotie/phoron;2,
 						/mob/living/simple_mob/otie/red/friendly;0.5))
 	return ..()
@@ -129,7 +129,7 @@
 	desc = "Bounces around a lot. Looks messily packaged, were they in a hurry?"
 	starts_with = list(/mob/living/simple_mob/fennec)
 
-/obj/structure/largecrate/animal/fennec/initialize()
+/obj/structure/largecrate/animal/fennec/Initialize()
 	starts_with = list(pick(/mob/living/simple_mob/fennec,
 						/mob/living/simple_mob/vore/fennix;0.5))
 	return ..()

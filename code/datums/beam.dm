@@ -144,7 +144,7 @@
 // 'Reactive' beam parts do something when touched or stood in.
 /obj/effect/ebeam/reactive
 
-/obj/effect/ebeam/reactive/initialize()
+/obj/effect/ebeam/reactive/Initialize()
 	processing_objects += src
 	return ..()
 

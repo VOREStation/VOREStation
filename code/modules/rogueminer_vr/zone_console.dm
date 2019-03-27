@@ -23,7 +23,7 @@
 	var/legacy_zone = 0 //Disable scanning and whatnot.
 	var/obj/machinery/computer/shuttle_control/belter/shuttle_control
 
-/obj/machinery/computer/roguezones/initialize()
+/obj/machinery/computer/roguezones/Initialize()
 	. = ..()
 	shuttle_control = locate(/obj/machinery/computer/shuttle_control/belter)
 

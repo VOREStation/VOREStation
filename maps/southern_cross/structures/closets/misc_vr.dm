@@ -113,7 +113,7 @@
 		/obj/item/clothing/accessory/holster/machete,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2)
 
-/obj/structure/closet/secure_closet/pathfinder/initialize()
+/obj/structure/closet/secure_closet/pathfinder/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack
 	else

@@ -262,7 +262,7 @@ steam.start() -- spawns the effect
 	opacity = FALSE
 	var/strength = 5 // How much damage to do inside each affect()
 
-/obj/effect/effect/smoke/elemental/initialize()
+/obj/effect/effect/smoke/elemental/Initialize()
 	processing_objects += src
 	return ..()
 

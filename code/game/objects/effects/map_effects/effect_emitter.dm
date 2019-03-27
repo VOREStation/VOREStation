@@ -7,7 +7,7 @@
 	var/effect_cardinals_only = FALSE	// If true, effects only move in cardinal directions.
 	var/effect_forced_dir = null		// If set, effects emitted will always move in this direction.
 
-/obj/effect/map_effect/interval/effect_emitter/initialize()
+/obj/effect/map_effect/interval/effect_emitter/Initialize()
 	effect_system = new effect_system_type()
 	effect_system.attach(src)
 	configure_effects()
