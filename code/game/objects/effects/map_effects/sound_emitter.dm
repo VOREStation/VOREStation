@@ -82,13 +82,13 @@
 
 /obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight
 	sounds_to_play = list(
-		'sound/weapons/gunshot.ogg',
-		'sound/weapons/deagle.ogg',
-		'sound/weapons/rifleshot.ogg',
-		'sound/weapons/sniper.ogg',
-		'sound/weapons/shotgun.ogg',
-		'sound/weapons/gunshot3.ogg',
-		'sound/weapons/machinegun.ogg'
+		'sound/weapons/Gunshot1.ogg',
+		'sound/weapons/Gunshot_deagle.ogg',
+		'sound/weapons/Gunshot_generic_rifle.ogg',
+		'sound/weapons/Gunshot_sniper.ogg',
+		'sound/weapons/Gunshot_shotgun.ogg',
+		'sound/weapons/Gunshot3.ogg',
+		'sound/weapons/Gunshot_machinegun.ogg'
 		)
 	interval_lower_bound = 5
 	interval_upper_bound = 2 SECONDS

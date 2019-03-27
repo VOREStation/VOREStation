@@ -2,7 +2,6 @@
 	name = "energy gun"
 	desc = "A basic energy-based gun."
 	icon_state = "energy"
-	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
 
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses

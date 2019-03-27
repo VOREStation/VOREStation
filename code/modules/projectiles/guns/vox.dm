@@ -15,8 +15,8 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
-	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
+	fire_sound_text = "a strange noise"
 
 /obj/item/weapon/gun/launcher/spikethrower/New()
 	..()

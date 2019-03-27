@@ -20,8 +20,6 @@
 	var/power_cost = 950                                       // Cost per fire, should consume almost an entire basic cell.
 	var/power_per_tick                                         // Capacitor charge per process(). Updated based on capacitor rating.
 
-	fire_sound = 'sound/weapons/railgun.ogg'
-
 /obj/item/weapon/gun/magnetic/New()
 	START_PROCESSING(SSobj, src)
 	if(capacitor)
