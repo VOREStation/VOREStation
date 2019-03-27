@@ -106,26 +106,15 @@ var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret
 #define ATMOS_DEFAULT_VOLUME_MIXER  200 // L.
 #define ATMOS_DEFAULT_VOLUME_PIPE   70  // L.
 
+//wIP - PORT ALL OF THESE TO SUBSYSTEMS AND GET RID OF THE WHOLE LIST PROCESS THING
 // Fancy-pants START/STOP_PROCESSING() macros that lets us custom define what the list is.
 #define START_PROCESSING_IN_LIST(DATUM, LIST) \
-if (DATUM.is_processing) {\
-	if(DATUM.is_processing != #LIST)\
-	{\
-		crash_with("Failed to start processing. [log_info_line(DATUM)] is already being processed by [DATUM.is_processing] but queue attempt occured on [#LIST]."); \
-	}\
-} else {\
-	DATUM.is_processing = #LIST;\
+if (!(DATUM.datum_flags & DF_ISPROCESSING)) {\
 	LIST += DATUM;\
+	DATUM.datum_flags |= DF_ISPROCESSING\
 }
 
-#define STOP_PROCESSING_IN_LIST(DATUM, LIST) \
-if(DATUM.is_processing) {\
-	if(LIST.Remove(DATUM)) {\
-		DATUM.is_processing = null;\
-	} else {\
-		crash_with("Failed to stop processing. [log_info_line(DATUM)] is being processed by [is_processing] and not found in SSmachines.[#LIST]"); \
-	}\
-}
+#define STOP_PROCESSING_IN_LIST(DATUM, LIST) LIST.Remove(DATUM);DATUM.datum_flags &= ~DF_ISPROCESSING
 
 // Note - I would prefer these be defined machines.dm, but some are used prior in file order. ~Leshana
 #define START_MACHINE_PROCESSING(Datum) START_PROCESSING_IN_LIST(Datum, global.processing_machines)

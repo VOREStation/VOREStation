@@ -401,3 +401,8 @@ client/verb/character_setup()
 			. = R.group[1]
 		else
 			CRASH("Age check regex failed for [src.ckey]")
+
+/client/vv_edit_var(var_name, var_value)
+	if(var_name == NAMEOF(src, holder))
+		return FALSE
+	return ..()

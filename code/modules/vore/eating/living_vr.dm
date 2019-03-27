@@ -71,12 +71,12 @@
 //
 // Hide vore organs in contents
 //
-/mob/living/view_variables_filter_contents(list/L)
-	. = ..()
-	var/len_before = L.len
-	L -= vore_organs
-	. += len_before - L.len
-
+///mob/living/view_variables_filter_contents(list/L)
+//	. = ..()
+//	var/len_before = L.len
+//	L -= vore_organs
+//	. += len_before - L.len
+//
 //
 // Handle being clicked, perhaps with something to devour
 //
