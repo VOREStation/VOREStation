@@ -19,14 +19,13 @@
 	var/list/filled_reagents = list()
 	var/hyposound	// What sound do we play on use?
 
-/obj/item/weapon/reagent_containers/hypospray/New()
-	..()
+/obj/item/weapon/reagent_containers/hypospray/Initialize()
+	. = ..()
 	if(filled)
 		if(filled_reagents)
 			for(var/r in filled_reagents)
 				reagents.add_reagent(r, filled_reagents[r])
 	update_icon()
-	return
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
@@ -83,8 +82,8 @@
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/loaded_vial //Wow, what a name.
 	volume = 0
 
-/obj/item/weapon/reagent_containers/hypospray/vial/New()
-	..()
+/obj/item/weapon/reagent_containers/hypospray/vial/Initialize()
+	. = ..()
 	loaded_vial = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
 	volume = loaded_vial.volume
 	reagents.maximum_volume = loaded_vial.reagents.maximum_volume
@@ -147,8 +146,8 @@
 	filled = 0
 	filled_reagents = list()
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/used/New()
-	..()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/used/Initialize()
+	. = ..()
 	flags &= ~OPENCONTAINER
 	icon_state = "[initial(icon_state)]0"
 

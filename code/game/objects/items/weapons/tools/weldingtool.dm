@@ -39,7 +39,8 @@
 	var/always_process = FALSE // If true, keeps the welder on the process list even if it's off.  Used for when it needs to regenerate fuel.
 	toolspeed = 1
 
-/obj/item/weapon/weldingtool/New()
+/obj/item/weapon/weldingtool/Initialize()
+	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
@@ -158,12 +159,8 @@
 			L.IgniteMob()
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
-	return
-
-
-/obj/item/weapon/weldingtool/attack_self(mob/user as mob)
-	setWelding(!welding, usr)
-	return
+/obj/item/weapon/weldingtool/attack_self(mob/user)
+	setWelding(!welding, user)
 
 //Returns the amount of fuel in the welder
 /obj/item/weapon/weldingtool/proc/get_fuel()
@@ -604,6 +601,3 @@
 	toolspeed = 0.5
 
 #undef WELDER_FUEL_BURN_INTERVAL
-
-/obj/item/weapon/weldingtool/attack_self(mob/user)
-	setWelding(!welding, user)
