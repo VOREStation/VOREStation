@@ -24,9 +24,6 @@
 	if(rename)
 		name = rename
 
-<<<<<<< HEAD
-/datum/map_template/proc/preload_size(path, orientation = SOUTH)
-=======
 /datum/map_template/proc/preload_size(path, orientation = 0)
 	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
