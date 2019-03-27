@@ -180,8 +180,6 @@ the artifact triggers the rage.
 	accuracy = -75				// Aiming requires focus.
 	accuracy_dispersion = 3		// Ditto.
 	evasion = -45				// Too angry to dodge.
-<<<<<<< HEAD
-=======
 
 // Non-cult version of deep wounds.
 // Surprisingly, more dangerous.

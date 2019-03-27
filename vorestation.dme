@@ -2588,11 +2588,8 @@
 #include "code\modules\projectiles\guns\modular_guns.dm"
 #include "code\modules\projectiles\guns\projectile.dm"
 #include "code\modules\projectiles\guns\vox.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\projectiles\guns\energy\kinetic_accelerator_vr.dm"
-=======
 #include "code\modules\projectiles\guns\energy\hooklauncher.dm"
->>>>>>> a428fad... Event / Future PoI / Other weaponry & tools. (#5764):polaris.dme
 #include "code\modules\projectiles\guns\energy\laser.dm"
 #include "code\modules\projectiles\guns\energy\netgun_vr.dm"
 #include "code\modules\projectiles\guns\energy\nuclear.dm"
