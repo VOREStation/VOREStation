@@ -150,7 +150,6 @@
 	data = "As military vessels from the Almach Association continue to enter the Golden Crescent as part of a SolGov initiative to combat the Boiling Point terrorists believed to be hiding in the region, political unrest in the upstream portions of the region continue to grow. Many in the Republic of Saint Columbia, a small upstream nation, have responded to increasing militarization of their local Fleet base by taking to the streets, blocking pedestrian traffic in the capital of Barrueco and shutting down entire industries by destroying or disabling infrastructure. Quote rioter Luisa Tassis, \"we've been sick of the Fleeties squatting in our system and breathing down our neck, and now there's going to be even more of them? No, screw that. If there's going to be a war between the Rim and the Core, I know what side I'd rather be on.\"\
 	<br><br>\
 	Association leaders have refrained from officially supporting the rioters, though many suspect that Association propagandists have sparked the unrest. Solar officials, on the other hand, were quick to offer assurances that the unrest will be calmed long before it begins to affect the Fleet base in system."
-	
 
 /datum/lore/codex/page/article14
 	name = "5/25/62 - Harper's Aetolus Remains Shadowed"
