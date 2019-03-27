@@ -1305,11 +1305,8 @@
 #include "code\game\turfs\simulated\floor_icon.dm"
 #include "code\game\turfs\simulated\floor_static.dm"
 #include "code\game\turfs\simulated\floor_types.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\turfs\simulated\floor_types_vr.dm"
-=======
 #include "code\game\turfs\simulated\lava.dm"
->>>>>>> afa149c... Adds New PoI Features + Bonus PoI (#5796):polaris.dme
 #include "code\game\turfs\simulated\wall_attacks.dm"
 #include "code\game\turfs\simulated\wall_icon.dm"
 #include "code\game\turfs\simulated\wall_types.dm"

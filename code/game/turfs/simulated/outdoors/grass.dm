@@ -29,13 +29,8 @@ var/list/grass_types = list(
 		/obj/structure/flora/sif/eyes
 		)
 
-<<<<<<< HEAD
-/turf/simulated/floor/outdoors/grass/sif/Initialize()
-	if(tree_chance && prob(tree_chance))
-=======
 /turf/simulated/floor/outdoors/grass/sif/Initialize()
 	if(tree_chance && prob(tree_chance) && !check_density())
->>>>>>> afa149c... Adds New PoI Features + Bonus PoI (#5796)
 		new /obj/structure/flora/tree/sif(src)
 	. = ..()
 
