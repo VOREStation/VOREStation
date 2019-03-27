@@ -5,10 +5,10 @@
 "e" = (/turf/simulated/floor/water,/area/submap/cave/swordcave)
 "f" = (/turf/simulated/floor/water/deep,/area/submap/cave/swordcave)
 "g" = (/obj/structure/ghost_pod/manual/cursedblade,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
-"h" = (/mob/living/simple_animal/hostile/faithless/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"h" = (/mob/living/simple_mob/faithless/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
 "i" = (/obj/item/device/gps/explorer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
 "j" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
-"k" = (/mob/living/simple_animal/hostile/scarybat/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"k" = (/mob/living/simple_mob/animal/space/bats,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
 
 (1,1,1) = {"
 aaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa

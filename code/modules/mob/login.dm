@@ -71,4 +71,7 @@
 
 	if(!client.tooltips)
 		client.tooltips = new(client)
-	
+
+	var/turf/T = get_turf(src)
+	if(isturf(T))
+		update_client_z(T.z)

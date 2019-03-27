@@ -250,7 +250,7 @@ proc/listclearnulls(list/list)
 		else
 			L[key] = temp[key]
 
-			
+
 //Mergesort: divides up the list into halves to begin the sort
 /proc/sortKey(var/list/client/L, var/order = 1)
 	if(isnull(L) || L.len < 2)

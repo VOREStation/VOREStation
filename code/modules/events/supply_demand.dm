@@ -213,7 +213,7 @@
 	var/amount_to_take = min(I.reagents.get_reagent_amount(reagent_id), qty_need)
 	if(amount_to_take >= 1)
 		I.reagents.remove_reagent(reagent_id, amount_to_take, safety = 1)
-		qty_need = Ceiling(qty_need - amount_to_take)
+		qty_need = CEILING((qty_need - amount_to_take), 1)
 		return 1
 	else
 		log_debug("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
@@ -342,6 +342,6 @@
 		var/datum/alloy/A = pick(types)
 		types -= A // Don't pick the same thing twice
 		var/chosen_path = initial(A.product)
-		var/chosen_qty = Floor(rand(5, 100) * initial(A.product_mod))
+		var/chosen_qty = FLOOR(rand(5, 100) * initial(A.product_mod), 1)
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return

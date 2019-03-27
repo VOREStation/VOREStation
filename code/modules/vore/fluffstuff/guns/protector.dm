@@ -72,7 +72,7 @@
 			itemState += "[modifystate]"
 		*/
 	if(power_supply)
-		ratio = Ceiling((power_supply.charge / power_supply.maxcharge) * charge_sections)
+		ratio = CEILING(((power_supply.charge / power_supply.maxcharge) * charge_sections), 1)
 
 		if(power_supply.charge < charge_cost)
 			overlays += "[icon_state]_empty"

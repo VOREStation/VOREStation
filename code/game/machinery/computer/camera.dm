@@ -225,7 +225,7 @@
 	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
 	var/obj/item/device/radio/radio = null
 
-/obj/machinery/computer/security/telescreen/entertainment/initialize()
+/obj/machinery/computer/security/telescreen/entertainment/Initialize()
 	. = ..()
 	radio = new(src)
 	radio.listening = TRUE

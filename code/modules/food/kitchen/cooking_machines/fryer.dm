@@ -8,6 +8,22 @@
 	off_icon = "fryer_off"
 	food_color = "#FFAD33"
 	cooked_sound = 'sound/machines/ding.ogg'
+	var/datum/looping_sound/deep_fryer/fry_loop
+
+/obj/machinery/cooker/fryer/Initialize()
+	fry_loop = new(list(src), FALSE)
+	return ..()
+
+/obj/machinery/cooker/fryer/Destroy()
+	QDEL_NULL(fry_loop)
+	return ..()
+
+/obj/machinery/cooker/fryer/set_cooking(new_setting)
+	..()
+	if(new_setting)
+		fry_loop.start()
+	else
+		fry_loop.stop()
 
 /obj/machinery/cooker/fryer/cook_mob(var/mob/living/victim, var/mob/user)
 
@@ -17,16 +33,19 @@
 	user.visible_message("<span class='danger'>\The [user] starts pushing \the [victim] into \the [src]!</span>")
 	icon_state = on_icon
 	cooking = 1
+	fry_loop.start()
 
 	if(!do_mob(user, victim, 20))
 		cooking = 0
 		icon_state = off_icon
+		fry_loop.stop()
 		return
 
 	if(!victim || !victim.Adjacent(user))
 		user << "<span class='danger'>Your victim slipped free!</span>"
 		cooking = 0
 		icon_state = off_icon
+		fry_loop.stop()
 		return
 
 	var/obj/item/organ/external/E
@@ -62,4 +81,5 @@
 
 	icon_state = off_icon
 	cooking = 0
+	fry_loop.stop()
 	return

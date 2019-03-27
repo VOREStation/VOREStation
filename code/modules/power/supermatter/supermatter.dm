@@ -88,9 +88,15 @@
 
 	var/debug = 0
 
+	var/datum/looping_sound/supermatter/soundloop
+
+/obj/machinery/power/supermatter/Initialize()
+	soundloop = new(list(src), TRUE)
+	return ..()
 
 /obj/machinery/power/supermatter/Destroy()
-	. = ..()
+	QDEL_NULL(soundloop)
+	return ..()
 
 /obj/machinery/power/supermatter/proc/explode()
 	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -196,6 +202,11 @@
 		shift_light(4,initial(light_color))
 	if(grav_pulling)
 		supermatter_pull(src)
+
+	if(power)
+		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
+		// Capped to 20 volume since higher volumes get annoying and it sounds worse.
+		soundloop.volume = min(round(power/10)+1, 20)
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/removed = null

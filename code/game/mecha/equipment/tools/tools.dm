@@ -247,7 +247,7 @@
 	equip_type = EQUIP_SPECIAL
 	var/obj/item/weapon/rcd/electric/mounted/mecha/my_rcd = null
 
-/obj/item/mecha_parts/mecha_equipment/tool/rcd/initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/Initialize()
 	my_rcd = new(src)
 	return ..()
 
@@ -1203,9 +1203,10 @@
 			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
 			return
 
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
 
 	//search for a valid passenger compartment

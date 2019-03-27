@@ -15,7 +15,8 @@
 	var/spore_cooldown = 8 SECONDS
 
 /obj/structure/blob/factory/Destroy()
-	for(var/mob/living/simple_animal/hostile/blob/spore/spore in spores)
+	for(var/mob/living/L in spores)
+		var/mob/living/simple_mob/blob/spore/spore = L
 		if(istype(spore) && spore.factory == src)
 			spore.factory = null
 		else
@@ -31,7 +32,7 @@
 		return
 	flick("blob_factory_glow", src)
 	spore_delay = world.time + spore_cooldown
-	var/mob/living/simple_animal/hostile/blob/spore/S = null
+	var/mob/living/simple_mob/blob/spore/S = null
 	if(overmind)
 		S = new overmind.blob_type.spore_type(src.loc, src)
 		S.faction = "blob"
@@ -39,10 +40,8 @@
 			S.overmind = overmind
 			overmind.blob_mobs.Add(S)
 			if(overmind.blob_type.ranged_spores)
-				S.ranged = TRUE
 				S.projectiletype = overmind.blob_type.spore_projectile
 				S.projectilesound = overmind.blob_type.spore_firesound
-				S.shoot_range = overmind.blob_type.spore_range
 		else //Other mobs don't add themselves in New. Ew.
 			S.nest = src
 			spores += S

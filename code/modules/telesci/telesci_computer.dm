@@ -40,7 +40,7 @@
 	..()
 	user << "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots."
 
-/obj/machinery/computer/telescience/initialize()
+/obj/machinery/computer/telescience/Initialize()
 	. = ..()
 	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)
@@ -73,7 +73,7 @@
 		return ..()
 
 /obj/machinery/computer/telescience/proc/get_max_allowed_distance()
-	return Floor(crystals.len * telepad.efficiency * powerCoefficient)
+	return FLOOR((crystals.len * telepad.efficiency * powerCoefficient), 1)
 
 /obj/machinery/computer/telescience/attack_ai(mob/user)
 	src.attack_hand(user)
@@ -97,7 +97,7 @@
 		data["cooldown"] = max(0, min(100, round(teleport_cooldown - world.time) / 10))
 		data["crystalCount"] = crystals.len
 		data["maxCrystals"] = max_crystals
-		data["maxPossibleDistance"] = Floor(max_crystals * powerCoefficient * 6); // max efficiency is 6
+		data["maxPossibleDistance"] = FLOOR((max_crystals * powerCoefficient * 6), 1); // max efficiency is 6
 		data["maxAllowedDistance"] = get_max_allowed_distance()
 		data["distance"] = distance
 
@@ -151,12 +151,12 @@
 			sparks()
 			if(telepad)
 				var/L = get_turf(telepad)
-				var/blocked = list(/mob/living/simple_animal/hostile)
-				var/list/hostiles = typesof(/mob/living/simple_animal/hostile) - blocked
+				var/blocked = list(/mob/living/simple_mob/hostile)
+				var/list/hostiles = typesof(/mob/living/simple_mob/hostile) - blocked
 				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
 				for(var/i in 1 to rand(1,4))
 					var/chosen = pick(hostiles)
-					var/mob/living/simple_animal/hostile/H = new chosen
+					var/mob/living/simple_mob/hostile/H = new chosen
 					H.forceMove(L)
 			return
 		if(99)
@@ -328,7 +328,7 @@
 		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
 		distance = Clamp(new_pow, 1, get_max_allowed_distance())
-		distance = Floor(distance)
+		distance = FLOOR(distance, 1)
 
 	if(href_list["setz"])
 		var/new_z = text2num(href_list["setz"])

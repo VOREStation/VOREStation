@@ -63,7 +63,7 @@
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/initialize()
+/obj/machinery/air_sensor/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -129,7 +129,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/initialize()
+/obj/machinery/computer/general_air_control/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)

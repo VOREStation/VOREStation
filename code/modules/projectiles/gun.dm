@@ -56,7 +56,7 @@
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
-	var/fire_sound = 'sound/weapons/Gunshot.ogg'
+	var/fire_sound = null // This is handled by projectile.dm's fire_sound var now, but you can override the projectile's fire_sound with this one if you want to.
 	var/fire_sound_text = "gunshot"
 	var/fire_anim = null
 	var/recoil = 0		//screen shake
@@ -173,7 +173,7 @@
 	if(!user.IsAdvancedToolUser())
 		return 0
 	if(isanimal(user))
-		var/mob/living/simple_animal/S = user
+		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
 			return 0
 
@@ -474,10 +474,7 @@
 
 			last_shot = world.time
 
-			if(silenced)
-				playsound(src, fire_sound, 10, 1)
-			else
-				playsound(src, fire_sound, 50, 1)
+			play_fire_sound()
 
 			if(muzzle_flash)
 				set_light(muzzle_flash)
@@ -526,7 +523,8 @@
 		return 2
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
 	//on the other side of a window if it makes a difference. Or if they run behind a window, too bad.
-	return check_trajectory(target, user)
+	if(check_trajectory(target, user))
+		return 1 // Magic numbers are fun.
 
 //called if there was no projectile to shoot
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)
@@ -542,18 +540,20 @@
 		flick(fire_anim, src)
 
 	if(silenced)
-		if(reflex)
-			user.visible_message(
-				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
-				"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
-				"You hear a [fire_sound_text]!"
+		to_chat(user, "<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex":""]</span>")
+		for(var/mob/living/L in oview(2,user))
+			if(L.stat)
+				continue
+			if(L.blinded)
+				to_chat(L, "You hear a [fire_sound_text]!")
+				continue
+			to_chat(L, 	"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex":""]!</span>")
+	else
+		user.visible_message(
+			"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex":""]!</span>",
+			"<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex":""]!</span>",
+			"You hear a [fire_sound_text]!"
 			)
-		else
-			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
-				"You hear a [fire_sound_text]!"
-				)
 
 	if(muzzle_flash)
 		set_light(muzzle_flash)
@@ -618,7 +618,7 @@
 
 	if(one_handed_penalty)
 		if(!held_twohanded)
-			acc_mod += -ceil(one_handed_penalty/2)
+			acc_mod += -CEILING(one_handed_penalty/2, 1)
 			disp_mod += one_handed_penalty*0.5 //dispersion per point of two-handedness
 
 	//Accuracy modifiers
@@ -670,7 +670,13 @@
 	return launched
 
 /obj/item/weapon/gun/proc/play_fire_sound(var/mob/user, var/obj/item/projectile/P)
-	var/shot_sound = (istype(P) && P.fire_sound)? P.fire_sound : fire_sound
+	var/shot_sound = fire_sound
+
+	if(!shot_sound && istype(P) && P.fire_sound) // If the gun didn't have a fire_sound, but the projectile exists, and has a sound...
+		shot_sound = P.fire_sound
+	if(!shot_sound) // If there's still no sound...
+		return
+
 	if(silenced)
 		playsound(user, shot_sound, 10, 1)
 	else
@@ -693,11 +699,7 @@
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
 		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
-		var/shot_sound = in_chamber.fire_sound? in_chamber.fire_sound : fire_sound
-		if(silenced)
-			playsound(user, shot_sound, 10, 1)
-		else
-			playsound(user, shot_sound, 50, 1)
+		play_fire_sound()
 		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
 			user.show_message("<span class = 'warning'>You feel rather silly, trying to commit suicide with a toy.</span>")
 			mouthshoot = 0

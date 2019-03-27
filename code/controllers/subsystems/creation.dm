@@ -24,6 +24,6 @@ SUBSYSTEM_DEF(creation)
 	var/total_atoms = atoms_needing_initialize.len
 	for(var/atom/movable/A in atoms_needing_initialize)
 		if(!QDELETED(A))
-			A.initialize()
+			A.Initialize()
 		atoms_needing_initialize -= A
 	admin_notice("<span class='danger'>Initalized [total_atoms] atoms in submap.</span>", R_DEBUG)

@@ -94,6 +94,7 @@ SHOW_MODS
 
 ##Show mentors on staffwho
 SHOW_EVENT
+
 ## Chooses whether mods have the ability to tempban or not
 MODS_CAN_TEMPBAN
 
@@ -416,3 +417,7 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 ## Uncomment to enable Paranoia Logging. This will notify admins and write to a file any time a new player (byond or your server) connects.
 # PARANOIA_LOGGING
 
+## Uncomment to enable submaps to have their orientation rotated randomly during map generation.
+## Submap rotation is an experimental feature and can cause bugs and weirdness if certain objects inside the submap are coded poorly.
+## Submaps can still be rotated when loading manually with the admin verbs, if desired.
+# RANDOM_SUBMAP_ORIENTATION

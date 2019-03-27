@@ -258,7 +258,7 @@
 // If the GLOB system is ever ported, you can change this macro in one place and have less work to do than you otherwise would.
 #define GLOBAL_LIST_BOILERPLATE(LIST_NAME, PATH)\
 var/global/list/##LIST_NAME = list();\
-##PATH/initialize(mapload, ...)\
+##PATH/Initialize(mapload, ...)\
 	{\
 	##LIST_NAME += src;\
 	return ..();\
@@ -303,3 +303,9 @@ var/global/list/##LIST_NAME = list();\
 
 #define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
+
+// Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
+#define RAD_LEVEL_LOW 0.01 // Around the level at which radiation starts to become harmful
+#define RAD_LEVEL_MODERATE 10
+#define RAD_LEVEL_HIGH 25
+#define RAD_LEVEL_VERY_HIGH 50

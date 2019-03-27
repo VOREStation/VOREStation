@@ -1,15 +1,3 @@
-var/list/global/map_templates = list()
-
-// Called when the world starts, in world.dm
-/proc/load_map_templates()
-	for(var/T in subtypesof(/datum/map_template))
-		var/datum/map_template/template = T
-		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
-			continue
-		template = new T()
-		map_templates[template.name] = template
-	return TRUE
-
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
@@ -19,14 +7,13 @@ var/list/global/map_templates = list()
 	var/mappath = null
 	var/loaded = 0 // Times loaded this round
 	var/annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
+	var/fixed_orientation = FALSE // If true, the submap will not be rotated randomly when loaded.
 
 	var/cost = null // The map generator has a set 'budget' it spends to place down different submaps. It will pick available submaps randomly until \
 	it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc. \
 	Set to -1 to force the submap to always be made.
 	var/allow_duplicates = FALSE // If false, only one map template will be spawned by the game. Doesn't affect admins spawning then manually.
 	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
-
-	var/static/dmm_suite/maploader = new
 
 /datum/map_template/New(path = null, rename = null)
 	if(path)
@@ -38,7 +25,7 @@ var/list/global/map_templates = list()
 		name = rename
 
 /datum/map_template/proc/preload_size(path, orientation = SOUTH)
-	var/bounds = maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
+	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
 		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
 		height = bounds[MAP_MAXY]
@@ -90,7 +77,7 @@ var/list/global/map_templates = list()
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
-	var/list/bounds = maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
+	var/list/bounds = SSmapping.maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
 	if(!bounds)
 		return FALSE
 
@@ -116,7 +103,7 @@ var/list/global/map_templates = list()
 	if(annihilate)
 		annihilate_bounds(old_T, centered, orientation)
 
-	var/list/bounds = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
+	var/list/bounds = SSmapping.maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
 	if(!bounds)
 		return
 
@@ -175,8 +162,8 @@ var/list/global/map_templates = list()
 	var/list/priority_submaps = list() // Submaps that will always be placed.
 
 	// Lets go find some submaps to make.
-	for(var/map in map_templates)
-		var/datum/map_template/MT = map_templates[map]
+	for(var/map in SSmapping.map_templates)
+		var/datum/map_template/MT = SSmapping.map_templates[map]
 		if(!MT.allow_duplicates && MT.loaded > 0) // This probably won't be an issue but we might as well.
 			continue
 		if(!istype(MT, desired_map_template_type)) // Not the type wanted.
@@ -226,7 +213,13 @@ var/list/global/map_templates = list()
 		var/specific_sanity = 100 // A hundred chances to place the chosen submap.
 		while(specific_sanity > 0)
 			specific_sanity--
-			var/orientation = pick(cardinal)
+
+			var/orientation
+			if(chosen_template.fixed_orientation || !config.random_submap_orientation)
+				orientation = SOUTH
+			else
+				orientation = pick(cardinal)
+
 			chosen_template.preload_size(chosen_template.mappath, orientation)
 			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
 			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)
