@@ -134,22 +134,22 @@ var/list/fuel_injectors = list()
 	else
 		StopInjecting()
 
-/obj/machinery/fusion_fuel_injector/verb/rotate_clock()
+/obj/machinery/fusion_fuel_injector/verb/rotate_clockwise()
 	set category = "Object"
-	set name = "Rotate Generator (Clockwise)"
+	set name = "Rotate Generator Clockwise"
 	set src in view(1)
 
 	if (usr.incapacitated() || usr.restrained()  || anchored)
 		return
 
-	src.dir = turn(src.dir, -90)
+	src.set_dir(turn(src.dir, 270))
 
-/obj/machinery/fusion_fuel_injector/verb/rotate_anticlock()
+/obj/machinery/fusion_fuel_injector/verb/rotate_counterclockwise()
 	set category = "Object"
-	set name = "Rotate Generator (Counter-clockwise)"
+	set name = "Rotate Generator Counterclockwise"
 	set src in view(1)
 
 	if (usr.incapacitated() || usr.restrained()  || anchored)
 		return
 
-	src.dir = turn(src.dir, 90)
+	src.set_dir(turn(src.dir, 90))

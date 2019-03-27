@@ -142,12 +142,12 @@
 	return
 
 
-/obj/item/device/assembly/infra/verb/rotate()//This could likely be better
-	set name = "Rotate Infrared Laser"
+/obj/item/device/assembly/infra/verb/rotate_clockwise()
+	set name = "Rotate Infrared Laser Clockwise"
 	set category = "Object"
 	set src in usr
 
-	set_dir(turn(dir, 90))
+	src.set_dir(turn(src.dir, 270))
 	return
 
 

@@ -112,5 +112,5 @@
 		var/turf/newloc = locate(x + deltas[1], y + deltas[2], z)
 		if(newloc)
 			Move(newloc)
-		if(rotate)	
+		if(rotate)
 			rotate(get_heading())

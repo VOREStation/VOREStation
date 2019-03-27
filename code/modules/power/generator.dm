@@ -215,25 +215,25 @@
 	updateicon()
 
 
-/obj/machinery/power/generator/verb/rotate_clock()
+/obj/machinery/power/generator/verb/rotate_clockwise()
 	set category = "Object"
-	set name = "Rotate Generator (Clockwise)"
+	set name = "Rotate Generator Clockwise"
+	set src in view(1)
+
+	if (usr.stat || usr.restrained()  || anchored)
+		return
+
+	src.set_dir(turn(src.dir, 270))
+
+/obj/machinery/power/generator/verb/rotate_counterclockwise()
+	set category = "Object"
+	set name = "Rotate Generator Counterclockwise"
 	set src in view(1)
 
 	if (usr.stat || usr.restrained()  || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
-
-/obj/machinery/power/generator/verb/rotate_anticlock()
-	set category = "Object"
-	set name = "Rotate Generator (Counterclockwise)"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, -90))
 
 /obj/machinery/power/generator/power_spike()
 //	if(!effective_gen >= max_power / 2 && powernet) // Don't make a spike if we're not making a whole lot of power.
