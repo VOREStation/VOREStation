@@ -186,6 +186,7 @@ obj/item/weapon/gun/energy/staff/focus
 	desc = "A massive weapon designed to pressure the opposition by raining down a torrent of energy pellets."
 	icon_state = "dakkalaser"
 	item_state = "dakkalaser"
+	wielded_item_state = "dakkalaser-wielded"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 24 // 100 shots, it's a spray and pray (to RNGesus) weapon.
@@ -201,3 +202,93 @@ obj/item/weapon/gun/energy/staff/focus
 		list(mode_name="five shot burst", burst = 5, burst_accuracy = list(75,75,75,75,75), dispersion = list(1,1,1,1,1)),
 		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(75,75,75,75,75,75,75,75,75,75), dispersion = list(2,2,2,2,2,2,2,2,2,2)),
 		)
+
+/obj/item/weapon/gun/energy/maghowitzer
+	name = "portable MHD howitzer"
+	desc = "A massive weapon designed to destroy fortifications with a stream of molten tungsten."
+	description_fluff = "A weapon designed by joint cooperation of NanoTrasen, Hephaestus, and SCG scientists. Everything else is red tape and black highlighters."
+	description_info = "This weapon requires a wind-up period before being able to fire. Clicking on a target will create a beam between you and its turf, starting the timer. Upon completion, it will fire at the designated location."
+	icon_state = "mhdhowitzer"
+	item_state = "mhdhowitzer"
+	wielded_item_state = "mhdhowitzer-wielded"
+	fire_sound = 'sound/weapons/emitter2.ogg'
+	w_class = ITEMSIZE_HUGE
+
+	charge_cost = 10000 // Uses large cells, can at max have 3 shots.
+	projectile_type = /obj/item/projectile/beam/tungsten
+	cell_type = /obj/item/weapon/cell/high
+	accept_cell_type = /obj/item/weapon/cell
+
+	accuracy = 75
+	charge_meter = 0
+	one_handed_penalty = 30
+
+	var/power_cycle = FALSE
+
+/obj/item/weapon/gun/energy/maghowitzer/proc/pick_random_target(var/turf/T)
+	var/foundmob = FALSE
+	var/foundmobs = list()
+	for(var/mob/living/L in T.contents)
+		foundmob = TRUE
+		foundmobs += L
+	if(foundmob)
+		var/return_target = pick(foundmobs)
+		return return_target
+	return FALSE
+
+/obj/item/weapon/gun/energy/maghowitzer/attack(atom/A, mob/living/user, def_zone)
+	if(power_cycle)
+		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
+		return 0
+	var/turf/target_turf = get_turf(A)
+	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
+	if(beameffect)
+		user.visible_message("<span class='cult'>[user] aims \the [src] at \the [A].</span>")
+	if(power_supply && power_supply.charge >= charge_cost) //Do a delay for pointblanking too.
+		power_cycle = TRUE
+		if(do_after(user, 30))
+			if(A.loc == target_turf)
+				..(A, user, def_zone)
+			else
+				var/rand_target = pick_random_target(target_turf)
+				if(rand_target)
+					..(rand_target, user, def_zone)
+				else
+					..(target_turf, user, def_zone)
+		else
+			if(beameffect)
+				qdel(beameffect)
+		power_cycle = FALSE
+	else
+		..(A, user, def_zone) //If it can't fire, just bash with no delay.
+
+/obj/item/weapon/gun/energy/maghowitzer/afterattack(atom/A, mob/living/user, adjacent, params)
+	if(power_cycle)
+		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
+		return 0
+
+	var/turf/target_turf = get_turf(A)
+
+	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
+
+	if(beameffect)
+		user.visible_message("<span class='cult'>[user] aims \the [src] at \the [A].</span>")
+
+	if(!power_cycle)
+		power_cycle = TRUE
+		if(do_after(user, 30))
+			if(A.loc == target_turf)
+				..(A, user, adjacent, params)
+			else
+				var/rand_target = pick_random_target(target_turf)
+				if(rand_target)
+					..(rand_target, user, adjacent, params)
+				else
+					..(target_turf, user, adjacent, params)
+		else
+			if(beameffect)
+				qdel(beameffect)
+			handle_click_empty(user)
+		power_cycle = FALSE
+	else
+		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")

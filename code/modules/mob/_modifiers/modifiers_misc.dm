@@ -181,6 +181,23 @@ the artifact triggers the rage.
 	accuracy_dispersion = 3		// Ditto.
 	evasion = -45				// Too angry to dodge.
 
+// Non-cult version of deep wounds.
+// Surprisingly, more dangerous.
+/datum/modifier/grievous_wounds
+	name = "grievous wounds"
+	desc = "Your wounds are not easily mended."
+
+	on_created_text = "<span class='critical'>Your wounds pain you greatly.</span>"
+	on_expired_text = "<span class='notice'>The pain lulls.</span>"
+
+	stacks = MODIFIER_STACK_EXTEND
+
+	incoming_healing_percent = 0.50	// 50% less healing.
+	disable_duration_percent = 1.22	// 22% longer disables.
+	bleeding_rate_percent = 1.20	// 20% more bleeding.
+
+	accuracy_dispersion = 2			// A combination of fear and immense pain or damage reults in a twitching firing arm. Flee.
+
 
 
 
