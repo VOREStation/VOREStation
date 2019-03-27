@@ -2960,16 +2960,23 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
 "aeT" = (
-/obj/structure/table/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
-	dir = 1
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
 	},
-/obj/machinery/camera/network/cargo,
+/obj/machinery/camera/network/tether{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/lobby)
+/area/tether/surfacebase/public_garden)
 "aeU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3273,6 +3280,17 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
+"afs" = (
+/obj/structure/table/glass,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/mining_main/lobby)
 "aft" = (
 /obj/machinery/camera/network/civilian{
 	dir = 2
@@ -3314,6 +3332,33 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/primary)
+"afx" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/mining_main/lobby)
 "afy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3332,6 +3377,20 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/eva)
+"afz" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
 "afA" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
@@ -3394,6 +3453,20 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
+"afG" = (
+/obj/structure/bed/chair,
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
+"afH" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/surfacebase/tram)
 "afI" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
@@ -3534,6 +3607,18 @@
 "afT" = (
 /turf/simulated/floor/tiled,
 /area/storage/primary)
+"afU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "afV" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
@@ -3548,6 +3633,40 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/mining)
+"afY" = (
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
+"afZ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	icon_state = "bordercolor";
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
+"aga" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	icon_state = "bordercolor";
+	dir = 4
+	},
+/obj/machinery/vending/coffee,
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "agd" = (
 /obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
@@ -3675,33 +3794,6 @@
 /obj/machinery/vending/tool,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
-"agC" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 8
-	},
-/obj/machinery/camera/network/cargo{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/lobby)
 "agD" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -19181,6 +19273,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"bmh" = (
+/obj/machinery/camera/network/research{
+	dir = 4;
+	network = list("Xenobiology")
+	},
+/turf/simulated/floor/reinforced,
+/area/rnd/xenobiology)
 "bmm" = (
 /obj/machinery/door/window/brigdoor/eastleft{
 	name = "Containment Pen";
@@ -20311,24 +20410,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
-"btx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 4
-	},
-/obj/machinery/camera/network/civilian{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden)
 "btD" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 5
@@ -21716,6 +21797,13 @@
 	dir = 1
 	},
 /obj/structure/closet/firecloset/full,
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology)
+"bEd" = (
+/obj/machinery/computer/security/mining{
+	name = "xenobiology camera monitor";
+	network = list("Xenobiology")
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "bEf" = (
@@ -32207,19 +32295,19 @@ axf
 bhp
 azr
 azX
-adj
+bmh
 aDa
 bqk
 aDa
-adk
+bmh
 aBu
 azr
 azU
-adu
+bmh
 aBu
 azr
 azU
-adH
+bmh
 aBu
 azr
 aah
@@ -32934,7 +33022,7 @@ bNQ
 bQw
 bSu
 azU
-adI
+bmh
 azU
 azr
 aad
@@ -33493,7 +33581,7 @@ aDA
 bvF
 byz
 aHb
-adF
+bEd
 aAO
 aGt
 aAO
@@ -33502,7 +33590,7 @@ bOf
 bQK
 bSH
 bTk
-adJ
+bmh
 aDa
 bWk
 aad
@@ -34452,7 +34540,7 @@ aah
 aah
 aah
 ahl
-acN
+afz
 aiE
 ajq
 ako
@@ -35437,7 +35525,7 @@ wIm
 thL
 kuC
 xED
-btx
+aeT
 qGm
 aYz
 dYl
@@ -41548,7 +41636,7 @@ afk
 anL
 agl
 agx
-agC
+afx
 agN
 ahd
 ahv
@@ -42679,7 +42767,7 @@ afL
 adE
 aeg
 abP
-aeT
+afs
 afo
 afo
 agr
@@ -43597,7 +43685,7 @@ cce
 cda
 cjs
 ceK
-adh
+afZ
 cfL
 cgk
 chl
@@ -44595,7 +44683,7 @@ cfx
 cfU
 cfv
 chu
-adi
+aga
 ciK
 cjA
 ceM
@@ -44690,7 +44778,7 @@ aah
 aah
 aah
 apP
-acT
+afG
 arm
 arm
 arm
@@ -44704,7 +44792,7 @@ azl
 azR
 avb
 apP
-add
+afY
 arm
 cfi
 cfy
@@ -45125,7 +45213,7 @@ atu
 atu
 avX
 axd
-ada
+afU
 azo
 azS
 aAJ
@@ -46823,7 +46911,7 @@ apR
 aqG
 aTI
 aqG
-acV
+afH
 aTI
 aqG
 aqG
@@ -46835,7 +46923,7 @@ aTI
 aqG
 aqG
 aTI
-acV
+afH
 aqG
 aTI
 aqG
