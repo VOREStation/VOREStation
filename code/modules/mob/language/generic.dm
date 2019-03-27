@@ -18,6 +18,9 @@
 	// if you make a loud noise (screams etc), you'll be heard from 4 tiles over instead of two
 	return (copytext(message, length(message)) == "!") ? 4 : 2
 
+/datum/language/noise/can_speak_special(var/mob/speaker)
+	return TRUE	//Audible emotes
+
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = LANGUAGE_GALCOM
