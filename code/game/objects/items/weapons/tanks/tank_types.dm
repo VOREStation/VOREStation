@@ -137,18 +137,10 @@
 	icon_state = "emergency"
 	gauge_icon = "indicator_emergency"
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/emergency/oxygen/New()
-		..()
-		src.air_contents.adjust_gas("oxygen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-
-		return
-=======
 /obj/item/weapon/tank/emergency/oxygen/Initialize()
 	..()
 	src.air_contents.adjust_gas("oxygen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
->>>>>>> 5181c8c... Merge pull request #5872 from Atermonera/stasis_pressure
 
 /obj/item/weapon/tank/emergency/oxygen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
