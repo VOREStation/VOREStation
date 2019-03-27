@@ -138,6 +138,6 @@
 	display_name = "Glasses, thin frame"
 	path = /obj/item/clothing/glasses/thin
 
-/datum/gear/eyes/glasses/prescriptionrimless
+/datum/gear/eyes/glasses/prescriptionthin
 	display_name = "Glasses, prescription thin frame"
 	path = /obj/item/clothing/glasses/regular/thin
