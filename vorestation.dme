@@ -223,12 +223,8 @@
 #include "code\controllers\subsystems\inactivity.dm"
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\mapping_vr.dm"
 #include "code\controllers\subsystems\mobs.dm"
-=======
-#include "code\controllers\subsystems\mapping.dm"
->>>>>>> ec4e2be... Merge pull request #5778 from Neerti/emergency_maploader_fix:polaris.dme
 #include "code\controllers\subsystems\orbits.dm"
 #include "code\controllers\subsystems\overlays.dm"
 #include "code\controllers\subsystems\persist_vr.dm"
