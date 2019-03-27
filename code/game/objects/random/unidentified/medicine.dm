@@ -15,7 +15,7 @@ much more likely to show up. This is done for several purposes;
 	name = "unidentified medicine"
 	desc = "This will make a random hypo."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "hypo"
+	icon_state = "autoinjector1"
 
 /obj/random/unidentified_medicine/item_to_spawn()
 	return pick(

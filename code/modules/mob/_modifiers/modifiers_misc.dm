@@ -213,6 +213,10 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
 	var/damage_per_tick = 5
 
+/datum/modifier/fire/intense
+	mob_overlay_state = "on_fire_intense"
+	damage_per_tick = 10
+
 /datum/modifier/fire/tick()
 	holder.inflict_heat_damage(damage_per_tick)
 
