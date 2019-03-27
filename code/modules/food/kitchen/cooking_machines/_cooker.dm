@@ -35,6 +35,10 @@
 		cooking_obj = null
 	return ..()
 
+/obj/machinery/cooker/proc/set_cooking(new_setting)
+	cooking = new_setting
+	icon_state = new_setting ? on_icon : off_icon
+
 /obj/machinery/cooker/examine()
 	..()
 	if(cooking_obj && Adjacent(usr))
@@ -113,7 +117,7 @@
 	user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
 	cooking_obj = I
 	cooking_obj.forceMove(src)
-	cooking = 1
+	set_cooking(TRUE)
 	icon_state = on_icon
 
 	// Doop de doo. Jeopardy theme goes here.
@@ -123,7 +127,7 @@
 	if(!cooking_obj || cooking_obj.loc != src)
 		cooking_obj = null
 		icon_state = off_icon
-		cooking = 0
+		set_cooking(FALSE)
 		return
 
 	// RIP slow-moving held mobs.
@@ -166,7 +170,7 @@
 
 	if(!can_burn_food)
 		icon_state = off_icon
-		cooking = 0
+		set_cooking(FALSE)
 		result.forceMove(get_turf(src))
 		cooking_obj = null
 	else
@@ -192,7 +196,7 @@
 				failed = 1
 
 			if(failed)
-				cooking = 0
+				set_cooking(FALSE)
 				icon_state = off_icon
 				break
 
@@ -201,7 +205,7 @@
 	if(cooking_obj && user.Adjacent(src)) //Fixes borgs being able to teleport food in these machines to themselves.
 		user << "<span class='notice'>You grab \the [cooking_obj] from \the [src].</span>"
 		user.put_in_hands(cooking_obj)
-		cooking = 0
+		set_cooking(FALSE)
 		cooking_obj = null
 		icon_state = off_icon
 		return

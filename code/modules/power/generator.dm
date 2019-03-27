@@ -22,12 +22,18 @@
 	var/lastgen2 = 0
 	var/effective_gen = 0
 	var/lastgenlev = 0
+	var/datum/looping_sound/generator/soundloop
 
-/obj/machinery/power/generator/New()
-	..()
+/obj/machinery/power/generator/Initialize()
+	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
 	spawn(1)
 		reconnect()
+	return ..()
+
+/obj/machinery/power/generator/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 //generators connect in dir and reverse_dir(dir) directions
 //mnemonic to determine circulator/generator directions: the cirulators orbit clockwise around the generator
@@ -123,6 +129,13 @@
 	lastgen1 = stored_energy*0.4 //smoothened power generation to prevent slingshotting as pressure is equalized, then restored by pumps
 	stored_energy -= lastgen1
 	effective_gen = (lastgen1 + lastgen2) / 2
+
+	// Sounds.
+	if(effective_gen > (max_power * 0.05)) // More than 5% and sounds start.
+		soundloop.start()
+		soundloop.volume = LERP(1, 40, effective_gen / max_power)
+	else
+		soundloop.stop()
 
 	// update icon overlays and power usage only if displayed level has changed
 	var/genlev = max(0, min( round(11*effective_gen / max_power), 11))
